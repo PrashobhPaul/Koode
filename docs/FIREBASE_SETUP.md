@@ -10,13 +10,25 @@ The app runs in **local mode** with no backend. Completing these steps switches 
    ```
    apps/android/app/google-services.json
    ```
-   (This file is git-ignored and must never be committed.)
+   This repository intentionally commits this file so CI builds produce a
+   cloud-enabled APK. The values inside are app identifiers, not secrets —
+   actual access control is enforced by the database security rules and the
+   trip-id + password capability scheme.
 
 ## 2. Enable Realtime Database
 
 1. Build → **Realtime Database** → Create database.
 2. Choose a location (e.g. the one nearest your users). The Spark (free) tier is sufficient for personal/early use (1 GB storage, 10 GB/month download, 100 concurrent connections).
 3. Start in **locked mode** — the rules below replace the defaults.
+
+> **Important — database URL.** A `google-services.json` downloaded *before*
+> the Realtime Database was created has no `firebase_url` entry. The app now
+> falls back to `https://<project-id>-default-rtdb.firebaseio.com` (the
+> default for US-region databases). If you created the database in a
+> **non-US region** (e.g. `asia-southeast1`), you must re-download
+> `google-services.json` from the console **after** creating the database so
+> it contains the regional `firebase_url` — otherwise cloud sync will not
+> connect.
 
 ## 3. Enable Anonymous Authentication
 
@@ -46,8 +58,8 @@ What the rules enforce (see the file for specifics):
 
 `functions/` contains two functions:
 
-- `cleanupExpiredTrips` — hourly; purges live state and raw location history for expired trips (the event log/timeline is retained per the retention policy).
-- `onTripEvent` — pushes a minimal high-/normal-priority message to the trip topic on SOS/arrival/overnight so viewers are alerted even when the app is backgrounded.
+- `cleanupExpiredTrips` — every 10 minutes; **deletes the whole trip node** for any trip whose `expiresAt` has passed. A trip expires **30 minutes after the driver reaches the destination**, so the trip id is fully destroyed shortly after. (Viewer *access* is cut off at exactly the 30-minute mark by the security rules, independent of this job's schedule.)
+- `onTripEvent` — pushes a minimal message to the trip topic on **trip start**, SOS, **arrival**, completion and overnight, so viewers are alerted even when the app is backgrounded.
 
 ```bash
 cd functions

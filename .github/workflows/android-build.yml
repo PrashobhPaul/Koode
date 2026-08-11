@@ -27,12 +27,6 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x apps/android/gradlew
 
-      # Optional: a Maps key enables the live map. Without it the app builds and
-      # runs in local mode with a map-unavailable placeholder. Set the
-      # MAPS_API_KEY repository secret to enable it in CI builds.
-      - name: Provide Maps API key (optional)
-        run: echo "MAPS_API_KEY=${{ secrets.MAPS_API_KEY }}" >> "$GITHUB_ENV"
-
       - name: Assemble debug APK and run unit tests
         working-directory: apps/android
         run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --no-daemon --stacktrace

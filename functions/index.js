@@ -6,15 +6,15 @@
  * Two responsibilities, both optional to the core app (the client works fully
  * without them; these add server-side guarantees):
  *
- *  1. cleanupExpiredTrips — scheduled revocation. Reads are already gated on
- *     meta/expiresAt by the database rules, so an expired trip is already
- *     inaccessible; this job additionally purges the live state and raw
- *     location history to honour the privacy-first retention default, while
- *     retaining the event log (timeline, incidents, SOS) per policy.
+ *  1. cleanupExpiredTrips — scheduled destruction. Reads are already gated on
+ *     meta/expiresAt by the database rules, so the moment a trip expires
+ *     (30 minutes after the driver reaches the destination) viewers lose
+ *     access; this job then deletes the whole trip node — meta, live state,
+ *     events and locations — so the trip id is fully destroyed server-side.
  *
- *  2. onTripEvent — fan-out. When the owner appends an SOS/arrival/overnight
- *     event, push a minimal high-/normal-priority message to the trip topic so
- *     viewers are alerted even when the app is not in the foreground.
+ *  2. onTripEvent — fan-out. When the owner appends a start/SOS/arrival/
+ *     overnight event, push a minimal high-/normal-priority message to the
+ *     trip topic so viewers are alerted even when the app is backgrounded.
  */
 
 const { onValueCreated } = require("firebase-functions/v2/database");
@@ -27,9 +27,10 @@ admin.initializeApp();
 // Event types that warrant a viewer notification. Content is deliberately
 // minimal — no medication names, note text, or precise coordinates.
 const NOTIFY = {
+  TRIP_STARTED: { title: "Trip started", body: "The driver has started the trip.", priority: "normal" },
   SOS_ACTIVATED: { title: "🚨 SOS alert", body: "The driver has raised an emergency alert.", priority: "high" },
-  ARRIVAL_DETECTED: { title: "Trip update", body: "The driver has arrived.", priority: "normal" },
-  TRIP_COMPLETED: { title: "Trip completed", body: "The trip has ended.", priority: "normal" },
+  ARRIVAL_DETECTED: { title: "Destination reached", body: "The driver has reached the destination.", priority: "normal" },
+  TRIP_COMPLETED: { title: "Trip completed", body: "The trip has ended. Access expires 30 minutes after arrival.", priority: "normal" },
   OVERNIGHT_CONFIRMED: { title: "Overnight rest", body: "The driver is stopping overnight.", priority: "normal" },
 };
 
@@ -58,31 +59,29 @@ exports.onTripEvent = onValueCreated("/trips/{accessKey}/events/{eventId}", asyn
   }
 });
 
-exports.cleanupExpiredTrips = onSchedule("every 60 minutes", async () => {
+exports.cleanupExpiredTrips = onSchedule("every 10 minutes", async () => {
   const now = Date.now();
   const db = admin.database();
 
   const snap = await db.ref("trips").orderByChild("meta/expiresAt").endAt(now).get();
   if (!snap.exists()) {
-    logger.info("No expired trips to purge.");
+    logger.info("No expired trips to destroy.");
     return;
   }
 
   const updates = {};
   let count = 0;
   snap.forEach((child) => {
-    const key = child.key;
     const meta = child.child("meta").val() || {};
-    if (typeof meta.expiresAt === "number" && meta.expiresAt < now && !meta.purgedAt) {
-      updates[`trips/${key}/currentState`] = null;
-      updates[`trips/${key}/locations`] = null;
-      updates[`trips/${key}/meta/purgedAt`] = now;
+    if (typeof meta.expiresAt === "number" && meta.expiresAt < now) {
+      // Full destruction: the trip id and everything under it is gone.
+      updates[`trips/${child.key}`] = null;
       count += 1;
     }
   });
 
   if (count > 0) {
     await db.ref().update(updates);
-    logger.info(`Purged live data for ${count} expired trip(s).`);
+    logger.info(`Destroyed ${count} expired trip(s).`);
   }
 });

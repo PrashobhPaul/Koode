@@ -1,43 +1,43 @@
-# Google Maps & Routes Setup (enables the live map + route/ETA)
+# Maps & Routing (free — no API key, no billing)
 
-Without a key, map panels render a graceful “map unavailable” placeholder and the app remains fully functional (tracking, checkpoints, ETA via the fallback estimator, replay, summary). Adding a key enables the interactive map, the route corridor, route-distance-based remaining time, and route-deviation detection.
+TripPulse no longer uses Google Maps or any paid/metered Google API. The map
+and routing stack is completely free:
 
-## 1. Create an API key
+| Capability | Provider | Cost |
+|---|---|---|
+| Map rendering | **osmdroid** + OpenStreetMap tiles | Free, no key |
+| Route polyline + travel time | **OSRM** public router (`router.project-osrm.org`) | Free, no key |
+| Place-name → coordinates | On-device Android `Geocoder` (+ map long-press pin) | Free |
 
-1. In the Google Cloud console, create/select a project (it can be the same one backing Firebase or a separate one).
-2. Enable these APIs:
-   - **Maps SDK for Android** (renders the map)
-   - **Routes API** (route polyline + travel-time estimate; powers deviation detection and distance-accurate ETA)
-   - *(Optional)* **Geocoding API** if you want more robust place-name → coordinate lookup; the app also falls back to the on-device geocoder and map long-press.
-3. Create an **API key** under Credentials.
+There is **nothing to set up**. No API key, no Google Cloud project, no billing
+account. Build the app and the map works.
 
-## 2. Restrict the key (recommended)
+## How it behaves
 
-- **Application restriction:** Android apps → add package `com.trippulse.app` and your debug/release signing SHA-1 fingerprints.
-  ```bash
-  # debug keystore SHA-1
-  keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android
-  ```
-- **API restriction:** limit the key to the APIs enabled above.
+- **Map panels** (create-trip picker, driver dashboard, viewer, replay) render
+  OpenStreetMap tiles via osmdroid. Long-press drops the destination pin, so a
+  trip can go from **any start point to any end point** — type a place name,
+  use "Current location", or drop a pin anywhere.
+- **Routing/ETA** asks the public OSRM server for the route polyline and travel
+  time. OSRM's demo server is community-run with no SLA; if it is unreachable
+  (or the phone is offline) the app silently falls back to the deterministic
+  estimator (haversine × road factor at a configurable average speed), so the
+  ETA always resolves. Route-deviation detection needs a real polyline and is
+  disabled only while running on the fallback.
+- **Tile cache** lives in app-private storage (`Android/data/…/files/osm_tiles`),
+  so no storage permissions are required, and recently viewed map areas keep
+  working offline.
 
-## 3. Provide the key to the build
+## OSM tile usage policy
 
-Put it in `apps/android/local.properties` (git-ignored):
+OpenStreetMap's tile servers are donation-funded. The app complies with the
+[tile usage policy](https://operations.osmfoundation.org/policies/tiles/) by
+sending the app's package name as the user agent and caching tiles on device.
+For a large-scale public release, switch to a commercial OSM tile host or
+self-host tiles; for personal/family use the public servers are fine.
 
-```properties
-MAPS_API_KEY=YOUR_ANDROID_MAPS_KEY
-```
+## Self-hosting (optional)
 
-Alternatively, export `MAPS_API_KEY` as an environment variable (used by CI via a repository secret). The build injects it as the manifest `com.google.android.geo.API_KEY` placeholder and exposes `BuildConfig.MAPS_KEY_SET` so the UI can switch between the real map and the placeholder.
-
-## 4. Rebuild
-
-```bash
-cd apps/android
-./gradlew :app:assembleDebug
-```
-
-## What uses the key
-
-- **Map panels** (driver, viewer, replay, and the destination picker) use the Maps SDK.
-- **Routing** uses the Routes API (`computeRoutes`) to fetch the route polyline and travel-time estimate. When the key/route is absent, a haversine × road-factor fallback drives distance and ETA, and route-deviation detection is disabled (there's no corridor to deviate from).
+If you ever want your own router, OSRM is open source and can be self-hosted
+(`osrm-backend` + an OSM extract). Point `OsrmRoutingProvider(baseUrl = …)` at
+your instance in `di/AppGraph.kt` — nothing else changes.

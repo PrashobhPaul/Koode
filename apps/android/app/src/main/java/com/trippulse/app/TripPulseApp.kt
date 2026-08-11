@@ -25,6 +25,15 @@ class TripPulseApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        // osmdroid (OpenStreetMap) setup: identify the app per OSM tile-usage
+        // policy and keep the tile cache in app-private storage (no permissions).
+        org.osmdroid.config.Configuration.getInstance().apply {
+            userAgentValue = packageName
+            osmdroidBasePath = getExternalFilesDir(null) ?: filesDir
+            osmdroidTileCache = java.io.File(osmdroidBasePath, "osm_tiles")
+        }
+
         graph.notifier.ensureChannels()
 
         // Reconnect -> drain. The journey continues locally regardless; this only

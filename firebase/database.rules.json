@@ -1,6 +1,7 @@
 {
   "rules": {
     "trips": {
+      ".indexOn": ["meta/expiresAt"],
       "$accessKey": {
         ".read": "data.child('meta').child('expiresAt').val() > now",
         "meta": {

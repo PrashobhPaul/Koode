@@ -6,11 +6,10 @@ import com.trippulse.app.domain.RoutePlan
 import com.trippulse.app.domain.TripConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /** Abstraction so the ETA engine never depends on a concrete map provider. */
@@ -20,70 +19,55 @@ interface RoutingProvider {
 }
 
 /**
- * Google Routes API v2 (computeRoutes REST). Requires a Maps API key with the
- * Routes API enabled. Uses a FieldMask to fetch only duration, distance and the
- * encoded polyline, which keeps the response small and the quota cost low.
+ * OSRM routing over the public demo server (router.project-osrm.org). Free,
+ * keyless and unmetered — no Google/paid API involved. Uses the standard
+ * /route/v1/driving endpoint with `overview=full&geometries=polyline`, which
+ * returns distance (metres), duration (seconds) and a Google-format encoded
+ * polyline that our existing decoder already understands.
+ *
+ * The demo server is community-run with no SLA, so every failure path returns
+ * null and the [FallbackRoutingProvider] keeps ETA working.
  */
-class GoogleRoutesProvider(
-    private val apiKey: String,
+class OsrmRoutingProvider(
+    private val baseUrl: String = DEFAULT_BASE_URL,
     private val client: OkHttpClient = defaultClient()
 ) : RoutingProvider {
 
     override suspend fun route(origin: GeoPoint, destination: GeoPoint): RoutePlan? =
         withContext(Dispatchers.IO) {
-            if (apiKey.isBlank()) return@withContext null
             try {
-                val body = JSONObject().apply {
-                    put("origin", latLng(origin))
-                    put("destination", latLng(destination))
-                    put("travelMode", "DRIVE")
-                    put("routingPreference", "TRAFFIC_AWARE")
-                    put("polylineQuality", "OVERVIEW")
-                }.toString()
-
+                // OSRM wants lng,lat pairs.
+                val coords = String.format(
+                    Locale.US, "%.6f,%.6f;%.6f,%.6f",
+                    origin.lng, origin.lat, destination.lng, destination.lat
+                )
                 val req = Request.Builder()
-                    .url("https://routes.googleapis.com/directions/v2:computeRoutes")
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("X-Goog-Api-Key", apiKey)
-                    .addHeader(
-                        "X-Goog-FieldMask",
-                        "routes.duration,routes.distanceMeters,routes.polyline.encodedPolyline"
-                    )
-                    .post(body.toRequestBody(JSON))
+                    .url("$baseUrl/route/v1/driving/$coords?overview=full&geometries=polyline&steps=false")
+                    .header("User-Agent", "TripPulse/1.0 (Android)")
+                    .get()
                     .build()
 
                 client.newCall(req).execute().use { resp ->
                     if (!resp.isSuccessful) return@withContext null
                     val json = resp.body?.string() ?: return@withContext null
-                    val routes = JSONObject(json).optJSONArray("routes") ?: return@withContext null
+                    val root = JSONObject(json)
+                    if (root.optString("code") != "Ok") return@withContext null
+                    val routes = root.optJSONArray("routes") ?: return@withContext null
                     if (routes.length() == 0) return@withContext null
                     val r = routes.getJSONObject(0)
-                    val distanceM = r.optDouble("distanceMeters", 0.0)
-                    val durationS = parseDuration(r.optString("duration", "0s"))
-                    val encoded = r.optJSONObject("polyline")?.optString("encodedPolyline").orEmpty()
+                    val distanceM = r.optDouble("distance", 0.0)
+                    val durationS = r.optDouble("duration", 0.0).toLong()
+                    val encoded = r.optString("geometry").orEmpty()
                     val poly = if (encoded.isNotBlank()) Geo.decodePolyline(encoded) else emptyList()
-                    RoutePlan(distanceM, durationS, poly, "google", System.currentTimeMillis())
+                    RoutePlan(distanceM, durationS, poly, "osrm", System.currentTimeMillis())
                 }
             } catch (_: Exception) {
                 null
             }
         }
 
-    private fun latLng(p: GeoPoint) = JSONObject().apply {
-        put("location", JSONObject().apply {
-            put("latLng", JSONObject().apply {
-                put("latitude", p.lat)
-                put("longitude", p.lng)
-            })
-        })
-    }
-
-    /** Routes API returns duration like "1234s". */
-    private fun parseDuration(d: String): Long =
-        d.removeSuffix("s").toLongOrNull() ?: 0L
-
     companion object {
-        private val JSON = "application/json; charset=utf-8".toMediaType()
+        const val DEFAULT_BASE_URL = "https://router.project-osrm.org"
         fun defaultClient(): OkHttpClient = OkHttpClient.Builder()
             .connectTimeout(12, TimeUnit.SECONDS)
             .readTimeout(12, TimeUnit.SECONDS)
@@ -92,7 +76,7 @@ class GoogleRoutesProvider(
 }
 
 /**
- * Deterministic fallback used whenever there is no key or the network is down.
+ * Deterministic fallback used whenever the routing service is unreachable.
  * Estimates road distance from straight-line distance and a configurable
  * average speed. Produces no polyline, so route-deviation stays disabled.
  */
@@ -106,13 +90,13 @@ class FallbackRoutingProvider(private val cfg: TripConfig) : RoutingProvider {
     }
 }
 
-/** Tries Google first, falls back deterministically so ETA always resolves. */
+/** Tries OSRM first, falls back deterministically so ETA always resolves. */
 class CompositeRouting(
-    private val google: GoogleRoutesProvider?,
+    private val primary: RoutingProvider?,
     private val fallback: FallbackRoutingProvider
 ) : RoutingProvider {
     override suspend fun route(origin: GeoPoint, destination: GeoPoint): RoutePlan {
-        google?.route(origin, destination)?.let { return it }
+        primary?.route(origin, destination)?.let { return it }
         return fallback.route(origin, destination)
     }
 }

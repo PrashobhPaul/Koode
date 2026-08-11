@@ -82,6 +82,12 @@ class Notifier(private val context: Context) {
     fun showResumeHint(origin: String, destination: String) =
         postEvent(ID_RESUME, CH_EVENTS, "Trip active", "Tap to resume tracking $origin → $destination.")
 
+    fun showTripStarted() =
+        postEvent(ID_STARTED, CH_EVENTS, "Trip started", "The driver has started the trip.")
+
+    fun showTripUpdate(title: String, body: String) =
+        postEvent(ID_UPDATE, CH_EVENTS, title, body)
+
     companion object {
         const val CH_TRACKING = "trippulse.tracking"
         const val CH_EVENTS = "trippulse.events"
@@ -92,5 +98,7 @@ class Notifier(private val context: Context) {
         private const val ID_OVERNIGHT = 2002
         private const val ID_SOS = 2003
         private const val ID_RESUME = 2004
+        private const val ID_STARTED = 2005
+        private const val ID_UPDATE = 2006
     }
 }

@@ -40,8 +40,21 @@ class FirebaseCloud(private val appContext: Context) {
 
     private val available: Boolean by lazy { FirebaseApp.getApps(appContext).isNotEmpty() }
 
+    /**
+     * Resolves the Realtime Database instance. google-services.json only
+     * contains a `firebase_url` when it was downloaded AFTER the RTDB instance
+     * was created; without it FirebaseDatabase.getInstance() throws and cloud
+     * sync silently dies. Fall back to the default-instance URL derived from
+     * the project id so cloud mode works either way.
+     */
     private val db: FirebaseDatabase? by lazy {
-        if (available) runCatching { FirebaseDatabase.getInstance() }.getOrNull() else null
+        if (!available) return@lazy null
+        runCatching {
+            val opts = FirebaseApp.getInstance().options
+            val url = opts.databaseUrl
+            if (!url.isNullOrBlank()) FirebaseDatabase.getInstance()
+            else FirebaseDatabase.getInstance("https://${opts.projectId}-default-rtdb.firebaseio.com")
+        }.getOrNull()
     }
     private val auth: FirebaseAuth? by lazy {
         if (available) runCatching { FirebaseAuth.getInstance() }.getOrNull() else null
@@ -51,8 +64,7 @@ class FirebaseCloud(private val appContext: Context) {
 
     /** Enable disk persistence so RTDB itself buffers writes across restarts. */
     fun enablePersistence() {
-        if (!available) return
-        runCatching { FirebaseDatabase.getInstance().setPersistenceEnabled(true) }
+        runCatching { db?.setPersistenceEnabled(true) }
     }
 
     private fun trip(accessKey: String): DatabaseReference? =

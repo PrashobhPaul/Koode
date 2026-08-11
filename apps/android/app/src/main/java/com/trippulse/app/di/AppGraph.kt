@@ -1,14 +1,13 @@
 package com.trippulse.app.di
 
 import android.content.Context
-import com.trippulse.app.BuildConfig
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.ViewerRepository
 import com.trippulse.app.data.local.TripPulseDb
 import com.trippulse.app.data.remote.FirebaseCloud
 import com.trippulse.app.data.routing.CompositeRouting
 import com.trippulse.app.data.routing.FallbackRoutingProvider
-import com.trippulse.app.data.routing.GoogleRoutesProvider
+import com.trippulse.app.data.routing.OsrmRoutingProvider
 import com.trippulse.app.data.routing.RoutingProvider
 import com.trippulse.app.data.sync.ConnectivityObserver
 import com.trippulse.app.data.sync.SyncEngine
@@ -38,10 +37,9 @@ class AppGraph(context: Context) {
         if (it.isAvailable()) it.enablePersistence()
     }
 
-    private val routing: RoutingProvider = run {
-        val google = if (BuildConfig.MAPS_KEY_SET) GoogleRoutesProvider(BuildConfig.MAPS_API_KEY) else null
-        CompositeRouting(google, FallbackRoutingProvider(cfg))
-    }
+    // Free OSRM public router first, deterministic estimator when offline.
+    private val routing: RoutingProvider =
+        CompositeRouting(OsrmRoutingProvider(), FallbackRoutingProvider(cfg))
 
     val notifier: Notifier = Notifier(appContext).also { it.ensureChannels() }
 

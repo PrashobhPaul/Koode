@@ -27,7 +27,7 @@ object EtaEngine {
         val drivingSinceMs: Long?,            // start of current continuous driving leg
         val overnightPending: Boolean = false,
         val distanceCoveredM: Double = 0.0,
-        val confidenceProvider: String = "fallback" // "google" -> higher confidence
+        val confidenceProvider: String = "fallback" // non-"fallback" (routed) -> higher confidence
     )
 
     fun forecast(cfg: TripConfig, i: Inputs): EtaForecast {
@@ -112,8 +112,8 @@ object EtaEngine {
         )
 
         val confidence = when {
-            i.confidenceProvider == "google" && remainingDriveMin < 120 -> "HIGH"
-            i.confidenceProvider == "google" -> "MEDIUM"
+            i.confidenceProvider != "fallback" && remainingDriveMin < 120 -> "HIGH"
+            i.confidenceProvider != "fallback" -> "MEDIUM"
             else -> "LOW"
         }
 
