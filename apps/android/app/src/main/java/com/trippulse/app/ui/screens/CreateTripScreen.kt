@@ -90,7 +90,14 @@ fun CreateTripScreen(nav: NavHostController) {
         Modifier.fillMaxSize().padding(20.dp).verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Text("Start a new trip", color = Teal, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+        Text("Start a new journey", color = Teal, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+
+        val myName by vm.myName.collectAsStateWithLifecycle()
+        OutlinedTextField(
+            value = myName, onValueChange = { vm.myName.value = it },
+            label = { Text("Your name (your circle sees “…'s Journey”)") },
+            singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
 
         OutlinedTextField(
             value = origin, onValueChange = { vm.originText.value = it },

@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">TripPulse</string>
-    <string name="tracking_channel_name">Trip tracking</string>
-    <string name="events_channel_name">Trip events</string>
+    <string name="app_name">Koode</string>
+    <string name="tagline">Always with you</string>
+    <string name="tracking_channel_name">Journey tracking</string>
+    <string name="events_channel_name">Journey updates</string>
     <string name="sos_channel_name">SOS alerts</string>
-    <string name="tracking_notification_title">TripPulse is tracking this active trip</string>
+    <string name="tracking_notification_title">Koode is with you on this journey</string>
 </resources>

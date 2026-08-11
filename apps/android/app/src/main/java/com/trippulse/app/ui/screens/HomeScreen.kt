@@ -60,14 +60,14 @@ fun HomeScreen(nav: NavHostController) {
     Column(Modifier.fillMaxSize()) {
         Column(Modifier.padding(horizontal = 24.dp)) {
             Spacer(Modifier.height(20.dp))
-            Text("TripPulse", color = Teal, fontSize = 30.sp, fontWeight = FontWeight.Bold)
-            Text("Private live journey sharing.", color = TextMid, fontSize = 13.sp)
+            Text("Koode", color = Teal, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+            Text("Always with you — know they're okay, without having to ask.", color = TextMid, fontSize = 13.sp)
             Spacer(Modifier.height(12.dp))
         }
 
         TabRow(selectedTabIndex = tab) {
-            Tab(selected = tab == 0, onClick = { tab = 0 }, text = { Text("My trips") })
-            Tab(selected = tab == 1, onClick = { tab = 1 }, text = { Text("Following") })
+            Tab(selected = tab == 0, onClick = { tab = 0 }, text = { Text("My journeys") })
+            Tab(selected = tab == 1, onClick = { tab = 1 }, text = { Text("Their journeys") })
         }
 
         Column(
@@ -108,7 +108,11 @@ fun HomeScreen(nav: NavHostController) {
                     onClick = { nav.navigate(Routes.CREATE) },
                     modifier = Modifier.fillMaxWidth().height(52.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Teal)
-                ) { Text("Start or schedule a new trip", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+                ) { Text("Start or schedule a journey", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+                Text(
+                    "Start your journey, then forget the app — it quietly keeps the people you love informed about your journey, wellbeing and arrival, so nobody has to call and ask.",
+                    color = TextMid, fontSize = 12.sp
+                )
 
                 val history = allTrips.filter { it.status == "COMPLETED" || it.status == "EXPIRED" }
                 if (history.isNotEmpty()) {
@@ -142,7 +146,7 @@ fun HomeScreen(nav: NavHostController) {
 
                 if (following.isEmpty()) {
                     Text(
-                        "When someone shares a Trip ID with you, add it here to follow their journey live and get start/SOS/arrival alerts.",
+                        "When someone shares a Journey ID with you, add it here. You'll see their journey health at a glance and get a quiet alert when they start, if something needs attention, and when they arrive safely.",
                         color = TextMid, fontSize = 13.sp
                     )
                 }

@@ -729,7 +729,13 @@ class TripManager(
 
     // ---- cloud maps ----
 
+    /** The traveller's display name ("Prashobh's Journey" on family screens). */
+    private fun ownerName(): String? =
+        appContext.getSharedPreferences("koode_profile", Context.MODE_PRIVATE)
+            .getString("name", null)?.ifBlank { null }
+
     private fun metaMap(t: ActiveTripEntity): Map<String, Any?> = mapOf(
+        "ownerName" to ownerName(),
         "tripId" to t.tripId,
         "origin" to t.originName, "destination" to t.destName,
         "originLat" to t.originLat, "originLng" to t.originLng,

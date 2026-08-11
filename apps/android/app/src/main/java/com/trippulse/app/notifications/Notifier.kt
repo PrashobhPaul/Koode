@@ -99,6 +99,13 @@ class Notifier(private val context: Context) {
     fun showTripUpdate(title: String, body: String) =
         postEvent(ID_UPDATE, CH_EVENTS, title, body)
 
+    /** Journey Health dropped to CONCERN on a followed journey. */
+    fun showJourneyAttention(label: String, reason: String) =
+        postEvent(ID_HEALTH, CH_SOS, "Journey needs attention", "$reason ($label)", high = true)
+
+    fun showJourneyBackToNormal(label: String) =
+        postEvent(ID_HEALTH, CH_EVENTS, "Journey back to normal", "$label is progressing normally again.")
+
     companion object {
         const val CH_TRACKING = "trippulse.tracking"
         const val CH_EVENTS = "trippulse.events"
@@ -111,5 +118,6 @@ class Notifier(private val context: Context) {
         private const val ID_RESUME = 2004
         private const val ID_STARTED = 2005
         private const val ID_UPDATE = 2006
+        private const val ID_HEALTH = 2007
     }
 }

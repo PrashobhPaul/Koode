@@ -37,19 +37,25 @@ jobs:
         working-directory: apps/android
         run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --no-daemon --stacktrace
 
-      - name: Stage APK with a friendly name
-        run: cp apps/android/app/build/outputs/apk/debug/app-debug.apk TripPulse.apk
+      - name: Stage APK with friendly names
+        # Koode.apk is the real name; TripPulse.apk is kept so links shared
+        # before the rename keep working.
+        run: |
+          cp apps/android/app/build/outputs/apk/debug/app-debug.apk Koode.apk
+          cp apps/android/app/build/outputs/apk/debug/app-debug.apk TripPulse.apk
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: build-${{ github.run_number }}
-          name: TripPulse build ${{ github.run_number }}
+          name: Koode build ${{ github.run_number }}
           target_commitish: ${{ github.sha }}
           make_latest: true
           body: |
-            Installable TripPulse APK (debug-signed, for family & friends testing).
+            Koode — Always with you. Installable APK (debug-signed).
 
-            **Install:** download `TripPulse.apk` below on your Android phone, open it,
+            **Install:** download `Koode.apk` below on your Android phone, open it,
             and allow installing from unknown sources when prompted.
-          files: TripPulse.apk
+          files: |
+            Koode.apk
+            TripPulse.apk

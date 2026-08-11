@@ -98,6 +98,12 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     var destText = MutableStateFlow("")
     var emergencyName = MutableStateFlow("")
     var emergencyPhone = MutableStateFlow("")
+
+    /** Traveller's name — family screens show "<name>'s Journey". Remembered. */
+    var myName = MutableStateFlow(
+        graph.appContext.getSharedPreferences("koode_profile", android.content.Context.MODE_PRIVATE)
+            .getString("name", "") ?: ""
+    )
     var pickedDest = MutableStateFlow<GeoPoint?>(null)
     var pickedOrigin = MutableStateFlow<GeoPoint?>(null)
 
@@ -232,6 +238,9 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                 }
 
                 val originLabel = originText.value.trim().ifBlank { "Start point" }
+
+                graph.appContext.getSharedPreferences("koode_profile", android.content.Context.MODE_PRIVATE)
+                    .edit().putString("name", myName.value.trim()).apply()
 
                 val departure = departureMs.value ?: System.currentTimeMillis()
                 val trip = graph.tripManager.createTrip(
