@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "475817233874",
+    "project_id": "trippulse-5f5ee",
+    "storage_bucket": "trippulse-5f5ee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475817233874:android:955901b555898435a30c0b",
+        "android_client_info": {
+          "package_name": "com.trippulse.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWV5iqT39N9e15aFZf5IT4SK5sHUVIMp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
