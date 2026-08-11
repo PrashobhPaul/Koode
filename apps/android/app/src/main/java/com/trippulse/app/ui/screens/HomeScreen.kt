@@ -1,7 +1,9 @@
 package com.trippulse.app.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,13 +11,22 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -23,62 +34,157 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.ui.HomeVm
 import com.trippulse.app.ui.Routes
+import com.trippulse.app.ui.theme.Danger
 import com.trippulse.app.ui.theme.Teal
 import com.trippulse.app.ui.theme.TextMid
 
+/**
+ * Home with two roles in one app:
+ *   MY TRIPS  — trips this phone owns: active, scheduled, and the private
+ *               history that outlives the server's 30-min self-destruct.
+ *   FOLLOWING — trips shared with this phone via a Trip ID.
+ */
 @Composable
 fun HomeScreen(nav: NavHostController) {
     val vm: HomeVm = viewModel(factory = HomeVm.Factory)
     val active by vm.activeTrip.collectAsStateWithLifecycle()
+    val allTrips by vm.allTrips.collectAsStateWithLifecycle()
+    val following by vm.following.collectAsStateWithLifecycle()
 
-    Column(
-        Modifier.fillMaxSize().padding(24.dp).verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(14.dp)
-    ) {
-        Spacer(Modifier.height(24.dp))
-        Text("TripPulse", color = Teal, fontSize = 34.sp, fontWeight = FontWeight.Bold)
-        Text(
-            "Private live journey sharing with intelligent break tracking.",
-            color = TextMid, fontSize = 15.sp
-        )
-        Spacer(Modifier.height(12.dp))
+    var tab by remember { mutableIntStateOf(0) }
+    var deleteTarget by remember { mutableStateOf<String?>(null) }
 
-        if (active != null) {
-            SectionCard {
-                Text("Active trip", color = TextMid, fontSize = 12.sp)
-                Spacer(Modifier.height(4.dp))
-                Text(
-                    "${active!!.originName} → ${active!!.destName}",
-                    color = MaterialTheme.colorScheme.onSurface, fontSize = 18.sp, fontWeight = FontWeight.SemiBold
-                )
-                Spacer(Modifier.height(12.dp))
-                Button(
-                    onClick = { nav.navigate(Routes.driver(active!!.tripId)) },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Teal)
-                ) { Text("Resume trip", fontWeight = FontWeight.SemiBold) }
-            }
+    Column(Modifier.fillMaxSize()) {
+        Column(Modifier.padding(horizontal = 24.dp)) {
+            Spacer(Modifier.height(20.dp))
+            Text("TripPulse", color = Teal, fontSize = 30.sp, fontWeight = FontWeight.Bold)
+            Text("Private live journey sharing.", color = TextMid, fontSize = 13.sp)
+            Spacer(Modifier.height(12.dp))
         }
 
-        Button(
-            onClick = { nav.navigate(Routes.CREATE) },
-            modifier = Modifier.fillMaxWidth().height(54.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Teal)
-        ) { Text("Start new trip", fontSize = 16.sp, fontWeight = FontWeight.SemiBold) }
+        TabRow(selectedTabIndex = tab) {
+            Tab(selected = tab == 0, onClick = { tab = 0 }, text = { Text("My trips") })
+            Tab(selected = tab == 1, onClick = { tab = 1 }, text = { Text("Following") })
+        }
 
-        OutlinedButton(
-            onClick = { nav.navigate(Routes.JOIN) },
-            modifier = Modifier.fillMaxWidth().height(54.dp)
-        ) { Text("Join a trip", fontSize = 16.sp) }
+        Column(
+            Modifier.fillMaxSize().padding(20.dp).verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            if (tab == 0) {
+                // ---------------- MY TRIPS ----------------
+                if (active != null) {
+                    SectionCard {
+                        val scheduled = active!!.status == "CREATED" &&
+                            (active!!.plannedDepartureMs ?: 0) > System.currentTimeMillis()
+                        Text(if (scheduled) "Scheduled trip" else "Active trip", color = TextMid, fontSize = 12.sp)
+                        Spacer(Modifier.height(4.dp))
+                        Text(
+                            "${active!!.originName} → ${active!!.destName}",
+                            color = MaterialTheme.colorScheme.onSurface, fontSize = 17.sp, fontWeight = FontWeight.SemiBold
+                        )
+                        if (scheduled) {
+                            Text(
+                                "Departs ${TimeFmt.clockWithDay(active!!.plannedDepartureMs!!, System.currentTimeMillis())}",
+                                color = Teal, fontSize = 13.sp
+                            )
+                        }
+                        Spacer(Modifier.height(10.dp))
+                        Button(
+                            onClick = {
+                                if (active!!.status == "CREATED") nav.navigate(Routes.credentials(active!!.tripId))
+                                else nav.navigate(Routes.driver(active!!.tripId))
+                            },
+                            modifier = Modifier.fillMaxWidth(),
+                            colors = ButtonDefaults.buttonColors(containerColor = Teal)
+                        ) { Text(if (active!!.status == "CREATED") "Open / start trip" else "Resume trip", fontWeight = FontWeight.SemiBold) }
+                    }
+                }
 
-        Spacer(Modifier.height(8.dp))
-        Text(
-            if (vm.cloudAvailable) "Cloud sync: enabled — viewers can follow live."
-            else "Running in local mode. Configure the free cloud backend (docs/SUPABASE_SETUP.md) to enable live viewer sharing.",
-            color = TextMid, fontSize = 12.sp,
-            modifier = Modifier.fillMaxWidth()
+                Button(
+                    onClick = { nav.navigate(Routes.CREATE) },
+                    modifier = Modifier.fillMaxWidth().height(52.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Teal)
+                ) { Text("Start or schedule a new trip", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+
+                val history = allTrips.filter { it.status == "COMPLETED" || it.status == "EXPIRED" }
+                if (history.isNotEmpty()) {
+                    Spacer(Modifier.height(6.dp))
+                    Text("Trip history (kept on this phone until you delete it)", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                    history.forEach { t ->
+                        SectionCard {
+                            Text(
+                                "${t.originName} → ${t.destName}",
+                                color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Medium
+                            )
+                            Text(
+                                TimeFmt.clockWithDay(t.completedAtMs ?: t.createdAtMs, System.currentTimeMillis()),
+                                color = TextMid, fontSize = 12.sp
+                            )
+                            Row {
+                                TextButton(onClick = { nav.navigate(Routes.summary(t.tripId)) }) { Text("Summary", color = Teal, fontSize = 13.sp) }
+                                TextButton(onClick = { nav.navigate(Routes.replay(t.tripId)) }) { Text("Replay", color = Teal, fontSize = 13.sp) }
+                                Spacer(Modifier.weight(1f))
+                                TextButton(onClick = { deleteTarget = t.tripId }) { Text("Delete", color = Danger, fontSize = 13.sp) }
+                            }
+                        }
+                    }
+                }
+            } else {
+                // ---------------- FOLLOWING ----------------
+                OutlinedButton(
+                    onClick = { nav.navigate(Routes.JOIN) },
+                    modifier = Modifier.fillMaxWidth().height(52.dp)
+                ) { Text("Follow a new trip", fontSize = 15.sp) }
+
+                if (following.isEmpty()) {
+                    Text(
+                        "When someone shares a Trip ID with you, add it here to follow their journey live and get start/SOS/arrival alerts.",
+                        color = TextMid, fontSize = 13.sp
+                    )
+                }
+                following.forEach { v ->
+                    SectionCard(modifier = Modifier.clickable { nav.navigate(Routes.viewer(v.accessKey)) }) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Column(Modifier.weight(1f)) {
+                                Text(v.label, color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Medium)
+                                Text(
+                                    v.tripId + if (v.expired) " — ended" else "",
+                                    color = TextMid, fontSize = 12.sp
+                                )
+                            }
+                            TextButton(onClick = { vm.unfollow(v.accessKey) }) { Text("Remove", color = TextMid, fontSize = 13.sp) }
+                        }
+                    }
+                }
+            }
+
+            Spacer(Modifier.height(6.dp))
+            Text(
+                if (vm.cloudAvailable) "Cloud sync: enabled — viewers can follow live."
+                else "Running in local mode. Configure the free cloud backend (docs/SUPABASE_SETUP.md) to enable live viewer sharing.",
+                color = TextMid, fontSize = 12.sp,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(16.dp))
+        }
+    }
+
+    if (deleteTarget != null) {
+        AlertDialog(
+            onDismissRequest = { deleteTarget = null },
+            confirmButton = {
+                TextButton(onClick = {
+                    vm.deleteTrip(deleteTarget!!)
+                    deleteTarget = null
+                }) { Text("Delete forever", color = Danger) }
+            },
+            dismissButton = { TextButton(onClick = { deleteTarget = null }) { Text("Keep") } },
+            title = { Text("Delete this trip from your phone?") },
+            text = { Text("The route, timeline, replay and expense records for this trip will be permanently removed from this device. (The cloud copy already self-destructed 30 minutes after arrival.)") }
         )
     }
 }

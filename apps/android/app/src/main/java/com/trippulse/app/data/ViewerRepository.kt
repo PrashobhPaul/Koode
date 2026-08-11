@@ -62,6 +62,62 @@ class ViewerRepository(
     /** Names of everyone currently following this trip (registered at join). */
     suspend fun viewers(accessKey: String): List<String> = cloud.fetchViewers(accessKey)
 
+    sealed interface IdJoinResult {
+        data class Ok(val ref: String, val label: String) : IdJoinResult
+        object Pending : IdJoinResult
+        object Denied : IdJoinResult
+        object NotFound : IdJoinResult
+        object CloudUnavailable : IdJoinResult
+    }
+
+    /**
+     * Trip-id-only follow: no password. This device requests access with the
+     * viewer's name; the trip owner must approve before anything is readable.
+     */
+    suspend fun requestJoinById(tripIdInput: String, viewerName: String): IdJoinResult {
+        if (!cloud.isAvailable()) return IdJoinResult.CloudUnavailable
+        val tripId = TripCredentials.normalize(tripIdInput)
+        val status = cloud.requestJoin(tripId, viewerName.ifBlank { "Viewer" })
+            ?: return IdJoinResult.CloudUnavailable
+        return mapStatus(tripId, status)
+    }
+
+    /** Polled while the join screen shows "waiting for approval". */
+    suspend fun pollJoinStatus(tripIdInput: String): IdJoinResult {
+        if (!cloud.isAvailable()) return IdJoinResult.CloudUnavailable
+        val tripId = TripCredentials.normalize(tripIdInput)
+        val status = cloud.joinStatus(tripId) ?: return IdJoinResult.CloudUnavailable
+        return mapStatus(tripId, status)
+    }
+
+    private suspend fun mapStatus(tripId: String, status: String): IdJoinResult = when (status) {
+        "APPROVED" -> {
+            val meta = cloud.fetchMeta(tripId)
+            val label = buildString {
+                append(meta?.get("origin") ?: "Trip")
+                append(" → ")
+                append(meta?.get("destination") ?: "")
+            }
+            val now = System.currentTimeMillis()
+            db.viewerDao().upsert(
+                ViewerTripEntity(
+                    accessKey = tripId, tripId = tripId, label = label,
+                    joinedAtMs = now, lastOpenedAtMs = now, expired = false
+                )
+            )
+            cloud.subscribeTopic(tripId)
+            IdJoinResult.Ok(tripId, label)
+        }
+        "PENDING" -> IdJoinResult.Pending
+        "DENIED" -> IdJoinResult.Denied
+        "NOT_FOUND" -> IdJoinResult.NotFound
+        else -> IdJoinResult.CloudUnavailable
+    }
+
+    suspend fun unfollow(ref: String) {
+        db.viewerDao().deleteByKey(ref)
+    }
+
     fun currentStateFlow(accessKey: String): Flow<Map<String, Any?>?> = cloud.currentStateFlow(accessKey)
     fun metaFlow(accessKey: String): Flow<Map<String, Any?>?> = cloud.metaFlow(accessKey)
     fun eventsFlow(accessKey: String): Flow<List<Map<String, Any?>>> = cloud.eventsFlow(accessKey)

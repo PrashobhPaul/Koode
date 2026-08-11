@@ -102,11 +102,22 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
             Text(t?.secret ?: "…", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Amber)
         }
 
+        fun shareText(includePassword: Boolean): String = buildString {
+            appendLine("🚗 Follow my live trip on TripPulse!")
+            appendLine()
+            appendLine("Trip ID: ${t?.tripId}")
+            if (includePassword) appendLine("Password: ${t?.secret} (instant access)")
+            appendLine()
+            appendLine("Don't have the app? Install it here (free):")
+            appendLine("https://github.com/PrashobhPaul/TripPulse/releases/latest/download/TripPulse.apk")
+            appendLine()
+            append("Open TripPulse → Following → enter the Trip ID and your name")
+            if (!includePassword) append(" — I'll approve you by name.")
+        }
+
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             OutlinedButton(
-                onClick = {
-                    if (t != null) clipboard.setText(AnnotatedString("TripPulse\nTrip ID: ${t.tripId}\nPassword: ${t.secret}"))
-                },
+                onClick = { if (t != null) clipboard.setText(AnnotatedString(shareText(includePassword = true))) },
                 modifier = Modifier.weight(1f)
             ) { Text("Copy") }
             OutlinedButton(
@@ -114,14 +125,26 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
                     if (t != null) {
                         val send = Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
-                            putExtra(Intent.EXTRA_TEXT, "Follow my TripPulse trip.\nTrip ID: ${t.tripId}\nPassword: ${t.secret}")
+                            putExtra(Intent.EXTRA_TEXT, shareText(includePassword = true))
                         }
-                        context.startActivity(Intent.createChooser(send, "Share trip credentials"))
+                        context.startActivity(Intent.createChooser(send, "Share trip (WhatsApp, SMS…)"))
                     }
                 },
                 modifier = Modifier.weight(1f)
             ) { Text("Share") }
         }
+        OutlinedButton(
+            onClick = {
+                if (t != null) {
+                    val send = Intent(Intent.ACTION_SEND).apply {
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_TEXT, shareText(includePassword = false))
+                    }
+                    context.startActivity(Intent.createChooser(send, "Share trip (approval mode)"))
+                }
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) { Text("Share ID only — I'll approve each viewer by name") }
 
         if (!graph.cloudEnabledByDefault()) {
             Text("Note: this build is in local mode, so remote viewers can't connect until the cloud backend is configured. Tracking still works fully on this phone.", color = TextMid, fontSize = 12.sp)
