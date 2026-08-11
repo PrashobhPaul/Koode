@@ -1,10 +1,27 @@
+<!-- Koode mark: two figures (teal + blue) forming a heart around a location
+     pin — "the people you love, around the journey". Vector recreation of the
+     brand icon on the navy adaptive-icon background. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp"
     android:viewportWidth="108" android:viewportHeight="108">
-    <path android:fillColor="#00000000" android:strokeColor="#2DD4BF" android:strokeWidth="5"
-        android:pathData="M24,72 C36,72 36,40 54,40 C72,40 72,72 84,72"/>
-    <path android:fillColor="#2DD4BF"
-        android:pathData="M54,26 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
-    <path android:fillColor="#F59E0B"
-        android:pathData="M54,78 m-6,0 a6,6 0 1,1 12,0 a6,6 0 1,1 -12,0"/>
+
+    <!-- left figure: head + arm forming the left heart lobe (teal) -->
+    <path android:fillColor="#2EC4B6"
+        android:pathData="M41,26 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+    <path android:fillColor="#00000000" android:strokeColor="#2EC4B6"
+        android:strokeWidth="8" android:strokeLineCap="round"
+        android:pathData="M54,78 C40,68 30,56 31,45 C32,37 39,33 46,36 C50,38 53,42 54,46"/>
+
+    <!-- right figure: head + arm forming the right heart lobe (blue) -->
+    <path android:fillColor="#3B82F6"
+        android:pathData="M67,26 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+    <path android:fillColor="#00000000" android:strokeColor="#3B82F6"
+        android:strokeWidth="8" android:strokeLineCap="round"
+        android:pathData="M54,78 C68,68 78,56 77,45 C76,37 69,33 62,36 C58,38 55,42 54,46"/>
+
+    <!-- location pin inside the heart (white with navy dot) -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M54,46 c-7,0 -12.5,5.5 -12.5,12.5 C41.5,68 54,78 54,78 c0,0 12.5,-10 12.5,-19.5 C66.5,51.5 61,46 54,46 z"/>
+    <path android:fillColor="#0B1E2D"
+        android:pathData="M54,58 m-4.5,0 a4.5,4.5 0 1,1 9,0 a4.5,4.5 0 1,1 -9,0"/>
 </vector>

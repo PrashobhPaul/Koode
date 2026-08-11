@@ -1,18 +1,38 @@
-# TripPulse
+# Koode — *Always with you*
 
-Private, trip-scoped live journey sharing with intelligent break/wellbeing tracking and realistic ETAs — built to be **live whenever there's connectivity, and honest about staleness when there isn't**.
+> **Know they're okay, without having to ask.**
+
+**Koode** (Malayalam: *"together / with you"*) is a **personal journey companion** that keeps the people you love informed about your journey, wellbeing and safety — without requiring you to constantly call or message them.
+
+**Category:** Personal Journey Safety & Wellbeing
+**Philosophy:** *Travel freely. Stay connected. Let the app do the reassuring.*
+**Secondary tagline:** *Your journey. Their peace of mind.*
+
+Koode is not a location tracker. The family doesn't monitor the traveller — **the app monitors the journey** and evaluates its health continuously:
+
+| | Journey Health | Means |
+|---|---|---|
+| 🟢 | **Normal** | Journey progressing normally |
+| 🟡 | **Attention** | Something unusual — late-night travel, a long spell without a logged break, low phone battery, off the usual route, updates arriving slowly |
+| 🔴 | **Concern** | Potentially significant — SOS, no location updates, an unusually long unexplained stop |
+
+What the family sees is a **reassurance channel**, not a GPS console: *"Prashobh's Journey · Hyderabad → Thrissur · 🟢 Journey progressing normally · 📍 Currently near Vijayawada · ⏱ ETA 8:40 PM · 🍛 Last logged 1:15 PM"* — with a live map and friendly timeline below. Wellbeing is always **factual, never medical**: "Last logged water: 1h 20m ago", never a health claim.
+
+The traveller's experience is deliberately minimal: **Start journey → forget the app → travel.** Koode works quietly in the background; the people who matter get a few timely notifications — journey started, needs attention, arrived safely.
+
+Private by design: journeys are invitation-only (the owner approves each viewer **by name**), and every journey **self-destructs from the cloud 30 minutes after arrival**. It stays open source and zero-cost end to end.
 
 ---
 
 ## 📲 Download the app
 
-**[⬇️ Download TripPulse.apk (latest build)](https://github.com/PrashobhPaul/TripPulse/releases/latest/download/TripPulse.apk)**
+**[⬇️ Download Koode.apk (latest build)](https://github.com/PrashobhPaul/TripPulse/releases/latest/download/Koode.apk)**
 
 For family & friends who want to follow a trip:
 
-1. Open the link above on your Android phone and download `TripPulse.apk`.
+1. Open the link above on your Android phone and download `Koode.apk`.
 2. Open the downloaded file and allow **Install from unknown sources** if asked.
-3. Open TripPulse → **Join as viewer** → enter the **Trip ID + password** the driver shared with you.
+3. Open Koode → **Their journeys** → enter the **Journey ID and your name** (the traveller approves you by name; a shared password gives instant access).
 
 You'll then see the driver's live position, ETA, breaks and timeline — and get **forced alerts** on your phone when the trip **starts**, on **SOS**, and when the driver **reaches the destination**, even with the app in the background. Joining needs only the **Trip ID and your name — the driver approves each viewer by name** before anything is visible (a password shared by the driver skips the approval step). A trip can run from **any start point to any destination**; the driver types a place, uses their current location, long-presses the map to drop a start or destination pin, or picks a **saved place** (Home, Office, or any custom label) with one tap. For privacy, the trip id **self-destructs 30 minutes after the driver/rider reaches the destination** — viewer access is cut off and the trip's cloud data is deleted.
 

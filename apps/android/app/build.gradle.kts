@@ -28,11 +28,13 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.trippulse.app"
+        // Koode's permanent Play Store identity. (The internal code namespace
+        // stays com.trippulse.app; only the public application id changed.)
+        applicationId = "app.koode"
         minSdk = 26
         targetSdk = 35
-        versionCode = 4
-        versionName = "3.0.0"
+        versionCode = 5
+        versionName = "4.0.0"
 
         buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"$supabaseAnonKey\"")

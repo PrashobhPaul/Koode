@@ -103,15 +103,16 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
         }
 
         fun shareText(includePassword: Boolean): String = buildString {
-            appendLine("🚗 Follow my live trip on TripPulse!")
+            appendLine("🚗 I'm starting a journey — come along with me on Koode.")
+            appendLine("You'll see how the journey is going and know the moment I arrive safely, without having to call.")
             appendLine()
-            appendLine("Trip ID: ${t?.tripId}")
+            appendLine("Journey ID: ${t?.tripId}")
             if (includePassword) appendLine("Password: ${t?.secret} (instant access)")
             appendLine()
-            appendLine("Don't have the app? Install it here (free):")
-            appendLine("https://github.com/PrashobhPaul/TripPulse/releases/latest/download/TripPulse.apk")
+            appendLine("Don't have Koode yet? Install it here (free):")
+            appendLine("https://github.com/PrashobhPaul/TripPulse/releases/latest/download/Koode.apk")
             appendLine()
-            append("Open TripPulse → Following → enter the Trip ID and your name")
+            append("Open Koode → Their journeys → enter the Journey ID and your name")
             if (!includePassword) append(" — I'll approve you by name.")
         }
 

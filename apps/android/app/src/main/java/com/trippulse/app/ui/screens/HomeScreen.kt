@@ -1,7 +1,10 @@
 package com.trippulse.app.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +31,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -60,14 +64,23 @@ fun HomeScreen(nav: NavHostController) {
     Column(Modifier.fillMaxSize()) {
         Column(Modifier.padding(horizontal = 24.dp)) {
             Spacer(Modifier.height(20.dp))
-            Text("TripPulse", color = Teal, fontSize = 30.sp, fontWeight = FontWeight.Bold)
-            Text("Private live journey sharing.", color = TextMid, fontSize = 13.sp)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("Koode", color = Teal, fontSize = 22.sp, fontWeight = FontWeight.Bold)
+                Spacer(Modifier.height(0.dp))
+                Text("  ·  Always with you", color = TextMid, fontSize = 12.sp)
+            }
+            val name = vm.greetingName()
+            Text(
+                if (name.isNotBlank()) "Hi, $name 👋" else "Hi 👋",
+                color = MaterialTheme.colorScheme.onSurface, fontSize = 26.sp, fontWeight = FontWeight.Bold
+            )
+            Text("Here's what matters.", color = TextMid, fontSize = 13.sp)
             Spacer(Modifier.height(12.dp))
         }
 
         TabRow(selectedTabIndex = tab) {
-            Tab(selected = tab == 0, onClick = { tab = 0 }, text = { Text("My trips") })
-            Tab(selected = tab == 1, onClick = { tab = 1 }, text = { Text("Following") })
+            Tab(selected = tab == 0, onClick = { tab = 0 }, text = { Text("My journeys") })
+            Tab(selected = tab == 1, onClick = { tab = 1 }, text = { Text("Their journeys") })
         }
 
         Column(
@@ -108,7 +121,11 @@ fun HomeScreen(nav: NavHostController) {
                     onClick = { nav.navigate(Routes.CREATE) },
                     modifier = Modifier.fillMaxWidth().height(52.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Teal)
-                ) { Text("Start or schedule a new trip", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+                ) { Text("Start or schedule a journey", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+                Text(
+                    "Start your journey, then forget the app — it quietly keeps the people you love informed about your journey, wellbeing and arrival, so nobody has to call and ask.",
+                    color = TextMid, fontSize = 12.sp
+                )
 
                 val history = allTrips.filter { it.status == "COMPLETED" || it.status == "EXPIRED" }
                 if (history.isNotEmpty()) {
@@ -142,20 +159,24 @@ fun HomeScreen(nav: NavHostController) {
 
                 if (following.isEmpty()) {
                     Text(
-                        "When someone shares a Trip ID with you, add it here to follow their journey live and get start/SOS/arrival alerts.",
+                        "When someone shares a Journey ID with you, add it here. You'll see their journey health at a glance and get a quiet alert when they start, if something needs attention, and when they arrive safely.",
                         color = TextMid, fontSize = 13.sp
                     )
                 }
+
+                val live = following.filter { !it.expired }
+                if (live.isNotEmpty() && live.all { vm.followHealth(it.accessKey) == "NORMAL" }) {
+                    Text("Your people are safe ✅", color = Teal, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
+                }
+
                 following.forEach { v ->
                     SectionCard(modifier = Modifier.clickable { nav.navigate(Routes.viewer(v.accessKey)) }) {
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Column(Modifier.weight(1f)) {
                                 Text(v.label, color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                                Text(
-                                    v.tripId + if (v.expired) " — ended" else "",
-                                    color = TextMid, fontSize = 12.sp
-                                )
+                                Text(v.tripId, color = TextMid, fontSize = 12.sp)
                             }
+                            HealthChip(if (v.expired) "ENDED" else vm.followHealth(v.accessKey))
                             TextButton(onClick = { vm.unfollow(v.accessKey) }) { Text("Remove", color = TextMid, fontSize = 13.sp) }
                         }
                     }
@@ -186,5 +207,24 @@ fun HomeScreen(nav: NavHostController) {
             title = { Text("Delete this trip from your phone?") },
             text = { Text("The route, timeline, replay and expense records for this trip will be permanently removed from this device. (The cloud copy already self-destructed 30 minutes after arrival.)") }
         )
+    }
+}
+
+/** Journey Health at a glance — the "Safe" chip from the brand banners. */
+@Composable
+private fun HealthChip(level: String) {
+    val (label, color) = when (level) {
+        "CONCERN" -> "Check now" to Danger
+        "ATTENTION" -> "Attention" to com.trippulse.app.ui.theme.Amber
+        "ENDED" -> "Ended" to TextMid
+        else -> "Safe" to Teal
+    }
+    Box(
+        Modifier
+            .clip(RoundedCornerShape(50))
+            .background(color.copy(alpha = 0.15f))
+            .padding(horizontal = 10.dp, vertical = 4.dp)
+    ) {
+        Text(label, color = color, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
     }
 }
