@@ -145,6 +145,23 @@ data class BreakRecordEntity(
     val confirmationSource: String    // DRIVER_CONFIRMATION | INFERRED | MANUAL
 )
 
+/**
+ * Owner-only journey expenses (fuel / food / accommodation / other). These are
+ * private cost records for the trip owner: stored on-device only, never synced
+ * to the cloud, and retained with the trip history until the owner deletes it.
+ */
+@Entity(tableName = "expenses")
+data class ExpenseEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val tripId: String,
+    val type: String,          // FUEL | FOOD | STAY | OTHER
+    val amount: Double,        // money spent (owner's currency)
+    val quantity: Double?,     // fuel only: litres or kWh refilled
+    val unit: String?,         // "L" (petrol/diesel) | "kWh" (electric)
+    val note: String?,
+    val tMs: Long
+)
+
 @Entity(tableName = "saved_places")
 data class SavedPlaceEntity(
     @PrimaryKey val name: String,     // "Home", "Office", any custom label
@@ -189,6 +206,9 @@ interface TripDao {
 
     @Query("UPDATE active_trip SET metaSynced = :synced WHERE tripId = :tripId")
     suspend fun setMetaSynced(tripId: String, synced: Boolean)
+
+    @Query("DELETE FROM active_trip WHERE tripId = :tripId")
+    suspend fun delete(tripId: String)
 }
 
 @Dao
@@ -219,6 +239,9 @@ interface EventDao {
 
     @Query("SELECT COUNT(*) FROM event_queue WHERE syncStatus IN ('PENDING','FAILED_RETRYABLE','UPLOADING')")
     fun pendingCountFlow(): Flow<Int>
+
+    @Query("DELETE FROM event_queue WHERE tripId = :tripId")
+    suspend fun deleteForTrip(tripId: String)
 }
 
 @Dao
@@ -242,6 +265,9 @@ interface LocationDao {
     // buffer bounded on very long trips (history detail is preserved in events).
     @Query("DELETE FROM location_buffer WHERE tripId = :tripId AND syncStatus = 'ACKED' AND autoId NOT IN (SELECT autoId FROM location_buffer WHERE tripId = :tripId ORDER BY tMs DESC LIMIT :keep)")
     suspend fun compactAcked(tripId: String, keep: Int)
+
+    @Query("DELETE FROM location_buffer WHERE tripId = :tripId")
+    suspend fun deleteForTrip(tripId: String)
 }
 
 @Dao
@@ -254,6 +280,9 @@ interface StateDao {
 
     @Query("SELECT * FROM trip_state WHERE tripId = :tripId")
     fun flow(tripId: String): Flow<TripStateEntity?>
+
+    @Query("DELETE FROM trip_state WHERE tripId = :tripId")
+    suspend fun delete(tripId: String)
 }
 
 @Dao
@@ -266,6 +295,27 @@ interface BreakDao {
 
     @Query("SELECT * FROM break_records WHERE tripId = :tripId ORDER BY startMs ASC")
     suspend fun allForTrip(tripId: String): List<BreakRecordEntity>
+
+    @Query("DELETE FROM break_records WHERE tripId = :tripId")
+    suspend fun deleteForTrip(tripId: String)
+}
+
+@Dao
+interface ExpenseDao {
+    @Insert
+    suspend fun insert(e: ExpenseEntity)
+
+    @Query("SELECT * FROM expenses WHERE tripId = :tripId ORDER BY tMs ASC")
+    fun flowForTrip(tripId: String): Flow<List<ExpenseEntity>>
+
+    @Query("SELECT * FROM expenses WHERE tripId = :tripId ORDER BY tMs ASC")
+    suspend fun allForTrip(tripId: String): List<ExpenseEntity>
+
+    @Query("DELETE FROM expenses WHERE id = :id")
+    suspend fun delete(id: Long)
+
+    @Query("DELETE FROM expenses WHERE tripId = :tripId")
+    suspend fun deleteForTrip(tripId: String)
 }
 
 @Dao
@@ -299,6 +349,9 @@ interface ViewerDao {
 
     @Query("UPDATE viewer_trip SET lastOpenedAtMs = :ts WHERE accessKey = :key")
     suspend fun touch(key: String, ts: Long)
+
+    @Query("DELETE FROM viewer_trip WHERE accessKey = :key")
+    suspend fun deleteByKey(key: String)
 }
 
 // ---------------------------------------------------------------------------
@@ -313,9 +366,10 @@ interface ViewerDao {
         TripStateEntity::class,
         BreakRecordEntity::class,
         ViewerTripEntity::class,
-        SavedPlaceEntity::class
+        SavedPlaceEntity::class,
+        ExpenseEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -326,6 +380,7 @@ abstract class TripPulseDb : RoomDatabase() {
     abstract fun breakDao(): BreakDao
     abstract fun viewerDao(): ViewerDao
     abstract fun savedPlaceDao(): SavedPlaceDao
+    abstract fun expenseDao(): ExpenseDao
 
     companion object {
         @Volatile private var INSTANCE: TripPulseDb? = null
@@ -341,13 +396,25 @@ abstract class TripPulseDb : RoomDatabase() {
             }
         }
 
+        // v2 -> v3: owner-only expense records (fuel/food/stay).
+        private val MIGRATION_2_3 = object : androidx.room.migration.Migration(2, 3) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS expenses (" +
+                        "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+                        "tripId TEXT NOT NULL, type TEXT NOT NULL, amount REAL NOT NULL, " +
+                        "quantity REAL, unit TEXT, note TEXT, tMs INTEGER NOT NULL)"
+                )
+            }
+        }
+
         fun get(context: Context): TripPulseDb =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     TripPulseDb::class.java,
                     "trippulse.db"
-                ).addMigrations(MIGRATION_1_2)
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .fallbackToDestructiveMigration()
                     .build().also { INSTANCE = it }
             }

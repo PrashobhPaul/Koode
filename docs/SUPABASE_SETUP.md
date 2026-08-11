@@ -31,6 +31,13 @@ Done. There is no ongoing maintenance:
   only call the RPC functions defined in `schema.sql`; direct table access is
   revoked and row-level security is enabled with no policies.
 
+## Updating the backend
+
+`supabase/schema.sql` is **idempotent** — whenever it changes (e.g. the v2
+viewer-approval additions), just paste the whole file into the SQL editor and
+Run again. Existing data is preserved; only new tables/columns/functions are
+added.
+
 ## Security model — who can do what
 
 Everything is enforced *inside Postgres*, not in the app:

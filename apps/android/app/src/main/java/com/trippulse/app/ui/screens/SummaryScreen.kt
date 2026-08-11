@@ -80,6 +80,43 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 BreakLine("😴 Rest", i("restBreaks"))
                 BreakLine("⛽ Fuel", i("fuelStops"))
             }
+
+            // ---- owner-only journey costs (local to this phone) ----
+            val expenses by vm.expenses.collectAsStateWithLifecycle()
+            if (expenses.isNotEmpty()) {
+                val fuelCost = expenses.filter { it.type == "FUEL" }.sumOf { it.amount }
+                val litres = expenses.filter { it.type == "FUEL" && it.unit == "L" }.sumOf { it.quantity ?: 0.0 }
+                val kwh = expenses.filter { it.type == "FUEL" && it.unit == "kWh" }.sumOf { it.quantity ?: 0.0 }
+                val foodCost = expenses.filter { it.type == "FOOD" }.sumOf { it.amount }
+                val stayCost = expenses.filter { it.type == "STAY" }.sumOf { it.amount }
+                val otherCost = expenses.filter { it.type == "OTHER" }.sumOf { it.amount }
+                val total = fuelCost + foodCost + stayCost + otherCost
+                val distKm = d("distanceKm")
+
+                SectionCard("JOURNEY COST (only you can see this)") {
+                    if (fuelCost > 0) CostLine("⛽ Fuel", fuelCost)
+                    if (foodCost > 0) CostLine("🍛 Food", foodCost)
+                    if (stayCost > 0) CostLine("🏨 Accommodation", stayCost)
+                    if (otherCost > 0) CostLine("🧾 Other", otherCost)
+                    Spacer(Modifier.height(6.dp))
+                    CostLine("Total", total, bold = true)
+                    if (distKm > 0 && total > 0) {
+                        Text("%.2f per km overall".format(total / distKm), color = TextMid, fontSize = 12.sp)
+                    }
+                    if (litres > 0 && distKm > 0) {
+                        Text(
+                            "Fuel efficiency: %.1f km/L (%.1f L used)".format(distKm / litres, litres),
+                            color = Teal, fontSize = 13.sp, fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                    if (kwh > 0 && distKm > 0) {
+                        Text(
+                            "EV efficiency: %.1f km/kWh (%.1f kWh used)".format(distKm / kwh, kwh),
+                            color = Teal, fontSize = 13.sp, fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                }
+            }
         }
 
         Spacer(Modifier.height(8.dp))
@@ -101,6 +138,14 @@ private fun Stat(label: String, value: String, modifier: Modifier = Modifier) {
         Text(label, color = TextMid, fontSize = 12.sp)
         Spacer(Modifier.height(4.dp))
         Text(value, color = TextHigh, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable
+private fun CostLine(label: String, amount: Double, bold: Boolean = false) {
+    Row(Modifier.fillMaxWidth().padding(vertical = 3.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+        Text(label, color = TextHigh, fontSize = 14.sp, fontWeight = if (bold) FontWeight.Bold else FontWeight.Normal)
+        Text("%.0f".format(amount), color = if (bold) TextHigh else TextMid, fontSize = 14.sp, fontWeight = if (bold) FontWeight.Bold else FontWeight.Normal)
     }
 }
 

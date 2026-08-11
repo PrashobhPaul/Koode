@@ -45,24 +45,29 @@ fun JoinViewerScreen(nav: NavHostController) {
     var secret by remember { mutableStateOf("") }
     var viewerName by remember { mutableStateOf("") }
 
+    val awaiting by vm.awaitingApproval.collectAsStateWithLifecycle()
+
     Column(
         Modifier.fillMaxSize().padding(20.dp).verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Text("Follow a trip", color = Teal, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-        Text("Enter the trip id and password the driver shared with you.", color = TextMid, fontSize = 13.sp)
+        Text(
+            "Enter the Trip ID and your name. The trip owner approves you by name — no password needed. (If the owner gave you a password, enter it for instant access.)",
+            color = TextMid, fontSize = 13.sp
+        )
 
         OutlinedTextField(
             value = tripId, onValueChange = { tripId = it.uppercase() },
             label = { Text("Trip ID (e.g. TP-XXXX-XXXX)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
-            value = secret, onValueChange = { secret = it.uppercase() },
-            label = { Text("Password") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        OutlinedTextField(
             value = viewerName, onValueChange = { viewerName = it },
             label = { Text("Your name (shown to the driver)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = secret, onValueChange = { secret = it.uppercase() },
+            label = { Text("Password (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
 
         if (error != null) Text(error!!, color = Danger, fontSize = 13.sp)
@@ -70,14 +75,22 @@ fun JoinViewerScreen(nav: NavHostController) {
             Text("This build is in local mode — remote following needs the cloud backend configured.", color = TextMid, fontSize = 12.sp)
         }
 
+        if (awaiting) {
+            SectionCard {
+                Text("Waiting for the trip owner to approve you…", color = Teal, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                Text("The driver sees \"${viewerName.ifBlank { "Viewer" }}\" asking to follow. This screen opens the trip automatically once approved.", color = TextMid, fontSize = 12.sp)
+                TextButton(onClick = { vm.cancelWaiting() }) { Text("Cancel", color = TextMid) }
+            }
+        }
+
         Button(
             onClick = { vm.join(tripId, secret, viewerName) { key -> nav.navigate(Routes.viewer(key)) } },
-            enabled = !busy && tripId.isNotBlank() && secret.isNotBlank(),
+            enabled = !busy && tripId.isNotBlank() && (secret.isNotBlank() || viewerName.isNotBlank()),
             modifier = Modifier.fillMaxWidth().height(52.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Teal)
         ) {
             if (busy) CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.height(20.dp))
-            else Text("Follow trip", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
+            else Text(if (secret.isBlank()) "Request to follow" else "Follow trip", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
         }
 
         if (saved.isNotEmpty()) {

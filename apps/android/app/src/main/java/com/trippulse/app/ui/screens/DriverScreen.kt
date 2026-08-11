@@ -75,6 +75,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     var showCheckpoint by remember { mutableStateOf(false) }
     var showEtaBreakdown by remember { mutableStateOf(false) }
     var showEndConfirm by remember { mutableStateOf(false) }
+    var showExpense by remember { mutableStateOf(false) }
 
     // state-driven prompts
     val checkpointDue = s?.checkpointDue == true
@@ -150,11 +151,34 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             }
         }
 
+        // viewers asking to follow (trip-id-only requests) — approve by name
+        val requests by vm.joinRequests.collectAsStateWithLifecycle()
+        val pendingReqs = requests.filter { it["status"] == "PENDING" }
+        if (pendingReqs.isNotEmpty()) {
+            SectionCard {
+                Text("Who wants to follow you", color = Amber, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
+                pendingReqs.forEach { r ->
+                    val name = r["name"] as? String ?: "Unknown"
+                    val token = r["token"] as? String ?: return@forEach
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text(name, color = TextHigh, fontSize = 14.sp, modifier = Modifier.weight(1f))
+                        TextButton(onClick = { vm.setViewerApproval(token, true) }) { Text("Approve", color = Teal, fontSize = 13.sp) }
+                        TextButton(onClick = { vm.setViewerApproval(token, false) }) { Text("Deny", color = Danger, fontSize = 13.sp) }
+                    }
+                }
+            }
+        }
+        val approvedNames = requests.filter { it["status"] == "APPROVED" }.mapNotNull { it["name"] as? String }
+        if (approvedNames.isNotEmpty()) {
+            Text("Watching: ${approvedNames.joinToString(", ")}", color = TextMid, fontSize = 12.sp)
+        }
+
         // quick actions
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             OutlinedButton(onClick = { showNotes = true }, modifier = Modifier.weight(1f)) { Text("Add note") }
             OutlinedButton(onClick = { showCheckpoint = true }, modifier = Modifier.weight(1f)) { Text("Log a break") }
         }
+        OutlinedButton(onClick = { showExpense = true }, modifier = Modifier.fillMaxWidth()) { Text("₹ Add expense (fuel / food / stay)") }
 
         // pause / resume / change dest / end
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -253,6 +277,67 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
         OvernightDialog(
             onChoice = { type -> vm.answerOvernight(type) }
         )
+    }
+
+    // ---- expense sheet (owner-only, stored on this phone) ----
+    if (showExpense) {
+        val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        ModalBottomSheet(onDismissRequest = { showExpense = false }, sheetState = sheet) {
+            ExpenseSheet(onSave = { type, amount, qty, unit, note ->
+                vm.addExpense(type, amount, qty, unit, note)
+                showExpense = false
+            })
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@Composable
+private fun ExpenseSheet(onSave: (String, Double, Double?, String?, String?) -> Unit) {
+    var type by remember { mutableStateOf("FUEL") }
+    var amount by remember { mutableStateOf("") }
+    var qty by remember { mutableStateOf("") }
+    var unit by remember { mutableStateOf("L") }
+    var note by remember { mutableStateOf("") }
+
+    Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text("Add a journey expense", color = TextHigh, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text("Private to you — stays on this phone, viewers never see it.", color = TextMid, fontSize = 12.sp)
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Toggle("⛽ Fuel", type == "FUEL") { type = "FUEL" }
+            Toggle("🍛 Food", type == "FOOD") { type = "FOOD" }
+            Toggle("🏨 Stay", type == "STAY") { type = "STAY" }
+            Toggle("🧾 Other", type == "OTHER") { type = "OTHER" }
+        }
+        OutlinedTextField(
+            value = amount, onValueChange = { amount = it },
+            label = { Text("Amount spent") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+        if (type == "FUEL") {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = qty, onValueChange = { qty = it },
+                    label = { Text("Quantity refilled") }, singleLine = true, modifier = Modifier.weight(1f)
+                )
+                Toggle("Litres", unit == "L") { unit = "L" }
+                Toggle("kWh", unit == "kWh") { unit = "kWh" }
+            }
+            Text("Petrol/diesel in litres, EV charge in kWh — used for the trip's fuel-efficiency summary.", color = TextMid, fontSize = 11.sp)
+        }
+        OutlinedTextField(
+            value = note, onValueChange = { note = it },
+            label = { Text("Note (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = {
+                val amt = amount.toDoubleOrNull() ?: return@Button
+                onSave(type, amt, qty.toDoubleOrNull(), if (type == "FUEL") unit else null, note)
+            },
+            enabled = amount.toDoubleOrNull() != null,
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = Teal)
+        ) { Text("Save expense") }
+        Spacer(Modifier.height(12.dp))
     }
 }
 

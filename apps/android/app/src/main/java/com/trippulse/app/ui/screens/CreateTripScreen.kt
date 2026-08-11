@@ -63,6 +63,8 @@ fun CreateTripScreen(nav: NavHostController) {
     val error by vm.error.collectAsStateWithLifecycle()
 
     var newPlaceName by remember { mutableStateOf("") }
+    var searchQuery by remember { mutableStateOf("") }
+    var customWhen by remember { mutableStateOf("") }
 
     // "Current location" as a start point needs the location permission, which
     // was previously only requested AFTER creating the trip — ask up front.
@@ -98,6 +100,85 @@ fun CreateTripScreen(nav: NavHostController) {
             value = dest, onValueChange = { vm.destText.value = it },
             label = { Text("Destination") }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
+
+        // ---- search any place by name (OpenStreetMap, free) ----
+        val results by vm.searchResults.collectAsStateWithLifecycle()
+        val searching by vm.searching.collectAsStateWithLifecycle()
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            OutlinedTextField(
+                value = searchQuery, onValueChange = { searchQuery = it },
+                label = { Text("Search a place by name") }, singleLine = true,
+                modifier = Modifier.weight(1f)
+            )
+            Spacer(Modifier.width(8.dp))
+            OutlinedButton(onClick = { vm.searchPlaces(searchQuery) }, enabled = !searching) {
+                if (searching) CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.height(18.dp))
+                else Text("Search", fontSize = 13.sp)
+            }
+        }
+        results.forEach { r ->
+            SectionCard {
+                Text(r.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 13.sp)
+                Row {
+                    TextButton(onClick = { vm.useSearchResult(r, asStart = true) }) { Text("Use as From", color = Teal, fontSize = 13.sp) }
+                    TextButton(onClick = { vm.useSearchResult(r, asStart = false) }) { Text("Use as To", color = Teal, fontSize = 13.sp) }
+                }
+            }
+        }
+        if (results.isNotEmpty()) {
+            TextButton(onClick = { vm.clearSearch() }) { Text("Clear results", color = TextMid, fontSize = 12.sp) }
+        }
+
+        // ---- departure: leave now or schedule ahead ----
+        val departure by vm.departureMs.collectAsStateWithLifecycle()
+        Text("Departure", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            FilterChip(
+                selected = departure == null,
+                onClick = { vm.departureMs.value = null; customWhen = "" },
+                label = { Text("Now", fontSize = 12.sp) }
+            )
+            Spacer(Modifier.width(6.dp))
+            FilterChip(
+                selected = false,
+                onClick = { vm.departureMs.value = System.currentTimeMillis() + 3_600_000L; customWhen = "" },
+                label = { Text("+1 hour", fontSize = 12.sp) }
+            )
+            Spacer(Modifier.width(6.dp))
+            FilterChip(
+                selected = false,
+                onClick = {
+                    val cal = java.util.Calendar.getInstance().apply {
+                        add(java.util.Calendar.DAY_OF_YEAR, 1)
+                        set(java.util.Calendar.HOUR_OF_DAY, 6); set(java.util.Calendar.MINUTE, 0)
+                        set(java.util.Calendar.SECOND, 0); set(java.util.Calendar.MILLISECOND, 0)
+                    }
+                    vm.departureMs.value = cal.timeInMillis; customWhen = ""
+                },
+                label = { Text("Tomorrow 6 AM", fontSize = 12.sp) }
+            )
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            OutlinedTextField(
+                value = customWhen, onValueChange = { customWhen = it },
+                label = { Text("Or date & time (yyyy-MM-dd HH:mm)") }, singleLine = true,
+                modifier = Modifier.weight(1f)
+            )
+            Spacer(Modifier.width(8.dp))
+            OutlinedButton(onClick = {
+                val parsed = runCatching {
+                    java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.US)
+                        .parse(customWhen.trim())?.time
+                }.getOrNull()
+                if (parsed != null && parsed > System.currentTimeMillis()) vm.departureMs.value = parsed
+            }) { Text("Set", fontSize = 13.sp) }
+        }
+        if (departure != null) {
+            Text(
+                "Scheduled: ${com.trippulse.app.core.TimeFmt.clockWithDay(departure!!, System.currentTimeMillis())} — you'll get a reminder 30 minutes before. The trip stays in \"My trips\" until you start it.",
+                color = Teal, fontSize = 12.sp
+            )
+        }
 
         // ---- saved places: one-tap From / To ----
         if (places.isNotEmpty()) {

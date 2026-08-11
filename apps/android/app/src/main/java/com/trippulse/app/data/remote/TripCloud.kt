@@ -197,17 +197,64 @@ class TripCloud(private val appContext: Context) {
     }
 
     // -----------------------------------------------------------------------
-    // Viewer-side reads (access_key is the capability; expiry gated in SQL)
+    // Viewer identity: a permanent random token for THIS phone. Combined with
+    // owner approval it replaces passwords for trip-id-only viewing.
     // -----------------------------------------------------------------------
 
-    suspend fun fetchMeta(accessKey: String): Map<String, Any?>? =
-        rpcObject("tp_get_meta", mapOf("p_access_key" to accessKey))
+    fun viewerToken(): String {
+        val prefs = appContext.getSharedPreferences("tp_viewer_identity", Context.MODE_PRIVATE)
+        prefs.getString("token", null)?.let { return it }
+        val bytes = ByteArray(24).also { SecureRandom().nextBytes(it) }
+        val token = bytes.joinToString("") { "%02x".format(it) }
+        prefs.edit().putString("token", token).apply()
+        return token
+    }
 
-    suspend fun fetchState(accessKey: String): Map<String, Any?>? =
-        rpcObject("tp_get_state", mapOf("p_access_key" to accessKey))
+    /** Ask to follow a trip with only its trip id + this viewer's name.
+     *  Returns PENDING / APPROVED / DENIED / NOT_FOUND (or null offline). */
+    suspend fun requestJoin(tripId: String, viewerName: String): String? =
+        rpcText("tp_request_join", mapOf(
+            "p_trip_id" to tripId, "p_viewer_token" to viewerToken(), "p_viewer_name" to viewerName))
 
-    suspend fun fetchEventsSince(accessKey: String, sinceMs: Long): List<Map<String, Any?>>? =
-        rpcArray("tp_get_events", mapOf("p_access_key" to accessKey, "p_since" to sinceMs))
+    suspend fun joinStatus(tripId: String): String? =
+        rpcText("tp_join_status", mapOf("p_trip_id" to tripId, "p_viewer_token" to viewerToken()))
+
+    /** Owner: everyone who requested access with a device token. */
+    suspend fun fetchJoinRequests(accessKey: String): List<Map<String, Any?>> =
+        rpcArray("tp_get_join_requests", mapOf(
+            "p_access_key" to accessKey, "p_owner_token" to ownerToken(accessKey))) ?: emptyList()
+
+    /** Owner: approve or deny a viewer's device. */
+    suspend fun setViewerStatus(accessKey: String, viewerToken: String, approve: Boolean): Boolean =
+        rpcBool("tp_set_viewer_status", mapOf(
+            "p_access_key" to accessKey, "p_owner_token" to ownerToken(accessKey),
+            "p_viewer_token" to viewerToken, "p_status" to if (approve) "APPROVED" else "DENIED"))
+
+    // -----------------------------------------------------------------------
+    // Viewer-side reads. The `ref` is either a 64-char access key (id+password
+    // capability) or a "TP-…" trip id (device must be owner-approved) — the
+    // formats can't collide, so one string carries both modes everywhere.
+    // -----------------------------------------------------------------------
+
+    private fun isTripIdRef(ref: String) = ref.startsWith("TP-")
+
+    suspend fun fetchMeta(ref: String): Map<String, Any?>? =
+        if (isTripIdRef(ref))
+            rpcObject("tp_get_meta_t", mapOf("p_trip_id" to ref, "p_viewer_token" to viewerToken()))
+        else
+            rpcObject("tp_get_meta", mapOf("p_access_key" to ref))
+
+    suspend fun fetchState(ref: String): Map<String, Any?>? =
+        if (isTripIdRef(ref))
+            rpcObject("tp_get_state_t", mapOf("p_trip_id" to ref, "p_viewer_token" to viewerToken()))
+        else
+            rpcObject("tp_get_state", mapOf("p_access_key" to ref))
+
+    suspend fun fetchEventsSince(ref: String, sinceMs: Long): List<Map<String, Any?>>? =
+        if (isTripIdRef(ref))
+            rpcArray("tp_get_events_t", mapOf("p_trip_id" to ref, "p_viewer_token" to viewerToken(), "p_since" to sinceMs))
+        else
+            rpcArray("tp_get_events", mapOf("p_access_key" to ref, "p_since" to sinceMs))
 
     suspend fun registerViewer(accessKey: String, name: String): Boolean =
         rpcBool("tp_register_viewer", mapOf("p_access_key" to accessKey, "p_viewer" to name))
