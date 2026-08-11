@@ -231,7 +231,7 @@ class TripManager(
 
         // ----- route deviation (only with a real polyline) -----
         val route = currentRoute
-        if (route != null && route.provider == "google" && route.polyline.size >= 2 &&
+        if (route != null && route.provider != "fallback" && route.polyline.size >= 2 &&
             s.journey == JourneyStatus.DRIVING.name
         ) {
             when (val d = deviation.onFix(fix.point, route.polyline, now)) {
@@ -549,7 +549,17 @@ class TripManager(
             if (now - began >= cfg.arrivalConfirmS * 1000) {
                 transition(s, JourneyInput.ARRIVED)?.let { s = s.copy(journey = it.name) }
                 arrivedAtMs = now
-                appScope.launch { insertEvent(t.tripId, EventTypes.ARRIVAL_DETECTED, EventSource.SYSTEM_INFERRED, now, p.lat, p.lng, emptyMap(), false) }
+                // Stamp the 30-min self-destruct the moment arrival is
+                // detected, so the trip id dies on time even if the app never
+                // runs the later auto-complete tick.
+                val expires = now + cfg.expiryGraceMin * 60_000
+                val stamped = t.copy(expiresAtMs = expires)
+                trip = stamped
+                appScope.launch {
+                    insertEvent(t.tripId, EventTypes.ARRIVAL_DETECTED, EventSource.SYSTEM_INFERRED, now, p.lat, p.lng, emptyMap(), false)
+                    db.tripDao().update(stamped)
+                    if (stamped.cloudEnabled) cloud.setExpiry(stamped.accessKey, expires)
+                }
             }
         }
         return s
@@ -599,7 +609,7 @@ class TripManager(
         val t = trip ?: return 0.0
         val route = currentRoute
         val dest = GeoPoint(t.destLat, t.destLng)
-        return if (route != null && route.provider == "google" && route.polyline.size >= 2) {
+        return if (route != null && route.provider != "fallback" && route.polyline.size >= 2) {
             Geo.remainingAlongPathM(from, route.polyline)
         } else {
             Geo.haversineM(from, dest) * cfg.roadDistanceFactor
@@ -646,7 +656,10 @@ class TripManager(
         insertEvent(t.tripId, EventTypes.TRIP_COMPLETED, sourceForCompletion(auto), now, s.lat, s.lng,
             summaryMap(summary), false)
 
-        val expires = now + cfg.expiryGraceMin * 60_000
+        // The trip id self-destructs expiryGraceMin (30 min) after the driver
+        // REACHED the destination — not after the later auto-complete tick —
+        // falling back to completion time for manual completion mid-route.
+        val expires = (arrivedAtMs ?: now) + cfg.expiryGraceMin * 60_000
         val completed = t.copy(status = "COMPLETED", completedAtMs = now, expiresAtMs = expires)
         db.tripDao().update(completed); trip = completed
 

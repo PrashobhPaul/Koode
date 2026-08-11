@@ -17,14 +17,18 @@ class TripPulseMessagingService : FirebaseMessagingService() {
         val data = message.data
         val type = data["type"] ?: message.notification?.title ?: return
         val notifier = app.graph.notifier
+        // Types must match the event-type strings the Cloud Functions fan-out
+        // sends in the data payload (functions/index.js NOTIFY table).
         when (type) {
+            "TRIP_STARTED" -> notifier.showTripStarted()
             "SOS_ACTIVATED", "SOS" -> notifier.showSosActive()
-            "ARRIVAL", "TRIP_COMPLETED" -> notifier.showArrival(data["destination"] ?: "destination")
-            "OVERNIGHT" -> notifier.showOvernight(data["destination"] ?: "destination")
+            "ARRIVAL_DETECTED", "ARRIVAL", "TRIP_COMPLETED" ->
+                notifier.showArrival(data["destination"] ?: "destination")
+            "OVERNIGHT_CONFIRMED", "OVERNIGHT" ->
+                notifier.showOvernight(data["destination"] ?: "destination")
             else -> {
                 val body = message.notification?.body ?: return
-                // generic low-key update
-                notifier.showResumeHint(body, "")
+                notifier.showTripUpdate(message.notification?.title ?: "Trip update", body)
             }
         }
     }

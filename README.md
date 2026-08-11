@@ -2,6 +2,22 @@
 
 Private, trip-scoped live journey sharing with intelligent break/wellbeing tracking and realistic ETAs — built to be **live whenever there's connectivity, and honest about staleness when there isn't**.
 
+---
+
+## 📲 Download the app
+
+**[⬇️ Download TripPulse.apk (latest build)](https://github.com/PrashobhPaul/TripPulse/releases/latest/download/TripPulse.apk)**
+
+For family & friends who want to follow a trip:
+
+1. Open the link above on your Android phone and download `TripPulse.apk`.
+2. Open the downloaded file and allow **Install from unknown sources** if asked.
+3. Open TripPulse → **Join as viewer** → enter the **Trip ID + password** the driver shared with you.
+
+You'll then see the driver's live position, ETA, breaks and timeline — and get a notification when the trip **starts** and when the driver **reaches the destination**. A trip can run from **any start point to any destination**; the driver types a place, uses their current location, or long-presses the map to drop a pin. For privacy, the trip id **self-destructs 30 minutes after the driver/rider reaches the destination** — viewer access is cut off and the trip's cloud data is deleted.
+
+The map and routing are powered by **OpenStreetMap + OSRM — completely free, no Google Maps, no API keys, no billing**.
+
 A single Android app is both the **driver** app and the **viewer** app. The driver creates a trip, shares a `Trip ID` + secret password, and family/friends follow read-only. The journey is captured as a durable local event log first, then synced to Firebase; a network outage changes *when* the server receives an event, never *whether* it exists.
 
 This repository is the working implementation of the product/engineering plan in `docs/spec/`.
@@ -34,7 +50,7 @@ The app runs immediately in **local mode** with no backend: full on-device track
 | Live state + historical backlog sync | — | ✅ |
 | SOS / arrival push to viewers | — | ✅ |
 
-See **`docs/FIREBASE_SETUP.md`** to enable cloud mode and **`docs/MAPS_SETUP.md`** to enable the live map.
+See **`docs/FIREBASE_SETUP.md`** to enable cloud mode. The live map needs no setup at all — it renders OpenStreetMap tiles via osmdroid, and routing uses the free OSRM public server (**`docs/MAPS_SETUP.md`**).
 
 ---
 
@@ -59,16 +75,16 @@ Install on a device:
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-### Optional keys (never commit these)
+### Configuration
 
-- **Maps:** put `MAPS_API_KEY=...` in `apps/android/local.properties` (or export it as an env var). Without it, map panels show a graceful placeholder and everything else works.
-- **Firebase:** place `google-services.json` at `apps/android/app/google-services.json`. Its presence switches the app to cloud mode automatically at build time.
+- **Maps/routing:** nothing to configure — OpenStreetMap tiles and OSRM routing are free and keyless.
+- **Firebase:** place `google-services.json` at `apps/android/app/google-services.json`. Its presence switches the app to cloud mode automatically at build time. If your Realtime Database is in a non-US region, re-download the file after creating the database so it contains `firebase_url` (see `docs/FIREBASE_SETUP.md`).
 
 ---
 
 ## Continuous integration
 
-`.github/workflows/android-build.yml` builds `:app:assembleDebug`, runs unit tests, and uploads the APK + test results as artifacts. It builds in local mode by default; set a `MAPS_API_KEY` repository secret to enable the map in CI builds. CI is the reproducible build path — it doesn't depend on a local machine's JDK setup.
+`.github/workflows/android-build.yml` builds `:app:assembleDebug`, runs unit tests, and uploads the APK + test results as artifacts on every push/PR. `.github/workflows/release-apk.yml` (run manually from the Actions tab, or by pushing a `v*` tag) builds the APK and publishes it as the **latest GitHub Release**, which is what the download link at the top of this README serves. CI is the reproducible build path — it doesn't depend on a local machine's JDK setup.
 
 ---
 

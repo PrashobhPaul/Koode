@@ -18,7 +18,7 @@ class EtaEngineTest {
 
     private fun inputs(
         travelS: Long, distM: Double, journey: JourneyStatus = JourneyStatus.DRIVING,
-        drivingSinceMs: Long? = now, overnight: Boolean = false, provider: String = "google"
+        drivingSinceMs: Long? = now, overnight: Boolean = false, provider: String = "osrm"
     ) = EtaEngine.Inputs(
         nowMs = now, remainingTravelSeconds = travelS, remainingDistanceM = distM,
         journey = journey, wellbeing = WellbeingTimes(), drivingSinceMs = drivingSinceMs,

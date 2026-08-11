@@ -1,5 +1,3 @@
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -18,16 +16,6 @@ if (hasGoogleServices) {
     apply(plugin = "com.google.gms.google-services")
 }
 
-// Maps API key is read from local.properties (MAPS_API_KEY=...) or the
-// MAPS_API_KEY environment variable. Never commit the key.
-val localProps = Properties().apply {
-    val f = rootProject.file("local.properties")
-    if (f.exists()) f.inputStream().use { load(it) }
-}
-val mapsApiKey: String = (localProps.getProperty("MAPS_API_KEY")
-    ?: System.getenv("MAPS_API_KEY")
-    ?: "").trim()
-
 android {
     namespace = "com.trippulse.app"
     compileSdk = 35
@@ -39,9 +27,6 @@ android {
         versionCode = 1
         versionName = "1.0.0"
 
-        manifestPlaceholders["MAPS_API_KEY"] = mapsApiKey
-        buildConfigField("boolean", "MAPS_KEY_SET", (mapsApiKey.isNotBlank()).toString())
-        buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
         buildConfigField("boolean", "GOOGLE_SERVICES_BUNDLED", hasGoogleServices.toString())
     }
 
@@ -119,9 +104,11 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
 
-    // --- Location / Activity Recognition / Maps ---
+    // --- Location / Activity Recognition ---
     implementation("com.google.android.gms:play-services-location:21.3.0")
-    implementation("com.google.maps.android:maps-compose:6.2.1")
+
+    // --- Map rendering: osmdroid + OpenStreetMap tiles (free, no API key) ---
+    implementation("org.osmdroid:osmdroid-android:6.1.20")
 
     // --- Firebase (RTDB transport, anonymous auth, FCM). Optional at runtime. ---
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
@@ -129,7 +116,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-messaging")
 
-    // --- HTTP client for the Google Routes API provider ---
+    // --- HTTP client for the OSRM routing provider ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // --- Unit tests (pure-JVM domain tests) ---

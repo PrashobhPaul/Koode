@@ -173,7 +173,7 @@ data class RoutePlan(
     val distanceM: Double,
     val durationS: Long,
     val polyline: List<GeoPoint>,
-    val provider: String,          // "google" | "fallback"
+    val provider: String,          // "osrm" | "fallback"
     val fetchedAtMs: Long
 )
 
