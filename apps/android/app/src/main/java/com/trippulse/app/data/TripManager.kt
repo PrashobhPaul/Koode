@@ -117,8 +117,14 @@ class TripManager(
         val destName: String, val destination: GeoPoint,
         val plannedDepartureMs: Long?,
         val emergencyName: String?, val emergencyPhone: String?,
-        val cloudEnabled: Boolean
+        val cloudEnabled: Boolean,
+        val transportMode: String = "CAR",
+        val fuelType: String? = null
     )
+
+    companion object {
+        val PRIVATE_MODES = setOf("CAR", "BIKE")
+    }
 
     /** Creates a trip, generating credentials and an initial route. */
     suspend fun createTrip(n: NewTrip): ActiveTripEntity = lock.withLock {
@@ -142,7 +148,9 @@ class TripManager(
             cloudEnabled = n.cloudEnabled && cloud.isAvailable(),
             metaSynced = false,
             totalRouteDistanceM = route?.distanceM ?: 0.0,
-            ownerUid = null
+            ownerUid = null,
+            transportMode = n.transportMode,
+            fuelType = if (n.transportMode in PRIVATE_MODES) n.fuelType else null
         )
         db.tripDao().upsert(t)
         trip = t
@@ -511,7 +519,11 @@ class TripManager(
             is StopDetector.Movement.StopStarted -> {
                 transition(s, JourneyInput.STOP_CONFIRMED)?.let { s = s.copy(journey = it.name) }
                 val began = detector.stopStartedAtMs() ?: now
-                s = s.copy(stopStartedAtMs = began)
+                // Rule: prompt for the break log WHILE stationary — a driver
+                // can't log anything while moving, so the moment a genuine
+                // stop is confirmed is exactly when their hands are free.
+                s = s.copy(stopStartedAtMs = began, checkpointDue = true, checkpointStopStartMs = began)
+                notifier.showBreakPrompt(t.transportMode in PRIVATE_MODES)
                 appScope.launch { insertEvent(t.tripId, EventTypes.STOP_STARTED, EventSource.SYSTEM_INFERRED, now, fix?.point?.lat ?: s0.lat, fix?.point?.lng ?: s0.lng, emptyMap(), false) }
                 onSamplingChanged?.invoke()
             }
@@ -736,6 +748,7 @@ class TripManager(
 
     private fun metaMap(t: ActiveTripEntity): Map<String, Any?> = mapOf(
         "ownerName" to ownerName(),
+        "transportMode" to t.transportMode,
         "tripId" to t.tripId,
         "origin" to t.originName, "destination" to t.destName,
         "originLat" to t.originLat, "originLng" to t.originLng,

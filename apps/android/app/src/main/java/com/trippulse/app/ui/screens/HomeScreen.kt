@@ -24,6 +24,7 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -57,9 +58,20 @@ fun HomeScreen(nav: NavHostController) {
     val active by vm.activeTrip.collectAsStateWithLifecycle()
     val allTrips by vm.allTrips.collectAsStateWithLifecycle()
     val following by vm.following.collectAsStateWithLifecycle()
+    val placeCount by vm.savedPlaceCount.collectAsStateWithLifecycle()
 
     var tab by remember { mutableIntStateOf(0) }
     var deleteTarget by remember { mutableStateOf<String?>(null) }
+
+    // Profile is the mandatory prerequisite: name + saved location + contacts.
+    val context = androidx.compose.ui.platform.LocalContext.current
+    var profileVersion by remember { mutableIntStateOf(0) }
+    val profileComplete = remember(profileVersion, placeCount) {
+        com.trippulse.app.core.Profile.isComplete(context, placeCount)
+    }
+    LaunchedEffect(Unit) {
+        if (!com.trippulse.app.core.Profile.isComplete(context, placeCount)) tab = 2
+    }
 
     Column(Modifier.fillMaxSize()) {
         Column(Modifier.padding(horizontal = 24.dp)) {
@@ -81,6 +93,7 @@ fun HomeScreen(nav: NavHostController) {
         TabRow(selectedTabIndex = tab) {
             Tab(selected = tab == 0, onClick = { tab = 0 }, text = { Text("My journeys") })
             Tab(selected = tab == 1, onClick = { tab = 1 }, text = { Text("Their journeys") })
+            Tab(selected = tab == 2, onClick = { tab = 2 }, text = { Text("Settings") })
         }
 
         Column(
@@ -118,10 +131,13 @@ fun HomeScreen(nav: NavHostController) {
                 }
 
                 Button(
-                    onClick = { nav.navigate(Routes.CREATE) },
+                    onClick = { if (profileComplete) nav.navigate(Routes.CREATE) else tab = 2 },
                     modifier = Modifier.fillMaxWidth().height(52.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Teal)
                 ) { Text("Start or schedule a journey", fontSize = 15.sp, fontWeight = FontWeight.SemiBold) }
+                if (!profileComplete) {
+                    Text("First, complete your profile in Settings (name, a saved location, emergency contacts).", color = TextMid, fontSize = 12.sp)
+                }
                 Text(
                     "Start your journey, then forget the app — it quietly keeps the people you love informed about your journey, wellbeing and arrival, so nobody has to call and ask.",
                     color = TextMid, fontSize = 12.sp
@@ -150,12 +166,15 @@ fun HomeScreen(nav: NavHostController) {
                         }
                     }
                 }
-            } else {
+            } else if (tab == 1) {
                 // ---------------- FOLLOWING ----------------
                 OutlinedButton(
-                    onClick = { nav.navigate(Routes.JOIN) },
+                    onClick = { if (profileComplete) nav.navigate(Routes.JOIN) else tab = 2 },
                     modifier = Modifier.fillMaxWidth().height(52.dp)
-                ) { Text("Follow a new trip", fontSize = 15.sp) }
+                ) { Text("Follow a new journey", fontSize = 15.sp) }
+                if (!profileComplete) {
+                    Text("First, complete your profile in Settings.", color = TextMid, fontSize = 12.sp)
+                }
 
                 if (following.isEmpty()) {
                     Text(
@@ -181,6 +200,9 @@ fun HomeScreen(nav: NavHostController) {
                         }
                     }
                 }
+            } else {
+                // ---------------- SETTINGS ----------------
+                SettingsTab(onProfileChanged = { profileVersion++ })
             }
 
             Spacer(Modifier.height(6.dp))

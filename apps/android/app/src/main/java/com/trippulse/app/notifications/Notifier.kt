@@ -96,6 +96,14 @@ class Notifier(private val context: Context) {
     fun showTripStarted() =
         postEvent(ID_STARTED, CH_EVENTS, "Trip started", "The driver has started the trip.")
 
+    /** Driver-side nudge the moment a genuine stop is confirmed. */
+    fun showBreakPrompt(privateVehicle: Boolean) =
+        postEvent(
+            ID_BREAK, CH_EVENTS, "Taking a break?",
+            if (privateVehicle) "Log food, water, rest — and fuel if you refilled. It takes two taps."
+            else "Log food, water or rest so your circle stays reassured. Two taps."
+        )
+
     fun showTripUpdate(title: String, body: String) =
         postEvent(ID_UPDATE, CH_EVENTS, title, body)
 
@@ -119,5 +127,6 @@ class Notifier(private val context: Context) {
         private const val ID_STARTED = 2005
         private const val ID_UPDATE = 2006
         private const val ID_HEALTH = 2007
+        private const val ID_BREAK = 2008
     }
 }

@@ -30,6 +30,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -62,6 +63,11 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     val following: StateFlow<List<com.trippulse.app.data.local.ViewerTripEntity>> =
         graph.viewerRepository.savedFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    /** Saved-location count — part of the mandatory profile check. */
+    val savedPlaceCount: StateFlow<Int> =
+        graph.db.savedPlaceDao().allFlow().map { it.size }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
     val cloudAvailable: Boolean = graph.cloudAvailableSafe()
 
@@ -107,8 +113,10 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 
     var originText = MutableStateFlow("Current location")
     var destText = MutableStateFlow("")
-    var emergencyName = MutableStateFlow("")
-    var emergencyPhone = MutableStateFlow("")
+
+    // Prefilled from the mandatory profile (Settings → Emergency contacts).
+    var emergencyName = MutableStateFlow(com.trippulse.app.core.Profile.contact(graph.appContext, 1).name)
+    var emergencyPhone = MutableStateFlow(com.trippulse.app.core.Profile.contact(graph.appContext, 1).phone)
 
     /** Traveller's name — family screens show "<name>'s Journey". Remembered. */
     var myName = MutableStateFlow(
@@ -124,6 +132,12 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 
     /** Scheduled departure (epoch ms); null = leaving now. */
     var departureMs = MutableStateFlow<Long?>(null)
+
+    /** Mode of transport — a mandatory answer that drives the app's rules:
+     *  private vehicles get refuel capture + efficiency; public transport
+     *  gets only wellbeing logging. */
+    var transportMode = MutableStateFlow("CAR")   // CAR | BIKE | BUS | TRAIN | FLIGHT
+    var fuelType = MutableStateFlow("PETROL")     // PETROL | DIESEL | ELECTRIC
 
     // ---- place-name search (Nominatim / OpenStreetMap, free) ----
     private val placeSearch = com.trippulse.app.data.routing.PlaceSearch()
@@ -261,7 +275,9 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                         plannedDepartureMs = departure,
                         emergencyName = emergencyName.value.trim().ifBlank { null },
                         emergencyPhone = emergencyPhone.value.trim().ifBlank { null },
-                        cloudEnabled = graph.cloudAvailableSafe()
+                        cloudEnabled = graph.cloudAvailableSafe(),
+                        transportMode = transportMode.value,
+                        fuelType = if (transportMode.value in TripManager.PRIVATE_MODES) fuelType.value else null
                     )
                 )
                 // scheduled trip: remind the driver 30 min before departure
@@ -340,6 +356,20 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         }
 
     fun submitCheckpoint(c: TripManager.Checkpoint) = viewModelScope.launch { graph.tripManager.submitCheckpoint(c) }
+
+    /** Break log with a refuel: records the checkpoint AND the fuel expense
+     *  in one gesture (private vehicles only). */
+    fun submitCheckpointWithRefuel(c: TripManager.Checkpoint, amount: Double, quantity: Double?, unit: String) =
+        viewModelScope.launch {
+            graph.tripManager.submitCheckpoint(c)
+            graph.db.expenseDao().insert(
+                com.trippulse.app.data.local.ExpenseEntity(
+                    tripId = tripId, type = "FUEL", amount = amount,
+                    quantity = quantity, unit = unit, note = "Logged at break",
+                    tMs = System.currentTimeMillis()
+                )
+            )
+        }
     fun skipCheckpoint() = viewModelScope.launch { graph.tripManager.skipCheckpoint() }
     fun answerOvernight(type: String) = viewModelScope.launch { graph.tripManager.answerOvernight(type) }
     fun addNote(type: String, text: String?) = viewModelScope.launch { graph.tripManager.addQuickNote(type, text) }
@@ -527,6 +557,79 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     companion object {
         fun factory(tripId: String) = viewModelFactory { initializer { SummaryVm(graphOf(this), tripId) } }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Settings (profile, saved locations, emergency contacts)
+// ---------------------------------------------------------------------------
+
+class SettingsVm(private val graph: AppGraph) : ViewModel() {
+
+    val savedPlaces: StateFlow<List<com.trippulse.app.data.local.SavedPlaceEntity>> =
+        graph.db.savedPlaceDao().allFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    private val placeSearch = com.trippulse.app.data.routing.PlaceSearch()
+    var searchResults = MutableStateFlow<List<com.trippulse.app.data.routing.PlaceSearch.Place>>(emptyList()); private set
+    var searching = MutableStateFlow(false); private set
+    var message = MutableStateFlow<String?>(null); private set
+
+    fun searchPlaces(query: String) {
+        if (query.trim().length < 2 || searching.value) return
+        viewModelScope.launch {
+            searching.value = true
+            searchResults.value = placeSearch.search(query)
+            searching.value = false
+            message.value = if (searchResults.value.isEmpty()) "No places found — try adding the city." else null
+        }
+    }
+
+    fun addPlace(label: String, point: GeoPoint, fallbackName: String) {
+        val name = label.trim().ifBlank { fallbackName.split(",").first().trim() }
+        if (name.isBlank()) { message.value = "Give the place a name (e.g. Home)."; return }
+        viewModelScope.launch {
+            graph.db.savedPlaceDao().upsert(
+                com.trippulse.app.data.local.SavedPlaceEntity(name, point.lat, point.lng, System.currentTimeMillis())
+            )
+            searchResults.value = emptyList()
+            message.value = "Saved \"$name\"."
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    fun addCurrentLocation(label: String) {
+        if (label.trim().isBlank()) { message.value = "Type a name first (e.g. Home), then tap Use current location."; return }
+        viewModelScope.launch {
+            val point = try {
+                val client = LocationServices.getFusedLocationProviderClient(graph.appContext)
+                val loc = client.lastLocation.await()
+                    ?: client.getCurrentLocation(
+                        Priority.PRIORITY_BALANCED_POWER_ACCURACY,
+                        CancellationTokenSource().token
+                    ).await()
+                loc?.let { GeoPoint(it.latitude, it.longitude) }
+            } catch (_: Exception) { null }
+            if (point == null) {
+                message.value = "Couldn't read your location — check GPS and location permission."
+                return@launch
+            }
+            addPlace(label, point, label)
+        }
+    }
+
+    fun deletePlace(name: String) = viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
+
+    fun saveProfile(name: String, contacts: List<com.trippulse.app.core.Profile.Contact>) {
+        com.trippulse.app.core.Profile.setName(graph.appContext, name)
+        contacts.forEachIndexed { i, c ->
+            com.trippulse.app.core.Profile.setContact(graph.appContext, i + 1, c.name, c.phone)
+        }
+        message.value = "Profile saved."
+    }
+
+    companion object {
+        val Factory = viewModelFactory { initializer { SettingsVm(graphOf(this)) } }
     }
 }
 

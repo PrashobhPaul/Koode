@@ -73,6 +73,18 @@ class JourneyHealthTest {
         assertTrue(r.reasons.any { it.startsWith("No food logged") })
     }
 
+    @Test fun public_transport_never_flags_continuous_driving() {
+        // 5h "driving" on a train is just the train doing its job
+        val r = JourneyHealth.evaluate(base().copy(drivingSinceMs = now - 5 * h, privateVehicle = false))
+        assertEquals(JourneyHealth.Level.NORMAL, r.level)
+    }
+
+    @Test fun private_vehicle_flags_continuous_driving() {
+        val r = JourneyHealth.evaluate(base().copy(drivingSinceMs = now - 5 * h))
+        assertEquals(JourneyHealth.Level.ATTENTION, r.level)
+        assertTrue(r.reasons.any { it.contains("without a break") })
+    }
+
     @Test fun arrived_is_always_calm() {
         val r = JourneyHealth.evaluate(
             base(journey = JourneyStatus.ARRIVED.name, freshness = Freshness.OFFLINE).copy(sosActive = false)

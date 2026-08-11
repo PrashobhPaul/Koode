@@ -136,6 +136,39 @@ fun CreateTripScreen(nav: NavHostController) {
             TextButton(onClick = { vm.clearSearch() }) { Text("Clear results", color = TextMid, fontSize = 12.sp) }
         }
 
+        // ---- mode of transport (mandatory; drives the app's rules) ----
+        val mode by vm.transportMode.collectAsStateWithLifecycle()
+        val fuel by vm.fuelType.collectAsStateWithLifecycle()
+        Text("How are you travelling? *", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            listOf("CAR" to "🚗 Car", "BIKE" to "🏍 Bike", "BUS" to "🚌 Bus").forEach { (v, label) ->
+                FilterChip(selected = mode == v, onClick = { vm.transportMode.value = v },
+                    label = { Text(label, fontSize = 12.sp) })
+                Spacer(Modifier.width(6.dp))
+            }
+        }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            listOf("TRAIN" to "🚆 Train", "FLIGHT" to "✈️ Flight").forEach { (v, label) ->
+                FilterChip(selected = mode == v, onClick = { vm.transportMode.value = v },
+                    label = { Text(label, fontSize = 12.sp) })
+                Spacer(Modifier.width(6.dp))
+            }
+        }
+        if (mode == "CAR" || mode == "BIKE") {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text("Fuel:", color = TextMid, fontSize = 12.sp)
+                Spacer(Modifier.width(8.dp))
+                listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric").forEach { (v, label) ->
+                    FilterChip(selected = fuel == v, onClick = { vm.fuelType.value = v },
+                        label = { Text(label, fontSize = 12.sp) })
+                    Spacer(Modifier.width(6.dp))
+                }
+            }
+            Text("At breaks you'll be asked if you refuelled, so fuel cost and efficiency are tracked for this journey.", color = TextMid, fontSize = 11.sp)
+        } else {
+            Text("Public transport: breaks ask only about food, water and rest — no fuel tracking for this journey.", color = TextMid, fontSize = 11.sp)
+        }
+
         // ---- departure: leave now or schedule ahead ----
         val departure by vm.departureMs.collectAsStateWithLifecycle()
         Text("Departure", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)

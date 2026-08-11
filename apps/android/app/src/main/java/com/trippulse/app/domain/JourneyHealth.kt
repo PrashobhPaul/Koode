@@ -41,7 +41,11 @@ object JourneyHealth {
         val drivingSinceMs: Long? = null,
         val overnightType: String? = null,   // set when the traveller confirmed an overnight halt
         val startedAtMs: Long? = null,
-        val localHour: Int                    // viewer-local hour 0..23, for late-night travel
+        val localHour: Int,                   // viewer-local hour 0..23, for late-night travel
+        /** Private vehicle (car/bike): continuous-driving-without-a-break
+         *  applies. On a bus/train/flight the traveller isn't driving, so
+         *  that rule is silenced. */
+        val privateVehicle: Boolean = true
     )
 
     // thresholds (minutes) — journey-planning heuristics, not medical advice
@@ -93,7 +97,7 @@ object JourneyHealth {
                 attention.add("No water logged for ${sinceWaterMin / 60}h ${sinceWaterMin % 60}m")
             }
             val legMin = i.drivingSinceMs?.let { (i.nowMs - it) / 60_000 }
-            if (legMin != null && legMin >= CONTINUOUS_DRIVE_MIN) {
+            if (i.privateVehicle && legMin != null && legMin >= CONTINUOUS_DRIVE_MIN) {
                 attention.add("Driving ${legMin / 60}h ${legMin % 60}m without a break")
             }
             if (i.localHour >= 23 || i.localHour <= 4) {
