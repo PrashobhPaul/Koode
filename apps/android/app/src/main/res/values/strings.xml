@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TripPulse</string>
+    <string name="tracking_channel_name">Trip tracking</string>
+    <string name="events_channel_name">Trip events</string>
+    <string name="sos_channel_name">SOS alerts</string>
+    <string name="tracking_notification_title">TripPulse is tracking this active trip</string>
+</resources>

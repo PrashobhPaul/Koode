@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Trip credentials and journey event log stay on-device only. -->
+    <exclude domain="database" path="trippulse.db" />
+    <exclude domain="sharedpref" path="." />
+</full-backup-content>
