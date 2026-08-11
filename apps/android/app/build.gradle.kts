@@ -33,8 +33,8 @@ android {
         applicationId = "app.koode"
         minSdk = 26
         targetSdk = 35
-        versionCode = 6
-        versionName = "4.1.0"
+        versionCode = 7
+        versionName = "4.2.0"
 
         buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"$supabaseAnonKey\"")

@@ -258,15 +258,22 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
         }
     }
 
-    // ---- checkpoint sheet (manual or due) ----
+    // ---- checkpoint sheet (manual or due) — mode-aware questions ----
     if (showCheckpoint || checkpointDue) {
         val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        val privateVehicle = (t?.transportMode ?: "CAR") in TripManager.PRIVATE_MODES
         ModalBottomSheet(
             onDismissRequest = { showCheckpoint = false; if (checkpointDue) vm.skipCheckpoint() },
             sheetState = sheet
         ) {
             CheckpointSheet(
-                onSubmit = { c -> vm.submitCheckpoint(c); showCheckpoint = false },
+                privateVehicle = privateVehicle,
+                fuelUnit = if (t?.fuelType == "ELECTRIC") "kWh" else "L",
+                onSubmit = { c, refuelAmount, refuelQty, unit ->
+                    if (refuelAmount != null) vm.submitCheckpointWithRefuel(c, refuelAmount, refuelQty, unit)
+                    else vm.submitCheckpoint(c)
+                    showCheckpoint = false
+                },
                 onSkip = { vm.skipCheckpoint(); showCheckpoint = false }
             )
         }
@@ -283,18 +290,21 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     if (showExpense) {
         val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
         ModalBottomSheet(onDismissRequest = { showExpense = false }, sheetState = sheet) {
-            ExpenseSheet(onSave = { type, amount, qty, unit, note ->
-                vm.addExpense(type, amount, qty, unit, note)
-                showExpense = false
-            })
+            ExpenseSheet(
+                privateVehicle = (t?.transportMode ?: "CAR") in TripManager.PRIVATE_MODES,
+                onSave = { type, amount, qty, unit, note ->
+                    vm.addExpense(type, amount, qty, unit, note)
+                    showExpense = false
+                }
+            )
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-private fun ExpenseSheet(onSave: (String, Double, Double?, String?, String?) -> Unit) {
-    var type by remember { mutableStateOf("FUEL") }
+private fun ExpenseSheet(privateVehicle: Boolean, onSave: (String, Double, Double?, String?, String?) -> Unit) {
+    var type by remember { mutableStateOf(if (privateVehicle) "FUEL" else "FOOD") }
     var amount by remember { mutableStateOf("") }
     var qty by remember { mutableStateOf("") }
     var unit by remember { mutableStateOf("L") }
@@ -304,7 +314,7 @@ private fun ExpenseSheet(onSave: (String, Double, Double?, String?, String?) -> 
         Text("Add a journey expense", color = TextHigh, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         Text("Private to you — stays on this phone, viewers never see it.", color = TextMid, fontSize = 12.sp)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Toggle("⛽ Fuel", type == "FUEL") { type = "FUEL" }
+            if (privateVehicle) Toggle("⛽ Fuel", type == "FUEL") { type = "FUEL" }
             Toggle("🍛 Food", type == "FOOD") { type = "FOOD" }
             Toggle("🏨 Stay", type == "STAY") { type = "STAY" }
             Toggle("🧾 Other", type == "OTHER") { type = "OTHER" }
@@ -427,13 +437,20 @@ private fun AssistChoice(label: String, onClick: () -> Unit) {
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
-private fun CheckpointSheet(onSubmit: (TripManager.Checkpoint) -> Unit, onSkip: () -> Unit) {
+private fun CheckpointSheet(
+    privateVehicle: Boolean,
+    fuelUnit: String,
+    onSubmit: (TripManager.Checkpoint, Double?, Double?, String) -> Unit,
+    onSkip: () -> Unit
+) {
     var water by remember { mutableStateOf(false) }
     var food by remember { mutableStateOf(false) }
     var toilet by remember { mutableStateOf(false) }
     var rest by remember { mutableStateOf(false) }
     var fuel by remember { mutableStateOf(false) }
     var charge by remember { mutableStateOf(false) }
+    var refuelCost by remember { mutableStateOf("") }
+    var refuelQty by remember { mutableStateOf("") }
 
     Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         Text("What happened on this stop?", color = TextHigh, fontSize = 18.sp, fontWeight = FontWeight.Bold)
@@ -443,12 +460,34 @@ private fun CheckpointSheet(onSubmit: (TripManager.Checkpoint) -> Unit, onSkip: 
             Toggle("🍛 Food", food) { food = it }
             Toggle("🚻 Toilet", toilet) { toilet = it }
             Toggle("😴 Rest", rest) { rest = it }
-            Toggle("⛽ Fuel", fuel) { fuel = it }
-            Toggle("🔌 Charge", charge) { charge = it }
+            // fuel questions exist only for private vehicles — a train
+            // passenger is never asked about refuelling
+            if (privateVehicle) {
+                if (fuelUnit == "kWh") Toggle("🔌 Charged", charge) { charge = it }
+                else Toggle("⛽ Refuelled", fuel) { fuel = it }
+            }
+        }
+        if (privateVehicle && (fuel || charge)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = refuelCost, onValueChange = { refuelCost = it },
+                    label = { Text("Amount spent") }, singleLine = true, modifier = Modifier.weight(1f)
+                )
+                OutlinedTextField(
+                    value = refuelQty, onValueChange = { refuelQty = it },
+                    label = { Text(fuelUnit) }, singleLine = true, modifier = Modifier.weight(1f)
+                )
+            }
+            Text("Goes straight into this journey's cost & efficiency summary.", color = TextMid, fontSize = 11.sp)
         }
         Spacer(Modifier.height(4.dp))
         Button(
-            onClick = { onSubmit(TripManager.Checkpoint(water, food, toilet, rest, fuel, charge)) },
+            onClick = {
+                onSubmit(
+                    TripManager.Checkpoint(water, food, toilet, rest, fuel, charge),
+                    refuelCost.toDoubleOrNull(), refuelQty.toDoubleOrNull(), fuelUnit
+                )
+            },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Teal)
         ) { Text("Save break") }

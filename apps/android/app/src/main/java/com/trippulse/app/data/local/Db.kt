@@ -46,7 +46,12 @@ data class ActiveTripEntity(
     val cloudEnabled: Boolean,
     val metaSynced: Boolean,
     val totalRouteDistanceM: Double,
-    val ownerUid: String?
+    val ownerUid: String?,
+    // Mode of transport drives the app's rule system: what to ask at breaks
+    // (refuelling only for private vehicles), what counts as attention-worthy,
+    // and whether fuel efficiency applies.
+    val transportMode: String = "CAR",   // CAR | BIKE | BUS | TRAIN | FLIGHT
+    val fuelType: String? = null         // private vehicles: PETROL | DIESEL | ELECTRIC
 )
 
 @Entity(tableName = "event_queue")
@@ -369,7 +374,7 @@ interface ViewerDao {
         SavedPlaceEntity::class,
         ExpenseEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -408,13 +413,21 @@ abstract class TripPulseDb : RoomDatabase() {
             }
         }
 
+        // v3 -> v4: transport mode + fuel type on the trip.
+        private val MIGRATION_3_4 = object : androidx.room.migration.Migration(3, 4) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN transportMode TEXT NOT NULL DEFAULT 'CAR'")
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN fuelType TEXT")
+            }
+        }
+
         fun get(context: Context): TripPulseDb =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     TripPulseDb::class.java,
                     "trippulse.db"
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                     .fallbackToDestructiveMigration()
                     .build().also { INSTANCE = it }
             }

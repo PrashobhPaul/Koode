@@ -103,13 +103,14 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                     if (distKm > 0 && total > 0) {
                         Text("%.2f per km overall".format(total / distKm), color = TextMid, fontSize = 12.sp)
                     }
-                    if (litres > 0 && distKm > 0) {
+                    val privateVehicle = (trip?.transportMode ?: "CAR") in setOf("CAR", "BIKE")
+                    if (privateVehicle && litres > 0 && distKm > 0) {
                         Text(
                             "Fuel efficiency: %.1f km/L (%.1f L used)".format(distKm / litres, litres),
                             color = Teal, fontSize = 13.sp, fontWeight = FontWeight.SemiBold
                         )
                     }
-                    if (kwh > 0 && distKm > 0) {
+                    if (privateVehicle && kwh > 0 && distKm > 0) {
                         Text(
                             "EV efficiency: %.1f km/kWh (%.1f kWh used)".format(distKm / kwh, kwh),
                             color = Teal, fontSize = 13.sp, fontWeight = FontWeight.SemiBold

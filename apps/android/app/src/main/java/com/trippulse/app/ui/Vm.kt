@@ -133,6 +133,12 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     /** Scheduled departure (epoch ms); null = leaving now. */
     var departureMs = MutableStateFlow<Long?>(null)
 
+    /** Mode of transport — a mandatory answer that drives the app's rules:
+     *  private vehicles get refuel capture + efficiency; public transport
+     *  gets only wellbeing logging. */
+    var transportMode = MutableStateFlow("CAR")   // CAR | BIKE | BUS | TRAIN | FLIGHT
+    var fuelType = MutableStateFlow("PETROL")     // PETROL | DIESEL | ELECTRIC
+
     // ---- place-name search (Nominatim / OpenStreetMap, free) ----
     private val placeSearch = com.trippulse.app.data.routing.PlaceSearch()
     var searchResults = MutableStateFlow<List<com.trippulse.app.data.routing.PlaceSearch.Place>>(emptyList()); private set
@@ -269,7 +275,9 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                         plannedDepartureMs = departure,
                         emergencyName = emergencyName.value.trim().ifBlank { null },
                         emergencyPhone = emergencyPhone.value.trim().ifBlank { null },
-                        cloudEnabled = graph.cloudAvailableSafe()
+                        cloudEnabled = graph.cloudAvailableSafe(),
+                        transportMode = transportMode.value,
+                        fuelType = if (transportMode.value in TripManager.PRIVATE_MODES) fuelType.value else null
                     )
                 )
                 // scheduled trip: remind the driver 30 min before departure
@@ -348,6 +356,20 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         }
 
     fun submitCheckpoint(c: TripManager.Checkpoint) = viewModelScope.launch { graph.tripManager.submitCheckpoint(c) }
+
+    /** Break log with a refuel: records the checkpoint AND the fuel expense
+     *  in one gesture (private vehicles only). */
+    fun submitCheckpointWithRefuel(c: TripManager.Checkpoint, amount: Double, quantity: Double?, unit: String) =
+        viewModelScope.launch {
+            graph.tripManager.submitCheckpoint(c)
+            graph.db.expenseDao().insert(
+                com.trippulse.app.data.local.ExpenseEntity(
+                    tripId = tripId, type = "FUEL", amount = amount,
+                    quantity = quantity, unit = unit, note = "Logged at break",
+                    tMs = System.currentTimeMillis()
+                )
+            )
+        }
     fun skipCheckpoint() = viewModelScope.launch { graph.tripManager.skipCheckpoint() }
     fun answerOvernight(type: String) = viewModelScope.launch { graph.tripManager.answerOvernight(type) }
     fun addNote(type: String, text: String?) = viewModelScope.launch { graph.tripManager.addQuickNote(type, text) }

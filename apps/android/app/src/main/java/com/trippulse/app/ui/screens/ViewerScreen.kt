@@ -112,7 +112,8 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 drivingSinceMs = state?.l("drivingSince"),
                 overnightType = state?.str("overnightType"),
                 startedAtMs = meta?.l("startedAt"),
-                localHour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
+                localHour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY),
+                privateVehicle = (meta?.str("transportMode") ?: "CAR") in setOf("CAR", "BIKE")
             )
         )
     }
@@ -174,7 +175,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
             if (nearPlace != null) {
                 Text("📍 Currently near $nearPlace", color = TextHigh, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
             }
-            Text(travelModeLine(journey), color = TextMid, fontSize = 13.sp)
+            Text(travelModeLine(journey, meta?.str("transportMode")), color = TextMid, fontSize = 13.sp)
             Spacer(Modifier.height(6.dp))
             when (mode) {
                 EtaMode.OVERNIGHT_PENDING.name -> {
@@ -315,9 +316,15 @@ private fun InfoRow(emoji: String, label: String, value: String) {
     }
 }
 
-private fun travelModeLine(journey: String?): String = when (journey) {
-    JourneyStatus.DRIVING.name -> "🚗 Travelling"
-    JourneyStatus.POSSIBLE_STOP.name -> "🚗 Slowing down"
+private fun modeEmoji(mode: String?): String = when (mode) {
+    "BIKE" -> "🏍"; "BUS" -> "🚌"; "TRAIN" -> "🚆"; "FLIGHT" -> "✈️"; else -> "🚗"
+}
+
+private fun travelModeLine(journey: String?, mode: String?): String = when (journey) {
+    JourneyStatus.DRIVING.name -> "${modeEmoji(mode)} Travelling" + when (mode) {
+        "BIKE" -> " by bike"; "BUS" -> " by bus"; "TRAIN" -> " by train"; "FLIGHT" -> " by flight"; else -> ""
+    }
+    JourneyStatus.POSSIBLE_STOP.name -> "${modeEmoji(mode)} Slowing down"
     JourneyStatus.STOPPED.name -> "⏸ Taking a break"
     JourneyStatus.LONG_STOP.name -> "⏸ On a long stop"
     JourneyStatus.OVERNIGHT.name -> "🌙 Resting overnight"

@@ -61,12 +61,14 @@ class TripFollowService : Service() {
                     val since = seen.getLong(f.accessKey, f.joinedAtMs)
                     val events = graph.cloud.fetchEventsSince(f.accessKey, since) ?: continue
                     var latest = since
+                    var alerted = false
                     for (e in events) {
                         val t = (e["eventTime"] as? Number)?.toLong() ?: continue
                         if (t > latest) latest = t
-                        alert(graph.notifier, e["type"] as? String, f.label)
+                        if (alert(graph.notifier, e["type"] as? String, f.label)) alerted = true
                     }
                     if (latest != since) seen.edit().putLong(f.accessKey, latest).apply()
+                    if (alerted) touchDigest(f.accessKey)
 
                     // Journey Health: notify once when a journey enters
                     // CONCERN, and once when it settles back to normal.
@@ -112,7 +114,8 @@ class TripFollowService : Service() {
                 drivingSinceMs = ln("drivingSince"),
                 overnightType = state["overnightType"] as? String,
                 startedAtMs = (meta["startedAt"] as? Number)?.toLong(),
-                localHour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
+                localHour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY),
+                privateVehicle = (meta["transportMode"] as? String ?: "CAR") in setOf("CAR", "BIKE")
             )
         )
         val healthPrefs = getSharedPreferences(HEALTH_PREFS, Context.MODE_PRIVATE)
@@ -121,22 +124,65 @@ class TripFollowService : Service() {
         if (currentLevel != previous) {
             if (report.level == JourneyHealth.Level.CONCERN) {
                 graph.notifier.showJourneyAttention(label, report.reasons.firstOrNull() ?: report.headline)
+                touchDigest(ref)
             } else if (previous == JourneyHealth.Level.CONCERN.name && report.level == JourneyHealth.Level.NORMAL) {
                 graph.notifier.showJourneyBackToNormal(label)
+                touchDigest(ref)
             }
             healthPrefs.edit().putString(ref, currentLevel).apply()
         }
+
+        maybeDigest(graph, ref, label, journey, report, state)
     }
 
-    private fun alert(notifier: com.trippulse.app.notifications.Notifier, type: String?, label: String) {
+    /**
+     * Periodic reassurance digests — the cadence rules:
+     *  - Never for arrived/completed journeys (the arrival alert closed the loop).
+     *  - Every 2 hours while the journey is live, so the family stays informed
+     *    without opening the app…
+     *  - …stretched to every 4 hours during a confirmed overnight rest (news
+     *    is not expected, sleep is).
+     *  - The clock resets whenever ANY instant alert was just sent, so a
+     *    digest never lands minutes after a real notification (no spam).
+     */
+    private fun maybeDigest(
+        graph: com.trippulse.app.di.AppGraph, ref: String, label: String,
+        journey: String?, report: JourneyHealth.Report, state: Map<String, Any?>
+    ) {
+        if (journey == JourneyStatus.ARRIVED.name || journey == JourneyStatus.COMPLETED.name) return
+        val now = System.currentTimeMillis()
+        val prefs = getSharedPreferences(DIGEST_PREFS, Context.MODE_PRIVATE)
+        val last = prefs.getLong(ref, 0L)
+        if (last == 0L) { prefs.edit().putLong(ref, now).apply(); return }
+        val overnight = journey == JourneyStatus.OVERNIGHT.name
+        val intervalMs = if (overnight) 4 * 3_600_000L else 2 * 3_600_000L
+        if (now - last < intervalMs) return
+
+        val eta = (state["etaLikely"] as? Number)?.toLong()
+        val body = buildString {
+            append(report.headline)
+            if (eta != null && !overnight) append(" · ETA ${com.trippulse.app.core.TimeFmt.clockWithDay(eta, now)}")
+        }
+        graph.notifier.showTripUpdate(label, body)
+        prefs.edit().putLong(ref, now).apply()
+    }
+
+    private fun touchDigest(ref: String) {
+        getSharedPreferences(DIGEST_PREFS, Context.MODE_PRIVATE)
+            .edit().putLong(ref, System.currentTimeMillis()).apply()
+    }
+
+    /** Returns true when the event produced an instant notification. */
+    private fun alert(notifier: com.trippulse.app.notifications.Notifier, type: String?, label: String): Boolean {
         when (type) {
             EventTypes.TRIP_STARTED -> notifier.showTripStarted()
             EventTypes.SOS_ACTIVATED -> notifier.showSosActive()
-            EventTypes.ARRIVAL_DETECTED -> notifier.showTripUpdate("Destination reached", "The driver has reached the destination. ($label)")
-            EventTypes.TRIP_COMPLETED -> notifier.showTripUpdate("Trip completed", "The trip has ended. Access expires 30 minutes after arrival. ($label)")
-            EventTypes.OVERNIGHT_CONFIRMED -> notifier.showTripUpdate("Overnight rest", "The driver is stopping overnight. ($label)")
-            else -> {} // non-alert timeline events stay silent
+            EventTypes.ARRIVAL_DETECTED -> notifier.showTripUpdate("Destination reached", "The traveller has reached the destination. ($label)")
+            EventTypes.TRIP_COMPLETED -> notifier.showTripUpdate("Journey completed", "The journey has ended. Access expires 30 minutes after arrival. ($label)")
+            EventTypes.OVERNIGHT_CONFIRMED -> notifier.showTripUpdate("Overnight rest", "The traveller is stopping overnight. ($label)")
+            else -> return false // non-alert timeline events stay silent
         }
+        return true
     }
 
     override fun onDestroy() {
@@ -148,6 +194,7 @@ class TripFollowService : Service() {
         private const val NOTIF_ID = 3001
         private const val PREFS = "tp_follow_seen"
         private const val HEALTH_PREFS = "tp_follow_health"
+        private const val DIGEST_PREFS = "tp_follow_digest"
         private const val POLL_MS = 30_000L
 
         fun start(context: Context) {
