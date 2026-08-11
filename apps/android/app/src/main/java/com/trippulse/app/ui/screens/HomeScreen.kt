@@ -76,7 +76,7 @@ fun HomeScreen(nav: NavHostController) {
         Spacer(Modifier.height(8.dp))
         Text(
             if (vm.cloudAvailable) "Cloud sync: enabled — viewers can follow live."
-            else "Running in local mode. Add google-services.json to enable live viewer sharing.",
+            else "Running in local mode. Configure the free cloud backend (docs/SUPABASE_SETUP.md) to enable live viewer sharing.",
             color = TextMid, fontSize = 12.sp,
             modifier = Modifier.fillMaxWidth()
         )

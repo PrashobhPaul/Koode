@@ -4,7 +4,7 @@ import com.trippulse.app.data.EventCodec
 import com.trippulse.app.data.local.ActiveTripEntity
 import com.trippulse.app.data.local.EventEntity
 import com.trippulse.app.data.local.TripPulseDb
-import com.trippulse.app.data.remote.FirebaseCloud
+import com.trippulse.app.data.remote.TripCloud
 import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.TripConfig
 import kotlinx.coroutines.sync.Mutex
@@ -24,7 +24,7 @@ import kotlinx.coroutines.sync.withLock
  */
 class SyncEngine(
     private val db: TripPulseDb,
-    private val cloud: FirebaseCloud,
+    private val cloud: TripCloud,
     private val cfg: TripConfig
 ) {
     /** Set by TripManager: invoked once an SOS_ACTIVATED event is acknowledged. */
@@ -90,17 +90,17 @@ class SyncEngine(
         val now = System.currentTimeMillis()
         db.eventDao().setStatus(e.eventId, "UPLOADING", now)
         return when (cloud.writeEvent(trip.accessKey, e.eventId, EventCodec.toCloudMap(e))) {
-            FirebaseCloud.Ack.Acked, FirebaseCloud.Ack.AlreadyExists -> {
+            TripCloud.Ack.Acked, TripCloud.Ack.AlreadyExists -> {
                 db.eventDao().setStatus(e.eventId, "ACKED", System.currentTimeMillis())
                 if (e.type == EventTypes.SOS_ACTIVATED) onSosDelivered?.invoke(trip.tripId)
                 true
             }
-            FirebaseCloud.Ack.Denied -> {
+            TripCloud.Ack.Denied -> {
                 // permanent: rules rejected it and it doesn't already exist
                 db.eventDao().setStatus(e.eventId, "FAILED_PERMANENT", System.currentTimeMillis())
                 true // don't block the rest of the queue on one bad event
             }
-            FirebaseCloud.Ack.Retryable -> {
+            TripCloud.Ack.Retryable -> {
                 db.eventDao().setStatusRetry(e.eventId, "FAILED_RETRYABLE", System.currentTimeMillis())
                 false
             }

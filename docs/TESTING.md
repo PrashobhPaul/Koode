@@ -47,4 +47,4 @@ The 1,100 km field trip must **not** be the first end-to-end test. Progress thro
 
 ## Debug instrumentation
 
-A protected debug screen can surface GPS availability/accuracy, network state, Firebase connection, last upload, pending event count, battery, tracking-service state, sampling interval, and current journey state. Keep it disabled/guarded in production.
+A protected debug screen can surface GPS availability/accuracy, network state, backend connection, last upload, pending event count, battery, tracking-service state, sampling interval, and current journey state. Keep it disabled/guarded in production.

@@ -4,7 +4,7 @@ import android.content.Context
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.ViewerRepository
 import com.trippulse.app.data.local.TripPulseDb
-import com.trippulse.app.data.remote.FirebaseCloud
+import com.trippulse.app.data.remote.TripCloud
 import com.trippulse.app.data.routing.CompositeRouting
 import com.trippulse.app.data.routing.FallbackRoutingProvider
 import com.trippulse.app.data.routing.OsrmRoutingProvider
@@ -33,9 +33,7 @@ class AppGraph(context: Context) {
 
     val connectivity: ConnectivityObserver = ConnectivityObserver(appContext)
 
-    val cloud: FirebaseCloud = FirebaseCloud(appContext).also {
-        if (it.isAvailable()) it.enablePersistence()
-    }
+    val cloud: TripCloud = TripCloud(appContext)
 
     // Free OSRM public router first, deterministic estimator when offline.
     private val routing: RoutingProvider =

@@ -14,11 +14,11 @@ For family & friends who want to follow a trip:
 2. Open the downloaded file and allow **Install from unknown sources** if asked.
 3. Open TripPulse → **Join as viewer** → enter the **Trip ID + password** the driver shared with you.
 
-You'll then see the driver's live position, ETA, breaks and timeline — and get a notification when the trip **starts** and when the driver **reaches the destination**. A trip can run from **any start point to any destination**; the driver types a place, uses their current location, or long-presses the map to drop a pin. For privacy, the trip id **self-destructs 30 minutes after the driver/rider reaches the destination** — viewer access is cut off and the trip's cloud data is deleted.
+You'll then see the driver's live position, ETA, breaks and timeline — and get **forced alerts** on your phone when the trip **starts**, on **SOS**, and when the driver **reaches the destination**, even with the app in the background. When joining you enter your name, so the driver knows exactly who is watching. A trip can run from **any start point to any destination**; the driver types a place, uses their current location, or long-presses the map to drop a pin. For privacy, the trip id **self-destructs 30 minutes after the driver/rider reaches the destination** — viewer access is cut off and the trip's cloud data is deleted.
 
-The map and routing are powered by **OpenStreetMap + OSRM — completely free, no Google Maps, no API keys, no billing**.
+The whole stack is **fully open source and zero cost**: OpenStreetMap + OSRM for maps/routing (no API keys) and Supabase (open-source Postgres, free tier) for live sharing — no Google Maps, no Firebase, no billing accounts anywhere.
 
-A single Android app is both the **driver** app and the **viewer** app. The driver creates a trip, shares a `Trip ID` + secret password, and family/friends follow read-only. The journey is captured as a durable local event log first, then synced to Firebase; a network outage changes *when* the server receives an event, never *whether* it exists.
+A single Android app is both the **driver** app and the **viewer** app. The driver creates a trip, shares a `Trip ID` + secret password, and family/friends follow read-only. The journey is captured as a durable local event log first, then synced to the cloud backend (Supabase — open-source Postgres, free tier); a network outage changes *when* the server receives an event, never *whether* it exists.
 
 This repository is the working implementation of the product/engineering plan in `docs/spec/`.
 
@@ -32,8 +32,7 @@ This repository is the working implementation of the product/engineering plan in
   - Journey **state machine**, **stop detection** (traffic-light-safe), **break checkpoints**, **overnight** flow, **SOS** (offline-safe), **quick notes** (passenger/medicine, medicine treated as sensitive), **route deviation**, **trip replay**, **trip summary**.
   - Realistic **ETA engine**: route travel time + future break budget + uncertainty, presented as a *range* with an explainable breakdown.
   - **Freshness** model for viewers: `LIVE / RECENT / STALE / OFFLINE / COMPLETED` — a stale location is never shown as live.
-- **Firebase** (`firebase/`) — Realtime Database security rules (capability-scoped, owner-writes, expiry-gated reads) + project config.
-- **Cloud Functions** (`functions/`) — scheduled expiry cleanup + SOS/arrival push fan-out.
+- **Supabase backend** (`supabase/schema.sql`) — the ENTIRE server side in one SQL file: capability-token security (only the creating driver device can write; viewers are read-only), expiry-gated reads, and self-destruction of expired trips. No functions, no auth service, no push infrastructure.
 - **CI** (`.github/workflows/`) — builds the debug APK and runs unit tests on every push/PR.
 - **Docs** (`docs/`) — the full spec plus setup/architecture/testing/release guides.
 
@@ -41,16 +40,16 @@ This repository is the working implementation of the product/engineering plan in
 
 ## Local mode vs cloud mode
 
-The app runs immediately in **local mode** with no backend: full on-device tracking, stop detection, checkpoints, ETA, replay and summary all work; only *remote* viewer sharing is inactive. Drop in a Firebase config file and rebuild to activate cloud mode — no code changes.
+The app runs immediately in **local mode** with no backend: full on-device tracking, stop detection, checkpoints, ETA, replay and summary all work; only *remote* viewer sharing is inactive. Fill in the two lines of `apps/android/supabase.properties` and rebuild to activate cloud mode — no code changes.
 
 | Capability | Local mode | Cloud mode |
 |---|---|---|
 | Driver tracking, stop/break detection, ETA, replay, summary | ✅ | ✅ |
 | Remote viewers (Trip ID + password) | — | ✅ |
 | Live state + historical backlog sync | — | ✅ |
-| SOS / arrival push to viewers | — | ✅ |
+| Forced start/SOS/arrival alerts on viewer phones | — | ✅ |
 
-See **`docs/FIREBASE_SETUP.md`** to enable cloud mode. The live map needs no setup at all — it renders OpenStreetMap tiles via osmdroid, and routing uses the free OSRM public server (**`docs/MAPS_SETUP.md`**).
+See **`docs/SUPABASE_SETUP.md`** to enable cloud mode (one-time, ~5 minutes, free). The live map needs no setup at all — it renders OpenStreetMap tiles via osmdroid, and routing uses the free OSRM public server (**`docs/MAPS_SETUP.md`**).
 
 ---
 
@@ -78,7 +77,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 ### Configuration
 
 - **Maps/routing:** nothing to configure — OpenStreetMap tiles and OSRM routing are free and keyless.
-- **Firebase:** place `google-services.json` at `apps/android/app/google-services.json`. Its presence switches the app to cloud mode automatically at build time. If your Realtime Database is in a non-US region, re-download the file after creating the database so it contains `firebase_url` (see `docs/FIREBASE_SETUP.md`).
+- **Cloud sharing:** fill in the two values in `apps/android/supabase.properties` (see `docs/SUPABASE_SETUP.md`). Empty values build in local mode. The anon key is public by design — all access control lives in `supabase/schema.sql`.
 
 ---
 
@@ -109,9 +108,9 @@ GPS + sensors + driver actions + SOS + notes
    (live state first, backlog second)
         │  (only when connectivity permits)
         ▼
-   Firebase Realtime DB  ───────────────────►  live state + timeline + freshness
-   (rules: capability-scoped, owner-writes,
-    expiry-gated reads)
+   Supabase (Postgres + REST)  ────────────►  live state + timeline + freshness
+   (SQL-enforced: owner-token writes only,
+    expiry-gated reads, 30-min self-destruct)
 ```
 
 Full detail in **`docs/ARCHITECTURE.md`**. The three non-negotiable contracts:
@@ -129,15 +128,13 @@ apps/android/        Android app (Kotlin/Compose)
   app/src/main/java/com/trippulse/app/
     core/            geo + id/time helpers
     domain/          models, config, state machine, stop/eta/deviation/summary engines
-    data/            Room DB, event codec, routing, sync, Firebase transport, TripManager, ViewerRepository
-    service/         foreground tracking service + boot/activity receivers
+    data/            Room DB, event codec, routing, sync, Supabase transport, TripManager, ViewerRepository
+    service/         driver tracking service, viewer follow/alert service, receivers
     notifications/   channels + notifications
-    fcm/             viewer push handling
     di/              manual composition root
     ui/              Compose screens, navigation, view models
   app/src/test/      unit tests
-firebase/            database.rules.json + firebase.json
-functions/           Cloud Functions (expiry cleanup, SOS/arrival push)
+supabase/            schema.sql — the entire backend (tables, security, expiry) in one file
 docs/                spec + setup/architecture/testing/release guides
 .github/workflows/   CI
 ```

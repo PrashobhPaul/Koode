@@ -268,6 +268,9 @@ interface ViewerDao {
     @Query("SELECT * FROM viewer_trip ORDER BY lastOpenedAtMs DESC")
     fun allFlow(): Flow<List<ViewerTripEntity>>
 
+    @Query("SELECT * FROM viewer_trip WHERE expired = 0 ORDER BY lastOpenedAtMs DESC")
+    suspend fun activeList(): List<ViewerTripEntity>
+
     @Query("SELECT * FROM viewer_trip WHERE accessKey = :key")
     suspend fun byKey(key: String): ViewerTripEntity?
 

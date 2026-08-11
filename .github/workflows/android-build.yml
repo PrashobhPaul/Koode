@@ -27,6 +27,26 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x apps/android/gradlew
 
+      # Non-fatal check that the Supabase backend is reachable, the schema has
+      # been applied, and the committed key works. Skipped in local-mode builds.
+      - name: Backend smoke test (Supabase)
+        run: |
+          URL=$(grep '^SUPABASE_URL=' apps/android/supabase.properties | cut -d= -f2- | tr -d ' \r')
+          KEY=$(grep '^SUPABASE_ANON_KEY=' apps/android/supabase.properties | cut -d= -f2- | tr -d ' \r')
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then
+            echo "Supabase not configured — building in local mode."
+            exit 0
+          fi
+          CODE=$(curl -s -o /tmp/resp -w '%{http_code}' -m 20 -X POST "$URL/rest/v1/rpc/tp_now" \
+            -H "apikey: $KEY" -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" -d '{}') || CODE=000
+          echo "tp_now -> HTTP $CODE: $(cat /tmp/resp 2>/dev/null)"
+          if [ "$CODE" = "200" ]; then
+            echo "✅ Supabase backend reachable, schema applied, key valid."
+          else
+            echo "⚠️ Backend check failed (HTTP $CODE). Verify supabase/schema.sql was run in the SQL editor and the key in apps/android/supabase.properties is the publishable/anon key."
+          fi
+
       - name: Assemble debug APK and run unit tests
         working-directory: apps/android
         run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --no-daemon --stacktrace
