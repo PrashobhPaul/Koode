@@ -11,6 +11,8 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
+import com.google.android.gms.tasks.CancellationTokenSource
 import com.trippulse.app.TripPulseApp
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.ViewerRepository
@@ -72,12 +74,68 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     var pickedDest = MutableStateFlow<GeoPoint?>(null)
     var pickedOrigin = MutableStateFlow<GeoPoint?>(null)
 
+    /** Which point a map long-press sets: "DEST" (default) or "START". */
+    var pinMode = MutableStateFlow("DEST")
+    private var lastDroppedPin: GeoPoint? = null
+
+    val savedPlaces: StateFlow<List<com.trippulse.app.data.local.SavedPlaceEntity>> =
+        graph.db.savedPlaceDao().allFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
     fun cloudDefault() = graph.cloudAvailableSafe()
+
+    fun onMapLongPress(p: GeoPoint) {
+        lastDroppedPin = p
+        if (pinMode.value == "START") {
+            pickedOrigin.value = p
+            originText.value = "Start pin"
+        } else {
+            pickedDest.value = p
+        }
+    }
+
+    fun useAsStart(place: com.trippulse.app.data.local.SavedPlaceEntity) {
+        pickedOrigin.value = GeoPoint(place.lat, place.lng)
+        originText.value = place.name
+    }
+
+    fun useAsDest(place: com.trippulse.app.data.local.SavedPlaceEntity) {
+        pickedDest.value = GeoPoint(place.lat, place.lng)
+        destText.value = place.name
+    }
+
+    /** Saves the last dropped pin — or, with no pin, the phone's current
+     *  location (handy for saving "Home" while at home). */
+    fun savePlace(name: String) {
+        val label = name.trim()
+        if (label.isBlank()) { error.value = "Give the place a name first (e.g. Home, Office)."; return }
+        viewModelScope.launch {
+            val point = lastDroppedPin ?: currentLocation()
+            if (point == null) {
+                error.value = "Drop a pin on the map (or enable location) to save a place."
+                return@launch
+            }
+            graph.db.savedPlaceDao().upsert(
+                com.trippulse.app.data.local.SavedPlaceEntity(label, point.lat, point.lng, System.currentTimeMillis())
+            )
+            error.value = null
+        }
+    }
+
+    fun deletePlace(name: String) {
+        viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
+    }
 
     @SuppressLint("MissingPermission")
     private suspend fun currentLocation(): GeoPoint? = try {
         val client = LocationServices.getFusedLocationProviderClient(graph.appContext)
+        // last known fix first; fall back to requesting a fresh fix, which is
+        // what a brand-new phone (or freshly granted permission) needs.
         val loc = client.lastLocation.await()
+            ?: client.getCurrentLocation(
+                Priority.PRIORITY_BALANCED_POWER_ACCURACY,
+                CancellationTokenSource().token
+            ).await()
         loc?.let { GeoPoint(it.latitude, it.longitude) }
     } catch (_: Exception) { null }
 
@@ -102,10 +160,13 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                 val origin = pickedOrigin.value
                     ?: if (originText.value.trim().equals("Current location", true)) currentLocation() else geocode(originText.value.trim())
                     ?: currentLocation()
-                if (origin == null) { error.value = "Could not determine the starting location. Long-press the map to set it, or type a place name."; return@launch }
+                if (origin == null) {
+                    error.value = "Could not get your location — check that GPS is on and location permission is allowed. " +
+                        "Or switch the pin to 'Start' and long-press the map, or pick a saved place."
+                    return@launch
+                }
 
-                val originLabel = if (pickedOrigin.value != null) "Start point"
-                    else originText.value.trim().ifBlank { "Current location" }
+                val originLabel = originText.value.trim().ifBlank { "Start point" }
 
                 val trip = graph.tripManager.createTrip(
                     TripManager.NewTrip(
