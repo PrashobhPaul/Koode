@@ -65,6 +65,17 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
 
     val cloudAvailable: Boolean = graph.cloudAvailableSafe()
 
+    /** The user's own name (set on the create screen) for the greeting. */
+    fun greetingName(): String =
+        graph.appContext.getSharedPreferences("koode_profile", android.content.Context.MODE_PRIVATE)
+            .getString("name", "")?.trim().orEmpty()
+
+    /** Last Journey Health level the follow service saw for a followed
+     *  journey: NORMAL | ATTENTION | CONCERN. Powers the Safe chips. */
+    fun followHealth(ref: String): String =
+        graph.appContext.getSharedPreferences("tp_follow_health", android.content.Context.MODE_PRIVATE)
+            .getString(ref, "NORMAL") ?: "NORMAL"
+
     /** Erases one trip completely from this device: events, locations, state,
      *  breaks, expenses and the trip row itself. */
     fun deleteTrip(tripId: String) = viewModelScope.launch {
