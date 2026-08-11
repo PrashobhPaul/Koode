@@ -145,6 +145,14 @@ data class BreakRecordEntity(
     val confirmationSource: String    // DRIVER_CONFIRMATION | INFERRED | MANUAL
 )
 
+@Entity(tableName = "saved_places")
+data class SavedPlaceEntity(
+    @PrimaryKey val name: String,     // "Home", "Office", any custom label
+    val lat: Double,
+    val lng: Double,
+    val createdAtMs: Long
+)
+
 @Entity(tableName = "viewer_trip")
 data class ViewerTripEntity(
     @PrimaryKey val accessKey: String,
@@ -261,6 +269,18 @@ interface BreakDao {
 }
 
 @Dao
+interface SavedPlaceDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(p: SavedPlaceEntity)
+
+    @Query("DELETE FROM saved_places WHERE name = :name")
+    suspend fun delete(name: String)
+
+    @Query("SELECT * FROM saved_places ORDER BY createdAtMs ASC")
+    fun allFlow(): Flow<List<SavedPlaceEntity>>
+}
+
+@Dao
 interface ViewerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(v: ViewerTripEntity)
@@ -292,9 +312,10 @@ interface ViewerDao {
         LocationSampleEntity::class,
         TripStateEntity::class,
         BreakRecordEntity::class,
-        ViewerTripEntity::class
+        ViewerTripEntity::class,
+        SavedPlaceEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -304,9 +325,21 @@ abstract class TripPulseDb : RoomDatabase() {
     abstract fun stateDao(): StateDao
     abstract fun breakDao(): BreakDao
     abstract fun viewerDao(): ViewerDao
+    abstract fun savedPlaceDao(): SavedPlaceDao
 
     companion object {
         @Volatile private var INSTANCE: TripPulseDb? = null
+
+        // v1 -> v2: saved places (Home / Office / custom) for quick trip setup.
+        private val MIGRATION_1_2 = object : androidx.room.migration.Migration(1, 2) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS saved_places (" +
+                        "name TEXT NOT NULL PRIMARY KEY, " +
+                        "lat REAL NOT NULL, lng REAL NOT NULL, createdAtMs INTEGER NOT NULL)"
+                )
+            }
+        }
 
         fun get(context: Context): TripPulseDb =
             INSTANCE ?: synchronized(this) {
@@ -314,7 +347,9 @@ abstract class TripPulseDb : RoomDatabase() {
                     context.applicationContext,
                     TripPulseDb::class.java,
                     "trippulse.db"
-                ).fallbackToDestructiveMigration().build().also { INSTANCE = it }
+                ).addMigrations(MIGRATION_1_2)
+                    .fallbackToDestructiveMigration()
+                    .build().also { INSTANCE = it }
             }
     }
 }
