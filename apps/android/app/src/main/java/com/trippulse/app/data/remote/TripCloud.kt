@@ -1,0 +1,268 @@
+package com.trippulse.app.data.remote
+
+import android.content.Context
+import com.trippulse.app.BuildConfig
+import com.trippulse.app.data.EventCodec
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
+import org.json.JSONObject
+import java.security.SecureRandom
+import java.util.concurrent.TimeUnit
+
+/**
+ * Supabase (Postgres + PostgREST) transport — open-source stack, free tier,
+ * plain HTTPS, no SDKs, no auth service. This is a transport only: the durable
+ * source of truth is the local Room store. Every method is a no-op / returns
+ * unavailable when Supabase is not configured, so the app runs fully in LOCAL
+ * mode until supabase.properties is filled in.
+ *
+ * Security model (enforced in supabase/schema.sql, not here):
+ *  - access_key (SHA-256 of tripId:secret) grants read-only access while the
+ *    trip is not expired.
+ *  - owner_token is generated on this device at first write and kept in
+ *    app-private storage; every write RPC verifies it, so only the driver
+ *    device that created a trip can write or modify it.
+ */
+class TripCloud(private val appContext: Context) {
+
+    sealed interface Ack {
+        object Acked : Ack
+        object AlreadyExists : Ack
+        object Denied : Ack
+        object Retryable : Ack
+    }
+
+    private val baseUrl = BuildConfig.SUPABASE_URL.trimEnd('/')
+    private val anonKey = BuildConfig.SUPABASE_ANON_KEY
+
+    private val client: OkHttpClient = OkHttpClient.Builder()
+        .connectTimeout(10, TimeUnit.SECONDS)
+        .readTimeout(15, TimeUnit.SECONDS)
+        .build()
+
+    fun isAvailable(): Boolean = baseUrl.isNotBlank() && anonKey.isNotBlank()
+
+    /** No auth service in this design — the capability tokens ARE the auth. */
+    suspend fun ensureAuth(): String? = if (isAvailable()) "capability" else null
+
+    /** No server-side onDisconnect over REST; the viewer freshness model
+     *  (LIVE/RECENT/STALE/OFFLINE from lastLocationAt age) covers this. */
+    fun armOnDisconnect(accessKey: String) {}
+
+    // -----------------------------------------------------------------------
+    // Owner token: random, generated once per trip on the driver device,
+    // never shared and never displayed. Held in app-private preferences.
+    // -----------------------------------------------------------------------
+
+    private fun ownerToken(accessKey: String): String {
+        val prefs = appContext.getSharedPreferences("tp_owner_tokens", Context.MODE_PRIVATE)
+        prefs.getString(accessKey, null)?.let { return it }
+        val bytes = ByteArray(32).also { SecureRandom().nextBytes(it) }
+        val token = bytes.joinToString("") { "%02x".format(it) }
+        prefs.edit().putString(accessKey, token).apply()
+        return token
+    }
+
+    // -----------------------------------------------------------------------
+    // RPC plumbing
+    // -----------------------------------------------------------------------
+
+    private val json = "application/json; charset=utf-8".toMediaType()
+
+    /** POSTs /rest/v1/rpc/{fn}; returns the raw body, or null on any failure. */
+    private suspend fun rpc(fn: String, args: Map<String, Any?>): String? =
+        withContext(Dispatchers.IO) {
+            if (!isAvailable()) return@withContext null
+            try {
+                val req = Request.Builder()
+                    .url("$baseUrl/rest/v1/rpc/$fn")
+                    .addHeader("apikey", anonKey)
+                    .addHeader("Authorization", "Bearer $anonKey")
+                    .addHeader("Content-Type", "application/json")
+                    .post(EventCodec.payloadToJson(args).toRequestBody(json))
+                    .build()
+                client.newCall(req).execute().use { resp ->
+                    if (!resp.isSuccessful) null else (resp.body?.string() ?: "")
+                }
+            } catch (_: Exception) {
+                null
+            }
+        }
+
+    private suspend fun rpcBool(fn: String, args: Map<String, Any?>): Boolean =
+        rpc(fn, args)?.trim() == "true"
+
+    /** For RPCs returning text — PostgREST wraps scalars in JSON quotes. */
+    private suspend fun rpcText(fn: String, args: Map<String, Any?>): String? =
+        rpc(fn, args)?.trim()?.trim('"')?.takeIf { it.isNotBlank() && it != "null" }
+
+    private suspend fun rpcObject(fn: String, args: Map<String, Any?>): Map<String, Any?>? {
+        val body = rpc(fn, args)?.trim() ?: return null
+        if (body.isBlank() || body == "null") return null
+        return runCatching { EventCodec.payloadFromJson(body) }.getOrNull()
+    }
+
+    private suspend fun rpcArray(fn: String, args: Map<String, Any?>): List<Map<String, Any?>>? {
+        val body = rpc(fn, args)?.trim() ?: return null
+        if (body.isBlank() || body == "null") return null
+        return runCatching {
+            val arr = JSONArray(body)
+            (0 until arr.length()).mapNotNull { i ->
+                (arr.get(i) as? JSONObject)?.let { EventCodec.payloadFromJson(it.toString()) }
+            }
+        }.getOrNull()
+    }
+
+    // -----------------------------------------------------------------------
+    // Driver-side writes (owner_token verified server-side)
+    // -----------------------------------------------------------------------
+
+    suspend fun writeMeta(accessKey: String, meta: Map<String, Any?>): Boolean {
+        val expiresMs = (meta["expiresAt"] as? Number)?.toLong()
+            ?: System.currentTimeMillis() + 36L * 3600 * 1000
+        return rpcBool(
+            "tp_upsert_meta",
+            mapOf(
+                "p_access_key" to accessKey,
+                "p_owner_token" to ownerToken(accessKey),
+                "p_meta" to meta,
+                "p_expires_ms" to expiresMs
+            )
+        )
+    }
+
+    suspend fun setExpiry(accessKey: String, expiresAtMs: Long): Boolean = rpcBool(
+        "tp_set_expiry",
+        mapOf(
+            "p_access_key" to accessKey,
+            "p_owner_token" to ownerToken(accessKey),
+            "p_expires_ms" to expiresAtMs
+        )
+    )
+
+    /** Overwrites the live-state row. This is the freshness source of truth. */
+    suspend fun pushCurrentState(accessKey: String, state: Map<String, Any?>): Boolean = rpcBool(
+        "tp_push_state",
+        mapOf(
+            "p_access_key" to accessKey,
+            "p_owner_token" to ownerToken(accessKey),
+            "p_state" to state
+        )
+    )
+
+    /**
+     * Idempotent, write-once event append (INSERT .. ON CONFLICT DO NOTHING
+     * server-side), which is what makes offline retry/re-sync safe.
+     */
+    suspend fun writeEvent(accessKey: String, eventId: String, value: Map<String, Any?>): Ack {
+        val eventTime = (value["eventTime"] as? Number)?.toLong() ?: System.currentTimeMillis()
+        return when (rpcText(
+            "tp_append_event",
+            mapOf(
+                "p_access_key" to accessKey,
+                "p_owner_token" to ownerToken(accessKey),
+                "p_event_id" to eventId,
+                "p_event" to value,
+                "p_event_time" to eventTime
+            )
+        )) {
+            "ACKED" -> Ack.Acked
+            "EXISTS" -> Ack.AlreadyExists
+            "DENIED" -> Ack.Denied
+            else -> Ack.Retryable
+        }
+    }
+
+    /** Batch location samples in a single RPC. */
+    suspend fun writeLocations(accessKey: String, samples: Map<String, Map<String, Any?>>): Boolean {
+        if (samples.isEmpty()) return true
+        return rpcBool(
+            "tp_append_locations",
+            mapOf(
+                "p_access_key" to accessKey,
+                "p_owner_token" to ownerToken(accessKey),
+                "p_samples" to samples
+            )
+        )
+    }
+
+    // -----------------------------------------------------------------------
+    // Viewer-side reads (access_key is the capability; expiry gated in SQL)
+    // -----------------------------------------------------------------------
+
+    suspend fun fetchMeta(accessKey: String): Map<String, Any?>? =
+        rpcObject("tp_get_meta", mapOf("p_access_key" to accessKey))
+
+    suspend fun fetchState(accessKey: String): Map<String, Any?>? =
+        rpcObject("tp_get_state", mapOf("p_access_key" to accessKey))
+
+    suspend fun fetchEventsSince(accessKey: String, sinceMs: Long): List<Map<String, Any?>>? =
+        rpcArray("tp_get_events", mapOf("p_access_key" to accessKey, "p_since" to sinceMs))
+
+    suspend fun registerViewer(accessKey: String, name: String): Boolean =
+        rpcBool("tp_register_viewer", mapOf("p_access_key" to accessKey, "p_viewer" to name))
+
+    suspend fun fetchViewers(accessKey: String): List<String> {
+        val body = rpc("tp_get_viewers", mapOf("p_access_key" to accessKey))?.trim() ?: return emptyList()
+        return runCatching {
+            val arr = JSONArray(body)
+            (0 until arr.length()).map { arr.getString(it) }
+        }.getOrDefault(emptyList())
+    }
+
+    /** Cheap liveness probe (used to distinguish "expired" from "offline"). */
+    suspend fun serverReachable(): Boolean = rpc("tp_now", emptyMap()) != null
+
+    /** Server clock skew so freshness math uses server time. */
+    suspend fun serverTimeOffsetMs(): Long {
+        val server = rpc("tp_now", emptyMap())?.trim()?.toLongOrNull() ?: return 0L
+        return server - System.currentTimeMillis()
+    }
+
+    // -----------------------------------------------------------------------
+    // Viewer subscriptions: short-interval REST polling, emitted as flows.
+    // 5s state polling sits comfortably inside the LIVE freshness window
+    // (60s) and needs no websocket infrastructure.
+    // -----------------------------------------------------------------------
+
+    fun currentStateFlow(accessKey: String): Flow<Map<String, Any?>?> =
+        pollingFlow(5_000) { fetchState(accessKey) }
+
+    fun metaFlow(accessKey: String): Flow<Map<String, Any?>?> =
+        pollingFlow(20_000) { fetchMeta(accessKey) }
+
+    fun eventsFlow(accessKey: String): Flow<List<Map<String, Any?>>> =
+        pollingFlow(7_000) { fetchEventsSince(accessKey, 0L) ?: emptyList() }
+
+    private fun <T> pollingFlow(intervalMs: Long, fetch: suspend () -> T): Flow<T> =
+        flow {
+            while (true) {
+                emit(fetch())
+                delay(intervalMs)
+            }
+        }.distinctUntilChanged().flowOn(Dispatchers.IO)
+
+    // -----------------------------------------------------------------------
+    // Viewer alerts: instead of FCM topics, joining devices run the local
+    // follow service, which polls and raises forced notifications.
+    // -----------------------------------------------------------------------
+
+    fun subscribeTopic(accessKey: String) {
+        if (!isAvailable()) return
+        com.trippulse.app.service.TripFollowService.start(appContext)
+    }
+
+    fun unsubscribeTopic(accessKey: String) {
+        // The follow service stops itself when no live followed trips remain.
+    }
+}

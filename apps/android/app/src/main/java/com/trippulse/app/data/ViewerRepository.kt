@@ -3,7 +3,7 @@ package com.trippulse.app.data
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.data.local.TripPulseDb
 import com.trippulse.app.data.local.ViewerTripEntity
-import com.trippulse.app.data.remote.FirebaseCloud
+import com.trippulse.app.data.remote.TripCloud
 import com.trippulse.app.domain.Freshness
 import com.trippulse.app.domain.TripConfig
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.Flow
  */
 class ViewerRepository(
     private val db: TripPulseDb,
-    private val cloud: FirebaseCloud,
+    private val cloud: TripCloud,
     private val cfg: TripConfig
 ) {
     sealed interface JoinResult {
@@ -27,7 +27,7 @@ class ViewerRepository(
 
     fun savedFlow(): Flow<List<ViewerTripEntity>> = db.viewerDao().allFlow()
 
-    suspend fun join(tripIdInput: String, secretInput: String): JoinResult {
+    suspend fun join(tripIdInput: String, secretInput: String, viewerName: String? = null): JoinResult {
         if (!cloud.isAvailable()) return JoinResult.CloudUnavailable
         val tripId = TripCredentials.normalize(tripIdInput)
         val secret = TripCredentials.normalize(secretInput)
@@ -52,9 +52,15 @@ class ViewerRepository(
                 joinedAtMs = now, lastOpenedAtMs = now, expired = false
             )
         )
+        // Tell the driver who is watching, then start the local alert engine
+        // so this phone gets forced notifications for start/SOS/arrival.
+        viewerName?.takeIf { it.isNotBlank() }?.let { cloud.registerViewer(accessKey, it) }
         cloud.subscribeTopic(accessKey)
         return JoinResult.Ok(accessKey, tripId, label)
     }
+
+    /** Names of everyone currently following this trip (registered at join). */
+    suspend fun viewers(accessKey: String): List<String> = cloud.fetchViewers(accessKey)
 
     fun currentStateFlow(accessKey: String): Flow<Map<String, Any?>?> = cloud.currentStateFlow(accessKey)
     fun metaFlow(accessKey: String): Flow<Map<String, Any?>?> = cloud.metaFlow(accessKey)

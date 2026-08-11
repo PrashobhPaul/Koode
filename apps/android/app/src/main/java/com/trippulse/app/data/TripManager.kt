@@ -9,7 +9,7 @@ import com.trippulse.app.data.local.EventEntity
 import com.trippulse.app.data.local.LocationSampleEntity
 import com.trippulse.app.data.local.TripPulseDb
 import com.trippulse.app.data.local.TripStateEntity
-import com.trippulse.app.data.remote.FirebaseCloud
+import com.trippulse.app.data.remote.TripCloud
 import com.trippulse.app.data.routing.RoutingProvider
 import com.trippulse.app.data.sync.ConnectivityObserver
 import com.trippulse.app.data.sync.SyncEngine
@@ -48,7 +48,7 @@ import java.util.UUID
 class TripManager(
     private val appContext: Context,
     private val db: TripPulseDb,
-    private val cloud: FirebaseCloud,
+    private val cloud: TripCloud,
     private val routing: RoutingProvider,
     private val sync: SyncEngine,
     private val connectivity: ConnectivityObserver,
@@ -736,8 +736,7 @@ class TripManager(
         "destLat" to t.destLat, "destLng" to t.destLng,
         "createdAt" to t.createdAtMs, "startedAt" to t.startedAtMs,
         "expiresAt" to (t.expiresAtMs ?: (t.createdAtMs + 36L * 3600 * 1000)),
-        "totalRouteDistanceM" to t.totalRouteDistanceM,
-        "ownerUid" to t.ownerUid
+        "totalRouteDistanceM" to t.totalRouteDistanceM
     )
 
     private fun stateMap(t: ActiveTripEntity, s: TripStateEntity): Map<String, Any?> = buildMap {

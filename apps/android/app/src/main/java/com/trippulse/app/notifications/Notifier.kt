@@ -46,6 +46,17 @@ class Notifier(private val context: Context) {
         return PendingIntent.getActivity(context, 0, intent, flags)
     }
 
+    /** Quiet ongoing notification while following someone else's trip. */
+    fun buildFollowNotification(): Notification =
+        NotificationCompat.Builder(context, CH_TRACKING)
+            .setSmallIcon(R.drawable.ic_stat_trip)
+            .setContentTitle("Following trip")
+            .setContentText("You'll be alerted when the trip starts, on SOS, and on arrival.")
+            .setOngoing(true)
+            .setContentIntent(contentIntent())
+            .setCategory(NotificationCompat.CATEGORY_SERVICE)
+            .build()
+
     /** The persistent foreground-service notification. */
     fun buildTrackingNotification(origin: String, destination: String): Notification =
         NotificationCompat.Builder(context, CH_TRACKING)

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -6,15 +8,20 @@ plugins {
 }
 
 // ---------------------------------------------------------------------------
-// Firebase is optional at build time. When apps/android/app/google-services.json
-// exists (see docs/FIREBASE_SETUP.md) the plugin is applied and cloud sync is
-// activated automatically at runtime. Without it, the app builds and runs in
+// Cloud backend (Supabase) is optional at build time. Fill in
+// apps/android/supabase.properties (committed — the anon key is public by
+// design; access control lives in supabase/schema.sql) or export
+// SUPABASE_URL / SUPABASE_ANON_KEY. Without values the app builds and runs in
 // LOCAL mode (full driver-side functionality, no cross-device sync).
 // ---------------------------------------------------------------------------
-val hasGoogleServices = file("google-services.json").exists()
-if (hasGoogleServices) {
-    apply(plugin = "com.google.gms.google-services")
+val supaProps = Properties().apply {
+    val f = rootProject.file("supabase.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
 }
+val supabaseUrl: String = (System.getenv("SUPABASE_URL")
+    ?: supaProps.getProperty("SUPABASE_URL") ?: "").trim()
+val supabaseAnonKey: String = (System.getenv("SUPABASE_ANON_KEY")
+    ?: supaProps.getProperty("SUPABASE_ANON_KEY") ?: "").trim()
 
 android {
     namespace = "com.trippulse.app"
@@ -24,10 +31,11 @@ android {
         applicationId = "com.trippulse.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "2.0.0"
 
-        buildConfigField("boolean", "GOOGLE_SERVICES_BUNDLED", hasGoogleServices.toString())
+        buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
+        buildConfigField("String", "SUPABASE_ANON_KEY", "\"$supabaseAnonKey\"")
     }
 
     buildTypes {
@@ -110,13 +118,7 @@ dependencies {
     // --- Map rendering: osmdroid + OpenStreetMap tiles (free, no API key) ---
     implementation("org.osmdroid:osmdroid-android:6.1.20")
 
-    // --- Firebase (RTDB transport, anonymous auth, FCM). Optional at runtime. ---
-    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-messaging")
-
-    // --- HTTP client for the OSRM routing provider ---
+    // --- HTTP client: OSRM routing + Supabase (PostgREST) transport ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     // --- Unit tests (pure-JVM domain tests) ---

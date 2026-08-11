@@ -43,6 +43,7 @@ fun JoinViewerScreen(nav: NavHostController) {
 
     var tripId by remember { mutableStateOf("") }
     var secret by remember { mutableStateOf("") }
+    var viewerName by remember { mutableStateOf("") }
 
     Column(
         Modifier.fillMaxSize().padding(20.dp).verticalScroll(rememberScrollState()),
@@ -59,14 +60,18 @@ fun JoinViewerScreen(nav: NavHostController) {
             value = secret, onValueChange = { secret = it.uppercase() },
             label = { Text("Password") }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
+        OutlinedTextField(
+            value = viewerName, onValueChange = { viewerName = it },
+            label = { Text("Your name (shown to the driver)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
 
         if (error != null) Text(error!!, color = Danger, fontSize = 13.sp)
         if (!vm.cloudAvailable()) {
-            Text("This build is in local mode — remote following needs Firebase configured.", color = TextMid, fontSize = 12.sp)
+            Text("This build is in local mode — remote following needs the cloud backend configured.", color = TextMid, fontSize = 12.sp)
         }
 
         Button(
-            onClick = { vm.join(tripId, secret) { key -> nav.navigate(Routes.viewer(key)) } },
+            onClick = { vm.join(tripId, secret, viewerName) { key -> nav.navigate(Routes.viewer(key)) } },
             enabled = !busy && tripId.isNotBlank() && secret.isNotBlank(),
             modifier = Modifier.fillMaxWidth().height(52.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Teal)

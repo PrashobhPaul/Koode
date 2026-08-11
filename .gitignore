@@ -8,7 +8,6 @@ local.properties
 apps/android/local.properties
 
 # Secrets — never commit these
-apps/android/app/google-services.json
 *.keystore
 *.jks
 keystore.properties

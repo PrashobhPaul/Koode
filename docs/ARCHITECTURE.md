@@ -9,8 +9,7 @@ ui/            Compose screens + navigation + view models (thin; no business log
 di/            manual composition root (AppGraph) — no Hilt, explicit wiring
 service/       foreground tracking service + boot/activity receivers
 notifications/ channels + user-facing notifications
-fcm/           viewer push handling
-data/          Room DB, event codec, routing, sync engine, Firebase transport,
+data/          Room DB, event codec, routing, sync engine, Supabase transport,
                TripManager (orchestrator), ViewerRepository
 domain/        pure models, config, state machine, stop/eta/deviation/summary engines
 core/          geo math + id/time helpers

@@ -14,9 +14,11 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
-    <!-- Foreground service (Android 14+ typed) -->
+    <!-- Foreground services (Android 14+ typed): driver tracking (location)
+         and viewer trip-following alerts (dataSync) -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <!-- Notifications (Android 13+) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -56,15 +58,12 @@
             android:exported="false"
             android:foregroundServiceType="location" />
 
-        <!-- FCM: receives high-priority pushes (e.g. SOS) once Cloud Functions
-             fanout is deployed. Harmless when Firebase is not configured. -->
+        <!-- Viewer-side alert engine: polls followed trips and raises forced
+             notifications (trip started / SOS / arrival). No push service. -->
         <service
-            android:name=".fcm.TripPulseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
+            android:name=".service.TripFollowService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
 
         <receiver
             android:name=".service.BootCompletedReceiver"

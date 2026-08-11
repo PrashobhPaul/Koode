@@ -124,7 +124,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
         }
 
         if (!graph.cloudEnabledByDefault()) {
-            Text("Note: this build is in local mode, so remote viewers can't connect until Firebase is configured. Tracking still works fully on this phone.", color = TextMid, fontSize = 12.sp)
+            Text("Note: this build is in local mode, so remote viewers can't connect until the cloud backend is configured. Tracking still works fully on this phone.", color = TextMid, fontSize = 12.sp)
         }
 
         if (permMessage != null) Text(permMessage!!, color = Amber, fontSize = 13.sp)

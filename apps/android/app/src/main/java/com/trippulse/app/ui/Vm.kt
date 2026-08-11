@@ -228,11 +228,11 @@ class JoinVm(private val graph: AppGraph) : ViewModel() {
 
     fun cloudAvailable() = graph.cloudAvailableSafe()
 
-    fun join(tripId: String, secret: String, onOk: (String) -> Unit) {
+    fun join(tripId: String, secret: String, viewerName: String? = null, onOk: (String) -> Unit) {
         if (busy.value) return
         viewModelScope.launch {
             busy.value = true; error.value = null
-            when (val r = graph.viewerRepository.join(tripId, secret)) {
+            when (val r = graph.viewerRepository.join(tripId, secret, viewerName)) {
                 is ViewerRepository.JoinResult.Ok -> onOk(r.accessKey)
                 ViewerRepository.JoinResult.InvalidOrExpired ->
                     error.value = "That trip id and password don't match an active trip. Check them and try again."
@@ -286,5 +286,5 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     }
 }
 
-/** Null-safe cloud availability that never throws if Firebase classes are absent. */
+/** Null-safe cloud availability that never throws if the backend is unconfigured. */
 fun AppGraph.cloudAvailableSafe(): Boolean = try { cloud.isAvailable() } catch (_: Throwable) { false }

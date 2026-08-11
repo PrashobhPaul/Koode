@@ -47,6 +47,14 @@ class TripPulseApp : Application() {
             }
         }
 
+        // Resume viewer alerting for any trips this phone is still following.
+        graph.appScope.launch {
+            val following = try { graph.db.viewerDao().activeList() } catch (_: Exception) { emptyList() }
+            if (following.isNotEmpty() && graph.cloud.isAvailable()) {
+                com.trippulse.app.service.TripFollowService.start(this@TripPulseApp)
+            }
+        }
+
         scheduleSyncRetry()
     }
 

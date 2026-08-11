@@ -1,0 +1,31 @@
+name: Supabase maintenance
+
+# Two jobs in one scheduled ping, so the owner never has to touch anything:
+#  1. Keep-alive — Supabase free-tier projects pause after ~1 week without
+#     traffic; this request counts as activity and prevents that.
+#  2. Cleanup — invokes tp_cleanup(), which deletes every expired trip
+#     (a trip id self-destructs 30 minutes after reaching the destination).
+on:
+  schedule:
+    - cron: '17 */6 * * *'   # every 6 hours
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Call tp_cleanup (keep-alive + expired-trip destruction)
+        run: |
+          URL=$(grep '^SUPABASE_URL=' apps/android/supabase.properties | cut -d= -f2- | tr -d ' \r')
+          KEY=$(grep '^SUPABASE_ANON_KEY=' apps/android/supabase.properties | cut -d= -f2- | tr -d ' \r')
+          if [ -z "$URL" ] || [ -z "$KEY" ]; then
+            echo "Supabase not configured yet (supabase.properties empty) — nothing to do."
+            exit 0
+          fi
+          DELETED=$(curl -fsS -X POST "$URL/rest/v1/rpc/tp_cleanup" \
+            -H "apikey: $KEY" -H "Authorization: Bearer $KEY" \
+            -H "Content-Type: application/json" -d '{}')
+          echo "Destroyed $DELETED expired trip(s)."

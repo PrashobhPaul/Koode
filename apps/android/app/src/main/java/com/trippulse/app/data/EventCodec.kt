@@ -102,7 +102,7 @@ object EventCodec {
         schemaVersion = e.schemaVersion
     )
 
-    /** Firebase-facing JSON for an event node (docs/spec/13). */
+    /** Cloud-facing JSON for an event record (docs/spec/13). */
     fun toCloudMap(e: EventEntity): Map<String, Any?> = buildMap {
         put("type", e.type)
         put("eventTime", e.eventTimeMs)

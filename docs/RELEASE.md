@@ -37,9 +37,10 @@ Permissions are requested progressively with explanations; nothing unnecessary i
 ## Release checklist
 
 1. Bump `versionCode` / `versionName` in `apps/android/app/build.gradle.kts`.
-2. Provide `google-services.json` (cloud mode) and a release Maps key restricted to the release signing SHA-1.
+2. Confirm `apps/android/supabase.properties` is filled in (cloud mode).
+
 3. Configure a real **release signing** config (the debug build currently signs release with the debug key for convenience — replace before publishing).
-4. Deploy database rules + Cloud Functions (`docs/FIREBASE_SETUP.md`).
+4. Confirm the Supabase schema is applied (`docs/SUPABASE_SETUP.md`).
 5. Build the release artifact: `./gradlew :app:bundleRelease` (AAB for Play).
 6. Complete the Play Console **Data safety** form and **location permissions** declaration; attach the privacy policy and the prominent-disclosure demo.
 7. Ship to internal testing (Release 0.1) → field test (0.2) → fixes (0.3) → production (1.0).
