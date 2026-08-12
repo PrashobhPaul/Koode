@@ -139,34 +139,63 @@ fun CreateTripScreen(nav: NavHostController) {
         // ---- mode of transport (mandatory; drives the app's rules) ----
         val mode by vm.transportMode.collectAsStateWithLifecycle()
         val fuel by vm.fuelType.collectAsStateWithLifecycle()
-        Text("How are you travelling? *", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+        Text("How are you travelling? *", color = TextMid, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
+        // private vehicles
         Row(verticalAlignment = Alignment.CenterVertically) {
-            listOf("CAR" to "🚗 Car", "BIKE" to "🏍 Bike", "BUS" to "🚌 Bus").forEach { (v, label) ->
-                FilterChip(selected = mode == v, onClick = { vm.transportMode.value = v },
-                    label = { Text(label, fontSize = 12.sp) })
+            listOf("CAR" to "🚗 Car", "BIKE" to "🏍 Bike").forEach { (v, label) ->
+                FilterChip(selected = mode == v, onClick = {
+                    vm.transportMode.value = v
+                    // bikes don't run on diesel
+                    if (v == "BIKE" && vm.fuelType.value == "DIESEL") vm.fuelType.value = "PETROL"
+                }, label = { Text(label, fontSize = 12.sp) })
                 Spacer(Modifier.width(6.dp))
             }
         }
+        // public transport
         Row(verticalAlignment = Alignment.CenterVertically) {
-            listOf("TRAIN" to "🚆 Train", "FLIGHT" to "✈️ Flight").forEach { (v, label) ->
+            listOf("BUS" to "🚌 Bus", "TRAIN" to "🚆 Train", "FLIGHT" to "✈️ Flight").forEach { (v, label) ->
                 FilterChip(selected = mode == v, onClick = { vm.transportMode.value = v },
                     label = { Text(label, fontSize = 12.sp) })
                 Spacer(Modifier.width(6.dp))
             }
         }
         if (mode == "CAR" || mode == "BIKE") {
+            val fuels = if (mode == "BIKE") listOf("PETROL" to "Petrol", "ELECTRIC" to "Electric")
+                else listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric")
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("Fuel:", color = TextMid, fontSize = 12.sp)
                 Spacer(Modifier.width(8.dp))
-                listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric").forEach { (v, label) ->
+                fuels.forEach { (v, label) ->
                     FilterChip(selected = fuel == v, onClick = { vm.fuelType.value = v },
                         label = { Text(label, fontSize = 12.sp) })
                     Spacer(Modifier.width(6.dp))
                 }
             }
-            Text("At breaks you'll be asked if you refuelled, so fuel cost and efficiency are tracked for this journey.", color = TextMid, fontSize = 11.sp)
         } else {
-            Text("Public transport: breaks ask only about food, water and rest — no fuel tracking for this journey.", color = TextMid, fontSize = 11.sp)
+            val pnr by vm.pnr.collectAsStateWithLifecycle()
+            val seat by vm.seat.collectAsStateWithLifecycle()
+            val boarding by vm.boardingPoint.collectAsStateWithLifecycle()
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedTextField(
+                    value = pnr, onValueChange = { vm.pnr.value = it },
+                    label = { Text("PNR / booking ref") }, singleLine = true, modifier = Modifier.weight(1f)
+                )
+                OutlinedTextField(
+                    value = seat, onValueChange = { vm.seat.value = it },
+                    label = { Text("Seat") }, singleLine = true, modifier = Modifier.weight(1f)
+                )
+            }
+            OutlinedTextField(
+                value = boarding, onValueChange = { vm.boardingPoint.value = it },
+                label = {
+                    Text(when (mode) {
+                        "FLIGHT" -> "Airport"
+                        "TRAIN" -> "Railway station"
+                        else -> "Boarding point"
+                    })
+                },
+                singleLine = true, modifier = Modifier.fillMaxWidth()
+            )
         }
 
         // ---- departure: leave now or schedule ahead ----
@@ -215,7 +244,7 @@ fun CreateTripScreen(nav: NavHostController) {
         }
         if (departure != null) {
             Text(
-                "Scheduled: ${com.trippulse.app.core.TimeFmt.clockWithDay(departure!!, System.currentTimeMillis())} — you'll get a reminder 30 minutes before. The trip stays in \"My trips\" until you start it.",
+                "Scheduled: ${com.trippulse.app.core.TimeFmt.clockWithDay(departure!!, System.currentTimeMillis())} · reminder 30 min before",
                 color = Teal, fontSize = 12.sp
             )
         }
@@ -289,10 +318,6 @@ fun CreateTripScreen(nav: NavHostController) {
                 newPlaceName = ""
             }) { Text("Save", fontSize = 13.sp) }
         }
-        Text(
-            "Saves the last dropped pin — or your current location if no pin — so next time you can pick Home/Office with one tap.",
-            color = TextMid, fontSize = 11.sp
-        )
 
         Text("Emergency contact (optional)", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
         OutlinedTextField(

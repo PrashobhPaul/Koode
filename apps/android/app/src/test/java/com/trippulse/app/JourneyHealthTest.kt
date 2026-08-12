@@ -85,6 +85,12 @@ class JourneyHealthTest {
         assertTrue(r.reasons.any { it.contains("without a break") })
     }
 
+    @Test fun flight_offline_window_is_not_concern() {
+        // in the expected flying window, silence == flight mode, not danger
+        val r = JourneyHealth.evaluate(base(freshness = Freshness.OFFLINE).copy(offlineExpected = true))
+        assertEquals(JourneyHealth.Level.NORMAL, r.level)
+    }
+
     @Test fun arrived_is_always_calm() {
         val r = JourneyHealth.evaluate(
             base(journey = JourneyStatus.ARRIVED.name, freshness = Freshness.OFFLINE).copy(sosActive = false)

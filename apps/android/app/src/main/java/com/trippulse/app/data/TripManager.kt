@@ -77,6 +77,7 @@ class TripManager(
     private var lastEtaCalcMs: Long = 0
     private var batteryLowFired = false
     private var arrivedAtMs: Long? = null
+    private var lastMealWindowPrompted: String? = null
 
     init {
         sync.onSosDelivered = { tripId -> appendSosDelivered(tripId) }
@@ -289,6 +290,20 @@ class TripManager(
         // dwell-based stop maturation / long-stop
         val move = detector.onTick(now)
         if (move != null) s = applyMovement(t, s, move, null, now)
+
+        // Public transport: gentle wellbeing check-ins at meal windows only
+        // (breakfast 8–9, lunch 13–14, tea 16–17, dinner 20–21) — once per
+        // window, never at arbitrary intervals. Passengers aren't driving,
+        // so timing courtesy matters more than stop detection.
+        if (t.transportMode !in PRIVATE_MODES && !s.checkpointDue) {
+            val hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
+            val window = when (hour) { 8 -> "breakfast"; 13 -> "lunch"; 16 -> "tea"; 20 -> "dinner"; else -> null }
+            if (window != null && lastMealWindowPrompted != window) {
+                lastMealWindowPrompted = window
+                s = s.copy(checkpointDue = true, checkpointStopStartMs = now)
+                notifier.showBreakPrompt(false)
+            }
+        }
 
         // battery-low (edge triggered)
         val bat = s.batteryPct
@@ -522,8 +537,14 @@ class TripManager(
                 // Rule: prompt for the break log WHILE stationary — a driver
                 // can't log anything while moving, so the moment a genuine
                 // stop is confirmed is exactly when their hands are free.
-                s = s.copy(stopStartedAtMs = began, checkpointDue = true, checkpointStopStartMs = began)
-                notifier.showBreakPrompt(t.transportMode in PRIVATE_MODES)
+                // Public transport is different: buses and trains halt on
+                // schedule constantly, so stop-triggered prompts would nag —
+                // those journeys are prompted at meal windows instead (onTick).
+                s = s.copy(stopStartedAtMs = began)
+                if (t.transportMode in PRIVATE_MODES) {
+                    s = s.copy(checkpointDue = true, checkpointStopStartMs = began)
+                    notifier.showBreakPrompt(true)
+                }
                 appScope.launch { insertEvent(t.tripId, EventTypes.STOP_STARTED, EventSource.SYSTEM_INFERRED, now, fix?.point?.lat ?: s0.lat, fix?.point?.lng ?: s0.lng, emptyMap(), false) }
                 onSamplingChanged?.invoke()
             }
@@ -754,6 +775,7 @@ class TripManager(
         "originLat" to t.originLat, "originLng" to t.originLng,
         "destLat" to t.destLat, "destLng" to t.destLng,
         "createdAt" to t.createdAtMs, "startedAt" to t.startedAtMs,
+        "plannedDeparture" to t.plannedDepartureMs,
         "expiresAt" to (t.expiresAtMs ?: (t.createdAtMs + 36L * 3600 * 1000)),
         "totalRouteDistanceM" to t.totalRouteDistanceM
     )

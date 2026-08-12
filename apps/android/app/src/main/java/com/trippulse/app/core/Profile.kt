@@ -15,7 +15,6 @@ object Profile {
 
     const val CONTACT_SLOTS = 3
     const val MIN_CONTACTS = 2
-    const val MIN_SAVED_PLACES = 1
 
     data class Contact(val name: String, val phone: String) {
         val filled: Boolean get() = name.isNotBlank() && phone.isNotBlank()
@@ -45,13 +44,23 @@ object Profile {
 
     fun filledContacts(c: Context): Int = contacts(c).count { it.filled }
 
-    /** What is still missing, in the order shown to the user; empty = complete. */
-    fun missing(c: Context, savedPlaceCount: Int): List<String> = buildList {
+    /**
+     * What is still missing, in the order shown to the user; empty = complete.
+     * Saved locations are deliberately NOT mandatory — older users found
+     * adding them inconvenient; they're a convenience, not a gate.
+     */
+    fun missing(c: Context, @Suppress("UNUSED_PARAMETER") savedPlaceCount: Int = 0): List<String> = buildList {
         if (name(c).isBlank()) add("Your name")
-        if (savedPlaceCount < MIN_SAVED_PLACES) add("At least $MIN_SAVED_PLACES saved location (Home / Office / …)")
         val filled = filledContacts(c)
         if (filled < MIN_CONTACTS) add("At least $MIN_CONTACTS emergency contacts (${filled}/$MIN_CONTACTS added)")
     }
 
-    fun isComplete(c: Context, savedPlaceCount: Int): Boolean = missing(c, savedPlaceCount).isEmpty()
+    fun isComplete(c: Context, savedPlaceCount: Int = 0): Boolean = missing(c, savedPlaceCount).isEmpty()
+
+    /** Case-insensitive check used to auto-approve the user's circle. */
+    fun isCircleName(c: Context, viewerName: String): Boolean {
+        val n = viewerName.trim().lowercase()
+        if (n.isBlank()) return false
+        return contacts(c).any { it.filled && it.name.trim().lowercase() == n }
+    }
 }

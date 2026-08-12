@@ -78,7 +78,7 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     )
 
     // ---- saved locations ----
-    Text("SAVED LOCATIONS  (* at least ${Profile.MIN_SAVED_PLACES})", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+    Text("SAVED LOCATIONS  (optional — one-tap From/To)", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
     places.forEach { p ->
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
             Text(p.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, modifier = Modifier.weight(1f))

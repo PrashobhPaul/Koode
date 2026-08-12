@@ -99,6 +99,12 @@ class TripFollowService : Service() {
             ageS <= 900 -> Freshness.STALE
             else -> Freshness.OFFLINE
         }
+        // Flight rule: silence during the expected flying window is normal
+        // (flight mode), not a concern.
+        val mode = meta["transportMode"] as? String
+        val plannedDep = (meta["plannedDeparture"] as? Number)?.toLong()
+        val offlineExpected = mode == "FLIGHT" && plannedDep != null &&
+            now >= plannedDep - 30 * 60_000L && now <= plannedDep + 9 * 3_600_000L
         val report = JourneyHealth.evaluate(
             JourneyHealth.Inputs(
                 nowMs = now,
@@ -115,9 +121,21 @@ class TripFollowService : Service() {
                 overnightType = state["overnightType"] as? String,
                 startedAtMs = (meta["startedAt"] as? Number)?.toLong(),
                 localHour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY),
-                privateVehicle = (meta["transportMode"] as? String ?: "CAR") in setOf("CAR", "BIKE")
+                privateVehicle = (mode ?: "CAR") in setOf("CAR", "BIKE"),
+                offlineExpected = offlineExpected
             )
         )
+        // Humanized "Koode Status" for the Home feed — stored so Home renders
+        // instantly without any network call.
+        getSharedPreferences(STATUS_PREFS, Context.MODE_PRIVATE).edit().putString(
+            ref,
+            listOf(
+                report.level.name,
+                if (offlineExpected && freshness == Freshness.OFFLINE) "In flight — offline as expected" else report.headline,
+                report.reasons.firstOrNull().orEmpty(),
+                now.toString()
+            ).joinToString("|")
+        ).apply()
         val healthPrefs = getSharedPreferences(HEALTH_PREFS, Context.MODE_PRIVATE)
         val previous = healthPrefs.getString(ref, JourneyHealth.Level.NORMAL.name)
         val currentLevel = report.level.name
@@ -195,6 +213,7 @@ class TripFollowService : Service() {
         private const val PREFS = "tp_follow_seen"
         private const val HEALTH_PREFS = "tp_follow_health"
         private const val DIGEST_PREFS = "tp_follow_digest"
+        const val STATUS_PREFS = "tp_follow_status"
         private const val POLL_MS = 30_000L
 
         fun start(context: Context) {
