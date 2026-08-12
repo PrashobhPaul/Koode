@@ -95,6 +95,12 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
         }
     }
 
+    // Flight rule: offline during the expected flying window is normal.
+    val transportMode = meta?.str("transportMode")
+    val plannedDep = meta?.l("plannedDeparture")
+    val offlineExpected = transportMode == "FLIGHT" && plannedDep != null &&
+        now >= plannedDep - 30 * 60_000L && now <= plannedDep + 9 * 3_600_000L
+
     // Journey Health — evaluated fresh on every recomposition tick
     val health = remember(state, ui.freshness, now / 30_000) {
         JourneyHealth.evaluate(
@@ -113,7 +119,8 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 overnightType = state?.str("overnightType"),
                 startedAtMs = meta?.l("startedAt"),
                 localHour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY),
-                privateVehicle = (meta?.str("transportMode") ?: "CAR") in setOf("CAR", "BIKE")
+                privateVehicle = (meta?.str("transportMode") ?: "CAR") in setOf("CAR", "BIKE"),
+                offlineExpected = offlineExpected
             )
         )
     }
@@ -175,7 +182,12 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
             if (nearPlace != null) {
                 Text("📍 Currently near $nearPlace", color = TextHigh, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
             }
-            Text(travelModeLine(journey, meta?.str("transportMode")), color = TextMid, fontSize = 13.sp)
+            Text(
+                if (offlineExpected && ui.freshness == com.trippulse.app.domain.Freshness.OFFLINE)
+                    "✈️ In flight — offline as expected"
+                else travelModeLine(journey, transportMode),
+                color = TextMid, fontSize = 13.sp
+            )
             Spacer(Modifier.height(6.dp))
             when (mode) {
                 EtaMode.OVERNIGHT_PENDING.name -> {

@@ -45,7 +45,11 @@ object JourneyHealth {
         /** Private vehicle (car/bike): continuous-driving-without-a-break
          *  applies. On a bus/train/flight the traveller isn't driving, so
          *  that rule is silenced. */
-        val privateVehicle: Boolean = true
+        val privateVehicle: Boolean = true,
+        /** Flight rule: while a flight is in the air the phone is offline BY
+         *  DESIGN (flight mode) — the caller sets this during the expected
+         *  flying window so silence reads as "in flight", not as a concern. */
+        val offlineExpected: Boolean = false
     )
 
     // thresholds (minutes) — journey-planning heuristics, not medical advice
@@ -69,7 +73,7 @@ object JourneyHealth {
 
         // ---- concern ----
         if (i.sosActive) concern.add("SOS is active")
-        if (i.freshness == Freshness.OFFLINE) {
+        if (i.freshness == Freshness.OFFLINE && !i.offlineExpected) {
             concern.add("No location updates for a while — could be network coverage")
         }
         val stoppedMin = i.stopStartedAtMs?.let { (i.nowMs - it) / 60_000 }

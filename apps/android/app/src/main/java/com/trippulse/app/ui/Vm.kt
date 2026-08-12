@@ -82,6 +82,23 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
         graph.appContext.getSharedPreferences("tp_follow_health", android.content.Context.MODE_PRIVATE)
             .getString(ref, "NORMAL") ?: "NORMAL"
 
+    /** Humanized Koode Status for the Home feed: level, headline, first
+     *  reason, updated-at — as last evaluated by the follow service. */
+    data class FollowStatus(val level: String, val headline: String, val reason: String, val updatedAtMs: Long?)
+
+    fun followStatus(ref: String): FollowStatus {
+        val raw = graph.appContext
+            .getSharedPreferences(com.trippulse.app.service.TripFollowService.STATUS_PREFS, android.content.Context.MODE_PRIVATE)
+            .getString(ref, null) ?: return FollowStatus("NORMAL", "Waiting for the first update…", "", null)
+        val p = raw.split("|")
+        return FollowStatus(
+            p.getOrElse(0) { "NORMAL" },
+            p.getOrElse(1) { "Journey progressing normally" },
+            p.getOrElse(2) { "" },
+            p.getOrNull(3)?.toLongOrNull()
+        )
+    }
+
     /** Erases one trip completely from this device: events, locations, state,
      *  breaks, expenses and the trip row itself. */
     fun deleteTrip(tripId: String) = viewModelScope.launch {
@@ -138,6 +155,11 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
      *  gets only wellbeing logging. */
     var transportMode = MutableStateFlow("CAR")   // CAR | BIKE | BUS | TRAIN | FLIGHT
     var fuelType = MutableStateFlow("PETROL")     // PETROL | DIESEL | ELECTRIC
+
+    // Public-transport ticket details (optional; kept on this device only).
+    var pnr = MutableStateFlow("")
+    var seat = MutableStateFlow("")
+    var boardingPoint = MutableStateFlow("")
 
     // ---- place-name search (Nominatim / OpenStreetMap, free) ----
     private val placeSearch = com.trippulse.app.data.routing.PlaceSearch()
@@ -280,6 +302,17 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                         fuelType = if (transportMode.value in TripManager.PRIVATE_MODES) fuelType.value else null
                     )
                 )
+                // ticket details stay on-device, keyed by trip
+                if (transportMode.value !in TripManager.PRIVATE_MODES &&
+                    (pnr.value.isNotBlank() || seat.value.isNotBlank() || boardingPoint.value.isNotBlank())
+                ) {
+                    graph.appContext.getSharedPreferences("koode_trip_details", android.content.Context.MODE_PRIVATE)
+                        .edit().putString(
+                            trip.tripId,
+                            "${pnr.value.trim()}|${seat.value.trim()}|${boardingPoint.value.trim()}"
+                        ).apply()
+                }
+
                 // scheduled trip: remind the driver 30 min before departure
                 if (departure > System.currentTimeMillis() + 35 * 60_000L) {
                     com.trippulse.app.service.DepartureReminder.schedule(
@@ -330,7 +363,21 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
             while (true) {
                 val t = graph.db.tripDao().byId(tripId)
                 if (t?.cloudEnabled == true) {
-                    joinRequests.value = try { graph.cloud.fetchJoinRequests(t.accessKey) } catch (_: Exception) { emptyList() }
+                    var reqs = try { graph.cloud.fetchJoinRequests(t.accessKey) } catch (_: Exception) { emptyList() }
+                    // Circle rule: emergency contacts ARE the user's network —
+                    // a viewer joining with a contact's name is auto-approved,
+                    // so the journey is effectively shared with them by default.
+                    val autoApproved = reqs.filter {
+                        it["status"] == "PENDING" &&
+                            com.trippulse.app.core.Profile.isCircleName(graph.appContext, it["name"] as? String ?: "")
+                    }
+                    if (autoApproved.isNotEmpty()) {
+                        autoApproved.forEach { r ->
+                            (r["token"] as? String)?.let { graph.cloud.setViewerStatus(t.accessKey, it, true) }
+                        }
+                        reqs = try { graph.cloud.fetchJoinRequests(t.accessKey) } catch (_: Exception) { reqs }
+                    }
+                    joinRequests.value = reqs
                 }
                 kotlinx.coroutines.delay(12_000)
             }
