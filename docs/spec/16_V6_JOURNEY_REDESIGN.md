@@ -24,7 +24,7 @@ What used to end journeys, and no longer does:
 |---|---|---|
 | Auto-complete 20 min after arrival was detected | The app decided; parked-at-destination is not "finished" | Arrival is detected, an `arrivalPromptDue` flag is set, and the traveller is *asked* |
 | `TripFollowService` marked a followed journey expired whenever `fetchMeta` returned null | A REST failure is a statement about the network, not the traveller | Records `unreachableSinceMs`; the UI says "Waiting for updates" |
-| Capability expired 30 min after *arrival detection* | A journey running longer than expected locked its own followers out | Capability lives 7 days, and the 30-minute self-destruct starts when the traveller ends the journey |
+| Capability expired 30 min after *arrival detection* | A journey running longer than expected locked its own followers out | Capability lives 7 days, and a one-hour self-destruct starts when the traveller ends the journey |
 
 The follower side has one predicate, `ViewerRepository.isEndedByOwner`, which
 requires a **positive** signal: `endedByOwner` or `status == COMPLETED` in the

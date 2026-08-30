@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.TripPulseApp
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.domain.EtaMode
 import com.trippulse.app.domain.Freshness
@@ -80,6 +81,9 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
     val ui by vm.ui.collectAsStateWithLifecycle()
     val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
     val now = System.currentTimeMillis()
+    // A follower reads distances in THEIR units, not the traveller's: a parent
+    // in Kerala watching a child drive across Texas still wants kilometres.
+    val measures = (LocalContext.current.applicationContext as TripPulseApp).graph.measures()
 
     val meta = ui.meta
     val state = ui.state
@@ -282,11 +286,11 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 Spacer(Modifier.height(Spacing.sm))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                     Text(
-                        "${TimeFmt.km(state?.d("distanceCoveredM") ?: 0.0)} completed",
+                        "${measures.distance(state?.d("distanceCoveredM") ?: 0.0)} completed",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                     Text(
-                        "${TimeFmt.km(state?.d("distanceRemainingM") ?: 0.0)} to go",
+                        "${measures.distance(state?.d("distanceRemainingM") ?: 0.0)} to go",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                 }

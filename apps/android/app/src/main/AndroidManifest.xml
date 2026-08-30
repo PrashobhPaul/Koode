@@ -30,6 +30,17 @@
     <!-- Restore active-trip tracking after device reboot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!--
+      Package visibility (Android 11+). Koode asks only whether WhatsApp is
+      installed, so it can offer to send a finished journey's timeline to the
+      traveller's circle. Nothing is read from it and nothing is sent without
+      the traveller tapping send inside WhatsApp itself.
+    -->
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="com.whatsapp.w4b" />
+    </queries>
+
     <application
         android:name=".TripPulseApp"
         android:allowBackup="true"

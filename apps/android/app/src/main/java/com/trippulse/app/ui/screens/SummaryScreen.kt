@@ -25,13 +25,13 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.trippulse.app.core.TimeFmt
-import com.trippulse.app.data.EventCodec
+import com.trippulse.app.data.export.JourneyDocuments
 import com.trippulse.app.data.export.JourneyPdf
-import com.trippulse.app.data.local.ActiveTripEntity
-import com.trippulse.app.data.local.EventEntity
 import com.trippulse.app.data.local.ExpenseEntity
-import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.GeoPoint
+import com.trippulse.app.domain.JourneyAnalytics
+import com.trippulse.app.domain.Measures
+import com.trippulse.app.domain.Nourishment
 import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.SummaryVm
@@ -49,12 +49,16 @@ import com.trippulse.app.ui.theme.Spacing
 import kotlinx.coroutines.launch
 
 /**
- * The journey, after the fact: what happened, how far, how long, what it cost —
- * and the two PDFs the traveller can keep.
+ * The journey, after the fact.
  *
- * The map here is the same [JourneyMap] used live, so the ▶ playback of the
- * whole journey is right where you'd look for it rather than behind a separate
- * "Replay" screen.
+ * The design intent: nobody should have to do arithmetic to understand their
+ * own journey. Everything here is *derived* — how much of the time was
+ * actually spent moving, how often breaks came, what it cost per kilometre,
+ * what the vehicle returned — and the same [JourneyAnalytics.JourneyReport]
+ * feeds both this screen and the exported PDFs, so they can never disagree.
+ *
+ * A completed journey is read-only. There are no edit affordances here at all,
+ * because the timeline everyone followed has to stay the thing that happened.
  */
 @Composable
 fun SummaryScreen(nav: NavHostController, tripId: String) {
@@ -69,19 +73,17 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val samples by vm.samples.collectAsStateWithLifecycle()
     val expenses by vm.expenses.collectAsStateWithLifecycle()
     val exporting by vm.exporting.collectAsStateWithLifecycle()
-
-    val summary = remember(events) {
-        events.firstOrNull { it.type == EventTypes.TRIP_COMPLETED }
-            ?.let { EventCodec.payloadFromJson(it.payloadJson) }
-    }
+    val report by vm.report.collectAsStateWithLifecycle()
+    val measures = vm.measures
 
     fun export(kind: PdfKind) {
         val t = trip ?: return
+        val r = report ?: return
         vm.exporting.value = true
         scope.launch {
             val doc = when (kind) {
-                PdfKind.TIMELINE -> timelineDocument(t, events)
-                PdfKind.MONEY -> moneyDocument(t, expenses, summary)
+                PdfKind.TIMELINE -> JourneyDocuments.timeline(t, events, r, measures)
+                PdfKind.MONEY -> JourneyDocuments.money(t, expenses, r, measures)
             }
             val file = JourneyPdf.write(context, doc)
             vm.lastExport.value = file
@@ -126,53 +128,24 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 )
             }
 
-            if (summary == null) {
+            val r = report
+            if (r == null) {
                 KoodeCard {
                     Text(
-                        "The summary appears once the journey is ended.",
+                        "Working out the numbers…",
                         color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                     )
                 }
             } else {
-                fun d(k: String) = (summary[k] as? Number)?.toDouble() ?: 0.0
-                fun l(k: String) = (summary[k] as? Number)?.toLong() ?: 0L
-                fun i(k: String) = (summary[k] as? Number)?.toInt() ?: 0
-
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
-                    StatTile("Distance", "%.0f km".format(d("distanceKm")), Modifier.weight(1f), colors.accent)
-                    StatTile("Travelling", TimeFmt.durationShort(l("drivingSeconds")), Modifier.weight(1f))
-                }
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
-                    StatTile("Total time", TimeFmt.durationShort(l("totalSeconds")), Modifier.weight(1f))
-                    StatTile("Days", i("days").toString(), Modifier.weight(1f))
-                }
-
-                KoodeCard(title = "What was logged") {
-                    DetailRow("Stops", i("stops").toString(), leading = "🅿")
-                    DetailRow("Meals", i("foodBreaks").toString(), leading = "🍛")
-                    DetailRow("Tea / coffee", i("teaCoffee").toString(), leading = "☕")
-                    DetailRow("Snacks", i("snacks").toString(), leading = "🍪")
-                    DetailRow("Water", i("waterConfirmations").toString(), leading = "💧")
-                    DetailRow("Toilet", i("toiletBreaks").toString(), leading = "🚻")
-                    DetailRow("Rest", i("restBreaks").toString(), leading = "😴")
-                    if (TransportCatalog.isPrivate(trip?.transportMode)) {
-                        DetailRow("Refuelling", i("fuelStops").toString(), leading = "⛽")
-                    }
-                }
-
-                // ---- money tracker ----
-                if (expenses.isNotEmpty()) {
-                    val distKm = d("distanceKm")
-                    MoneyCard(expenses, distKm, TransportCatalog.isPrivate(trip?.transportMode))
-                }
+                JourneyDashboard(r, measures, TransportCatalog.isPrivate(trip?.transportMode))
             }
 
             // ---- exports ----
             SectionHeader("Keep a copy")
             KoodeCard {
                 Text(
-                    "Both documents carry the Koode watermark and are flat, non-editable PDFs — " +
-                        "generated on this phone, shared only when you choose to.",
+                    "Both documents carry the same figures you see above, the Koode watermark, " +
+                        "and are flat non-editable PDFs generated on this phone.",
                     color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(Modifier.height(Spacing.md))
@@ -181,7 +154,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                         SecondaryButton(
                             if (exporting) "Preparing…" else "Timeline PDF",
                             { export(PdfKind.TIMELINE) },
-                            enabled = !exporting && trip != null,
+                            enabled = !exporting && trip != null && report != null,
                             leading = "🧾", height = 46.dp
                         )
                     }
@@ -189,11 +162,15 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                         SecondaryButton(
                             if (exporting) "Preparing…" else "Money PDF",
                             { export(PdfKind.MONEY) },
-                            enabled = !exporting && trip != null,
+                            enabled = !exporting && trip != null && report != null,
                             leading = "₹", accent = colors.traveller, height = 46.dp
                         )
                     }
                 }
+                Text(
+                    "The money PDF is yours alone — it is never sent to anyone following you.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
             }
 
             Spacer(Modifier.height(Spacing.sm))
@@ -203,137 +180,128 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     }
 }
 
-@Composable
-private fun MoneyCard(expenses: List<ExpenseEntity>, distanceKm: Double, privateVehicle: Boolean) {
-    val colors = KoodeTheme.colors
-    val fuelCost = expenses.filter { it.type == "FUEL" }.sumOf { it.amount }
-    val litres = expenses.filter { it.type == "FUEL" && it.unit == "L" }.sumOf { it.quantity ?: 0.0 }
-    val kwh = expenses.filter { it.type == "FUEL" && it.unit == "kWh" }.sumOf { it.quantity ?: 0.0 }
-    val ticket = expenses.filter { it.type == "TICKET" }.sumOf { it.amount }
-    val food = expenses.filter { it.type == "FOOD" }.sumOf { it.amount }
-    val stay = expenses.filter { it.type == "STAY" }.sumOf { it.amount }
-    val other = expenses.filter { it.type == "OTHER" }.sumOf { it.amount }
-    val total = fuelCost + ticket + food + stay + other
+// ---------------------------------------------------------------------------
+// The dashboard — shared with the pre-closure review
+// ---------------------------------------------------------------------------
 
-    KoodeCard(title = "Money tracker · only you can see this") {
-        if (fuelCost > 0) DetailRow("Fuel", JourneyPdf.money(fuelCost), leading = "⛽")
-        if (ticket > 0) DetailRow("Tickets", JourneyPdf.money(ticket), leading = "🎫")
-        if (food > 0) DetailRow("Food", JourneyPdf.money(food), leading = "🍛")
-        if (stay > 0) DetailRow("Stay", JourneyPdf.money(stay), leading = "🏨")
-        if (other > 0) DetailRow("Other", JourneyPdf.money(other), leading = "🧾")
+/**
+ * The analysed picture of a journey.
+ *
+ * Reused verbatim by the review sheet shown before a journey is closed, so the
+ * traveller verifies exactly what everyone else will later read.
+ */
+@Composable
+fun JourneyDashboard(
+    report: JourneyAnalytics.JourneyReport,
+    measures: Measures,
+    privateVehicle: Boolean,
+    compact: Boolean = false
+) {
+    val colors = KoodeTheme.colors
+
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+        StatTile("Distance", measures.distance(report.distanceM), Modifier.weight(1f), colors.accent)
+        StatTile("Moving", TimeFmt.durationShort(report.movingSeconds), Modifier.weight(1f))
+    }
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+        StatTile("Total time", TimeFmt.durationShort(report.totalSeconds), Modifier.weight(1f))
+        StatTile("Stopped", TimeFmt.durationShort(report.stoppedSeconds), Modifier.weight(1f))
+    }
+    if (!compact) {
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+            StatTile("Average moving", measures.speed(report.averageMovingSpeedKmh), Modifier.weight(1f))
+            StatTile("Door to door", measures.speed(report.overallSpeedKmh), Modifier.weight(1f))
+        }
+    }
+
+    // ---- what the numbers mean ----
+    if (report.insights.isNotEmpty()) {
+        KoodeCard(title = "What the journey says", accent = colors.traveller) {
+            report.insights.forEach {
+                Text("• $it", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            }
+        }
+    }
+
+    // ---- breaks & wellbeing ----
+    KoodeCard(title = "Breaks and wellbeing") {
+        DetailRow("Stops", report.stops.toString(), leading = "🅿")
+        DetailRow("Breaks logged", report.breakCount.toString(), leading = "✅")
+        report.averageGapBetweenBreaksSeconds?.let {
+            DetailRow("A break about every", TimeFmt.durationShort(it), leading = "⏱")
+        }
+        DetailRow("Longest break", TimeFmt.durationShort(report.longestBreakSeconds), leading = "😴")
+        DetailRow(
+            "Longest stretch without stopping",
+            TimeFmt.durationShort(report.longestLegSeconds), leading = "🛣"
+        )
         Spacer(Modifier.height(Spacing.sm))
-        DetailRow("Total", JourneyPdf.money(total), emphasis = true, valueColor = colors.accent)
-        if (distanceKm > 0 && total > 0) {
-            Text(
-                "%.2f per km overall".format(total / distanceKm),
-                color = colors.textLow, style = MaterialTheme.typography.bodySmall
-            )
+        listOf(
+            Nourishment.BREAKFAST, Nourishment.LUNCH, Nourishment.DINNER,
+            Nourishment.SNACK, Nourishment.TEA_COFFEE
+        ).forEach { kind ->
+            val count = report.meals[kind] ?: 0
+            if (count > 0) DetailRow(kind.label, count.toString(), leading = kind.emoji)
         }
-        if (privateVehicle && litres > 0 && distanceKm > 0) {
-            Text(
-                "Fuel efficiency: %.1f km/L (%.1f L used)".format(distanceKm / litres, litres),
-                color = colors.accent, style = MaterialTheme.typography.titleSmall
-            )
+        if (report.waterCount > 0) DetailRow("Water", report.waterCount.toString(), leading = "💧")
+        if (report.toiletCount > 0) DetailRow("Toilet", report.toiletCount.toString(), leading = "🚻")
+        if (privateVehicle && report.fuelStops > 0) {
+            DetailRow("Refuelling stops", report.fuelStops.toString(), leading = "⛽")
         }
-        if (privateVehicle && kwh > 0 && distanceKm > 0) {
-            Text(
-                "EV efficiency: %.1f km/kWh (%.1f kWh used)".format(distanceKm / kwh, kwh),
-                color = colors.accent, style = MaterialTheme.typography.titleSmall
+    }
+
+    // ---- stages ----
+    if (report.legs.size > 1) {
+        KoodeCard(title = "Stages") {
+            report.legs.forEach { leg ->
+                DetailRow(
+                    "${leg.fromName} → ${leg.toName}",
+                    leg.seconds?.let { TimeFmt.durationShort(it) } ?: "—",
+                    leading = TransportCatalog.emoji(leg.mode)
+                )
+            }
+        }
+    }
+
+    // ---- money ----
+    if (report.hasCosts) {
+        KoodeCard(title = "Money tracker · only you can see this") {
+            report.costLines.forEach { line ->
+                DetailRow(
+                    line.label,
+                    measures.money(line.amount),
+                    leading = costEmoji(line.type)
+                )
+            }
+            Spacer(Modifier.height(Spacing.sm))
+            DetailRow(
+                "Total", measures.money(report.totalCost),
+                emphasis = true, valueColor = colors.accent
             )
+            measures.costPerDistance(report.totalCost, report.distanceM)?.let {
+                DetailRow("Cost per ${measures.distanceUnit}", it, leading = "📐")
+            }
+            report.costPerHour?.let {
+                DetailRow("Cost per hour", measures.money(it), leading = "⏳")
+            }
+            if (privateVehicle) {
+                measures.efficiency(report.distanceM, report.litres)?.let {
+                    DetailRow("Fuel efficiency", it, leading = "⛽", valueColor = colors.accent)
+                }
+                measures.electricEfficiency(report.distanceM, report.kwh)?.let {
+                    DetailRow("EV efficiency", it, leading = "🔌", valueColor = colors.accent)
+                }
+            }
         }
     }
 }
 
-// ---------------------------------------------------------------------------
-// PDF documents
-// ---------------------------------------------------------------------------
+private fun costEmoji(type: String): String = when (type) {
+    "FUEL" -> "⛽"
+    "TICKET" -> "🎫"
+    "FOOD" -> "🍛"
+    "STAY" -> "🏨"
+    else -> "🧾"
+}
 
 private enum class PdfKind { TIMELINE, MONEY }
-
-/** Every timeline entry, in order, as a printable statement. */
-private fun timelineDocument(trip: ActiveTripEntity, events: List<EventEntity>): JourneyPdf.Document {
-    val rows = events
-        .filter { it.type in EventTypes.TIMELINE_TYPES }
-        .sortedBy { it.eventTimeMs }
-        .map { e ->
-            val payload = EventCodec.payloadFromJson(e.payloadJson)
-            val (_, label) = eventLine(e.type, payload)
-            JourneyPdf.Row(
-                left = TimeFmt.clock(e.eventTimeMs),
-                middle = label,
-                right = TimeFmt.date(e.eventTimeMs)
-            )
-        }
-    return JourneyPdf.Document(
-        title = "Journey timeline",
-        subtitle = "${trip.originName} → ${trip.destName}",
-        meta = listOfNotNull(
-            "Journey number: ${trip.tripId}",
-            trip.startedAtMs?.let { "Started: ${TimeFmt.dateTime(it)}" },
-            trip.completedAtMs?.let { "Ended: ${TimeFmt.dateTime(it)}" },
-            "Mode: ${TransportCatalog.label(trip.transportMode)}"
-        ),
-        sections = listOf(
-            JourneyPdf.Section(
-                title = "Everything that happened",
-                header = JourneyPdf.Row("TIME", "EVENT", "DATE"),
-                rows = rows,
-                note = if (rows.isEmpty()) "No events were recorded for this journey." else null
-            )
-        ),
-        fileLabel = "Koode-timeline-${trip.tripId}"
-    )
-}
-
-/** The money tracker, itemised, as a printable statement. */
-private fun moneyDocument(
-    trip: ActiveTripEntity,
-    expenses: List<ExpenseEntity>,
-    summary: Map<String, Any?>?
-): JourneyPdf.Document {
-    val rows = expenses.sortedBy { it.tMs }.map { e ->
-        JourneyPdf.Row(
-            left = TimeFmt.date(e.tMs),
-            middle = buildString {
-                append(e.item.ifBlank { e.type.lowercase().replaceFirstChar { c -> c.uppercase() } })
-                if (e.quantity != null && e.unit != null) append("  (${e.quantity} ${e.unit})")
-            },
-            right = JourneyPdf.money(e.amount)
-        )
-    }
-    val total = expenses.sumOf { it.amount }
-    val distanceKm = (summary?.get("distanceKm") as? Number)?.toDouble() ?: 0.0
-    val byType = expenses.groupBy { it.type }.map { (type, list) ->
-        JourneyPdf.Row(
-            left = "",
-            middle = type.lowercase().replaceFirstChar { it.uppercase() },
-            right = JourneyPdf.money(list.sumOf { it.amount })
-        )
-    }
-
-    return JourneyPdf.Document(
-        title = "Journey costs",
-        subtitle = "${trip.originName} → ${trip.destName}",
-        meta = listOfNotNull(
-            "Journey number: ${trip.tripId}",
-            trip.completedAtMs?.let { "Ended: ${TimeFmt.dateTime(it)}" },
-            if (distanceKm > 0) "Distance: %.0f km".format(distanceKm) else null
-        ),
-        sections = listOf(
-            JourneyPdf.Section(
-                title = "Items",
-                header = JourneyPdf.Row("DATE", "ITEM", "AMOUNT"),
-                rows = rows,
-                note = if (rows.isEmpty()) "No expenses were recorded for this journey." else null
-            ),
-            JourneyPdf.Section(
-                title = "Totals",
-                header = null,
-                rows = byType + JourneyPdf.Row("", "TOTAL", JourneyPdf.money(total)),
-                note = if (distanceKm > 0 && total > 0)
-                    "Cost per kilometre: %.2f".format(total / distanceKm) else null
-            )
-        ),
-        fileLabel = "Koode-costs-${trip.tripId}"
-    )
-}

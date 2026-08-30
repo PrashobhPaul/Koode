@@ -1,6 +1,7 @@
 package com.trippulse.app.core
 
 import android.content.Context
+import com.trippulse.app.domain.UnitPreference
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -68,7 +69,18 @@ data class KoodeSettings(
     val keepScreenOnDuringJourney: Boolean = false,
     val hapticFeedback: Boolean = true,
     val checkForUpdates: Boolean = true,
-    val themeMode: String = THEME_SYSTEM
+    val themeMode: String = THEME_SYSTEM,
+    /** Kilometres or miles. AUTO derives it from where the traveller is. */
+    val unitPreference: UnitPreference = UnitPreference.DEFAULT,
+    /** An ISO currency code the user pinned, or blank to follow their region. */
+    val currencyCode: String = "",
+    /**
+     * Send the journey timeline to the circle on WhatsApp when a journey ends.
+     *
+     * Off by default: it puts a message into other people's hands, and that is
+     * never something an app should start doing on its own.
+     */
+    val shareTimelineOnWhatsApp: Boolean = false
 ) {
     companion object {
         const val THEME_SYSTEM = "SYSTEM"
@@ -108,7 +120,10 @@ class SettingsStore(context: Context) {
         keepScreenOnDuringJourney = prefs.getBoolean(KEY_KEEP_SCREEN_ON, false),
         hapticFeedback = prefs.getBoolean(KEY_HAPTICS, true),
         checkForUpdates = prefs.getBoolean(KEY_UPDATES, true),
-        themeMode = prefs.getString(KEY_THEME, KoodeSettings.THEME_SYSTEM) ?: KoodeSettings.THEME_SYSTEM
+        themeMode = prefs.getString(KEY_THEME, KoodeSettings.THEME_SYSTEM) ?: KoodeSettings.THEME_SYSTEM,
+        unitPreference = UnitPreference.fromKey(prefs.getString(KEY_UNITS, null)),
+        currencyCode = prefs.getString(KEY_CURRENCY, "").orEmpty(),
+        shareTimelineOnWhatsApp = prefs.getBoolean(KEY_WHATSAPP, false)
     )
 
     private fun write(s: KoodeSettings) {
@@ -120,6 +135,9 @@ class SettingsStore(context: Context) {
             .putBoolean(KEY_HAPTICS, s.hapticFeedback)
             .putBoolean(KEY_UPDATES, s.checkForUpdates)
             .putString(KEY_THEME, s.themeMode)
+            .putString(KEY_UNITS, s.unitPreference.key)
+            .putString(KEY_CURRENCY, s.currencyCode)
+            .putBoolean(KEY_WHATSAPP, s.shareTimelineOnWhatsApp)
             .apply()
     }
 
@@ -132,5 +150,8 @@ class SettingsStore(context: Context) {
         const val KEY_HAPTICS = "haptics"
         const val KEY_UPDATES = "check_updates"
         const val KEY_THEME = "theme_mode"
+        const val KEY_UNITS = "unit_preference"
+        const val KEY_CURRENCY = "currency_code"
+        const val KEY_WHATSAPP = "share_timeline_whatsapp"
     }
 }

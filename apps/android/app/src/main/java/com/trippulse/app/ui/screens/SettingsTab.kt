@@ -39,6 +39,8 @@ import com.trippulse.app.core.KoodeSettings
 import com.trippulse.app.core.LocationCadence
 import com.trippulse.app.core.Profile
 import com.trippulse.app.core.ViewerRefresh
+import com.trippulse.app.domain.MoneyFormat
+import com.trippulse.app.domain.UnitPreference
 import com.trippulse.app.ui.SettingsVm
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
@@ -163,6 +165,58 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
             settings.keepScreenOnDuringJourney
         ) { vm.setKeepScreenOn(it) }
         ToggleRow("Vibrate on important taps", settings.hapticFeedback) { vm.setHaptics(it) }
+    }
+
+    // ---- measurements ----
+    // Worked out from where the phone actually is, and overridable. Nobody
+    // should have to configure this, and nobody should be stuck with the
+    // wrong one either.
+    KoodeCard(title = "Distance, speed and money") {
+        Text(
+            vm.detectedRegionSummary(),
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(Modifier.height(Spacing.md))
+        Text("Distances", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+        Spacer(Modifier.height(Spacing.sm))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            UnitPreference.entries.forEach { p ->
+                KoodeChip(p.label, settings.unitPreference == p, { vm.setUnitPreference(p) })
+            }
+        }
+        Spacer(Modifier.height(Spacing.md))
+        Text("Currency", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+        Spacer(Modifier.height(Spacing.sm))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            KoodeChip("Match my region", settings.currencyCode.isBlank(), { vm.setCurrencyCode("") })
+            MoneyFormat.COMMON_CODES.forEach { code ->
+                KoodeChip(code, settings.currencyCode == code, { vm.setCurrencyCode(code) })
+            }
+        }
+    }
+
+    // ---- sharing the timeline when a journey ends ----
+    KoodeCard(title = "When a journey ends") {
+        ToggleRow(
+            "Send my timeline to my circle on WhatsApp",
+            settings.shareTimelineOnWhatsApp
+        ) { vm.setShareTimelineOnWhatsApp(it) }
+        Text(
+            buildString {
+                append("The moment you mark a journey complete, Koode prepares the timeline PDF ")
+                append("addressed to each of your ${vm.circleSize()} emergency contacts and opens ")
+                append("WhatsApp so you can send it. ")
+                append("Costs are never included — the money tracker stays private to you.")
+            },
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        if (settings.shareTimelineOnWhatsApp && !vm.whatsAppAvailable) {
+            Spacer(Modifier.height(Spacing.sm))
+            Text(
+                "WhatsApp isn't installed on this phone, so Koode will offer the normal share sheet instead.",
+                color = colors.warn, style = MaterialTheme.typography.bodySmall
+            )
+        }
     }
 
     // ---- appearance ----

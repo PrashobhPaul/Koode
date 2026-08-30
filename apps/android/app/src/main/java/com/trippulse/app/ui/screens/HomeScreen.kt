@@ -42,6 +42,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import android.content.Intent
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
@@ -273,6 +274,7 @@ private fun HomeFeed(
     val colors = KoodeTheme.colors
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
+    val scope = rememberCoroutineScope()
     val name = vm.greetingName()
     val now = System.currentTimeMillis()
 
@@ -359,6 +361,43 @@ private fun HomeFeed(
                 else "Tap to open",
                 color = colors.textMid, style = MaterialTheme.typography.bodyMedium
             )
+        }
+
+        // Remembering someone halfway through a journey is the normal case —
+        // "send it to my sister too" — so inviting them is one tap from here
+        // rather than a hunt back through the screen shown at the start.
+        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            Box(Modifier.weight(1f)) {
+                SecondaryButton(
+                    "Invite someone",
+                    {
+                        scope.launch {
+                            vm.shareText(active.tripId, includePasscode = true)?.let { text ->
+                                context.startActivity(
+                                    Intent.createChooser(
+                                        Intent(Intent.ACTION_SEND).apply {
+                                            type = "text/plain"
+                                            putExtra(Intent.EXTRA_TEXT, text)
+                                        },
+                                        "Share journey"
+                                    )
+                                )
+                            }
+                        }
+                    },
+                    leading = "📤", height = 44.dp
+                )
+            }
+            Box(Modifier.weight(1f)) {
+                SecondaryButton(
+                    "Open journey",
+                    {
+                        if (active.status == "CREATED") nav.navigate(Routes.credentials(active.tripId))
+                        else nav.navigate(Routes.driver(active.tripId))
+                    },
+                    accent = colors.traveller, height = 44.dp
+                )
+            }
         }
     }
 

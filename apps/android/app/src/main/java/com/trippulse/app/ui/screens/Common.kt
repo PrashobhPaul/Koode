@@ -29,9 +29,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.trippulse.app.core.TimeFmt
+import com.trippulse.app.domain.EventNarrator
 import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.Freshness
-import com.trippulse.app.domain.Nourishment
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.PulsingDot
 import com.trippulse.app.ui.theme.KoodeTheme
@@ -88,76 +88,16 @@ fun FreshnessBadge(f: Freshness, lastUpdateText: String?) {
 // ---------------------------------------------------------------------------
 
 /**
- * The emoji and label for an event type.
+ * Screen-facing wrappers over [EventNarrator].
  *
- * Public-transport milestones deliberately carry their own vehicle-specific
- * wording, supplied by the event payload ("Boarded the train"), and fall back
- * to a neutral phrase when the payload is missing — a viewer on an old build
- * still reads something sensible.
+ * The wording itself is domain knowledge, shared with the PDF exporter, so a
+ * document someone was sent can never phrase an event differently from the
+ * screen they watched it on.
  */
-fun eventLabel(type: String): Pair<String, String> = when (type) {
-    EventTypes.TRIP_STARTED -> "🚦" to "Journey started"
-    EventTypes.TRIP_PAUSED -> "⏸" to "Journey paused"
-    EventTypes.TRIP_RESUMED -> "▶" to "Journey resumed"
-    EventTypes.TRIP_COMPLETED -> "🏁" to "Journey ended"
-    EventTypes.DESTINATION_CHANGED -> "🧭" to "Destination changed"
-    EventTypes.STOP_STARTED -> "🅿" to "Stopped"
-    EventTypes.STOP_ENDED -> "▶" to "On the move again"
-    EventTypes.LONG_STOP -> "⏳" to "Long stop"
-    EventTypes.ROUTE_DEVIATION -> "↩" to "Off the usual route"
-    EventTypes.ROUTE_REJOINED -> "↪" to "Back on route"
-    EventTypes.ARRIVAL_DETECTED -> "📍" to "Reached the destination"
-    EventTypes.BREAK_CHECKPOINT -> "✅" to "Break logged"
-    EventTypes.WATER_REPORTED -> "💧" to "Water"
-    EventTypes.FOOD_REPORTED -> "🍛" to "Food"
-    EventTypes.TEA_COFFEE_REPORTED -> "☕" to "Tea / coffee"
-    EventTypes.SNACK_REPORTED -> "🍪" to "Snack"
-    EventTypes.TOILET_REPORTED -> "🚻" to "Toilet"
-    EventTypes.REST_REPORTED -> "😴" to "Rest"
-    EventTypes.FUEL_STOP -> "⛽" to "Refuelled"
-    EventTypes.CHARGE_STOP -> "🔌" to "Charged"
-    EventTypes.OVERNIGHT_CONFIRMED -> "🌙" to "Overnight stay"
-    EventTypes.MORNING_RESUME -> "🌅" to "Back on the road"
-    EventTypes.QUICK_NOTE -> "📝" to "Note"
-    EventTypes.PASSENGER_JOINED -> "👤" to "Passenger joined"
-    EventTypes.PASSENGER_LEFT -> "👋" to "Passenger left"
-    EventTypes.MEDICINE -> "💊" to "Medicine recorded"
-    EventTypes.VEHICLE_ISSUE -> "🔧" to "Vehicle issue"
-    EventTypes.INCIDENT -> "⚠" to "Incident"
-    EventTypes.POSSIBLE_INCIDENT -> "⚠" to "Possible incident"
-    EventTypes.SOS_ACTIVATED -> "🚨" to "SOS activated"
-    EventTypes.SOS_RESOLVED -> "✅" to "SOS resolved"
-    EventTypes.BATTERY_LOW -> "🔋" to "Phone battery low"
-    EventTypes.BOARDED -> "🎫" to "Boarded"
-    EventTypes.TRANSIT_HALTED -> "⏸" to "Halted"
-    EventTypes.TRANSIT_RESUMED -> "▶" to "Moving again"
-    EventTypes.DEBOARDED -> "🚶" to "Got off"
-    EventTypes.LEG_STARTED -> "🧭" to "Next stage started"
-    EventTypes.LEG_COMPLETED -> "✅" to "Stage completed"
-    else -> "•" to type.lowercase().replace('_', ' ')
-}
+fun eventLabel(type: String): Pair<String, String> = EventNarrator.base(type)
 
-/**
- * Builds the display line for an event, preferring anything the event itself
- * said. A meal event carries which meal it was; a transport milestone carries
- * its own sentence.
- */
-fun eventLine(type: String, payload: Map<String, Any?>): Pair<String, String> {
-    val (emoji, label) = eventLabel(type)
-    val text = payload["text"] as? String
-    return when (type) {
-        EventTypes.FOOD_REPORTED -> {
-            val meal = Nourishment.fromKey(payload["meal"] as? String)
-            (meal?.emoji ?: emoji) to (meal?.label ?: label)
-        }
-        // Mode-specific milestones ship their own sentence ("Boarded the
-        // train"), so the generic label is only the fallback.
-        EventTypes.BOARDED, EventTypes.TRANSIT_HALTED,
-        EventTypes.TRANSIT_RESUMED, EventTypes.DEBOARDED,
-        EventTypes.LEG_STARTED -> emoji to (text ?: label)
-        else -> emoji to (text?.let { "$label — $it" } ?: label)
-    }
-}
+fun eventLine(type: String, payload: Map<String, Any?>): Pair<String, String> =
+    EventNarrator.line(type, payload)
 
 data class TimelineItem(
     val timeMs: Long,

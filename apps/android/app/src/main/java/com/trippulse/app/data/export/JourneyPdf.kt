@@ -50,11 +50,23 @@ object JourneyPdf {
     /** A titled block of rows, optionally with a column header. */
     data class Section(val title: String, val header: Row?, val rows: List<Row>, val note: String? = null)
 
-    /** Everything a document needs, already formatted by the caller. */
+    /** One headline figure in the dashboard band, e.g. "Distance / 412 km". */
+    data class Figure(val label: String, val value: String)
+
+    /**
+     * Everything a document needs, already formatted by the caller.
+     *
+     * [figures] and [insights] are what stop this being a printout of a
+     * database table: the same analysed dashboard the app shows, so the
+     * exported document answers "how did that go?" rather than only "what
+     * happened, in order".
+     */
     data class Document(
         val title: String,
         val subtitle: String,
         val meta: List<String>,
+        val figures: List<Figure> = emptyList(),
+        val insights: List<String> = emptyList(),
         val sections: List<Section>,
         val fileLabel: String
     )
@@ -71,6 +83,8 @@ object JourneyPdf {
         var page = pdf.startPage(pageInfo(pageNumber))
         var canvas = page.canvas
         var y = painter.drawHeader(canvas, doc, first = true)
+        if (doc.figures.isNotEmpty()) y = painter.drawFigures(canvas, doc.figures, y)
+        if (doc.insights.isNotEmpty()) y = painter.drawInsights(canvas, doc.insights, y)
 
         for (section in doc.sections) {
             // A section header stranded at the foot of a page reads badly, so
@@ -157,6 +171,10 @@ object JourneyPdf {
         private val bodyMuted = Paint().apply {
             isAntiAlias = true; color = MUTED; textSize = 11f; typeface = Typeface.SANS_SERIF
         }
+        private val figureValue = Paint().apply {
+            isAntiAlias = true; color = INK; textSize = 17f
+            typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+        }
         private val headerCell = Paint().apply {
             isAntiAlias = true; color = MUTED; textSize = 9f
             typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
@@ -210,6 +228,38 @@ object JourneyPdf {
             canvas.rotate(-32f, PAGE_W / 2f, PAGE_H / 2f)
             canvas.drawText("KOODE", 92f, PAGE_H / 2f + 30f, watermark)
             canvas.restore()
+        }
+
+        /**
+         * The dashboard band: figures laid out three to a row, each a label
+         * above a large value, so the page opens with the answer.
+         */
+        fun drawFigures(canvas: Canvas, figures: List<Figure>, y0: Float): Float {
+            val columns = 3
+            val usable = PAGE_W - MARGIN * 2
+            val cellWidth = usable / columns
+            var y = y0 + LINE * 0.2f
+            figures.chunked(columns).forEach { row ->
+                row.forEachIndexed { index, figure ->
+                    val x = MARGIN + cellWidth * index
+                    canvas.drawText(figure.label.uppercase(), x, y, headerCell)
+                    canvas.drawText(clip(figure.value, 18), x, y + LINE, figureValue)
+                }
+                y += LINE * 2.4f
+            }
+            canvas.drawLine(MARGIN, y - LINE * 0.7f, PAGE_W - MARGIN, y - LINE * 0.7f, rule)
+            return y
+        }
+
+        /** The plain-English read of those numbers. */
+        fun drawInsights(canvas: Canvas, insights: List<String>, y0: Float): Float {
+            var y = y0
+            insights.forEach {
+                canvas.drawText("•  " + clip(it, 92), MARGIN, y, body)
+                y += LINE
+            }
+            canvas.drawLine(MARGIN, y - LINE * 0.5f, PAGE_W - MARGIN, y - LINE * 0.5f, rule)
+            return y + LINE * 0.4f
         }
 
         fun drawSectionTitle(canvas: Canvas, text: String, y0: Float): Float {

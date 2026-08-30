@@ -14,9 +14,10 @@
 --     device that created the trip can write or modify anything.
 --   * All tables have RLS enabled with no policies and no direct grants —
 --     the ONLY way in is through the functions below.
---   * A trip expires 30 minutes after the driver reaches the destination
---     (the app stamps expires_at at arrival). Expired trips return nothing
---     and are deleted by tp_cleanup().
+--   * A journey expires ONE HOUR after its traveller ends it (the app
+--     stamps expires_at at completion, never at mere arrival — only the
+--     traveller closes a journey). Expired journeys return nothing and are
+--     deleted by tp_cleanup().
 -- ===========================================================================
 
 -- ---------------------------------------------------------------------------

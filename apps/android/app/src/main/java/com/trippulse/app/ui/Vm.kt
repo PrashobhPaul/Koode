@@ -20,6 +20,9 @@ import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.core.ViewerRefresh
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.ViewerRepository
+import com.trippulse.app.data.export.JourneyDocuments
+import com.trippulse.app.data.export.JourneyPdf
+import com.trippulse.app.data.share.TimelineDelivery
 import com.trippulse.app.data.local.ActiveTripEntity
 import com.trippulse.app.data.local.EventEntity
 import com.trippulse.app.data.local.ExpenseEntity
@@ -33,8 +36,11 @@ import com.trippulse.app.data.update.UpdateChecker
 import com.trippulse.app.di.AppGraph
 import com.trippulse.app.domain.Freshness
 import com.trippulse.app.domain.GeoPoint
+import com.trippulse.app.domain.JourneyAnalytics
+import com.trippulse.app.domain.Measures
 import com.trippulse.app.domain.Nourishment
 import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.domain.UnitPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -135,6 +141,38 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     }
 
     fun unfollow(ref: String) = viewModelScope.launch { graph.viewerRepository.unfollow(ref) }
+
+    /**
+     * The invitation text for a journey, ready to hand to any messaging app.
+     *
+     * Lives here rather than on the credentials screen because the common case
+     * is remembering someone mid-journey — "oh, send it to my sister too" —
+     * and that should be one tap from the home card, not a hunt back through
+     * a screen that was shown once at the start.
+     */
+    suspend fun shareText(tripId: String, includePasscode: Boolean): String? {
+        val t = graph.db.tripDao().byId(tripId) ?: return null
+        val name = greetingName()
+        return buildString {
+            append(if (name.isBlank()) "I'm on a journey" else "$name is on a journey")
+            appendLine(" — follow along on Koode.")
+            appendLine("You'll know the moment I arrive safely, without having to call.")
+            appendLine()
+            appendLine("Journey number: ${t.tripId}")
+            if (includePasscode) appendLine("Passcode: ${t.secret}")
+            appendLine()
+            appendLine("Watch in any web browser — nothing to install:")
+            appendLine(Links.WEB_VIEWER)
+            appendLine()
+            appendLine("Or get the Koode app (free):")
+            append(Links.APK)
+            if (!includePasscode) {
+                appendLine()
+                appendLine()
+                append("Open Koode → People → Follow a journey, enter the number and your name. I'll approve you.")
+            }
+        }
+    }
 
     companion object {
         val Factory = viewModelFactory { initializer { HomeVm(graphOf(this)) } }
@@ -518,11 +556,183 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     fun resolveSos() = viewModelScope.launch { graph.tripManager.resolveSos() }
     fun pause() = viewModelScope.launch { graph.tripManager.pause() }
     fun resume() = viewModelScope.launch { graph.tripManager.resume() }
-    fun complete() = viewModelScope.launch { graph.tripManager.completeTrip() }
     fun dismissArrivalPrompt() = viewModelScope.launch { graph.tripManager.dismissArrivalPrompt() }
     fun nextLeg() = viewModelScope.launch { graph.tripManager.advanceToNextLeg() }
     fun changeDestination(name: String, p: GeoPoint) =
         viewModelScope.launch { graph.tripManager.changeDestination(name, p) }
+
+    // ---- how this journey is measured and priced ----
+
+    val measures: Measures get() = graph.measures()
+
+    // ---- editing a journey that is already under way -----------------------
+
+    var editMessage = MutableStateFlow<String?>(null); private set
+    var editBusy = MutableStateFlow(false); private set
+
+    fun clearEditMessage() { editMessage.value = null }
+
+    /**
+     * Adds a stage to the running journey — the "actually, I'm carrying on"
+     * case. Resolves the destination the same way journey creation does, so a
+     * typed place name works exactly as it did on the create screen.
+     */
+    fun addStage(mode: String, toText: String, fuelType: String?) = viewModelScope.launch {
+        if (editBusy.value) return@launch
+        editBusy.value = true
+        try {
+            val trip = graph.db.tripDao().byId(tripId)
+            if (trip == null || !graph.tripManager.isEditable(trip)) {
+                editMessage.value = "This journey is closed and can no longer be changed."
+                return@launch
+            }
+            val to = resolvePlace(toText)
+            if (to == null) {
+                editMessage.value = "Couldn't find \"${toText.trim()}\". Try a more specific name."
+                return@launch
+            }
+            val legs = graph.db.legDao().forTrip(tripId)
+            val last = legs.maxByOrNull { it.legIndex }
+            val from = last?.let { GeoPoint(it.toLat, it.toLng) } ?: GeoPoint(trip.destLat, trip.destLng)
+            val fromName = last?.toName ?: trip.destName
+            val ok = graph.tripManager.appendLeg(
+                TripManager.NewLeg(
+                    mode = mode, fromName = fromName, from = from,
+                    toName = toText.trim(), to = to, fuelType = fuelType
+                )
+            )
+            editMessage.value = if (ok) "Stage added — everyone following you sees it now."
+            else "Couldn't add that stage."
+        } finally {
+            editBusy.value = false
+        }
+    }
+
+    /** Re-points the stage being travelled (or one still ahead). */
+    fun editStage(legIndex: Int, mode: String, toText: String, fuelType: String?) =
+        viewModelScope.launch {
+            if (editBusy.value) return@launch
+            editBusy.value = true
+            try {
+                val to = resolvePlace(toText)
+                if (to == null) {
+                    editMessage.value = "Couldn't find \"${toText.trim()}\". Try a more specific name."
+                    return@launch
+                }
+                val ok = graph.tripManager.updateLeg(legIndex, mode, toText.trim(), to, fuelType)
+                editMessage.value = if (ok) "Updated." else "That stage can no longer be changed."
+            } finally {
+                editBusy.value = false
+            }
+        }
+
+    fun removeStage(legIndex: Int) = viewModelScope.launch {
+        val ok = graph.tripManager.removeLeg(legIndex)
+        editMessage.value = if (ok) "Stage removed." else "Only a stage you haven't started can be removed."
+    }
+
+    @Suppress("DEPRECATION")
+    private suspend fun resolvePlace(text: String): GeoPoint? {
+        val query = text.trim()
+        if (query.length < 2) return null
+        PlaceSearch().search(query).firstOrNull()?.let { return it.point }
+        return withContext(Dispatchers.IO) {
+            try {
+                Geocoder(graph.appContext).getFromLocationName(query, 1)
+                    ?.firstOrNull()?.let { GeoPoint(it.latitude, it.longitude) }
+            } catch (_: Exception) { null }
+        }
+    }
+
+    // ---- closing the journey ----------------------------------------------
+
+    /**
+     * The analysed picture of the journey so far, for the review shown before
+     * closure. Recomputed on demand: the traveller is about to publish these
+     * numbers to everyone watching, so they must be current.
+     */
+    suspend fun buildReport(): JourneyAnalytics.JourneyReport? {
+        val t = graph.db.tripDao().byId(tripId) ?: return null
+        val st = graph.db.stateDao().byId(tripId)
+        val events = graph.db.eventDao().allForTrip(tripId).map { com.trippulse.app.data.EventCodec.toDomain(it) }
+        val samples = graph.db.locationDao().allForTrip(tripId)
+        val expense = graph.db.expenseDao().allForTrip(tripId).map {
+            JourneyAnalytics.ExpenseInput(it.type, it.item, it.amount, it.quantity, it.unit, it.tMs)
+        }
+        val legRows = graph.db.legDao().forTrip(tripId).map {
+            JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs)
+        }
+        return JourneyAnalytics.analyse(
+            JourneyAnalytics.Inputs(
+                events = events,
+                distanceCoveredM = st?.distanceCoveredM ?: 0.0,
+                startedAtMs = t.startedAtMs ?: t.createdAtMs,
+                endedAtMs = System.currentTimeMillis(),
+                expenses = expense,
+                legs = legRows,
+                transportMode = t.transportMode,
+                topSpeedKmh = samples.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6)
+            )
+        )
+    }
+
+    // ---- sending the timeline to the circle -------------------------------
+
+    /** People the finished timeline can be sent to, and the file to send. */
+    val sendRecipients = MutableStateFlow<List<TimelineDelivery.Recipient>>(emptyList())
+    val timelinePdf = MutableStateFlow<java.io.File?>(null)
+    val sendMessage = MutableStateFlow("")
+
+    val whatsAppEnabled: Boolean get() = graph.settings.current.shareTimelineOnWhatsApp
+    val whatsAppAvailable: Boolean get() = TimelineDelivery.isAvailable(graph.appContext)
+
+    /**
+     * Ends the journey after the traveller has reviewed it.
+     *
+     * [closingNote] is appended to the timeline first, so the document everyone
+     * receives is the one that was just verified — and because nothing can be
+     * edited after completion, this is the traveller's last chance to add it.
+     *
+     * When timeline sharing is on, the PDF is built immediately afterwards so
+     * that "as soon as I mark it complete" means exactly that: by the time the
+     * send sheet appears, the document already exists.
+     */
+    fun complete(closingNote: String? = null, onDone: (Boolean) -> Unit = {}) = viewModelScope.launch {
+        graph.tripManager.completeTrip(closingNote)
+        val prepared = if (whatsAppEnabled) prepareTimelineForSending() else false
+        onDone(prepared)
+    }
+
+    /** Builds the timeline PDF and resolves who it can go to. */
+    private suspend fun prepareTimelineForSending(): Boolean {
+        val recipients = TimelineDelivery.recipients(graph.appContext)
+        val t = graph.db.tripDao().byId(tripId) ?: return false
+        val r = buildReport() ?: return false
+        val ev = graph.db.eventDao().allForTrip(tripId)
+        val doc = JourneyDocuments.timeline(t, ev, r, graph.measures())
+        val file = runCatching { JourneyPdf.write(graph.appContext, doc) }.getOrNull() ?: return false
+
+        sendRecipients.value = recipients
+        timelinePdf.value = file
+        sendMessage.value = TimelineDelivery.buildMessage(
+            travellerName = Profile.name(graph.appContext).ifBlank { null },
+            origin = t.originName,
+            destination = t.destName
+        )
+        return recipients.isNotEmpty()
+    }
+
+    /** WhatsApp, pre-addressed to one person. Null when WhatsApp isn't installed. */
+    fun sendIntentFor(recipient: TimelineDelivery.Recipient): android.content.Intent? {
+        val pdf = timelinePdf.value ?: return null
+        return TimelineDelivery.intentFor(graph.appContext, recipient, pdf, sendMessage.value)
+    }
+
+    /** The ordinary share sheet, when WhatsApp isn't an option. */
+    fun fallbackSendIntent(): android.content.Intent? {
+        val pdf = timelinePdf.value ?: return null
+        return TimelineDelivery.fallbackIntent(graph.appContext, pdf, sendMessage.value)
+    }
 
     companion object {
         fun factory(tripId: String) = viewModelFactory { initializer { DriverVm(graphOf(this), tripId) } }
@@ -748,17 +958,67 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         graph.db.expenseDao().flowForTrip(tripId)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
+    /** The analysed journey — the same object the dashboard and the PDFs use. */
+    val report = MutableStateFlow<JourneyAnalytics.JourneyReport?>(null)
+
+    /** Distances, speeds and money in the traveller's own units. */
+    val measures: Measures get() = graph.measures()
+
     /** Last export produced, so the screen can offer to share it again. */
     val lastExport = MutableStateFlow<java.io.File?>(null)
     val exporting = MutableStateFlow(false)
 
+    /** A finished journey is a record: nothing on this screen may be edited. */
+    val editable: Boolean get() = graph.tripManager.isEditable(trip.value)
+
     init {
         viewModelScope.launch {
-            trip.value = graph.db.tripDao().byId(tripId)
-            events.value = graph.db.eventDao().allForTrip(tripId)
-            samples.value = graph.db.locationDao().allForTrip(tripId)
-            legs.value = graph.db.legDao().forTrip(tripId)
+            val t = graph.db.tripDao().byId(tripId)
+            val ev = graph.db.eventDao().allForTrip(tripId)
+            val sp = graph.db.locationDao().allForTrip(tripId)
+            val lg = graph.db.legDao().forTrip(tripId)
+            trip.value = t
+            events.value = ev
+            samples.value = sp
+            legs.value = lg
+            if (t != null) recompute(t, ev, sp, lg)
         }
+        // Costs can still be added to a journey that is running, so the
+        // dashboard follows them.
+        viewModelScope.launch {
+            expenses.collect { list ->
+                val t = trip.value ?: return@collect
+                recompute(t, events.value, samples.value, legs.value, list)
+            }
+        }
+    }
+
+    private suspend fun recompute(
+        t: ActiveTripEntity,
+        ev: List<EventEntity>,
+        sp: List<LocationSampleEntity>,
+        lg: List<TripLegEntity>,
+        expenseRows: List<ExpenseEntity> = graph.db.expenseDao().allForTrip(tripId)
+    ) {
+        val state = graph.db.stateDao().byId(tripId)
+        report.value = JourneyAnalytics.analyse(
+            JourneyAnalytics.Inputs(
+                events = ev.map { com.trippulse.app.data.EventCodec.toDomain(it) },
+                distanceCoveredM = state?.distanceCoveredM ?: 0.0,
+                startedAtMs = t.startedAtMs ?: t.createdAtMs,
+                endedAtMs = t.completedAtMs ?: System.currentTimeMillis(),
+                expenses = expenseRows.map {
+                    JourneyAnalytics.ExpenseInput(it.type, it.item, it.amount, it.quantity, it.unit, it.tMs)
+                },
+                legs = lg.map {
+                    JourneyAnalytics.LegInput(
+                        it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs
+                    )
+                },
+                transportMode = t.transportMode,
+                topSpeedKmh = sp.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6)
+            )
+        )
     }
 
     companion object {
@@ -806,6 +1066,28 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
     fun setThemeMode(mode: String) = graph.settings.update { it.copy(themeMode = mode) }
 
     fun setCheckForUpdates(on: Boolean) = graph.settings.update { it.copy(checkForUpdates = on) }
+
+    fun setUnitPreference(p: UnitPreference) = graph.settings.update { it.copy(unitPreference = p) }
+
+    /** Blank means "follow wherever I am", which is the default. */
+    fun setCurrencyCode(code: String) =
+        graph.settings.update { it.copy(currencyCode = code.trim().uppercase()) }
+
+    fun setShareTimelineOnWhatsApp(on: Boolean) =
+        graph.settings.update { it.copy(shareTimelineOnWhatsApp = on) }
+
+    /** What the app has worked out for this device right now, for display. */
+    fun detectedRegionSummary(): String {
+        val country = graph.region.countryCode()
+        val m = graph.measures()
+        val where = country ?: "your device settings"
+        return "Detected $where — showing ${m.distanceUnit} and ${m.money.symbol}${m.money.code}."
+    }
+
+    val whatsAppAvailable: Boolean
+        get() = com.trippulse.app.data.share.TimelineDelivery.isAvailable(graph.appContext)
+
+    fun circleSize(): Int = com.trippulse.app.data.share.TimelineDelivery.recipients(graph.appContext).size
 
     fun checkForUpdateNow() = viewModelScope.launch {
         checkingUpdate.value = true

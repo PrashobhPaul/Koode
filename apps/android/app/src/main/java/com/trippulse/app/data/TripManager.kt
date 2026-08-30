@@ -284,6 +284,164 @@ class TripManager(
     }
 
     // -----------------------------------------------------------------------
+    // Editing a journey while it is running
+    // -----------------------------------------------------------------------
+
+    /**
+     * Whether this journey can still be changed.
+     *
+     * A completed journey is a record, and a record that can be edited after
+     * the fact is worth nothing to the people who were watching it: the
+     * timeline they followed and the summary they were sent must stay the
+     * thing that actually happened. Every mutating entry point below asks this
+     * first, so there is no path to a post-completion edit — not through the
+     * UI, not through a stale screen still holding an old view model.
+     */
+    fun isEditable(t: ActiveTripEntity?): Boolean =
+        t != null && !t.endedByOwner && t.status != "COMPLETED" && t.status != "EXPIRED"
+
+    private fun editableTrip(): ActiveTripEntity? = trip?.takeIf { isEditable(it) }
+
+    /**
+     * Adds a stage to a journey that is already under way.
+     *
+     * This is the "my plans changed" case, and it is common: someone takes the
+     * train to Bangalore intending to stop there, then decides to carry on to
+     * Hyderabad by bus. Appending a leg mid-journey keeps that as one story
+     * for everyone following, instead of forcing a second journey with new
+     * credentials that the family would have to be re-invited to.
+     */
+    suspend fun appendLeg(leg: NewLeg): Boolean = lock.withLock {
+        val t = editableTrip() ?: return@withLock false
+        val now = System.currentTimeMillis()
+        val nextIndex = (legs.maxOfOrNull { it.legIndex } ?: -1) + 1
+        val row = TripLegEntity(
+            tripId = t.tripId, legIndex = nextIndex, mode = leg.mode,
+            fromName = leg.fromName, fromLat = leg.from.lat, fromLng = leg.from.lng,
+            toName = leg.toName, toLat = leg.to.lat, toLng = leg.to.lng,
+            fuelType = if (TransportCatalog.isPrivate(leg.mode)) leg.fuelType else null,
+            plannedDepartureMs = leg.plannedDepartureMs,
+            startedAtMs = null, completedAtMs = null,
+            bookingRef = leg.bookingRef, seat = leg.seat, boardingPoint = leg.boardingPoint
+        )
+        db.legDao().upsert(row)
+        legs = db.legDao().forTrip(t.tripId)
+
+        // The journey's destination is wherever its last stage ends.
+        val updated = t.copy(
+            destName = leg.toName, destLat = leg.to.lat, destLng = leg.to.lng,
+            totalRouteDistanceM = t.totalRouteDistanceM +
+                Geo.haversineM(leg.from, leg.to) * cfg.roadDistanceFactor,
+            arrivedAtMs = null
+        )
+        db.tripDao().update(updated)
+        trip = updated
+        arrivalPromptShown = false
+
+        insertEvent(
+            t.tripId, EventTypes.LEG_STARTED, EventSource.DRIVER_MANUAL, now, leg.from.lat, leg.from.lng,
+            mapOf(
+                "legIndex" to nextIndex, "mode" to leg.mode,
+                "from" to leg.fromName, "to" to leg.toName, "planned" to true,
+                "text" to "Added a stage: ${leg.fromName} → ${leg.toName}"
+            ), false
+        )
+
+        var s = state
+        if (s != null) {
+            s = s.copy(arrivalPromptDue = false, updatedAtMs = now)
+            persistAndPush(updated, s, force = true)
+            state = s
+        }
+        if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
+        true
+    }
+
+    /** Renames or re-points a stage that has not been travelled yet. */
+    suspend fun updateLeg(
+        legIndex: Int, mode: String, toName: String, to: GeoPoint, fuelType: String?
+    ): Boolean = lock.withLock {
+        val t = editableTrip() ?: return@withLock false
+        val existing = legs.firstOrNull { it.legIndex == legIndex } ?: return@withLock false
+        // A completed stage is history; only the current and future ones move.
+        if (existing.completedAtMs != null) return@withLock false
+        val now = System.currentTimeMillis()
+
+        db.legDao().upsert(
+            existing.copy(
+                mode = mode, toName = toName, toLat = to.lat, toLng = to.lng,
+                fuelType = if (TransportCatalog.isPrivate(mode)) fuelType else null
+            )
+        )
+        legs = db.legDao().forTrip(t.tripId)
+
+        val last = legs.maxByOrNull { it.legIndex }
+        val updated = t.copy(
+            destName = last?.toName ?: toName,
+            destLat = last?.toLat ?: to.lat,
+            destLng = last?.toLng ?: to.lng,
+            transportMode = if (legIndex == t.activeLegIndex) mode else t.transportMode,
+            fuelType = if (legIndex == t.activeLegIndex && TransportCatalog.isPrivate(mode)) fuelType else t.fuelType,
+            arrivedAtMs = null
+        )
+        db.tripDao().update(updated)
+        trip = updated
+        arrivalPromptShown = false
+
+        if (legIndex == t.activeLegIndex) {
+            // The road ahead changed: refetch it and forget where we were.
+            deviation = RouteDeviationDetector(cfg)
+            currentRoute = routing.route(GeoPoint(existing.fromLat, existing.fromLng), to)
+            routeFetchedAtMs = now
+        }
+
+        insertEvent(
+            t.tripId, EventTypes.DESTINATION_CHANGED, EventSource.DRIVER_MANUAL, now, to.lat, to.lng,
+            mapOf("legIndex" to legIndex, "destination" to toName, "mode" to mode), false
+        )
+
+        var s = state
+        if (s != null) {
+            val remM = remainingDistanceM(GeoPoint(s.lat ?: t.originLat, s.lng ?: t.originLng))
+            s = recomputeEta(updated, s, remainingTravelSeconds(remM), remM, now)
+                .copy(arrivalPromptDue = false, updatedAtMs = now)
+            persistAndPush(updated, s, force = true)
+            state = s
+        }
+        if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
+        onSamplingChanged?.invoke()
+        true
+    }
+
+    /** Drops a stage that has not started yet. */
+    suspend fun removeLeg(legIndex: Int): Boolean = lock.withLock {
+        val t = editableTrip() ?: return@withLock false
+        val existing = legs.firstOrNull { it.legIndex == legIndex } ?: return@withLock false
+        if (existing.startedAtMs != null || legIndex <= t.activeLegIndex) return@withLock false
+        if (legs.size <= 1) return@withLock false
+
+        db.legDao().deleteForTrip(t.tripId)
+        // Re-index so the remaining stages stay a contiguous 0..n sequence,
+        // which every consumer of activeLegIndex relies on.
+        val remaining = legs.filter { it.legIndex != legIndex }
+            .sortedBy { it.legIndex }
+            .mapIndexed { index, leg -> leg.copy(legIndex = index) }
+        db.legDao().upsertAll(remaining)
+        legs = db.legDao().forTrip(t.tripId)
+
+        val last = legs.maxByOrNull { it.legIndex }
+        val updated = t.copy(
+            destName = last?.toName ?: t.destName,
+            destLat = last?.toLat ?: t.destLat,
+            destLng = last?.toLng ?: t.destLng
+        )
+        db.tripDao().update(updated)
+        trip = updated
+        if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
+        true
+    }
+
+    // -----------------------------------------------------------------------
     // Hybrid journeys: moving from one leg to the next
     // -----------------------------------------------------------------------
 
@@ -292,7 +450,7 @@ class TripManager(
      * and the sampling cadence all follow the new leg's mode of transport.
      */
     suspend fun advanceToNextLeg() = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
         val nextIndex = t.activeLegIndex + 1
@@ -496,7 +654,7 @@ class TripManager(
      * row is therefore only written when [TransportProfile.wellbeingIsBreak].
      */
     suspend fun submitCheckpoint(c: Checkpoint) = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         if (c.isEmpty) return@withLock
         val now = System.currentTimeMillis()
@@ -596,7 +754,7 @@ class TripManager(
     }
 
     suspend fun skipCheckpoint() = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
         insertEvent(t.tripId, EventTypes.BREAK_CHECKPOINT_SKIPPED, EventSource.DRIVER_MANUAL, now, s.lat, s.lng, emptyMap(), false)
@@ -607,7 +765,7 @@ class TripManager(
 
     /** type: HOTEL | HOME | FAMILY | VEHICLE | CONTINUING */
     suspend fun answerOvernight(type: String) = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
         if (type == "CONTINUING") {
@@ -634,7 +792,7 @@ class TripManager(
      * without the viewer needing to know the mode.
      */
     suspend fun addQuickNote(type: String, text: String?) = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         val s = state ?: return@withLock
         val now = System.currentTimeMillis()
         val sensitive = EventTypes.isSensitiveByDefault(type)
@@ -646,7 +804,7 @@ class TripManager(
     }
 
     suspend fun activateSos() = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
         insertEvent(t.tripId, EventTypes.SOS_ACTIVATED, EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
@@ -659,7 +817,7 @@ class TripManager(
     }
 
     suspend fun resolveSos() = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
         insertEvent(t.tripId, EventTypes.SOS_RESOLVED, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng, emptyMap(), false)
@@ -669,7 +827,7 @@ class TripManager(
     }
 
     suspend fun pause() = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
         transition(s, JourneyInput.PAUSE)?.let { s = s.copy(journey = it.name) }
@@ -679,7 +837,7 @@ class TripManager(
     }
 
     suspend fun resume() = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
         transition(s, JourneyInput.RESUME)?.let { s = s.copy(journey = it.name) }
@@ -689,7 +847,7 @@ class TripManager(
     }
 
     suspend fun changeDestination(destName: String, dest: GeoPoint) = lock.withLock {
-        val t0 = trip ?: return@withLock
+        val t0 = editableTrip() ?: return@withLock
         val now = System.currentTimeMillis()
         var s = state ?: return@withLock
         val from = GeoPoint(s.lat ?: t0.originLat, s.lng ?: t0.originLng)
@@ -711,7 +869,7 @@ class TripManager(
 
     /** Dismiss the "you seem to have arrived" prompt without ending anything. */
     suspend fun dismissArrivalPrompt() = lock.withLock {
-        val t = trip ?: return@withLock
+        val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         s = s.copy(arrivalPromptDue = false, updatedAtMs = System.currentTimeMillis())
         persistAndPush(t, s); state = s
@@ -725,10 +883,12 @@ class TripManager(
      * the traveller's to close, because everyone watching reads "ended" as
      * "they're safe and home", and the app must never say that on its own.
      */
-    suspend fun completeTrip() = lock.withLock {
-        val t = trip ?: return@withLock
+    suspend fun completeTrip(closingNote: String? = null) = lock.withLock {
+        // Idempotent: a double tap, or a screen that lingered, must not append
+        // a second completion to a journey that is already closed.
+        val t = editableTrip() ?: return@withLock
         val s = state ?: return@withLock
-        completeInternal(t, s, System.currentTimeMillis())
+        completeInternal(t, s, System.currentTimeMillis(), closingNote)
     }
 
     // -----------------------------------------------------------------------
@@ -960,9 +1120,20 @@ class TripManager(
         insertEvent(t.tripId, type, EventSource.DRIVER_CONFIRMATION, now, lat, lng, payload, false)
     }
 
-    private suspend fun completeInternal(t: ActiveTripEntity, s0: TripStateEntity, now: Long) {
+    private suspend fun completeInternal(
+        t: ActiveTripEntity, s0: TripStateEntity, now: Long, closingNote: String? = null
+    ) {
         var s = s0
         transition(s, JourneyInput.COMPLETE)?.let { s = s.copy(journey = it.name) }
+
+        // The traveller's last word, recorded before the summary so it lands
+        // in the timeline everyone (and the exported PDF) reads.
+        if (!closingNote.isNullOrBlank()) {
+            insertEvent(
+                t.tripId, EventTypes.QUICK_NOTE, EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
+                mapOf("text" to closingNote.trim()), false
+            )
+        }
 
         val events = db.eventDao().allForTrip(t.tripId).map { EventCodec.toDomain(it) }
         val started = t.startedAtMs ?: t.createdAtMs

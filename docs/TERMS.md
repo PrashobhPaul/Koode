@@ -24,7 +24,7 @@
 
 5. **Data.** Handled as described in the [Privacy Policy](PRIVACY.md) —
    in short: no accounts, no ads, no analytics, journey data self-destructs
-   30 minutes after arrival, and everything else stays on your phone.
+   one hour after you end the journey, and everything else stays on your phone.
 
 6. **Open source.** Koode's source code is public. Contributions are welcome;
    the software is distributed in the hope that it is useful, without

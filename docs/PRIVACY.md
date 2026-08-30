@@ -30,10 +30,12 @@ Privacy is a design constraint, not a setting.
 
 ## Automatic deletion
 
-Every journey **self-destructs**: 30 minutes after you reach your
-destination, viewer access is cut off and all of the journey's cloud data —
-location trail, events, live state, viewer names — is permanently deleted
-from the backend. What remains afterwards exists only on your own phone,
+Every journey **self-destructs**: one hour after *you end the journey* —
+never merely because you arrived, and never because the app decided — viewer
+access is cut off and all of the journey's cloud data (location trail, events,
+live state, viewer names) is permanently deleted from the backend. The hour
+exists so that someone who was asleep or on a plane can still open the link
+and see that you got there safely. What remains afterwards exists only on your own phone,
 under your control, until you delete it in the app.
 
 ## Wellbeing information is factual, not medical

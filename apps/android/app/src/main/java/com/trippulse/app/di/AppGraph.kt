@@ -1,6 +1,7 @@
 package com.trippulse.app.di
 
 import android.content.Context
+import com.trippulse.app.core.RegionDetector
 import com.trippulse.app.core.SettingsStore
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.ViewerRepository
@@ -13,6 +14,7 @@ import com.trippulse.app.data.routing.RoutingProvider
 import com.trippulse.app.data.sync.ConnectivityObserver
 import com.trippulse.app.data.sync.SyncEngine
 import com.trippulse.app.data.update.UpdateChecker
+import com.trippulse.app.domain.Measures
 import com.trippulse.app.domain.TripConfig
 import com.trippulse.app.notifications.Notifier
 import kotlinx.coroutines.CoroutineScope
@@ -33,8 +35,28 @@ class AppGraph(context: Context) {
 
     val db: TripPulseDb = TripPulseDb.get(appContext)
 
-    /** User-tunable behaviour (location cadence, refresh rate, theme). */
+    /** User-tunable behaviour (location cadence, refresh rate, theme, units). */
     val settings: SettingsStore = SettingsStore(appContext)
+
+    /** Which country the traveller is in, for currency and units. */
+    val region: RegionDetector = RegionDetector(appContext)
+
+    /**
+     * How to render distances, speeds and money right now.
+     *
+     * Resolved on demand rather than cached, because the two things it depends
+     * on — the user's setting and the country their phone can see — can both
+     * change mid-session, and a journey that crosses a border should price
+     * itself correctly on the far side.
+     */
+    fun measures(refreshRegion: Boolean = false): Measures {
+        val s = settings.current
+        return Measures.resolve(
+            countryCode = region.countryCode(refresh = refreshRegion),
+            unitPreference = s.unitPreference,
+            currencyOverride = s.currencyCode.ifBlank { null }
+        )
+    }
 
     val connectivity: ConnectivityObserver = ConnectivityObserver(appContext)
 

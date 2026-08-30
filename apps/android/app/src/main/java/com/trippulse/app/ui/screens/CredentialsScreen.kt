@@ -41,6 +41,7 @@ import com.trippulse.app.TripPulseApp
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.data.local.ActiveTripEntity
 import com.trippulse.app.service.TripTrackingService
+import com.trippulse.app.ui.Links
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
@@ -50,12 +51,6 @@ import com.trippulse.app.ui.components.SecondaryButton
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Spacing
 import kotlinx.coroutines.launch
-
-/** Where the browser viewer is published, for people without the app. */
-const val WEB_VIEWER_URL = "https://prashobhpaul.github.io/Koode/"
-
-/** Where a new follower can install the app. */
-const val APK_URL = "https://github.com/PrashobhPaul/Koode/releases/latest/download/Koode.apk"
 
 /**
  * The hand-off screen: the two numbers that let someone follow this journey,
@@ -120,10 +115,10 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
         if (includePasscode) appendLine("Passcode: ${t?.secret ?: ""}")
         appendLine()
         appendLine("Watch in any web browser — nothing to install:")
-        appendLine(WEB_VIEWER_URL)
+        appendLine(Links.WEB_VIEWER)
         appendLine()
         appendLine("Or get the Koode app (free):")
-        appendLine(APK_URL)
+        appendLine(Links.APK)
         if (!includePasscode) {
             appendLine()
             append("Open Koode → People → Follow a journey → enter the number and your name. I'll approve you.")
