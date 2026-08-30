@@ -20,21 +20,33 @@ What the family sees is a **reassurance channel**, not a GPS console: *"Prashobh
 
 The traveller's experience is deliberately minimal: **Start journey → forget the app → travel.** Koode works quietly in the background; the people who matter get a few timely notifications — journey started, needs attention, arrived safely.
 
-Private by design: journeys are invitation-only (the owner approves each viewer **by name**), and every journey **self-destructs from the cloud 30 minutes after arrival**. It stays open source and zero-cost end to end.
+Private by design: journeys are invitation-only (the traveller approves each follower **by name**), and a journey's shared copy **self-destructs shortly after the traveller ends it**. It stays open source and zero-cost end to end.
+
+**The rule everything else follows: a journey is over only when its traveller says so.** Not a timer, not a lost signal, not an expiring capability. Anything else — an unreachable server, a flat battery, a tunnel — reads as *"waiting for updates"*, because telling someone waiting at home "journey ended" when it isn't is the exact failure this app exists to prevent.
 
 ---
 
 ## 📲 Download the app
 
-**[⬇️ Download Koode.apk (latest build)](https://github.com/PrashobhPaul/TripPulse/releases/latest/download/Koode.apk)**
+**[⬇️ Download Koode.apk (latest build)](https://github.com/PrashobhPaul/Koode/releases/latest/download/Koode.apk)**
 
-For family & friends who want to follow a trip:
+### Following someone — with the app
 
 1. Open the link above on your Android phone and download `Koode.apk`.
 2. Open the downloaded file and allow **Install from unknown sources** if asked.
-3. Open Koode → **Their journeys** → enter the **Journey ID and your name** (the traveller approves you by name; a shared password gives instant access).
+3. Open Koode → **People** → **Follow a journey** → type the **journey number** and your name.
 
-You'll then see the driver's live position, ETA, breaks and timeline — and get **forced alerts** on your phone when the trip **starts**, on **SOS**, and when the driver **reaches the destination**, even with the app in the background. Joining needs only the **Trip ID and your name — the driver approves each viewer by name** before anything is visible (a password shared by the driver skips the approval step). A trip can run from **any start point to any destination**; the driver types a place, uses their current location, long-presses the map to drop a start or destination pin, or picks a **saved place** (Home, Office, or any custom label) with one tap. For privacy, the trip id **self-destructs 30 minutes after the driver/rider reaches the destination** — viewer access is cut off and the trip's cloud data is deleted.
+The journey number is **8 digits** — the `TP-` in front is printed by the app, not typed — and the passcode, if you were given one, is **6 digits**. No dashes, no letters, nothing a copy-paste can clip. With the passcode you're in immediately; without it the traveller gets a request and approves you by name.
+
+You'll then see their live position, ETA, wellbeing and timeline, and get **forced alerts** when the journey **starts**, on **SOS**, and when they **reach the destination** — even with the app in the background.
+
+### Following someone — without the app
+
+Not everyone will install an APK, and older parents shouldn't have to. Open
+
+**[🌐 koode in your browser](https://prashobhpaul.github.io/Koode/)**
+
+type the same journey number and passcode, and the same live map, timeline and arrival estimate appear. No install, no account, nothing to set up. (Alerts are the one thing only the app can do.)
 
 The whole stack is **fully open source and zero cost**: OpenStreetMap + OSRM for maps/routing (no API keys) and Supabase (open-source Postgres, free tier) for live sharing — no Google Maps, no Firebase, no billing accounts anywhere.
 
@@ -49,11 +61,15 @@ This repository is the working implementation of the product/engineering plan in
 - **Android app** (`apps/android/`) — Kotlin, Jetpack Compose, single `:app` module, manual DI.
   - Foreground-service GPS tracking with adaptive sampling and Activity-Recognition corroboration.
   - Local-first **event log** (Room) + **current-state snapshot** + **two-lane sync** (live state first, historical backlog second).
-  - Journey **state machine**, **stop detection** (traffic-light-safe), **break checkpoints**, **overnight** flow, **SOS** (offline-safe), **quick notes** (passenger/medicine, medicine treated as sensitive), **route deviation**, **trip replay**, **trip summary**.
+  - Journey **state machine**, **stop detection** (traffic-light-safe), **break checkpoints**, **overnight** flow, **SOS** (offline-safe), **quick notes**, **route deviation**, inline **journey playback**, **journey summary**.
+  - **Transport rule engine** (`domain/Transport.kt`) — one catalog of per-mode profiles decides break prompts, deviation, refuelling questions, sampling cadence and quick actions, so no screen has to ask "is this a train?".
+  - **Hybrid journeys** — a journey is a list of legs, each with its own mode; the rule set switches when the vehicle does.
+  - **PDF export** of the timeline and the money tracker: flat, watermarked, generated on device.
   - Realistic **ETA engine**: route travel time + future break budget + uncertainty, presented as a *range* with an explainable breakdown.
   - **Freshness** model for viewers: `LIVE / RECENT / STALE / OFFLINE / COMPLETED` — a stale location is never shown as live.
 - **Supabase backend** (`supabase/schema.sql`) — the ENTIRE server side in one SQL file: capability-token security (only the creating driver device can write; viewers are read-only), expiry-gated reads, and self-destruction of expired trips. No functions, no auth service, no push infrastructure.
-- **CI** (`.github/workflows/`) — builds the debug APK and runs unit tests on every push/PR.
+- **Browser viewer** (`web/`) — a single static page, no build step, that derives the same capability with WebCrypto and calls the same read-only RPCs. Published to GitHub Pages.
+- **CI** (`.github/workflows/`) — builds the debug APK and runs unit tests on every push/PR, and publishes the browser viewer.
 - **Docs** (`docs/`) — the full spec plus setup/architecture/testing/release guides.
 
 ---
@@ -64,10 +80,11 @@ The app runs immediately in **local mode** with no backend: full on-device track
 
 | Capability | Local mode | Cloud mode |
 |---|---|---|
-| Driver tracking, stop/break detection, ETA, replay, summary | ✅ | ✅ |
-| Remote viewers (Trip ID + password) | — | ✅ |
+| Tracking, stop/break detection, ETA, playback, summary, PDF export | ✅ | ✅ |
+| Remote followers (journey number + passcode) | — | ✅ |
+| Browser viewer | — | ✅ |
 | Live state + historical backlog sync | — | ✅ |
-| Forced start/SOS/arrival alerts on viewer phones | — | ✅ |
+| Forced start/SOS/arrival alerts on followers' phones | — | ✅ |
 
 See **`docs/SUPABASE_SETUP.md`** to enable cloud mode (one-time, ~5 minutes, free). The live map needs no setup at all — it renders OpenStreetMap tiles via osmdroid, and routing uses the free OSRM public server (**`docs/MAPS_SETUP.md`**).
 

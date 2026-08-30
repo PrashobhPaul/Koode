@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -300,7 +301,10 @@ class TripCloud(private val appContext: Context) {
         accessKey: String,
         nextDelayMs: (List<Map<String, Any?>>?) -> Long
     ): Flow<List<Map<String, Any?>>> =
-        pollingFlow(nextDelayMs) { fetchEventsSince(accessKey, 0L) ?: emptyList() }
+        // A failed read stays null all the way through the polling loop so the
+        // backoff can see it, and only becomes an empty list at the very edge.
+        pollingFlow(nextDelayMs) { fetchEventsSince(accessKey, 0L) }
+            .map { it ?: emptyList() }
 
     /**
      * Emits, then waits for however long the caller says this result is worth.
