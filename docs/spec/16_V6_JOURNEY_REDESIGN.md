@@ -207,3 +207,105 @@ arrival estimate. The passcode never leaves the browser; only the hash is sent.
 It obeys the same rules as the app: it never says "ended" without a positive
 completion signal, it keeps the last known picture on screen when a read fails,
 and it scales its own polling to what is happening.
+
+---
+
+## 9. Understanding the journey, not just recording it
+
+Collecting events is the easy half; the half that matters is answering "how did
+that go?" without the reader doing arithmetic.
+
+`domain/JourneyAnalytics.kt` produces one `JourneyReport` covering time (moving
+vs stopped, and the ratio between them), pace (average moving speed against
+door-to-door speed — the gap is what stops cost you), breaks (count, cadence,
+longest gap, longest unbroken stretch), wellbeing by kind, and money (by
+category with each share, per kilometre, per hour, fuel efficiency).
+
+On top of the numbers it produces **insights**: short factual sentences derived
+from the data. Three rules govern anything added there — it must be derivable,
+it must be factual, and it must be worth reading. "83% of the journey was spent
+moving." "Breaks came about every 2h." "Fuel was 75% of what the journey cost."
+Never praise, never scolding: a journey record, not a report card.
+
+One report feeds the summary dashboard, the pre-closure review and both PDFs, so
+the screen and the document a follower receives can never disagree.
+
+---
+
+## 10. Currency and units, worked out rather than assumed
+
+A traveller in Kerala should see kilometres and ₹; one in Texas should see miles
+and $. Neither should configure anything, and neither should be shown the
+other's units because the app was written somewhere else. This needs no model —
+a country code and a lookup table (`domain/Units.kt`, `core/RegionDetector.kt`).
+
+Detection order, and the reason for it: the **mobile network's** country first,
+because a phone bought in Kerala and carried to Dubai should price a journey in
+dirhams while it is there; then the **SIM**; then the **device locale**. No
+permission, no network call.
+
+Currency comes from the JDK's own ISO tables rather than a list we would have to
+maintain, with a symbol table only for the currencies our travellers actually
+meet (the JDK returns "INR" rather than "₹" in many locales, which reads badly
+next to a number). Imperial units are a four-entry exception — US, GB, LR, MM —
+because Britain is metric everywhere except the road.
+
+Both are overridable in Settings and default to auto.
+
+---
+
+## 11. Editing a journey while it runs — and never after
+
+Plans change more often mid-journey than at the start. Someone takes the train
+to Bangalore intending to stop there and decides to carry on to Hyderabad by
+bus. `TripManager.appendLeg` / `updateLeg` / `removeLeg` keep that as **one**
+journey, rather than forcing a second one with new credentials that the family
+would have to be re-invited to. A finished stage is history and refuses to
+change; the current and future ones move.
+
+Inviting someone is on the live journey card for the same reason — remembering a
+person halfway through ("send it to my sister too") is the normal case, and it
+should not mean hunting back to a screen shown once at the start.
+
+**After completion, nothing is editable by anyone.** Every mutating entry point
+in `TripManager` calls `editableTrip()` first, so there is no path to a
+post-completion edit — not through the UI, not through a stale screen still
+holding an old view model. The timeline everyone followed and the summary they
+were sent have to stay the thing that actually happened.
+
+---
+
+## 12. The review before closure
+
+Ending a journey is the one irreversible action in the app: it publishes a
+summary to everyone watching, it may put a document on their phones, and nothing
+can be changed afterwards. So it gets a review — the same analysed dashboard
+everyone else will see, a chance to add a missed expense or a closing note, and
+only then a confirmation.
+
+The closing note is inserted into the timeline *before* the completion event, so
+the document that goes out is the one that was just verified.
+
+---
+
+## 13. Sending the timeline on WhatsApp
+
+Opt-in, off by default: it puts a message into other people's hands, and that is
+never something an app should start doing on its own.
+
+**What is possible, stated honestly.** Android gives no app the ability to send
+a WhatsApp message on someone's behalf without them seeing it — and it should
+not; an app that could silently message your contacts from your account is not
+one anybody should install. What Koode does instead is prepare the message
+completely: build the PDF, address it to one recipient (`jid` extra), write the
+covering text, and open WhatsApp on that conversation. The traveller taps send.
+One tap per person, and it genuinely comes from them.
+
+**What goes.** The timeline only. Costs are never attached, never summarised and
+never mentioned — see `TimelineDelivery.buildMessage`. The money PDF exists and
+is shared by hand from the summary screen, by nothing automatic.
+
+**Who it goes to.** The circle: emergency contacts, who are both the people a
+journey is shared with by default and the only followers whose phone number the
+app holds. Someone who joined with a journey number alone has never given us a
+number to message.
