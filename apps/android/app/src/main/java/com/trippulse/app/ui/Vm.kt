@@ -981,7 +981,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
             events.value = ev
             samples.value = sp
             legs.value = lg
-            if (t != null) recompute(t, ev, sp, lg)
+            if (t != null) recompute(t, ev, sp, lg, graph.db.expenseDao().allForTrip(tripId))
         }
         // Costs can still be added to a journey that is running, so the
         // dashboard follows them.
@@ -993,12 +993,17 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         }
     }
 
+    /**
+     * Re-runs the analysis. Expenses are passed in rather than defaulted to a
+     * read, because a default parameter value cannot call a suspend function —
+     * and because the caller usually already has the list in hand.
+     */
     private suspend fun recompute(
         t: ActiveTripEntity,
         ev: List<EventEntity>,
         sp: List<LocationSampleEntity>,
         lg: List<TripLegEntity>,
-        expenseRows: List<ExpenseEntity> = graph.db.expenseDao().allForTrip(tripId)
+        expenseRows: List<ExpenseEntity>
     ) {
         val state = graph.db.stateDao().byId(tripId)
         report.value = JourneyAnalytics.analyse(
