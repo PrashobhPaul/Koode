@@ -38,12 +38,16 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TripPulse">
+        android:theme="@style/Theme.Koode">
 
+        <!-- The launcher activity wears the splash theme; the platform hands
+             over to Theme.Koode (postSplashScreenTheme) once the first frame
+             is ready, so a cold start never shows an empty window. -->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:theme="@style/Theme.Koode.Splash"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
