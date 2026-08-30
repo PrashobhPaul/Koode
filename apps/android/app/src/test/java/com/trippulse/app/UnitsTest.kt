@@ -17,8 +17,8 @@ class UnitsTest {
 
     @Test fun india_gets_rupees_and_kilometres() {
         val m = Measures.resolve("IN")
-        assertEquals("INR", m.money.code)
-        assertEquals("₹", m.money.symbol)
+        assertEquals("INR", m.currency.code)
+        assertEquals("₹", m.currency.symbol)
         assertEquals(UnitSystem.METRIC, m.units)
         assertEquals("km", m.distanceUnit)
         assertEquals("km/h", m.speedUnit)
@@ -26,8 +26,8 @@ class UnitsTest {
 
     @Test fun the_united_states_gets_dollars_and_miles() {
         val m = Measures.resolve("US")
-        assertEquals("USD", m.money.code)
-        assertEquals("$", m.money.symbol)
+        assertEquals("USD", m.currency.code)
+        assertEquals("$", m.currency.symbol)
         assertEquals(UnitSystem.IMPERIAL, m.units)
         assertEquals("mi", m.distanceUnit)
         assertEquals("mph", m.speedUnit)
@@ -35,26 +35,26 @@ class UnitsTest {
 
     @Test fun the_eurozone_gets_euros_and_kilometres() {
         val m = Measures.resolve("DE")
-        assertEquals("EUR", m.money.code)
-        assertEquals("€", m.money.symbol)
+        assertEquals("EUR", m.currency.code)
+        assertEquals("€", m.currency.symbol)
         assertEquals(UnitSystem.METRIC, m.units)
     }
 
     /** Britain is the awkward one: metric everywhere except the road. */
     @Test fun britain_gets_pounds_and_miles() {
         val m = Measures.resolve("GB")
-        assertEquals("GBP", m.money.code)
+        assertEquals("GBP", m.currency.code)
         assertEquals(UnitSystem.IMPERIAL, m.units)
     }
 
     @Test fun the_gulf_gets_its_own_currency() {
-        assertEquals("AED", Measures.resolve("AE").money.code)
-        assertEquals("SAR", Measures.resolve("SA").money.code)
+        assertEquals("AED", Measures.resolve("AE").currency.code)
+        assertEquals("SAR", Measures.resolve("SA").currency.code)
     }
 
     @Test fun an_unknown_country_falls_back_to_rupees_rather_than_failing() {
-        assertEquals(MoneyFormat.RUPEE.code, Measures.resolve(null).money.code)
-        assertEquals(MoneyFormat.RUPEE.code, Measures.resolve("ZZ").money.code)
+        assertEquals(MoneyFormat.RUPEE.code, Measures.resolve(null).currency.code)
+        assertEquals(MoneyFormat.RUPEE.code, Measures.resolve("ZZ").currency.code)
     }
 
     // ---- explicit settings win ----
@@ -62,17 +62,17 @@ class UnitsTest {
     @Test fun a_chosen_unit_system_overrides_the_region() {
         val m = Measures.resolve("US", unitPreference = UnitPreference.METRIC)
         assertEquals(UnitSystem.METRIC, m.units)
-        assertEquals("USD", m.money.code)   // currency untouched by the unit choice
+        assertEquals("USD", m.currency.code)   // currency untouched by the unit choice
     }
 
     @Test fun a_pinned_currency_overrides_the_region() {
         val m = Measures.resolve("US", currencyOverride = "INR")
-        assertEquals("INR", m.money.code)
+        assertEquals("INR", m.currency.code)
         assertEquals(UnitSystem.IMPERIAL, m.units)  // units untouched by the currency choice
     }
 
     @Test fun a_nonsense_currency_code_is_ignored_rather_than_crashing() {
-        assertEquals("USD", Measures.resolve("US", currencyOverride = "XYZZY").money.code)
+        assertEquals("USD", Measures.resolve("US", currencyOverride = "XYZZY").currency.code)
     }
 
     // ---- formatting ----
@@ -96,7 +96,7 @@ class UnitsTest {
     /** Yen and similar have no minor unit; printing "¥1,240.00" would be wrong. */
     @Test fun a_zero_decimal_currency_prints_no_decimals() {
         val m = Measures.resolve("JP")
-        assertEquals(0, m.money.fractionDigits)
+        assertEquals(0, m.currency.fractionDigits)
         assertEquals("¥1,240", m.money(1240.0))
     }
 

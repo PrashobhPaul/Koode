@@ -129,7 +129,7 @@ data class MoneyFormat(
  */
 data class Measures(
     val units: UnitSystem,
-    val money: MoneyFormat
+    val currency: MoneyFormat
 ) {
     // ---- distance ----
 
@@ -160,14 +160,14 @@ data class Measures(
 
     /** "₹1,240" / "$18.50" — grouped, and only as precise as the currency is. */
     fun money(amount: Double): String {
-        val digits = money.fractionDigits
+        val digits = currency.fractionDigits
         val formatted = if (digits == 0) String.format(Locale.ENGLISH, "%,.0f", amount)
         else String.format(Locale.ENGLISH, "%,.${digits}f", amount)
-        return "${money.symbol}$formatted"
+        return "${currency.symbol}$formatted"
     }
 
     /** Money with the ISO code, for documents that must be unambiguous. */
-    fun moneyWithCode(amount: Double): String = "${money(amount)} ${money.code}"
+    fun moneyWithCode(amount: Double): String = "${money(amount)} ${currency.code}"
 
     // ---- derived rates ----
 
@@ -233,9 +233,9 @@ data class Measures(
                 UnitPreference.IMPERIAL -> UnitSystem.IMPERIAL
                 UnitPreference.AUTO -> unitsForCountry(countryCode)
             }
-            val money = MoneyFormat.forCode(currencyOverride)
+            val currency = MoneyFormat.forCode(currencyOverride)
                 ?: MoneyFormat.forCountry(countryCode)
-            return Measures(units, money)
+            return Measures(units, currency)
         }
     }
 }

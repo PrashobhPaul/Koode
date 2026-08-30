@@ -176,7 +176,7 @@ object JourneyDocuments {
                 "Journey number: ${trip.tripId}",
                 trip.completedAtMs?.let { "Ended: ${TimeFmt.dateTime(it)}" },
                 "Distance: ${measures.distance(report.distanceM)}",
-                "Currency: ${measures.money.code}"
+                "Currency: ${measures.currency.code}"
             ),
             figures = figures(report, measures, includeMoney = true),
             insights = report.insights.filter { it.contains("cost", ignoreCase = true) },

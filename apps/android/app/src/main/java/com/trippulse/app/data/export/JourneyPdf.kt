@@ -17,7 +17,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
-import java.util.Locale
 
 /**
  * Turns a finished journey into a PDF the traveller can keep, print or send.
@@ -298,7 +297,4 @@ object JourneyPdf {
         private fun clip(text: String, max: Int): String =
             if (text.length <= max) text else text.take(max - 1) + "…"
     }
-
-    /** Formats money the way both the app and its exports show it. */
-    fun money(amount: Double): String = String.format(Locale.ENGLISH, "%,.2f", amount)
 }

@@ -40,10 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.ClipboardManager
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -124,7 +121,6 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     var report by remember { mutableStateOf<JourneyAnalytics.JourneyReport?>(null) }
     val measures = vm.measures
     val context = LocalContext.current
-    val clipboard: ClipboardManager = LocalClipboardManager.current
 
     // The review needs current numbers, not the ones from when the screen
     // opened — the traveller is about to publish them.

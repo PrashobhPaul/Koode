@@ -71,10 +71,22 @@ object TripCredentials {
     fun resolve(rawInput: String): String? {
         val raw = rawInput.trim()
         if (raw.isEmpty()) return null
-        val stripped = raw.removePrefix(PREFIX).removePrefix(PREFIX.lowercase(Locale.ROOT))
-        val hasLetters = stripped.any { it.isLetter() }
-        if (hasLetters) return normalize(raw).takeIf { it.isNotBlank() }
-        val digits = digitsOf(stripped)
+
+        // Strip the prefix in the shapes a real paste arrives in — "TP-",
+        // "tp-", or a bare "TP" where the dash was clipped on the way. Losing
+        // that dash is exactly the failure the numeric format exists to
+        // survive, so it must not fall through to the legacy branch.
+        var body = raw
+        if (body.length >= 2 && body[0].uppercaseChar() == 'T' && body[1].uppercaseChar() == 'P') {
+            body = body.substring(2).trimStart('-', '_', ' ')
+        }
+
+        // Anything still containing letters is a credential from an older
+        // build. Those hash on their original text, so normalise the INPUT,
+        // not the stripped body.
+        if (body.any { it.isLetter() }) return normalize(raw).takeIf { it.isNotBlank() }
+
+        val digits = digitsOf(body)
         return if (digits.isEmpty()) null else PREFIX + digits
     }
 

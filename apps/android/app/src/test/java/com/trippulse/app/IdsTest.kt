@@ -52,6 +52,9 @@ class IdsTest {
 
     @Test fun resolve_accepts_a_clipped_paste_that_lost_the_dash() {
         assertEquals("TP-40381927", TripCredentials.resolve("TP40381927"))
+        assertEquals("TP-40381927", TripCredentials.resolve("tp40381927"))
+        assertEquals("TP-40381927", TripCredentials.resolve("TP_40381927"))
+        assertEquals("TP-40381927", TripCredentials.resolve("TP 4038 1927"))
     }
 
     @Test fun resolve_rejects_nothing_usable() {

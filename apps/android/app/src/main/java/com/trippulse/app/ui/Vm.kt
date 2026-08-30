@@ -1081,7 +1081,7 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
         val country = graph.region.countryCode()
         val m = graph.measures()
         val where = country ?: "your device settings"
-        return "Detected $where — showing ${m.distanceUnit} and ${m.money.symbol}${m.money.code}."
+        return "Detected $where — showing ${m.distanceUnit} and ${m.currency.symbol}${m.currency.code}."
     }
 
     val whatsAppAvailable: Boolean
