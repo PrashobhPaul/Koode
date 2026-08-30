@@ -30,30 +30,46 @@ object InputRules {
             ch.isLetter() || ch == ' ' || ch == '-' || ch == '/' || ch == '&' ||
                 ch == '(' || ch == ')' || ch == '.' || ch == ','
         }
+        // Only the leading edge is trimmed: someone typing "Highway dhaba" has
+        // to be able to type the space after "Highway".
         return cleaned.replace(Regex(" {2,}"), " ").trimStart().take(max)
     }
+
+    /**
+     * The same rules, plus a trailing trim — used at the moment a value is
+     * stored rather than while it is being typed, so nothing is persisted with
+     * a stray space left over from a stripped digit.
+     */
+    fun itemTextForStorage(raw: String, max: Int = ITEM_MAX): String =
+        itemText(raw, max).trim()
 
     /**
      * Money amount: digits with at most one decimal point and two decimals.
      * Never returns a value the parser below would reject.
      */
-    fun amountText(raw: String): String {
+    fun amountText(raw: String): String = decimalText(raw, maxDecimals = 2)
+
+    /**
+     * Quantity (litres / kWh): same shape as an amount but finer, because
+     * "32.456 L" off a fuel receipt is a real number people type.
+     */
+    fun quantityText(raw: String): String = decimalText(raw, maxDecimals = 3)
+
+    /**
+     * Digits with at most one decimal point and [maxDecimals] places after it.
+     *
+     * Extra points are dropped rather than rejected — someone fumbling the
+     * keypad gets a sane number instead of a field that refuses to change.
+     */
+    private fun decimalText(raw: String, maxDecimals: Int, maxWhole: Int = 9): String {
         val filtered = raw.filter { it.isDigit() || it == '.' }
         val firstDot = filtered.indexOf('.')
         val normalized = if (firstDot < 0) filtered else
             filtered.substring(0, firstDot + 1) + filtered.substring(firstDot + 1).filter { it.isDigit() }
         val parts = normalized.split('.')
-        val whole = parts[0].take(9)
-        val fraction = parts.getOrNull(1)?.take(2)
+        val whole = parts[0].take(maxWhole)
+        val fraction = parts.getOrNull(1)?.take(maxDecimals)
         return if (fraction == null) whole else "$whole.$fraction"
-    }
-
-    /** Quantity (litres / kWh): same shape as an amount but up to three decimals. */
-    fun quantityText(raw: String): String {
-        val amount = amountText(raw)
-        val parts = amount.split('.')
-        val fraction = parts.getOrNull(1)
-        return if (fraction == null) parts[0] else "${parts[0]}.${fraction.take(3)}"
     }
 
     /** Parses money that already passed [amountText]; null when not usable. */

@@ -283,7 +283,7 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
         updateLeg(editingLeg.value) { it.copy(to = GeoPoint(place.lat, place.lng), toText = place.name) }
 
     fun savePlace(name: String) {
-        val label = InputRules.itemText(name)
+        val label = InputRules.itemTextForStorage(name)
         if (label.isBlank()) { error.value = "Give the place a name first (e.g. Home, Office)."; return }
         viewModelScope.launch {
             val point = lastDroppedPin ?: currentLocation()
@@ -485,7 +485,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 ExpenseEntity(
                     tripId = tripId, type = type, amount = amount,
                     quantity = quantity, unit = unit, note = note?.ifBlank { null },
-                    tMs = System.currentTimeMillis(), item = InputRules.itemText(item)
+                    tMs = System.currentTimeMillis(), item = InputRules.itemTextForStorage(item)
                 )
             )
         }
@@ -829,7 +829,7 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
     }
 
     fun addPlace(label: String, point: GeoPoint, fallbackName: String) {
-        val name = InputRules.itemText(label).ifBlank { fallbackName.split(",").first().trim() }
+        val name = InputRules.itemTextForStorage(label).ifBlank { fallbackName.split(",").first().trim() }
         if (name.isBlank()) { message.value = "Give the place a name (e.g. Home)."; return }
         viewModelScope.launch {
             graph.db.savedPlaceDao().upsert(SavedPlaceEntity(name, point.lat, point.lng, System.currentTimeMillis()))

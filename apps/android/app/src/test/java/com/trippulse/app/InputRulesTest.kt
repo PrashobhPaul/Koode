@@ -14,8 +14,15 @@ import org.junit.Test
 class InputRulesTest {
 
     @Test fun an_item_keeps_words_and_drops_digits() {
-        assertEquals("Highway dhaba lunch", InputRules.itemText("Highway dhaba lunch 450"))
-        assertEquals("Diesel top-up", InputRules.itemText("Diesel top-up ₹2300"))
+        // While typing, the trailing space survives so the next word can be
+        // typed; storage trims it.
+        assertEquals("Highway dhaba lunch ", InputRules.itemText("Highway dhaba lunch 450"))
+        assertEquals("Highway dhaba lunch", InputRules.itemTextForStorage("Highway dhaba lunch 450"))
+        assertEquals("Diesel top-up", InputRules.itemTextForStorage("Diesel top-up ₹2300"))
+    }
+
+    @Test fun an_item_being_typed_keeps_the_space_after_a_word() {
+        assertEquals("Highway ", InputRules.itemText("Highway "))
     }
 
     @Test fun an_item_collapses_runs_of_spaces() {
@@ -25,7 +32,8 @@ class InputRulesTest {
     @Test fun an_amount_keeps_digits_and_one_decimal_point() {
         assertEquals("450", InputRules.amountText("₹450"))
         assertEquals("450.75", InputRules.amountText("450.75"))
-        assertEquals("450.75", InputRules.amountText("4.5.0.75"))
+        // Extra points are dropped, keeping the first: 4.5075 -> two decimals.
+        assertEquals("4.50", InputRules.amountText("4.5.0.75"))
     }
 
     @Test fun an_amount_never_keeps_more_than_two_decimals() {

@@ -45,11 +45,15 @@ object MealClassifier {
     /** The meal this hour belongs to, ignoring what has already been logged. */
     fun windowFor(localHour: Int): Nourishment {
         val h = ((localHour % 24) + 24) % 24
-        return when {
-            h >= BREAKFAST_FROM && h < BREAKFAST_UNTIL -> Nourishment.BREAKFAST
-            h < LUNCH_UNTIL -> Nourishment.LUNCH
-            h < EVENING_UNTIL -> Nourishment.SNACK
-            else -> Nourishment.DINNER
+        // Each window is stated as a closed range rather than a chain of
+        // "less than" tests, because the dinner window WRAPS past midnight: an
+        // open-ended `h < LUNCH_UNTIL` silently swallows 00:00–03:59 and calls
+        // a 1 a.m. meal lunch.
+        return when (h) {
+            in BREAKFAST_FROM until BREAKFAST_UNTIL -> Nourishment.BREAKFAST
+            in BREAKFAST_UNTIL until LUNCH_UNTIL -> Nourishment.LUNCH
+            in LUNCH_UNTIL until EVENING_UNTIL -> Nourishment.SNACK
+            else -> Nourishment.DINNER          // 19:00–03:59
         }
     }
 
