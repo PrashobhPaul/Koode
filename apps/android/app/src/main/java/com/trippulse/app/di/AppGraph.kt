@@ -1,6 +1,7 @@
 package com.trippulse.app.di
 
 import android.content.Context
+import com.trippulse.app.core.SettingsStore
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.ViewerRepository
 import com.trippulse.app.data.local.TripPulseDb
@@ -11,6 +12,7 @@ import com.trippulse.app.data.routing.OsrmRoutingProvider
 import com.trippulse.app.data.routing.RoutingProvider
 import com.trippulse.app.data.sync.ConnectivityObserver
 import com.trippulse.app.data.sync.SyncEngine
+import com.trippulse.app.data.update.UpdateChecker
 import com.trippulse.app.domain.TripConfig
 import com.trippulse.app.notifications.Notifier
 import kotlinx.coroutines.CoroutineScope
@@ -30,6 +32,9 @@ class AppGraph(context: Context) {
     val appScope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
     val db: TripPulseDb = TripPulseDb.get(appContext)
+
+    /** User-tunable behaviour (location cadence, refresh rate, theme). */
+    val settings: SettingsStore = SettingsStore(appContext)
 
     val connectivity: ConnectivityObserver = ConnectivityObserver(appContext)
 
@@ -51,11 +56,15 @@ class AppGraph(context: Context) {
         sync = sync,
         connectivity = connectivity,
         notifier = notifier,
+        settings = settings,
         appScope = appScope,
         cfg = cfg
     )
 
-    val viewerRepository: ViewerRepository = ViewerRepository(db, cloud, cfg)
+    val viewerRepository: ViewerRepository = ViewerRepository(db, cloud, settings, cfg)
+
+    /** Nudges people off old builds; never touches an in-flight journey. */
+    val updateChecker: UpdateChecker = UpdateChecker(appContext, settings)
 
     fun cloudEnabledByDefault(): Boolean = cloud.isAvailable()
 }

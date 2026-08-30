@@ -1,0 +1,7 @@
+<resources>
+    <!-- Brand constants shared by the platform themes and the splash screen.
+         The Compose palette lives in ui/theme/Palette.kt; these two exist
+         because window backgrounds are painted before Compose starts. -->
+    <color name="koode_navy">#0B1E2D</color>
+    <color name="koode_teal">#2DD4BF</color>
+</resources>

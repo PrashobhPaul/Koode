@@ -4,24 +4,25 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -34,7 +35,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,32 +42,58 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.core.InputRules
+import com.trippulse.app.core.TimeFmt
+import com.trippulse.app.core.TripCredentials
+import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.CreateVm
+import com.trippulse.app.ui.LegDraft
 import com.trippulse.app.ui.Routes
-import com.trippulse.app.ui.theme.Danger
-import com.trippulse.app.ui.theme.Teal
-import com.trippulse.app.ui.theme.TextMid
+import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.KoodeChip
+import com.trippulse.app.ui.components.LocalWindowClass
+import com.trippulse.app.ui.components.PrimaryButton
+import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.map.JourneyMap
+import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Spacing
 
+/**
+ * Planning a journey.
+ *
+ * The important structural change here is that a journey is a *list of legs*,
+ * not a single from/to with one mode. Real journeys are hybrid — Thrissur to
+ * Bangalore by train, then Bangalore to Hyderabad by bus — and modelling that
+ * as the normal case (rather than a special one) is what lets every downstream
+ * rule stay simple: each leg carries its own mode, and the app switches rule
+ * sets automatically when the traveller changes vehicle.
+ */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CreateTripScreen(nav: NavHostController) {
     val vm: CreateVm = viewModel(factory = CreateVm.Factory)
-    val origin by vm.originText.collectAsStateWithLifecycle()
-    val dest by vm.destText.collectAsStateWithLifecycle()
-    val emName by vm.emergencyName.collectAsStateWithLifecycle()
-    val emPhone by vm.emergencyPhone.collectAsStateWithLifecycle()
-    val pickedDest by vm.pickedDest.collectAsStateWithLifecycle()
-    val pickedOrigin by vm.pickedOrigin.collectAsStateWithLifecycle()
-    val pinMode by vm.pinMode.collectAsStateWithLifecycle()
-    val places by vm.savedPlaces.collectAsStateWithLifecycle()
+    val colors = KoodeTheme.colors
+    val windowClass = LocalWindowClass.current
+
+    val legs by vm.legs.collectAsStateWithLifecycle()
+    val editing by vm.editingLeg.collectAsStateWithLifecycle()
+    val passcode by vm.passcode.collectAsStateWithLifecycle()
     val busy by vm.busy.collectAsStateWithLifecycle()
     val error by vm.error.collectAsStateWithLifecycle()
+    val places by vm.savedPlaces.collectAsStateWithLifecycle()
+    val pinMode by vm.pinMode.collectAsStateWithLifecycle()
+    val departure by vm.departureMs.collectAsStateWithLifecycle()
+    val myName by vm.myName.collectAsStateWithLifecycle()
+    val results by vm.searchResults.collectAsStateWithLifecycle()
+    val searching by vm.searching.collectAsStateWithLifecycle()
 
-    var newPlaceName by remember { mutableStateOf("") }
     var searchQuery by remember { mutableStateOf("") }
+    var newPlaceName by remember { mutableStateOf("") }
     var customWhen by remember { mutableStateOf("") }
 
-    // "Current location" as a start point needs the location permission, which
-    // was previously only requested AFTER creating the trip — ask up front.
+    // "Current location" as a start point needs the permission up front, not
+    // after the journey has been created.
     val context = LocalContext.current
     val permLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -78,273 +104,379 @@ fun CreateTripScreen(nav: NavHostController) {
         ) == PackageManager.PERMISSION_GRANTED
         if (!granted) {
             permLauncher.launch(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                )
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
             )
         }
     }
 
+    val editingLeg = legs.getOrElse(editing) { legs.first() }
+
     Column(
-        Modifier.fillMaxSize().padding(20.dp).verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        Modifier
+            .fillMaxSize()
+            .background(colors.background)
+            .verticalScroll(rememberScrollState())
+            .statusBarsPadding()
     ) {
-        Text("Start a new journey", color = Teal, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-
-        val myName by vm.myName.collectAsStateWithLifecycle()
-        OutlinedTextField(
-            value = myName, onValueChange = { vm.myName.value = it },
-            label = { Text("Your name (your circle sees “…'s Journey”)") },
-            singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-
-        OutlinedTextField(
-            value = origin, onValueChange = { vm.originText.value = it },
-            label = { Text("From") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        OutlinedTextField(
-            value = dest, onValueChange = { vm.destText.value = it },
-            label = { Text("Destination") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-
-        // ---- search any place by name (OpenStreetMap, free) ----
-        val results by vm.searchResults.collectAsStateWithLifecycle()
-        val searching by vm.searching.collectAsStateWithLifecycle()
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            OutlinedTextField(
-                value = searchQuery, onValueChange = { searchQuery = it },
-                label = { Text("Search a place by name") }, singleLine = true,
-                modifier = Modifier.weight(1f)
+        Spacer(Modifier.height(Spacing.lg))
+        AdaptiveContainer {
+            Text("New journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
+            Text(
+                "Add a stage for each vehicle you'll travel in. Most journeys have one.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyLarge
             )
-            Spacer(Modifier.width(8.dp))
-            OutlinedButton(onClick = { vm.searchPlaces(searchQuery) }, enabled = !searching) {
-                if (searching) CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.height(18.dp))
-                else Text("Search", fontSize = 13.sp)
+
+            OutlinedTextField(
+                value = myName,
+                onValueChange = { vm.myName.value = it },
+                label = { Text("Your name — your circle sees \"…'s Journey\"") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            // ---- the stages ----
+            legs.forEachIndexed { index, leg ->
+                LegCard(
+                    index = index,
+                    total = legs.size,
+                    leg = leg,
+                    isEditing = index == editing,
+                    onFocus = { vm.editLeg(index) },
+                    onRemove = { vm.removeLeg(index) },
+                    onModeChange = { vm.setMode(index, it) },
+                    onFuelChange = { vm.setFuel(index, it) },
+                    onFromChange = { vm.setFromText(index, it) },
+                    onToChange = { vm.setToText(index, it) },
+                    onBookingRefChange = { vm.setBookingRef(index, it) },
+                    onSeatChange = { vm.setSeat(index, it) },
+                    onBoardingChange = { vm.setBoardingPoint(index, it) }
+                )
             }
-        }
-        results.forEach { r ->
-            SectionCard {
-                Text(r.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 13.sp)
-                Row {
-                    TextButton(onClick = { vm.useSearchResult(r, asStart = true) }) { Text("Use as From", color = Teal, fontSize = 13.sp) }
-                    TextButton(onClick = { vm.useSearchResult(r, asStart = false) }) { Text("Use as To", color = Teal, fontSize = 13.sp) }
+
+            SecondaryButton(
+                "Add another stage",
+                { vm.addLeg() },
+                leading = "＋",
+                accent = colors.traveller,
+                height = 44.dp
+            )
+            if (legs.size > 1) {
+                Text(
+                    "Koode switches its rules as you move between stages: refuelling questions on the car leg, " +
+                        "boarding milestones on the train leg, and no break nagging where you're not driving.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+            }
+
+            // ---- place search, applied to the stage being edited ----
+            KoodeCard(title = "Find a place") {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedTextField(
+                        value = searchQuery,
+                        onValueChange = { searchQuery = it },
+                        label = { Text("Search by name") },
+                        singleLine = true,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(Modifier.width(Spacing.sm))
+                    Box(Modifier.width(96.dp)) {
+                        SecondaryButton(
+                            if (searching) "…" else "Search",
+                            { vm.searchPlaces(searchQuery) },
+                            enabled = !searching, height = 48.dp
+                        )
+                    }
+                }
+                results.forEach { r ->
+                    Spacer(Modifier.height(Spacing.sm))
+                    Text(r.name, color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
+                    Row {
+                        TextButton(onClick = { vm.useSearchResult(r, asStart = true) }) {
+                            Text("Set as start", color = colors.accent, fontSize = 13.sp)
+                        }
+                        TextButton(onClick = { vm.useSearchResult(r, asStart = false) }) {
+                            Text("Set as destination", color = colors.accent, fontSize = 13.sp)
+                        }
+                    }
+                }
+                if (results.isNotEmpty()) {
+                    TextButton(onClick = { vm.clearSearch() }) {
+                        Text("Clear results", color = colors.textLow, fontSize = 12.sp)
+                    }
+                }
+                if (places.isNotEmpty()) {
+                    Spacer(Modifier.height(Spacing.sm))
+                    Text("Saved places", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    places.forEach { p ->
+                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                p.name, color = colors.textHigh,
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier.weight(1f)
+                            )
+                            TextButton(onClick = { vm.useAsStart(p) }) {
+                                Text("From", color = colors.accent, fontSize = 13.sp)
+                            }
+                            TextButton(onClick = { vm.useAsDest(p) }) {
+                                Text("To", color = colors.accent, fontSize = 13.sp)
+                            }
+                            TextButton(onClick = { vm.deletePlace(p.name) }) {
+                                Text("✕", color = colors.textLow, fontSize = 13.sp)
+                            }
+                        }
+                    }
                 }
             }
+
+            // ---- map pinning for the stage being edited ----
+            KoodeCard(title = "Or pin it on the map") {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        "Long-press to set the",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    Spacer(Modifier.width(Spacing.sm))
+                    KoodeChip("Destination", pinMode == "DEST", { vm.pinMode.value = "DEST" })
+                    Spacer(Modifier.width(Spacing.sm))
+                    KoodeChip("Start", pinMode == "START", { vm.pinMode.value = "START" })
+                }
+                Spacer(Modifier.height(Spacing.md))
+                JourneyMap(
+                    origin = editingLeg.from,
+                    destination = editingLeg.to,
+                    height = windowClass.mapHeight,
+                    showPlayControl = false,
+                    live = false,
+                    onLongPress = { vm.onMapLongPress(it) }
+                )
+                Spacer(Modifier.height(Spacing.sm))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedTextField(
+                        value = newPlaceName,
+                        onValueChange = { newPlaceName = InputRules.itemText(it) },
+                        label = { Text("Save this pin as…") },
+                        singleLine = true,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(Modifier.width(Spacing.sm))
+                    Box(Modifier.width(90.dp)) {
+                        SecondaryButton("Save", { vm.savePlace(newPlaceName); newPlaceName = "" }, height = 48.dp)
+                    }
+                }
+            }
+
+            // ---- passcode ----
+            KoodeCard(title = "Passcode for followers") {
+                Text(
+                    "Six digits you choose. Anyone with your journey number AND this passcode goes straight in — " +
+                        "everyone else has to be approved by you.",
+                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(Modifier.height(Spacing.md))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedTextField(
+                        value = passcode,
+                        onValueChange = { vm.setPasscode(it) },
+                        label = { Text("${TripCredentials.PASSCODE_LENGTH} digits") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(Modifier.width(Spacing.sm))
+                    Box(Modifier.width(110.dp)) {
+                        SecondaryButton("Suggest", { vm.regeneratePasscode() }, height = 48.dp)
+                    }
+                }
+            }
+
+            // ---- departure ----
+            KoodeCard(title = "Departure") {
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    KoodeChip("Now", departure == null, { vm.departureMs.value = null; customWhen = "" })
+                    KoodeChip("In an hour", false, {
+                        vm.departureMs.value = System.currentTimeMillis() + 3_600_000L; customWhen = ""
+                    })
+                    KoodeChip("Tomorrow 6 AM", false, {
+                        val cal = java.util.Calendar.getInstance().apply {
+                            add(java.util.Calendar.DAY_OF_YEAR, 1)
+                            set(java.util.Calendar.HOUR_OF_DAY, 6); set(java.util.Calendar.MINUTE, 0)
+                            set(java.util.Calendar.SECOND, 0); set(java.util.Calendar.MILLISECOND, 0)
+                        }
+                        vm.departureMs.value = cal.timeInMillis; customWhen = ""
+                    })
+                }
+                Spacer(Modifier.height(Spacing.md))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OutlinedTextField(
+                        value = customWhen,
+                        onValueChange = { customWhen = it },
+                        label = { Text("Or yyyy-MM-dd HH:mm") },
+                        singleLine = true,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Spacer(Modifier.width(Spacing.sm))
+                    Box(Modifier.width(90.dp)) {
+                        SecondaryButton("Set", {
+                            val parsed = runCatching {
+                                java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.US)
+                                    .parse(customWhen.trim())?.time
+                            }.getOrNull()
+                            if (parsed != null && parsed > System.currentTimeMillis()) vm.departureMs.value = parsed
+                        }, height = 48.dp)
+                    }
+                }
+                if (departure != null) {
+                    Spacer(Modifier.height(Spacing.sm))
+                    Text(
+                        "Scheduled for ${TimeFmt.clockWithDay(departure!!, System.currentTimeMillis())} — " +
+                            "you'll get a reminder 30 minutes before.",
+                        color = colors.accent, style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
+
+            // ---- emergency contact ----
+            KoodeCard(title = "Emergency contact (optional)") {
+                val emName by vm.emergencyName.collectAsStateWithLifecycle()
+                val emPhone by vm.emergencyPhone.collectAsStateWithLifecycle()
+                OutlinedTextField(
+                    value = emName, onValueChange = { vm.emergencyName.value = InputRules.itemText(it) },
+                    label = { Text("Name") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(Modifier.height(Spacing.sm))
+                OutlinedTextField(
+                    value = emPhone, onValueChange = { vm.emergencyPhone.value = InputRules.phoneText(it) },
+                    label = { Text("Phone") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
+                )
+            }
+
+            if (error != null) {
+                KoodeCard(accent = colors.danger) {
+                    Text(error!!, color = colors.danger, style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+
+            Spacer(Modifier.height(Spacing.xs))
+            if (busy) {
+                Box(Modifier.fillMaxWidth().height(54.dp), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(strokeWidth = 2.dp, color = colors.accent)
+                }
+            } else {
+                PrimaryButton(
+                    "Create journey",
+                    { vm.create { tripId -> nav.navigate(Routes.credentials(tripId)) { popUpTo(Routes.HOME) } } },
+                    leading = "🧭"
+                )
+            }
+            SecondaryButton("Cancel", { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
+            Spacer(Modifier.height(Spacing.scrollBottom))
         }
-        if (results.isNotEmpty()) {
-            TextButton(onClick = { vm.clearSearch() }) { Text("Clear results", color = TextMid, fontSize = 12.sp) }
+    }
+}
+
+/**
+ * One stage of the journey. Collapsed unless it's the stage being edited, so a
+ * three-leg journey doesn't turn the screen into a wall of fields.
+ */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun LegCard(
+    index: Int,
+    total: Int,
+    leg: LegDraft,
+    isEditing: Boolean,
+    onFocus: () -> Unit,
+    onRemove: () -> Unit,
+    onModeChange: (String) -> Unit,
+    onFuelChange: (String) -> Unit,
+    onFromChange: (String) -> Unit,
+    onToChange: (String) -> Unit,
+    onBookingRefChange: (String) -> Unit,
+    onSeatChange: (String) -> Unit,
+    onBoardingChange: (String) -> Unit
+) {
+    val colors = KoodeTheme.colors
+    val profile = leg.profile
+
+    KoodeCard(
+        accent = if (isEditing) colors.accent else null,
+        onClick = if (isEditing) null else onFocus
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(profile.emoji, fontSize = 18.sp)
+            Spacer(Modifier.width(Spacing.sm))
+            Text(
+                if (total == 1) "Your journey" else "Stage ${index + 1} · ${profile.label}",
+                color = colors.textHigh, style = MaterialTheme.typography.titleMedium
+            )
+            Spacer(Modifier.weight(1f))
+            if (total > 1) {
+                TextButton(onClick = onRemove) { Text("Remove", color = colors.textLow, fontSize = 12.sp) }
+            }
         }
 
-        // ---- mode of transport (mandatory; drives the app's rules) ----
-        val mode by vm.transportMode.collectAsStateWithLifecycle()
-        val fuel by vm.fuelType.collectAsStateWithLifecycle()
-        Text("How are you travelling? *", color = TextMid, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
-        // private vehicles
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            listOf("CAR" to "🚗 Car", "BIKE" to "🏍 Bike").forEach { (v, label) ->
-                FilterChip(selected = mode == v, onClick = {
-                    vm.transportMode.value = v
-                    // bikes don't run on diesel
-                    if (v == "BIKE" && vm.fuelType.value == "DIESEL") vm.fuelType.value = "PETROL"
-                }, label = { Text(label, fontSize = 12.sp) })
-                Spacer(Modifier.width(6.dp))
+        if (!isEditing) {
+            Text(
+                "${leg.fromText.ifBlank { "…" }} → ${leg.toText.ifBlank { "…" }}",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
+            return@KoodeCard
+        }
+
+        Spacer(Modifier.height(Spacing.md))
+        OutlinedTextField(
+            value = leg.fromText, onValueChange = onFromChange,
+            label = { Text("From") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        OutlinedTextField(
+            value = leg.toText, onValueChange = onToChange,
+            label = { Text("To") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(Modifier.height(Spacing.md))
+        Text("How are you travelling?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+        Spacer(Modifier.height(Spacing.sm))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            TransportCatalog.ALL.forEach { p ->
+                KoodeChip(p.label, leg.mode == p.key, { onModeChange(p.key) }, leading = p.emoji)
             }
         }
-        // public transport
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            listOf("BUS" to "🚌 Bus", "TRAIN" to "🚆 Train", "FLIGHT" to "✈️ Flight").forEach { (v, label) ->
-                FilterChip(selected = mode == v, onClick = { vm.transportMode.value = v },
-                    label = { Text(label, fontSize = 12.sp) })
-                Spacer(Modifier.width(6.dp))
-            }
-        }
-        if (mode == "CAR" || mode == "BIKE") {
-            val fuels = if (mode == "BIKE") listOf("PETROL" to "Petrol", "ELECTRIC" to "Electric")
-                else listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric")
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("Fuel:", color = TextMid, fontSize = 12.sp)
-                Spacer(Modifier.width(8.dp))
+
+        if (profile.asksAboutFuel) {
+            Spacer(Modifier.height(Spacing.md))
+            Text("Fuel", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            Spacer(Modifier.height(Spacing.sm))
+            val fuels = if (leg.mode == "BIKE") listOf("PETROL" to "Petrol", "ELECTRIC" to "Electric")
+            else listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric")
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                 fuels.forEach { (v, label) ->
-                    FilterChip(selected = fuel == v, onClick = { vm.fuelType.value = v },
-                        label = { Text(label, fontSize = 12.sp) })
-                    Spacer(Modifier.width(6.dp))
+                    KoodeChip(label, leg.fuelType == v, { onFuelChange(v) })
                 }
             }
         } else {
-            val pnr by vm.pnr.collectAsStateWithLifecycle()
-            val seat by vm.seat.collectAsStateWithLifecycle()
-            val boarding by vm.boardingPoint.collectAsStateWithLifecycle()
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Spacer(Modifier.height(Spacing.md))
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                 OutlinedTextField(
-                    value = pnr, onValueChange = { vm.pnr.value = it },
-                    label = { Text("PNR / booking ref") }, singleLine = true, modifier = Modifier.weight(1f)
+                    value = leg.bookingRef, onValueChange = onBookingRefChange,
+                    label = { Text("PNR / booking") }, singleLine = true, modifier = Modifier.weight(1f)
                 )
                 OutlinedTextField(
-                    value = seat, onValueChange = { vm.seat.value = it },
+                    value = leg.seat, onValueChange = onSeatChange,
                     label = { Text("Seat") }, singleLine = true, modifier = Modifier.weight(1f)
                 )
             }
+            Spacer(Modifier.height(Spacing.sm))
             OutlinedTextField(
-                value = boarding, onValueChange = { vm.boardingPoint.value = it },
-                label = {
-                    Text(when (mode) {
-                        "FLIGHT" -> "Airport"
-                        "TRAIN" -> "Railway station"
-                        else -> "Boarding point"
-                    })
-                },
-                singleLine = true, modifier = Modifier.fillMaxWidth()
+                value = leg.boardingPoint, onValueChange = onBoardingChange,
+                label = { Text(profile.boardingPointLabel) }, singleLine = true,
+                modifier = Modifier.fillMaxWidth()
             )
-        }
-
-        // ---- departure: leave now or schedule ahead ----
-        val departure by vm.departureMs.collectAsStateWithLifecycle()
-        Text("Departure", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            FilterChip(
-                selected = departure == null,
-                onClick = { vm.departureMs.value = null; customWhen = "" },
-                label = { Text("Now", fontSize = 12.sp) }
-            )
-            Spacer(Modifier.width(6.dp))
-            FilterChip(
-                selected = false,
-                onClick = { vm.departureMs.value = System.currentTimeMillis() + 3_600_000L; customWhen = "" },
-                label = { Text("+1 hour", fontSize = 12.sp) }
-            )
-            Spacer(Modifier.width(6.dp))
-            FilterChip(
-                selected = false,
-                onClick = {
-                    val cal = java.util.Calendar.getInstance().apply {
-                        add(java.util.Calendar.DAY_OF_YEAR, 1)
-                        set(java.util.Calendar.HOUR_OF_DAY, 6); set(java.util.Calendar.MINUTE, 0)
-                        set(java.util.Calendar.SECOND, 0); set(java.util.Calendar.MILLISECOND, 0)
-                    }
-                    vm.departureMs.value = cal.timeInMillis; customWhen = ""
-                },
-                label = { Text("Tomorrow 6 AM", fontSize = 12.sp) }
-            )
-        }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            OutlinedTextField(
-                value = customWhen, onValueChange = { customWhen = it },
-                label = { Text("Or date & time (yyyy-MM-dd HH:mm)") }, singleLine = true,
-                modifier = Modifier.weight(1f)
-            )
-            Spacer(Modifier.width(8.dp))
-            OutlinedButton(onClick = {
-                val parsed = runCatching {
-                    java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.US)
-                        .parse(customWhen.trim())?.time
-                }.getOrNull()
-                if (parsed != null && parsed > System.currentTimeMillis()) vm.departureMs.value = parsed
-            }) { Text("Set", fontSize = 13.sp) }
-        }
-        if (departure != null) {
             Text(
-                "Scheduled: ${com.trippulse.app.core.TimeFmt.clockWithDay(departure!!, System.currentTimeMillis())} · reminder 30 min before",
-                color = Teal, fontSize = 12.sp
+                "Kept on this phone only — never shared with anyone following you.",
+                color = colors.textLow, style = MaterialTheme.typography.bodySmall
             )
-        }
-
-        // ---- saved places: one-tap From / To ----
-        if (places.isNotEmpty()) {
-            Text("Saved places", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-            places.forEach { p ->
-                Row(
-                    Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        p.name, color = MaterialTheme.colorScheme.onSurface,
-                        fontSize = 14.sp, modifier = Modifier.weight(1f)
-                    )
-                    TextButton(onClick = { vm.useAsStart(p) }) { Text("From", color = Teal, fontSize = 13.sp) }
-                    TextButton(onClick = { vm.useAsDest(p) }) { Text("To", color = Teal, fontSize = 13.sp) }
-                    TextButton(onClick = { vm.deletePlace(p.name) }) { Text("✕", color = TextMid, fontSize = 13.sp) }
-                }
-            }
-        }
-
-        // ---- map pinning ----
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text("Long-press the map to pin:", color = TextMid, fontSize = 12.sp)
-            Spacer(Modifier.width(8.dp))
-            FilterChip(
-                selected = pinMode == "DEST",
-                onClick = { vm.pinMode.value = "DEST" },
-                label = { Text("Destination", fontSize = 12.sp) }
-            )
-            Spacer(Modifier.width(6.dp))
-            FilterChip(
-                selected = pinMode == "START",
-                onClick = { vm.pinMode.value = "START" },
-                label = { Text("Start", fontSize = 12.sp) }
-            )
-        }
-        MapPanel(
-            current = null,
-            origin = pickedOrigin,
-            destination = pickedDest,
-            route = emptyList(),
-            heightDp = 220,
-            onLongPress = { vm.onMapLongPress(it) }
-        )
-        if (pickedOrigin != null) {
-            Text(
-                "Start pin set (%.4f, %.4f)".format(pickedOrigin!!.lat, pickedOrigin!!.lng),
-                color = TextMid, fontSize = 12.sp
-            )
-        }
-        if (pickedDest != null) {
-            Text(
-                "Destination pin set (%.4f, %.4f)".format(pickedDest!!.lat, pickedDest!!.lng),
-                color = TextMid, fontSize = 12.sp
-            )
-        }
-
-        // ---- save a place for next time ----
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            OutlinedTextField(
-                value = newPlaceName, onValueChange = { newPlaceName = it },
-                label = { Text("Save place (e.g. Home)") }, singleLine = true,
-                modifier = Modifier.weight(1f)
-            )
-            Spacer(Modifier.width(8.dp))
-            OutlinedButton(onClick = {
-                vm.savePlace(newPlaceName)
-                newPlaceName = ""
-            }) { Text("Save", fontSize = 13.sp) }
-        }
-
-        Text("Emergency contact (optional)", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-        OutlinedTextField(
-            value = emName, onValueChange = { vm.emergencyName.value = it },
-            label = { Text("Name") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        OutlinedTextField(
-            value = emPhone, onValueChange = { vm.emergencyPhone.value = it },
-            label = { Text("Phone") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
-        )
-
-        if (error != null) {
-            Text(error!!, color = Danger, fontSize = 13.sp)
-        }
-
-        Button(
-            onClick = { vm.create { tripId -> nav.navigate(Routes.credentials(tripId)) { popUpTo(Routes.HOME) } } },
-            enabled = !busy,
-            modifier = Modifier.fillMaxWidth().height(52.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Teal)
-        ) {
-            if (busy) CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.height(20.dp))
-            else Text("Create trip", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-        }
-        TextButton(onClick = { nav.popBackStack() }, modifier = Modifier.fillMaxWidth()) {
-            Text("Cancel", color = TextMid)
         }
     }
 }

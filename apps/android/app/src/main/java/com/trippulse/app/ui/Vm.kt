@@ -1,7 +1,6 @@
 package com.trippulse.app.ui
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.location.Geocoder
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -9,26 +8,38 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.trippulse.app.TripPulseApp
+import com.trippulse.app.core.InputRules
+import com.trippulse.app.core.KoodeSettings
+import com.trippulse.app.core.LocationCadence
+import com.trippulse.app.core.Profile
+import com.trippulse.app.core.TripCredentials
+import com.trippulse.app.core.ViewerRefresh
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.ViewerRepository
 import com.trippulse.app.data.local.ActiveTripEntity
 import com.trippulse.app.data.local.EventEntity
+import com.trippulse.app.data.local.ExpenseEntity
 import com.trippulse.app.data.local.LocationSampleEntity
+import com.trippulse.app.data.local.SavedPlaceEntity
+import com.trippulse.app.data.local.TripLegEntity
 import com.trippulse.app.data.local.TripStateEntity
+import com.trippulse.app.data.local.ViewerTripEntity
+import com.trippulse.app.data.routing.PlaceSearch
+import com.trippulse.app.data.update.UpdateChecker
 import com.trippulse.app.di.AppGraph
 import com.trippulse.app.domain.Freshness
 import com.trippulse.app.domain.GeoPoint
+import com.trippulse.app.domain.Nourishment
+import com.trippulse.app.domain.TransportCatalog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
@@ -48,43 +59,52 @@ private fun graphOf(extras: CreationExtras): AppGraph =
 // ---------------------------------------------------------------------------
 
 class HomeVm(private val graph: AppGraph) : ViewModel() {
+
     val activeTrip: StateFlow<ActiveTripEntity?> =
         graph.tripManager.activeTripFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
-    /** Every trip this device ever created — the owner's private history.
-     *  Kept locally even after the server copy self-destructs, until the
-     *  owner deletes it here. */
+    /** Every journey this device ever created — the traveller's own history. */
     val allTrips: StateFlow<List<ActiveTripEntity>> =
         graph.db.tripDao().allFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    /** Trips shared with this device (viewer side). */
-    val following: StateFlow<List<com.trippulse.app.data.local.ViewerTripEntity>> =
+    /** Journeys shared with this device (follower side). */
+    val following: StateFlow<List<ViewerTripEntity>> =
         graph.viewerRepository.savedFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    /** Saved-location count — part of the mandatory profile check. */
     val savedPlaceCount: StateFlow<Int> =
         graph.db.savedPlaceDao().allFlow().map { it.size }
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
+    /** A newer build, when one exists. Rendered as a dismissible card. */
+    val update = MutableStateFlow<UpdateChecker.Available?>(graph.updateChecker.cached())
+
     val cloudAvailable: Boolean = graph.cloudAvailableSafe()
 
-    /** The user's own name (set on the create screen) for the greeting. */
-    fun greetingName(): String =
-        graph.appContext.getSharedPreferences("koode_profile", android.content.Context.MODE_PRIVATE)
-            .getString("name", "")?.trim().orEmpty()
+    init {
+        viewModelScope.launch { update.value = graph.updateChecker.check() }
+    }
 
-    /** Last Journey Health level the follow service saw for a followed
-     *  journey: NORMAL | ATTENTION | CONCERN. Powers the Safe chips. */
-    fun followHealth(ref: String): String =
-        graph.appContext.getSharedPreferences("tp_follow_health", android.content.Context.MODE_PRIVATE)
-            .getString(ref, "NORMAL") ?: "NORMAL"
+    fun dismissUpdate() {
+        update.value?.let { graph.updateChecker.dismiss(it.versionName) }
+        update.value = null
+    }
 
-    /** Humanized Koode Status for the Home feed: level, headline, first
-     *  reason, updated-at — as last evaluated by the follow service. */
-    data class FollowStatus(val level: String, val headline: String, val reason: String, val updatedAtMs: Long?)
+    fun greetingName(): String = Profile.name(graph.appContext)
+
+    /**
+     * The humanised status of a followed journey, as last evaluated by the
+     * follow service. Read from preferences so Home renders instantly with no
+     * network call at all.
+     */
+    data class FollowStatus(
+        val level: String,
+        val headline: String,
+        val reason: String,
+        val updatedAtMs: Long?
+    )
 
     fun followStatus(ref: String): FollowStatus {
         val raw = graph.appContext
@@ -99,8 +119,9 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
         )
     }
 
-    /** Erases one trip completely from this device: events, locations, state,
-     *  breaks, expenses and the trip row itself. */
+    fun followHealth(ref: String): String = followStatus(ref).level
+
+    /** Erases one journey completely from this device. */
     fun deleteTrip(tripId: String) = viewModelScope.launch {
         with(graph.db) {
             eventDao().deleteForTrip(tripId)
@@ -108,6 +129,7 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
             stateDao().delete(tripId)
             breakDao().deleteForTrip(tripId)
             expenseDao().deleteForTrip(tripId)
+            legDao().deleteForTrip(tripId)
             tripDao().delete(tripId)
         }
     }
@@ -120,51 +142,109 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
 }
 
 // ---------------------------------------------------------------------------
-// Create trip
+// Create journey
 // ---------------------------------------------------------------------------
+
+/**
+ * One stage of the journey being planned.
+ *
+ * The create screen always holds at least one of these. A single-mode journey
+ * is a one-leg list, so there is no "simple mode" and "advanced mode" — adding
+ * a second leg is just adding a row.
+ */
+data class LegDraft(
+    val mode: String = "CAR",
+    val fuelType: String = "PETROL",
+    val fromText: String = "",
+    val from: GeoPoint? = null,
+    val toText: String = "",
+    val to: GeoPoint? = null,
+    val bookingRef: String = "",
+    val seat: String = "",
+    val boardingPoint: String = ""
+) {
+    val profile get() = TransportCatalog.profile(mode)
+}
 
 class CreateVm(private val graph: AppGraph) : ViewModel() {
 
     var busy = MutableStateFlow(false); private set
     var error = MutableStateFlow<String?>(null); private set
 
-    var originText = MutableStateFlow("Current location")
-    var destText = MutableStateFlow("")
+    /** The legs of this journey, in order. Starts as one. */
+    val legs = MutableStateFlow(listOf(LegDraft(fromText = "Current location")))
 
-    // Prefilled from the mandatory profile (Settings → Emergency contacts).
-    var emergencyName = MutableStateFlow(com.trippulse.app.core.Profile.contact(graph.appContext, 1).name)
-    var emergencyPhone = MutableStateFlow(com.trippulse.app.core.Profile.contact(graph.appContext, 1).phone)
+    /** Which leg the editor is focused on. */
+    val editingLeg = MutableStateFlow(0)
 
-    /** Traveller's name — family screens show "<name>'s Journey". Remembered. */
-    var myName = MutableStateFlow(
-        graph.appContext.getSharedPreferences("koode_profile", android.content.Context.MODE_PRIVATE)
-            .getString("name", "") ?: ""
-    )
-    var pickedDest = MutableStateFlow<GeoPoint?>(null)
-    var pickedOrigin = MutableStateFlow<GeoPoint?>(null)
+    var emergencyName = MutableStateFlow(Profile.contact(graph.appContext, 1).name)
+    var emergencyPhone = MutableStateFlow(Profile.contact(graph.appContext, 1).phone)
 
-    /** Which point a map long-press sets: "DEST" (default) or "START". */
-    var pinMode = MutableStateFlow("DEST")
-    private var lastDroppedPin: GeoPoint? = null
+    var myName = MutableStateFlow(Profile.name(graph.appContext))
+
+    /** Six digits the traveller chooses; pre-filled with a random suggestion. */
+    val passcode = MutableStateFlow(TripCredentials.newPasscode())
 
     /** Scheduled departure (epoch ms); null = leaving now. */
     var departureMs = MutableStateFlow<Long?>(null)
 
-    /** Mode of transport — a mandatory answer that drives the app's rules:
-     *  private vehicles get refuel capture + efficiency; public transport
-     *  gets only wellbeing logging. */
-    var transportMode = MutableStateFlow("CAR")   // CAR | BIKE | BUS | TRAIN | FLIGHT
-    var fuelType = MutableStateFlow("PETROL")     // PETROL | DIESEL | ELECTRIC
+    /** Which point a map long-press sets on the leg being edited. */
+    var pinMode = MutableStateFlow("DEST")
+    private var lastDroppedPin: GeoPoint? = null
 
-    // Public-transport ticket details (optional; kept on this device only).
-    var pnr = MutableStateFlow("")
-    var seat = MutableStateFlow("")
-    var boardingPoint = MutableStateFlow("")
-
-    // ---- place-name search (Nominatim / OpenStreetMap, free) ----
-    private val placeSearch = com.trippulse.app.data.routing.PlaceSearch()
-    var searchResults = MutableStateFlow<List<com.trippulse.app.data.routing.PlaceSearch.Place>>(emptyList()); private set
+    private val placeSearch = PlaceSearch()
+    var searchResults = MutableStateFlow<List<PlaceSearch.Place>>(emptyList()); private set
     var searching = MutableStateFlow(false); private set
+
+    val savedPlaces: StateFlow<List<SavedPlaceEntity>> =
+        graph.db.savedPlaceDao().allFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    // ---- leg editing ------------------------------------------------------
+
+    private fun updateLeg(index: Int, transform: (LegDraft) -> LegDraft) {
+        legs.value = legs.value.mapIndexed { i, leg -> if (i == index) transform(leg) else leg }
+    }
+
+    fun editLeg(index: Int) { editingLeg.value = index.coerceIn(0, legs.value.lastIndex) }
+
+    fun setMode(index: Int, mode: String) = updateLeg(index) { leg ->
+        // Bikes don't run on diesel; keep the fuel choice coherent with the mode.
+        val fuel = if (mode == "BIKE" && leg.fuelType == "DIESEL") "PETROL" else leg.fuelType
+        leg.copy(mode = mode, fuelType = fuel)
+    }
+
+    fun setFuel(index: Int, fuel: String) = updateLeg(index) { it.copy(fuelType = fuel) }
+    fun setFromText(index: Int, text: String) = updateLeg(index) { it.copy(fromText = text) }
+    fun setToText(index: Int, text: String) = updateLeg(index) { it.copy(toText = text) }
+    fun setBookingRef(index: Int, text: String) = updateLeg(index) { it.copy(bookingRef = text) }
+    fun setSeat(index: Int, text: String) = updateLeg(index) { it.copy(seat = text) }
+    fun setBoardingPoint(index: Int, text: String) = updateLeg(index) { it.copy(boardingPoint = text) }
+
+    fun setPasscode(raw: String) { passcode.value = InputRules.digits(raw, TripCredentials.PASSCODE_LENGTH) }
+    fun regeneratePasscode() { passcode.value = TripCredentials.newPasscode() }
+
+    /**
+     * Adds the next stage of a hybrid journey. It starts where the previous leg
+     * ends, because that is always true and asking again would be busywork.
+     */
+    fun addLeg() {
+        val previous = legs.value.last()
+        legs.value = legs.value + LegDraft(
+            mode = if (previous.mode == "TRAIN") "CAB" else "CAR",
+            fromText = previous.toText,
+            from = previous.to
+        )
+        editingLeg.value = legs.value.lastIndex
+    }
+
+    fun removeLeg(index: Int) {
+        if (legs.value.size <= 1) return
+        legs.value = legs.value.filterIndexed { i, _ -> i != index }
+        editingLeg.value = editingLeg.value.coerceAtMost(legs.value.lastIndex)
+    }
+
+    // ---- place lookup -----------------------------------------------------
 
     fun searchPlaces(query: String) {
         if (query.trim().length < 2 || searching.value) return
@@ -172,11 +252,8 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
             searching.value = true
             searchResults.value = placeSearch.search(query)
             searching.value = false
-            if (searchResults.value.isEmpty()) {
-                error.value = "No places found for \"${query.trim()}\" — try adding the city or district."
-            } else {
-                error.value = null
-            }
+            error.value = if (searchResults.value.isEmpty())
+                "No places found for \"${query.trim()}\" — try adding the city or district." else null
         }
     }
 
@@ -185,47 +262,28 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     private fun shortName(displayName: String): String =
         displayName.split(",").take(2).joinToString(",").trim().ifBlank { displayName }
 
-    fun useSearchResult(place: com.trippulse.app.data.routing.PlaceSearch.Place, asStart: Boolean) {
-        if (asStart) {
-            pickedOrigin.value = place.point
-            originText.value = shortName(place.name)
-        } else {
-            pickedDest.value = place.point
-            destText.value = shortName(place.name)
-        }
+    fun useSearchResult(place: PlaceSearch.Place, asStart: Boolean) {
+        val index = editingLeg.value
+        if (asStart) updateLeg(index) { it.copy(from = place.point, fromText = shortName(place.name)) }
+        else updateLeg(index) { it.copy(to = place.point, toText = shortName(place.name)) }
         searchResults.value = emptyList()
     }
 
-    val savedPlaces: StateFlow<List<com.trippulse.app.data.local.SavedPlaceEntity>> =
-        graph.db.savedPlaceDao().allFlow()
-            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
-
-    fun cloudDefault() = graph.cloudAvailableSafe()
-
     fun onMapLongPress(p: GeoPoint) {
         lastDroppedPin = p
-        if (pinMode.value == "START") {
-            pickedOrigin.value = p
-            originText.value = "Start pin"
-        } else {
-            pickedDest.value = p
-        }
+        val index = editingLeg.value
+        if (pinMode.value == "START") updateLeg(index) { it.copy(from = p, fromText = "Pinned start") }
+        else updateLeg(index) { it.copy(to = p, toText = it.toText.ifBlank { "Pinned destination" }) }
     }
 
-    fun useAsStart(place: com.trippulse.app.data.local.SavedPlaceEntity) {
-        pickedOrigin.value = GeoPoint(place.lat, place.lng)
-        originText.value = place.name
-    }
+    fun useAsStart(place: SavedPlaceEntity) =
+        updateLeg(editingLeg.value) { it.copy(from = GeoPoint(place.lat, place.lng), fromText = place.name) }
 
-    fun useAsDest(place: com.trippulse.app.data.local.SavedPlaceEntity) {
-        pickedDest.value = GeoPoint(place.lat, place.lng)
-        destText.value = place.name
-    }
+    fun useAsDest(place: SavedPlaceEntity) =
+        updateLeg(editingLeg.value) { it.copy(to = GeoPoint(place.lat, place.lng), toText = place.name) }
 
-    /** Saves the last dropped pin — or, with no pin, the phone's current
-     *  location (handy for saving "Home" while at home). */
     fun savePlace(name: String) {
-        val label = name.trim()
+        val label = InputRules.itemText(name)
         if (label.isBlank()) { error.value = "Give the place a name first (e.g. Home, Office)."; return }
         viewModelScope.launch {
             val point = lastDroppedPin ?: currentLocation()
@@ -233,26 +291,21 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                 error.value = "Drop a pin on the map (or enable location) to save a place."
                 return@launch
             }
-            graph.db.savedPlaceDao().upsert(
-                com.trippulse.app.data.local.SavedPlaceEntity(label, point.lat, point.lng, System.currentTimeMillis())
-            )
+            graph.db.savedPlaceDao().upsert(SavedPlaceEntity(label, point.lat, point.lng, System.currentTimeMillis()))
             error.value = null
         }
     }
 
-    fun deletePlace(name: String) {
-        viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
-    }
+    fun deletePlace(name: String) = viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
+
+    fun cloudDefault() = graph.cloudAvailableSafe()
 
     @SuppressLint("MissingPermission")
     private suspend fun currentLocation(): GeoPoint? = try {
         val client = LocationServices.getFusedLocationProviderClient(graph.appContext)
-        // last known fix first; fall back to requesting a fresh fix, which is
-        // what a brand-new phone (or freshly granted permission) needs.
         val loc = client.lastLocation.await()
             ?: client.getCurrentLocation(
-                Priority.PRIORITY_BALANCED_POWER_ACCURACY,
-                CancellationTokenSource().token
+                Priority.PRIORITY_BALANCED_POWER_ACCURACY, CancellationTokenSource().token
             ).await()
         loc?.let { GeoPoint(it.latitude, it.longitude) }
     } catch (_: Exception) { null }
@@ -260,60 +313,74 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     @Suppress("DEPRECATION")
     private suspend fun geocode(text: String): GeoPoint? = withContext(Dispatchers.IO) {
         try {
-            val gc = Geocoder(graph.appContext)
-            val res = gc.getFromLocationName(text, 1)
-            res?.firstOrNull()?.let { GeoPoint(it.latitude, it.longitude) }
+            Geocoder(graph.appContext).getFromLocationName(text, 1)
+                ?.firstOrNull()?.let { GeoPoint(it.latitude, it.longitude) }
         } catch (_: Exception) { null }
     }
 
-    /** Resolves inputs to coordinates and creates the trip, returning its id. */
+    /** Resolves every leg to coordinates and creates the journey. */
     fun create(onDone: (String) -> Unit) {
         if (busy.value) return
         viewModelScope.launch {
             busy.value = true; error.value = null
             try {
-                val dest = pickedDest.value ?: geocode(destText.value.trim())
-                if (dest == null) { error.value = "Could not find the destination. Try a more specific name or long-press the map."; return@launch }
-
-                val origin = pickedOrigin.value
-                    ?: if (originText.value.trim().equals("Current location", true)) currentLocation() else geocode(originText.value.trim())
-                    ?: currentLocation()
-                if (origin == null) {
-                    error.value = "Could not get your location — check that GPS is on and location permission is allowed. " +
-                        "Or switch the pin to 'Start' and long-press the map, or pick a saved place."
+                if (!TripCredentials.isCompletePasscode(passcode.value)) {
+                    error.value = "Choose a ${TripCredentials.PASSCODE_LENGTH}-digit passcode — it's what your family types to follow you."
                     return@launch
                 }
+                Profile.setName(graph.appContext, myName.value)
 
-                val originLabel = originText.value.trim().ifBlank { "Start point" }
-
-                graph.appContext.getSharedPreferences("koode_profile", android.content.Context.MODE_PRIVATE)
-                    .edit().putString("name", myName.value.trim()).apply()
+                val resolved = ArrayList<TripManager.NewLeg>()
+                for ((index, leg) in legs.value.withIndex()) {
+                    val to = leg.to ?: geocode(leg.toText.trim())
+                    if (to == null) {
+                        error.value = "Couldn't find \"${leg.toText.trim().ifBlank { "the destination" }}\"" +
+                            (if (legs.value.size > 1) " on leg ${index + 1}" else "") +
+                            ". Try a more specific name, or long-press the map."
+                        return@launch
+                    }
+                    // Where this leg starts, in order of confidence: an
+                    // explicit pin, the end of the previous leg, the typed
+                    // place name, and finally the phone's own position.
+                    val typedFrom = leg.fromText.trim()
+                    val from: GeoPoint? = leg.from
+                        ?: resolved.lastOrNull()?.to
+                        ?: if (typedFrom.isBlank() || typedFrom.equals("Current location", true)) {
+                            currentLocation()
+                        } else {
+                            geocode(typedFrom) ?: currentLocation()
+                        }
+                    if (from == null) {
+                        error.value = "Couldn't work out where you're starting from. Turn on location, " +
+                            "pick a saved place, or switch the pin to 'Start' and long-press the map."
+                        return@launch
+                    }
+                    resolved.add(
+                        TripManager.NewLeg(
+                            mode = leg.mode,
+                            fromName = leg.fromText.trim().ifBlank { "Start point" }, from = from,
+                            toName = leg.toText.trim().ifBlank { "Destination" }, to = to,
+                            fuelType = leg.fuelType,
+                            plannedDepartureMs = if (index == 0) departureMs.value else null,
+                            bookingRef = leg.bookingRef.trim().ifBlank { null },
+                            seat = leg.seat.trim().ifBlank { null },
+                            boardingPoint = leg.boardingPoint.trim().ifBlank { null }
+                        )
+                    )
+                }
 
                 val departure = departureMs.value ?: System.currentTimeMillis()
                 val trip = graph.tripManager.createTrip(
                     TripManager.NewTrip(
-                        originName = originLabel, origin = origin,
-                        destName = destText.value.trim().ifBlank { "Destination" }, destination = dest,
+                        legs = resolved,
                         plannedDepartureMs = departure,
                         emergencyName = emergencyName.value.trim().ifBlank { null },
                         emergencyPhone = emergencyPhone.value.trim().ifBlank { null },
                         cloudEnabled = graph.cloudAvailableSafe(),
-                        transportMode = transportMode.value,
-                        fuelType = if (transportMode.value in TripManager.PRIVATE_MODES) fuelType.value else null
+                        passcode = passcode.value
                     )
                 )
-                // ticket details stay on-device, keyed by trip
-                if (transportMode.value !in TripManager.PRIVATE_MODES &&
-                    (pnr.value.isNotBlank() || seat.value.isNotBlank() || boardingPoint.value.isNotBlank())
-                ) {
-                    graph.appContext.getSharedPreferences("koode_trip_details", android.content.Context.MODE_PRIVATE)
-                        .edit().putString(
-                            trip.tripId,
-                            "${pnr.value.trim()}|${seat.value.trim()}|${boardingPoint.value.trim()}"
-                        ).apply()
-                }
 
-                // scheduled trip: remind the driver 30 min before departure
                 if (departure > System.currentTimeMillis() + 35 * 60_000L) {
                     com.trippulse.app.service.DepartureReminder.schedule(
                         graph.appContext, trip.tripId, trip.destName, departure
@@ -321,7 +388,7 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                 }
                 onDone(trip.tripId)
             } catch (e: Exception) {
-                error.value = e.message ?: "Something went wrong creating the trip."
+                error.value = e.message ?: "Something went wrong creating the journey."
             } finally {
                 busy.value = false
             }
@@ -334,7 +401,7 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 }
 
 // ---------------------------------------------------------------------------
-// Driver
+// Traveller (journey in progress)
 // ---------------------------------------------------------------------------
 
 class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
@@ -351,25 +418,42 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         graph.tripManager.eventsFlow(tripId)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
+    val legs: StateFlow<List<TripLegEntity>> =
+        graph.tripManager.legsFlow(tripId)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    val expenses: StateFlow<List<ExpenseEntity>> =
+        graph.db.expenseDao().flowForTrip(tripId)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
     val pending: StateFlow<Int> =
         graph.tripManager.pendingCountFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
-    /** Viewers who asked to follow with only the trip id — owner approves by name. */
+    /** The path recorded so far, for the map. Refreshed on a gentle cadence. */
+    val breadcrumb = MutableStateFlow<List<LocationSampleEntity>>(emptyList())
+
+    /** Followers asking to join with only the journey id. */
     var joinRequests = MutableStateFlow<List<Map<String, Any?>>>(emptyList()); private set
 
     init {
         viewModelScope.launch {
             while (true) {
+                breadcrumb.value = graph.db.locationDao().allForTrip(tripId)
+                delay(30_000)
+            }
+        }
+        viewModelScope.launch {
+            while (true) {
                 val t = graph.db.tripDao().byId(tripId)
                 if (t?.cloudEnabled == true) {
                     var reqs = try { graph.cloud.fetchJoinRequests(t.accessKey) } catch (_: Exception) { emptyList() }
-                    // Circle rule: emergency contacts ARE the user's network —
-                    // a viewer joining with a contact's name is auto-approved,
+                    // Emergency contacts ARE the traveller's circle: someone
+                    // joining under a contact's name is approved automatically,
                     // so the journey is effectively shared with them by default.
                     val autoApproved = reqs.filter {
                         it["status"] == "PENDING" &&
-                            com.trippulse.app.core.Profile.isCircleName(graph.appContext, it["name"] as? String ?: "")
+                            Profile.isCircleName(graph.appContext, it["name"] as? String ?: "")
                     }
                     if (autoApproved.isNotEmpty()) {
                         autoApproved.forEach { r ->
@@ -379,7 +463,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                     }
                     joinRequests.value = reqs
                 }
-                kotlinx.coroutines.delay(12_000)
+                delay(20_000)
             }
         }
     }
@@ -390,33 +474,43 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         joinRequests.value = try { graph.cloud.fetchJoinRequests(t.accessKey) } catch (_: Exception) { joinRequests.value }
     }
 
-    /** Owner-only expense record — local device only, never synced. */
-    fun addExpense(type: String, amount: Double, quantity: Double?, unit: String?, note: String?) =
+    /**
+     * Records an expense. The item is text and the amount is a number — the
+     * split is enforced here as well as in the field, so no caller can put a
+     * price in the description column.
+     */
+    fun addExpense(type: String, item: String, amount: Double, quantity: Double?, unit: String?, note: String?) =
         viewModelScope.launch {
             graph.db.expenseDao().insert(
-                com.trippulse.app.data.local.ExpenseEntity(
+                ExpenseEntity(
                     tripId = tripId, type = type, amount = amount,
                     quantity = quantity, unit = unit, note = note?.ifBlank { null },
-                    tMs = System.currentTimeMillis()
+                    tMs = System.currentTimeMillis(), item = InputRules.itemText(item)
                 )
             )
         }
 
+    fun deleteExpense(id: Long) = viewModelScope.launch { graph.db.expenseDao().delete(id) }
+
     fun submitCheckpoint(c: TripManager.Checkpoint) = viewModelScope.launch { graph.tripManager.submitCheckpoint(c) }
 
-    /** Break log with a refuel: records the checkpoint AND the fuel expense
-     *  in one gesture (private vehicles only). */
+    /** One-tap wellbeing log (water, tea, a meal the app will name for you). */
+    fun logNourishment(kind: Nourishment) = viewModelScope.launch { graph.tripManager.logNourishment(kind) }
+
+    /** Break log with a refuel: the checkpoint and the fuel cost in one gesture. */
     fun submitCheckpointWithRefuel(c: TripManager.Checkpoint, amount: Double, quantity: Double?, unit: String) =
         viewModelScope.launch {
             graph.tripManager.submitCheckpoint(c)
             graph.db.expenseDao().insert(
-                com.trippulse.app.data.local.ExpenseEntity(
+                ExpenseEntity(
                     tripId = tripId, type = "FUEL", amount = amount,
-                    quantity = quantity, unit = unit, note = "Logged at break",
-                    tMs = System.currentTimeMillis()
+                    quantity = quantity, unit = unit, note = null,
+                    tMs = System.currentTimeMillis(),
+                    item = if (unit == "kWh") "Charging" else "Fuel"
                 )
             )
         }
+
     fun skipCheckpoint() = viewModelScope.launch { graph.tripManager.skipCheckpoint() }
     fun answerOvernight(type: String) = viewModelScope.launch { graph.tripManager.answerOvernight(type) }
     fun addNote(type: String, text: String?) = viewModelScope.launch { graph.tripManager.addQuickNote(type, text) }
@@ -425,7 +519,10 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     fun pause() = viewModelScope.launch { graph.tripManager.pause() }
     fun resume() = viewModelScope.launch { graph.tripManager.resume() }
     fun complete() = viewModelScope.launch { graph.tripManager.completeTrip() }
-    fun changeDestination(name: String, p: GeoPoint) = viewModelScope.launch { graph.tripManager.changeDestination(name, p) }
+    fun dismissArrivalPrompt() = viewModelScope.launch { graph.tripManager.dismissArrivalPrompt() }
+    fun nextLeg() = viewModelScope.launch { graph.tripManager.advanceToNextLeg() }
+    fun changeDestination(name: String, p: GeoPoint) =
+        viewModelScope.launch { graph.tripManager.changeDestination(name, p) }
 
     companion object {
         fun factory(tripId: String) = viewModelFactory { initializer { DriverVm(graphOf(this), tripId) } }
@@ -433,7 +530,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 }
 
 // ---------------------------------------------------------------------------
-// Viewer
+// Follower
 // ---------------------------------------------------------------------------
 
 class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel() {
@@ -446,7 +543,11 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
         val meta: Map<String, Any?>?,
         val state: Map<String, Any?>?,
         val events: List<Map<String, Any?>>,
-        val freshness: Freshness
+        val freshness: Freshness,
+        /** True only because the traveller ended the journey. */
+        val endedByOwner: Boolean,
+        /** We have never managed to read this journey yet. */
+        val awaitingFirstRead: Boolean
     )
 
     val ui: StateFlow<ViewerState> =
@@ -456,22 +557,45 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
             repo.eventsFlow(accessKey),
             ticker
         ) { meta, state, events, _ ->
-            ViewerState(meta, state, events, repo.freshness(state, serverOffset.value))
+            ViewerState(
+                meta = meta,
+                state = state,
+                events = events,
+                freshness = repo.freshness(state, serverOffset.value),
+                endedByOwner = repo.isEndedByOwner(state, events),
+                awaitingFirstRead = meta == null && state == null
+            )
         }.stateIn(
             viewModelScope, SharingStarted.WhileSubscribed(5000),
-            ViewerState(null, null, emptyList(), Freshness.UNKNOWN)
+            ViewerState(null, null, emptyList(), Freshness.UNKNOWN, false, true)
         )
+
+    /** The path the traveller has taken, rebuilt from the shared timeline. */
+    val breadcrumb: StateFlow<List<GeoPoint>> = ui.map { s ->
+        s.events.mapNotNull { e ->
+            val lat = (e["lat"] as? Number)?.toDouble()
+            val lng = (e["lng"] as? Number)?.toDouble()
+            if (lat != null && lng != null) GeoPoint(lat, lng) else null
+        }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     init {
         viewModelScope.launch { serverOffset.value = repo.serverOffsetMs() }
         viewModelScope.launch { repo.touch(accessKey) }
-        // recompute freshness every 5s even without new data
+        // Recompute freshness on a gentle beat even when no new data arrives.
         viewModelScope.launch {
-            while (true) { delay(5000); ticker.value = System.currentTimeMillis() }
+            while (true) { delay(15_000); ticker.value = System.currentTimeMillis() }
+        }
+        // Persist the two facts Home needs to render honestly.
+        viewModelScope.launch {
+            ui.collect { s ->
+                when {
+                    s.endedByOwner -> repo.markEnded(accessKey)
+                    s.state != null || s.meta != null -> repo.markSeen(accessKey)
+                }
+            }
         }
     }
-
-    fun leave() = viewModelScope.launch { repo.leave(accessKey) }
 
     companion object {
         fun factory(accessKey: String) = viewModelFactory { initializer { ViewerVm(graphOf(this), accessKey) } }
@@ -483,82 +607,126 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
 // ---------------------------------------------------------------------------
 
 class JoinVm(private val graph: AppGraph) : ViewModel() {
+
     val saved = graph.viewerRepository.savedFlow()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     var busy = MutableStateFlow(false); private set
     var error = MutableStateFlow<String?>(null); private set
+    var notice = MutableStateFlow<String?>(null); private set
 
-    /** True while an id-only request awaits the owner's approval. */
+    /** True while an id-only request awaits the traveller's approval. */
     var awaitingApproval = MutableStateFlow(false); private set
 
     fun cloudAvailable() = graph.cloudAvailableSafe()
 
-    /**
-     * Follow a trip. With a password: instant access (legacy capability path).
-     * Without one: request access with just the trip id + name and wait for
-     * the owner to approve — this screen polls until they do.
-     */
-    fun join(tripId: String, secret: String, viewerName: String? = null, onOk: (String) -> Unit) {
-        if (busy.value) return
-        viewModelScope.launch {
-            busy.value = true; error.value = null
-            if (secret.isNotBlank()) {
-                when (val r = graph.viewerRepository.join(tripId, secret, viewerName)) {
-                    is ViewerRepository.JoinResult.Ok -> onOk(r.accessKey)
-                    ViewerRepository.JoinResult.InvalidOrExpired ->
-                        error.value = "That trip id and password don't match an active trip. Check them and try again."
-                    ViewerRepository.JoinResult.CloudUnavailable ->
-                        error.value = "Live viewing needs the cloud connection, which isn't configured on this build yet."
-                }
-                busy.value = false
-                return@launch
-            }
+    fun clearMessages() { error.value = null; notice.value = null }
 
-            // trip-id-only path: request access, then poll for the owner's decision
-            when (graph.viewerRepository.requestJoinById(tripId, viewerName.orEmpty())) {
-                is ViewerRepository.IdJoinResult.Ok -> { busy.value = false; onOk(tripId.trim().uppercase()); return@launch }
-                ViewerRepository.IdJoinResult.NotFound -> {
-                    error.value = "No live trip with that id was found. Check the id with the driver."
-                    busy.value = false; return@launch
+    /**
+     * Follow a journey.
+     *
+     * The passcode really is optional, and this is where that promise used to
+     * break: the id-only path returned "pending approval", the screen reported
+     * a network problem, and the follower was left staring at an error while
+     * nothing was actually wrong. Both paths now report exactly what happened —
+     * approved, waiting, declined, wrong passcode, or genuinely offline — and
+     * the waiting case is a state, not a failure.
+     */
+    fun join(tripIdRaw: String, passcodeRaw: String, viewerName: String, onOk: (String) -> Unit) {
+        if (busy.value) return
+        val tripId = TripCredentials.resolve(tripIdRaw)
+        if (tripId == null) {
+            error.value = "Enter the journey number your traveller shared with you."
+            return
+        }
+        val passcode = InputRules.digits(passcodeRaw, TripCredentials.PASSCODE_LENGTH)
+
+        viewModelScope.launch {
+            busy.value = true; clearMessages()
+            try {
+                if (passcode.isNotBlank()) {
+                    joinWithPasscode(tripId, passcode, viewerName, onOk)
+                } else {
+                    requestApproval(tripId, viewerName, onOk)
                 }
-                ViewerRepository.IdJoinResult.Denied -> {
-                    error.value = "The trip owner declined this request."
-                    busy.value = false; return@launch
-                }
-                ViewerRepository.IdJoinResult.CloudUnavailable -> {
-                    error.value = "Couldn't reach the trip service — check your internet connection."
-                    busy.value = false; return@launch
-                }
-                ViewerRepository.IdJoinResult.Pending -> {
-                    awaitingApproval.value = true
-                    while (awaitingApproval.value) {
-                        delay(5000)
-                        when (graph.viewerRepository.pollJoinStatus(tripId)) {
-                            is ViewerRepository.IdJoinResult.Ok -> {
-                                awaitingApproval.value = false; busy.value = false
-                                onOk(tripId.trim().uppercase()); return@launch
-                            }
-                            ViewerRepository.IdJoinResult.Denied -> {
-                                awaitingApproval.value = false; busy.value = false
-                                error.value = "The trip owner declined this request."
-                                return@launch
-                            }
-                            ViewerRepository.IdJoinResult.NotFound -> {
-                                awaitingApproval.value = false; busy.value = false
-                                error.value = "The trip is no longer available."
-                                return@launch
-                            }
-                            else -> { /* still pending or briefly offline — keep polling */ }
-                        }
-                    }
-                    busy.value = false
-                }
+            } finally {
+                if (!awaitingApproval.value) busy.value = false
             }
         }
     }
 
-    fun cancelWaiting() { awaitingApproval.value = false; busy.value = false }
+    private suspend fun joinWithPasscode(
+        tripId: String, passcode: String, viewerName: String, onOk: (String) -> Unit
+    ) {
+        if (!TripCredentials.isCompletePasscode(passcode)) {
+            error.value = "The passcode is ${TripCredentials.PASSCODE_LENGTH} digits. " +
+                "Leave it empty to ask the traveller to let you in instead."
+            return
+        }
+        when (val r = graph.viewerRepository.join(tripId, passcode, viewerName.trim().ifBlank { null })) {
+            is ViewerRepository.JoinResult.Ok -> onOk(r.accessKey)
+            ViewerRepository.JoinResult.InvalidCredentials ->
+                error.value = "That journey number and passcode don't match a live journey. " +
+                    "Check both with the traveller — or leave the passcode empty and ask them to approve you."
+            ViewerRepository.JoinResult.Unreachable ->
+                error.value = "Couldn't reach Koode just now. Check your internet connection and try again."
+            ViewerRepository.JoinResult.CloudUnavailable ->
+                error.value = "Live following needs the cloud connection, which isn't configured on this build."
+        }
+    }
+
+    private suspend fun requestApproval(tripId: String, viewerName: String, onOk: (String) -> Unit) {
+        if (viewerName.isBlank()) {
+            error.value = "Add your name so the traveller knows who's asking to follow."
+            return
+        }
+        when (graph.viewerRepository.requestJoinById(tripId, viewerName)) {
+            is ViewerRepository.IdJoinResult.Ok -> { busy.value = false; onOk(tripId) }
+            ViewerRepository.IdJoinResult.NotFound ->
+                error.value = "No live journey with that number. Double-check the digits with the traveller."
+            ViewerRepository.IdJoinResult.Denied ->
+                error.value = "The traveller declined this request."
+            ViewerRepository.IdJoinResult.Unreachable ->
+                error.value = "Couldn't reach Koode just now. Check your internet connection and try again."
+            ViewerRepository.IdJoinResult.CloudUnavailable ->
+                error.value = "Live following needs the cloud connection, which isn't configured on this build."
+            ViewerRepository.IdJoinResult.Pending -> {
+                // Not an error: this is the no-passcode flow working exactly as
+                // designed. Say so, and wait.
+                awaitingApproval.value = true
+                notice.value = "Request sent. Waiting for the traveller to let you in — " +
+                    "this screen opens the journey the moment they approve."
+                pollUntilApproved(tripId, onOk)
+            }
+        }
+    }
+
+    private suspend fun pollUntilApproved(tripId: String, onOk: (String) -> Unit) {
+        while (awaitingApproval.value) {
+            delay(5000)
+            when (graph.viewerRepository.pollJoinStatus(tripId)) {
+                is ViewerRepository.IdJoinResult.Ok -> {
+                    awaitingApproval.value = false; busy.value = false
+                    onOk(tripId); return
+                }
+                ViewerRepository.IdJoinResult.Denied -> {
+                    awaitingApproval.value = false; busy.value = false
+                    error.value = "The traveller declined this request."
+                    return
+                }
+                ViewerRepository.IdJoinResult.NotFound -> {
+                    awaitingApproval.value = false; busy.value = false
+                    error.value = "That journey is no longer available."
+                    return
+                }
+                // Still pending, or briefly offline — keep waiting quietly.
+                else -> {}
+            }
+        }
+        busy.value = false
+    }
+
+    fun cancelWaiting() { awaitingApproval.value = false; busy.value = false; clearMessages() }
 
     companion object {
         val Factory = viewModelFactory { initializer { JoinVm(graphOf(this)) } }
@@ -566,39 +734,30 @@ class JoinVm(private val graph: AppGraph) : ViewModel() {
 }
 
 // ---------------------------------------------------------------------------
-// Replay + Summary
+// Summary
 // ---------------------------------------------------------------------------
 
-class ReplayVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
-    var samples = MutableStateFlow<List<LocationSampleEntity>>(emptyList()); private set
-    var events = MutableStateFlow<List<EventEntity>>(emptyList()); private set
-    var loading = MutableStateFlow(true); private set
-
-    init {
-        viewModelScope.launch {
-            samples.value = graph.db.locationDao().allForTrip(tripId)
-            events.value = graph.db.eventDao().allForTrip(tripId)
-            loading.value = false
-        }
-    }
-
-    companion object {
-        fun factory(tripId: String) = viewModelFactory { initializer { ReplayVm(graphOf(this), tripId) } }
-    }
-}
-
 class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
+
     var trip = MutableStateFlow<ActiveTripEntity?>(null); private set
     var events = MutableStateFlow<List<EventEntity>>(emptyList()); private set
+    var samples = MutableStateFlow<List<LocationSampleEntity>>(emptyList()); private set
+    var legs = MutableStateFlow<List<TripLegEntity>>(emptyList()); private set
 
-    val expenses: StateFlow<List<com.trippulse.app.data.local.ExpenseEntity>> =
+    val expenses: StateFlow<List<ExpenseEntity>> =
         graph.db.expenseDao().flowForTrip(tripId)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    /** Last export produced, so the screen can offer to share it again. */
+    val lastExport = MutableStateFlow<java.io.File?>(null)
+    val exporting = MutableStateFlow(false)
 
     init {
         viewModelScope.launch {
             trip.value = graph.db.tripDao().byId(tripId)
             events.value = graph.db.eventDao().allForTrip(tripId)
+            samples.value = graph.db.locationDao().allForTrip(tripId)
+            legs.value = graph.db.legDao().forTrip(tripId)
         }
     }
 
@@ -608,19 +767,56 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 }
 
 // ---------------------------------------------------------------------------
-// Settings (profile, saved locations, emergency contacts)
+// Settings
 // ---------------------------------------------------------------------------
 
 class SettingsVm(private val graph: AppGraph) : ViewModel() {
 
-    val savedPlaces: StateFlow<List<com.trippulse.app.data.local.SavedPlaceEntity>> =
+    val settings: StateFlow<KoodeSettings> = graph.settings.state
+
+    val savedPlaces: StateFlow<List<SavedPlaceEntity>> =
         graph.db.savedPlaceDao().allFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    private val placeSearch = com.trippulse.app.data.routing.PlaceSearch()
-    var searchResults = MutableStateFlow<List<com.trippulse.app.data.routing.PlaceSearch.Place>>(emptyList()); private set
+    private val placeSearch = PlaceSearch()
+    var searchResults = MutableStateFlow<List<PlaceSearch.Place>>(emptyList()); private set
     var searching = MutableStateFlow(false); private set
     var message = MutableStateFlow<String?>(null); private set
+
+    val update = MutableStateFlow<UpdateChecker.Available?>(graph.updateChecker.cached())
+    val checkingUpdate = MutableStateFlow(false)
+    val installedVersion: String = graph.updateChecker.installedVersion
+
+    // ---- behaviour --------------------------------------------------------
+
+    fun setLocationCadence(c: LocationCadence) =
+        graph.settings.update { it.copy(locationCadence = c) }
+
+    fun setViewerRefresh(v: ViewerRefresh) =
+        graph.settings.update { it.copy(viewerRefresh = v) }
+
+    fun setBatterySaverThreshold(pct: Int) =
+        graph.settings.update { it.copy(batterySaverBelowPct = pct.coerceIn(5, 50)) }
+
+    fun setKeepScreenOn(on: Boolean) =
+        graph.settings.update { it.copy(keepScreenOnDuringJourney = on) }
+
+    fun setHaptics(on: Boolean) = graph.settings.update { it.copy(hapticFeedback = on) }
+
+    fun setThemeMode(mode: String) = graph.settings.update { it.copy(themeMode = mode) }
+
+    fun setCheckForUpdates(on: Boolean) = graph.settings.update { it.copy(checkForUpdates = on) }
+
+    fun checkForUpdateNow() = viewModelScope.launch {
+        checkingUpdate.value = true
+        val found = graph.updateChecker.check(force = true)
+        update.value = found
+        message.value = if (found == null) "You're on the latest version ($installedVersion)."
+        else "Koode ${found.versionName} is available."
+        checkingUpdate.value = false
+    }
+
+    // ---- places -----------------------------------------------------------
 
     fun searchPlaces(query: String) {
         if (query.trim().length < 2 || searching.value) return
@@ -633,12 +829,10 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
     }
 
     fun addPlace(label: String, point: GeoPoint, fallbackName: String) {
-        val name = label.trim().ifBlank { fallbackName.split(",").first().trim() }
+        val name = InputRules.itemText(label).ifBlank { fallbackName.split(",").first().trim() }
         if (name.isBlank()) { message.value = "Give the place a name (e.g. Home)."; return }
         viewModelScope.launch {
-            graph.db.savedPlaceDao().upsert(
-                com.trippulse.app.data.local.SavedPlaceEntity(name, point.lat, point.lng, System.currentTimeMillis())
-            )
+            graph.db.savedPlaceDao().upsert(SavedPlaceEntity(name, point.lat, point.lng, System.currentTimeMillis()))
             searchResults.value = emptyList()
             message.value = "Saved \"$name\"."
         }
@@ -646,14 +840,16 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
 
     @SuppressLint("MissingPermission")
     fun addCurrentLocation(label: String) {
-        if (label.trim().isBlank()) { message.value = "Type a name first (e.g. Home), then tap Use current location."; return }
+        if (label.trim().isBlank()) {
+            message.value = "Type a name first (e.g. Home), then tap Use current location."
+            return
+        }
         viewModelScope.launch {
             val point = try {
                 val client = LocationServices.getFusedLocationProviderClient(graph.appContext)
                 val loc = client.lastLocation.await()
                     ?: client.getCurrentLocation(
-                        Priority.PRIORITY_BALANCED_POWER_ACCURACY,
-                        CancellationTokenSource().token
+                        Priority.PRIORITY_BALANCED_POWER_ACCURACY, CancellationTokenSource().token
                     ).await()
                 loc?.let { GeoPoint(it.latitude, it.longitude) }
             } catch (_: Exception) { null }
@@ -667,11 +863,9 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
 
     fun deletePlace(name: String) = viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
 
-    fun saveProfile(name: String, contacts: List<com.trippulse.app.core.Profile.Contact>) {
-        com.trippulse.app.core.Profile.setName(graph.appContext, name)
-        contacts.forEachIndexed { i, c ->
-            com.trippulse.app.core.Profile.setContact(graph.appContext, i + 1, c.name, c.phone)
-        }
+    fun saveProfile(name: String, contacts: List<Profile.Contact>) {
+        Profile.setName(graph.appContext, name)
+        contacts.forEachIndexed { i, c -> Profile.setContact(graph.appContext, i + 1, c.name, c.phone) }
         message.value = "Profile saved."
     }
 

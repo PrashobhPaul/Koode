@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The Koode mark for the splash window: two travelling companions under one
+  arc. Drawn as a vector so it stays crisp on every density, and sized to the
+  108dp adaptive-icon canvas the SplashScreen API expects.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path
+        android:fillColor="#2DD4BF"
+        android:pathData="M44,44m-11,0a11,11 0,1 1,22 0a11,11 0,1 1,-22 0" />
+    <path
+        android:fillColor="#7DD3FC"
+        android:pathData="M66,46m-9,0a9,9 0,1 1,18 0a9,9 0,1 1,-18 0" />
+    <path
+        android:fillColor="#2DD4BF"
+        android:pathData="M30,78c0,-9 6.5,-16 14,-16s14,7 14,16z" />
+    <path
+        android:fillColor="#7DD3FC"
+        android:pathData="M56,78c0,-7.5 5,-13.5 11,-13.5s11,6 11,13.5z" />
+    <path
+        android:strokeColor="#2DD4BF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M24,32c9,-12 51,-12 60,0" />
+</vector>

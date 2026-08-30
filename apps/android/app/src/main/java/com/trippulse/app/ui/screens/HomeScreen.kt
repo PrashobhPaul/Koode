@@ -1,7 +1,12 @@
 package com.trippulse.app.ui.screens
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -10,16 +15,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -28,10 +35,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,73 +52,104 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TimeFmt
+import com.trippulse.app.data.local.ActiveTripEntity
+import com.trippulse.app.data.local.ViewerTripEntity
 import com.trippulse.app.ui.HomeVm
 import com.trippulse.app.ui.Routes
-import com.trippulse.app.ui.theme.Amber
-import com.trippulse.app.ui.theme.Danger
-import com.trippulse.app.ui.theme.Teal
-import com.trippulse.app.ui.theme.TextHigh
-import com.trippulse.app.ui.theme.TextMid
+import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.EmptyState
+import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.KoodeHeroCard
+import com.trippulse.app.ui.components.LocalWindowClass
+import com.trippulse.app.ui.components.PrimaryButton
+import com.trippulse.app.ui.components.PulsingDot
+import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.components.SectionHeader
+import com.trippulse.app.ui.components.StatusPill
+import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Motion
+import com.trippulse.app.ui.theme.Radii
+import com.trippulse.app.ui.theme.Spacing
+import kotlinx.coroutines.launch
 
 /**
- * The Koode shell: four simple destinations plus one primary action.
+ * The Koode shell: four destinations and one primary action.
  *
- *   🏠 Home      everyone's status at a glance (Koode Status)
- *   🧭 Journeys  my active / scheduled journeys + history
- *   👥 People    the circle — who I share with, who I follow
- *   ⚙️ More      places, emergency contacts, privacy, settings
- *   ＋ Start Journey (floating action)
+ *   🏠 Home      what matters right now
+ *   🧭 Journeys  mine — active, scheduled, past
+ *   👥 People    my circle, and who I follow
+ *   ⚙️ More      places, contacts, behaviour, privacy
+ *
+ * Tabs are a pager, so they can be swiped as well as tapped — Android users
+ * reach for the gesture first, and a tab bar that only responds to taps feels
+ * like a web page rather than an app.
  */
 @Composable
 fun HomeScreen(nav: NavHostController) {
     val vm: HomeVm = viewModel(factory = HomeVm.Factory)
+    val colors = KoodeTheme.colors
     val active by vm.activeTrip.collectAsStateWithLifecycle()
     val allTrips by vm.allTrips.collectAsStateWithLifecycle()
     val following by vm.following.collectAsStateWithLifecycle()
     val placeCount by vm.savedPlaceCount.collectAsStateWithLifecycle()
+    val update by vm.update.collectAsStateWithLifecycle()
 
-    var tab by remember { mutableIntStateOf(0) }
+    val pager = rememberPagerState(pageCount = { 4 })
+    val scope = rememberCoroutineScope()
     var deleteTarget by remember { mutableStateOf<String?>(null) }
 
-    val context = androidx.compose.ui.platform.LocalContext.current
+    val context = LocalContext.current
     var profileVersion by remember { mutableIntStateOf(0) }
-    val profileComplete = remember(profileVersion, placeCount) {
-        Profile.isComplete(context)
-    }
-    LaunchedEffect(Unit) { if (!Profile.isComplete(context)) tab = 3 }
+    val profileComplete = remember(profileVersion, placeCount) { Profile.isComplete(context) }
 
-    Scaffold(
-        bottomBar = {
-            NavigationBar {
-                NavigationBarItem(selected = tab == 0, onClick = { tab = 0 },
-                    icon = { Text("🏠", fontSize = 18.sp) }, label = { Text("Home", fontSize = 11.sp) })
-                NavigationBarItem(selected = tab == 1, onClick = { tab = 1 },
-                    icon = { Text("🧭", fontSize = 18.sp) }, label = { Text("Journeys", fontSize = 11.sp) })
-                NavigationBarItem(selected = tab == 2, onClick = { tab = 2 },
-                    icon = { Text("👥", fontSize = 18.sp) }, label = { Text("People", fontSize = 11.sp) })
-                NavigationBarItem(selected = tab == 3, onClick = { tab = 3 },
-                    icon = { Text("⚙️", fontSize = 18.sp) }, label = { Text("More", fontSize = 11.sp) })
+    // A first-run traveller lands on setup, because nothing else works without it.
+    LaunchedEffect(Unit) { if (!Profile.isComplete(context)) pager.scrollToPage(3) }
+
+    fun goTo(page: Int) = scope.launch { pager.animateScrollToPage(page) }
+
+    Box(Modifier.fillMaxSize().background(colors.background)) {
+        Column(Modifier.fillMaxSize()) {
+            HorizontalPager(
+                state = pager,
+                modifier = Modifier.weight(1f),
+                beyondViewportPageCount = 1
+            ) { page ->
+                Column(
+                    Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .statusBarsPadding()
+                ) {
+                    Spacer(Modifier.height(Spacing.md))
+                    AdaptiveContainer {
+                        when (page) {
+                            0 -> HomeFeed(nav, vm, active, following, profileComplete, update) { goTo(3) }
+                            1 -> JourneysSection(nav, active, allTrips) { deleteTarget = it }
+                            2 -> PeopleSection(nav, vm, following, profileComplete) { goTo(3) }
+                            else -> SettingsTab(onProfileChanged = { profileVersion++ })
+                        }
+                    }
+                    Spacer(Modifier.height(Spacing.scrollBottom))
+                }
             }
-        },
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                onClick = { if (profileComplete) nav.navigate(Routes.CREATE) else tab = 3 },
-                containerColor = Teal
-            ) { Text("＋ Start Journey", fontWeight = FontWeight.SemiBold, fontSize = 14.sp) }
+            KoodeTabBar(
+                selected = pager.currentPage,
+                onSelect = { goTo(it) },
+                modifier = Modifier.fillMaxWidth()
+            )
         }
-    ) { padding ->
-        Column(
-            Modifier.fillMaxSize().padding(padding).padding(horizontal = 20.dp).verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+
+        // The one primary action, floating clear of the tab bar.
+        Box(
+            Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = Spacing.xl, bottom = 96.dp)
+                .navigationBarsPadding()
         ) {
-            Spacer(Modifier.height(12.dp))
-            when (tab) {
-                0 -> HomeFeed(nav, vm, active, following, profileComplete) { tab = 3 }
-                1 -> JourneysSection(nav, vm, active, allTrips) { deleteTarget = it }
-                2 -> PeopleSection(nav, vm, following, profileComplete) { tab = 3 }
-                else -> SettingsTab(onProfileChanged = { profileVersion++ })
-            }
-            Spacer(Modifier.height(80.dp)) // keep content clear of the FAB
+            StartJourneyFab(
+                enabled = profileComplete,
+                onClick = { if (profileComplete) nav.navigate(Routes.CREATE) else goTo(3) }
+            )
         }
     }
 
@@ -117,153 +160,337 @@ fun HomeScreen(nav: NavHostController) {
                 TextButton(onClick = {
                     vm.deleteTrip(deleteTarget!!)
                     deleteTarget = null
-                }) { Text("Delete forever", color = Danger) }
+                }) { Text("Delete forever", color = colors.danger) }
             },
             dismissButton = { TextButton(onClick = { deleteTarget = null }) { Text("Keep") } },
             title = { Text("Delete this journey from your phone?") },
-            text = { Text("The route, timeline, replay and expense records will be permanently removed from this device.") }
+            text = { Text("Its route, timeline, playback and money records are removed from this device permanently.") }
         )
     }
 }
 
 // ---------------------------------------------------------------------------
-// 🏠 Home — Koode Status: everyone, humanized, at a glance
+// Navigation
+// ---------------------------------------------------------------------------
+
+private data class TabSpec(val emoji: String, val label: String)
+
+private val TABS = listOf(
+    TabSpec("🏠", "Home"),
+    TabSpec("🧭", "Journeys"),
+    TabSpec("👥", "People"),
+    TabSpec("⚙️", "More")
+)
+
+/**
+ * The tab bar. Each item scales and tints on selection rather than simply
+ * changing colour, so switching tabs feels like moving somewhere.
+ */
+@Composable
+private fun KoodeTabBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier = Modifier) {
+    val colors = KoodeTheme.colors
+    Row(
+        modifier
+            .background(colors.backgroundElevated)
+            .navigationBarsPadding()
+            .padding(vertical = Spacing.sm),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        TABS.forEachIndexed { index, tab ->
+            val isSelected = index == selected
+            val scale by animateFloatAsState(
+                targetValue = if (isSelected) 1.06f else 1f,
+                animationSpec = spring(dampingRatio = 0.55f), label = "tabScale"
+            )
+            val tint by animateColorAsState(
+                targetValue = if (isSelected) colors.accent else colors.textLow,
+                animationSpec = tween(Motion.normal), label = "tabTint"
+            )
+            Column(
+                Modifier
+                    .clip(RoundedCornerShape(Radii.md))
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null
+                    ) { onSelect(index) }
+                    .padding(horizontal = Spacing.lg, vertical = 6.dp)
+                    .scale(scale),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(tab.emoji, fontSize = 17.sp)
+                Spacer(Modifier.height(2.dp))
+                Text(tab.label, color = tint, style = MaterialTheme.typography.labelSmall, fontSize = 10.sp)
+                Spacer(Modifier.height(3.dp))
+                Box(
+                    Modifier
+                        .width(if (isSelected) 16.dp else 0.dp)
+                        .height(2.dp)
+                        .clip(RoundedCornerShape(Radii.pill))
+                        .background(if (isSelected) colors.accent else Color.Transparent)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun StartJourneyFab(enabled: Boolean, onClick: () -> Unit) {
+    val colors = KoodeTheme.colors
+    val interaction = remember { MutableInteractionSource() }
+    Row(
+        Modifier
+            .clip(RoundedCornerShape(Radii.pill))
+            .background(if (enabled) colors.accent else colors.surfaceRaised)
+            .clickable(interactionSource = interaction, indication = null, onClick = onClick)
+            .padding(horizontal = Spacing.xl, vertical = 15.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text("＋", fontSize = 17.sp, color = if (colors.isDark) Color(0xFF07131D) else Color.White)
+        Spacer(Modifier.width(Spacing.sm))
+        Text(
+            "Start Journey",
+            color = if (colors.isDark) Color(0xFF07131D) else Color.White,
+            style = MaterialTheme.typography.labelLarge
+        )
+    }
+}
+
+// ---------------------------------------------------------------------------
+// 🏠 Home
 // ---------------------------------------------------------------------------
 
 @Composable
 private fun HomeFeed(
     nav: NavHostController,
     vm: HomeVm,
-    active: com.trippulse.app.data.local.ActiveTripEntity?,
-    following: List<com.trippulse.app.data.local.ViewerTripEntity>,
+    active: ActiveTripEntity?,
+    following: List<ViewerTripEntity>,
     profileComplete: Boolean,
+    update: com.trippulse.app.data.update.UpdateChecker.Available?,
     goToSettings: () -> Unit
 ) {
-    val context = androidx.compose.ui.platform.LocalContext.current
+    val colors = KoodeTheme.colors
+    val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
     val name = vm.greetingName()
-    Text(if (name.isNotBlank()) "Hi, $name 👋" else "Hi 👋", color = TextHigh, fontSize = 28.sp, fontWeight = FontWeight.Bold)
-    Text("Here's what matters.", color = TextMid, fontSize = 13.sp)
-    Spacer(Modifier.height(2.dp))
+    val now = System.currentTimeMillis()
 
-    if (!profileComplete) {
-        SectionCard(modifier = Modifier.clickable { goToSettings() }) {
-            Text("Finish setting up Koode", color = Amber, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
-            Profile.missing(context).forEach { Text("• $it", color = TextMid, fontSize = 13.sp) }
+    Text(
+        if (name.isNotBlank()) "Hi, $name 👋" else "Hi 👋",
+        color = colors.textHigh,
+        style = MaterialTheme.typography.displaySmall
+    )
+    Text("Here's what matters.", color = colors.textMid, style = MaterialTheme.typography.bodyLarge)
+    Spacer(Modifier.height(Spacing.xs))
+
+    // ---- update nudge -----------------------------------------------------
+    AnimatedBanner(visible = update != null) {
+        update?.let { u ->
+            KoodeCard(accent = colors.traveller) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("⬆️", fontSize = 18.sp)
+                    Spacer(Modifier.width(Spacing.sm))
+                    Text(
+                        "Koode ${u.versionName} is available",
+                        color = colors.traveller,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                }
+                Text(
+                    "Updating never affects a journey in progress — yours or one you're watching.",
+                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(Modifier.height(Spacing.md))
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    Box(Modifier.weight(1f)) {
+                        PrimaryButton("Download", { uriHandler.openUri(u.downloadUrl) }, height = 44.dp)
+                    }
+                    Box(Modifier.weight(1f)) {
+                        SecondaryButton("Not now", { vm.dismissUpdate() }, height = 44.dp)
+                    }
+                }
+            }
         }
     }
 
-    // my own journey first
+    if (!profileComplete) {
+        KoodeCard(accent = colors.warn, onClick = goToSettings) {
+            Text("Finish setting up Koode", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+            Profile.missing(context).forEach {
+                Text("• $it", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
+            }
+        }
+    }
+
+    // ---- my own journey, first ---------------------------------------------
     if (active != null) {
-        val scheduled = active.status == "CREATED" && (active.plannedDepartureMs ?: 0) > System.currentTimeMillis()
-        StatusCard(
-            emoji = if (scheduled) "🕐" else "🟢",
-            title = if (scheduled) "Your scheduled journey" else "Your journey is live",
-            line = "${active.originName} → ${active.destName}",
-            meta = if (scheduled) "Departs ${TimeFmt.clockWithDay(active.plannedDepartureMs!!, System.currentTimeMillis())}"
-                else "Tap to open",
-            color = Teal,
+        val scheduled = active.status == "CREATED" && (active.plannedDepartureMs ?: 0) > now
+        KoodeHeroCard(
+            accent = if (scheduled) colors.warn else colors.accent,
             onClick = {
                 if (active.status == "CREATED") nav.navigate(Routes.credentials(active.tripId))
                 else nav.navigate(Routes.driver(active.tripId))
             }
-        )
-    }
-
-    // then everyone I follow, humanized
-    val live = following.filter { !it.expired }
-    if (live.isNotEmpty() && live.all { vm.followHealth(it.accessKey) == "NORMAL" }) {
-        Text("Your people are safe ✅", color = Teal, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
-    }
-    following.forEach { v ->
-        val s = vm.followStatus(v.accessKey)
-        val (emoji, title, color) = when {
-            v.expired -> Triple("🏁", "Journey ended", TextMid)
-            s.level == "CONCERN" -> Triple("🔴", "Attention", Danger)
-            s.level == "ATTENTION" -> Triple("🟡", "Keep an eye", Amber)
-            else -> Triple("🟢", "All good", Teal)
-        }
-        StatusCard(
-            emoji = emoji, title = title,
-            line = if (v.expired) v.label else "${v.label} — ${s.headline}",
-            meta = buildString {
-                if (s.reason.isNotBlank() && !v.expired) append("${s.reason} · ")
-                s.updatedAtMs?.let { append("Updated ${TimeFmt.ago(System.currentTimeMillis(), it)}") }
-            }.ifBlank { null },
-            color = color,
-            onClick = { nav.navigate(Routes.viewer(v.accessKey)) }
-        )
-    }
-
-    if (active == null && following.isEmpty()) {
-        SectionCard {
-            Text("Nothing here yet", color = TextHigh, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (scheduled) {
+                    Text("🕐", fontSize = 16.sp)
+                    Spacer(Modifier.width(Spacing.sm))
+                } else {
+                    PulsingDot(colors.accent, size = 8.dp)
+                }
+                Text(
+                    if (scheduled) "Your scheduled journey" else "Your journey is live",
+                    color = if (scheduled) colors.warn else colors.accent,
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
+            Spacer(Modifier.height(Spacing.sm))
             Text(
-                "Start a journey with ＋, or follow someone from the People tab when they share a Journey ID with you.",
-                color = TextMid, fontSize = 13.sp
+                "${active.originName} → ${active.destName}",
+                color = colors.textHigh,
+                style = MaterialTheme.typography.headlineSmall
+            )
+            Spacer(Modifier.height(Spacing.xs))
+            Text(
+                if (scheduled)
+                    "Departs ${TimeFmt.clockWithDay(active.plannedDepartureMs!!, now)}"
+                else "Tap to open",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
             )
         }
     }
-}
 
-@Composable
-private fun StatusCard(
-    emoji: String, title: String, line: String, meta: String?,
-    color: androidx.compose.ui.graphics.Color, onClick: () -> Unit
-) {
-    SectionCard(modifier = Modifier.clickable { onClick() }) {
+    // ---- the people I follow ------------------------------------------------
+    val live = following.filter { !it.expired }
+    if (live.size > 1 && live.all { vm.followHealth(it.accessKey) == "NORMAL" }) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(emoji, fontSize = 18.sp)
-            Spacer(Modifier.height(0.dp))
-            Text("  $title", color = color, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text("✅", fontSize = 15.sp)
+            Spacer(Modifier.width(Spacing.sm))
+            Text("Your people are safe", color = colors.accent, style = MaterialTheme.typography.titleMedium)
         }
-        Text(line, color = TextHigh, fontSize = 14.sp)
-        if (meta != null) Text(meta, color = TextMid, fontSize = 11.sp)
+    }
+
+    following.forEach { v ->
+        val s = vm.followStatus(v.accessKey)
+        // "Ended" appears here for exactly one reason: the traveller ended it.
+        // Everything else — no signal, a server we can't reach — is "waiting".
+        val ended = v.expired
+        val waiting = !ended && v.unreachableSinceMs != null
+        val (emoji, title, tint) = when {
+            ended -> Triple("🏁", "Journey ended", colors.textMid)
+            waiting -> Triple("📡", "Waiting for updates", colors.warn)
+            s.level == "CONCERN" -> Triple("🔴", "Needs attention", colors.danger)
+            s.level == "ATTENTION" -> Triple("🟡", "Keep an eye", colors.warn)
+            else -> Triple("🟢", "All good", colors.accent)
+        }
+        KoodeCard(accent = tint, onClick = { nav.navigate(Routes.viewer(v.accessKey)) }) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(emoji, fontSize = 15.sp)
+                Spacer(Modifier.width(Spacing.sm))
+                Text(title, color = tint, style = MaterialTheme.typography.titleMedium)
+                Spacer(Modifier.weight(1f))
+                if (!ended && !waiting && s.level == "NORMAL") {
+                    StatusPill("LIVE", colors.accent, pulsing = true)
+                }
+            }
+            Spacer(Modifier.height(Spacing.xs))
+            Text(v.label, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            val meta = when {
+                ended -> v.endedAtMs?.let { "Ended ${TimeFmt.ago(now, it)}" }
+                waiting -> "Last heard ${TimeFmt.ago(now, v.lastSeenAtMs ?: v.joinedAtMs)} — " +
+                    "this is about the signal, not about them."
+                else -> buildString {
+                    if (s.reason.isNotBlank()) append("${s.reason} · ")
+                    s.updatedAtMs?.let { append("Updated ${TimeFmt.ago(now, it)}") }
+                }.ifBlank { s.headline }
+            }
+            if (!meta.isNullOrBlank()) {
+                Text(meta, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+            }
+        }
+    }
+
+    if (active == null && following.isEmpty()) {
+        EmptyState(
+            emoji = "🧭",
+            title = "Nothing here yet",
+            body = "Start a journey with ＋, or follow someone from the People tab when they share their journey number with you."
+        )
     }
 }
 
 // ---------------------------------------------------------------------------
-// 🧭 Journeys — mine: active, scheduled, history
+// 🧭 Journeys
 // ---------------------------------------------------------------------------
 
 @Composable
 private fun JourneysSection(
     nav: NavHostController,
-    vm: HomeVm,
-    active: com.trippulse.app.data.local.ActiveTripEntity?,
-    allTrips: List<com.trippulse.app.data.local.ActiveTripEntity>,
+    active: ActiveTripEntity?,
+    allTrips: List<ActiveTripEntity>,
     onDelete: (String) -> Unit
 ) {
-    Text("Journeys", color = TextHigh, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+    val colors = KoodeTheme.colors
+    val now = System.currentTimeMillis()
+    SectionHeader("Journeys")
 
     if (active != null) {
-        val scheduled = active.status == "CREATED" && (active.plannedDepartureMs ?: 0) > System.currentTimeMillis()
-        SectionCard(modifier = Modifier.clickable {
-            if (active.status == "CREATED") nav.navigate(Routes.credentials(active.tripId))
-            else nav.navigate(Routes.driver(active.tripId))
-        }) {
-            Text(if (scheduled) "Scheduled" else "Active now", color = Teal, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-            Text("${active.originName} → ${active.destName}", color = TextHigh, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+        val scheduled = active.status == "CREATED" && (active.plannedDepartureMs ?: 0) > now
+        KoodeCard(
+            accent = colors.accent,
+            onClick = {
+                if (active.status == "CREATED") nav.navigate(Routes.credentials(active.tripId))
+                else nav.navigate(Routes.driver(active.tripId))
+            }
+        ) {
+            StatusPill(if (scheduled) "SCHEDULED" else "ACTIVE NOW", colors.accent, pulsing = !scheduled)
+            Spacer(Modifier.height(Spacing.sm))
+            Text(
+                "${active.originName} → ${active.destName}",
+                color = colors.textHigh, style = MaterialTheme.typography.titleMedium
+            )
             if (scheduled) {
-                Text("Departs ${TimeFmt.clockWithDay(active.plannedDepartureMs!!, System.currentTimeMillis())}", color = TextMid, fontSize = 12.sp)
+                Text(
+                    "Departs ${TimeFmt.clockWithDay(active.plannedDepartureMs!!, now)}",
+                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                )
             }
         }
     } else {
-        Text("No journey right now — use ＋ to start or schedule one.", color = TextMid, fontSize = 13.sp)
+        Text(
+            "No journey right now — use ＋ to start or schedule one.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
     }
 
     val history = allTrips.filter { it.status == "COMPLETED" || it.status == "EXPIRED" }
     if (history.isNotEmpty()) {
-        Text("History", color = TextMid, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-        Text("Kept on this phone until you delete it.", color = TextMid, fontSize = 11.sp)
+        Spacer(Modifier.height(Spacing.sm))
+        SectionHeader("History")
+        Text(
+            "Kept on this phone until you delete it. Open one to see its playback, timeline and costs — and to save them as a PDF.",
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+        )
         history.forEach { t ->
-            SectionCard {
-                Text("${t.originName} → ${t.destName}", color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                Text(TimeFmt.clockWithDay(t.completedAtMs ?: t.createdAtMs, System.currentTimeMillis()), color = TextMid, fontSize = 11.sp)
-                Row {
-                    TextButton(onClick = { nav.navigate(Routes.summary(t.tripId)) }) { Text("Summary", color = Teal, fontSize = 13.sp) }
-                    TextButton(onClick = { nav.navigate(Routes.replay(t.tripId)) }) { Text("Replay", color = Teal, fontSize = 13.sp) }
-                    Spacer(Modifier.weight(1f))
-                    TextButton(onClick = { onDelete(t.tripId) }) { Text("Delete", color = Danger, fontSize = 13.sp) }
+            KoodeCard(onClick = { nav.navigate(Routes.summary(t.tripId)) }) {
+                Text(
+                    "${t.originName} → ${t.destName}",
+                    color = colors.textHigh, style = MaterialTheme.typography.titleSmall
+                )
+                Text(
+                    TimeFmt.dateTime(t.completedAtMs ?: t.createdAtMs),
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+                Spacer(Modifier.height(Spacing.sm))
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    Box(Modifier.weight(1f)) {
+                        SecondaryButton("Open", { nav.navigate(Routes.summary(t.tripId)) }, height = 40.dp)
+                    }
+                    Box(Modifier.weight(1f)) {
+                        SecondaryButton("Delete", { onDelete(t.tripId) }, accent = colors.danger, height = 40.dp)
+                    }
                 }
             }
         }
@@ -271,63 +498,74 @@ private fun JourneysSection(
 }
 
 // ---------------------------------------------------------------------------
-// 👥 People — the circle
+// 👥 People
 // ---------------------------------------------------------------------------
 
 @Composable
 private fun PeopleSection(
     nav: NavHostController,
     vm: HomeVm,
-    following: List<com.trippulse.app.data.local.ViewerTripEntity>,
+    following: List<ViewerTripEntity>,
     profileComplete: Boolean,
     goToSettings: () -> Unit
 ) {
-    val context = androidx.compose.ui.platform.LocalContext.current
-    Text("People", color = TextHigh, fontSize = 28.sp, fontWeight = FontWeight.Bold)
+    val colors = KoodeTheme.colors
+    val context = LocalContext.current
+    SectionHeader("People")
 
-    Text("Your circle", color = TextMid, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+    Text("Your circle", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
     val circle = Profile.contacts(context).filter { it.filled }
     if (circle.isEmpty()) {
-        SectionCard(modifier = Modifier.clickable { goToSettings() }) {
-            Text("Add your emergency contacts", color = Amber, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-            Text("They become your circle — your journeys are shared with them by default.", color = TextMid, fontSize = 12.sp)
+        KoodeCard(accent = colors.warn, onClick = goToSettings) {
+            Text("Add your emergency contacts", color = colors.warn, style = MaterialTheme.typography.titleSmall)
+            Text(
+                "They become your circle — your journeys are shared with them by default.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
         }
     } else {
         circle.forEach { c ->
-            SectionCard {
+            KoodeCard {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
-                        Text(c.name, color = TextHigh, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                        Text(c.phone, color = TextMid, fontSize = 12.sp)
+                        Text(c.name, color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                        Text(c.phone, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
                     }
-                    Box(
-                        Modifier.clip(RoundedCornerShape(50)).background(Teal.copy(alpha = 0.15f))
-                            .padding(horizontal = 10.dp, vertical = 4.dp)
-                    ) { Text("In your circle", color = Teal, fontSize = 11.sp, fontWeight = FontWeight.SemiBold) }
+                    StatusPill("In your circle", colors.accent)
                 }
             }
         }
         Text(
             "Circle members are approved automatically when they join your journey with their name.",
-            color = TextMid, fontSize = 11.sp
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall
         )
     }
 
-    Spacer(Modifier.height(4.dp))
-    Text("You follow", color = TextMid, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-    androidx.compose.material3.OutlinedButton(
-        onClick = { if (profileComplete) nav.navigate(Routes.JOIN) else goToSettings() },
-        modifier = Modifier.fillMaxWidth()
-    ) { Text("Follow a new journey", fontSize = 14.sp) }
+    Spacer(Modifier.height(Spacing.sm))
+    Text("You follow", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
+    SecondaryButton(
+        "Follow a journey",
+        { if (profileComplete) nav.navigate(Routes.JOIN) else goToSettings() },
+        leading = "＋"
+    )
     following.forEach { v ->
-        SectionCard(modifier = Modifier.clickable { nav.navigate(Routes.viewer(v.accessKey)) }) {
+        KoodeCard(onClick = { nav.navigate(Routes.viewer(v.accessKey)) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f)) {
-                    Text(v.label, color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                    Text(v.tripId, color = TextMid, fontSize = 11.sp)
+                    Text(v.label, color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                    Text(v.tripId, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
                 }
-                HealthChip(if (v.expired) "ENDED" else vm.followHealth(v.accessKey))
-                TextButton(onClick = { vm.unfollow(v.accessKey) }) { Text("Remove", color = TextMid, fontSize = 13.sp) }
+                HealthChip(
+                    when {
+                        v.expired -> "ENDED"
+                        v.unreachableSinceMs != null -> "WAITING"
+                        else -> vm.followHealth(v.accessKey)
+                    }
+                )
+                Spacer(Modifier.width(Spacing.sm))
+                TextButton(onClick = { vm.unfollow(v.accessKey) }) {
+                    Text("Remove", color = colors.textLow, style = MaterialTheme.typography.bodyMedium)
+                }
             }
         }
     }
@@ -336,18 +574,13 @@ private fun PeopleSection(
 /** Journey Health at a glance — the "Safe" chip from the brand banners. */
 @Composable
 private fun HealthChip(level: String) {
+    val colors = KoodeTheme.colors
     val (label, color) = when (level) {
-        "CONCERN" -> "Check now" to Danger
-        "ATTENTION" -> "Attention" to Amber
-        "ENDED" -> "Ended" to TextMid
-        else -> "Safe" to Teal
+        "CONCERN" -> "Check now" to colors.danger
+        "ATTENTION" -> "Attention" to colors.warn
+        "ENDED" -> "Ended" to colors.textLow
+        "WAITING" -> "Waiting" to colors.warn
+        else -> "Safe" to colors.accent
     }
-    Box(
-        Modifier
-            .clip(RoundedCornerShape(50))
-            .background(color.copy(alpha = 0.15f))
-            .padding(horizontal = 10.dp, vertical = 4.dp)
-    ) {
-        Text(label, color = color, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-    }
+    StatusPill(label, color)
 }

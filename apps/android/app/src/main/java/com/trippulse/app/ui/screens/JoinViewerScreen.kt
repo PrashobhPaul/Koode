@@ -1,108 +1,235 @@
 package com.trippulse.app.ui.screens
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.core.InputRules
+import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.ui.JoinVm
 import com.trippulse.app.ui.Routes
-import com.trippulse.app.ui.theme.Danger
-import com.trippulse.app.ui.theme.Teal
-import com.trippulse.app.ui.theme.TextMid
+import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.PrimaryButton
+import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Radii
+import com.trippulse.app.ui.theme.Spacing
 
+/**
+ * Following someone's journey.
+ *
+ * The whole screen is built around one observation: the people who use it most
+ * are the ones least comfortable with phones. So there is nothing here to get
+ * wrong. The journey number is digits — the "TP-" is printed by the app, not
+ * typed — and the passcode is six digits. No dashes, no underscores, no case,
+ * nothing a paste can clip.
+ *
+ * The passcode is genuinely optional, and the screen now says what actually
+ * happens either way: with it you're in immediately; without it the traveller
+ * gets a request and this screen waits. Previously the waiting state surfaced
+ * as a network error, which is why "it says password is optional but silently
+ * fails" was exactly right.
+ */
 @Composable
 fun JoinViewerScreen(nav: NavHostController) {
     val vm: JoinVm = viewModel(factory = JoinVm.Factory)
+    val colors = KoodeTheme.colors
     val saved by vm.saved.collectAsStateWithLifecycle()
     val busy by vm.busy.collectAsStateWithLifecycle()
     val error by vm.error.collectAsStateWithLifecycle()
-
-    var tripId by remember { mutableStateOf("") }
-    var secret by remember { mutableStateOf("") }
-    var viewerName by remember { mutableStateOf("") }
-
+    val notice by vm.notice.collectAsStateWithLifecycle()
     val awaiting by vm.awaitingApproval.collectAsStateWithLifecycle()
 
+    var code by remember { mutableStateOf("") }
+    var passcode by remember { mutableStateOf("") }
+    var viewerName by remember { mutableStateOf("") }
+
+    val codeComplete = TripCredentials.isCompleteCode(code)
+    val canSubmit = code.isNotBlank() &&
+        (TripCredentials.isCompletePasscode(passcode) || viewerName.isNotBlank())
+
     Column(
-        Modifier.fillMaxSize().padding(20.dp).verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        Modifier
+            .fillMaxSize()
+            .background(colors.background)
+            .verticalScroll(rememberScrollState())
+            .statusBarsPadding()
     ) {
-        Text("Follow a trip", color = Teal, fontSize = 24.sp, fontWeight = FontWeight.Bold)
-        Text(
-            "Enter the Trip ID and your name. The trip owner approves you by name — no password needed. (If the owner gave you a password, enter it for instant access.)",
-            color = TextMid, fontSize = 13.sp
-        )
+        Spacer(Modifier.height(Spacing.lg))
+        AdaptiveContainer {
+            Text("Follow a journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
+            Text(
+                "Type the number your traveller shared. If they gave you a 6-digit passcode too, " +
+                    "you're in straight away — otherwise they'll get a request to let you in.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyLarge
+            )
 
-        OutlinedTextField(
-            value = tripId, onValueChange = { tripId = it.uppercase() },
-            label = { Text("Trip ID (e.g. TP-XXXX-XXXX)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        OutlinedTextField(
-            value = viewerName, onValueChange = { viewerName = it },
-            label = { Text("Your name (shown to the driver)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        OutlinedTextField(
-            value = secret, onValueChange = { secret = it.uppercase() },
-            label = { Text("Password (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
+            Spacer(Modifier.height(Spacing.sm))
 
-        if (error != null) Text(error!!, color = Danger, fontSize = 13.sp)
-        if (!vm.cloudAvailable()) {
-            Text("This build is in local mode — remote following needs the cloud backend configured.", color = TextMid, fontSize = 12.sp)
-        }
-
-        if (awaiting) {
-            SectionCard {
-                Text("Waiting for the trip owner to approve you…", color = Teal, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-                Text("The driver sees \"${viewerName.ifBlank { "Viewer" }}\" asking to follow. This screen opens the trip automatically once approved.", color = TextMid, fontSize = 12.sp)
-                TextButton(onClick = { vm.cancelWaiting() }) { Text("Cancel", color = TextMid) }
+            // ---- journey number: prefix is ours, digits are theirs ----
+            KoodeCard(title = "Journey number") {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        Modifier
+                            .clip(RoundedCornerShape(Radii.sm))
+                            .background(colors.surfaceRaised)
+                            .padding(horizontal = 14.dp, vertical = 16.dp)
+                    ) {
+                        Text(
+                            TripCredentials.PREFIX,
+                            color = colors.accent,
+                            style = MaterialTheme.typography.headlineSmall
+                        )
+                    }
+                    Spacer(Modifier.width(Spacing.sm))
+                    OutlinedTextField(
+                        value = code,
+                        onValueChange = { code = InputRules.digits(it, TripCredentials.CODE_LENGTH) },
+                        placeholder = { Text("40381927") },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+                Text(
+                    if (codeComplete) "Looks right."
+                    else "${TripCredentials.CODE_LENGTH} digits — numbers only, no dashes.",
+                    color = if (codeComplete) colors.accent else colors.textLow,
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
-        }
 
-        Button(
-            onClick = { vm.join(tripId, secret, viewerName) { key -> nav.navigate(Routes.viewer(key)) } },
-            enabled = !busy && tripId.isNotBlank() && (secret.isNotBlank() || viewerName.isNotBlank()),
-            modifier = Modifier.fillMaxWidth().height(52.dp),
-            colors = ButtonDefaults.buttonColors(containerColor = Teal)
-        ) {
-            if (busy) CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.height(20.dp))
-            else Text(if (secret.isBlank()) "Request to follow" else "Follow trip", fontWeight = FontWeight.SemiBold, fontSize = 16.sp)
-        }
+            KoodeCard(title = "Passcode (optional)") {
+                OutlinedTextField(
+                    value = passcode,
+                    onValueChange = { passcode = InputRules.digits(it, TripCredentials.PASSCODE_LENGTH) },
+                    placeholder = { Text("6 digits") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    if (passcode.isBlank())
+                        "Leave this empty and we'll ask the traveller to approve you by name."
+                    else if (TripCredentials.isCompletePasscode(passcode))
+                        "Ready — you'll go straight in."
+                    else "${TripCredentials.PASSCODE_LENGTH} digits, or leave it empty.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+            }
 
-        if (saved.isNotEmpty()) {
-            Spacer(Modifier.height(8.dp))
-            Text("Recent", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-            saved.forEach { v ->
-                SectionCard(modifier = Modifier.clickable { nav.navigate(Routes.viewer(v.accessKey)) }) {
-                    Text(v.label, color = MaterialTheme.colorScheme.onSurface, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                    Text(v.tripId, color = TextMid, fontSize = 12.sp)
+            KoodeCard(title = "Your name") {
+                OutlinedTextField(
+                    value = viewerName,
+                    onValueChange = { viewerName = InputRules.itemText(it) },
+                    placeholder = { Text("So they know who's asking") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+            if (error != null) {
+                KoodeCard(accent = colors.danger) {
+                    Text(error!!, color = colors.danger, style = MaterialTheme.typography.bodyMedium)
                 }
             }
+            if (notice != null && error == null) {
+                KoodeCard(accent = colors.accent) {
+                    Text(notice!!, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
+                }
+            }
+            if (!vm.cloudAvailable()) {
+                Text(
+                    "This build is in local mode — following someone needs the cloud backend configured.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+            }
+
+            if (awaiting) {
+                KoodeCard(accent = colors.accent) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        CircularProgressIndicator(
+                            strokeWidth = 2.dp,
+                            color = colors.accent,
+                            modifier = Modifier.height(18.dp).width(18.dp)
+                        )
+                        Spacer(Modifier.width(Spacing.md))
+                        Text(
+                            "Waiting for approval",
+                            color = colors.accent, style = MaterialTheme.typography.titleSmall
+                        )
+                    }
+                    Spacer(Modifier.height(Spacing.xs))
+                    Text(
+                        "They'll see \"${viewerName.ifBlank { "Someone" }}\" asking to follow. " +
+                            "This screen opens the journey the moment they say yes.",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    Spacer(Modifier.height(Spacing.md))
+                    SecondaryButton("Cancel", { vm.cancelWaiting() }, accent = colors.textMid, height = 42.dp)
+                }
+            }
+
+            Spacer(Modifier.height(Spacing.xs))
+            if (busy && !awaiting) {
+                Box(Modifier.fillMaxWidth().height(54.dp), contentAlignment = Alignment.Center) {
+                    CircularProgressIndicator(strokeWidth = 2.dp, color = colors.accent)
+                }
+            } else if (!awaiting) {
+                PrimaryButton(
+                    text = if (passcode.isBlank()) "Ask to follow" else "Follow journey",
+                    onClick = {
+                        vm.join(code, passcode, viewerName) { key ->
+                            nav.navigate(Routes.viewer(key)) { popUpTo(Routes.HOME) }
+                        }
+                    },
+                    enabled = canSubmit
+                )
+            }
+            SecondaryButton("Back", { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
+
+            if (saved.isNotEmpty()) {
+                Spacer(Modifier.height(Spacing.sm))
+                Text("Recently followed", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
+                saved.forEach { v ->
+                    KoodeCard(onClick = { nav.navigate(Routes.viewer(v.accessKey)) }) {
+                        Text(v.label, color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                        Text(v.tripId, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+            Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }
 }

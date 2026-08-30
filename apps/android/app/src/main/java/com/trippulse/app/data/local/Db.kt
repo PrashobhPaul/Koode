@@ -50,8 +50,41 @@ data class ActiveTripEntity(
     // Mode of transport drives the app's rule system: what to ask at breaks
     // (refuelling only for private vehicles), what counts as attention-worthy,
     // and whether fuel efficiency applies.
-    val transportMode: String = "CAR",   // CAR | BIKE | BUS | TRAIN | FLIGHT
-    val fuelType: String? = null         // private vehicles: PETROL | DIESEL | ELECTRIC
+    val transportMode: String = "CAR",   // CAR | BIKE | CAB | BUS | TRAIN | FLIGHT
+    val fuelType: String? = null,        // private vehicles: PETROL | DIESEL | ELECTRIC
+    // Hybrid journeys: the leg the traveller is on right now. Single-mode
+    // journeys always sit on leg 0, so there is one code path, not two.
+    val activeLegIndex: Int = 0,
+    // When arrival was DETECTED. The journey stays live until the traveller
+    // ends it themselves — this timestamp only drives the "shall I close it?"
+    // prompt and the post-completion expiry window.
+    val arrivedAtMs: Long? = null,
+    /** True only once the traveller explicitly ended the journey. */
+    val endedByOwner: Boolean = false
+)
+
+/**
+ * One stage of a journey. See [com.trippulse.app.domain.JourneyLeg] for why
+ * multi-leg is the base case rather than a special one.
+ */
+@Entity(tableName = "trip_legs", primaryKeys = ["tripId", "legIndex"])
+data class TripLegEntity(
+    val tripId: String,
+    val legIndex: Int,
+    val mode: String,
+    val fromName: String,
+    val fromLat: Double,
+    val fromLng: Double,
+    val toName: String,
+    val toLat: Double,
+    val toLng: Double,
+    val fuelType: String?,
+    val plannedDepartureMs: Long?,
+    val startedAtMs: Long?,
+    val completedAtMs: Long?,
+    val bookingRef: String?,
+    val seat: String?,
+    val boardingPoint: String?
 )
 
 @Entity(tableName = "event_queue")
@@ -128,7 +161,11 @@ data class TripStateEntity(
     val checkpointStopDurationS: Long?,
     val longStopPromptDue: Boolean,
     val possibleIncidentDue: Boolean,
-    val updatedAtMs: Long
+    val updatedAtMs: Long,
+    /** Arrival was detected; the traveller is being asked to close the journey. */
+    val arrivalPromptDue: Boolean = false,
+    /** Leg currently being travelled (hybrid journeys). */
+    val legIndex: Int = 0
 )
 
 @Entity(tableName = "break_records")
@@ -147,7 +184,11 @@ data class BreakRecordEntity(
     val fuel: Boolean,
     val charge: Boolean,
     val other: Boolean,
-    val confirmationSource: String    // DRIVER_CONFIRMATION | INFERRED | MANUAL
+    val confirmationSource: String,   // DRIVER_CONFIRMATION | INFERRED | MANUAL
+    val tea: Boolean = false,
+    val snack: Boolean = false,
+    /** BREAKFAST | LUNCH | DINNER | SNACK when food was logged. */
+    val mealKind: String? = null
 )
 
 /**
@@ -159,12 +200,14 @@ data class BreakRecordEntity(
 data class ExpenseEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val tripId: String,
-    val type: String,          // FUEL | FOOD | STAY | OTHER
-    val amount: Double,        // money spent (owner's currency)
+    val type: String,          // FUEL | FOOD | STAY | TICKET | OTHER
+    val amount: Double,        // money spent (owner's currency); numbers only
     val quantity: Double?,     // fuel only: litres or kWh refilled
     val unit: String?,         // "L" (petrol/diesel) | "kWh" (electric)
     val note: String?,
-    val tMs: Long
+    val tMs: Long,
+    /** What was bought. Text only — never a number (see core/InputRules). */
+    val item: String = ""
 )
 
 @Entity(tableName = "saved_places")
@@ -175,6 +218,15 @@ data class SavedPlaceEntity(
     val createdAtMs: Long
 )
 
+/**
+ * A journey this device follows.
+ *
+ * Product rule, absolute: a journey is only ever shown as ended once its
+ * traveller ended it. A server we cannot reach, an expired capability or a
+ * flat battery are all "we haven't heard for a while" — never "the journey is
+ * over". [ended] is therefore set from an explicit completion signal alone,
+ * while [unreachableSinceMs] carries the softer, honest state.
+ */
 @Entity(tableName = "viewer_trip")
 data class ViewerTripEntity(
     @PrimaryKey val accessKey: String,
@@ -182,7 +234,14 @@ data class ViewerTripEntity(
     val label: String,
     val joinedAtMs: Long,
     val lastOpenedAtMs: Long,
-    val expired: Boolean
+    /** Kept for schema continuity; means "the traveller ended this journey". */
+    val expired: Boolean,
+    /** When the traveller ended it, if they have. */
+    val endedAtMs: Long? = null,
+    /** Last time this device successfully read anything for this journey. */
+    val lastSeenAtMs: Long? = null,
+    /** Set while reads are failing; cleared on the next successful read. */
+    val unreachableSinceMs: Long? = null
 )
 
 // ---------------------------------------------------------------------------
@@ -336,6 +395,33 @@ interface SavedPlaceDao {
 }
 
 @Dao
+interface LegDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(leg: TripLegEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertAll(legs: List<TripLegEntity>)
+
+    @Query("SELECT * FROM trip_legs WHERE tripId = :tripId ORDER BY legIndex ASC")
+    suspend fun forTrip(tripId: String): List<TripLegEntity>
+
+    @Query("SELECT * FROM trip_legs WHERE tripId = :tripId ORDER BY legIndex ASC")
+    fun flowForTrip(tripId: String): Flow<List<TripLegEntity>>
+
+    @Query("SELECT * FROM trip_legs WHERE tripId = :tripId AND legIndex = :legIndex")
+    suspend fun byIndex(tripId: String, legIndex: Int): TripLegEntity?
+
+    @Query("UPDATE trip_legs SET startedAtMs = :ts WHERE tripId = :tripId AND legIndex = :legIndex")
+    suspend fun markStarted(tripId: String, legIndex: Int, ts: Long)
+
+    @Query("UPDATE trip_legs SET completedAtMs = :ts WHERE tripId = :tripId AND legIndex = :legIndex")
+    suspend fun markCompleted(tripId: String, legIndex: Int, ts: Long)
+
+    @Query("DELETE FROM trip_legs WHERE tripId = :tripId")
+    suspend fun deleteForTrip(tripId: String)
+}
+
+@Dao
 interface ViewerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(v: ViewerTripEntity)
@@ -349,8 +435,20 @@ interface ViewerDao {
     @Query("SELECT * FROM viewer_trip WHERE accessKey = :key")
     suspend fun byKey(key: String): ViewerTripEntity?
 
-    @Query("UPDATE viewer_trip SET expired = 1 WHERE accessKey = :key")
-    suspend fun markExpired(key: String)
+    /**
+     * The traveller ended this journey. This is the ONLY way a followed journey
+     * is ever marked as over — see [ViewerTripEntity].
+     */
+    @Query("UPDATE viewer_trip SET expired = 1, endedAtMs = :ts WHERE accessKey = :key")
+    suspend fun markEndedByOwner(key: String, ts: Long)
+
+    /** A read succeeded: remember it and clear any "can't reach" marker. */
+    @Query("UPDATE viewer_trip SET lastSeenAtMs = :ts, unreachableSinceMs = NULL WHERE accessKey = :key")
+    suspend fun markSeen(key: String, ts: Long)
+
+    /** A read failed: record since when, without claiming the journey ended. */
+    @Query("UPDATE viewer_trip SET unreachableSinceMs = COALESCE(unreachableSinceMs, :ts) WHERE accessKey = :key")
+    suspend fun markUnreachable(key: String, ts: Long)
 
     @Query("UPDATE viewer_trip SET lastOpenedAtMs = :ts WHERE accessKey = :key")
     suspend fun touch(key: String, ts: Long)
@@ -372,9 +470,10 @@ interface ViewerDao {
         BreakRecordEntity::class,
         ViewerTripEntity::class,
         SavedPlaceEntity::class,
-        ExpenseEntity::class
+        ExpenseEntity::class,
+        TripLegEntity::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -386,6 +485,7 @@ abstract class TripPulseDb : RoomDatabase() {
     abstract fun viewerDao(): ViewerDao
     abstract fun savedPlaceDao(): SavedPlaceDao
     abstract fun expenseDao(): ExpenseDao
+    abstract fun legDao(): LegDao
 
     companion object {
         @Volatile private var INSTANCE: TripPulseDb? = null
@@ -421,14 +521,78 @@ abstract class TripPulseDb : RoomDatabase() {
             }
         }
 
+        /**
+         * v4 -> v5: hybrid journey legs, owner-only journey completion, richer
+         * break records and an explicit expense item column.
+         *
+         * Every statement here is additive with a default, which is what makes
+         * an app update safe to install *mid-journey*: an in-flight trip keeps
+         * its row, its event queue and its location buffer, and simply gains
+         * columns whose defaults describe exactly what was already true.
+         */
+        private val MIGRATION_4_5 = object : androidx.room.migration.Migration(4, 5) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN activeLegIndex INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN arrivedAtMs INTEGER")
+                // Journeys already marked COMPLETED were completed by the old
+                // build's rules; honour that rather than reopening them.
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN endedByOwner INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("UPDATE active_trip SET endedByOwner = 1 WHERE status = 'COMPLETED'")
+
+                db.execSQL("ALTER TABLE trip_state ADD COLUMN arrivalPromptDue INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE trip_state ADD COLUMN legIndex INTEGER NOT NULL DEFAULT 0")
+
+                db.execSQL("ALTER TABLE break_records ADD COLUMN tea INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE break_records ADD COLUMN snack INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE break_records ADD COLUMN mealKind TEXT")
+
+                db.execSQL("ALTER TABLE expenses ADD COLUMN item TEXT NOT NULL DEFAULT ''")
+                // Older rows kept the description in `note`; promote it so the
+                // money tracker and its PDF have an item column from day one.
+                db.execSQL("UPDATE expenses SET item = COALESCE(note, '') WHERE item = ''")
+
+                db.execSQL("ALTER TABLE viewer_trip ADD COLUMN endedAtMs INTEGER")
+                db.execSQL("ALTER TABLE viewer_trip ADD COLUMN lastSeenAtMs INTEGER")
+                db.execSQL("ALTER TABLE viewer_trip ADD COLUMN unreachableSinceMs INTEGER")
+                // A previous build marked journeys "expired" simply because the
+                // server could not be reached. That was never a statement about
+                // the journey, so clear it and let the traveller decide.
+                db.execSQL("UPDATE viewer_trip SET expired = 0 WHERE expired = 1")
+
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS trip_legs (" +
+                        "tripId TEXT NOT NULL, legIndex INTEGER NOT NULL, mode TEXT NOT NULL, " +
+                        "fromName TEXT NOT NULL, fromLat REAL NOT NULL, fromLng REAL NOT NULL, " +
+                        "toName TEXT NOT NULL, toLat REAL NOT NULL, toLng REAL NOT NULL, " +
+                        "fuelType TEXT, plannedDepartureMs INTEGER, startedAtMs INTEGER, " +
+                        "completedAtMs INTEGER, bookingRef TEXT, seat TEXT, boardingPoint TEXT, " +
+                        "PRIMARY KEY (tripId, legIndex))"
+                )
+                // Give every existing journey the single leg it always had.
+                db.execSQL(
+                    "INSERT OR IGNORE INTO trip_legs (" +
+                        "tripId, legIndex, mode, fromName, fromLat, fromLng, toName, toLat, toLng, " +
+                        "fuelType, plannedDepartureMs, startedAtMs, completedAtMs, bookingRef, seat, boardingPoint) " +
+                        "SELECT tripId, 0, transportMode, originName, originLat, originLng, " +
+                        "destName, destLat, destLng, fuelType, plannedDepartureMs, startedAtMs, " +
+                        "completedAtMs, NULL, NULL, NULL FROM active_trip"
+                )
+            }
+        }
+
+        /**
+         * No destructive fallback. A journey in progress is irreplaceable data;
+         * losing it because a migration was missing would be the worst possible
+         * failure mode, so a missing migration must fail loudly in testing
+         * instead of silently wiping a traveller's history in the field.
+         */
         fun get(context: Context): TripPulseDb =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     TripPulseDb::class.java,
                     "trippulse.db"
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
-                    .fallbackToDestructiveMigration()
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
                     .build().also { INSTANCE = it }
             }
     }

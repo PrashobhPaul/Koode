@@ -1,7 +1,28 @@
 <resources>
-    <style name="Theme.TripPulse" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">#0B1E2D</item>
-        <item name="android:navigationBarColor">#0B1E2D</item>
+    <!--
+      Base application theme. Deliberately dark-anchored: Koode's identity is
+      the night-sky navy, and a matching system-bar colour is what stops the
+      first frame flashing white on cold start.
+    -->
+    <style name="Theme.Koode" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@color/koode_navy</item>
     </style>
+
+    <!--
+      Splash theme. Uses the platform's SplashScreen (API 31+) with a
+      compat-provided equivalent below it, so the launcher icon animates into
+      the app instead of the app appearing out of a blank window.
+    -->
+    <style name="Theme.Koode.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/koode_navy</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenAnimationDuration">450</item>
+        <item name="postSplashScreenTheme">@style/Theme.Koode</item>
+    </style>
+
+    <!-- Kept so any external reference to the old name still resolves. -->
+    <style name="Theme.TripPulse" parent="Theme.Koode" />
 </resources>

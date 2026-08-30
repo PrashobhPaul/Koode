@@ -82,7 +82,18 @@ class Notifier(private val context: Context) {
     }
 
     fun showArrival(destination: String) =
-        postEvent(ID_ARRIVAL, CH_EVENTS, "Trip completed", "Arrived at $destination.")
+        postEvent(ID_ARRIVAL, CH_EVENTS, "Journey completed", "Arrived at $destination.")
+
+    /**
+     * Arrival was *detected*. Note the wording: the app is asking, not
+     * announcing. Only the traveller can end a journey, so this notification
+     * exists purely to invite them to.
+     */
+    fun showArrivalDetected(destination: String) =
+        postEvent(
+            ID_ARRIVAL_DETECTED, CH_EVENTS, "Looks like you've arrived",
+            "You're at $destination. Open Koode and end the journey when you're settled."
+        )
 
     fun showOvernight(destination: String) =
         postEvent(ID_OVERNIGHT, CH_EVENTS, "Overnight rest", "Driver is stopping overnight.")
@@ -114,6 +125,13 @@ class Notifier(private val context: Context) {
     fun showJourneyBackToNormal(label: String) =
         postEvent(ID_HEALTH, CH_EVENTS, "Journey back to normal", "$label is progressing normally again.")
 
+    /** A newer Koode build is available for download. */
+    fun showUpdateAvailable(versionName: String) =
+        postEvent(
+            ID_UPDATE_AVAILABLE, CH_EVENTS, "Koode $versionName is available",
+            "Open Koode to update. Journeys in progress are never affected."
+        )
+
     companion object {
         const val CH_TRACKING = "trippulse.tracking"
         const val CH_EVENTS = "trippulse.events"
@@ -128,5 +146,7 @@ class Notifier(private val context: Context) {
         private const val ID_UPDATE = 2006
         private const val ID_HEALTH = 2007
         private const val ID_BREAK = 2008
+        private const val ID_ARRIVAL_DETECTED = 2009
+        private const val ID_UPDATE_AVAILABLE = 2010
     }
 }
