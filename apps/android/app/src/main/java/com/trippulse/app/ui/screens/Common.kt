@@ -142,7 +142,7 @@ fun eventLabel(type: String): Pair<String, String> = when (type) {
  * said. A meal event carries which meal it was; a transport milestone carries
  * its own sentence.
  */
-fun eventLine(type: String, payload: Map<String, Any?>): Pair<String, String?> {
+fun eventLine(type: String, payload: Map<String, Any?>): Pair<String, String> {
     val (emoji, label) = eventLabel(type)
     val text = payload["text"] as? String
     return when (type) {
@@ -150,11 +150,13 @@ fun eventLine(type: String, payload: Map<String, Any?>): Pair<String, String?> {
             val meal = Nourishment.fromKey(payload["meal"] as? String)
             (meal?.emoji ?: emoji) to (meal?.label ?: label)
         }
+        // Mode-specific milestones ship their own sentence ("Boarded the
+        // train"), so the generic label is only the fallback.
         EventTypes.BOARDED, EventTypes.TRANSIT_HALTED,
         EventTypes.TRANSIT_RESUMED, EventTypes.DEBOARDED,
         EventTypes.LEG_STARTED -> emoji to (text ?: label)
         else -> emoji to (text?.let { "$label — $it" } ?: label)
-    }.let { (e, l) -> e to l }
+    }
 }
 
 data class TimelineItem(
