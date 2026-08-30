@@ -31,7 +31,9 @@ class SummaryTest {
         ev(EventTypes.STOP_STARTED, at(3.0)),
         ev(EventTypes.STOP_ENDED, at(3.0 + 15.0 / 60), mapOf("durationSeconds" to 900)),
         ev(EventTypes.REST_REPORTED, at(3.0 + 15.0 / 60)),
-        ev(EventTypes.FUEL_STOP, at(3.0 + 15.0 / 60))
+        ev(EventTypes.FUEL_STOP, at(3.0 + 15.0 / 60)),
+        ev(EventTypes.TEA_COFFEE_REPORTED, at(3.0 + 15.0 / 60)),
+        ev(EventTypes.SNACK_REPORTED, at(3.0 + 16.0 / 60))
     )
 
     private val summary =
@@ -44,6 +46,8 @@ class SummaryTest {
         assertEquals(1, summary.toiletBreaks)
         assertEquals(1, summary.restBreaks)
         assertEquals(1, summary.fuelStops)
+        assertEquals(1, summary.teaCoffee)
+        assertEquals(1, summary.snacks)
     }
 
     @Test fun total_and_driving_time() {

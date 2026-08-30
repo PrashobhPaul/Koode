@@ -3,7 +3,10 @@ package com.trippulse.app.ui.screens
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,12 +14,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -27,33 +28,55 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.trippulse.app.BuildConfig
+import com.trippulse.app.core.InputRules
+import com.trippulse.app.core.KoodeSettings
+import com.trippulse.app.core.LocationCadence
 import com.trippulse.app.core.Profile
+import com.trippulse.app.core.ViewerRefresh
+import com.trippulse.app.domain.MoneyFormat
+import com.trippulse.app.domain.UnitPreference
 import com.trippulse.app.ui.SettingsVm
-import com.trippulse.app.ui.theme.Amber
-import com.trippulse.app.ui.theme.Teal
-import com.trippulse.app.ui.theme.TextMid
+import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.KoodeChip
+import com.trippulse.app.ui.components.PrimaryButton
+import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.components.SectionHeader
+import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Spacing
+
+private const val REPO_URL = "https://github.com/PrashobhPaul/Koode"
 
 /**
- * Settings — the mandatory prerequisite before the first journey: the
- * traveller's name, at least one saved location and at least two emergency
- * contacts. Also carries the Privacy & Legal and About sections expected of
- * a personal-safety app.
+ * Settings — profile, saved places, emergency contacts, and the behaviour
+ * controls the product asked to expose.
+ *
+ * The two cadence settings are the important additions. Location sampling and
+ * follower refresh are the app's whole battery budget, and the right answer
+ * genuinely differs per journey: a night drive wants precision, a twelve-hour
+ * train wants the phone to still be alive at the other end. Making them
+ * visible turns "why did my battery die?" into a choice the user already made.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun SettingsTab(onProfileChanged: () -> Unit) {
     val vm: SettingsVm = viewModel(factory = SettingsVm.Factory)
+    val colors = KoodeTheme.colors
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
+
+    val settings by vm.settings.collectAsStateWithLifecycle()
     val places by vm.savedPlaces.collectAsStateWithLifecycle()
     val results by vm.searchResults.collectAsStateWithLifecycle()
     val searching by vm.searching.collectAsStateWithLifecycle()
     val message by vm.message.collectAsStateWithLifecycle()
+    val update by vm.update.collectAsStateWithLifecycle()
+    val checking by vm.checkingUpdate.collectAsStateWithLifecycle()
 
     var name by remember { mutableStateOf(Profile.name(context)) }
     var c1 by remember { mutableStateOf(Profile.contact(context, 1)) }
@@ -62,119 +85,330 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     var placeLabel by remember { mutableStateOf("") }
     var placeQuery by remember { mutableStateOf("") }
 
+    SectionHeader("More")
+
     val missing = Profile.missing(context, places.size)
     if (missing.isNotEmpty()) {
-        SectionCard {
-            Text("Complete your profile to start using Koode", color = Amber, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
-            missing.forEach { Text("• $it", color = TextMid, fontSize = 13.sp) }
-        }
-    }
-
-    // ---- profile ----
-    Text("PROFILE", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-    OutlinedTextField(
-        value = name, onValueChange = { name = it },
-        label = { Text("Your full name *") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-    )
-
-    // ---- saved locations ----
-    Text("SAVED LOCATIONS  (optional — one-tap From/To)", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-    places.forEach { p ->
-        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Text(p.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, modifier = Modifier.weight(1f))
-            Text("%.4f, %.4f".format(p.lat, p.lng), color = TextMid, fontSize = 11.sp)
-            TextButton(onClick = { vm.deletePlace(p.name) }) { Text("✕", color = TextMid, fontSize = 13.sp) }
-        }
-    }
-    OutlinedTextField(
-        value = placeLabel, onValueChange = { placeLabel = it },
-        label = { Text("Location name (Home / Office / …)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-    )
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-        OutlinedButton(onClick = { vm.addCurrentLocation(placeLabel) }, modifier = Modifier.weight(1f)) {
-            Text("Use current location", fontSize = 13.sp)
-        }
-    }
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        OutlinedTextField(
-            value = placeQuery, onValueChange = { placeQuery = it },
-            label = { Text("…or search a place") }, singleLine = true, modifier = Modifier.weight(1f)
-        )
-        Spacer(Modifier.width(8.dp))
-        OutlinedButton(onClick = { vm.searchPlaces(placeQuery) }, enabled = !searching) {
-            if (searching) CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.height(18.dp))
-            else Text("Search", fontSize = 13.sp)
-        }
-    }
-    results.forEach { r ->
-        SectionCard {
-            Text(r.name, color = MaterialTheme.colorScheme.onSurface, fontSize = 13.sp)
-            TextButton(onClick = { vm.addPlace(placeLabel, r.point, r.name); placeLabel = ""; placeQuery = "" }) {
-                Text("Save this place", color = Teal, fontSize = 13.sp)
+        KoodeCard(accent = colors.warn) {
+            Text(
+                "Complete your profile to start using Koode",
+                color = colors.warn, style = MaterialTheme.typography.titleMedium
+            )
+            missing.forEach {
+                Text("• $it", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
             }
         }
     }
 
-    // ---- emergency contacts ----
-    Text("EMERGENCY CONTACTS  (* at least ${Profile.MIN_CONTACTS})", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-    ContactRow("Contact 1 *", c1) { c1 = it }
-    ContactRow("Contact 2 *", c2) { c2 = it }
-    ContactRow("Contact 3", c3) { c3 = it }
-
-    if (message != null) Text(message!!, color = Teal, fontSize = 13.sp)
-
-    Button(
-        onClick = {
-            vm.saveProfile(name, listOf(c1, c2, c3))
-            onProfileChanged()
-        },
-        modifier = Modifier.fillMaxWidth().height(50.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = Teal)
-    ) { Text("Save profile", fontWeight = FontWeight.SemiBold) }
-
-    // ---- privacy & legal ----
-    Spacer(Modifier.height(8.dp))
-    Text("PRIVACY & LEGAL", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-    SectionCard {
-        Text(
-            "Your location is shared only during a journey you started, only with people you approve by name, " +
-                "and every journey self-destructs from the cloud 30 minutes after arrival. Your profile, emergency " +
-                "contacts, history and expenses stay on this phone. No ads, no analytics, no accounts.",
-            color = TextMid, fontSize = 12.sp
+    // ---- profile ----
+    KoodeCard(title = "Profile") {
+        OutlinedTextField(
+            value = name,
+            onValueChange = { name = InputRules.itemText(it) },
+            label = { Text("Your full name") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth()
         )
-        Row {
-            TextButton(onClick = {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/PrashobhPaul/TripPulse/blob/main/docs/PRIVACY.md")))
-            }) { Text("Privacy policy", color = Teal, fontSize = 13.sp) }
-            TextButton(onClick = {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/PrashobhPaul/TripPulse/blob/main/docs/TERMS.md")))
-            }) { Text("Terms of use", color = Teal, fontSize = 13.sp) }
+    }
+
+    // ---- how often we take a location fix ----
+    KoodeCard(title = "Location updates") {
+        Text(
+            "How often your phone records where you are during a journey. " +
+                "Koode already eases off automatically on trains, buses and flights, and when your battery is low.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(Modifier.height(Spacing.md))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            LocationCadence.entries.forEach { c ->
+                KoodeChip(c.label, settings.locationCadence == c, { vm.setLocationCadence(c) })
+            }
+        }
+        Spacer(Modifier.height(Spacing.sm))
+        Text(
+            settings.locationCadence.summary,
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+        )
+    }
+
+    // ---- how often we check on someone we follow ----
+    KoodeCard(title = "When you're following someone") {
+        Text(
+            "How often your phone checks for news about journeys you follow.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(Modifier.height(Spacing.md))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            ViewerRefresh.entries.forEach { r ->
+                KoodeChip(r.label, settings.viewerRefresh == r, { vm.setViewerRefresh(r) })
+            }
+        }
+        Spacer(Modifier.height(Spacing.sm))
+        Text(settings.viewerRefresh.summary, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+    }
+
+    // ---- battery + feel ----
+    KoodeCard(title = "Battery and feel") {
+        Text(
+            "Switch to battery saver below",
+            color = colors.textHigh, style = MaterialTheme.typography.bodyLarge
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            listOf(10, 15, 20, 30).forEach { pct ->
+                KoodeChip("$pct%", settings.batterySaverBelowPct == pct, { vm.setBatterySaverThreshold(pct) })
+            }
+        }
+        Spacer(Modifier.height(Spacing.md))
+        ToggleRow(
+            "Keep the screen on during a journey",
+            settings.keepScreenOnDuringJourney
+        ) { vm.setKeepScreenOn(it) }
+        ToggleRow("Vibrate on important taps", settings.hapticFeedback) { vm.setHaptics(it) }
+    }
+
+    // ---- measurements ----
+    // Worked out from where the phone actually is, and overridable. Nobody
+    // should have to configure this, and nobody should be stuck with the
+    // wrong one either.
+    KoodeCard(title = "Distance, speed and money") {
+        Text(
+            vm.detectedRegionSummary(),
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(Modifier.height(Spacing.md))
+        Text("Distances", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+        Spacer(Modifier.height(Spacing.sm))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            UnitPreference.entries.forEach { p ->
+                KoodeChip(p.label, settings.unitPreference == p, { vm.setUnitPreference(p) })
+            }
+        }
+        Spacer(Modifier.height(Spacing.md))
+        Text("Currency", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+        Spacer(Modifier.height(Spacing.sm))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            KoodeChip("Match my region", settings.currencyCode.isBlank(), { vm.setCurrencyCode("") })
+            MoneyFormat.COMMON_CODES.forEach { code ->
+                KoodeChip(code, settings.currencyCode == code, { vm.setCurrencyCode(code) })
+            }
         }
     }
 
-    // ---- about ----
-    Text("ABOUT", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-    SectionCard {
-        Text("Koode ${BuildConfig.VERSION_NAME} — Always with you.", color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp)
+    // ---- sharing the timeline when a journey ends ----
+    KoodeCard(title = "When a journey ends") {
+        ToggleRow(
+            "Send my timeline to my circle on WhatsApp",
+            settings.shareTimelineOnWhatsApp
+        ) { vm.setShareTimelineOnWhatsApp(it) }
         Text(
-            "A personal journey companion that keeps the people you love informed about your journey, wellbeing and safety — without requiring you to constantly call or message them.",
-            color = TextMid, fontSize = 12.sp
+            buildString {
+                append("The moment you mark a journey complete, Koode prepares the timeline PDF ")
+                append("addressed to each of your ${vm.circleSize()} emergency contacts and opens ")
+                append("WhatsApp so you can send it. ")
+                append("Costs are never included — the money tracker stays private to you.")
+            },
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        if (settings.shareTimelineOnWhatsApp && !vm.whatsAppAvailable) {
+            Spacer(Modifier.height(Spacing.sm))
+            Text(
+                "WhatsApp isn't installed on this phone, so Koode will offer the normal share sheet instead.",
+                color = colors.warn, style = MaterialTheme.typography.bodySmall
+            )
+        }
+    }
+
+    // ---- appearance ----
+    KoodeCard(title = "Appearance") {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            KoodeChip("Follow system", settings.themeMode == KoodeSettings.THEME_SYSTEM,
+                { vm.setThemeMode(KoodeSettings.THEME_SYSTEM) })
+            KoodeChip("Always dark", settings.themeMode == KoodeSettings.THEME_DARK,
+                { vm.setThemeMode(KoodeSettings.THEME_DARK) })
+            KoodeChip("Always light", settings.themeMode == KoodeSettings.THEME_LIGHT,
+                { vm.setThemeMode(KoodeSettings.THEME_LIGHT) })
+        }
+    }
+
+    // ---- saved locations ----
+    KoodeCard(title = "Saved places") {
+        Text(
+            "One-tap From / To when you plan a journey.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        places.forEach { p ->
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    p.name, color = colors.textHigh,
+                    style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f)
+                )
+                Text(
+                    "%.3f, %.3f".format(p.lat, p.lng),
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+                TextButton(onClick = { vm.deletePlace(p.name) }) {
+                    Text("✕", color = colors.textLow, fontSize = 13.sp)
+                }
+            }
+        }
+        Spacer(Modifier.height(Spacing.sm))
+        OutlinedTextField(
+            value = placeLabel,
+            onValueChange = { placeLabel = InputRules.itemText(it) },
+            label = { Text("Name it (Home / Office / …)") },
+            singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        SecondaryButton("Use my current location", { vm.addCurrentLocation(placeLabel) }, height = 44.dp)
+        Spacer(Modifier.height(Spacing.sm))
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            OutlinedTextField(
+                value = placeQuery, onValueChange = { placeQuery = it },
+                label = { Text("…or search a place") }, singleLine = true, modifier = Modifier.weight(1f)
+            )
+            Spacer(Modifier.width(Spacing.sm))
+            Box(Modifier.width(96.dp)) {
+                SecondaryButton(
+                    if (searching) "…" else "Search",
+                    { vm.searchPlaces(placeQuery) }, enabled = !searching, height = 48.dp
+                )
+            }
+        }
+        results.forEach { r ->
+            Spacer(Modifier.height(Spacing.sm))
+            Text(r.name, color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
+            TextButton(onClick = {
+                vm.addPlace(placeLabel, r.point, r.name); placeLabel = ""; placeQuery = ""
+            }) { Text("Save this place", color = colors.accent, fontSize = 13.sp) }
+        }
+    }
+
+    // ---- emergency contacts ----
+    KoodeCard(title = "Emergency contacts (at least ${Profile.MIN_CONTACTS})") {
+        Text(
+            "These people are your circle: they're approved automatically when they ask to follow one of your journeys.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        ContactRow("Contact 1", c1) { c1 = it }
+        ContactRow("Contact 2", c2) { c2 = it }
+        ContactRow("Contact 3", c3) { c3 = it }
+    }
+
+    if (message != null) {
+        Text(message!!, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
+    }
+
+    PrimaryButton("Save profile", {
+        vm.saveProfile(name, listOf(c1, c2, c3))
+        onProfileChanged()
+    }, height = 50.dp)
+
+    // ---- updates ----
+    KoodeCard(title = "App version") {
+        Text(
+            "Koode ${vm.installedVersion}",
+            color = colors.textHigh, style = MaterialTheme.typography.titleMedium
+        )
+        Text(
+            if (update != null) "Koode ${update!!.versionName} is available."
+            else "Updating never affects a journey in progress — yours or one you're watching. " +
+                "Your history, places and contacts are carried across untouched.",
+            color = if (update != null) colors.traveller else colors.textMid,
+            style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(Modifier.height(Spacing.md))
+        ToggleRow("Tell me when an update is out", settings.checkForUpdates) { vm.setCheckForUpdates(it) }
+        Spacer(Modifier.height(Spacing.sm))
+        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            Box(Modifier.weight(1f)) {
+                SecondaryButton(
+                    if (checking) "Checking…" else "Check now",
+                    { vm.checkForUpdateNow() }, enabled = !checking, height = 44.dp
+                )
+            }
+            if (update != null) {
+                Box(Modifier.weight(1f)) {
+                    SecondaryButton(
+                        "Download", { uriHandler.openUri(update!!.downloadUrl) },
+                        accent = colors.traveller, height = 44.dp
+                    )
+                }
+            }
+        }
+    }
+
+    // ---- privacy & legal ----
+    KoodeCard(title = "Privacy and legal") {
+        Text(
+            "Your location is shared only during a journey you started, only with people you approve, " +
+                "and the shared copy self-destructs shortly after you end the journey. Your profile, " +
+                "emergency contacts, history and expenses never leave this phone. No ads, no analytics, no accounts.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        Row {
+            TextButton(onClick = {
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("$REPO_URL/blob/main/docs/PRIVACY.md")))
+            }) { Text("Privacy policy", color = colors.accent, fontSize = 13.sp) }
+            TextButton(onClick = {
+                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("$REPO_URL/blob/main/docs/TERMS.md")))
+            }) { Text("Terms of use", color = colors.accent, fontSize = 13.sp) }
+        }
+    }
+
+    KoodeCard(title = "About") {
+        Text(
+            "Koode ${BuildConfig.VERSION_NAME} — Always with you.",
+            color = colors.textHigh, style = MaterialTheme.typography.bodyLarge
+        )
+        Text(
+            "A journey companion that keeps the people you love informed about your journey, wellbeing and safety — without you having to call or message them.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
     }
-    Spacer(Modifier.height(16.dp))
+    Spacer(Modifier.height(Spacing.lg))
+}
+
+@Composable
+private fun ToggleRow(label: String, checked: Boolean, onChange: (Boolean) -> Unit) {
+    val colors = KoodeTheme.colors
+    Row(
+        Modifier.fillMaxWidth().padding(vertical = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            label, color = colors.textHigh,
+            style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f)
+        )
+        Switch(
+            checked = checked, onCheckedChange = onChange,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = colors.background,
+                checkedTrackColor = colors.accent,
+                uncheckedTrackColor = colors.surfaceRaised
+            )
+        )
+    }
 }
 
 @Composable
 private fun ContactRow(label: String, contact: Profile.Contact, onChange: (Profile.Contact) -> Unit) {
-    Row(Modifier.fillMaxWidth().padding(vertical = 2.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    Row(
+        Modifier.fillMaxWidth().padding(vertical = 3.dp),
+        horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
+    ) {
         OutlinedTextField(
-            value = contact.name, onValueChange = { onChange(contact.copy(name = it)) },
+            value = contact.name,
+            onValueChange = { onChange(contact.copy(name = InputRules.itemText(it))) },
             label = { Text("$label — name") }, singleLine = true, modifier = Modifier.weight(1f)
         )
         OutlinedTextField(
-            value = contact.phone, onValueChange = { onChange(contact.copy(phone = it)) },
+            value = contact.phone,
+            onValueChange = { onChange(contact.copy(phone = InputRules.phoneText(it))) },
             label = { Text("Phone") }, singleLine = true, modifier = Modifier.weight(1f),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
+            keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Phone)
         )
     }
 }

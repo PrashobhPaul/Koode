@@ -1,5 +1,11 @@
 package com.trippulse.app.ui.screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,10 +17,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,138 +26,184 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.trippulse.app.core.TimeFmt
+import com.trippulse.app.domain.EventNarrator
 import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.Freshness
-import com.trippulse.app.ui.theme.Amber
-import com.trippulse.app.ui.theme.Danger
-import com.trippulse.app.ui.theme.Surface1
-import com.trippulse.app.ui.theme.Teal
-import com.trippulse.app.ui.theme.TextMid
+import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.PulsingDot
+import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Spacing
 
-/** A titled surface card used throughout the dashboards. */
+/**
+ * Shared presentation pieces: how an event becomes a line of English, and how
+ * a list of them becomes a timeline. Both the traveller's screen and the
+ * follower's screen render from here, which is what guarantees they agree.
+ */
+
+// ---------------------------------------------------------------------------
+// Freshness
+// ---------------------------------------------------------------------------
+
+data class FreshnessStyle(val color: Color, val label: String, val pulsing: Boolean)
+
 @Composable
-fun SectionCard(title: String? = null, modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-    Card(
-        modifier = modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = Surface1),
-        shape = RoundedCornerShape(18.dp)
-    ) {
-        Column(Modifier.padding(16.dp)) {
-            if (title != null) {
-                Text(title, color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-                Spacer(Modifier.height(8.dp))
-            }
-            content()
-        }
+fun freshnessStyle(f: Freshness): FreshnessStyle {
+    val colors = KoodeTheme.colors
+    return when (f) {
+        Freshness.LIVE -> FreshnessStyle(colors.accent, "LIVE", true)
+        Freshness.RECENT -> FreshnessStyle(colors.accent, "RECENT", false)
+        Freshness.STALE -> FreshnessStyle(colors.warn, "CATCHING UP", false)
+        // Deliberately not "OFFLINE": to the person watching, that reads as a
+        // verdict on the traveller. It is a statement about the signal.
+        Freshness.OFFLINE -> FreshnessStyle(colors.warn, "NO SIGNAL YET", false)
+        Freshness.COMPLETED -> FreshnessStyle(colors.accent, "ENDED", false)
+        Freshness.UNKNOWN -> FreshnessStyle(colors.textLow, "CONNECTING", false)
     }
-}
-
-data class FreshnessStyle(val color: Color, val dot: String, val label: String)
-
-fun freshnessStyle(f: Freshness): FreshnessStyle = when (f) {
-    Freshness.LIVE -> FreshnessStyle(Teal, "●", "LIVE")
-    Freshness.RECENT -> FreshnessStyle(Amber, "●", "RECENT")
-    Freshness.STALE -> FreshnessStyle(Amber, "◐", "STALE")
-    Freshness.OFFLINE -> FreshnessStyle(Danger, "○", "OFFLINE")
-    Freshness.COMPLETED -> FreshnessStyle(Teal, "✓", "COMPLETED")
-    Freshness.UNKNOWN -> FreshnessStyle(TextMid, "○", "CONNECTING")
 }
 
 @Composable
 fun FreshnessBadge(f: Freshness, lastUpdateText: String?) {
+    val colors = KoodeTheme.colors
     val s = freshnessStyle(f)
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Box(
-            Modifier.size(10.dp).clip(CircleShape).background(s.color)
-        )
-        Spacer(Modifier.size(8.dp))
-        Text(s.label, color = s.color, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+        if (s.pulsing) {
+            PulsingDot(s.color, size = 7.dp)
+        } else {
+            Box(Modifier.size(8.dp).clip(CircleShape).background(s.color))
+            Spacer(Modifier.width(Spacing.sm))
+        }
+        Text(s.label, color = s.color, style = MaterialTheme.typography.labelSmall)
         if (lastUpdateText != null) {
-            Spacer(Modifier.size(8.dp))
-            Text(lastUpdateText, color = TextMid, fontSize = 12.sp)
+            Spacer(Modifier.width(Spacing.sm))
+            Text(lastUpdateText, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
         }
     }
 }
 
-/** Emoji + human label for an event type (docs/spec/42, 133). */
-fun eventLabel(type: String): Pair<String, String> = when (type) {
-    EventTypes.TRIP_STARTED -> "🚗" to "Trip started"
-    EventTypes.TRIP_PAUSED -> "⏸" to "Trip paused"
-    EventTypes.TRIP_RESUMED -> "▶" to "Trip resumed"
-    EventTypes.TRIP_COMPLETED -> "🏁" to "Arrived"
-    EventTypes.DESTINATION_CHANGED -> "🧭" to "Destination changed"
-    EventTypes.STOP_STARTED -> "🅿" to "Vehicle stopped"
-    EventTypes.STOP_ENDED -> "▶" to "Resumed"
-    EventTypes.LONG_STOP -> "⏳" to "Long stop"
-    EventTypes.ROUTE_DEVIATION -> "↩" to "Route deviation"
-    EventTypes.ROUTE_REJOINED -> "↪" to "Back on route"
-    EventTypes.ARRIVAL_DETECTED -> "📍" to "Arrival detected"
-    EventTypes.BREAK_CHECKPOINT -> "✅" to "Break completed"
-    EventTypes.WATER_REPORTED -> "💧" to "Water"
-    EventTypes.FOOD_REPORTED -> "🍛" to "Food"
-    EventTypes.TOILET_REPORTED -> "🚻" to "Toilet"
-    EventTypes.REST_REPORTED -> "😴" to "Rest"
-    EventTypes.FUEL_STOP -> "⛽" to "Fuel"
-    EventTypes.CHARGE_STOP -> "🔌" to "Charging"
-    EventTypes.OVERNIGHT_CONFIRMED -> "🌙" to "Overnight stay"
-    EventTypes.MORNING_RESUME -> "🌅" to "Morning resume"
-    EventTypes.QUICK_NOTE -> "📝" to "Note"
-    EventTypes.PASSENGER_JOINED -> "👤" to "Passenger joined"
-    EventTypes.PASSENGER_LEFT -> "👋" to "Passenger left"
-    EventTypes.MEDICINE -> "💊" to "Medicine recorded"
-    EventTypes.VEHICLE_ISSUE -> "🔧" to "Vehicle issue"
-    EventTypes.INCIDENT -> "⚠" to "Incident"
-    EventTypes.POSSIBLE_INCIDENT -> "⚠" to "Possible incident"
-    EventTypes.SOS_ACTIVATED -> "🚨" to "SOS activated"
-    EventTypes.SOS_RESOLVED -> "✅" to "SOS resolved"
-    EventTypes.BATTERY_LOW -> "🔋" to "Battery low"
-    else -> "•" to type.lowercase().replace('_', ' ')
-}
+// ---------------------------------------------------------------------------
+// Event → English
+// ---------------------------------------------------------------------------
 
-data class TimelineItem(val timeMs: Long, val emoji: String, val label: String, val detail: String?)
+/**
+ * Screen-facing wrappers over [EventNarrator].
+ *
+ * The wording itself is domain knowledge, shared with the PDF exporter, so a
+ * document someone was sent can never phrase an event differently from the
+ * screen they watched it on.
+ */
+fun eventLabel(type: String): Pair<String, String> = EventNarrator.base(type)
 
+fun eventLine(type: String, payload: Map<String, Any?>): Pair<String, String> =
+    EventNarrator.line(type, payload)
+
+data class TimelineItem(
+    val timeMs: Long,
+    val emoji: String,
+    val label: String,
+    val detail: String?
+)
+
+/** Builds the timeline model from raw payload maps (shared by both sides). */
+fun timelineItems(
+    events: List<Pair<String, Pair<Long, Map<String, Any?>>>>,
+    limit: Int = 60
+): List<TimelineItem> = events
+    .filter { it.first in EventTypes.TIMELINE_TYPES }
+    .sortedByDescending { it.second.first }
+    .take(limit)
+    .map { (type, rest) ->
+        val (timeMs, payload) = rest
+        val (emoji, label) = eventLine(type, payload)
+        TimelineItem(timeMs, emoji, label, null)
+    }
+
+/**
+ * The timeline. A connecting rail runs down the left so a sequence of events
+ * reads as one journey rather than a list of unrelated rows.
+ */
 @Composable
-fun TimelineList(items: List<TimelineItem>, nowMs: Long) {
+fun TimelineList(items: List<TimelineItem>, nowMs: Long, modifier: Modifier = Modifier) {
+    val colors = KoodeTheme.colors
     if (items.isEmpty()) {
-        Text("No events yet.", color = TextMid, fontSize = 13.sp)
+        Text(
+            "Nothing logged yet.",
+            color = colors.textLow,
+            style = MaterialTheme.typography.bodyMedium
+        )
         return
     }
-    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        items.forEach { it ->
+    Column(modifier.fillMaxWidth()) {
+        items.forEachIndexed { index, item ->
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
-                Text(it.emoji, fontSize = 16.sp, modifier = Modifier.padding(end = 10.dp))
-                Column(Modifier.weight(1f)) {
-                    Text(it.label, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-                    if (!it.detail.isNullOrBlank()) {
-                        Text(it.detail, color = TextMid, fontSize = 12.sp)
+                Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.width(28.dp)) {
+                    Text(item.emoji, fontSize = 15.sp)
+                    if (index != items.lastIndex) {
+                        Box(
+                            Modifier
+                                .width(1.5.dp)
+                                .height(22.dp)
+                                .background(colors.outline.copy(alpha = 0.7f))
+                        )
                     }
                 }
-                Text(TimeFmt.clock(it.timeMs), color = TextMid, fontSize = 12.sp)
+                Spacer(Modifier.width(Spacing.md))
+                Column(Modifier.weight(1f).padding(bottom = Spacing.sm)) {
+                    Text(item.label, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+                    if (!item.detail.isNullOrBlank()) {
+                        Text(item.detail, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+                Text(
+                    TimeFmt.clock(item.timeMs),
+                    color = colors.textLow,
+                    style = MaterialTheme.typography.bodySmall
+                )
             }
         }
     }
 }
 
+/** A "last logged" line: factual, never a judgement about the traveller. */
 @Composable
-fun WellbeingRow(emoji: String, label: String, ageMs: Long?, nowMs: Long) {
+fun WellbeingRow(emoji: String, label: String, atMs: Long?, nowMs: Long) {
+    val colors = KoodeTheme.colors
     Row(
         Modifier.fillMaxWidth().padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(emoji, fontSize = 16.sp, modifier = Modifier.padding(end = 10.dp))
-            Text(label, color = MaterialTheme.colorScheme.onSurface, fontSize = 14.sp)
+            Text(emoji, fontSize = 15.sp)
+            Spacer(Modifier.width(Spacing.sm))
+            Text(label, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
         }
         Text(
-            if (ageMs == null) "—" else TimeFmt.ago(nowMs, ageMs),
-            color = TextMid, fontSize = 13.sp
+            if (atMs == null) "Not logged yet" else TimeFmt.ago(nowMs, atMs),
+            color = colors.textMid,
+            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
 
-val listPad = PaddingValues(16.dp)
+/** Slide-and-fade wrapper used for banners that appear mid-screen. */
+@Composable
+fun AnimatedBanner(visible: Boolean, content: @Composable () -> Unit) {
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn(tween(220)) + expandVertically(tween(220)),
+        exit = fadeOut(tween(160)) + shrinkVertically(tween(160))
+    ) { content() }
+}
+
+/** Retained for screens still calling the old name. */
+@Composable
+fun SectionCard(
+    title: String? = null,
+    modifier: Modifier = Modifier,
+    content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit
+) = KoodeCard(modifier = modifier, title = title, content = content)
+
+val listPad = PaddingValues(Spacing.lg)

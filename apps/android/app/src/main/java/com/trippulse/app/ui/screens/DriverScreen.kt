@@ -1,5 +1,6 @@
 package com.trippulse.app.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,206 +13,467 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import kotlinx.coroutines.launch
+import android.content.Intent
+import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.data.TripManager
+import com.trippulse.app.data.local.TripLegEntity
+import com.trippulse.app.data.share.TimelineDelivery
+import com.trippulse.app.domain.JourneyAnalytics
 import com.trippulse.app.domain.EtaMode
+import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.GeoPoint
 import com.trippulse.app.domain.JourneyStatus
+import com.trippulse.app.domain.Nourishment
+import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.domain.TransportProfile
 import com.trippulse.app.ui.DriverVm
 import com.trippulse.app.ui.Routes
-import com.trippulse.app.ui.theme.Amber
-import com.trippulse.app.ui.theme.Danger
-import com.trippulse.app.ui.theme.Surface2
-import com.trippulse.app.ui.theme.Teal
-import com.trippulse.app.ui.theme.TextHigh
-import com.trippulse.app.ui.theme.TextMid
+import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.KoodeChip
+import com.trippulse.app.ui.components.KoodeHeroCard
+import com.trippulse.app.ui.components.LocalWindowClass
+import com.trippulse.app.ui.components.PrimaryButton
+import com.trippulse.app.ui.components.PulsingDot
+import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.components.SectionHeader
+import com.trippulse.app.ui.components.StatusPill
+import com.trippulse.app.ui.map.JourneyMap
+import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Radii
+import com.trippulse.app.ui.theme.Spacing
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+/**
+ * The traveller's own screen while a journey is running.
+ *
+ * Everything offered here comes from the current leg's [TransportProfile]: a
+ * driver gets break logging and refuelling, a train passenger gets "Boarded",
+ * "Train halted", "Deboarded" and simple wellbeing taps. Nothing on this
+ * screen asks a question that doesn't apply to the vehicle you're in.
+ */
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun DriverScreen(nav: NavHostController, tripId: String) {
     val vm: DriverVm = viewModel(factory = DriverVm.factory(tripId))
+    val colors = KoodeTheme.colors
+    val windowClass = LocalWindowClass.current
+
     val trip by vm.trip.collectAsStateWithLifecycle()
     val state by vm.state.collectAsStateWithLifecycle()
+    val legs by vm.legs.collectAsStateWithLifecycle()
+    val events by vm.events.collectAsStateWithLifecycle()
     val pending by vm.pending.collectAsStateWithLifecycle()
+    val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
+    val requests by vm.joinRequests.collectAsStateWithLifecycle()
 
     val s = state
     val t = trip
     val now = System.currentTimeMillis()
     val moving = s?.journey == JourneyStatus.DRIVING.name
 
+    val activeLeg = legs.firstOrNull { it.legIndex == (t?.activeLegIndex ?: 0) }
+    val profile = TransportCatalog.profile(activeLeg?.mode ?: t?.transportMode)
+    val hasNextLeg = legs.any { it.legIndex == (t?.activeLegIndex ?: 0) + 1 }
+
     var showNotes by remember { mutableStateOf(false) }
     var showCheckpoint by remember { mutableStateOf(false) }
     var showEtaBreakdown by remember { mutableStateOf(false) }
-    var showEndConfirm by remember { mutableStateOf(false) }
+    var showEndReview by remember { mutableStateOf(false) }
     var showExpense by remember { mutableStateOf(false) }
+    var showEdit by remember { mutableStateOf(false) }
+    var showSend by remember { mutableStateOf(false) }
+    var report by remember { mutableStateOf<JourneyAnalytics.JourneyReport?>(null) }
+    val measures = vm.measures
+    val context = LocalContext.current
 
-    // state-driven prompts
+    // The review needs current numbers, not the ones from when the screen
+    // opened — the traveller is about to publish them.
+    LaunchedEffect(showEndReview) {
+        if (showEndReview) report = vm.buildReport()
+    }
+
     val checkpointDue = s?.checkpointDue == true
     val overnightDue = s?.longStopPromptDue == true
+    val arrivalDue = s?.arrivalPromptDue == true
 
     Column(
-        Modifier.fillMaxSize().padding(16.dp).verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        Modifier
+            .fillMaxSize()
+            .background(colors.background)
+            .verticalScroll(rememberScrollState())
+            .statusBarsPadding()
     ) {
-        // header
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-            Column(Modifier.weight(1f)) {
-                Text(t?.destName ?: "Trip", color = TextHigh, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                Text(journeyLabel(s?.journey), color = Teal, fontSize = 13.sp, fontWeight = FontWeight.SemiBold)
-            }
-            Column(horizontalAlignment = Alignment.End) {
-                Text(connectivityLabel(s?.connectivity), color = if (s?.connectivity == "OFFLINE") Amber else Teal, fontSize = 12.sp)
-                val bat = s?.batteryPct
-                if (bat != null) Text("🔋 $bat%", color = if (bat <= 15) Amber else TextMid, fontSize = 12.sp)
-                if (pending > 0) Text("$pending queued", color = TextMid, fontSize = 11.sp)
-            }
-        }
-
-        // map
-        MapPanel(
-            current = s?.lat?.let { la -> s.lng?.let { lo -> GeoPoint(la, lo) } },
-            origin = t?.let { GeoPoint(it.originLat, it.originLng) },
-            destination = t?.let { GeoPoint(it.destLat, it.destLng) },
-            route = emptyList(),
-            heightDp = 220
-        )
-
-        // ETA + progress
-        SectionCard {
-            val mode = s?.etaMode
-            if (mode == EtaMode.OVERNIGHT_PENDING.name) {
-                Text("ETA paused — overnight rest", color = Amber, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
-                Text("A new estimate will appear when the trip resumes.", color = TextMid, fontSize = 12.sp)
-            } else if (mode == EtaMode.ARRIVED.name) {
-                Text("Arrived", color = Teal, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-            } else {
-                Text("Estimated arrival", color = TextMid, fontSize = 12.sp)
-                Text(etaRangeText(s?.etaLikelyMs, s?.etaLowMs, s?.etaHighMs), color = TextHigh, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                Spacer(Modifier.height(6.dp))
-                if (s?.etaBreakdownJson != null) {
-                    TextButton(onClick = { showEtaBreakdown = true }) { Text("Why this estimate?", color = Teal, fontSize = 13.sp) }
+        Spacer(Modifier.height(Spacing.md))
+        AdaptiveContainer {
+            // ---- header ----
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Column(Modifier.weight(1f)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(profile.emoji, fontSize = 16.sp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Text(
+                            activeLeg?.toName ?: t?.destName ?: "Journey",
+                            color = colors.textHigh, style = MaterialTheme.typography.headlineMedium
+                        )
+                    }
+                    Text(
+                        journeyLabel(s?.journey),
+                        color = colors.accent, style = MaterialTheme.typography.titleSmall
+                    )
                 }
-            }
-            Spacer(Modifier.height(10.dp))
-            LinearProgressIndicator(
-                progress = { (s?.progressPct ?: 0.0).toFloat() },
-                modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
-                color = Teal, trackColor = Surface2
-            )
-            Spacer(Modifier.height(6.dp))
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text("${TimeFmt.km(s?.distanceCoveredM ?: 0.0)} done", color = TextMid, fontSize = 12.sp)
-                Text("${TimeFmt.km(s?.distanceRemainingM ?: 0.0)} left", color = TextMid, fontSize = 12.sp)
-            }
-        }
-
-        // SOS active banner
-        if (s?.sosActive == true) {
-            SectionCard {
-                Text("🚨 SOS is active", color = Danger, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                Text("Viewers have been alerted. Resolve when you're safe.", color = TextMid, fontSize = 12.sp)
-                Spacer(Modifier.height(10.dp))
-                Button(
-                    onClick = { vm.resolveSos() },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Teal)
-                ) { Text("I'm safe — resolve SOS") }
-            }
-        }
-
-        // viewers asking to follow (trip-id-only requests) — approve by name
-        val requests by vm.joinRequests.collectAsStateWithLifecycle()
-        val pendingReqs = requests.filter { it["status"] == "PENDING" }
-        if (pendingReqs.isNotEmpty()) {
-            SectionCard {
-                Text("Who wants to follow you", color = Amber, fontSize = 14.sp, fontWeight = FontWeight.SemiBold)
-                pendingReqs.forEach { r ->
-                    val name = r["name"] as? String ?: "Unknown"
-                    val token = r["token"] as? String ?: return@forEach
-                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        Text(name, color = TextHigh, fontSize = 14.sp, modifier = Modifier.weight(1f))
-                        TextButton(onClick = { vm.setViewerApproval(token, true) }) { Text("Approve", color = Teal, fontSize = 13.sp) }
-                        TextButton(onClick = { vm.setViewerApproval(token, false) }) { Text("Deny", color = Danger, fontSize = 13.sp) }
+                Column(horizontalAlignment = Alignment.End) {
+                    StatusPill(
+                        if (s?.connectivity == "OFFLINE") "SAVING LOCALLY" else "LIVE",
+                        if (s?.connectivity == "OFFLINE") colors.warn else colors.accent,
+                        pulsing = s?.connectivity != "OFFLINE"
+                    )
+                    s?.batteryPct?.let {
+                        Spacer(Modifier.height(Spacing.xs))
+                        Text(
+                            "🔋 $it%",
+                            color = if (it <= 15) colors.warn else colors.textLow,
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    if (pending > 0) {
+                        Text(
+                            "$pending waiting to sync",
+                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                        )
                     }
                 }
             }
-        }
-        val approvedNames = requests.filter { it["status"] == "APPROVED" }.mapNotNull { it["name"] as? String }
-        if (approvedNames.isNotEmpty()) {
-            Text("Watching: ${approvedNames.joinToString(", ")}", color = TextMid, fontSize = 12.sp)
-        }
 
-        // quick actions
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            OutlinedButton(onClick = { showNotes = true }, modifier = Modifier.weight(1f)) { Text("Add note") }
-            OutlinedButton(onClick = { showCheckpoint = true }, modifier = Modifier.weight(1f)) { Text("Log a break") }
-        }
-        OutlinedButton(onClick = { showExpense = true }, modifier = Modifier.fillMaxWidth()) { Text("₹ Add expense (fuel / food / stay)") }
-
-        // pause / resume / change dest / end
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            if (s?.journey == JourneyStatus.PAUSED.name) {
-                OutlinedButton(onClick = { vm.resume() }, modifier = Modifier.weight(1f)) { Text("Resume") }
-            } else {
-                OutlinedButton(onClick = { vm.pause() }, modifier = Modifier.weight(1f)) { Text("Pause") }
-            }
-            OutlinedButton(onClick = { showEndConfirm = true }, modifier = Modifier.weight(1f)) { Text("End trip") }
-        }
-
-        // SOS hold button
-        SosHoldButton(onTriggered = { vm.activateSos() }, enabled = s?.sosActive != true)
-
-        Spacer(Modifier.height(8.dp))
-        Text("Timeline", color = TextMid, fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
-        val events by vm.events.collectAsStateWithLifecycle()
-        val items = remember(events) {
-            events.filter { it.type in com.trippulse.app.domain.EventTypes.TIMELINE_TYPES }
-                .sortedByDescending { it.eventTimeMs }
-                .take(40)
-                .map { e ->
-                    val (emoji, label) = eventLabel(e.type)
-                    TimelineItem(e.eventTimeMs, emoji, label, null)
+            // ---- arrival: the app asks, the traveller decides ----
+            AnimatedBanner(visible = arrivalDue) {
+                KoodeHeroCard(accent = colors.accent) {
+                    Text("Looks like you've arrived", color = colors.accent, style = MaterialTheme.typography.titleMedium)
+                    Spacer(Modifier.height(Spacing.xs))
+                    Text(
+                        "Your journey stays live until you end it — nobody watching will see it close until you do.",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    Spacer(Modifier.height(Spacing.md))
+                    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                        Box(Modifier.weight(1f)) {
+                            PrimaryButton("Review and end", { showEndReview = true }, height = 46.dp)
+                        }
+                        Box(Modifier.weight(1f)) {
+                            SecondaryButton(
+                                if (hasNextLeg) "Next stage" else "Not yet",
+                                { if (hasNextLeg) vm.nextLeg() else vm.dismissArrivalPrompt() },
+                                accent = colors.textMid, height = 46.dp
+                            )
+                        }
+                    }
                 }
+            }
+
+            // ---- SOS ----
+            AnimatedBanner(visible = s?.sosActive == true) {
+                KoodeHeroCard(accent = colors.danger) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        PulsingDot(colors.danger, size = 9.dp)
+                        Text("SOS is active", color = colors.danger, style = MaterialTheme.typography.headlineSmall)
+                    }
+                    Text(
+                        "Everyone following you has been alerted. Resolve it when you're safe.",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    Spacer(Modifier.height(Spacing.md))
+                    PrimaryButton("I'm safe — resolve SOS", { vm.resolveSos() }, height = 46.dp)
+                }
+            }
+
+            // ---- map with inline playback ----
+            JourneyMap(
+                current = s?.lat?.let { la -> s.lng?.let { lo -> GeoPoint(la, lo) } },
+                origin = activeLeg?.let { GeoPoint(it.fromLat, it.fromLng) }
+                    ?: t?.let { GeoPoint(it.originLat, it.originLng) },
+                destination = activeLeg?.let { GeoPoint(it.toLat, it.toLng) }
+                    ?: t?.let { GeoPoint(it.destLat, it.destLng) },
+                breadcrumb = remember(breadcrumb) { breadcrumb.map { GeoPoint(it.lat, it.lng) } },
+                breadcrumbTimesMs = remember(breadcrumb) { breadcrumb.map { it.tMs } },
+                bearingDeg = s?.bearing?.toFloat(),
+                live = s?.connectivity != "OFFLINE",
+                height = windowClass.mapHeight
+            )
+
+            // ---- stages, when there is more than one ----
+            if (legs.size > 1) {
+                KoodeCard(title = "Stages") {
+                    legs.forEach { leg ->
+                        val legProfile = TransportCatalog.profile(leg.mode)
+                        val isActive = leg.legIndex == (t?.activeLegIndex ?: 0)
+                        Row(
+                            Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(legProfile.emoji, fontSize = 15.sp)
+                            Spacer(Modifier.width(Spacing.sm))
+                            Text(
+                                "${leg.fromName} → ${leg.toName}",
+                                color = if (isActive) colors.textHigh else colors.textMid,
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier.weight(1f)
+                            )
+                            when {
+                                leg.completedAtMs != null -> StatusPill("Done", colors.textLow)
+                                isActive -> StatusPill("Now", colors.accent, pulsing = true)
+                                else -> StatusPill("Next", colors.textLow)
+                            }
+                        }
+                    }
+                    if (hasNextLeg) {
+                        Spacer(Modifier.height(Spacing.md))
+                        SecondaryButton(
+                            "I've changed vehicle — start next stage",
+                            { vm.nextLeg() },
+                            accent = colors.traveller, height = 44.dp
+                        )
+                    }
+                }
+            }
+
+            // ---- ETA + progress ----
+            KoodeCard {
+                when (s?.etaMode) {
+                    EtaMode.OVERNIGHT_PENDING.name -> {
+                        Text("Resting overnight", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            "A new estimate appears when you're on the move again.",
+                            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                    EtaMode.ARRIVED.name ->
+                        Text("Arrived", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+                    else -> {
+                        Text("ESTIMATED ARRIVAL", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                        Spacer(Modifier.height(Spacing.xs))
+                        Text(
+                            etaRangeText(s?.etaLikelyMs, s?.etaLowMs, s?.etaHighMs),
+                            color = colors.textHigh, style = MaterialTheme.typography.headlineMedium
+                        )
+                        if (s?.etaBreakdownJson != null) {
+                            TextButton(onClick = { showEtaBreakdown = true }) {
+                                Text("Why this estimate?", color = colors.accent, fontSize = 13.sp)
+                            }
+                        }
+                    }
+                }
+                Spacer(Modifier.height(Spacing.md))
+                LinearProgressIndicator(
+                    progress = { (s?.progressPct ?: 0.0).toFloat() },
+                    modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(Radii.pill)),
+                    color = colors.accent, trackColor = colors.surfaceRaised
+                )
+                Spacer(Modifier.height(Spacing.sm))
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    // Distances are rendered in the traveller's own units,
+                    // worked out from where they actually are.
+                    Text(
+                        "${measures.distance(s?.distanceCoveredM ?: 0.0)} done",
+                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                    )
+                    Text(
+                        "${measures.distance(s?.distanceRemainingM ?: 0.0)} to go",
+                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            }
+
+            // ---- who wants to follow ----
+            val pendingReqs = requests.filter { it["status"] == "PENDING" }
+            AnimatedBanner(visible = pendingReqs.isNotEmpty()) {
+                KoodeCard(accent = colors.warn, title = "Who wants to follow you") {
+                    pendingReqs.forEach { r ->
+                        val name = r["name"] as? String ?: "Unknown"
+                        val token = r["token"] as? String ?: return@forEach
+                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                            Text(
+                                name, color = colors.textHigh,
+                                style = MaterialTheme.typography.bodyLarge,
+                                modifier = Modifier.weight(1f)
+                            )
+                            TextButton(onClick = { vm.setViewerApproval(token, true) }) {
+                                Text("Let them in", color = colors.accent, fontSize = 13.sp)
+                            }
+                            TextButton(onClick = { vm.setViewerApproval(token, false) }) {
+                                Text("No", color = colors.danger, fontSize = 13.sp)
+                            }
+                        }
+                    }
+                }
+            }
+            val approvedNames = requests.filter { it["status"] == "APPROVED" }.mapNotNull { it["name"] as? String }
+            if (approvedNames.isNotEmpty()) {
+                Text(
+                    "Watching: ${approvedNames.joinToString(", ")}",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+            }
+
+            // ---- one-tap wellbeing ----
+            // On public transport these are simply notes: eating on a train
+            // is not a break, and logging it must not imply the journey stopped.
+            KoodeCard(title = if (profile.wellbeingIsBreak) "Log a break" else "How are you doing?") {
+                Text(
+                    if (profile.wellbeingIsBreak)
+                        "One tap each. Koode works out whether that was breakfast, lunch or dinner."
+                    else "One tap each. On ${profile.label.lowercase()} these are just notes for your family — " +
+                        "they never count as stopping the journey.",
+                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(Modifier.height(Spacing.md))
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    KoodeChip("Water", false, { vm.logNourishment(Nourishment.WATER) }, leading = "💧")
+                    KoodeChip("Tea / coffee", false, { vm.logNourishment(Nourishment.TEA_COFFEE) }, leading = "☕")
+                    KoodeChip("Snack", false, { vm.logNourishment(Nourishment.SNACK) }, leading = "🍪")
+                    KoodeChip("Food", false, { vm.submitCheckpoint(TripManager.Checkpoint(food = true)) }, leading = "🍛")
+                }
+                Spacer(Modifier.height(Spacing.md))
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    Box(Modifier.weight(1f)) {
+                        SecondaryButton(
+                            if (profile.wellbeingIsBreak) "Full break log" else "More",
+                            { showCheckpoint = true }, height = 44.dp
+                        )
+                    }
+                    Box(Modifier.weight(1f)) {
+                        SecondaryButton("Add a note", { showNotes = true }, height = 44.dp)
+                    }
+                }
+            }
+
+            // ---- mode-specific milestones ----
+            if (profile.quickActions.isNotEmpty() && !profile.isPrivateVehicle) {
+                KoodeCard(title = "${profile.label} updates") {
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                        profile.quickActions.forEach { action ->
+                            KoodeChip(
+                                action.label, false,
+                                { vm.addNote(action.eventType, action.timelineText) },
+                                leading = action.emoji
+                            )
+                        }
+                    }
+                }
+            }
+
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                Box(Modifier.weight(1f)) {
+                    SecondaryButton(
+                        "Add an expense", { showExpense = true },
+                        leading = "₹", accent = colors.traveller, height = 46.dp
+                    )
+                }
+                Box(Modifier.weight(1f)) {
+                    // Plans change mid-journey more often than at the start.
+                    SecondaryButton(
+                        "Edit journey", { showEdit = true },
+                        leading = "✏️", height = 46.dp
+                    )
+                }
+            }
+
+            // Sharing with someone new is a mid-journey thought ("send it to my
+            // sister too"), so it lives one tap away rather than back on the
+            // screen that was shown once when the journey started.
+            SecondaryButton(
+                "Share this journey with someone",
+                {
+                    val text = shareInvitation(t?.tripId, t?.secret)
+                    if (text != null) {
+                        context.startActivity(
+                            Intent.createChooser(
+                                Intent(Intent.ACTION_SEND).apply {
+                                    type = "text/plain"
+                                    putExtra(Intent.EXTRA_TEXT, text)
+                                },
+                                "Share journey"
+                            )
+                        )
+                    }
+                },
+                leading = "📤", accent = colors.accent
+            )
+
+            // ---- journey controls ----
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                Box(Modifier.weight(1f)) {
+                    if (s?.journey == JourneyStatus.PAUSED.name) {
+                        SecondaryButton("Resume", { vm.resume() }, leading = "▶", height = 46.dp)
+                    } else {
+                        SecondaryButton("Pause", { vm.pause() }, leading = "⏸", height = 46.dp)
+                    }
+                }
+                Box(Modifier.weight(1f)) {
+                    SecondaryButton(
+                        "End journey", { showEndReview = true },
+                        accent = colors.warn, height = 46.dp
+                    )
+                }
+            }
+
+            SosHoldButton(onTriggered = { vm.activateSos() }, enabled = s?.sosActive != true)
+
+            // ---- timeline ----
+            SectionHeader("Timeline")
+            KoodeCard {
+                val items = remember(events) {
+                    timelineItems(
+                        events.map { e ->
+                            e.type to (e.eventTimeMs to com.trippulse.app.data.EventCodec.payloadFromJson(e.payloadJson))
+                        }
+                    )
+                }
+                TimelineList(items, now)
+            }
+            Spacer(Modifier.height(Spacing.scrollBottom))
         }
-        SectionCard { TimelineList(items, now) }
-        Spacer(Modifier.height(24.dp))
     }
 
-    // ---- ETA breakdown dialog ----
+    // ---- ETA breakdown ----
     if (showEtaBreakdown && s?.etaBreakdownJson != null) {
-        val map = remember(s.etaBreakdownJson) { com.trippulse.app.data.EventCodec.payloadFromJson(s.etaBreakdownJson!!) }
+        val map = remember(s.etaBreakdownJson) {
+            com.trippulse.app.data.EventCodec.payloadFromJson(s.etaBreakdownJson!!)
+        }
         AlertDialog(
             onDismissRequest = { showEtaBreakdown = false },
             confirmButton = { TextButton(onClick = { showEtaBreakdown = false }) { Text("Got it") } },
@@ -221,54 +483,109 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     val travel = (map["travelSeconds"] as? Number)?.toLong() ?: 0
                     val breaks = (map["breakBudgetSeconds"] as? Number)?.toLong() ?: 0
                     val uncertainty = (map["uncertaintySeconds"] as? Number)?.toLong() ?: 0
-                    Text("Driving time: ${TimeFmt.durationShort(travel)}", color = TextHigh, fontSize = 14.sp)
-                    Text("Planned breaks: ${TimeFmt.durationShort(breaks)}", color = TextHigh, fontSize = 14.sp)
-                    Text("Buffer: ±${TimeFmt.durationShort(uncertainty)}", color = TextMid, fontSize = 13.sp)
-                    Spacer(Modifier.height(8.dp))
-                    Text("The arrival window widens with distance and narrows as you get close.", color = TextMid, fontSize = 12.sp)
+                    Text("Travel time: ${TimeFmt.durationShort(travel)}", color = colors.textHigh)
+                    Text("Expected breaks: ${TimeFmt.durationShort(breaks)}", color = colors.textHigh)
+                    Text("Buffer: ±${TimeFmt.durationShort(uncertainty)}", color = colors.textMid)
+                    Spacer(Modifier.height(Spacing.sm))
+                    Text(
+                        "The window widens with distance and narrows as you get close.",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
                 }
             }
         )
     }
 
-    // ---- end confirm ----
-    if (showEndConfirm) {
-        AlertDialog(
-            onDismissRequest = { showEndConfirm = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    showEndConfirm = false
-                    vm.complete()
-                    nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
-                }) { Text("End trip", color = Danger) }
-            },
-            dismissButton = { TextButton(onClick = { showEndConfirm = false }) { Text("Keep going") } },
-            title = { Text("End this trip?") },
-            text = { Text("This completes the trip and stops tracking. Viewers will see the final summary.") }
-        )
-    }
-
-    // ---- notes sheet ----
-    if (showNotes) {
+    // ---- review, then end ----
+    if (showEndReview) {
         val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-        ModalBottomSheet(onDismissRequest = { showNotes = false }, sheetState = sheet) {
-            QuickNoteSheet(moving = moving, onEvent = { type, text ->
-                vm.addNote(type, text); showNotes = false
-            })
+        ModalBottomSheet(onDismissRequest = { showEndReview = false }, sheetState = sheet) {
+            EndJourneyReview(
+                report = report,
+                measures = measures,
+                privateVehicle = profile.isPrivateVehicle,
+                whatsAppEnabled = vm.whatsAppEnabled,
+                onAddExpense = { showEndReview = false; showExpense = true },
+                onCancel = { showEndReview = false },
+                onConfirm = { note ->
+                    showEndReview = false
+                    vm.complete(note) { readyToSend ->
+                        if (readyToSend) showSend = true
+                        else nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
+                    }
+                }
+            )
         }
     }
 
-    // ---- checkpoint sheet (manual or due) — mode-aware questions ----
+    // ---- send the timeline to the circle ----
+    if (showSend) {
+        val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        val recipients by vm.sendRecipients.collectAsStateWithLifecycle()
+        ModalBottomSheet(
+            onDismissRequest = {
+                showSend = false
+                nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
+            },
+            sheetState = sheet
+        ) {
+            SendTimelineSheet(
+                recipients = recipients,
+                whatsAppAvailable = vm.whatsAppAvailable,
+                onSend = { recipient ->
+                    val intent = vm.sendIntentFor(recipient) ?: vm.fallbackSendIntent()
+                    if (intent != null) context.startActivity(intent)
+                },
+                onShareOther = { vm.fallbackSendIntent()?.let { context.startActivity(it) } },
+                onDone = {
+                    showSend = false
+                    nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
+                }
+            )
+        }
+    }
+
+    // ---- edit the running journey ----
+    if (showEdit) {
+        val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        val editBusy by vm.editBusy.collectAsStateWithLifecycle()
+        val editMessage by vm.editMessage.collectAsStateWithLifecycle()
+        ModalBottomSheet(
+            onDismissRequest = { showEdit = false; vm.clearEditMessage() },
+            sheetState = sheet
+        ) {
+            EditJourneySheet(
+                legs = legs,
+                activeLegIndex = t?.activeLegIndex ?: 0,
+                busy = editBusy,
+                message = editMessage,
+                onAddStage = { mode, to, fuel -> vm.addStage(mode, to, fuel) },
+                onEditStage = { index, mode, to, fuel -> vm.editStage(index, mode, to, fuel) },
+                onRemoveStage = { index -> vm.removeStage(index) },
+                onClose = { showEdit = false; vm.clearEditMessage() }
+            )
+        }
+    }
+
+    // ---- sheets ----
+    if (showNotes) {
+        val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        ModalBottomSheet(onDismissRequest = { showNotes = false }, sheetState = sheet) {
+            QuickNoteSheet(profile = profile, moving = moving) { type, text ->
+                vm.addNote(type, text); showNotes = false
+            }
+        }
+    }
+
     if (showCheckpoint || checkpointDue) {
         val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-        val privateVehicle = (t?.transportMode ?: "CAR") in TripManager.PRIVATE_MODES
         ModalBottomSheet(
             onDismissRequest = { showCheckpoint = false; if (checkpointDue) vm.skipCheckpoint() },
             sheetState = sheet
         ) {
             CheckpointSheet(
-                privateVehicle = privateVehicle,
-                fuelUnit = if (t?.fuelType == "ELECTRIC") "kWh" else "L",
+                profile = profile,
+                fuelUnit = if (activeLeg?.fuelType == "ELECTRIC" || t?.fuelType == "ELECTRIC") "kWh" else "L",
                 onSubmit = { c, refuelAmount, refuelQty, unit ->
                     if (refuelAmount != null) vm.submitCheckpointWithRefuel(c, refuelAmount, refuelQty, unit)
                     else vm.submitCheckpoint(c)
@@ -279,21 +596,17 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
         }
     }
 
-    // ---- overnight dialog ----
     if (overnightDue) {
-        OvernightDialog(
-            onChoice = { type -> vm.answerOvernight(type) }
-        )
+        OvernightDialog { type -> vm.answerOvernight(type) }
     }
 
-    // ---- expense sheet (owner-only, stored on this phone) ----
     if (showExpense) {
         val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
         ModalBottomSheet(onDismissRequest = { showExpense = false }, sheetState = sheet) {
             ExpenseSheet(
-                privateVehicle = (t?.transportMode ?: "CAR") in TripManager.PRIVATE_MODES,
-                onSave = { type, amount, qty, unit, note ->
-                    vm.addExpense(type, amount, qty, unit, note)
+                profile = profile,
+                onSave = { type, item, amount, qty, unit ->
+                    vm.addExpense(type, item, amount, qty, unit, null)
                     showExpense = false
                 }
             )
@@ -301,65 +614,415 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
-@Composable
-private fun ExpenseSheet(privateVehicle: Boolean, onSave: (String, Double, Double?, String?, String?) -> Unit) {
-    var type by remember { mutableStateOf(if (privateVehicle) "FUEL" else "FOOD") }
-    var amount by remember { mutableStateOf("") }
-    var qty by remember { mutableStateOf("") }
-    var unit by remember { mutableStateOf("L") }
-    var note by remember { mutableStateOf("") }
+// ---------------------------------------------------------------------------
+// Sheets
+// ---------------------------------------------------------------------------
 
-    Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        Text("Add a journey expense", color = TextHigh, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Private to you — stays on this phone, viewers never see it.", color = TextMid, fontSize = 12.sp)
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            if (privateVehicle) Toggle("⛽ Fuel", type == "FUEL") { type = "FUEL" }
-            Toggle("🍛 Food", type == "FOOD") { type = "FOOD" }
-            Toggle("🏨 Stay", type == "STAY") { type = "STAY" }
-            Toggle("🧾 Other", type == "OTHER") { type = "OTHER" }
-        }
-        OutlinedTextField(
-            value = amount, onValueChange = { amount = it },
-            label = { Text("Amount spent") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        if (type == "FUEL") {
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedTextField(
-                    value = qty, onValueChange = { qty = it },
-                    label = { Text("Quantity refilled") }, singleLine = true, modifier = Modifier.weight(1f)
-                )
-                Toggle("Litres", unit == "L") { unit = "L" }
-                Toggle("kWh", unit == "kWh") { unit = "kWh" }
-            }
-            Text("Petrol/diesel in litres, EV charge in kWh — used for the trip's fuel-efficiency summary.", color = TextMid, fontSize = 11.sp)
-        }
-        OutlinedTextField(
-            value = note, onValueChange = { note = it },
-            label = { Text("Note (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        Button(
-            onClick = {
-                val amt = amount.toDoubleOrNull() ?: return@Button
-                onSave(type, amt, qty.toDoubleOrNull(), if (type == "FUEL") unit else null, note)
-            },
-            enabled = amount.toDoubleOrNull() != null,
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Teal)
-        ) { Text("Save expense") }
-        Spacer(Modifier.height(12.dp))
+/** The invitation text, built the same way the credentials screen builds it. */
+private fun shareInvitation(tripId: String?, passcode: String?): String? {
+    if (tripId == null) return null
+    return buildString {
+        appendLine("I'm on a journey — follow along on Koode.")
+        appendLine("You'll know the moment I arrive safely, without having to call.")
+        appendLine()
+        appendLine("Journey number: $tripId")
+        if (!passcode.isNullOrBlank()) appendLine("Passcode: $passcode")
+        appendLine()
+        appendLine("Watch in any web browser — nothing to install:")
+        appendLine(com.trippulse.app.ui.Links.WEB_VIEWER)
+        appendLine()
+        appendLine("Or get the Koode app (free):")
+        append(com.trippulse.app.ui.Links.APK)
     }
 }
 
+/**
+ * The last look before a journey is closed.
+ *
+ * Ending a journey is the one irreversible action in the app: it publishes a
+ * summary to everyone who was following, it may send a document to their
+ * phones, and nothing can be edited afterwards. So it gets a review — the
+ * same analysed dashboard everyone else will see, a chance to add a missing
+ * expense or a closing note, and only then a confirmation.
+ */
+@Composable
+private fun EndJourneyReview(
+    report: JourneyAnalytics.JourneyReport?,
+    measures: com.trippulse.app.domain.Measures,
+    privateVehicle: Boolean,
+    whatsAppEnabled: Boolean,
+    onAddExpense: () -> Unit,
+    onCancel: () -> Unit,
+    onConfirm: (String?) -> Unit
+) {
+    val colors = KoodeTheme.colors
+    var note by remember { mutableStateOf("") }
+
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(Spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+    ) {
+        Text("Before you close this journey", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text(
+            "This is what everyone following you will see, and it can't be changed afterwards. " +
+                "Have a look before you confirm.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+
+        if (report == null) {
+            Text("Working out the numbers…", color = colors.textLow, style = MaterialTheme.typography.bodyMedium)
+        } else {
+            JourneyDashboard(report, measures, privateVehicle, compact = true)
+        }
+
+        SecondaryButton("Add a missing expense", onAddExpense, leading = "₹", height = 44.dp)
+
+        OutlinedTextField(
+            value = note,
+            onValueChange = { note = it },
+            label = { Text("Anything to add? (optional)") },
+            placeholder = { Text("Reached safely, roads were clear") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        if (whatsAppEnabled) {
+            KoodeCard(accent = colors.traveller) {
+                Text(
+                    "Your timeline will be prepared for your circle on WhatsApp as soon as you confirm.",
+                    color = colors.traveller, style = MaterialTheme.typography.bodyMedium
+                )
+                Text(
+                    "Costs are never included.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+            }
+        }
+
+        PrimaryButton(
+            "Confirm and end journey",
+            { onConfirm(note.trim().ifBlank { null }) },
+            leading = "🏁"
+        )
+        SecondaryButton("Not yet — keep going", onCancel, accent = colors.textMid, height = 44.dp)
+        Spacer(Modifier.height(Spacing.lg))
+    }
+}
+
+/**
+ * One tap per person, right after the journey closes.
+ *
+ * Android has no way for an app to send a WhatsApp message on someone's
+ * behalf, and it should not: an app that could silently message your contacts
+ * from your account is not one anybody should install. What Koode does instead
+ * is prepare the message completely — the PDF built, the recipient chosen, the
+ * covering text written — and open WhatsApp on that conversation. The
+ * traveller taps send, and it genuinely comes from them.
+ */
+@Composable
+private fun SendTimelineSheet(
+    recipients: List<TimelineDelivery.Recipient>,
+    whatsAppAvailable: Boolean,
+    onSend: (TimelineDelivery.Recipient) -> Unit,
+    onShareOther: () -> Unit,
+    onDone: () -> Unit
+) {
+    val colors = KoodeTheme.colors
+    val sent = remember { mutableStateListOf<String>() }
+
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(Spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+    ) {
+        Text("Journey ended safely 🏁", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+        Text(
+            if (whatsAppAvailable)
+                "Your timeline is ready. Tap a name to open WhatsApp with the document attached — " +
+                    "it sends from your own account."
+            else "WhatsApp isn't installed, so use the share sheet below to send your timeline.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+
+        if (whatsAppAvailable) {
+            recipients.forEach { r ->
+                val alreadySent = sent.contains(r.phone)
+                KoodeCard {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text(r.name, color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                            Text(r.phone, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                        }
+                        Box(Modifier.width(120.dp)) {
+                            SecondaryButton(
+                                if (alreadySent) "Sent ✓" else "Send",
+                                { onSend(r); if (!alreadySent) sent.add(r.phone) },
+                                accent = if (alreadySent) colors.textLow else colors.accent,
+                                height = 42.dp
+                            )
+                        }
+                    }
+                }
+            }
+            if (recipients.isEmpty()) {
+                Text(
+                    "No circle contacts have a phone number yet — add them under More → Emergency contacts.",
+                    color = colors.warn, style = MaterialTheme.typography.bodyMedium
+                )
+            }
+        }
+
+        SecondaryButton("Send another way", onShareOther, leading = "📤", height = 44.dp)
+        Text(
+            "Only the timeline goes. Your money tracker stays on this phone.",
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+        )
+        PrimaryButton("Done", onDone)
+        Spacer(Modifier.height(Spacing.lg))
+    }
+}
+
+/**
+ * Changing a journey that is already running.
+ *
+ * The common case this exists for: someone gets to Bangalore intending to stop
+ * there and decides to carry on to Hyderabad. Appending a stage keeps that as
+ * one journey for everyone following, rather than forcing a second one with
+ * new credentials that the family would have to be re-invited to.
+ */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun EditJourneySheet(
+    legs: List<TripLegEntity>,
+    activeLegIndex: Int,
+    busy: Boolean,
+    message: String?,
+    onAddStage: (String, String, String?) -> Unit,
+    onEditStage: (Int, String, String, String?) -> Unit,
+    onRemoveStage: (Int) -> Unit,
+    onClose: () -> Unit
+) {
+    val colors = KoodeTheme.colors
+    var mode by remember { mutableStateOf("CAR") }
+    var destination by remember { mutableStateOf("") }
+    var fuel by remember { mutableStateOf("PETROL") }
+    var editingIndex by remember { mutableStateOf<Int?>(null) }
+
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .verticalScroll(rememberScrollState())
+            .padding(Spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+    ) {
+        Text("Edit this journey", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text(
+            "Change where you're heading, or add another stage if your plans changed. " +
+                "Everyone following you sees it immediately.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+
+        if (legs.isNotEmpty()) {
+            KoodeCard(title = "Stages so far") {
+                legs.forEach { leg ->
+                    val done = leg.completedAtMs != null
+                    val active = leg.legIndex == activeLegIndex
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text(TransportCatalog.emoji(leg.mode), fontSize = 15.sp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Text(
+                            "${leg.fromName} → ${leg.toName}",
+                            color = if (done) colors.textLow else colors.textHigh,
+                            style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.weight(1f)
+                        )
+                        when {
+                            // A finished stage is history and stays that way.
+                            done -> Text("Done", color = colors.textLow, fontSize = 12.sp)
+                            active -> TextButton(onClick = {
+                                editingIndex = leg.legIndex
+                                mode = leg.mode
+                                destination = leg.toName
+                                fuel = leg.fuelType ?: "PETROL"
+                            }) { Text("Change", color = colors.accent, fontSize = 13.sp) }
+                            else -> TextButton(onClick = { onRemoveStage(leg.legIndex) }) {
+                                Text("Remove", color = colors.danger, fontSize = 13.sp)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        KoodeCard(
+            title = if (editingIndex != null) "Change the current stage" else "Add a stage",
+            accent = colors.accent
+        ) {
+            OutlinedTextField(
+                value = destination,
+                onValueChange = { destination = it },
+                label = { Text("Where to?") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(Spacing.md))
+            Text("How are you travelling?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            Spacer(Modifier.height(Spacing.sm))
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                TransportCatalog.ALL.forEach { p ->
+                    KoodeChip(p.label, mode == p.key, { mode = p.key }, leading = p.emoji)
+                }
+            }
+            if (TransportCatalog.profile(mode).asksAboutFuel) {
+                Spacer(Modifier.height(Spacing.md))
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric")
+                        .forEach { (v, label) -> KoodeChip(label, fuel == v, { fuel = v }) }
+                }
+            }
+            Spacer(Modifier.height(Spacing.md))
+            PrimaryButton(
+                when {
+                    busy -> "Working…"
+                    editingIndex != null -> "Update this stage"
+                    else -> "Add this stage"
+                },
+                {
+                    val index = editingIndex
+                    val fuelType = if (TransportCatalog.profile(mode).asksAboutFuel) fuel else null
+                    if (index != null) onEditStage(index, mode, destination, fuelType)
+                    else onAddStage(mode, destination, fuelType)
+                    destination = ""
+                    editingIndex = null
+                },
+                enabled = !busy && destination.trim().length >= 2,
+                height = 48.dp
+            )
+            if (editingIndex != null) {
+                SecondaryButton(
+                    "Cancel change",
+                    { editingIndex = null; destination = "" },
+                    accent = colors.textMid, height = 42.dp
+                )
+            }
+        }
+
+        if (message != null) {
+            Text(message, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
+        }
+
+        SecondaryButton("Close", onClose, accent = colors.textMid, height = 44.dp)
+        Spacer(Modifier.height(Spacing.lg))
+    }
+}
+
+/**
+ * The money tracker's input.
+ *
+ * The product contract is enforced at the keystroke: the item accepts letters
+ * only and the amount accepts digits only, so an amount can never end up in the
+ * description or vice versa — which is what keeps the exported statement
+ * trustworthy.
+ */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun ExpenseSheet(
+    profile: TransportProfile,
+    onSave: (String, String, Double, Double?, String?) -> Unit
+) {
+    val colors = KoodeTheme.colors
+    var type by remember { mutableStateOf(if (profile.asksAboutFuel) "FUEL" else "TICKET") }
+    var item by remember { mutableStateOf("") }
+    var amount by remember { mutableStateOf("") }
+    var qty by remember { mutableStateOf("") }
+    var unit by remember { mutableStateOf("L") }
+
+    val valid = InputRules.isValidExpense(item, amount)
+
+    Column(
+        Modifier.fillMaxWidth().padding(Spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+    ) {
+        Text("Add an expense", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text(
+            "Private to you — it stays on this phone and nobody following you ever sees it.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            if (profile.asksAboutFuel) KoodeChip("Fuel", type == "FUEL", { type = "FUEL" }, leading = "⛽")
+            if (!profile.isPrivateVehicle) KoodeChip("Ticket", type == "TICKET", { type = "TICKET" }, leading = "🎫")
+            KoodeChip("Food", type == "FOOD", { type = "FOOD" }, leading = "🍛")
+            KoodeChip("Stay", type == "STAY", { type = "STAY" }, leading = "🏨")
+            KoodeChip("Other", type == "OTHER", { type = "OTHER" }, leading = "🧾")
+        }
+        OutlinedTextField(
+            value = item,
+            onValueChange = { item = InputRules.itemText(it) },
+            label = { Text("Item — what was it?") },
+            placeholder = { Text("Highway dhaba lunch") },
+            singleLine = true,
+            supportingText = { Text("Letters only", color = colors.textLow, fontSize = 11.sp) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = amount,
+            onValueChange = { amount = InputRules.amountText(it) },
+            label = { Text("Amount") },
+            placeholder = { Text("450") },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            supportingText = { Text("Numbers only", color = colors.textLow, fontSize = 11.sp) },
+            modifier = Modifier.fillMaxWidth()
+        )
+        if (type == "FUEL") {
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalAlignment = Alignment.CenterVertically) {
+                OutlinedTextField(
+                    value = qty,
+                    onValueChange = { qty = InputRules.quantityText(it) },
+                    label = { Text("Quantity") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.weight(1f)
+                )
+                KoodeChip("Litres", unit == "L", { unit = "L" })
+                KoodeChip("kWh", unit == "kWh", { unit = "kWh" })
+            }
+            Text(
+                "Used for this journey's fuel-efficiency figure.",
+                color = colors.textLow, style = MaterialTheme.typography.bodySmall
+            )
+        }
+        PrimaryButton(
+            "Save expense",
+            {
+                val amt = InputRules.parseAmount(amount) ?: return@PrimaryButton
+                onSave(type, item, amt, qty.toDoubleOrNull(), if (type == "FUEL") unit else null)
+            },
+            enabled = valid
+        )
+        Spacer(Modifier.height(Spacing.md))
+    }
+}
+
+/**
+ * Hold-to-send SOS. A deliberate 1.5 s hold, because an accidental SOS costs
+ * the people watching a genuine fright.
+ */
 @Composable
 private fun SosHoldButton(onTriggered: () -> Unit, enabled: Boolean) {
-    val scope = androidx.compose.runtime.rememberCoroutineScope()
+    val colors = KoodeTheme.colors
+    val scope = rememberCoroutineScope()
     var progress by remember { mutableStateOf(0f) }
     Box(
         Modifier
             .fillMaxWidth()
             .height(64.dp)
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(Radii.md))
+            .background(colors.danger.copy(alpha = 0.12f))
             .pointerInput(enabled) {
                 if (!enabled) return@pointerInput
                 detectTapGestures(
@@ -388,162 +1051,202 @@ private fun SosHoldButton(onTriggered: () -> Unit, enabled: Boolean) {
     ) {
         LinearProgressIndicator(
             progress = { progress },
-            modifier = Modifier.fillMaxWidth().height(64.dp).clip(RoundedCornerShape(16.dp)),
-            color = Danger.copy(alpha = 0.35f), trackColor = Danger.copy(alpha = 0.15f)
+            modifier = Modifier.fillMaxWidth().height(64.dp).clip(RoundedCornerShape(Radii.md)),
+            color = colors.danger.copy(alpha = 0.35f),
+            trackColor = androidx.compose.ui.graphics.Color.Transparent
         )
         Text(
             if (enabled) "Hold for SOS" else "SOS active",
-            color = Danger, fontWeight = FontWeight.Bold, fontSize = 16.sp,
+            color = colors.danger,
+            style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.align(Alignment.Center)
         )
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun QuickNoteSheet(moving: Boolean, onEvent: (String, String?) -> Unit) {
+private fun QuickNoteSheet(
+    profile: TransportProfile,
+    moving: Boolean,
+    onEvent: (String, String?) -> Unit
+) {
+    val colors = KoodeTheme.colors
     var text by remember { mutableStateOf("") }
-    val types = com.trippulse.app.domain.EventTypes
-    Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        Text("Quick note", color = TextHigh, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            AssistChoice("👤 Passenger joined") { onEvent(types.PASSENGER_JOINED, null) }
-            AssistChoice("👋 Passenger left") { onEvent(types.PASSENGER_LEFT, null) }
-            AssistChoice("💊 Medicine") { onEvent(types.MEDICINE, null) }
-            AssistChoice("🔧 Vehicle issue") { onEvent(types.VEHICLE_ISSUE, null) }
+    Column(
+        Modifier.fillMaxWidth().padding(Spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+    ) {
+        Text("Add a note", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            profile.quickActions
+                .filter { !moving || it.availableWhileMoving }
+                .forEach { action ->
+                    KoodeChip(action.label, false, { onEvent(action.eventType, action.timelineText) }, leading = action.emoji)
+                }
         }
         if (!moving) {
             OutlinedTextField(
                 value = text, onValueChange = { text = it },
-                label = { Text("Custom note") }, modifier = Modifier.fillMaxWidth()
+                label = { Text("Anything else") }, modifier = Modifier.fillMaxWidth()
             )
-            Button(
-                onClick = { onEvent(types.QUICK_NOTE, text.ifBlank { null }) },
-                enabled = text.isNotBlank(),
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = Teal)
-            ) { Text("Add note") }
+            PrimaryButton(
+                "Add note",
+                { onEvent(EventTypes.QUICK_NOTE, text.ifBlank { null }) },
+                enabled = text.isNotBlank(), height = 46.dp
+            )
         } else {
-            Text("Free-text notes are disabled while moving for safety. Tap a quick option above.", color = TextMid, fontSize = 12.sp)
+            Text(
+                "Typing is disabled while you're moving. Tap one of the options above instead.",
+                color = colors.textLow, style = MaterialTheme.typography.bodyMedium
+            )
         }
-        Spacer(Modifier.height(12.dp))
+        Spacer(Modifier.height(Spacing.md))
     }
 }
 
-@Composable
-private fun AssistChoice(label: String, onClick: () -> Unit) {
-    OutlinedButton(onClick = onClick) { Text(label, fontSize = 13.sp) }
-}
-
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+/**
+ * The break log.
+ *
+ * Refuelling only appears for private vehicles — a train passenger is never
+ * asked about fuel — and the wording changes with the mode, so a bus passenger
+ * is logging what they had, not "what happened on this stop".
+ */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun CheckpointSheet(
-    privateVehicle: Boolean,
+    profile: TransportProfile,
     fuelUnit: String,
     onSubmit: (TripManager.Checkpoint, Double?, Double?, String) -> Unit,
     onSkip: () -> Unit
 ) {
+    val colors = KoodeTheme.colors
     var water by remember { mutableStateOf(false) }
     var food by remember { mutableStateOf(false) }
+    var tea by remember { mutableStateOf(false) }
+    var snack by remember { mutableStateOf(false) }
     var toilet by remember { mutableStateOf(false) }
     var rest by remember { mutableStateOf(false) }
     var fuel by remember { mutableStateOf(false) }
     var charge by remember { mutableStateOf(false) }
+    var mealKind by remember { mutableStateOf<Nourishment?>(null) }
     var refuelCost by remember { mutableStateOf("") }
     var refuelQty by remember { mutableStateOf("") }
 
-    Column(Modifier.fillMaxWidth().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        Text("What happened on this stop?", color = TextHigh, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-        Text("Tap all that apply. This keeps your family's mind at ease.", color = TextMid, fontSize = 12.sp)
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Toggle("💧 Water", water) { water = it }
-            Toggle("🍛 Food", food) { food = it }
-            Toggle("🚻 Toilet", toilet) { toilet = it }
-            Toggle("😴 Rest", rest) { rest = it }
-            // fuel questions exist only for private vehicles — a train
-            // passenger is never asked about refuelling
-            if (privateVehicle) {
-                if (fuelUnit == "kWh") Toggle("🔌 Charged", charge) { charge = it }
-                else Toggle("⛽ Refuelled", fuel) { fuel = it }
+    Column(
+        Modifier.fillMaxWidth().padding(Spacing.xl),
+        verticalArrangement = Arrangement.spacedBy(Spacing.md)
+    ) {
+        Text(
+            if (profile.wellbeingIsBreak) "What happened on this stop?" else "What have you had?",
+            color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
+        )
+        Text(
+            if (profile.wellbeingIsBreak)
+                "Tap all that apply. It takes two seconds and it's what keeps your family relaxed."
+            else "Tap all that apply. On ${profile.label.lowercase()} this is a note, not a stop.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            KoodeChip("Water", water, { water = !water }, leading = "💧")
+            KoodeChip("Food", food, { food = !food }, leading = "🍛")
+            KoodeChip("Tea / coffee", tea, { tea = !tea }, leading = "☕")
+            KoodeChip("Snack", snack, { snack = !snack }, leading = "🍪")
+            KoodeChip("Toilet", toilet, { toilet = !toilet }, leading = "🚻")
+            KoodeChip("Rest", rest, { rest = !rest }, leading = "😴")
+            // Fuel questions exist only for private vehicles.
+            if (profile.asksAboutFuel) {
+                if (fuelUnit == "kWh") KoodeChip("Charged", charge, { charge = !charge }, leading = "🔌")
+                else KoodeChip("Refuelled", fuel, { fuel = !fuel }, leading = "⛽")
             }
         }
-        if (privateVehicle && (fuel || charge)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+
+        // Koode names the meal from the clock; this row exists only for the
+        // times it guesses wrong, or the traveller wants to be explicit.
+        if (food) {
+            Text("Which meal?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                KoodeChip("Let Koode decide", mealKind == null, { mealKind = null })
+                listOf(Nourishment.BREAKFAST, Nourishment.LUNCH, Nourishment.DINNER, Nourishment.SNACK).forEach { m ->
+                    KoodeChip(m.label, mealKind == m, { mealKind = m }, leading = m.emoji)
+                }
+            }
+        }
+
+        if (profile.asksAboutFuel && (fuel || charge)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                 OutlinedTextField(
-                    value = refuelCost, onValueChange = { refuelCost = it },
-                    label = { Text("Amount spent") }, singleLine = true, modifier = Modifier.weight(1f)
+                    value = refuelCost, onValueChange = { refuelCost = InputRules.amountText(it) },
+                    label = { Text("Amount") }, singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.weight(1f)
                 )
                 OutlinedTextField(
-                    value = refuelQty, onValueChange = { refuelQty = it },
-                    label = { Text(fuelUnit) }, singleLine = true, modifier = Modifier.weight(1f)
+                    value = refuelQty, onValueChange = { refuelQty = InputRules.quantityText(it) },
+                    label = { Text(fuelUnit) }, singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.weight(1f)
                 )
             }
-            Text("Goes straight into this journey's cost & efficiency summary.", color = TextMid, fontSize = 11.sp)
         }
-        Spacer(Modifier.height(4.dp))
-        Button(
-            onClick = {
+
+        PrimaryButton(
+            "Save",
+            {
                 onSubmit(
-                    TripManager.Checkpoint(water, food, toilet, rest, fuel, charge),
-                    refuelCost.toDoubleOrNull(), refuelQty.toDoubleOrNull(), fuelUnit
+                    TripManager.Checkpoint(
+                        water = water, food = food, toilet = toilet, rest = rest,
+                        fuel = fuel, charge = charge, tea = tea, snack = snack,
+                        mealKind = mealKind
+                    ),
+                    InputRules.parseAmount(refuelCost), refuelQty.toDoubleOrNull(), fuelUnit
                 )
             },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = Teal)
-        ) { Text("Save break") }
-        TextButton(onClick = onSkip, modifier = Modifier.fillMaxWidth()) { Text("Skip", color = TextMid) }
-        Spacer(Modifier.height(12.dp))
+            enabled = water || food || tea || snack || toilet || rest || fuel || charge,
+            height = 48.dp
+        )
+        SecondaryButton("Not now", onSkip, accent = colors.textMid, height = 44.dp)
+        Spacer(Modifier.height(Spacing.md))
     }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun Toggle(label: String, checked: Boolean, onCheck: (Boolean) -> Unit) {
-    FilterChip(
-        selected = checked,
-        onClick = { onCheck(!checked) },
-        label = { Text(label) },
-        colors = FilterChipDefaults.filterChipColors(selectedContainerColor = Teal, selectedLabelColor = androidx.compose.ui.graphics.Color.Black)
-    )
 }
 
 @Composable
 private fun OvernightDialog(onChoice: (String) -> Unit) {
+    val colors = KoodeTheme.colors
     AlertDialog(
         onDismissRequest = { },
         confirmButton = {},
         title = { Text("Stopping for the night?") },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("You've been stopped a while. Let your family know what's happening.", color = TextMid, fontSize = 13.sp)
-                Spacer(Modifier.height(4.dp))
-                Button(onClick = { onChoice("HOTEL") }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Surface2)) { Text("🏨 Hotel / lodge") }
-                Button(onClick = { onChoice("FAMILY") }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Surface2)) { Text("🏠 Staying with family") }
-                Button(onClick = { onChoice("VEHICLE") }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Surface2)) { Text("🚗 Resting in the vehicle") }
-                Button(onClick = { onChoice("CONTINUING") }, modifier = Modifier.fillMaxWidth(), colors = ButtonDefaults.buttonColors(containerColor = Teal)) { Text("Still driving — continue") }
+            Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                Text(
+                    "You've been stopped a while. Let your family know what's happening.",
+                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(Modifier.height(Spacing.xs))
+                SecondaryButton("Hotel or lodge", { onChoice("HOTEL") }, leading = "🏨", height = 44.dp)
+                SecondaryButton("With family or friends", { onChoice("FAMILY") }, leading = "🏠", height = 44.dp)
+                SecondaryButton("Resting in the vehicle", { onChoice("VEHICLE") }, leading = "🚗", height = 44.dp)
+                PrimaryButton("Still going — continue", { onChoice("CONTINUING") }, height = 46.dp)
             }
         }
     )
 }
 
-// ---- small text helpers ----
+// ---------------------------------------------------------------------------
+// Text helpers
+// ---------------------------------------------------------------------------
 
 private fun journeyLabel(journey: String?): String = when (journey) {
-    JourneyStatus.READY.name -> "Ready"
+    JourneyStatus.READY.name -> "Ready to go"
     JourneyStatus.DRIVING.name -> "On the move"
     JourneyStatus.POSSIBLE_STOP.name -> "Slowing down"
     JourneyStatus.STOPPED.name -> "Stopped"
     JourneyStatus.LONG_STOP.name -> "Long stop"
     JourneyStatus.OVERNIGHT.name -> "Overnight rest"
     JourneyStatus.PAUSED.name -> "Paused"
-    JourneyStatus.ARRIVED.name -> "Arrived"
-    JourneyStatus.COMPLETED.name -> "Completed"
-    else -> "—"
-}
-
-private fun connectivityLabel(c: String?): String = when (c) {
-    "OFFLINE" -> "Offline — will sync"
-    "ONLINE" -> "Live"
+    JourneyStatus.ARRIVED.name -> "At the destination"
+    JourneyStatus.COMPLETED.name -> "Journey ended"
     else -> "—"
 }
 

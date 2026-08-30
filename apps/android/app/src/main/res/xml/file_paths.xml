@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The only path Koode ever shares outside the app: exported journey PDFs.
+  Journey data itself (events, locations, expenses) stays in app-private
+  storage and is never exposed through a content provider.
+-->
+<paths>
+    <cache-path name="journey_exports" path="exports/" />
+</paths>

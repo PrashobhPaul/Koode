@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -277,25 +278,50 @@ class TripCloud(private val appContext: Context) {
     }
 
     // -----------------------------------------------------------------------
-    // Viewer subscriptions: short-interval REST polling, emitted as flows.
-    // 5s state polling sits comfortably inside the LIVE freshness window
-    // (60s) and needs no websocket infrastructure.
+    // Viewer subscriptions: REST polling emitted as flows, with the interval
+    // decided AFTER each read rather than fixed up front.
+    //
+    // A fixed 5-second poll is a battery bill the follower pays for twelve
+    // hours to watch a train that reports once a minute. Handing the caller a
+    // `nextDelay` callback lets the repository price each read against what
+    // actually changed — see ViewerRepository.statePollMs.
     // -----------------------------------------------------------------------
 
-    fun currentStateFlow(accessKey: String): Flow<Map<String, Any?>?> =
-        pollingFlow(5_000) { fetchState(accessKey) }
+    fun currentStateFlow(
+        accessKey: String,
+        nextDelayMs: (Map<String, Any?>?) -> Long
+    ): Flow<Map<String, Any?>?> = pollingFlow(nextDelayMs) { fetchState(accessKey) }
 
-    fun metaFlow(accessKey: String): Flow<Map<String, Any?>?> =
-        pollingFlow(20_000) { fetchMeta(accessKey) }
+    fun metaFlow(
+        accessKey: String,
+        nextDelayMs: (Map<String, Any?>?) -> Long
+    ): Flow<Map<String, Any?>?> = pollingFlow(nextDelayMs) { fetchMeta(accessKey) }
 
-    fun eventsFlow(accessKey: String): Flow<List<Map<String, Any?>>> =
-        pollingFlow(7_000) { fetchEventsSince(accessKey, 0L) ?: emptyList() }
+    fun eventsFlow(
+        accessKey: String,
+        nextDelayMs: (List<Map<String, Any?>>?) -> Long
+    ): Flow<List<Map<String, Any?>>> =
+        // A failed read stays null all the way through the polling loop so the
+        // backoff can see it, and only becomes an empty list at the very edge.
+        pollingFlow(nextDelayMs) { fetchEventsSince(accessKey, 0L) }
+            .map { it ?: emptyList() }
 
-    private fun <T> pollingFlow(intervalMs: Long, fetch: suspend () -> T): Flow<T> =
+    /**
+     * Emits, then waits for however long the caller says this result is worth.
+     *
+     * Backs off on consecutive failures so a phone with no signal in a tunnel
+     * doesn't spend the journey retrying every few seconds.
+     */
+    private fun <T> pollingFlow(nextDelayMs: (T) -> Long, fetch: suspend () -> T): Flow<T> =
         flow {
+            var failures = 0
             while (true) {
-                emit(fetch())
-                delay(intervalMs)
+                val result = fetch()
+                failures = if (result == null) (failures + 1).coerceAtMost(MAX_BACKOFF_STEPS) else 0
+                emit(result)
+                val base = nextDelayMs(result).coerceIn(MIN_POLL_MS, MAX_POLL_MS)
+                val backoff = 1L shl failures          // 1x, 2x, 4x, 8x, 16x
+                delay((base * backoff).coerceAtMost(MAX_POLL_MS))
             }
         }.distinctUntilChanged().flowOn(Dispatchers.IO)
 
@@ -310,6 +336,12 @@ class TripCloud(private val appContext: Context) {
     }
 
     fun unsubscribeTopic(accessKey: String) {
-        // The follow service stops itself when no live followed trips remain.
+        // The follow service stops itself when no followed journeys remain.
+    }
+
+    private companion object {
+        const val MIN_POLL_MS = 4_000L
+        const val MAX_POLL_MS = 600_000L
+        const val MAX_BACKOFF_STEPS = 4
     }
 }

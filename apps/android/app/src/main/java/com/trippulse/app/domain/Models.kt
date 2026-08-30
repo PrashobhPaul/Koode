@@ -18,8 +18,8 @@ enum class JourneyStatus {
     LONG_STOP,      // stop exceeding the long-stop threshold (>2h default)
     OVERNIGHT,      // driver confirmed an overnight halt
     PAUSED,         // driver manually paused tracking
-    ARRIVED,        // within arrival radius, awaiting completion / grace
-    COMPLETED,      // trip finished
+    ARRIVED,        // within arrival radius — the app asks, it never decides
+    COMPLETED,      // journey finished, and ONLY the traveller can put it here
     EXPIRED         // credentials revoked / access destroyed
 }
 
@@ -90,6 +90,20 @@ object EventTypes {
     const val REST_REPORTED = "REST_REPORTED"
     const val FUEL_STOP = "FUEL_STOP"
     const val CHARGE_STOP = "CHARGE_STOP"
+    // Refreshments that are not a meal. Kept separate from FOOD_REPORTED so a
+    // cup of tea never reads as "they have eaten" on a family member's screen.
+    const val TEA_COFFEE_REPORTED = "TEA_COFFEE_REPORTED"
+    const val SNACK_REPORTED = "SNACK_REPORTED"
+
+    // public-transport journey milestones
+    const val BOARDED = "BOARDED"
+    const val TRANSIT_HALTED = "TRANSIT_HALTED"
+    const val TRANSIT_RESUMED = "TRANSIT_RESUMED"
+    const val DEBOARDED = "DEBOARDED"
+
+    // hybrid journeys: one journey, several modes of transport
+    const val LEG_STARTED = "LEG_STARTED"
+    const val LEG_COMPLETED = "LEG_COMPLETED"
 
     // overnight
     const val OVERNIGHT_CANDIDATE = "OVERNIGHT_CANDIDATE"
@@ -121,6 +135,8 @@ object EventTypes {
         TRIP_STARTED, TRIP_PAUSED, TRIP_RESUMED, TRIP_COMPLETED, DESTINATION_CHANGED,
         STOP_STARTED, STOP_ENDED, LONG_STOP, ROUTE_DEVIATION, ROUTE_REJOINED, ARRIVAL_DETECTED,
         BREAK_CHECKPOINT, WATER_REPORTED, FOOD_REPORTED, TOILET_REPORTED, REST_REPORTED,
+        TEA_COFFEE_REPORTED, SNACK_REPORTED,
+        BOARDED, TRANSIT_HALTED, TRANSIT_RESUMED, DEBOARDED, LEG_STARTED, LEG_COMPLETED,
         FUEL_STOP, CHARGE_STOP, OVERNIGHT_CONFIRMED, MORNING_RESUME,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
         POSSIBLE_INCIDENT, SOS_ACTIVATED, SOS_RESOLVED, BATTERY_LOW
@@ -130,6 +146,8 @@ object EventTypes {
     fun priorityFor(type: String): Int = when (type) {
         SOS_ACTIVATED, SOS_RESOLVED, POSSIBLE_INCIDENT -> 0
         BREAK_CHECKPOINT, WATER_REPORTED, FOOD_REPORTED, TOILET_REPORTED, REST_REPORTED,
+        TEA_COFFEE_REPORTED, SNACK_REPORTED,
+        BOARDED, TRANSIT_HALTED, TRANSIT_RESUMED, DEBOARDED, LEG_STARTED, LEG_COMPLETED,
         FUEL_STOP, CHARGE_STOP, STOP_STARTED, STOP_ENDED, LONG_STOP,
         OVERNIGHT_CONFIRMED, MORNING_RESUME, ARRIVAL_DETECTED, DESTINATION_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
@@ -211,7 +229,7 @@ data class WellbeingTimes(
     val fuelAtMs: Long? = null
 )
 
-/** Aggregate statistics computed at trip completion. */
+/** Aggregate statistics computed at journey completion. */
 data class TripSummary(
     val distanceKm: Double,
     val drivingSeconds: Long,
@@ -222,7 +240,40 @@ data class TripSummary(
     val toiletBreaks: Int,
     val restBreaks: Int,
     val fuelStops: Int,
+    val teaCoffee: Int,
+    val snacks: Int,
     val longestLegSeconds: Long,
     val longestBreakSeconds: Long,
     val days: Int
 )
+
+/**
+ * One stage of a journey, in one mode of transport.
+ *
+ * Real journeys are rarely single-mode: Thrissur to Bangalore by train, then
+ * Bangalore to Hyderabad by bus. Each leg carries its own mode, so every rule
+ * that keys off transport (break prompts, deviation, sampling cadence, quick
+ * actions) switches automatically when the traveller changes vehicle — and the
+ * viewer's timeline reads as one continuous story.
+ *
+ * A single-mode journey is simply a journey with one leg, so there is exactly
+ * one code path.
+ */
+data class JourneyLeg(
+    val index: Int,
+    val mode: String,
+    val fromName: String,
+    val from: GeoPoint,
+    val toName: String,
+    val to: GeoPoint,
+    val fuelType: String? = null,
+    val startedAtMs: Long? = null,
+    val completedAtMs: Long? = null,
+    val plannedDepartureMs: Long? = null,
+    val bookingRef: String? = null,
+    val seat: String? = null,
+    val boardingPoint: String? = null
+) {
+    val started: Boolean get() = startedAtMs != null
+    val completed: Boolean get() = completedAtMs != null
+}

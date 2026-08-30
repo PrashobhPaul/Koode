@@ -30,6 +30,17 @@
     <!-- Restore active-trip tracking after device reboot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!--
+      Package visibility (Android 11+). Koode asks only whether WhatsApp is
+      installed, so it can offer to send a finished journey's timeline to the
+      traveller's circle. Nothing is read from it and nothing is sent without
+      the traveller tapping send inside WhatsApp itself.
+    -->
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="com.whatsapp.w4b" />
+    </queries>
+
     <application
         android:name=".TripPulseApp"
         android:allowBackup="true"
@@ -38,12 +49,16 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TripPulse">
+        android:theme="@style/Theme.Koode">
 
+        <!-- The launcher activity wears the splash theme; the platform hands
+             over to Theme.Koode (postSplashScreenTheme) once the first frame
+             is ready, so a cold start never shows an empty window. -->
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"
             android:launchMode="singleTask"
+            android:theme="@style/Theme.Koode.Splash"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -78,6 +93,18 @@
             android:name=".service.ActivityTransitionReceiver"
             android:enabled="true"
             android:exported="false" />
+
+        <!-- Shares exported journey PDFs (and nothing else) with the app the
+             user picks. Grants are per-share and read-only. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
     </application>
 </manifest>

@@ -19,16 +19,21 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 /**
- * Viewer-side alert engine ("forced alerts"). Runs as a foreground service on
- * every phone that has joined a trip with a Trip ID + password, polling the
- * backend and raising high-priority notifications for the moments that matter:
- * trip started, SOS, arrival at the destination, completion and overnight
- * stops. This replaces FCM push entirely — no Google services, no server
- * push infrastructure, nothing to configure.
+ * Follower-side alert engine ("forced alerts"). Runs as a foreground service on
+ * every phone following a journey, polling the backend and raising
+ * high-priority notifications for the moments that matter: journey started,
+ * SOS, arrival at the destination, completion and overnight stops. This
+ * replaces FCM push entirely — no Google services, no server push
+ * infrastructure, nothing to configure.
  *
- * The service stops itself once no followed trip is live (all expired —
- * a trip id self-destructs 30 minutes after the driver reaches the
- * destination — or explicitly left by the viewer).
+ * Two things this service must never do, both learned the hard way:
+ *
+ *  - **Never conclude a journey ended.** A meta read returning null means the
+ *    server could not answer, not that the traveller is home. Only an explicit
+ *    completion signal from the traveller's own device ends a journey here.
+ *  - **Never poll at a fixed fast rate.** Followers keep this running for a
+ *    whole journey; the interval scales with what is actually happening, and
+ *    with the follower's own refresh setting.
  */
 class TripFollowService : Service() {
 
@@ -51,20 +56,24 @@ class TripFollowService : Service() {
                 for (f in follows) {
                     val meta = graph.cloud.fetchMeta(f.accessKey)
                     if (meta == null) {
-                        // expired (self-destructed) or unreachable; only mark
-                        // expired when the backend is reachable at all
-                        if (graph.cloud.serverReachable()) graph.db.viewerDao().markExpired(f.accessKey)
+                        // We could not read this journey. That is a statement
+                        // about the network or the capability — never about the
+                        // traveller. Record it honestly and try again later.
+                        graph.db.viewerDao().markUnreachable(f.accessKey, System.currentTimeMillis())
                         continue
                     }
                     anyLive = true
+                    graph.db.viewerDao().markSeen(f.accessKey, System.currentTimeMillis())
 
                     val since = seen.getLong(f.accessKey, f.joinedAtMs)
                     val events = graph.cloud.fetchEventsSince(f.accessKey, since) ?: continue
                     var latest = since
                     var alerted = false
+                    var endedAtMs: Long? = null
                     for (e in events) {
                         val t = (e["eventTime"] as? Number)?.toLong() ?: continue
                         if (t > latest) latest = t
+                        if ((e["type"] as? String) == EventTypes.TRIP_COMPLETED) endedAtMs = t
                         if (alert(graph.notifier, e["type"] as? String, f.label)) alerted = true
                     }
                     if (latest != since) seen.edit().putLong(f.accessKey, latest).apply()
@@ -72,20 +81,44 @@ class TripFollowService : Service() {
 
                     // Journey Health: notify once when a journey enters
                     // CONCERN, and once when it settles back to normal.
-                    checkHealth(graph, f.accessKey, f.label, meta)
+                    val state = checkHealth(graph, f.accessKey, f.label, meta)
+
+                    // The ONLY path to "this journey has ended": the traveller
+                    // said so, either in their live state or as a completion
+                    // event on the journey's own log.
+                    val endedInState = (state?.get("endedByOwner") as? Boolean == true) ||
+                        (state?.get("status") as? String) == JourneyStatus.COMPLETED.name
+                    if (endedAtMs != null || endedInState) {
+                        graph.db.viewerDao().markEndedByOwner(
+                            f.accessKey, endedAtMs ?: System.currentTimeMillis()
+                        )
+                    }
                 }
 
-                if (!anyLive && follows.all { it.expired }) { stopSelf(); return@launch }
-                delay(POLL_MS)
+                delay(pollIntervalMs(graph, anyLive))
             }
         }
         return START_STICKY
     }
 
+    /**
+     * How long to sleep before the next sweep.
+     *
+     * The follower's phone is not the one on the journey, and it may be
+     * following for twelve hours. A minute between checks is well inside the
+     * freshness window the viewer screen renders, and roughly a twentieth of
+     * the wake-ups the old fixed 30-second sweep cost.
+     */
+    private fun pollIntervalMs(graph: com.trippulse.app.di.AppGraph, anyLive: Boolean): Long {
+        if (!anyLive) return IDLE_POLL_MS
+        return graph.settings.current.viewerRefresh.idleS * 1000L
+    }
+
+    /** Returns the live state that was read, so the caller can act on it. */
     private suspend fun checkHealth(
         graph: com.trippulse.app.di.AppGraph, ref: String, label: String, meta: Map<String, Any?>
-    ) {
-        val state = graph.cloud.fetchState(ref) ?: return
+    ): Map<String, Any?>? {
+        val state = graph.cloud.fetchState(ref) ?: return null
         fun ln(k: String): Long? = (state[k] as? Number)?.toLong()
         val now = System.currentTimeMillis()
         val lastAt = ln("lastLocationAt") ?: ln("updatedAt")
@@ -121,7 +154,7 @@ class TripFollowService : Service() {
                 overnightType = state["overnightType"] as? String,
                 startedAtMs = (meta["startedAt"] as? Number)?.toLong(),
                 localHour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY),
-                privateVehicle = (mode ?: "CAR") in setOf("CAR", "BIKE"),
+                privateVehicle = com.trippulse.app.domain.TransportCatalog.isPrivate(mode),
                 offlineExpected = offlineExpected
             )
         )
@@ -151,6 +184,7 @@ class TripFollowService : Service() {
         }
 
         maybeDigest(graph, ref, label, journey, report, state)
+        return state
     }
 
     /**
@@ -195,8 +229,10 @@ class TripFollowService : Service() {
         when (type) {
             EventTypes.TRIP_STARTED -> notifier.showTripStarted()
             EventTypes.SOS_ACTIVATED -> notifier.showSosActive()
-            EventTypes.ARRIVAL_DETECTED -> notifier.showTripUpdate("Destination reached", "The traveller has reached the destination. ($label)")
-            EventTypes.TRIP_COMPLETED -> notifier.showTripUpdate("Journey completed", "The journey has ended. Access expires 30 minutes after arrival. ($label)")
+            // "Reached" is not "finished": the journey stays live on every
+            // screen until the traveller ends it themselves.
+            EventTypes.ARRIVAL_DETECTED -> notifier.showTripUpdate("Reached the destination", "They've reached the destination. ($label)")
+            EventTypes.TRIP_COMPLETED -> notifier.showTripUpdate("Journey ended safely", "The traveller has ended this journey. ($label)")
             EventTypes.OVERNIGHT_CONFIRMED -> notifier.showTripUpdate("Overnight rest", "The traveller is stopping overnight. ($label)")
             else -> return false // non-alert timeline events stay silent
         }
@@ -214,7 +250,8 @@ class TripFollowService : Service() {
         private const val HEALTH_PREFS = "tp_follow_health"
         private const val DIGEST_PREFS = "tp_follow_digest"
         const val STATUS_PREFS = "tp_follow_status"
-        private const val POLL_MS = 30_000L
+        /** Nothing readable right now — back off hard rather than hammer. */
+        private const val IDLE_POLL_MS = 180_000L
 
         fun start(context: Context) {
             val intent = Intent(context, TripFollowService::class.java)

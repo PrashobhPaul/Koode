@@ -25,6 +25,8 @@ object SummaryCalculator {
         var toilet = 0
         var rest = 0
         var fuel = 0
+        var teaCoffee = 0
+        var snacks = 0
         var longestBreak = 0L
 
         // longest continuous driving leg: time between a STOP_ENDED/START and
@@ -51,6 +53,8 @@ object SummaryCalculator {
                 EventTypes.TOILET_REPORTED -> toilet++
                 EventTypes.REST_REPORTED -> rest++
                 EventTypes.FUEL_STOP -> fuel++
+                EventTypes.TEA_COFFEE_REPORTED -> teaCoffee++
+                EventTypes.SNACK_REPORTED -> snacks++
             }
         }
         // final leg to trip end
@@ -73,6 +77,8 @@ object SummaryCalculator {
             toiletBreaks = toilet,
             restBreaks = rest,
             fuelStops = fuel,
+            teaCoffee = teaCoffee,
+            snacks = snacks,
             longestLegSeconds = (longestLeg / 1000).coerceAtLeast(0),
             longestBreakSeconds = longestBreak,
             days = days

@@ -52,7 +52,7 @@ Everything is enforced *inside Postgres*, not in the app:
 
 - A trip is created with a default 36-hour expiry.
 - The moment the driver **reaches the destination**, the app stamps
-  `expires_at = arrival + 30 minutes`.
+  `expires_at = completion + 1 hour` — set when the traveller ends the journey, never at mere arrival.
 - At expiry the trip is instantly unreadable (every read RPC checks
   `expires_at > now()`), and the row — with all its state, events, locations
   and viewer names — is deleted by whichever comes first: the first request
@@ -71,5 +71,5 @@ Google services, nothing to configure.
 
 Supabase free tier (as of 2025): 500 MB database, 5 GB egress/month, pauses
 after ~1 week of inactivity (which the maintenance workflow prevents). A trip
-uses a few MB at most and is deleted 30 minutes after arrival, so a personal /
+uses a few MB at most and is deleted an hour after the traveller ends the journey, so a personal /
 family deployment stays far inside the free limits indefinitely.

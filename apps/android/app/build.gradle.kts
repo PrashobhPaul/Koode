@@ -33,8 +33,8 @@ android {
         applicationId = "app.koode"
         minSdk = 26
         targetSdk = 35
-        versionCode = 8
-        versionName = "5.0.0"
+        versionCode = 9
+        versionName = "6.0.0"
 
         buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"$supabaseAnonKey\"")
@@ -92,6 +92,8 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.foundation:foundation")
+    implementation("androidx.compose.animation:animation")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.activity:activity-compose:1.9.3")
     implementation("androidx.navigation:navigation-compose:2.8.4")
@@ -99,6 +101,8 @@ dependencies {
 
     // --- AndroidX core ---
     implementation("androidx.core:core-ktx:1.15.0")
+    // Platform splash screen with a compat path back to API 26.
+    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")

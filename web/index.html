@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Koode — follow a journey</title>
+  <meta name="description" content="Follow a Koode journey in your browser. No app, no account." />
+  <meta name="theme-color" content="#07131d" />
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="brand">
+      <svg viewBox="0 0 108 108" aria-hidden="true">
+        <circle cx="44" cy="44" r="11" fill="#2DD4BF"/>
+        <circle cx="66" cy="46" r="9" fill="#7DD3FC"/>
+        <path d="M30 78c0-9 6.5-16 14-16s14 7 14 16z" fill="#2DD4BF"/>
+        <path d="M56 78c0-7.5 5-13.5 11-13.5s11 6 11 13.5z" fill="#7DD3FC"/>
+        <path d="M24 32c9-12 51-12 60 0" stroke="#2DD4BF" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </svg>
+      <h1>Koode <span>Always with you</span></h1>
+    </div>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- Sign in                                                            -->
+    <!-- ------------------------------------------------------------------ -->
+    <section id="signin">
+      <div class="card">
+        <h2>Journey number</h2>
+        <div class="code-row">
+          <div class="prefix">TP-</div>
+          <input id="code" type="tel" inputmode="numeric" autocomplete="off"
+                 maxlength="8" placeholder="40381927" aria-label="Journey number" />
+        </div>
+        <p class="hint">Numbers only — the TP- is already there.</p>
+      </div>
+
+      <div class="card">
+        <h2>Passcode</h2>
+        <input id="passcode" type="tel" inputmode="numeric" autocomplete="off"
+               maxlength="6" placeholder="6 digits" aria-label="Passcode" />
+        <p class="hint">The six digits the traveller shared with you.</p>
+      </div>
+
+      <button id="watch" disabled>Watch the journey</button>
+      <p id="signin-error" class="error hidden"></p>
+
+      <p class="footer">
+        Nothing is installed and no account is created. This page reads the
+        journey directly, and stops working the moment the traveller ends it.
+      </p>
+    </section>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!-- The journey                                                        -->
+    <!-- ------------------------------------------------------------------ -->
+    <section id="journey" class="hidden">
+      <div id="health" class="card hero">
+        <div class="headline ok"><span class="dot live"></span><span id="headline-text">Connecting…</span></div>
+        <ul id="reasons" class="reasons"></ul>
+        <p id="last-update" class="meta"></p>
+      </div>
+
+      <div class="card">
+        <h2 id="who">Journey</h2>
+        <div id="route" class="big">—</div>
+        <div id="near" class="meta"></div>
+      </div>
+
+      <div class="card">
+        <h2>Where they are</h2>
+        <div id="map"></div>
+        <div class="controls">
+          <button id="play" class="ghost">▶</button>
+          <button id="speed" class="speed">5×</button>
+          <span id="play-time" class="time"></span>
+        </div>
+        <p class="hint">
+          The line shows how far they had got. Press ▶ to watch the journey play out.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Expected arrival</h2>
+        <div id="eta" class="big">Calculating…</div>
+        <div class="progress"><div id="progress-bar" style="width:0%"></div></div>
+        <div class="row"><span id="covered">—</span><span id="remaining">—</span></div>
+      </div>
+
+      <div class="card">
+        <h2>How they're doing</h2>
+        <div class="row"><span>🍛 Food</span><span id="food">Not logged yet</span></div>
+        <div class="row"><span>💧 Water</span><span id="water">Not logged yet</span></div>
+        <div class="row"><span>🛑 Rest</span><span id="rest">—</span></div>
+        <div class="row"><span>📱 Phone</span><span id="battery">—</span></div>
+      </div>
+
+      <div class="card">
+        <h2>Timeline</h2>
+        <ul id="timeline" class="timeline"></ul>
+      </div>
+
+      <p class="footer">
+        Want the alerts too? <a id="apk-link" href="https://github.com/PrashobhPaul/Koode/releases/latest">Get the Koode app</a>.
+      </p>
+    </section>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

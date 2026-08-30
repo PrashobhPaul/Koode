@@ -64,7 +64,14 @@ data class TripConfig(
     val heartbeatIntervalS: Long = 30,
 
     // ---- credentials / retention ----
-    val expiryGraceMin: Long = 30,
+    /**
+     * How long a journey stays readable after its traveller ends it.
+     *
+     * An hour, because the arrival is exactly when people open the app: a
+     * follower who was asleep, in a meeting or on a plane should still be able
+     * to see that the person got there safely, rather than a dead link.
+     */
+    val expiryGraceMin: Long = 60,
 
     // ---- routing fallback ----
     val fallbackAvgSpeedKmh: Double = 52.0,
