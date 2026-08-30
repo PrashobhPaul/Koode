@@ -24,6 +24,8 @@ Private by design: journeys are invitation-only (the traveller approves each fol
 
 **The rule everything else follows: a journey is over only when its traveller says so.** Not a timer, not a lost signal, not an expiring capability. Anything else — an unreachable server, a flat battery, a tunnel — reads as *"waiting for updates"*, because telling someone waiting at home "journey ended" when it isn't is the exact failure this app exists to prevent.
 
+Ending one is the app's single irreversible act, so it gets a review first: the analysed dashboard everyone will see, a chance to add a missed expense or a closing note, then confirm. **After that nothing is editable by anyone** — the timeline people followed stays the thing that happened. Followers keep access for an hour afterwards, because arrival is exactly when someone who was asleep or on a plane opens the app.
+
 ---
 
 ## 📲 Download the app
@@ -39,6 +41,12 @@ Private by design: journeys are invitation-only (the traveller approves each fol
 The journey number is **8 digits** — the `TP-` in front is printed by the app, not typed — and the passcode, if you were given one, is **6 digits**. No dashes, no letters, nothing a copy-paste can clip. With the passcode you're in immediately; without it the traveller gets a request and approves you by name.
 
 You'll then see their live position, ETA, wellbeing and timeline, and get **forced alerts** when the journey **starts**, on **SOS**, and when they **reach the destination** — even with the app in the background.
+
+### Sharing mid-journey
+
+Remembering someone halfway through — *"send it to my sister too"* — is the normal case, so **Invite someone** sits on the live journey card, not back on a screen shown once at the start.
+
+If you switch on **timeline sharing** in Settings, the moment you mark a journey complete Koode builds the timeline PDF and opens WhatsApp pre-addressed to each of your emergency contacts, so it sends from your own account with one tap each. Android gives no app the ability to send WhatsApp messages on your behalf without you seeing them — and it shouldn't — so the tap is real, and deliberate. **Costs are never included**: the money tracker stays on your phone.
 
 ### Following someone — without the app
 
@@ -63,8 +71,10 @@ This repository is the working implementation of the product/engineering plan in
   - Local-first **event log** (Room) + **current-state snapshot** + **two-lane sync** (live state first, historical backlog second).
   - Journey **state machine**, **stop detection** (traffic-light-safe), **break checkpoints**, **overnight** flow, **SOS** (offline-safe), **quick notes**, **route deviation**, inline **journey playback**, **journey summary**.
   - **Transport rule engine** (`domain/Transport.kt`) — one catalog of per-mode profiles decides break prompts, deviation, refuelling questions, sampling cadence and quick actions, so no screen has to ask "is this a train?".
-  - **Hybrid journeys** — a journey is a list of legs, each with its own mode; the rule set switches when the vehicle does.
-  - **PDF export** of the timeline and the money tracker: flat, watermarked, generated on device.
+  - **Hybrid journeys** — a journey is a list of legs, each with its own mode; the rule set switches when the vehicle does, and legs can be added or re-pointed *while the journey runs*.
+  - **Journey analytics** (`domain/JourneyAnalytics.kt`) — moving vs stopped time, average moving speed against door-to-door speed, break cadence, cost by category with each share, cost per km and per hour, fuel efficiency, per-stage split, plus plain-English insights. One report feeds the dashboard, the closure review and both PDFs.
+  - **Region intelligence** (`domain/Units.kt`) — ₹ and kilometres in India, $ and miles in the US, € in Europe, worked out from the network's country. No model needed; overridable in Settings.
+  - **PDF export** of the timeline and the money tracker: flat, watermarked, generated on device, opening with the analysed dashboard.
   - Realistic **ETA engine**: route travel time + future break budget + uncertainty, presented as a *range* with an explainable breakdown.
   - **Freshness** model for viewers: `LIVE / RECENT / STALE / OFFLINE / COMPLETED` — a stale location is never shown as live.
 - **Supabase backend** (`supabase/schema.sql`) — the ENTIRE server side in one SQL file: capability-token security (only the creating driver device can write; viewers are read-only), expiry-gated reads, and self-destruction of expired trips. No functions, no auth service, no push infrastructure.
