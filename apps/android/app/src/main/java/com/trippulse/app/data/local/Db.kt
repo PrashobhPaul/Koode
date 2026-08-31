@@ -701,16 +701,25 @@ abstract class TripPulseDb : RoomDatabase() {
          * failure mode, so a missing migration must fail loudly in testing
          * instead of silently wiping a traveller's history in the field.
          */
+        /**
+         * Every migration, in order. Exposed (not private) so an instrumented
+         * test can run the exact same objects against a real SQLite database
+         * that the app runs in the field — the migration is the one change
+         * that, if wrong, destroys a traveller's data unrecoverably, so it is
+         * proven on an Android runtime rather than only read.
+         */
+        val ALL_MIGRATIONS: Array<androidx.room.migration.Migration> = arrayOf(
+            MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
+            MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8
+        )
+
         fun get(context: Context): TripPulseDb =
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     TripPulseDb::class.java,
                     "trippulse.db"
-                ).addMigrations(
-                    MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
-                    MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8
-                )
+                ).addMigrations(*ALL_MIGRATIONS)
                     .build().also { INSTANCE = it }
             }
     }

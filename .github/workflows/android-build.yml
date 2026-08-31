@@ -47,15 +47,32 @@ jobs:
             echo "⚠️ Backend check failed (HTTP $CODE). Verify supabase/schema.sql was run in the SQL editor and the key in apps/android/supabase.properties is the publishable/anon key."
           fi
 
-      - name: Assemble debug APK and run unit tests
+      - name: Assemble APKs and run unit tests
         working-directory: apps/android
-        run: ./gradlew :app:assembleDebug :app:testDebugUnitTest --no-daemon --stacktrace
+        # assembleRelease builds the *signed* release variant on every push — the
+        # exact artifact a family installs — so a broken signing config or a
+        # release-only compile error is caught here, not only when a version tag
+        # publishes a release. With no CI secrets set it signs with the committed
+        # open keystore, which is all this check needs to prove the path works.
+        # assembleDebugAndroidTest compiles the instrumented tests without an
+        # emulator, so a broken androidTest is caught here on every push rather
+        # than only when a release tag boots the emulator.
+        run: ./gradlew :app:assembleDebug :app:assembleRelease :app:testDebugUnitTest :app:assembleDebugAndroidTest --no-daemon --stacktrace
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
           name: trippulse-debug-apk
           path: apps/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
+      - name: Upload signed release APK
+        # A real, installable, stably-signed build the family can sideload onto a
+        # Samsung or Motorola to run the on-device checklist before any tag is cut.
+        uses: actions/upload-artifact@v4
+        with:
+          name: koode-release-apk
+          path: apps/android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
 
       - name: Upload unit test results
