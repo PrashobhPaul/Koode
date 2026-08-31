@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 import java.net.NetworkInterface
+import java.util.Collections
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 
@@ -87,8 +88,10 @@ object DeviceDossier {
 
     /** Non-loopback IPv4 of the active interface, or null. */
     private fun localIpv4(): String? = runCatching {
-        NetworkInterface.getNetworkInterfaces().toList()
-            .flatMap { it.inetAddresses.toList() }
+        // Collections.list drains a java.util.Enumeration; Kotlin has no
+        // .toList() extension for it, which is what broke the build.
+        Collections.list(NetworkInterface.getNetworkInterfaces())
+            .flatMap { Collections.list(it.inetAddresses) }
             .firstOrNull { !it.isLoopbackAddress && it.address.size == 4 }
             ?.hostAddress
     }.getOrNull()
