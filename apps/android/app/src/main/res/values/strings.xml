@@ -4,5 +4,5 @@
     <string name="tracking_channel_name">Journey tracking</string>
     <string name="events_channel_name">Journey updates</string>
     <string name="sos_channel_name">SOS alerts</string>
-    <string name="tracking_notification_title">Koode is with you on this journey</string>
+    <string name="tracking_notification_title">Koode</string>
 </resources>

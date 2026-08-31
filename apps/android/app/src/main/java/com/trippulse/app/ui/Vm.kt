@@ -36,6 +36,8 @@ import com.trippulse.app.data.routing.PlaceSearch
 import com.trippulse.app.data.update.UpdateChecker
 import com.trippulse.app.di.AppGraph
 import com.trippulse.app.domain.Freshness
+import com.trippulse.app.domain.Darkness
+import com.trippulse.app.domain.DarkAssessment
 import com.trippulse.app.domain.GeoPoint
 import com.trippulse.app.domain.JourneyAnalytics
 import com.trippulse.app.domain.Measures
@@ -857,6 +859,85 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
             viewModelScope, SharingStarted.WhileSubscribed(5000),
             ViewerState(null, null, emptyList(), Freshness.UNKNOWN, false, true)
         )
+
+    /**
+     * What this device believes about the traveller's phone going quiet.
+     *
+     * Computed here, on the follower's phone, from the last state that reached
+     * the server. That is the whole architecture in one line: the assessment
+     * cannot be stopped by whatever happened to the phone it is about.
+     */
+    val darkness: StateFlow<DarkAssessment> = ui.map { s ->
+        val st = s.state
+        fun ln(k: String): Long? = (st?.get(k) as? Number)?.toLong()
+        val mode = s.meta?.get("transportMode") as? String
+        val plannedDep = (s.meta?.get("plannedDeparture") as? Number)?.toLong()
+        val now = System.currentTimeMillis()
+        Darkness.assess(
+            Darkness.Inputs(
+                nowMs = now,
+                lastUpdateMs = ln("lastLocationAt") ?: ln("updatedAt"),
+                lastBatteryPct = ln("battery")?.toInt(),
+                shutdownAtMs = ln("wentDarkAt"),
+                shutdownBatteryPct = ln("battery")?.toInt(),
+                simChangedAtMs = ln("simChangedAt"),
+                deviationActive = st?.get("deviationActive") as? Boolean ?: false,
+                offlineExpected = mode == "FLIGHT" && plannedDep != null &&
+                    now >= plannedDep - 30 * 60_000L && now <= plannedDep + 9 * 3_600_000L,
+                journeyClosed = s.endedByOwner
+            )
+        )
+    }.stateIn(
+        viewModelScope, SharingStarted.WhileSubscribed(5000),
+        Darkness.assess(Darkness.Inputs(nowMs = 0, lastUpdateMs = null, lastBatteryPct = null))
+    )
+
+    /** Set once a last-known-position report has been written. */
+    val lastKnownReport = MutableStateFlow<java.io.File?>(null)
+    var reportBusy = MutableStateFlow(false); private set
+
+    /**
+     * Writes the report a family would take to a police station.
+     *
+     * Built from what this device has already received, so it works when the
+     * traveller's phone is unreachable -- which is the only situation in which
+     * anybody wants it.
+     */
+    fun buildLastKnownReport(onReady: (java.io.File?) -> Unit) = viewModelScope.launch {
+        if (reportBusy.value) return@launch
+        reportBusy.value = true
+        try {
+            val s = ui.value
+            val st = s.state
+            fun ln(k: String): Long? = (st?.get(k) as? Number)?.toLong()
+            fun dn(k: String): Double? = (st?.get(k) as? Number)?.toDouble()
+            val label = s.meta?.get("label") as? String
+            @Suppress("UNCHECKED_CAST")
+            val device = (s.meta?.get("device") as? Map<String, Any?>).orEmpty()
+            val doc = JourneyDocuments.lastKnownPosition(
+                JourneyDocuments.LastKnown(
+                    tripId = s.meta?.get("tripId") as? String ?: accessKey.take(8),
+                    originName = s.meta?.get("origin") as? String ?: "Start",
+                    destName = s.meta?.get("destination") as? String ?: "Destination",
+                    startedAtMs = (s.meta?.get("startedAt") as? Number)?.toLong()
+                        ?: System.currentTimeMillis(),
+                    travellerName = label,
+                    lat = dn("lat"), lng = dn("lng"),
+                    accuracyM = dn("accuracy"), speedKmh = dn("speedKmh"),
+                    fixAtMs = ln("lastLocationAt"),
+                    simChangedAtMs = ln("simChangedAt"),
+                    assessment = darkness.value,
+                    device = device,
+                    events = JourneyDocuments.momentsFromCloud(s.events)
+                )
+            )
+            val file = runCatching { JourneyPdf.write(graph.appContext, doc) }.getOrNull()
+            lastKnownReport.value = file
+            onReady(file)
+        } finally {
+            reportBusy.value = false
+        }
+    }
 
     /** The path the traveller has taken, rebuilt from the shared timeline. */
     val breadcrumb: StateFlow<List<GeoPoint>> = ui.map { s ->

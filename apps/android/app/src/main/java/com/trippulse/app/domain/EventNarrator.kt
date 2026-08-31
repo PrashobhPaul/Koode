@@ -36,6 +36,9 @@ object EventNarrator {
         EventTypes.OVERNIGHT_CONFIRMED -> "🌙" to "Overnight stay"
         EventTypes.MORNING_RESUME -> "🌅" to "Back on the road"
         EventTypes.QUICK_NOTE -> "📝" to "Note"
+        EventTypes.DEVICE_SHUTDOWN -> "🔌" to "Phone switched off"
+        EventTypes.DEVICE_BACK_ONLINE -> "🔆" to "Phone back online"
+        EventTypes.SIM_CHANGED -> "⚠️" to "The SIM in this phone was changed or removed"
         EventTypes.PASSENGER_JOINED -> "👤" to "Passenger joined"
         EventTypes.PASSENGER_LEFT -> "👋" to "Passenger left"
         EventTypes.MEDICINE -> "💊" to "Medicine recorded"
@@ -69,7 +72,12 @@ object EventNarrator {
             }
             EventTypes.BOARDED, EventTypes.TRANSIT_HALTED,
             EventTypes.TRANSIT_RESUMED, EventTypes.DEBOARDED,
-            EventTypes.LEG_STARTED -> emoji to (text ?: label)
+            EventTypes.LEG_STARTED,
+            // These carry a complete sentence including the battery level, and
+            // prefixing the label would give "Phone switched off — Phone
+            // switched off — battery 74%".
+            EventTypes.DEVICE_SHUTDOWN, EventTypes.DEVICE_BACK_ONLINE,
+            EventTypes.SIM_CHANGED -> emoji to (text ?: label)
             else -> emoji to (text?.let { "$label — $it" } ?: label)
         }
     }

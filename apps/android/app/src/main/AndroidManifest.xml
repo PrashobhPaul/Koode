@@ -94,6 +94,21 @@
             android:enabled="true"
             android:exported="false" />
 
+        <!-- The last few seconds before the phone goes off. Exported because
+             ACTION_SHUTDOWN is a protected system broadcast: only the system
+             can send it, so nothing else can trigger this. -->
+        <receiver
+            android:name=".service.ShutdownReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_SHUTDOWN" />
+                <action android:name="android.intent.action.REBOOT" />
+                <action android:name="android.intent.action.QUICKBOOT_POWEROFF" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWEROFF" />
+            </intent-filter>
+        </receiver>
+
         <!-- Shares exported journey PDFs (and nothing else) with the app the
              user picks. Grants are per-share and read-only. -->
         <provider

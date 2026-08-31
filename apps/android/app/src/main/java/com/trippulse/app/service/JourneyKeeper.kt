@@ -13,6 +13,7 @@ import androidx.work.WorkManager
 import androidx.work.WorkerParameters
 import com.trippulse.app.TripPulseApp
 import com.trippulse.app.data.local.TripPulseDb
+import com.trippulse.app.domain.Darkness
 import java.util.concurrent.TimeUnit
 
 /**
@@ -44,6 +45,9 @@ class JourneyKeeperWorker(appContext: Context, params: WorkerParameters) :
         val app = applicationContext as? TripPulseApp ?: return Result.success()
         val graph = app.graph
 
+        // Order matters: mark first, sweep second. A journey that went dark
+        // must be flagged before anything is allowed to consider deleting it.
+        markDarkJourneys(graph.db)
         purgeAbandoned(graph.db)
 
         val trip = graph.db.tripDao().activeTrip() ?: return Result.success()
@@ -51,6 +55,48 @@ class JourneyKeeperWorker(appContext: Context, params: WorkerParameters) :
             resumeTracking(applicationContext, trip.originName, trip.destName)
         }
         return Result.success()
+    }
+
+    /**
+     * Records that a journey's device stopped reporting, when nothing said so.
+     *
+     * An orderly power-off announces itself and ShutdownReceiver writes the
+     * marker. A phone that was stolen, smashed, drowned or simply held down on
+     * the power button announces nothing at all -- and that is precisely the
+     * case where the record matters most.
+     *
+     * So the gap itself is the trigger. This runs on the traveller's own
+     * device, which means it can only notice in retrospect, once the phone is
+     * back: fifteen minutes after a recovered phone boots, the journey it was
+     * on is marked with when it fell silent and why. That is late for an
+     * alert -- the family were told hours ago by their own phones, which is
+     * the point of putting the watch there -- but exactly on time for the one
+     * thing this marker is for: making sure the sweep below never touches it.
+     */
+    private suspend fun markDarkJourneys(db: TripPulseDb) {
+        val trip = db.tripDao().activeTrip() ?: return
+        if (trip.wentDarkAtMs != null) return
+        val state = runCatching { db.stateDao().byId(trip.tripId) }.getOrNull() ?: return
+
+        val assessment = Darkness.assess(
+            Darkness.Inputs(
+                nowMs = System.currentTimeMillis(),
+                lastUpdateMs = state.lastLocationAtMs ?: state.updatedAtMs,
+                lastBatteryPct = state.batteryPct,
+                simChangedAtMs = trip.simChangedAtMs,
+                deviationActive = state.deviationActive
+            )
+        )
+        if (!assessment.concerning) return
+
+        runCatching {
+            db.tripDao().update(
+                trip.copy(
+                    wentDarkAtMs = assessment.sinceMs,
+                    darkReason = assessment.reason.name
+                )
+            )
+        }
     }
 
     /**

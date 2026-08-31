@@ -8,6 +8,7 @@ import android.os.IBinder
 import com.trippulse.app.TripPulseApp
 import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.Freshness
+import com.trippulse.app.domain.Darkness
 import com.trippulse.app.domain.JourneyHealth
 import com.trippulse.app.domain.JourneyStatus
 import kotlinx.coroutines.CoroutineScope
@@ -184,7 +185,76 @@ class TripFollowService : Service() {
         }
 
         maybeDigest(graph, ref, label, journey, report, state)
+        watchForDarkness(graph, ref, label, state, now, offlineExpected)
         return state
+    }
+
+    /**
+     * Keeps telling the family, for as long as the device stays dark.
+     *
+     * This is separate from the health engine above on purpose. That one fires
+     * on a *transition* -- it notices a journey becoming concerning and says so
+     * once -- which is right for "they have not had a break in five hours" and
+     * badly wrong for a phone that has gone silent. Silence does not get
+     * better by being announced; it gets worse by being forgotten. So this
+     * runs off elapsed time instead, widening but never stopping, and the step
+     * it last announced is persisted so a poll every minute does not become a
+     * notification every minute.
+     *
+     * It runs on the follower's phone, which is the entire reason it works: a
+     * traveller's device that is off, stolen, broken or out of coverage cannot
+     * silence it.
+     */
+    private fun watchForDarkness(
+        graph: com.trippulse.app.di.AppGraph,
+        ref: String,
+        label: String,
+        state: Map<String, Any?>,
+        now: Long,
+        offlineExpected: Boolean
+    ) {
+        fun ln(k: String): Long? = (state[k] as? Number)?.toLong()
+        val journey = state["status"] as? String
+        val closed = state["endedByOwner"] as? Boolean == true ||
+            journey == JourneyStatus.COMPLETED.name
+
+        val assessment = Darkness.assess(
+            Darkness.Inputs(
+                nowMs = now,
+                lastUpdateMs = ln("lastLocationAt") ?: ln("updatedAt"),
+                lastBatteryPct = ln("battery")?.toInt(),
+                shutdownAtMs = ln("wentDarkAt"),
+                shutdownBatteryPct = ln("battery")?.toInt(),
+                shutdownWasRestart = false,
+                simChangedAtMs = ln("simChangedAt"),
+                deviationActive = state["deviationActive"] as? Boolean ?: false,
+                offlineExpected = offlineExpected,
+                journeyClosed = closed
+            )
+        )
+
+        val prefs = getSharedPreferences(DARK_PREFS, Context.MODE_PRIVATE)
+        val lastStep = prefs.getInt(ref, -1)
+
+        if (!assessment.dark) {
+            // Back from the dark. Announced immediately and unconditionally,
+            // because "they're back" is the one message anyone waiting
+            // actually wants, and it must not wait for a poll cycle boundary.
+            if (lastStep >= 0) {
+                graph.notifier.showJourneyBackToNormal(label)
+                prefs.edit().remove(ref).apply()
+            }
+            return
+        }
+
+        val step = assessment.escalationStep
+        if (step <= lastStep) return
+        prefs.edit().putInt(ref, step).apply()
+        graph.notifier.showJourneyAttention(
+            Darkness.headline(assessment, label),
+            Darkness.detail(assessment)
+        )
+        touchDigest(ref)
     }
 
     /**
@@ -249,6 +319,8 @@ class TripFollowService : Service() {
         private const val PREFS = "tp_follow_seen"
         private const val HEALTH_PREFS = "tp_follow_health"
         private const val DIGEST_PREFS = "tp_follow_digest"
+        /** Last escalation step announced per followed journey. */
+        private const val DARK_PREFS = "tp_follow_dark"
         const val STATUS_PREFS = "tp_follow_status"
         /** Nothing readable right now — back off hard rather than hammer. */
         private const val IDLE_POLL_MS = 180_000L

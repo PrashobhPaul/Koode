@@ -51,6 +51,7 @@ import androidx.navigation.NavHostController
 import android.content.Intent
 import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.TimeFmt
+import com.trippulse.app.data.EventCodec
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.local.TripLegEntity
 import com.trippulse.app.data.share.TimelineDelivery
@@ -135,6 +136,23 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     val checkpointDue = s?.checkpointDue == true
     val overnightDue = s?.longStopPromptDue == true
     val arrivalDue = s?.arrivalPromptDue == true
+
+    /**
+     * When the phone last came back from a silence, if it was recent.
+     *
+     * Read from the return event rather than from the trip's dark marker,
+     * because the marker is cleared the moment the phone reports again -- so
+     * by the time there is a screen to show it on, it is already gone. The
+     * event is the durable record, and it is the one worth showing.
+     */
+    val cameBack = remember(events) {
+        events.filter { it.type == EventTypes.DEVICE_BACK_ONLINE }
+            .maxByOrNull { it.eventTimeMs }
+            ?.takeIf { System.currentTimeMillis() - it.eventTimeMs < RECENT_RETURN_MS }
+    }
+    val darkGapMs = cameBack?.let {
+        (EventCodec.payloadFromJson(it.payloadJson)["gapMs"] as? Number)?.toLong()
+    }
 
     Column(
         Modifier
@@ -222,6 +240,41 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     )
                     Spacer(Modifier.height(Spacing.md))
                     PrimaryButton("I'm safe — resolve SOS", { vm.resolveSos() }, height = 46.dp)
+                }
+            }
+
+            // ---- the phone was off, and is back ----
+            //
+            // Shown to the traveller because they may have no idea it
+            // happened -- a battery that died overnight, a restart they slept
+            // through -- and the people following them certainly noticed. Being
+            // told what their circle was told is the difference between the app
+            // reporting on them and the app working with them.
+            AnimatedBanner(visible = cameBack != null) {
+                KoodeCard(accent = colors.warn) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("🔌", fontSize = 16.sp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Text(
+                            "Your phone stopped reporting",
+                            color = colors.textHigh,
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                    }
+                    Spacer(Modifier.height(Spacing.sm))
+                    Text(
+                        buildString {
+                            append("Your phone went quiet")
+                            darkGapMs?.let { append(" for ${TimeFmt.durationShort(it / 1000)}") }
+                            append(" and is reporting again now. ")
+                            append("Everyone following you was told, and has been told you're back.")
+                        },
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    Text(
+                        "Your last known position was saved the whole time.",
+                        color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                    )
                 }
             }
 
@@ -1296,3 +1349,12 @@ private fun etaRangeText(likely: Long?, low: Long?, high: Long?): String {
     val h = high ?: likely
     return "${TimeFmt.clockWithDay(l, System.currentTimeMillis())} – ${TimeFmt.clock(h)}"
 }
+
+/**
+ * How long after coming back the traveller is still told about it.
+ *
+ * Long enough to survive a night's sleep -- a battery that died at 2am should
+ * still be explained at breakfast -- and short enough that it is gone by the
+ * next journey.
+ */
+private const val RECENT_RETURN_MS = 12 * 60 * 60 * 1000L

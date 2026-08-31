@@ -57,16 +57,31 @@ class Notifier(private val context: Context) {
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
             .build()
 
-    /** The persistent foreground-service notification. */
+    /**
+     * The persistent foreground-service notification.
+     *
+     * Android *requires* a location foreground service to show one; it cannot
+     * be hidden, and trying would be both futile and against the platform's
+     * design. What can be controlled is how much it gives away.
+     *
+     * A thief who powers on a stolen phone should learn nothing from a glance.
+     * So the route, the destination and the journey number are gone from here:
+     * the title is generic, there is no body, and VISIBILITY_SECRET keeps it
+     * off the lock screen entirely, where a locked phone would otherwise show
+     * it. The traveller, who opened the app and knows what it does, loses
+     * nothing they need; the thief, who does not, is told only that some
+     * background service is running -- true of dozens of apps.
+     */
     fun buildTrackingNotification(origin: String, destination: String): Notification =
         NotificationCompat.Builder(context, CH_TRACKING)
             .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle(context.getString(R.string.tracking_notification_title))
-            .setContentText("$origin → $destination")
             .setOngoing(true)
             .setContentIntent(contentIntent())
             .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
+            .setVisibility(NotificationCompat.VISIBILITY_SECRET)
+            .setShowWhen(false)
             .build()
 
     private fun postEvent(id: Int, channel: String, title: String, text: String, high: Boolean = false) {

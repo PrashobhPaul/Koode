@@ -132,6 +132,9 @@
     SOS_ACTIVATED: ['🚨', 'SOS activated'],
     SOS_RESOLVED: ['✅', 'SOS resolved'],
     BATTERY_LOW: ['🔋', 'Phone battery low'],
+    DEVICE_SHUTDOWN: ['🔌', 'Phone switched off'],
+    DEVICE_BACK_ONLINE: ['🔆', 'Phone back online'],
+    SIM_CHANGED: ['⚠️', 'The SIM in this phone was changed or removed'],
     BOARDED: ['🎫', 'Boarded'],
     TRANSIT_HALTED: ['⏸', 'Halted'],
     TRANSIT_RESUMED: ['▶', 'Moving again'],
@@ -281,6 +284,185 @@
     return 'quiet';
   }
 
+  // ---------------------------------------------------------------------
+  // The safety report
+  //
+  // A print-friendly page the browser can save as PDF — the web has no PDF
+  // library here and needs none. Deliberately the same content and the same
+  // wording as the app's PDF (data/export/JourneyDocuments.lastKnownPosition),
+  // because a family may hold one from a phone and one from a browser and the
+  // two must not disagree.
+  // ---------------------------------------------------------------------
+
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c];
+    });
+  }
+
+  function reportRow(label, value) {
+    if (value == null || value === '') return '';
+    return '<tr><td>' + esc(label) + '</td><td>' + esc(value) + '</td></tr>';
+  }
+
+  function openSafetyReport() {
+    var meta = latest.meta || {};
+    var state = latest.state || {};
+    var device = meta.device || {};
+    var who = meta.ownerName || 'The traveller';
+    var dark = assessDarkness(state, endedByOwner(state, latest.events));
+
+    var lat = state.lat, lng = state.lng;
+    var pos = (lat != null && lng != null)
+      ? reportRow('Latitude', lat.toFixed(6)) +
+        reportRow('Longitude', lng.toFixed(6)) +
+        reportRow('Coordinates', lat.toFixed(6) + ', ' + lng.toFixed(6)) +
+        reportRow('Accurate to within', state.accuracy != null ? Math.round(state.accuracy) + ' m' : null) +
+        reportRow('Recorded at', state.lastLocationAt ? new Date(state.lastLocationAt).toLocaleString() : null)
+      : '<tr><td>Position</td><td>No location was recorded</td></tr>';
+
+    var circumstances =
+      reportRow('Assessment', dark.dark ? darkHeadline(dark, who) : who + ' was reporting normally') +
+      reportRow('Battery at last report', state.battery != null ? state.battery + '%' : null) +
+      reportRow('Last contact', (state.lastLocationAt || state.updatedAt)
+        ? new Date(state.lastLocationAt || state.updatedAt).toLocaleString() : null) +
+      reportRow('SIM changed at', state.simChangedAt ? new Date(state.simChangedAt).toLocaleString() : null);
+
+    var dev =
+      reportRow('Phone', [device.manufacturer, device.model].filter(Boolean).join(' ')) +
+      reportRow('Model number', device.model) +
+      reportRow('Android', device.androidRelease ? device.androidRelease + ' (API ' + device.androidSdk + ')' : null) +
+      reportRow('Security patch', device.securityPatch) +
+      reportRow('Public IP at last contact', device.publicIp) +
+      reportRow('Local IP', device.localIp) +
+      reportRow('Android ID', device.androidId) +
+      reportRow('Koode install ID', device.installId) +
+      reportRow('IMEI', device.imeiNote || 'Not available on this device') +
+      reportRow('Hardware MAC', device.macNote || 'Not available on this device');
+
+    var lines = (latest.events || [])
+      .slice().sort(function (a, b) { return (b.eventTime || 0) - (a.eventTime || 0); })
+      .slice(0, 40).reverse()
+      .map(function (e) {
+        var d = describeEvent(e);
+        return '<tr><td>' + esc(new Date(e.eventTime).toLocaleString()) + '</td><td>' +
+          esc(d.emoji + ' ' + d.label) + '</td></tr>';
+      }).join('');
+
+    var html =
+      '<!doctype html><html><head><meta charset="utf-8"><title>Koode safety report</title>' +
+      '<style>body{font:14px system-ui,sans-serif;margin:32px;color:#111}' +
+      'h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 6px;border-bottom:1px solid #ccc;padding-bottom:3px}' +
+      '.sub{color:#555;margin:0 0 16px}table{border-collapse:collapse;width:100%}' +
+      'td{padding:4px 8px;vertical-align:top}td:first-child{color:#555;width:40%}' +
+      '.note{color:#555;font-size:12px;margin-top:6px}@media print{button{display:none}}</style></head><body>' +
+      '<h1>Last known position</h1>' +
+      '<p class="sub">' + esc(who) + ' — ' + esc(meta.origin || 'Start') + ' to ' + esc(meta.destination || 'Destination') + '</p>' +
+      '<p class="sub">Prepared ' + new Date().toLocaleString() + '. Times are the phone\'s local time.</p>' +
+      '<h2>Last known position</h2><table>' + pos + '</table>' +
+      '<h2>How reporting stopped</h2><table>' + circumstances + '</table>' +
+      '<p class="note">' + esc(darkDetail(dark)) + '</p>' +
+      '<h2>The device</h2><table>' + dev + '</table>' +
+      '<p class="note">Identifiers Android permits an ordinary app to read. IMEI and the hardware ' +
+      'MAC are withheld by the operating system, not by Koode; a subpoena to the carrier or ' +
+      'manufacturer, using the public IP and the times above, is how those are recovered.</p>' +
+      '<h2>The hours before</h2><table>' + lines + '</table>' +
+      '<p style="margin-top:24px"><button onclick="window.print()">Save as PDF / print</button></p>' +
+      '</body></html>';
+
+    var w = window.open('', '_blank');
+    if (!w) { alert('Please allow pop-ups to open the safety report.'); return; }
+    w.document.write(html);
+    w.document.close();
+  }
+
+  // ---------------------------------------------------------------------
+  // Going dark
+  //
+  // A deliberate mirror of domain/Darkness.kt. The thresholds and the wording
+  // are duplicated rather than shared because this page has no build step and
+  // no dependency on the app — but they must not drift, so any change to one
+  // belongs in the other in the same commit.
+  //
+  // The constraint is the same here as there: a powered-off phone cannot
+  // report anything. This runs in the family's browser, which is exactly why
+  // it still works when the traveller's phone does not.
+  // ---------------------------------------------------------------------
+
+  var FLAT_BATTERY_PCT = 15;
+  var DARK_GRACE_MS = 12 * 60 * 1000;
+  var DARK_UNEXPLAINED_MS = 45 * 60 * 1000;
+
+  function assessDarkness(state, closed) {
+    var quiet = { dark: false, reason: 'NONE', concerning: false, since: null, elapsed: 0, battery: null };
+    if (!state || closed) return quiet;
+
+    var battery = typeof state.battery === 'number' ? state.battery : null;
+    var flat = battery !== null && battery <= FLAT_BATTERY_PCT;
+    var now = Date.now();
+
+    if (state.simChangedAt) {
+      return {
+        dark: true, reason: 'SIM_SWAPPED', concerning: true,
+        since: state.simChangedAt, elapsed: now - state.simChangedAt, battery: battery
+      };
+    }
+    // An explicit goodbye outranks the clock: we have been told the device is
+    // off, so there is nothing to wait out.
+    if (state.wentDarkAt) {
+      return {
+        dark: true,
+        reason: flat ? 'BATTERY_DIED' : 'POWERED_OFF',
+        concerning: !flat,
+        since: state.wentDarkAt, elapsed: now - state.wentDarkAt, battery: battery
+      };
+    }
+
+    var last = state.lastLocationAt || state.updatedAt;
+    if (!last) return quiet;
+    var elapsed = now - last;
+    if (elapsed < DARK_GRACE_MS) return quiet;
+
+    var threshold = state.deviationActive ? DARK_GRACE_MS : DARK_UNEXPLAINED_MS;
+    return {
+      dark: true,
+      reason: flat ? 'BATTERY_DIED' : 'SIGNAL_LOST',
+      concerning: !flat && elapsed >= threshold,
+      since: last, elapsed: elapsed, battery: battery
+    };
+  }
+
+  function darkHeadline(a, who) {
+    if (!a.dark) return null;
+    if (a.reason === 'SIM_SWAPPED') return who + "'s phone had its SIM changed or removed";
+    if (a.reason === 'BATTERY_DIED') return who + "'s phone ran out of battery";
+    if (a.reason === 'POWERED_OFF') {
+      return a.concerning
+        ? who + "'s phone was switched off with battery remaining"
+        : who + "'s phone was switched off";
+    }
+    return a.concerning ? 'No word from ' + who : who + "'s phone is out of signal";
+  }
+
+  function darkDetail(a) {
+    if (a.reason === 'BATTERY_DIED') {
+      return 'The battery was at ' + a.battery + '% at the last update. ' +
+        'The last known position is saved.';
+    }
+    if (a.reason === 'POWERED_OFF') {
+      return 'The phone reported switching off' +
+        (a.battery !== null ? ' with ' + a.battery + '% battery left' : '') +
+        '. The last known position is saved.';
+    }
+    if (a.reason === 'SIM_SWAPPED') {
+      return 'The SIM was changed or removed. Koode never needed it to report — it keeps ' +
+        'working over any network it can reach — so this is a record of tampering, not a ' +
+        'loss of tracking. The last known position is saved.';
+    }
+    return 'The phone has not been able to reach us. It may simply be out of ' +
+      'coverage. The last known position is saved.';
+  }
+
   function endedByOwner(state, events) {
     if (state && state.endedByOwner === true) return true;
     if (state && state.status === 'COMPLETED') return true;
@@ -306,6 +488,9 @@
     headlineEl.className = 'headline ok';
     dot.className = 'dot';
 
+    var who = owner || 'They';
+    var dark = assessDarkness(state, ended);
+
     var headline;
     if (sos) {
       headline = 'SOS active';
@@ -315,6 +500,12 @@
       headline = 'Journey ended safely';
     } else if (!state) {
       headline = 'Getting the first update…';
+    } else if (dark.dark) {
+      // Says which kind of silence this is, because "switched off with 74%
+      // battery" and "ran out of battery" are different things to be told.
+      headline = darkHeadline(dark, who);
+      card.className = 'card hero ' + (dark.concerning ? 'danger' : 'warn');
+      headlineEl.className = 'headline ' + (dark.concerning ? 'danger' : 'warn');
     } else if (freshness === 'quiet') {
       headline = "Haven't heard for a while";
       card.className = 'card hero warn';
@@ -333,7 +524,16 @@
       if (typeof state.battery === 'number' && state.battery <= 25) {
         notes.push("Traveller's phone battery is at " + state.battery + '%');
       }
-      if (freshness === 'quiet') {
+      if (dark.dark) {
+        notes.push(darkDetail(dark));
+        if (dark.since) notes.push('Last heard from ' + ago(dark.since) + '.');
+        if (dark.concerning) {
+          notes.push(
+            'Koode is still watching and will show anything new the moment it ' +
+            'arrives. This journey stays open until they close it themselves.'
+          );
+        }
+      } else if (freshness === 'quiet') {
         notes.push('This is about the signal, not about them — the journey is still open.');
       }
       notes.forEach(function (n) {
@@ -466,6 +666,7 @@
     });
     $('play').addEventListener('click', togglePlayback);
     $('speed').addEventListener('click', cycleSpeed);
+    $('report').addEventListener('click', openSafetyReport);
 
     $('watch').addEventListener('click', async function () {
       hide($('signin-error'));

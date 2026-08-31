@@ -38,6 +38,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.trippulse.app.TripPulseApp
 import com.trippulse.app.core.TimeFmt
+import com.trippulse.app.domain.Darkness
 import com.trippulse.app.domain.EtaMode
 import com.trippulse.app.domain.Freshness
 import com.trippulse.app.domain.GeoPoint
@@ -45,6 +46,10 @@ import com.trippulse.app.domain.JourneyHealth
 import com.trippulse.app.domain.JourneyStatus
 import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.ViewerVm
+import com.trippulse.app.data.export.JourneyPdf
+import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.components.DetailRow
+import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeHeroCard
@@ -80,6 +85,8 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
     val windowClass = LocalWindowClass.current
     val ui by vm.ui.collectAsStateWithLifecycle()
     val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
+    val dark by vm.darkness.collectAsStateWithLifecycle()
+    val reportBusy by vm.reportBusy.collectAsStateWithLifecycle()
     val now = System.currentTimeMillis()
     // A follower reads distances in THEIR units, not the traveller's: a parent
     // in Kerala watching a child drive across Texas still wants kilometres.
@@ -312,6 +319,59 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 }
             }
 
+            // ---- the phone has gone quiet ----
+            //
+            // Placed above the timeline rather than below it: when this card
+            // applies it is the only thing on the screen anybody is reading.
+            if (dark.dark) {
+                val label = (ui.meta?.get("label") as? String) ?: "They"
+                KoodeCard(
+                    title = Darkness.headline(dark, label),
+                    accent = if (dark.concerning) colors.danger else colors.warn
+                ) {
+                    Text(
+                        Darkness.detail(dark),
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    dark.sinceMs?.let {
+                        Spacer(Modifier.height(Spacing.sm))
+                        DetailRow("Last heard from", TimeFmt.ago(now, it))
+                    }
+                    if (dark.concerning) {
+                        Spacer(Modifier.height(Spacing.md))
+                        Text(
+                            "Koode is still watching, and will tell you the moment " +
+                                "anything arrives. This journey stays open until they " +
+                                "close it themselves.",
+                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                        )
+                        Spacer(Modifier.height(Spacing.md))
+                        PrimaryButton(
+                            if (reportBusy) "Preparing…" else "Save last known position",
+                            {
+                                vm.buildLastKnownReport { file ->
+                                    if (file != null) {
+                                        context.startActivity(
+                                            JourneyPdf.shareIntent(
+                                                context, file, "Last known position"
+                                            )
+                                        )
+                                    }
+                                }
+                            },
+                            enabled = !reportBusy,
+                            leading = "📄"
+                        )
+                        Text(
+                            "A PDF with the exact coordinates, the time, how accurate " +
+                                "the fix was and what happened just before — the details " +
+                                "a police report asks for.",
+                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                }
+            }
+
             // ---- timeline ----
             SectionHeader("Timeline")
             KoodeCard {
@@ -327,6 +387,39 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 }
                 TimelineList(timeline, now)
             }
+
+            // ---- the safety report, always available while live ----
+            //
+            // Not gated on the phone having gone dark. The whole point is that
+            // it is ready *before* the worst case, so a family never has to
+            // wish they had generated it while the phone was still on. The dark
+            // card above offers the same thing more loudly when it matters; this
+            // is the quiet, always-there version.
+            if (!ui.endedByOwner && ui.state != null) {
+                Spacer(Modifier.height(Spacing.md))
+                SecondaryButton(
+                    if (reportBusy) "Preparing…" else "Download safety report",
+                    {
+                        vm.buildLastKnownReport { file ->
+                            if (file != null) {
+                                context.startActivity(
+                                    JourneyPdf.shareIntent(context, file, "Koode safety report")
+                                )
+                            }
+                        }
+                    },
+                    enabled = !reportBusy,
+                    leading = "🛟"
+                )
+                Text(
+                    "A PDF with the last known position, the device details and the " +
+                        "timeline — everything police or a cyber cell would ask for. " +
+                        "Keep it to hand; you will not have to make it in a hurry.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(top = Spacing.xs)
+                )
+            }
+
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }
