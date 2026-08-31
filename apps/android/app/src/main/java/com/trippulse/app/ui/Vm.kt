@@ -19,6 +19,7 @@ import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.core.ViewerRefresh
 import com.trippulse.app.data.TripManager
+import com.trippulse.app.data.JourneyAlreadyRunning
 import com.trippulse.app.data.ViewerRepository
 import com.trippulse.app.data.export.JourneyDocuments
 import com.trippulse.app.data.export.JourneyPdf
@@ -216,6 +217,9 @@ data class LegDraft(
 class CreateVm(private val graph: AppGraph) : ViewModel() {
 
     var busy = MutableStateFlow(false); private set
+
+    /** Set when creation was refused because a journey is already running. */
+    var runningTripId = MutableStateFlow<String?>(null); private set
     var error = MutableStateFlow<String?>(null); private set
 
     /** The legs of this journey, in order. Starts as one. */
@@ -442,6 +446,13 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                     )
                 }
                 onDone(trip.tripId)
+            } catch (e: JourneyAlreadyRunning) {
+                // Not really an error on their part: they almost certainly
+                // meant to open the one they are on, so say which it is.
+                runningTripId.value = e.tripId
+                error.value = "You're already on a journey to ${e.destination}. " +
+                    "Finish that one first — a second live journey would leave " +
+                    "everyone following you with two different answers about where you are."
             } catch (e: Exception) {
                 error.value = e.message ?: "Something went wrong creating the journey."
             } finally {

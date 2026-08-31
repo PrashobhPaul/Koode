@@ -82,6 +82,7 @@ fun CreateTripScreen(nav: NavHostController) {
     val passcode by vm.passcode.collectAsStateWithLifecycle()
     val busy by vm.busy.collectAsStateWithLifecycle()
     val error by vm.error.collectAsStateWithLifecycle()
+    val running by vm.runningTripId.collectAsStateWithLifecycle()
     val places by vm.savedPlaces.collectAsStateWithLifecycle()
     val pinMode by vm.pinMode.collectAsStateWithLifecycle()
     val departure by vm.departureMs.collectAsStateWithLifecycle()
@@ -353,6 +354,15 @@ fun CreateTripScreen(nav: NavHostController) {
             if (error != null) {
                 KoodeCard(accent = colors.danger) {
                     Text(error!!, color = colors.danger, style = MaterialTheme.typography.bodyMedium)
+                    // When the refusal was "you're already on one", the useful
+                    // next step is the journey they are on, not a retry.
+                    running?.let { tripId ->
+                        Spacer(Modifier.height(Spacing.md))
+                        PrimaryButton(
+                            "Open my journey",
+                            { nav.navigate(Routes.driver(tripId)) { popUpTo(Routes.HOME) } }
+                        )
+                    }
                 }
             }
 

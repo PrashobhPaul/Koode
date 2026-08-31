@@ -66,6 +66,15 @@ import java.util.UUID
  *     [TransportProfile] of the leg being travelled, never from scattered
  *     conditionals. See [activeProfile].
  */
+/**
+ * Thrown when a second journey is started while one is still open.
+ *
+ * Carries the running journey's id so the caller can offer to open it, which
+ * is almost always what the person actually wanted.
+ */
+class JourneyAlreadyRunning(val tripId: String, val destination: String) :
+    IllegalStateException("A journey to $destination is already running")
+
 class TripManager(
     private val appContext: Context,
     private val db: TripPulseDb,
@@ -101,6 +110,8 @@ class TripManager(
     private var batteryLowFired = false
     private var lastMealWindowPrompted: String? = null
     private var arrivalPromptShown = false
+    private var arrivalReminders = 0
+    private var lastArrivalReminderMs = 0L
 
     init {
         sync.onSosDelivered = { tripId -> appendSosDelivered(tripId) }
@@ -184,6 +195,14 @@ class TripManager(
         /** A saved place this close is a better name for a point than a road is. */
         private const val NEAR_PLACE_M = 500.0
 
+        /** When to nudge after arrival, measured from arrival, widening each time. */
+        private val ARRIVAL_REMINDER_DELAYS_MS = longArrayOf(
+            15 * 60_000L, 45 * 60_000L, 120 * 60_000L
+        )
+
+        /** Never two nudges closer together than this, whatever the schedule says. */
+        private const val MIN_REMINDER_GAP_MS = 10 * 60_000L
+
         /** Retained for callers that still ask the old question. */
         val PRIVATE_MODES: Set<String> = TransportCatalog.PRIVATE_KEYS
     }
@@ -191,6 +210,14 @@ class TripManager(
     /** Creates a journey, generating credentials, legs and an initial route. */
     suspend fun createTrip(n: NewTrip): ActiveTripEntity = lock.withLock {
         require(n.legs.isNotEmpty()) { "A journey needs at least one leg" }
+        // One live journey per phone, enforced here rather than only on the
+        // screen that offers the button. Two would mean two simultaneous
+        // claims about where one person is, and someone following would have
+        // no way to tell which of them to believe -- which is the one thing
+        // this app cannot afford to be wrong about.
+        db.tripDao().activeTrip()?.let {
+            throw JourneyAlreadyRunning(it.tripId, it.destName)
+        }
         val now = System.currentTimeMillis()
         val tripId = TripCredentials.newTripId()
         val secret = n.passcode.trim().ifBlank { TripCredentials.newPasscode() }
@@ -646,6 +673,8 @@ class TripManager(
         val move = detector.onTick(now)
         if (move != null) s = applyMovement(t, s, move, null, now, profile)
 
+        remindToCloseIfArrived(t, s, now)
+
         // Public transport: gentle wellbeing check-ins at meal windows only —
         // once per window, never at arbitrary intervals. Passengers aren't
         // driving, so timing courtesy matters more than stop detection.
@@ -895,8 +924,48 @@ class TripManager(
     suspend fun dismissArrivalPrompt() = lock.withLock {
         val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
-        s = s.copy(arrivalPromptDue = false, updatedAtMs = System.currentTimeMillis())
-        persistAndPush(t, s); state = s
+        val now = System.currentTimeMillis()
+
+        // "No, I'm not there yet" has to mean it. Clearing only the flag left
+        // the journey stuck in ARRIVED, so a traveller who stopped at a
+        // friend's house on the way would never be asked again when they
+        // genuinely did arrive -- and would meanwhile be reminded to close a
+        // journey they were still on.
+        transition(s, JourneyInput.STOP_CONFIRMED)?.let { s = s.copy(journey = it.name) }
+        s = s.copy(arrivalPromptDue = false, updatedAtMs = now)
+        arrivalPromptShown = false
+        arrivalReminders = 0
+        lastArrivalReminderMs = 0L
+
+        val cleared = t.copy(arrivedAtMs = null)
+        db.tripDao().update(cleared); trip = cleared
+        persistAndPush(cleared, s); state = s
+    }
+
+    /**
+     * Nudges a traveller who has arrived but not said so.
+     *
+     * Only they can end a journey, which is right, but it means a journey
+     * whose traveller simply forgot stays live -- and everyone watching keeps
+     * seeing a moving dot for someone who is already home and asleep. The
+     * reminder widens rather than repeats, because the second nudge is
+     * useful and the tenth is an app to be uninstalled: a quarter of an hour
+     * after arrival, then three quarters, then two hours, and then it stops
+     * and lets the 72-hour sweep have it.
+     */
+    private fun remindToCloseIfArrived(t: ActiveTripEntity, s: TripStateEntity, now: Long) {
+        val arrived = t.arrivedAtMs ?: return
+        if (s.journey != JourneyStatus.ARRIVED.name) return
+        if (arrivalReminders >= ARRIVAL_REMINDER_DELAYS_MS.size) return
+
+        val due = arrived + ARRIVAL_REMINDER_DELAYS_MS[arrivalReminders]
+        if (now < due) return
+        // Never two in the same stretch, however long the app was asleep.
+        if (now - lastArrivalReminderMs < MIN_REMINDER_GAP_MS) return
+
+        arrivalReminders++
+        lastArrivalReminderMs = now
+        appScope.launch { notifier.showArrivalDetected(t.destName) }
     }
 
     /**

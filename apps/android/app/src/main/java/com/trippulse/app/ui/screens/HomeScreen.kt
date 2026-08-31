@@ -147,9 +147,21 @@ fun HomeScreen(nav: NavHostController) {
                 .padding(end = Spacing.xl, bottom = 96.dp)
                 .navigationBarsPadding()
         ) {
+            // One journey at a time. While one is running this is the way
+            // back into it rather than the way to start another: two live
+            // journeys would mean two claims about where one person is, and
+            // whoever is following would have no way to know which is true.
+            val live = active
             StartJourneyFab(
                 enabled = profileComplete,
-                onClick = { if (profileComplete) nav.navigate(Routes.CREATE) else goTo(3) }
+                live = live != null,
+                onClick = {
+                    when {
+                        live != null -> nav.navigate(Routes.driver(live.tripId))
+                        profileComplete -> nav.navigate(Routes.CREATE)
+                        else -> goTo(3)
+                    }
+                }
             )
         }
     }
@@ -236,22 +248,24 @@ private fun KoodeTabBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifi
 }
 
 @Composable
-private fun StartJourneyFab(enabled: Boolean, onClick: () -> Unit) {
+private fun StartJourneyFab(enabled: Boolean, live: Boolean, onClick: () -> Unit) {
     val colors = KoodeTheme.colors
     val interaction = remember { MutableInteractionSource() }
+    val ink = if (colors.isDark) Color(0xFF07131D) else Color.White
     Row(
         Modifier
             .clip(RoundedCornerShape(Radii.pill))
-            .background(if (enabled) colors.accent else colors.surfaceRaised)
+            .background(if (enabled || live) colors.accent else colors.surfaceRaised)
             .clickable(interactionSource = interaction, indication = null, onClick = onClick)
             .padding(horizontal = Spacing.xl, vertical = 15.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("＋", fontSize = 17.sp, color = if (colors.isDark) Color(0xFF07131D) else Color.White)
+        if (live) PulsingDot(ink, size = 8.dp)
+        else Text("＋", fontSize = 17.sp, color = ink)
         Spacer(Modifier.width(Spacing.sm))
         Text(
-            "Start Journey",
-            color = if (colors.isDark) Color(0xFF07131D) else Color.White,
+            if (live) "Your journey" else "Start Journey",
+            color = ink,
             style = MaterialTheme.typography.labelLarge
         )
     }
