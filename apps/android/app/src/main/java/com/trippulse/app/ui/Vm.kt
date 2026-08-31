@@ -912,6 +912,8 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
             fun ln(k: String): Long? = (st?.get(k) as? Number)?.toLong()
             fun dn(k: String): Double? = (st?.get(k) as? Number)?.toDouble()
             val label = s.meta?.get("label") as? String
+            @Suppress("UNCHECKED_CAST")
+            val device = (s.meta?.get("device") as? Map<String, Any?>).orEmpty()
             val doc = JourneyDocuments.lastKnownPosition(
                 JourneyDocuments.LastKnown(
                     tripId = s.meta?.get("tripId") as? String ?: accessKey.take(8),
@@ -925,8 +927,7 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                     fixAtMs = ln("lastLocationAt"),
                     simChangedAtMs = ln("simChangedAt"),
                     assessment = darkness.value,
-                    @Suppress("UNCHECKED_CAST")
-                    device = (s.meta?.get("device") as? Map<String, Any?>).orEmpty(),
+                    device = device,
                     events = JourneyDocuments.momentsFromCloud(s.events)
                 )
             )
