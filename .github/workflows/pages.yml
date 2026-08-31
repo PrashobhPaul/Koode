@@ -46,7 +46,11 @@ jobs:
           echo "Wrote web/config.js for $URL"
 
       - name: Configure Pages
+        # enablement turns Pages on (source = GitHub Actions) on the first run,
+        # so the site does not need to be enabled by hand in repo settings.
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
