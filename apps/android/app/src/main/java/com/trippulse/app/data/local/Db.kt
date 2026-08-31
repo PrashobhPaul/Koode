@@ -84,7 +84,17 @@ data class TripLegEntity(
     val completedAtMs: Long?,
     val bookingRef: String?,
     val seat: String?,
-    val boardingPoint: String?
+    val boardingPoint: String?,
+    /**
+     * Per-mode vehicle and booking details, as a JSON object keyed by
+     * [com.trippulse.app.domain.DetailKeys].
+     *
+     * A map rather than columns because the questions differ per mode and will
+     * keep growing -- coach numbers, operators, registrations, whatever the
+     * next mode needs. Every one of those as its own column would be a
+     * migration each time, and a table of mostly-null fields.
+     */
+    val detailsJson: String? = null
 )
 
 @Entity(tableName = "event_queue")
@@ -268,6 +278,10 @@ interface TripDao {
     @Query("SELECT * FROM active_trip ORDER BY createdAtMs DESC")
     fun allFlow(): Flow<List<ActiveTripEntity>>
 
+    /** Recent journeys, newest first — the source of "somewhere you went lately". */
+    @Query("SELECT * FROM active_trip ORDER BY createdAtMs DESC LIMIT :limit")
+    suspend fun recent(limit: Int): List<ActiveTripEntity>
+
     @Query("UPDATE active_trip SET metaSynced = :synced WHERE tripId = :tripId")
     suspend fun setMetaSynced(tripId: String, synced: Boolean)
 
@@ -406,6 +420,9 @@ interface SavedPlaceDao {
 
     @Query("SELECT * FROM saved_places ORDER BY createdAtMs ASC")
     fun allFlow(): Flow<List<SavedPlaceEntity>>
+
+    @Query("SELECT * FROM saved_places ORDER BY createdAtMs ASC")
+    suspend fun all(): List<SavedPlaceEntity>
 }
 
 @Dao
@@ -487,7 +504,7 @@ interface ViewerDao {
         ExpenseEntity::class,
         TripLegEntity::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -595,6 +612,31 @@ abstract class TripPulseDb : RoomDatabase() {
         }
 
         /**
+         * v5 -> v6: per-mode vehicle and booking details.
+         *
+         * Additive, like every migration before it, and it carries the two
+         * fields that already existed into the new map so a journey created by
+         * v5 keeps its seat and booking reference rather than appearing to
+         * have lost them.
+         */
+        private val MIGRATION_5_6 = object : androidx.room.migration.Migration(5, 6) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE trip_legs ADD COLUMN detailsJson TEXT")
+                // Built by concatenation rather than json_object(): the JSON1
+                // extension is only guaranteed on Android 11 and later, and a
+                // migration that throws on an older phone would be the exact
+                // failure this codebase refuses to risk. replace() escapes any
+                // quote that found its way into a seat or booking reference.
+                db.execSQL(
+                    "UPDATE trip_legs SET detailsJson = '{\"seat\":\"' || " +
+                        "replace(COALESCE(seat, ''), '\"', '') || '\",\"pnr\":\"' || " +
+                        "replace(COALESCE(bookingRef, ''), '\"', '') || '\"}' " +
+                        "WHERE seat IS NOT NULL OR bookingRef IS NOT NULL"
+                )
+            }
+        }
+
+        /**
          * No destructive fallback. A journey in progress is irreplaceable data;
          * losing it because a migration was missing would be the worst possible
          * failure mode, so a missing migration must fail loudly in testing
@@ -606,7 +648,9 @@ abstract class TripPulseDb : RoomDatabase() {
                     context.applicationContext,
                     TripPulseDb::class.java,
                     "trippulse.db"
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
+                ).addMigrations(
+                    MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6
+                )
                     .build().also { INSTANCE = it }
             }
     }

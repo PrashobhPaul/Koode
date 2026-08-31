@@ -49,6 +49,7 @@ import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.CreateVm
 import com.trippulse.app.ui.LegDraft
 import com.trippulse.app.ui.Routes
+import com.trippulse.app.ui.components.TravelDetailFields
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
@@ -144,11 +145,9 @@ fun CreateTripScreen(nav: NavHostController) {
                     onFocus = { vm.editLeg(index) },
                     onRemove = { vm.removeLeg(index) },
                     onModeChange = { vm.setMode(index, it) },
-                    onFuelChange = { vm.setFuel(index, it) },
+                    onDetailChange = { key, value -> vm.setDetail(index, key, value) },
                     onFromChange = { vm.setFromText(index, it) },
                     onToChange = { vm.setToText(index, it) },
-                    onBookingRefChange = { vm.setBookingRef(index, it) },
-                    onSeatChange = { vm.setSeat(index, it) },
                     onBoardingChange = { vm.setBoardingPoint(index, it) }
                 )
             }
@@ -389,11 +388,9 @@ private fun LegCard(
     onFocus: () -> Unit,
     onRemove: () -> Unit,
     onModeChange: (String) -> Unit,
-    onFuelChange: (String) -> Unit,
+    onDetailChange: (String, String) -> Unit,
     onFromChange: (String) -> Unit,
     onToChange: (String) -> Unit,
-    onBookingRefChange: (String) -> Unit,
-    onSeatChange: (String) -> Unit,
     onBoardingChange: (String) -> Unit
 ) {
     val colors = KoodeTheme.colors
@@ -444,39 +441,26 @@ private fun LegCard(
             }
         }
 
-        if (profile.asksAboutFuel) {
+        Spacer(Modifier.height(Spacing.md))
+        // Rendered from the mode's own declaration, so this screen and the
+        // mid-journey switch always ask the same questions in the same words.
+        TravelDetailFields(
+            mode = leg.mode,
+            values = leg.details,
+            onChange = onDetailChange
+        )
+
+        if (!profile.isPrivateVehicle) {
             Spacer(Modifier.height(Spacing.md))
-            Text("Fuel", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-            Spacer(Modifier.height(Spacing.sm))
-            val fuels = if (leg.mode == "BIKE") listOf("PETROL" to "Petrol", "ELECTRIC" to "Electric")
-            else listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric")
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                fuels.forEach { (v, label) ->
-                    KoodeChip(label, leg.fuelType == v, { onFuelChange(v) })
-                }
-            }
-        } else {
-            Spacer(Modifier.height(Spacing.md))
-            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                OutlinedTextField(
-                    value = leg.bookingRef, onValueChange = onBookingRefChange,
-                    label = { Text("PNR / booking") }, singleLine = true, modifier = Modifier.weight(1f)
-                )
-                OutlinedTextField(
-                    value = leg.seat, onValueChange = onSeatChange,
-                    label = { Text("Seat") }, singleLine = true, modifier = Modifier.weight(1f)
-                )
-            }
-            Spacer(Modifier.height(Spacing.sm))
             OutlinedTextField(
                 value = leg.boardingPoint, onValueChange = onBoardingChange,
-                label = { Text(profile.boardingPointLabel) }, singleLine = true,
+                label = { Text(profile.boardingPointLabel + " (optional)") }, singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
-            Text(
-                "Kept on this phone only — never shared with anyone following you.",
-                color = colors.textLow, style = MaterialTheme.typography.bodySmall
-            )
         }
+        Text(
+            "Kept on this phone only — never shared with anyone following you.",
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+        )
     }
 }

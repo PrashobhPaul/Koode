@@ -33,6 +33,9 @@ import com.trippulse.app.domain.RoutePlan
 import com.trippulse.app.domain.StopDetector
 import com.trippulse.app.domain.SummaryCalculator
 import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.domain.TravelDetails
+import com.trippulse.app.domain.DetailKeys
+import com.trippulse.app.domain.LegDetails
 import com.trippulse.app.domain.TransportProfile
 import com.trippulse.app.domain.TripConfig
 import com.trippulse.app.domain.TripEvent
@@ -160,9 +163,9 @@ class TripManager(
         val toName: String, val to: GeoPoint,
         val fuelType: String? = null,
         val plannedDepartureMs: Long? = null,
-        val bookingRef: String? = null,
-        val seat: String? = null,
-        val boardingPoint: String? = null
+        val boardingPoint: String? = null,
+        /** Vehicle and booking details, keyed by [DetailKeys]. */
+        val details: Map<String, String> = emptyMap()
     )
 
     data class NewTrip(
@@ -178,6 +181,9 @@ class TripManager(
     }
 
     companion object {
+        /** A saved place this close is a better name for a point than a road is. */
+        private const val NEAR_PLACE_M = 500.0
+
         /** Retained for callers that still ask the old question. */
         val PRIVATE_MODES: Set<String> = TransportCatalog.PRIVATE_KEYS
     }
@@ -231,7 +237,10 @@ class TripManager(
                 fuelType = if (TransportCatalog.isPrivate(leg.mode)) leg.fuelType else null,
                 plannedDepartureMs = leg.plannedDepartureMs,
                 startedAtMs = null, completedAtMs = null,
-                bookingRef = leg.bookingRef, seat = leg.seat, boardingPoint = leg.boardingPoint
+                bookingRef = leg.details[DetailKeys.PNR],
+                seat = leg.details[DetailKeys.SEAT],
+                boardingPoint = leg.boardingPoint,
+                detailsJson = LegDetails.toJson(leg.details)
             )
         }
         db.legDao().upsertAll(legRows)
@@ -303,152 +312,188 @@ class TripManager(
     private fun editableTrip(): ActiveTripEntity? = trip?.takeIf { isEditable(it) }
 
     /**
-     * Adds a stage to a journey that is already under way.
+     * The traveller has changed how they are travelling, mid-journey.
      *
-     * This is the "my plans changed" case, and it is common: someone takes the
-     * train to Bangalore intending to stop there, then decides to carry on to
-     * Hyderabad by bus. Appending a leg mid-journey keeps that as one story
-     * for everyone following, instead of forcing a second journey with new
-     * credentials that the family would have to be re-invited to.
+     * This is what a multi-leg journey actually is. Someone gets off the train
+     * at Bangalore and carries on by bus; the destination never changed, only
+     * the vehicle did. So this asks nothing about where they are going -- the
+     * journey already knows -- and nothing about where they are, because the
+     * phone already knows that too. One question: what are you on now.
+     *
+     * The current stage is closed wherever they are standing, and a new one
+     * opens from that point to the same destination the journey has always
+     * had. Followers see a continuous line and one more entry in the timeline.
+     *
+     * Returns why it could not happen, or [SwitchResult.Ok].
      */
-    suspend fun appendLeg(leg: NewLeg): Boolean = lock.withLock {
-        val t = editableTrip() ?: return@withLock false
-        val now = System.currentTimeMillis()
-        val nextIndex = (legs.maxOfOrNull { it.legIndex } ?: -1) + 1
-        val row = TripLegEntity(
-            tripId = t.tripId, legIndex = nextIndex, mode = leg.mode,
-            fromName = leg.fromName, fromLat = leg.from.lat, fromLng = leg.from.lng,
-            toName = leg.toName, toLat = leg.to.lat, toLng = leg.to.lng,
-            fuelType = if (TransportCatalog.isPrivate(leg.mode)) leg.fuelType else null,
-            plannedDepartureMs = leg.plannedDepartureMs,
-            startedAtMs = null, completedAtMs = null,
-            bookingRef = leg.bookingRef, seat = leg.seat, boardingPoint = leg.boardingPoint
-        )
-        db.legDao().upsert(row)
-        legs = db.legDao().forTrip(t.tripId)
+    suspend fun switchMode(
+        newMode: String,
+        details: Map<String, String> = emptyMap(),
+        breakdown: Boolean = false
+    ): SwitchResult = lock.withLock {
+        val t = editableTrip() ?: return@withLock SwitchResult.NotEditable
+        val s0 = state ?: return@withLock SwitchResult.NotEditable
 
-        // The journey's destination is wherever its last stage ends.
-        val updated = t.copy(
-            destName = leg.toName, destLat = leg.to.lat, destLng = leg.to.lng,
-            totalRouteDistanceM = t.totalRouteDistanceM +
-                Geo.haversineM(leg.from, leg.to) * cfg.roadDistanceFactor,
-            arrivedAtMs = null
-        )
-        db.tripDao().update(updated)
-        trip = updated
-        arrivalPromptShown = false
+        // Without a fix there is no honest place to end the current stage, and
+        // inventing one would put a line on the map that nobody travelled.
+        val lat = s0.lat
+        val lng = s0.lng
+        if (lat == null || lng == null) return@withLock SwitchResult.NoLocationYet
 
-        insertEvent(
-            t.tripId, EventTypes.LEG_STARTED, EventSource.DRIVER_MANUAL, now, leg.from.lat, leg.from.lng,
-            mapOf(
-                "legIndex" to nextIndex, "mode" to leg.mode,
-                "from" to leg.fromName, "to" to leg.toName, "planned" to true,
-                "text" to "Added a stage: ${leg.fromName} → ${leg.toName}"
-            ), false
-        )
-
-        var s = state
-        if (s != null) {
-            s = s.copy(arrivalPromptDue = false, updatedAtMs = now)
-            persistAndPush(updated, s, force = true)
-            state = s
+        val current = activeLeg()
+        // A car journey has no natural stages -- you drive the whole way -- so
+        // the only honest reason to be switching out of one is that the
+        // vehicle stopped being an option.
+        if (current != null && TransportCatalog.isPrivate(current.mode) && !breakdown) {
+            return@withLock SwitchResult.PrivateVehicleNeedsBreakdown
         }
-        if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
-        true
-    }
+        if (!TravelDetails.isComplete(newMode, details)) {
+            return@withLock SwitchResult.MissingDetails(
+                TravelDetails.missingRequired(newMode, details).map { it.label }
+            )
+        }
 
-    /** Renames or re-points a stage that has not been travelled yet. */
-    suspend fun updateLeg(
-        legIndex: Int, mode: String, toName: String, to: GeoPoint, fuelType: String?
-    ): Boolean = lock.withLock {
-        val t = editableTrip() ?: return@withLock false
-        val existing = legs.firstOrNull { it.legIndex == legIndex } ?: return@withLock false
-        // A completed stage is history; only the current and future ones move.
-        if (existing.completedAtMs != null) return@withLock false
         val now = System.currentTimeMillis()
+        val hereName = nameForPoint(GeoPoint(lat, lng))
+
+        current?.let { db.legDao().markCompleted(t.tripId, it.legIndex, now) }
+
+        // Where this new stage is heading: the point the current stage was
+        // already going to. On a single-stage journey that is the destination;
+        // on one with stages planned ahead it is the next waypoint, so
+        // switching vehicles part-way through never skips what came after.
+        val toName = current?.toName ?: t.destName
+        val toLat = current?.toLat ?: t.destLat
+        val toLng = current?.toLng ?: t.destLng
+
+        // The new stage takes the place immediately after the current one, and
+        // anything planned beyond it shifts up rather than being lost.
+        val insertAt = (current?.legIndex ?: -1) + 1
+        val shifted = legs.filter { it.legIndex >= insertAt }
+            .sortedByDescending { it.legIndex }
+            .map { it.copy(legIndex = it.legIndex + 1) }
+        if (shifted.isNotEmpty()) db.legDao().upsertAll(shifted)
 
         db.legDao().upsert(
-            existing.copy(
-                mode = mode, toName = toName, toLat = to.lat, toLng = to.lng,
-                fuelType = if (TransportCatalog.isPrivate(mode)) fuelType else null
+            TripLegEntity(
+                tripId = t.tripId, legIndex = insertAt, mode = newMode,
+                fromName = hereName, fromLat = lat, fromLng = lng,
+                toName = toName, toLat = toLat, toLng = toLng,
+                fuelType = details[DetailKeys.FUEL_TYPE]
+                    ?.takeIf { TransportCatalog.isPrivate(newMode) },
+                plannedDepartureMs = null, startedAtMs = now, completedAtMs = null,
+                bookingRef = details[DetailKeys.PNR], seat = details[DetailKeys.SEAT],
+                boardingPoint = null, detailsJson = LegDetails.toJson(details)
             )
         )
         legs = db.legDao().forTrip(t.tripId)
 
-        val last = legs.maxByOrNull { it.legIndex }
+        val nextIndex = insertAt
         val updated = t.copy(
-            destName = last?.toName ?: toName,
-            destLat = last?.toLat ?: to.lat,
-            destLng = last?.toLng ?: to.lng,
-            transportMode = if (legIndex == t.activeLegIndex) mode else t.transportMode,
-            fuelType = if (legIndex == t.activeLegIndex && TransportCatalog.isPrivate(mode)) fuelType else t.fuelType,
+            activeLegIndex = nextIndex,
+            transportMode = newMode,
             arrivedAtMs = null
         )
-        db.tripDao().update(updated)
-        trip = updated
+        db.tripDao().update(updated); trip = updated
         arrivalPromptShown = false
 
-        if (legIndex == t.activeLegIndex) {
-            // The road ahead changed: refetch it and forget where we were.
-            deviation = RouteDeviationDetector(cfg)
-            currentRoute = routing.route(GeoPoint(existing.fromLat, existing.fromLng), to)
-            routeFetchedAtMs = now
-        }
-
+        val profile = TransportCatalog.profile(newMode)
+        val vehicle = TravelDetails.summary(newMode, details)
         insertEvent(
-            t.tripId, EventTypes.DESTINATION_CHANGED, EventSource.DRIVER_MANUAL, now, to.lat, to.lng,
-            mapOf("legIndex" to legIndex, "destination" to toName, "mode" to mode), false
+            t.tripId, EventTypes.LEG_STARTED, EventSource.DRIVER_MANUAL, now, lat, lng,
+            mapOf(
+                "legIndex" to nextIndex, "mode" to newMode,
+                "vehicle" to vehicle, "breakdown" to breakdown,
+                "text" to buildString {
+                    if (breakdown) append("Vehicle trouble — continuing ")
+                    else append("Continuing ")
+                    append(profile.travellingSuffix)
+                    if (vehicle.isNotBlank()) append(" ($vehicle)")
+                }
+            ), false
         )
 
-        var s = state
-        if (s != null) {
-            val remM = remainingDistanceM(GeoPoint(s.lat ?: t.originLat, s.lng ?: t.originLng))
-            s = recomputeEta(updated, s, remainingTravelSeconds(remM), remM, now)
-                .copy(arrivalPromptDue = false, updatedAtMs = now)
-            persistAndPush(updated, s, force = true)
-            state = s
-        }
+        var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = false, updatedAtMs = now)
+        persistAndPush(updated, s, force = true)
+        state = s
         if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
         onSamplingChanged?.invoke()
-        true
+        SwitchResult.Ok
     }
-
-    /** Drops a stage that has not started yet. */
-    suspend fun removeLeg(legIndex: Int): Boolean = lock.withLock {
-        val t = editableTrip() ?: return@withLock false
-        val existing = legs.firstOrNull { it.legIndex == legIndex } ?: return@withLock false
-        if (existing.startedAtMs != null || legIndex <= t.activeLegIndex) return@withLock false
-        if (legs.size <= 1) return@withLock false
-
-        db.legDao().deleteForTrip(t.tripId)
-        // Re-index so the remaining stages stay a contiguous 0..n sequence,
-        // which every consumer of activeLegIndex relies on.
-        val remaining = legs.filter { it.legIndex != legIndex }
-            .sortedBy { it.legIndex }
-            .mapIndexed { index, leg -> leg.copy(legIndex = index) }
-        db.legDao().upsertAll(remaining)
-        legs = db.legDao().forTrip(t.tripId)
-
-        val last = legs.maxByOrNull { it.legIndex }
-        val updated = t.copy(
-            destName = last?.toName ?: t.destName,
-            destLat = last?.toLat ?: t.destLat,
-            destLng = last?.toLng ?: t.destLng
-        )
-        db.tripDao().update(updated)
-        trip = updated
-        if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
-        true
-    }
-
-    // -----------------------------------------------------------------------
-    // Hybrid journeys: moving from one leg to the next
-    // -----------------------------------------------------------------------
 
     /**
-     * Closes the current leg and starts the next one. The route, the rule set
-     * and the sampling cadence all follow the new leg's mode of transport.
+     * What to call the point a stage was switched at.
+     *
+     * Reverse geocoding would be the obvious answer and is the wrong one here:
+     * it needs the network at the moment the traveller is changing vehicles,
+     * which is exactly when they may not have it, and a stage that failed to
+     * be created because a lookup timed out would be indefensible. A saved
+     * place nearby is free and often better anyway -- "Home" beats a road
+     * name. Otherwise the honest answer is that they were between places.
      */
+    private suspend fun nameForPoint(p: GeoPoint): String {
+        val near = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
+            .minByOrNull { Geo.haversineM(p, GeoPoint(it.lat, it.lng)) }
+        if (near != null && Geo.haversineM(p, GeoPoint(near.lat, near.lng)) <= NEAR_PLACE_M) {
+            return near.name
+        }
+        return "En route"
+    }
+
+    /** Why a mid-journey mode change did or did not happen. */
+    sealed interface SwitchResult {
+        data object Ok : SwitchResult
+        /** The journey is finished; nothing about it can change any more. */
+        data object NotEditable : SwitchResult
+        /** No fix yet, so there is no honest point to switch at. */
+        data object NoLocationYet : SwitchResult
+        /** Leaving a private vehicle mid-journey needs a reason. */
+        data object PrivateVehicleNeedsBreakdown : SwitchResult
+        data class MissingDetails(val labels: List<String>) : SwitchResult
+    }
+
+    /**
+     * Corrects the vehicle details of a stage that is still running.
+     *
+     * Only the details -- never the destination, never the mode. Where the
+     * journey is going is fixed the moment it starts, because everyone
+     * following was told where it was going, and quietly re-pointing it turns
+     * the thing they agreed to watch into a different thing. Mode changes go
+     * through [switchMode], which records them as the events they are.
+     *
+     * This exists for the ordinary case of getting on a train and only then
+     * reading the coach number off the ticket.
+     */
+    suspend fun updateLegDetails(legIndex: Int, details: Map<String, String>): Boolean =
+        lock.withLock {
+            val t = editableTrip() ?: return@withLock false
+            val existing = legs.firstOrNull { it.legIndex == legIndex } ?: return@withLock false
+            // A finished stage is history and history does not get corrected.
+            if (existing.completedAtMs != null) return@withLock false
+            if (!TravelDetails.isComplete(existing.mode, details)) return@withLock false
+
+            db.legDao().upsert(
+                existing.copy(
+                    detailsJson = LegDetails.toJson(details),
+                    seat = details[DetailKeys.SEAT],
+                    bookingRef = details[DetailKeys.PNR],
+                    fuelType = details[DetailKeys.FUEL_TYPE]
+                        ?.takeIf { TransportCatalog.isPrivate(existing.mode) }
+                )
+            )
+            legs = db.legDao().forTrip(t.tripId)
+
+            val summary = TravelDetails.summary(existing.mode, details)
+            if (summary.isNotBlank()) {
+                insertEvent(
+                    t.tripId, EventTypes.QUICK_NOTE, EventSource.DRIVER_MANUAL,
+                    System.currentTimeMillis(), existing.fromLat, existing.fromLng,
+                    mapOf("text" to "Travelling on $summary"), false
+                )
+            }
+            true
+        }
+
     suspend fun advanceToNextLeg() = lock.withLock {
         val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
@@ -844,27 +889,6 @@ class TripManager(
         insertEvent(t.tripId, EventTypes.TRIP_RESUMED, EventSource.DRIVER_MANUAL, now, s.lat, s.lng, emptyMap(), false)
         s = s.copy(drivingSinceMs = now, updatedAtMs = now); persistAndPush(t, s, force = true); state = s
         onSamplingChanged?.invoke()
-    }
-
-    suspend fun changeDestination(destName: String, dest: GeoPoint) = lock.withLock {
-        val t0 = editableTrip() ?: return@withLock
-        val now = System.currentTimeMillis()
-        var s = state ?: return@withLock
-        val from = GeoPoint(s.lat ?: t0.originLat, s.lng ?: t0.originLng)
-        val route = routing.route(from, dest)
-        currentRoute = route; routeFetchedAtMs = now
-        val t = t0.copy(destName = destName, destLat = dest.lat, destLng = dest.lng,
-            totalRouteDistanceM = route?.distanceM ?: t0.totalRouteDistanceM,
-            arrivedAtMs = null)
-        db.tripDao().update(t); trip = t
-        arrivalPromptShown = false
-        insertEvent(t.tripId, EventTypes.DESTINATION_CHANGED, EventSource.DRIVER_MANUAL, now, dest.lat, dest.lng,
-            mapOf("destination" to destName), false)
-        val remM = remainingDistanceM(from)
-        s = recomputeEta(t, s, remainingTravelSeconds(remM), remM, now)
-            .copy(arrivalPromptDue = false, updatedAtMs = now)
-        if (t.cloudEnabled) appScope.launch { sync.writeMetaUpdate(t, metaMap(t)) }
-        persistAndPush(t, s, force = true); state = s
     }
 
     /** Dismiss the "you seem to have arrived" prompt without ending anything. */
