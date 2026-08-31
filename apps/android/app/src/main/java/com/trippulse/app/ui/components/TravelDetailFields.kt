@@ -70,9 +70,15 @@ private fun ChoiceField(
 ) {
     val colors = KoodeTheme.colors
     val current = values[field.key].orEmpty()
-    // "Other" is selected when something has been typed that isn't on the list.
+    // "Other" is selected when the value is not one of the listed options.
+    //
+    // Emptiness rather than blankness, deliberately: choosing Other writes a
+    // single space so the chip has something to latch onto before anything is
+    // typed. Testing isNotBlank() here treated that space as "nothing chosen",
+    // so the chip never lit and the text box never appeared -- the Other
+    // option was unusable.
     val listed = field.options.contains(current)
-    val showFreeText = current.isNotBlank() && !listed
+    val showFreeText = current.isNotEmpty() && !listed
 
     Column {
         Text(
