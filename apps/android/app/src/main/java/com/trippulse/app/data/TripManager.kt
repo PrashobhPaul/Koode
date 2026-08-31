@@ -33,6 +33,9 @@ import com.trippulse.app.domain.RoutePlan
 import com.trippulse.app.domain.StopDetector
 import com.trippulse.app.domain.SummaryCalculator
 import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.domain.Darkness
+import com.trippulse.app.domain.DarkReason
+import com.trippulse.app.core.DeviceIdentity
 import com.trippulse.app.domain.TravelDetails
 import com.trippulse.app.domain.DetailKeys
 import com.trippulse.app.domain.LegDetails
@@ -111,6 +114,11 @@ class TripManager(
     private var lastMealWindowPrompted: String? = null
     private var arrivalPromptShown = false
     private var arrivalReminders = 0
+    /**
+     * Set inside the lock, acted on outside it. recordBackOnline() takes the
+     * same mutex, so calling it from within onTick would deadlock.
+     */
+    private var backOnlineDue = false
     private var lastArrivalReminderMs = 0L
 
     init {
@@ -662,7 +670,20 @@ class TripManager(
     }
 
     /** Periodic tick (~30s) for time-based transitions and heartbeats. */
-    suspend fun onTick() = lock.withLock {
+    /**
+     * The periodic pass, split so the lock is released before anything that
+     * needs to take it again. recordBackOnline() is one such thing, and
+     * calling it from inside the locked body would deadlock the journey.
+     */
+    suspend fun onTick() {
+        onTickLocked()
+        if (backOnlineDue) {
+            backOnlineDue = false
+            recordBackOnline()
+        }
+    }
+
+    private suspend fun onTickLocked() = lock.withLock {
         val t = trip ?: return@withLock
         var s = state ?: return@withLock
         if (terminal(s)) return@withLock
@@ -674,6 +695,11 @@ class TripManager(
         if (move != null) s = applyMovement(t, s, move, null, now, profile)
 
         remindToCloseIfArrived(t, s, now)
+        checkSimChange(t, now)
+        // A tick is proof the app is alive, so a journey still flagged dark
+        // has plainly come back -- most often after a reboot, where the
+        // shutdown was recorded and BOOT_COMPLETED restarted us.
+        if (t.wentDarkAtMs != null) backOnlineDue = true
 
         // Public transport: gentle wellbeing check-ins at meal windows only —
         // once per window, never at arbitrary intervals. Passengers aren't
@@ -919,6 +945,147 @@ class TripManager(
         s = s.copy(drivingSinceMs = now, updatedAtMs = now); persistAndPush(t, s, force = true); state = s
         onSamplingChanged?.invoke()
     }
+
+    // -----------------------------------------------------------------------
+    // Going dark
+    // -----------------------------------------------------------------------
+
+    /**
+     * The device is powering off, and we have seconds.
+     *
+     * Everything here is ordered by what a family would need if this turned
+     * out to be the last thing the phone ever said: the position first, then
+     * the battery that tells them whether it died or was switched off, then
+     * the push. Called from a broadcast receiver with a hard deadline, so it
+     * writes locally before it attempts anything over the network -- a record
+     * that survives on the device beats one that was halfway to a server.
+     *
+     * The journey is emphatically *not* closed. A phone going off is not a
+     * person arriving, and only the traveller ends a journey.
+     */
+    suspend fun recordShutdown(restart: Boolean) = lock.withLock {
+        val t = editableTrip() ?: return@withLock
+        val s = state ?: return@withLock
+        val now = System.currentTimeMillis()
+        val battery = s.batteryPct ?: readBatteryPct()
+
+        insertEvent(
+            t.tripId, EventTypes.DEVICE_SHUTDOWN, EventSource.SENSOR_OBSERVED, now, s.lat, s.lng,
+            mapOf(
+                "restart" to restart,
+                "battery" to battery,
+                "accuracyM" to s.accuracyM,
+                "lastFixAtMs" to s.lastLocationAtMs,
+                "text" to buildString {
+                    append(if (restart) "Phone restarting" else "Phone switched off")
+                    if (battery != null) append(" — battery $battery%")
+                }
+            ), false
+        )
+
+        val reason =
+            if (battery != null && battery <= Darkness.FLAT_BATTERY_PCT) DarkReason.BATTERY_DIED
+            else DarkReason.POWERED_OFF
+        val marked = t.copy(wentDarkAtMs = now, darkReason = reason.name)
+        db.tripDao().update(marked); trip = marked
+
+        // Best effort, and genuinely best effort: if the system pulls the
+        // power mid-request the local row is already written and the next
+        // drain -- possibly days later, possibly from a recovered phone --
+        // will carry it.
+        if (marked.cloudEnabled) {
+            runCatching {
+                sync.pushLiveState(marked, stateMap(marked, s), force = true)
+                sync.drain(marked)
+            }
+        }
+    }
+
+    /**
+     * The device is back after a silence.
+     *
+     * Reported as its own event rather than left for people to infer from a
+     * gap in the timeline, because "they're back" is the single thing anyone
+     * watching wants to be told, and it should arrive as a notification rather
+     * than as the absence of one.
+     */
+    suspend fun recordBackOnline() = lock.withLock {
+        val t = trip ?: return@withLock
+        val darkSince = t.wentDarkAtMs ?: return@withLock
+        if (!isEditable(t)) return@withLock
+        val s = state
+        val now = System.currentTimeMillis()
+        val gap = now - darkSince
+
+        insertEvent(
+            t.tripId, EventTypes.DEVICE_BACK_ONLINE, EventSource.SENSOR_OBSERVED, now,
+            s?.lat, s?.lng,
+            mapOf(
+                "gapMs" to gap,
+                "text" to "Phone back online after ${TimeFmt.durationShort(gap / 1000)}"
+            ), false
+        )
+        // The dark markers are cleared, but the events are not: the shutdown
+        // and the return both stay in the timeline, because a journey that
+        // went dark for six hours and came back is a different journey from
+        // one that never did, and the PDF should say so.
+        val cleared = t.copy(wentDarkAtMs = null, darkReason = null)
+        db.tripDao().update(cleared); trip = cleared
+        if (cleared.cloudEnabled && s != null) {
+            appScope.launch {
+                runCatching {
+                    sync.pushLiveState(cleared, stateMap(cleared, s), force = true)
+                    sync.drain(cleared)
+                }
+            }
+        }
+    }
+
+    /**
+     * Notices that somebody has put a different SIM in the phone.
+     *
+     * Recorded once per journey. Reporting does not depend on the SIM -- the
+     * journey's credentials are in the app's own storage and updates go over
+     * whatever network is reachable -- so this does not change what the app
+     * can do. It changes what the family knows, which is the point: a phone
+     * whose SIM changed mid-journey has been opened by somebody.
+     */
+    private suspend fun checkSimChange(t: ActiveTripEntity, now: Long) {
+        if (t.simChangedAtMs != null) return
+        val current = DeviceIdentity.simFingerprint(appContext) ?: return
+        val remembered = t.simFingerprint
+        if (remembered == null) {
+            // First sighting: record it as the baseline rather than an alarm.
+            val stamped = t.copy(simFingerprint = current)
+            db.tripDao().update(stamped); trip = stamped
+            return
+        }
+        if (remembered == current) return
+
+        val changed = t.copy(simChangedAtMs = now, simFingerprint = current)
+        db.tripDao().update(changed); trip = changed
+        insertEvent(
+            t.tripId, EventTypes.SIM_CHANGED, EventSource.SENSOR_OBSERVED, now,
+            state?.lat, state?.lng,
+            mapOf("text" to "A different SIM is in this phone"), false
+        )
+        notifier.showJourneyAttention(changed.destName, "A different SIM is in this phone")
+        if (changed.cloudEnabled) {
+            val snapshot = state
+            if (snapshot != null) appScope.launch {
+                runCatching {
+                    sync.pushLiveState(changed, stateMap(changed, snapshot), force = true)
+                    sync.drain(changed)
+                }
+            }
+        }
+    }
+
+    private fun readBatteryPct(): Int? = runCatching {
+        val bm = appContext.getSystemService(Context.BATTERY_SERVICE) as? android.os.BatteryManager
+        bm?.getIntProperty(android.os.BatteryManager.BATTERY_PROPERTY_CAPACITY)
+            ?.takeIf { it in 0..100 }
+    }.getOrNull()
 
     /** Dismiss the "you seem to have arrived" prompt without ending anything. */
     suspend fun dismissArrivalPrompt() = lock.withLock {
@@ -1395,6 +1562,11 @@ class TripManager(
         s.overnightType?.let { put("overnightType", it) }
         s.overnightSinceMs?.let { put("overnightSince", it) }
         put("deviationActive", s.deviationActive)
+        // Going dark: pushed so a follower can tell "switched off with charge
+        // left" from "ran out of battery" without having to guess from a gap.
+        t.wentDarkAtMs?.let { put("wentDarkAt", it) }
+        t.darkReason?.let { put("darkReason", it) }
+        t.simChangedAtMs?.let { put("simChangedAt", it) }
         put("updatedAt", s.updatedAtMs)
     }
 

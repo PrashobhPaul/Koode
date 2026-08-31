@@ -130,6 +130,14 @@ object EventTypes {
     const val BATTERY_LOW = "BATTERY_LOW"
     const val ETA_UPDATED = "ETA_UPDATED"
 
+    // going dark — see domain/Darkness.kt
+    /** The device told us it was powering off, and where it was when it did. */
+    const val DEVICE_SHUTDOWN = "DEVICE_SHUTDOWN"
+    /** The device came back after a silence, and how long that silence was. */
+    const val DEVICE_BACK_ONLINE = "DEVICE_BACK_ONLINE"
+    /** A different SIM appeared mid-journey. Phones do not do this alone. */
+    const val SIM_CHANGED = "SIM_CHANGED"
+
     /** Events that carry a driver-visible line in the viewer timeline. */
     val TIMELINE_TYPES: Set<String> = setOf(
         TRIP_STARTED, TRIP_PAUSED, TRIP_RESUMED, TRIP_COMPLETED, DESTINATION_CHANGED,
@@ -138,6 +146,7 @@ object EventTypes {
         TEA_COFFEE_REPORTED, SNACK_REPORTED,
         BOARDED, TRANSIT_HALTED, TRANSIT_RESUMED, DEBOARDED, LEG_STARTED, LEG_COMPLETED,
         FUEL_STOP, CHARGE_STOP, OVERNIGHT_CONFIRMED, MORNING_RESUME,
+        DEVICE_SHUTDOWN, DEVICE_BACK_ONLINE, SIM_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
         POSSIBLE_INCIDENT, SOS_ACTIVATED, SOS_RESOLVED, BATTERY_LOW
     )

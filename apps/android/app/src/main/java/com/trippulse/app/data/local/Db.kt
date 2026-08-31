@@ -60,7 +60,22 @@ data class ActiveTripEntity(
     // prompt and the post-completion expiry window.
     val arrivedAtMs: Long? = null,
     /** True only once the traveller explicitly ended the journey. */
-    val endedByOwner: Boolean = false
+    val endedByOwner: Boolean = false,
+    /**
+     * When the device stopped reporting in a way worth remembering.
+     *
+     * Set from the shutdown broadcast, or by the keeper when silence outlasts
+     * every innocent explanation. Its presence is what exempts a journey from
+     * the 72-hour sweep: once a journey has gone dark it is no longer just a
+     * record, it is the thing a family would hand to the police.
+     */
+    val wentDarkAtMs: Long? = null,
+    /** [com.trippulse.app.domain.DarkReason], as a name. */
+    val darkReason: String? = null,
+    /** Carrier fingerprint when the journey began — see core/DeviceIdentity. */
+    val simFingerprint: String? = null,
+    /** When a different SIM was first noticed, if one ever was. */
+    val simChangedAtMs: Long? = null
 )
 
 /**
@@ -298,7 +313,12 @@ interface TripDao {
      */
     @Query(
         "SELECT * FROM active_trip WHERE status IN ('CREATED','ACTIVE') " +
-            "AND COALESCE(startedAtMs, createdAtMs) < :cutoffMs"
+            "AND COALESCE(startedAtMs, createdAtMs) < :cutoffMs " +
+            // A journey that went dark is never swept. The 72-hour rule exists
+            // to stop forgotten journeys piling up; a journey whose device
+            // stopped reporting is the opposite of forgotten, and its last
+            // known position may be the only record of where somebody was.
+            "AND wentDarkAtMs IS NULL"
     )
     suspend fun openSince(cutoffMs: Long): List<ActiveTripEntity>
 }
@@ -504,7 +524,7 @@ interface ViewerDao {
         ExpenseEntity::class,
         TripLegEntity::class
     ],
-    version = 6,
+    version = 7,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -637,6 +657,23 @@ abstract class TripPulseDb : RoomDatabase() {
         }
 
         /**
+         * v6 -> v7: remembering that a device went dark.
+         *
+         * Additive, like every migration before it. Nothing is backfilled: a
+         * journey that completed under v6 was never dark, and a journey still
+         * running gets its fingerprint on the next tick rather than a guess
+         * written in now.
+         */
+        private val MIGRATION_6_7 = object : androidx.room.migration.Migration(6, 7) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN wentDarkAtMs INTEGER")
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN darkReason TEXT")
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN simFingerprint TEXT")
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN simChangedAtMs INTEGER")
+            }
+        }
+
+        /**
          * No destructive fallback. A journey in progress is irreplaceable data;
          * losing it because a migration was missing would be the worst possible
          * failure mode, so a missing migration must fail loudly in testing
@@ -649,7 +686,8 @@ abstract class TripPulseDb : RoomDatabase() {
                     TripPulseDb::class.java,
                     "trippulse.db"
                 ).addMigrations(
-                    MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5, MIGRATION_5_6
+                    MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
+                    MIGRATION_5_6, MIGRATION_6_7
                 )
                     .build().also { INSTANCE = it }
             }

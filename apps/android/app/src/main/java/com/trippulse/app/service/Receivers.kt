@@ -73,3 +73,56 @@ class ActivityTransitionReceiver : BroadcastReceiver() {
         }
     }
 }
+
+/**
+ * The last thing the app does before the phone goes off.
+ *
+ * Android broadcasts ACTION_SHUTDOWN on an orderly power-off or restart and
+ * gives receivers a few seconds. That window is the only chance the app will
+ * ever have to say where it was, so this does the smallest useful thing in it:
+ * write the position and battery down, then try to push.
+ *
+ * What this deliberately does *not* claim to catch: a held power button on
+ * many devices, a pulled battery, a phone destroyed or dropped in water, or a
+ * force-stop. Those produce no broadcast at all, and pretending otherwise
+ * would be the worst kind of dishonesty in a safety app. They are covered the
+ * only way they can be -- by the family's device noticing the silence, which
+ * is domain/Darkness.kt and TripFollowService, and which keeps working
+ * precisely because it does not run here.
+ */
+class ShutdownReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        val action = intent.action ?: return
+        if (action !in SHUTDOWN_ACTIONS) return
+        val app = context.applicationContext as? TripPulseApp ?: return
+        val restart = action == Intent.ACTION_REBOOT
+
+        // goAsync buys us the broadcast's remaining budget rather than
+        // returning immediately and losing the write.
+        val pending = goAsync()
+        CoroutineScope(Dispatchers.Default).launch {
+            try {
+                if (app.graph.db.tripDao().activeTrip() != null) {
+                    app.graph.tripManager.loadActive()
+                    app.graph.tripManager.recordShutdown(restart)
+                }
+            } catch (_: Exception) {
+                // Nothing useful to do with a failure here: the system is
+                // going down either way, and throwing would only lose the
+                // part that did get written.
+            } finally {
+                pending.finish()
+            }
+        }
+    }
+
+    private companion object {
+        val SHUTDOWN_ACTIONS = setOf(
+            Intent.ACTION_SHUTDOWN,
+            Intent.ACTION_REBOOT,
+            // Several OEMs send their own instead of the standard one.
+            "android.intent.action.QUICKBOOT_POWEROFF",
+            "com.htc.intent.action.QUICKBOOT_POWEROFF"
+        )
+    }
+}
