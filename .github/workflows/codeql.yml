@@ -46,7 +46,13 @@ jobs:
         - language: actions
           build-mode: none
         - language: java-kotlin
-          build-mode: autobuild
+          # 'none' analyses the Kotlin/Java source without compiling it. The
+          # default 'autobuild' fails on this repo (a "configuration error"):
+          # the Android app lives in apps/android and needs the Android SDK and
+          # a Gradle build CodeQL's autobuilder cannot stand up from the repo
+          # root. Source-only analysis is the supported path for Android/Kotlin
+          # and still runs the security queries.
+          build-mode: none
         - language: javascript-typescript
           build-mode: none
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
