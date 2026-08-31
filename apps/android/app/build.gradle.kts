@@ -1,3 +1,5 @@
+import java.io.File
+import java.util.Base64
 import java.util.Properties
 
 plugins {
@@ -59,8 +61,8 @@ android {
             //     wider distribution; see docs/RELEASE.md.
             val secretStore = System.getenv("KEYSTORE_BASE64")
             if (!secretStore.isNullOrBlank()) {
-                val decoded = java.io.File.createTempFile("koode-release", ".jks")
-                decoded.writeBytes(java.util.Base64.getDecoder().decode(secretStore.trim()))
+                val decoded = File.createTempFile("koode-release", ".jks")
+                decoded.writeBytes(Base64.getDecoder().decode(secretStore.trim()))
                 storeFile = decoded
                 storePassword = System.getenv("KEYSTORE_PASSWORD")
                 keyAlias = System.getenv("KEY_ALIAS")
