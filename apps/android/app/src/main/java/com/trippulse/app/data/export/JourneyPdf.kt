@@ -50,7 +50,10 @@ object JourneyPdf {
      * record of their journey.
      */
     private fun markBitmap(context: Context): Bitmap? = runCatching {
-        val d = ContextCompat.getDrawable(context, R.drawable.ic_koode_mark) ?: return null
+        // The traveller's own logo mark (cropped from assets/Logo.png), so the
+        // document a family hands to the police carries the authentic brand,
+        // not a redrawn approximation of it.
+        val d = ContextCompat.getDrawable(context, R.drawable.koode_icon) ?: return null
         // Generously oversampled: the same bitmap is drawn small in the header
         // and very large as the watermark, and upscaling the second from the
         // first would show.

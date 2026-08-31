@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  The launcher icon uses the traveller's own artwork: the mark cropped from
+  assets/Logo.png (res/drawable/koode_icon) is the full-bleed background, so the
+  home-screen icon is authentically their logo, masked to whatever shape the
+  launcher uses. The foreground is left transparent (the artwork already carries
+  its own navy backdrop), and the monochrome layer keeps a clean silhouette for
+  Android 13+ themed icons.
+-->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@drawable/ic_launcher_background_gradient" />
-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
+    <background android:drawable="@drawable/koode_icon" />
+    <foreground android:drawable="@android:color/transparent" />
     <monochrome android:drawable="@drawable/ic_launcher_monochrome" />
 </adaptive-icon>
