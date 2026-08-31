@@ -85,6 +85,27 @@ distribution.** Doing so changes the signing certificate, so the first build
 after the switch will require a one-time reinstall for existing users; plan it
 for a moment when nobody is mid-journey, and tell people.
 
+## The one-time transition off the old debug builds
+
+Every release before this one (`build-8`, `build-9`, `build-10`) was built by
+the previous workflow, which signed with a **fresh debug key on every run** —
+so each of those was already a different signature from the last. The first
+release signed with the stable key here (open keystore or a private one) is
+therefore a signing change from whatever a family member last installed, and
+Android will ask them to **reinstall once**.
+
+Do that changeover deliberately:
+
+- Cut the first stable-signed release (`v6.3.1`) at a moment **nobody is
+  mid-journey**, and tell the family it is a one-time reinstall.
+- Have each phone **uninstall the old Koode, then install the new `Koode.apk`**
+  once. From that install on, every future update lands in place and keeps the
+  journey — which is the whole point of fixing the signing.
+
+This is unavoidable exactly once, because the builds it replaces never had a
+stable key to preserve. After `v6.3.1`, the reinstall never has to happen again
+unless the key is rotated (see the note at the end of option 2).
+
 ## Confirming a build is genuine
 
 Every release's notes print the signing certificate's SHA-256 fingerprint. A
