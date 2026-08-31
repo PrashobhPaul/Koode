@@ -18,6 +18,10 @@ on:
     branches: [ "main" ]
   schedule:
     - cron: '24 8 * * 6'
+  # Lets this workflow be run on demand against any branch. A PR's CodeQL run
+  # uses the *base* branch's workflow, so a change to the build mode here can
+  # only be validated by dispatching it on the feature branch before merge.
+  workflow_dispatch:
 
 jobs:
   analyze:
@@ -46,13 +50,13 @@ jobs:
         - language: actions
           build-mode: none
         - language: java-kotlin
-          # 'none' analyses the Kotlin/Java source without compiling it. The
-          # default 'autobuild' fails on this repo (a "configuration error"):
-          # the Android app lives in apps/android and needs the Android SDK and
-          # a Gradle build CodeQL's autobuilder cannot stand up from the repo
-          # root. Source-only analysis is the supported path for Android/Kotlin
-          # and still runs the security queries.
-          build-mode: none
+          # 'manual', not 'none' or 'autobuild'. build-mode: none cannot extract
+          # Kotlin ("could not process any of it using the 'none' build mode"),
+          # and autobuild can't stand up this repo's Android/Gradle app from the
+          # root without the SDK. So we drive the exact build android-build.yml
+          # already proves green (JDK 17 + Android SDK + :app:assembleDebug)
+          # under the CodeQL tracer — see the setup and build steps below.
+          build-mode: manual
         - language: javascript-typescript
           build-mode: none
         # CodeQL supports the following values keywords for 'language': 'actions', 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'rust', 'swift'
@@ -67,11 +71,24 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v7
 
-    # Add any setup steps before running the `github/codeql-action/init` action.
-    # This includes steps like installing compilers or runtimes (`actions/setup-node`
-    # or others). This is typically only required for manual builds.
-    # - name: Setup runtime (example)
-    #   uses: actions/setup-example@v1
+    # Toolchain for the manual Kotlin build (java-kotlin only). Mirrors
+    # android-build.yml so CodeQL builds the app exactly the way CI already
+    # proves green.
+    - name: Set up JDK 17
+      if: matrix.build-mode == 'manual'
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: '17'
+        cache: gradle
+
+    - name: Set up Android SDK
+      if: matrix.build-mode == 'manual'
+      uses: android-actions/setup-android@v3
+
+    - name: Make gradlew executable
+      if: matrix.build-mode == 'manual'
+      run: chmod +x apps/android/gradlew
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -92,16 +109,21 @@ jobs:
     # to build your code.
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-    - name: Run manual build steps
+    # The Kotlin/Java compile, run under the CodeQL tracer so it is extracted.
+    # Two flags are essential, not cosmetic:
+    #  - kotlin.compiler.execution.strategy=in-process keeps kotlinc INSIDE the
+    #    Gradle process the tracer is watching; the default Kotlin daemon runs
+    #    out-of-process and CodeQL sees nothing ("this run didn't build any of it").
+    #  - --no-build-cache forces a real compile instead of restoring cached
+    #    class files, so there is actual compilation for the tracer to observe.
+    - name: Build the app for CodeQL
       if: matrix.build-mode == 'manual'
-      shell: bash
-      run: |
-        echo 'If you are using a "manual" build mode for one or more of the' \
-          'languages you are analyzing, replace this with the commands to build' \
-          'your code, for example:'
-        echo '  make bootstrap'
-        echo '  make release'
-        exit 1
+      working-directory: apps/android
+      run: >-
+        ./gradlew :app:assembleDebug
+        --no-daemon --no-build-cache
+        -Dkotlin.compiler.execution.strategy=in-process
+        --stacktrace
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4

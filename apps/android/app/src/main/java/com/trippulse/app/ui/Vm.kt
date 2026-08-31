@@ -1131,23 +1131,36 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     val editable: Boolean get() = graph.tripManager.isEditable(trip.value)
 
     init {
+        // A completed journey is a record the traveller opens to look back on.
+        // Loading or analysing it must never be able to take the whole app down
+        // — a single malformed row would otherwise crash on open. Anything that
+        // fails here leaves the screen on its "working out the numbers" state
+        // rather than closing the app.
         viewModelScope.launch {
-            val t = graph.db.tripDao().byId(tripId)
-            val ev = graph.db.eventDao().allForTrip(tripId)
-            val sp = graph.db.locationDao().allForTrip(tripId)
-            val lg = graph.db.legDao().forTrip(tripId)
-            trip.value = t
-            events.value = ev
-            samples.value = sp
-            legs.value = lg
-            if (t != null) recompute(t, ev, sp, lg, graph.db.expenseDao().allForTrip(tripId))
+            try {
+                val t = graph.db.tripDao().byId(tripId)
+                val ev = graph.db.eventDao().allForTrip(tripId)
+                val sp = graph.db.locationDao().allForTrip(tripId)
+                val lg = graph.db.legDao().forTrip(tripId)
+                trip.value = t
+                events.value = ev
+                samples.value = sp
+                legs.value = lg
+                if (t != null) recompute(t, ev, sp, lg, graph.db.expenseDao().allForTrip(tripId))
+            } catch (e: Exception) {
+                android.util.Log.e("SummaryVm", "Could not load journey $tripId", e)
+            }
         }
         // Costs can still be added to a journey that is running, so the
         // dashboard follows them.
         viewModelScope.launch {
             expenses.collect { list ->
-                val t = trip.value ?: return@collect
-                recompute(t, events.value, samples.value, legs.value, list)
+                try {
+                    val t = trip.value ?: return@collect
+                    recompute(t, events.value, samples.value, legs.value, list)
+                } catch (e: Exception) {
+                    android.util.Log.e("SummaryVm", "Could not analyse journey $tripId", e)
+                }
             }
         }
     }

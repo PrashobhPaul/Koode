@@ -4,9 +4,11 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.EaseOutCubic
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,14 +38,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.trippulse.app.BuildConfig
+import com.trippulse.app.R
 import com.trippulse.app.ui.Links
 import com.trippulse.app.ui.components.KoodeCard
-import com.trippulse.app.ui.components.KoodeLockup
 import com.trippulse.app.ui.components.KoodeNightSky
 import com.trippulse.app.ui.components.SectionHeader
 import com.trippulse.app.ui.theme.KoodeTheme
@@ -80,8 +83,8 @@ fun AboutScreen(nav: NavHostController) {
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            // ---- hero: the lockup over the night sky ----
-            Box(Modifier.fillMaxWidth().height(340.dp)) {
+            // ---- hero: the traveller's own artwork ----
+            Box(Modifier.fillMaxWidth().height(360.dp)) {
                 KoodeNightSky(Modifier.fillMaxSize())
                 // back affordance, over the hero
                 BackButton(
@@ -91,14 +94,17 @@ fun AboutScreen(nav: NavHostController) {
                         .statusBarsPadding()
                         .padding(Spacing.md)
                 )
-                KoodeLockup(
+                // The real Koode logo (assets/Logo.png), the full composition its
+                // maker drew — mark, wordmark and all — shown as-is.
+                Image(
+                    painter = painterResource(R.drawable.koode_logo),
+                    contentDescription = "Koode",
                     modifier = Modifier
                         .align(Alignment.Center)
+                        .size(260.dp)
+                        .clip(RoundedCornerShape(36.dp))
                         .alpha(heroAlpha)
-                        .scale(heroScale),
-                    glyphSize = 116.dp,
-                    wordmarkSize = 44.sp,
-                    showTagline = true
+                        .scale(heroScale)
                 )
             }
 
