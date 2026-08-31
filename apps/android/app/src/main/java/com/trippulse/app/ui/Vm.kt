@@ -193,6 +193,41 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
  * is a one-leg list, so there is no "simple mode" and "advanced mode" — adding
  * a second leg is just adding a row.
  */
+/**
+ * A place the create screen can offer as a tap rather than a typed search.
+ *
+ * [saved] separates a place someone named on purpose from one merely inferred
+ * from where they have been, because the two deserve different prominence and
+ * different wording.
+ */
+data class PlaceSuggestion(
+    val name: String,
+    val point: GeoPoint,
+    val saved: Boolean
+) {
+    /**
+     * Whether this is, for a traveller's purposes, the same spot.
+     *
+     * Two fixes of the same doorway are never bit-identical, so exact
+     * comparison would offer "Home" three times under three names.
+     */
+    fun isSamePlace(other: GeoPoint): Boolean =
+        kotlin.math.abs(point.lat - other.lat) < SAME_PLACE_DEGREES &&
+            kotlin.math.abs(point.lng - other.lng) < SAME_PLACE_DEGREES
+}
+
+/** Roughly 150 metres — close enough to be the same doorway. */
+private const val SAME_PLACE_DEGREES = 0.0015
+
+/** How far back to look for places, and how many to offer. */
+private const val RECENT_TRIPS = 12
+private const val MAX_SUGGESTIONS = 10
+
+/** Labels a journey gets when nobody named its ends; never worth suggesting. */
+private val PLACEHOLDER_NAMES = setOf(
+    "Start point", "Destination", "Pinned start", "Pinned destination", "En route"
+)
+
 data class LegDraft(
     val mode: String = "CAR",
     val fromText: String = "",
@@ -215,6 +250,8 @@ data class LegDraft(
 }
 
 class CreateVm(private val graph: AppGraph) : ViewModel() {
+
+    init { loadSuggestions() }
 
     var busy = MutableStateFlow(false); private set
 
@@ -250,6 +287,50 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     val savedPlaces: StateFlow<List<SavedPlaceEntity>> =
         graph.db.savedPlaceDao().allFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    /**
+     * Places worth offering without being asked: the ones deliberately saved,
+     * then the ones recently travelled between.
+     *
+     * Almost nobody's next journey starts somewhere they have never been. The
+     * hard part of the create screen was always typing a place name and hoping
+     * the search agreed with you, and most of the time the answer was already
+     * in the history -- so it is offered as a tap instead.
+     *
+     * Saved places come first because they were named on purpose, and a
+     * recently-travelled point that is already a saved place is dropped rather
+     * than shown twice under two names.
+     */
+    val suggestedPlaces = MutableStateFlow<List<PlaceSuggestion>>(emptyList())
+
+    private fun loadSuggestions() = viewModelScope.launch {
+        val saved = runCatching { graph.db.savedPlaceDao().all() }.getOrNull().orEmpty()
+        val out = ArrayList<PlaceSuggestion>()
+        saved.forEach { out.add(PlaceSuggestion(it.name, GeoPoint(it.lat, it.lng), saved = true)) }
+
+        val trips = runCatching { graph.db.tripDao().recent(RECENT_TRIPS) }.getOrNull().orEmpty()
+        for (t in trips) {
+            for ((name, point) in listOf(
+                t.originName to GeoPoint(t.originLat, t.originLng),
+                t.destName to GeoPoint(t.destLat, t.destLng)
+            )) {
+                if (name.isBlank()) continue
+                // Placeholder labels from a journey that never got a real name
+                // are worse than no suggestion at all.
+                if (name in PLACEHOLDER_NAMES) continue
+                if (out.any { it.isSamePlace(point) }) continue
+                out.add(PlaceSuggestion(name, point, saved = false))
+                if (out.size >= MAX_SUGGESTIONS) break
+            }
+            if (out.size >= MAX_SUGGESTIONS) break
+        }
+        suggestedPlaces.value = out
+    }
+
+    fun useSuggestion(index: Int, place: PlaceSuggestion, asStart: Boolean) {
+        if (asStart) updateLeg(index) { it.copy(from = place.point, fromText = place.name) }
+        else updateLeg(index) { it.copy(to = place.point, toText = place.name) }
+    }
 
     // ---- leg editing ------------------------------------------------------
 

@@ -2,15 +2,18 @@ package com.trippulse.app.data.export
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import androidx.core.content.FileProvider
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
+import com.trippulse.app.R
 import com.trippulse.app.BuildConfig
 import com.trippulse.app.core.TimeFmt
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +35,30 @@ import java.io.FileOutputStream
 object JourneyPdf {
 
     // ---- page geometry (A4 at 72dpi, the PdfDocument convention) ----
+    /** Header mark, in points. Matches the wordmark's cap height beside it. */
+    private const val MARK_SIZE = 22f
+
+    /** Watermark size: large enough to be unmistakable, not so large it tiles. */
+    private const val WATERMARK_SIZE = 320f
+
+    /**
+     * Rasterises the app's icon for use on the page.
+     *
+     * Rendered once per document and reused on every page. A failure here is
+     * never fatal -- the caller falls back to the wordmark -- because a
+     * missing logo must not be the reason a traveller cannot export the
+     * record of their journey.
+     */
+    private fun markBitmap(context: Context): Bitmap? = runCatching {
+        val d = ContextCompat.getDrawable(context, R.drawable.ic_koode_mark) ?: return null
+        // Generously oversampled: the same bitmap is drawn small in the header
+        // and very large as the watermark, and upscaling the second from the
+        // first would show.
+        d.toBitmap(MARK_RASTER_PX, MARK_RASTER_PX)
+    }.getOrNull()
+
+    private const val MARK_RASTER_PX = 512
+
     private const val PAGE_W = 595
     private const val PAGE_H = 842
     private const val MARGIN = 44f
@@ -77,7 +104,7 @@ object JourneyPdf {
      */
     suspend fun write(context: Context, doc: Document): File = withContext(Dispatchers.IO) {
         val pdf = PdfDocument()
-        val painter = Painter()
+        val painter = Painter(markBitmap(context))
         var pageNumber = 1
         var page = pdf.startPage(pageInfo(pageNumber))
         var canvas = page.canvas
@@ -151,7 +178,7 @@ object JourneyPdf {
      * All drawing lives here so page breaks above stay readable. Paints are
      * allocated once per document rather than per row.
      */
-    private class Painter {
+    private class Painter(private val mark: Bitmap?) {
         private val title = Paint().apply {
             isAntiAlias = true; color = INK; textSize = 22f
             typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
@@ -186,6 +213,9 @@ object JourneyPdf {
             textSize = 96f
             typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
         }
+        private val imagePaint = Paint().apply { isAntiAlias = true; isFilterBitmap = true }
+        /** Faint enough to read straight through, present enough to be seen. */
+        private val watermarkPaint = Paint(imagePaint).apply { alpha = 18 }
 
         fun drawHeader(canvas: Canvas, doc: Document, first: Boolean): Float {
             drawWatermark(canvas)
@@ -209,23 +239,51 @@ object JourneyPdf {
             return y + LINE
         }
 
-        /** The Koode mark: two travelling companions, drawn not imported. */
+        /**
+         * The Koode mark, rendered from the app's own icon asset.
+         *
+         * This used to be redrawn here in Canvas calls, which meant the
+         * document someone was sent carried a slightly different logo from the
+         * one on their home screen. Rendering the drawable keeps them the same
+         * thing by construction: change the asset and every surface follows.
+         */
         private fun drawMark(canvas: Canvas, x: Float, y: Float) {
-            canvas.drawCircle(x + 7f, y - 12f, 6f, accent)
-            canvas.drawCircle(x + 17f, y - 12f, 6f, Paint(accent).apply { color = INK })
-            val path = Path().apply {
-                moveTo(x, y + 2f)
-                quadTo(x + 12f, y - 6f, x + 24f, y + 2f)
-            }
-            canvas.drawPath(path, Paint(accent).apply {
-                style = Paint.Style.STROKE; strokeWidth = 2.4f; isAntiAlias = true
-            })
+            val bmp = mark ?: return
+            val size = MARK_SIZE
+            canvas.drawBitmap(
+                bmp,
+                null,
+                RectF(x, y - size, x + size, y),
+                imagePaint
+            )
         }
 
+        /**
+         * The watermark: the mark itself, large and faint, behind the page.
+         *
+         * A word set diagonally across a document is the conventional answer
+         * and the weaker one -- it reads as a stamp applied to someone else's
+         * paper. The mark at low opacity reads as the paper being ours.
+         */
         private fun drawWatermark(canvas: Canvas) {
             canvas.save()
             canvas.rotate(-32f, PAGE_W / 2f, PAGE_H / 2f)
-            canvas.drawText("KOODE", 92f, PAGE_H / 2f + 30f, watermark)
+            val bmp = mark
+            if (bmp != null) {
+                val size = WATERMARK_SIZE
+                val cx = PAGE_W / 2f
+                val cy = PAGE_H / 2f
+                canvas.drawBitmap(
+                    bmp,
+                    null,
+                    RectF(cx - size / 2, cy - size / 2, cx + size / 2, cy + size / 2),
+                    watermarkPaint
+                )
+            } else {
+                // The asset failed to load; a page with no watermark at all
+                // would look like a different document, so fall back to type.
+                canvas.drawText("KOODE", 92f, PAGE_H / 2f + 30f, watermark)
+            }
             canvas.restore()
         }
 
