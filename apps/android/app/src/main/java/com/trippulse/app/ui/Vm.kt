@@ -38,8 +38,6 @@ import com.trippulse.app.di.AppGraph
 import com.trippulse.app.domain.Freshness
 import com.trippulse.app.domain.Darkness
 import com.trippulse.app.domain.DarkAssessment
-import com.trippulse.app.data.export.JourneyDocuments
-import com.trippulse.app.data.export.JourneyPdf
 import com.trippulse.app.domain.GeoPoint
 import com.trippulse.app.domain.JourneyAnalytics
 import com.trippulse.app.domain.Measures

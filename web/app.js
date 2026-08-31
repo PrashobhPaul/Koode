@@ -132,6 +132,9 @@
     SOS_ACTIVATED: ['🚨', 'SOS activated'],
     SOS_RESOLVED: ['✅', 'SOS resolved'],
     BATTERY_LOW: ['🔋', 'Phone battery low'],
+    DEVICE_SHUTDOWN: ['🔌', 'Phone switched off'],
+    DEVICE_BACK_ONLINE: ['🔆', 'Phone back online'],
+    SIM_CHANGED: ['⚠️', 'A different SIM is in this phone'],
     BOARDED: ['🎫', 'Boarded'],
     TRANSIT_HALTED: ['⏸', 'Halted'],
     TRANSIT_RESUMED: ['▶', 'Moving again'],
@@ -281,6 +284,92 @@
     return 'quiet';
   }
 
+  // ---------------------------------------------------------------------
+  // Going dark
+  //
+  // A deliberate mirror of domain/Darkness.kt. The thresholds and the wording
+  // are duplicated rather than shared because this page has no build step and
+  // no dependency on the app — but they must not drift, so any change to one
+  // belongs in the other in the same commit.
+  //
+  // The constraint is the same here as there: a powered-off phone cannot
+  // report anything. This runs in the family's browser, which is exactly why
+  // it still works when the traveller's phone does not.
+  // ---------------------------------------------------------------------
+
+  var FLAT_BATTERY_PCT = 15;
+  var DARK_GRACE_MS = 12 * 60 * 1000;
+  var DARK_UNEXPLAINED_MS = 45 * 60 * 1000;
+
+  function assessDarkness(state, closed) {
+    var quiet = { dark: false, reason: 'NONE', concerning: false, since: null, elapsed: 0, battery: null };
+    if (!state || closed) return quiet;
+
+    var battery = typeof state.battery === 'number' ? state.battery : null;
+    var flat = battery !== null && battery <= FLAT_BATTERY_PCT;
+    var now = Date.now();
+
+    if (state.simChangedAt) {
+      return {
+        dark: true, reason: 'SIM_SWAPPED', concerning: true,
+        since: state.simChangedAt, elapsed: now - state.simChangedAt, battery: battery
+      };
+    }
+    // An explicit goodbye outranks the clock: we have been told the device is
+    // off, so there is nothing to wait out.
+    if (state.wentDarkAt) {
+      return {
+        dark: true,
+        reason: flat ? 'BATTERY_DIED' : 'POWERED_OFF',
+        concerning: !flat,
+        since: state.wentDarkAt, elapsed: now - state.wentDarkAt, battery: battery
+      };
+    }
+
+    var last = state.lastLocationAt || state.updatedAt;
+    if (!last) return quiet;
+    var elapsed = now - last;
+    if (elapsed < DARK_GRACE_MS) return quiet;
+
+    var threshold = state.deviationActive ? DARK_GRACE_MS : DARK_UNEXPLAINED_MS;
+    return {
+      dark: true,
+      reason: flat ? 'BATTERY_DIED' : 'SIGNAL_LOST',
+      concerning: !flat && elapsed >= threshold,
+      since: last, elapsed: elapsed, battery: battery
+    };
+  }
+
+  function darkHeadline(a, who) {
+    if (!a.dark) return null;
+    if (a.reason === 'SIM_SWAPPED') return who + "'s phone has a different SIM in it";
+    if (a.reason === 'BATTERY_DIED') return who + "'s phone ran out of battery";
+    if (a.reason === 'POWERED_OFF') {
+      return a.concerning
+        ? who + "'s phone was switched off with battery remaining"
+        : who + "'s phone was switched off";
+    }
+    return a.concerning ? 'No word from ' + who : who + "'s phone is out of signal";
+  }
+
+  function darkDetail(a) {
+    if (a.reason === 'BATTERY_DIED') {
+      return 'The battery was at ' + a.battery + '% at the last update. ' +
+        'The last known position is saved.';
+    }
+    if (a.reason === 'POWERED_OFF') {
+      return 'The phone reported switching off' +
+        (a.battery !== null ? ' with ' + a.battery + '% battery left' : '') +
+        '. The last known position is saved.';
+    }
+    if (a.reason === 'SIM_SWAPPED') {
+      return 'A different SIM is in the phone. Koode keeps reporting over any ' +
+        'network it can reach, so updates may continue. The last known position is saved.';
+    }
+    return 'The phone has not been able to reach us. It may simply be out of ' +
+      'coverage. The last known position is saved.';
+  }
+
   function endedByOwner(state, events) {
     if (state && state.endedByOwner === true) return true;
     if (state && state.status === 'COMPLETED') return true;
@@ -306,6 +395,9 @@
     headlineEl.className = 'headline ok';
     dot.className = 'dot';
 
+    var who = owner || 'They';
+    var dark = assessDarkness(state, ended);
+
     var headline;
     if (sos) {
       headline = 'SOS active';
@@ -315,6 +407,12 @@
       headline = 'Journey ended safely';
     } else if (!state) {
       headline = 'Getting the first update…';
+    } else if (dark.dark) {
+      // Says which kind of silence this is, because "switched off with 74%
+      // battery" and "ran out of battery" are different things to be told.
+      headline = darkHeadline(dark, who);
+      card.className = 'card hero ' + (dark.concerning ? 'danger' : 'warn');
+      headlineEl.className = 'headline ' + (dark.concerning ? 'danger' : 'warn');
     } else if (freshness === 'quiet') {
       headline = "Haven't heard for a while";
       card.className = 'card hero warn';
@@ -333,7 +431,16 @@
       if (typeof state.battery === 'number' && state.battery <= 25) {
         notes.push("Traveller's phone battery is at " + state.battery + '%');
       }
-      if (freshness === 'quiet') {
+      if (dark.dark) {
+        notes.push(darkDetail(dark));
+        if (dark.since) notes.push('Last heard from ' + ago(dark.since) + '.');
+        if (dark.concerning) {
+          notes.push(
+            'Koode is still watching and will show anything new the moment it ' +
+            'arrives. This journey stays open until they close it themselves.'
+          );
+        }
+      } else if (freshness === 'quiet') {
         notes.push('This is about the signal, not about them — the journey is still open.');
       }
       notes.forEach(function (n) {
