@@ -1,46 +1,106 @@
-# Release & Play Store Compliance
+# Releasing Koode
 
-TripPulse's core function needs continuous location while the driver travels, which Google Play treats as sensitive. Compliance is designed into the app; this is the checklist to keep it compliant through submission.
+A release is the APK a family installs and updates from. Getting it wrong in
+one specific way — a changed signing key — forces a reinstall, and a reinstall
+mid-journey loses the journey. So the whole of this document is really about
+one thing: **every Koode build must be signed with the same key.**
 
-## Foreground service (location)
+## How a release happens
 
-- The manifest declares the tracking service with `android:foregroundServiceType="location"` and the app requests `FOREGROUND_SERVICE` and `FOREGROUND_SERVICE_LOCATION` (Android 14+).
-- Tracking starts from an **explicit user action** (the driver taps **Start trip** while the app is visible) — never silently from the background. Android forbids starting a location foreground service from the background, and the boot receiver respects this (it only auto-restarts when background location is granted, otherwise it posts a resume notification).
-- The foreground notification clearly states the trip is being tracked, and the service stops (removing the notification and ending location updates) when the trip completes — no accidental tracking outside a trip.
+Push a version tag:
 
-## Background location
+```
+git tag v6.4.0
+git push origin v6.4.0
+```
 
-- `ACCESS_BACKGROUND_LOCATION` is used only to support restart-after-reboot and lock-screen tracking during an active trip. Because a location foreground service counts as "in use", core tracking works with while-in-use location; background permission is requested with a clear rationale and is not required to start a trip.
-- For the Play listing: provide the **prominent in-app disclosure**, **strong core-functionality justification** (active private trip tracking that the user starts and shares), the **Data safety** form, and a **privacy policy**. Record a short demo of the start-trip flow for review.
+That fires `.github/workflows/release-apk.yml`, which builds the signed
+release APK, runs the unit tests, and publishes a GitHub Release with
+`Koode.apk` attached. The in-app updater and the README both point at
+`releases/latest/download/Koode.apk`, so a new tag is all it takes to offer
+every existing user the update.
 
-## Permissions (and why)
+Pushing to `main` does **not** cut a release. A release is deliberate.
 
-| Permission | Why |
+## Signing — the part that matters
+
+Android will only install an update over an existing app if the new APK is
+signed with the **same key** as the installed one. A different key is not an
+update; it is a different app, and installing it means uninstalling the old
+one first — losing the Room database, which for Koode means losing a live
+journey. Requirement: an update must never cost a traveller their journey. So
+the signing key must be stable across every build, forever.
+
+There are two ways this repo achieves that, checked in order at build time.
+
+### 1. A private release key (preferred for wide distribution)
+
+Set four repository secrets and the build uses them:
+
+| Secret | What it is |
 |---|---|
-| `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` | Track the journey during an active trip |
-| `ACCESS_BACKGROUND_LOCATION` | Continue during an active trip when backgrounded / after reboot |
-| `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_LOCATION` | Run the tracking service |
-| `POST_NOTIFICATIONS` | Foreground + arrival/SOS notifications (Android 13+) |
-| `ACTIVITY_RECOGNITION` | Corroborating in-vehicle hint for stop detection (optional) |
-| `INTERNET`, `ACCESS_NETWORK_STATE` | Sync + connectivity awareness |
-| `RECEIVE_BOOT_COMPLETED` | Resume an active trip after reboot |
+| `KEYSTORE_BASE64` | the keystore file, base64-encoded |
+| `KEYSTORE_PASSWORD` | its store password |
+| `KEY_ALIAS` | the key alias |
+| `KEY_PASSWORD` | the key password |
 
-Permissions are requested progressively with explanations; nothing unnecessary is requested.
+To create one and load the secrets:
 
-## Data safety / privacy posture
+```
+keytool -genkeypair -v -keystore koode-release.jks \
+  -alias koode -keyalg RSA -keysize 2048 -validity 10950 \
+  -storepass 'CHOOSE-A-STRONG-ONE' -keypass 'CHOOSE-A-STRONG-ONE' \
+  -dname "CN=Koode, O=Koode, C=IN"
 
-- Trip credentials are ephemeral and revoked after each trip; viewer access is capability-scoped and expiry-gated.
-- Raw location retention is minimized by default (Cloud Functions purge live state + raw location on expiry; the event log is retained per policy).
-- Sensitive notes (e.g. medicine) are stored locally, published to the cloud only as a marker, and kept out of logs/analytics/notification previews.
-- **Do not** market the app as a medical or safety-guarantee system. Positioning: *private live journey sharing with intelligent break and wellbeing tracking.*
+base64 -w0 koode-release.jks > koode-release.b64
+# then, in the repo's Settings → Secrets and variables → Actions:
+#   KEYSTORE_BASE64  = contents of koode-release.b64
+#   KEYSTORE_PASSWORD, KEY_ALIAS, KEY_PASSWORD = the values above
+```
 
-## Release checklist
+Keep `koode-release.jks` somewhere safe and private. If it is ever lost, no
+future build can update an existing install — everyone has to reinstall once.
+The `.gitignore` blocks `*.jks` precisely so a real key is never committed by
+accident.
 
-1. Bump `versionCode` / `versionName` in `apps/android/app/build.gradle.kts`.
-2. Confirm `apps/android/supabase.properties` is filled in (cloud mode).
+### 2. The committed open keystore (zero-setup default)
 
-3. Configure a real **release signing** config (the debug build currently signs release with the debug key for convenience — replace before publishing).
-4. Confirm the Supabase schema is applied (`docs/SUPABASE_SETUP.md`).
-5. Build the release artifact: `./gradlew :app:bundleRelease` (AAB for Play).
-6. Complete the Play Console **Data safety** form and **location permissions** declaration; attach the privacy policy and the prominent-disclosure demo.
-7. Ship to internal testing (Release 0.1) → field test (0.2) → fixes (0.3) → production (1.0).
+If those secrets are not set, the build signs with
+`apps/android/keystore/koode-open.jks`, which **is** committed to the repo,
+with a password (`koode-open`) that is written right here in the open.
+
+This looks alarming and is deliberate. That key protects nothing — anyone can
+read it — and it is not trying to. Its only job is signing *continuity*: every
+build, on every machine, is signed identically, so an in-place update always
+works. It is exactly the trade-off F-Droid makes for the thousands of apps it
+signs: for software you sideload from a source you already trust, a stable
+public key that preserves your data beats a secret key you might set up wrong
+or lose. The cost is that someone could sign a malicious "Koode" update with
+the same key — but they would still have to get a family member to install it
+from outside the official release page, which is the same trust boundary the
+whole sideload model already rests on.
+
+**Rotate to a private key (option 1) before any wider or Play Store
+distribution.** Doing so changes the signing certificate, so the first build
+after the switch will require a one-time reinstall for existing users; plan it
+for a moment when nobody is mid-journey, and tell people.
+
+## Confirming a build is genuine
+
+Every release's notes print the signing certificate's SHA-256 fingerprint. A
+careful user can compare it against their installed copy
+(`Settings → Apps → Koode`, or `apksigner verify --print-certs Koode.apk`) to
+confirm an update came from the same key as their install. The current open
+keystore's fingerprint is recorded in the release notes of the first build
+that used it.
+
+## The build itself
+
+- `assembleRelease`, **minification off**. R8/ProGuard would need a complete
+  set of keep rules for Room, Compose and this app's reflection, and a missing
+  rule is a crash that appears only on a real install. For a sideloaded safety
+  app, size is not the constraint; not crashing is. If minification is ever
+  turned on, it must be proven on a physical device against the checklist in
+  `docs/DEVICE_TESTING.md` first.
+- The web viewer is published separately by `.github/workflows/pages.yml` on
+  any change under `web/`.
