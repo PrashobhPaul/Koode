@@ -8,6 +8,7 @@ import com.trippulse.app.data.local.ExpenseEntity
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.domain.DarkAssessment
 import com.trippulse.app.domain.Darkness
+import com.trippulse.app.core.DeviceDossier
 import com.trippulse.app.domain.EventNarrator
 import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.JourneyAnalytics
@@ -79,6 +80,8 @@ object JourneyDocuments {
         val fixAtMs: Long?,
         val simChangedAtMs: Long?,
         val assessment: DarkAssessment,
+        /** The forensic device dossier — see core/DeviceDossier. */
+        val device: Map<String, Any?> = emptyMap(),
         /**
          * The run-up, already turned into sentences by the caller.
          *
@@ -191,6 +194,8 @@ object JourneyDocuments {
             )
         )
 
+        val device = deviceSection(input.device)
+
         return JourneyPdf.Document(
             title = "Last known position",
             subtitle = "$who — ${input.originName} to ${input.destName}",
@@ -199,7 +204,7 @@ object JourneyDocuments {
                 "Every time in this document is the phone's own local time.",
                 "Positions come from the device's satellite and network fixes."
             ),
-            sections = listOf(position, circumstances, journey, leadUp),
+            sections = listOfNotNull(position, circumstances, device, journey, leadUp),
             fileLabel = "koode-last-known-position"
         )
     }
@@ -222,6 +227,48 @@ object JourneyDocuments {
         val payload = (e["payload"] as? Map<String, Any?>).orEmpty()
         val (_, label) = EventNarrator.line(type, payload)
         Moment(at, label)
+    }
+
+    /**
+     * The device section: everything a police or cyber report can use to
+     * identify the phone, and an explicit line for each thing Android will not
+     * let an ordinary app read.
+     *
+     * The absences are printed rather than omitted, because a report that
+     * silently lacks an IMEI looks like an oversight; one that says "IMEI: not
+     * available — Android 10+ blocks it for non-system apps" tells the reader
+     * it was sought and why it is missing. Returns null only when there is no
+     * dossier at all.
+     */
+    private fun deviceSection(device: Map<String, Any?>): JourneyPdf.Section? {
+        if (device.isEmpty()) return null
+        fun str(k: String) = (device[k] as? String)?.takeIf { it.isNotBlank() }
+        fun num(k: String) = (device[k] as? Number)?.toString()
+
+        return JourneyPdf.Section(
+            title = "The device",
+            header = null,
+            rows = buildList {
+                add(JourneyPdf.Row("", "Phone", DeviceDossier.describe(device)))
+                str("model")?.let { add(JourneyPdf.Row("", "Model number", it)) }
+                num("androidSdk")?.let {
+                    val rel = str("androidRelease")
+                    add(JourneyPdf.Row("", "Android", (rel?.let { r -> "$r " } ?: "") + "(API $it)"))
+                }
+                str("securityPatch")?.let { add(JourneyPdf.Row("", "Security patch", it)) }
+                str("publicIp")?.let { add(JourneyPdf.Row("", "Public IP at last contact", it)) }
+                str("localIp")?.let { add(JourneyPdf.Row("", "Local IP", it)) }
+                str("androidId")?.let { add(JourneyPdf.Row("", "Android ID", it)) }
+                str("installId")?.let { add(JourneyPdf.Row("", "Koode install ID", it)) }
+                // The honest absences, always shown.
+                add(JourneyPdf.Row("", "IMEI", str("imeiNote") ?: "Not available on this device"))
+                add(JourneyPdf.Row("", "Hardware MAC", str("macNote") ?: "Not available on this device"))
+            },
+            note = "Identifiers Android permits an ordinary app to read. IMEI and " +
+                "the hardware MAC are withheld by the operating system itself, not " +
+                "by Koode; a subpoena to the carrier or manufacturer, using the " +
+                "public IP and the times above, is how those are recovered."
+        )
     }
 
     /** How much of the run-up to print. Enough to see a pattern, few enough to read. */

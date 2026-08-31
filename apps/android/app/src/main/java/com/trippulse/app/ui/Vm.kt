@@ -925,6 +925,8 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                     fixAtMs = ln("lastLocationAt"),
                     simChangedAtMs = ln("simChangedAt"),
                     assessment = darkness.value,
+                    @Suppress("UNCHECKED_CAST")
+                    device = (s.meta?.get("device") as? Map<String, Any?>).orEmpty(),
                     events = JourneyDocuments.momentsFromCloud(s.events)
                 )
             )

@@ -33,6 +33,12 @@ class BootCompletedReceiver : BroadcastReceiver() {
                         ContextCompat.checkSelfPermission(
                             context, Manifest.permission.ACCESS_BACKGROUND_LOCATION
                         ) == PackageManager.PERMISSION_GRANTED
+                    // A reboot is the most forensically interesting moment there
+                    // is: a thief who powers a stolen phone back on and joins
+                    // their own network hands us a fresh public IP. So the
+                    // dossier is re-captured here regardless of whether tracking
+                    // can resume.
+                    app.graph.tripManager.refreshDossierForActiveTrip()
                     if (bgGranted) {
                         TripTrackingService.start(context)
                     } else {

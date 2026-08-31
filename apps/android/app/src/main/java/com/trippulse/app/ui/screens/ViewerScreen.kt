@@ -47,6 +47,7 @@ import com.trippulse.app.domain.JourneyStatus
 import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.ViewerVm
 import com.trippulse.app.data.export.JourneyPdf
+import com.trippulse.app.ui.components.SecondaryButton
 import com.trippulse.app.ui.components.DetailRow
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.AdaptiveContainer
@@ -386,6 +387,39 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 }
                 TimelineList(timeline, now)
             }
+
+            // ---- the safety report, always available while live ----
+            //
+            // Not gated on the phone having gone dark. The whole point is that
+            // it is ready *before* the worst case, so a family never has to
+            // wish they had generated it while the phone was still on. The dark
+            // card above offers the same thing more loudly when it matters; this
+            // is the quiet, always-there version.
+            if (!ui.endedByOwner && ui.state != null) {
+                Spacer(Modifier.height(Spacing.md))
+                SecondaryButton(
+                    if (reportBusy) "Preparing…" else "Download safety report",
+                    {
+                        vm.buildLastKnownReport { file ->
+                            if (file != null) {
+                                context.startActivity(
+                                    JourneyPdf.shareIntent(context, file, "Koode safety report")
+                                )
+                            }
+                        }
+                    },
+                    enabled = !reportBusy,
+                    leading = "🛟"
+                )
+                Text(
+                    "A PDF with the last known position, the device details and the " +
+                        "timeline — everything police or a cyber cell would ask for. " +
+                        "Keep it to hand; you will not have to make it in a hurry.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(top = Spacing.xs)
+                )
+            }
+
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }

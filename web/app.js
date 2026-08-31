@@ -285,6 +285,98 @@
   }
 
   // ---------------------------------------------------------------------
+  // The safety report
+  //
+  // A print-friendly page the browser can save as PDF — the web has no PDF
+  // library here and needs none. Deliberately the same content and the same
+  // wording as the app's PDF (data/export/JourneyDocuments.lastKnownPosition),
+  // because a family may hold one from a phone and one from a browser and the
+  // two must not disagree.
+  // ---------------------------------------------------------------------
+
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c];
+    });
+  }
+
+  function reportRow(label, value) {
+    if (value == null || value === '') return '';
+    return '<tr><td>' + esc(label) + '</td><td>' + esc(value) + '</td></tr>';
+  }
+
+  function openSafetyReport() {
+    var meta = latest.meta || {};
+    var state = latest.state || {};
+    var device = meta.device || {};
+    var who = meta.ownerName || 'The traveller';
+    var dark = assessDarkness(state, endedByOwner(state, latest.events));
+
+    var lat = state.lat, lng = state.lng;
+    var pos = (lat != null && lng != null)
+      ? reportRow('Latitude', lat.toFixed(6)) +
+        reportRow('Longitude', lng.toFixed(6)) +
+        reportRow('Coordinates', lat.toFixed(6) + ', ' + lng.toFixed(6)) +
+        reportRow('Accurate to within', state.accuracy != null ? Math.round(state.accuracy) + ' m' : null) +
+        reportRow('Recorded at', state.lastLocationAt ? new Date(state.lastLocationAt).toLocaleString() : null)
+      : '<tr><td>Position</td><td>No location was recorded</td></tr>';
+
+    var circumstances =
+      reportRow('Assessment', dark.dark ? darkHeadline(dark, who) : who + ' was reporting normally') +
+      reportRow('Battery at last report', state.battery != null ? state.battery + '%' : null) +
+      reportRow('Last contact', (state.lastLocationAt || state.updatedAt)
+        ? new Date(state.lastLocationAt || state.updatedAt).toLocaleString() : null) +
+      reportRow('SIM changed at', state.simChangedAt ? new Date(state.simChangedAt).toLocaleString() : null);
+
+    var dev =
+      reportRow('Phone', [device.manufacturer, device.model].filter(Boolean).join(' ')) +
+      reportRow('Model number', device.model) +
+      reportRow('Android', device.androidRelease ? device.androidRelease + ' (API ' + device.androidSdk + ')' : null) +
+      reportRow('Security patch', device.securityPatch) +
+      reportRow('Public IP at last contact', device.publicIp) +
+      reportRow('Local IP', device.localIp) +
+      reportRow('Android ID', device.androidId) +
+      reportRow('Koode install ID', device.installId) +
+      reportRow('IMEI', device.imeiNote || 'Not available on this device') +
+      reportRow('Hardware MAC', device.macNote || 'Not available on this device');
+
+    var lines = (latest.events || [])
+      .slice().sort(function (a, b) { return (b.eventTime || 0) - (a.eventTime || 0); })
+      .slice(0, 40).reverse()
+      .map(function (e) {
+        var d = describeEvent(e);
+        return '<tr><td>' + esc(new Date(e.eventTime).toLocaleString()) + '</td><td>' +
+          esc(d.emoji + ' ' + d.label) + '</td></tr>';
+      }).join('');
+
+    var html =
+      '<!doctype html><html><head><meta charset="utf-8"><title>Koode safety report</title>' +
+      '<style>body{font:14px system-ui,sans-serif;margin:32px;color:#111}' +
+      'h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:24px 0 6px;border-bottom:1px solid #ccc;padding-bottom:3px}' +
+      '.sub{color:#555;margin:0 0 16px}table{border-collapse:collapse;width:100%}' +
+      'td{padding:4px 8px;vertical-align:top}td:first-child{color:#555;width:40%}' +
+      '.note{color:#555;font-size:12px;margin-top:6px}@media print{button{display:none}}</style></head><body>' +
+      '<h1>Last known position</h1>' +
+      '<p class="sub">' + esc(who) + ' — ' + esc(meta.origin || 'Start') + ' to ' + esc(meta.destination || 'Destination') + '</p>' +
+      '<p class="sub">Prepared ' + new Date().toLocaleString() + '. Times are the phone\'s local time.</p>' +
+      '<h2>Last known position</h2><table>' + pos + '</table>' +
+      '<h2>How reporting stopped</h2><table>' + circumstances + '</table>' +
+      '<p class="note">' + esc(darkDetail(dark)) + '</p>' +
+      '<h2>The device</h2><table>' + dev + '</table>' +
+      '<p class="note">Identifiers Android permits an ordinary app to read. IMEI and the hardware ' +
+      'MAC are withheld by the operating system, not by Koode; a subpoena to the carrier or ' +
+      'manufacturer, using the public IP and the times above, is how those are recovered.</p>' +
+      '<h2>The hours before</h2><table>' + lines + '</table>' +
+      '<p style="margin-top:24px"><button onclick="window.print()">Save as PDF / print</button></p>' +
+      '</body></html>';
+
+    var w = window.open('', '_blank');
+    if (!w) { alert('Please allow pop-ups to open the safety report.'); return; }
+    w.document.write(html);
+    w.document.close();
+  }
+
+  // ---------------------------------------------------------------------
   // Going dark
   //
   // A deliberate mirror of domain/Darkness.kt. The thresholds and the wording
@@ -573,6 +665,7 @@
     });
     $('play').addEventListener('click', togglePlayback);
     $('speed').addEventListener('click', cycleSpeed);
+    $('report').addEventListener('click', openSafetyReport);
 
     $('watch').addEventListener('click', async function () {
       hide($('signin-error'));

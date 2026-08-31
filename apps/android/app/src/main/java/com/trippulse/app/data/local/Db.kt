@@ -75,7 +75,17 @@ data class ActiveTripEntity(
     /** Carrier fingerprint when the journey began — see core/DeviceIdentity. */
     val simFingerprint: String? = null,
     /** When a different SIM was first noticed, if one ever was. */
-    val simChangedAtMs: Long? = null
+    val simChangedAtMs: Long? = null,
+    /**
+     * The forensic device dossier as JSON — see core/DeviceDossier.
+     *
+     * Captured at the journey's start and re-captured on boot, and pushed to
+     * the cloud with the rest of the journey, so it is in the family's hands
+     * even if the phone never comes back. It holds everything a report can
+     * lawfully carry: make and model, Android version, the stable identifiers
+     * Android still permits, the carrier, and the public IP at capture.
+     */
+    val deviceJson: String? = null
 )
 
 /**
@@ -524,7 +534,7 @@ interface ViewerDao {
         ExpenseEntity::class,
         TripLegEntity::class
     ],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -674,6 +684,18 @@ abstract class TripPulseDb : RoomDatabase() {
         }
 
         /**
+         * v7 -> v8: the forensic device dossier.
+         *
+         * Additive, no backfill: a journey created before v8 was never carrying
+         * one, and it gets a dossier on its next tick if it is still running.
+         */
+        private val MIGRATION_7_8 = object : androidx.room.migration.Migration(7, 8) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE active_trip ADD COLUMN deviceJson TEXT")
+            }
+        }
+
+        /**
          * No destructive fallback. A journey in progress is irreplaceable data;
          * losing it because a migration was missing would be the worst possible
          * failure mode, so a missing migration must fail loudly in testing
@@ -687,7 +709,7 @@ abstract class TripPulseDb : RoomDatabase() {
                     "trippulse.db"
                 ).addMigrations(
                     MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
-                    MIGRATION_5_6, MIGRATION_6_7
+                    MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8
                 )
                     .build().also { INSTANCE = it }
             }

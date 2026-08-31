@@ -36,6 +36,7 @@ import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.domain.Darkness
 import com.trippulse.app.domain.DarkReason
 import com.trippulse.app.core.DeviceIdentity
+import com.trippulse.app.core.DeviceDossier
 import com.trippulse.app.domain.TravelDetails
 import com.trippulse.app.domain.DetailKeys
 import com.trippulse.app.domain.LegDetails
@@ -263,6 +264,12 @@ class TripManager(
         )
         db.tripDao().upsert(t)
         trip = t
+
+        // Capture who and what this device is, at the outset, so a report has
+        // it even if the phone never reports again. The synchronous part goes
+        // in now; the public IP, which needs the network, follows in the
+        // background and updates the row when it lands.
+        captureDossier(t.tripId)
 
         val legRows = n.legs.mapIndexed { index, leg ->
             TripLegEntity(
@@ -1050,6 +1057,47 @@ class TripManager(
      * can do. It changes what the family knows, which is the point: a phone
      * whose SIM changed mid-journey has been opened by somebody.
      */
+    /**
+     * Records the device dossier for [tripId], then enriches it with the
+     * public IP off the main path.
+     *
+     * The fingerprint baseline is set here too, so a SIM change is measured
+     * from the journey's start rather than from the first tick.
+     */
+    /**
+     * Re-captures the dossier for whatever journey is live, from outside the
+     * normal flow — called on boot, where the fresh public IP is the point.
+     */
+    suspend fun refreshDossierForActiveTrip() {
+        val active = db.tripDao().activeTrip() ?: return
+        captureDossier(active.tripId)
+    }
+
+    private fun captureDossier(tripId: String) {
+        val snapshot = DeviceDossier.capture(appContext)
+        appScope.launch {
+            val current = db.tripDao().byId(tripId) ?: return@launch
+            var updated = current.copy(
+                deviceJson = DeviceDossier.toJson(snapshot),
+                simFingerprint = current.simFingerprint
+                    ?: DeviceIdentity.simFingerprint(appContext)
+            )
+            db.tripDao().update(updated)
+            if (trip?.tripId == tripId) trip = updated
+
+            // The public IP is the single most useful field, and the slowest,
+            // so it arrives second and never holds up the rest.
+            val full = DeviceDossier.withPublicIp(appContext)
+            val latest = db.tripDao().byId(tripId) ?: return@launch
+            updated = latest.copy(
+                deviceJson = DeviceDossier.toJson(full)
+            )
+            db.tripDao().update(updated)
+            if (trip?.tripId == tripId) trip = updated
+            if (updated.cloudEnabled) runCatching { sync.writeMetaUpdate(updated, metaMap(updated)) }
+        }
+    }
+
     private suspend fun checkSimChange(t: ActiveTripEntity, now: Long) {
         if (t.simChangedAtMs != null) return
         val current = DeviceIdentity.simFingerprint(appContext) ?: return
@@ -1527,7 +1575,11 @@ class TripManager(
                 "toLat" to it.toLat, "toLng" to it.toLng,
                 "startedAt" to it.startedAtMs, "completedAt" to it.completedAtMs
             )
-        }
+        },
+        // The dossier travels with the journey so the family holds it even if
+        // the phone never comes back. It carries no location, so it is meta
+        // (rarely re-read) rather than live state (polled constantly).
+        "device" to DeviceDossier.fromJson(t.deviceJson)
     )
 
     private fun stateMap(t: ActiveTripEntity, s: TripStateEntity): Map<String, Any?> = buildMap {
