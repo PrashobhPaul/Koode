@@ -1156,10 +1156,28 @@ class TripManager(
         s = s.copy(etaMode = EtaMode.ARRIVED.name, arrivalPromptDue = false, updatedAtMs = now)
         db.stateDao().upsert(s); state = s
 
+        // The journey is over the instant it is written locally. Everything
+        // below is delivery, and delivery must never hold the traveller.
+        //
+        // This used to run inline, and it was the bug that froze the app on
+        // completion: drain() walks every unsent event and every buffered
+        // location batch one network round-trip at a time, so a journey whose
+        // uploads had been failing all night had thousands of rows to push --
+        // minutes of work, holding this mutex, with the screen showing nothing.
+        // Pushed to the application scope it survives this screen, keeps its
+        // ordering (the completion state first, so followers see the arrival
+        // straight away, then the backlog), and cannot be lost: every row is
+        // already durable in Room and a later drain picks up whatever this one
+        // does not finish.
         if (completed.cloudEnabled) {
-            sync.pushLiveState(completed, stateMap(completed, s), force = true)
-            sync.drain(completed)
-            cloud.setExpiry(completed.accessKey, expires)
+            val stateSnapshot = stateMap(completed, s)
+            appScope.launch {
+                runCatching {
+                    sync.pushLiveState(completed, stateSnapshot, force = true)
+                    cloud.setExpiry(completed.accessKey, expires)
+                    sync.drain(completed)
+                }
+            }
         }
         notifier.showArrival(completed.destName)
         onStopTrackingRequested?.invoke()

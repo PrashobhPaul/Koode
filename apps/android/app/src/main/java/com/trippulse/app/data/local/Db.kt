@@ -273,6 +273,20 @@ interface TripDao {
 
     @Query("DELETE FROM active_trip WHERE tripId = :tripId")
     suspend fun delete(tripId: String)
+
+    /**
+     * Journeys still open long after they began.
+     *
+     * Nobody travels for three days without closing a journey on purpose; what
+     * this actually finds is journeys whose traveller forgot, or whose phone
+     * stopped reporting. Either way the row is no longer telling anyone the
+     * truth, so it is cleared rather than kept.
+     */
+    @Query(
+        "SELECT * FROM active_trip WHERE status IN ('CREATED','ACTIVE') " +
+            "AND COALESCE(startedAtMs, createdAtMs) < :cutoffMs"
+    )
+    suspend fun openSince(cutoffMs: Long): List<ActiveTripEntity>
 }
 
 @Dao

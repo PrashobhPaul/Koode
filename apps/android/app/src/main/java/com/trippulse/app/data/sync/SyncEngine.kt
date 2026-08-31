@@ -73,13 +73,21 @@ class SyncEngine(
             // recover any events stuck in UPLOADING from a previous killed drain
             db.eventDao().resetUploading()
 
-            var batch = db.eventDao().pendingByPriority(50)
-            while (batch.isNotEmpty()) {
+            // Bounded: every pass must either shrink the queue or stop. An
+            // unbounded `while (pending)` trusts the server and the DAO to
+            // agree about what "pending" means, and if they ever disagree the
+            // loop becomes an infinite upload. A journey's backlog is finite,
+            // so a pass ceiling costs nothing and removes that failure mode --
+            // whatever is left is picked up by the next drain.
+            var batch = db.eventDao().pendingByPriority(EVENT_BATCH)
+            var passes = 0
+            while (batch.isNotEmpty() && passes < MAX_PASSES) {
+                passes++
                 for (e in batch) {
                     val ok = uploadEvent(trip, e)
                     if (!ok) return@withLock  // stop on hard failure; retry later
                 }
-                batch = db.eventDao().pendingByPriority(50)
+                batch = db.eventDao().pendingByPriority(EVENT_BATCH)
             }
 
             drainLocations(trip)
@@ -109,7 +117,9 @@ class SyncEngine(
 
     private suspend fun drainLocations(trip: ActiveTripEntity) {
         var samples = db.locationDao().pendingBatch(trip.tripId, cfg.locationUploadBatch)
-        while (samples.isNotEmpty()) {
+        var passes = 0
+        while (samples.isNotEmpty() && passes < MAX_PASSES) {
+            passes++
             val map = LinkedHashMap<String, Map<String, Any?>>()
             for (s in samples) {
                 map["loc_${s.tMs}_${s.autoId}"] = buildMap {
@@ -128,5 +138,17 @@ class SyncEngine(
         }
         // keep the buffer bounded on long journeys
         db.locationDao().compactAcked(trip.tripId, cfg.locationCompactionThreshold)
+    }
+
+    private companion object {
+        /** Events per round-trip. */
+        const val EVENT_BATCH = 50
+
+        /**
+         * Most batches one drain will make. Generous enough that an ordinary
+         * backlog clears in a single call, small enough that a disagreement
+         * between the server and the queue ends as a delay rather than a spin.
+         */
+        const val MAX_PASSES = 200
     }
 }
