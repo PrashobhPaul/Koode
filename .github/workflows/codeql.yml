@@ -13,9 +13,7 @@ name: "CodeQL Advanced"
 
 on:
   push:
-    # TEMP: feature branch included to validate the build-mode: manual change on
-    # the branch (a PR's CodeQL uses the base branch's workflow). Removed before merge.
-    branches: [ "main", "claude/journey-tracking-redesign-0qwgzz" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
   schedule:
