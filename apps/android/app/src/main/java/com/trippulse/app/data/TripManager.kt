@@ -1100,24 +1100,33 @@ class TripManager(
 
     private suspend fun checkSimChange(t: ActiveTripEntity, now: Long) {
         if (t.simChangedAtMs != null) return
-        val current = DeviceIdentity.simFingerprint(appContext) ?: return
         val remembered = t.simFingerprint
         if (remembered == null) {
-            // First sighting: record it as the baseline rather than an alarm.
+            // First sighting: record the baseline rather than raise an alarm.
+            val current = DeviceIdentity.simFingerprint(appContext) ?: return
             val stamped = t.copy(simFingerprint = current)
             db.tripDao().update(stamped); trip = stamped
             return
         }
-        if (remembered == current) return
 
-        val changed = t.copy(simChangedAtMs = now, simFingerprint = current)
+        val message = when (DeviceIdentity.simEvent(appContext, remembered)) {
+            DeviceIdentity.SimEvent.NONE -> return
+            DeviceIdentity.SimEvent.CHANGED -> "A different SIM is in this phone"
+            // The gap I could close without privileged permissions: a pulled
+            // SIM is the commonest tamper, and the first move of an in-place
+            // same-carrier swap the carrier fingerprint alone cannot see.
+            DeviceIdentity.SimEvent.REMOVED -> "The SIM was removed from this phone"
+        }
+
+        val current = DeviceIdentity.simFingerprint(appContext)
+        val changed = t.copy(simChangedAtMs = now, simFingerprint = current ?: remembered)
         db.tripDao().update(changed); trip = changed
         insertEvent(
             t.tripId, EventTypes.SIM_CHANGED, EventSource.SENSOR_OBSERVED, now,
             state?.lat, state?.lng,
-            mapOf("text" to "A different SIM is in this phone"), false
+            mapOf("text" to message), false
         )
-        notifier.showJourneyAttention(changed.destName, "A different SIM is in this phone")
+        notifier.showJourneyAttention(changed.destName, message)
         if (changed.cloudEnabled) {
             val snapshot = state
             if (snapshot != null) appScope.launch {

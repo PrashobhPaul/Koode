@@ -213,3 +213,45 @@ one person is, and a follower would have no way to tell which to believe.
   and the web viewer's SVG matches it path for path. The watermark is the mark
   itself, faint — a word stamped diagonally reads as something applied to
   someone else's paper.
+
+---
+
+## 6. When a phone goes dark, and the evidence for the worst case (v6.2–v6.3)
+
+Added after the redesign, for the two scenarios a family fears: a phone that
+stops reporting, and a phone that is stolen. The full reasoning is in the
+commit history; the decisions worth preserving here are the honest limits,
+because they are what a future contributor will be tempted to "fix" by
+reaching for privileged permissions that a safety app should not hold.
+
+**What Android will not give an ordinary app, and why we do not fake it.**
+
+- **IMEI and device serial** — blocked since Android 10 for everything but the
+  carrier app and device owners. `READ_PHONE_STATE` does not lift it.
+- **Hardware Wi-Fi/Bluetooth MAC** — a fixed sentinel since Android 6.
+
+The report prints these as explicit "not available, withheld by the OS" lines
+rather than blanks or fabrications, and points the reader at the lawful route:
+a subpoena to the carrier using the public IP and timestamps we *can* provide.
+
+**The public IP is the recovery lead**, and it is re-captured on every boot,
+because a thief who powers a stolen phone on and joins their own network hands
+us a fresh one. An ISP maps it to a subscriber; that is what a cyber cell
+traces.
+
+**SIM detection is kept and was strengthened, not pulled** (the owner's
+call). The carrier fingerprint catches a swap to a *different* network; it
+cannot see a swap *within* one, because the permission-free identifier is the
+carrier alone. What closes most of that gap is **SIM-removal detection**: a
+pulled card is the commonest tamper and the first move of any in-place swap,
+and `TelephonyManager.simState == ABSENT` reports it without a permission.
+Only a *confirmed* absence counts — a failed telephony read returns null too,
+and treating that as a removal would cry wolf every time the modem hiccuped,
+which is how the alert that matters gets ignored.
+
+**None of this recovers a phone**, and the wording everywhere says so. The app
+preserves the last known position, keeps reporting over any network the SIM
+change cannot stop, refuses to delete the evidence, and tells the family
+sooner. A test asserts the notifications state facts and never speculate — no
+"missing", no "danger", no "emergency". Recovery is the police's job; the
+app's job is to hand them everything lawful that helps.

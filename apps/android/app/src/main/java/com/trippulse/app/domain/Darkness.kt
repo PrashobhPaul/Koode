@@ -238,7 +238,7 @@ object Darkness {
     fun headline(a: DarkAssessment, who: String): String = when {
         !a.dark -> "$who is reporting normally"
         a.reason == DarkReason.SIM_SWAPPED ->
-            "$who's phone has a different SIM in it"
+            "$who's phone had its SIM changed or removed"
         a.reason == DarkReason.BATTERY_DIED ->
             "$who's phone ran out of battery"
         a.reason == DarkReason.POWERED_OFF && a.concerning ->
@@ -268,8 +268,9 @@ object Darkness {
             "The phone has not been able to reach us. It may simply be out of " +
                 "coverage. The last known position is saved."
         DarkReason.SIM_SWAPPED ->
-            "A different SIM is in the phone. Koode keeps reporting over any " +
-                "network it can reach, so updates may continue. The last known " +
-                "position is saved."
+            "The SIM was changed or removed. Koode never needed it to report — " +
+                "it keeps working over any network it can reach — so this is a " +
+                "record of tampering, not a loss of tracking. The timeline shows " +
+                "exactly what happened, and the last known position is saved."
     }
 }

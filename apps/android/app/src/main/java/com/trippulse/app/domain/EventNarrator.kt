@@ -38,7 +38,7 @@ object EventNarrator {
         EventTypes.QUICK_NOTE -> "📝" to "Note"
         EventTypes.DEVICE_SHUTDOWN -> "🔌" to "Phone switched off"
         EventTypes.DEVICE_BACK_ONLINE -> "🔆" to "Phone back online"
-        EventTypes.SIM_CHANGED -> "⚠️" to "A different SIM is in this phone"
+        EventTypes.SIM_CHANGED -> "⚠️" to "The SIM in this phone was changed or removed"
         EventTypes.PASSENGER_JOINED -> "👤" to "Passenger joined"
         EventTypes.PASSENGER_LEFT -> "👋" to "Passenger left"
         EventTypes.MEDICINE -> "💊" to "Medicine recorded"

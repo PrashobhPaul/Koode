@@ -68,3 +68,57 @@ class DeviceDossierTest {
         )
     }
 }
+
+/**
+ * The SIM tamper classifier — the part of theft detection that can be reasoned
+ * about without a phone in hand.
+ *
+ * The honesty here is the point: a same-carrier swap the fingerprint cannot
+ * see still starts with the card leaving the tray, so a confirmed removal is
+ * the signal that closes most of that gap — but only a *confirmed* removal,
+ * never a failed read dressed up as one.
+ */
+class SimClassifierTest {
+    private val a = "carrier-A"
+    private val b = "carrier-B"
+
+    @Test fun a_different_carrier_is_a_change() {
+        assertEquals(
+            com.trippulse.app.core.DeviceIdentity.SimEvent.CHANGED,
+            com.trippulse.app.core.DeviceIdentity.classifySim(a, b, absent = false)
+        )
+    }
+
+    @Test fun a_confirmed_empty_tray_is_a_removal() {
+        // The card was pulled — the commonest tamper, and the first move of an
+        // in-place swap.
+        assertEquals(
+            com.trippulse.app.core.DeviceIdentity.SimEvent.REMOVED,
+            com.trippulse.app.core.DeviceIdentity.classifySim(a, null, absent = true)
+        )
+    }
+
+    @Test fun a_failed_read_is_never_a_removal() {
+        // null fingerprint but the OS did not say ABSENT: a modem hiccup, not a
+        // theft. Crying wolf here is how the real alert gets ignored.
+        assertEquals(
+            com.trippulse.app.core.DeviceIdentity.SimEvent.NONE,
+            com.trippulse.app.core.DeviceIdentity.classifySim(a, null, absent = false)
+        )
+    }
+
+    @Test fun the_same_sim_is_nothing() {
+        assertEquals(
+            com.trippulse.app.core.DeviceIdentity.SimEvent.NONE,
+            com.trippulse.app.core.DeviceIdentity.classifySim(a, a, absent = false)
+        )
+    }
+
+    @Test fun no_baseline_means_nothing_to_compare() {
+        // A journey that started with no SIM cannot have one "changed".
+        assertEquals(
+            com.trippulse.app.core.DeviceIdentity.SimEvent.NONE,
+            com.trippulse.app.core.DeviceIdentity.classifySim(null, b, absent = false)
+        )
+    }
+}

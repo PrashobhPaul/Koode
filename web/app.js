@@ -134,7 +134,7 @@
     BATTERY_LOW: ['🔋', 'Phone battery low'],
     DEVICE_SHUTDOWN: ['🔌', 'Phone switched off'],
     DEVICE_BACK_ONLINE: ['🔆', 'Phone back online'],
-    SIM_CHANGED: ['⚠️', 'A different SIM is in this phone'],
+    SIM_CHANGED: ['⚠️', 'The SIM in this phone was changed or removed'],
     BOARDED: ['🎫', 'Boarded'],
     TRANSIT_HALTED: ['⏸', 'Halted'],
     TRANSIT_RESUMED: ['▶', 'Moving again'],
@@ -434,7 +434,7 @@
 
   function darkHeadline(a, who) {
     if (!a.dark) return null;
-    if (a.reason === 'SIM_SWAPPED') return who + "'s phone has a different SIM in it";
+    if (a.reason === 'SIM_SWAPPED') return who + "'s phone had its SIM changed or removed";
     if (a.reason === 'BATTERY_DIED') return who + "'s phone ran out of battery";
     if (a.reason === 'POWERED_OFF') {
       return a.concerning
@@ -455,8 +455,9 @@
         '. The last known position is saved.';
     }
     if (a.reason === 'SIM_SWAPPED') {
-      return 'A different SIM is in the phone. Koode keeps reporting over any ' +
-        'network it can reach, so updates may continue. The last known position is saved.';
+      return 'The SIM was changed or removed. Koode never needed it to report — it keeps ' +
+        'working over any network it can reach — so this is a record of tampering, not a ' +
+        'loss of tracking. The last known position is saved.';
     }
     return 'The phone has not been able to reach us. It may simply be out of ' +
       'coverage. The last known position is saved.';

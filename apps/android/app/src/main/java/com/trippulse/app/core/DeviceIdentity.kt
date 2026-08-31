@@ -83,6 +83,49 @@ object DeviceIdentity {
         return remembered != current
     }
 
+    /** What, if anything, happened to the SIM since the baseline was set. */
+    enum class SimEvent { NONE, CHANGED, REMOVED }
+
+    /**
+     * Whether the SIM tray is definitively empty right now.
+     *
+     * Distinguished from "we could not read the SIM" on purpose: a transient
+     * telephony read failure returns a null fingerprint too, and treating that
+     * as a removal would cry theft every time the modem hiccuped. Only
+     * SIM_STATE_ABSENT — the OS stating plainly that there is no card — counts.
+     */
+    fun simDefinitelyAbsent(context: Context): Boolean {
+        val tm = context.getSystemService(Context.TELEPHONY_SERVICE) as? TelephonyManager
+            ?: return false
+        return runCatching { tm.simState == TelephonyManager.SIM_STATE_ABSENT }.getOrDefault(false)
+    }
+
+    /**
+     * Classifies the SIM against a remembered fingerprint.
+     *
+     * REMOVED is the addition that matters for theft: a thief pulling the SIM
+     * to stop tracking is both the commonest tamper and the first move of an
+     * in-place same-carrier swap, which the carrier fingerprint alone cannot
+     * see. It keeps working because Koode never depended on the SIM to report
+     * — the pulled card stops nothing, it only tells the family what happened.
+     */
+    fun simEvent(context: Context, remembered: String?): SimEvent =
+        classifySim(remembered, simFingerprint(context), simDefinitelyAbsent(context))
+
+    /**
+     * The decision, separated from the device reads so it can be tested.
+     *
+     * [absent] must be the OS stating the tray is empty, never merely a failed
+     * read: a null [current] with [absent] false is "we could not tell", which
+     * is silence, not a removal.
+     */
+    fun classifySim(remembered: String?, current: String?, absent: Boolean): SimEvent = when {
+        remembered == null -> SimEvent.NONE
+        current != null && current != remembered -> SimEvent.CHANGED
+        current == null && absent -> SimEvent.REMOVED
+        else -> SimEvent.NONE
+    }
+
     private fun prefs(context: Context) =
         context.applicationContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
 
