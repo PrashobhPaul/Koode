@@ -61,6 +61,7 @@ import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.EmptyState
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeHeroCard
+import com.trippulse.app.ui.components.KoodeMarkTile
 import com.trippulse.app.ui.components.LocalWindowClass
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.PulsingDot
@@ -292,12 +293,26 @@ private fun HomeFeed(
     val name = vm.greetingName()
     val now = System.currentTimeMillis()
 
-    Text(
-        if (name.isNotBlank()) "Hi, $name 👋" else "Hi 👋",
-        color = colors.textHigh,
-        style = MaterialTheme.typography.displaySmall
-    )
-    Text("Here's what matters.", color = colors.textMid, style = MaterialTheme.typography.bodyLarge)
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Column(Modifier.weight(1f)) {
+            Text(
+                if (name.isNotBlank()) "Hi, $name 👋" else "Hi 👋",
+                color = colors.textHigh,
+                style = MaterialTheme.typography.displaySmall
+            )
+            Text("Here's what matters.", color = colors.textMid, style = MaterialTheme.typography.bodyLarge)
+        }
+        Spacer(Modifier.width(Spacing.md))
+        // The mark is the hidden door to About: tapping the logo opens it. No
+        // menu item points here — it is a small reward for the curious.
+        KoodeMarkTile(
+            size = 46.dp,
+            contentDescription = "About Koode",
+            modifier = Modifier
+                .clip(RoundedCornerShape(14.dp))
+                .clickable { nav.navigate(Routes.ABOUT) }
+        )
+    }
     Spacer(Modifier.height(Spacing.xs))
 
     // ---- update nudge -----------------------------------------------------

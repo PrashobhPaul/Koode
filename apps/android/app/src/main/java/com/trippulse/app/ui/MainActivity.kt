@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -17,6 +18,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -27,11 +31,13 @@ import androidx.navigation.compose.rememberNavController
 import com.trippulse.app.TripPulseApp
 import com.trippulse.app.ui.components.LocalWindowClass
 import com.trippulse.app.ui.components.rememberWindowClass
+import com.trippulse.app.ui.screens.AboutScreen
 import com.trippulse.app.ui.screens.CreateTripScreen
 import com.trippulse.app.ui.screens.CredentialsScreen
 import com.trippulse.app.ui.screens.DriverScreen
 import com.trippulse.app.ui.screens.HomeScreen
 import com.trippulse.app.ui.screens.JoinViewerScreen
+import com.trippulse.app.ui.screens.SplashScreen
 import com.trippulse.app.ui.screens.SummaryScreen
 import com.trippulse.app.ui.screens.ViewerScreen
 import com.trippulse.app.ui.theme.KoodeTheme
@@ -64,6 +70,19 @@ class MainActivity : ComponentActivity() {
                 CompositionLocalProvider(LocalWindowClass provides rememberWindowClass()) {
                     Box(Modifier.fillMaxSize().background(KoodeTheme.colors.background)) {
                         AppNav()
+
+                        // The animated splash rides above the app on a cold start
+                        // and fades away to reveal Home. Kept as an overlay rather
+                        // than a nav destination so the hand-off is a clean
+                        // cross-fade and Home is already composed underneath.
+                        var showSplash by rememberSaveable { mutableStateOf(true) }
+                        AnimatedVisibility(
+                            visible = showSplash,
+                            enter = fadeIn(tween(0)),
+                            exit = fadeOut(tween(Motion.slow))
+                        ) {
+                            SplashScreen(onDone = { showSplash = false })
+                        }
                     }
                 }
             }
@@ -79,6 +98,7 @@ object Routes {
     const val JOIN = "join"
     const val VIEWER = "viewer/{accessKey}"
     const val SUMMARY = "summary/{tripId}"
+    const val ABOUT = "about"
 
     fun credentials(tripId: String) = "credentials/$tripId"
     fun driver(tripId: String) = "driver/$tripId"
@@ -131,5 +151,6 @@ fun AppNav(modifier: Modifier = Modifier, nav: NavHostController = rememberNavCo
         composable(Routes.SUMMARY) { back ->
             SummaryScreen(nav, back.arguments?.getString("tripId").orEmpty())
         }
+        composable(Routes.ABOUT) { AboutScreen(nav) }
     }
 }
