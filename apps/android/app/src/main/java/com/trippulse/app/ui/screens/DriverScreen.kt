@@ -830,7 +830,9 @@ private fun EditJourneySheet(
     val onModeChosen: (String) -> Unit = { chosen ->
         if (chosen != mode) {
             mode = chosen
-            details = if (chosen == current?.mode) LegDetails.fromJson(current.detailsJson) else emptyMap()
+            details =
+                if (chosen == current?.mode) LegDetails.fromJson(current?.detailsJson)
+                else emptyMap()
         }
     }
 
