@@ -818,8 +818,15 @@ private fun EditJourneySheet(
     val currentProfile = TransportCatalog.profile(current?.mode)
     val leavingPrivate = currentProfile.isPrivateVehicle
 
-    var mode by remember { mutableStateOf(current?.mode ?: TransportCatalog.CAR.key) }
-    var details by remember { mutableStateOf(LegDetails.fromJson(current?.detailsJson)) }
+    // Keyed on the current stage, not remembered once. `legs` arrives from a
+    // flow and is empty on the first composition, so an unkeyed remember would
+    // latch "CAR" and then keep showing it to someone sitting on a train.
+    var mode by remember(current?.legIndex, current?.mode) {
+        mutableStateOf(current?.mode ?: TransportCatalog.CAR.key)
+    }
+    var details by remember(current?.legIndex) {
+        mutableStateOf(LegDetails.fromJson(current?.detailsJson))
+    }
     var breakdown by remember { mutableStateOf(false) }
     // Correcting the current stage's details is a different act from changing
     // vehicle, so it is a different button rather than a mode of this one.
