@@ -588,7 +588,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
         ) {
             CheckpointSheet(
                 profile = profile,
-                fuelUnit = if (activeLeg?.fuelType == "ELECTRIC" || t?.fuelType == "ELECTRIC") "kWh" else "L",
+                fuelUnit = TravelDetails.fuelUnit(activeLeg?.fuelType ?: t?.fuelType),
                 onSubmit = { c, refuelAmount, refuelQty, unit ->
                     if (refuelAmount != null) vm.submitCheckpointWithRefuel(c, refuelAmount, refuelQty, unit)
                     else vm.submitCheckpoint(c)

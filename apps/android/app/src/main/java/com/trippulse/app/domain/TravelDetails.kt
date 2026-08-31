@@ -56,7 +56,34 @@ object DetailKeys {
 object TravelDetails {
 
     val VEHICLE_TYPES = listOf("Hatchback", "Sedan", "SUV", "MPV", "Other")
+
+    /**
+     * Fuels, and deliberately no "Other".
+     *
+     * Every other list here ends in an escape hatch, because trapping someone
+     * whose bus company we never heard of would be indefensible. This one
+     * cannot: the app has to know whether a refill is measured in litres,
+     * kilograms or kilowatt-hours to record it at all, and "Other" answers
+     * none of those. The list is closed because the question is.
+     */
     val FUEL_TYPES = listOf("Petrol", "Diesel", "Electric", "CNG", "Hybrid")
+
+    /**
+     * What a refill of [fuelType] is measured in.
+     *
+     * Compared case-insensitively on purpose. These values are chosen from a
+     * list rather than typed, but they are stored as the label the traveller
+     * saw, and an exact-match comparison against a differently-cased constant
+     * is exactly the sort of quiet mismatch that would record a car charging
+     * 30 kWh as 30 litres.
+     */
+    fun fuelUnit(fuelType: String?): String = when (fuelType?.trim()?.lowercase()) {
+        "electric" -> "kWh"
+        "cng" -> "kg"
+        else -> "L"
+    }
+
+    fun isElectric(fuelType: String?): Boolean = fuelUnit(fuelType) == "kWh"
 
     /**
      * Ride-hailing services. Regional on purpose: Ola and Rapido matter in
