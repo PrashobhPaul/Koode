@@ -112,11 +112,20 @@ jobs:
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
     # The Kotlin/Java compile, run under the CodeQL tracer so it is extracted.
-    # :app:assembleDebug is the same task android-build.yml runs green.
+    # Two flags are essential, not cosmetic:
+    #  - kotlin.compiler.execution.strategy=in-process keeps kotlinc INSIDE the
+    #    Gradle process the tracer is watching; the default Kotlin daemon runs
+    #    out-of-process and CodeQL sees nothing ("this run didn't build any of it").
+    #  - --no-build-cache forces a real compile instead of restoring cached
+    #    class files, so there is actual compilation for the tracer to observe.
     - name: Build the app for CodeQL
       if: matrix.build-mode == 'manual'
       working-directory: apps/android
-      run: ./gradlew :app:assembleDebug --no-daemon --stacktrace
+      run: >-
+        ./gradlew :app:assembleDebug
+        --no-daemon --no-build-cache
+        -Dkotlin.compiler.execution.strategy=in-process
+        --stacktrace
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
