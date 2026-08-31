@@ -184,33 +184,63 @@ fun JourneyMap(
                 overlay.live = live && !inPlayback
                 overlay.pulsePhase = pulsePhase
 
-                // On first draw, frame the whole journey so a viewer sees where
-                // it starts and ends rather than a close-up of one dot.
-                if (!fitted[0]) {
-                    val all = buildList {
-                        addAll(route); addAll(breadcrumb)
-                        origin?.let { add(it) }; destination?.let { add(it) }; current?.let { add(it) }
-                    }
-                    if (all.size >= 2) {
-                        map.zoomToBoundingBox(boundingBoxOf(all), false, 96)
+                val all = buildList {
+                    addAll(route); addAll(breadcrumb)
+                    origin?.let { add(it) }; destination?.let { add(it) }; current?.let { add(it) }
+                }
+                // Both ends of the journey, when we know them. These are what
+                // must stay on screen: a line moving between two points you
+                // cannot see is just a line moving.
+                val ends = listOfNotNull(origin, destination)
+
+                when {
+                    // First draw: frame the whole journey rather than opening
+                    // on a close-up of one dot.
+                    //
+                    // Waiting for both endpoints matters. Framing whatever had
+                    // arrived by the first composition -- often a single fix --
+                    // latched `fitted` and the map then never re-framed when
+                    // the route and destination turned up a moment later.
+                    !fitted[0] && (ends.size == 2 || all.size >= 2) -> {
+                        map.zoomToBoundingBox(boundingBoxOf(all), false, FRAME_PAD_PX)
                         fitted[0] = true
-                    } else if (all.size == 1) {
+                    }
+
+                    !fitted[0] && all.size == 1 -> {
                         map.controller.setZoom(14.0)
                         map.controller.setCenter(OsmGeoPoint(all[0].lat, all[0].lng))
-                        fitted[0] = true
-                    } else {
+                        // Deliberately not latched: this is a holding view
+                        // until there is a journey to frame.
+                    }
+
+                    !fitted[0] -> {
                         map.controller.setZoom(4.5)
                         map.controller.setCenter(OsmGeoPoint(20.5937, 78.9629))
                     }
-                } else if (focus != null && focus != lastFocus[0]) {
-                    // Follow the moving point, but never fight a manual pan:
-                    // only recentre once it drifts outside the visible box.
-                    val visible = map.boundingBox
-                    val outside = visible == null || !visible.contains(OsmGeoPoint(focus.lat, focus.lng))
-                    if (outside || inPlayback) {
-                        map.controller.animateTo(OsmGeoPoint(focus.lat, focus.lng))
+
+                    // During playback the whole journey stays in view. Chasing
+                    // the moving dot instead -- which is what this used to do --
+                    // zooms into it and loses the two points the movement is
+                    // only meaningful between. Re-framed only when an end has
+                    // actually gone off screen, so an idle pan is left alone.
+                    inPlayback -> {
+                        val visible = map.boundingBox
+                        val lost = visible == null ||
+                            ends.any { !visible.contains(OsmGeoPoint(it.lat, it.lng)) }
+                        if (lost && all.size >= 2) {
+                            map.zoomToBoundingBox(boundingBoxOf(all), true, FRAME_PAD_PX)
+                        }
                     }
-                    lastFocus[0] = focus
+
+                    focus != null && focus != lastFocus[0] -> {
+                        // Live: follow the moving point, but never fight a
+                        // manual pan -- only recentre once it drifts out of view.
+                        val visible = map.boundingBox
+                        val outside = visible == null ||
+                            !visible.contains(OsmGeoPoint(focus.lat, focus.lng))
+                        if (outside) map.controller.animateTo(OsmGeoPoint(focus.lat, focus.lng))
+                        lastFocus[0] = focus
+                    }
                 }
                 map.invalidate()
             }
@@ -308,6 +338,9 @@ private fun PlaybackControls(
 }
 
 /** Bounding box with a little breathing room around the extremes. */
+/** Breathing room around a framed journey, so markers aren't against the edge. */
+private const val FRAME_PAD_PX = 96
+
 private fun boundingBoxOf(points: List<GeoPoint>): BoundingBox {
     var north = -90.0; var south = 90.0; var east = -180.0; var west = 180.0
     points.forEach {

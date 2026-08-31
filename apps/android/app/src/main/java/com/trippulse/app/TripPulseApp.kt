@@ -56,6 +56,9 @@ class TripPulseApp : Application() {
         }
 
         scheduleSyncRetry()
+        // Runs regardless of network: it exists for the cases where the network
+        // (or the service, or the traveller's memory) is the thing that failed.
+        com.trippulse.app.service.JourneyKeeperWorker.schedule(this)
     }
 
     private fun scheduleSyncRetry() {

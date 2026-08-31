@@ -19,6 +19,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
@@ -53,6 +54,8 @@ import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.local.TripLegEntity
 import com.trippulse.app.data.share.TimelineDelivery
+import com.trippulse.app.domain.LegDetails
+import com.trippulse.app.domain.TravelDetails
 import com.trippulse.app.domain.JourneyAnalytics
 import com.trippulse.app.domain.EtaMode
 import com.trippulse.app.domain.EventTypes
@@ -63,6 +66,7 @@ import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.domain.TransportProfile
 import com.trippulse.app.ui.DriverVm
 import com.trippulse.app.ui.Routes
+import com.trippulse.app.ui.components.TravelDetailFields
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
@@ -559,9 +563,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 activeLegIndex = t?.activeLegIndex ?: 0,
                 busy = editBusy,
                 message = editMessage,
-                onAddStage = { mode, to, fuel -> vm.addStage(mode, to, fuel) },
-                onEditStage = { index, mode, to, fuel -> vm.editStage(index, mode, to, fuel) },
-                onRemoveStage = { index -> vm.removeStage(index) },
+                onSwitchMode = { mode, details, breakdown -> vm.switchMode(mode, details, breakdown) },
+                onUpdateDetails = { index, details -> vm.updateStageDetails(index, details) },
                 onClose = { showEdit = false; vm.clearEditMessage() }
             )
         }
@@ -585,7 +588,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
         ) {
             CheckpointSheet(
                 profile = profile,
-                fuelUnit = if (activeLeg?.fuelType == "ELECTRIC" || t?.fuelType == "ELECTRIC") "kWh" else "L",
+                fuelUnit = TravelDetails.fuelUnit(activeLeg?.fuelType ?: t?.fuelType),
                 onSubmit = { c, refuelAmount, refuelQty, unit ->
                     if (refuelAmount != null) vm.submitCheckpointWithRefuel(c, refuelAmount, refuelQty, unit)
                     else vm.submitCheckpoint(c)
@@ -789,10 +792,15 @@ private fun SendTimelineSheet(
 /**
  * Changing a journey that is already running.
  *
- * The common case this exists for: someone gets to Bangalore intending to stop
- * there and decides to carry on to Hyderabad. Appending a stage keeps that as
- * one journey for everyone following, rather than forcing a second one with
- * new credentials that the family would have to be re-invited to.
+ * There is exactly one thing to change here, and it is not the destination.
+ * Where someone is going was settled when they started and was told to
+ * everyone following them; quietly re-pointing it would turn the journey they
+ * agreed to watch into a different journey. What genuinely changes mid-way is
+ * the vehicle -- getting off the train at Bangalore and carrying on by bus --
+ * and that needs no destination field and no "where are you now", because the
+ * journey knows the first and the phone knows the second.
+ *
+ * So: which vehicle, its details, and go.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -801,16 +809,39 @@ private fun EditJourneySheet(
     activeLegIndex: Int,
     busy: Boolean,
     message: String?,
-    onAddStage: (String, String, String?) -> Unit,
-    onEditStage: (Int, String, String, String?) -> Unit,
-    onRemoveStage: (Int) -> Unit,
+    onSwitchMode: (String, Map<String, String>, Boolean) -> Unit,
+    onUpdateDetails: (Int, Map<String, String>) -> Unit,
     onClose: () -> Unit
 ) {
     val colors = KoodeTheme.colors
-    var mode by remember { mutableStateOf("CAR") }
-    var destination by remember { mutableStateOf("") }
-    var fuel by remember { mutableStateOf("PETROL") }
-    var editingIndex by remember { mutableStateOf<Int?>(null) }
+    val current = legs.firstOrNull { it.legIndex == activeLegIndex }
+    val currentProfile = TransportCatalog.profile(current?.mode)
+    val leavingPrivate = currentProfile.isPrivateVehicle
+
+    // Keyed on the current stage, not remembered once. `legs` arrives from a
+    // flow and is empty on the first composition, so an unkeyed remember would
+    // latch "CAR" and then keep showing it to someone sitting on a train.
+    var mode by remember(current?.legIndex, current?.mode) {
+        mutableStateOf(current?.mode ?: TransportCatalog.CAR.key)
+    }
+    var details by remember(current?.legIndex) {
+        mutableStateOf(LegDetails.fromJson(current?.detailsJson))
+    }
+    var breakdown by remember { mutableStateOf(false) }
+    // Correcting the current stage's details is a different act from changing
+    // vehicle, so it is a different button rather than a mode of this one.
+    var correcting by remember { mutableStateOf(false) }
+
+    // Switching to a new mode starts from a clean sheet; the coach number of
+    // the train you just got off means nothing on the bus.
+    val onModeChosen: (String) -> Unit = { chosen ->
+        if (chosen != mode) {
+            mode = chosen
+            details =
+                if (chosen == current?.mode) LegDetails.fromJson(current?.detailsJson)
+                else emptyMap()
+        }
+    }
 
     Column(
         Modifier
@@ -819,39 +850,40 @@ private fun EditJourneySheet(
             .padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("Edit this journey", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text("Update this journey", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
         Text(
-            "Change where you're heading, or add another stage if your plans changed. " +
-                "Everyone following you sees it immediately.",
+            "You're still heading to the same place — this is for when how you're " +
+                "getting there changes. Everyone following you sees it immediately.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
 
         if (legs.isNotEmpty()) {
             KoodeCard(title = "Stages so far") {
-                legs.forEach { leg ->
+                legs.sortedBy { it.legIndex }.forEach { leg ->
                     val done = leg.completedAtMs != null
                     val active = leg.legIndex == activeLegIndex
+                    val vehicle = LegDetails.summaryOf(leg.mode, leg.detailsJson)
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                         Text(TransportCatalog.emoji(leg.mode), fontSize = 15.sp)
                         Spacer(Modifier.width(Spacing.sm))
-                        Text(
-                            "${leg.fromName} → ${leg.toName}",
-                            color = if (done) colors.textLow else colors.textHigh,
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.weight(1f)
-                        )
-                        when {
-                            // A finished stage is history and stays that way.
-                            done -> Text("Done", color = colors.textLow, fontSize = 12.sp)
-                            active -> TextButton(onClick = {
-                                editingIndex = leg.legIndex
-                                mode = leg.mode
-                                destination = leg.toName
-                                fuel = leg.fuelType ?: "PETROL"
-                            }) { Text("Change", color = colors.accent, fontSize = 13.sp) }
-                            else -> TextButton(onClick = { onRemoveStage(leg.legIndex) }) {
-                                Text("Remove", color = colors.danger, fontSize = 13.sp)
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                "${leg.fromName} → ${leg.toName}",
+                                color = if (done) colors.textLow else colors.textHigh,
+                                style = MaterialTheme.typography.bodyMedium
+                            )
+                            if (vehicle.isNotBlank()) {
+                                Text(vehicle, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
                             }
+                        }
+                        when {
+                            done -> StatusPill("Done", colors.textLow)
+                            active -> TextButton(onClick = {
+                                correcting = true
+                                mode = leg.mode
+                                details = LegDetails.fromJson(leg.detailsJson)
+                            }) { Text("Correct details", color = colors.accent, fontSize = 13.sp) }
+                            else -> StatusPill("Planned", colors.textMid)
                         }
                     }
                 }
@@ -859,54 +891,71 @@ private fun EditJourneySheet(
         }
 
         KoodeCard(
-            title = if (editingIndex != null) "Change the current stage" else "Add a stage",
+            title = if (correcting) "Correct the current stage" else "I've changed vehicle",
             accent = colors.accent
         ) {
-            OutlinedTextField(
-                value = destination,
-                onValueChange = { destination = it },
-                label = { Text("Where to?") },
-                singleLine = true,
-                modifier = Modifier.fillMaxWidth()
-            )
-            Spacer(Modifier.height(Spacing.md))
-            Text("How are you travelling?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-            Spacer(Modifier.height(Spacing.sm))
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                TransportCatalog.ALL.forEach { p ->
-                    KoodeChip(p.label, mode == p.key, { mode = p.key }, leading = p.emoji)
-                }
-            }
-            if (TransportCatalog.profile(mode).asksAboutFuel) {
-                Spacer(Modifier.height(Spacing.md))
+            if (!correcting) {
+                Text(
+                    "How are you travelling now?",
+                    color = colors.textLow, style = MaterialTheme.typography.labelSmall
+                )
+                Spacer(Modifier.height(Spacing.sm))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                    listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric")
-                        .forEach { (v, label) -> KoodeChip(label, fuel == v, { fuel = v }) }
+                    TransportCatalog.ALL.forEach { p ->
+                        KoodeChip(p.label, mode == p.key, { onModeChosen(p.key) }, leading = p.emoji)
+                    }
                 }
+                Spacer(Modifier.height(Spacing.md))
             }
+
+            TravelDetailFields(
+                mode = mode,
+                values = details,
+                onChange = { key, value -> details = details + (key to value) }
+            )
+
+            // Leaving your own vehicle part-way is not a plan change, it is
+            // something going wrong, and the timeline should say so.
+            if (!correcting && leavingPrivate && mode != current?.mode) {
+                Spacer(Modifier.height(Spacing.md))
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Checkbox(checked = breakdown, onCheckedChange = { breakdown = it })
+                    Spacer(Modifier.width(Spacing.sm))
+                    Text(
+                        "My vehicle has broken down",
+                        color = colors.textHigh, style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+                Text(
+                    "A car journey has no stages unless something went wrong, so this " +
+                        "is the only reason to switch out of one.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+            }
+
             Spacer(Modifier.height(Spacing.md))
+            val ready = TravelDetails.isComplete(mode, details)
             PrimaryButton(
                 when {
                     busy -> "Working…"
-                    editingIndex != null -> "Update this stage"
-                    else -> "Add this stage"
+                    correcting -> "Save these details"
+                    else -> "I'm travelling this way now"
                 },
                 {
-                    val index = editingIndex
-                    val fuelType = if (TransportCatalog.profile(mode).asksAboutFuel) fuel else null
-                    if (index != null) onEditStage(index, mode, destination, fuelType)
-                    else onAddStage(mode, destination, fuelType)
-                    destination = ""
-                    editingIndex = null
+                    if (correcting) onUpdateDetails(activeLegIndex, details)
+                    else onSwitchMode(mode, details, breakdown)
+                    correcting = false
                 },
-                enabled = !busy && destination.trim().length >= 2,
-                height = 48.dp
+                enabled = !busy && ready
             )
-            if (editingIndex != null) {
-                SecondaryButton(
-                    "Cancel change",
-                    { editingIndex = null; destination = "" },
-                    accent = colors.textMid, height = 42.dp
+            if (!ready) {
+                Spacer(Modifier.height(Spacing.sm))
+                Text(
+                    "Still needed: " +
+                        TravelDetails.missingRequired(mode, details).joinToString(", ") { it.label } +
+                        ". In your own vehicle these are what someone would repeat down " +
+                        "the phone to find you.",
+                    color = colors.warn, style = MaterialTheme.typography.bodySmall
                 )
             }
         }
@@ -914,20 +963,11 @@ private fun EditJourneySheet(
         if (message != null) {
             Text(message, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
         }
-
-        SecondaryButton("Close", onClose, accent = colors.textMid, height = 44.dp)
+        SecondaryButton("Close", onClose)
         Spacer(Modifier.height(Spacing.lg))
     }
 }
 
-/**
- * The money tracker's input.
- *
- * The product contract is enforced at the keystroke: the item accepts letters
- * only and the amount accepts digits only, so an amount can never end up in the
- * description or vice versa — which is what keeps the exported statement
- * trustworthy.
- */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun ExpenseSheet(

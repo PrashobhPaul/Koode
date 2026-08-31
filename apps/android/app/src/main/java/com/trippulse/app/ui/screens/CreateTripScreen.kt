@@ -46,9 +46,11 @@ import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.ui.PlaceSuggestion
 import com.trippulse.app.ui.CreateVm
 import com.trippulse.app.ui.LegDraft
 import com.trippulse.app.ui.Routes
+import com.trippulse.app.ui.components.TravelDetailFields
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
@@ -81,7 +83,9 @@ fun CreateTripScreen(nav: NavHostController) {
     val passcode by vm.passcode.collectAsStateWithLifecycle()
     val busy by vm.busy.collectAsStateWithLifecycle()
     val error by vm.error.collectAsStateWithLifecycle()
+    val running by vm.runningTripId.collectAsStateWithLifecycle()
     val places by vm.savedPlaces.collectAsStateWithLifecycle()
+    val suggestions by vm.suggestedPlaces.collectAsStateWithLifecycle()
     val pinMode by vm.pinMode.collectAsStateWithLifecycle()
     val departure by vm.departureMs.collectAsStateWithLifecycle()
     val myName by vm.myName.collectAsStateWithLifecycle()
@@ -144,11 +148,13 @@ fun CreateTripScreen(nav: NavHostController) {
                     onFocus = { vm.editLeg(index) },
                     onRemove = { vm.removeLeg(index) },
                     onModeChange = { vm.setMode(index, it) },
-                    onFuelChange = { vm.setFuel(index, it) },
+                    onDetailChange = { key, value -> vm.setDetail(index, key, value) },
+                    suggestions = suggestions,
+                    onUseSuggestion = { place, asStart ->
+                        vm.useSuggestion(index, place, asStart)
+                    },
                     onFromChange = { vm.setFromText(index, it) },
                     onToChange = { vm.setToText(index, it) },
-                    onBookingRefChange = { vm.setBookingRef(index, it) },
-                    onSeatChange = { vm.setSeat(index, it) },
                     onBoardingChange = { vm.setBoardingPoint(index, it) }
                 )
             }
@@ -354,6 +360,15 @@ fun CreateTripScreen(nav: NavHostController) {
             if (error != null) {
                 KoodeCard(accent = colors.danger) {
                     Text(error!!, color = colors.danger, style = MaterialTheme.typography.bodyMedium)
+                    // When the refusal was "you're already on one", the useful
+                    // next step is the journey they are on, not a retry.
+                    running?.let { tripId ->
+                        Spacer(Modifier.height(Spacing.md))
+                        PrimaryButton(
+                            "Open my journey",
+                            { nav.navigate(Routes.driver(tripId)) { popUpTo(Routes.HOME) } }
+                        )
+                    }
                 }
             }
 
@@ -389,11 +404,11 @@ private fun LegCard(
     onFocus: () -> Unit,
     onRemove: () -> Unit,
     onModeChange: (String) -> Unit,
-    onFuelChange: (String) -> Unit,
+    onDetailChange: (String, String) -> Unit,
+    suggestions: List<PlaceSuggestion>,
+    onUseSuggestion: (PlaceSuggestion, Boolean) -> Unit,
     onFromChange: (String) -> Unit,
     onToChange: (String) -> Unit,
-    onBookingRefChange: (String) -> Unit,
-    onSeatChange: (String) -> Unit,
     onBoardingChange: (String) -> Unit
 ) {
     val colors = KoodeTheme.colors
@@ -429,11 +444,14 @@ private fun LegCard(
             value = leg.fromText, onValueChange = onFromChange,
             label = { Text("From") }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
+        PlaceSuggestions(suggestions, "Start here") { onUseSuggestion(it, true) }
+
         Spacer(Modifier.height(Spacing.sm))
         OutlinedTextField(
             value = leg.toText, onValueChange = onToChange,
             label = { Text("To") }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
+        PlaceSuggestions(suggestions, "Go here") { onUseSuggestion(it, false) }
 
         Spacer(Modifier.height(Spacing.md))
         Text("How are you travelling?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
@@ -444,38 +462,60 @@ private fun LegCard(
             }
         }
 
-        if (profile.asksAboutFuel) {
+        Spacer(Modifier.height(Spacing.md))
+        // Rendered from the mode's own declaration, so this screen and the
+        // mid-journey switch always ask the same questions in the same words.
+        TravelDetailFields(
+            mode = leg.mode,
+            values = leg.details,
+            onChange = onDetailChange
+        )
+
+        if (!profile.isPrivateVehicle) {
             Spacer(Modifier.height(Spacing.md))
-            Text("Fuel", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-            Spacer(Modifier.height(Spacing.sm))
-            val fuels = if (leg.mode == "BIKE") listOf("PETROL" to "Petrol", "ELECTRIC" to "Electric")
-            else listOf("PETROL" to "Petrol", "DIESEL" to "Diesel", "ELECTRIC" to "Electric")
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                fuels.forEach { (v, label) ->
-                    KoodeChip(label, leg.fuelType == v, { onFuelChange(v) })
-                }
-            }
-        } else {
-            Spacer(Modifier.height(Spacing.md))
-            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                OutlinedTextField(
-                    value = leg.bookingRef, onValueChange = onBookingRefChange,
-                    label = { Text("PNR / booking") }, singleLine = true, modifier = Modifier.weight(1f)
-                )
-                OutlinedTextField(
-                    value = leg.seat, onValueChange = onSeatChange,
-                    label = { Text("Seat") }, singleLine = true, modifier = Modifier.weight(1f)
-                )
-            }
-            Spacer(Modifier.height(Spacing.sm))
             OutlinedTextField(
                 value = leg.boardingPoint, onValueChange = onBoardingChange,
-                label = { Text(profile.boardingPointLabel) }, singleLine = true,
+                label = { Text(profile.boardingPointLabel + " (optional)") }, singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
-            Text(
-                "Kept on this phone only — never shared with anyone following you.",
-                color = colors.textLow, style = MaterialTheme.typography.bodySmall
+        }
+        Text(
+            "Kept on this phone only — never shared with anyone following you.",
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+        )
+    }
+}
+
+/**
+ * One-tap places under a From or To field.
+ *
+ * Almost nobody's next journey starts somewhere they have never been, and the
+ * worst part of this screen was always typing a place name and hoping the
+ * search agreed. Saved places lead because they were named on purpose; the
+ * rest are simply where this phone has been lately.
+ *
+ * Nothing is shown when there is no history, so a first journey sees a clean
+ * screen rather than an empty row explaining itself.
+ */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun PlaceSuggestions(
+    suggestions: List<PlaceSuggestion>,
+    action: String,
+    onPick: (PlaceSuggestion) -> Unit
+) {
+    if (suggestions.isEmpty()) return
+    val colors = KoodeTheme.colors
+    Spacer(Modifier.height(Spacing.sm))
+    Text(action, color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+    Spacer(Modifier.height(Spacing.xs))
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+        suggestions.forEach { place ->
+            KoodeChip(
+                place.name,
+                selected = false,
+                onClick = { onPick(place) },
+                leading = if (place.saved) "★" else "🕓"
             )
         }
     }

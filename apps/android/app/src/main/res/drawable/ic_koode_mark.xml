@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The Koode mark, complete: two figures — teal and blue — whose arms form a
+  heart around a location pin, on the navy ground the app icon uses.
+
+  This is the one place the mark is defined. The splash screen, the PDF header
+  and the PDF watermark all render *this* file rather than each drawing their
+  own approximation of it, which is how the app, the document someone was sent
+  and the icon on their home screen stay recognisably the same thing.
+
+  The navy plate is part of the asset rather than left to the surface behind
+  it, because the pin at the centre is white: on a white page a
+  background-less mark would lose its middle.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+
+    <!-- navy plate, rounded like the launcher icon -->
+    <path android:fillColor="#0B1E2D"
+        android:pathData="M24,2 L84,2 A22,22 0 0,1 106,24 L106,84 A22,22 0 0,1 84,106 L24,106 A22,22 0 0,1 2,84 L2,24 A22,22 0 0,1 24,2 z"/>
+
+    <!-- left figure: head, and the arm sweeping into the left heart lobe -->
+    <path android:fillColor="#2EC4B6"
+        android:pathData="M41,26 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+    <path android:fillColor="#00000000" android:strokeColor="#2EC4B6"
+        android:strokeWidth="8" android:strokeLineCap="round"
+        android:pathData="M54,78 C40,68 30,56 31,45 C32,37 39,33 46,36 C50,38 53,42 54,46"/>
+
+    <!-- right figure, mirrored -->
+    <path android:fillColor="#3B82F6"
+        android:pathData="M67,26 m-7,0 a7,7 0 1,1 14,0 a7,7 0 1,1 -14,0"/>
+    <path android:fillColor="#00000000" android:strokeColor="#3B82F6"
+        android:strokeWidth="8" android:strokeLineCap="round"
+        android:pathData="M54,78 C68,68 78,56 77,45 C76,37 69,33 62,36 C58,38 55,42 54,46"/>
+
+    <!-- the pin they are holding between them -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M54,46 c-7,0 -12.5,5.5 -12.5,12.5 C41.5,68 54,78 54,78 c0,0 12.5,-10 12.5,-19.5 C66.5,51.5 61,46 54,46 z"/>
+    <path android:fillColor="#0B1E2D"
+        android:pathData="M54,58 m-4.5,0 a4.5,4.5 0 1,1 9,0 a4.5,4.5 0 1,1 -9,0"/>
+</vector>

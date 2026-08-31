@@ -19,6 +19,7 @@ import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.core.ViewerRefresh
 import com.trippulse.app.data.TripManager
+import com.trippulse.app.data.JourneyAlreadyRunning
 import com.trippulse.app.data.ViewerRepository
 import com.trippulse.app.data.export.JourneyDocuments
 import com.trippulse.app.data.export.JourneyPdf
@@ -40,6 +41,8 @@ import com.trippulse.app.domain.JourneyAnalytics
 import com.trippulse.app.domain.Measures
 import com.trippulse.app.domain.Nourishment
 import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.domain.TravelDetails
+import com.trippulse.app.domain.DetailKeys
 import com.trippulse.app.domain.UnitPreference
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -190,23 +193,70 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
  * is a one-leg list, so there is no "simple mode" and "advanced mode" — adding
  * a second leg is just adding a row.
  */
+/**
+ * A place the create screen can offer as a tap rather than a typed search.
+ *
+ * [saved] separates a place someone named on purpose from one merely inferred
+ * from where they have been, because the two deserve different prominence and
+ * different wording.
+ */
+data class PlaceSuggestion(
+    val name: String,
+    val point: GeoPoint,
+    val saved: Boolean
+) {
+    /**
+     * Whether this is, for a traveller's purposes, the same spot.
+     *
+     * Two fixes of the same doorway are never bit-identical, so exact
+     * comparison would offer "Home" three times under three names.
+     */
+    fun isSamePlace(other: GeoPoint): Boolean =
+        kotlin.math.abs(point.lat - other.lat) < SAME_PLACE_DEGREES &&
+            kotlin.math.abs(point.lng - other.lng) < SAME_PLACE_DEGREES
+}
+
+/** Roughly 150 metres — close enough to be the same doorway. */
+private const val SAME_PLACE_DEGREES = 0.0015
+
+/** How far back to look for places, and how many to offer. */
+private const val RECENT_TRIPS = 12
+private const val MAX_SUGGESTIONS = 10
+
+/** Labels a journey gets when nobody named its ends; never worth suggesting. */
+private val PLACEHOLDER_NAMES = setOf(
+    "Start point", "Destination", "Pinned start", "Pinned destination", "En route"
+)
+
 data class LegDraft(
     val mode: String = "CAR",
-    val fuelType: String = "PETROL",
     val fromText: String = "",
     val from: GeoPoint? = null,
     val toText: String = "",
     val to: GeoPoint? = null,
-    val bookingRef: String = "",
-    val seat: String = "",
-    val boardingPoint: String = ""
+    val boardingPoint: String = "",
+    /**
+     * Vehicle and booking details, keyed by [com.trippulse.app.domain.DetailKeys]
+     * and rendered from [com.trippulse.app.domain.TravelDetails]. Fuel type
+     * lives in here too, so there is one answer to "what do we know about this
+     * vehicle" rather than one field plus a map.
+     */
+    val details: Map<String, String> = emptyMap()
 ) {
     val profile get() = TransportCatalog.profile(mode)
+    val fuelType: String? get() = details[DetailKeys.FUEL_TYPE]
+    /** A private vehicle cannot start a journey half-described. */
+    val ready: Boolean get() = TravelDetails.isComplete(mode, details)
 }
 
 class CreateVm(private val graph: AppGraph) : ViewModel() {
 
+    init { loadSuggestions() }
+
     var busy = MutableStateFlow(false); private set
+
+    /** Set when creation was refused because a journey is already running. */
+    var runningTripId = MutableStateFlow<String?>(null); private set
     var error = MutableStateFlow<String?>(null); private set
 
     /** The legs of this journey, in order. Starts as one. */
@@ -238,6 +288,50 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
         graph.db.savedPlaceDao().allFlow()
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
+    /**
+     * Places worth offering without being asked: the ones deliberately saved,
+     * then the ones recently travelled between.
+     *
+     * Almost nobody's next journey starts somewhere they have never been. The
+     * hard part of the create screen was always typing a place name and hoping
+     * the search agreed with you, and most of the time the answer was already
+     * in the history -- so it is offered as a tap instead.
+     *
+     * Saved places come first because they were named on purpose, and a
+     * recently-travelled point that is already a saved place is dropped rather
+     * than shown twice under two names.
+     */
+    val suggestedPlaces = MutableStateFlow<List<PlaceSuggestion>>(emptyList())
+
+    private fun loadSuggestions() = viewModelScope.launch {
+        val saved = runCatching { graph.db.savedPlaceDao().all() }.getOrNull().orEmpty()
+        val out = ArrayList<PlaceSuggestion>()
+        saved.forEach { out.add(PlaceSuggestion(it.name, GeoPoint(it.lat, it.lng), saved = true)) }
+
+        val trips = runCatching { graph.db.tripDao().recent(RECENT_TRIPS) }.getOrNull().orEmpty()
+        for (t in trips) {
+            for ((name, point) in listOf(
+                t.originName to GeoPoint(t.originLat, t.originLng),
+                t.destName to GeoPoint(t.destLat, t.destLng)
+            )) {
+                if (name.isBlank()) continue
+                // Placeholder labels from a journey that never got a real name
+                // are worse than no suggestion at all.
+                if (name in PLACEHOLDER_NAMES) continue
+                if (out.any { it.isSamePlace(point) }) continue
+                out.add(PlaceSuggestion(name, point, saved = false))
+                if (out.size >= MAX_SUGGESTIONS) break
+            }
+            if (out.size >= MAX_SUGGESTIONS) break
+        }
+        suggestedPlaces.value = out
+    }
+
+    fun useSuggestion(index: Int, place: PlaceSuggestion, asStart: Boolean) {
+        if (asStart) updateLeg(index) { it.copy(from = place.point, fromText = place.name) }
+        else updateLeg(index) { it.copy(to = place.point, toText = place.name) }
+    }
+
     // ---- leg editing ------------------------------------------------------
 
     private fun updateLeg(index: Int, transform: (LegDraft) -> LegDraft) {
@@ -247,16 +341,17 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     fun editLeg(index: Int) { editingLeg.value = index.coerceIn(0, legs.value.lastIndex) }
 
     fun setMode(index: Int, mode: String) = updateLeg(index) { leg ->
-        // Bikes don't run on diesel; keep the fuel choice coherent with the mode.
-        val fuel = if (mode == "BIKE" && leg.fuelType == "DIESEL") "PETROL" else leg.fuelType
-        leg.copy(mode = mode, fuelType = fuel)
+        // The questions change with the mode, so the answers cannot carry
+        // over: a coach number means nothing in a car, and a fuel type means
+        // nothing on a train. Keeping them would leave stale details attached
+        // to a vehicle that never had them.
+        if (mode == leg.mode) leg else leg.copy(mode = mode, details = emptyMap())
     }
 
-    fun setFuel(index: Int, fuel: String) = updateLeg(index) { it.copy(fuelType = fuel) }
+    fun setDetail(index: Int, key: String, value: String) =
+        updateLeg(index) { it.copy(details = it.details + (key to value)) }
     fun setFromText(index: Int, text: String) = updateLeg(index) { it.copy(fromText = text) }
     fun setToText(index: Int, text: String) = updateLeg(index) { it.copy(toText = text) }
-    fun setBookingRef(index: Int, text: String) = updateLeg(index) { it.copy(bookingRef = text) }
-    fun setSeat(index: Int, text: String) = updateLeg(index) { it.copy(seat = text) }
     fun setBoardingPoint(index: Int, text: String) = updateLeg(index) { it.copy(boardingPoint = text) }
 
     fun setPasscode(raw: String) { passcode.value = InputRules.digits(raw, TripCredentials.PASSCODE_LENGTH) }
@@ -393,6 +488,14 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                             "pick a saved place, or switch the pin to 'Start' and long-press the map."
                         return@launch
                     }
+                    // In your own vehicle these details are the safety
+                    // information, so the journey does not start without them.
+                    val missing = TravelDetails.missingRequired(leg.mode, leg.details)
+                    if (missing.isNotEmpty()) {
+                        error.value = "Stage ${index + 1} still needs: " +
+                            missing.joinToString(", ") { it.label } + "."
+                        return@launch
+                    }
                     resolved.add(
                         TripManager.NewLeg(
                             mode = leg.mode,
@@ -400,9 +503,8 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                             toName = leg.toText.trim().ifBlank { "Destination" }, to = to,
                             fuelType = leg.fuelType,
                             plannedDepartureMs = if (index == 0) departureMs.value else null,
-                            bookingRef = leg.bookingRef.trim().ifBlank { null },
-                            seat = leg.seat.trim().ifBlank { null },
-                            boardingPoint = leg.boardingPoint.trim().ifBlank { null }
+                            boardingPoint = leg.boardingPoint.trim().ifBlank { null },
+                            details = leg.details
                         )
                     )
                 }
@@ -425,6 +527,13 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                     )
                 }
                 onDone(trip.tripId)
+            } catch (e: JourneyAlreadyRunning) {
+                // Not really an error on their part: they almost certainly
+                // meant to open the one they are on, so say which it is.
+                runningTripId.value = e.tripId
+                error.value = "You're already on a journey to ${e.destination}. " +
+                    "Finish that one first — a second live journey would leave " +
+                    "everyone following you with two different answers about where you are."
             } catch (e: Exception) {
                 error.value = e.message ?: "Something went wrong creating the journey."
             } finally {
@@ -558,8 +667,6 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     fun resume() = viewModelScope.launch { graph.tripManager.resume() }
     fun dismissArrivalPrompt() = viewModelScope.launch { graph.tripManager.dismissArrivalPrompt() }
     fun nextLeg() = viewModelScope.launch { graph.tripManager.advanceToNextLeg() }
-    fun changeDestination(name: String, p: GeoPoint) =
-        viewModelScope.launch { graph.tripManager.changeDestination(name, p) }
 
     // ---- how this journey is measured and priced ----
 
@@ -573,78 +680,49 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     fun clearEditMessage() { editMessage.value = null }
 
     /**
-     * Adds a stage to the running journey — the "actually, I'm carrying on"
-     * case. Resolves the destination the same way journey creation does, so a
-     * typed place name works exactly as it did on the create screen.
+     * The traveller has changed vehicles.
+     *
+     * Everything this needs it already has: where they are comes from the last
+     * fix, where they are going has never changed. So it asks for the new mode
+     * and its details and nothing else -- no destination field, no "where are
+     * you now", because both of those are questions the app should be
+     * embarrassed to ask someone standing on a platform.
      */
-    fun addStage(mode: String, toText: String, fuelType: String?) = viewModelScope.launch {
-        if (editBusy.value) return@launch
-        editBusy.value = true
-        try {
-            val trip = graph.db.tripDao().byId(tripId)
-            if (trip == null || !graph.tripManager.isEditable(trip)) {
-                editMessage.value = "This journey is closed and can no longer be changed."
-                return@launch
-            }
-            val to = resolvePlace(toText)
-            if (to == null) {
-                editMessage.value = "Couldn't find \"${toText.trim()}\". Try a more specific name."
-                return@launch
-            }
-            val legs = graph.db.legDao().forTrip(tripId)
-            val last = legs.maxByOrNull { it.legIndex }
-            val from = last?.let { GeoPoint(it.toLat, it.toLng) } ?: GeoPoint(trip.destLat, trip.destLng)
-            val fromName = last?.toName ?: trip.destName
-            val ok = graph.tripManager.appendLeg(
-                TripManager.NewLeg(
-                    mode = mode, fromName = fromName, from = from,
-                    toName = toText.trim(), to = to, fuelType = fuelType
-                )
-            )
-            editMessage.value = if (ok) "Stage added — everyone following you sees it now."
-            else "Couldn't add that stage."
-        } finally {
-            editBusy.value = false
-        }
-    }
-
-    /** Re-points the stage being travelled (or one still ahead). */
-    fun editStage(legIndex: Int, mode: String, toText: String, fuelType: String?) =
+    fun switchMode(mode: String, details: Map<String, String>, breakdown: Boolean = false) =
         viewModelScope.launch {
             if (editBusy.value) return@launch
             editBusy.value = true
             try {
-                val to = resolvePlace(toText)
-                if (to == null) {
-                    editMessage.value = "Couldn't find \"${toText.trim()}\". Try a more specific name."
-                    return@launch
+                editMessage.value = when (val r = graph.tripManager.switchMode(mode, details, breakdown)) {
+                    is TripManager.SwitchResult.Ok ->
+                        "Updated — everyone following you can see it."
+                    is TripManager.SwitchResult.NotEditable ->
+                        "This journey is closed and can no longer be changed."
+                    is TripManager.SwitchResult.NoLocationYet ->
+                        "Waiting for a location fix — one moment, then try again."
+                    is TripManager.SwitchResult.PrivateVehicleNeedsBreakdown ->
+                        "Changing out of your own vehicle mid-journey is for a breakdown. " +
+                            "Tick that if the car has let you down."
+                    is TripManager.SwitchResult.MissingDetails ->
+                        "Still needed: ${r.labels.joinToString(", ")}."
                 }
-                val ok = graph.tripManager.updateLeg(legIndex, mode, toText.trim(), to, fuelType)
-                editMessage.value = if (ok) "Updated." else "That stage can no longer be changed."
             } finally {
                 editBusy.value = false
             }
         }
 
-    fun removeStage(legIndex: Int) = viewModelScope.launch {
-        val ok = graph.tripManager.removeLeg(legIndex)
-        editMessage.value = if (ok) "Stage removed." else "Only a stage you haven't started can be removed."
-    }
-
-    @Suppress("DEPRECATION")
-    private suspend fun resolvePlace(text: String): GeoPoint? {
-        val query = text.trim()
-        if (query.length < 2) return null
-        PlaceSearch().search(query).firstOrNull()?.let { return it.point }
-        return withContext(Dispatchers.IO) {
-            try {
-                Geocoder(graph.appContext).getFromLocationName(query, 1)
-                    ?.firstOrNull()?.let { GeoPoint(it.latitude, it.longitude) }
-            } catch (_: Exception) { null }
+    /** Fills in details the traveller only learned after boarding. */
+    fun updateStageDetails(legIndex: Int, details: Map<String, String>) = viewModelScope.launch {
+        if (editBusy.value) return@launch
+        editBusy.value = true
+        try {
+            val ok = graph.tripManager.updateLegDetails(legIndex, details)
+            editMessage.value =
+                if (ok) "Saved." else "That stage is finished and can no longer be changed."
+        } finally {
+            editBusy.value = false
         }
     }
-
-    // ---- closing the journey ----------------------------------------------
 
     /**
      * The analysed picture of the journey so far, for the review shown before
