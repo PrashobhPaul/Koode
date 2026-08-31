@@ -69,7 +69,7 @@ class JourneyKeeperWorker(appContext: Context, params: WorkerParameters) :
             runCatching {
                 db.eventDao().deleteForTrip(t.tripId)
                 db.locationDao().deleteForTrip(t.tripId)
-                db.stateDao().deleteForTrip(t.tripId)
+                db.stateDao().delete(t.tripId)
                 db.breakDao().deleteForTrip(t.tripId)
                 db.expenseDao().deleteForTrip(t.tripId)
                 db.legDao().deleteForTrip(t.tripId)
