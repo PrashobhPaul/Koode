@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive-icon background: a lit navy tile. A diagonal gradient gives the base
+  form, a soft teal glow sits behind where the mark lands, and a vignette darkens
+  the edges so the icon reads as a rounded, dimensional object rather than a flat
+  fill. Scene-free by design: a skyline or trees turn to noise once the OS masks
+  the icon small, and Play's guidance asks for a legible background. The mark's
+  own plate version keeps the richer look for documents and the splash.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+
+    <path android:pathData="M0,0 h108 v108 h-108 z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear"
+                android:startX="10" android:startY="0" android:endX="98" android:endY="108">
+                <item android:offset="0" android:color="#FF123A57"/>
+                <item android:offset="0.5" android:color="#FF0B2033"/>
+                <item android:offset="1" android:color="#FF05101B"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- glow behind the mark -->
+    <path android:pathData="M0,0 h108 v108 h-108 z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="radial"
+                android:centerX="54" android:centerY="42" android:gradientRadius="50">
+                <item android:offset="0" android:color="#572E8E86"/>
+                <item android:offset="1" android:color="#002E8E86"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- edge vignette -->
+    <path android:pathData="M0,0 h108 v108 h-108 z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="radial"
+                android:centerX="54" android:centerY="60" android:gradientRadius="64">
+                <item android:offset="0.5" android:color="#00000000"/>
+                <item android:offset="1" android:color="#66000000"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>
