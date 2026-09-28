@@ -1,19 +1,14 @@
 package com.trippulse.app.ui.map
 
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,36 +20,49 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.withFrameMillis
+import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.trippulse.app.core.Geo
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.domain.GeoPoint
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
 import kotlinx.coroutines.delay
-import org.osmdroid.events.MapEventsReceiver
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.views.CustomZoomButtonsController
-import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.MapEventsOverlay
-import org.osmdroid.util.BoundingBox
-import org.osmdroid.util.GeoPoint as OsmGeoPoint
+import org.maplibre.android.camera.CameraPosition
+import org.maplibre.android.camera.CameraUpdateFactory
+import org.maplibre.android.maps.MapLibreMap
+import org.maplibre.android.maps.Style
+import org.maplibre.android.style.expressions.Expression
+import org.maplibre.android.style.layers.CircleLayer
+import org.maplibre.android.style.layers.FillExtrusionLayer
+import org.maplibre.android.style.layers.FillLayer
+import org.maplibre.android.style.layers.LineLayer
+import org.maplibre.android.style.layers.Property
+import org.maplibre.android.style.layers.PropertyFactory
+import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.geojson.FeatureCollection
+import kotlin.math.abs
 
 /**
  * Playback speeds offered by the ▶ control on the map.
@@ -64,18 +72,32 @@ import org.osmdroid.util.GeoPoint as OsmGeoPoint
  */
 val PLAYBACK_SPEEDS = listOf(5, 10, 20, 30)
 
+private const val FOLLOW_TILT = 58.0
+private const val FOLLOW_ZOOM = 15.5
+private const val GLIDE_MS = 1100.0
+
 /**
- * One journey, drawn on a map.
+ * One journey, drawn on a tilting vector map with a 3D vehicle.
  *
- * This replaces both the old `MapPanel` and the separate Replay screen. The
- * replay is not somewhere you navigate to any more — the map itself has a play
- * button, and pressing it animates the traveller along the path they actually
- * took. That is the whole interaction: no extra screen, no extra button.
+ * The vehicle is the traveller's actual transport — car, bike, cab, bus,
+ * train, plane or ship — built from extruded solids (see [Vehicle3D]) so it is
+ * rendered in true perspective. Between fixes it *glides* from the previous
+ * position to the new one; it never runs ahead of the last real fix, because a
+ * guessed position shown as live is exactly what Koode refuses to do.
  *
- * @param breadcrumb the positions actually recorded, oldest first. When this
- *   has two or more points the play control appears.
- * @param current live position; ignored while playback is running, because the
- *   dot then represents the point being replayed.
+ * Two camera modes: **Follow** (tilted, heading-up, riding with the vehicle)
+ * and **Overview** (flat, whole journey framed). Panning by hand drops out of
+ * Follow, as navigation apps do.
+ *
+ * The replay still lives on the map itself: ▶ drives the vehicle along the
+ * path actually recorded.
+ *
+ * @param mode transport mode key of the active stage; picks the 3D model.
+ * @param moving whether the traveller is in motion (lifts a flight into the
+ *   air; a parked plane stays on the apron).
+ * @param immersive edge-to-edge hero use: no border, Follow on by default.
+ * @param controlsPadding keeps map controls and the followed vehicle clear of
+ *   content overlaid on the map.
  */
 @Composable
 fun JourneyMap(
@@ -90,61 +112,34 @@ fun JourneyMap(
     live: Boolean = true,
     height: Dp = 240.dp,
     showPlayControl: Boolean = true,
-    onLongPress: ((GeoPoint) -> Unit)? = null
+    onLongPress: ((GeoPoint) -> Unit)? = null,
+    mode: String? = null,
+    moving: Boolean = false,
+    immersive: Boolean = false,
+    controlsPadding: PaddingValues = PaddingValues(0.dp)
 ) {
     val colors = KoodeTheme.colors
-    val context = LocalContext.current
-    val mapView = remember { MapView(context) }
-    val overlay = remember { JourneyOverlay() }
+    val dark = colors.background.luminance() < 0.4f
+    val density = LocalDensity.current
+    val layoutDirection = LocalLayoutDirection.current
     val shape = RoundedCornerShape(Radii.lg)
 
-    // ---- playback state ----
+    val mapView = rememberLifecycleMapView()
+    var map by remember { mutableStateOf<MapLibreMap?>(null) }
+    var style by remember { mutableStateOf<Style?>(null) }
+    val longPress by rememberUpdatedState(onLongPress)
+
+    // ---- playback -----------------------------------------------------------
     var playing by remember { mutableStateOf(false) }
-    var speedIndex by remember { mutableStateOf(0) }
+    var speedIndex by remember { mutableIntStateOf(0) }
     var cursor by remember(breadcrumb.size) { mutableFloatStateOf(breadcrumb.lastIndex.coerceAtLeast(0).toFloat()) }
     val canPlay = showPlayControl && breadcrumb.size >= 2
-
-    // Leaving playback returns the map to the live picture, which is what a
-    // viewer expects after watching where someone has been.
     val playbackIndex = cursor.toInt().coerceIn(0, (breadcrumb.size - 1).coerceAtLeast(0))
     val inPlayback = playing || (canPlay && playbackIndex < breadcrumb.lastIndex)
 
-    // ---- the pulse. Only runs while composed, so it costs nothing off-screen.
-    val pulse = rememberInfiniteTransition(label = "mapPulse")
-    val pulsePhase by pulse.animateFloat(
-        initialValue = 0f, targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1600, easing = LinearEasing), repeatMode = RepeatMode.Restart
-        ),
-        label = "mapPulsePhase"
-    )
-
-    DisposableEffect(Unit) {
-        mapView.setTileSource(TileSourceFactory.MAPNIK)
-        mapView.setMultiTouchControls(true)
-        mapView.zoomController.setVisibility(CustomZoomButtonsController.Visibility.NEVER)
-        mapView.overlays.add(overlay)
-        if (onLongPress != null) {
-            mapView.overlays.add(MapEventsOverlay(object : MapEventsReceiver {
-                override fun singleTapConfirmedHelper(p: OsmGeoPoint?): Boolean = false
-                override fun longPressHelper(p: OsmGeoPoint?): Boolean {
-                    p ?: return false
-                    onLongPress(GeoPoint(p.latitude, p.longitude))
-                    return true
-                }
-            }))
-        }
-        mapView.onResume()
-        onDispose { mapView.onPause(); mapView.onDetach() }
-    }
-
-    // Advance playback. One coroutine, cancelled the moment playing stops.
     LaunchedEffect(playing, speedIndex, breadcrumb.size) {
         if (!playing || breadcrumb.size < 2) return@LaunchedEffect
-        val speed = PLAYBACK_SPEEDS[speedIndex]
-        // A fixed 60 ms frame keeps motion smooth; speed decides how many
-        // recorded points are consumed per frame.
-        val pointsPerFrame = speed * 0.06f
+        val pointsPerFrame = PLAYBACK_SPEEDS[speedIndex] * 0.06f
         while (playing && cursor < breadcrumb.lastIndex.toFloat()) {
             delay(60)
             cursor = (cursor + pointsPerFrame).coerceAtMost(breadcrumb.lastIndex.toFloat())
@@ -152,99 +147,200 @@ fun JourneyMap(
         if (cursor >= breadcrumb.lastIndex.toFloat()) playing = false
     }
 
-    // Feed the overlay. Cheap by design: no overlay is created or destroyed
-    // here, so this can run every animation frame without stuttering the map.
-    val focus = if (inPlayback) breadcrumb.getOrNull(playbackIndex) else (current ?: destination ?: origin)
-    val lastFocus = remember { arrayOfNulls<GeoPoint>(1) }
-    val fitted = remember { booleanArrayOf(false) }
+    // ---- camera mode --------------------------------------------------------
+    val canFollow = current != null || canPlay
+    var follow by remember { mutableStateOf(false) }
+    var userChoseCamera by remember { mutableStateOf(false) }
+    LaunchedEffect(immersive, current != null) {
+        if (immersive && current != null && !userChoseCamera) follow = true
+    }
 
-    Box(
-        modifier
-            .fillMaxWidth()
-            .height(height)
-            .clip(shape)
-            .border(1.dp, colors.outline.copy(alpha = 0.6f), shape)
-    ) {
-        AndroidView(
-            factory = { mapView },
-            modifier = Modifier.fillMaxWidth().height(height),
-            update = { map ->
-                overlay.accentColor = colors.accent.toArgb()
-                overlay.travellerColor = colors.traveller.toArgb()
-                overlay.destinationColor = colors.warn.toArgb()
-                overlay.routeColor = colors.accent.copy(alpha = 0.35f).toArgb()
-                overlay.onSurfaceColor = colors.textHigh.toArgb()
+    // ---- the vehicle, animated outside Compose state ------------------------
+    val motion = remember { VehicleMotion() }
+    val airborne = mode == "FLIGHT" && (moving || inPlayback)
+    SideEffect {
+        motion.mode = mode
+        motion.airborne = airborne
+    }
 
-                overlay.route = route
-                overlay.origin = origin
-                overlay.destination = destination
-                overlay.travelled = if (inPlayback) breadcrumb.subList(0, playbackIndex + 1) else breadcrumb
-                overlay.current = if (inPlayback) breadcrumb.getOrNull(playbackIndex) else current
-                overlay.bearingDeg = if (inPlayback) null else bearingDeg
-                overlay.live = live && !inPlayback
-                overlay.pulsePhase = pulsePhase
-
-                val all = buildList {
-                    addAll(route); addAll(breadcrumb)
-                    origin?.let { add(it) }; destination?.let { add(it) }; current?.let { add(it) }
-                }
-                // Both ends of the journey, when we know them. These are what
-                // must stay on screen: a line moving between two points you
-                // cannot see is just a line moving.
-                val ends = listOfNotNull(origin, destination)
-
-                when {
-                    // First draw: frame the whole journey rather than opening
-                    // on a close-up of one dot.
-                    //
-                    // Waiting for both endpoints matters. Framing whatever had
-                    // arrived by the first composition -- often a single fix --
-                    // latched `fitted` and the map then never re-framed when
-                    // the route and destination turned up a moment later.
-                    !fitted[0] && (ends.size == 2 || all.size >= 2) -> {
-                        map.zoomToBoundingBox(boundingBoxOf(all), false, FRAME_PAD_PX)
-                        fitted[0] = true
-                    }
-
-                    !fitted[0] && all.size == 1 -> {
-                        map.controller.setZoom(14.0)
-                        map.controller.setCenter(OsmGeoPoint(all[0].lat, all[0].lng))
-                        // Deliberately not latched: this is a holding view
-                        // until there is a journey to frame.
-                    }
-
-                    !fitted[0] -> {
-                        map.controller.setZoom(4.5)
-                        map.controller.setCenter(OsmGeoPoint(20.5937, 78.9629))
-                    }
-
-                    // During playback the whole journey stays in view. Chasing
-                    // the moving dot instead -- which is what this used to do --
-                    // zooms into it and loses the two points the movement is
-                    // only meaningful between. Re-framed only when an end has
-                    // actually gone off screen, so an idle pan is left alone.
-                    inPlayback -> {
-                        val visible = map.boundingBox
-                        val lost = visible == null ||
-                            ends.any { !visible.contains(OsmGeoPoint(it.lat, it.lng)) }
-                        if (lost && all.size >= 2) {
-                            map.zoomToBoundingBox(boundingBoxOf(all), true, FRAME_PAD_PX)
-                        }
-                    }
-
-                    focus != null && focus != lastFocus[0] -> {
-                        // Live: follow the moving point, but never fight a
-                        // manual pan -- only recentre once it drifts out of view.
-                        val visible = map.boundingBox
-                        val outside = visible == null ||
-                            !visible.contains(OsmGeoPoint(focus.lat, focus.lng))
-                        if (outside) map.controller.animateTo(OsmGeoPoint(focus.lat, focus.lng))
-                        lastFocus[0] = focus
-                    }
-                }
-                map.invalidate()
-            }
+    val padPx = with(density) {
+        doubleArrayOf(
+            controlsPadding.calculateLeftPadding(layoutDirection).toPx().toDouble(),
+            controlsPadding.calculateTopPadding().toPx().toDouble(),
+            controlsPadding.calculateRightPadding(layoutDirection).toPx().toDouble(),
+            controlsPadding.calculateBottomPadding().toPx().toDouble()
         )
+    }
+    val framePadPx = with(density) { 56.dp.toPx().toInt() }
+
+    // Map configuration, once.
+    LaunchedEffect(mapView) {
+        mapView.getMapAsync { m ->
+            m.uiSettings.setLogoEnabled(false)
+            m.uiSettings.setCompassEnabled(false)
+            m.uiSettings.setAttributionEnabled(true)
+            m.uiSettings.setRotateGesturesEnabled(true)
+            m.uiSettings.setTiltGesturesEnabled(true)
+            m.addOnMapLongClickListener { ll ->
+                val cb = longPress ?: return@addOnMapLongClickListener false
+                cb(GeoPoint(ll.latitude, ll.longitude))
+                true
+            }
+            m.addOnCameraMoveStartedListener { reason ->
+                if (reason == MapLibreMap.OnCameraMoveStartedListener.REASON_API_GESTURE && follow) {
+                    follow = false
+                }
+            }
+            // Keep the vehicle the same on-screen size while zooming.
+            m.addOnCameraMoveListener {
+                if (abs(m.cameraPosition.zoom - motion.renderedZoom) > 0.03) motion.render(m)
+            }
+            map = m
+        }
+    }
+
+    // Style: reloaded when the theme flips, and our layers re-installed on it.
+    val palette = MapPalette(
+        accent = colors.accent.toArgb(),
+        traveller = colors.traveller.toArgb(),
+        warn = colors.warn.toArgb(),
+        casing = if (dark) 0xCC07131D.toInt() else 0xCCFFFFFF.toInt()
+    )
+    LaunchedEffect(map, dark) {
+        val m = map ?: return@LaunchedEffect
+        style = null
+        motion.style = null
+        m.setStyle(Style.Builder().fromUri(MapStyles.url(dark))) { s ->
+            installLayers(s, palette)
+            motion.style = s
+            style = s
+        }
+    }
+
+    // ---- what the vehicle is heading for ------------------------------------
+    val target: GeoPoint? = if (inPlayback) interpolate(breadcrumb, cursor) else current
+    val targetBearing: Double? = when {
+        inPlayback -> segmentBearing(breadcrumb, cursor)
+        bearingDeg != null && moving -> bearingDeg.toDouble()
+        else -> null
+    }
+
+    // Static layers: route, trail, ends, flight estimate.
+    LaunchedEffect(style, route, breadcrumb, playbackIndex, inPlayback, current, origin, destination, mode) {
+        val s = style ?: return@LaunchedEffect
+        val trail = when {
+            inPlayback -> breadcrumb.subList(0, playbackIndex + 1) + listOfNotNull(target)
+            current != null && breadcrumb.lastOrNull() != current -> breadcrumb + current
+            else -> breadcrumb
+        }
+        s.source(SRC_ROUTE)?.setGeoJson(lineCollection(route))
+        s.source(SRC_TRAIL)?.setGeoJson(lineCollection(trail))
+        s.source(SRC_ORIGIN)?.setGeoJson(pointCollection(origin))
+        s.source(SRC_DEST)?.setGeoJson(pointCollection(destination))
+        val arcFrom = target ?: origin
+        s.source(SRC_ARC)?.setGeoJson(
+            if (mode == "FLIGHT" && arcFrom != null && destination != null)
+                lineCollection(Vehicle3D.greatCircle(arcFrom, destination))
+            else EMPTY_COLLECTION
+        )
+    }
+
+    // Frame the journey when the ends change and we're not riding along.
+    LaunchedEffect(style, origin, destination) {
+        val m = map ?: return@LaunchedEffect
+        if (style == null || follow) return@LaunchedEffect
+        frameAll(m, route + breadcrumb + listOfNotNull(origin, destination, current), framePadPx, animate = motion.framedOnce)
+        motion.framedOnce = true
+    }
+
+    // Glide the vehicle to each new target.
+    LaunchedEffect(style, target, targetBearing, mode, airborne) {
+        val m = map ?: return@LaunchedEffect
+        if (style == null) return@LaunchedEffect
+        val to = target ?: run { motion.clear(); return@LaunchedEffect }
+        val from = motion.pos ?: to
+        val toBearing = targetBearing
+            ?: if (Geo.haversineM(from, to) > 8.0) Vehicle3D.bearing(from, to) else motion.bearing
+        val fromBearing = motion.bearing
+        if (inPlayback || motion.pos == null) {
+            motion.pos = to
+            motion.bearing = toBearing
+            motion.render(m)
+            if (follow) followCamera(m, motion, padPx, entering = !motion.followPlaced)
+            return@LaunchedEffect
+        }
+        val start = withFrameNanos { it }
+        while (true) {
+            val now = withFrameNanos { it }
+            val t = ((now - start) / 1_000_000.0 / GLIDE_MS).coerceIn(0.0, 1.0)
+            val e = t * t * (3 - 2 * t) // smoothstep
+            motion.pos = Vehicle3D.lerp(from, to, e)
+            motion.bearing = Vehicle3D.lerpBearing(fromBearing, toBearing, e)
+            motion.render(m)
+            if (follow) followCamera(m, motion, padPx, entering = false)
+            if (t >= 1.0) break
+        }
+        // Not following: at least keep the traveller in view.
+        if (!follow && !immersive) {
+            val visible = m.projection.visibleRegion.latLngBounds
+            if (!visible.contains(to.toLatLng())) {
+                m.easeCamera(CameraUpdateFactory.newLatLng(to.toLatLng()), 600)
+            }
+        }
+    }
+
+    // Switching camera modes.
+    LaunchedEffect(follow, style) {
+        val m = map ?: return@LaunchedEffect
+        if (style == null) return@LaunchedEffect
+        if (follow) {
+            if (motion.pos != null) followCamera(m, motion, padPx, entering = true)
+        } else if (motion.followPlaced) {
+            motion.followPlaced = false
+            frameAll(m, route + breadcrumb + listOfNotNull(origin, destination, current), framePadPx, animate = true)
+        }
+    }
+
+    // The live halo breathes under the vehicle while the signal is fresh.
+    val halo = live && !inPlayback && current != null
+    LaunchedEffect(style, halo) {
+        val layer = style?.getLayer(L_HALO) ?: return@LaunchedEffect
+        if (!halo) {
+            layer.setProperties(PropertyFactory.circleOpacity(0f))
+            return@LaunchedEffect
+        }
+        while (true) {
+            withFrameMillis { t ->
+                val p = (t % 1600L) / 1600f
+                layer.setProperties(
+                    PropertyFactory.circleRadius(10f + 26f * p),
+                    PropertyFactory.circleOpacity(0.38f * (1f - p))
+                )
+            }
+        }
+    }
+
+    // ---- layout ---------------------------------------------------------------
+    val frame = if (immersive) modifier.fillMaxWidth().height(height)
+    else modifier.fillMaxWidth().height(height).clip(shape).border(1.dp, colors.outline.copy(alpha = 0.6f), shape)
+
+    Box(frame) {
+        AndroidView(factory = { mapView }, modifier = Modifier.fillMaxSize())
+
+        if (canFollow) {
+            Box(Modifier.align(Alignment.TopEnd).padding(controlsPadding).padding(Spacing.md)) {
+                MapPill(
+                    if (follow) "🗺  Overview" else "🧭  Follow in 3D",
+                    onClick = { userChoseCamera = true; follow = !follow }
+                )
+            }
+        }
+
+        if (mode == "FLIGHT" && destination != null) {
+            Box(Modifier.align(Alignment.BottomEnd).padding(controlsPadding).padding(Spacing.md)) {
+                MapPill("┄  estimated flight path", onClick = null)
+            }
+        }
 
         if (canPlay) {
             PlaybackControls(
@@ -262,9 +358,182 @@ fun JourneyMap(
                     playing = false
                     cursor = fraction * breadcrumb.lastIndex.toFloat()
                 },
-                modifier = Modifier.align(Alignment.BottomStart).padding(Spacing.md)
+                modifier = Modifier.align(Alignment.BottomStart).padding(controlsPadding).padding(Spacing.md)
             )
         }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Map internals
+// ---------------------------------------------------------------------------
+
+private const val SRC_ROUTE = "kd-route"
+private const val SRC_TRAIL = "kd-trail"
+private const val SRC_ARC = "kd-arc"
+private const val SRC_ORIGIN = "kd-origin"
+private const val SRC_DEST = "kd-dest"
+private const val SRC_HALO = "kd-halo"
+private const val SRC_GROUND = "kd-ground"
+private const val SRC_VEHICLE = "kd-vehicle"
+private const val L_HALO = "kd-halo-layer"
+
+private data class MapPalette(val accent: Int, val traveller: Int, val warn: Int, val casing: Int)
+
+private fun Style.source(id: String): GeoJsonSource? = getSourceAs(id)
+
+private fun installLayers(s: Style, c: MapPalette) {
+    listOf(SRC_ROUTE, SRC_TRAIL, SRC_ARC, SRC_ORIGIN, SRC_DEST, SRC_HALO, SRC_GROUND, SRC_VEHICLE)
+        .forEach { s.addSource(GeoJsonSource(it)) }
+    val white = 0xFFFFFFFF.toInt()
+    val cap = PropertyFactory.lineCap(Property.LINE_CAP_ROUND)
+    val join = PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND)
+    val flat = PropertyFactory.circlePitchAlignment(Property.CIRCLE_PITCH_ALIGNMENT_MAP)
+
+    s.addLayer(LineLayer("kd-route-layer", SRC_ROUTE).withProperties(
+        PropertyFactory.lineColor(c.accent), PropertyFactory.lineWidth(5f), PropertyFactory.lineOpacity(0.5f), cap, join
+    ))
+    s.addLayer(LineLayer("kd-trail-casing", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(c.casing), PropertyFactory.lineWidth(8.5f), cap, join
+    ))
+    s.addLayer(LineLayer("kd-trail-layer", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(5f), cap, join
+    ))
+    s.addLayer(LineLayer("kd-arc-layer", SRC_ARC).withProperties(
+        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(3f),
+        PropertyFactory.lineOpacity(0.85f), PropertyFactory.lineDasharray(arrayOf(1.6f, 1.6f))
+    ))
+    s.addLayer(FillLayer("kd-ground-layer", SRC_GROUND).withProperties(
+        PropertyFactory.fillColor(Expression.get("c")), PropertyFactory.fillOpacity(0.22f)
+    ))
+    s.addLayer(CircleLayer(L_HALO, SRC_HALO).withProperties(
+        PropertyFactory.circleColor(c.traveller), PropertyFactory.circleRadius(14f),
+        PropertyFactory.circleOpacity(0f), flat
+    ))
+    s.addLayer(CircleLayer("kd-origin-layer", SRC_ORIGIN).withProperties(
+        PropertyFactory.circleColor(c.accent), PropertyFactory.circleRadius(7f),
+        PropertyFactory.circleStrokeColor(white), PropertyFactory.circleStrokeWidth(3f), flat
+    ))
+    s.addLayer(CircleLayer("kd-dest-halo", SRC_DEST).withProperties(
+        PropertyFactory.circleColor(c.warn), PropertyFactory.circleRadius(15f),
+        PropertyFactory.circleOpacity(0.3f), flat
+    ))
+    s.addLayer(CircleLayer("kd-dest-layer", SRC_DEST).withProperties(
+        PropertyFactory.circleColor(c.warn), PropertyFactory.circleRadius(7f),
+        PropertyFactory.circleStrokeColor(white), PropertyFactory.circleStrokeWidth(3f), flat
+    ))
+    // Last, so it draws over everything else in the 3D pass.
+    s.addLayer(FillExtrusionLayer("kd-vehicle-layer", SRC_VEHICLE).withProperties(
+        PropertyFactory.fillExtrusionColor(Expression.get("c")),
+        PropertyFactory.fillExtrusionBase(Expression.get("b")),
+        PropertyFactory.fillExtrusionHeight(Expression.get("h")),
+        PropertyFactory.fillExtrusionOpacity(Expression.literal(1.0f))
+    ))
+}
+
+/** Where the vehicle is drawn right now; mutated at animation rate. */
+private class VehicleMotion {
+    var pos: GeoPoint? = null
+    var bearing: Double = 0.0
+    var mode: String? = null
+    var airborne: Boolean = false
+    var style: Style? = null
+    var renderedZoom: Double = -1.0
+    var followPlaced: Boolean = false
+    var framedOnce: Boolean = false
+
+    fun render(m: MapLibreMap) {
+        val s = style ?: return
+        val p = pos ?: return
+        val mpp = m.projection.getMetersPerPixelAtLatitude(p.lat)
+        val placed = Vehicle3D.place(mode, p, bearing, mpp, airborne)
+        s.source(SRC_VEHICLE)?.setGeoJson(FeatureCollection.fromFeatures(placed.solids.map { solid ->
+            polygonFeature(solid.ring).apply {
+                addStringProperty("c", solid.color)
+                addNumberProperty("b", solid.baseM)
+                addNumberProperty("h", solid.topM)
+            }
+        }))
+        s.source(SRC_GROUND)?.setGeoJson(FeatureCollection.fromFeatures(placed.ground.map { ring ->
+            polygonFeature(ring).apply { addStringProperty("c", placed.groundColor) }
+        }))
+        s.source(SRC_HALO)?.setGeoJson(pointCollection(p))
+        renderedZoom = m.cameraPosition.zoom
+    }
+
+    fun clear() {
+        pos = null
+        val s = style ?: return
+        s.source(SRC_VEHICLE)?.setGeoJson(EMPTY_COLLECTION)
+        s.source(SRC_GROUND)?.setGeoJson(EMPTY_COLLECTION)
+        s.source(SRC_HALO)?.setGeoJson(EMPTY_COLLECTION)
+    }
+}
+
+/** Ride along: tilted, heading-up, vehicle kept clear of any overlaid card. */
+private fun followCamera(m: MapLibreMap, motion: VehicleMotion, padPx: DoubleArray, entering: Boolean) {
+    val p = motion.pos ?: return
+    val zoom = if (entering || !motion.followPlaced) FOLLOW_ZOOM else m.cameraPosition.zoom
+    val position = CameraPosition.Builder()
+        .target(p.toLatLng())
+        .zoom(zoom)
+        .tilt(FOLLOW_TILT)
+        .bearing(motion.bearing)
+        .padding(padPx[0], padPx[1], padPx[2], padPx[3])
+        .build()
+    if (entering) m.easeCamera(CameraUpdateFactory.newCameraPosition(position), 900)
+    else m.moveCamera(CameraUpdateFactory.newCameraPosition(position))
+    motion.followPlaced = true
+}
+
+/** Flat, north-up view of everything worth seeing. */
+private fun frameAll(m: MapLibreMap, points: List<GeoPoint>, padPx: Int, animate: Boolean) {
+    val bounds = boundsOf(points)
+    val update = when {
+        bounds != null -> CameraUpdateFactory.newLatLngBounds(bounds, 0.0, 0.0, padPx)
+        points.isNotEmpty() -> CameraUpdateFactory.newCameraPosition(
+            CameraPosition.Builder().target(points.first().toLatLng()).zoom(14.0).tilt(0.0).bearing(0.0).build()
+        )
+        else -> CameraUpdateFactory.newCameraPosition(
+            CameraPosition.Builder().target(GeoPoint(20.5937, 78.9629).toLatLng()).zoom(4.2).tilt(0.0).bearing(0.0).build()
+        )
+    }
+    if (animate) m.easeCamera(update, 800) else m.moveCamera(update)
+}
+
+private fun interpolate(path: List<GeoPoint>, cursor: Float): GeoPoint? {
+    if (path.isEmpty()) return null
+    val i = cursor.toInt().coerceIn(0, path.lastIndex)
+    val next = path.getOrNull(i + 1) ?: return path[i]
+    return Vehicle3D.lerp(path[i], next, (cursor - i).toDouble())
+}
+
+private fun segmentBearing(path: List<GeoPoint>, cursor: Float): Double? {
+    if (path.size < 2) return null
+    val i = cursor.toInt().coerceIn(0, path.lastIndex - 1)
+    // Look a few points ahead so GPS jitter doesn't make the vehicle twitch.
+    val a = path[i]
+    val b = path[(i + 3).coerceAtMost(path.lastIndex)]
+    return if (Geo.haversineM(a, b) < 3.0) null else Vehicle3D.bearing(a, b)
+}
+
+// ---------------------------------------------------------------------------
+// Controls
+// ---------------------------------------------------------------------------
+
+@Composable
+private fun MapPill(label: String, onClick: (() -> Unit)?) {
+    val colors = KoodeTheme.colors
+    val pill = RoundedCornerShape(Radii.pill)
+    Box(
+        Modifier
+            .clip(pill)
+            .background(colors.background.copy(alpha = 0.82f))
+            .border(1.dp, colors.outline.copy(alpha = 0.7f), pill)
+            .let { if (onClick != null) it.clickable(onClick = onClick) else it }
+            .padding(horizontal = 12.dp, vertical = 8.dp)
+    ) {
+        Text(label, color = colors.textHigh, style = MaterialTheme.typography.labelMedium, fontSize = 12.sp)
     }
 }
 
@@ -312,12 +581,7 @@ private fun PlaybackControls(
                     .clickable(onClick = onCycleSpeed)
                     .padding(horizontal = 12.dp, vertical = 7.dp)
             ) {
-                Text(
-                    "${speed}×",
-                    color = colors.accent,
-                    style = MaterialTheme.typography.labelSmall,
-                    fontSize = 12.sp
-                )
+                Text("${speed}×", color = colors.accent, style = MaterialTheme.typography.labelSmall, fontSize = 12.sp)
             }
             if (timeLabel != null) {
                 Spacer(Modifier.width(Spacing.sm))
@@ -337,28 +601,11 @@ private fun PlaybackControls(
     }
 }
 
-/** Bounding box with a little breathing room around the extremes. */
-/** Breathing room around a framed journey, so markers aren't against the edge. */
-private const val FRAME_PAD_PX = 96
-
-private fun boundingBoxOf(points: List<GeoPoint>): BoundingBox {
-    var north = -90.0; var south = 90.0; var east = -180.0; var west = 180.0
-    points.forEach {
-        if (it.lat > north) north = it.lat
-        if (it.lat < south) south = it.lat
-        if (it.lng > east) east = it.lng
-        if (it.lng < west) west = it.lng
-    }
-    val padLat = ((north - south) * 0.15).coerceAtLeast(0.01)
-    val padLng = ((east - west) * 0.15).coerceAtLeast(0.01)
-    return BoundingBox(north + padLat, east + padLng, south - padLat, west - padLng)
-}
-
 /**
  * Backwards-compatible alias.
  *
- * Screens that only need a static map keep calling `MapPanel`; it is now
- * simply [JourneyMap] with playback switched off.
+ * Screens that only need a static map keep calling `MapPanel`; it is simply
+ * [JourneyMap] with playback switched off.
  */
 @Composable
 fun MapPanel(

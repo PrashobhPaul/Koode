@@ -35,8 +35,8 @@ android {
         applicationId = "app.koode"
         minSdk = 26
         targetSdk = 35
-        versionCode = 15
-        versionName = "6.4.1"
+        versionCode = 16
+        versionName = "6.5.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -79,6 +79,9 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
+            // MapLibre ships native code per CPU type. Debug keeps x86_64 so
+            // the CI emulator can run it; 32-bit x86 is never needed.
+            ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
         }
         release {
             // Minification is deliberately OFF. It would need a full set of
@@ -89,6 +92,8 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             signingConfig = signingConfigs.getByName("distribution")
+            // The APK families actually install: phones only (64- and 32-bit ARM).
+            ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a") }
         }
     }
 
@@ -106,6 +111,10 @@ android {
     }
 
     packaging {
+        // Compress native libraries inside the APK. Default packaging stores
+        // them uncompressed, which roughly doubles the download for a
+        // sideloaded app — a worse trade here than a slightly slower install.
+        jniLibs { useLegacyPackaging = true }
         resources.excludes += setOf(
             "META-INF/LICENSE.md",
             "META-INF/LICENSE-notice.md",
@@ -158,8 +167,10 @@ dependencies {
     // --- Location / Activity Recognition ---
     implementation("com.google.android.gms:play-services-location:21.3.0")
 
-    // --- Map rendering: osmdroid + OpenStreetMap tiles (free, no API key) ---
-    implementation("org.osmdroid:osmdroid-android:6.1.20")
+    // --- Map rendering: MapLibre Native (open source) + OpenFreeMap vector tiles ---
+    // Free and keyless like the osmdroid stack it replaces, but vector-based, so
+    // the camera can tilt and the vehicle can be drawn as a real 3D model.
+    implementation("org.maplibre.gl:android-sdk:11.13.5")
 
     // --- HTTP client: OSRM routing + Supabase (PostgREST) transport ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")

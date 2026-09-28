@@ -280,7 +280,8 @@ object JourneyDocuments {
         report: JourneyAnalytics.JourneyReport,
         measures: Measures
     ): JourneyPdf.Document {
-        val rows = events
+        val rows = com.trippulse.app.domain.BreakTimeline
+            .forTimeline(events, { it.type }, { it.eventTimeMs }, { EventCodec.payloadFromJson(it.payloadJson) })
             .filter { it.type in EventTypes.TIMELINE_TYPES }
             .sortedBy { it.eventTimeMs }
             .map { e ->

@@ -51,6 +51,7 @@ import com.trippulse.app.ui.components.SecondaryButton
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Spacing
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 /**
  * The hand-off screen: the two numbers that let someone follow this journey,
@@ -75,14 +76,48 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
 
     LaunchedEffect(tripId) { trip = graph.db.tripDao().byId(tripId) }
 
-    fun beginTrip() {
+    var lateStartHere by remember { mutableStateOf<com.trippulse.app.domain.GeoPoint?>(null) }
+
+    fun beginTrip(actualStartMs: Long? = null, here: com.trippulse.app.domain.GeoPoint? = null) {
         starting = true
         scope.launch {
-            graph.tripManager.startTrip(tripId)
+            graph.tripManager.startTrip(tripId, actualStartMs, here)
             TripTrackingService.start(context)
             starting = false
             nav.navigate(Routes.driver(tripId)) { popUpTo(Routes.HOME) }
         }
+    }
+
+    /**
+     * Pressed Start well away from the planned start, heading for the
+     * destination? Then they set off earlier — ask when, so the journey's
+     * times and distance cover the whole trip, not just from here.
+     */
+    fun checkThenBegin() {
+        starting = true
+        scope.launch {
+            val here = currentFix(context)
+            val t = trip
+            val alreadyOnTheWay = t != null && here != null && run {
+                val origin = com.trippulse.app.domain.GeoPoint(t.originLat, t.originLng)
+                val dest = com.trippulse.app.domain.GeoPoint(t.destLat, t.destLng)
+                com.trippulse.app.core.Geo.haversineM(origin, here) > LATE_START_METRES &&
+                    com.trippulse.app.core.Geo.haversineM(here, dest) < com.trippulse.app.core.Geo.haversineM(origin, dest)
+            }
+            starting = false
+            if (alreadyOnTheWay) lateStartHere = here else beginTrip()
+        }
+    }
+
+    lateStartHere?.let { here ->
+        val t = trip
+        LateStartDialog(
+            originName = t?.originName ?: "the start",
+            kmAway = t?.let { com.trippulse.app.core.Geo.haversineM(com.trippulse.app.domain.GeoPoint(it.originLat, it.originLng), here) / 1000.0 } ?: 0.0,
+            onStartedAgo = { minutes -> lateStartHere = null; beginTrip(System.currentTimeMillis() - minutes * 60_000L, here) },
+            onStartingNow = { lateStartHere = null; beginTrip() },
+            onDismiss = { lateStartHere = null }
+        )
     }
 
     val permLauncher = rememberLauncherForActivityResult(
@@ -90,7 +125,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
     ) { result ->
         val fine = result[Manifest.permission.ACCESS_FINE_LOCATION] == true
         val coarse = result[Manifest.permission.ACCESS_COARSE_LOCATION] == true
-        if (fine || coarse) beginTrip()
+        if (fine || coarse) checkThenBegin()
         else permMessage = "Koode needs location permission to follow your journey. Allow it to continue."
     }
 
@@ -251,4 +286,55 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }
+}
+
+
+/** How far from the planned start counts as "already on the way". */
+private const val LATE_START_METRES = 3_000.0
+
+@android.annotation.SuppressLint("MissingPermission")
+private suspend fun currentFix(context: android.content.Context): com.trippulse.app.domain.GeoPoint? =
+    kotlinx.coroutines.withTimeoutOrNull(6_000) {
+        try {
+            val client = com.google.android.gms.location.LocationServices.getFusedLocationProviderClient(context)
+            val loc = client.getCurrentLocation(
+                com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY,
+                com.google.android.gms.tasks.CancellationTokenSource().token
+            ).await() ?: client.lastLocation.await()
+            loc?.let { com.trippulse.app.domain.GeoPoint(it.latitude, it.longitude) }
+        } catch (_: Exception) { null }
+    }
+
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+@Composable
+private fun LateStartDialog(
+    originName: String,
+    kmAway: Double,
+    onStartedAgo: (Int) -> Unit,
+    onStartingNow: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    val colors = com.trippulse.app.ui.theme.KoodeTheme.colors
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Already on your way?") },
+        text = {
+            androidx.compose.foundation.layout.Column {
+                Text(
+                    "You're about %.0f km from %s. When did you actually set off? ".format(kmAway, originName) +
+                        "Koode will time the journey from then and count the distance already covered.",
+                    color = colors.textMid
+                )
+                androidx.compose.foundation.layout.Spacer(Modifier.height(com.trippulse.app.ui.theme.Spacing.md))
+                androidx.compose.foundation.layout.FlowRow(
+                    horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(com.trippulse.app.ui.theme.Spacing.sm)
+                ) {
+                    listOf(15 to "15 min ago", 30 to "30 min ago", 60 to "1 h ago", 90 to "1½ h ago",
+                        120 to "2 h ago", 180 to "3 h ago", 240 to "4 h ago", 360 to "6 h ago")
+                        .forEach { (m, label) -> com.trippulse.app.ui.components.KoodeChip(label, false, { onStartedAgo(m) }) }
+                }
+            }
+        },
+        confirmButton = { androidx.compose.material3.TextButton(onClick = onStartingNow) { Text("I'm starting here, now") } }
+    )
 }

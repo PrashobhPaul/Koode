@@ -96,7 +96,7 @@ The app runs immediately in **local mode** with no backend: full on-device track
 | Live state + historical backlog sync | — | ✅ |
 | Forced start/SOS/arrival alerts on followers' phones | — | ✅ |
 
-See **`docs/SUPABASE_SETUP.md`** to enable cloud mode (one-time, ~5 minutes, free). The live map needs no setup at all — it renders OpenStreetMap tiles via osmdroid, and routing uses the free OSRM public server (**`docs/MAPS_SETUP.md`**).
+See **`docs/SUPABASE_SETUP.md`** to enable cloud mode (one-time, ~5 minutes, free). The live map needs no setup at all — it renders free OpenFreeMap vector tiles (OpenStreetMap data) via MapLibre, and routing uses the free OSRM public server (**`docs/MAPS_SETUP.md`**).
 
 ---
 
@@ -123,7 +123,7 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 ### Configuration
 
-- **Maps/routing:** nothing to configure — OpenStreetMap tiles and OSRM routing are free and keyless.
+- **Maps/routing:** nothing to configure — OpenFreeMap vector tiles and OSRM routing are free and keyless.
 - **Cloud sharing:** fill in the two values in `apps/android/supabase.properties` (see `docs/SUPABASE_SETUP.md`). Empty values build in local mode. The anon key is public by design — all access control lives in `supabase/schema.sql`.
 
 ---

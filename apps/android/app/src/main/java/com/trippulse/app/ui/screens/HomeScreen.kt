@@ -502,6 +502,7 @@ private fun JourneysSection(
 ) {
     val colors = KoodeTheme.colors
     val now = System.currentTimeMillis()
+    com.trippulse.app.ui.components.CrashNotice()
     SectionHeader("Journeys")
 
     if (active != null) {

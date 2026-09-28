@@ -63,6 +63,14 @@ object EventNarrator {
      * sentence ("Boarded the train") so no reader has to know the mode.
      */
     fun line(type: String, payload: Map<String, Any?>): Pair<String, String> {
+        if (type == EventTypes.BREAK_CHECKPOINT && payload["countsAsBreak"] != false && payload.containsKey("breakId")) {
+            return "✅" to BreakTimeline.describe(payload)
+        }
+        if (type == EventTypes.TRIP_STARTED && payload["startedEarlier"] == true) {
+            val km = ((payload["estimatedDistanceBeforeTrackingM"] as? Number)?.toDouble() ?: 0.0) / 1000.0
+            return "🚗" to (if (km >= 1) "Journey started · about %.0f km before tracking began (estimated)".format(km)
+                else "Journey started · logged later")
+        }
         val (emoji, label) = base(type)
         val text = payload["text"] as? String
         return when (type) {

@@ -155,8 +155,28 @@ object TransportCatalog {
         travellingSuffix = " by flight", boardingPointLabel = "Airport"
     )
 
+    /**
+     * A ship or ferry. Rules mirror the train's: the traveller isn't operating
+     * it, halts are part of the service, "off route" means nothing at sea, and
+     * long stretches without signal are normal once away from the coast.
+     */
+    val SHIP = TransportProfile(
+        key = "SHIP", label = "Ship / ferry", emoji = "🚢",
+        isPrivateVehicle = false, isRoadMode = false,
+        stopPromptsEnabled = false, deviationEnabled = false,
+        wellbeingIsBreak = false, expectsOfflineStretches = true,
+        defaultCadence = LocationCadence.SAVER,
+        quickActions = listOf(
+            QuickAction(EventTypes.BOARDED, "🎫", "Boarded", "Boarded the ship"),
+            QuickAction(EventTypes.TRANSIT_HALTED, "⚓", "Anchored", "Ship is anchored"),
+            QuickAction(EventTypes.TRANSIT_RESUMED, "🌊", "Sailing", "Ship is sailing again"),
+            QuickAction(EventTypes.DEBOARDED, "🚶", "Disembarked", "Got off the ship")
+        ),
+        travellingSuffix = " by ship", boardingPointLabel = "Port or jetty"
+    )
+
     /** Ordered for the mode picker: private first, then public transport. */
-    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, BUS, TRAIN, FLIGHT)
+    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, BUS, TRAIN, FLIGHT, SHIP)
 
     fun profile(key: String?): TransportProfile =
         ALL.firstOrNull { it.key == key } ?: CAR

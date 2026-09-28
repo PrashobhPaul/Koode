@@ -305,9 +305,30 @@ class TripManager(
     }
 
     /** Marks the journey active and starts the journey clock. */
-    suspend fun startTrip(tripId: String) = lock.withLock {
+    /**
+     * Starts the journey. When the traveller pressed Start after already
+     * setting off, [actualStartMs] is when they really left and [here] is where
+     * they are now: the journey's clock starts at the real departure, and the
+     * road distance already covered (origin → here) is counted, so totals are
+     * for the whole journey rather than from midway. That leading distance is
+     * an estimate and is recorded as one.
+     */
+    suspend fun startTrip(tripId: String, actualStartMs: Long? = null, here: GeoPoint? = null) {
+        val t0 = db.tripDao().byId(tripId) ?: return
+        val now0 = System.currentTimeMillis()
+        val lateStart = actualStartMs != null && actualStartMs < now0 - 60_000 && here != null
+        val preDistanceM = if (lateStart && here != null) {
+            val origin = GeoPoint(t0.originLat, t0.originLng)
+            (runCatching { routing.route(origin, here)?.distanceM }.getOrNull()
+                ?: Geo.haversineM(origin, here) * cfg.roadDistanceFactor)
+        } else 0.0
+        startTripLocked(tripId, if (lateStart) actualStartMs!! else null, preDistanceM)
+    }
+
+    private suspend fun startTripLocked(tripId: String, actualStartMs: Long?, preDistanceM: Double) = lock.withLock {
         val t = db.tripDao().byId(tripId) ?: return@withLock
-        val now = System.currentTimeMillis()
+        val recordedAt = System.currentTimeMillis()
+        val now = actualStartMs ?: recordedAt
         val started = t.copy(status = "ACTIVE", startedAtMs = now)
         db.tripDao().update(started)
         trip = started
@@ -318,11 +339,18 @@ class TripManager(
             drivingSinceMs = now,
             connectivity = connectivityNow().name,
             legIndex = started.activeLegIndex,
-            updatedAtMs = now
+            distanceCoveredM = preDistanceM,
+            updatedAtMs = recordedAt
         )
         db.stateDao().upsert(s); state = s
 
-        insertEvent(tripId, EventTypes.TRIP_STARTED, EventSource.DRIVER_MANUAL, now, null, null, emptyMap(), false)
+        insertEvent(
+            tripId, EventTypes.TRIP_STARTED, EventSource.DRIVER_MANUAL, now, null, null,
+            if (actualStartMs != null) mapOf(
+                "startedEarlier" to true, "recordedAtMs" to recordedAt,
+                "estimatedDistanceBeforeTrackingM" to preDistanceM
+            ) else emptyMap(), false
+        )
         db.legDao().markStarted(tripId, started.activeLegIndex, now)
         legs = db.legDao().forTrip(tripId)
         announceLeg(started, started.activeLegIndex, now)
@@ -760,62 +788,130 @@ class TripManager(
      * on a train, eating lunch is a wellbeing note and nothing more. A break
      * row is therefore only written when [TransportProfile.wellbeingIsBreak].
      */
-    suspend fun submitCheckpoint(c: Checkpoint) = lock.withLock {
-        val t = editableTrip() ?: return@withLock
-        var s = state ?: return@withLock
-        if (c.isEmpty) return@withLock
+    /**
+     * The break currently under way at a stop, while the vehicle is stationary.
+     * Items logged during the same stop join it; driving off closes it with
+     * its real duration. Kept in memory: after a restart the break simply
+     * keeps the last time something was logged as its end.
+     */
+    private data class OpenBreak(
+        val breakId: String, val startMs: Long, val lat: Double?, val lng: Double?,
+        val place: String?, val items: Map<String, Any?>, val countsAsBreak: Boolean
+    )
+    private var openBreak: OpenBreak? = null
+
+    /**
+     * Logs a break (or, on public transport, simply what was had).
+     *
+     * One stop is one break: tapping 💧 then 🍪 then 🚻 at the same halt adds
+     * to that break instead of creating three. Each break records where it was
+     * (named on the phone), when it began and how long it lasted. Start and
+     * duration come from stop detection when the vehicle is halted; otherwise
+     * the traveller supplies them ([startAtMs], [durationS]).
+     *
+     * Tea/coffee and snacks count as a break but never as water — water is
+     * only ever what the traveller said was water.
+     */
+    suspend fun submitCheckpoint(c: Checkpoint, startAtMs: Long? = null, durationS: Long? = null) {
+        val lat0 = state?.lat; val lng0 = state?.lng
+        // Name the place outside the lock: the geocoder can take a second.
+        val placeName = if (openBreak?.place != null && startAtMs == null) openBreak?.place else resolvePlace(lat0, lng0)
+        lock.withLock { submitCheckpointLocked(c, startAtMs, durationS, placeName) }
+    }
+
+    private suspend fun submitCheckpointLocked(c: Checkpoint, startAtMs: Long?, durationS: Long?, placeName: String?) {
+        val t = editableTrip() ?: return
+        var s = state ?: return
+        if (c.isEmpty) return
         val now = System.currentTimeMillis()
         val profile = activeProfile()
         val countsAsBreak = profile.wellbeingIsBreak
-        val startMs = s.checkpointStopStartMs ?: (now - (s.checkpointStopDurationS ?: 0) * 1000)
-        val endMs = s.checkpointStopEndMs ?: now
+        val stoppedNow = s.stopStartedAtMs != null && s.journey in STATIONARY_STATES
 
         val meal = if (c.food) (c.mealKind ?: inferMeal(t.tripId, now)) else null
-
-        insertEvent(
-            t.tripId, EventTypes.BREAK_CHECKPOINT, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
-            mapOf(
-                "water" to c.water, "food" to c.food, "toilet" to c.toilet,
-                "rest" to c.rest, "fuel" to c.fuel, "charge" to c.charge,
-                "tea" to c.tea, "snack" to c.snack, "other" to c.other,
-                "meal" to meal?.key, "countsAsBreak" to countsAsBreak
-            ), false
+        val added = linkedMapOf<String, Any?>(
+            "water" to c.water, "food" to c.food, "toilet" to c.toilet, "rest" to c.rest,
+            "fuel" to c.fuel, "charge" to c.charge, "tea" to c.tea, "snack" to c.snack, "other" to c.other
         )
 
-        if (c.water) reportWellbeing(t, EventTypes.WATER_REPORTED, now, s.lat, s.lng, emptyMap())
-        if (c.food) reportWellbeing(
-            t, EventTypes.FOOD_REPORTED, now, s.lat, s.lng,
-            mapOf("meal" to (meal ?: Nourishment.SNACK).key)
-        )
-        if (c.tea) reportWellbeing(t, EventTypes.TEA_COFFEE_REPORTED, now, s.lat, s.lng, emptyMap())
-        if (c.snack) reportWellbeing(t, EventTypes.SNACK_REPORTED, now, s.lat, s.lng, emptyMap())
-        if (c.toilet) reportWellbeing(t, EventTypes.TOILET_REPORTED, now, s.lat, s.lng, emptyMap())
-        if (c.rest) reportWellbeing(t, EventTypes.REST_REPORTED, now, s.lat, s.lng, emptyMap())
-        if (c.fuel) reportWellbeing(t, EventTypes.FUEL_STOP, now, s.lat, s.lng, emptyMap())
-        if (c.charge) reportWellbeing(t, EventTypes.CHARGE_STOP, now, s.lat, s.lng, emptyMap())
+        // ---- when did this break happen, and is it still going on? ----
+        val explicit = startAtMs != null || durationS != null
+        val startMs = (startAtMs ?: s.checkpointStopStartMs ?: s.stopStartedAtMs?.takeIf { stoppedNow } ?: now)
+            .coerceAtMost(now)
+        val endMs: Long? = when {
+            durationS != null -> (startMs + durationS * 1000).coerceAtMost(now)
+            s.checkpointStopEndMs != null -> s.checkpointStopEndMs
+            stoppedNow -> null            // still at the stop: closes when the vehicle moves off
+            else -> now
+        }
+
+        // ---- join the break already under way at this stop ----
+        val current = openBreak?.takeIf { ob ->
+            countsAsBreak && !explicit &&
+                (ob.lat == null || s.lat == null || s.lng == null ||
+                    Geo.haversineM(GeoPoint(ob.lat, ob.lng ?: 0.0), GeoPoint(s.lat!!, s.lng!!)) < BREAK_MERGE_RADIUS_M)
+        }
+        val breakId = current?.breakId ?: UUID.randomUUID().toString()
+        val breakStart = minOf(current?.startMs ?: startMs, startMs)
+        val merged = LinkedHashMap<String, Any?>().apply {
+            added.forEach { (k, v) -> put(k, v == true || current?.items?.get(k) == true) }
+            put("meal", meal?.key ?: current?.items?.get("meal"))
+        }
+        val newlyAdded = added.filter { (k, v) -> v == true && current?.items?.get(k) != true }.keys
 
         if (countsAsBreak) {
+            val place = placeName ?: current?.place
+            insertEvent(
+                t.tripId, EventTypes.BREAK_CHECKPOINT, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
+                merged + mapOf(
+                    "breakId" to breakId, "place" to place, "startMs" to breakStart, "endMs" to endMs,
+                    "durationS" to endMs?.let { ((it - breakStart) / 1000).coerceAtLeast(0) },
+                    "open" to (endMs == null), "countsAsBreak" to true
+                ), false
+            )
             db.breakDao().upsert(
                 BreakRecordEntity(
-                    breakId = UUID.randomUUID().toString(), tripId = t.tripId,
-                    startMs = startMs, endMs = endMs,
-                    durationS = ((endMs - startMs) / 1000).coerceAtLeast(0),
+                    breakId = breakId, tripId = t.tripId,
+                    startMs = breakStart, endMs = endMs,
+                    durationS = endMs?.let { ((it - breakStart) / 1000).coerceAtLeast(0) },
                     lat = s.lat, lng = s.lng,
-                    water = c.water, food = c.food, toilet = c.toilet, rest = c.rest,
-                    fuel = c.fuel, charge = c.charge, other = c.other,
-                    confirmationSource = "DRIVER_CONFIRMATION",
-                    tea = c.tea, snack = c.snack, mealKind = meal?.key
+                    water = merged["water"] == true, food = merged["food"] == true, toilet = merged["toilet"] == true,
+                    rest = merged["rest"] == true, fuel = merged["fuel"] == true, charge = merged["charge"] == true,
+                    other = merged["other"] == true, confirmationSource = "DRIVER_CONFIRMATION",
+                    tea = merged["tea"] == true, snack = merged["snack"] == true, mealKind = merged["meal"] as? String
                 )
+            )
+            openBreak = if (endMs == null) OpenBreak(breakId, breakStart, s.lat, s.lng, place, merged, true) else null
+        } else {
+            // Public transport: eating on a train is a wellbeing note, not a break.
+            insertEvent(
+                t.tripId, EventTypes.BREAK_CHECKPOINT, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
+                added + mapOf("meal" to meal?.key, "countsAsBreak" to false), false
             )
         }
 
+        // Individual items, tagged with their break so timelines can fold them in.
+        val tag: Map<String, Any?> = if (countsAsBreak) mapOf("breakId" to breakId) else emptyMap()
+        val itemTime = if (explicit) startMs else now
+        if ("water" in newlyAdded || (!countsAsBreak && c.water)) reportWellbeing(t, EventTypes.WATER_REPORTED, itemTime, s.lat, s.lng, tag)
+        if ("food" in newlyAdded || (!countsAsBreak && c.food)) reportWellbeing(
+            t, EventTypes.FOOD_REPORTED, itemTime, s.lat, s.lng, tag + mapOf("meal" to (meal ?: Nourishment.SNACK).key)
+        )
+        if ("tea" in newlyAdded || (!countsAsBreak && c.tea)) reportWellbeing(t, EventTypes.TEA_COFFEE_REPORTED, itemTime, s.lat, s.lng, tag)
+        if ("snack" in newlyAdded || (!countsAsBreak && c.snack)) reportWellbeing(t, EventTypes.SNACK_REPORTED, itemTime, s.lat, s.lng, tag)
+        if ("toilet" in newlyAdded || (!countsAsBreak && c.toilet)) reportWellbeing(t, EventTypes.TOILET_REPORTED, itemTime, s.lat, s.lng, tag)
+        if ("rest" in newlyAdded || (!countsAsBreak && c.rest)) reportWellbeing(t, EventTypes.REST_REPORTED, itemTime, s.lat, s.lng, tag)
+        if ("fuel" in newlyAdded || (!countsAsBreak && c.fuel)) reportWellbeing(t, EventTypes.FUEL_STOP, itemTime, s.lat, s.lng, tag)
+        if ("charge" in newlyAdded || (!countsAsBreak && c.charge)) reportWellbeing(t, EventTypes.CHARGE_STOP, itemTime, s.lat, s.lng, tag)
+
         s = s.copy(
-            waterAtMs = if (c.water) now else s.waterAtMs,
-            foodAtMs = if (c.food) now else s.foodAtMs,
-            toiletAtMs = if (c.toilet) now else s.toiletAtMs,
-            restAtMs = if (c.rest) now else s.restAtMs,
-            fuelAtMs = if (c.fuel) now else s.fuelAtMs,
-            lastBreakEndAtMs = if (countsAsBreak) endMs else s.lastBreakEndAtMs,
+            // Water is only ever water. Tea, coffee and snacks are a break, not hydration.
+            waterAtMs = if (c.water) itemTime else s.waterAtMs,
+            foodAtMs = if (c.food) itemTime else s.foodAtMs,
+            toiletAtMs = if (c.toilet) itemTime else s.toiletAtMs,
+            restAtMs = if (c.rest) itemTime else s.restAtMs,
+            fuelAtMs = if (c.fuel) itemTime else s.fuelAtMs,
+            lastBreakEndAtMs = if (countsAsBreak) (endMs ?: now) else s.lastBreakEndAtMs,
             checkpointDue = false, checkpointStopStartMs = null,
             checkpointStopEndMs = null, checkpointStopDurationS = null,
             updatedAtMs = now
@@ -824,6 +920,39 @@ class TripManager(
         s = recomputeEta(t, s, remainingTravelSeconds(s.distanceRemainingM), s.distanceRemainingM, now)
         persistAndPush(t, s, force = true)
         state = s
+    }
+
+    /** Closes the break under way when the vehicle drives off, with its real duration. */
+    private suspend fun closeOpenBreak(tripId: String, endMs: Long) {
+        val ob = openBreak ?: return
+        openBreak = null
+        val durationS = ((endMs - ob.startMs) / 1000).coerceAtLeast(0)
+        insertEvent(
+            tripId, EventTypes.BREAK_CHECKPOINT, EventSource.DRIVER_CONFIRMATION, endMs, ob.lat, ob.lng,
+            ob.items + mapOf(
+                "breakId" to ob.breakId, "place" to ob.place, "startMs" to ob.startMs, "endMs" to endMs,
+                "durationS" to durationS, "open" to false, "countsAsBreak" to true
+            ), false
+        )
+        db.breakDao().allForTrip(tripId).firstOrNull { it.breakId == ob.breakId }?.let {
+            db.breakDao().upsert(it.copy(endMs = endMs, durationS = durationS))
+        }
+    }
+
+    /** A short, human name for where the traveller is — on the phone, no network key. */
+    private suspend fun resolvePlace(lat: Double?, lng: Double?): String? {
+        if (lat == null || lng == null) return null
+        return kotlinx.coroutines.withTimeoutOrNull(3_000) {
+            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                try {
+                    @Suppress("DEPRECATION")
+                    android.location.Geocoder(appContext).getFromLocation(lat, lng, 1)?.firstOrNull()?.let { a ->
+                        listOfNotNull(a.subLocality, a.locality ?: a.subAdminArea)
+                            .distinct().joinToString(", ").ifBlank { null }
+                    }
+                } catch (_: Exception) { null }
+            }
+        }
     }
 
     /**
@@ -1200,12 +1329,38 @@ class TripManager(
      * the traveller's to close, because everyone watching reads "ended" as
      * "they're safe and home", and the app must never say that on its own.
      */
-    suspend fun completeTrip(closingNote: String? = null) = lock.withLock {
+    suspend fun completeTrip(closingNote: String? = null, endAtMs: Long? = null) = lock.withLock {
         // Idempotent: a double tap, or a screen that lingered, must not append
         // a second completion to a journey that is already closed.
         val t = editableTrip() ?: return@withLock
         val s = state ?: return@withLock
-        completeInternal(t, s, System.currentTimeMillis(), closingNote)
+        val now = System.currentTimeMillis()
+        val started = t.startedAtMs ?: t.createdAtMs
+        val endAt = endAtMs?.takeIf { it in started..now }
+        closeOpenBreak(t.tripId, endAt ?: now)
+        completeInternal(t, s, now, closingNote, endAt)
+    }
+
+    /**
+     * When the traveller actually reached the destination, if they closed the
+     * journey later than that: the arrival Koode detected, or else the start
+     * of the final stretch of fixes inside the destination radius. Null when
+     * there is nothing to suggest (still far away, or they closed on arrival).
+     */
+    suspend fun suggestedEndMs(tripId: String): Long? {
+        val t = db.tripDao().byId(tripId) ?: return null
+        val now = System.currentTimeMillis()
+        val minGap = 5 * 60_000L
+        t.arrivedAtMs?.let { if (now - it > minGap) return it }
+        val dest = GeoPoint(t.destLat, t.destLng)
+        val samples = db.locationDao().allForTrip(tripId)
+        if (samples.isEmpty()) return null
+        var firstInside: Long? = null
+        for (i in samples.indices.reversed()) {
+            val p = samples[i]
+            if (Geo.haversineM(GeoPoint(p.lat, p.lng), dest) <= cfg.arrivalRadiusM) firstInside = p.tMs else break
+        }
+        return firstInside?.takeIf { now - it > minGap }
     }
 
     // -----------------------------------------------------------------------
@@ -1250,6 +1405,12 @@ class TripManager(
     // Internals
     // -----------------------------------------------------------------------
 
+    private val STATIONARY_STATES = setOf(
+        JourneyStatus.POSSIBLE_STOP.name, JourneyStatus.STOPPED.name, JourneyStatus.LONG_STOP.name,
+        JourneyStatus.ARRIVED.name, JourneyStatus.OVERNIGHT.name
+    )
+    private val BREAK_MERGE_RADIUS_M = 500.0
+
     private fun terminal(s: TripStateEntity) =
         s.journey == JourneyStatus.COMPLETED.name || s.journey == JourneyStatus.EXPIRED.name
 
@@ -1288,10 +1449,14 @@ class TripManager(
             is StopDetector.Movement.StopEnded -> {
                 transition(s, JourneyInput.RESTART)?.let { s = s.copy(journey = it.name) }
                 val began = s.stopStartedAtMs ?: (now - move.durationS * 1000)
+                // A break already logged at this stop answers the checkpoint:
+                // close it with its real duration instead of asking again.
+                val loggedHere = openBreak != null
+                if (loggedHere) appScope.launch { lock.withLock { closeOpenBreak(t.tripId, now) } }
                 s = s.copy(
                     stopStartedAtMs = null, drivingSinceMs = now,
                     lastBreakEndAtMs = if (profile.wellbeingIsBreak) now else s.lastBreakEndAtMs,
-                    checkpointDue = profile.stopPromptsEnabled,
+                    checkpointDue = profile.stopPromptsEnabled && !loggedHere,
                     checkpointStopStartMs = if (profile.stopPromptsEnabled) began else null,
                     checkpointStopEndMs = if (profile.stopPromptsEnabled) now else null,
                     checkpointStopDurationS = if (profile.stopPromptsEnabled) move.durationS else null,
@@ -1438,8 +1603,12 @@ class TripManager(
     }
 
     private suspend fun completeInternal(
-        t: ActiveTripEntity, s0: TripStateEntity, now: Long, closingNote: String? = null
+        t: ActiveTripEntity, s0: TripStateEntity, recordedAt: Long, closingNote: String? = null,
+        endAtMs: Long? = null
     ) {
+        // "now" for the journey is when it really ended; expiry still runs from
+        // the moment it was closed, so followers get their full grace period.
+        val now = endAtMs ?: recordedAt
         var s = s0
         transition(s, JourneyInput.COMPLETE)?.let { s = s.copy(journey = it.name) }
 
@@ -1457,20 +1626,21 @@ class TripManager(
         val summary = SummaryCalculator.compute(events, s.distanceCoveredM, started, now)
 
         insertEvent(t.tripId, EventTypes.TRIP_COMPLETED, EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
-            summaryMap(summary), false)
+            summaryMap(summary) + (if (endAtMs != null) mapOf("endedAtArrival" to true, "recordedAtMs" to recordedAt) else emptyMap()),
+            false)
 
         db.legDao().markCompleted(t.tripId, t.activeLegIndex, now)
 
         // Credentials self-destruct only AFTER the traveller closed the journey,
         // and with enough grace that a follower who opens the app right then
         // still sees the arrival rather than an empty screen.
-        val expires = now + cfg.expiryGraceMin * 60_000
+        val expires = recordedAt + cfg.expiryGraceMin * 60_000
         val completed = t.copy(
             status = "COMPLETED", completedAtMs = now, expiresAtMs = expires, endedByOwner = true
         )
         db.tripDao().update(completed); trip = completed
 
-        s = s.copy(etaMode = EtaMode.ARRIVED.name, arrivalPromptDue = false, updatedAtMs = now)
+        s = s.copy(etaMode = EtaMode.ARRIVED.name, arrivalPromptDue = false, updatedAtMs = recordedAt)
         db.stateDao().upsert(s); state = s
 
         // The journey is over the instant it is written locally. Everything
