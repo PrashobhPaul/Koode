@@ -1,7 +1,12 @@
 package com.trippulse.app.ui.screens
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -84,6 +89,38 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     var c3 by remember { mutableStateOf(Profile.contact(context, 3)) }
     var placeLabel by remember { mutableStateOf("") }
     var placeQuery by remember { mutableStateOf("") }
+
+    // "Use my current location" needs the runtime location permission. The
+    // saved-place editor used to assume it was already granted, so on a fresh
+    // install the button silently failed ("couldn't read your location").
+    // Request it on tap, then read the fix once granted.
+    var pendingCurrentLabel by remember { mutableStateOf<String?>(null) }
+    val locationPermLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { result ->
+        val granted = result[Manifest.permission.ACCESS_FINE_LOCATION] == true ||
+            result[Manifest.permission.ACCESS_COARSE_LOCATION] == true
+        val label = pendingCurrentLabel
+        pendingCurrentLabel = null
+        if (granted && label != null) vm.addCurrentLocation(label)
+    }
+    val useCurrentLocation = {
+        val label = placeLabel
+        val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
+        when {
+            label.trim().isBlank() -> vm.addCurrentLocation(label) // surfaces "type a name first"
+            granted -> vm.addCurrentLocation(label)
+            else -> {
+                pendingCurrentLabel = label
+                locationPermLauncher.launch(
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+                )
+            }
+        }
+    }
 
     SectionHeader("More")
 
@@ -260,12 +297,12 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
             singleLine = true, modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(Spacing.sm))
-        SecondaryButton("Use my current location", { vm.addCurrentLocation(placeLabel) }, height = 44.dp)
+        SecondaryButton("Use my current location", useCurrentLocation, height = 44.dp)
         Spacer(Modifier.height(Spacing.sm))
         Row(verticalAlignment = Alignment.CenterVertically) {
             OutlinedTextField(
                 value = placeQuery, onValueChange = { placeQuery = it },
-                label = { Text("…or search a place") }, singleLine = true, modifier = Modifier.weight(1f)
+                label = { Text("…or search / paste a Maps link") }, singleLine = true, modifier = Modifier.weight(1f)
             )
             Spacer(Modifier.width(Spacing.sm))
             Box(Modifier.width(96.dp)) {
