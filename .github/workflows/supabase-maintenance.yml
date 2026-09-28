@@ -10,6 +10,11 @@ on:
     - cron: '17 */6 * * *'   # every 6 hours
   workflow_dispatch:
 
+# Least privilege: this workflow only reads the repo (checkout) and calls
+# Supabase with its own key, so the GITHUB_TOKEN never needs write access.
+permissions:
+  contents: read
+
 jobs:
   ping:
     runs-on: ubuntu-latest
