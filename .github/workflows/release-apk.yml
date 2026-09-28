@@ -66,9 +66,14 @@ jobs:
       - name: Record the signing certificate
         # Printed into the release notes so anyone can confirm an update is
         # signed by the same key as their install — the family's tamper check.
+        # apksigner, not keytool: with minSdk 26 the APK carries only a v2
+        # signature, which keytool -printcert -jarfile cannot see (it printed
+        # an empty line).
         run: |
-          FP=$(keytool -printcert -jarfile Koode.apk 2>/dev/null | grep 'SHA-256:' | head -1 || true)
-          echo "CERT_FP=$FP" >> "$GITHUB_ENV"
+          APKSIGNER=$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)apksigner
+          FP=$("$APKSIGNER" verify --print-certs Koode.apk 2>/dev/null \
+            | grep -m1 'certificate SHA-256 digest:' | awk '{print $NF}' || true)
+          echo "CERT_FP=SHA-256 ${FP:-unavailable}" >> "$GITHUB_ENV"
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
