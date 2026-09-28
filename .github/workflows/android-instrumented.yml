@@ -15,6 +15,11 @@ concurrency:
   group: instrumented-${{ github.ref }}
   cancel-in-progress: true
 
+# Least privilege: this workflow only reads the repo (checkout) and uploads
+# artifacts, so the GITHUB_TOKEN never needs write access.
+permissions:
+  contents: read
+
 jobs:
   instrumented:
     name: connectedCheck on API ${{ matrix.api }}
