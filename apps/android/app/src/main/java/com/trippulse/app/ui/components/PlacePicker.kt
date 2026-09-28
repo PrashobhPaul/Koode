@@ -27,6 +27,14 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import com.trippulse.app.ui.SharedPlaceInbox
+import com.trippulse.app.core.LocationFix
+import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.key
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -81,14 +89,41 @@ fun PlacePicker(
     pinStart: GeoPoint?,
     onQuery: (String) -> Unit,
     onPick: (PlaceSearch.Place) -> Unit,
-    onUseCurrentLocation: (() -> Unit)?,
+    /** Offer "Current location" (resolved to a real, named point). */
+    offerCurrentLocation: Boolean,
     onOpenGoogleMaps: (String) -> Unit,
+    /** A Google Maps link that came back — shared to Koode, or copied and returned with. */
+    onSharedText: (String) -> Unit,
     onSavePlace: (String, GeoPoint) -> Unit,
     onDeleteSaved: (String) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    onLocated: (GeoPoint) -> Unit = {},
+    title: String? = null
 ) {
     val colors = KoodeTheme.colors
     var query by remember { mutableStateOf("") }
+
+    // ---- current location: permission, "turn on location", a real fix, a name ----
+    var locError by remember { mutableStateOf<String?>(null) }
+    val locator = rememberCurrentLocation { r, name ->
+        if (r is LocationFix.Result.Found) {
+            locError = null
+            onLocated(r.point)
+            onPick(PlaceSearch.Place(name?.let { "Current location · $it" } ?: "Current location", r.point, name.orEmpty()))
+        } else locError = LocationFix.explain(r)
+    }
+
+    // ---- places coming back from Google Maps ----
+    val clipboard = LocalClipboardManager.current
+    val shared by SharedPlaceInbox.pending.collectAsState()
+    DisposableEffect(Unit) {
+        SharedPlaceInbox.pickerOpen = true
+        onDispose { SharedPlaceInbox.pickerOpen = false }
+    }
+    // Shared to Koode from Maps: this open picker takes it for its own field.
+    LaunchedEffect(shared) {
+        SharedPlaceInbox.take()?.let { (text, _) -> onSharedText(text) }
+    }
     var tab by remember { mutableStateOf(0) } // 0 = search, 1 = pin
     var savePrompt by remember { mutableStateOf<GeoPoint?>(null) }
     val focus = remember { FocusRequester() }
@@ -103,6 +138,15 @@ fun PlacePicker(
         onDismissRequest = onDismiss,
         properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false)
     ) {
+        val windowInfo = LocalWindowInfo.current
+        LaunchedEffect(windowInfo) {
+            snapshotFlow { windowInfo.isWindowFocused }.collect { focused ->
+                if (!focused || !SharedPlaceInbox.isAwaiting()) return@collect
+                // Only a link copied *after* leaving for Maps — never an old clipboard.
+                // Accepted clips go through the inbox, so they're applied exactly once.
+                SharedPlaceInbox.acceptReturnedClip(runCatching { clipboard.getText()?.text }.getOrNull())
+            }
+        }
         Column(
             Modifier
                 .fillMaxSize()
@@ -117,7 +161,7 @@ fun PlacePicker(
             ) {
                 TextButton(onClick = onDismiss) { Text("✕", color = colors.textMid, fontSize = 18.sp) }
                 Text(
-                    if (asStart) "Where are you starting?" else "Where to?",
+                    title ?: if (asStart) "Where are you starting?" else "Where to?",
                     color = colors.textHigh, style = MaterialTheme.typography.titleLarge
                 )
             }
@@ -163,8 +207,13 @@ fun PlacePicker(
                     saved = saved,
                     recent = recent,
                     onPick = onPick,
-                    onUseCurrentLocation = onUseCurrentLocation,
-                    onOpenGoogleMaps = { onOpenGoogleMaps(query.trim()) },
+                    onUseCurrentLocation = if (offerCurrentLocation) ({ locError = null; locator.request() }) else null,
+                    locating = locator.locating.value,
+                    locError = locError,
+                    onOpenGoogleMaps = {
+                        SharedPlaceInbox.beginGoogleHandoff(runCatching { clipboard.getText()?.text }.getOrNull())
+                        onOpenGoogleMaps(query.trim())
+                    },
                     onAskSave = { savePrompt = it },
                     onDeleteSaved = onDeleteSaved
                 )
@@ -215,6 +264,8 @@ private fun SearchTab(
     recent: List<PlaceSuggestion>,
     onPick: (PlaceSearch.Place) -> Unit,
     onUseCurrentLocation: (() -> Unit)?,
+    locating: Boolean,
+    locError: String?,
     onOpenGoogleMaps: () -> Unit,
     onAskSave: (GeoPoint) -> Unit,
     onDeleteSaved: (String) -> Unit
@@ -237,13 +288,22 @@ private fun SearchTab(
         Spacer(Modifier.height(Spacing.md))
         Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             if (onUseCurrentLocation != null) {
-                ActionTile("🎯", "Current location", "Where you are at the start", Modifier.weight(1f), onUseCurrentLocation)
+                ActionTile(
+                    "🎯", if (locating) "Finding you…" else "Current location",
+                    if (locating) "Getting a fresh position" else "Uses where you are now",
+                    Modifier.weight(1f), onUseCurrentLocation
+                )
             }
             ActionTile(
                 "🗺", "Choose in Google Maps",
-                if (query.isBlank()) "Find it, tap Share → Koode" else "Opens Maps for \u201C${query.trim()}\u201D",
+                if (query.isBlank()) "Find it, then Share → Koode or Copy link and come back"
+                else "Opens Maps for \u201C${query.trim()}\u201D",
                 Modifier.weight(1f), onOpenGoogleMaps
             )
+        }
+        if (locError != null) {
+            Spacer(Modifier.height(Spacing.sm))
+            Text(locError, color = colors.warn, style = MaterialTheme.typography.bodyMedium)
         }
     }
     Spacer(Modifier.height(Spacing.sm))
@@ -316,6 +376,12 @@ private fun PinTab(
     val context = LocalContext.current
     var center by remember { mutableStateOf(start) }
     var label by remember { mutableStateOf<String?>(null) }
+    var mapStart by remember { mutableStateOf(start) }
+    var locError by remember { mutableStateOf<String?>(null) }
+    val locator = rememberCurrentLocation { r, _ ->
+        if (r is LocationFix.Result.Found) { locError = null; mapStart = r.point; center = r.point }
+        else locError = LocationFix.explain(r)
+    }
 
     // Name the spot under the pin with the phone's own geocoder once the map
     // settles; nothing leaves the device beyond what Android itself does.
@@ -334,11 +400,25 @@ private fun PinTab(
     }
 
     Column(Modifier.fillMaxSize()) {
-        PinDropMap(
-            start = start,
-            onCenter = { center = it },
-            modifier = Modifier.weight(1f)
-        )
+        Box(Modifier.weight(1f)) {
+            key(mapStart) {
+                PinDropMap(start = mapStart, onCenter = { center = it }, modifier = Modifier.fillMaxSize())
+            }
+            Box(
+                Modifier
+                    .align(Alignment.TopEnd)
+                    .padding(Spacing.md)
+                    .clip(RoundedCornerShape(Radii.pill))
+                    .background(colors.background.copy(alpha = 0.88f))
+                    .clickable { locError = null; locator.request() }
+                    .padding(horizontal = 12.dp, vertical = 8.dp)
+            ) {
+                Text(
+                    if (locator.locating.value) "Finding you…" else "🎯  My location",
+                    color = colors.textHigh, style = MaterialTheme.typography.labelMedium
+                )
+            }
+        }
         Column(Modifier.padding(Spacing.lg), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             Text(
                 label ?: "Drag the map to put the pin on the spot",
@@ -348,6 +428,7 @@ private fun PinTab(
             center?.let {
                 Text("%.5f, %.5f".format(it.lat, it.lng), color = colors.textLow, style = MaterialTheme.typography.bodySmall)
             }
+            locError?.let { Text(it, color = colors.warn, style = MaterialTheme.typography.bodySmall) }
             PrimaryButton(
                 "Use this spot",
                 {
@@ -422,5 +503,22 @@ private fun PlaceRow(
         if (trailing != null && onTrailing != null) {
             TextButton(onClick = onTrailing) { Text(trailing, color = colors.textLow, fontSize = 13.sp) }
         }
+    }
+}
+
+/**
+ * Opens the Google Maps app (or maps.google.com if it isn't installed) on a
+ * search for [query]. The traveller finds the place and either shares it to
+ * Koode or copies its link and comes back — both fill the waiting field.
+ */
+fun openGoogleMaps(context: android.content.Context, query: String) {
+    val url = if (query.isBlank()) "https://www.google.com/maps"
+    else "https://www.google.com/maps/search/?api=1&query=" + android.net.Uri.encode(query)
+    val app = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))
+        .setPackage("com.google.android.apps.maps")
+    try {
+        context.startActivity(app)
+    } catch (_: android.content.ActivityNotFoundException) {
+        runCatching { context.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))) }
     }
 }

@@ -459,16 +459,21 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     fun applySharedText(text: String, index: Int, asStart: Boolean) {
         viewModelScope.launch {
             searching.value = true
-            val place = placeSearch.resolveLink(text)
+            val place = placeSearch.resolveLink(text, near = here.value)
                 ?: placeSearch.search(text, limit = 1).firstOrNull()
             searching.value = false
             if (place == null) {
                 notice.value = "Couldn't read a location from that Google Maps link. Try sharing the place again, or search by name."
             } else {
                 applyPlace(index, asStart, place)
-                notice.value = if (place.detail.startsWith("Matched by name"))
-                    "Found \"${place.name}\" by name — glance at the map to check it's the right spot."
-                else "Added \"${place.name}\" from Google Maps."
+                notice.value = when {
+                    place.detail.startsWith("Only the area") ->
+                        "Google's link for \"${place.name}\" didn't include its exact spot, so only the area was found. " +
+                            "Tap the place and use Pin on map to set it — or in Google Maps, drop a pin and share that for an exact location."
+                    place.detail.startsWith("Matched by address") ->
+                        "Found \"${place.name}\" by its address — glance at the map to check it's the right spot."
+                    else -> "Added \"${place.name}\" from Google Maps."
+                }
             }
         }
     }
@@ -517,14 +522,12 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     fun cloudDefault() = graph.cloudAvailableSafe()
 
     @SuppressLint("MissingPermission")
-    private suspend fun currentLocation(): GeoPoint? = try {
-        val client = LocationServices.getFusedLocationProviderClient(graph.appContext)
-        val loc = client.lastLocation.await()
-            ?: client.getCurrentLocation(
-                Priority.PRIORITY_BALANCED_POWER_ACCURACY, CancellationTokenSource().token
-            ).await()
-        loc?.let { GeoPoint(it.latitude, it.longitude) }
-    } catch (_: Exception) { null }
+    /** A fresh, real position (see LocationFix) — never an hours-old cached one. */
+    private suspend fun currentLocation(): GeoPoint? =
+        (com.trippulse.app.core.LocationFix.current(graph.appContext) as? com.trippulse.app.core.LocationFix.Result.Found)?.point
+
+    /** Called once location permission is granted, so search and the pin map centre on the traveller. */
+    fun refreshHere() = viewModelScope.launch { currentLocation()?.let { here.value = it } }
 
     @Suppress("DEPRECATION")
     private suspend fun geocode(text: String): GeoPoint? = withContext(Dispatchers.IO) {
@@ -1381,15 +1384,22 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
 
     // ---- places -----------------------------------------------------------
 
+    private var searchJob: kotlinx.coroutines.Job? = null
+
+    /** Search-as-you-type for the saved-places picker; the newest query always wins. */
     fun searchPlaces(query: String) {
-        if (query.trim().length < 2 || searching.value) return
-        viewModelScope.launch {
+        searchJob?.cancel()
+        val q = query.trim()
+        if (q.length < 2) { searchResults.value = emptyList(); searching.value = false; return }
+        searchJob = viewModelScope.launch {
             searching.value = true
-            searchResults.value = placeSearch.search(query)
-            searching.value = false
-            message.value = if (searchResults.value.isEmpty()) "No places found — try adding the city." else null
+            try { searchResults.value = placeSearch.search(q) } finally { if (isActive) searching.value = false }
         }
     }
+
+    /** A Google Maps link (shared in or copied) turned into a place, or null. */
+    suspend fun resolveShared(text: String): PlaceSearch.Place? =
+        placeSearch.resolveLink(text) ?: placeSearch.search(text, limit = 1).firstOrNull()
 
     fun addPlace(label: String, point: GeoPoint, fallbackName: String) {
         val name = InputRules.itemTextForStorage(label).ifBlank { fallbackName.split(",").first().trim() }
@@ -1401,28 +1411,6 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
         }
     }
 
-    @SuppressLint("MissingPermission")
-    fun addCurrentLocation(label: String) {
-        if (label.trim().isBlank()) {
-            message.value = "Type a name first (e.g. Home), then tap Use current location."
-            return
-        }
-        viewModelScope.launch {
-            val point = try {
-                val client = LocationServices.getFusedLocationProviderClient(graph.appContext)
-                val loc = client.lastLocation.await()
-                    ?: client.getCurrentLocation(
-                        Priority.PRIORITY_BALANCED_POWER_ACCURACY, CancellationTokenSource().token
-                    ).await()
-                loc?.let { GeoPoint(it.latitude, it.longitude) }
-            } catch (_: Exception) { null }
-            if (point == null) {
-                message.value = "Couldn't read your location — check GPS and location permission."
-                return@launch
-            }
-            addPlace(label, point, label)
-        }
-    }
 
     fun deletePlace(name: String) = viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
 

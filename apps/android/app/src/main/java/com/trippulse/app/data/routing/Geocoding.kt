@@ -52,7 +52,7 @@ class PlaceSearch(
      * carries no coordinates — Google sometimes shares a place by name only —
      * the place name is looked up instead, and the result says so.
      */
-    suspend fun resolveLink(sharedText: String): Place? = withContext(Dispatchers.IO) {
+    suspend fun resolveLink(sharedText: String, near: GeoPoint? = null): Place? = withContext(Dispatchers.IO) {
         val url = GoogleMapsLink.extractUrl(sharedText) ?: return@withContext null
         val sharedName = GoogleMapsLink.sharedName(sharedText)
 
@@ -63,10 +63,22 @@ class PlaceSearch(
         }
         val name = sharedName ?: parsed.name
         parsed.point?.let { return@withContext Place(name ?: "Place from Google Maps", it, "From Google Maps") }
-        // No coordinates anywhere: fall back to searching the name Google gave us.
-        name?.let { n -> (photon(n, 1, null) ?: nominatim(n, 1)).firstOrNull()?.let {
-            return@withContext it.copy(name = n, detail = "Matched by name — check the pin")
-        } }
+        // Google's links for named places ("Copy link", Share) usually carry
+        // only the name and address — the coordinates are drawn in by script
+        // on Google's side. So look the address up: most specific first, then
+        // ever broader, and say plainly when only the area could be found.
+        name?.let { n ->
+            val shown = GoogleMapsLink.displayName(n)
+            GoogleMapsLink.lookupCandidates(n).forEachIndexed { i, candidate ->
+                val hit = (photon(candidate, 1, near) ?: if (i == 0) nominatim(candidate, 1) else null)?.firstOrNull()
+                    ?: return@forEachIndexed
+                return@withContext hit.copy(
+                    name = shown,
+                    detail = if (i == 0) "Matched by address — check the pin"
+                    else "Only the area matched ($candidate) — move the pin to the exact spot"
+                )
+            }
+        }
         null
     }
 
@@ -171,6 +183,23 @@ object GoogleMapsLink {
             (host.contains("google.") && path.startsWith("/maps")) ||
             host == "consent.google.com"
     }
+
+    /**
+     * What to look up for a place Google named but didn't locate: the full
+     * text, then the address without the leading business name, then ever
+     * broader address parts, and finally the bare name. Commas and the Arabic
+     * comma both split parts.
+     */
+    fun lookupCandidates(text: String): List<String> {
+        val parts = text.split(',', '\u060C').map { it.trim() }.filter { it.isNotEmpty() }
+        if (parts.isEmpty()) return emptyList()
+        return (listOf(text.trim()) + (1 until parts.size).map { parts.drop(it).joinToString(", ") } + parts.first())
+            .distinct()
+    }
+
+    /** The place's own name — the first part of "LuLu Mall, NH 66, Edappally, Kochi". */
+    fun displayName(text: String): String =
+        text.split(',', '\u060C').map { it.trim() }.firstOrNull { it.isNotEmpty() } ?: text.trim()
 
     /** "10.5276, 76.2144" typed or pasted directly. */
     fun coordinates(text: String): GeoPoint? =

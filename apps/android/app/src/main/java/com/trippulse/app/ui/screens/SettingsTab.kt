@@ -1,5 +1,6 @@
 package com.trippulse.app.ui.screens
 
+import kotlinx.coroutines.launch
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -87,40 +88,12 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     var c1 by remember { mutableStateOf(Profile.contact(context, 1)) }
     var c2 by remember { mutableStateOf(Profile.contact(context, 2)) }
     var c3 by remember { mutableStateOf(Profile.contact(context, 3)) }
-    var placeLabel by remember { mutableStateOf("") }
-    var placeQuery by remember { mutableStateOf("") }
-
-    // "Use my current location" needs the runtime location permission. The
-    // saved-place editor used to assume it was already granted, so on a fresh
-    // install the button silently failed ("couldn't read your location").
-    // Request it on tap, then read the fix once granted.
-    var pendingCurrentLabel by remember { mutableStateOf<String?>(null) }
-    val locationPermLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { result ->
-        val granted = result[Manifest.permission.ACCESS_FINE_LOCATION] == true ||
-            result[Manifest.permission.ACCESS_COARSE_LOCATION] == true
-        val label = pendingCurrentLabel
-        pendingCurrentLabel = null
-        if (granted && label != null) vm.addCurrentLocation(label)
-    }
-    val useCurrentLocation = {
-        val label = placeLabel
-        val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
-            PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) ==
-            PackageManager.PERMISSION_GRANTED
-        when {
-            label.trim().isBlank() -> vm.addCurrentLocation(label) // surfaces "type a name first"
-            granted -> vm.addCurrentLocation(label)
-            else -> {
-                pendingCurrentLabel = label
-                locationPermLauncher.launch(
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-                )
-            }
-        }
-    }
+    // Saved places use the same picker as journey planning: search, Google
+    // Maps (share or copy), current location or a dropped pin — then a name.
+    var addingPlace by remember { mutableStateOf(false) }
+    var pendingSave by remember { mutableStateOf<com.trippulse.app.data.routing.PlaceSearch.Place?>(null) }
+    var placeNote by remember { mutableStateOf<String?>(null) }
+    val placeScope = androidx.compose.runtime.rememberCoroutineScope()
 
     SectionHeader("More")
 
@@ -290,35 +263,70 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
             }
         }
         Spacer(Modifier.height(Spacing.sm))
-        OutlinedTextField(
-            value = placeLabel,
-            onValueChange = { placeLabel = InputRules.itemText(it) },
-            label = { Text("Name it (Home / Office / …)") },
-            singleLine = true, modifier = Modifier.fillMaxWidth()
+        SecondaryButton("Add a place", { placeNote = null; addingPlace = true }, leading = "＋", height = 44.dp)
+        placeNote?.let {
+            Spacer(Modifier.height(Spacing.xs))
+            Text(it, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
+        }
+    }
+
+    if (addingPlace) {
+        com.trippulse.app.ui.components.PlacePicker(
+            asStart = false,
+            title = "Add a saved place",
+            results = results,
+            searching = searching,
+            saved = places,
+            recent = emptyList(),
+            here = null,
+            pinStart = null,
+            onQuery = { vm.searchPlaces(it) },
+            onPick = { place -> addingPlace = false; vm.searchPlaces(""); pendingSave = place },
+            offerCurrentLocation = true,
+            onOpenGoogleMaps = { query -> com.trippulse.app.ui.components.openGoogleMaps(context, query) },
+            onSharedText = { text ->
+                placeScope.launch {
+                    val place = vm.resolveShared(text)
+                    addingPlace = false
+                    if (place != null) pendingSave = place
+                    else placeNote = "Couldn't read a location from that Google Maps link. Try again, or search by name."
+                }
+            },
+            onSavePlace = { name, point -> vm.addPlace(name, point, name); placeNote = "Saved \u201C$name\u201D." },
+            onDeleteSaved = { vm.deletePlace(it) },
+            onDismiss = { addingPlace = false; vm.searchPlaces("") }
         )
-        Spacer(Modifier.height(Spacing.sm))
-        SecondaryButton("Use my current location", useCurrentLocation, height = 44.dp)
-        Spacer(Modifier.height(Spacing.sm))
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            OutlinedTextField(
-                value = placeQuery, onValueChange = { placeQuery = it },
-                label = { Text("…or search / paste a Maps link") }, singleLine = true, modifier = Modifier.weight(1f)
-            )
-            Spacer(Modifier.width(Spacing.sm))
-            Box(Modifier.width(96.dp)) {
-                SecondaryButton(
-                    if (searching) "…" else "Search",
-                    { vm.searchPlaces(placeQuery) }, enabled = !searching, height = 48.dp
-                )
-            }
+    }
+
+    pendingSave?.let { place ->
+        var label by remember(place) {
+            mutableStateOf(if (place.name.startsWith("Current location")) "" else place.name.substringBefore(",").trim())
         }
-        results.forEach { r ->
-            Spacer(Modifier.height(Spacing.sm))
-            Text(r.name, color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
-            TextButton(onClick = {
-                vm.addPlace(placeLabel, r.point, r.name); placeLabel = ""; placeQuery = ""
-            }) { Text("Save this place", color = colors.accent, fontSize = 13.sp) }
-        }
+        androidx.compose.material3.AlertDialog(
+            onDismissRequest = { pendingSave = null },
+            title = { Text("Name this place") },
+            text = {
+                Column {
+                    Text(
+                        place.name + if (place.detail.isNotBlank() && !place.name.contains(place.detail)) " · ${place.detail}" else "",
+                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                    )
+                    Spacer(Modifier.height(Spacing.sm))
+                    OutlinedTextField(
+                        value = label, onValueChange = { label = InputRules.itemText(it) },
+                        label = { Text("Home, Office, Amma's house…") }, singleLine = true
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    vm.addPlace(label, place.point, place.name)
+                    placeNote = "Saved \u201C${label.ifBlank { place.name }}\u201D."
+                    pendingSave = null
+                }, enabled = label.isNotBlank()) { Text("Save") }
+            },
+            dismissButton = { TextButton(onClick = { pendingSave = null }) { Text("Cancel") } }
+        )
     }
 
     // ---- emergency contacts ----
