@@ -68,6 +68,7 @@ import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.LocalWindowClass
 import com.trippulse.app.ui.components.PlacePicker
+import com.trippulse.app.ui.components.openGoogleMaps
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.SecondaryButton
 import com.trippulse.app.ui.components.TravelDetailFields
@@ -114,7 +115,7 @@ fun CreateTripScreen(nav: NavHostController) {
     var customWhen by remember { mutableStateOf("") }
 
     // "Current location" as a start needs the permission up front.
-    val permLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { }
+    val permLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { vm.refreshHere() }
     LaunchedEffect(Unit) {
         val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
             PackageManager.PERMISSION_GRANTED
@@ -126,6 +127,8 @@ fun CreateTripScreen(nav: NavHostController) {
     // A place shared back from Google Maps fills the field that asked for it.
     val shared by SharedPlaceInbox.pending.collectAsStateWithLifecycle()
     LaunchedEffect(shared) {
+        // An open picker takes shares for its own field; this handles the rest.
+        if (SharedPlaceInbox.pickerOpen) return@LaunchedEffect
         val (text, where) = SharedPlaceInbox.take() ?: return@LaunchedEffect
         picker = null
         vm.applySharedText(text, where.legIndex.coerceIn(0, vm.legs.value.lastIndex), where.asStart)
@@ -331,7 +334,9 @@ fun CreateTripScreen(nav: NavHostController) {
             pinStart = (if (target.asStart) leg.from else leg.to) ?: leg.from ?: here,
             onQuery = { vm.searchPlaces(it) },
             onPick = { place -> vm.applyPlace(target.legIndex, target.asStart, place); picker = null },
-            onUseCurrentLocation = if (target.asStart) ({ vm.useCurrentLocationAsStart(target.legIndex); picker = null }) else null,
+            offerCurrentLocation = target.asStart,
+            onLocated = { vm.here.value = it },
+            onSharedText = { text -> picker = null; vm.applySharedText(text, target.legIndex, target.asStart) },
             onOpenGoogleMaps = { query ->
                 SharedPlaceInbox.target = target
                 openGoogleMaps(context, query)
@@ -343,20 +348,6 @@ fun CreateTripScreen(nav: NavHostController) {
     }
 }
 
-/**
- * Opens the Google Maps app (or maps.google.com if it isn't installed) on a
- * search for [query]. The traveller finds the place and shares it to Koode.
- */
-private fun openGoogleMaps(context: Context, query: String) {
-    val url = if (query.isBlank()) "https://www.google.com/maps"
-    else "https://www.google.com/maps/search/?api=1&query=" + Uri.encode(query)
-    val app = Intent(Intent.ACTION_VIEW, Uri.parse(url)).setPackage("com.google.android.apps.maps")
-    try {
-        context.startActivity(app)
-    } catch (_: ActivityNotFoundException) {
-        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
-    }
-}
 
 /**
  * One stage. Collapsed unless it's the one being edited, so a three-stage

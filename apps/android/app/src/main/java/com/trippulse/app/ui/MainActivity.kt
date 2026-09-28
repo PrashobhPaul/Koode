@@ -57,7 +57,12 @@ class MainActivity : ComponentActivity() {
 
         val graph = (application as TripPulseApp).graph
         // A place shared from Google Maps while Koode wasn't running.
-        if (savedInstanceState == null) acceptShare(intent)
+        // Not gated on savedInstanceState: if Android closed Koode while Maps was
+        // open, the recreated activity must still take the shared place (once).
+        if (intent?.getBooleanExtra(SHARE_HANDLED, false) != true) {
+            acceptShare(intent)
+            intent?.putExtra(SHARE_HANDLED, true)
+        }
 
         setContent {
             val settings by graph.settings.state.collectAsStateWithLifecycle()
@@ -80,7 +85,7 @@ class MainActivity : ComponentActivity() {
                         // which picks it up from the inbox and fills the field.
                         val shared by SharedPlaceInbox.pending.collectAsStateWithLifecycle()
                         LaunchedEffect(shared) {
-                            if (shared != null && nav.currentDestination?.route != Routes.CREATE) {
+                            if (shared != null && !SharedPlaceInbox.pickerOpen && nav.currentDestination?.route != Routes.CREATE) {
                                 nav.navigate(Routes.CREATE) { launchSingleTop = true }
                             }
                         }
@@ -103,14 +108,32 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * Back from Google Maps with a copied link and no picker on screen (Android
+     * closed Koode meanwhile): take the link from the clipboard like a share.
+     * While a picker is open it does this itself, on its own window.
+     */
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (!hasFocus || SharedPlaceInbox.pickerOpen || !SharedPlaceInbox.isAwaiting()) return
+        val clip = runCatching {
+            getSystemService(android.content.ClipboardManager::class.java)
+                ?.primaryClip?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.coerceToText(this)?.toString()
+        }.getOrNull()
+        SharedPlaceInbox.acceptReturnedClip(clip)
+    }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
+        intent.putExtra(SHARE_HANDLED, true)
         setIntent(intent)
         acceptShare(intent)
     }
 }
 
 /** Shared text arriving while the app is already open (singleTask). */
+private const val SHARE_HANDLED = "app.koode.SHARE_HANDLED"
+
 private fun MainActivity.acceptShare(intent: Intent?) {
     if (intent?.action == Intent.ACTION_SEND && intent.type?.startsWith("text/") == true) {
         SharedPlaceInbox.offer(intent.getStringExtra(Intent.EXTRA_TEXT))

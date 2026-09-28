@@ -26,6 +26,7 @@ class TripPulseApp : Application() {
     override fun onCreate() {
         super.onCreate()
         com.trippulse.app.core.CrashLog.install(this)
+        com.trippulse.app.ui.SharedPlaceInbox.attach(this)
 
         // MapLibre (vector maps, OpenFreeMap tiles): initialised once, up front,
         // so the first map on screen doesn't pay the start-up cost. Its tile
