@@ -117,7 +117,8 @@ object JourneyAnalytics {
     )
 
     fun analyse(i: Inputs): JourneyReport {
-        val sorted = i.events.sortedBy { it.eventTimeMs }
+        // A break updated as items joined it (same breakId) is still one break.
+        val sorted = BreakTimeline.latestBreaks(i.events).sortedBy { it.eventTimeMs }
         val totalSeconds = ((i.endedAtMs - i.startedAtMs) / 1000).coerceAtLeast(0)
 
         // ---- stops, breaks and the time they consumed ----

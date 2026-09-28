@@ -81,14 +81,20 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         val r = report ?: return
         vm.exporting.value = true
         scope.launch {
-            val doc = when (kind) {
-                PdfKind.TIMELINE -> JourneyDocuments.timeline(t, events, r, measures)
-                PdfKind.MONEY -> JourneyDocuments.money(t, expenses, r, measures)
+            try {
+                val doc = when (kind) {
+                    PdfKind.TIMELINE -> JourneyDocuments.timeline(t, events, r, measures)
+                    PdfKind.MONEY -> JourneyDocuments.money(t, expenses, r, measures)
+                }
+                val file = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { JourneyPdf.write(context, doc) }
+                vm.lastExport.value = file
+                context.startActivity(JourneyPdf.shareIntent(context, file, doc.title))
+            } catch (e: Exception) {
+                android.util.Log.e("Summary", "PDF export failed", e)
+                android.widget.Toast.makeText(context, "Couldn't prepare that PDF. Please try again.", android.widget.Toast.LENGTH_LONG).show()
+            } finally {
+                vm.exporting.value = false
             }
-            val file = JourneyPdf.write(context, doc)
-            vm.lastExport.value = file
-            vm.exporting.value = false
-            context.startActivity(JourneyPdf.shareIntent(context, file, doc.title))
         }
     }
 

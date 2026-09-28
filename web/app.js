@@ -148,8 +148,51 @@
   };
 
   /** Prefers whatever the event itself said, exactly as the app does. */
+  /** "Break near Kurnool · 18 min · 💧 🍪 🚻" — same wording as the app. */
+  function describeBreak(p) {
+    var parts = [p.place ? 'Break near ' + p.place : 'Break'];
+    if (p.open) parts.push('ongoing');
+    else if (p.durationS >= 60) parts.push(Math.floor(p.durationS / 60) + ' min');
+    var items = [];
+    if (p.water) items.push('💧'); if (p.food) items.push('🍛'); if (p.tea) items.push('☕');
+    if (p.snack) items.push('🍪'); if (p.toilet) items.push('🚻'); if (p.rest) items.push('😴');
+    if (p.fuel) items.push('⛽'); if (p.charge) items.push('🔌');
+    if (items.length) parts.push(items.join(' '));
+    return parts.join(' · ');
+  }
+
+  /**
+   * One entry per break: a break is updated as items join it (same breakId),
+   * so keep only its latest version and fold its items into that one line.
+   */
+  var FOLDED = ['WATER_REPORTED', 'FOOD_REPORTED', 'TEA_COFFEE_REPORTED', 'SNACK_REPORTED',
+    'TOILET_REPORTED', 'REST_REPORTED', 'FUEL_STOP', 'CHARGE_STOP'];
+  function condenseBreaks(events) {
+    var latest = {};
+    events.forEach(function (e) {
+      var id = e.payload && e.payload.breakId;
+      if (e.type === 'BREAK_CHECKPOINT' && id) latest[id] = Math.max(latest[id] || 0, e.eventTime || 0);
+    });
+    var kept = {};
+    return events.filter(function (e) {
+      var id = e.payload && e.payload.breakId;
+      if (e.type === 'BREAK_CHECKPOINT_SKIPPED') return false;
+      if (e.type === 'BREAK_CHECKPOINT' && id) {
+        if ((e.eventTime || 0) !== latest[id] || kept[id]) return false;
+        kept[id] = true; return true;
+      }
+      return !(id && FOLDED.indexOf(e.type) >= 0);
+    });
+  }
+
   function describeEvent(e) {
     var type = e.type || 'EVENT';
+    var p0 = e.payload || {};
+    if (type === 'BREAK_CHECKPOINT' && p0.breakId && p0.countsAsBreak !== false) return ['✅', describeBreak(p0)];
+    if (type === 'TRIP_STARTED' && p0.startedEarlier) {
+      var km = (p0.estimatedDistanceBeforeTrackingM || 0) / 1000;
+      return ['🚗', km >= 1 ? 'Journey started · about ' + Math.round(km) + ' km before tracking began (estimated)' : 'Journey started · logged later'];
+    }
     var known = EVENT_LABELS[type] || ['•', type.toLowerCase().replace(/_/g, ' ')];
     var payload = e.payload || {};
     if (type === 'FOOD_REPORTED' && MEAL_LABELS[payload.meal]) {
@@ -160,79 +203,37 @@
   }
 
   // ---- map ---------------------------------------------------------------
-
-  var map = null;
-  var layers = { route: null, travelled: null, start: null, end: null, live: null };
-  var fitted = false;
-
-  function ensureMap() {
-    if (map) return map;
-    map = L.map('map', { zoomControl: false, attributionControl: true });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-    map.setView([20.5937, 78.9629], 4);
-    return map;
-  }
-
-  /** Start: a ringed node. Modern, and clearly not the destination. */
-  function startIcon() {
-    return L.divIcon({
-      className: '',
-      html: '<div style="width:22px;height:22px;border-radius:50%;border:3px solid #2DD4BF;' +
-            'background:rgba(45,212,191,0.25);box-shadow:0 0 0 5px rgba(45,212,191,0.15)"></div>',
-      iconSize: [22, 22], iconAnchor: [11, 11]
-    });
-  }
-
-  /** Destination: a pennant on a mast, standing on the ground. */
-  function endIcon() {
-    return L.divIcon({
-      className: '',
-      html: '<svg width="34" height="40" viewBox="0 0 34 40">' +
-            '<line x1="8" y1="38" x2="8" y2="6" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>' +
-            '<path d="M9 6 L31 12 L9 19 Z" fill="#F59E0B"/>' +
-            '<circle cx="8" cy="38" r="5" fill="rgba(245,158,11,0.35)"/>' +
-            '<circle cx="8" cy="38" r="2.5" fill="#F59E0B"/></svg>',
-      iconSize: [34, 40], iconAnchor: [8, 38]
-    });
-  }
-
-  /** The traveller: a blue dot with a breathing halo (CSS-animated). */
-  function liveIcon() {
-    return L.divIcon({
-      className: '',
-      html: '<div class="live-dot"><i></i></div>',
-      iconSize: [16, 16], iconAnchor: [8, 8]
-    });
-  }
-
-  function setLayer(name, layer) {
-    if (layers[name]) map.removeLayer(layers[name]);
-    layers[name] = layer || null;
-    if (layer) layer.addTo(map);
-  }
+  // MapLibre with the traveller's 3D vehicle lives in map3d.js; this is the
+  // one call the rest of the page makes into it.
 
   function drawJourney(origin, destination, travelled, current) {
-    ensureMap();
-    if (travelled && travelled.length > 1) {
-      setLayer('travelled', L.polyline(travelled, {
-        color: '#38BDF8', weight: 5, opacity: 0.95, lineJoin: 'round', lineCap: 'round'
-      }));
-    }
-    if (origin) setLayer('start', L.marker(origin, { icon: startIcon(), title: 'Start' }));
-    if (destination) setLayer('end', L.marker(destination, { icon: endIcon(), title: 'Destination' }));
-    if (current) setLayer('live', L.marker(current, { icon: liveIcon(), title: 'Where they are' }));
+    var st = latest.state || {};
+    window.KoodeMap.draw({
+      origin: origin,
+      destination: destination,
+      trail: travelled || [],
+      current: current,
+      mode: st.mode || (latest.meta && latest.meta.transportMode) || 'CAR',
+      moving: st.status === 'DRIVING',
+      live: freshnessOf(st) === 'live',
+      playback: playback.playing
+    });
+  }
 
-    if (!fitted) {
-      var points = (travelled || []).slice();
-      if (origin) points.push(origin);
-      if (destination) points.push(destination);
-      if (current) points.push(current);
-      if (points.length > 1) { map.fitBounds(L.latLngBounds(points).pad(0.18)); fitted = true; }
-      else if (points.length === 1) { map.setView(points[0], 13); fitted = true; }
-    }
+  /** Mode chip over the map, and the vehicle riding the progress track. */
+  function renderMode(meta, state, progressPct) {
+    var mode = (state && state.mode) || (meta && meta.transportMode) || 'CAR';
+    var info = window.KoodeMap.MODES[mode] || window.KoodeMap.MODES.CAR;
+    text('mode-pill', info[0] + ' ' + info[1]);
+    var v = $('ride-vehicle');
+    if (!v) return;
+    v.textContent = info[0];
+    // Most road and sea vehicle emoji face left; turn them toward the flag.
+    v.className = 'ride-vehicle' +
+      (['CAR', 'CAB', 'BUS', 'BIKE', 'SHIP'].indexOf(mode) >= 0 ? ' flip' : '') +
+      (mode === 'FLIGHT' ? ' level' : '') +
+      (state && state.status === 'DRIVING' && freshnessOf(state) === 'live' ? ' moving' : '');
+    v.style.left = 'calc(' + Math.max(0, Math.min(100, progressPct)) + '% - 14px)';
   }
 
   // ---- playback ----------------------------------------------------------
@@ -578,6 +579,7 @@
 
     var progress = Math.round(((state && state.progress) || 0) * 100);
     $('progress-bar').style.width = Math.max(0, Math.min(100, progress)) + '%';
+    renderMode(meta, state, progress);
     text('covered', km(state && state.distanceCoveredM) + ' completed');
     text('remaining', km(state && state.distanceRemainingM) + ' to go');
 
@@ -592,7 +594,7 @@
     // ---- timeline ----
     var list = $('timeline');
     list.innerHTML = '';
-    (events || [])
+    condenseBreaks(events || [])
       .slice()
       .sort(function (a, b) { return (b.eventTime || 0) - (a.eventTime || 0); })
       .slice(0, 40)
@@ -664,6 +666,8 @@
       e.target.value = digitsOnly(e.target.value, PASSCODE_LENGTH);
       updateSubmitState();
     });
+    window.KoodeMap.init('map');
+    $('follow').addEventListener('click', function () { window.KoodeMap.toggleFollow(); });
     $('play').addEventListener('click', togglePlayback);
     $('speed').addEventListener('click', cycleSpeed);
     $('report').addEventListener('click', openSafetyReport);

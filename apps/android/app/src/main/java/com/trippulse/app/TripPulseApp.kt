@@ -25,14 +25,12 @@ class TripPulseApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        com.trippulse.app.core.CrashLog.install(this)
 
-        // osmdroid (OpenStreetMap) setup: identify the app per OSM tile-usage
-        // policy and keep the tile cache in app-private storage (no permissions).
-        org.osmdroid.config.Configuration.getInstance().apply {
-            userAgentValue = packageName
-            osmdroidBasePath = getExternalFilesDir(null) ?: filesDir
-            osmdroidTileCache = java.io.File(osmdroidBasePath, "osm_tiles")
-        }
+        // MapLibre (vector maps, OpenFreeMap tiles): initialised once, up front,
+        // so the first map on screen doesn't pay the start-up cost. Its tile
+        // cache lives in app-private storage and needs no permission.
+        com.trippulse.app.ui.map.ensureMapLibre(this)
 
         graph.notifier.ensureChannels()
 

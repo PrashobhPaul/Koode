@@ -1,6 +1,8 @@
 package com.trippulse.app.ui
 
 import android.os.Bundle
+import androidx.compose.runtime.LaunchedEffect
+import android.content.Intent
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -54,6 +56,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         val graph = (application as TripPulseApp).graph
+        // A place shared from Google Maps while Koode wasn't running.
+        if (savedInstanceState == null) acceptShare(intent)
 
         setContent {
             val settings by graph.settings.state.collectAsStateWithLifecycle()
@@ -69,7 +73,17 @@ class MainActivity : ComponentActivity() {
             TripPulseTheme(themeMode = settings.themeMode) {
                 CompositionLocalProvider(LocalWindowClass provides rememberWindowClass()) {
                     Box(Modifier.fillMaxSize().background(KoodeTheme.colors.background)) {
-                        AppNav()
+                        val nav = rememberNavController()
+                        AppNav(nav = nav)
+
+                        // A shared place always lands on the planning screen,
+                        // which picks it up from the inbox and fills the field.
+                        val shared by SharedPlaceInbox.pending.collectAsStateWithLifecycle()
+                        LaunchedEffect(shared) {
+                            if (shared != null && nav.currentDestination?.route != Routes.CREATE) {
+                                nav.navigate(Routes.CREATE) { launchSingleTop = true }
+                            }
+                        }
 
                         // The animated splash rides above the app on a cold start
                         // and fades away to reveal Home. Kept as an overlay rather
@@ -87,6 +101,19 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        acceptShare(intent)
+    }
+}
+
+/** Shared text arriving while the app is already open (singleTask). */
+private fun MainActivity.acceptShare(intent: Intent?) {
+    if (intent?.action == Intent.ACTION_SEND && intent.type?.startsWith("text/") == true) {
+        SharedPlaceInbox.offer(intent.getStringExtra(Intent.EXTRA_TEXT))
     }
 }
 

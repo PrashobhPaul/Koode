@@ -54,6 +54,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -253,7 +254,21 @@ data class LegDraft(
 
 class CreateVm(private val graph: AppGraph) : ViewModel() {
 
-    init { loadSuggestions() }
+    /** Last known position of this phone, if location access was granted. */
+    val here = MutableStateFlow<GeoPoint?>(null)
+
+    /** A short, dismissible message for the planning screen (e.g. a shared link that couldn't be read). */
+    val notice = MutableStateFlow<String?>(null)
+
+    init {
+        loadSuggestions()
+        // Where the traveller is now: biases search results toward nearby
+        // places and centres the pin-drop map. Null without location access.
+        viewModelScope.launch {
+            val fix = currentLocation()
+            here.value = fix
+        }
+    }
 
     var busy = MutableStateFlow(false); private set
 
@@ -262,7 +277,8 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
     var error = MutableStateFlow<String?>(null); private set
 
     /** The legs of this journey, in order. Starts as one. */
-    val legs = MutableStateFlow(listOf(LegDraft(fromText = "Current location")))
+    val legs = MutableStateFlow(listOf(LegDraft(fromText = "Current location",
+        details = com.trippulse.app.core.VehicleMemory.load(graph.appContext, "CAR"))))
 
     /** Which leg the editor is focused on. */
     val editingLeg = MutableStateFlow(0)
@@ -347,7 +363,11 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
         // over: a coach number means nothing in a car, and a fuel type means
         // nothing on a train. Keeping them would leave stale details attached
         // to a vehicle that never had them.
-        if (mode == leg.mode) leg else leg.copy(mode = mode, details = emptyMap())
+        if (mode == leg.mode) leg else leg.copy(
+            mode = mode,
+            // A remembered car or bike fills itself in.
+            details = if (TransportCatalog.isPrivate(mode)) com.trippulse.app.core.VehicleMemory.load(graph.appContext, mode) else emptyMap()
+        )
     }
 
     fun setDetail(index: Int, key: String, value: String) =
@@ -367,6 +387,7 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
         val previous = legs.value.last()
         legs.value = legs.value + LegDraft(
             mode = if (previous.mode == "TRAIN") "CAB" else "CAR",
+            details = if (previous.mode == "TRAIN") emptyMap() else com.trippulse.app.core.VehicleMemory.load(graph.appContext, "CAR"),
             fromText = previous.toText,
             from = previous.to
         )
@@ -381,14 +402,74 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 
     // ---- place lookup -----------------------------------------------------
 
+    private var searchJob: kotlinx.coroutines.Job? = null
+
+    /**
+     * Search-as-you-type. Each call supersedes the previous one, so a slow
+     * response for "Thri" can never overwrite the results for "Thrissur".
+     * Results lean toward where the traveller is, or the stage's start.
+     */
     fun searchPlaces(query: String) {
-        if (query.trim().length < 2 || searching.value) return
+        searchJob?.cancel()
+        val q = query.trim()
+        if (q.length < 2) {
+            searchResults.value = emptyList()
+            searching.value = false
+            return
+        }
+        searchJob = viewModelScope.launch {
+            searching.value = true
+            val near = legs.value.getOrNull(editingLeg.value)?.from ?: here.value
+            try {
+                searchResults.value = placeSearch.search(q, near = near)
+            } finally {
+                if (isActive) searching.value = false
+            }
+        }
+    }
+
+    /** Puts [place] into one field of one stage — the place picker's single exit. */
+    fun applyPlace(index: Int, asStart: Boolean, place: PlaceSearch.Place) {
+        editingLeg.value = index.coerceIn(0, legs.value.lastIndex)
+        val label = place.name.trim().ifBlank { if (asStart) "Start point" else "Destination" }
+        if (asStart) updateLeg(index) { it.copy(from = place.point, fromText = label) }
+        else updateLeg(index) { it.copy(to = place.point, toText = label) }
+        lastDroppedPin = place.point
+        searchResults.value = emptyList()
+    }
+
+    /** "Start from wherever I am when I press Create." */
+    fun useCurrentLocationAsStart(index: Int) =
+        updateLeg(index) { it.copy(from = null, fromText = "Current location") }
+
+    /** Saves a picked place under a name the traveller chose, for one-tap reuse. */
+    fun savePlaceAt(name: String, point: GeoPoint) {
+        val label = InputRules.itemTextForStorage(name)
+        if (label.isBlank()) return
+        viewModelScope.launch {
+            graph.db.savedPlaceDao().upsert(SavedPlaceEntity(label, point.lat, point.lng, System.currentTimeMillis()))
+            loadSuggestions()
+        }
+    }
+
+    /**
+     * Text shared from the Google Maps app (or a pasted Maps link). Resolved to
+     * a place and dropped into the field the traveller was filling in.
+     */
+    fun applySharedText(text: String, index: Int, asStart: Boolean) {
         viewModelScope.launch {
             searching.value = true
-            searchResults.value = placeSearch.search(query)
+            val place = placeSearch.resolveLink(text)
+                ?: placeSearch.search(text, limit = 1).firstOrNull()
             searching.value = false
-            error.value = if (searchResults.value.isEmpty())
-                "No places found for \"${query.trim()}\" — try adding the city or district." else null
+            if (place == null) {
+                notice.value = "Couldn't read a location from that Google Maps link. Try sharing the place again, or search by name."
+            } else {
+                applyPlace(index, asStart, place)
+                notice.value = if (place.detail.startsWith("Matched by name"))
+                    "Found \"${place.name}\" by name — glance at the map to check it's the right spot."
+                else "Added \"${place.name}\" from Google Maps."
+            }
         }
     }
 
@@ -455,6 +536,9 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 
     /** Resolves every leg to coordinates and creates the journey. */
     fun create(onDone: (String) -> Unit) {
+        // Remember a fully described car or bike for next time.
+        legs.value.filter { TransportCatalog.isPrivate(it.mode) && it.ready }
+            .forEach { com.trippulse.app.core.VehicleMemory.save(graph.appContext, it.mode, it.details) }
         if (busy.value) return
         viewModelScope.launch {
             busy.value = true; error.value = null
@@ -641,7 +725,8 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     fun deleteExpense(id: Long) = viewModelScope.launch { graph.db.expenseDao().delete(id) }
 
-    fun submitCheckpoint(c: TripManager.Checkpoint) = viewModelScope.launch { graph.tripManager.submitCheckpoint(c) }
+    fun submitCheckpoint(c: TripManager.Checkpoint, startAtMs: Long? = null, durationS: Long? = null) =
+        viewModelScope.launch { graph.tripManager.submitCheckpoint(c, startAtMs, durationS) }
 
     /** One-tap wellbeing log (water, tea, a meal the app will name for you). */
     fun logNourishment(kind: Nourishment) = viewModelScope.launch { graph.tripManager.logNourishment(kind) }
@@ -731,7 +816,13 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
      * closure. Recomputed on demand: the traveller is about to publish these
      * numbers to everyone watching, so they must be current.
      */
-    suspend fun buildReport(): JourneyAnalytics.JourneyReport? {
+    suspend fun buildReport(endAtMs: Long? = null): JourneyAnalytics.JourneyReport? = try {
+        buildReportUnsafe(endAtMs)
+    } catch (e: Exception) {
+        android.util.Log.e("DriverVm", "report failed", e); null
+    }
+
+    private suspend fun buildReportUnsafe(endAtMs: Long?): JourneyAnalytics.JourneyReport? {
         val t = graph.db.tripDao().byId(tripId) ?: return null
         val st = graph.db.stateDao().byId(tripId)
         val events = graph.db.eventDao().allForTrip(tripId).map { com.trippulse.app.data.EventCodec.toDomain(it) }
@@ -747,7 +838,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 events = events,
                 distanceCoveredM = st?.distanceCoveredM ?: 0.0,
                 startedAtMs = t.startedAtMs ?: t.createdAtMs,
-                endedAtMs = System.currentTimeMillis(),
+                endedAtMs = endAtMs ?: System.currentTimeMillis(),
                 expenses = expense,
                 legs = legRows,
                 transportMode = t.transportMode,
@@ -777,11 +868,24 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
      * that "as soon as I mark it complete" means exactly that: by the time the
      * send sheet appears, the document already exists.
      */
-    fun complete(closingNote: String? = null, onDone: (Boolean) -> Unit = {}) = viewModelScope.launch {
-        graph.tripManager.completeTrip(closingNote)
-        val prepared = if (whatsAppEnabled) prepareTimelineForSending() else false
+    fun complete(closingNote: String? = null, endAtMs: Long? = null, onDone: (Boolean) -> Unit = {}) = viewModelScope.launch {
+        // Closing is local and durable; nothing after it may take the app down.
+        try {
+            graph.tripManager.completeTrip(closingNote, endAtMs)
+        } catch (e: Exception) {
+            android.util.Log.e("DriverVm", "completeTrip failed", e)
+        }
+        val prepared = if (whatsAppEnabled) {
+            try { prepareTimelineForSending() } catch (e: Exception) {
+                android.util.Log.e("DriverVm", "timeline PDF failed", e); false
+            }
+        } else false
         onDone(prepared)
     }
+
+    /** When they actually arrived, if the journey is being closed later than that. */
+    suspend fun suggestedEndMs(): Long? =
+        try { graph.tripManager.suggestedEndMs(tripId) } catch (_: Exception) { null }
 
     /** Builds the timeline PDF and resolves who it can go to. */
     private suspend fun prepareTimelineForSending(): Boolean {

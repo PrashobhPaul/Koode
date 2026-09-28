@@ -85,6 +85,10 @@ jobs:
     - name: Set up Android SDK
       if: matrix.build-mode == 'manual'
       uses: android-actions/setup-android@v3
+      # Only platform-tools: the action's default also asks for the legacy
+      # 'tools' package, which Google removed, so sdkmanager exits 1.
+      with:
+        packages: 'platform-tools'
 
     - name: Make gradlew executable
       if: matrix.build-mode == 'manual'

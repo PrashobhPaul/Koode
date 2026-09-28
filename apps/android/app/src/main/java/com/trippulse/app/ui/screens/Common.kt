@@ -110,7 +110,8 @@ data class TimelineItem(
 fun timelineItems(
     events: List<Pair<String, Pair<Long, Map<String, Any?>>>>,
     limit: Int = 60
-): List<TimelineItem> = events
+): List<TimelineItem> = com.trippulse.app.domain.BreakTimeline
+    .forTimeline(events, { it.first }, { it.second.first }, { it.second.second })
     .filter { it.first in EventTypes.TIMELINE_TYPES }
     .sortedByDescending { it.second.first }
     .take(limit)

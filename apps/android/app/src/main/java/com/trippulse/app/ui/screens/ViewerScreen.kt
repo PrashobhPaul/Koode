@@ -58,6 +58,9 @@ import com.trippulse.app.ui.components.PulsingDot
 import com.trippulse.app.ui.components.SectionHeader
 import com.trippulse.app.ui.components.StatusPill
 import com.trippulse.app.ui.map.JourneyMap
+import androidx.compose.foundation.layout.PaddingValues
+import com.trippulse.app.ui.components.RideProgress
+import com.trippulse.app.ui.components.JourneyHero
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
@@ -152,31 +155,141 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
         JourneyHealth.Level.CONCERN -> colors.danger
     }
 
+    val liveMode = state?.str("mode") ?: transportMode
+    val liveProfile = TransportCatalog.profile(liveMode)
+    val travellerMoving = state?.str("status") == "DRIVING"
+
     Column(
         Modifier
             .fillMaxSize()
             .background(colors.background)
             .verticalScroll(rememberScrollState())
-            .statusBarsPadding()
     ) {
-        Spacer(Modifier.height(Spacing.md))
-        AdaptiveContainer {
-            // ---- whose journey ----
-            val owner = meta?.str("ownerName")
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
+        // ---- the journey, map first ----
+        JourneyHero(
+            map = { mapHeight, controlsPadding ->
+                JourneyMap(
+                    current = current,
+                    origin = origin,
+                    destination = dest,
+                    breadcrumb = breadcrumb,
+                    live = ui.freshness == Freshness.LIVE || ui.freshness == Freshness.RECENT,
+                    mode = liveProfile.key,
+                    moving = travellerMoving,
+                    immersive = true,
+                    height = mapHeight,
+                    showPlayControl = true,
+                    controlsPadding = controlsPadding
+                )
+            },
+            header = {
+                // ---- whose journey ----
+                val owner = meta?.str("ownerName")
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            if (!owner.isNullOrBlank()) "$owner's journey" else "Journey",
+                            color = colors.textHigh, style = MaterialTheme.typography.headlineMedium,
+                            maxLines = 1
+                        )
+                        Text(
+                            "${meta?.str("origin") ?: "—"} → ${meta?.str("destination") ?: "—"}",
+                            color = colors.textMid, style = MaterialTheme.typography.bodyMedium,
+                            maxLines = 1
+                        )
+                    }
+                    FreshnessBadge(ui.freshness, null)
+                }
+            },
+            card = {
+                // ---- the one-glance answer ----
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    PulsingDot(healthColor, size = 9.dp, active = ui.freshness == Freshness.LIVE)
+                    Spacer(Modifier.width(Spacing.sm))
                     Text(
-                        if (!owner.isNullOrBlank()) "$owner's journey" else "Journey",
-                        color = colors.textHigh, style = MaterialTheme.typography.headlineMedium
-                    )
-                    Text(
-                        "${meta?.str("origin") ?: "—"} → ${meta?.str("destination") ?: "—"}",
-                        color = colors.textMid, style = MaterialTheme.typography.bodyLarge
+                        when {
+                            ui.endedByOwner -> "Journey ended safely"
+                            ui.awaitingFirstRead -> "Getting the first update…"
+                            else -> health.headline
+                        },
+                        color = healthColor, style = MaterialTheme.typography.titleMedium
                     )
                 }
-                FreshnessBadge(ui.freshness, null)
-            }
+                if (!ui.endedByOwner && !ui.awaitingFirstRead) {
+                    health.reasons.forEach {
+                        Text("• $it", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+                val lastAt = state?.l("lastLocationAt") ?: state?.l("updatedAt")
+                Text(
+                    buildString {
+                        append(
+                            when {
+                                ui.endedByOwner -> "The traveller ended this journey."
+                                lastAt != null -> "Updated ${TimeFmt.ago(now, lastAt)}"
+                                // Never "the journey ended": we simply haven't heard yet.
+                                else -> "Waiting for the first update — this is about the signal, not about them."
+                            }
+                        )
+                        if (nearPlace != null && !ui.endedByOwner) append(" · near $nearPlace")
+                    },
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
 
+                // ---- where & when ----
+                Spacer(Modifier.height(Spacing.md))
+                val etaMode = state?.str("etaMode")
+                val journey = state?.str("status")
+                Text(
+                    if (offlineExpected && ui.freshness == Freshness.OFFLINE)
+                        "✈️ In the air — offline as expected"
+                    else travelModeLine(journey, liveMode),
+                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                )
+                Spacer(Modifier.height(Spacing.xs))
+                when {
+                    ui.endedByOwner ->
+                        Text("Arrived safely 🎉", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+                    etaMode == EtaMode.OVERNIGHT_PENDING.name -> {
+                        Text("Resting overnight", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+                        state?.str("overnightType")?.let {
+                            Text(overnightText(it), color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
+                        }
+                    }
+                    else -> {
+                        Text("EXPECTED ARRIVAL", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                        Text(
+                            etaText(state?.l("etaLikely"), state?.l("etaLow"), state?.l("etaHigh")),
+                            color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
+                        )
+                        if (state?.get("etaBreakdown") != null) {
+                            TextButton(onClick = { showEta = true }, contentPadding = PaddingValues(0.dp)) {
+                                Text("Why this estimate?", color = colors.accent, fontSize = 13.sp)
+                            }
+                        }
+                    }
+                }
+                RideProgress(
+                    progress = (state?.d("progress") ?: 0.0).toFloat(),
+                    mode = liveProfile.key,
+                    emoji = liveProfile.emoji,
+                    moving = travellerMoving && ui.freshness == Freshness.LIVE
+                )
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text(
+                        "${measures.distance(state?.d("distanceCoveredM") ?: 0.0)} completed",
+                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                    )
+                    Text(
+                        "${measures.distance(state?.d("distanceRemainingM") ?: 0.0)} to go",
+                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                    )
+                }
+            }
+        )
+
+        Spacer(Modifier.height(Spacing.lg))
+        AdaptiveContainer {
             // ---- SOS outranks everything ----
             if (state?.bool("sosActive") == true) {
                 KoodeHeroCard(accent = colors.danger) {
@@ -195,111 +308,6 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                         )
                     }
-                }
-            }
-
-            // ---- the one-glance answer ----
-            KoodeHeroCard(accent = healthColor) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    PulsingDot(healthColor, size = 9.dp, active = ui.freshness == Freshness.LIVE)
-                    Text(
-                        when {
-                            ui.endedByOwner -> "Journey ended safely"
-                            ui.awaitingFirstRead -> "Getting the first update…"
-                            else -> health.headline
-                        },
-                        color = healthColor, style = MaterialTheme.typography.headlineSmall
-                    )
-                }
-                if (!ui.endedByOwner && !ui.awaitingFirstRead) {
-                    health.reasons.forEach {
-                        Text("• $it", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
-                    }
-                }
-                val lastAt = state?.l("lastLocationAt") ?: state?.l("updatedAt")
-                Spacer(Modifier.height(Spacing.xs))
-                Text(
-                    when {
-                        ui.endedByOwner -> "The traveller ended this journey."
-                        lastAt != null -> "Last updated ${TimeFmt.ago(now, lastAt)}"
-                        // Never "the journey ended": we simply haven't heard yet.
-                        else -> "Waiting for the first update — this is about the signal, not about them."
-                    },
-                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
-                )
-            }
-
-            // ---- the map: source, destination and the path so far ----
-            JourneyMap(
-                current = current,
-                origin = origin,
-                destination = dest,
-                breadcrumb = breadcrumb,
-                live = ui.freshness == Freshness.LIVE || ui.freshness == Freshness.RECENT,
-                height = windowClass.mapHeight,
-                showPlayControl = true
-            )
-            Text(
-                "The line shows how far they'd got. Press ▶ to watch the journey play out.",
-                color = colors.textLow, style = MaterialTheme.typography.bodySmall
-            )
-
-            // ---- where & when ----
-            KoodeCard {
-                val mode = state?.str("etaMode")
-                val journey = state?.str("status")
-                if (nearPlace != null) {
-                    Text(
-                        "📍 Currently near $nearPlace",
-                        color = colors.textHigh, style = MaterialTheme.typography.titleMedium
-                    )
-                }
-                Text(
-                    if (offlineExpected && ui.freshness == Freshness.OFFLINE)
-                        "✈️ In the air — offline as expected"
-                    else travelModeLine(journey, transportMode),
-                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                )
-                Spacer(Modifier.height(Spacing.sm))
-                when {
-                    ui.endedByOwner ->
-                        Text("Arrived safely 🎉", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
-                    mode == EtaMode.OVERNIGHT_PENDING.name -> {
-                        Text("Resting overnight", color = colors.warn, style = MaterialTheme.typography.titleMedium)
-                        state?.str("overnightType")?.let {
-                            Text(overnightText(it), color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
-                        }
-                    }
-                    else -> {
-                        Text("EXPECTED ARRIVAL", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-                        Spacer(Modifier.height(Spacing.xs))
-                        Text(
-                            etaText(state?.l("etaLikely"), state?.l("etaLow"), state?.l("etaHigh")),
-                            color = colors.textHigh, style = MaterialTheme.typography.headlineMedium
-                        )
-                        if (state?.get("etaBreakdown") != null) {
-                            TextButton(onClick = { showEta = true }) {
-                                Text("Why this estimate?", color = colors.accent, fontSize = 13.sp)
-                            }
-                        }
-                    }
-                }
-                Spacer(Modifier.height(Spacing.md))
-                LinearProgressIndicator(
-                    progress = { (state?.d("progress") ?: 0.0).toFloat() },
-                    modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(Radii.pill)),
-                    color = colors.accent, trackColor = colors.surfaceRaised
-                )
-                Spacer(Modifier.height(Spacing.sm))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(
-                        "${measures.distance(state?.d("distanceCoveredM") ?: 0.0)} completed",
-                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
-                    )
-                    Text(
-                        "${measures.distance(state?.d("distanceRemainingM") ?: 0.0)} to go",
-                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
-                    )
                 }
             }
 

@@ -79,6 +79,9 @@ import com.trippulse.app.ui.components.SecondaryButton
 import com.trippulse.app.ui.components.SectionHeader
 import com.trippulse.app.ui.components.StatusPill
 import com.trippulse.app.ui.map.JourneyMap
+import androidx.compose.foundation.layout.PaddingValues
+import com.trippulse.app.ui.components.RideProgress
+import com.trippulse.app.ui.components.JourneyHero
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
@@ -129,8 +132,12 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
 
     // The review needs current numbers, not the ones from when the screen
     // opened — the traveller is about to publish them.
+    var suggestedEnd by remember { mutableStateOf<Long?>(null) }
     LaunchedEffect(showEndReview) {
-        if (showEndReview) report = vm.buildReport()
+        if (showEndReview) {
+            suggestedEnd = vm.suggestedEndMs()
+            report = vm.buildReport(suggestedEnd)
+        }
     }
 
     val checkpointDue = s?.checkpointDue == true
@@ -159,49 +166,124 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             .fillMaxSize()
             .background(colors.background)
             .verticalScroll(rememberScrollState())
-            .statusBarsPadding()
     ) {
-        Spacer(Modifier.height(Spacing.md))
-        AdaptiveContainer {
-            // ---- header ----
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Column(Modifier.weight(1f)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(profile.emoji, fontSize = 16.sp)
-                        Spacer(Modifier.width(Spacing.sm))
+        // ---- the journey, map first: header over the 3D map, status card on its edge ----
+        JourneyHero(
+            map = { mapHeight, controlsPadding ->
+                JourneyMap(
+                    current = s?.lat?.let { la -> s.lng?.let { lo -> GeoPoint(la, lo) } },
+                    origin = activeLeg?.let { GeoPoint(it.fromLat, it.fromLng) }
+                        ?: t?.let { GeoPoint(it.originLat, it.originLng) },
+                    destination = activeLeg?.let { GeoPoint(it.toLat, it.toLng) }
+                        ?: t?.let { GeoPoint(it.destLat, it.destLng) },
+                    breadcrumb = remember(breadcrumb) { breadcrumb.map { GeoPoint(it.lat, it.lng) } },
+                    breadcrumbTimesMs = remember(breadcrumb) { breadcrumb.map { it.tMs } },
+                    bearingDeg = s?.bearing?.toFloat(),
+                    live = s?.connectivity != "OFFLINE",
+                    mode = profile.key,
+                    moving = moving,
+                    immersive = true,
+                    height = mapHeight,
+                    controlsPadding = controlsPadding
+                )
+            },
+            header = {
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text(
+                            "${profile.emoji}  ${journeyLabel(s?.journey)}",
+                            color = colors.accent, style = MaterialTheme.typography.titleSmall
+                        )
                         Text(
                             activeLeg?.toName ?: t?.destName ?: "Journey",
-                            color = colors.textHigh, style = MaterialTheme.typography.headlineMedium
+                            color = colors.textHigh, style = MaterialTheme.typography.headlineMedium,
+                            maxLines = 1
                         )
                     }
-                    Text(
-                        journeyLabel(s?.journey),
-                        color = colors.accent, style = MaterialTheme.typography.titleSmall
-                    )
+                    Column(horizontalAlignment = Alignment.End) {
+                        StatusPill(
+                            if (s?.connectivity == "OFFLINE") "SAVING LOCALLY" else "LIVE",
+                            if (s?.connectivity == "OFFLINE") colors.warn else colors.accent,
+                            pulsing = s?.connectivity != "OFFLINE"
+                        )
+                        s?.batteryPct?.let {
+                            Spacer(Modifier.height(Spacing.xs))
+                            Text(
+                                "🔋 $it%",
+                                color = if (it <= 15) colors.warn else colors.textMid,
+                                style = MaterialTheme.typography.bodySmall
+                            )
+                        }
+                        if (pending > 0) {
+                            Text(
+                                "$pending waiting to sync",
+                                color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                            )
+                        }
+                    }
                 }
-                Column(horizontalAlignment = Alignment.End) {
-                    StatusPill(
-                        if (s?.connectivity == "OFFLINE") "SAVING LOCALLY" else "LIVE",
-                        if (s?.connectivity == "OFFLINE") colors.warn else colors.accent,
-                        pulsing = s?.connectivity != "OFFLINE"
+            },
+            card = {
+                when (s?.etaMode) {
+                    EtaMode.OVERNIGHT_PENDING.name -> {
+                        Text("Resting overnight", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+                        Text(
+                            "A new estimate appears when you're on the move again.",
+                            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                    EtaMode.ARRIVED.name ->
+                        Text("Arrived", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+                    else -> {
+                        Row(verticalAlignment = Alignment.Bottom) {
+                            Column(Modifier.weight(1f)) {
+                                Text("ESTIMATED ARRIVAL", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                                Text(
+                                    etaRangeText(s?.etaLikelyMs, s?.etaLowMs, s?.etaHighMs),
+                                    color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
+                                )
+                            }
+                            s?.speedKmh?.takeIf { moving && it >= 1.0 }?.let { kmh ->
+                                Column(horizontalAlignment = Alignment.End) {
+                                    Text("SPEED", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                                    Text(
+                                        measures.speed(kmh),
+                                        color = colors.textHigh, style = MaterialTheme.typography.titleLarge
+                                    )
+                                }
+                            }
+                        }
+                        if (s?.etaBreakdownJson != null) {
+                            TextButton(onClick = { showEtaBreakdown = true }, contentPadding = PaddingValues(0.dp)) {
+                                Text("Why this estimate?", color = colors.accent, fontSize = 13.sp)
+                            }
+                        }
+                    }
+                }
+                Spacer(Modifier.height(Spacing.xs))
+                RideProgress(
+                    progress = (s?.progressPct ?: 0.0).toFloat(),
+                    mode = profile.key,
+                    emoji = profile.emoji,
+                    moving = moving
+                )
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                    // Distances are rendered in the traveller's own units,
+                    // worked out from where they actually are.
+                    Text(
+                        "${measures.distance(s?.distanceCoveredM ?: 0.0)} done",
+                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
-                    s?.batteryPct?.let {
-                        Spacer(Modifier.height(Spacing.xs))
-                        Text(
-                            "🔋 $it%",
-                            color = if (it <= 15) colors.warn else colors.textLow,
-                            style = MaterialTheme.typography.bodySmall
-                        )
-                    }
-                    if (pending > 0) {
-                        Text(
-                            "$pending waiting to sync",
-                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
-                        )
-                    }
+                    Text(
+                        "${measures.distance(s?.distanceRemainingM ?: 0.0)} to go",
+                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                    )
                 }
             }
+        )
 
+        Spacer(Modifier.height(Spacing.lg))
+        AdaptiveContainer {
             // ---- arrival: the app asks, the traveller decides ----
             AnimatedBanner(visible = arrivalDue) {
                 KoodeHeroCard(accent = colors.accent) {
@@ -278,20 +360,6 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 }
             }
 
-            // ---- map with inline playback ----
-            JourneyMap(
-                current = s?.lat?.let { la -> s.lng?.let { lo -> GeoPoint(la, lo) } },
-                origin = activeLeg?.let { GeoPoint(it.fromLat, it.fromLng) }
-                    ?: t?.let { GeoPoint(it.originLat, it.originLng) },
-                destination = activeLeg?.let { GeoPoint(it.toLat, it.toLng) }
-                    ?: t?.let { GeoPoint(it.destLat, it.destLng) },
-                breadcrumb = remember(breadcrumb) { breadcrumb.map { GeoPoint(it.lat, it.lng) } },
-                breadcrumbTimesMs = remember(breadcrumb) { breadcrumb.map { it.tMs } },
-                bearingDeg = s?.bearing?.toFloat(),
-                live = s?.connectivity != "OFFLINE",
-                height = windowClass.mapHeight
-            )
-
             // ---- stages, when there is more than one ----
             if (legs.size > 1) {
                 KoodeCard(title = "Stages") {
@@ -325,53 +393,6 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                             accent = colors.traveller, height = 44.dp
                         )
                     }
-                }
-            }
-
-            // ---- ETA + progress ----
-            KoodeCard {
-                when (s?.etaMode) {
-                    EtaMode.OVERNIGHT_PENDING.name -> {
-                        Text("Resting overnight", color = colors.warn, style = MaterialTheme.typography.titleMedium)
-                        Text(
-                            "A new estimate appears when you're on the move again.",
-                            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
-                    EtaMode.ARRIVED.name ->
-                        Text("Arrived", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
-                    else -> {
-                        Text("ESTIMATED ARRIVAL", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-                        Spacer(Modifier.height(Spacing.xs))
-                        Text(
-                            etaRangeText(s?.etaLikelyMs, s?.etaLowMs, s?.etaHighMs),
-                            color = colors.textHigh, style = MaterialTheme.typography.headlineMedium
-                        )
-                        if (s?.etaBreakdownJson != null) {
-                            TextButton(onClick = { showEtaBreakdown = true }) {
-                                Text("Why this estimate?", color = colors.accent, fontSize = 13.sp)
-                            }
-                        }
-                    }
-                }
-                Spacer(Modifier.height(Spacing.md))
-                LinearProgressIndicator(
-                    progress = { (s?.progressPct ?: 0.0).toFloat() },
-                    modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(Radii.pill)),
-                    color = colors.accent, trackColor = colors.surfaceRaised
-                )
-                Spacer(Modifier.height(Spacing.sm))
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    // Distances are rendered in the traveller's own units,
-                    // worked out from where they actually are.
-                    Text(
-                        "${measures.distance(s?.distanceCoveredM ?: 0.0)} done",
-                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
-                    )
-                    Text(
-                        "${measures.distance(s?.distanceRemainingM ?: 0.0)} to go",
-                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
-                    )
                 }
             }
 
@@ -564,9 +585,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 whatsAppEnabled = vm.whatsAppEnabled,
                 onAddExpense = { showEndReview = false; showExpense = true },
                 onCancel = { showEndReview = false },
-                onConfirm = { note ->
+                arrivalMs = suggestedEnd,
+                onConfirm = { note, endAt ->
                     showEndReview = false
-                    vm.complete(note) { readyToSend ->
+                    vm.complete(note, endAt) { readyToSend ->
                         if (readyToSend) showSend = true
                         else nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
                     }
@@ -642,9 +664,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             CheckpointSheet(
                 profile = profile,
                 fuelUnit = TravelDetails.fuelUnit(activeLeg?.fuelType ?: t?.fuelType),
-                onSubmit = { c, refuelAmount, refuelQty, unit ->
+                autoTimed = checkpointDue || s?.stopStartedAtMs != null,
+                onSubmit = { c, refuelAmount, refuelQty, unit, startAt, lastedS ->
                     if (refuelAmount != null) vm.submitCheckpointWithRefuel(c, refuelAmount, refuelQty, unit)
-                    else vm.submitCheckpoint(c)
+                    else vm.submitCheckpoint(c, startAt, lastedS)
                     showCheckpoint = false
                 },
                 onSkip = { vm.skipCheckpoint(); showCheckpoint = false }
@@ -709,10 +732,12 @@ private fun EndJourneyReview(
     whatsAppEnabled: Boolean,
     onAddExpense: () -> Unit,
     onCancel: () -> Unit,
-    onConfirm: (String?) -> Unit
+    arrivalMs: Long? = null,
+    onConfirm: (String?, Long?) -> Unit
 ) {
     val colors = KoodeTheme.colors
     var note by remember { mutableStateOf("") }
+    var endAtArrival by remember(arrivalMs) { mutableStateOf(arrivalMs != null) }
 
     Column(
         Modifier
@@ -757,9 +782,28 @@ private fun EndJourneyReview(
             }
         }
 
+        if (arrivalMs != null) {
+            val now = System.currentTimeMillis()
+            KoodeCard(accent = colors.accent) {
+                Text(
+                    "You reached the destination at ${TimeFmt.clockWithDay(arrivalMs, now)} (${TimeFmt.ago(now, arrivalMs)}).",
+                    color = colors.textHigh, style = MaterialTheme.typography.bodyLarge
+                )
+                Text(
+                    "The journey's times and speeds should stop there, not when you closed the app.",
+                    color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                )
+                Spacer(Modifier.height(Spacing.sm))
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    KoodeChip("End at ${TimeFmt.clock(arrivalMs)}", endAtArrival, { endAtArrival = true }, leading = "🏁")
+                    KoodeChip("End now", !endAtArrival, { endAtArrival = false })
+                }
+            }
+            Spacer(Modifier.height(Spacing.md))
+        }
         PrimaryButton(
             "Confirm and end journey",
-            { onConfirm(note.trim().ifBlank { null }) },
+            { onConfirm(note.trim().ifBlank { null }, if (endAtArrival) arrivalMs else null) },
             leading = "🏁"
         )
         SecondaryButton("Not yet — keep going", onCancel, accent = colors.textMid, height = 44.dp)
@@ -1210,9 +1254,13 @@ private fun QuickNoteSheet(
 private fun CheckpointSheet(
     profile: TransportProfile,
     fuelUnit: String,
-    onSubmit: (TripManager.Checkpoint, Double?, Double?, String) -> Unit,
-    onSkip: () -> Unit
+    onSubmit: (TripManager.Checkpoint, Double?, Double?, String, Long?, Long?) -> Unit,
+    onSkip: () -> Unit,
+    /** True when stop detection already knows when this break began and ended. */
+    autoTimed: Boolean = false
 ) {
+    var startedAgoMin by remember { mutableStateOf(0) }
+    var lastedMin by remember { mutableStateOf<Int?>(null) }
     val colors = KoodeTheme.colors
     var water by remember { mutableStateOf(false) }
     var food by remember { mutableStateOf(false) }
@@ -1283,6 +1331,26 @@ private fun CheckpointSheet(
             }
         }
 
+        Spacer(Modifier.height(Spacing.md))
+        if (autoTimed) {
+            Text(
+                "Start time and length come from when the vehicle stopped and moved off.",
+                color = colors.textLow, style = MaterialTheme.typography.bodySmall
+            )
+        } else {
+            Text("When did the break start?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                listOf(0 to "Just now", 10 to "10 min ago", 20 to "20 min ago", 30 to "30 min ago", 45 to "45 min ago", 60 to "1 h ago")
+                    .forEach { (m, label) -> KoodeChip(label, startedAgoMin == m, { startedAgoMin = m }) }
+            }
+            Spacer(Modifier.height(Spacing.sm))
+            Text("How long was it?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                KoodeChip(if (startedAgoMin == 0) "Still on it" else "Until now", lastedMin == null, { lastedMin = null })
+                listOf(5, 10, 15, 20, 30, 45, 60).forEach { m -> KoodeChip("$m min", lastedMin == m, { lastedMin = m }) }
+            }
+        }
+        Spacer(Modifier.height(Spacing.md))
         PrimaryButton(
             "Save",
             {
@@ -1293,6 +1361,19 @@ private fun CheckpointSheet(
                         mealKind = mealKind
                     ),
                     InputRules.parseAmount(refuelCost), refuelQty.toDoubleOrNull(), fuelUnit
+                ,
+                    // Explicit timing only when stop detection didn't supply it.
+                    if (autoTimed) null else {
+                        val nowMs = System.currentTimeMillis()
+                        val lasted = lastedMin
+                        when {
+                            startedAgoMin == 0 && lasted == null -> null
+                            lasted == null -> nowMs - startedAgoMin * 60_000L
+                            else -> nowMs - (if (startedAgoMin == 0) lasted else startedAgoMin) * 60_000L
+                        }
+                    },
+                    if (autoTimed) null else lastedMin?.let { it * 60L }
+                        ?: if (startedAgoMin > 0) startedAgoMin * 60L else null
                 )
             },
             enabled = water || food || tea || snack || toilet || rest || fuel || charge,

@@ -1,10 +1,18 @@
 package com.trippulse.app.ui.screens
 
 import android.Manifest
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,9 +24,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -34,42 +44,48 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.domain.TransportCatalog
-import com.trippulse.app.ui.PlaceSuggestion
 import com.trippulse.app.ui.CreateVm
 import com.trippulse.app.ui.LegDraft
 import com.trippulse.app.ui.Routes
-import com.trippulse.app.ui.components.TravelDetailFields
+import com.trippulse.app.ui.SharedPlaceInbox
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.LocalWindowClass
+import com.trippulse.app.ui.components.PlacePicker
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.components.TravelDetailFields
 import com.trippulse.app.ui.map.JourneyMap
+import com.trippulse.app.ui.map.Vehicle3D
 import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
+import com.trippulse.app.core.InputRules
 
 /**
  * Planning a journey.
  *
- * The important structural change here is that a journey is a *list of legs*,
- * not a single from/to with one mode. Real journeys are hybrid — Thrissur to
- * Bangalore by train, then Bangalore to Hyderabad by bus — and modelling that
- * as the normal case (rather than a special one) is what lets every downstream
- * rule stay simple: each leg carries its own mode, and the app switches rule
- * sets automatically when the traveller changes vehicle.
+ * A journey is a *list of stages*, each with its own mode, because real
+ * journeys are hybrid (train to Bangalore, bus onward). Every place field is
+ * tappable and opens one picker for exactly that field: search as you type,
+ * paste or share from Google Maps, use current location, a saved place, or
+ * drop a pin. The map below previews the stage being edited in 3D.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -77,6 +93,7 @@ fun CreateTripScreen(nav: NavHostController) {
     val vm: CreateVm = viewModel(factory = CreateVm.Factory)
     val colors = KoodeTheme.colors
     val windowClass = LocalWindowClass.current
+    val context = LocalContext.current
 
     val legs by vm.legs.collectAsStateWithLifecycle()
     val editing by vm.editingLeg.collectAsStateWithLifecycle()
@@ -84,33 +101,34 @@ fun CreateTripScreen(nav: NavHostController) {
     val busy by vm.busy.collectAsStateWithLifecycle()
     val error by vm.error.collectAsStateWithLifecycle()
     val running by vm.runningTripId.collectAsStateWithLifecycle()
-    val places by vm.savedPlaces.collectAsStateWithLifecycle()
+    val saved by vm.savedPlaces.collectAsStateWithLifecycle()
     val suggestions by vm.suggestedPlaces.collectAsStateWithLifecycle()
-    val pinMode by vm.pinMode.collectAsStateWithLifecycle()
     val departure by vm.departureMs.collectAsStateWithLifecycle()
     val myName by vm.myName.collectAsStateWithLifecycle()
     val results by vm.searchResults.collectAsStateWithLifecycle()
     val searching by vm.searching.collectAsStateWithLifecycle()
+    val here by vm.here.collectAsStateWithLifecycle()
+    val notice by vm.notice.collectAsStateWithLifecycle()
 
-    var searchQuery by remember { mutableStateOf("") }
-    var newPlaceName by remember { mutableStateOf("") }
+    var picker by remember { mutableStateOf<SharedPlaceInbox.Target?>(null) }
     var customWhen by remember { mutableStateOf("") }
 
-    // "Current location" as a start point needs the permission up front, not
-    // after the journey has been created.
-    val context = LocalContext.current
-    val permLauncher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { }
+    // "Current location" as a start needs the permission up front.
+    val permLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { }
     LaunchedEffect(Unit) {
-        val granted = ContextCompat.checkSelfPermission(
-            context, Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
+        val granted = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) ==
+            PackageManager.PERMISSION_GRANTED
         if (!granted) {
-            permLauncher.launch(
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-            )
+            permLauncher.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION))
         }
+    }
+
+    // A place shared back from Google Maps fills the field that asked for it.
+    val shared by SharedPlaceInbox.pending.collectAsStateWithLifecycle()
+    LaunchedEffect(shared) {
+        val (text, where) = SharedPlaceInbox.take() ?: return@LaunchedEffect
+        picker = null
+        vm.applySharedText(text, where.legIndex.coerceIn(0, vm.legs.value.lastIndex), where.asStart)
     }
 
     val editingLeg = legs.getOrElse(editing) { legs.first() }
@@ -124,23 +142,30 @@ fun CreateTripScreen(nav: NavHostController) {
     ) {
         Spacer(Modifier.height(Spacing.lg))
         AdaptiveContainer {
-            Text("New journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
+            Text("Plan a journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
-                "Add a stage for each vehicle you'll travel in. Most journeys have one.",
+                "Tap a place to set it. Add a stage whenever you change vehicle.",
                 color = colors.textMid, style = MaterialTheme.typography.bodyLarge
             )
+
+            AnimatedVisibility(visible = notice != null) {
+                KoodeCard(accent = colors.accent, onClick = { vm.notice.value = null }) {
+                    Text(notice.orEmpty(), color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
+                    Text("Tap to dismiss", color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                }
+            }
 
             OutlinedTextField(
                 value = myName,
                 onValueChange = { vm.myName.value = it },
-                label = { Text("Your name — your circle sees \"…'s Journey\"") },
+                label = { Text("Your name — followers see \u201C…'s journey\u201D") },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // ---- the stages ----
+            // ---- stages ----
             legs.forEachIndexed { index, leg ->
-                LegCard(
+                StageCard(
                     index = index,
                     total = legs.size,
                     leg = leg,
@@ -149,133 +174,41 @@ fun CreateTripScreen(nav: NavHostController) {
                     onRemove = { vm.removeLeg(index) },
                     onModeChange = { vm.setMode(index, it) },
                     onDetailChange = { key, value -> vm.setDetail(index, key, value) },
-                    suggestions = suggestions,
-                    onUseSuggestion = { place, asStart ->
-                        vm.useSuggestion(index, place, asStart)
-                    },
-                    onFromChange = { vm.setFromText(index, it) },
-                    onToChange = { vm.setToText(index, it) },
+                    onPickFrom = { vm.editLeg(index); picker = SharedPlaceInbox.Target(index, asStart = true) },
+                    onPickTo = { vm.editLeg(index); picker = SharedPlaceInbox.Target(index, asStart = false) },
                     onBoardingChange = { vm.setBoardingPoint(index, it) }
                 )
             }
 
-            SecondaryButton(
-                "Add another stage",
-                { vm.addLeg() },
-                leading = "＋",
-                accent = colors.traveller,
-                height = 44.dp
-            )
-            if (legs.size > 1) {
+            SecondaryButton("Add another stage", { vm.addLeg() }, leading = "＋", accent = colors.traveller, height = 44.dp)
+
+            // ---- live preview of the stage being edited ----
+            if (editingLeg.from != null || editingLeg.to != null) {
+                val from = editingLeg.from
+                val to = editingLeg.to
+                JourneyMap(
+                    origin = from,
+                    destination = to,
+                    current = from,
+                    bearingDeg = if (from != null && to != null) Vehicle3D.bearing(from, to).toFloat() else null,
+                    moving = from != null && to != null,
+                    mode = editingLeg.mode,
+                    live = false,
+                    height = windowClass.mapHeight,
+                    showPlayControl = false
+                )
                 Text(
-                    "Koode switches its rules as you move between stages: refuelling questions on the car leg, " +
-                        "boarding milestones on the train leg, and no break nagging where you're not driving.",
+                    "Preview of ${if (legs.size > 1) "stage ${editing + 1}" else "your route"} — " +
+                        "the straight line is only a sketch; the real path is drawn as you travel.",
                     color = colors.textLow, style = MaterialTheme.typography.bodySmall
                 )
-            }
-
-            // ---- place search, applied to the stage being edited ----
-            KoodeCard(title = "Find a place") {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    OutlinedTextField(
-                        value = searchQuery,
-                        onValueChange = { searchQuery = it },
-                        label = { Text("Search by name") },
-                        singleLine = true,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Spacer(Modifier.width(Spacing.sm))
-                    Box(Modifier.width(96.dp)) {
-                        SecondaryButton(
-                            if (searching) "…" else "Search",
-                            { vm.searchPlaces(searchQuery) },
-                            enabled = !searching, height = 48.dp
-                        )
-                    }
-                }
-                results.forEach { r ->
-                    Spacer(Modifier.height(Spacing.sm))
-                    Text(r.name, color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
-                    Row {
-                        TextButton(onClick = { vm.useSearchResult(r, asStart = true) }) {
-                            Text("Set as start", color = colors.accent, fontSize = 13.sp)
-                        }
-                        TextButton(onClick = { vm.useSearchResult(r, asStart = false) }) {
-                            Text("Set as destination", color = colors.accent, fontSize = 13.sp)
-                        }
-                    }
-                }
-                if (results.isNotEmpty()) {
-                    TextButton(onClick = { vm.clearSearch() }) {
-                        Text("Clear results", color = colors.textLow, fontSize = 12.sp)
-                    }
-                }
-                if (places.isNotEmpty()) {
-                    Spacer(Modifier.height(Spacing.sm))
-                    Text("Saved places", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-                    places.forEach { p ->
-                        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                p.name, color = colors.textHigh,
-                                style = MaterialTheme.typography.bodyMedium,
-                                modifier = Modifier.weight(1f)
-                            )
-                            TextButton(onClick = { vm.useAsStart(p) }) {
-                                Text("From", color = colors.accent, fontSize = 13.sp)
-                            }
-                            TextButton(onClick = { vm.useAsDest(p) }) {
-                                Text("To", color = colors.accent, fontSize = 13.sp)
-                            }
-                            TextButton(onClick = { vm.deletePlace(p.name) }) {
-                                Text("✕", color = colors.textLow, fontSize = 13.sp)
-                            }
-                        }
-                    }
-                }
-            }
-
-            // ---- map pinning for the stage being edited ----
-            KoodeCard(title = "Or pin it on the map") {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        "Long-press to set the",
-                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                    )
-                    Spacer(Modifier.width(Spacing.sm))
-                    KoodeChip("Destination", pinMode == "DEST", { vm.pinMode.value = "DEST" })
-                    Spacer(Modifier.width(Spacing.sm))
-                    KoodeChip("Start", pinMode == "START", { vm.pinMode.value = "START" })
-                }
-                Spacer(Modifier.height(Spacing.md))
-                JourneyMap(
-                    origin = editingLeg.from,
-                    destination = editingLeg.to,
-                    height = windowClass.mapHeight,
-                    showPlayControl = false,
-                    live = false,
-                    onLongPress = { vm.onMapLongPress(it) }
-                )
-                Spacer(Modifier.height(Spacing.sm))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    OutlinedTextField(
-                        value = newPlaceName,
-                        onValueChange = { newPlaceName = InputRules.itemText(it) },
-                        label = { Text("Save this pin as…") },
-                        singleLine = true,
-                        modifier = Modifier.weight(1f)
-                    )
-                    Spacer(Modifier.width(Spacing.sm))
-                    Box(Modifier.width(90.dp)) {
-                        SecondaryButton("Save", { vm.savePlace(newPlaceName); newPlaceName = "" }, height = 48.dp)
-                    }
-                }
             }
 
             // ---- passcode ----
             KoodeCard(title = "Passcode for followers") {
                 Text(
-                    "Six digits you choose. Anyone with your journey number AND this passcode goes straight in — " +
-                        "everyone else has to be approved by you.",
+                    "Six digits. Anyone with your journey number AND this passcode goes straight in — " +
+                        "everyone else waits for your approval.",
                     color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                 )
                 Spacer(Modifier.height(Spacing.md))
@@ -364,10 +297,7 @@ fun CreateTripScreen(nav: NavHostController) {
                     // next step is the journey they are on, not a retry.
                     running?.let { tripId ->
                         Spacer(Modifier.height(Spacing.md))
-                        PrimaryButton(
-                            "Open my journey",
-                            { nav.navigate(Routes.driver(tripId)) { popUpTo(Routes.HOME) } }
-                        )
+                        PrimaryButton("Open my journey", { nav.navigate(Routes.driver(tripId)) { popUpTo(Routes.HOME) } })
                     }
                 }
             }
@@ -388,15 +318,53 @@ fun CreateTripScreen(nav: NavHostController) {
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }
+
+    picker?.let { target ->
+        val leg = legs.getOrElse(target.legIndex) { legs.first() }
+        PlacePicker(
+            asStart = target.asStart,
+            results = results,
+            searching = searching,
+            saved = saved,
+            recent = suggestions,
+            here = here,
+            pinStart = (if (target.asStart) leg.from else leg.to) ?: leg.from ?: here,
+            onQuery = { vm.searchPlaces(it) },
+            onPick = { place -> vm.applyPlace(target.legIndex, target.asStart, place); picker = null },
+            onUseCurrentLocation = if (target.asStart) ({ vm.useCurrentLocationAsStart(target.legIndex); picker = null }) else null,
+            onOpenGoogleMaps = { query ->
+                SharedPlaceInbox.target = target
+                openGoogleMaps(context, query)
+            },
+            onSavePlace = { name, point -> vm.savePlaceAt(name, point) },
+            onDeleteSaved = { vm.deletePlace(it) },
+            onDismiss = { picker = null; vm.clearSearch() }
+        )
+    }
 }
 
 /**
- * One stage of the journey. Collapsed unless it's the stage being edited, so a
- * three-leg journey doesn't turn the screen into a wall of fields.
+ * Opens the Google Maps app (or maps.google.com if it isn't installed) on a
+ * search for [query]. The traveller finds the place and shares it to Koode.
+ */
+private fun openGoogleMaps(context: Context, query: String) {
+    val url = if (query.isBlank()) "https://www.google.com/maps"
+    else "https://www.google.com/maps/search/?api=1&query=" + Uri.encode(query)
+    val app = Intent(Intent.ACTION_VIEW, Uri.parse(url)).setPackage("com.google.android.apps.maps")
+    try {
+        context.startActivity(app)
+    } catch (_: ActivityNotFoundException) {
+        runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
+    }
+}
+
+/**
+ * One stage. Collapsed unless it's the one being edited, so a three-stage
+ * journey doesn't become a wall of fields.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun LegCard(
+private fun StageCard(
     index: Int,
     total: Int,
     leg: LegDraft,
@@ -405,30 +373,26 @@ private fun LegCard(
     onRemove: () -> Unit,
     onModeChange: (String) -> Unit,
     onDetailChange: (String, String) -> Unit,
-    suggestions: List<PlaceSuggestion>,
-    onUseSuggestion: (PlaceSuggestion, Boolean) -> Unit,
-    onFromChange: (String) -> Unit,
-    onToChange: (String) -> Unit,
+    onPickFrom: () -> Unit,
+    onPickTo: () -> Unit,
     onBoardingChange: (String) -> Unit
 ) {
     val colors = KoodeTheme.colors
     val profile = leg.profile
 
-    KoodeCard(
-        accent = if (isEditing) colors.accent else null,
-        onClick = if (isEditing) null else onFocus
-    ) {
+    KoodeCard(accent = if (isEditing) colors.accent else null, onClick = if (isEditing) null else onFocus) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(profile.emoji, fontSize = 18.sp)
+            Box(
+                Modifier.size(34.dp).clip(RoundedCornerShape(Radii.pill)).background(colors.surfaceRaised),
+                contentAlignment = Alignment.Center
+            ) { Text(profile.emoji, fontSize = 17.sp) }
             Spacer(Modifier.width(Spacing.sm))
             Text(
                 if (total == 1) "Your journey" else "Stage ${index + 1} · ${profile.label}",
                 color = colors.textHigh, style = MaterialTheme.typography.titleMedium
             )
             Spacer(Modifier.weight(1f))
-            if (total > 1) {
-                TextButton(onClick = onRemove) { Text("Remove", color = colors.textLow, fontSize = 12.sp) }
-            }
+            if (total > 1) TextButton(onClick = onRemove) { Text("Remove", color = colors.textLow, fontSize = 12.sp) }
         }
 
         if (!isEditing) {
@@ -440,36 +404,42 @@ private fun LegCard(
         }
 
         Spacer(Modifier.height(Spacing.md))
-        OutlinedTextField(
-            value = leg.fromText, onValueChange = onFromChange,
-            label = { Text("From") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        PlaceSuggestions(suggestions, "Start here") { onUseSuggestion(it, true) }
+        RouteFields(leg = leg, onPickFrom = onPickFrom, onPickTo = onPickTo)
 
+        Spacer(Modifier.height(Spacing.lg))
+        Text("HOW ARE YOU TRAVELLING?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
         Spacer(Modifier.height(Spacing.sm))
-        OutlinedTextField(
-            value = leg.toText, onValueChange = onToChange,
-            label = { Text("To") }, singleLine = true, modifier = Modifier.fillMaxWidth()
-        )
-        PlaceSuggestions(suggestions, "Go here") { onUseSuggestion(it, false) }
-
-        Spacer(Modifier.height(Spacing.md))
-        Text("How are you travelling?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-        Spacer(Modifier.height(Spacing.sm))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             TransportCatalog.ALL.forEach { p ->
-                KoodeChip(p.label, leg.mode == p.key, { onModeChange(p.key) }, leading = p.emoji)
+                ModeTile(p.emoji, p.label, leg.mode == p.key) { onModeChange(p.key) }
             }
         }
 
         Spacer(Modifier.height(Spacing.md))
         // Rendered from the mode's own declaration, so this screen and the
         // mid-journey switch always ask the same questions in the same words.
-        TravelDetailFields(
-            mode = leg.mode,
-            values = leg.details,
-            onChange = onDetailChange
-        )
+        var changeVehicle by remember(leg.mode) { mutableStateOf(false) }
+        if (profile.isPrivateVehicle && leg.ready && !changeVehicle) {
+            // A remembered car or bike: one line, no questions.
+            Row(
+                Modifier.fillMaxWidth().clip(RoundedCornerShape(Radii.md)).background(colors.surfaceRaised)
+                    .padding(horizontal = 14.dp, vertical = 10.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(profile.emoji, fontSize = 18.sp)
+                Spacer(Modifier.width(Spacing.sm))
+                Column(Modifier.weight(1f)) {
+                    Text("Your ${profile.label.lowercase()}", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    Text(
+                        com.trippulse.app.domain.TravelDetails.summary(leg.mode, leg.details).ifBlank { "Saved" },
+                        color = colors.textHigh, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis
+                    )
+                }
+                TextButton(onClick = { changeVehicle = true }) { Text("Change", color = colors.traveller) }
+            }
+        } else {
+            TravelDetailFields(mode = leg.mode, values = leg.details, onChange = onDetailChange)
+        }
 
         if (!profile.isPrivateVehicle) {
             Spacer(Modifier.height(Spacing.md))
@@ -478,45 +448,106 @@ private fun LegCard(
                 label = { Text(profile.boardingPointLabel + " (optional)") }, singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
+            Text(
+                "Kept on this phone only — never shared with anyone following you.",
+                color = colors.textLow, style = MaterialTheme.typography.bodySmall
+            )
         }
-        Text(
-            "Kept on this phone only — never shared with anyone following you.",
-            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+    }
+}
+
+/** From and To as one connected route, each row opening the picker for itself. */
+@Composable
+private fun RouteFields(leg: LegDraft, onPickFrom: () -> Unit, onPickTo: () -> Unit) {
+    val colors = KoodeTheme.colors
+    val shape = RoundedCornerShape(Radii.md)
+    val fromSet = leg.from != null || leg.fromText.equals("Current location", ignoreCase = true)
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(colors.backgroundElevated)
+            .border(1.dp, colors.outline.copy(alpha = 0.6f), shape)
+    ) {
+        PlaceFieldRow(
+            marker = { Box(Modifier.size(12.dp).clip(RoundedCornerShape(Radii.pill)).background(colors.accent)) },
+            label = "FROM",
+            value = leg.fromText.ifBlank { null },
+            placeholder = "Choose a starting point",
+            confirmed = fromSet,
+            onClick = onPickFrom
+        )
+        Row(Modifier.padding(start = 21.dp)) {
+            Box(Modifier.width(2.dp).height(14.dp).background(colors.outline))
+        }
+        PlaceFieldRow(
+            marker = { Box(Modifier.size(12.dp).clip(RoundedCornerShape(2.dp)).background(colors.warn)) },
+            label = "TO",
+            value = leg.toText.ifBlank { null },
+            placeholder = "Where are you going?",
+            confirmed = leg.to != null,
+            onClick = onPickTo
         )
     }
 }
 
-/**
- * One-tap places under a From or To field.
- *
- * Almost nobody's next journey starts somewhere they have never been, and the
- * worst part of this screen was always typing a place name and hoping the
- * search agreed. Saved places lead because they were named on purpose; the
- * rest are simply where this phone has been lately.
- *
- * Nothing is shown when there is no history, so a first journey sees a clean
- * screen rather than an empty row explaining itself.
- */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun PlaceSuggestions(
-    suggestions: List<PlaceSuggestion>,
-    action: String,
-    onPick: (PlaceSuggestion) -> Unit
+private fun PlaceFieldRow(
+    marker: @Composable () -> Unit,
+    label: String,
+    value: String?,
+    placeholder: String,
+    confirmed: Boolean,
+    onClick: () -> Unit
 ) {
-    if (suggestions.isEmpty()) return
     val colors = KoodeTheme.colors
-    Spacer(Modifier.height(Spacing.sm))
-    Text(action, color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-    Spacer(Modifier.height(Spacing.xs))
-    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-        suggestions.forEach { place ->
-            KoodeChip(
-                place.name,
-                selected = false,
-                onClick = { onPick(place) },
-                leading = if (place.saved) "★" else "🕓"
+    Row(
+        Modifier.fillMaxWidth().clickable(onClick = onClick).padding(horizontal = 16.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(Modifier.width(12.dp), contentAlignment = Alignment.Center) { marker() }
+        Spacer(Modifier.width(Spacing.md))
+        Column(Modifier.weight(1f)) {
+            Text(label, color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            Text(
+                value ?: placeholder,
+                color = if (value != null) colors.textHigh else colors.textLow,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = if (value != null) FontWeight.Medium else FontWeight.Normal,
+                maxLines = 1, overflow = TextOverflow.Ellipsis
             )
         }
+        Text(
+            when {
+                value == null -> "Set"
+                confirmed -> "✓"
+                else -> "Find"
+            },
+            color = if (confirmed) colors.accent else colors.traveller,
+            style = MaterialTheme.typography.labelLarge
+        )
+    }
+}
+
+@Composable
+private fun ModeTile(emoji: String, label: String, selected: Boolean, onClick: () -> Unit) {
+    val colors = KoodeTheme.colors
+    val shape = RoundedCornerShape(Radii.md)
+    Column(
+        Modifier
+            .width(84.dp)
+            .clip(shape)
+            .background(if (selected) colors.accent.copy(alpha = 0.16f) else colors.surfaceRaised)
+            .border(if (selected) 2.dp else 1.dp, if (selected) colors.accent else Color.Transparent, shape)
+            .clickable(onClick = onClick)
+            .padding(vertical = 12.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(emoji, fontSize = 24.sp)
+        Spacer(Modifier.height(4.dp))
+        Text(
+            label, color = if (selected) colors.textHigh else colors.textMid,
+            style = MaterialTheme.typography.labelMedium, maxLines = 1, overflow = TextOverflow.Ellipsis
+        )
     }
 }
