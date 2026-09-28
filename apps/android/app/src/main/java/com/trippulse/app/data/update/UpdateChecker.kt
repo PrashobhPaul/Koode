@@ -139,9 +139,18 @@ class UpdateChecker(
         const val DEFAULT_RELEASES_URL =
             "https://api.github.com/repos/PrashobhPaul/Koode/releases/latest"
 
-        /** Strips a leading "v" and any build suffix GitHub added to the tag. */
+        /**
+         * Strips a leading "v" so a real tag like "v6.5.1" becomes "6.5.1".
+         *
+         * It deliberately does NOT strip a "build-" prefix. A `build-N` tag
+         * (N is the CI run number) has no relation to the app's `6.x.y`
+         * version, so treating its number as a version made every such
+         * release compare as a huge major version and produce a permanent
+         * "update available" banner. Left intact, a `build-N` tag no longer
+         * parses to a version (see [versionParts]) and is never "newer".
+         */
         fun normalizeVersion(tag: String): String =
-            tag.trim().removePrefix("v").removePrefix("V").removePrefix("build-").trim()
+            tag.trim().removePrefix("v").removePrefix("V").trim()
 
         /**
          * Semantic-ish comparison that degrades gracefully: a tag we cannot
