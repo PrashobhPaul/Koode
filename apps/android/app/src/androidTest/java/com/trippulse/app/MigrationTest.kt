@@ -154,6 +154,8 @@ class MigrationTest {
         }
         assertTrue(db.columns("active_trip").contains("deviceJson"))
         assertTrue(db.columns("active_trip").contains("wentDarkAtMs"))
+        // 8->9 adds the durable reusable-destinations table.
+        assertTrue(db.columns("recent_destinations").contains("placeKey"))
         db.close()
     }
 

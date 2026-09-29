@@ -42,15 +42,29 @@ class TravelDetailsTest {
         )
     }
 
-    @Test fun public_transport_asks_but_never_insists() {
+    @Test fun local_and_road_public_transport_never_insists() {
+        // A cab, a city bus and the metro are turn-up-and-go — no booking to enter.
         for (mode in listOf(
-            TransportCatalog.CAB.key, TransportCatalog.BUS.key,
-            TransportCatalog.TRAIN.key, TransportCatalog.FLIGHT.key
+            TransportCatalog.CAB.key, TransportCatalog.BUS.key, TransportCatalog.METRO.key
         )) {
             val fields = TravelDetails.fieldsFor(mode)
             assertTrue("$mode should ask something", fields.isNotEmpty())
             assertTrue("$mode must not require anything", fields.none { it.required })
             assertTrue("$mode is always complete", TravelDetails.isComplete(mode, emptyMap()))
+        }
+    }
+
+    @Test fun ticketed_long_distance_requires_seat_and_pnr() {
+        for (mode in listOf(
+            TransportCatalog.TRAIN.key, TransportCatalog.FLIGHT.key, TransportCatalog.SHIP.key
+        )) {
+            val fields = TravelDetails.fieldsFor(mode)
+            val required = fields.filter { it.required }.map { it.key }.toSet()
+            assertTrue("$mode requires the seat", required.contains(DetailKeys.SEAT))
+            assertTrue("$mode requires the PNR", required.contains(DetailKeys.PNR))
+            assertFalse("$mode is not complete empty", TravelDetails.isComplete(mode, emptyMap()))
+            val filled = mapOf(DetailKeys.SEAT to "12A", DetailKeys.PNR to "ABC123")
+            assertTrue("$mode complete once seat+PNR given", TravelDetails.isComplete(mode, filled))
         }
     }
 

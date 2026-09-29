@@ -43,3 +43,19 @@ instance or another MapLibre-compatible style is a one-line change.
 If you ever want your own router, OSRM is open source and can be self-hosted
 (`osrm-backend` + an OSM extract). Point `OsrmRoutingProvider(baseUrl = …)` at
 your instance in `di/AppGraph.kt` — nothing else changes.
+
+## Follow links (one-tap "watch this journey")
+
+Sharing a journey now includes a one-tap link and a QR whose credential rides
+in the URL **fragment** (`…/Koode/#<number>-<passcode>`) — the part a browser
+never sends to a server. Tapping it opens the **browser viewer** live, with
+nothing to install or type.
+
+To make the tap open the **Koode app** instead (Android App Links), the file
+`web/.well-known/assetlinks.json` must be served from the **site root**:
+`https://prashobhpaul.github.io/.well-known/assetlinks.json`. Because this repo
+publishes to the project path `/Koode/`, copy that file into the root
+`prashobhpaul.github.io` Pages repo under `/.well-known/`. Until then the app
+link falls back to the browser viewer, so nothing breaks — the app-open is
+purely an upgrade. The file already carries the release signing certificate's
+SHA-256; regenerate it if the signing key ever changes.

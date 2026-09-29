@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.compose.foundation.layout.Arrangement
@@ -48,6 +49,7 @@ import com.trippulse.app.core.ViewerRefresh
 import com.trippulse.app.domain.MoneyFormat
 import com.trippulse.app.domain.UnitPreference
 import com.trippulse.app.ui.SettingsVm
+import com.trippulse.app.ui.components.Avatar
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.PrimaryButton
@@ -111,7 +113,45 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     }
 
     // ---- profile ----
+    var photoVer by remember { mutableStateOf(Profile.photoVersion(context)) }
+    var avatar by remember { mutableStateOf(Profile.avatarStyle(context)) }
+    val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null && Profile.savePhoto(context, uri)) photoVer = Profile.photoVersion(context)
+    }
+
     KoodeCard(title = "Profile") {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Avatar(Profile.photoPath(context), avatar, 64.dp, version = photoVer)
+            Spacer(Modifier.width(Spacing.md))
+            Column {
+                SecondaryButton(
+                    if (Profile.hasPhoto(context)) "Change photo" else "Add a photo (optional)",
+                    { photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
+                    height = 40.dp
+                )
+                if (Profile.hasPhoto(context)) {
+                    TextButton(onClick = { Profile.clearPhoto(context); photoVer = Profile.photoVersion(context) }) {
+                        Text("Remove", color = colors.textLow, fontSize = 13.sp)
+                    }
+                }
+            }
+        }
+        Spacer(Modifier.height(Spacing.sm))
+        Text(
+            "Shown on your journey and its PDF. With no photo, this avatar stands in:",
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+        )
+        Spacer(Modifier.height(Spacing.xs))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            listOf(
+                Profile.AvatarStyle.NEUTRAL to "Neutral",
+                Profile.AvatarStyle.MALE to "Male",
+                Profile.AvatarStyle.FEMALE to "Female"
+            ).forEach { (style, label) ->
+                KoodeChip(label, avatar == style, { avatar = style; Profile.setAvatarStyle(context, style) })
+            }
+        }
+        Spacer(Modifier.height(Spacing.sm))
         OutlinedTextField(
             value = name,
             onValueChange = { name = InputRules.itemText(it) },

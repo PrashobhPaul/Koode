@@ -69,6 +69,7 @@ import com.trippulse.app.ui.DriverVm
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.components.TravelDetailFields
 import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.OwnerAvatar
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.KoodeHeroCard
@@ -189,6 +190,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             },
             header = {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    OwnerAvatar(40.dp)
+                    Spacer(Modifier.width(Spacing.sm))
                     Column(Modifier.weight(1f)) {
                         Text(
                             "${profile.emoji}  ${journeyLabel(s?.journey)}",

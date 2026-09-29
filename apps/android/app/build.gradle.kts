@@ -35,8 +35,8 @@ android {
         applicationId = "app.koode"
         minSdk = 26
         targetSdk = 35
-        versionCode = 20
-        versionName = "6.5.4"
+        versionCode = 22
+        versionName = "6.6.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -174,6 +174,9 @@ dependencies {
 
     // --- HTTP client: OSRM routing + Supabase (PostgREST) transport ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // --- QR encoding for the "scan to follow this journey" code (pure Java) ---
+    implementation("com.google.zxing:core:3.5.3")
 
     // --- Unit tests (pure-JVM domain tests) ---
     testImplementation("junit:junit:4.13.2")

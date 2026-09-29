@@ -29,7 +29,13 @@ data class DetailField(
     /** Letters allowed, or digits only. */
     val digitsOnly: Boolean = false,
     /** Uppercased as typed — registrations, coach and PNR codes always are. */
-    val uppercase: Boolean = false
+    val uppercase: Boolean = false,
+    /**
+     * Strictly letters and digits only (implies [uppercase]). PNR and seat
+     * codes are alphanumeric — no dashes, slashes or spaces — so a value the
+     * traveller can read out to an airline or railway matches exactly.
+     */
+    val alphanumeric: Boolean = false
 ) {
     val isChoice: Boolean get() = options.isNotEmpty()
 }
@@ -110,9 +116,11 @@ object TravelDetails {
         return when {
             profile.isPrivateVehicle -> privateVehicleFields()
             profile.key == TransportCatalog.CAB.key -> cabFields()
+            profile.key == TransportCatalog.METRO.key -> metroFields()
             profile.key == TransportCatalog.TRAIN.key -> trainFields()
             profile.key == TransportCatalog.BUS.key -> busFields()
             profile.key == TransportCatalog.FLIGHT.key -> flightFields()
+            profile.key == TransportCatalog.SHIP.key -> shipFields()
             else -> emptyList()
         }
     }
@@ -135,23 +143,40 @@ object TravelDetails {
         DetailField(DetailKeys.REGISTRATION, "Vehicle number", uppercase = true)
     )
 
+    /**
+     * A city metro / suburban local: a token or smart-card ride, so no seat
+     * or PNR is asked and nothing is mandatory.
+     */
+    private fun metroFields() = listOf(
+        DetailField(DetailKeys.OPERATOR, "Line or service", hint = "Blue Line, Aqua Line…")
+    )
+
+    // Long-distance ticketed travel (train, flight, ship) insists on the seat
+    // and the PNR/booking reference — both alphanumeric — so a follower has
+    // exactly what an airline or railway desk would ask for.
     private fun trainFields() = listOf(
         DetailField(DetailKeys.OPERATOR, "Train number or name"),
         DetailField(DetailKeys.COACH, "Coach", uppercase = true, hint = "S3, B1, A2"),
-        DetailField(DetailKeys.SEAT, "Seat or berth", uppercase = true),
-        DetailField(DetailKeys.PNR, "PNR", uppercase = true)
+        DetailField(DetailKeys.SEAT, "Seat or berth", required = true, alphanumeric = true),
+        DetailField(DetailKeys.PNR, "PNR", required = true, alphanumeric = true)
     )
 
     private fun busFields() = listOf(
         DetailField(DetailKeys.OPERATOR, "Operator", options = BUS_OPERATORS),
         DetailField(DetailKeys.SEAT, "Seat", uppercase = true),
-        DetailField(DetailKeys.PNR, "PNR or booking reference", uppercase = true)
+        DetailField(DetailKeys.PNR, "PNR or booking reference", alphanumeric = true)
     )
 
     private fun flightFields() = listOf(
-        DetailField(DetailKeys.OPERATOR, "Flight number", uppercase = true),
-        DetailField(DetailKeys.SEAT, "Seat", uppercase = true),
-        DetailField(DetailKeys.PNR, "Booking reference", uppercase = true)
+        DetailField(DetailKeys.OPERATOR, "Flight number", alphanumeric = true),
+        DetailField(DetailKeys.SEAT, "Seat", required = true, alphanumeric = true),
+        DetailField(DetailKeys.PNR, "Booking reference", required = true, alphanumeric = true)
+    )
+
+    private fun shipFields() = listOf(
+        DetailField(DetailKeys.OPERATOR, "Vessel or service"),
+        DetailField(DetailKeys.SEAT, "Seat or cabin", required = true, alphanumeric = true),
+        DetailField(DetailKeys.PNR, "Booking reference", required = true, alphanumeric = true)
     )
 
     /** Keys still empty that [mode] insists on. Empty means good to go. */

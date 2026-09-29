@@ -36,6 +36,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.TripCredentials
+import androidx.compose.runtime.LaunchedEffect
+import com.trippulse.app.ui.FollowLinkInbox
 import com.trippulse.app.ui.JoinVm
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.components.AdaptiveContainer
@@ -74,6 +76,15 @@ fun JoinViewerScreen(nav: NavHostController) {
     var code by remember { mutableStateOf("") }
     var passcode by remember { mutableStateOf("") }
     var viewerName by remember { mutableStateOf("") }
+
+    // A tapped follow link (or scanned QR) prefills the number and passcode, so
+    // the follower only has to confirm.
+    LaunchedEffect(Unit) {
+        FollowLinkInbox.take()?.let { pf ->
+            code = pf.code
+            passcode = pf.passcode
+        }
+    }
 
     val codeComplete = TripCredentials.isCompleteCode(code)
     val canSubmit = code.isNotBlank() &&

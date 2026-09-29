@@ -254,6 +254,29 @@ data class SavedPlaceEntity(
 )
 
 /**
+ * Every destination a traveller has actually gone to, kept so the next journey
+ * can reuse it with one tap. Unlike [SavedPlaceEntity] (a place the user
+ * deliberately named and curates), these are captured automatically when a
+ * trip is created and survive the trip being swept. The primary key is a
+ * coordinate-rounded string so returning to the same place updates the one row
+ * (moves it to the top) instead of piling up duplicates.
+ */
+@Entity(tableName = "recent_destinations")
+data class RecentDestinationEntity(
+    @PrimaryKey val placeKey: String,
+    val name: String,
+    val lat: Double,
+    val lng: Double,
+    val lastUsedMs: Long
+) {
+    companion object {
+        /** ~150 m buckets: two arrivals within a block collapse to one entry. */
+        fun keyOf(lat: Double, lng: Double): String =
+            String.format(java.util.Locale.ROOT, "%.3f,%.3f", lat, lng)
+    }
+}
+
+/**
  * A journey this device follows.
  *
  * Product rule, absolute: a journey is only ever shown as ended once its
@@ -456,6 +479,18 @@ interface SavedPlaceDao {
 }
 
 @Dao
+interface RecentDestinationDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(d: RecentDestinationEntity)
+
+    @Query("SELECT * FROM recent_destinations ORDER BY lastUsedMs DESC LIMIT :limit")
+    suspend fun recent(limit: Int): List<RecentDestinationEntity>
+
+    @Query("DELETE FROM recent_destinations WHERE placeKey = :placeKey")
+    suspend fun delete(placeKey: String)
+}
+
+@Dao
 interface LegDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(leg: TripLegEntity)
@@ -532,9 +567,10 @@ interface ViewerDao {
         ViewerTripEntity::class,
         SavedPlaceEntity::class,
         ExpenseEntity::class,
-        TripLegEntity::class
+        TripLegEntity::class,
+        RecentDestinationEntity::class
     ],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -545,6 +581,7 @@ abstract class TripPulseDb : RoomDatabase() {
     abstract fun breakDao(): BreakDao
     abstract fun viewerDao(): ViewerDao
     abstract fun savedPlaceDao(): SavedPlaceDao
+    abstract fun recentDestinationDao(): RecentDestinationDao
     abstract fun expenseDao(): ExpenseDao
     abstract fun legDao(): LegDao
 
@@ -695,6 +732,16 @@ abstract class TripPulseDb : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_8_9 = object : androidx.room.migration.Migration(8, 9) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS recent_destinations (" +
+                        "placeKey TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL, " +
+                        "lat REAL NOT NULL, lng REAL NOT NULL, lastUsedMs INTEGER NOT NULL)"
+                )
+            }
+        }
+
         /**
          * No destructive fallback. A journey in progress is irreplaceable data;
          * losing it because a migration was missing would be the worst possible
@@ -710,7 +757,7 @@ abstract class TripPulseDb : RoomDatabase() {
          */
         val ALL_MIGRATIONS: Array<androidx.room.migration.Migration> = arrayOf(
             MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
-            MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8
+            MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9
         )
 
         fun get(context: Context): TripPulseDb =

@@ -70,12 +70,26 @@ class UpdateChecker(
             .putString(KEY_VERSION, release.versionName)
             .putString(KEY_URL, release.downloadUrl)
             .putString(KEY_NOTES, release.notes)
+            .putString(KEY_CHECKED_VERSION, installedVersion)
             .apply()
         release.takeIf { isNewer(it.versionName, installedVersion) }
     }
 
     /** The last known result, so the UI can render instantly and offline. */
     fun cached(): Available? {
+        // Self-heal across an update. The cache was written against whatever
+        // build was installed at the time; if the app has since updated (an
+        // in-place update keeps these prefs), that note is stale — drop it and
+        // show nothing until the next check repopulates it. This is what stops
+        // a "13 available" note, written by an old build that mis-read a
+        // build-N release tag, from surviving the very update that fixes it.
+        if (prefs.getString(KEY_CHECKED_VERSION, null) != installedVersion) {
+            prefs.edit()
+                .remove(KEY_VERSION).remove(KEY_URL).remove(KEY_NOTES)
+                .remove(KEY_CHECKED_VERSION).remove(KEY_LAST_CHECK)
+                .apply()
+            return null
+        }
         val version = prefs.getString(KEY_VERSION, null) ?: return null
         val url = prefs.getString(KEY_URL, null) ?: return null
         if (!isNewer(version, installedVersion)) return null
@@ -134,6 +148,10 @@ class UpdateChecker(
         const val KEY_URL = "latest_url"
         const val KEY_NOTES = "latest_notes"
         const val KEY_DISMISSED = "dismissed_version"
+        // The installed version the cached result was computed against. A
+        // cached "update available" note only means anything for that build;
+        // after an in-place update the note is stale and must be dropped.
+        const val KEY_CHECKED_VERSION = "checked_against_version"
         const val CHECK_INTERVAL_MS = 24L * 3600 * 1000
 
         const val DEFAULT_RELEASES_URL =

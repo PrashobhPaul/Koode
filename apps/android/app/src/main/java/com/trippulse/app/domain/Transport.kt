@@ -130,6 +130,21 @@ object TransportCatalog {
         travellingSuffix = " by bus", boardingPointLabel = "Boarding point"
     )
 
+    /**
+     * A city metro / suburban local. Public transport like the train, but it
+     * runs within a city — a token or smart-card ride with no reserved seat or
+     * PNR, so it never insists on booking details (see TravelDetails).
+     */
+    val METRO = TransportProfile(
+        key = "METRO", label = "Metro", emoji = "🚇",
+        isPrivateVehicle = false, isRoadMode = false,
+        stopPromptsEnabled = false, deviationEnabled = false,
+        wellbeingIsBreak = false, expectsOfflineStretches = false,
+        defaultCadence = LocationCadence.SAVER,
+        quickActions = boardingActions("metro", "Metro"),
+        travellingSuffix = " by metro", boardingPointLabel = "Station"
+    )
+
     val TRAIN = TransportProfile(
         key = "TRAIN", label = "Train", emoji = "🚆",
         isPrivateVehicle = false, isRoadMode = false,
@@ -176,7 +191,7 @@ object TransportCatalog {
     )
 
     /** Ordered for the mode picker: private first, then public transport. */
-    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, BUS, TRAIN, FLIGHT, SHIP)
+    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, BUS, METRO, TRAIN, FLIGHT, SHIP)
 
     fun profile(key: String?): TransportProfile =
         ALL.firstOrNull { it.key == key } ?: CAR

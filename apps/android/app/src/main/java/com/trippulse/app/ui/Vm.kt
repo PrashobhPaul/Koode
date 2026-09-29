@@ -326,6 +326,18 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
         val out = ArrayList<PlaceSuggestion>()
         saved.forEach { out.add(PlaceSuggestion(it.name, GeoPoint(it.lat, it.lng), saved = true)) }
 
+        // Destinations of past journeys, captured durably at trip creation so
+        // they survive the trip being swept and rank at the top of what to reuse.
+        val recentDests = runCatching { graph.db.recentDestinationDao().recent(RECENT_TRIPS) }
+            .getOrNull().orEmpty()
+        for (d in recentDests) {
+            val point = GeoPoint(d.lat, d.lng)
+            if (d.name.isBlank() || d.name in PLACEHOLDER_NAMES) continue
+            if (out.any { it.isSamePlace(point) }) continue
+            out.add(PlaceSuggestion(d.name, point, saved = false))
+            if (out.size >= MAX_SUGGESTIONS) break
+        }
+
         val trips = runCatching { graph.db.tripDao().recent(RECENT_TRIPS) }.getOrNull().orEmpty()
         for (t in trips) {
             for ((name, point) in listOf(
@@ -834,7 +846,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
             JourneyAnalytics.ExpenseInput(it.type, it.item, it.amount, it.quantity, it.unit, it.tMs)
         }
         val legRows = graph.db.legDao().forTrip(tripId).map {
-            JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs)
+            JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat)
         }
         return JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
@@ -1296,7 +1308,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 },
                 legs = lg.map {
                     JourneyAnalytics.LegInput(
-                        it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs
+                        it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat
                     )
                 },
                 transportMode = t.transportMode,

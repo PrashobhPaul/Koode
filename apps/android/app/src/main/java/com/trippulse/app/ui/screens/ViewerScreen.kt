@@ -37,6 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.trippulse.app.TripPulseApp
+import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.domain.Darkness
 import com.trippulse.app.domain.EtaMode
@@ -48,6 +49,7 @@ import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.ViewerVm
 import com.trippulse.app.data.export.JourneyPdf
 import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.components.Avatar
 import com.trippulse.app.ui.components.DetailRow
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.AdaptiveContainer
@@ -186,6 +188,10 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 // ---- whose journey ----
                 val owner = meta?.str("ownerName")
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    // The traveller's photo never leaves their phone, so a
+                    // follower sees a neutral avatar beside the name.
+                    Avatar(null, Profile.AvatarStyle.NEUTRAL, 40.dp)
+                    Spacer(Modifier.width(Spacing.sm))
                     Column(Modifier.weight(1f)) {
                         Text(
                             if (!owner.isNullOrBlank()) "$owner's journey" else "Journey",
