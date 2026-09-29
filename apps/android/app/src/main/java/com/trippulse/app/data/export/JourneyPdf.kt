@@ -3,9 +3,11 @@ package com.trippulse.app.data.export
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.graphics.RectF
 import android.graphics.Typeface
 import android.graphics.pdf.PdfDocument
@@ -15,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.trippulse.app.R
 import com.trippulse.app.BuildConfig
+import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TimeFmt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -62,6 +65,28 @@ object JourneyPdf {
 
     private const val MARK_RASTER_PX = 512
 
+    /**
+     * The traveller's photo (drawn circular) or their chosen silhouette, for
+     * the document header. Second value is true when it's a real photo.
+     * Never fatal — a missing avatar just means no picture on the page.
+     */
+    private fun avatarForPdf(context: Context): Pair<Bitmap?, Boolean> {
+        Profile.photoPath(context)?.let { path ->
+            runCatching { BitmapFactory.decodeFile(path) }.getOrNull()?.let { return it to true }
+        }
+        val res = when (Profile.avatarStyle(context)) {
+            Profile.AvatarStyle.MALE -> R.drawable.ic_avatar_male
+            Profile.AvatarStyle.FEMALE -> R.drawable.ic_avatar_female
+            Profile.AvatarStyle.NEUTRAL -> R.drawable.ic_avatar_neutral
+        }
+        val bmp = runCatching {
+            val d = ContextCompat.getDrawable(context, res)?.mutate() ?: return@runCatching null
+            d.setTint(MUTED)
+            d.toBitmap(256, 256)
+        }.getOrNull()
+        return bmp to false
+    }
+
     private const val PAGE_W = 595
     private const val PAGE_H = 842
     private const val MARGIN = 44f
@@ -107,7 +132,8 @@ object JourneyPdf {
      */
     suspend fun write(context: Context, doc: Document): File = withContext(Dispatchers.IO) {
         val pdf = PdfDocument()
-        val painter = Painter(markBitmap(context))
+        val (avatarBmp, avatarIsPhoto) = avatarForPdf(context)
+        val painter = Painter(markBitmap(context), avatarBmp, avatarIsPhoto)
         var pageNumber = 1
         var page = pdf.startPage(pageInfo(pageNumber))
         var canvas = page.canvas
@@ -181,7 +207,12 @@ object JourneyPdf {
      * All drawing lives here so page breaks above stay readable. Paints are
      * allocated once per document rather than per row.
      */
-    private class Painter(private val mark: Bitmap?) {
+    private class Painter(
+        private val mark: Bitmap?,
+        private val avatar: Bitmap?,
+        private val avatarIsPhoto: Boolean
+    ) {
+        private val disc = Paint().apply { isAntiAlias = true; color = Color.argb(30, 45, 212, 191) }
         private val title = Paint().apply {
             isAntiAlias = true; color = INK; textSize = 22f
             typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
@@ -225,6 +256,7 @@ object JourneyPdf {
             drawMark(canvas, MARGIN, 46f)
             canvas.drawText("Koode", MARGIN + 26f, 52f, title)
             canvas.drawText("Always with you", MARGIN + 26f, 66f, subtitle)
+            if (first) drawAvatar(canvas, PAGE_W - MARGIN - 20f, 44f, 20f)
 
             var y = 96f
             if (first) {
@@ -250,6 +282,19 @@ object JourneyPdf {
          * one on their home screen. Rendering the drawable keeps them the same
          * thing by construction: change the asset and every surface follows.
          */
+        private fun drawAvatar(canvas: Canvas, cx: Float, cy: Float, r: Float) {
+            val bmp = avatar ?: return
+            canvas.drawCircle(cx, cy, r, disc)
+            if (avatarIsPhoto) {
+                val save = canvas.save()
+                canvas.clipPath(Path().apply { addCircle(cx, cy, r, Path.Direction.CW) })
+                canvas.drawBitmap(bmp, null, RectF(cx - r, cy - r, cx + r, cy + r), imagePaint)
+                canvas.restoreToCount(save)
+            } else {
+                canvas.drawBitmap(bmp, null, RectF(cx - r, cy - r, cx + r, cy + r), imagePaint)
+            }
+        }
+
         private fun drawMark(canvas: Canvas, x: Float, y: Float) {
             val bmp = mark ?: return
             val size = MARK_SIZE

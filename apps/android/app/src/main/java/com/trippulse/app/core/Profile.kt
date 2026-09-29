@@ -1,6 +1,8 @@
 package com.trippulse.app.core
 
 import android.content.Context
+import android.net.Uri
+import java.io.File
 
 /**
  * The traveller's profile — the mandatory prerequisite for using Koode.
@@ -15,6 +17,53 @@ object Profile {
 
     const val CONTACT_SLOTS = 3
     const val MIN_CONTACTS = 2
+
+    /**
+     * Which silhouette stands in when the traveller hasn't added a photo. It is
+     * only a placeholder choice — not a stored personal attribute — so it never
+     * gates onboarding and is never uploaded.
+     */
+    enum class AvatarStyle { NEUTRAL, MALE, FEMALE;
+        companion object {
+            fun from(raw: String?): AvatarStyle {
+                val key = raw?.trim()?.uppercase()
+                return AvatarStyle.entries.firstOrNull { it.name == key } ?: AvatarStyle.NEUTRAL
+            }
+        }
+    }
+
+    private fun photoFile(c: Context) = File(c.applicationContext.filesDir, "profile_photo.jpg")
+
+    /** The saved photo file, or null when none has been added. */
+    fun photoPath(c: Context): String? = photoFile(c).takeIf { it.exists() && it.length() > 0 }?.absolutePath
+
+    fun hasPhoto(c: Context): Boolean = photoPath(c) != null
+
+    /** Copy a picked image into app-private storage. Returns true on success. */
+    fun savePhoto(c: Context, uri: Uri): Boolean = try {
+        c.contentResolver.openInputStream(uri)?.use { input ->
+            photoFile(c).outputStream().use { input.copyTo(it) }
+        }
+        // Bump so anything keyed on this value recomposes with the new photo.
+        prefs(c).edit().putLong("photo_updated", System.currentTimeMillis()).apply()
+        hasPhoto(c)
+    } catch (_: Exception) {
+        false
+    }
+
+    fun clearPhoto(c: Context) {
+        runCatching { photoFile(c).delete() }
+        prefs(c).edit().putLong("photo_updated", System.currentTimeMillis()).apply()
+    }
+
+    /** Changes whenever the photo is added or removed, for Compose keys. */
+    fun photoVersion(c: Context): Long = prefs(c).getLong("photo_updated", 0L)
+
+    fun avatarStyle(c: Context): AvatarStyle = AvatarStyle.from(prefs(c).getString("avatar_style", null))
+
+    fun setAvatarStyle(c: Context, style: AvatarStyle) {
+        prefs(c).edit().putString("avatar_style", style.name).apply()
+    }
 
     data class Contact(val name: String, val phone: String) {
         val filled: Boolean get() = name.isNotBlank() && phone.isNotBlank()
