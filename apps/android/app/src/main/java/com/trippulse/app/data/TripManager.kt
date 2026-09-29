@@ -9,6 +9,7 @@ import com.trippulse.app.data.local.ActiveTripEntity
 import com.trippulse.app.data.local.BreakRecordEntity
 import com.trippulse.app.data.local.EventEntity
 import com.trippulse.app.data.local.LocationSampleEntity
+import com.trippulse.app.data.local.RecentDestinationEntity
 import com.trippulse.app.data.local.TripLegEntity
 import com.trippulse.app.data.local.TripPulseDb
 import com.trippulse.app.data.local.TripStateEntity
@@ -204,6 +205,9 @@ class TripManager(
         /** A saved place this close is a better name for a point than a road is. */
         private const val NEAR_PLACE_M = 500.0
 
+        /** Auto-named ends we never keep as a reusable destination. */
+        private val DEST_PLACEHOLDERS = setOf("Destination", "Pinned destination", "En route")
+
         /** When to nudge after arrival, measured from arrival, widening each time. */
         private val ARRIVAL_REMINDER_DELAYS_MS = longArrayOf(
             15 * 60_000L, 45 * 60_000L, 120 * 60_000L
@@ -264,6 +268,21 @@ class TripManager(
         )
         db.tripDao().upsert(t)
         trip = t
+
+        // Remember this destination durably so the next journey can reuse it in
+        // one tap — kept even after the trip row itself is swept.
+        lastLeg.toName.trim().let { destName ->
+            if (destName.isNotBlank() && destName !in DEST_PLACEHOLDERS) {
+                runCatching {
+                    db.recentDestinationDao().upsert(
+                        RecentDestinationEntity(
+                            placeKey = RecentDestinationEntity.keyOf(lastLeg.to.lat, lastLeg.to.lng),
+                            name = destName, lat = lastLeg.to.lat, lng = lastLeg.to.lng, lastUsedMs = now
+                        )
+                    )
+                }
+            }
+        }
 
         // Capture who and what this device is, at the outset, so a report has
         // it even if the phone never reports again. The synchronous part goes
