@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ClipboardManager
 import androidx.compose.ui.platform.LocalClipboardManager
@@ -47,8 +50,10 @@ import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeHeroCard
 import com.trippulse.app.ui.components.PrimaryButton
+import com.trippulse.app.ui.components.QrImage
 import com.trippulse.app.ui.components.SecondaryButton
 import com.trippulse.app.ui.theme.KoodeTheme
+import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -149,8 +154,15 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
         appendLine("Journey number: ${t?.tripId ?: ""}")
         if (includePasscode) appendLine("Passcode: ${t?.secret ?: ""}")
         appendLine()
-        appendLine("Watch in any web browser — nothing to install:")
-        appendLine(Links.WEB_VIEWER)
+        if (includePasscode) {
+            // One tap: the link carries the number and passcode in its fragment,
+            // so it opens live tracking straight away — nothing to type.
+            appendLine("Tap to watch live — nothing to install or type:")
+            appendLine(Links.follow(code, t?.secret ?: ""))
+        } else {
+            appendLine("Watch in any web browser — nothing to install:")
+            appendLine(Links.WEB_VIEWER)
+        }
         appendLine()
         appendLine("Or get the Koode app (free):")
         appendLine(Links.APK)
@@ -228,9 +240,33 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
 
             KoodeCard(title = "Share") {
                 Text(
-                    "The message includes a browser link, so someone who can't install apps can still follow you.",
+                    "The message includes a one-tap link, so someone can follow you without installing anything or typing a number.",
                     color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                 )
+
+                // A QR of the same one-tap link, for someone sitting next to you.
+                val followLink = if (code.isNotBlank() && !t?.secret.isNullOrBlank())
+                    Links.follow(code, t?.secret ?: "") else null
+                if (followLink != null) {
+                    Spacer(Modifier.height(Spacing.md))
+                    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Column(
+                            Modifier
+                                .clip(RoundedCornerShape(Radii.md))
+                                .background(Color.White)
+                                .padding(Spacing.sm),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            QrImage(followLink, sizeDp = 176.dp)
+                        }
+                        Spacer(Modifier.height(Spacing.xs))
+                        Text(
+                            "Scan to follow this journey",
+                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                }
+
                 Spacer(Modifier.height(Spacing.md))
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     Box(Modifier.weight(1f)) {

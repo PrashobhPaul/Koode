@@ -175,6 +175,9 @@ dependencies {
     // --- HTTP client: OSRM routing + Supabase (PostgREST) transport ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
+    // --- QR encoding for the "scan to follow this journey" code (pure Java) ---
+    implementation("com.google.zxing:core:3.5.3")
+
     // --- Unit tests (pure-JVM domain tests) ---
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")

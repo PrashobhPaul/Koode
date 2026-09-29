@@ -70,6 +70,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
+            <!-- A "follow this journey" link opens Koode straight on the Follow
+                 screen with the number/passcode filled in. autoVerify makes the
+                 tap open the app once assetlinks.json is served from the site
+                 root (see docs/MAPS_SETUP.md); until then the link opens the
+                 browser viewer, which needs nothing installed. -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https"
+                    android:host="prashobhpaul.github.io"
+                    android:pathPrefix="/Koode/" />
+            </intent-filter>
         </activity>
 
         <!-- Active-trip tracking. Started only from an explicit user action

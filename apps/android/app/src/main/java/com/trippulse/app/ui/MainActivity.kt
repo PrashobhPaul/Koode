@@ -61,6 +61,7 @@ class MainActivity : ComponentActivity() {
         // open, the recreated activity must still take the shared place (once).
         if (intent?.getBooleanExtra(SHARE_HANDLED, false) != true) {
             acceptShare(intent)
+            acceptViewLink(intent)
             intent?.putExtra(SHARE_HANDLED, true)
         }
 
@@ -87,6 +88,15 @@ class MainActivity : ComponentActivity() {
                         LaunchedEffect(shared) {
                             if (shared != null && !SharedPlaceInbox.pickerOpen && nav.currentDestination?.route != Routes.CREATE) {
                                 nav.navigate(Routes.CREATE) { launchSingleTop = true }
+                            }
+                        }
+
+                        // A tapped "follow this journey" link lands on the Follow
+                        // screen, which reads the code/passcode from the inbox.
+                        val follow by FollowLinkInbox.pending.collectAsStateWithLifecycle()
+                        LaunchedEffect(follow) {
+                            if (follow != null && nav.currentDestination?.route != Routes.JOIN) {
+                                nav.navigate(Routes.JOIN) { launchSingleTop = true }
                             }
                         }
 
@@ -128,6 +138,7 @@ class MainActivity : ComponentActivity() {
         intent.putExtra(SHARE_HANDLED, true)
         setIntent(intent)
         acceptShare(intent)
+        acceptViewLink(intent)
     }
 }
 
@@ -138,6 +149,11 @@ private fun MainActivity.acceptShare(intent: Intent?) {
     if (intent?.action == Intent.ACTION_SEND && intent.type?.startsWith("text/") == true) {
         SharedPlaceInbox.offer(intent.getStringExtra(Intent.EXTRA_TEXT))
     }
+}
+
+/** A "follow this journey" link (from a message or a QR) opened Koode. */
+private fun MainActivity.acceptViewLink(intent: Intent?) {
+    if (intent?.action == Intent.ACTION_VIEW) FollowLinkInbox.offer(intent.data)
 }
 
 object Routes {
