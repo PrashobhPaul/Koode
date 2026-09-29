@@ -67,4 +67,12 @@ class InputRulesTest {
         assertEquals("+919812345678", InputRules.phoneText("+91 98123 45678"))
         assertEquals("9812345678", InputRules.phoneText("98123-45678"))
     }
+
+    @Test fun alnum_upper_cases_and_keeps_only_letters_and_digits() {
+        // A PNR/seat is read out to a desk, so dashes, slashes and spaces go.
+        assertEquals("ABC123", InputRules.alnum("abc-123"))
+        assertEquals("S342", InputRules.alnum("S3/42"))
+        assertEquals("12A", InputRules.alnum(" 12 a "))
+        assertEquals("ABCD", InputRules.alnum("abcdxyz", 4))
+    }
 }

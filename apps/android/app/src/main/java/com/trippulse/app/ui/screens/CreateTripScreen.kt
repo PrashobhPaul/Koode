@@ -12,7 +12,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -400,7 +399,9 @@ private fun StageCard(
         Spacer(Modifier.height(Spacing.lg))
         Text("HOW ARE YOU TRAVELLING?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
         Spacer(Modifier.height(Spacing.sm))
-        Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+        // FlowRow, not a horizontal scroll: every mode (train, flight, metro,
+        // ship…) must be visible at once, not hidden off the right edge.
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             TransportCatalog.ALL.forEach { p ->
                 ModeTile(p.emoji, p.label, leg.mode == p.key) { onModeChange(p.key) }
             }

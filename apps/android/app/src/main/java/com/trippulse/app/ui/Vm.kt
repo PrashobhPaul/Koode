@@ -834,7 +834,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
             JourneyAnalytics.ExpenseInput(it.type, it.item, it.amount, it.quantity, it.unit, it.tMs)
         }
         val legRows = graph.db.legDao().forTrip(tripId).map {
-            JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs)
+            JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat)
         }
         return JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
@@ -1296,7 +1296,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 },
                 legs = lg.map {
                     JourneyAnalytics.LegInput(
-                        it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs
+                        it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat
                     )
                 },
                 transportMode = t.transportMode,

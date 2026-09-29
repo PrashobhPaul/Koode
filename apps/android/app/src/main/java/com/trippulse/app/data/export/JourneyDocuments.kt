@@ -323,8 +323,13 @@ object JourneyDocuments {
                 title = "Stages",
                 header = JourneyPdf.Row("", "ROUTE", "TIME"),
                 rows = report.legs.map { leg ->
+                    // Seat rides along (a follower can find the traveller in a coach);
+                    // the PNR never does — it is a booking secret, kept off the
+                    // copy that goes to the circle.
+                    val label = TransportCatalog.label(leg.mode) +
+                        (leg.seat?.takeIf { it.isNotBlank() }?.let { " · Seat $it" } ?: "")
                     JourneyPdf.Row(
-                        left = TransportCatalog.label(leg.mode),
+                        left = label,
                         middle = "${leg.fromName} → ${leg.toName}",
                         right = leg.seconds?.let { TimeFmt.durationShort(it) } ?: "—"
                     )

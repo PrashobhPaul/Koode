@@ -20,6 +20,17 @@ object InputRules {
     fun digits(raw: String, max: Int = Int.MAX_VALUE): String =
         raw.filter { it.isDigit() }.take(max)
 
+    /** Longest a PNR / seat / booking code may be. */
+    const val ALNUM_MAX = 16
+
+    /**
+     * Strictly letters and digits, upper-cased — used by PNR, seat and booking
+     * codes. Dashes, slashes and spaces are dropped so the stored value is the
+     * exact string an airline or railway desk would match against.
+     */
+    fun alnum(raw: String, max: Int = ALNUM_MAX): String =
+        raw.uppercase(Locale.ROOT).filter { it.isLetterOrDigit() }.take(max)
+
     /**
      * Expense item: letters, spaces and the handful of separators a real
      * receipt line uses. Digits and currency symbols are dropped so an amount

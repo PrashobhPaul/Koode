@@ -40,7 +40,9 @@ object JourneyAnalytics {
         val fromName: String,
         val toName: String,
         val startedAtMs: Long?,
-        val completedAtMs: Long?
+        val completedAtMs: Long?,
+        /** Seat or berth, for the timeline/PDF. PNR is deliberately not carried. */
+        val seat: String? = null
     )
 
     data class Inputs(
@@ -113,7 +115,8 @@ object JourneyAnalytics {
         val mode: String,
         val fromName: String,
         val toName: String,
-        val seconds: Long?
+        val seconds: Long?,
+        val seat: String? = null
     )
 
     fun analyse(i: Inputs): JourneyReport {
@@ -211,7 +214,8 @@ object JourneyAnalytics {
                 index = leg.index, mode = leg.mode,
                 fromName = leg.fromName, toName = leg.toName,
                 seconds = if (leg.startedAtMs != null && leg.completedAtMs != null)
-                    ((leg.completedAtMs - leg.startedAtMs) / 1000).coerceAtLeast(0) else null
+                    ((leg.completedAtMs - leg.startedAtMs) / 1000).coerceAtLeast(0) else null,
+                seat = leg.seat
             )
         }
 

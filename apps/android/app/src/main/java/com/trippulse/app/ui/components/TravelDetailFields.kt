@@ -124,6 +124,7 @@ private fun TextField(
         onValueChange = { raw ->
             val cleaned = when {
                 field.digitsOnly -> InputRules.digits(raw)
+                field.alphanumeric -> InputRules.alnum(raw)
                 field.uppercase -> raw.uppercase().filter { it.isLetterOrDigit() || it == '-' || it == '/' }
                 else -> InputRules.itemText(raw)
             }
@@ -133,7 +134,7 @@ private fun TextField(
         singleLine = true,
         keyboardOptions = KeyboardOptions(
             capitalization =
-                if (field.uppercase) KeyboardCapitalization.Characters
+                if (field.uppercase || field.alphanumeric) KeyboardCapitalization.Characters
                 else KeyboardCapitalization.Words
         ),
         modifier = Modifier.fillMaxWidth()
