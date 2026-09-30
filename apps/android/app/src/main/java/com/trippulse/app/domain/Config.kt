@@ -70,6 +70,11 @@ data class TripConfig(
      * to see that the person got there safely, rather than a dead link.
      */
     val expiryGraceMin: Long = 60,
+    /**
+     * How long followers can open an approved journey's report. Starts when
+     * the traveller approves it, not when they close the journey.
+     */
+    val reportAccessMin: Long = 24 * 60,
 
     // ---- routing fallback ----
     val fallbackAvgSpeedKmh: Double = 52.0,

@@ -108,19 +108,55 @@ class Notifier(private val context: Context) {
         context.getSystemService(NotificationManager::class.java).notify(id, n)
     }
 
-    fun showArrival(destination: String) =
-        postEvent(ID_ARRIVAL, CH_EVENTS, "Journey completed", "Arrived at $destination.")
+    /**
+     * Arrival was *detected*: Koode asks the traveller to close — it never
+     * closes on its own at this point. Kept in the tray (ongoing, high
+     * priority) until they end the journey or say they're still travelling.
+     */
+    fun showClosePrompt(destination: String, stronger: Boolean) {
+        val body = com.trippulse.app.domain.JourneyClosure.closePromptBody(stronger)
+        val n = NotificationCompat.Builder(context, CH_EVENTS)
+            .setSmallIcon(R.drawable.ic_stat_trip)
+            .setContentTitle(com.trippulse.app.domain.JourneyClosure.closePromptTitle(destination))
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
+            .setOngoing(true)
+            .setOnlyAlertOnce(!stronger)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .setContentIntent(contentIntent())
+            .addAction(0, "End journey", contentIntent())
+            .addAction(0, "I'm still travelling", nudgeAction(NudgeActionReceiver.ACTION_STILL_TRAVELLING, "journey", ID_ARRIVAL_DETECTED))
+            .build()
+        context.getSystemService(NotificationManager::class.java).notify(ID_ARRIVAL_DETECTED, n)
+    }
+
+    fun cancelClosePrompt() {
+        context.getSystemService(NotificationManager::class.java).cancel(ID_ARRIVAL_DETECTED)
+    }
 
     /**
-     * Arrival was *detected*. Note the wording: the app is asking, not
-     * announcing. Only the traveller can end a journey, so this notification
-     * exists purely to invite them to.
+     * The journey is closed and waiting for the traveller's review. Nothing
+     * reaches the people following it until they approve it.
      */
-    fun showArrivalDetected(destination: String) =
-        postEvent(
-            ID_ARRIVAL_DETECTED, CH_EVENTS, "Looks like you've arrived",
-            "You're at $destination. Open Koode and end the journey when you're settled."
-        )
+    fun showReviewPrompt(destination: String, auto: Boolean) {
+        val body = if (auto) "Your journey to $destination was closed after you arrived. Review it — it's shared with the people following it only once you approve."
+            else "Check what Koode recorded. It's shared with the people following your journey only once you approve."
+        val n = NotificationCompat.Builder(context, CH_EVENTS)
+            .setSmallIcon(R.drawable.ic_stat_trip)
+            .setContentTitle("Review your journey")
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
+            .setOngoing(true)
+            .setContentIntent(contentIntent())
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .build()
+        context.getSystemService(NotificationManager::class.java).notify(ID_ARRIVAL, n)
+    }
+
+    fun cancelReviewPrompt() {
+        context.getSystemService(NotificationManager::class.java).cancel(ID_ARRIVAL)
+    }
 
     /**
      * A long stop was detected. Koode asks — it never assumes a long stop is a

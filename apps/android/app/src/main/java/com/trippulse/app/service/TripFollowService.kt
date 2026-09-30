@@ -142,7 +142,10 @@ class TripFollowService : Service() {
         val lastAt = ln("lastLocationAt") ?: ln("updatedAt")
         val ageS = if (lastAt != null) (now - lastAt) / 1000 else Long.MAX_VALUE
         val journey = state["status"] as? String
-        val terminal = journey == JourneyStatus.ARRIVED.name || journey == JourneyStatus.COMPLETED.name
+        // Closed and under the traveller's review: tracking has stopped on
+        // purpose, so silence is expected and nothing is "ended" yet.
+        val wrappingUp = state["wrappingUp"] == true
+        val terminal = wrappingUp || journey == JourneyStatus.ARRIVED.name || journey == JourneyStatus.COMPLETED.name
         val freshness = when {
             terminal -> Freshness.COMPLETED
             ageS <= 60 -> Freshness.LIVE
@@ -156,7 +159,7 @@ class TripFollowService : Service() {
         val plannedDep = (meta["plannedDeparture"] as? Number)?.toLong()
         val offlineExpected = mode == "FLIGHT" && plannedDep != null &&
             now >= plannedDep - 30 * 60_000L && now <= plannedDep + 9 * 3_600_000L
-        val report = JourneyHealth.evaluate(
+        val evaluated = JourneyHealth.evaluate(
             JourneyHealth.Inputs(
                 nowMs = now,
                 journey = journey,
@@ -175,6 +178,8 @@ class TripFollowService : Service() {
                 offlineExpected = offlineExpected
             )
         )
+        val report = if (wrappingUp) JourneyHealth.Report(JourneyHealth.Level.NORMAL, "Wrapping up the journey", emptyList())
+            else evaluated
         // Humanized "Koode Status" for the Home feed — stored so Home renders
         // instantly without any network call.
         getSharedPreferences(STATUS_PREFS, Context.MODE_PRIVATE).edit().putString(
@@ -231,8 +236,9 @@ class TripFollowService : Service() {
     ) {
         fun ln(k: String): Long? = (state[k] as? Number)?.toLong()
         val journey = state["status"] as? String
+        // Closed and under the traveller's review is not a silence to worry about.
         val closed = state["endedByOwner"] as? Boolean == true ||
-            journey == JourneyStatus.COMPLETED.name
+            journey == JourneyStatus.COMPLETED.name || state["wrappingUp"] == true
 
         val assessment = Darkness.assess(
             Darkness.Inputs(

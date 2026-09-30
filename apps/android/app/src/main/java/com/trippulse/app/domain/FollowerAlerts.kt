@@ -40,7 +40,13 @@ object FollowerAlerts {
         EventTypes.WELLBEING_NUDGE, EventTypes.HALT_SUGGESTED,
         EventTypes.WATER_NUDGE, EventTypes.WATER_REMINDER, EventTypes.WATER_ACKNOWLEDGED,
         EventTypes.FOOD_NUDGE, EventTypes.FOOD_REMINDER, EventTypes.FOOD_ACKNOWLEDGED,
-        EventTypes.BREAK_NUDGE, EventTypes.BREAK_REMINDER, EventTypes.BREAK_ACKNOWLEDGED
+        EventTypes.BREAK_NUDGE, EventTypes.BREAK_REMINDER, EventTypes.BREAK_ACKNOWLEDGED,
+        // Closing is the traveller's business until they approve the journey;
+        // followers then hear once, from TRIP_COMPLETED.
+        EventTypes.JOURNEY_CLOSE_PROMPTED, EventTypes.JOURNEY_REOPENED, EventTypes.JOURNEY_CLOSED,
+        EventTypes.JOURNEY_AUTO_CLOSED, EventTypes.JOURNEY_REVIEW_STARTED,
+        EventTypes.JOURNEY_ANALYTICS_APPROVED, EventTypes.JOURNEY_FINALIZED,
+        EventTypes.TRAVELLER_CONFIRMED_SAFE, EventTypes.TRAVEL_EXPENSES_APPROVED
     )
 
     /**

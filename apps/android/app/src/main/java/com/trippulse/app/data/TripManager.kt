@@ -49,6 +49,7 @@ import com.trippulse.app.domain.WellbeingTimes
 import com.trippulse.app.domain.EtaShift
 import com.trippulse.app.domain.HaltPlanning
 import com.trippulse.app.domain.Halts
+import com.trippulse.app.domain.JourneyClosure
 import com.trippulse.app.domain.JourneyPlan
 import com.trippulse.app.domain.JourneyPlans
 import com.trippulse.app.domain.JourneyUpdates
@@ -122,13 +123,11 @@ class TripManager(
     private var lastEtaCalcMs: Long = 0
     private var batteryLowFired = false
     private var arrivalPromptShown = false
-    private var arrivalReminders = 0
     /**
      * Set inside the lock, acted on outside it. recordBackOnline() takes the
      * same mutex, so calling it from within onTick would deadlock.
      */
     private var backOnlineDue = false
-    private var lastArrivalReminderMs = 0L
 
     init {
         sync.onSosDelivered = { tripId -> appendSosDelivered(tripId) }
@@ -216,14 +215,6 @@ class TripManager(
 
         /** Auto-named ends we never keep as a reusable destination. */
         private val DEST_PLACEHOLDERS = setOf("Destination", "Pinned destination", "En route")
-
-        /** When to nudge after arrival, measured from arrival, widening each time. */
-        private val ARRIVAL_REMINDER_DELAYS_MS = longArrayOf(
-            15 * 60_000L, 45 * 60_000L, 120 * 60_000L
-        )
-
-        /** Never two nudges closer together than this, whatever the schedule says. */
-        private const val MIN_REMINDER_GAP_MS = 10 * 60_000L
 
         /** Retained for callers that still ask the old question. */
         val PRIVATE_MODES: Set<String> = TransportCatalog.PRIVATE_KEYS
@@ -753,7 +744,9 @@ class TripManager(
         val move = detector.onTick(now)
         if (move != null) s = applyMovement(t, s, move, null, now, profile)
 
-        remindToCloseIfArrived(t, s, now)
+        // Arrived and not yet closed: one stronger reminder, then — after
+        // sustained arrival with no answer — close it for them, pending review.
+        if (closeWatch(t, s, now)) return@withLock
         checkSimChange(t, now)
         // A tick is proof the app is alive, so a journey still flagged dark
         // has plainly come back -- most often after a reboot, where the
@@ -1468,48 +1461,61 @@ class TripManager(
         // journey they were still on.
         transition(s, JourneyInput.STOP_CONFIRMED)?.let { s = s.copy(journey = it.name) }
         s = s.copy(arrivalPromptDue = false, updatedAtMs = now)
-        arrivalPromptShown = false
-        arrivalReminders = 0
-        lastArrivalReminderMs = 0L
+        reopenAfterArrival(t, now, s.lat, s.lng, confirmed = true)
 
         val cleared = t.copy(arrivedAtMs = null)
         db.tripDao().update(cleared); trip = cleared
         persistAndPush(cleared, s); state = s
     }
 
+    /** "I'm still travelling", or movement away from the destination: nothing closes. */
+    private fun reopenAfterArrival(t: ActiveTripEntity, now: Long, lat: Double?, lng: Double?, confirmed: Boolean) {
+        arrivalPromptShown = false
+        coachPrefs.edit().remove(arrivalSinceKey(t.tripId)).remove(closeReminderKey(t.tripId)).apply()
+        notifier.cancelClosePrompt()
+        trip = trip?.copy(arrivedAtMs = null)
+        appScope.launch {
+            db.tripDao().byId(t.tripId)?.let { db.tripDao().update(it.copy(arrivedAtMs = null)) }
+            insertEvent(t.tripId, EventTypes.JOURNEY_REOPENED,
+                if (confirmed) EventSource.DRIVER_CONFIRMATION else EventSource.SYSTEM_INFERRED, now, lat, lng,
+                mapOf("source" to if (confirmed) "USER_CONFIRMED" else "GPS_INFERRED"), false)
+        }
+    }
+
+    private fun arrivalSinceKey(tripId: String) = "$tripId|arrivalSince"
+    private fun closeReminderKey(tripId: String) = "$tripId|closeReminder"
+
     /**
-     * Nudges a traveller who has arrived but not said so.
-     *
-     * Only they can end a journey, which is right, but it means a journey
-     * whose traveller simply forgot stays live -- and everyone watching keeps
-     * seeing a moving dot for someone who is already home and asleep. The
-     * reminder widens rather than repeats, because the second nudge is
-     * useful and the tenth is an app to be uninstalled: a quarter of an hour
-     * after arrival, then three quarters, then two hours, and then it stops
-     * and lets the 72-hour sweep have it.
+     * An arrived journey that is still open: one stronger reminder, then —
+     * after sustained arrival with no answer and a fresh fix still at the
+     * destination — close it for the traveller, pending their review. Never
+     * published: followers hear nothing until the traveller approves.
+     * Returns true when it closed the journey.
      */
-    private fun remindToCloseIfArrived(t: ActiveTripEntity, s: TripStateEntity, now: Long) {
-        val arrived = t.arrivedAtMs ?: return
-        if (s.journey != JourneyStatus.ARRIVED.name) return
-        if (arrivalReminders >= ARRIVAL_REMINDER_DELAYS_MS.size) return
-
-        val due = arrived + ARRIVAL_REMINDER_DELAYS_MS[arrivalReminders]
-        if (now < due) return
-        // Never two in the same stretch, however long the app was asleep.
-        if (now - lastArrivalReminderMs < MIN_REMINDER_GAP_MS) return
-
-        arrivalReminders++
-        lastArrivalReminderMs = now
-        appScope.launch { notifier.showArrivalDetected(t.destName) }
+    private suspend fun closeWatch(t: ActiveTripEntity, s: TripStateEntity, now: Long): Boolean {
+        if (s.journey != JourneyStatus.ARRIVED.name) return false
+        val since = coachPrefs.getLong(arrivalSinceKey(t.tripId), 0L).takeIf { it > 0 } ?: return false
+        if (JourneyClosure.reminderDue(since, now, coachPrefs.getBoolean(closeReminderKey(t.tripId), false))) {
+            coachPrefs.edit().putBoolean(closeReminderKey(t.tripId), true).apply()
+            notifier.showClosePrompt(t.destName, stronger = true)
+            insertEvent(t.tripId, EventTypes.JOURNEY_CLOSE_PROMPTED, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                mapOf("reminder" to true), false)
+        }
+        val within = s.lat != null && s.lng != null &&
+            Geo.haversineM(GeoPoint(s.lat, s.lng), GeoPoint(t.destLat, t.destLng)) <= cfg.arrivalRadiusM
+        if (!JourneyClosure.autoCloseDue(since, now, stillArrived = true, lastFixAtMs = s.lastLocationAtMs, lastFixWithinRadius = within)) {
+            return false
+        }
+        closeOpenBreak(t.tripId, now)
+        closeInternal(t, s, now, closingNote = null, endAtMs = t.arrivedAtMs ?: since, auto = true)
+        return true
     }
 
     /**
-     * Ends the journey. The only path to [JourneyStatus.COMPLETED].
-     *
-     * There is deliberately no automatic caller. A journey that looks finished
-     * — parked at the destination, out of battery, out of coverage — is still
-     * the traveller's to close, because everyone watching reads "ended" as
-     * "they're safe and home", and the app must never say that on its own.
+     * "End journey": the traveller closes it. Tracking stops and the journey
+     * waits for their review — nothing reaches followers until they approve
+     * it ([approveJourney]). The only other path to closed is [closeWatch]'s
+     * auto-close of a forgotten journey, which is recorded as such.
      */
     suspend fun completeTrip(closingNote: String? = null, endAtMs: Long? = null) = lock.withLock {
         // Idempotent: a double tap, or a screen that lingered, must not append
@@ -1520,7 +1526,7 @@ class TripManager(
         val started = t.startedAtMs ?: t.createdAtMs
         val endAt = endAtMs?.takeIf { it in started..now }
         closeOpenBreak(t.tripId, endAt ?: now)
-        completeInternal(t, s, now, closingNote, endAt)
+        closeInternal(t, s, now, closingNote, endAt, auto = false)
     }
 
     /**
@@ -1631,6 +1637,12 @@ class TripManager(
                 onSamplingChanged?.invoke()
             }
             is StopDetector.Movement.StopEnded -> {
+                // Arrived, then moved on: the journey continues and any pending
+                // close (prompt, reminder, auto-close) is cancelled.
+                if (s0.journey == JourneyStatus.ARRIVED.name) {
+                    reopenAfterArrival(t, now, fix?.point?.lat ?: s0.lat, fix?.point?.lng ?: s0.lng, confirmed = false)
+                    s = s.copy(arrivalPromptDue = false)
+                }
                 transition(s, JourneyInput.RESTART)?.let { s = s.copy(journey = it.name) }
                 val began = s.stopStartedAtMs ?: (now - move.durationS * 1000)
                 // A break already logged at this stop answers the checkpoint:
@@ -1718,10 +1730,22 @@ class TripManager(
                 trip = stamped
                 val shouldNotify = !arrivalPromptShown
                 arrivalPromptShown = true
+                // The 30-minute window runs from confirmed arrival, not from
+                // the first fix inside the radius, and survives a restart.
+                if (coachPrefs.getLong(arrivalSinceKey(t.tripId), 0L) == 0L) {
+                    coachPrefs.edit().putLong(arrivalSinceKey(t.tripId), now)
+                        .putBoolean(closeReminderKey(t.tripId), false).apply()
+                }
+                val who = ownerName().orEmpty()
                 appScope.launch {
-                    insertEvent(t.tripId, EventTypes.ARRIVAL_DETECTED, EventSource.SYSTEM_INFERRED, now, p.lat, p.lng, emptyMap(), false)
+                    insertEvent(t.tripId, EventTypes.DESTINATION_REACHED, EventSource.SYSTEM_INFERRED, now, p.lat, p.lng,
+                        mapOf("source" to "GPS_INFERRED", "text" to JourneyClosure.arrivalText(who, stamped.destName)), false)
                     db.tripDao().update(stamped)
-                    if (shouldNotify) notifier.showArrivalDetected(stamped.destName)
+                    if (shouldNotify) {
+                        notifier.showClosePrompt(stamped.destName, stronger = false)
+                        insertEvent(t.tripId, EventTypes.JOURNEY_CLOSE_PROMPTED, EventSource.SYSTEM_INFERRED, now, p.lat, p.lng,
+                            mapOf("reminder" to false), false)
+                    }
                 }
             }
         }
@@ -1819,79 +1843,189 @@ class TripManager(
         insertEvent(t.tripId, type, EventSource.DRIVER_CONFIRMATION, now, lat, lng, payload, false)
     }
 
-    private suspend fun completeInternal(
-        t: ActiveTripEntity, s0: TripStateEntity, recordedAt: Long, closingNote: String? = null,
-        endAtMs: Long? = null
+    /**
+     * Closes the journey locally: tracking stops, the record is durable, and
+     * it waits for the traveller's review. The live state followers see says
+     * "wrapping up", never "ended"; the closing note is held until approval.
+     */
+    private suspend fun closeInternal(
+        t: ActiveTripEntity, s0: TripStateEntity, recordedAt: Long, closingNote: String?,
+        endAtMs: Long?, auto: Boolean
     ) {
-        // "now" for the journey is when it really ended; expiry still runs from
-        // the moment it was closed, so followers get their full grace period.
         val now = endAtMs ?: recordedAt
         var s = s0
+        val previous = s0.journey
         transition(s, JourneyInput.COMPLETE)?.let { s = s.copy(journey = it.name) }
 
-        // The traveller's last word, recorded before the summary so it lands
-        // in the timeline everyone (and the exported PDF) reads.
-        if (!closingNote.isNullOrBlank()) {
-            insertEvent(
-                t.tripId, EventTypes.QUICK_NOTE, EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
-                mapOf("text" to closingNote.trim()), false
-            )
-        }
-
-        val events = db.eventDao().allForTrip(t.tripId).map { EventCodec.toDomain(it) }
-        val started = t.startedAtMs ?: t.createdAtMs
-        val summary = SummaryCalculator.compute(events, s.distanceCoveredM, started, now)
-
-        // "Reached" only when arrival was detected or the traveller ended it at
-        // arrival; never "safely", which nobody confirmed.
-        val who = ownerName() ?: "The traveller"
-        val reached = t.arrivedAtMs != null || endAtMs != null
-        val closing = if (reached) "$who reached ${t.destName} and completed the journey."
-            else "$who completed the journey."
-        insertEvent(t.tripId, EventTypes.TRIP_COMPLETED, EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
-            summaryMap(summary) + ("text" to closing) +
-                (if (endAtMs != null) mapOf("endedAtArrival" to true, "recordedAtMs" to recordedAt) else emptyMap()),
-            false)
-
+        insertEvent(
+            t.tripId, if (auto) EventTypes.JOURNEY_AUTO_CLOSED else EventTypes.JOURNEY_CLOSED,
+            if (auto) EventSource.SYSTEM_INFERRED else EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
+            buildMap<String, Any?> {
+                put("source", if (auto) "SYSTEM_AUTO_CLOSE" else "USER_CONFIRMED")
+                if (auto) {
+                    put("reason", "DESTINATION_REACHED_NO_RESPONSE")
+                    put("text", JourneyClosure.AUTO_CLOSED_TEXT)
+                }
+                put("recordedAtMs", recordedAt)
+            }, false
+        )
         db.legDao().markCompleted(t.tripId, t.activeLegIndex, now)
 
-        // Credentials self-destruct only AFTER the traveller closed the journey,
-        // and with enough grace that a follower who opens the app right then
-        // still sees the arrival rather than an empty screen.
-        val expires = recordedAt + cfg.expiryGraceMin * 60_000
-        val completed = t.copy(
-            status = "COMPLETED", completedAtMs = now, expiresAtMs = expires, endedByOwner = true
+        saveClosure(
+            t.tripId,
+            JourneyClosure.Record(
+                stage = JourneyClosure.Lifecycle.CLOSED_PENDING_REVIEW, closedAtMs = recordedAt,
+                auto = auto, previousStatus = previous, closingNote = closingNote?.trim()?.ifBlank { null }
+            )
         )
-        db.tripDao().update(completed); trip = completed
+        coachPrefs.edit().remove(arrivalSinceKey(t.tripId)).remove(closeReminderKey(t.tripId)).apply()
 
-        s = s.copy(etaMode = EtaMode.ARRIVED.name, arrivalPromptDue = false, updatedAtMs = recordedAt)
+        // Credentials are kept until the report is approved and shared; the
+        // expiry clock starts then, so followers can read it.
+        val closed = t.copy(status = "COMPLETED", completedAtMs = now, expiresAtMs = null, endedByOwner = true)
+        db.tripDao().update(closed); trip = closed
+
+        val reached = t.arrivedAtMs != null || endAtMs != null
+        s = s.copy(
+            etaMode = if (reached) EtaMode.ARRIVED.name else s.etaMode,
+            arrivalPromptDue = false, updatedAtMs = recordedAt
+        )
         db.stateDao().upsert(s); state = s
 
-        // The journey is over the instant it is written locally. Everything
-        // below is delivery, and delivery must never hold the traveller.
-        //
-        // This used to run inline, and it was the bug that froze the app on
-        // completion: drain() walks every unsent event and every buffered
-        // location batch one network round-trip at a time, so a journey whose
-        // uploads had been failing all night had thousands of rows to push --
-        // minutes of work, holding this mutex, with the screen showing nothing.
-        // Pushed to the application scope it survives this screen, keeps its
-        // ordering (the completion state first, so followers see the arrival
-        // straight away, then the backlog), and cannot be lost: every row is
-        // already durable in Room and a later drain picks up whatever this one
-        // does not finish.
-        if (completed.cloudEnabled) {
-            val stateSnapshot = stateMap(completed, s)
+        // Delivery never holds the traveller (it once froze the app on
+        // completion): the local record is already durable.
+        if (closed.cloudEnabled) {
+            val stateSnapshot = stateMap(closed, s)
             appScope.launch {
                 runCatching {
-                    sync.pushLiveState(completed, stateSnapshot, force = true)
-                    cloud.setExpiry(completed.accessKey, expires)
-                    sync.drain(completed)
+                    sync.pushLiveState(closed, stateSnapshot, force = true)
+                    sync.drain(closed)
                 }
             }
         }
-        notifier.showArrival(completed.destName)
+        notifier.cancelClosePrompt()
+        notifier.showReviewPrompt(closed.destName, auto)
         onStopTrackingRequested?.invoke()
+    }
+
+    // -----------------------------------------------------------------------
+    // Review, approval and the private expense review
+    // -----------------------------------------------------------------------
+
+    private val closurePrefs by lazy {
+        appContext.getSharedPreferences("tp_journey_closure", Context.MODE_PRIVATE)
+    }
+
+    fun closureRecord(tripId: String): JourneyClosure.Record? =
+        JourneyClosure.Record.decode(closurePrefs.getString(tripId, null))
+
+    private fun saveClosure(tripId: String, r: JourneyClosure.Record) {
+        closurePrefs.edit().putString(tripId, r.encode()).apply()
+    }
+
+    /** The traveller opened the review: recorded once. */
+    suspend fun startReview(tripId: String) = lock.withLock {
+        val r = closureRecord(tripId)?.takeIf { it.stage == JourneyClosure.Lifecycle.CLOSED_PENDING_REVIEW } ?: return@withLock
+        val now = System.currentTimeMillis()
+        saveClosure(tripId, r.copy(stage = JourneyClosure.Lifecycle.ANALYTICS_REVIEW, reviewStartedAtMs = now))
+        insertEvent(tripId, EventTypes.JOURNEY_REVIEW_STARTED, EventSource.DRIVER_MANUAL, now, null, null, emptyMap(), false)
+    }
+
+    /** ✎ The destination as it should be recorded. Only while under review. */
+    suspend fun correctDestination(tripId: String, name: String): Boolean = lock.withLock {
+        if (closureRecord(tripId)?.pendingReview != true) return@withLock false
+        val clean = name.trim().ifBlank { null } ?: return@withLock false
+        val t = db.tripDao().byId(tripId) ?: return@withLock false
+        db.tripDao().update(t.copy(destName = clean))
+        db.legDao().forTrip(tripId).maxByOrNull { it.legIndex }?.let { db.legDao().upsert(it.copy(toName = clean)) }
+        if (trip?.tripId == tripId) trip = trip?.copy(destName = clean)
+        true
+    }
+
+    /** ✎ When the journey really ended. Only while under review, and within the journey. */
+    suspend fun correctEndTime(tripId: String, endAtMs: Long): Boolean = lock.withLock {
+        val r = closureRecord(tripId)?.takeIf { it.pendingReview } ?: return@withLock false
+        val t = db.tripDao().byId(tripId) ?: return@withLock false
+        val started = t.startedAtMs ?: t.createdAtMs
+        if (endAtMs !in started..r.closedAtMs) return@withLock false
+        db.tripDao().update(t.copy(completedAtMs = endAtMs))
+        if (trip?.tripId == tripId) trip = trip?.copy(completedAtMs = endAtMs)
+        true
+    }
+
+    /**
+     * "Approve & share journey". The only path to followers hearing the
+     * journey ended: the verified completion (with the report's figures) is
+     * published, the journey is finalized, and the followers' access runs for
+     * [TripConfig.reportAccessMin] from now so they can open the report.
+     */
+    suspend fun approveJourney(tripId: String, safeConfirmed: Boolean): Boolean = lock.withLock {
+        val r = closureRecord(tripId)?.takeIf { it.pendingReview } ?: return@withLock false
+        val t = db.tripDao().byId(tripId) ?: return@withLock false
+        val s = db.stateDao().byId(tripId)
+        val now = System.currentTimeMillis()
+        val end = t.completedAtMs ?: r.closedAtMs
+        val who = ownerName()
+
+        r.closingNote?.let {
+            insertEvent(tripId, EventTypes.QUICK_NOTE, EventSource.DRIVER_MANUAL, end, s?.lat, s?.lng, mapOf("text" to it), false)
+        }
+        if (safeConfirmed) {
+            insertEvent(tripId, EventTypes.TRAVELLER_CONFIRMED_SAFE, EventSource.DRIVER_CONFIRMATION, end, s?.lat, s?.lng,
+                mapOf("source" to "USER_CONFIRMED"), false)
+        }
+        insertEvent(tripId, EventTypes.JOURNEY_ANALYTICS_APPROVED, EventSource.DRIVER_CONFIRMATION, now, null, null,
+            mapOf("approvedAtMs" to now, "approvedBy" to (who ?: "traveller")), false)
+
+        val events = db.eventDao().allForTrip(tripId).map { EventCodec.toDomain(it) }
+        val started = t.startedAtMs ?: t.createdAtMs
+        val summary = SummaryCalculator.compute(events, s?.distanceCoveredM ?: 0.0, started, end)
+        insertEvent(tripId, EventTypes.TRIP_COMPLETED, EventSource.DRIVER_MANUAL, end, s?.lat, s?.lng,
+            summaryMap(summary) + mapOf(
+                "text" to JourneyClosure.endedText(who.orEmpty(), t.originName, t.destName, TimeFmt.clock(end), safeConfirmed),
+                "reportApproved" to true, "approvedAtMs" to now,
+                "autoClosed" to r.auto, "safeConfirmed" to safeConfirmed
+            ), false)
+        insertEvent(tripId, EventTypes.JOURNEY_FINALIZED, EventSource.DRIVER_MANUAL, now, null, null, emptyMap(), false)
+
+        saveClosure(tripId, r.copy(
+            stage = JourneyClosure.Lifecycle.FINALIZED, approvedAtMs = now, approvedBy = who, safeConfirmed = safeConfirmed
+        ))
+        val expires = now + cfg.reportAccessMin * 60_000
+        val finalized = t.copy(expiresAtMs = expires)
+        db.tripDao().update(finalized)
+        if (trip?.tripId == tripId) trip = finalized
+
+        if (finalized.cloudEnabled) {
+            val snapshot = s?.let { stateMap(finalized, it) }
+            appScope.launch {
+                runCatching {
+                    snapshot?.let { sync.pushLiveState(finalized, it, force = true) }
+                    cloud.setExpiry(finalized.accessKey, expires)
+                    sync.drain(finalized)
+                }
+            }
+        }
+        notifier.cancelReviewPrompt()
+        true
+    }
+
+    /**
+     * "Confirm expenses": private to the traveller. Recorded without amounts,
+     * never sent to followers; the screen then saves the expense PDF on the
+     * phone.
+     */
+    suspend fun approveExpenses(tripId: String): Boolean = lock.withLock {
+        val now = System.currentTimeMillis()
+        val r = closureRecord(tripId)
+        if (r != null) saveClosure(tripId, r.copy(expensesApprovedAtMs = now))
+        else saveClosure(tripId, JourneyClosure.Record(
+            JourneyClosure.Lifecycle.FINALIZED, now, auto = false, previousStatus = JourneyStatus.COMPLETED.name,
+            expensesApprovedAtMs = now
+        ))
+        insertEvent(tripId, EventTypes.TRAVEL_EXPENSES_APPROVED, EventSource.DRIVER_CONFIRMATION, now, null, null,
+            emptyMap(), true)
+        true
     }
 
     private suspend fun appendSosDelivered(tripId: String) {
@@ -2271,9 +2405,13 @@ class TripManager(
     )
 
     private fun stateMap(t: ActiveTripEntity, s: TripStateEntity): Map<String, Any?> = buildMap {
-        put("status", s.journey)
+        // Closed but not yet approved: followers see "wrapping up", never
+        // "ended", until the traveller approves the journey.
+        val pending = closureRecord(t.tripId)?.takeIf { it.pendingReview }
+        put("status", pending?.previousStatus ?: s.journey)
         put("connectivity", s.connectivity)
-        put("endedByOwner", t.endedByOwner)
+        put("endedByOwner", t.endedByOwner && pending == null)
+        if (pending != null) put("wrappingUp", true)
         put("legIndex", s.legIndex)
         s.lat?.let { put("lat", it) }; s.lng?.let { put("lng", it) }
         s.accuracyM?.let { put("accuracy", it) }

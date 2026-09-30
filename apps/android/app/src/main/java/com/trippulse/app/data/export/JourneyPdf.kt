@@ -219,6 +219,36 @@ object JourneyPdf {
         file
     }
 
+    /**
+     * Copies a finished PDF into the phone's Downloads (no permission needed
+     * on Android 10+; the app's own Downloads folder before that). Returns
+     * where it went, or null if it could not be saved.
+     */
+    suspend fun saveToDownloads(context: Context, file: File, displayName: String): String? = withContext(Dispatchers.IO) {
+        runCatching {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                val resolver = context.contentResolver
+                val values = android.content.ContentValues().apply {
+                    put(android.provider.MediaStore.Downloads.DISPLAY_NAME, displayName)
+                    put(android.provider.MediaStore.Downloads.MIME_TYPE, "application/pdf")
+                    put(android.provider.MediaStore.Downloads.IS_PENDING, 1)
+                }
+                val uri = resolver.insert(android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI, values)
+                    ?: return@runCatching null
+                resolver.openOutputStream(uri)?.use { out -> file.inputStream().use { it.copyTo(out) } }
+                values.clear()
+                values.put(android.provider.MediaStore.Downloads.IS_PENDING, 0)
+                resolver.update(uri, values, null, null)
+                "Downloads/$displayName"
+            } else {
+                val dir = context.getExternalFilesDir(android.os.Environment.DIRECTORY_DOWNLOADS) ?: return@runCatching null
+                val out = File(dir, displayName)
+                file.copyTo(out, overwrite = true)
+                out.absolutePath
+            }
+        }.getOrNull()
+    }
+
     /** Wraps a rendered file in a share intent the caller can launch. */
     fun shareIntent(context: Context, file: File, title: String): Intent {
         val uri: Uri = FileProvider.getUriForFile(

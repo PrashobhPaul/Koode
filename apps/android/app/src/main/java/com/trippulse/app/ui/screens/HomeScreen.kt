@@ -465,6 +465,18 @@ private fun HomeFeed(
         }
     }
 
+    // ---- a closed journey waiting for the traveller's approval -------------------
+    allTrips.filter { it.status == "COMPLETED" && vm.awaitingReview(it.tripId) }.forEach { t ->
+        KoodeHeroCard(accent = colors.accent, onClick = { nav.navigate(Routes.summary(t.tripId)) }) {
+            Text("Review your journey", color = colors.accent, style = MaterialTheme.typography.titleMedium)
+            Text("${t.originName} → ${t.destName}", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+            Text(
+                "It's shared with the people following it only once you approve it.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
+        }
+    }
+
     // ---- the live map ---------------------------------------------------------
     if (featured != null) {
         Box(Modifier.fillMaxWidth()) {
@@ -708,7 +720,8 @@ private fun HomeFeed(
                         Column(Modifier.weight(1f)) {
                             Text("${t.originName} → ${t.destName}", color = colors.textHigh, style = MaterialTheme.typography.titleSmall, maxLines = 1)
                             Text(
-                                "${relativeDay(t.completedAtMs ?: t.createdAtMs, now)} · Completed",
+                                "${relativeDay(t.completedAtMs ?: t.createdAtMs, now)} · " +
+                                    (if (vm.awaitingReview(t.tripId)) "Awaiting your review" else "Completed"),
                                 color = colors.textMid, style = MaterialTheme.typography.bodySmall
                             )
                         }

@@ -129,6 +129,9 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
 
     fun greetingName(): String = Profile.name(graph.appContext)
 
+    /** Closed and waiting for the traveller's review before anything is shared. */
+    fun awaitingReview(tripId: String): Boolean = graph.tripManager.closureRecord(tripId)?.pendingReview == true
+
     /**
      * The humanised status of a followed journey, as last evaluated by the
      * follow service. Read from preferences so Home renders instantly with no
@@ -1004,36 +1007,33 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     val whatsAppAvailable: Boolean get() = TimelineDelivery.isAvailable(graph.appContext)
 
     /**
-     * Ends the journey after the traveller has reviewed it.
+     * "End journey": closes it, pending the traveller's review.
      *
-     * [closingNote] is appended to the timeline first, so the document everyone
-     * receives is the one that was just verified — and because nothing can be
-     * edited after completion, this is the traveller's last chance to add it.
-     *
-     * When timeline sharing is on, the PDF is built immediately afterwards so
-     * that "as soon as I mark it complete" means exactly that: by the time the
-     * send sheet appears, the document already exists.
+     * [closingNote] is held with the closure and added to the timeline when
+     * the traveller approves the journey, so what followers receive is exactly
+     * what was reviewed.
      */
     fun complete(closingNote: String? = null, endAtMs: Long? = null, onDone: (Boolean) -> Unit = {}) = viewModelScope.launch {
         // Closing is local and durable; nothing after it may take the app down.
+        // It publishes nothing: the review that follows is where the traveller
+        // approves what is shared (and, if they like, sends it on WhatsApp).
         try {
             graph.tripManager.completeTrip(closingNote, endAtMs)
         } catch (e: Exception) {
             android.util.Log.e("DriverVm", "completeTrip failed", e)
         }
-        val prepared = if (whatsAppEnabled) {
-            try { prepareTimelineForSending() } catch (e: Exception) {
-                android.util.Log.e("DriverVm", "timeline PDF failed", e); false
-            }
-        } else false
-        onDone(prepared)
+        onDone(false)
     }
 
     /** When they actually arrived, if the journey is being closed later than that. */
     suspend fun suggestedEndMs(): Long? =
         try { graph.tripManager.suggestedEndMs(tripId) } catch (_: Exception) { null }
 
-    /** Builds the timeline PDF and resolves who it can go to. */
+    /** Builds the approved journey's timeline PDF and resolves who it can go to. */
+    suspend fun prepareTimeline(): Boolean = try { prepareTimelineForSending() } catch (e: Exception) {
+        android.util.Log.e("DriverVm", "timeline PDF failed", e); false
+    }
+
     private suspend fun prepareTimelineForSending(): Boolean {
         val recipients = TimelineDelivery.recipients(graph.appContext)
         val t = graph.db.tripDao().byId(tripId) ?: return false
@@ -1087,7 +1087,9 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
         /** True only because the traveller ended the journey. */
         val endedByOwner: Boolean,
         /** We have never managed to read this journey yet. */
-        val awaitingFirstRead: Boolean
+        val awaitingFirstRead: Boolean,
+        /** The traveller closed it and is reviewing it: neither live nor "ended". */
+        val wrappingUp: Boolean = false
     )
 
     val ui: StateFlow<ViewerState> =
@@ -1103,7 +1105,8 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                 events = events,
                 freshness = repo.freshness(state, serverOffset.value),
                 endedByOwner = repo.isEndedByOwner(state, events),
-                awaitingFirstRead = meta == null && state == null
+                awaitingFirstRead = meta == null && state == null,
+                wrappingUp = state?.get("wrappingUp") == true && !repo.isEndedByOwner(state, events)
             )
         }.stateIn(
             viewModelScope, SharingStarted.WhileSubscribed(5000),
@@ -1133,7 +1136,7 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                 simChangedAtMs = ln("simChangedAt"),
                 offlineExpected = mode == "FLIGHT" && plannedDep != null &&
                     now >= plannedDep - 30 * 60_000L && now <= plannedDep + 9 * 3_600_000L,
-                journeyClosed = s.endedByOwner
+                journeyClosed = s.endedByOwner || s.wrappingUp
             )
         )
     }.stateIn(
@@ -1395,6 +1398,55 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     /** A finished journey is a record: nothing on this screen may be edited. */
     val editable: Boolean get() = graph.tripManager.isEditable(trip.value)
+
+    // ---- review, approval and the private expense review ----
+
+    /** Where this journey is in closing; null for journeys closed by older builds. */
+    val closure = MutableStateFlow(graph.tripManager.closureRecord(tripId))
+    val approving = MutableStateFlow(false)
+
+    private fun refreshClosure() { closure.value = graph.tripManager.closureRecord(tripId) }
+
+    /** The review screen was opened: recorded once. */
+    fun startReview() = viewModelScope.launch { graph.tripManager.startReview(tripId); refreshClosure() }
+
+    fun correctDestination(name: String) = viewModelScope.launch {
+        if (graph.tripManager.correctDestination(tripId, name)) reload()
+    }
+
+    fun correctEndTime(endAtMs: Long) = viewModelScope.launch {
+        if (graph.tripManager.correctEndTime(tripId, endAtMs)) reload()
+    }
+
+    /** "Approve & share journey": the only point followers hear it ended. */
+    fun approve(safeConfirmed: Boolean, onDone: (Boolean) -> Unit) = viewModelScope.launch {
+        approving.value = true
+        val ok = try { graph.tripManager.approveJourney(tripId, safeConfirmed) } catch (e: Exception) {
+            android.util.Log.e("SummaryVm", "approve failed", e); false
+        }
+        refreshClosure(); reload()
+        approving.value = false
+        onDone(ok)
+    }
+
+    /** "Confirm expenses": private; the screen then saves the expense PDF on the phone. */
+    suspend fun confirmExpenses() {
+        graph.tripManager.approveExpenses(tripId)
+        refreshClosure()
+    }
+
+    private fun reload() = viewModelScope.launch {
+        val t = graph.db.tripDao().byId(tripId) ?: return@launch
+        val ev = graph.db.eventDao().allForTrip(tripId)
+        trip.value = t
+        events.value = ev
+        val saved = runCatching { graph.db.savedPlaceDao().all() }.getOrNull().orEmpty()
+            .map { com.trippulse.app.domain.PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
+        destLabel.value = com.trippulse.app.domain.PlaceResolver.display(
+            t.destName, com.trippulse.app.domain.PlaceResolver.nearestSavedLabel(saved, t.destLat, t.destLng)
+        )
+        recompute(t, ev, samples.value, legs.value, graph.db.expenseDao().allForTrip(tripId))
+    }
 
     init {
         // A completed journey is a record the traveller opens to look back on.

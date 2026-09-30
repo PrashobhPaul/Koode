@@ -127,7 +127,6 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     var showEndReview by remember { mutableStateOf(false) }
     var showExpense by remember { mutableStateOf(false) }
     var showEdit by remember { mutableStateOf(false) }
-    var showSend by remember { mutableStateOf(false) }
     var showHalt by remember { mutableStateOf(false) }
     var pickDestination by remember { mutableStateOf(false) }
     var haltPlanDismissed by remember { mutableStateOf(false) }
@@ -306,20 +305,24 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             // ---- arrival: the app asks, the traveller decides ----
             AnimatedBanner(visible = arrivalDue) {
                 KoodeHeroCard(accent = colors.accent) {
-                    Text("Looks like you've arrived", color = colors.accent, style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        com.trippulse.app.domain.JourneyClosure.closePromptTitle(activeLeg?.toName ?: t?.destName ?: "your destination"),
+                        color = colors.accent, style = MaterialTheme.typography.titleMedium
+                    )
                     Spacer(Modifier.height(Spacing.xs))
                     Text(
-                        "Your journey stays live until you end it — nobody watching will see it close until you do.",
+                        "It looks like you've arrived. Close your journey when you're ready — you'll review it before anyone following you hears it ended. " +
+                            "If you don't respond, Koode closes it after about ${com.trippulse.app.domain.JourneyClosure.AUTO_CLOSE_AFTER_MIN} minutes, still for your review.",
                         color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(Modifier.height(Spacing.md))
                     Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                         Box(Modifier.weight(1f)) {
-                            PrimaryButton("Review and end", { showEndReview = true }, height = 46.dp)
+                            PrimaryButton("End journey", { showEndReview = true }, height = 46.dp)
                         }
                         Box(Modifier.weight(1f)) {
                             SecondaryButton(
-                                if (hasNextLeg) "Next stage" else "Not yet",
+                                if (hasNextLeg) "Next stage" else "I'm still travelling",
                                 { if (hasNextLeg) vm.nextLeg() else vm.dismissArrivalPrompt() },
                                 accent = colors.textMid, height = 46.dp
                             )
@@ -716,37 +719,11 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 arrivalMs = suggestedEnd,
                 onConfirm = { note, endAt ->
                     showEndReview = false
-                    vm.complete(note, endAt) { readyToSend ->
-                        if (readyToSend) showSend = true
-                        else nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
+                    // Closing leads straight into the review, where the traveller
+                    // approves what the people following them receive.
+                    vm.complete(note, endAt) {
+                        nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
                     }
-                }
-            )
-        }
-    }
-
-    // ---- send the timeline to the circle ----
-    if (showSend) {
-        val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-        val recipients by vm.sendRecipients.collectAsStateWithLifecycle()
-        ModalBottomSheet(
-            onDismissRequest = {
-                showSend = false
-                nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
-            },
-            sheetState = sheet
-        ) {
-            SendTimelineSheet(
-                recipients = recipients,
-                whatsAppAvailable = vm.whatsAppAvailable,
-                onSend = { recipient ->
-                    val intent = vm.sendIntentFor(recipient) ?: vm.fallbackSendIntent()
-                    if (intent != null) context.startActivity(intent)
-                },
-                onShareOther = { vm.fallbackSendIntent()?.let { context.startActivity(it) } },
-                onDone = {
-                    showSend = false
-                    nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) }
                 }
             )
         }
@@ -889,11 +866,10 @@ private fun shareInvitation(tripId: String?, passcode: String?): String? {
 /**
  * The last look before a journey is closed.
  *
- * Ending a journey is the one irreversible action in the app: it publishes a
- * summary to everyone who was following, it may send a document to their
- * phones, and nothing can be edited afterwards. So it gets a review — the
- * same analysed dashboard everyone else will see, a chance to add a missing
- * expense or a closing note, and only then a confirmation.
+ * Closing stops tracking. Nothing is published yet: the next screen is the
+ * review, where the traveller checks what Koode recorded and approves what
+ * the people following them receive. This sheet is the chance to add a
+ * missing expense or a closing note and to pick the real end time.
  */
 @Composable
 private fun EndJourneyReview(
@@ -917,10 +893,10 @@ private fun EndJourneyReview(
             .padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("Before you close this journey", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text("End this journey?", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
         Text(
-            "This is what everyone following you will see, and it can't be changed afterwards. " +
-                "Have a look before you confirm.",
+            "Tracking stops now. Next you'll review what Koode recorded — nothing is shared with the people " +
+                "following you until you approve it.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
 
@@ -936,14 +912,14 @@ private fun EndJourneyReview(
             value = note,
             onValueChange = { note = it },
             label = { Text("Anything to add? (optional)") },
-            placeholder = { Text("Reached safely, roads were clear") },
+            placeholder = { Text("Roads were clear") },
             modifier = Modifier.fillMaxWidth()
         )
 
         if (whatsAppEnabled) {
             KoodeCard(accent = colors.traveller) {
                 Text(
-                    "Your timeline will be prepared for your emergency contacts on WhatsApp as soon as you confirm.",
+                    "After you approve the journey, its timeline can be sent to your emergency contacts on WhatsApp.",
                     color = colors.traveller, style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
@@ -973,7 +949,7 @@ private fun EndJourneyReview(
             Spacer(Modifier.height(Spacing.md))
         }
         PrimaryButton(
-            "Confirm and end journey",
+            "End journey",
             { onConfirm(note.trim().ifBlank { null }, if (endAtArrival) arrivalMs else null) },
             leading = "🏁"
         )
@@ -993,7 +969,7 @@ private fun EndJourneyReview(
  * traveller taps send, and it genuinely comes from them.
  */
 @Composable
-private fun SendTimelineSheet(
+internal fun SendTimelineSheet(
     recipients: List<TimelineDelivery.Recipient>,
     whatsAppAvailable: Boolean,
     onSend: (TimelineDelivery.Recipient) -> Unit,

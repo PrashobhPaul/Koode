@@ -186,6 +186,24 @@ object EventTypes {
     /** More than one part of the plan changed at once. */
     const val JOURNEY_PLAN_REVISED = "JOURNEY_PLAN_REVISED"
 
+    // --- closing a journey: the traveller's decision, then their approval ---
+    /** Spec name of [ARRIVAL_DETECTED]: arrival inferred, never a closure. */
+    const val DESTINATION_REACHED = ARRIVAL_DETECTED
+    const val JOURNEY_CLOSE_PROMPTED = "JOURNEY_CLOSE_PROMPTED"
+    /** Arrival was detected, then the traveller moved on: the journey continues. */
+    const val JOURNEY_REOPENED = "JOURNEY_REOPENED"
+    /** The traveller closed the journey; nothing is published yet. */
+    const val JOURNEY_CLOSED = "JOURNEY_CLOSED"
+    /** Closed by Koode after sustained arrival and no answer — never "confirmed". */
+    const val JOURNEY_AUTO_CLOSED = "JOURNEY_AUTO_CLOSED"
+    const val JOURNEY_REVIEW_STARTED = "JOURNEY_REVIEW_STARTED"
+    const val JOURNEY_ANALYTICS_APPROVED = "JOURNEY_ANALYTICS_APPROVED"
+    const val JOURNEY_FINALIZED = "JOURNEY_FINALIZED"
+    /** The traveller said they arrived safely — the only basis for that word. */
+    const val TRAVELLER_CONFIRMED_SAFE = "TRAVELLER_CONFIRMED_SAFE"
+    /** Private: the traveller confirmed their expenses. Never shared. */
+    const val TRAVEL_EXPENSES_APPROVED = "TRAVEL_EXPENSES_APPROVED"
+
     /** Coaching records for one need: nudge, reminder, acknowledgement. */
     fun coachTypes(needKey: String): Triple<String, String, String> = when (needKey) {
         "water" -> Triple(WATER_NUDGE, WATER_REMINDER, WATER_ACKNOWLEDGED)
@@ -207,7 +225,8 @@ object EventTypes {
         WELLBEING_ALERT,
         HALT_CONFIRMED, HALT_CANCELLED, HALT_RESUMED,
         TRAVEL_MODE_CHANGED, PLANNED_HALT_CREATED, PLANNED_HALT_CHANGED, PLANNED_HALT_CANCELLED,
-        ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED
+        ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED,
+        JOURNEY_AUTO_CLOSED, TRAVELLER_CONFIRMED_SAFE
     )
 
     /**
@@ -235,7 +254,7 @@ object EventTypes {
     }
 
     /** Sensitive events whose content is not shared by default. */
-    fun isSensitiveByDefault(type: String): Boolean = type == MEDICINE
+    fun isSensitiveByDefault(type: String): Boolean = type == MEDICINE || type == TRAVEL_EXPENSES_APPROVED
 }
 
 /** A geographic point. */

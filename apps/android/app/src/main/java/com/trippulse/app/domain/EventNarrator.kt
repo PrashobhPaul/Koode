@@ -22,7 +22,7 @@ object EventNarrator {
         EventTypes.STOP_ENDED -> "▶" to "On the move again"
         EventTypes.LONG_STOP -> "⏳" to "Long stop"
         EventTypes.TOLL_CROSSED -> "🛣" to "Toll crossed"
-        EventTypes.ARRIVAL_DETECTED -> "📍" to "Reached the destination"
+        EventTypes.ARRIVAL_DETECTED -> "📍" to "Arrived near the destination"
         EventTypes.BREAK_CHECKPOINT -> "✅" to "Break logged"
         EventTypes.WATER_REPORTED -> "💧" to "Water"
         EventTypes.FOOD_REPORTED -> "🍛" to "Food"
@@ -72,6 +72,15 @@ object EventNarrator {
         EventTypes.PLANNED_HALT_CANCELLED -> "🗓" to "Planned halt cancelled"
         EventTypes.ETA_SIGNIFICANTLY_CHANGED -> "🕒" to "Arrival time changed"
         EventTypes.JOURNEY_PLAN_REVISED -> "🧭" to "Journey plan updated"
+        EventTypes.JOURNEY_CLOSE_PROMPTED -> "🏁" to "Asked to close the journey"
+        EventTypes.JOURNEY_REOPENED -> "▶" to "Still travelling"
+        EventTypes.JOURNEY_CLOSED -> "🏁" to "Journey closed"
+        EventTypes.JOURNEY_AUTO_CLOSED -> "🏁" to "Journey closed automatically"
+        EventTypes.JOURNEY_REVIEW_STARTED -> "📝" to "Journey review started"
+        EventTypes.JOURNEY_ANALYTICS_APPROVED -> "✅" to "Journey report approved"
+        EventTypes.JOURNEY_FINALIZED -> "✅" to "Journey finalized"
+        EventTypes.TRAVELLER_CONFIRMED_SAFE -> "💚" to "Confirmed arriving safely"
+        EventTypes.TRAVEL_EXPENSES_APPROVED -> "₹" to "Expenses confirmed"
         else -> "•" to type.lowercase().replace('_', ' ')
     }
 
@@ -116,7 +125,8 @@ object EventNarrator {
             EventTypes.PLANNED_HALT_CREATED, EventTypes.PLANNED_HALT_CHANGED, EventTypes.PLANNED_HALT_CANCELLED,
             EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventTypes.JOURNEY_PLAN_REVISED,
             // Start and completion carry "Prashobh started a journey to Thrissur."
-            EventTypes.TRIP_STARTED, EventTypes.TRIP_COMPLETED -> emoji to (text ?: label)
+            EventTypes.TRIP_STARTED, EventTypes.TRIP_COMPLETED,
+            EventTypes.ARRIVAL_DETECTED, EventTypes.JOURNEY_AUTO_CLOSED -> emoji to (text ?: label)
             else -> emoji to (text?.let { "$label — $it" } ?: label)
         }
     }

@@ -112,7 +112,7 @@
     STOP_ENDED: ['▶', 'On the move again'],
     LONG_STOP: ['⏳', 'Long stop'],
     TOLL_CROSSED: ['🛣', 'Toll crossed'],
-    ARRIVAL_DETECTED: ['📍', 'Reached the destination'],
+    ARRIVAL_DETECTED: ['📍', 'Arrived near the destination'],
     BREAK_CHECKPOINT: ['✅', 'Break logged'],
     WATER_REPORTED: ['💧', 'Water'],
     FOOD_REPORTED: ['🍛', 'Food'],
@@ -141,6 +141,8 @@
     LEG_STARTED: ['🧭', 'Next stage started'],
     LEG_COMPLETED: ['✅', 'Stage completed'],
     WELLBEING_ALERT: ['💬', 'Wellbeing update'],
+    JOURNEY_AUTO_CLOSED: ['🏁', 'Journey closed automatically'],
+    TRAVELLER_CONFIRMED_SAFE: ['💚', 'Confirmed arriving safely'],
     HALT_CONFIRMED: ['🛏', 'Halting'],
     HALT_CANCELLED: ['▶', 'Halt cancelled'],
     HALT_RESUMED: ['🌅', 'Resumed after the halt'],
@@ -158,6 +160,8 @@
    * timeline entries — the same rule as the app.
    */
   var NOT_IN_TIMELINE = ['WELLBEING_NUDGE', 'JOURNEY_UPDATE', 'HALT_SUGGESTED',
+    'JOURNEY_CLOSE_PROMPTED', 'JOURNEY_REOPENED', 'JOURNEY_CLOSED', 'JOURNEY_REVIEW_STARTED',
+    'JOURNEY_ANALYTICS_APPROVED', 'JOURNEY_FINALIZED', 'TRAVEL_EXPENSES_APPROVED',
     'WATER_NUDGE', 'WATER_REMINDER', 'WATER_ACKNOWLEDGED',
     'FOOD_NUDGE', 'FOOD_REMINDER', 'FOOD_ACKNOWLEDGED',
     'BREAK_NUDGE', 'BREAK_REMINDER', 'BREAK_ACKNOWLEDGED'];
@@ -512,7 +516,7 @@
     dot.className = 'dot';
 
     var who = owner || 'They';
-    var dark = assessDarkness(state, ended);
+    var dark = assessDarkness(state, ended || !!(state && state.wrappingUp));
 
     var headline;
     if (sos) {
@@ -521,6 +525,9 @@
       headlineEl.className = 'headline danger';
     } else if (ended) {
       headline = 'Journey ended';
+    } else if (state && state.wrappingUp) {
+      // Closed, and under the traveller's review: not live, not "ended" yet.
+      headline = 'Wrapping up the journey';
     } else if (!state) {
       headline = 'Getting the first update…';
     } else if (dark.dark) {

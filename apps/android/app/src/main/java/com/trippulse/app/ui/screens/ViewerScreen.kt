@@ -214,13 +214,14 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                     Text(
                         when {
                             ui.endedByOwner -> "Journey ended"
+                            ui.wrappingUp -> "Wrapping up the journey"
                             ui.awaitingFirstRead -> "Getting the first update…"
                             else -> health.headline
                         },
                         color = healthColor, style = MaterialTheme.typography.titleMedium
                     )
                 }
-                if (!ui.endedByOwner && !ui.awaitingFirstRead) {
+                if (!ui.endedByOwner && !ui.wrappingUp && !ui.awaitingFirstRead) {
                     health.reasons.forEach {
                         Text("• $it", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
                     }
@@ -231,6 +232,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                         append(
                             when {
                                 ui.endedByOwner -> "The traveller ended this journey."
+                                ui.wrappingUp -> "Tracking has stopped. The journey report follows once the traveller has reviewed it."
                                 lastAt != null -> "Updated ${TimeFmt.ago(now, lastAt)}"
                                 // Never "the journey ended": we simply haven't heard yet.
                                 else -> "Waiting for the first update — this is about the signal, not about them."

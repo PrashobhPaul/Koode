@@ -22,6 +22,7 @@ class NudgeActionReceiver : BroadcastReceiver() {
         val graph = app.graph
         val need = WellbeingCoach.Need.fromKey(intent.getStringExtra(EXTRA_NEED))
         if (intent.action == ACTION_HALT_DECLINE) graph.notifier.cancelHaltQuestion()
+        else if (intent.action == ACTION_STILL_TRAVELLING) graph.notifier.cancelClosePrompt()
         else if (need == null) return
         else graph.notifier.cancelWellbeingNudge(need.key)
         val pending = goAsync()
@@ -32,6 +33,7 @@ class NudgeActionReceiver : BroadcastReceiver() {
                     ACTION_DONE -> need?.let { graph.tripManager.logNeedMet(it) }
                     ACTION_SNOOZE -> need?.let { graph.tripManager.snoozeNudge(it) }
                     ACTION_HALT_DECLINE -> graph.tripManager.declineHalt()
+                    ACTION_STILL_TRAVELLING -> graph.tripManager.dismissArrivalPrompt()
                 }
             } catch (_: Exception) {
                 // A lost tap must never disturb the journey itself.
@@ -46,6 +48,8 @@ class NudgeActionReceiver : BroadcastReceiver() {
         const val ACTION_SNOOZE = "app.koode.NUDGE_SNOOZE"
         /** "Just a break" on the halt question. */
         const val ACTION_HALT_DECLINE = "app.koode.HALT_DECLINE"
+        /** "I'm still travelling" on the close prompt: the journey stays open. */
+        const val ACTION_STILL_TRAVELLING = "app.koode.STILL_TRAVELLING"
         const val EXTRA_NEED = "need"
         const val EXTRA_NOTIFICATION_ID = "notification_id"
     }
