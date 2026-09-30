@@ -226,9 +226,11 @@ private const val SAME_PLACE_DEGREES = 0.0015
 private const val RECENT_TRIPS = 12
 private const val MAX_SUGGESTIONS = 10
 
-/** Labels a journey gets when nobody named its ends; never worth suggesting. */
+/** Labels a journey gets when nobody named its ends; never worth suggesting,
+ *  and never shown on a report — a real place name is resolved instead. */
 private val PLACEHOLDER_NAMES = setOf(
-    "Start point", "Destination", "Pinned start", "Pinned destination", "En route"
+    "Start point", "Destination", "Pinned start", "Pinned destination", "En route",
+    "Current location", "Pinned location"
 )
 
 data class LegDraft(
@@ -549,6 +551,26 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
         } catch (_: Exception) { null }
     }
 
+    /**
+     * The name a leg endpoint should carry into the journey, its timeline and
+     * the PDF. A real name the traveller typed or picked always wins; a bare
+     * placeholder ("Current location", "Pinned destination", …) never survives
+     * — the coordinates we already hold are reverse-geocoded to a real place,
+     * and only if even that fails do we fall back to the coordinates
+     * themselves, never a placeholder label.
+     */
+    private suspend fun resolveEndpointName(rawText: String, point: GeoPoint): String {
+        // "Current location · Kukatpally" → "Kukatpally"; bare "Current location" → "".
+        val typed = rawText.trim().removePrefix("Current location ·").trim()
+        if (typed.isNotBlank() && !typed.equals("Current location", true) && typed !in PLACEHOLDER_NAMES) {
+            return typed
+        }
+        com.trippulse.app.core.LocationFix.placeName(graph.appContext, point)
+            ?.takeIf { it.isNotBlank() }
+            ?.let { return it }
+        return "%.4f, %.4f".format(point.lat, point.lng)
+    }
+
     /** Resolves every leg to coordinates and creates the journey. */
     fun create(onDone: (String) -> Unit) {
         // Remember a fully described car or bike for next time.
@@ -600,8 +622,8 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
                     resolved.add(
                         TripManager.NewLeg(
                             mode = leg.mode,
-                            fromName = leg.fromText.trim().ifBlank { "Start point" }, from = from,
-                            toName = leg.toText.trim().ifBlank { "Destination" }, to = to,
+                            fromName = resolveEndpointName(leg.fromText, from), from = from,
+                            toName = resolveEndpointName(leg.toText, to), to = to,
                             fuelType = leg.fuelType,
                             plannedDepartureMs = if (index == 0) departureMs.value else null,
                             boardingPoint = leg.boardingPoint.trim().ifBlank { null },
