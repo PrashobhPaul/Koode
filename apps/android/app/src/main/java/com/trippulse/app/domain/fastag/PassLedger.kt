@@ -18,4 +18,14 @@ object PassLedger {
      */
     fun next(balance: Int, passType: TollPassType): Int =
         if (qualifies(passType)) (balance - 1).coerceAtLeast(0) else balance
+
+    /**
+     * The money balance after a toll debit: the debited amount subtracted
+     * (floored at zero), unchanged when the SMS named no amount. Used for an
+     * ordinary prepaid FASTag, where the balance is rupees rather than
+     * crossings. As with [next], the user's own number is always authoritative
+     * and a correction simply becomes the new baseline.
+     */
+    fun amountAfter(balance: Double, debited: Double?): Double =
+        if (debited != null && debited > 0.0) (balance - debited).coerceAtLeast(0.0) else balance
 }

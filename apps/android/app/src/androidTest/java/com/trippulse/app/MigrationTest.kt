@@ -54,6 +54,31 @@ class MigrationTest {
     private fun migration(from: Int, to: Int) =
         TripPulseDb.ALL_MIGRATIONS.first { it.startVersion == from && it.endVersion == to }
 
+    // ---- v9 -> v10: the vehicles registry -------------------------------
+
+    @Test fun v9_to_v10_adds_the_vehicles_table_and_keeps_existing_data() {
+        val db = freshDb(9) {
+            it.execSQL(
+                "CREATE TABLE recent_destinations (placeKey TEXT NOT NULL PRIMARY KEY, " +
+                    "name TEXT NOT NULL, lat REAL NOT NULL, lng REAL NOT NULL, lastUsedMs INTEGER NOT NULL)"
+            )
+            it.execSQL(
+                "INSERT INTO recent_destinations (placeKey, name, lat, lng, lastUsedMs) " +
+                    "VALUES ('k1', 'Home', 1.0, 1.0, 100)"
+            )
+        }
+        migration(9, 10).migrate(db)
+
+        val cols = db.columns("vehicles")
+        for (added in listOf("id", "kind", "name", "registration", "fastagMode", "passCrossingsLeft", "amountLeft", "updatedAtMs")) {
+            assertTrue("$added must exist on vehicles after 9->10", cols.contains(added))
+        }
+        // The new table starts empty, and nothing already stored is disturbed.
+        assertEquals(0, db.rowCount("vehicles"))
+        assertEquals("existing data must survive the upgrade", 1, db.rowCount("recent_destinations"))
+        db.close()
+    }
+
     // ---- v7 -> v8: the device dossier column ----------------------------
 
     @Test fun v7_to_v8_adds_the_dossier_and_keeps_the_row() {
@@ -156,6 +181,8 @@ class MigrationTest {
         assertTrue(db.columns("active_trip").contains("wentDarkAtMs"))
         // 8->9 adds the durable reusable-destinations table.
         assertTrue(db.columns("recent_destinations").contains("placeKey"))
+        // 9->10 adds the per-vehicle FASTag registry.
+        assertTrue(db.columns("vehicles").contains("fastagMode"))
         db.close()
     }
 

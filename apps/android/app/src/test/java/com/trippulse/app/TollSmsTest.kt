@@ -109,4 +109,54 @@ class TollSmsTest {
     @Test fun the_balance_never_goes_below_zero() {
         assertEquals(0, PassLedger.next(0, TollPassType.ANNUAL_PASS))
     }
+
+    // ---- debited-amount extraction (for a money-balance FASTag) ----
+
+    @Test fun a_debited_amount_is_extracted_for_a_per_trip_crossing() {
+        val c = TollSmsParser.parse(
+            "HDFC Bank: Rs.85.00 debited for FASTag toll at Edappally Toll Plaza on 27/09/2026 14:30. Vehicle KL07AB1234.",
+            t0
+        )
+        assertNotNull(c)
+        assertEquals(85.0, c!!.amount!!, 0.001)
+    }
+
+    @Test fun an_amount_after_the_debit_verb_is_also_extracted() {
+        val amt = TollSmsParser.extractAmount(
+            "FASTag toll crossed at Nettoor Toll Plaza. Deducted Rs 45.50 on 01-01-2026 09:15. Vehicle KL01AA0001."
+        )
+        assertEquals(45.5, amt!!, 0.001)
+    }
+
+    @Test fun an_annual_pass_crossing_carries_no_amount() {
+        val c = TollSmsParser.parse(
+            "Your Vehicle TS07FZ1868 crossed Paliyekkara Toll Plaza on 27-09-2026 05:02 under Annual Pass. -ICICI",
+            t0
+        )
+        assertNull(c!!.amount)
+    }
+
+    @Test fun a_balance_or_recharge_figure_is_not_read_as_a_toll_amount() {
+        // A crossing SMS that also mentions the remaining balance must not treat
+        // that balance as the debited toll.
+        val amt = TollSmsParser.extractAmount(
+            "Toll crossed at Kumbalam Toll Plaza. Rs.60 deducted. Avl bal Rs.940."
+        )
+        assertEquals(60.0, amt!!, 0.001)
+    }
+
+    // ---- money-balance ledger ----
+
+    @Test fun a_toll_debit_subtracts_from_the_money_balance() {
+        assertEquals(915.0, PassLedger.amountAfter(1000.0, 85.0), 0.001)
+    }
+
+    @Test fun a_money_balance_with_no_debit_is_unchanged() {
+        assertEquals(1000.0, PassLedger.amountAfter(1000.0, null), 0.001)
+        assertEquals(1000.0, PassLedger.amountAfter(1000.0, 0.0), 0.001)
+    }
+
+    @Test fun a_money_balance_never_goes_below_zero() {
+        assertEquals(0.0, PassLedger.amountAfter(30.0, 85.0), 0.001)
+    }
 }
