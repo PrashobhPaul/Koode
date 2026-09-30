@@ -15,6 +15,8 @@ data class TripConfig(
     val restartSpeedKmh: Double = 8.0,           // resume threshold
     val restartDisplacementM: Double = 150.0,    // or moved this far from stop point
     val longStopAfterS: Long = 7200,             // 2 h -> LONG_STOP / overnight candidate
+    /** A stop at least this long is a real break: it resets continuous driving. Shorter ones do not. */
+    val meaningfulBreakS: Long = 600,
 
     // ---- arrival ----
     val arrivalRadiusM: Double = 300.0,

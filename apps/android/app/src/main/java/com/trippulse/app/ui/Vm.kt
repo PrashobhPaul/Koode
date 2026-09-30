@@ -810,7 +810,12 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         }
 
     fun skipCheckpoint() = viewModelScope.launch { graph.tripManager.skipCheckpoint() }
-    fun answerOvernight(type: String) = viewModelScope.launch { graph.tripManager.answerOvernight(type) }
+    // ---- halts ----
+    fun confirmHalt(type: com.trippulse.app.domain.Halts.Type, expectedMinutes: Int?) =
+        viewModelScope.launch { graph.tripManager.confirmHalt(type, expectedMinutes) }
+    fun declineHalt() = viewModelScope.launch { graph.tripManager.declineHalt() }
+    fun cancelHalt() = viewModelScope.launch { graph.tripManager.cancelHalt() }
+    fun resumeFromHalt() = viewModelScope.launch { graph.tripManager.resumeFromHalt() }
     fun addNote(type: String, text: String?) = viewModelScope.launch { graph.tripManager.addQuickNote(type, text) }
     fun activateSos() = viewModelScope.launch { graph.tripManager.activateSos() }
     fun resolveSos() = viewModelScope.launch { graph.tripManager.resolveSos() }
@@ -851,9 +856,6 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                         "This journey is closed and can no longer be changed."
                     is TripManager.SwitchResult.NoLocationYet ->
                         "Waiting for a location fix — one moment, then try again."
-                    is TripManager.SwitchResult.PrivateVehicleNeedsBreakdown ->
-                        "Changing out of your own vehicle mid-journey is for a breakdown. " +
-                            "Tick that if the car has let you down."
                     is TripManager.SwitchResult.MissingDetails ->
                         "Still needed: ${r.labels.joinToString(", ")}."
                 }
@@ -861,6 +863,65 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 editBusy.value = false
             }
         }
+
+    /** The live journey plan: destination, mode, role, planned halt. */
+    val plan = graph.tripManager.planFlow
+
+    // ---- finding a new destination ----
+    val savedPlaces: StateFlow<List<SavedPlaceEntity>> =
+        graph.db.savedPlaceDao().allFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    private val placeSearch = PlaceSearch()
+    var destResults = MutableStateFlow<List<PlaceSearch.Place>>(emptyList()); private set
+    var destSearching = MutableStateFlow(false); private set
+    private var destSearchJob: kotlinx.coroutines.Job? = null
+
+    /** Search-as-you-type near where the traveller is; the newest query wins. */
+    fun searchDestination(query: String) {
+        destSearchJob?.cancel()
+        val q = query.trim()
+        if (q.length < 2) { destResults.value = emptyList(); destSearching.value = false; return }
+        destSearchJob = viewModelScope.launch {
+            destSearching.value = true
+            val near = state.value?.let { s -> s.lat?.let { la -> s.lng?.let { lo -> GeoPoint(la, lo) } } }
+            try { destResults.value = placeSearch.search(q, near = near) } finally { if (isActive) destSearching.value = false }
+        }
+    }
+
+    /** A Google Maps link (shared in or copied) turned into a place, or null. */
+    suspend fun resolveShared(text: String): PlaceSearch.Place? =
+        placeSearch.resolveLink(text) ?: placeSearch.search(text, limit = 1).firstOrNull()
+
+    fun savePlaceAt(name: String, point: GeoPoint) = viewModelScope.launch {
+        val clean = InputRules.itemTextForStorage(name)
+        if (clean.isNotBlank()) {
+            graph.db.savedPlaceDao().upsert(SavedPlaceEntity(clean, point.lat, point.lng, System.currentTimeMillis()))
+        }
+    }
+
+    fun deletePlace(name: String) = viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
+
+    /** Going somewhere else now: a new plan revision everyone following hears about. */
+    fun changeDestination(place: com.trippulse.app.data.routing.PlaceSearch.Place) = viewModelScope.launch {
+        if (editBusy.value) return@launch
+        editBusy.value = true
+        try {
+            val name = place.name.substringBefore(" · ").trim()
+            val ok = graph.tripManager.changeDestination(name, place.point)
+            editMessage.value =
+                if (ok) "Destination updated — everyone following you has been told." else "This journey can no longer be changed."
+        } finally {
+            editBusy.value = false
+        }
+    }
+
+    fun setTravellerRole(role: com.trippulse.app.domain.WellbeingCoach.Role) =
+        viewModelScope.launch { graph.tripManager.setTravellerRole(role) }
+
+    fun setPlannedHalt(place: String?) = viewModelScope.launch {
+        graph.tripManager.setPlannedHalt(place)
+        editMessage.value = if (place.isNullOrBlank()) "Planned halt removed." else "Halt planned — everyone following you has been told."
+    }
 
     /** Fills in details the traveller only learned after boarding. */
     fun updateStageDetails(legIndex: Int, details: Map<String, String>) = viewModelScope.launch {

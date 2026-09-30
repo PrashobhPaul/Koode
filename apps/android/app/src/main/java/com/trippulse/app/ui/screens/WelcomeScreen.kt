@@ -82,20 +82,21 @@ fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
 
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text(
-                "Know they're okay, without having to ask.",
+                "Koode travels with you.",
                 color = colors.textHigh,
                 style = MaterialTheme.typography.displaySmall,
                 fontSize = 32.sp, lineHeight = 38.sp
             )
             Text(
-                "Start a journey and the people you choose hear about every stop, toll and arrival — automatically.",
+                "It looks after you on the road — water, food and breaks, suggested the way you travel — and keeps the people you choose informed.",
                 color = colors.textMid, style = MaterialTheme.typography.bodyLarge
             )
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Promise(KoodeIcons.Pin, colors.accent, "Live, only during a journey", "Sharing ends when you end the trip")
+            Promise(KoodeIcons.Shield, colors.accent, "Looks after you", "Suggestions that fit a car, a bike, a bus or a train")
             Promise(KoodeIcons.Circle, colors.traveller, "You choose who follows", "Approve each person before they see anything")
+            Promise(KoodeIcons.Pin, colors.accent, "Live, only during a journey", "Sharing ends when the journey does")
             Promise(KoodeIcons.Alert, colors.danger, "SOS in one tap", "With a few seconds to cancel a mistake")
         }
 

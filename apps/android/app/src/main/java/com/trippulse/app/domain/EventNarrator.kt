@@ -53,9 +53,24 @@ object EventNarrator {
         EventTypes.DEBOARDED -> "🚶" to "Got off"
         EventTypes.LEG_STARTED -> "🧭" to "Next stage started"
         EventTypes.LEG_COMPLETED -> "✅" to "Stage completed"
-        EventTypes.WELLBEING_ALERT -> "⚠️" to "Skipped a wellbeing reminder"
-        EventTypes.WELLBEING_NUDGE -> "💡" to "Reminded to look after themselves"
+        EventTypes.WELLBEING_ALERT -> "💬" to "Wellbeing update"
+        EventTypes.WELLBEING_NUDGE -> "💡" to "Wellbeing suggestion"
         EventTypes.JOURNEY_UPDATE -> "🧭" to "Journey update"
+        EventTypes.WATER_NUDGE, EventTypes.WATER_REMINDER -> "💧" to "Water suggested"
+        EventTypes.FOOD_NUDGE, EventTypes.FOOD_REMINDER -> "🍽" to "Food suggested"
+        EventTypes.BREAK_NUDGE, EventTypes.BREAK_REMINDER -> "☕" to "Break suggested"
+        EventTypes.WATER_ACKNOWLEDGED -> "💧" to "Had water"
+        EventTypes.FOOD_ACKNOWLEDGED -> "🍽" to "Ate something"
+        EventTypes.BREAK_ACKNOWLEDGED -> "☕" to "Taking a break"
+        EventTypes.HALT_SUGGESTED -> "🛏" to "Halt suggested"
+        EventTypes.HALT_CONFIRMED -> "🛏" to "Halting"
+        EventTypes.HALT_CANCELLED -> "▶" to "Halt cancelled"
+        EventTypes.HALT_RESUMED -> "🌅" to "Resumed after the halt"
+        EventTypes.TRAVEL_MODE_CHANGED -> "🔁" to "Travel mode changed"
+        EventTypes.PLANNED_HALT_CREATED -> "🗓" to "Halt planned"
+        EventTypes.PLANNED_HALT_CHANGED -> "🗓" to "Planned halt changed"
+        EventTypes.ETA_SIGNIFICANTLY_CHANGED -> "🕒" to "Arrival time changed"
+        EventTypes.JOURNEY_PLAN_REVISED -> "🧭" to "Journey plan updated"
         else -> "•" to type.lowercase().replace('_', ' ')
     }
 
@@ -93,7 +108,12 @@ object EventNarrator {
             EventTypes.TOLL_CROSSED,
             // The coach and the hourly update write complete sentences too.
             EventTypes.WELLBEING_ALERT, EventTypes.JOURNEY_UPDATE,
-            EventTypes.WELLBEING_NUDGE -> emoji to (text ?: label)
+            EventTypes.WELLBEING_NUDGE,
+            // Halts and plan changes are written as whole, neutral sentences.
+            EventTypes.HALT_CONFIRMED, EventTypes.HALT_CANCELLED, EventTypes.HALT_RESUMED,
+            EventTypes.DESTINATION_CHANGED, EventTypes.TRAVEL_MODE_CHANGED,
+            EventTypes.PLANNED_HALT_CREATED, EventTypes.PLANNED_HALT_CHANGED,
+            EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventTypes.JOURNEY_PLAN_REVISED -> emoji to (text ?: label)
             else -> emoji to (text?.let { "$label — $it" } ?: label)
         }
     }

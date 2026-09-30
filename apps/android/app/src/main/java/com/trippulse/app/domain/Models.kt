@@ -142,12 +142,54 @@ object EventTypes {
     const val SIM_CHANGED = "SIM_CHANGED"
 
     // --- the wellbeing coach ---
-    /** The traveller was nudged (water / food / break). Kept for the record, never broadcast. */
+    // Canonical names from the product spec map onto the long-standing wire
+    // types: JOURNEY_STARTED = TRIP_STARTED, JOURNEY_COMPLETED = TRIP_COMPLETED,
+    // MOVEMENT_STARTED = DRIVING_STARTED, MOVEMENT_STOPPED = STOP_STARTED,
+    // JOURNEY_RESUMED = STOP_ENDED / TRIP_RESUMED, SOS_TRIGGERED = SOS_ACTIVATED,
+    // PERIODIC_JOURNEY_UPDATE = JOURNEY_UPDATE.
+    /** Pre-rework nudge record (any need). Still narrated for old journeys. */
     const val WELLBEING_NUDGE = "WELLBEING_NUDGE"
-    /** The traveller kept skipping a need after reminders — the circle is told. */
+    /**
+     * A need still unresolved after one suggestion and one reminder: a
+     * neutral care update to the traveller's followers, never a complaint.
+     */
     const val WELLBEING_ALERT = "WELLBEING_ALERT"
-    /** The hourly update to the circle: progress, ETA, last water and food. */
+    /** The periodic follower update — sent only when something meaningful changed. */
     const val JOURNEY_UPDATE = "JOURNEY_UPDATE"
+    // Traveller-only coaching records (never broadcast).
+    const val WATER_NUDGE = "WATER_NUDGE"
+    const val WATER_REMINDER = "WATER_REMINDER"
+    const val WATER_ACKNOWLEDGED = "WATER_ACKNOWLEDGED"
+    const val FOOD_NUDGE = "FOOD_NUDGE"
+    const val FOOD_REMINDER = "FOOD_REMINDER"
+    const val FOOD_ACKNOWLEDGED = "FOOD_ACKNOWLEDGED"
+    const val BREAK_NUDGE = "BREAK_NUDGE"
+    const val BREAK_REMINDER = "BREAK_REMINDER"
+    const val BREAK_ACKNOWLEDGED = "BREAK_ACKNOWLEDGED"
+
+    // --- halts: long stops the traveller has told us about ---
+    /** Koode asked whether a long stop is a halt, or suggested planning one. Traveller-only. */
+    const val HALT_SUGGESTED = "HALT_SUGGESTED"
+    const val HALT_CONFIRMED = "HALT_CONFIRMED"
+    const val HALT_CANCELLED = "HALT_CANCELLED"
+    const val HALT_RESUMED = "HALT_RESUMED"
+
+    // --- the journey plan, versioned (never "route deviation") ---
+    const val TRAVEL_MODE_CHANGED = "TRAVEL_MODE_CHANGED"
+    const val PLANNED_HALT_CREATED = "PLANNED_HALT_CREATED"
+    const val PLANNED_HALT_CHANGED = "PLANNED_HALT_CHANGED"
+    /** Spec alias of [PLANNED_HALT_CHANGED]. */
+    const val HALT_PLAN_CHANGED = PLANNED_HALT_CHANGED
+    const val ETA_SIGNIFICANTLY_CHANGED = "ETA_SIGNIFICANTLY_CHANGED"
+    /** More than one part of the plan changed at once. */
+    const val JOURNEY_PLAN_REVISED = "JOURNEY_PLAN_REVISED"
+
+    /** Coaching records for one need: nudge, reminder, acknowledgement. */
+    fun coachTypes(needKey: String): Triple<String, String, String> = when (needKey) {
+        "water" -> Triple(WATER_NUDGE, WATER_REMINDER, WATER_ACKNOWLEDGED)
+        "food" -> Triple(FOOD_NUDGE, FOOD_REMINDER, FOOD_ACKNOWLEDGED)
+        else -> Triple(BREAK_NUDGE, BREAK_REMINDER, BREAK_ACKNOWLEDGED)
+    }
 
     /** Events that carry a driver-visible line in the viewer timeline. */
     val TIMELINE_TYPES: Set<String> = setOf(
@@ -160,8 +202,18 @@ object EventTypes {
         DEVICE_SHUTDOWN, DEVICE_BACK_ONLINE, SIM_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
         POSSIBLE_INCIDENT, SOS_ACTIVATED, SOS_RESOLVED, BATTERY_LOW,
-        WELLBEING_ALERT
+        WELLBEING_ALERT,
+        HALT_CONFIRMED, HALT_CANCELLED, HALT_RESUMED,
+        TRAVEL_MODE_CHANGED, PLANNED_HALT_CREATED, PLANNED_HALT_CHANGED,
+        ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED
     )
+
+    /**
+     * Whether an event gets a timeline line. A stage started by a travel-mode
+     * change reads once, as the TRAVEL_MODE_CHANGED plan revision.
+     */
+    fun inTimeline(type: String, payload: Map<String, Any?>): Boolean =
+        type in TIMELINE_TYPES && !(type == LEG_STARTED && payload["announcedAs"] != null)
 
     /** Priority for sync ordering: lower = more urgent. */
     fun priorityFor(type: String): Int = when (type) {
@@ -173,7 +225,10 @@ object EventTypes {
         OVERNIGHT_CONFIRMED, MORNING_RESUME, ARRIVAL_DETECTED, DESTINATION_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
         TRIP_STARTED, TRIP_COMPLETED, TRIP_PAUSED, TRIP_RESUMED,
-        WELLBEING_ALERT, JOURNEY_UPDATE -> 1
+        WELLBEING_ALERT, JOURNEY_UPDATE,
+        HALT_CONFIRMED, HALT_CANCELLED, HALT_RESUMED,
+        TRAVEL_MODE_CHANGED, PLANNED_HALT_CREATED, PLANNED_HALT_CHANGED,
+        ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED -> 1
         else -> 2
     }
 

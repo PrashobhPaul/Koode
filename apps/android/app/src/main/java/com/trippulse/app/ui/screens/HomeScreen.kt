@@ -218,7 +218,7 @@ private data class TabSpec(val icon: ImageVector, val label: String)
 private val TABS = listOf(
     TabSpec(KoodeIcons.Home, "Home"),
     TabSpec(KoodeIcons.Journeys, "Journeys"),
-    TabSpec(KoodeIcons.Circle, "Circle"),
+    TabSpec(KoodeIcons.Circle, "People"),
     TabSpec(KoodeIcons.More, "More")
 )
 
@@ -548,7 +548,7 @@ private fun HomeFeed(
                 Column(Modifier.weight(1f)) {
                     Text("No one is travelling right now", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
                     Text(
-                        "When someone in your circle starts a journey, you'll see them here, live.",
+                        "When someone shares a journey with you, you'll see them here, live.",
                         color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                     )
                 }
@@ -595,7 +595,7 @@ private fun HomeFeed(
     // ---- your circle ------------------------------------------------------------
     Spacer(Modifier.height(Spacing.xs))
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text("Your circle", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall, modifier = Modifier.weight(1f))
+        Text("Journeys", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall, modifier = Modifier.weight(1f))
         TextButton(onClick = {
             if (active != null) {
                 scope.launch {
@@ -705,7 +705,7 @@ private fun HomeFeed(
 
         if (first) {
             Column(Modifier.padding(Spacing.lg), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                Text("Your circle is empty", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+                Text("No journeys yet", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
                 Text(
                     "Add the people who should hear about your journeys, or follow someone who shared theirs with you.",
                     color = colors.textMid, style = MaterialTheme.typography.bodyMedium
@@ -843,15 +843,15 @@ private fun PeopleSection(
 ) {
     val colors = KoodeTheme.colors
     val context = LocalContext.current
-    SectionHeader("Circle")
+    SectionHeader("People")
 
-    Text("Your circle", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
+    Text("Who hears about your journeys", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
     val circle = Profile.contacts(context).filter { it.filled }
     if (circle.isEmpty()) {
         KoodeCard(accent = colors.warn, onClick = goToSettings) {
             Text("Add your emergency contacts", color = colors.warn, style = MaterialTheme.typography.titleSmall)
             Text(
-                "They become your circle — your journeys are shared with them by default.",
+                "They're approved automatically when they ask to follow one of your journeys.",
                 color = colors.textMid, style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -865,12 +865,12 @@ private fun PeopleSection(
                         Text(c.name, color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
                         Text(c.phone, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
                     }
-                    StatusPill("In your circle", colors.accent)
+                    StatusPill("Trusted", colors.accent)
                 }
             }
         }
         Text(
-            "Circle members are approved automatically when they join your journey with their name.",
+            "Trusted contacts are approved automatically when they join a journey with their name. Each journey is shared only while it lasts.",
             color = colors.textLow, style = MaterialTheme.typography.bodySmall
         )
     }

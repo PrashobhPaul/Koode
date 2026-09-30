@@ -52,6 +52,7 @@ object FollowerNotifications {
             title = person?.let { if (sentence.startsWith(it)) sentence else "$it · $sentence" } ?: sentence,
             body = label,
             urgent = FollowerAlerts.isUrgent(type),
+            important = FollowerAlerts.level(type, payload) == FollowerAlerts.Level.IMPORTANT,
             person = person ?: label
         )
         return true

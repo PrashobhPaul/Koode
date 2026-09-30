@@ -122,8 +122,42 @@ class Notifier(private val context: Context) {
             "You're at $destination. Open Koode and end the journey when you're settled."
         )
 
-    fun showOvernight(destination: String) =
-        postEvent(ID_OVERNIGHT, CH_EVENTS, "Overnight rest", "Driver is stopping overnight.")
+    /**
+     * A long stop was detected. Koode asks — it never assumes a long stop is a
+     * problem, or guesses why. "Taking a halt" opens Koode to say what kind;
+     * "Just a break" answers from the notification.
+     */
+    fun showHaltQuestion() {
+        val b = NotificationCompat.Builder(context, CH_COACH)
+            .setSmallIcon(R.drawable.ic_stat_trip)
+            .setContentTitle("Taking a longer break?")
+            .setContentText("Looks like you've stopped for a while. Are you taking a halt?")
+            .setStyle(NotificationCompat.BigTextStyle().bigText("Looks like you've stopped for a while. Are you taking a halt?"))
+            .setAutoCancel(true)
+            .setContentIntent(contentIntent())
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .addAction(0, "Taking a halt", contentIntent())
+            .addAction(0, "Just a break", nudgeAction(NudgeActionReceiver.ACTION_HALT_DECLINE, "halt", ID_OVERNIGHT))
+        context.getSystemService(NotificationManager::class.java).notify(ID_OVERNIGHT, b.build())
+    }
+
+    fun cancelHaltQuestion() {
+        context.getSystemService(NotificationManager::class.java).cancel(ID_OVERNIGHT)
+    }
+
+    /** The long-haul suggestion: plan an overnight halt. A suggestion, not a command. */
+    fun showHaltPlanSuggestion(text: String) {
+        val b = NotificationCompat.Builder(context, CH_COACH)
+            .setSmallIcon(R.drawable.ic_stat_trip)
+            .setContentTitle("A long journey ahead")
+            .setContentText(text)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(text))
+            .setAutoCancel(true)
+            .setContentIntent(contentIntent())
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .addAction(0, "Plan a halt", contentIntent())
+        context.getSystemService(NotificationManager::class.java).notify(ID_HALT_PLAN, b.build())
+    }
 
     fun showSosActive() =
         postEvent(ID_SOS, CH_SOS, "SOS active", "An SOS alert is active for this trip.", high = true)
@@ -139,7 +173,7 @@ class Notifier(private val context: Context) {
         postEvent(
             ID_BREAK, CH_EVENTS, "Taking a break?",
             if (privateVehicle) "Log food, water, rest — and fuel if you refilled. It takes two taps."
-            else "Log food, water or rest so your circle stays reassured. Two taps."
+            else "Log food, water or rest so the people following your journey stay informed. Two taps."
         )
 
     fun showTripUpdate(title: String, body: String) =
@@ -152,10 +186,14 @@ class Notifier(private val context: Context) {
      * event replaces itself instead of duplicating. Urgent events ring on the
      * high-importance channel.
      */
-    fun showJourneyEvent(id: Int, title: String, body: String, urgent: Boolean = false, person: String? = null) =
+    fun showJourneyEvent(
+        id: Int, title: String, body: String, urgent: Boolean = false,
+        important: Boolean = false, person: String? = null
+    ) =
         postEvent(
             id, if (urgent) CH_SOS else CH_EVENTS, title, body,
-            high = urgent, onlyAlertOnce = !urgent,
+            // A plan change (new destination, mode, halt) heads the tray too.
+            high = urgent || important, onlyAlertOnce = !urgent,
             largeIcon = person?.let { personIcon(it) }
         )
 
@@ -185,11 +223,11 @@ class Notifier(private val context: Context) {
     }
 
     /**
-     * A wellbeing nudge to the traveller. Each need keeps one tray entry that
-     * the reminder replaces. "Had water" / "Ate something" log it straight
-     * from the notification, so the traveller never has to open Koode at a
-     * stop; "Later" snoozes this step. Break nudges have no "done" button:
-     * the stop itself is the answer.
+     * A wellbeing suggestion to the traveller. Each need keeps one tray entry
+     * that the reminder replaces. "Had water" / "Ate something" log it
+     * straight from the notification, so the traveller never has to open
+     * Koode at a stop; "Taking a break" tells the coach a stop is coming;
+     * "Remind me later" snoozes it.
      */
     fun showWellbeingNudge(needKey: String, title: String, body: String) {
         val id = ID_COACH_BASE + (needKey.hashCode() and 0xFF)
@@ -204,6 +242,7 @@ class Notifier(private val context: Context) {
         val done = when (needKey) {
             "water" -> "Had water"
             "food" -> "Ate something"
+            "break" -> "Taking a break"
             else -> null
         }
         if (done != null) {
@@ -259,6 +298,7 @@ class Notifier(private val context: Context) {
         private const val ID_BREAK = 2008
         private const val ID_ARRIVAL_DETECTED = 2009
         private const val ID_UPDATE_AVAILABLE = 2010
+        private const val ID_HALT_PLAN = 2011
         /** 2100–2355: one tray entry per wellbeing need. */
         private const val ID_COACH_BASE = 2100
     }

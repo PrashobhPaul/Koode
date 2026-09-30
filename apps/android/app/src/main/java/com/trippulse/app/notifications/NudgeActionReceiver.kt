@@ -10,23 +10,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
- * Handles the buttons on a wellbeing nudge: "Had water" / "Ate something"
- * log it exactly as the in-app buttons would (so the circle sees it and the
- * coach's ladder resets), and "Remind me later" snoozes the current step.
+ * Handles the buttons on a wellbeing suggestion: "Had water" / "Ate
+ * something" log it exactly as the in-app buttons would (so followers see it
+ * and the coach's cycle restarts), "Taking a break" tells the coach a stop is
+ * coming, and "Remind me later" snoozes it. Also "Just a break" on the halt
+ * question.
  */
 class NudgeActionReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val app = context.applicationContext as? TripPulseApp ?: return
-        val need = WellbeingCoach.Need.fromKey(intent.getStringExtra(EXTRA_NEED)) ?: return
         val graph = app.graph
-        graph.notifier.cancelWellbeingNudge(need.key)
+        val need = WellbeingCoach.Need.fromKey(intent.getStringExtra(EXTRA_NEED))
+        if (intent.action == ACTION_HALT_DECLINE) graph.notifier.cancelHaltQuestion()
+        else if (need == null) return
+        else graph.notifier.cancelWellbeingNudge(need.key)
         val pending = goAsync()
         CoroutineScope(Dispatchers.Default).launch {
             try {
                 if (graph.tripManager.currentTripIdOrNull() == null) graph.tripManager.loadActive()
                 when (intent.action) {
-                    ACTION_DONE -> graph.tripManager.logNeedMet(need)
-                    ACTION_SNOOZE -> graph.tripManager.snoozeNudge(need)
+                    ACTION_DONE -> need?.let { graph.tripManager.logNeedMet(it) }
+                    ACTION_SNOOZE -> need?.let { graph.tripManager.snoozeNudge(it) }
+                    ACTION_HALT_DECLINE -> graph.tripManager.declineHalt()
                 }
             } catch (_: Exception) {
                 // A lost tap must never disturb the journey itself.
@@ -39,6 +44,8 @@ class NudgeActionReceiver : BroadcastReceiver() {
     companion object {
         const val ACTION_DONE = "app.koode.NUDGE_DONE"
         const val ACTION_SNOOZE = "app.koode.NUDGE_SNOOZE"
+        /** "Just a break" on the halt question. */
+        const val ACTION_HALT_DECLINE = "app.koode.HALT_DECLINE"
         const val EXTRA_NEED = "need"
         const val EXTRA_NOTIFICATION_ID = "notification_id"
     }

@@ -211,20 +211,21 @@ object JourneyDocuments {
 
     /** Narrates stored rows into [Moment]s — the traveller's side. */
     fun momentsFrom(events: List<EventEntity>): List<Moment> = events
-        .filter { it.type in EventTypes.TIMELINE_TYPES }
-        .map {
-            val (_, label) = EventNarrator.line(it.type, EventCodec.payloadFromJson(it.payloadJson))
-            Moment(it.eventTimeMs, label)
+        .map { it to EventCodec.payloadFromJson(it.payloadJson) }
+        .filter { (e, payload) -> EventTypes.inTimeline(e.type, payload) }
+        .map { (e, payload) ->
+            val (_, label) = EventNarrator.line(e.type, payload)
+            Moment(e.eventTimeMs, label)
         }
 
     /** Narrates the decoded maps a follower receives — the same words, either way. */
     fun momentsFromCloud(events: List<Map<String, Any?>>): List<Moment> = events.mapNotNull { e ->
         val type = e["type"] as? String ?: return@mapNotNull null
-        if (type !in EventTypes.TIMELINE_TYPES) return@mapNotNull null
         val at = (e["t"] as? Number)?.toLong() ?: (e["eventTime"] as? Number)?.toLong()
             ?: return@mapNotNull null
         @Suppress("UNCHECKED_CAST")
         val payload = (e["payload"] as? Map<String, Any?>).orEmpty()
+        if (!EventTypes.inTimeline(type, payload)) return@mapNotNull null
         val (_, label) = EventNarrator.line(type, payload)
         Moment(at, label)
     }

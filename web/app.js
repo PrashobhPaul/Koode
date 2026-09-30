@@ -140,8 +140,26 @@
     DEBOARDED: ['🚶', 'Got off'],
     LEG_STARTED: ['🧭', 'Next stage started'],
     LEG_COMPLETED: ['✅', 'Stage completed'],
-    WELLBEING_ALERT: ['⚠️', 'Skipped a wellbeing reminder']
+    WELLBEING_ALERT: ['💬', 'Wellbeing update'],
+    HALT_CONFIRMED: ['🛏', 'Halting'],
+    HALT_CANCELLED: ['▶', 'Halt cancelled'],
+    HALT_RESUMED: ['🌅', 'Resumed after the halt'],
+    TRAVEL_MODE_CHANGED: ['🔁', 'Travel mode changed'],
+    PLANNED_HALT_CREATED: ['🗓', 'Halt planned'],
+    PLANNED_HALT_CHANGED: ['🗓', 'Planned halt changed'],
+    ETA_SIGNIFICANTLY_CHANGED: ['🕒', 'Arrival time changed'],
+    JOURNEY_PLAN_REVISED: ['🧭', 'Journey plan updated']
   };
+
+  /**
+   * The traveller's own coaching (suggestions, reminders, "taking a break",
+   * the halt question) and the periodic update are notifications, not
+   * timeline entries — the same rule as the app.
+   */
+  var NOT_IN_TIMELINE = ['WELLBEING_NUDGE', 'JOURNEY_UPDATE', 'HALT_SUGGESTED',
+    'WATER_NUDGE', 'WATER_REMINDER', 'WATER_ACKNOWLEDGED',
+    'FOOD_NUDGE', 'FOOD_REMINDER', 'FOOD_ACKNOWLEDGED',
+    'BREAK_NUDGE', 'BREAK_REMINDER', 'BREAK_ACKNOWLEDGED'];
 
   var MEAL_LABELS = {
     BREAKFAST: 'Breakfast', LUNCH: 'Lunch', DINNER: 'Dinner', SNACK: 'Snack'
@@ -177,9 +195,9 @@
     return events.filter(function (e) {
       var id = e.payload && e.payload.breakId;
       if (e.type === 'BREAK_CHECKPOINT_SKIPPED') return false;
-      // Same as the app: nudges to the traveller and the hourly update are
-      // notifications, not timeline entries.
-      if (e.type === 'WELLBEING_NUDGE' || e.type === 'JOURNEY_UPDATE') return false;
+      if (NOT_IN_TIMELINE.indexOf(e.type) >= 0) return false;
+      // A stage that is also a travel-mode change reads once, as the change.
+      if (e.type === 'LEG_STARTED' && e.payload && e.payload.announcedAs) return false;
       if (e.type === 'BREAK_CHECKPOINT' && id) {
         if ((e.eventTime || 0) !== latest[id] || kept[id]) return false;
         kept[id] = true; return true;
@@ -574,7 +592,7 @@
 
     // ---- arrival + progress ----
     if (ended) text('eta', 'Arrived safely 🎉');
-    else if (state && state.etaMode === 'OVERNIGHT_PENDING') text('eta', 'Resting overnight');
+    else if (state && state.etaMode === 'OVERNIGHT_PENDING') text('eta', 'Halting — a new estimate follows when they set off');
     else if (state && state.etaLikely) {
       text('eta', clockWithDay(state.etaLow || state.etaLikely) + ' – ' + clock(state.etaHigh || state.etaLikely));
     } else text('eta', 'Calculating…');

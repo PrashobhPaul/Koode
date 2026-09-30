@@ -46,9 +46,17 @@ import com.trippulse.app.domain.TripConfig
 import com.trippulse.app.domain.fastag.TollCrossing
 import com.trippulse.app.domain.TripEvent
 import com.trippulse.app.domain.WellbeingTimes
+import com.trippulse.app.domain.EtaShift
+import com.trippulse.app.domain.HaltPlanning
+import com.trippulse.app.domain.Halts
+import com.trippulse.app.domain.JourneyPlan
+import com.trippulse.app.domain.JourneyPlans
+import com.trippulse.app.domain.JourneyUpdates
+import com.trippulse.app.domain.WellbeingCoach
 import com.trippulse.app.notifications.Notifier
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -150,6 +158,7 @@ class TripManager(
         arrivalPromptShown = state?.arrivalPromptDue == true
         // detectors restart clean; persisted journey state is authoritative
         detector = StopDetector(cfg)
+        plans.latest(t.tripId)
         t
     }
 
@@ -193,7 +202,9 @@ class TripManager(
         val emergencyName: String?, val emergencyPhone: String?,
         val cloudEnabled: Boolean,
         /** Six digits chosen by the traveller; blank asks for a random one. */
-        val passcode: String
+        val passcode: String,
+        /** DRIVER or PASSENGER; null takes the mode's default (car/bike: driver). */
+        val role: String? = null
     ) {
         val first: NewLeg get() = legs.first()
         val last: NewLeg get() = legs.last()
@@ -308,6 +319,14 @@ class TripManager(
         val s = freshState(t, now)
         db.stateDao().upsert(s)
         state = s
+
+        plans.append(
+            tripId,
+            JourneyPlans.initial(
+                now, lastLeg.toName, firstLeg.mode,
+                WellbeingCoach.Role.fromKey(n.role)?.name ?: WellbeingCoach.defaultRole(firstLeg.mode).name
+            )
+        )
 
         insertEvent(
             t.tripId, EventTypes.TRIP_CREATED, EventSource.DRIVER_MANUAL, now,
@@ -428,12 +447,7 @@ class TripManager(
         if (lat == null || lng == null) return@withLock SwitchResult.NoLocationYet
 
         val current = activeLeg()
-        // A car journey has no natural stages -- you drive the whole way -- so
-        // the only honest reason to be switching out of one is that the
-        // vehicle stopped being an option.
-        if (current != null && TransportCatalog.isPrivate(current.mode) && !breakdown) {
-            return@withLock SwitchResult.PrivateVehicleNeedsBreakdown
-        }
+        val previousMode = current?.mode ?: t.transportMode
         if (!TravelDetails.isComplete(newMode, details)) {
             return@withLock SwitchResult.MissingDetails(
                 TravelDetails.missingRequired(newMode, details).map { it.label }
@@ -486,21 +500,30 @@ class TripManager(
 
         val profile = TransportCatalog.profile(newMode)
         val vehicle = TravelDetails.summary(newMode, details)
+        val modeChanged = !newMode.equals(previousMode, ignoreCase = true)
         insertEvent(
             t.tripId, EventTypes.LEG_STARTED, EventSource.DRIVER_MANUAL, now, lat, lng,
-            mapOf(
-                "legIndex" to nextIndex, "mode" to newMode,
-                "vehicle" to vehicle, "breakdown" to breakdown,
-                "text" to buildString {
+            buildMap<String, Any?> {
+                put("legIndex", nextIndex); put("mode", newMode)
+                put("vehicle", vehicle); put("breakdown", breakdown)
+                put("text", buildString {
                     if (breakdown) append("Vehicle trouble — continuing ")
                     else append("Continuing ")
                     append(profile.travellingSuffix)
                     if (vehicle.isNotBlank()) append(" ($vehicle)")
-                }
-            ), false
+                })
+                // The follower hears this once, as the plan change below.
+                if (modeChanged) put("announcedAs", EventTypes.TRAVEL_MODE_CHANGED)
+            }, false
         )
 
         var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = false, updatedAtMs = now)
+        if (modeChanged) {
+            // A new mode is a revision of the plan, and the coach re-reads it
+            // at once: car → train ends driving-break guidance immediately.
+            revisePlan(updated, s, now, mode = newMode, role = WellbeingCoach.defaultRole(newMode).name)
+            coachTick(updated, s, now)
+        }
         persistAndPush(updated, s, force = true)
         state = s
         if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
@@ -531,19 +554,16 @@ class TripManager(
         data object NotEditable : SwitchResult
         /** No fix yet, so there is no honest point to switch at. */
         data object NoLocationYet : SwitchResult
-        /** Leaving a private vehicle mid-journey needs a reason. */
-        data object PrivateVehicleNeedsBreakdown : SwitchResult
         data class MissingDetails(val labels: List<String>) : SwitchResult
     }
 
     /**
      * Corrects the vehicle details of a stage that is still running.
      *
-     * Only the details -- never the destination, never the mode. Where the
-     * journey is going is fixed the moment it starts, because everyone
-     * following was told where it was going, and quietly re-pointing it turns
-     * the thing they agreed to watch into a different thing. Mode changes go
-     * through [switchMode], which records them as the events they are.
+     * Only the details -- never the destination, never the mode. Those are
+     * plan changes, and go through [changeDestination] and [switchMode], which
+     * record them as new plan revisions everyone following is told about;
+     * nothing here may quietly re-point the journey.
      *
      * This exists for the ordinary case of getting on a train and only then
      * reading the coach number off the ticket.
@@ -607,6 +627,18 @@ class TripManager(
             legIndex = nextIndex, journey = JourneyStatus.READY.name,
             drivingSinceMs = now, updatedAtMs = now
         )
+        // A planned stage is not a change of plan: keep the plan's mode and
+        // role in step for the coach without announcing anything new.
+        val plan = planFor(moved)
+        if (!plan.mode.equals(next.mode, ignoreCase = true)) {
+            plans.append(
+                t.tripId,
+                plan.copy(
+                    version = plan.version + 1, atMs = now, mode = next.mode,
+                    role = WellbeingCoach.defaultRole(next.mode).name, reason = EventTypes.LEG_STARTED
+                )
+            )
+        }
         announceLeg(moved, nextIndex, now)
         if (moved.cloudEnabled) appScope.launch { sync.writeMetaUpdate(moved, metaMap(moved)) }
         persistAndPush(moved, s, force = true); state = s
@@ -989,25 +1021,184 @@ class TripManager(
         persistAndPush(t, s); state = s
     }
 
-    /** type: HOTEL | HOME | FAMILY | VEHICLE | CONTINUING */
-    suspend fun answerOvernight(type: String) = lock.withLock {
+    // -----------------------------------------------------------------------
+    // Halts: long stops the traveller has told us about
+    // -----------------------------------------------------------------------
+
+    /**
+     * "Yes, taking a halt". Recorded as the traveller said it — a room, family,
+     * a rest stop — never guessed. Followers hear one factual line:
+     * "Prashobh has taken a room in Salem and is halting here for the night."
+     */
+    suspend fun confirmHalt(type: Halts.Type, expectedMinutes: Int? = null) {
+        // Name the place outside the lock: the geocoder can take a second.
+        val place = resolvePlace(state?.lat, state?.lng)
+        lock.withLock {
+            val t = editableTrip() ?: return@withLock
+            var s = state ?: return@withLock
+            val next = transition(s, JourneyInput.OVERNIGHT_CONFIRM) ?: return@withLock
+            val now = System.currentTimeMillis()
+            val overnight = Halts.isOvernight(TimeFmt.hourOfDay(now), expectedMinutes)
+            insertEvent(
+                t.tripId, EventTypes.HALT_CONFIRMED, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
+                buildMap<String, Any?> {
+                    put("haltType", type.name); put("source", "USER_CONFIRMED"); put("overnight", overnight)
+                    place?.let { put("place", it) }
+                    expectedMinutes?.let { put("expectedMinutes", it) }
+                    put("text", Halts.confirmedText(ownerName().orEmpty(), type, place, overnight))
+                }, false
+            )
+            coachPrefs.edit()
+                .putString(haltPlaceKey(t.tripId), place)
+                .remove(etaBaselineKey(t.tripId))
+                .apply()
+            s = s.copy(
+                journey = next.name, overnightType = type.name, overnightSinceMs = now, longStopPromptDue = false,
+                etaMode = EtaMode.OVERNIGHT_PENDING.name, etaLowMs = null, etaHighMs = null, etaLikelyMs = null,
+                updatedAtMs = now
+            )
+            notifier.cancelHaltQuestion()
+            persistAndPush(t, s, force = true); state = s
+            onSamplingChanged?.invoke()
+        }
+    }
+
+    /** "Just a long break" / "Not stopped yet": nothing is recorded or shared. */
+    suspend fun declineHalt() = lock.withLock {
         val t = editableTrip() ?: return@withLock
         var s = state ?: return@withLock
         val now = System.currentTimeMillis()
-        if (type == "CONTINUING") {
+        if (s.journey == JourneyStatus.LONG_STOP.name) {
             transition(s, JourneyInput.OVERNIGHT_DECLINE)?.let { s = s.copy(journey = it.name) }
-            s = s.copy(longStopPromptDue = false, updatedAtMs = now)
-        } else {
-            transition(s, JourneyInput.OVERNIGHT_CONFIRM)?.let { s = s.copy(journey = it.name) }
-            insertEvent(t.tripId, EventTypes.OVERNIGHT_CONFIRMED, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
-                mapOf("type" to type), false)
-            s = s.copy(overnightType = type, overnightSinceMs = now, longStopPromptDue = false,
-                etaMode = EtaMode.OVERNIGHT_PENDING.name, etaLowMs = null, etaHighMs = null, etaLikelyMs = null,
-                updatedAtMs = now)
-            notifier.showOvernight(t.destName)
         }
+        s = s.copy(longStopPromptDue = false, updatedAtMs = now)
+        notifier.cancelHaltQuestion()
+        persistAndPush(t, s); state = s
+    }
+
+    /** The halt was confirmed by mistake, or plans changed: still stopped, no longer halting. */
+    suspend fun cancelHalt() = lock.withLock {
+        val t = editableTrip() ?: return@withLock
+        var s = state ?: return@withLock
+        if (s.overnightType == null) return@withLock
+        val now = System.currentTimeMillis()
+        transition(s, JourneyInput.OVERNIGHT_DECLINE)?.let { s = s.copy(journey = it.name) }
+        insertEvent(
+            t.tripId, EventTypes.HALT_CANCELLED, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
+            mapOf("source" to "USER_CONFIRMED", "text" to Halts.cancelledText(ownerName().orEmpty())), false
+        )
+        s = s.copy(overnightType = null, overnightSinceMs = null, etaMode = EtaMode.NORMAL.name, updatedAtMs = now)
+        lastEtaCalcMs = 0
         persistAndPush(t, s, force = true); state = s
         onSamplingChanged?.invoke()
+    }
+
+    /** "Resume journey" — the strongest signal a halt is over. */
+    suspend fun resumeFromHalt() = lock.withLock {
+        val t = editableTrip() ?: return@withLock
+        var s = state ?: return@withLock
+        if (s.overnightType == null) return@withLock
+        val now = System.currentTimeMillis()
+        transition(s, JourneyInput.RESTART)?.let { s = s.copy(journey = it.name) }
+        s = endHalt(t, s, now, confirmed = true)
+        persistAndPush(t, s, force = true); state = s
+        onSamplingChanged?.invoke()
+    }
+
+    /** Close a halt, explicitly ([confirmed]) or because the vehicle moved off. */
+    private suspend fun endHalt(t: ActiveTripEntity, s: TripStateEntity, now: Long, confirmed: Boolean): TripStateEntity {
+        val place = coachPrefs.getString(haltPlaceKey(t.tripId), null)
+        insertEvent(
+            t.tripId, EventTypes.HALT_RESUMED,
+            if (confirmed) EventSource.DRIVER_CONFIRMATION else EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+            buildMap<String, Any?> {
+                put("source", if (confirmed) "USER_CONFIRMED" else "GPS_INFERRED")
+                s.overnightType?.let { put("haltType", it) }
+                s.overnightSinceMs?.let { put("haltMinutes", (now - it) / 60_000) }
+                place?.let { put("place", it) }
+                put("text", Halts.resumedText(ownerName().orEmpty(), place, confirmed))
+            }, false
+        )
+        coachPrefs.edit().remove(haltPlaceKey(t.tripId)).remove(etaBaselineKey(t.tripId)).apply()
+        lastEtaCalcMs = 0
+        return s.copy(
+            overnightType = null, overnightSinceMs = null, etaMode = EtaMode.NORMAL.name,
+            drivingSinceMs = now, lastBreakEndAtMs = now, longStopPromptDue = false, updatedAtMs = now
+        )
+    }
+
+    // -----------------------------------------------------------------------
+    // The journey plan: destination, role and planned halt changes
+    // -----------------------------------------------------------------------
+
+    /** The current plan revision, for screens. */
+    val planFlow: StateFlow<JourneyPlan?> get() = plans.current
+
+    fun planHistory(tripId: String): List<JourneyPlan> = plans.history(tripId)
+
+    /**
+     * The traveller is now going somewhere else. The journey is re-pointed
+     * and a new plan revision records it — the old destination stays in the
+     * history — and followers are told: "Journey destination changed from
+     * Thrissur to Kochi."
+     */
+    suspend fun changeDestination(name: String, to: GeoPoint): Boolean = lock.withLock {
+        val t = editableTrip() ?: return@withLock false
+        var s = state ?: return@withLock false
+        val clean = name.trim().ifBlank { null } ?: return@withLock false
+        val now = System.currentTimeMillis()
+        legs.maxByOrNull { it.legIndex }?.let {
+            db.legDao().upsert(it.copy(toName = clean, toLat = to.lat, toLng = to.lng))
+        }
+        legs = db.legDao().forTrip(t.tripId)
+        val updated = t.copy(destName = clean, destLat = to.lat, destLng = to.lng, arrivedAtMs = null)
+        db.tripDao().update(updated); trip = updated
+        // A new destination is a new road: fetch a fresh route and ETA.
+        currentRoute = null; routeFetchedAtMs = 0; lastEtaCalcMs = 0
+        arrivalPromptShown = false
+        coachPrefs.edit().remove(etaBaselineKey(t.tripId)).apply()
+        s = s.copy(arrivalPromptDue = false, updatedAtMs = now)
+        revisePlan(updated, s, now, destination = clean)
+        persistAndPush(updated, s, force = true); state = s
+        if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
+        true
+    }
+
+    /** Driver or passenger. The coach re-reads it at once. */
+    suspend fun setTravellerRole(role: WellbeingCoach.Role) = lock.withLock {
+        val t = editableTrip() ?: return@withLock
+        val s = state ?: return@withLock
+        val now = System.currentTimeMillis()
+        revisePlan(t, s, now, role = role.name) ?: return@withLock
+        coachTick(t, s, now)
+    }
+
+    /** Plan (or change, or with null drop) where the traveller intends to halt. */
+    suspend fun setPlannedHalt(place: String?) = lock.withLock {
+        val t = editableTrip() ?: return@withLock
+        val s = state ?: return@withLock
+        revisePlan(t, s, System.currentTimeMillis(), halt = JourneyPlans.HaltChange(place))
+    }
+
+    private val plans by lazy { JourneyPlanStore(appContext) }
+
+    /** The latest plan, created from the journey itself for journeys that predate plans. */
+    private fun planFor(t: ActiveTripEntity): JourneyPlan =
+        plans.latest(t.tripId) ?: run {
+            val mode = activeLeg()?.mode ?: t.transportMode
+            JourneyPlans.initial(t.startedAtMs ?: t.createdAtMs, t.destName, mode, WellbeingCoach.defaultRole(mode).name)
+                .also { plans.append(t.tripId, it) }
+        }
+
+    private suspend fun revisePlan(
+        t: ActiveTripEntity, s: TripStateEntity, now: Long,
+        destination: String? = null, mode: String? = null, role: String? = null,
+        halt: JourneyPlans.HaltChange? = null
+    ): JourneyPlans.Revision? {
+        val rev = JourneyPlans.revise(planFor(t), now, destination, mode, role, halt) ?: return null
+        plans.append(t.tripId, rev.plan)
+        insertEvent(t.tripId, rev.eventType, EventSource.DRIVER_MANUAL, now, s.lat, s.lng, rev.payload, false)
+        return rev
     }
 
     /**
@@ -1445,10 +1636,35 @@ class TripManager(
                 // close it with its real duration instead of asking again.
                 val loggedHere = openBreak != null
                 if (loggedHere) appScope.launch { lock.withLock { closeOpenBreak(t.tripId, now) } }
+                // Continuous driving is what the break coach measures, so only a
+                // stop long enough to rest in (or one where a break was logged)
+                // resets it. Traffic and a quick pause do not.
+                val halted = s0.overnightType != null
+                val meaningful = halted || loggedHere || move.durationS >= cfg.meaningfulBreakS
+                if (halted) {
+                    // Moved off without saying so: resumed, inferred — and worded so.
+                    val place = coachPrefs.getString(haltPlaceKey(t.tripId), null)
+                    val payload = buildMap<String, Any?> {
+                        put("source", "GPS_INFERRED")
+                        s0.overnightType?.let { put("haltType", it) }
+                        s0.overnightSinceMs?.let { put("haltMinutes", (now - it) / 60_000) }
+                        place?.let { put("place", it) }
+                        put("text", Halts.resumedText(ownerName().orEmpty(), place, confirmed = false))
+                    }
+                    coachPrefs.edit().remove(haltPlaceKey(t.tripId)).remove(etaBaselineKey(t.tripId)).apply()
+                    appScope.launch {
+                        insertEvent(t.tripId, EventTypes.HALT_RESUMED, EventSource.SYSTEM_INFERRED, now,
+                            fix?.point?.lat ?: s0.lat, fix?.point?.lng ?: s0.lng, payload, false)
+                    }
+                    s = s.copy(overnightType = null, overnightSinceMs = null, etaMode = EtaMode.NORMAL.name)
+                    lastEtaCalcMs = 0
+                }
                 s = s.copy(
-                    stopStartedAtMs = null, drivingSinceMs = now,
-                    lastBreakEndAtMs = if (profile.wellbeingIsBreak) now else s.lastBreakEndAtMs,
-                    checkpointDue = profile.stopPromptsEnabled && !loggedHere,
+                    stopStartedAtMs = null,
+                    drivingSinceMs = if (meaningful) now else (s.drivingSinceMs ?: now),
+                    lastBreakEndAtMs = if (profile.wellbeingIsBreak && meaningful) now else s.lastBreakEndAtMs,
+                    // Nobody logs a "break" after a night's halt.
+                    checkpointDue = profile.stopPromptsEnabled && !loggedHere && !halted,
                     checkpointStopStartMs = if (profile.stopPromptsEnabled) began else null,
                     checkpointStopEndMs = if (profile.stopPromptsEnabled) now else null,
                     checkpointStopDurationS = if (profile.stopPromptsEnabled) move.durationS else null,
@@ -1461,10 +1677,18 @@ class TripManager(
             }
             is StopDetector.Movement.LongStop -> {
                 transition(s, JourneyInput.LONG_STOP)?.let { s = s.copy(journey = it.name) }
-                // Only a driver is asked "are you stopping for the night?" — a
-                // long halt on a train is a station, not a decision.
+                // Only someone in their own vehicle is asked "are you taking a
+                // halt?" — a long halt on a train is a station, not a decision.
+                // A long stop is never presented as a problem, and never guessed at.
                 s = s.copy(longStopPromptDue = profile.stopPromptsEnabled)
                 appScope.launch { insertEvent(t.tripId, EventTypes.LONG_STOP, EventSource.SYSTEM_INFERRED, now, s0.lat, s0.lng, emptyMap(), false) }
+                if (profile.stopPromptsEnabled && s0.overnightType == null) {
+                    notifier.showHaltQuestion()
+                    appScope.launch {
+                        insertEvent(t.tripId, EventTypes.HALT_SUGGESTED, EventSource.SYSTEM_INFERRED, now, s0.lat, s0.lng,
+                            mapOf("kind" to "LONG_STOP", "text" to "Looks like you've stopped for a while. Are you taking a halt?"), false)
+                    }
+                }
                 onSamplingChanged?.invoke()
             }
             is StopDetector.Movement.None -> {}
@@ -1670,107 +1894,183 @@ class TripManager(
     }
 
     // -----------------------------------------------------------------------
-    // Wellbeing coach + the circle's regular update
+    // Wellbeing coach, halt planning, ETA changes and the periodic update
     // -----------------------------------------------------------------------
 
+    /**
+     * Coach state, the halt place, the ETA baseline and the last periodic
+     * update — all on the phone, so coaching works offline and a restart
+     * never resets a reminder ladder.
+     */
     private val coachPrefs by lazy {
         appContext.getSharedPreferences("tp_wellbeing_coach", Context.MODE_PRIVATE)
     }
 
-    private fun loadCoach(tripId: String) =
-        com.trippulse.app.domain.WellbeingCoach.decode(coachPrefs.getString(tripId, null))
+    private fun haltPlaceKey(tripId: String) = "$tripId|haltPlace"
+    private fun etaBaselineKey(tripId: String) = "$tripId|etaBaseline"
 
-    private fun saveCoach(tripId: String, states: Map<com.trippulse.app.domain.WellbeingCoach.Need, com.trippulse.app.domain.WellbeingCoach.NeedState>) {
-        coachPrefs.edit().putString(tripId, com.trippulse.app.domain.WellbeingCoach.encode(states)).apply()
+    private fun loadCoach(tripId: String) = WellbeingCoach.decode(coachPrefs.getString(tripId, null))
+
+    private fun saveCoach(tripId: String, states: Map<WellbeingCoach.Need, WellbeingCoach.NeedState>) {
+        coachPrefs.edit().putString(tripId, WellbeingCoach.encode(states)).apply()
+    }
+
+    private fun movementOf(s: TripStateEntity): WellbeingCoach.Movement = when (s.journey) {
+        JourneyStatus.DRIVING.name -> WellbeingCoach.Movement.MOVING
+        JourneyStatus.OVERNIGHT.name -> WellbeingCoach.Movement.HALTED
+        JourneyStatus.PAUSED.name -> WellbeingCoach.Movement.PAUSED
+        else -> WellbeingCoach.Movement.STOPPED
     }
 
     /**
      * One pass of the coach, on the journey tick (under [lock]).
      *
-     * Nudges go to the traveller as a notification with one-tap answers and
-     * are recorded as WELLBEING_NUDGE (kept, never broadcast). Only a need
-     * still skipped after the reminder becomes a WELLBEING_ALERT, which is
-     * what reaches the circle. The hourly JOURNEY_UPDATE rides the same tick.
+     * Suggestions go to the traveller only, with one-tap answers, and are
+     * kept as traveller-only records. A need still unresolved after one
+     * suggestion and one reminder becomes a neutral WELLBEING_ALERT for the
+     * followers. The long-haul halt suggestion, significant ETA changes and
+     * the periodic update ride the same tick.
      */
     private suspend fun coachTick(t: ActiveTripEntity, s: TripStateEntity, now: Long) {
         if (t.status != "ACTIVE" || !isEditable(t)) return
         val started = t.startedAtMs ?: return
+        val plan = planFor(t)
         val modeKey = activeLeg()?.mode ?: t.transportMode
-        val moving = s.journey == JourneyStatus.DRIVING.name
-        val overnight = s.journey == JourneyStatus.OVERNIGHT.name
-        val rules = com.trippulse.app.domain.WellbeingCoach.rulesFor(modeKey)
+        val role = WellbeingCoach.Role.fromKey(plan.role) ?: WellbeingCoach.defaultRole(modeKey)
+        val movement = movementOf(s)
+        val halted = movement == WellbeingCoach.Movement.HALTED
 
-        if (rules != null) {
-            val result = com.trippulse.app.domain.WellbeingCoach.step(
-                rules,
-                com.trippulse.app.domain.WellbeingCoach.Inputs(
-                    nowMs = now, startedAtMs = started, moving = moving,
-                    drivingSinceMs = s.drivingSinceMs, waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs,
-                    overnight = overnight, localHour = TimeFmt.hourOfDay(now),
-                    travellerName = ownerName().orEmpty()
-                ),
-                loadCoach(t.tripId)
+        val result = WellbeingCoach.step(
+            WellbeingCoach.WellbeingContext(
+                nowMs = now, localHour = TimeFmt.hourOfDay(now), localMinuteOfDay = TimeFmt.minuteOfDay(now),
+                mode = modeKey, role = role, movement = movement,
+                journeyStartedAtMs = started, continuousSinceMs = s.drivingSinceMs,
+                waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs,
+                travellerName = ownerName().orEmpty()
+            ),
+            loadCoach(t.tripId)
+        )
+        saveCoach(t.tripId, result.states)
+        result.expired.forEach { notifier.cancelWellbeingNudge(it.key) }
+        for (d in result.decisions) {
+            val payload = mapOf(
+                "need" to d.need.key, "text" to d.body, "reasons" to d.reasons,
+                "confidence" to d.confidence.name, "gapMinutes" to d.gapMin
             )
-            saveCoach(t.tripId, result.states)
-            for (a in result.actions) when (a) {
-                is com.trippulse.app.domain.WellbeingCoach.Action.Nudge -> {
-                    notifier.showWellbeingNudge(a.need.key, a.title, a.body)
-                    insertEvent(
-                        t.tripId, EventTypes.WELLBEING_NUDGE, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
-                        mapOf("need" to a.need.key, "reminder" to a.reminder, "text" to a.body), false
-                    )
-                }
-                is com.trippulse.app.domain.WellbeingCoach.Action.Escalate -> {
-                    insertEvent(
-                        t.tripId, EventTypes.WELLBEING_ALERT, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
-                        mapOf(
-                            "need" to a.need.key, "gapMinutes" to a.gapMin,
-                            "reminders" to a.reminders, "text" to a.text
-                        ), false
-                    )
-                }
+            if (d.followerVisible) {
+                insertEvent(
+                    t.tripId, EventTypes.WELLBEING_ALERT, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                    payload + ("reminders" to (result.states[d.need]?.reminders ?: 1)), false
+                )
+            } else {
+                notifier.showWellbeingNudge(d.need.key, d.title, d.body)
+                val (nudge, reminder, _) = EventTypes.coachTypes(d.need.key)
+                insertEvent(
+                    t.tripId, if (d.reminder) reminder else nudge, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                    payload + ("title" to d.title), false
+                )
             }
         }
 
-        // ---- the circle's regular update --------------------------------------
-        val key = "${t.tripId}|update"
-        val last = coachPrefs.getLong(key, 0L).takeIf { it > 0 }
-        if (!overnight && com.trippulse.app.domain.JourneyUpdates.due(last, started, now)) {
-            val measures = com.trippulse.app.domain.Measures.resolve(null, settings.current.unitPreference)
-            val text = com.trippulse.app.domain.JourneyUpdates.text(
-                com.trippulse.app.domain.JourneyUpdates.Facts(
-                    nowMs = now, startedAtMs = started, moving = moving,
-                    driving = rules?.driving ?: TransportCatalog.isPrivate(modeKey),
-                    riding = rules?.riding ?: false,
-                    distanceLeft = s.distanceRemainingM.takeIf { it > 0 }?.let { measures.distance(it) },
-                    etaClock = s.etaLikelyMs?.let { TimeFmt.clockWithDay(it, now) },
-                    waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs
-                )
+        // ---- long-haul: suggest planning an overnight halt, once ---------------
+        val suggestedKey = "${t.tripId}|haltPlanSuggested"
+        if (HaltPlanning.shouldSuggest(
+                role, modeKey, plan.plannedHalt, coachPrefs.getBoolean(suggestedKey, false), halted,
+                now, s.etaLikelyMs, s.etaLikelyMs?.let { TimeFmt.hourOfDay(it) }
             )
-            coachPrefs.edit().putLong(key, now).apply()
+        ) {
+            coachPrefs.edit().putBoolean(suggestedKey, true).apply()
+            notifier.showHaltPlanSuggestion(HaltPlanning.TEXT)
             insertEvent(
-                t.tripId, EventTypes.JOURNEY_UPDATE, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
-                mapOf("text" to text), false
+                t.tripId, EventTypes.HALT_SUGGESTED, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                mapOf("kind" to "LONG_HAUL", "text" to HaltPlanning.TEXT), false
             )
         }
-    }
 
-    /** "Had water" / "Ate something" from a nudge notification. */
-    suspend fun logNeedMet(need: com.trippulse.app.domain.WellbeingCoach.Need) {
-        when (need) {
-            com.trippulse.app.domain.WellbeingCoach.Need.WATER -> logNourishment(Nourishment.WATER)
-            com.trippulse.app.domain.WellbeingCoach.Need.FOOD -> submitCheckpoint(Checkpoint(food = true))
-            com.trippulse.app.domain.WellbeingCoach.Need.BREAK -> Unit // the stop itself answers a break
+        // ---- a materially different arrival time ---------------------------------
+        val etaKey = etaBaselineKey(t.tripId)
+        val eta = s.etaLikelyMs
+        if (!halted && eta != null && s.etaMode == EtaMode.NORMAL.name) {
+            val baseline = coachPrefs.getLong(etaKey, 0L).takeIf { it > 0 }
+            if (baseline == null) {
+                coachPrefs.edit().putLong(etaKey, eta).apply()
+            } else if (EtaShift.significant(baseline, eta, now)) {
+                val shift = WellbeingCoach.duration(kotlin.math.abs(eta - baseline) / 60_000)
+                val text = "Now expected around ${TimeFmt.clockWithDay(eta, now)} — about $shift " +
+                    (if (eta > baseline) "later" else "earlier") + " than before."
+                coachPrefs.edit().putLong(etaKey, eta).apply()
+                insertEvent(
+                    t.tripId, EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                    mapOf("previousEtaMs" to baseline, "etaMs" to eta, "source" to "SYSTEM_DETECTED", "text" to text),
+                    false
+                )
+            }
+        }
+
+        // ---- the periodic update: only when something meaningful changed ---------
+        val key = "${t.tripId}|update"
+        val snapKey = "${t.tripId}|updateSnap"
+        val last = coachPrefs.getLong(key, 0L).takeIf { it > 0 }
+        if (!halted && movement != WellbeingCoach.Movement.PAUSED && JourneyUpdates.due(last, started, now)) {
+            val snap = JourneyUpdates.Snapshot(
+                coveredM = s.distanceCoveredM, etaMs = s.etaLikelyMs,
+                moving = movement == WellbeingCoach.Movement.MOVING,
+                waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs, breakAtMs = s.lastBreakEndAtMs
+            )
+            val changes = JourneyUpdates.changes(JourneyUpdates.Snapshot.decode(coachPrefs.getString(snapKey, null)), snap)
+            // Considered either way, so an unchanged journey is looked at again
+            // an interval later rather than on every tick.
+            coachPrefs.edit().putLong(key, now).apply()
+            if (changes.isNotEmpty()) {
+                val rules = WellbeingCoach.rulesFor(modeKey, role)
+                val measures = com.trippulse.app.domain.Measures.resolve(null, settings.current.unitPreference)
+                val text = JourneyUpdates.text(
+                    JourneyUpdates.Facts(
+                        nowMs = now, startedAtMs = started, moving = snap.moving,
+                        driving = rules?.breakKind == WellbeingCoach.BreakKind.DRIVING,
+                        riding = rules?.breakKind == WellbeingCoach.BreakKind.RIDING,
+                        distanceLeft = s.distanceRemainingM.takeIf { it > 0 }?.let { measures.distance(it) },
+                        etaClock = s.etaLikelyMs?.let { TimeFmt.clockWithDay(it, now) },
+                        waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs, breakAtMs = s.lastBreakEndAtMs
+                    )
+                )
+                coachPrefs.edit().putString(snapKey, snap.encode()).apply()
+                insertEvent(
+                    t.tripId, EventTypes.JOURNEY_UPDATE, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                    mapOf("text" to text, "changes" to changes), false
+                )
+            }
         }
     }
 
-    /** "Remind me later" from a nudge notification: restart this step's clock. */
-    suspend fun snoozeNudge(need: com.trippulse.app.domain.WellbeingCoach.Need) = lock.withLock {
+    /** "Had water" / "Ate something" / "Taking a break" from a nudge notification. */
+    suspend fun logNeedMet(need: WellbeingCoach.Need) {
+        when (need) {
+            WellbeingCoach.Need.WATER -> logNourishment(Nourishment.WATER)
+            WellbeingCoach.Need.FOOD -> submitCheckpoint(Checkpoint(food = true))
+            WellbeingCoach.Need.BREAK -> takingABreak()
+        }
+    }
+
+    /**
+     * "Taking a break": the traveller means to stop. The stop itself resets
+     * the break cycle; if none follows, one gentle reminder later.
+     */
+    private suspend fun takingABreak() = lock.withLock {
         val t = trip ?: return@withLock
-        saveCoach(
-            t.tripId,
-            com.trippulse.app.domain.WellbeingCoach.snooze(loadCoach(t.tripId), need, System.currentTimeMillis())
+        val s = state ?: return@withLock
+        val now = System.currentTimeMillis()
+        saveCoach(t.tripId, WellbeingCoach.acknowledge(loadCoach(t.tripId), WellbeingCoach.Need.BREAK, now))
+        insertEvent(
+            t.tripId, EventTypes.BREAK_ACKNOWLEDGED, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
+            mapOf("need" to WellbeingCoach.Need.BREAK.key, "source" to "USER_CONFIRMED"), false
         )
+    }
+
+    /** "Remind me later": one reminder after the snooze, then the usual path. */
+    suspend fun snoozeNudge(need: WellbeingCoach.Need) = lock.withLock {
+        val t = trip ?: return@withLock
+        saveCoach(t.tripId, WellbeingCoach.snooze(loadCoach(t.tripId), need, System.currentTimeMillis()))
     }
 
     /**
