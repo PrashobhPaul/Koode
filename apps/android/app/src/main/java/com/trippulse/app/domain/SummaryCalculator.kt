@@ -27,12 +27,12 @@ object SummaryCalculator {
         var fuel = 0
         var teaCoffee = 0
         var snacks = 0
-        var longestBreak = 0L
 
-        // longest continuous driving leg: time between a STOP_ENDED/START and
-        // the next STOP_STARTED (or trip end).
-        var legStart = startedAtMs
-        var longestLeg = 0L
+        // Stops are paired from STOP_STARTED / STOP_ENDED event timestamps —
+        // the same source JourneyAnalytics and the timeline use — so this
+        // summary (embedded in TRIP_COMPLETED) never disagrees with them.
+        val rawStops = ArrayList<Pair<Long, Long>>()
+        var openStopStartMs: Long? = null
 
         val days = sortedDays(sorted, startedAtMs, endedAtMs, zone)
 
@@ -40,13 +40,11 @@ object SummaryCalculator {
             when (e.type) {
                 EventTypes.STOP_STARTED -> {
                     stops++
-                    val leg = e.eventTimeMs - legStart
-                    if (leg > longestLeg) longestLeg = leg
+                    if (openStopStartMs == null) openStopStartMs = e.eventTimeMs
                 }
                 EventTypes.STOP_ENDED -> {
-                    val durS = (e.payload["durationSeconds"] as? Number)?.toLong() ?: 0L
-                    if (durS > longestBreak) longestBreak = durS
-                    legStart = e.eventTimeMs
+                    openStopStartMs?.let { rawStops.add(it to e.eventTimeMs) }
+                    openStopStartMs = null
                 }
                 EventTypes.FOOD_REPORTED -> food++
                 EventTypes.WATER_REPORTED -> water++
@@ -57,14 +55,29 @@ object SummaryCalculator {
                 EventTypes.SNACK_REPORTED -> snacks++
             }
         }
-        // final leg to trip end
-        val lastLeg = endedAtMs - legStart
-        if (lastLeg > longestLeg) longestLeg = lastLeg
+        openStopStartMs?.let { rawStops.add(it to endedAtMs) }
 
         val totalS = ((endedAtMs - startedAtMs) / 1000).coerceAtLeast(0)
-        // driving time = total minus the sum of confirmed stop durations
-        val stoppedS = sorted.filter { it.type == EventTypes.STOP_ENDED }
-            .sumOf { (it.payload["durationSeconds"] as? Number)?.toLong() ?: 0L }
+
+        val periods = rawStops
+            .map { it.first.coerceIn(startedAtMs, endedAtMs) to it.second.coerceIn(startedAtMs, endedAtMs) }
+            .filter { it.second > it.first }
+            .sortedBy { it.first }
+
+        val stoppedS = periods.sumOf { (it.second - it.first) / 1000 }.coerceIn(0, totalS)
+        val longestBreak = periods.maxOfOrNull { (it.second - it.first) / 1000 } ?: 0L
+
+        // Longest continuous moving stretch = the largest gap outside any stop.
+        var cursor = startedAtMs
+        var longestLeg = 0L
+        for ((ps, pe) in periods) {
+            val stretch = ((ps - cursor) / 1000).coerceAtLeast(0)
+            if (stretch > longestLeg) longestLeg = stretch
+            if (pe > cursor) cursor = pe
+        }
+        val tail = ((endedAtMs - cursor) / 1000).coerceAtLeast(0)
+        if (tail > longestLeg) longestLeg = tail
+
         val drivingS = (totalS - stoppedS).coerceAtLeast(0)
 
         return TripSummary(
@@ -79,7 +92,7 @@ object SummaryCalculator {
             fuelStops = fuel,
             teaCoffee = teaCoffee,
             snacks = snacks,
-            longestLegSeconds = (longestLeg / 1000).coerceAtLeast(0),
+            longestLegSeconds = longestLeg.coerceAtLeast(0),
             longestBreakSeconds = longestBreak,
             days = days
         )

@@ -48,10 +48,6 @@ data class TripConfig(
     val toiletIntervalMin: Long = 240,
     val fuelIntervalKm: Double = 450.0,
 
-    // ---- route deviation ----
-    val deviationThresholdM: Double = 1200.0,
-    val deviationPersistS: Long = 300,
-
     // ---- freshness (viewer) ----
     val freshnessLiveS: Long = 60,
     val freshnessRecentS: Long = 300,

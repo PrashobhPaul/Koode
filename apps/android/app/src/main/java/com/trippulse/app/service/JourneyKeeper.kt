@@ -83,8 +83,7 @@ class JourneyKeeperWorker(appContext: Context, params: WorkerParameters) :
                 nowMs = System.currentTimeMillis(),
                 lastUpdateMs = state.lastLocationAtMs ?: state.updatedAtMs,
                 lastBatteryPct = state.batteryPct,
-                simChangedAtMs = trip.simChangedAtMs,
-                deviationActive = state.deviationActive
+                simChangedAtMs = trip.simChangedAtMs
             )
         )
         if (!assessment.concerning) return

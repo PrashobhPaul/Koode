@@ -15,15 +15,12 @@ class EndFlowReproTmpTest {
 
     private fun journey(): List<TripEvent> = buildList {
         add(ev(EventTypes.TRIP_STARTED, 0.0))
-        add(ev(EventTypes.ROUTE_DEVIATION, 0.2, mapOf("distanceM" to 820.0)))
-        add(ev(EventTypes.ROUTE_REJOINED, 0.3))
         add(ev(EventTypes.WATER_REPORTED, 0.9)); add(ev(EventTypes.BREAK_CHECKPOINT, 0.9, mapOf("water" to true)))
         add(ev(EventTypes.SNACK_REPORTED, 0.9, mapOf("kind" to "SNACK"))); add(ev(EventTypes.BREAK_CHECKPOINT, 0.9))
         add(ev(EventTypes.TOILET_REPORTED, 0.9)); add(ev(EventTypes.BREAK_CHECKPOINT, 0.9, mapOf("toilet" to true)))
         add(ev(EventTypes.STOP_STARTED, 0.92, src = EventSource.SYSTEM_INFERRED))
         add(ev(EventTypes.BREAK_CHECKPOINT_SKIPPED, 1.0))
         add(ev(EventTypes.STOP_ENDED, 1.05, mapOf("durationSeconds" to 180), EventSource.SYSTEM_INFERRED))
-        for (k in 0 until 10) { add(ev(EventTypes.ROUTE_DEVIATION, 1.2 + k * 0.3, mapOf("distanceM" to 700))); add(ev(EventTypes.ROUTE_REJOINED, 1.3 + k * 0.3)) }
         add(ev(EventTypes.FUEL_STOP, 5.0, mapOf("amount" to 2500.0, "litres" to 25.0)))
         add(ev(EventTypes.FOOD_REPORTED, 5.0, mapOf("kind" to "BREAKFAST"))); add(ev(EventTypes.BREAK_CHECKPOINT, 5.0))
         add(ev(EventTypes.STOP_STARTED, 5.05)); add(ev(EventTypes.BREAK_CHECKPOINT_SKIPPED, 5.05))

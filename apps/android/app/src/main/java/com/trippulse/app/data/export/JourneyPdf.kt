@@ -16,7 +16,6 @@ import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import com.trippulse.app.R
-import com.trippulse.app.BuildConfig
 import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TimeFmt
 import kotlinx.coroutines.Dispatchers
@@ -28,8 +27,8 @@ import java.io.FileOutputStream
  * Turns a finished journey into a PDF the traveller can keep, print or send.
  *
  * Two documents, one renderer: the **timeline** (what happened, when) and the
- * **money tracker** (what it cost). Both carry the Koode wordmark and a
- * diagonal watermark, and both are produced with Android's own
+ * **money tracker** (what it cost). Both carry the Koode wordmark and a small,
+ * faint maker's mark low on the page, and both are produced with Android's own
  * [PdfDocument] — a flat, painted page with no form fields and no embedded
  * text layer to edit, which is exactly the "non-editable" the product asks for.
  * Nothing leaves the device: the file is written to app-private cache and only
@@ -41,8 +40,9 @@ object JourneyPdf {
     /** Header mark, in points. Matches the wordmark's cap height beside it. */
     private const val MARK_SIZE = 22f
 
-    /** Watermark size: large enough to be unmistakable, not so large it tiles. */
-    private const val WATERMARK_SIZE = 320f
+    /** Watermark size: a small, faint mark low on the page — a maker's mark,
+     *  not a stamp across the content. */
+    private const val WATERMARK_SIZE = 132f
 
     /**
      * Rasterises the app's icon for use on the page.
@@ -92,11 +92,19 @@ object JourneyPdf {
     private const val MARGIN = 44f
     private const val LINE = 18f
 
+    /** Height of the recorded-route panel on the page, in points. */
+    private const val MAP_HEIGHT = 188f
+
     // ---- brand ----
     private val INK = Color.parseColor("#0B1E2D")
     private val TEAL = Color.parseColor("#2DD4BF")
+    private val TEAL_DEEP = Color.parseColor("#14B8A6")
     private val MUTED = Color.parseColor("#6B8391")
     private val RULE = Color.parseColor("#DCE6EB")
+    private val OK = Color.parseColor("#0E9F6E")
+    private val MAP_BG = Color.parseColor("#EAF3F5")
+    private val START_DOT = Color.parseColor("#0E9F6E")
+    private val END_DOT = Color.parseColor("#0EA5E9")
 
     /** One printed row: a time, a label and an optional right-hand value. */
     data class Row(val left: String, val middle: String, val right: String = "")
@@ -119,10 +127,20 @@ object JourneyPdf {
         val title: String,
         val subtitle: String,
         val meta: List<String>,
+        /** A prominent status line under the title, e.g. "Journey completed". */
+        val status: String? = null,
         val figures: List<Figure> = emptyList(),
         val insights: List<String> = emptyList(),
+        /**
+         * The recorded GPS path as (lat, lng) points, drawn as a plain
+         * visualization of where the journey went — never a route-quality
+         * judgement. Empty = no map (falls back to the textual origin/dest).
+         */
+        val path: List<Pair<Double, Double>> = emptyList(),
         val sections: List<Section>,
-        val fileLabel: String
+        val fileLabel: String,
+        /** Short reference shown in the footer, e.g. "Trip TP-12345". */
+        val footerRef: String? = null
     )
 
     /**
@@ -139,13 +157,30 @@ object JourneyPdf {
         var canvas = page.canvas
         var y = painter.drawHeader(canvas, doc, first = true)
         if (doc.figures.isNotEmpty()) y = painter.drawFigures(canvas, doc.figures, y)
+
+        // The recorded route, if we have a path to draw. Kept near the top,
+        // right after the numbers, per the report hierarchy (map before detail).
+        if (doc.path.size >= 2) {
+            val mapBlock = LINE * 1.4f + MAP_HEIGHT + LINE * 0.8f
+            if (y + mapBlock > PAGE_H - MARGIN) {
+                painter.drawFooter(canvas, pageNumber, doc.footerRef)
+                pdf.finishPage(page)
+                pageNumber++
+                page = pdf.startPage(pageInfo(pageNumber))
+                canvas = page.canvas
+                y = painter.drawHeader(canvas, doc, first = false)
+            }
+            y = painter.drawSectionTitle(canvas, "Recorded route", y)
+            y = painter.drawPath(canvas, doc.path, y)
+        }
+
         if (doc.insights.isNotEmpty()) y = painter.drawInsights(canvas, doc.insights, y)
 
         for (section in doc.sections) {
             // A section header stranded at the foot of a page reads badly, so
             // break early if the title plus one row would not fit.
             if (y + LINE * 3 > PAGE_H - MARGIN) {
-                painter.drawFooter(canvas, pageNumber)
+                painter.drawFooter(canvas, pageNumber, doc.footerRef)
                 pdf.finishPage(page)
                 pageNumber++
                 page = pdf.startPage(pageInfo(pageNumber))
@@ -157,7 +192,7 @@ object JourneyPdf {
 
             for (row in section.rows) {
                 if (y + LINE > PAGE_H - MARGIN - LINE) {
-                    painter.drawFooter(canvas, pageNumber)
+                    painter.drawFooter(canvas, pageNumber, doc.footerRef)
                     pdf.finishPage(page)
                     pageNumber++
                     page = pdf.startPage(pageInfo(pageNumber))
@@ -172,7 +207,7 @@ object JourneyPdf {
             y += LINE * 0.6f
         }
 
-        painter.drawFooter(canvas, pageNumber)
+        painter.drawFooter(canvas, pageNumber, doc.footerRef)
         pdf.finishPage(page)
 
         val dir = File(context.cacheDir, "exports").apply { mkdirs() }
@@ -221,6 +256,30 @@ object JourneyPdf {
             isAntiAlias = true; color = MUTED; textSize = 11f
             typeface = Typeface.SANS_SERIF
         }
+        private val route = Paint().apply {
+            isAntiAlias = true; color = INK; textSize = 13f
+            typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+        }
+        private val statusPaint = Paint().apply {
+            isAntiAlias = true; color = OK; textSize = 14f
+            typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+        }
+        private val mapBgPaint = Paint().apply { isAntiAlias = true; color = MAP_BG }
+        private val pathPaint = Paint().apply {
+            isAntiAlias = true; color = TEAL_DEEP; style = Paint.Style.STROKE
+            strokeWidth = 2.4f; strokeCap = Paint.Cap.ROUND; strokeJoin = Paint.Join.ROUND
+        }
+        private val startDotPaint = Paint().apply { isAntiAlias = true; color = START_DOT }
+        private val endDotPaint = Paint().apply { isAntiAlias = true; color = END_DOT }
+        private val dotHalo = Paint().apply { isAntiAlias = true; color = Color.WHITE }
+        private val startLegend = Paint().apply {
+            isAntiAlias = true; color = START_DOT; textSize = 9f
+            typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+        }
+        private val endLegend = Paint().apply {
+            isAntiAlias = true; color = END_DOT; textSize = 9f
+            typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+        }
         private val sectionPaint = Paint().apply {
             isAntiAlias = true; color = INK; textSize = 13f
             typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
@@ -241,15 +300,9 @@ object JourneyPdf {
         }
         private val rule = Paint().apply { color = RULE; strokeWidth = 0.6f }
         private val accent = Paint().apply { isAntiAlias = true; color = TEAL }
-        private val watermark = Paint().apply {
-            isAntiAlias = true
-            color = Color.argb(22, 45, 212, 191)
-            textSize = 96f
-            typeface = Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
-        }
         private val imagePaint = Paint().apply { isAntiAlias = true; isFilterBitmap = true }
         /** Faint enough to read straight through, present enough to be seen. */
-        private val watermarkPaint = Paint(imagePaint).apply { alpha = 18 }
+        private val watermarkPaint = Paint(imagePaint).apply { alpha = 8 }
 
         fun drawHeader(canvas: Canvas, doc: Document, first: Boolean): Float {
             drawWatermark(canvas)
@@ -261,9 +314,13 @@ object JourneyPdf {
             var y = 96f
             if (first) {
                 canvas.drawText(doc.title, MARGIN, y, title)
-                y += LINE
-                canvas.drawText(doc.subtitle, MARGIN, y, subtitle)
-                y += LINE * 0.8f
+                y += LINE * 1.1f
+                doc.status?.let {
+                    canvas.drawText("✓  $it", MARGIN, y, statusPaint)
+                    y += LINE * 1.15f
+                }
+                canvas.drawText(doc.subtitle, MARGIN, y, route)
+                y += LINE * 0.95f
                 doc.meta.forEach {
                     canvas.drawText(it, MARGIN, y, bodyMuted)
                     y += LINE * 0.8f
@@ -307,32 +364,24 @@ object JourneyPdf {
         }
 
         /**
-         * The watermark: the mark itself, large and faint, behind the page.
-         *
-         * A word set diagonally across a document is the conventional answer
-         * and the weaker one -- it reads as a stamp applied to someone else's
-         * paper. The mark at low opacity reads as the paper being ours.
+         * The watermark: the mark itself, small and very faint, low on the
+         * page — a maker's mark, never a stamp across the content. It sits in
+         * the lower margin band so it can never compete with the journey
+         * information above it.
          */
         private fun drawWatermark(canvas: Canvas) {
-            canvas.save()
-            canvas.rotate(-32f, PAGE_W / 2f, PAGE_H / 2f)
-            val bmp = mark
-            if (bmp != null) {
-                val size = WATERMARK_SIZE
-                val cx = PAGE_W / 2f
-                val cy = PAGE_H / 2f
-                canvas.drawBitmap(
-                    bmp,
-                    null,
-                    RectF(cx - size / 2, cy - size / 2, cx + size / 2, cy + size / 2),
-                    watermarkPaint
-                )
-            } else {
-                // The asset failed to load; a page with no watermark at all
-                // would look like a different document, so fall back to type.
-                canvas.drawText("KOODE", 92f, PAGE_H / 2f + 30f, watermark)
-            }
-            canvas.restore()
+            // A small, faint maker's mark low on the page — never behind the
+            // content it would compete with. Placed near the foot, centred.
+            val bmp = mark ?: return
+            val size = WATERMARK_SIZE
+            val cx = PAGE_W / 2f
+            val cy = PAGE_H - 150f
+            canvas.drawBitmap(
+                bmp,
+                null,
+                RectF(cx - size / 2, cy - size / 2, cx + size / 2, cy + size / 2),
+                watermarkPaint
+            )
         }
 
         /**
@@ -356,15 +405,67 @@ object JourneyPdf {
             return y
         }
 
-        /** The plain-English read of those numbers. */
+        /** The plain-English read of those numbers, under its own heading. */
         fun drawInsights(canvas: Canvas, insights: List<String>, y0: Float): Float {
-            var y = y0
+            var y = drawSectionTitle(canvas, "Journey insights", y0)
             insights.forEach {
                 canvas.drawText("•  " + clip(it, 92), MARGIN, y, body)
                 y += LINE
             }
-            canvas.drawLine(MARGIN, y - LINE * 0.5f, PAGE_W - MARGIN, y - LINE * 0.5f, rule)
             return y + LINE * 0.4f
+        }
+
+        /**
+         * The recorded GPS track, projected into a light panel. This is only a
+         * picture of where the journey went — no basemap, no "correct/incorrect
+         * route" claim. Start and end are marked; the line is the path recorded.
+         */
+        fun drawPath(canvas: Canvas, points: List<Pair<Double, Double>>, y0: Float): Float {
+            val left = MARGIN
+            val top = y0 + LINE * 0.2f
+            val right = PAGE_W - MARGIN
+            val bottom = top + MAP_HEIGHT
+            canvas.drawRoundRect(RectF(left, top, right, bottom), 10f, 10f, mapBgPaint)
+
+            val pad = 16f
+            val minLat = points.minOf { it.first }; val maxLat = points.maxOf { it.first }
+            val minLng = points.minOf { it.second }; val maxLng = points.maxOf { it.second }
+            val midLatRad = Math.toRadians((minLat + maxLat) / 2.0)
+            // Equirectangular: scale longitude by cos(lat) so shape isn't skewed.
+            val spanX = ((maxLng - minLng) * Math.cos(midLatRad)).coerceAtLeast(1e-9)
+            val spanY = (maxLat - minLat).coerceAtLeast(1e-9)
+            val availW = (right - left) - pad * 2
+            val availH = (bottom - top) - pad * 2
+            val scale = minOf(availW / spanX, availH / spanY)
+            val drawW = spanX * scale
+            val drawH = spanY * scale
+            val offX = left + pad + (availW - drawW) / 2
+            val offY = top + pad + (availH - drawH) / 2
+
+            fun sx(lng: Double) = (offX + ((lng - minLng) * Math.cos(midLatRad)) * scale).toFloat()
+            // Flip Y so north is up.
+            fun sy(lat: Double) = (offY + (maxLat - lat) * scale).toFloat()
+
+            val path = Path()
+            points.forEachIndexed { i, p ->
+                val x = sx(p.second); val yy = sy(p.first)
+                if (i == 0) path.moveTo(x, yy) else path.lineTo(x, yy)
+            }
+            canvas.drawPath(path, pathPaint)
+
+            val first = points.first(); val last = points.last()
+            fun dot(lat: Double, lng: Double, paint: Paint) {
+                val x = sx(lng); val yy = sy(lat)
+                canvas.drawCircle(x, yy, 5.5f, dotHalo)
+                canvas.drawCircle(x, yy, 4f, paint)
+            }
+            dot(first.first, first.second, startDotPaint)
+            dot(last.first, last.second, endDotPaint)
+
+            // A tiny legend so the two dots are unambiguous.
+            canvas.drawText("● Start", left + pad, bottom + LINE * 0.9f, startLegend)
+            canvas.drawText("● Latest", left + pad + 64f, bottom + LINE * 0.9f, endLegend)
+            return bottom + LINE * 1.4f
         }
 
         fun drawSectionTitle(canvas: Canvas, text: String, y0: Float): Float {
@@ -394,10 +495,17 @@ object JourneyPdf {
             return y0 + LINE
         }
 
-        fun drawFooter(canvas: Canvas, pageNumber: Int) {
-            val line = "Generated by Koode ${BuildConfig.VERSION_NAME} on " +
-                TimeFmt.dateTime(System.currentTimeMillis()) + "   ·   Page $pageNumber"
-            canvas.drawText(line, MARGIN, PAGE_H - MARGIN + 12f, subtitle)
+        fun drawFooter(canvas: Canvas, pageNumber: Int, ref: String?) {
+            val yb = PAGE_H - MARGIN + 12f
+            val left = buildString {
+                append("Koode")
+                ref?.takeIf { it.isNotBlank() }?.let { append("  ·  ").append(it) }
+                append("  ·  Generated ").append(TimeFmt.dateTime(System.currentTimeMillis()))
+            }
+            canvas.drawText(clip(left, 88), MARGIN, yb, subtitle)
+            val pageText = "Page $pageNumber"
+            val w = subtitle.measureText(pageText)
+            canvas.drawText(pageText, PAGE_W - MARGIN - w, yb, subtitle)
         }
 
         private fun clip(text: String, max: Int): String =

@@ -27,14 +27,13 @@ class DarknessTest {
         shutdownBattery: Int? = null,
         restart: Boolean = false,
         simChangedAtMs: Long? = null,
-        deviation: Boolean = false,
         offlineExpected: Boolean = false,
         closed: Boolean = false
     ) = Darkness.Inputs(
         nowMs = now, lastUpdateMs = lastUpdateMs, lastBatteryPct = battery,
         shutdownAtMs = shutdownAtMs, shutdownBatteryPct = shutdownBattery,
         shutdownWasRestart = restart, simChangedAtMs = simChangedAtMs,
-        deviationActive = deviation, offlineExpected = offlineExpected,
+        offlineExpected = offlineExpected,
         journeyClosed = closed
     )
 
@@ -122,14 +121,6 @@ class DarknessTest {
     }
 
     // ---- compounding worries --------------------------------------------
-
-    @Test fun going_quiet_while_off_route_escalates_far_sooner() {
-        // Two unexplained things at once are not two coincidences.
-        val onRoute = Darkness.assess(inputs(lastUpdateMs = now - minutes(20)))
-        val offRoute = Darkness.assess(inputs(lastUpdateMs = now - minutes(20), deviation = true))
-        assertFalse(onRoute.concerning)
-        assertTrue(offRoute.concerning)
-    }
 
     @Test fun a_sim_change_is_reported_at_once() {
         // Phones do not swap their own SIM.

@@ -23,6 +23,16 @@ object JourneyAnalytics {
     /** One line of a cost breakdown. */
     data class CostLine(val type: String, val label: String, val amount: Double, val share: Double)
 
+    /**
+     * A single stop, from when it began to when the traveller moved on, taken
+     * straight from the STOP_STARTED / STOP_ENDED event timestamps. This is the
+     * one source of truth for "how long was the stop": the summary totals and
+     * the timeline both read it, so they can never disagree.
+     */
+    data class StopPeriod(val startMs: Long, val endMs: Long) {
+        val seconds: Long get() = ((endMs - startMs) / 1000).coerceAtLeast(0)
+    }
+
     /** An expense as the analyser needs it, decoupled from the Room entity. */
     data class ExpenseInput(
         val type: String,
@@ -100,6 +110,8 @@ object JourneyAnalytics {
 
         // ---- shape ----
         val legs: List<LegReport>,
+        /** Every stop, from its own event timestamps — see [StopPeriod]. */
+        val stopPeriods: List<StopPeriod>,
 
         /**
          * Short factual sentences derived from the numbers above. Never a
@@ -124,13 +136,15 @@ object JourneyAnalytics {
         val sorted = BreakTimeline.latestBreaks(i.events).sortedBy { it.eventTimeMs }
         val totalSeconds = ((i.endedAtMs - i.startedAtMs) / 1000).coerceAtLeast(0)
 
-        // ---- stops, breaks and the time they consumed ----
+        // ---- stops and the time they consumed ----
+        // Stops are paired from the SAME event timestamps the timeline renders,
+        // so the summary's stopped time can never disagree with the timeline.
+        // (A STOP_ENDED payload duration measured the standstill differently,
+        // which is what produced "16m stopped" over a visibly 12m stop.)
         var stops = 0
-        var stoppedSeconds = 0L
-        var longestBreak = 0L
-        var longestLeg = 0L
-        var legStart = i.startedAtMs
         val breakTimes = ArrayList<Long>()
+        val rawStops = ArrayList<StopPeriod>()
+        var openStopStartMs: Long? = null
 
         val meals = HashMap<Nourishment, Int>()
         var water = 0
@@ -143,14 +157,11 @@ object JourneyAnalytics {
             when (e.type) {
                 EventTypes.STOP_STARTED -> {
                     stops++
-                    val leg = e.eventTimeMs - legStart
-                    if (leg > longestLeg) longestLeg = leg
+                    if (openStopStartMs == null) openStopStartMs = e.eventTimeMs
                 }
                 EventTypes.STOP_ENDED -> {
-                    val durS = (e.payload["durationSeconds"] as? Number)?.toLong() ?: 0L
-                    stoppedSeconds += durS
-                    if (durS > longestBreak) longestBreak = durS
-                    legStart = e.eventTimeMs
+                    openStopStartMs?.let { rawStops.add(StopPeriod(it, e.eventTimeMs)) }
+                    openStopStartMs = null
                 }
                 EventTypes.BREAK_CHECKPOINT -> {
                     breakCheckpoints++
@@ -170,8 +181,34 @@ object JourneyAnalytics {
                 EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP -> fuelStops++
             }
         }
-        val lastLeg = i.endedAtMs - legStart
-        if (lastLeg > longestLeg) longestLeg = lastLeg
+        // A stop still open when the journey ended runs to the end.
+        openStopStartMs?.let { rawStops.add(StopPeriod(it, i.endedAtMs)) }
+
+        // Clamp to the journey window and drop empties, so totals stay sane on
+        // partial or out-of-order logs.
+        val periods = rawStops
+            .map {
+                StopPeriod(
+                    it.startMs.coerceIn(i.startedAtMs, i.endedAtMs),
+                    it.endMs.coerceIn(i.startedAtMs, i.endedAtMs)
+                )
+            }
+            .filter { it.endMs > it.startMs }
+            .sortedBy { it.startMs }
+
+        val stoppedSeconds = periods.sumOf { it.seconds }.coerceIn(0, totalSeconds)
+        val longestBreak = periods.maxOfOrNull { it.seconds } ?: 0L
+
+        // Longest continuous moving stretch = the largest gap outside any stop.
+        var cursor = i.startedAtMs
+        var longestLeg = 0L
+        for (p in periods) {
+            val stretch = ((p.startMs - cursor) / 1000).coerceAtLeast(0)
+            if (stretch > longestLeg) longestLeg = stretch
+            if (p.endMs > cursor) cursor = p.endMs
+        }
+        val tail = ((i.endedAtMs - cursor) / 1000).coerceAtLeast(0)
+        if (tail > longestLeg) longestLeg = tail
 
         val movingSeconds = (totalSeconds - stoppedSeconds).coerceAtLeast(0)
         val movingShare = if (totalSeconds > 0) movingSeconds.toDouble() / totalSeconds else 0.0
@@ -224,7 +261,7 @@ object JourneyAnalytics {
             movingSeconds = movingSeconds,
             stoppedSeconds = stoppedSeconds,
             movingShare = movingShare,
-            longestLegSeconds = (longestLeg / 1000).coerceAtLeast(0),
+            longestLegSeconds = longestLeg.coerceAtLeast(0),
             longestBreakSeconds = longestBreak,
             days = distinctDays(sorted, i.startedAtMs, i.endedAtMs, i.zone),
             distanceM = i.distanceCoveredM,
@@ -247,6 +284,7 @@ object JourneyAnalytics {
             litres = litres,
             kwh = kwh,
             legs = legReports,
+            stopPeriods = periods,
             insights = emptyList()
         )
         return report.copy(insights = insightsFor(report, i))

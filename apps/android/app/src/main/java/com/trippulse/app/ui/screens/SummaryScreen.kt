@@ -83,7 +83,9 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         scope.launch {
             try {
                 val doc = when (kind) {
-                    PdfKind.TIMELINE -> JourneyDocuments.timeline(t, events, r, measures)
+                    PdfKind.TIMELINE -> JourneyDocuments.timeline(
+                        t, events, r, measures, path = samples.map { it.lat to it.lng }
+                    )
                     PdfKind.MONEY -> JourneyDocuments.money(t, expenses, r, measures)
                 }
                 val file = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { JourneyPdf.write(context, doc) }
@@ -113,6 +115,10 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 color = colors.textMid, style = MaterialTheme.typography.bodyLarge
             )
             trip?.completedAtMs?.let {
+                Text(
+                    "✓ Journey completed",
+                    color = colors.accent, style = MaterialTheme.typography.titleSmall
+                )
                 Text(TimeFmt.dateTime(it), color = colors.textLow, style = MaterialTheme.typography.bodySmall)
             }
 
@@ -207,38 +213,38 @@ fun JourneyDashboard(
 
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
         StatTile("Distance", measures.distance(report.distanceM), Modifier.weight(1f), colors.accent)
-        StatTile("Moving", TimeFmt.durationShort(report.movingSeconds), Modifier.weight(1f))
+        StatTile("Total time", TimeFmt.durationShort(report.totalSeconds), Modifier.weight(1f))
     }
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
-        StatTile("Total time", TimeFmt.durationShort(report.totalSeconds), Modifier.weight(1f))
+        StatTile("Moving", TimeFmt.durationShort(report.movingSeconds), Modifier.weight(1f))
         StatTile("Stopped", TimeFmt.durationShort(report.stoppedSeconds), Modifier.weight(1f))
     }
     if (!compact) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
             StatTile("Average moving", measures.speed(report.averageMovingSpeedKmh), Modifier.weight(1f))
-            StatTile("Door to door", measures.speed(report.overallSpeedKmh), Modifier.weight(1f))
+            StatTile("Stops", report.stops.toString(), Modifier.weight(1f))
         }
     }
 
     // ---- what the numbers mean ----
     if (report.insights.isNotEmpty()) {
-        KoodeCard(title = "What the journey says", accent = colors.traveller) {
+        KoodeCard(title = "Journey insights", accent = colors.traveller) {
             report.insights.forEach {
                 Text("• $it", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
             }
         }
     }
 
-    // ---- breaks & wellbeing ----
-    KoodeCard(title = "Breaks and wellbeing") {
+    // ---- stops & journey activity ----
+    KoodeCard(title = "Stops & journey activity") {
         DetailRow("Stops", report.stops.toString(), leading = "🅿")
         DetailRow("Breaks logged", report.breakCount.toString(), leading = "✅")
         report.averageGapBetweenBreaksSeconds?.let {
             DetailRow("A break about every", TimeFmt.durationShort(it), leading = "⏱")
         }
-        DetailRow("Longest break", TimeFmt.durationShort(report.longestBreakSeconds), leading = "😴")
+        DetailRow("Longest stop", TimeFmt.durationShort(report.longestBreakSeconds), leading = "🅿")
         DetailRow(
-            "Longest stretch without stopping",
+            "Longest continuous moving stretch",
             TimeFmt.durationShort(report.longestLegSeconds), leading = "🛣"
         )
         Spacer(Modifier.height(Spacing.sm))
