@@ -6,9 +6,8 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import com.trippulse.app.TripPulseApp
-import com.trippulse.app.domain.EventNarrator
 import com.trippulse.app.domain.EventTypes
-import com.trippulse.app.domain.FollowerAlerts
+import com.trippulse.app.notifications.FollowerNotifications
 import com.trippulse.app.domain.Freshness
 import com.trippulse.app.domain.Darkness
 import com.trippulse.app.domain.JourneyHealth
@@ -42,14 +41,22 @@ class TripFollowService : Service() {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+    /**
+     * The one sweep loop. start() is called from app launch, boot and every
+     * server push, and each call lands in onStartCommand; without this guard
+     * each would add another loop polling the same journeys.
+     */
+    private var loop: kotlinx.coroutines.Job? = null
+
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val app = applicationContext as? TripPulseApp ?: run { stopSelf(); return START_NOT_STICKY }
         val graph = app.graph
         startForeground(NOTIF_ID, graph.notifier.buildFollowNotification())
+        if (loop?.isActive == true) return START_STICKY
 
-        scope.launch {
+        loop = scope.launch {
             val seen = getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             while (isActive) {
                 val follows = graph.db.viewerDao().activeList()
@@ -67,6 +74,10 @@ class TripFollowService : Service() {
                     }
                     anyLive = true
                     graph.db.viewerDao().markSeen(f.accessKey, System.currentTimeMillis())
+                    // Readable means this device is allowed in — so it may also
+                    // receive this journey's updates as server pushes, which
+                    // reach it even when Koode is closed. No-op once accepted.
+                    runCatching { graph.push.ensureRegistered(f) }
 
                     val since = seen.getLong(f.accessKey, f.joinedAtMs)
                     val events = graph.cloud.fetchEventsSince(f.accessKey, since) ?: continue
@@ -296,16 +307,10 @@ class TripFollowService : Service() {
 
     /**
      * Raise a follower notification for one synced journey event, or return
-     * false when the event is not one the Circle should be told about.
-     *
-     * Every *meaningful* status update the traveller makes lands here — starts,
-     * breaks, meals, fuel, tolls, resumes, stage changes, arrival, completion,
-     * SOS — while raw movement, house-keeping and the going-dark family (which
-     * the darkness/health watcher owns) are filtered out by [FollowerAlerts].
-     * The wording is the exact timeline sentence from [EventNarrator], so what
-     * the Circle is notified matches what they see on the journey screen and in
-     * the PDF. Each event gets a stable per-event id so distinct events stack
-     * and a re-seen event replaces itself rather than duplicating.
+     * false when it is not one the Circle is told about — or when a server
+     * push already showed it. Selection, wording and de-duplication live in
+     * [FollowerNotifications], shared with [KoodeMessagingService], so an
+     * event reaches this person once whichever path delivers it first.
      */
     private fun alert(
         notifier: com.trippulse.app.notifications.Notifier,
@@ -316,16 +321,8 @@ class TripFollowService : Service() {
         val type = event["type"] as? String ?: return false
         @Suppress("UNCHECKED_CAST")
         val payload = (event["payload"] as? Map<String, Any?>) ?: emptyMap()
-        if (!FollowerAlerts.shouldNotify(type, payload)) return false
-        val eventTime = (event["eventTime"] as? Number)?.toLong() ?: System.currentTimeMillis()
-        val (emoji, sentence) = EventNarrator.line(type, payload)
-        notifier.showJourneyEvent(
-            id = FollowerAlerts.notificationId(ref, type, eventTime, payload),
-            title = "$emoji $sentence",
-            body = label,
-            urgent = FollowerAlerts.isUrgent(type)
-        )
-        return true
+        val eventTime = (event["eventTime"] as? Number)?.toLong() ?: return false
+        return FollowerNotifications.notify(this, notifier, ref, label, type, eventTime, payload)
     }
 
     override fun onDestroy() {

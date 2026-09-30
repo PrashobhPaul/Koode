@@ -62,6 +62,10 @@ class AppGraph(context: Context) {
 
     val cloud: TripCloud = TripCloud(appContext)
 
+    /** Server push for journeys this phone follows (inert without Firebase values). */
+    val push: com.trippulse.app.data.push.PushRegistry =
+        com.trippulse.app.data.push.PushRegistry(appContext, cloud)
+
     // Free OSRM public router first, deterministic estimator when offline.
     private val routing: RoutingProvider =
         CompositeRouting(OsrmRoutingProvider(), FallbackRoutingProvider(cfg))

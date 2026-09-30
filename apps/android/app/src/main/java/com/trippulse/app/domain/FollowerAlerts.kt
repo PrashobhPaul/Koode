@@ -77,6 +77,16 @@ object FollowerAlerts {
      * a single, updating notification. Ids sit in a band clear of the app's
      * fixed notification ids.
      */
+    /**
+     * Identity of one real-world event as seen by one follower. The server
+     * push and the in-app follow service can both deliver the same event, and
+     * the server re-sends anything it could not confirm — this key is how the
+     * device shows it once regardless. Unlike [notificationId] it is not
+     * collapsed per break: a break's later "closed" event is new information
+     * and should update the tray entry.
+     */
+    fun dedupKey(ref: String, type: String, eventTimeMs: Long): String = "$ref|$type|$eventTimeMs"
+
     fun notificationId(ref: String, type: String, eventTimeMs: Long, payload: Map<String, Any?>): Int {
         val key = if (type == EventTypes.BREAK_CHECKPOINT)
             "$ref|BREAK|${payload["breakId"] ?: eventTimeMs}"

@@ -98,12 +98,24 @@
             android:exported="false"
             android:foregroundServiceType="location" />
 
-        <!-- Viewer-side alert engine: polls followed trips and raises forced
-             notifications (trip started / SOS / arrival). No push service. -->
+        <!-- Viewer-side alert engine: polls followed trips while Koode runs,
+             raising the same notifications as server push (shared ledger, so
+             each event shows once) plus health and going-dark alerts. -->
         <service
             android:name=".service.TripFollowService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
+
+        <!-- Server push (FCM) for journeys this phone follows. Wakes Koode
+             when it is closed so every update reaches the Circle; inert in
+             builds without Firebase values. -->
+        <service
+            android:name=".service.KoodeMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <receiver
             android:name=".service.BootCompletedReceiver"

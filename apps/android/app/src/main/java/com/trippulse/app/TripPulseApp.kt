@@ -35,6 +35,10 @@ class TripPulseApp : Application() {
 
         graph.notifier.ensureChannels()
 
+        // Server push: lets a followed journey's updates wake this phone even
+        // while Koode is closed. A no-op in builds without Firebase values.
+        graph.push.init()
+
         // Reconnect -> drain. The journey continues locally regardless; this only
         // affects when the server receives events.
         graph.appScope.launch {

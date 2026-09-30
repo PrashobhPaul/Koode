@@ -84,7 +84,10 @@ class Notifier(private val context: Context) {
             .setShowWhen(false)
             .build()
 
-    private fun postEvent(id: Int, channel: String, title: String, text: String, high: Boolean = false) {
+    private fun postEvent(
+        id: Int, channel: String, title: String, text: String,
+        high: Boolean = false, onlyAlertOnce: Boolean = false
+    ) {
         val n = NotificationCompat.Builder(context, channel)
             .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle(title)
@@ -92,6 +95,7 @@ class Notifier(private val context: Context) {
             .setAutoCancel(true)
             .setContentIntent(contentIntent())
             .setPriority(if (high) NotificationCompat.PRIORITY_HIGH else NotificationCompat.PRIORITY_DEFAULT)
+            .setOnlyAlertOnce(onlyAlertOnce)
             .build()
         context.getSystemService(NotificationManager::class.java).notify(id, n)
     }
@@ -141,7 +145,7 @@ class Notifier(private val context: Context) {
      * high-importance channel.
      */
     fun showJourneyEvent(id: Int, title: String, body: String, urgent: Boolean = false) =
-        postEvent(id, if (urgent) CH_SOS else CH_EVENTS, title, body, high = urgent)
+        postEvent(id, if (urgent) CH_SOS else CH_EVENTS, title, body, high = urgent, onlyAlertOnce = !urgent)
 
     /** Journey Health dropped to CONCERN on a followed journey. */
     fun showJourneyAttention(label: String, reason: String) =
