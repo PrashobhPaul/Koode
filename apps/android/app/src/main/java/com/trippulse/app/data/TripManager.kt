@@ -50,6 +50,8 @@ import com.trippulse.app.domain.EtaShift
 import com.trippulse.app.domain.HaltPlanning
 import com.trippulse.app.domain.Halts
 import com.trippulse.app.domain.JourneyClosure
+import com.trippulse.app.domain.Expenses
+import com.trippulse.app.data.local.ExpenseEntity
 import com.trippulse.app.domain.JourneyPlan
 import com.trippulse.app.domain.JourneyPlans
 import com.trippulse.app.domain.JourneyUpdates
@@ -448,7 +450,10 @@ class TripManager(
         val now = System.currentTimeMillis()
         val hereName = nameForPoint(GeoPoint(lat, lng))
 
-        current?.let { db.legDao().markCompleted(t.tripId, it.legIndex, now) }
+        current?.let {
+            db.legDao().markCompleted(t.tripId, it.legIndex, now)
+            fareOpportunity(t.tripId, it.mode, it.fromName, hereName, now)
+        }
 
         // Where this new stage is heading: the point the current stage was
         // already going to. On a single-stage journey that is the destination;
@@ -597,6 +602,7 @@ class TripManager(
         val next = legs.firstOrNull { it.legIndex == nextIndex } ?: return@withLock
 
         db.legDao().markCompleted(t.tripId, t.activeLegIndex, now)
+        activeLeg()?.let { fareOpportunity(t.tripId, it.mode, it.fromName, it.toName, now) }
         insertEvent(
             t.tripId, EventTypes.LEG_COMPLETED, EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
             mapOf("legIndex" to t.activeLegIndex, "mode" to (activeLeg()?.mode ?: t.transportMode)), false
@@ -744,6 +750,8 @@ class TripManager(
         val move = detector.onTick(now)
         if (move != null) s = applyMovement(t, s, move, null, now, profile)
 
+        expenseTick(t, s)
+
         // Arrived and not yet closed: one stronger reminder, then — after
         // sustained arrival with no answer — close it for them, pending review.
         if (closeWatch(t, s, now)) return@withLock
@@ -820,11 +828,26 @@ class TripManager(
      * Tea/coffee and snacks count as a break but never as water — water is
      * only ever what the traveller said was water.
      */
-    suspend fun submitCheckpoint(c: Checkpoint, startAtMs: Long? = null, durationS: Long? = null) {
+    suspend fun submitCheckpoint(
+        c: Checkpoint, startAtMs: Long? = null, durationS: Long? = null,
+        /** The refuel's amount is being recorded with it, so don't ask again. */
+        fuelAmountKnown: Boolean = false
+    ) {
         val lat0 = state?.lat; val lng0 = state?.lng
         // Name the place outside the lock: the geocoder can take a second.
         val placeName = if (openBreak?.place != null && startAtMs == null) openBreak?.place else resolvePlace(lat0, lng0)
-        lock.withLock { submitCheckpointLocked(c, startAtMs, durationS, placeName) }
+        lock.withLock {
+            submitCheckpointLocked(c, startAtMs, durationS, placeName)
+            // Having eaten is wellbeing; having *paid* is a separate question,
+            // asked when it's safe — never assumed from "ate something".
+            val t = editableTrip() ?: return@withLock
+            val now = System.currentTimeMillis()
+            val at = placeName?.let { " · $it" }.orEmpty()
+            if (c.food || c.tea || c.snack) addOpportunity(t.tripId, Expenses.Category.FOOD, now, "Food$at")
+            if ((c.fuel || c.charge) && !fuelAmountKnown) {
+                addOpportunity(t.tripId, Expenses.Category.FUEL, now, (if (c.charge) "Charging" else "Fuel") + at)
+            }
+        }
     }
 
     private suspend fun submitCheckpointLocked(c: Checkpoint, startAtMs: Long?, durationS: Long?, placeName: String?) {
@@ -1052,6 +1075,10 @@ class TripManager(
                 updatedAtMs = now
             )
             notifier.cancelHaltQuestion()
+            // A room confirmed is not a room paid for: ask, don't assume.
+            if (type == Halts.Type.ROOM) {
+                addOpportunity(t.tripId, Expenses.Category.ACCOMMODATION, now, "Room" + place?.let { " · $it" }.orEmpty())
+            }
             persistAndPush(t, s, force = true); state = s
             onSamplingChanged?.invoke()
         }
@@ -1870,6 +1897,7 @@ class TripManager(
             }, false
         )
         db.legDao().markCompleted(t.tripId, t.activeLegIndex, now)
+        activeLeg()?.let { fareOpportunity(t.tripId, it.mode, it.fromName, t.destName, now) }
 
         saveClosure(
             t.tripId,
@@ -1906,6 +1934,74 @@ class TripManager(
         notifier.cancelClosePrompt()
         notifier.showReviewPrompt(closed.destName, auto)
         onStopTrackingRequested?.invoke()
+    }
+
+    // -----------------------------------------------------------------------
+    // Expenses: captured when they happen, never while driving
+    // -----------------------------------------------------------------------
+
+    private val expenseStore by lazy { ExpenseStore(appContext) }
+
+    /** Changes whenever any journey's expense opportunities change. */
+    val expenseVersion: StateFlow<Long> get() = expenseStore.version
+
+    fun expenseOpportunities(tripId: String): List<Expenses.Opportunity> = expenseStore.all(tripId)
+
+    private fun addOpportunity(tripId: String, category: Expenses.Category, atMs: Long, label: String) {
+        val existing = expenseStore.all(tripId)
+        if (Expenses.isDuplicate(existing, category, label, atMs)) return
+        expenseStore.save(tripId, existing + Expenses.Opportunity(UUID.randomUUID().toString(), category, atMs, label))
+    }
+
+    /** A fare leg (cab, bus, metro, train, flight, ferry) just ended: its fare, if any. */
+    private fun fareOpportunity(tripId: String, mode: String, from: String, to: String, atMs: Long) {
+        val cat = Expenses.Category.fareFor(mode) ?: return
+        addOpportunity(tripId, cat, atMs, "${cat.label} · $from → $to")
+    }
+
+    /**
+     * Ask about one open expense when it is safe: never a driver on the move.
+     * The prompt can always be skipped; skipping is not "no expense".
+     */
+    private fun expenseTick(t: ActiveTripEntity, s: TripStateEntity) {
+        val next = expenseStore.all(t.tripId).firstOrNull { it.status == Expenses.Status.PENDING && !it.prompted } ?: return
+        val role = WellbeingCoach.Role.fromKey(planFor(t).role) ?: WellbeingCoach.defaultRole(activeLeg()?.mode ?: t.transportMode)
+        val moving = s.journey == JourneyStatus.DRIVING.name
+        if (!Expenses.safeToAsk(driver = role == WellbeingCoach.Role.DRIVER, moving = moving)) return
+        expenseStore.update(t.tripId, next.id) { it.copy(prompted = true) }
+        notifier.showExpensePrompt(t.tripId, next)
+    }
+
+    /**
+     * An amount for an opportunity: stored as an expense at the moment it
+     * happened (not when it was typed), so the chronology stays true.
+     */
+    suspend fun recordExpenseAmount(tripId: String, opportunityId: String, amount: Double): Boolean = lock.withLock {
+        if (amount < 0 || amount.isNaN()) return@withLock false
+        val o = expenseStore.all(tripId).firstOrNull { it.id == opportunityId } ?: return@withLock false
+        db.expenseDao().insert(
+            ExpenseEntity(
+                tripId = tripId, type = o.category.name, amount = amount, quantity = null, unit = null,
+                note = "Source: entered by traveller", tMs = o.atMs, item = o.label
+            )
+        )
+        expenseStore.update(tripId, opportunityId) { it.copy(status = Expenses.Status.RECORDED, amount = amount, prompted = true) }
+        notifier.cancelExpensePrompt(opportunityId)
+        true
+    }
+
+    /** "No expense": a real ₹0 the traveller stated. */
+    suspend fun markNoExpense(tripId: String, opportunityId: String) = answerOpportunity(tripId, opportunityId, Expenses.Status.NO_EXPENSE)
+
+    /** "Skip for now": still open, completed at the review. */
+    suspend fun deferExpense(tripId: String, opportunityId: String) = answerOpportunity(tripId, opportunityId, Expenses.Status.DEFERRED)
+
+    /** "Leave unknown": never shown as ₹0. */
+    suspend fun leaveExpenseUnknown(tripId: String, opportunityId: String) = answerOpportunity(tripId, opportunityId, Expenses.Status.UNKNOWN)
+
+    private suspend fun answerOpportunity(tripId: String, opportunityId: String, status: Expenses.Status) = lock.withLock {
+        expenseStore.update(tripId, opportunityId) { it.copy(status = status, prompted = true) }
+        notifier.cancelExpensePrompt(opportunityId)
     }
 
     // -----------------------------------------------------------------------
@@ -2251,10 +2347,14 @@ class TripManager(
         // always known, a balance only if the traveller configured one.
         val count = tolls.size + 1
 
+        // Annual pass: a crossing consumed, never a price. Otherwise a known
+        // debit is a paid toll; an unknown one is asked about later.
+        val passCovered = applyCrossingToVehicle(crossing)
         val payload = buildMap<String, Any?> {
             crossing.plaza?.let { put("plaza", it) }
             crossing.vehicle?.let { put("vehicle", it) }
             put("passType", crossing.passType.name)
+            put("passCovered", passCovered)
             put("source", EventSource.FASTAG_SMS.name)
             put("dedupKey", key)
             crossing.issuer?.let { put("issuer", it) }
@@ -2270,7 +2370,18 @@ class TripManager(
             t.tripId, EventTypes.TOLL_CROSSED, EventSource.FASTAG_SMS,
             crossing.crossedAtMs, s.lat, s.lng, payload, false
         )
-        applyCrossingToVehicle(crossing)
+        val tollLabel = "Toll" + crossing.plaza?.let { " · $it" }.orEmpty()
+        when {
+            passCovered -> Unit
+            crossing.amount != null -> db.expenseDao().insert(
+                ExpenseEntity(
+                    tripId = t.tripId, type = Expenses.Category.TOLL.name, amount = crossing.amount,
+                    quantity = null, unit = null, note = "Source: FASTag SMS", tMs = crossing.crossedAtMs,
+                    item = tollLabel
+                )
+            )
+            else -> addOpportunity(t.tripId, Expenses.Category.TOLL, crossing.crossedAtMs, tollLabel)
+        }
     }
 
     /**
@@ -2284,34 +2395,37 @@ class TripManager(
      * FASTag details are entirely optional, so this is a no-op for anyone who
      * never filled them in.
      */
-    private suspend fun applyCrossingToVehicle(crossing: TollCrossing) {
+    /** Applies a crossing to the matching vehicle's balance; true when an annual pass covered it. */
+    private suspend fun applyCrossingToVehicle(crossing: TollCrossing): Boolean {
         val smsPlate = crossing.vehicle
             ?.let { com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it) }
-            ?.takeIf { it.isNotBlank() } ?: return
+            ?.takeIf { it.isNotBlank() } ?: return false
         val vehicles = runCatching { db.vehicleDao().all() }.getOrNull().orEmpty()
         val match = vehicles.firstOrNull {
             it.registration.isNotBlank() &&
                 com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it.registration) == smsPlate
-        } ?: return
+        } ?: return false
 
         val now = System.currentTimeMillis()
         val updated = when (com.trippulse.app.domain.fastag.FastagMode.fromKey(match.fastagMode)) {
             com.trippulse.app.domain.fastag.FastagMode.ANNUAL_PASS -> {
-                val left = match.passCrossingsLeft ?: return
-                if (!com.trippulse.app.domain.fastag.PassLedger.qualifies(crossing.passType)) return
+                if (!com.trippulse.app.domain.fastag.PassLedger.qualifies(crossing.passType)) return false
+                val left = match.passCrossingsLeft ?: return true
                 match.copy(passCrossingsLeft = (left - 1).coerceAtLeast(0), updatedAtMs = now)
             }
             com.trippulse.app.domain.fastag.FastagMode.AMOUNT -> {
-                val left = match.amountLeft ?: return
-                val debited = crossing.amount ?: return
+                val left = match.amountLeft ?: return false
+                val debited = crossing.amount ?: return false
                 match.copy(
                     amountLeft = com.trippulse.app.domain.fastag.PassLedger.amountAfter(left, debited),
                     updatedAtMs = now
                 )
             }
-            com.trippulse.app.domain.fastag.FastagMode.NONE -> return
+            com.trippulse.app.domain.fastag.FastagMode.NONE -> return false
         }
         runCatching { db.vehicleDao().upsert(updated) }
+        return com.trippulse.app.domain.fastag.FastagMode.fromKey(match.fastagMode) ==
+            com.trippulse.app.domain.fastag.FastagMode.ANNUAL_PASS
     }
 
     /** The active journey's registered plate, normalised, or null. */

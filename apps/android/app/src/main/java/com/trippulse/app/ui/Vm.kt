@@ -810,6 +810,15 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     fun deleteExpense(id: Long) = viewModelScope.launch { graph.db.expenseDao().delete(id) }
 
+    /** Expense moments noticed on this journey, re-read whenever any changes. */
+    val opportunities: StateFlow<List<com.trippulse.app.domain.Expenses.Opportunity>> =
+        graph.tripManager.expenseVersion.map { graph.tripManager.expenseOpportunities(tripId) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), graph.tripManager.expenseOpportunities(tripId))
+
+    fun recordExpenseAmount(id: String, amount: Double) = viewModelScope.launch { graph.tripManager.recordExpenseAmount(tripId, id, amount) }
+    fun markNoExpense(id: String) = viewModelScope.launch { graph.tripManager.markNoExpense(tripId, id) }
+    fun deferExpense(id: String) = viewModelScope.launch { graph.tripManager.deferExpense(tripId, id) }
+
     fun submitCheckpoint(c: TripManager.Checkpoint, startAtMs: Long? = null, durationS: Long? = null) =
         viewModelScope.launch { graph.tripManager.submitCheckpoint(c, startAtMs, durationS) }
 
@@ -819,7 +828,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     /** Break log with a refuel: the checkpoint and the fuel cost in one gesture. */
     fun submitCheckpointWithRefuel(c: TripManager.Checkpoint, amount: Double, quantity: Double?, unit: String) =
         viewModelScope.launch {
-            graph.tripManager.submitCheckpoint(c)
+            graph.tripManager.submitCheckpoint(c, fuelAmountKnown = true)
             graph.db.expenseDao().insert(
                 ExpenseEntity(
                     tripId = tripId, type = "FUEL", amount = amount,
@@ -1400,6 +1409,33 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     val editable: Boolean get() = graph.tripManager.isEditable(trip.value)
 
     // ---- review, approval and the private expense review ----
+
+    val opportunities: StateFlow<List<com.trippulse.app.domain.Expenses.Opportunity>> =
+        graph.tripManager.expenseVersion.map { graph.tripManager.expenseOpportunities(tripId) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), graph.tripManager.expenseOpportunities(tripId))
+
+    fun recordExpenseAmount(id: String, amount: Double) = viewModelScope.launch { graph.tripManager.recordExpenseAmount(tripId, id, amount) }
+    fun markNoExpense(id: String) = viewModelScope.launch { graph.tripManager.markNoExpense(tripId, id) }
+    fun leaveExpenseUnknown(id: String) = viewModelScope.launch { graph.tripManager.leaveExpenseUnknown(tripId, id) }
+    fun deleteExpense(id: Long) = viewModelScope.launch { graph.db.expenseDao().delete(id) }
+    fun correctExpense(id: Long, amount: Double) = viewModelScope.launch { graph.db.expenseDao().updateAmount(id, amount) }
+
+    /** An expense added at review, in a category the journey made relevant. */
+    fun addExpense(category: com.trippulse.app.domain.Expenses.Category, amount: Double) = viewModelScope.launch {
+        val t = trip.value ?: return@launch
+        graph.db.expenseDao().insert(
+            ExpenseEntity(
+                tripId = tripId, type = category.name, amount = amount, quantity = null, unit = null,
+                note = "Source: added at review", tMs = t.completedAtMs ?: System.currentTimeMillis(), item = category.label
+            )
+        )
+    }
+
+    /** Toll crossings an annual pass covered on this journey: crossings, never money. */
+    fun passCoveredCrossings(): Int = events.value.count {
+        it.type == com.trippulse.app.domain.EventTypes.TOLL_CROSSED &&
+            com.trippulse.app.data.EventCodec.payloadFromJson(it.payloadJson)["passCovered"] == true
+    }
 
     /** Where this journey is in closing; null for journeys closed by older builds. */
     val closure = MutableStateFlow(graph.tripManager.closureRecord(tripId))

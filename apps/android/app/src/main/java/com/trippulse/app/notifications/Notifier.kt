@@ -303,6 +303,54 @@ class Notifier(private val context: Context) {
         return PendingIntent.getBroadcast(context, (action + needKey).hashCode(), intent, flags)
     }
 
+    /**
+     * "How much did you spend on food?" — private, only ever shown when it is
+     * safe to answer (never to a driver on the move). The amount can be typed
+     * straight into the notification; "No expense" is a real answer and
+     * "Skip for now" keeps it open for the review.
+     */
+    fun showExpensePrompt(tripId: String, o: com.trippulse.app.domain.Expenses.Opportunity) {
+        val id = expenseNotificationId(o.id)
+        fun action(a: String, mutable: Boolean = false): PendingIntent {
+            val intent = Intent(context, NudgeActionReceiver::class.java)
+                .setAction(a)
+                .putExtra(NudgeActionReceiver.EXTRA_TRIP, tripId)
+                .putExtra(NudgeActionReceiver.EXTRA_OPPORTUNITY, o.id)
+            val flags = PendingIntent.FLAG_UPDATE_CURRENT or when {
+                mutable && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> PendingIntent.FLAG_MUTABLE
+                !mutable && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> PendingIntent.FLAG_IMMUTABLE
+                else -> 0
+            }
+            return PendingIntent.getBroadcast(context, (a + o.id).hashCode(), intent, flags)
+        }
+        val input = androidx.core.app.RemoteInput.Builder(NudgeActionReceiver.KEY_AMOUNT)
+            .setLabel("Amount")
+            .build()
+        val enter = NotificationCompat.Action.Builder(0, "Enter amount", action(NudgeActionReceiver.ACTION_EXPENSE_AMOUNT, mutable = true))
+            .addRemoteInput(input)
+            .build()
+        val body = "${o.category.emoji} ${o.label} · private to you"
+        val n = NotificationCompat.Builder(context, CH_COACH)
+            .setSmallIcon(R.drawable.ic_stat_trip)
+            .setContentTitle(com.trippulse.app.domain.Expenses.question(o))
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
+            .setAutoCancel(true)
+            .setContentIntent(contentIntent())
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+            .addAction(enter)
+            .addAction(0, "No expense", action(NudgeActionReceiver.ACTION_EXPENSE_NONE))
+            .addAction(0, "Skip for now", action(NudgeActionReceiver.ACTION_EXPENSE_SKIP))
+            .build()
+        context.getSystemService(NotificationManager::class.java).notify(id, n)
+    }
+
+    fun cancelExpensePrompt(opportunityId: String) {
+        context.getSystemService(NotificationManager::class.java).cancel(expenseNotificationId(opportunityId))
+    }
+
+    private fun expenseNotificationId(opportunityId: String) = ID_EXPENSE_BASE + (opportunityId.hashCode() and 0x3FF)
+
     /** Journey Health dropped to CONCERN on a followed journey. */
     fun showJourneyAttention(label: String, reason: String) =
         postEvent(ID_HEALTH, CH_SOS, "Journey needs attention", "$reason ($label)", high = true)
@@ -335,6 +383,8 @@ class Notifier(private val context: Context) {
         private const val ID_ARRIVAL_DETECTED = 2009
         private const val ID_UPDATE_AVAILABLE = 2010
         private const val ID_HALT_PLAN = 2011
+        /** 3000–4023: one tray entry per expense prompt. */
+        private const val ID_EXPENSE_BASE = 3000
         /** 2100–2355: one tray entry per wellbeing need. */
         private const val ID_COACH_BASE = 2100
     }

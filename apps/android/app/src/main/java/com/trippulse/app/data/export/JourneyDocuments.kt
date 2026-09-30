@@ -414,10 +414,23 @@ object JourneyDocuments {
         report: JourneyAnalytics.JourneyReport,
         measures: Measures,
         originLabel: String? = null,
-        destLabel: String? = null
+        destLabel: String? = null,
+        /** Expense moments; unknown ones are listed as "Amount not recorded", never ₹0. */
+        opportunities: List<com.trippulse.app.domain.Expenses.Opportunity> = emptyList(),
+        /** Toll crossings an annual pass covered: shown as crossings, never money. */
+        passCrossings: Int = 0,
+        approvedAtMs: Long? = null
     ): JourneyPdf.Document {
         val origin = originLabel?.takeIf { it.isNotBlank() } ?: trip.originName
         val dest = destLabel?.takeIf { it.isNotBlank() } ?: trip.destName
+        val checklist = com.trippulse.app.domain.Expenses.checklist(
+            expenses.map { com.trippulse.app.domain.Expenses.Category.fromType(it.type) to it.amount },
+            opportunities, passCrossings
+        )
+        val unknownRows = opportunities
+            .filter { it.status == com.trippulse.app.domain.Expenses.Status.UNKNOWN || it.open }
+            .sortedBy { it.atMs }
+            .map { JourneyPdf.Row(TimeFmt.date(it.atMs), it.label, "Not recorded") }
         val rows = expenses.sortedBy { it.tMs }.map { e ->
             JourneyPdf.Row(
                 left = TimeFmt.date(e.tMs),
@@ -431,7 +444,11 @@ object JourneyDocuments {
 
         val totals = buildList {
             report.costLines.forEach { add(JourneyPdf.Row("", it.label, measures.money(it.amount))) }
-            add(JourneyPdf.Row("", "TOTAL", measures.money(report.totalCost)))
+            if (passCrossings > 0) {
+                add(JourneyPdf.Row("", "Tolls (annual pass)", measures.money(0.0)))
+                add(JourneyPdf.Row("", "Annual-pass crossings used", passCrossings.toString()))
+            }
+            add(JourneyPdf.Row("", if (checklist.complete) "TOTAL" else "TOTAL RECORDED", measures.money(report.totalCost)))
             measures.costPerDistance(report.totalCost, report.distanceM)?.let {
                 add(JourneyPdf.Row("", "Cost per ${measures.distanceUnit}", it))
             }
@@ -445,13 +462,15 @@ object JourneyDocuments {
         }
 
         return JourneyPdf.Document(
-            title = "Journey costs",
+            title = "Travel expense report",
             subtitle = "$origin → $dest",
             meta = listOfNotNull(
                 "Journey number: ${trip.tripId}",
                 trip.completedAtMs?.let { "Ended: ${TimeFmt.dateTime(it)}" },
                 "Distance: ${measures.distance(report.distanceM)}",
-                "Currency: ${measures.currency.code}"
+                "Currency: ${measures.currency.code}",
+                checklist.statusLine.removePrefix("⚠ ").removePrefix("✓ "),
+                approvedAtMs?.let { "Verified by traveller: ${TimeFmt.dateTime(it)}" }
             ),
             figures = figures(report, measures, includeMoney = true),
             insights = report.insights.filter { it.contains("cost", ignoreCase = true) },
@@ -459,8 +478,8 @@ object JourneyDocuments {
                 JourneyPdf.Section(
                     title = "Items",
                     header = JourneyPdf.Row("DATE", "ITEM", "AMOUNT"),
-                    rows = rows,
-                    note = if (rows.isEmpty()) "No expenses were recorded for this journey." else null
+                    rows = rows + unknownRows,
+                    note = if (rows.isEmpty() && unknownRows.isEmpty()) "No expenses were recorded for this journey." else null
                 ),
                 JourneyPdf.Section(title = "Totals", header = null, rows = totals)
             ),

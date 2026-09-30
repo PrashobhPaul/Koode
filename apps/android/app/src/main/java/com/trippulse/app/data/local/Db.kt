@@ -462,6 +462,10 @@ interface ExpenseDao {
     @Query("DELETE FROM expenses WHERE id = :id")
     suspend fun delete(id: Long)
 
+    /** Correct a recorded amount at review. */
+    @Query("UPDATE expenses SET amount = :amount WHERE id = :id")
+    suspend fun updateAmount(id: Long, amount: Double)
+
     @Query("DELETE FROM expenses WHERE tripId = :tripId")
     suspend fun deleteForTrip(tripId: String)
 }

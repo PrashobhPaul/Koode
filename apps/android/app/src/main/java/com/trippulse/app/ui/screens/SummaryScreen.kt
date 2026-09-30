@@ -76,7 +76,7 @@ import kotlinx.coroutines.launch
  * people following them receive. Once approved it is read-only. Expenses are
  * confirmed separately and privately; their PDF is saved on the phone.
  */
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
 @Composable
 fun SummaryScreen(nav: NavHostController, tripId: String) {
     val vm: SummaryVm = viewModel(factory = SummaryVm.factory(tripId))
@@ -95,6 +95,16 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val destLabel by vm.destLabel.collectAsStateWithLifecycle()
     val fastagSummary by vm.fastagSummary.collectAsStateWithLifecycle()
     val closure by vm.closure.collectAsStateWithLifecycle()
+    val opportunities by vm.opportunities.collectAsStateWithLifecycle()
+    val passCrossings = remember(events) { vm.passCoveredCrossings() }
+    val checklist = remember(expenses, opportunities, passCrossings) {
+        com.trippulse.app.domain.Expenses.checklist(
+            expenses.map { com.trippulse.app.domain.Expenses.Category.fromType(it.type) to it.amount },
+            opportunities, passCrossings
+        )
+    }
+    var addingExpense by remember { mutableStateOf(false) }
+    var editingExpense by remember { mutableStateOf<ExpenseEntity?>(null) }
     val approving by vm.approving.collectAsStateWithLifecycle()
     val measures = vm.measures
     val reviewing = closure?.pendingReview == true
@@ -116,7 +126,11 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         scope.launch {
             try {
                 vm.confirmExpenses()
-                val doc = JourneyDocuments.money(t, expenses, r, measures, originLabel = originLabel, destLabel = destLabel)
+                val doc = JourneyDocuments.money(
+                    t, expenses, r, measures, originLabel = originLabel, destLabel = destLabel,
+                    opportunities = opportunities, passCrossings = passCrossings,
+                    approvedAtMs = System.currentTimeMillis()
+                )
                 val file = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { JourneyPdf.write(context, doc) }
                 val where = JourneyPdf.saveToDownloads(context, file, "Koode-expenses-${t.tripId}.pdf")
                 android.widget.Toast.makeText(
@@ -295,30 +309,111 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 }
             }
 
-            // ---- private: the traveller's own expenses ----
-            if (trip?.completedAtMs != null && expenses.isNotEmpty()) {
+            // ---- private: reconcile and confirm the traveller's own expenses ----
+            if (trip?.completedAtMs != null && (expenses.isNotEmpty() || opportunities.isNotEmpty())) {
                 KoodeCard(title = "Your travel expenses · private", accent = colors.traveller) {
-                    val total = expenses.sumOf { it.amount }
-                    DetailRow("Total", measures.money(total), leading = "₹")
+                    Text(checklist.headline, color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    Text(measures.money(checklist.recordedTotal), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+                    checklist.items.forEach { item ->
+                        DetailRow(
+                            item.category.label,
+                            when (item.status) {
+                                com.trippulse.app.domain.Expenses.ItemStatus.COVERED_BY_ANNUAL_PASS ->
+                                    "${measures.money(0.0)} · ${item.reason}"
+                                com.trippulse.app.domain.Expenses.ItemStatus.NEEDS_AMOUNT -> "Needs an amount"
+                                com.trippulse.app.domain.Expenses.ItemStatus.UNKNOWN ->
+                                    if (item.amount > 0) "${measures.money(item.amount)} + not recorded" else "Not recorded"
+                                com.trippulse.app.domain.Expenses.ItemStatus.NO_EXPENSE -> "No expense"
+                                com.trippulse.app.domain.Expenses.ItemStatus.RECORDED -> measures.money(item.amount)
+                            },
+                            leading = item.category.emoji
+                        )
+                    }
                     Text(
-                        "Check them above, then confirm. A PDF is saved on this phone — it is never sent to anyone following you.",
-                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                        checklist.statusLine,
+                        color = if (checklist.canApprove) colors.accent else colors.warn,
+                        style = MaterialTheme.typography.titleSmall
+                    )
+
+                    // What still needs an answer: add the amount, say there was none, or leave it unknown.
+                    opportunities.filter { it.open }.forEach { o ->
+                        var amountText by remember(o.id) { mutableStateOf("") }
+                        Spacer(Modifier.height(Spacing.sm))
+                        Text("${o.category.emoji} ${o.label}", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                        Text(TimeFmt.clockWithDay(o.atMs, System.currentTimeMillis()), color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            OutlinedTextField(
+                                value = amountText,
+                                onValueChange = { amountText = com.trippulse.app.core.InputRules.amountText(it) },
+                                placeholder = { Text("Amount") },
+                                singleLine = true,
+                                keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                                    keyboardType = androidx.compose.ui.text.input.KeyboardType.Decimal
+                                ),
+                                modifier = Modifier.weight(1f)
+                            )
+                            TextButton(
+                                onClick = { amountText.toDoubleOrNull()?.let { vm.recordExpenseAmount(o.id, it) } },
+                                enabled = amountText.toDoubleOrNull() != null
+                            ) { Text("Save", color = colors.accent) }
+                        }
+                        Row {
+                            TextButton(onClick = { vm.markNoExpense(o.id) }) { Text("No expense", color = colors.textMid) }
+                            TextButton(onClick = { vm.leaveExpenseUnknown(o.id) }) { Text("Leave unknown", color = colors.textMid) }
+                        }
+                    }
+
+                    // Everything recorded can be corrected or removed.
+                    if (expenses.isNotEmpty()) {
+                        Spacer(Modifier.height(Spacing.sm))
+                        Text("Recorded", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                        expenses.forEach { e ->
+                            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                                Column(Modifier.weight(1f)) {
+                                    Text(
+                                        e.item.ifBlank { com.trippulse.app.domain.Expenses.Category.fromType(e.type).label },
+                                        color = colors.textHigh, style = MaterialTheme.typography.bodyMedium
+                                    )
+                                    Text(
+                                        "${TimeFmt.clock(e.tMs)} · ${measures.money(e.amount)}",
+                                        color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                                    )
+                                }
+                                if (closure?.expensesApprovedAtMs == null) {
+                                    TextButton(onClick = { editingExpense = e }) { Text("Edit", color = colors.accent) }
+                                    TextButton(onClick = { vm.deleteExpense(e.id) }) { Text("Delete", color = colors.textLow) }
+                                }
+                            }
+                        }
+                    }
+                    Text(
+                        "Private to you — never part of the journey report and never sent to anyone following you.",
+                        color = colors.textLow, style = MaterialTheme.typography.bodySmall
                     )
                     Spacer(Modifier.height(Spacing.sm))
                     if (closure?.expensesApprovedAtMs != null) {
                         Text(
-                            "✓ Confirmed ${TimeFmt.clockWithDay(closure!!.expensesApprovedAtMs!!, System.currentTimeMillis())}",
+                            "✓ Confirmed ${TimeFmt.clockWithDay(closure!!.expensesApprovedAtMs!!, System.currentTimeMillis())} · PDF saved on this phone",
                             color = colors.accent, style = MaterialTheme.typography.titleSmall
                         )
                     } else {
-                        SecondaryButton(
+                        SecondaryButton("Add expense", { addingExpense = true }, leading = "＋", height = 44.dp)
+                        Spacer(Modifier.height(Spacing.sm))
+                        PrimaryButton(
                             if (exporting) "Saving…" else "Confirm expenses",
                             { confirmExpensesAndSave() },
-                            enabled = !exporting && report != null,
-                            accent = colors.traveller, height = 46.dp
+                            enabled = !exporting && report != null && checklist.canApprove
                         )
+                        if (!checklist.canApprove) {
+                            Text(
+                                "${checklist.needsAttention} expense item${if (checklist.needsAttention == 1) "" else "s"} need${if (checklist.needsAttention == 1) "s" else ""} your attention first.",
+                                color = colors.warn, style = MaterialTheme.typography.bodySmall
+                            )
+                        }
                     }
                 }
+            } else if (trip?.completedAtMs != null && closure?.expensesApprovedAtMs == null) {
+                SecondaryButton("Add a travel expense (private)", { addingExpense = true }, leading = "₹", height = 44.dp)
             }
 
             // ---- exports ----
@@ -375,6 +470,63 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 }
             },
             dismissButton = { TextButton(onClick = { editingDestination = false }) { Text("Cancel") } }
+        )
+    }
+
+    // ✎ Correct a recorded amount.
+    editingExpense?.let { e ->
+        var text by remember(e.id) { mutableStateOf(e.amount.toString().removeSuffix(".0")) }
+        AlertDialog(
+            onDismissRequest = { editingExpense = null },
+            title = { Text(e.item.ifBlank { "Expense" }) },
+            text = {
+                OutlinedTextField(
+                    value = text, onValueChange = { text = com.trippulse.app.core.InputRules.amountText(it) }, singleLine = true,
+                    keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                        keyboardType = androidx.compose.ui.text.input.KeyboardType.Decimal
+                    )
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = { text.toDoubleOrNull()?.let { vm.correctExpense(e.id, it) }; editingExpense = null },
+                    enabled = text.toDoubleOrNull() != null) { Text("Save") }
+            },
+            dismissButton = { TextButton(onClick = { editingExpense = null }) { Text("Cancel") } }
+        )
+    }
+
+    // ＋ An expense Koode didn't notice.
+    if (addingExpense) {
+        var category by remember { mutableStateOf(com.trippulse.app.domain.Expenses.Category.OTHER) }
+        var text by remember { mutableStateOf("") }
+        AlertDialog(
+            onDismissRequest = { addingExpense = false },
+            title = { Text("Add an expense") },
+            text = {
+                Column {
+                    androidx.compose.foundation.layout.FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                        verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                    ) {
+                        com.trippulse.app.domain.Expenses.Category.entries.forEach { c ->
+                            com.trippulse.app.ui.components.KoodeChip(c.label, category == c, { category = c }, leading = c.emoji)
+                        }
+                    }
+                    Spacer(Modifier.height(Spacing.sm))
+                    OutlinedTextField(
+                        value = text, onValueChange = { text = com.trippulse.app.core.InputRules.amountText(it) },
+                        placeholder = { Text("Amount") }, singleLine = true,
+                        keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                            keyboardType = androidx.compose.ui.text.input.KeyboardType.Decimal
+                        )
+                    )
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { text.toDoubleOrNull()?.let { vm.addExpense(category, it) }; addingExpense = false },
+                    enabled = text.toDoubleOrNull() != null) { Text("Add") }
+            },
+            dismissButton = { TextButton(onClick = { addingExpense = false }) { Text("Cancel") } }
         )
     }
 

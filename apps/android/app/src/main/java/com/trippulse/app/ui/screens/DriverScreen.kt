@@ -111,6 +111,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
     val requests by vm.joinRequests.collectAsStateWithLifecycle()
     val plan by vm.plan.collectAsStateWithLifecycle()
+    val expenseRows by vm.expenses.collectAsStateWithLifecycle()
+    val opportunities by vm.opportunities.collectAsStateWithLifecycle()
 
     val s = state
     val t = trip
@@ -571,6 +573,59 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     }
                     Box(Modifier.weight(1f)) {
                         SecondaryButton("Add a note", { showNotes = true }, height = 44.dp)
+                    }
+                }
+            }
+
+            // ---- trip spending: private, captured as it happens ----
+            val role = WellbeingCoach.Role.fromKey(plan?.role) ?: WellbeingCoach.defaultRole(profile.key)
+            val safeToAsk = com.trippulse.app.domain.Expenses.safeToAsk(role == WellbeingCoach.Role.DRIVER, moving)
+            val pendingAsk = opportunities.filter { it.status == com.trippulse.app.domain.Expenses.Status.PENDING }
+            val deferred = opportunities.count { it.status == com.trippulse.app.domain.Expenses.Status.DEFERRED }
+            if (expenseRows.isNotEmpty() || opportunities.any { it.open }) {
+                KoodeCard(title = "Trip spending so far · private", accent = colors.traveller) {
+                    Text(
+                        vm.measures.money(expenseRows.sumOf { it.amount }),
+                        color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
+                    )
+                    if (pendingAsk.isNotEmpty() && !safeToAsk) {
+                        Text(
+                            "${pendingAsk.size} expense${if (pendingAsk.size == 1) "" else "s"} to note when you next stop — never while you drive.",
+                            color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                    if (safeToAsk) pendingAsk.take(3).forEach { o ->
+                        var amountText by remember(o.id) { mutableStateOf("") }
+                        Spacer(Modifier.height(Spacing.sm))
+                        Text(
+                            "${o.category.emoji} ${com.trippulse.app.domain.Expenses.question(o)}",
+                            color = colors.textHigh, style = MaterialTheme.typography.titleSmall
+                        )
+                        Text(o.label, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                            OutlinedTextField(
+                                value = amountText,
+                                onValueChange = { amountText = InputRules.amountText(it) },
+                                placeholder = { Text("Amount") },
+                                singleLine = true,
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                                modifier = Modifier.weight(1f)
+                            )
+                            TextButton(
+                                onClick = { amountText.toDoubleOrNull()?.let { vm.recordExpenseAmount(o.id, it) } },
+                                enabled = amountText.toDoubleOrNull() != null
+                            ) { Text("Save", color = colors.accent) }
+                        }
+                        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                            TextButton(onClick = { vm.markNoExpense(o.id) }) { Text("No expense", color = colors.textMid) }
+                            TextButton(onClick = { vm.deferExpense(o.id) }) { Text("Skip for now", color = colors.textMid) }
+                        }
+                    }
+                    if (deferred > 0) {
+                        Text(
+                            "$deferred skipped — you can add ${if (deferred == 1) "it" else "them"} when you review the journey.",
+                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                        )
                     }
                 }
             }
@@ -1302,7 +1357,12 @@ private fun ExpenseSheet(
     onSave: (String, String, Double, Double?, String?) -> Unit
 ) {
     val colors = KoodeTheme.colors
-    var type by remember { mutableStateOf(if (profile.asksAboutFuel) "FUEL" else "TICKET") }
+    var type by remember {
+        mutableStateOf(
+            if (profile.asksAboutFuel) "FUEL"
+            else (com.trippulse.app.domain.Expenses.Category.fareFor(profile.key)?.name ?: "OTHER")
+        )
+    }
     var item by remember { mutableStateOf("") }
     var amount by remember { mutableStateOf("") }
     var qty by remember { mutableStateOf("") }
@@ -1319,12 +1379,14 @@ private fun ExpenseSheet(
             "Private to you — it stays on this phone and nobody following you ever sees it.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            if (profile.asksAboutFuel) KoodeChip("Fuel", type == "FUEL", { type = "FUEL" }, leading = "⛽")
-            if (!profile.isPrivateVehicle) KoodeChip("Ticket", type == "TICKET", { type = "TICKET" }, leading = "🎫")
-            KoodeChip("Food", type == "FOOD", { type = "FOOD" }, leading = "🍛")
-            KoodeChip("Stay", type == "STAY", { type = "STAY" }, leading = "🏨")
-            KoodeChip("Other", type == "OTHER", { type = "OTHER" }, leading = "🧾")
+        // Only the categories this way of travelling makes relevant.
+        val cats = remember(profile.key) {
+            val E = com.trippulse.app.domain.Expenses.Category
+            if (profile.isPrivateVehicle) listOf(E.FUEL, E.TOLL, E.PARKING, E.FOOD, E.ACCOMMODATION, E.VEHICLE_REPAIR, E.OTHER)
+            else listOfNotNull(E.fareFor(profile.key), E.FOOD, E.CAB, E.AUTO, E.ACCOMMODATION, E.OTHER).distinct()
+        }
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            cats.forEach { c -> KoodeChip(c.label, type == c.name, { type = c.name }, leading = c.emoji) }
         }
         OutlinedTextField(
             value = item,
