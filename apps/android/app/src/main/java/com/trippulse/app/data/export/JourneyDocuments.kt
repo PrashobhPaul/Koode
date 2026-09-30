@@ -38,11 +38,11 @@ object JourneyDocuments {
         includeMoney: Boolean
     ): List<JourneyPdf.Figure> = buildList {
         add(JourneyPdf.Figure("Distance", measures.distance(report.distanceM)))
-        add(JourneyPdf.Figure("Moving time", TimeFmt.durationShort(report.movingSeconds)))
         add(JourneyPdf.Figure("Total time", TimeFmt.durationShort(report.totalSeconds)))
+        add(JourneyPdf.Figure("Moving time", TimeFmt.durationShort(report.movingSeconds)))
         add(JourneyPdf.Figure("Stopped", TimeFmt.durationShort(report.stoppedSeconds)))
         add(JourneyPdf.Figure("Average moving", measures.speed(report.averageMovingSpeedKmh)))
-        add(JourneyPdf.Figure("Breaks", report.breakCount.toString()))
+        add(JourneyPdf.Figure("Stops", report.stops.toString()))
         if (includeMoney && report.hasCosts) {
             add(JourneyPdf.Figure("Total cost", measures.money(report.totalCost)))
             measures.costPerDistance(report.totalCost, report.distanceM)?.let {
@@ -278,8 +278,15 @@ object JourneyDocuments {
         trip: ActiveTripEntity,
         events: List<EventEntity>,
         report: JourneyAnalytics.JourneyReport,
-        measures: Measures
+        measures: Measures,
+        /** Recorded GPS path (lat, lng), drawn as the "recorded route" panel. */
+        path: List<Pair<Double, Double>> = emptyList()
     ): JourneyPdf.Document {
+        // Each stop shows its own duration on the timeline, taken from the same
+        // StopPeriods the summary totals use — so "Stopped · 12m" and the
+        // "12m stopped" figure can never disagree.
+        val stopDurationByStart = report.stopPeriods.associate { it.startMs to it.seconds }
+
         val rows = com.trippulse.app.domain.BreakTimeline
             .forTimeline(events, { it.type }, { it.eventTimeMs }, { EventCodec.payloadFromJson(it.payloadJson) })
             .filter { it.type in EventTypes.TIMELINE_TYPES }
@@ -287,15 +294,20 @@ object JourneyDocuments {
             .map { e ->
                 val payload = EventCodec.payloadFromJson(e.payloadJson)
                 val (_, label) = EventNarrator.line(e.type, payload)
+                val withDuration = if (e.type == EventTypes.STOP_STARTED) {
+                    stopDurationByStart[e.eventTimeMs]
+                        ?.takeIf { it >= 60 }
+                        ?.let { "$label · ${TimeFmt.durationShort(it)}" } ?: label
+                } else label
                 JourneyPdf.Row(
                     left = TimeFmt.clock(e.eventTimeMs),
-                    middle = label,
+                    middle = withDuration,
                     right = TimeFmt.date(e.eventTimeMs)
                 )
             }
 
-        val wellbeing = JourneyPdf.Section(
-            title = "Breaks and wellbeing",
+        val activity = JourneyPdf.Section(
+            title = "Stops & journey activity",
             header = null,
             rows = buildList {
                 add(JourneyPdf.Row("", "Stops", report.stops.toString()))
@@ -303,10 +315,10 @@ object JourneyDocuments {
                 report.averageGapBetweenBreaksSeconds?.let {
                     add(JourneyPdf.Row("", "A break about every", TimeFmt.durationShort(it)))
                 }
-                add(JourneyPdf.Row("", "Longest break", TimeFmt.durationShort(report.longestBreakSeconds)))
+                add(JourneyPdf.Row("", "Longest stop", TimeFmt.durationShort(report.longestBreakSeconds)))
                 add(
                     JourneyPdf.Row(
-                        "", "Longest stretch without stopping",
+                        "", "Longest continuous moving stretch",
                         TimeFmt.durationShort(report.longestLegSeconds)
                     )
                 )
@@ -338,27 +350,33 @@ object JourneyDocuments {
         } else null
 
         return JourneyPdf.Document(
-            title = "Journey timeline",
+            title = "Journey report",
             subtitle = "${trip.originName} → ${trip.destName}",
+            status = if (trip.completedAtMs != null) "Journey completed" else null,
             meta = listOfNotNull(
-                "Journey number: ${trip.tripId}",
-                trip.startedAtMs?.let { "Started: ${TimeFmt.dateTime(it)}" },
-                trip.completedAtMs?.let { "Ended: ${TimeFmt.dateTime(it)}" },
-                "Mode: ${TransportCatalog.label(trip.transportMode)}"
+                trip.startedAtMs?.let { start ->
+                    val end = trip.completedAtMs
+                    if (end != null) "${TimeFmt.dateTime(start)} – ${TimeFmt.clock(end)}"
+                    else TimeFmt.dateTime(start)
+                },
+                "Mode: ${TransportCatalog.label(trip.transportMode)}",
+                "Journey number: ${trip.tripId}"
             ),
             figures = figures(report, measures, includeMoney = false),
             insights = report.insights,
+            path = path,
             sections = listOfNotNull(
-                wellbeing,
                 stages,
                 JourneyPdf.Section(
-                    title = "Everything that happened",
+                    title = "Journey timeline",
                     header = JourneyPdf.Row("TIME", "EVENT", "DATE"),
                     rows = rows,
                     note = if (rows.isEmpty()) "No events were recorded for this journey." else null
-                )
+                ),
+                activity
             ),
-            fileLabel = "Koode-timeline-${trip.tripId}"
+            fileLabel = "Koode-timeline-${trip.tripId}",
+            footerRef = "Trip ${trip.tripId}"
         )
     }
 
@@ -415,7 +433,8 @@ object JourneyDocuments {
                 ),
                 JourneyPdf.Section(title = "Totals", header = null, rows = totals)
             ),
-            fileLabel = "Koode-costs-${trip.tripId}"
+            fileLabel = "Koode-costs-${trip.tripId}",
+            footerRef = "Trip ${trip.tripId}"
         )
     }
 }
