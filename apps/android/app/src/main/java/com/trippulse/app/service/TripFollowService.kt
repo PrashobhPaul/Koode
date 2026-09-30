@@ -133,6 +133,10 @@ class TripFollowService : Service() {
         graph: com.trippulse.app.di.AppGraph, ref: String, label: String, meta: Map<String, Any?>
     ): Map<String, Any?>? {
         val state = graph.cloud.fetchState(ref) ?: return null
+        // Home draws followed people on its map from this, with no network call.
+        getSharedPreferences(SNAPSHOT_PREFS, Context.MODE_PRIVATE).edit()
+            .putString(ref, com.trippulse.app.domain.FollowSnapshot.from(meta, state).encode())
+            .apply()
         fun ln(k: String): Long? = (state[k] as? Number)?.toLong()
         val now = System.currentTimeMillis()
         val lastAt = ln("lastLocationAt") ?: ln("updatedAt")
@@ -338,6 +342,8 @@ class TripFollowService : Service() {
         /** Last escalation step announced per followed journey. */
         private const val DARK_PREFS = "tp_follow_dark"
         const val STATUS_PREFS = "tp_follow_status"
+        /** Last known position/ETA per followed journey, for Home's map. */
+        const val SNAPSHOT_PREFS = "tp_follow_snapshot"
         /** Nothing readable right now — back off hard rather than hammer. */
         private const val IDLE_POLL_MS = 180_000L
 

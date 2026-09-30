@@ -1,7 +1,6 @@
 package com.trippulse.app.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,7 +21,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
@@ -40,7 +38,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -532,7 +529,22 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 }
             }
 
-            SosHoldButton(onTriggered = { vm.activateSos() }, enabled = s?.sosActive != true)
+            // Tap opens a short, cancellable countdown that shows who will be
+            // alerted; it sends by itself when the count runs out.
+            var sosCountdown by remember { mutableStateOf(false) }
+            com.trippulse.app.ui.components.SosButton(
+                enabled = s?.sosActive != true,
+                onClick = { sosCountdown = true }
+            )
+            if (sosCountdown) {
+                com.trippulse.app.ui.components.SosCountdown(
+                    recipients = requests
+                        .filter { it["status"] == "APPROVED" }
+                        .mapNotNull { (it["name"] as? String)?.takeIf { n -> n.isNotBlank() } },
+                    onSend = { sosCountdown = false; vm.activateSos() },
+                    onCancel = { sosCountdown = false }
+                )
+            }
 
             // ---- timeline ----
             SectionHeader("Timeline")
@@ -1145,62 +1157,6 @@ private fun ExpenseSheet(
             enabled = valid
         )
         Spacer(Modifier.height(Spacing.md))
-    }
-}
-
-/**
- * Hold-to-send SOS. A deliberate 1.5 s hold, because an accidental SOS costs
- * the people watching a genuine fright.
- */
-@Composable
-private fun SosHoldButton(onTriggered: () -> Unit, enabled: Boolean) {
-    val colors = KoodeTheme.colors
-    val scope = rememberCoroutineScope()
-    var progress by remember { mutableStateOf(0f) }
-    Box(
-        Modifier
-            .fillMaxWidth()
-            .height(64.dp)
-            .clip(RoundedCornerShape(Radii.md))
-            .background(colors.danger.copy(alpha = 0.12f))
-            .pointerInput(enabled) {
-                if (!enabled) return@pointerInput
-                detectTapGestures(
-                    onPress = {
-                        progress = 0f
-                        val job = scope.launch {
-                            val holdMs = 1500L
-                            val step = 50L
-                            var elapsed = 0L
-                            while (elapsed < holdMs) {
-                                kotlinx.coroutines.delay(step)
-                                elapsed += step
-                                progress = elapsed.toFloat() / holdMs
-                            }
-                            onTriggered()
-                            progress = 0f
-                        }
-                        val released = tryAwaitRelease()
-                        if (progress < 1f || !released) {
-                            job.cancel()
-                            progress = 0f
-                        }
-                    }
-                )
-            }
-    ) {
-        LinearProgressIndicator(
-            progress = { progress },
-            modifier = Modifier.fillMaxWidth().height(64.dp).clip(RoundedCornerShape(Radii.md)),
-            color = colors.danger.copy(alpha = 0.35f),
-            trackColor = androidx.compose.ui.graphics.Color.Transparent
-        )
-        Text(
-            if (enabled) "Hold for SOS" else "SOS active",
-            color = colors.danger,
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.align(Alignment.Center)
-        )
     }
 }
 

@@ -10,10 +10,12 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.trippulse.app.R
 import com.trippulse.app.core.KoodeSettings
 
 /** Semantic colours for the current scheme. Read via [KoodeTheme.colors]. */
@@ -58,46 +60,65 @@ object Motion {
     const val pressScale = 0.965f
 }
 
-/** The Koode type scale: one family, deliberate weights, generous line height. */
+/**
+ * Display face: Sora — geometric and a little warm, used for headlines and
+ * big numbers so the product has a recognisable voice. Bundled as a variable
+ * font (res/font, SIL Open Font License); each weight is an instance of it.
+ */
+val DisplayFamily = FontFamily(
+    Font(R.font.sora, FontWeight.Medium),
+    Font(R.font.sora, FontWeight.SemiBold),
+    Font(R.font.sora, FontWeight.Bold)
+)
+
+/** Body face: DM Sans — quiet and highly legible at small sizes. */
+val BodyFamily = FontFamily(
+    Font(R.font.dm_sans, FontWeight.Normal),
+    Font(R.font.dm_sans, FontWeight.Medium),
+    Font(R.font.dm_sans, FontWeight.SemiBold),
+    Font(R.font.dm_sans, FontWeight.Bold)
+)
+
+/** The Koode type scale: Sora for what you read at a glance, DM Sans for the rest. */
 private val KoodeTypography = Typography(
     displaySmall = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold,
+        fontFamily = DisplayFamily, fontWeight = FontWeight.Bold,
         fontSize = 30.sp, lineHeight = 36.sp, letterSpacing = (-0.5).sp
     ),
     headlineMedium = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Bold,
+        fontFamily = DisplayFamily, fontWeight = FontWeight.Bold,
         fontSize = 24.sp, lineHeight = 30.sp, letterSpacing = (-0.3).sp
     ),
     headlineSmall = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.SemiBold,
+        fontFamily = DisplayFamily, fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp, lineHeight = 26.sp
     ),
     titleMedium = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.SemiBold,
+        fontFamily = BodyFamily, fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp, lineHeight = 22.sp
     ),
     titleSmall = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.SemiBold,
+        fontFamily = BodyFamily, fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp, lineHeight = 20.sp
     ),
     bodyLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Normal,
+        fontFamily = BodyFamily, fontWeight = FontWeight.Normal,
         fontSize = 15.sp, lineHeight = 22.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Normal,
+        fontFamily = BodyFamily, fontWeight = FontWeight.Normal,
         fontSize = 13.sp, lineHeight = 19.sp
     ),
     bodySmall = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.Normal,
+        fontFamily = BodyFamily, fontWeight = FontWeight.Normal,
         fontSize = 11.sp, lineHeight = 16.sp
     ),
     labelLarge = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.SemiBold,
+        fontFamily = BodyFamily, fontWeight = FontWeight.SemiBold,
         fontSize = 14.sp, lineHeight = 18.sp, letterSpacing = 0.2.sp
     ),
     labelSmall = TextStyle(
-        fontFamily = FontFamily.SansSerif, fontWeight = FontWeight.SemiBold,
+        fontFamily = BodyFamily, fontWeight = FontWeight.SemiBold,
         fontSize = 11.sp, lineHeight = 14.sp, letterSpacing = 0.6.sp
     )
 )

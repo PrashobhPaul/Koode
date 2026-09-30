@@ -39,12 +39,20 @@ object FollowerNotifications {
     ): Boolean {
         if (!FollowerAlerts.shouldNotify(type, payload)) return false
         if (!claim(context, FollowerAlerts.dedupKey(ref, type, eventTimeMs))) return false
-        val (emoji, sentence) = EventNarrator.line(type, payload)
+        val (_, sentence) = EventNarrator.line(type, payload)
+        // Who, then what: "Amma · Toll crossed — Paliyekkara Toll Plaza", with
+        // Amma's mark as the icon. The owner's name comes from the follow
+        // service's cached snapshot; before the first read, the journey label.
+        val person = com.trippulse.app.domain.FollowSnapshot.decode(
+            context.getSharedPreferences(com.trippulse.app.service.TripFollowService.SNAPSHOT_PREFS, Context.MODE_PRIVATE)
+                .getString(ref, null)
+        )?.ownerName
         notifier.showJourneyEvent(
             id = FollowerAlerts.notificationId(ref, type, eventTimeMs, payload),
-            title = "$emoji $sentence",
+            title = person?.let { "$it · $sentence" } ?: sentence,
             body = label,
-            urgent = FollowerAlerts.isUrgent(type)
+            urgent = FollowerAlerts.isUrgent(type),
+            person = person ?: label
         )
         return true
     }

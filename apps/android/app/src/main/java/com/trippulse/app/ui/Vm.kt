@@ -53,6 +53,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.isActive
@@ -133,6 +135,27 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     }
 
     fun followHealth(ref: String): String = followStatus(ref).level
+
+    /** Last known position/ETA of a followed journey, cached by the follow service. */
+    fun snapshot(ref: String): com.trippulse.app.domain.FollowSnapshot? =
+        com.trippulse.app.domain.FollowSnapshot.decode(
+            graph.appContext
+                .getSharedPreferences(com.trippulse.app.service.TripFollowService.SNAPSHOT_PREFS, android.content.Context.MODE_PRIVATE)
+                .getString(ref, null)
+        )
+
+    /** Live state of this phone's own running journey, for Home's map. */
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    val activeState: StateFlow<TripStateEntity?> =
+        graph.tripManager.activeTripFlow()
+            .flatMapLatest { t -> if (t == null) flowOf(null) else graph.tripManager.stateFlow(t.tripId) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    /** A distance in the traveller's own units. */
+    fun distance(metres: Double): String = graph.measures().distance(metres)
+
+    /** The traveller's circle (emergency contacts with a number). */
+    fun circle(): List<Profile.Contact> = Profile.contacts(graph.appContext).filter { it.filled }
 
     /** Erases one journey completely from this device. */
     fun deleteTrip(tripId: String) = viewModelScope.launch {

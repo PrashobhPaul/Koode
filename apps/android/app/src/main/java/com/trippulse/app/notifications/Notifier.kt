@@ -86,12 +86,15 @@ class Notifier(private val context: Context) {
 
     private fun postEvent(
         id: Int, channel: String, title: String, text: String,
-        high: Boolean = false, onlyAlertOnce: Boolean = false
+        high: Boolean = false, onlyAlertOnce: Boolean = false,
+        largeIcon: android.graphics.Bitmap? = null
     ) {
         val n = NotificationCompat.Builder(context, channel)
             .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle(title)
             .setContentText(text)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(text))
+            .setLargeIcon(largeIcon)
             .setAutoCancel(true)
             .setContentIntent(contentIntent())
             .setPriority(if (high) NotificationCompat.PRIORITY_HIGH else NotificationCompat.PRIORITY_DEFAULT)
@@ -144,8 +147,37 @@ class Notifier(private val context: Context) {
      * event replaces itself instead of duplicating. Urgent events ring on the
      * high-importance channel.
      */
-    fun showJourneyEvent(id: Int, title: String, body: String, urgent: Boolean = false) =
-        postEvent(id, if (urgent) CH_SOS else CH_EVENTS, title, body, high = urgent, onlyAlertOnce = !urgent)
+    fun showJourneyEvent(id: Int, title: String, body: String, urgent: Boolean = false, person: String? = null) =
+        postEvent(
+            id, if (urgent) CH_SOS else CH_EVENTS, title, body,
+            high = urgent, onlyAlertOnce = !urgent,
+            largeIcon = person?.let { personIcon(it) }
+        )
+
+    /**
+     * The person's initial on their colour — the same mark Koode shows for
+     * them on Home and in the circle list, so a notification is recognisable
+     * at a glance before it is read.
+     */
+    private fun personIcon(name: String): android.graphics.Bitmap {
+        val mark = com.trippulse.app.domain.PersonMark.of(name)
+        val size = (64 * context.resources.displayMetrics.density).toInt().coerceAtLeast(64)
+        val bmp = android.graphics.Bitmap.createBitmap(size, size, android.graphics.Bitmap.Config.ARGB_8888)
+        val canvas = android.graphics.Canvas(bmp)
+        val paint = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG)
+        paint.color = mark.argb
+        canvas.drawCircle(size / 2f, size / 2f, size / 2f, paint)
+        paint.color = 0xFF07131D.toInt()
+        paint.textSize = size * 0.44f
+        paint.typeface = runCatching {
+            androidx.core.content.res.ResourcesCompat.getFont(context, R.font.sora)
+        }.getOrNull()?.let { android.graphics.Typeface.create(it, android.graphics.Typeface.BOLD) }
+            ?: android.graphics.Typeface.DEFAULT_BOLD
+        paint.textAlign = android.graphics.Paint.Align.CENTER
+        val y = size / 2f - (paint.descent() + paint.ascent()) / 2f
+        canvas.drawText(mark.initial, size / 2f, y, paint)
+        return bmp
+    }
 
     /** Journey Health dropped to CONCERN on a followed journey. */
     fun showJourneyAttention(label: String, reason: String) =
