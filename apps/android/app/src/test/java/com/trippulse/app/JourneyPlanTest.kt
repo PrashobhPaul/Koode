@@ -56,6 +56,7 @@ class JourneyPlanTest {
         assertEquals(EventTypes.HALT_PLAN_CHANGED, changed.eventType)
         assertEquals("Planned halt changed from Salem to Coimbatore.", changed.text)
         val removed = JourneyPlans.revise(changed.plan, t0, halt = JourneyPlans.HaltChange(null))!!
+        assertEquals(EventTypes.PLANNED_HALT_CANCELLED, removed.eventType)
         assertNull(removed.plan.plannedHalt)
         assertEquals(4, removed.plan.version)
     }
@@ -113,8 +114,33 @@ class JourneyPlanTest {
     }
 
     @Test fun resume_wording_distinguishes_confirmed_from_inferred() {
-        assertEquals("Amma has resumed the journey after the halt in Salem.", Halts.resumedText("Amma", "Salem", confirmed = true))
-        assertEquals("Amma is on the move again after the halt in Salem.", Halts.resumedText("Amma", "Salem", confirmed = false))
+        assertEquals("Amma has resumed the journey from Salem.", Halts.resumedText("Amma", "Salem", confirmed = true))
+        assertEquals("Amma is on the move again from Salem.", Halts.resumedText("Amma", "Salem", confirmed = false))
+    }
+
+    @Test fun the_confirm_button_says_what_is_confirmed() {
+        assertEquals("Confirm overnight halt", Halts.confirmLabel(Halts.Duration.OVERNIGHT))
+        assertEquals("Confirm halt", Halts.confirmLabel(Halts.Duration.HOUR))
+        assertEquals("Confirm halt", Halts.confirmLabel(null))
+        assertEquals(Halts.Duration.OVERNIGHT, Halts.Duration.fromMinutes(8 * 60))
+        assertTrue(Halts.isOvernight(10, Halts.Duration.OVERNIGHT.minutes))
+    }
+
+    @Test fun followers_read_who_changed_the_plan() {
+        assertEquals(
+            "Prashobh changed the journey destination from Thrissur to Kochi.",
+            JourneyPlans.revise(v1, t0, destination = "Kochi", who = "Prashobh")!!.text
+        )
+        assertEquals(
+            "Prashobh changed travel mode from car to train.",
+            JourneyPlans.revise(v1, t0, mode = "TRAIN", role = Role.PASSENGER.name, who = "Prashobh")!!.text
+        )
+        val planned = JourneyPlans.revise(v1, t0, halt = JourneyPlans.HaltChange("Salem"), who = "Prashobh")!!
+        assertEquals("Prashobh plans to halt at Salem.", planned.text)
+        assertEquals(
+            "Prashobh is no longer planning to halt at Salem.",
+            JourneyPlans.revise(planned.plan, t0, halt = JourneyPlans.HaltChange(null), who = "Prashobh")!!.text
+        )
     }
 
     @Test fun older_overnight_answers_map_to_halt_types() {
@@ -169,6 +195,7 @@ class JourneyPlanTest {
         listOf(EventTypes.WATER_NUDGE, EventTypes.FOOD_REMINDER, EventTypes.BREAK_ACKNOWLEDGED, EventTypes.HALT_SUGGESTED)
             .forEach { assertFalse(it, FollowerAlerts.shouldNotify(it, emptyMap())) }
         listOf(EventTypes.DESTINATION_CHANGED, EventTypes.TRAVEL_MODE_CHANGED, EventTypes.PLANNED_HALT_CREATED,
+            EventTypes.PLANNED_HALT_CANCELLED,
             EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventTypes.HALT_CONFIRMED, EventTypes.HALT_RESUMED,
             EventTypes.HALT_CANCELLED, EventTypes.JOURNEY_PLAN_REVISED)
             .forEach { assertTrue(it, FollowerAlerts.shouldNotify(it, emptyMap())) }

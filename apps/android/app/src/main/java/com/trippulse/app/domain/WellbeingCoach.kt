@@ -85,9 +85,11 @@ object WellbeingCoach {
     enum class BreakKind { DRIVING, RIDING, STRETCH }
 
     /**
-     * Thresholds (minutes) for one mode and role. A null threshold means the
-     * coach does not watch that need here. Informing followers needs both an
-     * [informAfterMin] and the need in [informNeeds].
+     * The travel-mode profile for one mode and role: hydration, meal, break,
+     * snooze, halt-planning and follower-visibility policy in one place, so
+     * thresholds are starting defaults to tune — never logic. A null
+     * threshold means the coach does not watch that need here. Informing
+     * followers needs both an [informAfterMin] and the need in [informNeeds].
      */
     data class Rules(
         val mode: String,
@@ -102,7 +104,11 @@ object WellbeingCoach {
         val informAfterMin: Int?,
         val informNeeds: Set<Need>,
         /** Hold routine suggestions between 23:00 and 05:00 (the traveller may be asleep). */
-        val quietSmallHours: Boolean
+        val quietSmallHours: Boolean,
+        /** How long "Remind me later" waits. */
+        val snoozeMin: Int = SNOOZE_MIN,
+        /** Long drives may be offered an overnight-halt plan (only someone at the wheel can choose to halt). */
+        val suggestsHaltPlanning: Boolean = false
     )
 
     /** Snooze, and the grace after "Taking a break", before the one reminder. */
@@ -122,7 +128,7 @@ object WellbeingCoach {
             "CAR", "CAB" -> if (role == Role.DRIVER)
                 Rules(mode, role, waterMin = 120, food = FoodAccess.PLAN_A_STOP, breakMin = 120,
                     breakKind = BreakKind.DRIVING, remindAfterMin = 25, informAfterMin = 25,
-                    informNeeds = all, quietSmallHours = false)
+                    informNeeds = all, quietSmallHours = false, suggestsHaltPlanning = true)
             else
                 Rules(mode, role, waterMin = 150,
                     food = if (mode == "CAB") FoodAccess.AT_A_STOP else FoodAccess.PLAN_A_STOP,
@@ -132,7 +138,7 @@ object WellbeingCoach {
             "BIKE" -> if (role == Role.DRIVER)
                 Rules(mode, role, waterMin = 90, food = FoodAccess.PLAN_A_STOP, breakMin = 90,
                     breakKind = BreakKind.RIDING, remindAfterMin = 20, informAfterMin = 20,
-                    informNeeds = all, quietSmallHours = false)
+                    informNeeds = all, quietSmallHours = false, suggestsHaltPlanning = true)
             else
                 Rules(mode, role, waterMin = 90, food = FoodAccess.PLAN_A_STOP, breakMin = null,
                     breakKind = BreakKind.STRETCH, remindAfterMin = 25, informAfterMin = 30,
@@ -152,6 +158,14 @@ object WellbeingCoach {
             // Metro rides are short hops. Only an unusually long one earns a
             // single water suggestion, never repeated or shared.
             "METRO" -> Rules(mode, role, waterMin = 90, food = FoodAccess.NONE, breakMin = null,
+                breakKind = BreakKind.STRETCH, remindAfterMin = null, informAfterMin = null,
+                informNeeds = emptySet(), quietSmallHours = true)
+            // On foot: water on a long walk, a meal if it runs through one. Nothing shared.
+            "WALK" -> Rules(mode, role, waterMin = 60, food = FoodAccess.PLAN_A_STOP, breakMin = null,
+                breakKind = BreakKind.STRETCH, remindAfterMin = null, informAfterMin = null,
+                informNeeds = emptySet(), quietSmallHours = true)
+            // Anything else: the gentlest useful guidance, kept to the traveller.
+            "OTHER" -> Rules(mode, role, waterMin = 150, food = FoodAccess.IF_AVAILABLE, breakMin = null,
                 breakKind = BreakKind.STRETCH, remindAfterMin = null, informAfterMin = null,
                 informNeeds = emptySet(), quietSmallHours = true)
             else -> null
@@ -267,7 +281,7 @@ object WellbeingCoach {
                     }
                     Stage.SNOOZED, Stage.ACKNOWLEDGED -> {
                         val snoozed = st.stage == Stage.SNOOZED
-                        val wait = if (snoozed) SNOOZE_MIN else ACK_GRACE_MIN
+                        val wait = if (snoozed) rules.snoozeMin else ACK_GRACE_MIN
                         if (since >= wait) {
                             st = st.copy(stage = Stage.REMINDED, stageAtMs = ctx.nowMs, reminders = st.reminders + 1)
                             decisions += suggestion(rules, need, ctx, gapMin, reminder = true, listOf(
@@ -498,9 +512,9 @@ object WellbeingCoach {
         val verb = if (r.breakKind == BreakKind.RIDING) "riding" else "driving"
         return when (r.breakKind) {
             BreakKind.DRIVING, BreakKind.RIDING -> if (!reminder) {
-                "Time for a break?" to "You've been $verb for about $gap without a proper break. Consider stopping somewhere safe to stretch for a few minutes."
+                "Time for a break?" to "You've been $verb for about $gap without a recorded break. Consider stopping when convenient."
             } else {
-                "A reminder about a break" to "About $gap of continuous $verb now. When you see a safe place, a short break is a good idea."
+                "A reminder about a break" to "About $gap of $verb now without a recorded break. When you see a safe place, a short break is a good idea."
             }
             BreakKind.STRETCH -> "Time to stretch?" to when (r.mode) {
                 "BUS" -> "You've been travelling for about $gap. At the next stop, it's a good chance to get down and stretch."

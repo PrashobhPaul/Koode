@@ -385,7 +385,7 @@ class TripManager(
             if (actualStartMs != null) mapOf(
                 "startedEarlier" to true, "recordedAtMs" to recordedAt,
                 "estimatedDistanceBeforeTrackingM" to preDistanceM
-            ) else emptyMap(), false
+            ) else mapOf("text" to "${ownerName() ?: "The traveller"} started a journey to ${started.destName}."), false
         )
         db.legDao().markStarted(tripId, started.activeLegIndex, now)
         legs = db.legDao().forTrip(tripId)
@@ -1045,6 +1045,7 @@ class TripManager(
                     put("haltType", type.name); put("source", "USER_CONFIRMED"); put("overnight", overnight)
                     place?.let { put("place", it) }
                     expectedMinutes?.let { put("expectedMinutes", it) }
+                    Halts.Duration.fromMinutes(expectedMinutes)?.let { put("duration", it.name) }
                     put("text", Halts.confirmedText(ownerName().orEmpty(), type, place, overnight))
                 }, false
             )
@@ -1195,7 +1196,7 @@ class TripManager(
         destination: String? = null, mode: String? = null, role: String? = null,
         halt: JourneyPlans.HaltChange? = null
     ): JourneyPlans.Revision? {
-        val rev = JourneyPlans.revise(planFor(t), now, destination, mode, role, halt) ?: return null
+        val rev = JourneyPlans.revise(planFor(t), now, destination, mode, role, halt, who = ownerName().orEmpty()) ?: return null
         plans.append(t.tripId, rev.plan)
         insertEvent(t.tripId, rev.eventType, EventSource.DRIVER_MANUAL, now, s.lat, s.lng, rev.payload, false)
         return rev
@@ -1841,8 +1842,15 @@ class TripManager(
         val started = t.startedAtMs ?: t.createdAtMs
         val summary = SummaryCalculator.compute(events, s.distanceCoveredM, started, now)
 
+        // "Reached" only when arrival was detected or the traveller ended it at
+        // arrival; never "safely", which nobody confirmed.
+        val who = ownerName() ?: "The traveller"
+        val reached = t.arrivedAtMs != null || endAtMs != null
+        val closing = if (reached) "$who reached ${t.destName} and completed the journey."
+            else "$who completed the journey."
         insertEvent(t.tripId, EventTypes.TRIP_COMPLETED, EventSource.DRIVER_MANUAL, now, s.lat, s.lng,
-            summaryMap(summary) + (if (endAtMs != null) mapOf("endedAtArrival" to true, "recordedAtMs" to recordedAt) else emptyMap()),
+            summaryMap(summary) + ("text" to closing) +
+                (if (endAtMs != null) mapOf("endedAtArrival" to true, "recordedAtMs" to recordedAt) else emptyMap()),
             false)
 
         db.legDao().markCompleted(t.tripId, t.activeLegIndex, now)
@@ -1996,8 +2004,8 @@ class TripManager(
                 coachPrefs.edit().putLong(etaKey, eta).apply()
             } else if (EtaShift.significant(baseline, eta, now)) {
                 val shift = WellbeingCoach.duration(kotlin.math.abs(eta - baseline) / 60_000)
-                val text = "Now expected around ${TimeFmt.clockWithDay(eta, now)} — about $shift " +
-                    (if (eta > baseline) "later" else "earlier") + " than before."
+                val text = "Estimated arrival has changed to around ${TimeFmt.clockWithDay(eta, now)} " +
+                    "(about $shift ${if (eta > baseline) "later" else "earlier"})."
                 coachPrefs.edit().putLong(etaKey, eta).apply()
                 insertEvent(
                     t.tripId, EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
@@ -2101,10 +2109,13 @@ class TripManager(
 
         // Idempotency: never record the same crossing twice.
         val key = crossing.dedupKey()
-        val duplicate = runCatching {
-            db.eventDao().allForTrip(t.tripId).any { it.type == EventTypes.TOLL_CROSSED && it.payloadJson.contains(key) }
-        }.getOrDefault(false)
-        if (duplicate) return@withLock
+        val tolls = runCatching {
+            db.eventDao().allForTrip(t.tripId).filter { it.type == EventTypes.TOLL_CROSSED }
+        }.getOrDefault(emptyList())
+        if (tolls.any { it.payloadJson.contains(key) }) return@withLock
+        // Toll count and any pass balance are separate facts: the count is
+        // always known, a balance only if the traveller configured one.
+        val count = tolls.size + 1
 
         val payload = buildMap<String, Any?> {
             crossing.plaza?.let { put("plaza", it) }
@@ -2113,7 +2124,11 @@ class TripManager(
             put("source", EventSource.FASTAG_SMS.name)
             put("dedupKey", key)
             crossing.issuer?.let { put("issuer", it) }
-            put("text", crossing.plaza?.let { "Toll crossed — $it" } ?: "Toll crossed")
+            put("tollsOnJourney", count)
+            put("text", buildString {
+                append(crossing.plaza?.let { "Toll crossed at $it" } ?: "Toll crossed")
+                append(" · $count ${if (count == 1) "toll" else "tolls"} recorded on this journey")
+            })
         }
         // Position is the vehicle's last known point, not the plaza — the SMS
         // gives no coordinate and we never invent one.

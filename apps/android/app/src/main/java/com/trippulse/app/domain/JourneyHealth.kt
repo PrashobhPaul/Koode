@@ -61,7 +61,7 @@ object JourneyHealth {
     fun evaluate(i: Inputs): Report {
         // terminal states are always calm
         if (i.journey == JourneyStatus.ARRIVED.name) {
-            return Report(Level.NORMAL, "Arrived safely", emptyList())
+            return Report(Level.NORMAL, "Arrived", emptyList())
         }
         if (i.journey == JourneyStatus.COMPLETED.name) {
             return Report(Level.NORMAL, "Journey completed", emptyList())

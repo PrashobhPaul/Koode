@@ -147,6 +147,7 @@
     TRAVEL_MODE_CHANGED: ['🔁', 'Travel mode changed'],
     PLANNED_HALT_CREATED: ['🗓', 'Halt planned'],
     PLANNED_HALT_CHANGED: ['🗓', 'Planned halt changed'],
+    PLANNED_HALT_CANCELLED: ['🗓', 'Planned halt cancelled'],
     ETA_SIGNIFICANTLY_CHANGED: ['🕒', 'Arrival time changed'],
     JOURNEY_PLAN_REVISED: ['🧭', 'Journey plan updated']
   };
@@ -519,7 +520,7 @@
       card.className = 'card hero danger';
       headlineEl.className = 'headline danger';
     } else if (ended) {
-      headline = 'Journey ended safely';
+      headline = 'Journey ended';
     } else if (!state) {
       headline = 'Getting the first update…';
     } else if (dark.dark) {
@@ -591,7 +592,7 @@
     $('play').disabled = path.length < 2;
 
     // ---- arrival + progress ----
-    if (ended) text('eta', 'Arrived safely 🎉');
+    if (ended) text('eta', 'Journey complete');
     else if (state && state.etaMode === 'OVERNIGHT_PENDING') text('eta', 'Halting — a new estimate follows when they set off');
     else if (state && state.etaLikely) {
       text('eta', clockWithDay(state.etaLow || state.etaLikely) + ' – ' + clock(state.etaHigh || state.etaLikely));

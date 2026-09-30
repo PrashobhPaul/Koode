@@ -5,6 +5,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -137,7 +139,7 @@ fun HomeScreen(nav: NavHostController) {
                     Spacer(Modifier.height(Spacing.md))
                     AdaptiveContainer {
                         when (page) {
-                            0 -> HomeFeed(nav, vm, active, following, profileComplete, update, goToCircle = { goTo(2) }) { goTo(3) }
+                            0 -> HomeFeed(nav, vm, active, allTrips, following, profileComplete, update) { goTo(3) }
                             1 -> JourneysSection(nav, active, allTrips) { deleteTarget = it }
                             2 -> PeopleSection(nav, vm, following, profileComplete) { goTo(3) }
                             else -> SettingsTab(onProfileChanged = { profileVersion++ })
@@ -327,15 +329,16 @@ private data class MapSubject(
 /** A fix older than this is shown as "last seen", never as live. */
 private const val LIVE_FRESH_MS = 5 * 60_000L
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun HomeFeed(
     nav: NavHostController,
     vm: HomeVm,
     active: ActiveTripEntity?,
+    allTrips: List<ActiveTripEntity>,
     following: List<ViewerTripEntity>,
     profileComplete: Boolean,
     update: com.trippulse.app.data.update.UpdateChecker.Available?,
-    goToCircle: () -> Unit,
     goToSettings: () -> Unit
 ) {
     val colors = KoodeTheme.colors
@@ -345,6 +348,7 @@ private fun HomeFeed(
     val name = vm.greetingName()
     val now = System.currentTimeMillis()
     val myState by vm.activeState.collectAsStateWithLifecycle()
+    val journeyFollowers by vm.journeyFollowers.collectAsStateWithLifecycle()
 
     val live = following.filter { !it.expired }
     val statuses = live.associate { it.accessKey to vm.followStatus(it.accessKey) }
@@ -386,19 +390,19 @@ private fun HomeFeed(
     var featuredKey by rememberSaveable { mutableStateOf<String?>(null) }
     val featured = subjects.firstOrNull { it.key == featuredKey } ?: subjects.firstOrNull()
 
-    // ---- the one-line answer to "is everyone okay?" ---------------------------
+    // ---- one line about the journey that is under way, if any ---------------
+    // Home is journey-centric: it speaks about live journeys, never about
+    // where people are when nobody is travelling.
     val concern = live.any {
         statuses[it.accessKey]?.level == "CONCERN" || snapshots[it.accessKey]?.sosActive == true
     }
-    val waiting = live.any { it.unreachableSinceMs != null }
-    val allNormal = live.isNotEmpty() && !waiting && live.all { statuses[it.accessKey]?.level == "NORMAL" }
+    val myLive = active != null && active.status == "ACTIVE"
     val headline = when {
-        concern -> "Someone needs a look"
-        allNormal && live.size == 1 -> "${personName(live.first()).substringBefore(' ')} is on the way"
-        allNormal -> "Everyone's on track"
-        live.isNotEmpty() -> "Keeping watch"
-        active != null && active.status == "ACTIVE" -> "You're on a journey"
-        else -> "All quiet"
+        concern -> "A journey needs a look"
+        myLive -> "You're on a journey"
+        live.size == 1 -> "${personName(live.first()).substringBefore(' ')} is on the way"
+        live.size > 1 -> "${live.size} journeys under way"
+        else -> "Ready for your next journey?"
     }
     val hour = java.util.Calendar.getInstance().get(java.util.Calendar.HOUR_OF_DAY)
     val greeting = when (hour) { in 5..11 -> "Good morning"; in 12..16 -> "Good afternoon"; else -> "Good evening" }
@@ -521,7 +525,7 @@ private fun HomeFeed(
                         !fresh && featured.lastFixMs != null -> "Last seen ${TimeFmt.ago(now, featured.lastFixMs)}"
                         else -> listOfNotNull(
                             featured.remainingM?.takeIf { it > 0 }?.let { "${vm.distance(it)} left" },
-                            featured.etaMs?.let { "arriving about ${TimeFmt.clockWithDay(it, now)}" }
+                            featured.etaMs?.let { "ETA ${TimeFmt.clockWithDay(it, now)}" }
                         ).joinToString(" · ").ifBlank { "On the way" }
                     }
                     Text(detail, color = colors.textMid, style = MaterialTheme.typography.bodyMedium, maxLines = 1)
@@ -529,28 +533,6 @@ private fun HomeFeed(
                 if (fresh) {
                     Spacer(Modifier.width(Spacing.sm))
                     StatusPill("LIVE", colors.accent, pulsing = true)
-                }
-            }
-        }
-    } else if (active == null || active.status != "ACTIVE") {
-        KoodeCard {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Box(
-                    Modifier
-                        .size(44.dp)
-                        .clip(RoundedCornerShape(14.dp))
-                        .background(colors.accent.copy(alpha = 0.14f)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(KoodeIcons.Pin, contentDescription = null, tint = colors.accent, modifier = Modifier.size(22.dp))
-                }
-                Spacer(Modifier.width(Spacing.md))
-                Column(Modifier.weight(1f)) {
-                    Text("No one is travelling right now", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
-                    Text(
-                        "When someone shares a journey with you, you'll see them here, live.",
-                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                    )
                 }
             }
         }
@@ -592,12 +574,15 @@ private fun HomeFeed(
         }
     }
 
-    // ---- your circle ------------------------------------------------------------
-    Spacer(Modifier.height(Spacing.xs))
-    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text("Journeys", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall, modifier = Modifier.weight(1f))
-        TextButton(onClick = {
-            if (active != null) {
+    // ---- my live journey: the people following it --------------------------------
+    if (active != null && active.status == "ACTIVE") {
+        Spacer(Modifier.height(Spacing.xs))
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text(
+                "People following this journey", color = colors.textHigh,
+                style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f)
+            )
+            TextButton(onClick = {
                 scope.launch {
                     vm.shareText(active.tripId, includePasscode = true)?.let { text ->
                         context.startActivity(
@@ -611,108 +596,139 @@ private fun HomeFeed(
                         )
                     }
                 }
-            } else goToCircle()
-        }) {
-            Text("Invite", color = colors.accent, style = MaterialTheme.typography.labelLarge)
+            }) {
+                Text("Share", color = colors.accent, style = MaterialTheme.typography.labelLarge)
+            }
+        }
+        if (journeyFollowers.isEmpty()) {
+            Text(
+                "No one is following this journey yet. Share it with the people you'd like to keep informed.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
+        } else {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                journeyFollowers.forEach { n ->
+                    Row(
+                        Modifier
+                            .clip(RoundedCornerShape(Radii.pill))
+                            .background(colors.backgroundElevated)
+                            .padding(start = 4.dp, end = 12.dp, top = 4.dp, bottom = 4.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        PersonAvatar(n, 28.dp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Text(n, color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
+            }
         }
     }
 
-    Column(
-        Modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(Radii.lg))
-            .background(colors.backgroundElevated)
-    ) {
-        var first = true
-        if (active != null) {
-            val scheduled = active.status == "CREATED"
-            CircleRow(
-                name = name.ifBlank { "You" },
-                title = "You",
-                subtitle = if (scheduled) "Scheduled · to ${active.destName}" else "Sharing your journey · to ${active.destName}",
-                status = if (scheduled) "Scheduled" else "On a journey",
-                statusColor = if (scheduled) colors.warn else colors.accent,
-                ring = if (scheduled) null else colors.accent,
-                divider = false,
-                onClick = {
-                    if (active.status == "CREATED") nav.navigate(Routes.credentials(active.tripId))
-                    else nav.navigate(Routes.driver(active.tripId))
+    // ---- journeys shared with me, only while they are live ------------------------
+    if (live.isNotEmpty()) {
+        Spacer(Modifier.height(Spacing.xs))
+        Text("Journeys shared with you", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(Radii.lg))
+                .background(colors.backgroundElevated)
+        ) {
+            live.forEachIndexed { index, v ->
+                val st = statuses[v.accessKey]
+                val snap = snapshots[v.accessKey]
+                val waitingSignal = v.unreachableSinceMs != null
+                val sos = snap?.sosActive == true
+                val (status, tint) = when {
+                    sos -> "SOS" to colors.danger
+                    waitingSignal -> "Waiting" to colors.warn
+                    st?.level == "CONCERN" -> "Needs a look" to colors.danger
+                    st?.level == "ATTENTION" -> "Keep an eye" to colors.warn
+                    else -> "On the way" to colors.accent
                 }
-            )
-            first = false
-        }
-        following.sortedBy { it.expired }.forEach { v ->
-            val st = statuses[v.accessKey]
-            val snap = snapshots[v.accessKey]
-            val ended = v.expired
-            val waitingSignal = !ended && v.unreachableSinceMs != null
-            val sos = !ended && snap?.sosActive == true
-            val (status, tint) = when {
-                ended -> "Ended" to colors.textMid
-                sos -> "SOS" to colors.danger
-                waitingSignal -> "Waiting" to colors.warn
-                st?.level == "CONCERN" -> "Needs a look" to colors.danger
-                st?.level == "ATTENTION" -> "Keep an eye" to colors.warn
-                else -> "On a journey" to colors.accent
+                val subtitle = when {
+                    waitingSignal -> "Last heard ${TimeFmt.ago(now, v.lastSeenAtMs ?: v.joinedAtMs)} — about the signal, not them"
+                    st != null && st.reason.isNotBlank() -> st.reason
+                    snap?.destination != null -> "On the way to ${snap.destination}"
+                    else -> st?.headline ?: v.label
+                }
+                CircleRow(
+                    name = personName(v),
+                    title = personName(v),
+                    subtitle = subtitle,
+                    status = status,
+                    statusColor = tint,
+                    ring = if (!waitingSignal) tint else null,
+                    divider = index > 0,
+                    onClick = { nav.navigate(Routes.viewer(v.accessKey)) }
+                )
             }
-            val subtitle = when {
-                ended -> v.endedAtMs?.let { "Journey ended ${TimeFmt.ago(now, it)}" } ?: "Journey ended"
-                waitingSignal -> "Last heard ${TimeFmt.ago(now, v.lastSeenAtMs ?: v.joinedAtMs)} — about the signal, not them"
-                st != null && st.reason.isNotBlank() -> st.reason
-                snap?.destination != null -> "On the way to ${snap.destination}"
-                else -> st?.headline ?: v.label
-            }
-            CircleRow(
-                name = personName(v),
-                title = personName(v),
-                subtitle = subtitle,
-                status = status,
-                statusColor = tint,
-                ring = if (!ended && !waitingSignal) tint else null,
-                divider = !first,
-                onClick = { nav.navigate(Routes.viewer(v.accessKey)) }
-            )
-            first = false
         }
+    }
 
-        val circle = vm.circle()
-        if (circle.isNotEmpty()) {
-            if (!first) {
-                Box(Modifier.fillMaxWidth().padding(start = 72.dp).height(1.dp).background(colors.surfaceRaised))
-            }
-            Row(
+    // ---- nothing under way: ready for the next journey ------------------------------
+    if (active == null && live.isEmpty()) {
+        KoodeHeroCard(accent = colors.accent) {
+            Text("Ready for your next journey?", color = colors.textHigh, style = MaterialTheme.typography.titleLarge)
+            Spacer(Modifier.height(Spacing.xs))
+            Text(
+                "Koode looks after you on the way and keeps the people you choose informed — only while the journey lasts.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(Modifier.height(Spacing.md))
+            PrimaryButton(
+                "Start a journey",
+                { if (profileComplete) nav.navigate(Routes.CREATE) else goToSettings() },
+                height = 48.dp
+            )
+        }
+        val recent = allTrips.filter { it.status == "COMPLETED" }
+            .sortedByDescending { it.completedAtMs ?: it.createdAtMs }
+            .take(3)
+        if (recent.isNotEmpty()) {
+            Spacer(Modifier.height(Spacing.xs))
+            Text("Recent journeys", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+            Column(
                 Modifier
                     .fillMaxWidth()
-                    .clickable(onClick = goToCircle)
-                    .padding(horizontal = Spacing.lg, vertical = Spacing.md),
-                verticalAlignment = Alignment.CenterVertically
+                    .clip(RoundedCornerShape(Radii.lg))
+                    .background(colors.backgroundElevated)
             ) {
-                Row(horizontalArrangement = Arrangement.spacedBy((-10).dp)) {
-                    circle.take(4).forEach { c ->
-                        PersonAvatar(c.name, 32.dp, Modifier.border(2.dp, colors.backgroundElevated, CircleShape))
+                recent.forEachIndexed { index, t ->
+                    if (index > 0) {
+                        Box(Modifier.fillMaxWidth().padding(start = Spacing.lg).height(1.dp).background(colors.surfaceRaised))
+                    }
+                    Row(
+                        Modifier
+                            .fillMaxWidth()
+                            .clickable { nav.navigate(Routes.summary(t.tripId)) }
+                            .padding(horizontal = Spacing.lg, vertical = Spacing.md),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(Modifier.weight(1f)) {
+                            Text("${t.originName} → ${t.destName}", color = colors.textHigh, style = MaterialTheme.typography.titleSmall, maxLines = 1)
+                            Text(
+                                "${relativeDay(t.completedAtMs ?: t.createdAtMs, now)} · Completed",
+                                color = colors.textMid, style = MaterialTheme.typography.bodySmall
+                            )
+                        }
+                        Icon(KoodeIcons.Chevron, contentDescription = null, tint = colors.textMid, modifier = Modifier.size(18.dp))
                     }
                 }
-                Spacer(Modifier.width(Spacing.md))
-                Text(
-                    "${circle.size} ${if (circle.size == 1) "person hears" else "people hear"} about your journeys",
-                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.weight(1f)
-                )
-                Icon(KoodeIcons.Chevron, contentDescription = null, tint = colors.textMid, modifier = Modifier.size(18.dp))
             }
-            first = false
         }
+    }
+}
 
-        if (first) {
-            Column(Modifier.padding(Spacing.lg), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                Text("No journeys yet", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
-                Text(
-                    "Add the people who should hear about your journeys, or follow someone who shared theirs with you.",
-                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                )
-                SecondaryButton("Follow a journey", { if (profileComplete) nav.navigate(Routes.JOIN) else goToSettings() }, height = 44.dp)
-            }
-        }
+/** "Today", "Yesterday", or "Sep 28". */
+private fun relativeDay(ms: Long, nowMs: Long): String {
+    val zone = java.time.ZoneId.systemDefault()
+    val day = java.time.Instant.ofEpochMilli(ms).atZone(zone).toLocalDate()
+    val today = java.time.Instant.ofEpochMilli(nowMs).atZone(zone).toLocalDate()
+    return when (day) {
+        today -> "Today"
+        today.minusDays(1) -> "Yesterday"
+        else -> java.time.format.DateTimeFormatter.ofPattern("MMM d", java.util.Locale.ENGLISH).format(day)
     }
 }
 
@@ -845,7 +861,7 @@ private fun PeopleSection(
     val context = LocalContext.current
     SectionHeader("People")
 
-    Text("Who hears about your journeys", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
+    Text("People you can share a journey with", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
     val circle = Profile.contacts(context).filter { it.filled }
     if (circle.isEmpty()) {
         KoodeCard(accent = colors.warn, onClick = goToSettings) {
@@ -876,7 +892,7 @@ private fun PeopleSection(
     }
 
     Spacer(Modifier.height(Spacing.sm))
-    Text("You follow", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
+    Text("Journeys shared with you", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
     SecondaryButton(
         "Follow a journey",
         { if (profileComplete) nav.navigate(Routes.JOIN) else goToSettings() },
@@ -916,7 +932,7 @@ private fun HealthChip(level: String) {
         "ATTENTION" -> "Attention" to colors.warn
         "ENDED" -> "Ended" to colors.textLow
         "WAITING" -> "Waiting" to colors.warn
-        else -> "Safe" to colors.accent
+        else -> "On the way" to colors.accent
     }
     StatusPill(label, color)
 }

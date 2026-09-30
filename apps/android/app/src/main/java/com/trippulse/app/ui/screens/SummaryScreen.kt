@@ -116,17 +116,27 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     ) {
         Spacer(Modifier.height(Spacing.lg))
         AdaptiveContainer {
-            Text("Journey summary", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
+            // "Reached Thrissur" only when arrival was detected; never "safely",
+            // which nobody confirmed.
+            val done = trip?.completedAtMs != null
+            Text(
+                when {
+                    done && trip?.arrivedAtMs != null -> "Reached ${destLabel ?: trip?.destName}"
+                    done -> "Journey complete"
+                    else -> "Journey summary"
+                },
+                color = colors.textHigh, style = MaterialTheme.typography.displaySmall
+            )
             Text(
                 "${originLabel ?: trip?.originName ?: "Start"} → ${destLabel ?: trip?.destName ?: "Destination"}",
                 color = colors.textMid, style = MaterialTheme.typography.bodyLarge
             )
             trip?.completedAtMs?.let {
                 Text(
-                    "✓ Journey completed",
+                    "${TimeFmt.clock(it)} · You ended the journey",
                     color = colors.accent, style = MaterialTheme.typography.titleSmall
                 )
-                Text(TimeFmt.dateTime(it), color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                Text(TimeFmt.date(it), color = colors.textLow, style = MaterialTheme.typography.bodySmall)
             }
 
             // ---- the route, replayable ----

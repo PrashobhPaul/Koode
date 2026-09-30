@@ -69,6 +69,7 @@ object EventNarrator {
         EventTypes.TRAVEL_MODE_CHANGED -> "🔁" to "Travel mode changed"
         EventTypes.PLANNED_HALT_CREATED -> "🗓" to "Halt planned"
         EventTypes.PLANNED_HALT_CHANGED -> "🗓" to "Planned halt changed"
+        EventTypes.PLANNED_HALT_CANCELLED -> "🗓" to "Planned halt cancelled"
         EventTypes.ETA_SIGNIFICANTLY_CHANGED -> "🕒" to "Arrival time changed"
         EventTypes.JOURNEY_PLAN_REVISED -> "🧭" to "Journey plan updated"
         else -> "•" to type.lowercase().replace('_', ' ')
@@ -112,8 +113,10 @@ object EventNarrator {
             // Halts and plan changes are written as whole, neutral sentences.
             EventTypes.HALT_CONFIRMED, EventTypes.HALT_CANCELLED, EventTypes.HALT_RESUMED,
             EventTypes.DESTINATION_CHANGED, EventTypes.TRAVEL_MODE_CHANGED,
-            EventTypes.PLANNED_HALT_CREATED, EventTypes.PLANNED_HALT_CHANGED,
-            EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventTypes.JOURNEY_PLAN_REVISED -> emoji to (text ?: label)
+            EventTypes.PLANNED_HALT_CREATED, EventTypes.PLANNED_HALT_CHANGED, EventTypes.PLANNED_HALT_CANCELLED,
+            EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventTypes.JOURNEY_PLAN_REVISED,
+            // Start and completion carry "Prashobh started a journey to Thrissur."
+            EventTypes.TRIP_STARTED, EventTypes.TRIP_COMPLETED -> emoji to (text ?: label)
             else -> emoji to (text?.let { "$label — $it" } ?: label)
         }
     }

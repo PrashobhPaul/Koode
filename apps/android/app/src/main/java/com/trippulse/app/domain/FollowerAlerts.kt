@@ -31,7 +31,7 @@ object FollowerAlerts {
 
     private val IMPORTANT: Set<String> = setOf(
         EventTypes.DESTINATION_CHANGED, EventTypes.TRAVEL_MODE_CHANGED,
-        EventTypes.PLANNED_HALT_CREATED, EventTypes.PLANNED_HALT_CHANGED,
+        EventTypes.PLANNED_HALT_CREATED, EventTypes.PLANNED_HALT_CHANGED, EventTypes.PLANNED_HALT_CANCELLED,
         EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventTypes.JOURNEY_PLAN_REVISED,
         EventTypes.HALT_RESUMED, EventTypes.MORNING_RESUME, EventTypes.SOS_RESOLVED
     )

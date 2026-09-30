@@ -98,8 +98,28 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
 
     val cloudAvailable: Boolean = graph.cloudAvailableSafe()
 
+    /**
+     * Who is following the traveller's live journey — approved followers of
+     * this journey only, never a standing list. Empty when nothing is live.
+     */
+    val journeyFollowers = MutableStateFlow<List<String>>(emptyList())
+
     init {
         viewModelScope.launch { update.value = graph.updateChecker.check() }
+        viewModelScope.launch {
+            while (true) {
+                val t = graph.db.tripDao().activeTrip()
+                journeyFollowers.value = if (t != null && t.status == "ACTIVE" && t.cloudEnabled) {
+                    try {
+                        graph.cloud.fetchJoinRequests(t.accessKey)
+                            .filter { it["status"] == "APPROVED" }
+                            .mapNotNull { (it["name"] as? String)?.trim()?.ifBlank { null } }
+                            .distinct()
+                    } catch (_: Exception) { journeyFollowers.value }
+                } else emptyList()
+                delay(30_000)
+            }
+        }
     }
 
     fun dismissUpdate() {
@@ -154,8 +174,6 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     /** A distance in the traveller's own units. */
     fun distance(metres: Double): String = graph.measures().distance(metres)
 
-    /** The traveller's circle (emergency contacts with a number). */
-    fun circle(): List<Profile.Contact> = Profile.contacts(graph.appContext).filter { it.filled }
 
     /** Erases one journey completely from this device. */
     fun deleteTrip(tripId: String) = viewModelScope.launch {
@@ -186,7 +204,7 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
         return buildString {
             append(if (name.isBlank()) "I'm on a journey" else "$name is on a journey")
             appendLine(" — follow along on Koode.")
-            appendLine("You'll know the moment I arrive safely, without having to call.")
+            appendLine("Koode will keep you informed along the way, without you having to call.")
             appendLine()
             appendLine("Journey number: ${t.tripId}")
             if (includePasscode) appendLine("Passcode: ${t.secret}")
@@ -866,6 +884,9 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     /** The live journey plan: destination, mode, role, planned halt. */
     val plan = graph.tripManager.planFlow
+
+    /** Every version of this journey's plan, oldest first. */
+    fun planHistory(): List<com.trippulse.app.domain.JourneyPlan> = graph.tripManager.planHistory(tripId)
 
     // ---- finding a new destination ----
     val savedPlaces: StateFlow<List<SavedPlaceEntity>> =

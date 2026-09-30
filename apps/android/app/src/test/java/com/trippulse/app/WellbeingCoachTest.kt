@@ -122,6 +122,7 @@ class WellbeingCoachTest {
         assertEquals("Time for a break?", brk.second.title)
         assertTrue(brk.second.reasons.any { it.contains("Continuous movement") })
         assertTrue(brk.second.reasons.contains("Role = DRIVER"))
+        assertTrue(brk.second.body.contains("without a recorded break"))
         assertEquals(WellbeingCoach.Confidence.HIGH, brk.second.confidence)
     }
 
@@ -245,7 +246,13 @@ class WellbeingCoachTest {
     @Test fun short_metro_hops_are_not_coached() {
         val (all, _) = run(80) { ctx(it, mode = "METRO", hour = 16) }
         assertTrue(all.isEmpty())
-        assertNull(WellbeingCoach.rulesFor("WALK"))
+        assertNull(WellbeingCoach.rulesFor("SKATEBOARD"))
+        // Walking and "other" get gentle, private guidance only.
+        listOf("WALK", "OTHER").forEach { m ->
+            val r = WellbeingCoach.rulesFor(m)!!
+            assertNull(r.informAfterMin)
+            assertNull(r.breakMin)
+        }
     }
 
     @Test fun follower_wording_is_neutral_and_factual() {

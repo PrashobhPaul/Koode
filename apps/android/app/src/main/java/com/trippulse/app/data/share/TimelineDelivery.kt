@@ -80,7 +80,7 @@ object TimelineDelivery {
     fun buildMessage(travellerName: String?, origin: String, destination: String): String =
         buildString {
             append(if (travellerName.isNullOrBlank()) "I've" else "$travellerName has")
-            append(" arrived safely. ")
+            append(" reached $destination. ")
             append("Here's the timeline of the journey from $origin to $destination.")
             append("\n\nSent from Koode.")
         }

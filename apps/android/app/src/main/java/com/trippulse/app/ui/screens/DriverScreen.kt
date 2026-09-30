@@ -488,10 +488,34 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     }
                 }
             }
-            val approvedNames = requests.filter { it["status"] == "APPROVED" }.mapNotNull { it["name"] as? String }
-            if (approvedNames.isNotEmpty()) {
+            // ---- the people following this journey (for this journey only) ----
+            val approved = requests.filter { it["status"] == "APPROVED" }
+            KoodeCard(title = "People following this journey") {
+                if (approved.isEmpty()) {
+                    Text(
+                        "No one yet. Share this journey with the people you'd like to keep informed.",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+                approved.forEach { r ->
+                    val name = (r["name"] as? String)?.ifBlank { null } ?: "Someone"
+                    val token = r["token"] as? String
+                    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        com.trippulse.app.ui.components.PersonAvatar(name, 32.dp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Text(
+                            name, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.weight(1f)
+                        )
+                        if (token != null) {
+                            TextButton(onClick = { vm.setViewerApproval(token, false) }) {
+                                Text("Remove", color = colors.textLow, fontSize = 13.sp)
+                            }
+                        }
+                    }
+                }
                 Text(
-                    "Watching: ${approvedNames.joinToString(", ")}",
+                    "They hear about meaningful moments of this journey only — never your coaching, and nothing after it ends.",
                     color = colors.textLow, style = MaterialTheme.typography.bodySmall
                 )
             }
@@ -499,24 +523,40 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             // ---- one-tap wellbeing ----
             // On public transport these are simply notes: eating on a train
             // is not a break, and logging it must not imply the journey stopped.
-            KoodeCard(title = if (profile.wellbeingIsBreak) "Log a break" else "How are you doing?") {
+            // ---- how you're doing: private coaching state, explicit answers ----
+            KoodeCard(title = "How you're doing") {
+                val tiles = coachTiles(s, t?.startedAtMs, plan, profile.key, now)
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    tiles.forEach { tile ->
+                        Column(
+                            Modifier
+                                .weight(1f)
+                                .clip(RoundedCornerShape(Radii.md))
+                                .background(colors.backgroundElevated)
+                                .padding(Spacing.md)
+                        ) {
+                            Text(tile.label, color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                            Text(tile.value, color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+                            Text(tile.caption, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
+                        }
+                    }
+                }
+                Spacer(Modifier.height(Spacing.sm))
                 Text(
                     if (profile.wellbeingIsBreak)
-                        "One tap each. Koode works out whether that was breakfast, lunch or dinner."
-                    else "One tap each. On ${profile.label.lowercase()} these are just notes for your family — " +
-                        "they never count as stopping the journey.",
-                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                        "Tap what you've had. Koode works out whether it was breakfast, lunch or dinner — this stays with you."
+                    else "Tap what you've had. On ${profile.label.lowercase()} these are notes, never a stop in the journey.",
+                    color = colors.textMid, style = MaterialTheme.typography.bodySmall
                 )
-                coachStatus(s, t?.startedAtMs, plan, profile.key, now)?.let { line ->
-                    Spacer(Modifier.height(Spacing.sm))
-                    Text(line, color = colors.textHigh, style = MaterialTheme.typography.bodySmall)
-                }
                 Spacer(Modifier.height(Spacing.md))
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                    KoodeChip("Water", false, { vm.logNourishment(Nourishment.WATER) }, leading = "💧")
-                    KoodeChip("Tea / coffee", false, { vm.logNourishment(Nourishment.TEA_COFFEE) }, leading = "☕")
-                    KoodeChip("Snack", false, { vm.logNourishment(Nourishment.SNACK) }, leading = "🍪")
-                    KoodeChip("Food", false, { vm.submitCheckpoint(TripManager.Checkpoint(food = true)) }, leading = "🍛")
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                ) {
+                    KoodeChip("Had water", false, { vm.logNourishment(Nourishment.WATER) }, leading = "💧")
+                    KoodeChip("Ate something", false, { vm.submitCheckpoint(TripManager.Checkpoint(food = true)) }, leading = "🍛")
+                    KoodeChip("Had tea", false, { vm.logNourishment(Nourishment.TEA_COFFEE) }, leading = "☕")
+                    KoodeChip("Had a snack", false, { vm.logNourishment(Nourishment.SNACK) }, leading = "🍪")
                 }
                 Spacer(Modifier.height(Spacing.md))
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
@@ -728,6 +768,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 message = editMessage,
                 destination = t?.destName,
                 plan = plan,
+                planHistory = remember(plan) { vm.planHistory() },
                 onChangeDestination = { pickDestination = true },
                 onRole = { vm.setTravellerRole(it) },
                 onPlannedHalt = { vm.setPlannedHalt(it) },
@@ -771,6 +812,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     if (haltQuestionDue || showHalt) {
         HaltDialog(
             askFirst = haltQuestionDue && !showHalt,
+            stoppedForMin = s?.stopStartedAtMs?.let { (now - it) / 60_000 },
             onConfirm = { type, expected -> showHalt = false; vm.confirmHalt(type, expected) },
             onDecline = { showHalt = false; if (haltQuestionDue) vm.declineHalt() }
         )
@@ -831,7 +873,7 @@ private fun shareInvitation(tripId: String?, passcode: String?): String? {
     if (tripId == null) return null
     return buildString {
         appendLine("I'm on a journey — follow along on Koode.")
-        appendLine("You'll know the moment I arrive safely, without having to call.")
+        appendLine("Koode will keep you informed along the way, without you having to call.")
         appendLine()
         appendLine("Journey number: $tripId")
         if (!passcode.isNullOrBlank()) appendLine("Passcode: $passcode")
@@ -968,7 +1010,7 @@ private fun SendTimelineSheet(
             .padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("Journey ended safely 🏁", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+        Text("Journey complete 🏁", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
         Text(
             if (whatsAppAvailable)
                 "Your timeline is ready. Tap a name to open WhatsApp with the document attached — " +
@@ -1037,6 +1079,7 @@ private fun EditJourneySheet(
     message: String?,
     destination: String?,
     plan: JourneyPlan?,
+    planHistory: List<JourneyPlan>,
     onChangeDestination: () -> Unit,
     onRole: (WellbeingCoach.Role) -> Unit,
     onPlannedHalt: (String?) -> Unit,
@@ -1101,14 +1144,14 @@ private fun EditJourneySheet(
         // is never asked to take a driving break.
         if (current?.mode in setOf("CAR", "BIKE", "CAB")) {
             val role = WellbeingCoach.Role.fromKey(plan?.role) ?: WellbeingCoach.defaultRole(current?.mode)
-            KoodeCard(title = "You are") {
+            KoodeCard(title = "Travelling as") {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     KoodeChip(
-                        if (current?.mode == "BIKE") "Riding" else "Driving",
+                        if (current?.mode == "BIKE") "Rider" else "Driver",
                         role == WellbeingCoach.Role.DRIVER, { onRole(WellbeingCoach.Role.DRIVER) }, leading = "🧑‍✈️"
                     )
                     KoodeChip(
-                        "A passenger", role == WellbeingCoach.Role.PASSENGER,
+                        "Passenger", role == WellbeingCoach.Role.PASSENGER,
                         { onRole(WellbeingCoach.Role.PASSENGER) }, leading = "🧍"
                     )
                 }
@@ -1136,6 +1179,30 @@ private fun EditJourneySheet(
                 if (plan?.plannedHalt != null) {
                     Box(Modifier.weight(1f)) {
                         SecondaryButton("Remove", { haltText = ""; onPlannedHalt(null) }, accent = colors.textMid, height = 44.dp)
+                    }
+                }
+            }
+        }
+
+        // Every version is kept: the plan's history is part of the journey.
+        if (planHistory.size > 1) {
+            KoodeCard(title = "Plan history") {
+                planHistory.sortedByDescending { it.version }.forEach { v ->
+                    Row(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
+                        Text(
+                            "v${v.version}",
+                            color = if (v.version == plan?.version) colors.accent else colors.textLow,
+                            style = MaterialTheme.typography.titleSmall,
+                            modifier = Modifier.width(36.dp)
+                        )
+                        Text(
+                            buildString {
+                                append("→ ${v.destination} · ${com.trippulse.app.domain.JourneyPlans.modeWord(v.mode)}")
+                                v.plannedHalt?.let { append(", halt $it") }
+                            },
+                            color = if (v.version == plan?.version) colors.textHigh else colors.textMid,
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
             }
@@ -1517,78 +1584,101 @@ private fun CheckpointSheet(
 
 /**
  * "Taking a longer break?" Asked, never assumed: a long stop may be a meal, a
- * room, family, or nothing at all. Step one asks; step two records what kind
- * of halt, in the traveller's own words.
+ * room, family, or nothing at all. The traveller picks what kind of halt and,
+ * optionally, how long; the button then says exactly what is confirmed.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun HaltDialog(
     askFirst: Boolean,
+    stoppedForMin: Long?,
     onConfirm: (Halts.Type, Int?) -> Unit,
     onDecline: () -> Unit
 ) {
     val colors = KoodeTheme.colors
-    var choosing by remember { mutableStateOf(!askFirst) }
-    var expected by remember { mutableStateOf<Int?>(null) }
+    var type by remember { mutableStateOf<Halts.Type?>(null) }
+    var duration by remember { mutableStateOf<Halts.Duration?>(null) }
     AlertDialog(
         onDismissRequest = { if (!askFirst) onDecline() },
         confirmButton = {},
-        title = { Text(if (choosing) "What kind of halt?" else "Taking a longer break?") },
+        title = {
+            Column {
+                stoppedForMin?.takeIf { it >= 1 }?.let {
+                    Text(
+                        "STOPPED ${WellbeingCoach.duration(it).uppercase()}",
+                        color = colors.warn, style = MaterialTheme.typography.labelSmall
+                    )
+                }
+                Text("Taking a longer break?")
+            }
+        },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                if (!choosing) {
-                    Text(
-                        "Looks like you've stopped for a while. Are you taking a halt?",
-                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                    )
-                    Spacer(Modifier.height(Spacing.xs))
-                    PrimaryButton("Yes, taking a halt", { choosing = true }, height = 46.dp)
-                    SecondaryButton("Just a long break", onDecline, height = 44.dp)
-                    SecondaryButton("Not stopped yet", onDecline, accent = colors.textMid, height = 44.dp)
-                } else {
-                    Text(
-                        "Everyone following you will be told you're halting here.",
-                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                    )
-                    Text("For about", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-                    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                        listOf(60 to "1 hour", 180 to "A few hours", 8 * 60 to "The night").forEach { (m, label) ->
-                            KoodeChip(label, expected == m, { expected = if (expected == m) null else m })
-                        }
+                Text(
+                    "Looks like you've stopped for a while. Are you taking a halt?",
+                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                )
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                ) {
+                    Halts.Type.entries.forEach { t ->
+                        KoodeChip(t.label, type == t, { type = t }, leading = t.emoji)
                     }
-                    Halts.Type.entries.forEach { type ->
-                        SecondaryButton(type.label, { onConfirm(type, expected) }, leading = type.emoji, height = 44.dp)
-                    }
-                    TextButton(onClick = onDecline) { Text("Not a halt", color = colors.textMid) }
                 }
+                Text("For about (optional)", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                ) {
+                    Halts.Duration.entries.forEach { d ->
+                        KoodeChip(d.label, duration == d, { duration = if (duration == d) null else d })
+                    }
+                }
+                Spacer(Modifier.height(Spacing.xs))
+                PrimaryButton(
+                    Halts.confirmLabel(duration),
+                    { type?.let { onConfirm(it, duration?.minutes) } },
+                    enabled = type != null, height = 46.dp
+                )
+                SecondaryButton("Just a long break", onDecline, height = 44.dp)
+                SecondaryButton("Not stopped yet", onDecline, accent = colors.textMid, height = 44.dp)
+                Text(
+                    "The people following this journey are told only if you confirm a halt.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
             }
         }
     )
 }
 
+private data class CoachTile(val label: String, val value: String, val caption: String)
+
 /**
- * The coach's view of the traveller in one line: "Water 40 m ago · Ate 2 h
- * ago · Driving 1 h 10 m without a break". Only what was recorded.
+ * "How you're doing" as three facts: time since water, since food, and — for
+ * someone at the wheel — driving without a recorded break. Only what was
+ * recorded; a gap is "not yet", never a guess.
  */
-private fun coachStatus(
+private fun coachTiles(
     s: com.trippulse.app.data.local.TripStateEntity?, startedAtMs: Long?, plan: JourneyPlan?,
     modeKey: String, now: Long
-): String? {
-    if (s == null || startedAtMs == null) return null
-    fun ago(at: Long?) = at?.takeIf { it >= startedAtMs }?.let { WellbeingCoach.duration((now - it) / 60_000) }
+): List<CoachTile> {
+    fun since(at: Long?): String? = startedAtMs?.let { start ->
+        at?.takeIf { it >= start }?.let { WellbeingCoach.duration((now - it) / 60_000) }
+    }
     val role = WellbeingCoach.Role.fromKey(plan?.role) ?: WellbeingCoach.defaultRole(modeKey)
     val rules = WellbeingCoach.rulesFor(modeKey, role)
-    val parts = buildList {
-        ago(s.waterAtMs)?.let { add("Water $it ago") }
-        ago(s.foodAtMs)?.let { add("Ate $it ago") }
-        if (rules?.breakKind != WellbeingCoach.BreakKind.STRETCH && s.journey == JourneyStatus.DRIVING.name) {
-            s.drivingSinceMs?.let {
-                val verb = if (rules?.breakKind == WellbeingCoach.BreakKind.RIDING) "Riding" else "Driving"
-                add("$verb ${WellbeingCoach.duration((now - it) / 60_000)} without a break")
-            }
+    val atWheel = rules != null && rules.breakKind != WellbeingCoach.BreakKind.STRETCH
+    return buildList {
+        add(since(s?.waterAtMs)?.let { CoachTile("WATER", it, "since last drink") } ?: CoachTile("WATER", "—", "none recorded yet"))
+        add(since(s?.foodAtMs)?.let { CoachTile("FOOD", it, "since you ate") } ?: CoachTile("FOOD", "—", "none recorded yet"))
+        if (atWheel) {
+            val verb = if (rules?.breakKind == WellbeingCoach.BreakKind.RIDING) "RIDING" else "DRIVING"
+            val moving = s?.journey == JourneyStatus.DRIVING.name
+            val cont = s?.drivingSinceMs?.takeIf { moving }?.let { WellbeingCoach.duration((now - it) / 60_000) }
+            add(cont?.let { CoachTile(verb, it, "without a recorded break") } ?: CoachTile(verb, "—", "stopped now"))
         }
     }
-    return parts.takeIf { it.isNotEmpty() }?.joinToString(" · ")
 }
 
 // ---------------------------------------------------------------------------
