@@ -403,6 +403,36 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 TimelineList(timeline, now)
             }
 
+            // ---- the approved journey report, once the traveller verified it ----
+            if (ui.reportReady) {
+                var reportFailed by remember { mutableStateOf(false) }
+                Spacer(Modifier.height(Spacing.md))
+                PrimaryButton(
+                    if (reportBusy) "Opening…" else "View verified journey report",
+                    {
+                        reportFailed = false
+                        vm.openVerifiedReport { file ->
+                            if (file != null) {
+                                context.startActivity(
+                                    JourneyPdf.viewIntent(context, file, "Verified journey report")
+                                )
+                            } else {
+                                reportFailed = true
+                            }
+                        }
+                    },
+                    enabled = !reportBusy,
+                    leading = "📄"
+                )
+                Text(
+                    if (reportFailed) "Couldn't open the report just now. Check your connection and try again."
+                    else "Approved by the traveller. The journey itself — never their expenses.",
+                    color = if (reportFailed) colors.warn else colors.textLow,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(top = Spacing.xs)
+                )
+            }
+
             // ---- the safety report, always available while live ----
             //
             // Not gated on the phone having gone dark. The whole point is that

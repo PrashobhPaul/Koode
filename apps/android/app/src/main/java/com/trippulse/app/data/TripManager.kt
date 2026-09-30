@@ -108,6 +108,11 @@ class TripManager(
     var onStopTrackingRequested: (() -> Unit)? = null
     /** Set by the service: asked to (re)apply the sampling interval. */
     var onSamplingChanged: (() -> Unit)? = null
+    /**
+     * Set by the app: the traveller approved a journey's analytics. The
+     * listener publishes them and the verified report to the followers.
+     */
+    var onJourneyApproved: ((com.trippulse.app.data.export.ApprovedJourneyPublisher.Approval) -> Unit)? = null
 
     private val lock = Mutex()
 
@@ -2101,6 +2106,13 @@ class TripManager(
                     sync.drain(finalized)
                 }
             }
+            // The server holds the completion notice until these analytics
+            // arrive; the verified report follows them.
+            onJourneyApproved?.invoke(
+                com.trippulse.app.data.export.ApprovedJourneyPublisher.Approval(
+                    tripId, now, who, safeConfirmed, r.auto
+                )
+            )
         }
         notifier.cancelReviewPrompt()
         true

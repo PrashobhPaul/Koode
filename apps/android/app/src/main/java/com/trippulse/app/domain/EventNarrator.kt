@@ -17,6 +17,7 @@ object EventNarrator {
         EventTypes.TRIP_PAUSED -> "⏸" to "Journey paused"
         EventTypes.TRIP_RESUMED -> "▶" to "Journey resumed"
         EventTypes.TRIP_COMPLETED -> "🏁" to "Journey ended"
+        EventTypes.JOURNEY_REPORT_AVAILABLE -> "📄" to "The verified journey report is ready"
         EventTypes.DESTINATION_CHANGED -> "🧭" to "Destination changed"
         EventTypes.STOP_STARTED -> "🅿" to "Stopped"
         EventTypes.STOP_ENDED -> "▶" to "On the move again"

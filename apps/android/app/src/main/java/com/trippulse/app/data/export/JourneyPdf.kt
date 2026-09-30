@@ -250,6 +250,18 @@ object JourneyPdf {
     }
 
     /** Wraps a rendered file in a share intent the caller can launch. */
+    /** Opens [file] in the phone's PDF viewer (falls back to the share sheet if there is none). */
+    fun viewIntent(context: Context, file: File, title: String): Intent {
+        val uri: Uri = FileProvider.getUriForFile(
+            context, "${context.packageName}.fileprovider", file
+        )
+        val view = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(uri, "application/pdf")
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+        return if (view.resolveActivity(context.packageManager) != null) view else shareIntent(context, file, title)
+    }
+
     fun shareIntent(context: Context, file: File, title: String): Intent {
         val uri: Uri = FileProvider.getUriForFile(
             context, "${context.packageName}.fileprovider", file

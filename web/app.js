@@ -107,6 +107,7 @@
     TRIP_PAUSED: ['⏸', 'Journey paused'],
     TRIP_RESUMED: ['▶', 'Journey resumed'],
     TRIP_COMPLETED: ['🏁', 'Journey ended'],
+    JOURNEY_REPORT_AVAILABLE: ['📄', 'The verified journey report is ready'],
     DESTINATION_CHANGED: ['🧭', 'Destination changed'],
     STOP_STARTED: ['🅿', 'Stopped'],
     STOP_ENDED: ['▶', 'On the move again'],
@@ -505,6 +506,8 @@
 
     var ended = endedByOwner(state, events);
     var freshness = freshnessOf(state);
+    var reportReady = (events || []).some(function (e) { return e.type === 'JOURNEY_REPORT_AVAILABLE'; });
+    (reportReady ? show : hide)($('verified-card'));
     var sos = state && state.sosActive === true;
 
     // ---- headline. Never says "ended" unless the traveller ended it. ----
@@ -656,9 +659,32 @@
     return idle ? 60000 : 20000;
   }
 
+  // The traveller's approved report: a short-lived signed link from tp-report,
+  // for exactly the people who can read the journey.
+  async function openVerifiedReport(accessKey) {
+    hide($('verified-error'));
+    var popup = window.open('', '_blank');
+    try {
+      var base = CFG.SUPABASE_URL.replace(/\/$/, '');
+      var res = await fetch(base + '/functions/v1/tp-report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: CFG.SUPABASE_ANON_KEY },
+        body: JSON.stringify({ action: 'download', accessKey: accessKey })
+      });
+      var body = res.ok ? await res.json() : null;
+      if (!body || !body.downloadUrl) throw new Error('unavailable');
+      if (popup) popup.location = base + body.downloadUrl; else location.href = base + body.downloadUrl;
+    } catch (e) {
+      if (popup) popup.close();
+      $('verified-error').textContent = "Couldn't open the report just now. Try again in a moment.";
+      show($('verified-error'));
+    }
+  }
+
   async function startWatching(accessKey) {
     hide($('signin'));
     show($('journey'));
+    $('verified-report').onclick = function () { openVerifiedReport(accessKey); };
 
     var tick = async function () {
       var meta = await getMeta(accessKey);

@@ -237,6 +237,108 @@ class TripCloud(private val appContext: Context) {
     suspend fun unregisterPush(fcmToken: String): Boolean =
         rpcBool("tp_unregister_push", mapOf("p_fcm_token" to fcmToken))
 
+    /** Follower: stop pushes for one journey only (unfollowed). */
+    suspend fun unregisterPushFor(ref: String, fcmToken: String): Boolean =
+        rpcBool("tp_unregister_push_for", mapOf("p_ref" to ref, "p_fcm_token" to fcmToken))
+
+    // -----------------------------------------------------------------------
+    // Approved journey analytics and the verified journey report
+    // -----------------------------------------------------------------------
+
+    /**
+     * Traveller: publish the analytics they approved. Non-financial by
+     * construction ([com.trippulse.app.domain.ApprovedAnalytics]); the server
+     * refuses anything money-shaped as well. Until this succeeds, followers
+     * are not told the journey ended. Returns OK / DENIED / FINANCIAL, or
+     * null when offline.
+     */
+    suspend fun publishAnalytics(
+        accessKey: String, analytics: Map<String, Any?>, approvedAtMs: Long,
+        approvedBy: String?, safeConfirmed: Boolean, autoClosed: Boolean
+    ): String? = rpcText("tp_publish_analytics", mapOf(
+        "p_access_key" to accessKey, "p_owner_token" to ownerToken(accessKey),
+        "p_analytics" to analytics, "p_approved_at_ms" to approvedAtMs,
+        "p_approved_by" to approvedBy, "p_safe_confirmed" to safeConfirmed,
+        "p_auto_closed" to autoClosed))
+
+    /**
+     * Traveller: upload the approved journey report (the timeline PDF — never
+     * the expense report) and announce it to followers. The file goes to a
+     * private bucket through a signed URL issued only to this journey's owner
+     * after approval. Returns true once followers can fetch it.
+     */
+    suspend fun uploadReport(accessKey: String, pdf: ByteArray): Boolean = withContext(Dispatchers.IO) {
+        if (!isAvailable()) return@withContext false
+        val sha = java.security.MessageDigest.getInstance("SHA-256").digest(pdf)
+            .joinToString("") { "%02x".format(it) }
+        val grant = function("tp-report", mapOf(
+            "action" to "upload", "accessKey" to accessKey, "ownerToken" to ownerToken(accessKey),
+            "sha256" to sha, "bytes" to pdf.size)) ?: return@withContext false
+        val version = (grant["version"] as? Number)?.toInt() ?: return@withContext false
+        val uploadUrl = grant["uploadUrl"] as? String ?: return@withContext false
+        val put = try {
+            val req = Request.Builder()
+                .url(baseUrl + uploadUrl)
+                .addHeader("apikey", anonKey)
+                .addHeader("x-upsert", "false")
+                .put(pdf.toRequestBody("application/pdf".toMediaType()))
+                .build()
+            client.newCall(req).execute().use { it.isSuccessful }
+        } catch (_: Exception) {
+            false
+        }
+        if (!put) return@withContext false
+        rpcText("tp_report_publish", mapOf(
+            "p_access_key" to accessKey, "p_owner_token" to ownerToken(accessKey), "p_version" to version)) == "OK"
+    }
+
+    /**
+     * Follower: a short-lived link to the journey's verified report, or null
+     * when there is none (yet) or this device may not read the journey.
+     */
+    suspend fun reportDownloadUrl(ref: String): String? {
+        val body = if (isTripIdRef(ref))
+            mapOf("action" to "download", "tripId" to ref, "viewerToken" to viewerToken())
+        else
+            mapOf("action" to "download", "accessKey" to ref)
+        val res = function("tp-report", body) ?: return null
+        return (res["downloadUrl"] as? String)?.let { baseUrl + it }
+    }
+
+    /** Downloads [url] into [into]; true on success. */
+    suspend fun download(url: String, into: java.io.File): Boolean = withContext(Dispatchers.IO) {
+        try {
+            client.newCall(Request.Builder().url(url).get().build()).execute().use { resp ->
+                val body = resp.body ?: return@use false
+                if (!resp.isSuccessful) return@use false
+                into.outputStream().use { out -> body.byteStream().copyTo(out) }
+                true
+            }
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    /** POSTs a JSON body to an Edge Function; the parsed object on 2xx, else null. */
+    private suspend fun function(name: String, args: Map<String, Any?>): Map<String, Any?>? =
+        withContext(Dispatchers.IO) {
+            if (!isAvailable()) return@withContext null
+            try {
+                val req = Request.Builder()
+                    .url("$baseUrl/functions/v1/$name")
+                    .addHeader("apikey", anonKey)
+                    .addHeader("Content-Type", "application/json")
+                    .post(EventCodec.payloadToJson(args).toRequestBody(json))
+                    .build()
+                client.newCall(req).execute().use { resp ->
+                    if (!resp.isSuccessful) null
+                    else runCatching { EventCodec.payloadFromJson(resp.body?.string() ?: "") }.getOrNull()
+                }
+            } catch (_: Exception) {
+                null
+            }
+        }
+
     /** Owner: everyone who requested access with a device token. */
     suspend fun fetchJoinRequests(accessKey: String): List<Map<String, Any?>> =
         rpcArray("tp_get_join_requests", mapOf(

@@ -70,7 +70,9 @@ object FollowerAlerts {
         EventTypes.VEHICLE_ISSUE,
         // A need still unresolved after a suggestion and a reminder, and the
         // periodic update (only written when something changed).
-        EventTypes.WELLBEING_ALERT, EventTypes.JOURNEY_UPDATE
+        EventTypes.WELLBEING_ALERT, EventTypes.JOURNEY_UPDATE,
+        // The approved report, once stored: it replaces the completion notice.
+        EventTypes.JOURNEY_REPORT_AVAILABLE
     ) + IMPORTANT + CRITICAL
 
     fun level(type: String, payload: Map<String, Any?> = emptyMap()): Level = when {
@@ -133,10 +135,13 @@ object FollowerAlerts {
     fun dedupKey(ref: String, type: String, eventTimeMs: Long): String = "$ref|$type|$eventTimeMs"
 
     fun notificationId(ref: String, type: String, eventTimeMs: Long, payload: Map<String, Any?>): Int {
-        val key = if (type == EventTypes.BREAK_CHECKPOINT)
-            "$ref|BREAK|${payload["breakId"] ?: eventTimeMs}"
-        else
-            "$ref|$type|$eventTimeMs"
+        val key = when (type) {
+            EventTypes.BREAK_CHECKPOINT -> "$ref|BREAK|${payload["breakId"] ?: eventTimeMs}"
+            // One end-of-journey notification per journey: the report, when it
+            // is ready, updates the completion notice rather than ringing again.
+            EventTypes.TRIP_COMPLETED, EventTypes.JOURNEY_REPORT_AVAILABLE -> "$ref|JOURNEY_END"
+            else -> "$ref|$type|$eventTimeMs"
+        }
         return 5_000 + (key.hashCode() and 0x7FFFFFFF) % 90_000
     }
 }

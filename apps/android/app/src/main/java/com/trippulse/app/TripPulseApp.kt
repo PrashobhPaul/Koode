@@ -44,6 +44,8 @@ class TripPulseApp : Application() {
         graph.appScope.launch {
             graph.connectivity.changes().collectLatest { online ->
                 if (online) {
+                    // An approval made offline reaches the followers now.
+                    graph.publisher.resume()
                     val trip = graph.db.tripDao().activeTrip() ?: return@collectLatest
                     graph.sync.drain(trip)
                 }
