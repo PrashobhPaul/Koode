@@ -1,5 +1,6 @@
 package com.trippulse.app.ui.screens
 
+import com.trippulse.app.domain.Expenses.Category as ExpenseCategory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -1381,9 +1382,8 @@ private fun ExpenseSheet(
         )
         // Only the categories this way of travelling makes relevant.
         val cats = remember(profile.key) {
-            val E = com.trippulse.app.domain.Expenses.Category
-            if (profile.isPrivateVehicle) listOf(E.FUEL, E.TOLL, E.PARKING, E.FOOD, E.ACCOMMODATION, E.VEHICLE_REPAIR, E.OTHER)
-            else listOfNotNull(E.fareFor(profile.key), E.FOOD, E.CAB, E.AUTO, E.ACCOMMODATION, E.OTHER).distinct()
+            if (profile.isPrivateVehicle) listOf(ExpenseCategory.FUEL, ExpenseCategory.TOLL, ExpenseCategory.PARKING, ExpenseCategory.FOOD, ExpenseCategory.ACCOMMODATION, ExpenseCategory.VEHICLE_REPAIR, ExpenseCategory.OTHER)
+            else listOfNotNull(ExpenseCategory.fareFor(profile.key), ExpenseCategory.FOOD, ExpenseCategory.CAB, ExpenseCategory.AUTO, ExpenseCategory.ACCOMMODATION, ExpenseCategory.OTHER).distinct()
         }
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             cats.forEach { c -> KoodeChip(c.label, type == c.name, { type = c.name }, leading = c.emoji) }
