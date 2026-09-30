@@ -112,7 +112,7 @@
     STOP_ENDED: ['▶', 'On the move again'],
     LONG_STOP: ['⏳', 'Long stop'],
     TOLL_CROSSED: ['🛣', 'Toll crossed'],
-    ARRIVAL_DETECTED: ['📍', 'Reached the destination'],
+    ARRIVAL_DETECTED: ['📍', 'Arrived near the destination'],
     BREAK_CHECKPOINT: ['✅', 'Break logged'],
     WATER_REPORTED: ['💧', 'Water'],
     FOOD_REPORTED: ['🍛', 'Food'],
@@ -139,8 +139,32 @@
     TRANSIT_RESUMED: ['▶', 'Moving again'],
     DEBOARDED: ['🚶', 'Got off'],
     LEG_STARTED: ['🧭', 'Next stage started'],
-    LEG_COMPLETED: ['✅', 'Stage completed']
+    LEG_COMPLETED: ['✅', 'Stage completed'],
+    WELLBEING_ALERT: ['💬', 'Wellbeing update'],
+    JOURNEY_AUTO_CLOSED: ['🏁', 'Journey closed automatically'],
+    TRAVELLER_CONFIRMED_SAFE: ['💚', 'Confirmed arriving safely'],
+    HALT_CONFIRMED: ['🛏', 'Halting'],
+    HALT_CANCELLED: ['▶', 'Halt cancelled'],
+    HALT_RESUMED: ['🌅', 'Resumed after the halt'],
+    TRAVEL_MODE_CHANGED: ['🔁', 'Travel mode changed'],
+    PLANNED_HALT_CREATED: ['🗓', 'Halt planned'],
+    PLANNED_HALT_CHANGED: ['🗓', 'Planned halt changed'],
+    PLANNED_HALT_CANCELLED: ['🗓', 'Planned halt cancelled'],
+    ETA_SIGNIFICANTLY_CHANGED: ['🕒', 'Arrival time changed'],
+    JOURNEY_PLAN_REVISED: ['🧭', 'Journey plan updated']
   };
+
+  /**
+   * The traveller's own coaching (suggestions, reminders, "taking a break",
+   * the halt question) and the periodic update are notifications, not
+   * timeline entries — the same rule as the app.
+   */
+  var NOT_IN_TIMELINE = ['WELLBEING_NUDGE', 'JOURNEY_UPDATE', 'HALT_SUGGESTED',
+    'JOURNEY_CLOSE_PROMPTED', 'JOURNEY_REOPENED', 'JOURNEY_CLOSED', 'JOURNEY_REVIEW_STARTED',
+    'JOURNEY_ANALYTICS_APPROVED', 'JOURNEY_FINALIZED', 'TRAVEL_EXPENSES_APPROVED',
+    'WATER_NUDGE', 'WATER_REMINDER', 'WATER_ACKNOWLEDGED',
+    'FOOD_NUDGE', 'FOOD_REMINDER', 'FOOD_ACKNOWLEDGED',
+    'BREAK_NUDGE', 'BREAK_REMINDER', 'BREAK_ACKNOWLEDGED'];
 
   var MEAL_LABELS = {
     BREAKFAST: 'Breakfast', LUNCH: 'Lunch', DINNER: 'Dinner', SNACK: 'Snack'
@@ -176,6 +200,9 @@
     return events.filter(function (e) {
       var id = e.payload && e.payload.breakId;
       if (e.type === 'BREAK_CHECKPOINT_SKIPPED') return false;
+      if (NOT_IN_TIMELINE.indexOf(e.type) >= 0) return false;
+      // A stage that is also a travel-mode change reads once, as the change.
+      if (e.type === 'LEG_STARTED' && e.payload && e.payload.announcedAs) return false;
       if (e.type === 'BREAK_CHECKPOINT' && id) {
         if ((e.eventTime || 0) !== latest[id] || kept[id]) return false;
         kept[id] = true; return true;
@@ -489,7 +516,7 @@
     dot.className = 'dot';
 
     var who = owner || 'They';
-    var dark = assessDarkness(state, ended);
+    var dark = assessDarkness(state, ended || !!(state && state.wrappingUp));
 
     var headline;
     if (sos) {
@@ -497,7 +524,10 @@
       card.className = 'card hero danger';
       headlineEl.className = 'headline danger';
     } else if (ended) {
-      headline = 'Journey ended safely';
+      headline = 'Journey ended';
+    } else if (state && state.wrappingUp) {
+      // Closed, and under the traveller's review: not live, not "ended" yet.
+      headline = 'Wrapping up the journey';
     } else if (!state) {
       headline = 'Getting the first update…';
     } else if (dark.dark) {
@@ -569,8 +599,8 @@
     $('play').disabled = path.length < 2;
 
     // ---- arrival + progress ----
-    if (ended) text('eta', 'Arrived safely 🎉');
-    else if (state && state.etaMode === 'OVERNIGHT_PENDING') text('eta', 'Resting overnight');
+    if (ended) text('eta', 'Journey complete');
+    else if (state && state.etaMode === 'OVERNIGHT_PENDING') text('eta', 'Halting — a new estimate follows when they set off');
     else if (state && state.etaLikely) {
       text('eta', clockWithDay(state.etaLow || state.etaLikely) + ' – ' + clock(state.etaHigh || state.etaLikely));
     } else text('eta', 'Calculating…');

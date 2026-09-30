@@ -62,6 +62,8 @@ object JourneyStateMachine {
             JourneyStatus.STOPPED -> when (input) {
                 JourneyInput.RESTART, JourneyInput.MOVING -> JourneyStatus.DRIVING
                 JourneyInput.LONG_STOP -> JourneyStatus.LONG_STOP
+                // The traveller can confirm a halt before the long-stop question comes.
+                JourneyInput.OVERNIGHT_CONFIRM -> JourneyStatus.OVERNIGHT
                 JourneyInput.ARRIVED -> JourneyStatus.ARRIVED
                 JourneyInput.PAUSE -> JourneyStatus.PAUSED
                 else -> null
@@ -75,8 +77,11 @@ object JourneyStateMachine {
                 else -> null
             }
 
+            // OVERNIGHT is any traveller-confirmed halt (room, family, rest stop).
             JourneyStatus.OVERNIGHT -> when (input) {
                 JourneyInput.RESTART, JourneyInput.MOVING -> JourneyStatus.DRIVING
+                // Cancelled halt: still stopped, no longer halting.
+                JourneyInput.OVERNIGHT_DECLINE -> JourneyStatus.LONG_STOP
                 else -> null
             }
 

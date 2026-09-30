@@ -213,14 +213,15 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                     Spacer(Modifier.width(Spacing.sm))
                     Text(
                         when {
-                            ui.endedByOwner -> "Journey ended safely"
+                            ui.endedByOwner -> "Journey ended"
+                            ui.wrappingUp -> "Wrapping up the journey"
                             ui.awaitingFirstRead -> "Getting the first update…"
                             else -> health.headline
                         },
                         color = healthColor, style = MaterialTheme.typography.titleMedium
                     )
                 }
-                if (!ui.endedByOwner && !ui.awaitingFirstRead) {
+                if (!ui.endedByOwner && !ui.wrappingUp && !ui.awaitingFirstRead) {
                     health.reasons.forEach {
                         Text("• $it", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
                     }
@@ -231,6 +232,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                         append(
                             when {
                                 ui.endedByOwner -> "The traveller ended this journey."
+                                ui.wrappingUp -> "Tracking has stopped. The journey report follows once the traveller has reviewed it."
                                 lastAt != null -> "Updated ${TimeFmt.ago(now, lastAt)}"
                                 // Never "the journey ended": we simply haven't heard yet.
                                 else -> "Waiting for the first update — this is about the signal, not about them."
@@ -254,9 +256,9 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 Spacer(Modifier.height(Spacing.xs))
                 when {
                     ui.endedByOwner ->
-                        Text("Arrived safely 🎉", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+                        Text("Journey complete", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
                     etaMode == EtaMode.OVERNIGHT_PENDING.name -> {
-                        Text("Resting overnight", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+                        Text("Halting", color = colors.warn, style = MaterialTheme.typography.titleMedium)
                         state?.str("overnightType")?.let {
                             Text(overnightText(it), color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
                         }
@@ -505,12 +507,12 @@ private fun travelModeLine(journey: String?, mode: String?): String {
     }
 }
 
-private fun overnightText(type: String): String = when (type) {
-    "HOTEL" -> "Staying at a hotel or lodge."
-    "FAMILY" -> "Staying with family or friends."
-    "VEHICLE" -> "Resting in the vehicle."
-    "HOME" -> "Resting at home."
-    else -> "Stopped for the night."
+/** What the traveller said about their halt — never a guess. */
+private fun overnightText(type: String): String = when (com.trippulse.app.domain.Halts.Type.from(type)) {
+    com.trippulse.app.domain.Halts.Type.ROOM -> "Taken a room."
+    com.trippulse.app.domain.Halts.Type.FRIEND_FAMILY -> "Halting with friends or family."
+    com.trippulse.app.domain.Halts.Type.REST_STOP -> "Halting at a rest stop."
+    com.trippulse.app.domain.Halts.Type.OTHER -> "Taking a halt."
 }
 
 private fun etaText(likely: Long?, low: Long?, high: Long?): String {

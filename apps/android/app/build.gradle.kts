@@ -25,6 +25,19 @@ val supabaseUrl: String = (System.getenv("SUPABASE_URL")
 val supabaseAnonKey: String = (System.getenv("SUPABASE_ANON_KEY")
     ?: supaProps.getProperty("SUPABASE_ANON_KEY") ?: "").trim()
 
+// ---------------------------------------------------------------------------
+// Server push (Firebase Cloud Messaging) is optional the same way: fill in
+// apps/android/firebase.properties (public client identifiers) or export the
+// FIREBASE_* variables. Blank values build an app with push switched off,
+// where followers are updated by the in-app follow service instead.
+// ---------------------------------------------------------------------------
+val firebaseProps = Properties().apply {
+    val f = rootProject.file("firebase.properties")
+    if (f.exists()) f.inputStream().use { load(it) }
+}
+fun firebaseValue(key: String): String =
+    (System.getenv(key) ?: firebaseProps.getProperty(key) ?: "").trim()
+
 android {
     namespace = "com.trippulse.app"
     compileSdk = 35
@@ -35,13 +48,16 @@ android {
         applicationId = "app.koode"
         minSdk = 26
         targetSdk = 35
-        versionCode = 27
-        versionName = "6.11.0"
+        versionCode = 28
+        versionName = "6.12.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "SUPABASE_URL", "\"$supabaseUrl\"")
         buildConfigField("String", "SUPABASE_ANON_KEY", "\"$supabaseAnonKey\"")
+        for (key in listOf("FIREBASE_PROJECT_ID", "FIREBASE_SENDER_ID", "FIREBASE_APP_ID", "FIREBASE_API_KEY")) {
+            buildConfigField("String", key, "\"${firebaseValue(key)}\"")
+        }
     }
 
     signingConfigs {
@@ -171,6 +187,12 @@ dependencies {
     // Free and keyless like the osmdroid stack it replaces, but vector-based, so
     // the camera can tilt and the vehicle can be drawn as a real 3D model.
     implementation("org.maplibre.gl:android-sdk:11.13.5")
+
+    // --- Server push: wakes a follower's Koode when the app is closed ---
+    // Initialised manually from BuildConfig (no google-services plugin), so a
+    // build without Firebase values is still a complete, working app.
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation("com.google.firebase:firebase-messaging")
 
     // --- HTTP client: OSRM routing + Supabase (PostgREST) transport ---
     implementation("com.squareup.okhttp3:okhttp:4.12.0")

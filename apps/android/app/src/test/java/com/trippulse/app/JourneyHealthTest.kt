@@ -96,6 +96,6 @@ class JourneyHealthTest {
             base(journey = JourneyStatus.ARRIVED.name, freshness = Freshness.OFFLINE).copy(sosActive = false)
         )
         assertEquals(JourneyHealth.Level.NORMAL, r.level)
-        assertEquals("Arrived safely", r.headline)
+        assertEquals("Arrived", r.headline)
     }
 }

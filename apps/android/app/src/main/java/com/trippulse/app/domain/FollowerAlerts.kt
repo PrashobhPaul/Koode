@@ -1,41 +1,85 @@
 package com.trippulse.app.domain
 
 /**
- * Which followed-journey events become a notification on a Circle member's
- * phone, and how each one maps to a stable notification id.
+ * Which journey events become a notification on a Journey Follower's phone,
+ * and how each one maps to a stable notification id.
  *
  * Pure and device-free so the rules are unit-tested rather than reasoned about.
- * The intent (chosen by the traveller's product owner) is that the Circle sees
- * *every meaningful status update the traveller makes* — starts, breaks, meals,
- * fuel, tolls, resumes, stage changes, arrival and completion — while the raw
- * GPS churn the spec forbids as noise (moving/stopped transitions, location
- * pings, battery/network chatter) never surfaces. Delivery itself stays
+ * Followers are *informed*, not escalated to: they see every meaningful status
+ * update and plan change the traveller makes — starts, breaks, meals, tolls,
+ * confirmed halts, destination and mode changes, arrival — while GPS churn,
+ * short stops and the traveller's own coaching never surface. Delivery stays
  * best-effort per follower device; this only decides *what* is worth a
  * notification and gives each event a stable id.
  */
 object FollowerAlerts {
 
     /**
-     * The meaningful, de-noised set. Deliberately excludes raw movement
-     * (`STOP_STARTED`/`STOP_ENDED`/`LONG_STOP`/`LOCATION_UPDATE`), house-keeping
-     * (`NETWORK_*`, `ETA_UPDATED`, `BATTERY_LOW`), the going-dark family
-     * (handled by the dedicated darkness/health watcher, not double-announced
-     * here) and `MEDICINE` (private by default).
+     * How much an event matters to the people following a journey.
+     *
+     *  0 INTERNAL        — GPS churn, small ETA moves, short stops: nobody is told.
+     *  1 TRAVELLER_ONLY  — coaching suggestions: the traveller's business alone.
+     *  2 MEANINGFUL      — started, a logged break, a toll, a confirmed halt, arrived.
+     *  3 IMPORTANT       — the plan changed: destination, mode, halt, a big ETA shift.
+     *  4 SAFETY_CRITICAL — SOS and incidents; they bypass every suppression.
+     */
+    enum class Level(val rank: Int) { INTERNAL(0), TRAVELLER_ONLY(1), MEANINGFUL(2), IMPORTANT(3), SAFETY_CRITICAL(4) }
+
+    private val CRITICAL: Set<String> = setOf(
+        EventTypes.SOS_ACTIVATED, EventTypes.INCIDENT, EventTypes.POSSIBLE_INCIDENT
+    )
+
+    private val IMPORTANT: Set<String> = setOf(
+        EventTypes.DESTINATION_CHANGED, EventTypes.TRAVEL_MODE_CHANGED,
+        EventTypes.PLANNED_HALT_CREATED, EventTypes.PLANNED_HALT_CHANGED, EventTypes.PLANNED_HALT_CANCELLED,
+        EventTypes.ETA_SIGNIFICANTLY_CHANGED, EventTypes.JOURNEY_PLAN_REVISED,
+        EventTypes.HALT_RESUMED, EventTypes.MORNING_RESUME, EventTypes.SOS_RESOLVED
+    )
+
+    private val TRAVELLER_ONLY: Set<String> = setOf(
+        EventTypes.WELLBEING_NUDGE, EventTypes.HALT_SUGGESTED,
+        EventTypes.WATER_NUDGE, EventTypes.WATER_REMINDER, EventTypes.WATER_ACKNOWLEDGED,
+        EventTypes.FOOD_NUDGE, EventTypes.FOOD_REMINDER, EventTypes.FOOD_ACKNOWLEDGED,
+        EventTypes.BREAK_NUDGE, EventTypes.BREAK_REMINDER, EventTypes.BREAK_ACKNOWLEDGED,
+        // Closing is the traveller's business until they approve the journey;
+        // followers then hear once, from TRIP_COMPLETED.
+        EventTypes.JOURNEY_CLOSE_PROMPTED, EventTypes.JOURNEY_REOPENED, EventTypes.JOURNEY_CLOSED,
+        EventTypes.JOURNEY_AUTO_CLOSED, EventTypes.JOURNEY_REVIEW_STARTED,
+        EventTypes.JOURNEY_ANALYTICS_APPROVED, EventTypes.JOURNEY_FINALIZED,
+        EventTypes.TRAVELLER_CONFIRMED_SAFE, EventTypes.TRAVEL_EXPENSES_APPROVED
+    )
+
+    /**
+     * The meaningful, de-noised set (level 2 and above). Deliberately excludes
+     * raw movement (`STOP_STARTED`/`STOP_ENDED`/`LONG_STOP`/`LOCATION_UPDATE`),
+     * house-keeping (`NETWORK_*`, `ETA_UPDATED`, `BATTERY_LOW`), the going-dark
+     * family (handled by the dedicated darkness/health watcher, not
+     * double-announced here) and `MEDICINE` (private by default).
      */
     val NOTIFY_TYPES: Set<String> = setOf(
         EventTypes.TRIP_STARTED, EventTypes.TRIP_PAUSED, EventTypes.TRIP_RESUMED,
-        EventTypes.TRIP_COMPLETED, EventTypes.ARRIVAL_DETECTED, EventTypes.DESTINATION_CHANGED,
+        EventTypes.TRIP_COMPLETED, EventTypes.ARRIVAL_DETECTED,
         EventTypes.TOLL_CROSSED, EventTypes.BREAK_CHECKPOINT,
         EventTypes.WATER_REPORTED, EventTypes.FOOD_REPORTED, EventTypes.TEA_COFFEE_REPORTED,
         EventTypes.SNACK_REPORTED, EventTypes.TOILET_REPORTED, EventTypes.REST_REPORTED,
         EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP,
         EventTypes.LEG_STARTED, EventTypes.BOARDED, EventTypes.TRANSIT_HALTED,
         EventTypes.TRANSIT_RESUMED, EventTypes.DEBOARDED,
-        EventTypes.OVERNIGHT_CONFIRMED, EventTypes.MORNING_RESUME,
+        EventTypes.OVERNIGHT_CONFIRMED, EventTypes.HALT_CONFIRMED, EventTypes.HALT_CANCELLED,
         EventTypes.QUICK_NOTE, EventTypes.PASSENGER_JOINED, EventTypes.PASSENGER_LEFT,
-        EventTypes.VEHICLE_ISSUE, EventTypes.INCIDENT, EventTypes.POSSIBLE_INCIDENT,
-        EventTypes.SOS_ACTIVATED, EventTypes.SOS_RESOLVED
-    )
+        EventTypes.VEHICLE_ISSUE,
+        // A need still unresolved after a suggestion and a reminder, and the
+        // periodic update (only written when something changed).
+        EventTypes.WELLBEING_ALERT, EventTypes.JOURNEY_UPDATE
+    ) + IMPORTANT + CRITICAL
+
+    fun level(type: String, payload: Map<String, Any?> = emptyMap()): Level = when {
+        type in CRITICAL -> Level.SAFETY_CRITICAL
+        type in IMPORTANT -> Level.IMPORTANT
+        type in TRAVELLER_ONLY -> Level.TRAVELLER_ONLY
+        shouldNotify(type, payload) -> Level.MEANINGFUL
+        else -> Level.INTERNAL
+    }
 
     /**
      * Wellbeing/refuel items that are logged *as part of* a break. When they
@@ -51,9 +95,7 @@ object FollowerAlerts {
     )
 
     /** Events that should ring louder on the follower's phone. */
-    fun isUrgent(type: String): Boolean =
-        type == EventTypes.SOS_ACTIVATED || type == EventTypes.INCIDENT ||
-            type == EventTypes.POSSIBLE_INCIDENT
+    fun isUrgent(type: String): Boolean = type in CRITICAL
 
     /** Whether this synced event should raise a notification on a follower. */
     fun shouldNotify(type: String, payload: Map<String, Any?>): Boolean {
@@ -64,6 +106,9 @@ object FollowerAlerts {
         // (countsAsBreak == false); there the individual items speak instead.
         if (type == EventTypes.BREAK_CHECKPOINT) return payload["countsAsBreak"] != false
         if (type in BREAK_ITEM_TYPES && payload["breakId"] != null) return false
+        // A stage change that is also a travel-mode change is announced once,
+        // by TRAVEL_MODE_CHANGED.
+        if (type == EventTypes.LEG_STARTED && payload["announcedAs"] != null) return false
         return true
     }
 
@@ -77,6 +122,16 @@ object FollowerAlerts {
      * a single, updating notification. Ids sit in a band clear of the app's
      * fixed notification ids.
      */
+    /**
+     * Identity of one real-world event as seen by one follower. The server
+     * push and the in-app follow service can both deliver the same event, and
+     * the server re-sends anything it could not confirm — this key is how the
+     * device shows it once regardless. Unlike [notificationId] it is not
+     * collapsed per break: a break's later "closed" event is new information
+     * and should update the tray entry.
+     */
+    fun dedupKey(ref: String, type: String, eventTimeMs: Long): String = "$ref|$type|$eventTimeMs"
+
     fun notificationId(ref: String, type: String, eventTimeMs: Long, payload: Map<String, Any?>): Int {
         val key = if (type == EventTypes.BREAK_CHECKPOINT)
             "$ref|BREAK|${payload["breakId"] ?: eventTimeMs}"

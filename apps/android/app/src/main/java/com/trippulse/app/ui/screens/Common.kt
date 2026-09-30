@@ -112,7 +112,7 @@ fun timelineItems(
     limit: Int = 60
 ): List<TimelineItem> = com.trippulse.app.domain.BreakTimeline
     .forTimeline(events, { it.first }, { it.second.first }, { it.second.second })
-    .filter { it.first in EventTypes.TIMELINE_TYPES }
+    .filter { EventTypes.inTimeline(it.first, it.second.second) }
     .sortedByDescending { it.second.first }
     .take(limit)
     .map { (type, rest) ->

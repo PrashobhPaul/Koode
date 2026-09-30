@@ -15,6 +15,8 @@ data class TripConfig(
     val restartSpeedKmh: Double = 8.0,           // resume threshold
     val restartDisplacementM: Double = 150.0,    // or moved this far from stop point
     val longStopAfterS: Long = 7200,             // 2 h -> LONG_STOP / overnight candidate
+    /** A stop at least this long is a real break: it resets continuous driving. Shorter ones do not. */
+    val meaningfulBreakS: Long = 600,
 
     // ---- arrival ----
     val arrivalRadiusM: Double = 300.0,
@@ -68,6 +70,11 @@ data class TripConfig(
      * to see that the person got there safely, rather than a dead link.
      */
     val expiryGraceMin: Long = 60,
+    /**
+     * How long followers can open an approved journey's report. Starts when
+     * the traveller approves it, not when they close the journey.
+     */
+    val reportAccessMin: Long = 24 * 60,
 
     // ---- routing fallback ----
     val fallbackAvgSpeedKmh: Double = 52.0,

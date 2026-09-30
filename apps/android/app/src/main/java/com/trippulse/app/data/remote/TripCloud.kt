@@ -220,6 +220,23 @@ class TripCloud(private val appContext: Context) {
     suspend fun joinStatus(tripId: String): String? =
         rpcText("tp_join_status", mapOf("p_trip_id" to tripId, "p_viewer_token" to viewerToken()))
 
+    /**
+     * Follower: ask the server to push this journey's updates to this device.
+     * A trip-id follower is accepted only once the traveller has approved it;
+     * a passcode follower is accepted because the passcode is the traveller's
+     * consent. False means "not (yet) accepted" — the caller simply retries.
+     */
+    suspend fun registerPush(ref: String, fcmToken: String): Boolean =
+        if (isTripIdRef(ref))
+            rpcBool("tp_register_push_t", mapOf(
+                "p_trip_id" to ref, "p_viewer_token" to viewerToken(), "p_fcm_token" to fcmToken))
+        else
+            rpcBool("tp_register_push", mapOf("p_access_key" to ref, "p_fcm_token" to fcmToken))
+
+    /** Follower: this device's push token is gone (rotated); forget it everywhere. */
+    suspend fun unregisterPush(fcmToken: String): Boolean =
+        rpcBool("tp_unregister_push", mapOf("p_fcm_token" to fcmToken))
+
     /** Owner: everyone who requested access with a device token. */
     suspend fun fetchJoinRequests(accessKey: String): List<Map<String, Any?>> =
         rpcArray("tp_get_join_requests", mapOf(

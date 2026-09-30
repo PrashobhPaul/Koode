@@ -175,6 +175,10 @@ object TimeFmt {
     fun hourOfDay(ms: Long, zone: ZoneId = ZoneId.systemDefault()): Int =
         Instant.ofEpochMilli(ms).atZone(zone).hour
 
+    /** Local minute of the day 0..1439 — meal windows are measured with it. */
+    fun minuteOfDay(ms: Long, zone: ZoneId = ZoneId.systemDefault()): Int =
+        Instant.ofEpochMilli(ms).atZone(zone).let { it.hour * 60 + it.minute }
+
     /** Calendar day key ("2026-08-30") used to scope "first meal of the day". */
     fun dayKey(ms: Long, zone: ZoneId = ZoneId.systemDefault()): String =
         Instant.ofEpochMilli(ms).atZone(zone).toLocalDate().toString()

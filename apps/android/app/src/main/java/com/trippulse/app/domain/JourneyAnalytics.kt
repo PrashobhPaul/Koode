@@ -340,13 +340,8 @@ object JourneyAnalytics {
         }
     }
 
-    private fun costLabel(type: String): String = when (type) {
-        "FUEL" -> "Fuel"
-        "TICKET" -> "Tickets"
-        "FOOD" -> "Food"
-        "STAY" -> "Accommodation"
-        else -> "Other"
-    }
+    private fun costLabel(type: String): String =
+        if (type == "TICKET") "Tickets" else Expenses.Category.fromType(type).label
 
     private fun humanDuration(seconds: Long): String = when {
         seconds < 3600 -> "${seconds / 60} min"

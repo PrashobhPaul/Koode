@@ -141,6 +141,76 @@ object EventTypes {
     /** A different SIM appeared mid-journey. Phones do not do this alone. */
     const val SIM_CHANGED = "SIM_CHANGED"
 
+    // --- the wellbeing coach ---
+    // Canonical names from the product spec map onto the long-standing wire
+    // types: JOURNEY_STARTED = TRIP_STARTED, JOURNEY_COMPLETED = TRIP_COMPLETED,
+    // MOVEMENT_STARTED = DRIVING_STARTED, MOVEMENT_STOPPED = STOP_STARTED,
+    // JOURNEY_RESUMED = STOP_ENDED / TRIP_RESUMED, SOS_TRIGGERED = SOS_ACTIVATED,
+    // PERIODIC_JOURNEY_UPDATE = JOURNEY_UPDATE.
+    /** Pre-rework nudge record (any need). Still narrated for old journeys. */
+    const val WELLBEING_NUDGE = "WELLBEING_NUDGE"
+    /**
+     * A need still unresolved after one suggestion and one reminder: a
+     * neutral care update to the traveller's followers, never a complaint.
+     */
+    const val WELLBEING_ALERT = "WELLBEING_ALERT"
+    /** The periodic follower update — sent only when something meaningful changed. */
+    const val JOURNEY_UPDATE = "JOURNEY_UPDATE"
+    // Traveller-only coaching records (never broadcast).
+    const val WATER_NUDGE = "WATER_NUDGE"
+    const val WATER_REMINDER = "WATER_REMINDER"
+    const val WATER_ACKNOWLEDGED = "WATER_ACKNOWLEDGED"
+    const val FOOD_NUDGE = "FOOD_NUDGE"
+    const val FOOD_REMINDER = "FOOD_REMINDER"
+    const val FOOD_ACKNOWLEDGED = "FOOD_ACKNOWLEDGED"
+    const val BREAK_NUDGE = "BREAK_NUDGE"
+    const val BREAK_REMINDER = "BREAK_REMINDER"
+    const val BREAK_ACKNOWLEDGED = "BREAK_ACKNOWLEDGED"
+
+    // --- halts: long stops the traveller has told us about ---
+    /** Koode asked whether a long stop is a halt, or suggested planning one. Traveller-only. */
+    const val HALT_SUGGESTED = "HALT_SUGGESTED"
+    const val HALT_CONFIRMED = "HALT_CONFIRMED"
+    const val HALT_CANCELLED = "HALT_CANCELLED"
+    const val HALT_RESUMED = "HALT_RESUMED"
+
+    // --- the journey plan, versioned (never "route deviation") ---
+    const val TRAVEL_MODE_CHANGED = "TRAVEL_MODE_CHANGED"
+    const val PLANNED_HALT_CREATED = "PLANNED_HALT_CREATED"
+    const val PLANNED_HALT_CHANGED = "PLANNED_HALT_CHANGED"
+    /** The traveller no longer plans that halt (never confused with a halt that happened). */
+    const val PLANNED_HALT_CANCELLED = "PLANNED_HALT_CANCELLED"
+    /** Spec alias of [PLANNED_HALT_CHANGED]. */
+    const val HALT_PLAN_CHANGED = PLANNED_HALT_CHANGED
+    const val ETA_SIGNIFICANTLY_CHANGED = "ETA_SIGNIFICANTLY_CHANGED"
+    /** More than one part of the plan changed at once. */
+    const val JOURNEY_PLAN_REVISED = "JOURNEY_PLAN_REVISED"
+
+    // --- closing a journey: the traveller's decision, then their approval ---
+    /** Spec name of [ARRIVAL_DETECTED]: arrival inferred, never a closure. */
+    const val DESTINATION_REACHED = ARRIVAL_DETECTED
+    const val JOURNEY_CLOSE_PROMPTED = "JOURNEY_CLOSE_PROMPTED"
+    /** Arrival was detected, then the traveller moved on: the journey continues. */
+    const val JOURNEY_REOPENED = "JOURNEY_REOPENED"
+    /** The traveller closed the journey; nothing is published yet. */
+    const val JOURNEY_CLOSED = "JOURNEY_CLOSED"
+    /** Closed by Koode after sustained arrival and no answer — never "confirmed". */
+    const val JOURNEY_AUTO_CLOSED = "JOURNEY_AUTO_CLOSED"
+    const val JOURNEY_REVIEW_STARTED = "JOURNEY_REVIEW_STARTED"
+    const val JOURNEY_ANALYTICS_APPROVED = "JOURNEY_ANALYTICS_APPROVED"
+    const val JOURNEY_FINALIZED = "JOURNEY_FINALIZED"
+    /** The traveller said they arrived safely — the only basis for that word. */
+    const val TRAVELLER_CONFIRMED_SAFE = "TRAVELLER_CONFIRMED_SAFE"
+    /** Private: the traveller confirmed their expenses. Never shared. */
+    const val TRAVEL_EXPENSES_APPROVED = "TRAVEL_EXPENSES_APPROVED"
+
+    /** Coaching records for one need: nudge, reminder, acknowledgement. */
+    fun coachTypes(needKey: String): Triple<String, String, String> = when (needKey) {
+        "water" -> Triple(WATER_NUDGE, WATER_REMINDER, WATER_ACKNOWLEDGED)
+        "food" -> Triple(FOOD_NUDGE, FOOD_REMINDER, FOOD_ACKNOWLEDGED)
+        else -> Triple(BREAK_NUDGE, BREAK_REMINDER, BREAK_ACKNOWLEDGED)
+    }
+
     /** Events that carry a driver-visible line in the viewer timeline. */
     val TIMELINE_TYPES: Set<String> = setOf(
         TRIP_STARTED, TRIP_PAUSED, TRIP_RESUMED, TRIP_COMPLETED, DESTINATION_CHANGED,
@@ -151,8 +221,20 @@ object EventTypes {
         FUEL_STOP, CHARGE_STOP, OVERNIGHT_CONFIRMED, MORNING_RESUME,
         DEVICE_SHUTDOWN, DEVICE_BACK_ONLINE, SIM_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
-        POSSIBLE_INCIDENT, SOS_ACTIVATED, SOS_RESOLVED, BATTERY_LOW
+        POSSIBLE_INCIDENT, SOS_ACTIVATED, SOS_RESOLVED, BATTERY_LOW,
+        WELLBEING_ALERT,
+        HALT_CONFIRMED, HALT_CANCELLED, HALT_RESUMED,
+        TRAVEL_MODE_CHANGED, PLANNED_HALT_CREATED, PLANNED_HALT_CHANGED, PLANNED_HALT_CANCELLED,
+        ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED,
+        JOURNEY_AUTO_CLOSED, TRAVELLER_CONFIRMED_SAFE
     )
+
+    /**
+     * Whether an event gets a timeline line. A stage started by a travel-mode
+     * change reads once, as the TRAVEL_MODE_CHANGED plan revision.
+     */
+    fun inTimeline(type: String, payload: Map<String, Any?>): Boolean =
+        type in TIMELINE_TYPES && !(type == LEG_STARTED && payload["announcedAs"] != null)
 
     /** Priority for sync ordering: lower = more urgent. */
     fun priorityFor(type: String): Int = when (type) {
@@ -163,12 +245,16 @@ object EventTypes {
         FUEL_STOP, CHARGE_STOP, STOP_STARTED, STOP_ENDED, LONG_STOP, TOLL_CROSSED,
         OVERNIGHT_CONFIRMED, MORNING_RESUME, ARRIVAL_DETECTED, DESTINATION_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
-        TRIP_STARTED, TRIP_COMPLETED, TRIP_PAUSED, TRIP_RESUMED -> 1
+        TRIP_STARTED, TRIP_COMPLETED, TRIP_PAUSED, TRIP_RESUMED,
+        WELLBEING_ALERT, JOURNEY_UPDATE,
+        HALT_CONFIRMED, HALT_CANCELLED, HALT_RESUMED,
+        TRAVEL_MODE_CHANGED, PLANNED_HALT_CREATED, PLANNED_HALT_CHANGED, PLANNED_HALT_CANCELLED,
+        ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED -> 1
         else -> 2
     }
 
     /** Sensitive events whose content is not shared by default. */
-    fun isSensitiveByDefault(type: String): Boolean = type == MEDICINE
+    fun isSensitiveByDefault(type: String): Boolean = type == MEDICINE || type == TRAVEL_EXPENSES_APPROVED
 }
 
 /** A geographic point. */

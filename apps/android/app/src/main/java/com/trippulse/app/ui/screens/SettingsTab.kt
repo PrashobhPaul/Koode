@@ -274,7 +274,7 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     // ---- sharing the timeline when a journey ends ----
     KoodeCard(title = "When a journey ends") {
         ToggleRow(
-            "Send my timeline to my circle on WhatsApp",
+            "Send my timeline to my emergency contacts on WhatsApp",
             settings.shareTimelineOnWhatsApp
         ) { vm.setShareTimelineOnWhatsApp(it) }
         Text(
@@ -434,7 +434,7 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     // ---- emergency contacts ----
     KoodeCard(title = "Emergency contacts (at least ${Profile.MIN_CONTACTS})") {
         Text(
-            "These people are your circle: they're approved automatically when they ask to follow one of your journeys.",
+            "These are your trusted contacts: they're approved automatically when they ask to follow one of your journeys.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
         Spacer(Modifier.height(Spacing.sm))

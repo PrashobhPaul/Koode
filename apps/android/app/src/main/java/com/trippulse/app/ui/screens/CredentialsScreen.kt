@@ -149,7 +149,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
 
     fun shareText(includePasscode: Boolean): String = buildString {
         appendLine("🚗 I'm starting a journey — follow along on Koode.")
-        appendLine("You'll see how it's going and know the moment I arrive safely, without having to call.")
+        appendLine("Koode will keep you informed along the way and when I arrive, without you having to call.")
         appendLine()
         appendLine("Journey number: ${t?.tripId ?: ""}")
         if (includePasscode) appendLine("Passcode: ${t?.secret ?: ""}")

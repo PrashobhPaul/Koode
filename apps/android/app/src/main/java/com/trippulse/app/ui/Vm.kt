@@ -53,6 +53,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.isActive
@@ -96,8 +98,28 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
 
     val cloudAvailable: Boolean = graph.cloudAvailableSafe()
 
+    /**
+     * Who is following the traveller's live journey — approved followers of
+     * this journey only, never a standing list. Empty when nothing is live.
+     */
+    val journeyFollowers = MutableStateFlow<List<String>>(emptyList())
+
     init {
         viewModelScope.launch { update.value = graph.updateChecker.check() }
+        viewModelScope.launch {
+            while (true) {
+                val t = graph.db.tripDao().activeTrip()
+                journeyFollowers.value = if (t != null && t.status == "ACTIVE" && t.cloudEnabled) {
+                    try {
+                        graph.cloud.fetchJoinRequests(t.accessKey)
+                            .filter { it["status"] == "APPROVED" }
+                            .mapNotNull { (it["name"] as? String)?.trim()?.ifBlank { null } }
+                            .distinct()
+                    } catch (_: Exception) { journeyFollowers.value }
+                } else emptyList()
+                delay(30_000)
+            }
+        }
     }
 
     fun dismissUpdate() {
@@ -106,6 +128,9 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     }
 
     fun greetingName(): String = Profile.name(graph.appContext)
+
+    /** Closed and waiting for the traveller's review before anything is shared. */
+    fun awaitingReview(tripId: String): Boolean = graph.tripManager.closureRecord(tripId)?.pendingReview == true
 
     /**
      * The humanised status of a followed journey, as last evaluated by the
@@ -133,6 +158,25 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     }
 
     fun followHealth(ref: String): String = followStatus(ref).level
+
+    /** Last known position/ETA of a followed journey, cached by the follow service. */
+    fun snapshot(ref: String): com.trippulse.app.domain.FollowSnapshot? =
+        com.trippulse.app.domain.FollowSnapshot.decode(
+            graph.appContext
+                .getSharedPreferences(com.trippulse.app.service.TripFollowService.SNAPSHOT_PREFS, android.content.Context.MODE_PRIVATE)
+                .getString(ref, null)
+        )
+
+    /** Live state of this phone's own running journey, for Home's map. */
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    val activeState: StateFlow<TripStateEntity?> =
+        graph.tripManager.activeTripFlow()
+            .flatMapLatest { t -> if (t == null) flowOf(null) else graph.tripManager.stateFlow(t.tripId) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    /** A distance in the traveller's own units. */
+    fun distance(metres: Double): String = graph.measures().distance(metres)
+
 
     /** Erases one journey completely from this device. */
     fun deleteTrip(tripId: String) = viewModelScope.launch {
@@ -163,7 +207,7 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
         return buildString {
             append(if (name.isBlank()) "I'm on a journey" else "$name is on a journey")
             appendLine(" — follow along on Koode.")
-            appendLine("You'll know the moment I arrive safely, without having to call.")
+            appendLine("Koode will keep you informed along the way, without you having to call.")
             appendLine()
             appendLine("Journey number: ${t.tripId}")
             if (includePasscode) appendLine("Passcode: ${t.secret}")
@@ -766,6 +810,15 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     fun deleteExpense(id: Long) = viewModelScope.launch { graph.db.expenseDao().delete(id) }
 
+    /** Expense moments noticed on this journey, re-read whenever any changes. */
+    val opportunities: StateFlow<List<com.trippulse.app.domain.Expenses.Opportunity>> =
+        graph.tripManager.expenseVersion.map { graph.tripManager.expenseOpportunities(tripId) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), graph.tripManager.expenseOpportunities(tripId))
+
+    fun recordExpenseAmount(id: String, amount: Double) = viewModelScope.launch { graph.tripManager.recordExpenseAmount(tripId, id, amount) }
+    fun markNoExpense(id: String) = viewModelScope.launch { graph.tripManager.markNoExpense(tripId, id) }
+    fun deferExpense(id: String) = viewModelScope.launch { graph.tripManager.deferExpense(tripId, id) }
+
     fun submitCheckpoint(c: TripManager.Checkpoint, startAtMs: Long? = null, durationS: Long? = null) =
         viewModelScope.launch { graph.tripManager.submitCheckpoint(c, startAtMs, durationS) }
 
@@ -775,7 +828,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     /** Break log with a refuel: the checkpoint and the fuel cost in one gesture. */
     fun submitCheckpointWithRefuel(c: TripManager.Checkpoint, amount: Double, quantity: Double?, unit: String) =
         viewModelScope.launch {
-            graph.tripManager.submitCheckpoint(c)
+            graph.tripManager.submitCheckpoint(c, fuelAmountKnown = true)
             graph.db.expenseDao().insert(
                 ExpenseEntity(
                     tripId = tripId, type = "FUEL", amount = amount,
@@ -787,7 +840,12 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         }
 
     fun skipCheckpoint() = viewModelScope.launch { graph.tripManager.skipCheckpoint() }
-    fun answerOvernight(type: String) = viewModelScope.launch { graph.tripManager.answerOvernight(type) }
+    // ---- halts ----
+    fun confirmHalt(type: com.trippulse.app.domain.Halts.Type, expectedMinutes: Int?) =
+        viewModelScope.launch { graph.tripManager.confirmHalt(type, expectedMinutes) }
+    fun declineHalt() = viewModelScope.launch { graph.tripManager.declineHalt() }
+    fun cancelHalt() = viewModelScope.launch { graph.tripManager.cancelHalt() }
+    fun resumeFromHalt() = viewModelScope.launch { graph.tripManager.resumeFromHalt() }
     fun addNote(type: String, text: String?) = viewModelScope.launch { graph.tripManager.addQuickNote(type, text) }
     fun activateSos() = viewModelScope.launch { graph.tripManager.activateSos() }
     fun resolveSos() = viewModelScope.launch { graph.tripManager.resolveSos() }
@@ -828,9 +886,6 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                         "This journey is closed and can no longer be changed."
                     is TripManager.SwitchResult.NoLocationYet ->
                         "Waiting for a location fix — one moment, then try again."
-                    is TripManager.SwitchResult.PrivateVehicleNeedsBreakdown ->
-                        "Changing out of your own vehicle mid-journey is for a breakdown. " +
-                            "Tick that if the car has let you down."
                     is TripManager.SwitchResult.MissingDetails ->
                         "Still needed: ${r.labels.joinToString(", ")}."
                 }
@@ -838,6 +893,68 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 editBusy.value = false
             }
         }
+
+    /** The live journey plan: destination, mode, role, planned halt. */
+    val plan = graph.tripManager.planFlow
+
+    /** Every version of this journey's plan, oldest first. */
+    fun planHistory(): List<com.trippulse.app.domain.JourneyPlan> = graph.tripManager.planHistory(tripId)
+
+    // ---- finding a new destination ----
+    val savedPlaces: StateFlow<List<SavedPlaceEntity>> =
+        graph.db.savedPlaceDao().allFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    private val placeSearch = PlaceSearch()
+    var destResults = MutableStateFlow<List<PlaceSearch.Place>>(emptyList()); private set
+    var destSearching = MutableStateFlow(false); private set
+    private var destSearchJob: kotlinx.coroutines.Job? = null
+
+    /** Search-as-you-type near where the traveller is; the newest query wins. */
+    fun searchDestination(query: String) {
+        destSearchJob?.cancel()
+        val q = query.trim()
+        if (q.length < 2) { destResults.value = emptyList(); destSearching.value = false; return }
+        destSearchJob = viewModelScope.launch {
+            destSearching.value = true
+            val near = state.value?.let { s -> s.lat?.let { la -> s.lng?.let { lo -> GeoPoint(la, lo) } } }
+            try { destResults.value = placeSearch.search(q, near = near) } finally { if (isActive) destSearching.value = false }
+        }
+    }
+
+    /** A Google Maps link (shared in or copied) turned into a place, or null. */
+    suspend fun resolveShared(text: String): PlaceSearch.Place? =
+        placeSearch.resolveLink(text) ?: placeSearch.search(text, limit = 1).firstOrNull()
+
+    fun savePlaceAt(name: String, point: GeoPoint) = viewModelScope.launch {
+        val clean = InputRules.itemTextForStorage(name)
+        if (clean.isNotBlank()) {
+            graph.db.savedPlaceDao().upsert(SavedPlaceEntity(clean, point.lat, point.lng, System.currentTimeMillis()))
+        }
+    }
+
+    fun deletePlace(name: String) = viewModelScope.launch { graph.db.savedPlaceDao().delete(name) }
+
+    /** Going somewhere else now: a new plan revision everyone following hears about. */
+    fun changeDestination(place: com.trippulse.app.data.routing.PlaceSearch.Place) = viewModelScope.launch {
+        if (editBusy.value) return@launch
+        editBusy.value = true
+        try {
+            val name = place.name.substringBefore(" · ").trim()
+            val ok = graph.tripManager.changeDestination(name, place.point)
+            editMessage.value =
+                if (ok) "Destination updated — everyone following you has been told." else "This journey can no longer be changed."
+        } finally {
+            editBusy.value = false
+        }
+    }
+
+    fun setTravellerRole(role: com.trippulse.app.domain.WellbeingCoach.Role) =
+        viewModelScope.launch { graph.tripManager.setTravellerRole(role) }
+
+    fun setPlannedHalt(place: String?) = viewModelScope.launch {
+        graph.tripManager.setPlannedHalt(place)
+        editMessage.value = if (place.isNullOrBlank()) "Planned halt removed." else "Halt planned — everyone following you has been told."
+    }
 
     /** Fills in details the traveller only learned after boarding. */
     fun updateStageDetails(legIndex: Int, details: Map<String, String>) = viewModelScope.launch {
@@ -899,36 +1016,33 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     val whatsAppAvailable: Boolean get() = TimelineDelivery.isAvailable(graph.appContext)
 
     /**
-     * Ends the journey after the traveller has reviewed it.
+     * "End journey": closes it, pending the traveller's review.
      *
-     * [closingNote] is appended to the timeline first, so the document everyone
-     * receives is the one that was just verified — and because nothing can be
-     * edited after completion, this is the traveller's last chance to add it.
-     *
-     * When timeline sharing is on, the PDF is built immediately afterwards so
-     * that "as soon as I mark it complete" means exactly that: by the time the
-     * send sheet appears, the document already exists.
+     * [closingNote] is held with the closure and added to the timeline when
+     * the traveller approves the journey, so what followers receive is exactly
+     * what was reviewed.
      */
     fun complete(closingNote: String? = null, endAtMs: Long? = null, onDone: (Boolean) -> Unit = {}) = viewModelScope.launch {
         // Closing is local and durable; nothing after it may take the app down.
+        // It publishes nothing: the review that follows is where the traveller
+        // approves what is shared (and, if they like, sends it on WhatsApp).
         try {
             graph.tripManager.completeTrip(closingNote, endAtMs)
         } catch (e: Exception) {
             android.util.Log.e("DriverVm", "completeTrip failed", e)
         }
-        val prepared = if (whatsAppEnabled) {
-            try { prepareTimelineForSending() } catch (e: Exception) {
-                android.util.Log.e("DriverVm", "timeline PDF failed", e); false
-            }
-        } else false
-        onDone(prepared)
+        onDone(false)
     }
 
     /** When they actually arrived, if the journey is being closed later than that. */
     suspend fun suggestedEndMs(): Long? =
         try { graph.tripManager.suggestedEndMs(tripId) } catch (_: Exception) { null }
 
-    /** Builds the timeline PDF and resolves who it can go to. */
+    /** Builds the approved journey's timeline PDF and resolves who it can go to. */
+    suspend fun prepareTimeline(): Boolean = try { prepareTimelineForSending() } catch (e: Exception) {
+        android.util.Log.e("DriverVm", "timeline PDF failed", e); false
+    }
+
     private suspend fun prepareTimelineForSending(): Boolean {
         val recipients = TimelineDelivery.recipients(graph.appContext)
         val t = graph.db.tripDao().byId(tripId) ?: return false
@@ -982,7 +1096,9 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
         /** True only because the traveller ended the journey. */
         val endedByOwner: Boolean,
         /** We have never managed to read this journey yet. */
-        val awaitingFirstRead: Boolean
+        val awaitingFirstRead: Boolean,
+        /** The traveller closed it and is reviewing it: neither live nor "ended". */
+        val wrappingUp: Boolean = false
     )
 
     val ui: StateFlow<ViewerState> =
@@ -998,7 +1114,8 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                 events = events,
                 freshness = repo.freshness(state, serverOffset.value),
                 endedByOwner = repo.isEndedByOwner(state, events),
-                awaitingFirstRead = meta == null && state == null
+                awaitingFirstRead = meta == null && state == null,
+                wrappingUp = state?.get("wrappingUp") == true && !repo.isEndedByOwner(state, events)
             )
         }.stateIn(
             viewModelScope, SharingStarted.WhileSubscribed(5000),
@@ -1028,7 +1145,7 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                 simChangedAtMs = ln("simChangedAt"),
                 offlineExpected = mode == "FLIGHT" && plannedDep != null &&
                     now >= plannedDep - 30 * 60_000L && now <= plannedDep + 9 * 3_600_000L,
-                journeyClosed = s.endedByOwner
+                journeyClosed = s.endedByOwner || s.wrappingUp
             )
         )
     }.stateIn(
@@ -1290,6 +1407,82 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     /** A finished journey is a record: nothing on this screen may be edited. */
     val editable: Boolean get() = graph.tripManager.isEditable(trip.value)
+
+    // ---- review, approval and the private expense review ----
+
+    val opportunities: StateFlow<List<com.trippulse.app.domain.Expenses.Opportunity>> =
+        graph.tripManager.expenseVersion.map { graph.tripManager.expenseOpportunities(tripId) }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), graph.tripManager.expenseOpportunities(tripId))
+
+    fun recordExpenseAmount(id: String, amount: Double) = viewModelScope.launch { graph.tripManager.recordExpenseAmount(tripId, id, amount) }
+    fun markNoExpense(id: String) = viewModelScope.launch { graph.tripManager.markNoExpense(tripId, id) }
+    fun leaveExpenseUnknown(id: String) = viewModelScope.launch { graph.tripManager.leaveExpenseUnknown(tripId, id) }
+    fun deleteExpense(id: Long) = viewModelScope.launch { graph.db.expenseDao().delete(id) }
+    fun correctExpense(id: Long, amount: Double) = viewModelScope.launch { graph.db.expenseDao().updateAmount(id, amount) }
+
+    /** An expense added at review, in a category the journey made relevant. */
+    fun addExpense(category: com.trippulse.app.domain.Expenses.Category, amount: Double) = viewModelScope.launch {
+        val t = trip.value ?: return@launch
+        graph.db.expenseDao().insert(
+            ExpenseEntity(
+                tripId = tripId, type = category.name, amount = amount, quantity = null, unit = null,
+                note = "Source: added at review", tMs = t.completedAtMs ?: System.currentTimeMillis(), item = category.label
+            )
+        )
+    }
+
+    /** Toll crossings an annual pass covered on this journey: crossings, never money. */
+    fun passCoveredCrossings(): Int = events.value.count {
+        it.type == com.trippulse.app.domain.EventTypes.TOLL_CROSSED &&
+            com.trippulse.app.data.EventCodec.payloadFromJson(it.payloadJson)["passCovered"] == true
+    }
+
+    /** Where this journey is in closing; null for journeys closed by older builds. */
+    val closure = MutableStateFlow(graph.tripManager.closureRecord(tripId))
+    val approving = MutableStateFlow(false)
+
+    private fun refreshClosure() { closure.value = graph.tripManager.closureRecord(tripId) }
+
+    /** The review screen was opened: recorded once. */
+    fun startReview() = viewModelScope.launch { graph.tripManager.startReview(tripId); refreshClosure() }
+
+    fun correctDestination(name: String) = viewModelScope.launch {
+        if (graph.tripManager.correctDestination(tripId, name)) reload()
+    }
+
+    fun correctEndTime(endAtMs: Long) = viewModelScope.launch {
+        if (graph.tripManager.correctEndTime(tripId, endAtMs)) reload()
+    }
+
+    /** "Approve & share journey": the only point followers hear it ended. */
+    fun approve(safeConfirmed: Boolean, onDone: (Boolean) -> Unit) = viewModelScope.launch {
+        approving.value = true
+        val ok = try { graph.tripManager.approveJourney(tripId, safeConfirmed) } catch (e: Exception) {
+            android.util.Log.e("SummaryVm", "approve failed", e); false
+        }
+        refreshClosure(); reload()
+        approving.value = false
+        onDone(ok)
+    }
+
+    /** "Confirm expenses": private; the screen then saves the expense PDF on the phone. */
+    suspend fun confirmExpenses() {
+        graph.tripManager.approveExpenses(tripId)
+        refreshClosure()
+    }
+
+    private fun reload() = viewModelScope.launch {
+        val t = graph.db.tripDao().byId(tripId) ?: return@launch
+        val ev = graph.db.eventDao().allForTrip(tripId)
+        trip.value = t
+        events.value = ev
+        val saved = runCatching { graph.db.savedPlaceDao().all() }.getOrNull().orEmpty()
+            .map { com.trippulse.app.domain.PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
+        destLabel.value = com.trippulse.app.domain.PlaceResolver.display(
+            t.destName, com.trippulse.app.domain.PlaceResolver.nearestSavedLabel(saved, t.destLat, t.destLng)
+        )
+        recompute(t, ev, samples.value, legs.value, graph.db.expenseDao().allForTrip(tripId))
+    }
 
     init {
         // A completed journey is a record the traveller opens to look back on.

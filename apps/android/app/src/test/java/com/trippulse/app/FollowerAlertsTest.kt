@@ -90,6 +90,24 @@ class FollowerAlertsTest {
         assertEquals(open, closed)
     }
 
+    @Test fun push_and_poll_agree_on_one_event_but_not_across_events() {
+        // The server push and the in-app poll must compute the same key for
+        // the same event (so it shows once), yet a break's later "closed"
+        // event is distinct news and must not be swallowed as a duplicate.
+        assertEquals(
+            FollowerAlerts.dedupKey("TP-1", EventTypes.TOLL_CROSSED, 42L),
+            FollowerAlerts.dedupKey("TP-1", EventTypes.TOLL_CROSSED, 42L)
+        )
+        assertNotEquals(
+            FollowerAlerts.dedupKey("TP-1", EventTypes.BREAK_CHECKPOINT, 1_000L),
+            FollowerAlerts.dedupKey("TP-1", EventTypes.BREAK_CHECKPOINT, 5_000L)
+        )
+        assertNotEquals(
+            FollowerAlerts.dedupKey("TP-1", EventTypes.TOLL_CROSSED, 42L),
+            FollowerAlerts.dedupKey("TP-2", EventTypes.TOLL_CROSSED, 42L)
+        )
+    }
+
     @Test fun the_same_event_re_seen_keeps_the_same_id() {
         val first = FollowerAlerts.notificationId("k", EventTypes.TRIP_STARTED, 42L, emptyMap())
         val again = FollowerAlerts.notificationId("k", EventTypes.TRIP_STARTED, 42L, emptyMap())
