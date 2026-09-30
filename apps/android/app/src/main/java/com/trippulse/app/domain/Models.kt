@@ -141,6 +141,14 @@ object EventTypes {
     /** A different SIM appeared mid-journey. Phones do not do this alone. */
     const val SIM_CHANGED = "SIM_CHANGED"
 
+    // --- the wellbeing coach ---
+    /** The traveller was nudged (water / food / break). Kept for the record, never broadcast. */
+    const val WELLBEING_NUDGE = "WELLBEING_NUDGE"
+    /** The traveller kept skipping a need after reminders — the circle is told. */
+    const val WELLBEING_ALERT = "WELLBEING_ALERT"
+    /** The hourly update to the circle: progress, ETA, last water and food. */
+    const val JOURNEY_UPDATE = "JOURNEY_UPDATE"
+
     /** Events that carry a driver-visible line in the viewer timeline. */
     val TIMELINE_TYPES: Set<String> = setOf(
         TRIP_STARTED, TRIP_PAUSED, TRIP_RESUMED, TRIP_COMPLETED, DESTINATION_CHANGED,
@@ -151,7 +159,8 @@ object EventTypes {
         FUEL_STOP, CHARGE_STOP, OVERNIGHT_CONFIRMED, MORNING_RESUME,
         DEVICE_SHUTDOWN, DEVICE_BACK_ONLINE, SIM_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
-        POSSIBLE_INCIDENT, SOS_ACTIVATED, SOS_RESOLVED, BATTERY_LOW
+        POSSIBLE_INCIDENT, SOS_ACTIVATED, SOS_RESOLVED, BATTERY_LOW,
+        WELLBEING_ALERT
     )
 
     /** Priority for sync ordering: lower = more urgent. */
@@ -163,7 +172,8 @@ object EventTypes {
         FUEL_STOP, CHARGE_STOP, STOP_STARTED, STOP_ENDED, LONG_STOP, TOLL_CROSSED,
         OVERNIGHT_CONFIRMED, MORNING_RESUME, ARRIVAL_DETECTED, DESTINATION_CHANGED,
         QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE, VEHICLE_ISSUE, INCIDENT,
-        TRIP_STARTED, TRIP_COMPLETED, TRIP_PAUSED, TRIP_RESUMED -> 1
+        TRIP_STARTED, TRIP_COMPLETED, TRIP_PAUSED, TRIP_RESUMED,
+        WELLBEING_ALERT, JOURNEY_UPDATE -> 1
         else -> 2
     }
 

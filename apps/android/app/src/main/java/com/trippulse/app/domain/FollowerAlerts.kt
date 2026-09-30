@@ -34,7 +34,10 @@ object FollowerAlerts {
         EventTypes.OVERNIGHT_CONFIRMED, EventTypes.MORNING_RESUME,
         EventTypes.QUICK_NOTE, EventTypes.PASSENGER_JOINED, EventTypes.PASSENGER_LEFT,
         EventTypes.VEHICLE_ISSUE, EventTypes.INCIDENT, EventTypes.POSSIBLE_INCIDENT,
-        EventTypes.SOS_ACTIVATED, EventTypes.SOS_RESOLVED
+        EventTypes.SOS_ACTIVATED, EventTypes.SOS_RESOLVED,
+        // The traveller skipped water/food/a break even after reminders, and
+        // the regular hourly update — the core of what the circle is for.
+        EventTypes.WELLBEING_ALERT, EventTypes.JOURNEY_UPDATE
     )
 
     /**

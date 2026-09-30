@@ -53,6 +53,9 @@ object EventNarrator {
         EventTypes.DEBOARDED -> "🚶" to "Got off"
         EventTypes.LEG_STARTED -> "🧭" to "Next stage started"
         EventTypes.LEG_COMPLETED -> "✅" to "Stage completed"
+        EventTypes.WELLBEING_ALERT -> "⚠️" to "Skipped a wellbeing reminder"
+        EventTypes.WELLBEING_NUDGE -> "💡" to "Reminded to look after themselves"
+        EventTypes.JOURNEY_UPDATE -> "🧭" to "Journey update"
         else -> "•" to type.lowercase().replace('_', ' ')
     }
 
@@ -87,7 +90,10 @@ object EventNarrator {
             EventTypes.SIM_CHANGED,
             // The toll event ships its own complete sentence ("Toll crossed —
             // Paliyekkara Toll Plaza"); prefixing the label would double it.
-            EventTypes.TOLL_CROSSED -> emoji to (text ?: label)
+            EventTypes.TOLL_CROSSED,
+            // The coach and the hourly update write complete sentences too.
+            EventTypes.WELLBEING_ALERT, EventTypes.JOURNEY_UPDATE,
+            EventTypes.WELLBEING_NUDGE -> emoji to (text ?: label)
             else -> emoji to (text?.let { "$label — $it" } ?: label)
         }
     }

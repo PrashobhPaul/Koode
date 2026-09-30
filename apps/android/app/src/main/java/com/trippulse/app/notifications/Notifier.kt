@@ -32,6 +32,11 @@ class Notifier(private val context: Context) {
             }
         )
         nm.createNotificationChannel(
+            NotificationChannel(CH_COACH, "Wellbeing reminders", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "Reminders to drink water, eat and take breaks during your journey"
+            }
+        )
+        nm.createNotificationChannel(
             NotificationChannel(CH_SOS, "Emergency", NotificationManager.IMPORTANCE_HIGH).apply {
                 description = "SOS / incident alerts"
             }
@@ -179,6 +184,50 @@ class Notifier(private val context: Context) {
         return bmp
     }
 
+    /**
+     * A wellbeing nudge to the traveller. Each need keeps one tray entry that
+     * the reminder replaces. "Had water" / "Ate something" log it straight
+     * from the notification, so the traveller never has to open Koode at a
+     * stop; "Later" snoozes this step. Break nudges have no "done" button:
+     * the stop itself is the answer.
+     */
+    fun showWellbeingNudge(needKey: String, title: String, body: String) {
+        val id = ID_COACH_BASE + (needKey.hashCode() and 0xFF)
+        val b = NotificationCompat.Builder(context, CH_COACH)
+            .setSmallIcon(R.drawable.ic_stat_trip)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(body))
+            .setAutoCancel(true)
+            .setContentIntent(contentIntent())
+            .setCategory(NotificationCompat.CATEGORY_REMINDER)
+        val done = when (needKey) {
+            "water" -> "Had water"
+            "food" -> "Ate something"
+            else -> null
+        }
+        if (done != null) {
+            b.addAction(0, done, nudgeAction(NudgeActionReceiver.ACTION_DONE, needKey, id))
+        }
+        b.addAction(0, "Remind me later", nudgeAction(NudgeActionReceiver.ACTION_SNOOZE, needKey, id))
+        context.getSystemService(NotificationManager::class.java).notify(id, b.build())
+    }
+
+    fun cancelWellbeingNudge(needKey: String) {
+        context.getSystemService(NotificationManager::class.java)
+            .cancel(ID_COACH_BASE + (needKey.hashCode() and 0xFF))
+    }
+
+    private fun nudgeAction(action: String, needKey: String, notificationId: Int): PendingIntent {
+        val intent = Intent(context, NudgeActionReceiver::class.java)
+            .setAction(action)
+            .putExtra(NudgeActionReceiver.EXTRA_NEED, needKey)
+            .putExtra(NudgeActionReceiver.EXTRA_NOTIFICATION_ID, notificationId)
+        val flags = PendingIntent.FLAG_UPDATE_CURRENT or
+            (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0)
+        return PendingIntent.getBroadcast(context, (action + needKey).hashCode(), intent, flags)
+    }
+
     /** Journey Health dropped to CONCERN on a followed journey. */
     fun showJourneyAttention(label: String, reason: String) =
         postEvent(ID_HEALTH, CH_SOS, "Journey needs attention", "$reason ($label)", high = true)
@@ -197,6 +246,7 @@ class Notifier(private val context: Context) {
         const val CH_TRACKING = "trippulse.tracking"
         const val CH_EVENTS = "trippulse.events"
         const val CH_SOS = "trippulse.sos"
+        const val CH_COACH = "trippulse.coach"
 
         const val NOTIF_TRACKING = 1001
         private const val ID_ARRIVAL = 2001
@@ -209,5 +259,7 @@ class Notifier(private val context: Context) {
         private const val ID_BREAK = 2008
         private const val ID_ARRIVAL_DETECTED = 2009
         private const val ID_UPDATE_AVAILABLE = 2010
+        /** 2100–2355: one tray entry per wellbeing need. */
+        private const val ID_COACH_BASE = 2100
     }
 }

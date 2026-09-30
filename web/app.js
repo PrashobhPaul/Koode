@@ -139,7 +139,8 @@
     TRANSIT_RESUMED: ['▶', 'Moving again'],
     DEBOARDED: ['🚶', 'Got off'],
     LEG_STARTED: ['🧭', 'Next stage started'],
-    LEG_COMPLETED: ['✅', 'Stage completed']
+    LEG_COMPLETED: ['✅', 'Stage completed'],
+    WELLBEING_ALERT: ['⚠️', 'Skipped a wellbeing reminder']
   };
 
   var MEAL_LABELS = {
@@ -176,6 +177,9 @@
     return events.filter(function (e) {
       var id = e.payload && e.payload.breakId;
       if (e.type === 'BREAK_CHECKPOINT_SKIPPED') return false;
+      // Same as the app: nudges to the traveller and the hourly update are
+      // notifications, not timeline entries.
+      if (e.type === 'WELLBEING_NUDGE' || e.type === 'JOURNEY_UPDATE') return false;
       if (e.type === 'BREAK_CHECKPOINT' && id) {
         if ((e.eventTime || 0) !== latest[id] || kept[id]) return false;
         kept[id] = true; return true;

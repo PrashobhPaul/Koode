@@ -113,7 +113,6 @@ class TripManager(
     private var lastDistancePoint: GeoPoint? = null
     private var lastEtaCalcMs: Long = 0
     private var batteryLowFired = false
-    private var lastMealWindowPrompted: String? = null
     private var arrivalPromptShown = false
     private var arrivalReminders = 0
     /**
@@ -729,18 +728,9 @@ class TripManager(
         // shutdown was recorded and BOOT_COMPLETED restarted us.
         if (t.wentDarkAtMs != null) backOnlineDue = true
 
-        // Public transport: gentle wellbeing check-ins at meal windows only —
-        // once per window, never at arbitrary intervals. Passengers aren't
-        // driving, so timing courtesy matters more than stop detection.
-        if (!profile.stopPromptsEnabled && !s.checkpointDue) {
-            val hour = TimeFmt.hourOfDay(now)
-            val window = when (hour) { 8 -> "breakfast"; 13 -> "lunch"; 16 -> "tea"; 20 -> "dinner"; else -> null }
-            if (window != null && lastMealWindowPrompted != window) {
-                lastMealWindowPrompted = window
-                s = s.copy(checkpointDue = true, checkpointStopStartMs = now)
-                notifier.showBreakPrompt(false)
-            }
-        }
+        // The wellbeing coach (water, food, breaks — per travel mode) and the
+        // circle's hourly update. Replaces the old fixed meal-window prompt.
+        coachTick(t, s, now)
 
         // battery-low (edge triggered)
         val bat = s.batteryPct
@@ -897,6 +887,8 @@ class TripManager(
         if ("fuel" in newlyAdded || (!countsAsBreak && c.fuel)) reportWellbeing(t, EventTypes.FUEL_STOP, itemTime, s.lat, s.lng, tag)
         if ("charge" in newlyAdded || (!countsAsBreak && c.charge)) reportWellbeing(t, EventTypes.CHARGE_STOP, itemTime, s.lat, s.lng, tag)
 
+        if (c.water) notifier.cancelWellbeingNudge("water")
+        if (c.food) notifier.cancelWellbeingNudge("food")
         s = s.copy(
             // Water is only ever water. Tea, coffee and snacks are a break, not hydration.
             waterAtMs = if (c.water) itemTime else s.waterAtMs,
@@ -1428,6 +1420,8 @@ class TripManager(
             }
             is StopDetector.Movement.StopStarted -> {
                 transition(s, JourneyInput.STOP_CONFIRMED)?.let { s = s.copy(journey = it.name) }
+                // Stopping is the answer to "take a break".
+                notifier.cancelWellbeingNudge("break")
                 val began = detector.stopStartedAtMs() ?: now
                 s = s.copy(stopStartedAtMs = began)
                 // Prompt for the break log WHILE stationary — a driver can't log
@@ -1673,6 +1667,110 @@ class TripManager(
         val now = System.currentTimeMillis()
         insertEvent(tripId, EventTypes.SOS_DELIVERED, EventSource.SERVER_DERIVED, now, null, null, emptyMap(), false)
         // don't recurse into drain here; the normal drain loop will pick it up
+    }
+
+    // -----------------------------------------------------------------------
+    // Wellbeing coach + the circle's regular update
+    // -----------------------------------------------------------------------
+
+    private val coachPrefs by lazy {
+        appContext.getSharedPreferences("tp_wellbeing_coach", Context.MODE_PRIVATE)
+    }
+
+    private fun loadCoach(tripId: String) =
+        com.trippulse.app.domain.WellbeingCoach.decode(coachPrefs.getString(tripId, null))
+
+    private fun saveCoach(tripId: String, states: Map<com.trippulse.app.domain.WellbeingCoach.Need, com.trippulse.app.domain.WellbeingCoach.NeedState>) {
+        coachPrefs.edit().putString(tripId, com.trippulse.app.domain.WellbeingCoach.encode(states)).apply()
+    }
+
+    /**
+     * One pass of the coach, on the journey tick (under [lock]).
+     *
+     * Nudges go to the traveller as a notification with one-tap answers and
+     * are recorded as WELLBEING_NUDGE (kept, never broadcast). Only a need
+     * still skipped after the reminder becomes a WELLBEING_ALERT, which is
+     * what reaches the circle. The hourly JOURNEY_UPDATE rides the same tick.
+     */
+    private suspend fun coachTick(t: ActiveTripEntity, s: TripStateEntity, now: Long) {
+        if (t.status != "ACTIVE" || !isEditable(t)) return
+        val started = t.startedAtMs ?: return
+        val modeKey = activeLeg()?.mode ?: t.transportMode
+        val moving = s.journey == JourneyStatus.DRIVING.name
+        val overnight = s.journey == JourneyStatus.OVERNIGHT.name
+        val rules = com.trippulse.app.domain.WellbeingCoach.rulesFor(modeKey)
+
+        if (rules != null) {
+            val result = com.trippulse.app.domain.WellbeingCoach.step(
+                rules,
+                com.trippulse.app.domain.WellbeingCoach.Inputs(
+                    nowMs = now, startedAtMs = started, moving = moving,
+                    drivingSinceMs = s.drivingSinceMs, waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs,
+                    overnight = overnight, localHour = TimeFmt.hourOfDay(now),
+                    travellerName = ownerName().orEmpty()
+                ),
+                loadCoach(t.tripId)
+            )
+            saveCoach(t.tripId, result.states)
+            for (a in result.actions) when (a) {
+                is com.trippulse.app.domain.WellbeingCoach.Action.Nudge -> {
+                    notifier.showWellbeingNudge(a.need.key, a.title, a.body)
+                    insertEvent(
+                        t.tripId, EventTypes.WELLBEING_NUDGE, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                        mapOf("need" to a.need.key, "reminder" to a.reminder, "text" to a.body), false
+                    )
+                }
+                is com.trippulse.app.domain.WellbeingCoach.Action.Escalate -> {
+                    insertEvent(
+                        t.tripId, EventTypes.WELLBEING_ALERT, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                        mapOf(
+                            "need" to a.need.key, "gapMinutes" to a.gapMin,
+                            "reminders" to a.reminders, "text" to a.text
+                        ), false
+                    )
+                }
+            }
+        }
+
+        // ---- the circle's regular update --------------------------------------
+        val key = "${t.tripId}|update"
+        val last = coachPrefs.getLong(key, 0L).takeIf { it > 0 }
+        if (!overnight && com.trippulse.app.domain.JourneyUpdates.due(last, started, now)) {
+            val measures = com.trippulse.app.domain.Measures.resolve(null, settings.current.unitPreference)
+            val text = com.trippulse.app.domain.JourneyUpdates.text(
+                com.trippulse.app.domain.JourneyUpdates.Facts(
+                    nowMs = now, startedAtMs = started, moving = moving,
+                    driving = rules?.driving ?: TransportCatalog.isPrivate(modeKey),
+                    riding = rules?.riding ?: false,
+                    distanceLeft = s.distanceRemainingM.takeIf { it > 0 }?.let { measures.distance(it) },
+                    etaClock = s.etaLikelyMs?.let { TimeFmt.clockWithDay(it, now) },
+                    waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs
+                )
+            )
+            coachPrefs.edit().putLong(key, now).apply()
+            insertEvent(
+                t.tripId, EventTypes.JOURNEY_UPDATE, EventSource.SYSTEM_INFERRED, now, s.lat, s.lng,
+                mapOf("text" to text), false
+            )
+        }
+    }
+
+    /** "Had water" / "Ate something" from a nudge notification. */
+    suspend fun logNeedMet(need: com.trippulse.app.domain.WellbeingCoach.Need) {
+        when (need) {
+            com.trippulse.app.domain.WellbeingCoach.Need.WATER -> logNourishment(Nourishment.WATER)
+            com.trippulse.app.domain.WellbeingCoach.Need.FOOD -> submitCheckpoint(Checkpoint(food = true))
+            com.trippulse.app.domain.WellbeingCoach.Need.BREAK -> Unit // the stop itself answers a break
+        }
+    }
+
+    /** "Remind me later" from a nudge notification: restart this step's clock. */
+    suspend fun snoozeNudge(need: com.trippulse.app.domain.WellbeingCoach.Need) = lock.withLock {
+        val t = trip ?: return@withLock
+        saveCoach(
+            t.tripId,
+            com.trippulse.app.domain.WellbeingCoach.snooze(loadCoach(t.tripId), need, System.currentTimeMillis())
+        )
     }
 
     /**

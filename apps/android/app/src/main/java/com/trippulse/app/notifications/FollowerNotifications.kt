@@ -49,7 +49,7 @@ object FollowerNotifications {
         )?.ownerName
         notifier.showJourneyEvent(
             id = FollowerAlerts.notificationId(ref, type, eventTimeMs, payload),
-            title = person?.let { "$it · $sentence" } ?: sentence,
+            title = person?.let { if (sentence.startsWith(it)) sentence else "$it · $sentence" } ?: sentence,
             body = label,
             urgent = FollowerAlerts.isUrgent(type),
             person = person ?: label
