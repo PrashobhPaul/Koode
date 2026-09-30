@@ -27,7 +27,8 @@ type Claim = {
   tripId: string | null;
   eventTime: number;
   event: { type?: string; payload?: Record<string, unknown> };
-  tokens: string[];
+  /** t = FCM token; k = passcode-path device, which may be told the access key. */
+  recipients: { t: string; k: boolean }[];
 };
 
 const db = createClient(
@@ -132,11 +133,12 @@ Deno.serve(async (req) => {
   const claim = data as Claim | null;
   if (!claim) return json({ status: "skipped" });
 
-  const tokens = claim.tokens ?? [];
+  const recipients = claim.recipients ?? [];
+  // Trip-id followers are identified by the trip id alone: they are never
+  // sent the passcode-derived access key, so a later denial stays final.
   const message = {
     kind: "tp_event",
     eventId: claim.eventId,
-    accessKey: claim.accessKey,
     tripId: claim.tripId ?? "",
     eventTime: String(claim.eventTime),
     type: claim.event?.type ?? "",
@@ -155,7 +157,7 @@ Deno.serve(async (req) => {
     return json({ error: "oauth" }, 502);
   }
 
-  await Promise.all(tokens.map(async (token) => {
+  await Promise.all(recipients.map(async ({ t: token, k: viaKey }) => {
     try {
       const res = await fetch(
         `https://fcm.googleapis.com/v1/projects/${sa.project_id}/messages:send`,
@@ -163,7 +165,11 @@ Deno.serve(async (req) => {
           method: "POST",
           headers: { Authorization: `Bearer ${bearer}`, "Content-Type": "application/json" },
           body: JSON.stringify({
-            message: { token, data: message, android: { priority: "HIGH", ttl: "86400s" } },
+            message: {
+              token,
+              data: { ...message, accessKey: viaKey ? claim.accessKey : "" },
+              android: { priority: "HIGH", ttl: "86400s" },
+            },
           }),
         },
       );
