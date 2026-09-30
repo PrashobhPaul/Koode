@@ -89,6 +89,14 @@ class AppGraph(context: Context) {
 
     val viewerRepository: ViewerRepository = ViewerRepository(db, cloud, settings, cfg)
 
+    /** Approved analytics and the verified report, to the journey's followers. */
+    val publisher: com.trippulse.app.data.export.ApprovedJourneyPublisher =
+        com.trippulse.app.data.export.ApprovedJourneyPublisher(appContext, db, cloud, { measures() }, appScope)
+            .also { p ->
+                tripManager.onJourneyApproved = { p.enqueue(it) }
+                p.resume()
+            }
+
     /** Nudges people off old builds; never touches an in-flight journey. */
     val updateChecker: UpdateChecker = UpdateChecker(appContext, settings)
 

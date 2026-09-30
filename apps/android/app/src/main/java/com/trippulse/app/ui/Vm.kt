@@ -191,7 +191,11 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
         }
     }
 
-    fun unfollow(ref: String) = viewModelScope.launch { graph.viewerRepository.unfollow(ref) }
+    fun unfollow(ref: String) = viewModelScope.launch {
+        // Stop the server pushing this journey to this phone, then forget it.
+        graph.appScope.launch { graph.push.unregisterFor(ref) }
+        graph.viewerRepository.unfollow(ref)
+    }
 
     /**
      * The invitation text for a journey, ready to hand to any messaging app.
@@ -1098,7 +1102,9 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
         /** We have never managed to read this journey yet. */
         val awaitingFirstRead: Boolean,
         /** The traveller closed it and is reviewing it: neither live nor "ended". */
-        val wrappingUp: Boolean = false
+        val wrappingUp: Boolean = false,
+        /** The traveller approved the journey and its verified report is stored. */
+        val reportReady: Boolean = false
     )
 
     val ui: StateFlow<ViewerState> =
@@ -1115,7 +1121,8 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                 freshness = repo.freshness(state, serverOffset.value),
                 endedByOwner = repo.isEndedByOwner(state, events),
                 awaitingFirstRead = meta == null && state == null,
-                wrappingUp = state?.get("wrappingUp") == true && !repo.isEndedByOwner(state, events)
+                wrappingUp = state?.get("wrappingUp") == true && !repo.isEndedByOwner(state, events),
+                reportReady = events.any { it["type"] == com.trippulse.app.domain.EventTypes.JOURNEY_REPORT_AVAILABLE }
             )
         }.stateIn(
             viewModelScope, SharingStarted.WhileSubscribed(5000),
@@ -1164,6 +1171,24 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
      * traveller's phone is unreachable -- which is the only situation in which
      * anybody wants it.
      */
+    /**
+     * The traveller's approved journey report, fetched through a short-lived
+     * link. It is the journey timeline only — the traveller's expenses are
+     * never part of it.
+     */
+    fun openVerifiedReport(onReady: (java.io.File?) -> Unit) = viewModelScope.launch {
+        if (reportBusy.value) return@launch
+        reportBusy.value = true
+        try {
+            val url = graph.cloud.reportDownloadUrl(accessKey)
+            val dir = java.io.File(graph.appContext.cacheDir, "exports").apply { mkdirs() }
+            val file = java.io.File(dir, "Koode-verified-journey.pdf")
+            onReady(if (url != null && graph.cloud.download(url, file)) file else null)
+        } finally {
+            reportBusy.value = false
+        }
+    }
+
     fun buildLastKnownReport(onReady: (java.io.File?) -> Unit) = viewModelScope.launch {
         if (reportBusy.value) return@launch
         reportBusy.value = true

@@ -86,6 +86,18 @@ class PushRegistry(private val context: Context, private val cloud: TripCloud) {
     }
 
     /**
+     * This phone stopped following [ref]: the server stops pushing that
+     * journey here. Uses the stored token only — never wakes Firebase for it.
+     */
+    suspend fun unregisterFor(ref: String) {
+        if (!enabled) return
+        val token = prefs.getString(KEY_TOKEN, null) ?: return
+        runCatching { cloud.unregisterPushFor(ref, token) }
+        val done = prefs.getStringSet(KEY_REGISTERED, emptySet()).orEmpty()
+        prefs.edit().putStringSet(KEY_REGISTERED, done - "$ref|$token").apply()
+    }
+
+    /**
      * FCM rotated this device's token. Forget the old one on the server and
      * drop every registration made with it, so the next pass re-registers each
      * followed journey under the new token.

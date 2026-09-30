@@ -11,8 +11,10 @@
 // priority wakes Koode even when it is closed; the app builds the
 // notification itself (same wording and ids as its timeline, de-duplicated
 // on the device). A 24h TTL lets FCM hold messages for phones that are
-// offline. Tokens FCM reports as dead are pruned; transient failures leave
-// the event unacknowledged so the sweeper retries it (up to 6 attempts).
+// offline. Every recipient's outcome is recorded against the canonical
+// journey / event / recipient / channel identity (tp_push_deliveries): a
+// retry goes only to recipients that failed, never twice to anyone. Tokens
+// FCM reports as dead are pruned. Up to 6 attempts, by the sweeper.
 //
 // Configuration: the Firebase service-account JSON, either as the Edge
 // Function secret FCM_SERVICE_ACCOUNT or in Vault as 'fcm_service_account'.
@@ -27,7 +29,8 @@ type Claim = {
   tripId: string | null;
   eventTime: number;
   event: { type?: string; payload?: Record<string, unknown> };
-  tokens: string[];
+  /** t = FCM token; k = passcode-path device, which may be told the access key. */
+  recipients: { t: string; k: boolean }[];
 };
 
 const db = createClient(
@@ -132,20 +135,19 @@ Deno.serve(async (req) => {
   const claim = data as Claim | null;
   if (!claim) return json({ status: "skipped" });
 
-  const tokens = claim.tokens ?? [];
+  const recipients = claim.recipients ?? [];
+  // Trip-id followers are identified by the trip id alone: they are never
+  // sent the passcode-derived access key, so a later denial stays final.
   const message = {
     kind: "tp_event",
     eventId: claim.eventId,
-    accessKey: claim.accessKey,
     tripId: claim.tripId ?? "",
     eventTime: String(claim.eventTime),
     type: claim.event?.type ?? "",
     payload: JSON.stringify(claim.event?.payload ?? {}),
   };
 
-  const dead: string[] = [];
-  let sent = 0;
-  let failed = 0;
+  const results: { t: string; s: "SENT" | "FAILED" | "DEAD" }[] = [];
   let bearer = "";
   try {
     bearer = await accessToken(sa);
@@ -155,7 +157,7 @@ Deno.serve(async (req) => {
     return json({ error: "oauth" }, 502);
   }
 
-  await Promise.all(tokens.map(async (token) => {
+  await Promise.all(recipients.map(async ({ t: token, k: viaKey }) => {
     try {
       const res = await fetch(
         `https://fcm.googleapis.com/v1/projects/${sa.project_id}/messages:send`,
@@ -163,31 +165,32 @@ Deno.serve(async (req) => {
           method: "POST",
           headers: { Authorization: `Bearer ${bearer}`, "Content-Type": "application/json" },
           body: JSON.stringify({
-            message: { token, data: message, android: { priority: "HIGH", ttl: "86400s" } },
+            message: {
+              token,
+              data: { ...message, accessKey: viaKey ? claim.accessKey : "" },
+              // collapse: FCM keeps one pending copy of an event per device
+              android: { priority: "HIGH", ttl: "86400s", collapse_key: claim.eventId.slice(0, 64) },
+            },
           }),
         },
       );
       if (res.ok) {
-        sent++;
+        results.push({ t: token, s: "SENT" });
         return;
       }
       const body = await res.text();
-      if (isDeadToken(res.status, body)) dead.push(token);
+      if (isDeadToken(res.status, body)) results.push({ t: token, s: "DEAD" });
       else {
-        failed++;
+        results.push({ t: token, s: "FAILED" });
         console.error("tp-push send failed", res.status, body.slice(0, 300));
       }
     } catch (e) {
-      failed++;
+      results.push({ t: token, s: "FAILED" });
       console.error("tp-push send error", e);
     }
   }));
 
-  await db.rpc("tp_push_done", {
-    p_event_id: eventId,
-    p_secret: secret,
-    p_dead: dead,
-    p_complete: failed === 0,
-  });
-  return json({ sent, failed, dead: dead.length });
+  await db.rpc("tp_push_done", { p_event_id: eventId, p_secret: secret, p_results: results });
+  const count = (s: string) => results.filter((r) => r.s === s).length;
+  return json({ sent: count("SENT"), failed: count("FAILED"), dead: count("DEAD") });
 });

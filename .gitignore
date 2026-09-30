@@ -11,6 +11,17 @@ apps/android/local.properties
 *.keystore
 *.jks
 keystore.properties
+# Firebase / FCM / Supabase server credentials (see docs/PUSH_SETUP.md).
+# The four public Firebase client ids live in apps/android/firebase.properties.
+google-services.json
+*service-account*.json
+*service_account*.json
+*firebase-adminsdk*.json
+*.p8
+*.pem
+supabase/.env
+supabase/functions/.env
+supabase/.temp/
 
 # IDE
 .idea/

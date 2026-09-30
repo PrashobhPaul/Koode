@@ -2,9 +2,10 @@
 
 TripPulse's cloud side runs on [Supabase](https://supabase.com) — the
 open-source Postgres platform. The free tier is more than enough for a driver
-plus family/friends viewers, and **the entire backend is one SQL file** —
-there are no Edge Functions, no auth providers to enable, no push services,
-no CLI tools and no billing plan.
+plus family/friends viewers, and **the database is one SQL file** — no auth
+providers to enable, no CLI tools and no billing plan. Optional server push
+(followers notified while Koode is closed) and verified journey reports add
+two Edge Functions and a Firebase project: see [PUSH_SETUP.md](PUSH_SETUP.md).
 
 ## The one-time setup (~5 minutes, done once, never again)
 
@@ -59,13 +60,13 @@ Everything is enforced *inside Postgres*, not in the app:
   that touches it, the in-database `pg_cron` job (every 10 min, if available),
   or the GitHub maintenance workflow.
 
-## Viewer alerts (no push service)
+## Viewer alerts
 
-Phones that join a trip run a small foreground "Following trip" service that
-polls the backend every 30 seconds and raises high-priority notifications for
-**trip started**, **SOS**, **arrival at destination**, **completion** and
-**overnight stops** — even when the app is in the background. No FCM, no
-Google services, nothing to configure.
+Phones that follow a journey run a small foreground "Following trip" service
+that polls the backend and raises notifications for every meaningful update,
+even when the app is in the background. This works without anything else
+configured. With server push set up ([PUSH_SETUP.md](PUSH_SETUP.md)), the
+same updates also arrive when Koode is fully closed.
 
 ## Costs & limits
 

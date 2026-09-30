@@ -203,6 +203,11 @@ object EventTypes {
     const val TRAVELLER_CONFIRMED_SAFE = "TRAVELLER_CONFIRMED_SAFE"
     /** Private: the traveller confirmed their expenses. Never shared. */
     const val TRAVEL_EXPENSES_APPROVED = "TRAVEL_EXPENSES_APPROVED"
+    /**
+     * Written by the server once the approved journey report (the timeline,
+     * never the expenses) is stored and followers may open it.
+     */
+    const val JOURNEY_REPORT_AVAILABLE = "JOURNEY_REPORT_AVAILABLE"
 
     /** Coaching records for one need: nudge, reminder, acknowledgement. */
     fun coachTypes(needKey: String): Triple<String, String, String> = when (needKey) {
@@ -226,7 +231,7 @@ object EventTypes {
         HALT_CONFIRMED, HALT_CANCELLED, HALT_RESUMED,
         TRAVEL_MODE_CHANGED, PLANNED_HALT_CREATED, PLANNED_HALT_CHANGED, PLANNED_HALT_CANCELLED,
         ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED,
-        JOURNEY_AUTO_CLOSED, TRAVELLER_CONFIRMED_SAFE
+        JOURNEY_AUTO_CLOSED, TRAVELLER_CONFIRMED_SAFE, JOURNEY_REPORT_AVAILABLE
     )
 
     /**
