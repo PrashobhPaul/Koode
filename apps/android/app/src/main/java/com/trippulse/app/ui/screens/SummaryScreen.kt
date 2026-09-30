@@ -74,6 +74,8 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val expenses by vm.expenses.collectAsStateWithLifecycle()
     val exporting by vm.exporting.collectAsStateWithLifecycle()
     val report by vm.report.collectAsStateWithLifecycle()
+    val originLabel by vm.originLabel.collectAsStateWithLifecycle()
+    val destLabel by vm.destLabel.collectAsStateWithLifecycle()
     val measures = vm.measures
 
     fun export(kind: PdfKind) {
@@ -84,9 +86,13 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
             try {
                 val doc = when (kind) {
                     PdfKind.TIMELINE -> JourneyDocuments.timeline(
-                        t, events, r, measures, path = samples.map { it.lat to it.lng }
+                        t, events, r, measures, path = samples.map { it.lat to it.lng },
+                        originLabel = originLabel, destLabel = destLabel
                     )
-                    PdfKind.MONEY -> JourneyDocuments.money(t, expenses, r, measures)
+                    PdfKind.MONEY -> JourneyDocuments.money(
+                        t, expenses, r, measures,
+                        originLabel = originLabel, destLabel = destLabel
+                    )
                 }
                 val file = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { JourneyPdf.write(context, doc) }
                 vm.lastExport.value = file
@@ -111,7 +117,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         AdaptiveContainer {
             Text("Journey summary", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
-                "${trip?.originName ?: "Start"} → ${trip?.destName ?: "Destination"}",
+                "${originLabel ?: trip?.originName ?: "Start"} → ${destLabel ?: trip?.destName ?: "Destination"}",
                 color = colors.textMid, style = MaterialTheme.typography.bodyLarge
             )
             trip?.completedAtMs?.let {

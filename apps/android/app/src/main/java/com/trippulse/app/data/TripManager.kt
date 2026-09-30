@@ -29,6 +29,7 @@ import com.trippulse.app.domain.JourneyStateMachine
 import com.trippulse.app.domain.JourneyStatus
 import com.trippulse.app.domain.MealClassifier
 import com.trippulse.app.domain.Nourishment
+import com.trippulse.app.domain.PlaceResolver
 import com.trippulse.app.domain.RoutePlan
 import com.trippulse.app.domain.StopDetector
 import com.trippulse.app.domain.SummaryCalculator
@@ -518,12 +519,9 @@ class TripManager(
      * name. Otherwise the honest answer is that they were between places.
      */
     private suspend fun nameForPoint(p: GeoPoint): String {
-        val near = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
-            .minByOrNull { Geo.haversineM(p, GeoPoint(it.lat, it.lng)) }
-        if (near != null && Geo.haversineM(p, GeoPoint(near.lat, near.lng)) <= NEAR_PLACE_M) {
-            return near.name
-        }
-        return "En route"
+        val saved = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
+            .map { PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
+        return PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, NEAR_PLACE_M) ?: "En route"
     }
 
     /** Why a mid-journey mode change did or did not happen. */
@@ -936,6 +934,11 @@ class TripManager(
     /** A short, human name for where the traveller is — on the phone, no network key. */
     private suspend fun resolvePlace(lat: Double?, lng: Double?): String? {
         if (lat == null || lng == null) return null
+        // A saved place the user named ("Friend's house") beats a geocoded area
+        // name, and is free and offline — the same rule the rest of the app uses.
+        val saved = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
+            .map { PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
+        PlaceResolver.nearestSavedLabel(saved, lat, lng)?.let { return it }
         return kotlinx.coroutines.withTimeoutOrNull(3_000) {
             kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
                 try {

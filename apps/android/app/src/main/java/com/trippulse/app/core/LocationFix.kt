@@ -14,6 +14,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.trippulse.app.domain.GeoPoint
+import com.trippulse.app.domain.PlaceResolver
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -96,6 +97,22 @@ object LocationFix {
                 }
             }.getOrNull()
         }
+    }
+
+    /**
+     * The canonical place label for a coordinate (see [PlaceResolver]): a saved
+     * place the user named wins; otherwise a reverse-geocoded name; otherwise
+     * the neutral fallback. Never a coordinate or a placeholder. The saved-place
+     * lookup is free and offline, so reverse-geocoding runs only when there is
+     * no saved match.
+     */
+    suspend fun resolveLabel(
+        c: Context,
+        savedPlaces: List<PlaceResolver.SavedPlace>,
+        p: GeoPoint
+    ): String {
+        PlaceResolver.nearestSavedLabel(savedPlaces, p.lat, p.lng)?.let { return it }
+        return PlaceResolver.label(null, placeName(c, p))
     }
 
     /** What to tell the traveller when there's no position — always with a way forward. */

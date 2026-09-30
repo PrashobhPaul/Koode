@@ -280,8 +280,13 @@ object JourneyDocuments {
         report: JourneyAnalytics.JourneyReport,
         measures: Measures,
         /** Recorded GPS path (lat, lng), drawn as the "recorded route" panel. */
-        path: List<Pair<Double, Double>> = emptyList()
+        path: List<Pair<Double, Double>> = emptyList(),
+        /** Canonical end labels; default to the stored names. */
+        originLabel: String? = null,
+        destLabel: String? = null
     ): JourneyPdf.Document {
+        val origin = originLabel?.takeIf { it.isNotBlank() } ?: trip.originName
+        val dest = destLabel?.takeIf { it.isNotBlank() } ?: trip.destName
         // Each stop shows its own duration on the timeline, taken from the same
         // StopPeriods the summary totals use — so "Stopped · 12m" and the
         // "12m stopped" figure can never disagree.
@@ -351,7 +356,7 @@ object JourneyDocuments {
 
         return JourneyPdf.Document(
             title = "Journey report",
-            subtitle = "${trip.originName} → ${trip.destName}",
+            subtitle = "$origin → $dest",
             status = if (trip.completedAtMs != null) "Journey completed" else null,
             meta = listOfNotNull(
                 trip.startedAtMs?.let { start ->
@@ -385,8 +390,12 @@ object JourneyDocuments {
         trip: ActiveTripEntity,
         expenses: List<ExpenseEntity>,
         report: JourneyAnalytics.JourneyReport,
-        measures: Measures
+        measures: Measures,
+        originLabel: String? = null,
+        destLabel: String? = null
     ): JourneyPdf.Document {
+        val origin = originLabel?.takeIf { it.isNotBlank() } ?: trip.originName
+        val dest = destLabel?.takeIf { it.isNotBlank() } ?: trip.destName
         val rows = expenses.sortedBy { it.tMs }.map { e ->
             JourneyPdf.Row(
                 left = TimeFmt.date(e.tMs),
@@ -415,7 +424,7 @@ object JourneyDocuments {
 
         return JourneyPdf.Document(
             title = "Journey costs",
-            subtitle = "${trip.originName} → ${trip.destName}",
+            subtitle = "$origin → $dest",
             meta = listOfNotNull(
                 "Journey number: ${trip.tripId}",
                 trip.completedAtMs?.let { "Ended: ${TimeFmt.dateTime(it)}" },
