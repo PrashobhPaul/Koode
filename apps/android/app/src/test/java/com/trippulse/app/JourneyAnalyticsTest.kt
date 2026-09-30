@@ -190,6 +190,78 @@ class JourneyAnalyticsTest {
         )
     }
 
+    // ---- canonical stop/moving consistency ----
+
+    @Test fun stopped_time_is_exactly_the_sum_of_the_stop_periods() {
+        // The invariant that makes the summary and the timeline agree.
+        assertEquals(report.stopPeriods.sumOf { it.seconds }, report.stoppedSeconds)
+        assertEquals(report.totalSeconds, report.movingSeconds + report.stoppedSeconds)
+        assertEquals(2, report.stopPeriods.size)
+    }
+
+    @Test fun each_stop_period_matches_its_event_timestamps() {
+        // A stop's duration is exactly STOP_ENDED - STOP_STARTED, so a timeline
+        // that shows the two clock times can never contradict the total.
+        val first = report.stopPeriods.first()
+        assertEquals(at(2.0), first.startMs)
+        assertEquals(at(2.5), first.endMs)
+        assertEquals(1800L, first.seconds)
+    }
+
+    @Test fun a_journey_with_no_stops_is_all_moving() {
+        val nonstop = JourneyAnalytics.analyse(
+            JourneyAnalytics.Inputs(
+                events = listOf(ev(EventTypes.TRIP_STARTED, base)),
+                distanceCoveredM = 120_000.0,
+                startedAtMs = base, endedAtMs = at(2.0), zone = zone
+            )
+        )
+        assertEquals(0L, nonstop.stoppedSeconds)
+        assertEquals(nonstop.totalSeconds, nonstop.movingSeconds)
+        assertEquals(nonstop.totalSeconds, nonstop.longestLegSeconds)
+        assertTrue(nonstop.stopPeriods.isEmpty())
+    }
+
+    @Test fun a_stop_still_open_when_the_journey_ends_runs_to_the_end() {
+        val strandedAtEnd = JourneyAnalytics.analyse(
+            JourneyAnalytics.Inputs(
+                events = listOf(
+                    ev(EventTypes.TRIP_STARTED, base),
+                    ev(EventTypes.STOP_STARTED, at(1.0))   // never resumed
+                ),
+                distanceCoveredM = 60_000.0,
+                startedAtMs = base, endedAtMs = at(2.0), zone = zone
+            )
+        )
+        assertEquals(1, strandedAtEnd.stopPeriods.size)
+        assertEquals(3600L, strandedAtEnd.stoppedSeconds)   // 01:00 -> 02:00
+        assertEquals(3600L, strandedAtEnd.movingSeconds)    // 00:00 -> 01:00
+    }
+
+    @Test fun a_very_short_journey_analyses_cleanly() {
+        val quick = JourneyAnalytics.analyse(
+            JourneyAnalytics.Inputs(
+                events = listOf(ev(EventTypes.TRIP_STARTED, base)),
+                distanceCoveredM = 800.0,
+                startedAtMs = base, endedAtMs = at(1.0 / 60), zone = zone   // 1 minute
+            )
+        )
+        assertEquals(60L, quick.totalSeconds)
+        assertEquals(60L, quick.movingSeconds)
+        assertEquals(0L, quick.stoppedSeconds)
+    }
+
+    @Test fun a_journey_across_midnight_counts_both_days() {
+        val overnight = JourneyAnalytics.analyse(
+            JourneyAnalytics.Inputs(
+                events = listOf(ev(EventTypes.TRIP_STARTED, base)),
+                distanceCoveredM = 600_000.0,
+                startedAtMs = base, endedAtMs = base + 20 * 3_600_000L, zone = zone
+            )
+        )
+        assertEquals(2, overnight.days)
+    }
+
     @Test fun an_empty_journey_analyses_without_dividing_by_zero() {
         val empty = JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
