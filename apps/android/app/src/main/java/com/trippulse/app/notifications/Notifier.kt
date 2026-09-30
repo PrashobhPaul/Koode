@@ -51,7 +51,7 @@ class Notifier(private val context: Context) {
         NotificationCompat.Builder(context, CH_TRACKING)
             .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle("Following trip")
-            .setContentText("You'll be alerted when the trip starts, on SOS, and on arrival.")
+            .setContentText("You'll be alerted on every journey update — starts, stops, tolls, arrival and more.")
             .setOngoing(true)
             .setContentIntent(contentIntent())
             .setCategory(NotificationCompat.CATEGORY_SERVICE)
@@ -132,6 +132,16 @@ class Notifier(private val context: Context) {
 
     fun showTripUpdate(title: String, body: String) =
         postEvent(ID_UPDATE, CH_EVENTS, title, body)
+
+    /**
+     * One event on a followed journey, shown to a Circle member as its own tray
+     * entry. [id] is derived from the event (see [com.trippulse.app.domain.FollowerAlerts.notificationId])
+     * so distinct events stack rather than overwrite each other, and a re-seen
+     * event replaces itself instead of duplicating. Urgent events ring on the
+     * high-importance channel.
+     */
+    fun showJourneyEvent(id: Int, title: String, body: String, urgent: Boolean = false) =
+        postEvent(id, if (urgent) CH_SOS else CH_EVENTS, title, body, high = urgent)
 
     /** Journey Health dropped to CONCERN on a followed journey. */
     fun showJourneyAttention(label: String, reason: String) =

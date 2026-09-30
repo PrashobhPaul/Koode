@@ -6,7 +6,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import com.trippulse.app.TripPulseApp
+import com.trippulse.app.domain.EventNarrator
 import com.trippulse.app.domain.EventTypes
+import com.trippulse.app.domain.FollowerAlerts
 import com.trippulse.app.domain.Freshness
 import com.trippulse.app.domain.Darkness
 import com.trippulse.app.domain.JourneyHealth
@@ -75,7 +77,7 @@ class TripFollowService : Service() {
                         val t = (e["eventTime"] as? Number)?.toLong() ?: continue
                         if (t > latest) latest = t
                         if ((e["type"] as? String) == EventTypes.TRIP_COMPLETED) endedAtMs = t
-                        if (alert(graph.notifier, e["type"] as? String, f.label)) alerted = true
+                        if (alert(graph.notifier, e, f.accessKey, f.label)) alerted = true
                     }
                     if (latest != since) seen.edit().putLong(f.accessKey, latest).apply()
                     if (alerted) touchDigest(f.accessKey)
@@ -292,18 +294,37 @@ class TripFollowService : Service() {
             .edit().putLong(ref, System.currentTimeMillis()).apply()
     }
 
-    /** Returns true when the event produced an instant notification. */
-    private fun alert(notifier: com.trippulse.app.notifications.Notifier, type: String?, label: String): Boolean {
-        when (type) {
-            EventTypes.TRIP_STARTED -> notifier.showTripStarted()
-            EventTypes.SOS_ACTIVATED -> notifier.showSosActive()
-            // "Reached" is not "finished": the journey stays live on every
-            // screen until the traveller ends it themselves.
-            EventTypes.ARRIVAL_DETECTED -> notifier.showTripUpdate("Reached the destination", "They've reached the destination. ($label)")
-            EventTypes.TRIP_COMPLETED -> notifier.showTripUpdate("Journey ended safely", "The traveller has ended this journey. ($label)")
-            EventTypes.OVERNIGHT_CONFIRMED -> notifier.showTripUpdate("Overnight rest", "The traveller is stopping overnight. ($label)")
-            else -> return false // non-alert timeline events stay silent
-        }
+    /**
+     * Raise a follower notification for one synced journey event, or return
+     * false when the event is not one the Circle should be told about.
+     *
+     * Every *meaningful* status update the traveller makes lands here — starts,
+     * breaks, meals, fuel, tolls, resumes, stage changes, arrival, completion,
+     * SOS — while raw movement, house-keeping and the going-dark family (which
+     * the darkness/health watcher owns) are filtered out by [FollowerAlerts].
+     * The wording is the exact timeline sentence from [EventNarrator], so what
+     * the Circle is notified matches what they see on the journey screen and in
+     * the PDF. Each event gets a stable per-event id so distinct events stack
+     * and a re-seen event replaces itself rather than duplicating.
+     */
+    private fun alert(
+        notifier: com.trippulse.app.notifications.Notifier,
+        event: Map<String, Any?>,
+        ref: String,
+        label: String
+    ): Boolean {
+        val type = event["type"] as? String ?: return false
+        @Suppress("UNCHECKED_CAST")
+        val payload = (event["payload"] as? Map<String, Any?>) ?: emptyMap()
+        if (!FollowerAlerts.shouldNotify(type, payload)) return false
+        val eventTime = (event["eventTime"] as? Number)?.toLong() ?: System.currentTimeMillis()
+        val (emoji, sentence) = EventNarrator.line(type, payload)
+        notifier.showJourneyEvent(
+            id = FollowerAlerts.notificationId(ref, type, eventTime, payload),
+            title = "$emoji $sentence",
+            body = label,
+            urgent = FollowerAlerts.isUrgent(type)
+        )
         return true
     }
 
