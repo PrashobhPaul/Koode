@@ -23,12 +23,30 @@ configured. Everything else is already deployed.
 | `tp-push` (sends FCM) | Edge Function | deployed |
 | `tp-report` (signed upload/download URLs, clean-up) | Edge Function | deployed |
 | `tp_push_url`, `tp_push_secret` | Vault | set |
-| **Firebase project, client ids and `FCM_SERVICE_ACCOUNT`** | — | **not configured yet** |
+| Firebase project `koode-ec4aa`, Android app `app.koode` | Firebase | created |
+| Four public client ids | `apps/android/firebase.properties` | set (v6.13.1) |
+| Service-account credential | Vault `fcm_service_account` | set, verified end to end |
 
-Until the Firebase step below is done, `tp-push` answers
-`{"status":"fcm-not-configured"}` and sends nothing. Nothing is lost:
-followers keep getting updates from the in-app follow service while Koode
-is running, exactly as before.
+**Push is live.** Verified on production: `tp-push` authenticated with the
+service account, FCM accepted the request, and an invalid test token was
+recorded `DEAD` and pruned.
+
+The steps below are kept for rebuilding the setup or rotating the key.
+
+### Rotating the service-account key
+
+The key was supplied through a chat session, so rotate it once push is
+confirmed on real phones:
+
+1. Firebase console → ⚙ Project settings → Service accounts → **Generate new
+   private key**.
+2. Supabase → Edge Functions → Secrets → set `FCM_SERVICE_ACCOUNT` to the new
+   file's contents. The Edge Function secret takes precedence over Vault.
+3. Google Cloud console → IAM & Admin → Service accounts →
+   `firebase-adminsdk-fbsvc@koode-ec4aa…` → Keys → delete the old key
+   (id starting `15f6ad1d`).
+4. Optionally remove the old copy from Vault (SQL editor):
+   `delete from vault.secrets where name = 'fcm_service_account';`
 
 ---
 
