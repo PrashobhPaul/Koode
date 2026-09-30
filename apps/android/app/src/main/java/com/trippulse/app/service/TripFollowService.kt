@@ -145,7 +145,6 @@ class TripFollowService : Service() {
                 journey = journey,
                 freshness = freshness,
                 sosActive = state["sosActive"] as? Boolean ?: false,
-                deviationActive = state["deviationActive"] as? Boolean ?: false,
                 batteryPct = ln("battery")?.toInt(),
                 foodAtMs = ln("foodAt"),
                 waterAtMs = ln("waterAt"),
@@ -227,7 +226,6 @@ class TripFollowService : Service() {
                 shutdownBatteryPct = ln("battery")?.toInt(),
                 shutdownWasRestart = false,
                 simChangedAtMs = ln("simChangedAt"),
-                deviationActive = state["deviationActive"] as? Boolean ?: false,
                 offlineExpected = offlineExpected,
                 journeyClosed = closed
             )

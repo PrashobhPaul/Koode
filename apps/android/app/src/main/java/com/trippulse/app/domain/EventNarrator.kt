@@ -21,8 +21,6 @@ object EventNarrator {
         EventTypes.STOP_STARTED -> "🅿" to "Stopped"
         EventTypes.STOP_ENDED -> "▶" to "On the move again"
         EventTypes.LONG_STOP -> "⏳" to "Long stop"
-        EventTypes.ROUTE_DEVIATION -> "↩" to "Off the usual route"
-        EventTypes.ROUTE_REJOINED -> "↪" to "Back on route"
         EventTypes.ARRIVAL_DETECTED -> "📍" to "Reached the destination"
         EventTypes.BREAK_CHECKPOINT -> "✅" to "Break logged"
         EventTypes.WATER_REPORTED -> "💧" to "Water"

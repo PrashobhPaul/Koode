@@ -188,7 +188,10 @@ data class TripStateEntity(
     val sosAtMs: Long?,
     val overnightType: String?,
     val overnightSinceMs: Long?,
-    val deviationActive: Boolean,
+    // Retained as an always-false column for schema compatibility with existing
+    // installs. Route-deviation was removed (Koode never knew the intended
+    // route, so "off track / back on track" was noise); nothing writes true.
+    val deviationActive: Boolean = false,
     // pending driver-interaction flags
     val checkpointDue: Boolean,
     val checkpointStopStartMs: Long?,

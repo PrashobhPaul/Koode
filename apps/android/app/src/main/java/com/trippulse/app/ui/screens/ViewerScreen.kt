@@ -136,7 +136,6 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 journey = state?.str("status"),
                 freshness = ui.freshness,
                 sosActive = state?.bool("sosActive") ?: false,
-                deviationActive = state?.bool("deviationActive") ?: false,
                 batteryPct = state?.l("battery")?.toInt(),
                 foodAtMs = state?.l("foodAt"),
                 waterAtMs = state?.l("waterAt"),

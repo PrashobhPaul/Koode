@@ -17,7 +17,6 @@ class ShipTransportTest {
         assertFalse(ship.isPrivateVehicle)
         assertFalse(ship.asksAboutFuel)
         assertFalse(ship.stopPromptsEnabled)
-        assertFalse(ship.deviationEnabled)
         assertTrue(ship.expectsOfflineStretches)
     }
 

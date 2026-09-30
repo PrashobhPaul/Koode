@@ -32,7 +32,6 @@ object JourneyHealth {
         val journey: String?,            // JourneyStatus name from live state
         val freshness: Freshness,
         val sosActive: Boolean = false,
-        val deviationActive: Boolean = false,
         val batteryPct: Int? = null,
         val foodAtMs: Long? = null,
         val waterAtMs: Long? = null,
@@ -86,7 +85,6 @@ object JourneyHealth {
 
         // ---- attention ----
         if (i.freshness == Freshness.STALE) attention.add("Updates are arriving slowly")
-        if (i.deviationActive) attention.add("Off the usual route")
         i.batteryPct?.let { if (it <= LOW_BATTERY_PCT) attention.add("Traveller's phone battery is at $it%") }
 
         val activeSinceMin = i.startedAtMs?.let { (i.nowMs - it) / 60_000 } ?: Long.MAX_VALUE

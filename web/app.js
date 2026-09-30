@@ -111,8 +111,6 @@
     STOP_STARTED: ['🅿', 'Stopped'],
     STOP_ENDED: ['▶', 'On the move again'],
     LONG_STOP: ['⏳', 'Long stop'],
-    ROUTE_DEVIATION: ['↩', 'Off the usual route'],
-    ROUTE_REJOINED: ['↪', 'Back on route'],
     ARRIVAL_DETECTED: ['📍', 'Reached the destination'],
     BREAK_CHECKPOINT: ['✅', 'Break logged'],
     WATER_REPORTED: ['💧', 'Water'],
@@ -424,7 +422,7 @@
     var elapsed = now - last;
     if (elapsed < DARK_GRACE_MS) return quiet;
 
-    var threshold = state.deviationActive ? DARK_GRACE_MS : DARK_UNEXPLAINED_MS;
+    var threshold = DARK_UNEXPLAINED_MS;
     return {
       dark: true,
       reason: flat ? 'BATTERY_DIED' : 'SIGNAL_LOST',
@@ -521,7 +519,6 @@
     reasons.innerHTML = '';
     if (!ended && state) {
       var notes = [];
-      if (state.deviationActive) notes.push('Off the usual route');
       if (typeof state.battery === 'number' && state.battery <= 25) {
         notes.push("Traveller's phone battery is at " + state.battery + '%');
       }

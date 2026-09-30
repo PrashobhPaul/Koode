@@ -96,8 +96,6 @@ object Darkness {
         /** True when the shutdown broadcast said a restart rather than a power-off. */
         val shutdownWasRestart: Boolean = false,
         val simChangedAtMs: Long? = null,
-        /** Off-route when the silence began: two worries compound. */
-        val deviationActive: Boolean = false,
         /** Flights and remote rail are expected to be silent for hours. */
         val offlineExpected: Boolean = false,
         /** The journey is finished; silence afterwards means nothing. */
@@ -201,10 +199,8 @@ object Darkness {
         val reason = if (flat) DarkReason.BATTERY_DIED else DarkReason.SIGNAL_LOST
 
         // With charge in the tank, silence earns concern once it outlasts every
-        // innocent explanation — sooner if they were already off-route, because
-        // two unexplained things at once is not two coincidences.
-        val threshold = if (i.deviationActive) GRACE_MS else UNEXPLAINED_MS
-        val concerning = !flat && elapsed >= threshold
+        // innocent explanation.
+        val concerning = !flat && elapsed >= UNEXPLAINED_MS
 
         return DarkAssessment(
             dark = true, reason = reason, concerning = concerning,

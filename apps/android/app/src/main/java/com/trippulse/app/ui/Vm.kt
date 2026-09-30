@@ -1000,7 +1000,6 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
                 shutdownAtMs = ln("wentDarkAt"),
                 shutdownBatteryPct = ln("battery")?.toInt(),
                 simChangedAtMs = ln("simChangedAt"),
-                deviationActive = st?.get("deviationActive") as? Boolean ?: false,
                 offlineExpected = mode == "FLIGHT" && plannedDep != null &&
                     now >= plannedDep - 30 * 60_000L && now <= plannedDep + 9 * 3_600_000L,
                 journeyClosed = s.endedByOwner

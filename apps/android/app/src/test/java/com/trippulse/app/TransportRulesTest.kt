@@ -38,14 +38,6 @@ class TransportRulesTest {
         assertFalse(TransportCatalog.CAB.wellbeingIsBreak)
     }
 
-    /** Deviation is meaningless on rails and noise on a fixed bus route. */
-    @Test fun route_deviation_is_disabled_where_it_cannot_mean_anything() {
-        assertTrue(TransportCatalog.CAR.deviationEnabled)
-        assertFalse(TransportCatalog.TRAIN.deviationEnabled)
-        assertFalse(TransportCatalog.BUS.deviationEnabled)
-        assertFalse(TransportCatalog.FLIGHT.deviationEnabled)
-    }
-
     @Test fun stop_prompts_only_fire_where_the_traveller_is_driving() {
         assertTrue(TransportCatalog.CAR.stopPromptsEnabled)
         assertFalse(TransportCatalog.TRAIN.stopPromptsEnabled)

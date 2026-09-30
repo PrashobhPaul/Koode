@@ -29,7 +29,6 @@ import com.trippulse.app.domain.JourneyStateMachine
 import com.trippulse.app.domain.JourneyStatus
 import com.trippulse.app.domain.MealClassifier
 import com.trippulse.app.domain.Nourishment
-import com.trippulse.app.domain.RouteDeviationDetector
 import com.trippulse.app.domain.RoutePlan
 import com.trippulse.app.domain.StopDetector
 import com.trippulse.app.domain.SummaryCalculator
@@ -66,8 +65,8 @@ import java.util.UUID
  *     *asked about*; it is never acted on. Nothing else — not a timer, not a
  *     lost connection, not an expiring capability — may present a journey as
  *     over. See [maybeArrival] and [completeTrip].
- *  2. **The mode of transport decides the rules.** Break prompts, deviation
- *     alerts, refuelling questions and sampling cadence all come from the
+ *  2. **The mode of transport decides the rules.** Break prompts,
+ *     refuelling questions and sampling cadence all come from the
  *     [TransportProfile] of the leg being travelled, never from scattered
  *     conditionals. See [activeProfile].
  */
@@ -104,7 +103,6 @@ class TripManager(
     private var legs: List<TripLegEntity> = emptyList()
 
     private var detector = StopDetector(cfg)
-    private var deviation = RouteDeviationDetector(cfg)
 
     private var currentRoute: RoutePlan? = null
     private var routeFetchedAtMs: Long = 0
@@ -151,7 +149,6 @@ class TripManager(
         arrivalPromptShown = state?.arrivalPromptDue == true
         // detectors restart clean; persisted journey state is authoritative
         detector = StopDetector(cfg)
-        deviation = RouteDeviationDetector(cfg)
         t
     }
 
@@ -602,16 +599,15 @@ class TripManager(
         trip = moved
         legs = db.legDao().forTrip(t.tripId)
 
-        // A new leg is a new road: reset the detectors and refetch the route so
+        // A new leg is a new road: reset the detector and refetch the route so
         // no state leaks across a change of vehicle.
         detector = StopDetector(cfg)
-        deviation = RouteDeviationDetector(cfg)
         currentRoute = routing.route(GeoPoint(next.fromLat, next.fromLng), GeoPoint(next.toLat, next.toLng))
         routeFetchedAtMs = now
 
         s = s.copy(
             legIndex = nextIndex, journey = JourneyStatus.READY.name,
-            drivingSinceMs = now, deviationActive = false, updatedAtMs = now
+            drivingSinceMs = now, updatedAtMs = now
         )
         announceLeg(moved, nextIndex, now)
         if (moved.cloudEnabled) appScope.launch { sync.writeMetaUpdate(moved, metaMap(moved)) }
@@ -678,27 +674,6 @@ class TripManager(
         val remainingM = remainingDistanceM(fix.point)
         val remainingS = remainingTravelSeconds(remainingM)
 
-        // ----- route deviation -----
-        // Only where "off the usual route" is a real signal. A train cannot
-        // leave its rails and a bus follows a fixed timetable route we do not
-        // hold, so deviation there is pure noise in the family's timeline.
-        val route = currentRoute
-        if (profile.deviationEnabled && route != null && route.provider != "fallback" &&
-            route.polyline.size >= 2 && s.journey == JourneyStatus.DRIVING.name
-        ) {
-            when (val d = deviation.onFix(fix.point, route.polyline, now)) {
-                is RouteDeviationDetector.Signal.Deviated -> insertEvent(
-                    t.tripId, EventTypes.ROUTE_DEVIATION, EventSource.SYSTEM_INFERRED, now,
-                    fix.point.lat, fix.point.lng, mapOf("distanceM" to d.distanceM), false
-                )
-                is RouteDeviationDetector.Signal.Rejoined -> insertEvent(
-                    t.tripId, EventTypes.ROUTE_REJOINED, EventSource.SYSTEM_INFERRED, now,
-                    fix.point.lat, fix.point.lng, emptyMap(), false
-                )
-                null -> {}
-            }
-        }
-
         // ----- arrival detection -----
         s = maybeArrival(t, s, fix.point, now)
 
@@ -709,7 +684,7 @@ class TripManager(
             speedKmh = speedKmh, bearing = fix.bearing?.toDouble(),
             lastLocationAtMs = now, batteryPct = fix.batteryPct ?: s.batteryPct,
             distanceCoveredM = covered, distanceRemainingM = remainingM,
-            progressPct = progress, deviationActive = deviation.active,
+            progressPct = progress,
             connectivity = connectivityNow().name, updatedAtMs = now
         )
 
@@ -1736,7 +1711,7 @@ class TripManager(
         etaBreakdownJson = null, etaConfidence = null, drivingSinceMs = null, stopStartedAtMs = null,
         lastBreakEndAtMs = null, waterAtMs = null, foodAtMs = null, toiletAtMs = null, restAtMs = null,
         fuelAtMs = null, sosActive = false, sosAtMs = null, overnightType = null, overnightSinceMs = null,
-        deviationActive = false, checkpointDue = false, checkpointStopStartMs = null,
+        checkpointDue = false, checkpointStopStartMs = null,
         checkpointStopEndMs = null, checkpointStopDurationS = null, longStopPromptDue = false,
         possibleIncidentDue = false, updatedAtMs = now,
         arrivalPromptDue = false, legIndex = t.activeLegIndex
@@ -1811,7 +1786,6 @@ class TripManager(
         s.sosAtMs?.let { put("sosAt", it) }
         s.overnightType?.let { put("overnightType", it) }
         s.overnightSinceMs?.let { put("overnightSince", it) }
-        put("deviationActive", s.deviationActive)
         // Going dark: pushed so a follower can tell "switched off with charge
         // left" from "ran out of battery" without having to guess from a gap.
         t.wentDarkAtMs?.let { put("wentDarkAt", it) }

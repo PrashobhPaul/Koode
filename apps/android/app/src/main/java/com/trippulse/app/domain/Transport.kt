@@ -22,9 +22,8 @@ data class QuickAction(
 /**
  * How much a mode of transport wants the app to observe it.
  *
- * A car needs stop detection, refuelling questions and route-deviation alerts.
- * A train needs none of them: it halts at every station, it never refuels, and
- * "off the usual route" is meaningless on rails. Encoding that once, here,
+ * A car needs stop detection and refuelling questions. A train needs neither:
+ * it halts at every station and never refuels. Encoding that once, here,
  * keeps the rest of the app free of `if (mode == "TRAIN")` scattering.
  */
 data class TransportProfile(
@@ -39,8 +38,6 @@ data class TransportProfile(
 
     /** Confirmed stops become break prompts and stop events. */
     val stopPromptsEnabled: Boolean,
-    /** Route-deviation detection produces useful signal for this mode. */
-    val deviationEnabled: Boolean,
     /**
      * A wellbeing log (food, tea, water) also counts as a *break* — i.e. the
      * vehicle was halted for it. True only for private vehicles: a passenger
@@ -92,7 +89,7 @@ object TransportCatalog {
     val CAR = TransportProfile(
         key = "CAR", label = "Car", emoji = "🚗",
         isPrivateVehicle = true, isRoadMode = true,
-        stopPromptsEnabled = true, deviationEnabled = true,
+        stopPromptsEnabled = true,
         wellbeingIsBreak = true, expectsOfflineStretches = false,
         defaultCadence = LocationCadence.BALANCED,
         quickActions = privateActions,
@@ -108,7 +105,7 @@ object TransportCatalog {
     val CAB = TransportProfile(
         key = "CAB", label = "Cab / taxi", emoji = "🚕",
         isPrivateVehicle = false, isRoadMode = true,
-        stopPromptsEnabled = false, deviationEnabled = true,
+        stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = false,
         defaultCadence = LocationCadence.BALANCED,
         quickActions = listOf(
@@ -123,7 +120,7 @@ object TransportCatalog {
     val BUS = TransportProfile(
         key = "BUS", label = "Bus", emoji = "🚌",
         isPrivateVehicle = false, isRoadMode = true,
-        stopPromptsEnabled = false, deviationEnabled = false,
+        stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = false,
         defaultCadence = LocationCadence.SAVER,
         quickActions = boardingActions("bus", "Bus"),
@@ -138,7 +135,7 @@ object TransportCatalog {
     val METRO = TransportProfile(
         key = "METRO", label = "Metro", emoji = "🚇",
         isPrivateVehicle = false, isRoadMode = false,
-        stopPromptsEnabled = false, deviationEnabled = false,
+        stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = false,
         defaultCadence = LocationCadence.SAVER,
         quickActions = boardingActions("metro", "Metro"),
@@ -148,7 +145,7 @@ object TransportCatalog {
     val TRAIN = TransportProfile(
         key = "TRAIN", label = "Train", emoji = "🚆",
         isPrivateVehicle = false, isRoadMode = false,
-        stopPromptsEnabled = false, deviationEnabled = false,
+        stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = true,
         defaultCadence = LocationCadence.SAVER,
         quickActions = boardingActions("train", "Train"),
@@ -158,7 +155,7 @@ object TransportCatalog {
     val FLIGHT = TransportProfile(
         key = "FLIGHT", label = "Flight", emoji = "✈️",
         isPrivateVehicle = false, isRoadMode = false,
-        stopPromptsEnabled = false, deviationEnabled = false,
+        stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = true,
         defaultCadence = LocationCadence.SAVER,
         quickActions = listOf(
@@ -172,13 +169,13 @@ object TransportCatalog {
 
     /**
      * A ship or ferry. Rules mirror the train's: the traveller isn't operating
-     * it, halts are part of the service, "off route" means nothing at sea, and
-     * long stretches without signal are normal once away from the coast.
+     * it, halts are part of the service, and long stretches without signal are
+     * normal once away from the coast.
      */
     val SHIP = TransportProfile(
         key = "SHIP", label = "Ship / ferry", emoji = "🚢",
         isPrivateVehicle = false, isRoadMode = false,
-        stopPromptsEnabled = false, deviationEnabled = false,
+        stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = true,
         defaultCadence = LocationCadence.SAVER,
         quickActions = listOf(
