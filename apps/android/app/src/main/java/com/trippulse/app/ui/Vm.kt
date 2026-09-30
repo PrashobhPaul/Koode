@@ -553,22 +553,25 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 
     /**
      * The name a leg endpoint should carry into the journey, its timeline and
-     * the PDF. A real name the traveller typed or picked always wins; a bare
-     * placeholder ("Current location", "Pinned destination", …) never survives
-     * — the coordinates we already hold are reverse-geocoded to a real place,
-     * and only if even that fails do we fall back to the coordinates
-     * themselves, never a placeholder label.
+     * the PDF. A real name the traveller typed or picked always wins; otherwise
+     * the canonical [PlaceResolver] resolves the coordinate — a saved place the
+     * user named (Home, Office) first, then a reverse-geocoded name, then the
+     * neutral "Location recorded". A bare placeholder ("Current location",
+     * "Pinned destination", …) or a coordinate string never survives.
      */
     private suspend fun resolveEndpointName(rawText: String, point: GeoPoint): String {
-        // "Current location · Kukatpally" → "Kukatpally"; bare "Current location" → "".
-        val typed = rawText.trim().removePrefix("Current location ·").trim()
-        if (typed.isNotBlank() && !typed.equals("Current location", true) && typed !in PLACEHOLDER_NAMES) {
+        val typed = rawText.trim()
+        // A "Current location · Kukatpally" pick is resolved by its coordinate,
+        // not by the geocoded suffix baked into the label — so if the traveller
+        // is standing on their saved "Home", the journey says Home, not the
+        // area name. A name the traveller actually typed or picked is honoured.
+        val fromGps = typed.startsWith("Current location", ignoreCase = true)
+        if (!fromGps && typed.isNotBlank() && !com.trippulse.app.domain.PlaceResolver.isPlaceholder(typed)) {
             return typed
         }
-        com.trippulse.app.core.LocationFix.placeName(graph.appContext, point)
-            ?.takeIf { it.isNotBlank() }
-            ?.let { return it }
-        return "%.4f, %.4f".format(point.lat, point.lng)
+        val saved = runCatching { graph.db.savedPlaceDao().all() }.getOrNull().orEmpty()
+            .map { com.trippulse.app.domain.PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
+        return com.trippulse.app.core.LocationFix.resolveLabel(graph.appContext, saved, point)
     }
 
     /** Resolves every leg to coordinates and creates the journey. */
@@ -1260,6 +1263,15 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     /** The analysed journey — the same object the dashboard and the PDFs use. */
     val report = MutableStateFlow<JourneyAnalytics.JourneyReport?>(null)
 
+    /**
+     * Display labels for the journey's ends, resolved offline: a meaningful
+     * stored name is kept; a placeholder or coordinate left by an older build
+     * is replaced by a saved-place match or the neutral fallback. Never a raw
+     * coordinate or "Current location", including on historical journeys.
+     */
+    val originLabel = MutableStateFlow<String?>(null)
+    val destLabel = MutableStateFlow<String?>(null)
+
     /** Distances, speeds and money in the traveller's own units. */
     val measures: Measures get() = graph.measures()
 
@@ -1286,7 +1298,19 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 events.value = ev
                 samples.value = sp
                 legs.value = lg
-                if (t != null) recompute(t, ev, sp, lg, graph.db.expenseDao().allForTrip(tripId))
+                if (t != null) {
+                    val saved = runCatching { graph.db.savedPlaceDao().all() }.getOrNull().orEmpty()
+                        .map { com.trippulse.app.domain.PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
+                    originLabel.value = com.trippulse.app.domain.PlaceResolver.display(
+                        t.originName,
+                        com.trippulse.app.domain.PlaceResolver.nearestSavedLabel(saved, t.originLat, t.originLng)
+                    )
+                    destLabel.value = com.trippulse.app.domain.PlaceResolver.display(
+                        t.destName,
+                        com.trippulse.app.domain.PlaceResolver.nearestSavedLabel(saved, t.destLat, t.destLng)
+                    )
+                    recompute(t, ev, sp, lg, graph.db.expenseDao().allForTrip(tripId))
+                }
             } catch (e: Exception) {
                 android.util.Log.e("SummaryVm", "Could not load journey $tripId", e)
             }
