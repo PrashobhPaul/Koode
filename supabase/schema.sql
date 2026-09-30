@@ -1299,3 +1299,138 @@ grant execute on function
   tp_report_publish(text, text, int),
   tp_unregister_push_for(text, text)
 to anon;
+
+-- ===========================================================================
+-- v5 additions — TOLL PLAZAS BY LOCATION (no SMS).
+--
+-- Koode counts toll crossings on car and bike journeys from location: the
+-- phone checks its path against known toll booths. The booths come from
+-- OpenStreetMap (barrier=toll_booth, © OpenStreetMap contributors, ODbL),
+-- fetched here weekly so every phone downloads one small list from Koode
+-- instead of querying OpenStreetMap itself.
+--
+-- The fetch is asynchronous (pg_net): tp_toll_refresh_request() asks
+-- Overpass for India in two halves; tp_toll_refresh_collect() loads the
+-- answers when they arrive. Both run from pg_cron. A failed or partial fetch
+-- never empties the list: booths are only removed once a complete refresh
+-- has not seen them for two weeks.
+-- ===========================================================================
+
+create table if not exists tp_toll_plazas (
+  osm_id  text primary key,             -- 'n<node id>'
+  lat     double precision not null,
+  lng     double precision not null,
+  name    text,
+  seen_at timestamptz not null default now()
+);
+
+create table if not exists tp_toll_refresh (
+  part         text primary key,        -- 'south' | 'north'
+  request_id   bigint,
+  requested_at timestamptz,
+  loaded_at    timestamptz,
+  booths       int
+);
+
+alter table tp_toll_plazas enable row level security;
+alter table tp_toll_refresh enable row level security;
+revoke all on tp_toll_plazas, tp_toll_refresh from anon, authenticated;
+
+create or replace function tp_toll_refresh_request() returns void
+language plpgsql security definer set search_path = public as $$
+declare half record; req bigint;
+begin
+  for half in
+    select * from (values
+      ('south', '6.5,68.0,21.0,97.5'),
+      ('north', '21.0,68.0,35.7,97.5')
+    ) as p(name, bbox)
+  loop
+    req := net.http_get(
+      url := 'https://overpass-api.de/api/interpreter',
+      params := jsonb_build_object('data',
+        '[out:json][timeout:150];node["barrier"="toll_booth"](' || half.bbox || ');out;'),
+      timeout_milliseconds := 170000
+    );
+    insert into tp_toll_refresh (part, request_id, requested_at)
+    values (half.name, req, now())
+    on conflict (part) do update set request_id = excluded.request_id, requested_at = excluded.requested_at;
+  end loop;
+end $$;
+
+-- Loads whatever answers have arrived. Returns the number of booths loaded.
+create or replace function tp_toll_refresh_collect() returns integer
+language plpgsql security definer set search_path = public as $$
+declare r record; resp record; n integer := 0; loaded integer;
+begin
+  for r in select * from tp_toll_refresh where request_id is not null loop
+    select status_code, content into resp from net._http_response where id = r.request_id;
+    if not found then
+      -- no answer after an hour: give up until the next weekly request
+      if r.requested_at < now() - interval '1 hour' then
+        update tp_toll_refresh set request_id = null where part = r.part;
+      end if;
+      continue;
+    end if;
+    begin
+      if resp.status_code = 200 then
+        insert into tp_toll_plazas as t (osm_id, lat, lng, name, seen_at)
+        select 'n' || (e->>'id'), (e->>'lat')::double precision, (e->>'lon')::double precision,
+               nullif(trim(coalesce(e->'tags'->>'name:en', e->'tags'->>'name')), ''), now()
+        from jsonb_array_elements(resp.content::jsonb -> 'elements') e
+        where e->>'type' = 'node' and e ? 'lat' and e ? 'lon'
+        on conflict (osm_id) do update
+          set lat = excluded.lat, lng = excluded.lng, name = excluded.name, seen_at = excluded.seen_at;
+        get diagnostics loaded = row_count;
+        update tp_toll_refresh set request_id = null, loaded_at = now(), booths = loaded where part = r.part;
+        n := n + loaded;
+      else
+        update tp_toll_refresh set request_id = null where part = r.part;
+      end if;
+    exception when others then
+      raise warning 'toll refresh (%) failed: %', r.part, sqlerrm;
+      update tp_toll_refresh set request_id = null where part = r.part;
+    end;
+  end loop;
+
+  -- Forget booths OpenStreetMap no longer has, only after complete refreshes.
+  if (select count(*) from tp_toll_refresh where loaded_at > now() - interval '8 days') = 2 then
+    delete from tp_toll_plazas where seen_at < now() - interval '15 days';
+  end if;
+  return n;
+end $$;
+
+-- App (anon): the booth list, if newer than what the phone has.
+-- {"version": <ms>, "plazas": "id,lat,lng,name\n..."} — plazas omitted when
+-- the phone is already up to date.
+create or replace function tp_toll_plazas(p_since_ms bigint)
+returns jsonb
+language plpgsql stable security definer set search_path = public as $$
+declare v bigint; body text;
+begin
+  select (extract(epoch from max(seen_at)) * 1000)::bigint into v from tp_toll_plazas;
+  if v is null then return jsonb_build_object('version', 0); end if;
+  if p_since_ms is not null and p_since_ms >= v then
+    return jsonb_build_object('version', v);
+  end if;
+  select string_agg(
+           osm_id || ',' || round(lat::numeric, 6) || ',' || round(lng::numeric, 6) || ','
+             || coalesce(replace(replace(name, E'\n', ' '), E'\r', ' '), ''),
+           E'\n' order by osm_id)
+    into body from tp_toll_plazas;
+  return jsonb_build_object('version', v, 'plazas', body);
+end $$;
+
+revoke execute on function tp_toll_refresh_request(), tp_toll_refresh_collect()
+  from public, anon, authenticated;
+grant execute on function tp_toll_plazas(bigint) to anon;
+
+do $$
+begin
+  begin perform cron.unschedule('tp-toll-refresh'); exception when others then null; end;
+  begin perform cron.unschedule('tp-toll-collect'); exception when others then null; end;
+  perform cron.schedule('tp-toll-refresh', '17 3 * * 0', 'select public.tp_toll_refresh_request()');
+  perform cron.schedule('tp-toll-collect', '*/5 * * * *', 'select public.tp_toll_refresh_collect()');
+exception when others then
+  raise notice 'pg_cron not available; refresh toll plazas by calling tp_toll_refresh_request() then tp_toll_refresh_collect().';
+end $$;

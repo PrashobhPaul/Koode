@@ -7,7 +7,7 @@ set -euo pipefail
 here="$(cd "$(dirname "$0")" && pwd)"
 ext="$(pg_config --sharedir 2>/dev/null || echo /usr/share/postgresql/16)/extension"
 for x in pg_net pg_cron; do
-  [ -f "$ext/$x.control" ] || cp "$here/ext/$x.control" "$here/ext/$x--0.1.sql" "$ext/"
+  cmp -s "$here/ext/$x--0.1.sql" "$ext/$x--0.1.sql" || cp "$here/ext/$x.control" "$here/ext/$x--0.1.sql" "$ext/"
 done
 db="koode_test_$$"
 psql_() { su postgres -c "psql -v ON_ERROR_STOP=1 -q -X $*"; }

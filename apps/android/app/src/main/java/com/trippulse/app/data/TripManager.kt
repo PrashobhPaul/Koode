@@ -102,7 +102,11 @@ class TripManager(
     private val notifier: Notifier,
     private val settings: SettingsStore,
     private val appScope: CoroutineScope,
-    private val cfg: TripConfig = TripConfig.DEFAULT
+    private val cfg: TripConfig = TripConfig.DEFAULT,
+    /** Known toll plazas, for counting crossings on car and bike journeys. */
+    private val tollPlazas: () -> com.trippulse.app.domain.TollPlazas.Index = {
+        com.trippulse.app.domain.TollPlazas.Index(emptyList())
+    }
 ) {
     /** Set by the app/service: asked to stop the foreground service. */
     var onStopTrackingRequested: (() -> Unit)? = null
@@ -121,6 +125,12 @@ class TripManager(
     private var legs: List<TripLegEntity> = emptyList()
 
     private var detector = StopDetector(cfg)
+
+    /** The previous good fix, for toll detection along the path. */
+    private var lastTollFix: Fix? = null
+    /** This journey's recorded crossings (where, when), for one-plaza-one-toll. */
+    private var tollRecent: MutableList<com.trippulse.app.domain.TollPlazas.Recent>? = null
+    private var tollRecentTrip: String? = null
 
     private var currentRoute: RoutePlan? = null
     private var routeFetchedAtMs: Long = 0
@@ -697,6 +707,9 @@ class TripManager(
             lastPersistPoint = fix.point
         }
 
+        // ----- toll plazas passed on the way (car and bike) -----
+        maybeTollFromLocation(t, fix, now, profile)
+
         // ----- movement / stop detection -----
         val move = detector.onFix(fix)
         s = applyMovement(t, s, move, fix, now, profile)
@@ -1237,6 +1250,8 @@ class TripManager(
     suspend fun addQuickNote(type: String, text: String?) = lock.withLock {
         val t = editableTrip() ?: return@withLock
         val s = state ?: return@withLock
+        // "Toll crossed" is a toll like any other: counted, pass, expense.
+        if (type == EventTypes.TOLL_CROSSED) { recordManualTollLocked(); return@withLock }
         val now = System.currentTimeMillis()
         val sensitive = EventTypes.isSensitiveByDefault(type)
         val payload = buildMap<String, Any?> {
@@ -2335,26 +2350,104 @@ class TripManager(
      * decrements the user's pass balance, if they configured one.
      */
     suspend fun recordTollCrossing(crossing: TollCrossing) = lock.withLock {
-        val t = trip ?: return@withLock
         val s = state ?: return@withLock
-        if (terminal(s)) return@withLock
+        recordTollLocked(crossing, EventSource.FASTAG_SMS, s.lat, s.lng)
+    }
+
+    /**
+     * A toll plaza on the vehicle's path, from location (no SMS). Car and bike
+     * journeys only, and only while the traveller keeps toll counting on.
+     * Called with the lock held.
+     */
+    private suspend fun maybeTollFromLocation(t: ActiveTripEntity, fix: Fix, now: Long, profile: TransportProfile) {
+        if (!profile.isPrivateVehicle || !settings.current.tollDetectionEnabled) { lastTollFix = null; return }
+        if (!com.trippulse.app.domain.TollPlazas.usable(fix.accuracyM.toDouble())) return
+        val prev = lastTollFix
+        lastTollFix = fix
+        if (prev == null || fix.timeMs - prev.timeMs > 5 * 60_000L) return
+        val index = tollPlazas()
+        if (index.size == 0) return
+        val plaza = com.trippulse.app.domain.TollPlazas.crossed(
+            index, prev.point.lat, prev.point.lng, fix.point.lat, fix.point.lng, now, recentTolls(t)
+        ) ?: return
+        val plate = activeRegistrationPlate()
+        recordTollLocked(
+            TollCrossing(plaza.name, plate, journeyPassType(plate), now, issuer = null),
+            EventSource.SYSTEM_INFERRED, plaza.lat, plaza.lng, osmId = plaza.id
+        )
+    }
+
+    /** "Toll crossed", tapped by the traveller. Called with the lock held. */
+    private suspend fun recordManualTollLocked() {
+        val t = trip ?: return
+        val s = state ?: return
+        val now = System.currentTimeMillis()
+        // A second tap, or a plaza Koode already counted a moment ago: once.
+        if (recentTolls(t).any { now - it.atMs in 0..3 * 60_000L }) return
+        val plate = activeRegistrationPlate()
+        recordTollLocked(
+            TollCrossing(null, plate, journeyPassType(plate), now, issuer = null),
+            EventSource.DRIVER_MANUAL, s.lat, s.lng
+        )
+    }
+
+    /** Annual pass when the journey's own vehicle is on one; otherwise unknown. */
+    private suspend fun journeyPassType(plate: String?): com.trippulse.app.domain.fastag.TollPassType {
+        plate ?: return com.trippulse.app.domain.fastag.TollPassType.UNKNOWN
+        val v = runCatching { db.vehicleDao().all() }.getOrNull().orEmpty().firstOrNull {
+            com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it.registration) == plate
+        } ?: return com.trippulse.app.domain.fastag.TollPassType.UNKNOWN
+        return if (com.trippulse.app.domain.fastag.FastagMode.fromKey(v.fastagMode) ==
+            com.trippulse.app.domain.fastag.FastagMode.ANNUAL_PASS)
+            com.trippulse.app.domain.fastag.TollPassType.ANNUAL_PASS
+        else com.trippulse.app.domain.fastag.TollPassType.UNKNOWN
+    }
+
+    /** Where and when tolls were recorded on [t], loaded once per journey. */
+    private suspend fun recentTolls(t: ActiveTripEntity): MutableList<com.trippulse.app.domain.TollPlazas.Recent> {
+        tollRecent?.takeIf { tollRecentTrip == t.tripId }?.let { return it }
+        val list = runCatching { db.eventDao().allForTrip(t.tripId) }.getOrDefault(emptyList())
+            .filter { it.type == EventTypes.TOLL_CROSSED }
+            .mapNotNull { e ->
+                val p = EventCodec.payloadFromJson(e.payloadJson)
+                val lat = (p["plazaLat"] as? Number)?.toDouble() ?: e.lat ?: return@mapNotNull null
+                val lng = (p["plazaLng"] as? Number)?.toDouble() ?: e.lng ?: return@mapNotNull null
+                com.trippulse.app.domain.TollPlazas.Recent(lat, lng, e.eventTimeMs)
+            }
+            .toMutableList()
+        tollRecent = list
+        tollRecentTrip = t.tripId
+        return list
+    }
+
+    /**
+     * Records one toll crossing, whatever told us about it: a FASTag SMS
+     * (older builds), the vehicle's path through a known plaza, or the
+     * traveller's tap. Called with the lock held.
+     */
+    private suspend fun recordTollLocked(
+        crossing: TollCrossing, source: EventSource, atLat: Double?, atLng: Double?, osmId: String? = null
+    ) {
+        val t = trip ?: return
+        val s = state ?: return
+        if (terminal(s)) return
 
         // Vehicle match: a plate in the SMS that isn't this journey's is another
         // vehicle's toll and must not attach here. No plate → accept.
         val tripPlate = activeRegistrationPlate()
         val smsPlate = crossing.vehicle?.let { com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it) }
-        if (smsPlate != null && tripPlate != null && smsPlate != tripPlate) return@withLock
+        if (smsPlate != null && tripPlate != null && smsPlate != tripPlate) return
 
         // Temporal sanity: ignore a crossing clearly before this journey began.
         val started = t.startedAtMs ?: t.createdAtMs
-        if (crossing.crossedAtMs < started - 15 * 60_000L) return@withLock
+        if (crossing.crossedAtMs < started - 15 * 60_000L) return
 
         // Idempotency: never record the same crossing twice.
         val key = crossing.dedupKey()
         val tolls = runCatching {
             db.eventDao().allForTrip(t.tripId).filter { it.type == EventTypes.TOLL_CROSSED }
         }.getOrDefault(emptyList())
-        if (tolls.any { it.payloadJson.contains(key) }) return@withLock
+        if (tolls.any { it.payloadJson.contains(key) }) return
         // Toll count and any pass balance are separate facts: the count is
         // always known, a balance only if the traveller configured one.
         val count = tolls.size + 1
@@ -2364,11 +2457,16 @@ class TripManager(
         val passCovered = applyCrossingToVehicle(crossing)
         val payload = buildMap<String, Any?> {
             crossing.plaza?.let { put("plaza", it) }
-            crossing.vehicle?.let { put("vehicle", it) }
+            // The plate is what an SMS named; the journey's own vehicle needs no mention.
+            if (source == EventSource.FASTAG_SMS) crossing.vehicle?.let { put("vehicle", it) }
             put("passType", crossing.passType.name)
             put("passCovered", passCovered)
-            put("source", EventSource.FASTAG_SMS.name)
+            put("source", source.name)
             put("dedupKey", key)
+            if (atLat != null && atLng != null && source != EventSource.FASTAG_SMS) {
+                put("plazaLat", atLat); put("plazaLng", atLng)
+            }
+            osmId?.let { put("osmId", it) }
             crossing.issuer?.let { put("issuer", it) }
             put("tollsOnJourney", count)
             put("text", buildString {
@@ -2376,12 +2474,15 @@ class TripManager(
                 append(" · $count ${if (count == 1) "toll" else "tolls"} recorded on this journey")
             })
         }
-        // Position is the vehicle's last known point, not the plaza — the SMS
-        // gives no coordinate and we never invent one.
+        // An SMS gives no coordinate: the vehicle's last known point is used,
+        // never an invented one. A plaza found on the path is where it is.
         insertEvent(
-            t.tripId, EventTypes.TOLL_CROSSED, EventSource.FASTAG_SMS,
-            crossing.crossedAtMs, s.lat, s.lng, payload, false
+            t.tripId, EventTypes.TOLL_CROSSED, source,
+            crossing.crossedAtMs, atLat ?: s.lat, atLng ?: s.lng, payload, false
         )
+        if (atLat != null && atLng != null) {
+            recentTolls(t).add(com.trippulse.app.domain.TollPlazas.Recent(atLat, atLng, crossing.crossedAtMs))
+        }
         val tollLabel = "Toll" + crossing.plaza?.let { " · $it" }.orEmpty()
         when {
             passCovered -> Unit

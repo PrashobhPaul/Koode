@@ -74,6 +74,10 @@ class AppGraph(context: Context) {
 
     val sync: SyncEngine = SyncEngine(db, cloud, cfg)
 
+    /** Toll plazas for location-based toll counting (bundled, refreshed weekly). */
+    val tollPlazas: com.trippulse.app.data.TollPlazaRepository =
+        com.trippulse.app.data.TollPlazaRepository(appContext, cloud, appScope)
+
     val tripManager: TripManager = TripManager(
         appContext = appContext,
         db = db,
@@ -84,7 +88,8 @@ class AppGraph(context: Context) {
         notifier = notifier,
         settings = settings,
         appScope = appScope,
-        cfg = cfg
+        cfg = cfg,
+        tollPlazas = { tollPlazas.index() }
     )
 
     val viewerRepository: ViewerRepository = ViewerRepository(db, cloud, settings, cfg)

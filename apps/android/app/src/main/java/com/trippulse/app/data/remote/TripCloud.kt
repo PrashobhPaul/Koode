@@ -237,6 +237,17 @@ class TripCloud(private val appContext: Context) {
     suspend fun unregisterPush(fcmToken: String): Boolean =
         rpcBool("tp_unregister_push", mapOf("p_fcm_token" to fcmToken))
 
+    /**
+     * The toll plaza list (OpenStreetMap toll booths, served by the backend)
+     * if newer than [sinceMs]: version plus "id,lat,lng,name" lines, or a
+     * version alone when this phone is already up to date. Null offline.
+     */
+    suspend fun tollPlazas(sinceMs: Long?): Pair<Long, String?>? {
+        val res = rpcObject("tp_toll_plazas", mapOf("p_since_ms" to sinceMs)) ?: return null
+        val version = (res["version"] as? Number)?.toLong() ?: return null
+        return version to (res["plazas"] as? String)
+    }
+
     /** Follower: stop pushes for one journey only (unfollowed). */
     suspend fun unregisterPushFor(ref: String, fcmToken: String): Boolean =
         rpcBool("tp_unregister_push_for", mapOf("p_ref" to ref, "p_fcm_token" to fcmToken))

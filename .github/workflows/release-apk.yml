@@ -56,6 +56,36 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x apps/android/gradlew
 
+      - name: Bundle the toll plaza list
+        # Toll booths from OpenStreetMap (© OpenStreetMap contributors, ODbL),
+        # as served by the Koode backend (tp_toll_plazas). Bundling a current
+        # copy lets toll counting work on a first journey made offline; the app
+        # refreshes the list weekly after that. Never fails the release: without
+        # it the app simply downloads the list on first use.
+        run: |
+          URL=$(grep '^SUPABASE_URL=' apps/android/supabase.properties | cut -d= -f2- | tr -d ' \r')
+          KEY=$(grep '^SUPABASE_ANON_KEY=' apps/android/supabase.properties | cut -d= -f2- | tr -d ' \r')
+          OUT=apps/android/app/src/main/assets
+          mkdir -p "$OUT"
+          if [ -n "$URL" ] && curl -sf -X POST "$URL/rest/v1/rpc/tp_toll_plazas" \
+               -H "apikey: $KEY" -H "Authorization: Bearer $KEY" -H "Content-Type: application/json" \
+               -d '{"p_since_ms":null}' -o /tmp/tolls.json; then
+            python3 - "$OUT" <<'PY'
+          import json, sys
+          d = json.load(open('/tmp/tolls.json'))
+          plazas = d.get('plazas') or ''
+          lines = [l for l in plazas.split('\n') if l.count(',') >= 2]
+          if len(lines) < 500:
+              print(f"::warning::Only {len(lines)} toll plazas; not bundling.")
+              sys.exit(0)
+          open(f"{sys.argv[1]}/toll_plazas.csv", 'w').write('\n'.join(lines))
+          open(f"{sys.argv[1]}/toll_plazas.version", 'w').write(str(d.get('version', 0)))
+          print(f"Bundled {len(lines)} toll plazas (version {d.get('version')})")
+          PY
+          else
+            echo "::warning::Toll plaza list unavailable; the app will download it on first use."
+          fi
+
       - name: Assemble signed release APK and run unit tests
         working-directory: apps/android
         env:
