@@ -76,6 +76,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val report by vm.report.collectAsStateWithLifecycle()
     val originLabel by vm.originLabel.collectAsStateWithLifecycle()
     val destLabel by vm.destLabel.collectAsStateWithLifecycle()
+    val passBalance by vm.passBalance.collectAsStateWithLifecycle()
     val measures = vm.measures
 
     fun export(kind: PdfKind) {
@@ -87,7 +88,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 val doc = when (kind) {
                     PdfKind.TIMELINE -> JourneyDocuments.timeline(
                         t, events, r, measures, path = samples.map { it.lat to it.lng },
-                        originLabel = originLabel, destLabel = destLabel
+                        originLabel = originLabel, destLabel = destLabel, passBalance = passBalance
                     )
                     PdfKind.MONEY -> JourneyDocuments.money(
                         t, expenses, r, measures,
@@ -156,6 +157,14 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 }
             } else {
                 JourneyDashboard(r, measures, TransportCatalog.isPrivate(trip?.transportMode))
+                // FASTag annual pass — only when the traveller configured one.
+                // The journey toll count and the pass balance are separate.
+                passBalance?.let { balance ->
+                    KoodeCard(title = "FASTag annual pass") {
+                        DetailRow("Tolls crossed this journey", r.tollsCrossed.toString(), leading = "🛣")
+                        DetailRow("Current balance", balance.toString(), leading = "🎫")
+                    }
+                }
             }
 
             // ---- exports ----
@@ -265,6 +274,9 @@ fun JourneyDashboard(
         if (report.toiletCount > 0) DetailRow("Toilet", report.toiletCount.toString(), leading = "🚻")
         if (privateVehicle && report.fuelStops > 0) {
             DetailRow("Refuelling stops", report.fuelStops.toString(), leading = "⛽")
+        }
+        if (report.tollsCrossed > 0) {
+            DetailRow("Tolls crossed", report.tollsCrossed.toString(), leading = "🛣")
         }
     }
 

@@ -111,6 +111,7 @@
     STOP_STARTED: ['🅿', 'Stopped'],
     STOP_ENDED: ['▶', 'On the move again'],
     LONG_STOP: ['⏳', 'Long stop'],
+    TOLL_CROSSED: ['🛣', 'Toll crossed'],
     ARRIVAL_DETECTED: ['📍', 'Reached the destination'],
     BREAK_CHECKPOINT: ['✅', 'Break logged'],
     WATER_REPORTED: ['💧', 'Water'],

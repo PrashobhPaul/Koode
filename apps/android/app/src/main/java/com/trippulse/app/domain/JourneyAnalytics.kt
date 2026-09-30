@@ -98,6 +98,8 @@ object JourneyAnalytics {
         val toiletCount: Int,
         val restCount: Int,
         val fuelStops: Int,
+        /** Toll crossings recorded from FASTag SMS during this journey. */
+        val tollsCrossed: Int,
 
         // ---- money ----
         val totalCost: Double,
@@ -152,6 +154,7 @@ object JourneyAnalytics {
         var rest = 0
         var fuelStops = 0
         var breakCheckpoints = 0
+        var tolls = 0
 
         for (e in sorted) {
             when (e.type) {
@@ -179,6 +182,7 @@ object JourneyAnalytics {
                 EventTypes.TOILET_REPORTED -> toilet++
                 EventTypes.REST_REPORTED -> rest++
                 EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP -> fuelStops++
+                EventTypes.TOLL_CROSSED -> tolls++
             }
         }
         // A stop still open when the journey ended runs to the end.
@@ -276,6 +280,7 @@ object JourneyAnalytics {
             toiletCount = toilet,
             restCount = rest,
             fuelStops = fuelStops,
+            tollsCrossed = tolls,
             totalCost = totalCost,
             costLines = costLines,
             costPerMetre = if (i.distanceCoveredM > 0 && totalCost > 0) totalCost / i.distanceCoveredM else null,

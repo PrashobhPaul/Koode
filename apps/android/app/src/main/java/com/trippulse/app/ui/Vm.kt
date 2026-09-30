@@ -12,6 +12,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.trippulse.app.TripPulseApp
+import com.trippulse.app.core.FastagPass
 import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.KoodeSettings
 import com.trippulse.app.core.LocationCadence
@@ -1272,6 +1273,11 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     val originLabel = MutableStateFlow<String?>(null)
     val destLabel = MutableStateFlow<String?>(null)
 
+    /** The user's configured FASTag pass balance, or null when unconfigured. */
+    val passBalance = MutableStateFlow<Int?>(
+        graph.fastagPass.current.let { if (it.configured) it.balance else null }
+    )
+
     /** Distances, speeds and money in the traveller's own units. */
     val measures: Measures get() = graph.measures()
 
@@ -1416,6 +1422,19 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
 
     fun setShareTimelineOnWhatsApp(on: Boolean) =
         graph.settings.update { it.copy(shareTimelineOnWhatsApp = on) }
+
+    // ---- FASTag ------------------------------------------------------------
+
+    fun setTollDetection(on: Boolean) =
+        graph.settings.update { it.copy(tollDetectionEnabled = on) }
+
+    /** The user's FASTag annual-pass state (configured / balance). */
+    val fastagPass: StateFlow<FastagPass.State> = graph.fastagPass.state
+
+    /** User sets or corrects the pass balance — becomes the new baseline. */
+    fun setPassBalance(value: Int) = graph.fastagPass.setBalance(value)
+
+    fun clearPassBalance() = graph.fastagPass.clear()
 
     /** What the app has worked out for this device right now, for display. */
     fun detectedRegionSummary(): String {

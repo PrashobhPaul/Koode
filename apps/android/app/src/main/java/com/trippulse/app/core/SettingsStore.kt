@@ -80,7 +80,14 @@ data class KoodeSettings(
      * Off by default: it puts a message into other people's hands, and that is
      * never something an app should start doing on its own.
      */
-    val shareTimelineOnWhatsApp: Boolean = false
+    val shareTimelineOnWhatsApp: Boolean = false,
+    /**
+     * Recognise FASTag/toll SMS on this device and turn them into toll events.
+     * Off by default and gated on the RECEIVE_SMS runtime permission — reading
+     * SMS is sensitive, so it is strictly opt-in. Parsing is on-device only;
+     * the SMS body is never stored or uploaded.
+     */
+    val tollDetectionEnabled: Boolean = false
 ) {
     companion object {
         const val THEME_SYSTEM = "SYSTEM"
@@ -123,7 +130,8 @@ class SettingsStore(context: Context) {
         themeMode = prefs.getString(KEY_THEME, KoodeSettings.THEME_SYSTEM) ?: KoodeSettings.THEME_SYSTEM,
         unitPreference = UnitPreference.fromKey(prefs.getString(KEY_UNITS, null)),
         currencyCode = prefs.getString(KEY_CURRENCY, "").orEmpty(),
-        shareTimelineOnWhatsApp = prefs.getBoolean(KEY_WHATSAPP, false)
+        shareTimelineOnWhatsApp = prefs.getBoolean(KEY_WHATSAPP, false),
+        tollDetectionEnabled = prefs.getBoolean(KEY_TOLL_SMS, false)
     )
 
     private fun write(s: KoodeSettings) {
@@ -138,6 +146,7 @@ class SettingsStore(context: Context) {
             .putString(KEY_UNITS, s.unitPreference.key)
             .putString(KEY_CURRENCY, s.currencyCode)
             .putBoolean(KEY_WHATSAPP, s.shareTimelineOnWhatsApp)
+            .putBoolean(KEY_TOLL_SMS, s.tollDetectionEnabled)
             .apply()
     }
 
@@ -153,5 +162,6 @@ class SettingsStore(context: Context) {
         const val KEY_UNITS = "unit_preference"
         const val KEY_CURRENCY = "currency_code"
         const val KEY_WHATSAPP = "share_timeline_whatsapp"
+        const val KEY_TOLL_SMS = "toll_detection_enabled"
     }
 }

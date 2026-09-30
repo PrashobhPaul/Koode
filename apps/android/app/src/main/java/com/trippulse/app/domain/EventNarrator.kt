@@ -21,6 +21,7 @@ object EventNarrator {
         EventTypes.STOP_STARTED -> "🅿" to "Stopped"
         EventTypes.STOP_ENDED -> "▶" to "On the move again"
         EventTypes.LONG_STOP -> "⏳" to "Long stop"
+        EventTypes.TOLL_CROSSED -> "🛣" to "Toll crossed"
         EventTypes.ARRIVAL_DETECTED -> "📍" to "Reached the destination"
         EventTypes.BREAK_CHECKPOINT -> "✅" to "Break logged"
         EventTypes.WATER_REPORTED -> "💧" to "Water"
@@ -83,7 +84,10 @@ object EventNarrator {
             // prefixing the label would give "Phone switched off — Phone
             // switched off — battery 74%".
             EventTypes.DEVICE_SHUTDOWN, EventTypes.DEVICE_BACK_ONLINE,
-            EventTypes.SIM_CHANGED -> emoji to (text ?: label)
+            EventTypes.SIM_CHANGED,
+            // The toll event ships its own complete sentence ("Toll crossed —
+            // Paliyekkara Toll Plaza"); prefixing the label would double it.
+            EventTypes.TOLL_CROSSED -> emoji to (text ?: label)
             else -> emoji to (text?.let { "$label — $it" } ?: label)
         }
     }

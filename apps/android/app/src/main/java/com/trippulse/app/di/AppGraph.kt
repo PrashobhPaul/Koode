@@ -1,6 +1,7 @@
 package com.trippulse.app.di
 
 import android.content.Context
+import com.trippulse.app.core.FastagPass
 import com.trippulse.app.core.RegionDetector
 import com.trippulse.app.core.SettingsStore
 import com.trippulse.app.data.TripManager
@@ -37,6 +38,9 @@ class AppGraph(context: Context) {
 
     /** User-tunable behaviour (location cadence, refresh rate, theme, units). */
     val settings: SettingsStore = SettingsStore(appContext)
+
+    /** Optional, user-owned FASTag annual-pass balance. */
+    val fastagPass: FastagPass = FastagPass(appContext)
 
     /** Which country the traveller is in, for currency and units. */
     val region: RegionDetector = RegionDetector(appContext)
@@ -79,6 +83,7 @@ class AppGraph(context: Context) {
         connectivity = connectivity,
         notifier = notifier,
         settings = settings,
+        fastagPass = fastagPass,
         appScope = appScope,
         cfg = cfg
     )
