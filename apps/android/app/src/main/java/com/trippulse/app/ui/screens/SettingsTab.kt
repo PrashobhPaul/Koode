@@ -2,11 +2,15 @@ package com.trippulse.app.ui.screens
 
 import kotlinx.coroutines.launch
 import android.Manifest
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.provider.ContactsContract
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.compose.foundation.layout.Arrangement
@@ -85,11 +89,34 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     val message by vm.message.collectAsStateWithLifecycle()
     val update by vm.update.collectAsStateWithLifecycle()
     val checking by vm.checkingUpdate.collectAsStateWithLifecycle()
+    val pass by vm.fastagPass.collectAsStateWithLifecycle()
 
     var name by remember { mutableStateOf(Profile.name(context)) }
     var c1 by remember { mutableStateOf(Profile.contact(context, 1)) }
     var c2 by remember { mutableStateOf(Profile.contact(context, 2)) }
     var c3 by remember { mutableStateOf(Profile.contact(context, 3)) }
+
+    // Pick an emergency contact from the device's contacts. Uses the system
+    // phone picker, which grants read access only to the one row the user
+    // chose — so no READ_CONTACTS permission and no contact-book upload.
+    var pickingSlot by remember { mutableStateOf(0) }
+    val contactPicker = rememberLauncherForActivityResult(PickPhoneContact()) { uri ->
+        val picked = uri?.let { readPickedContact(context, it) }
+        if (picked != null) {
+            val (nm, ph) = picked
+            val c = Profile.Contact(InputRules.itemText(nm), InputRules.phoneText(ph))
+            when (pickingSlot) { 1 -> c1 = c; 2 -> c2 = c; 3 -> c3 = c }
+        }
+    }
+    fun pickContact(slot: Int) { pickingSlot = slot; contactPicker.launch(Unit) }
+
+    // FASTag balance edit field, seeded from the stored balance.
+    var passField by remember(pass.configured, pass.balance) {
+        mutableStateOf(if (pass.configured) pass.balance.toString() else "")
+    }
+    val smsPermission = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted -> vm.setTollDetection(granted) }
     // Saved places use the same picker as journey planning: search, Google
     // Maps (share or copy), current location or a dropped pin — then a name.
     var addingPlace by remember { mutableStateOf(false) }
@@ -269,6 +296,65 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
         }
     }
 
+    // ---- FASTag toll updates ----
+    KoodeCard(title = "FASTag toll updates") {
+        Text(
+            "Recognise toll-plaza SMS on this phone and add each crossing to your journey timeline. " +
+                "Messages are read on this device only — the plaza, vehicle and time are kept, " +
+                "the message itself is never stored or uploaded.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        ToggleRow("Detect toll crossings from SMS", settings.tollDetectionEnabled) { on ->
+            if (on) {
+                val granted = ContextCompat.checkSelfPermission(
+                    context, Manifest.permission.RECEIVE_SMS
+                ) == PackageManager.PERMISSION_GRANTED
+                if (granted) vm.setTollDetection(true) else smsPermission.launch(Manifest.permission.RECEIVE_SMS)
+            } else {
+                vm.setTollDetection(false)
+            }
+        }
+        Spacer(Modifier.height(Spacing.sm))
+        Text(
+            "FASTag annual pass (optional)",
+            color = colors.textHigh, style = MaterialTheme.typography.titleSmall
+        )
+        Text(
+            "Set your current pass balance and Koode counts down as annual-pass tolls are recorded. " +
+                "You can correct it any time — your number always wins.",
+            color = colors.textMid, style = MaterialTheme.typography.bodySmall
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalAlignment = Alignment.CenterVertically) {
+            OutlinedTextField(
+                value = passField,
+                onValueChange = { passField = it.filter(Char::isDigit).take(5) },
+                label = { Text("Current balance") }, singleLine = true, modifier = Modifier.weight(1f),
+                keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
+            )
+            SecondaryButton(
+                "Save",
+                { passField.toIntOrNull()?.let { vm.setPassBalance(it) } },
+                enabled = passField.toIntOrNull() != null, height = 46.dp
+            )
+        }
+        if (pass.configured) {
+            Spacer(Modifier.height(Spacing.sm))
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    "Current balance: ${pass.balance}",
+                    color = colors.accent, style = MaterialTheme.typography.bodyMedium
+                )
+                TextButton(onClick = { vm.clearPassBalance(); passField = "" }) { Text("Clear") }
+            }
+        }
+    }
+
     // ---- appearance ----
     KoodeCard(title = "Appearance") {
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
@@ -376,9 +462,9 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
         Spacer(Modifier.height(Spacing.sm))
-        ContactRow("Contact 1", c1) { c1 = it }
-        ContactRow("Contact 2", c2) { c2 = it }
-        ContactRow("Contact 3", c3) { c3 = it }
+        ContactRow("Contact 1", c1, { pickContact(1) }) { c1 = it }
+        ContactRow("Contact 2", c2, { pickContact(2) }) { c2 = it }
+        ContactRow("Contact 3", c3, { pickContact(3) }) { c3 = it }
     }
 
     if (message != null) {
@@ -479,7 +565,20 @@ private fun ToggleRow(label: String, checked: Boolean, onChange: (Boolean) -> Un
 }
 
 @Composable
-private fun ContactRow(label: String, contact: Profile.Contact, onChange: (Profile.Contact) -> Unit) {
+private fun ContactRow(
+    label: String,
+    contact: Profile.Contact,
+    onPick: () -> Unit,
+    onChange: (Profile.Contact) -> Unit
+) {
+    Row(
+        Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(label, color = KoodeTheme.colors.textMid, style = MaterialTheme.typography.bodyMedium)
+        TextButton(onClick = onPick) { Text("Pick from contacts") }
+    }
     Row(
         Modifier.fillMaxWidth().padding(vertical = 3.dp),
         horizontalArrangement = Arrangement.spacedBy(Spacing.sm)
@@ -497,3 +596,36 @@ private fun ContactRow(label: String, contact: Profile.Contact, onChange: (Profi
         )
     }
 }
+
+/**
+ * Picks a single phone number from the system contacts app. Using ACTION_PICK
+ * on the phone-number URI means the OS returns a URI to just the row the user
+ * chose and grants read access only to it — so Koode needs no READ_CONTACTS
+ * permission and never sees the rest of the address book.
+ */
+private class PickPhoneContact : ActivityResultContract<Unit, Uri?>() {
+    override fun createIntent(context: Context, input: Unit): Intent =
+        Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
+
+    override fun parseResult(resultCode: Int, intent: Intent?): Uri? =
+        if (resultCode == Activity.RESULT_OK) intent?.data else null
+}
+
+/** Reads the display name and number from a picked phone-contact URI. */
+private fun readPickedContact(context: Context, uri: Uri): Pair<String, String>? = runCatching {
+    context.contentResolver.query(
+        uri,
+        arrayOf(
+            ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER
+        ),
+        null, null, null
+    )?.use { c ->
+        if (c.moveToFirst()) {
+            val name = c.getString(0).orEmpty()
+            val number = c.getString(1).orEmpty()
+            if (number.isNotBlank()) return@runCatching name to number
+        }
+    }
+    null
+}.getOrNull()

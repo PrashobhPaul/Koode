@@ -7,9 +7,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
+import android.provider.Telephony
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.ActivityRecognitionResult
 import com.trippulse.app.TripPulseApp
+import com.trippulse.app.domain.fastag.TollSmsParser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -130,5 +132,46 @@ class ShutdownReceiver : BroadcastReceiver() {
             "android.intent.action.QUICKBOOT_POWEROFF",
             "com.htc.intent.action.QUICKBOOT_POWEROFF"
         )
+    }
+}
+
+/**
+ * Recognises FASTag / toll-plaza SMS and turns a genuine crossing into a
+ * journey event.
+ *
+ * Strictly opt-in and privacy-scoped: it does nothing unless the traveller has
+ * enabled toll detection, and it only ever *parses* the message on-device to
+ * pull out the plaza, vehicle, pass type and time — the SMS body is never
+ * stored or uploaded. Anything that is not clearly a toll crossing (recharge
+ * alerts, OTPs, ordinary bank SMS) is dropped here and never reaches the
+ * journey. A crossing is handed to [TripManager.recordTollCrossing], which
+ * decides whether it belongs to the active journey.
+ */
+class TollSmsReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+        if (intent.action != Telephony.Sms.Intents.SMS_RECEIVED_ACTION) return
+        val app = context.applicationContext as? TripPulseApp ?: return
+        if (!app.graph.settings.current.tollDetectionEnabled) return
+
+        val messages = runCatching { Telephony.Sms.Intents.getMessagesFromIntent(intent) }.getOrNull()
+        if (messages.isNullOrEmpty()) return
+        val sender = messages.firstOrNull()?.originatingAddress
+        val body = messages.joinToString("") { it.messageBody ?: "" }
+        if (!TollSmsParser.looksLikeToll(body)) return
+        val crossing = TollSmsParser.parse(body, System.currentTimeMillis(), sender) ?: return
+
+        val pending = goAsync()
+        CoroutineScope(Dispatchers.Default).launch {
+            try {
+                // Only meaningful during an active journey; otherwise dropped.
+                if (app.graph.db.tripDao().activeTrip() != null) {
+                    app.graph.tripManager.recordTollCrossing(crossing)
+                }
+            } catch (_: Exception) {
+                // A toll we couldn't record must never affect tracking.
+            } finally {
+                pending.finish()
+            }
+        }
     }
 }

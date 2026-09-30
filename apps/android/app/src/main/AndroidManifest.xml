@@ -30,6 +30,12 @@
     <!-- Restore active-trip tracking after device reboot -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+    <!-- Optional FASTag/toll-SMS detection. Strictly opt-in (a setting the
+         traveller turns on, then grants at runtime). Toll SMS are parsed
+         on-device to recognise a toll crossing; the message body is never
+         stored or uploaded. Nothing here reads OTPs or unrelated SMS. -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
     <!--
       Package visibility (Android 11+). Koode asks only whether WhatsApp is
       installed, so it can offer to send a finished journey's timeline to the
@@ -125,6 +131,20 @@
                 <action android:name="android.intent.action.REBOOT" />
                 <action android:name="android.intent.action.QUICKBOOT_POWEROFF" />
                 <action android:name="com.htc.intent.action.QUICKBOOT_POWEROFF" />
+            </intent-filter>
+        </receiver>
+
+        <!-- FASTag/toll SMS detection. Exported with the BROADCAST_SMS
+             permission because SMS_RECEIVED is a protected system broadcast
+             only the OS can send. Inert unless the traveller enabled toll
+             detection AND granted RECEIVE_SMS; parsing is on-device only. -->
+        <receiver
+            android:name=".service.TollSmsReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BROADCAST_SMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 

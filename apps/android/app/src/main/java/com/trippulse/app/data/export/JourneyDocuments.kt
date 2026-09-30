@@ -283,7 +283,9 @@ object JourneyDocuments {
         path: List<Pair<Double, Double>> = emptyList(),
         /** Canonical end labels; default to the stored names. */
         originLabel: String? = null,
-        destLabel: String? = null
+        destLabel: String? = null,
+        /** The user's configured FASTag pass balance, or null when unconfigured. */
+        passBalance: Int? = null
     ): JourneyPdf.Document {
         val origin = originLabel?.takeIf { it.isNotBlank() } ?: trip.originName
         val dest = destLabel?.takeIf { it.isNotBlank() } ?: trip.destName
@@ -332,8 +334,22 @@ object JourneyDocuments {
                 }
                 if (report.waterCount > 0) add(JourneyPdf.Row("", "Water", report.waterCount.toString()))
                 if (report.toiletCount > 0) add(JourneyPdf.Row("", "Toilet", report.toiletCount.toString()))
+                if (report.tollsCrossed > 0) add(JourneyPdf.Row("", "Tolls crossed", report.tollsCrossed.toString()))
             }
         )
+
+        // FASTag annual pass — only when the traveller configured a balance.
+        // Journey toll count and pass balance are deliberately separate numbers.
+        val fastag = if (passBalance != null) {
+            JourneyPdf.Section(
+                title = "FASTag annual pass",
+                header = null,
+                rows = listOf(
+                    JourneyPdf.Row("", "Tolls crossed this journey", report.tollsCrossed.toString()),
+                    JourneyPdf.Row("", "Current balance", passBalance.toString())
+                )
+            )
+        } else null
 
         val stages = if (report.legs.size > 1) {
             JourneyPdf.Section(
@@ -378,7 +394,8 @@ object JourneyDocuments {
                     rows = rows,
                     note = if (rows.isEmpty()) "No events were recorded for this journey." else null
                 ),
-                activity
+                activity,
+                fastag
             ),
             fileLabel = "Koode-timeline-${trip.tripId}",
             footerRef = "Trip ${trip.tripId}"

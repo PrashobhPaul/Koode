@@ -1,6 +1,7 @@
 package com.trippulse.app.data
 
 import android.content.Context
+import com.trippulse.app.core.FastagPass
 import com.trippulse.app.core.Geo
 import com.trippulse.app.core.SettingsStore
 import com.trippulse.app.core.TimeFmt
@@ -43,6 +44,7 @@ import com.trippulse.app.domain.DetailKeys
 import com.trippulse.app.domain.LegDetails
 import com.trippulse.app.domain.TransportProfile
 import com.trippulse.app.domain.TripConfig
+import com.trippulse.app.domain.fastag.TollCrossing
 import com.trippulse.app.domain.TripEvent
 import com.trippulse.app.domain.WellbeingTimes
 import com.trippulse.app.notifications.Notifier
@@ -89,6 +91,7 @@ class TripManager(
     private val connectivity: ConnectivityObserver,
     private val notifier: Notifier,
     private val settings: SettingsStore,
+    private val fastagPass: FastagPass,
     private val appScope: CoroutineScope,
     private val cfg: TripConfig = TripConfig.DEFAULT
 ) {
@@ -1673,6 +1676,63 @@ class TripManager(
         insertEvent(tripId, EventTypes.SOS_DELIVERED, EventSource.SERVER_DERIVED, now, null, null, emptyMap(), false)
         // don't recurse into drain here; the normal drain loop will pick it up
     }
+
+    /**
+     * Record a toll crossing parsed from a FASTag SMS onto the active journey.
+     *
+     * A FASTag SMS is evidence a toll was crossed, not proof of the route: it
+     * only becomes a journey event when there is an active journey it plausibly
+     * belongs to. Guards: the SMS vehicle (when present) must match the
+     * journey's registered plate; the crossing time must not clearly predate
+     * the journey; and the same crossing is never recorded twice (idempotent on
+     * the crossing's dedup key). A qualifying annual-pass crossing then
+     * decrements the user's pass balance, if they configured one.
+     */
+    suspend fun recordTollCrossing(crossing: TollCrossing) = lock.withLock {
+        val t = trip ?: return@withLock
+        val s = state ?: return@withLock
+        if (terminal(s)) return@withLock
+
+        // Vehicle match: a plate in the SMS that isn't this journey's is another
+        // vehicle's toll and must not attach here. No plate → accept.
+        val tripPlate = activeRegistrationPlate()
+        val smsPlate = crossing.vehicle?.let { com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it) }
+        if (smsPlate != null && tripPlate != null && smsPlate != tripPlate) return@withLock
+
+        // Temporal sanity: ignore a crossing clearly before this journey began.
+        val started = t.startedAtMs ?: t.createdAtMs
+        if (crossing.crossedAtMs < started - 15 * 60_000L) return@withLock
+
+        // Idempotency: never record the same crossing twice.
+        val key = crossing.dedupKey()
+        val duplicate = runCatching {
+            db.eventDao().allForTrip(t.tripId).any { it.type == EventTypes.TOLL_CROSSED && it.payloadJson.contains(key) }
+        }.getOrDefault(false)
+        if (duplicate) return@withLock
+
+        val payload = buildMap<String, Any?> {
+            crossing.plaza?.let { put("plaza", it) }
+            crossing.vehicle?.let { put("vehicle", it) }
+            put("passType", crossing.passType.name)
+            put("source", EventSource.FASTAG_SMS.name)
+            put("dedupKey", key)
+            crossing.issuer?.let { put("issuer", it) }
+            put("text", crossing.plaza?.let { "Toll crossed — $it" } ?: "Toll crossed")
+        }
+        // Position is the vehicle's last known point, not the plaza — the SMS
+        // gives no coordinate and we never invent one.
+        insertEvent(
+            t.tripId, EventTypes.TOLL_CROSSED, EventSource.FASTAG_SMS,
+            crossing.crossedAtMs, s.lat, s.lng, payload, false
+        )
+        fastagPass.applyCrossing(crossing.passType)
+    }
+
+    /** The active journey's registered plate, normalised, or null. */
+    private fun activeRegistrationPlate(): String? =
+        LegDetails.fromJson(activeLeg()?.detailsJson)[DetailKeys.REGISTRATION]
+            ?.takeIf { it.isNotBlank() }
+            ?.let { com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it) }
 
     /** Inserts an event into the durable log and nudges the sync engine. */
     private suspend fun insertEvent(
