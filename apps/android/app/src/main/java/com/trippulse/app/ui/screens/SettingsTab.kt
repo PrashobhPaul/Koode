@@ -50,8 +50,11 @@ import com.trippulse.app.core.KoodeSettings
 import com.trippulse.app.core.LocationCadence
 import com.trippulse.app.core.Profile
 import com.trippulse.app.core.ViewerRefresh
+import com.trippulse.app.data.local.VehicleEntity
 import com.trippulse.app.domain.MoneyFormat
 import com.trippulse.app.domain.UnitPreference
+import com.trippulse.app.domain.fastag.FastagMode
+import com.trippulse.app.domain.fastag.VehicleKind
 import com.trippulse.app.ui.SettingsVm
 import com.trippulse.app.ui.components.Avatar
 import com.trippulse.app.ui.components.KoodeCard
@@ -89,7 +92,7 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     val message by vm.message.collectAsStateWithLifecycle()
     val update by vm.update.collectAsStateWithLifecycle()
     val checking by vm.checkingUpdate.collectAsStateWithLifecycle()
-    val pass by vm.fastagPass.collectAsStateWithLifecycle()
+    val vehicles by vm.vehicles.collectAsStateWithLifecycle()
 
     var name by remember { mutableStateOf(Profile.name(context)) }
     var c1 by remember { mutableStateOf(Profile.contact(context, 1)) }
@@ -110,10 +113,6 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     }
     fun pickContact(slot: Int) { pickingSlot = slot; contactPicker.launch(Unit) }
 
-    // FASTag balance edit field, seeded from the stored balance.
-    var passField by remember(pass.configured, pass.balance) {
-        mutableStateOf(if (pass.configured) pass.balance.toString() else "")
-    }
     val smsPermission = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { granted -> vm.setTollDetection(granted) }
@@ -317,43 +316,20 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
         }
         Spacer(Modifier.height(Spacing.sm))
         Text(
-            "FASTag annual pass (optional)",
-            color = colors.textHigh, style = MaterialTheme.typography.titleSmall
-        )
-        Text(
-            "Set your current pass balance and Koode counts down as annual-pass tolls are recorded. " +
-                "You can correct it any time — your number always wins.",
+            "Add a vehicle below with its FASTag and Koode keeps that vehicle's balance up to date " +
+                "as toll SMS come in — matched by number plate.",
             color = colors.textMid, style = MaterialTheme.typography.bodySmall
         )
-        Spacer(Modifier.height(Spacing.sm))
-        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalAlignment = Alignment.CenterVertically) {
-            OutlinedTextField(
-                value = passField,
-                onValueChange = { passField = it.filter(Char::isDigit).take(5) },
-                label = { Text("Current balance") }, singleLine = true, modifier = Modifier.weight(1f),
-                keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
-            )
-            SecondaryButton(
-                "Save",
-                { passField.toIntOrNull()?.let { vm.setPassBalance(it) } },
-                enabled = passField.toIntOrNull() != null, height = 46.dp
-            )
-        }
-        if (pass.configured) {
-            Spacer(Modifier.height(Spacing.sm))
-            Row(
-                Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    "Current balance: ${pass.balance}",
-                    color = colors.accent, style = MaterialTheme.typography.bodyMedium
-                )
-                TextButton(onClick = { vm.clearPassBalance(); passField = "" }) { Text("Clear") }
-            }
-        }
     }
+
+    // ---- My vehicles ----
+    VehiclesCard(
+        vehicles = vehicles,
+        onSave = { id, kind, nm, reg, mode, crossings, amount ->
+            vm.saveVehicle(id, kind, nm, reg, mode, crossings, amount)
+        },
+        onDelete = { id -> vm.deleteVehicle(id) }
+    )
 
     // ---- appearance ----
     KoodeCard(title = "Appearance") {
@@ -539,6 +515,180 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
         )
     }
     Spacer(Modifier.height(Spacing.lg))
+}
+
+/**
+ * The traveller's garage — cars and bikes, each with an optional registration
+ * and optional FASTag. Nothing here is required: a vehicle can be a bare
+ * "Bike", and a person who never opens this card is unaffected everywhere else.
+ * When a vehicle does carry a plate and a FASTag, toll SMS matched to that
+ * plate keep its balance current.
+ */
+@Composable
+private fun VehiclesCard(
+    vehicles: List<VehicleEntity>,
+    onSave: (String?, VehicleKind, String, String, FastagMode, Int?, Double?) -> Unit,
+    onDelete: (String) -> Unit
+) {
+    val colors = KoodeTheme.colors
+    // null = editor closed; "" = adding a new vehicle; otherwise the id being edited.
+    var editorFor by remember { mutableStateOf<String?>(null) }
+
+    KoodeCard(title = "My vehicles") {
+        Text(
+            "Add your cars and bikes. Registration and FASTag are optional — fill in only what you want.",
+            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+        )
+
+        vehicles.forEach { v ->
+            Spacer(Modifier.height(Spacing.sm))
+            if (editorFor == v.id) {
+                VehicleEditor(
+                    existing = v,
+                    onCancel = { editorFor = null },
+                    onSave = { kind, name, reg, mode, crossings, amount ->
+                        onSave(v.id, kind, name, reg, mode, crossings, amount); editorFor = null
+                    }
+                )
+            } else {
+                VehicleRow(
+                    v,
+                    onEdit = { editorFor = v.id },
+                    onDelete = { onDelete(v.id); if (editorFor == v.id) editorFor = null }
+                )
+            }
+        }
+
+        Spacer(Modifier.height(Spacing.sm))
+        if (editorFor == "") {
+            VehicleEditor(
+                existing = null,
+                onCancel = { editorFor = null },
+                onSave = { kind, name, reg, mode, crossings, amount ->
+                    onSave(null, kind, name, reg, mode, crossings, amount); editorFor = null
+                }
+            )
+        } else {
+            SecondaryButton("Add a vehicle", { editorFor = "" }, height = 46.dp)
+        }
+    }
+}
+
+/** One saved vehicle, with its FASTag balance when it tracks one. */
+@Composable
+private fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Unit) {
+    val colors = KoodeTheme.colors
+    val emoji = if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "🏍" else "🚗"
+    val title = v.name.ifBlank { if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "Bike" else "Car" }
+    val balance = when (FastagMode.fromKey(v.fastagMode)) {
+        FastagMode.ANNUAL_PASS -> v.passCrossingsLeft
+            ?.let { "Annual pass · $it crossing${if (it == 1) "" else "s"} left" }
+        FastagMode.AMOUNT -> v.amountLeft?.let { "FASTag · ${rupees(it)} left" }
+        FastagMode.NONE -> null
+    }
+    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+        Text("$emoji  ", style = MaterialTheme.typography.bodyLarge)
+        Column(Modifier.weight(1f)) {
+            Text(title, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            val sub = listOfNotNull(v.registration.takeIf { it.isNotBlank() }, balance).joinToString(" · ")
+            if (sub.isNotBlank()) {
+                Text(sub, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+            }
+        }
+        TextButton(onClick = onEdit) { Text("Edit") }
+        TextButton(onClick = onDelete) { Text("✕", color = colors.textLow, fontSize = 13.sp) }
+    }
+}
+
+/** Add / edit form for one vehicle. Kind is the only required choice. */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun VehicleEditor(
+    existing: VehicleEntity?,
+    onCancel: () -> Unit,
+    onSave: (VehicleKind, String, String, FastagMode, Int?, Double?) -> Unit
+) {
+    val colors = KoodeTheme.colors
+    val key = existing?.id
+    var kind by remember(key) { mutableStateOf(existing?.let { VehicleKind.fromKey(it.kind) } ?: VehicleKind.CAR) }
+    var name by remember(key) { mutableStateOf(existing?.name ?: "") }
+    var reg by remember(key) { mutableStateOf(existing?.registration ?: "") }
+    var mode by remember(key) { mutableStateOf(existing?.let { FastagMode.fromKey(it.fastagMode) } ?: FastagMode.NONE) }
+    var crossings by remember(key) { mutableStateOf(existing?.passCrossingsLeft?.toString() ?: "") }
+    var amount by remember(key) {
+        mutableStateOf(existing?.amountLeft?.let { if (it % 1.0 == 0.0) it.toLong().toString() else it.toString() } ?: "")
+    }
+
+    Column {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            KoodeChip("Car", kind == VehicleKind.CAR, { kind = VehicleKind.CAR })
+            KoodeChip("Bike", kind == VehicleKind.BIKE, { kind = VehicleKind.BIKE })
+        }
+        Spacer(Modifier.height(Spacing.sm))
+        OutlinedTextField(
+            value = name, onValueChange = { name = it.take(40) },
+            label = { Text("Name (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        OutlinedTextField(
+            value = reg,
+            onValueChange = { reg = it.uppercase().filter { c -> c.isLetterOrDigit() || c == ' ' || c == '-' }.take(15) },
+            label = { Text("Registration (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(Modifier.height(Spacing.sm))
+        Text("FASTag (optional)", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+        Spacer(Modifier.height(Spacing.xs))
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            KoodeChip("None", mode == FastagMode.NONE, { mode = FastagMode.NONE })
+            KoodeChip("Annual pass", mode == FastagMode.ANNUAL_PASS, { mode = FastagMode.ANNUAL_PASS })
+            KoodeChip("Amount", mode == FastagMode.AMOUNT, { mode = FastagMode.AMOUNT })
+        }
+        when (mode) {
+            FastagMode.ANNUAL_PASS -> {
+                Spacer(Modifier.height(Spacing.sm))
+                OutlinedTextField(
+                    value = crossings, onValueChange = { crossings = it.filter(Char::isDigit).take(5) },
+                    label = { Text("Crossings left") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
+                )
+            }
+            FastagMode.AMOUNT -> {
+                Spacer(Modifier.height(Spacing.sm))
+                OutlinedTextField(
+                    value = amount,
+                    onValueChange = { s -> amount = s.filter { it.isDigit() || it == '.' }.take(8) },
+                    label = { Text("Amount left (₹)") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
+                )
+            }
+            FastagMode.NONE -> {}
+        }
+        Spacer(Modifier.height(Spacing.sm))
+        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            Box(Modifier.weight(1f)) {
+                PrimaryButton(
+                    if (existing == null) "Add" else "Save",
+                    {
+                        onSave(
+                            kind, name, reg, mode,
+                            crossings.toIntOrNull(),
+                            amount.toDoubleOrNull()
+                        )
+                    },
+                    height = 46.dp
+                )
+            }
+            Box(Modifier.weight(1f)) {
+                SecondaryButton("Cancel", onCancel, height = 46.dp)
+            }
+        }
+    }
+}
+
+/** Whole rupees plainly, paise only when the balance carries them. */
+private fun rupees(amount: Double): String {
+    val n = if (amount % 1.0 == 0.0) "%,.0f".format(amount) else "%,.2f".format(amount)
+    return "₹$n"
 }
 
 @Composable

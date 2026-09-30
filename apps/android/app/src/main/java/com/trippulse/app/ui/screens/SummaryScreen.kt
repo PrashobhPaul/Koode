@@ -76,7 +76,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val report by vm.report.collectAsStateWithLifecycle()
     val originLabel by vm.originLabel.collectAsStateWithLifecycle()
     val destLabel by vm.destLabel.collectAsStateWithLifecycle()
-    val passBalance by vm.passBalance.collectAsStateWithLifecycle()
+    val fastagSummary by vm.fastagSummary.collectAsStateWithLifecycle()
     val measures = vm.measures
 
     fun export(kind: PdfKind) {
@@ -88,7 +88,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 val doc = when (kind) {
                     PdfKind.TIMELINE -> JourneyDocuments.timeline(
                         t, events, r, measures, path = samples.map { it.lat to it.lng },
-                        originLabel = originLabel, destLabel = destLabel, passBalance = passBalance
+                        originLabel = originLabel, destLabel = destLabel, fastagSummary = fastagSummary
                     )
                     PdfKind.MONEY -> JourneyDocuments.money(
                         t, expenses, r, measures,
@@ -157,12 +157,13 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 }
             } else {
                 JourneyDashboard(r, measures, TransportCatalog.isPrivate(trip?.transportMode))
-                // FASTag annual pass — only when the traveller configured one.
-                // The journey toll count and the pass balance are separate.
-                passBalance?.let { balance ->
-                    KoodeCard(title = "FASTag annual pass") {
+                // FASTag — only when this journey's vehicle has a tracked
+                // balance. The journey toll count and the vehicle balance are
+                // separate numbers.
+                fastagSummary?.let { balance ->
+                    KoodeCard(title = "FASTag") {
                         DetailRow("Tolls crossed this journey", r.tollsCrossed.toString(), leading = "🛣")
-                        DetailRow("Current balance", balance.toString(), leading = "🎫")
+                        DetailRow("Balance", balance, leading = "🎫")
                     }
                 }
             }

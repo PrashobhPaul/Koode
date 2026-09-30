@@ -12,7 +12,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.trippulse.app.TripPulseApp
-import com.trippulse.app.core.FastagPass
 import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.KoodeSettings
 import com.trippulse.app.core.LocationCadence
@@ -31,6 +30,7 @@ import com.trippulse.app.data.local.ExpenseEntity
 import com.trippulse.app.data.local.LocationSampleEntity
 import com.trippulse.app.data.local.SavedPlaceEntity
 import com.trippulse.app.data.local.TripLegEntity
+import com.trippulse.app.data.local.VehicleEntity
 import com.trippulse.app.data.local.TripStateEntity
 import com.trippulse.app.data.local.ViewerTripEntity
 import com.trippulse.app.data.routing.PlaceSearch
@@ -1273,10 +1273,13 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     val originLabel = MutableStateFlow<String?>(null)
     val destLabel = MutableStateFlow<String?>(null)
 
-    /** The user's configured FASTag pass balance, or null when unconfigured. */
-    val passBalance = MutableStateFlow<Int?>(
-        graph.fastagPass.current.let { if (it.configured) it.balance else null }
-    )
+    /**
+     * The FASTag balance of the vehicle this journey was made on, as a ready-to-
+     * show line ("47 crossings left", "₹1,240 left"), or null when the journey
+     * carried no registered vehicle with a tracked balance. Resolved by matching
+     * the journey's registration plate to the traveller's vehicle registry.
+     */
+    val fastagSummary = MutableStateFlow<String?>(null)
 
     /** Distances, speeds and money in the traveller's own units. */
     val measures: Measures get() = graph.measures()
@@ -1315,6 +1318,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                         t.destName,
                         com.trippulse.app.domain.PlaceResolver.nearestSavedLabel(saved, t.destLat, t.destLng)
                     )
+                    fastagSummary.value = resolveFastagSummary(lg)
                     recompute(t, ev, sp, lg, graph.db.expenseDao().allForTrip(tripId))
                 }
             } catch (e: Exception) {
@@ -1366,6 +1370,39 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 topSpeedKmh = sp.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6)
             )
         )
+    }
+
+    /**
+     * The FASTag balance line for the vehicle this journey used, or null.
+     *
+     * The journey stores its registration in a leg's details; we normalise that
+     * plate and look for a matching vehicle in the registry with a tracked
+     * balance. FASTag is optional throughout, so any missing piece — no plate on
+     * the journey, no matching vehicle, or a vehicle with mode NONE — simply
+     * yields null and the summary shows nothing about a pass.
+     */
+    private suspend fun resolveFastagSummary(legs: List<TripLegEntity>): String? {
+        val plate = legs.asSequence()
+            .mapNotNull { com.trippulse.app.domain.LegDetails.fromJson(it.detailsJson)[com.trippulse.app.domain.DetailKeys.REGISTRATION] }
+            .map { com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it) }
+            .firstOrNull { it.isNotBlank() } ?: return null
+        val vehicle = runCatching { graph.db.vehicleDao().all() }.getOrNull().orEmpty()
+            .firstOrNull {
+                it.registration.isNotBlank() &&
+                    com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it.registration) == plate
+            } ?: return null
+        return when (com.trippulse.app.domain.fastag.FastagMode.fromKey(vehicle.fastagMode)) {
+            com.trippulse.app.domain.fastag.FastagMode.ANNUAL_PASS ->
+                vehicle.passCrossingsLeft?.let { "$it crossing${if (it == 1) "" else "s"} left" }
+            com.trippulse.app.domain.fastag.FastagMode.AMOUNT ->
+                vehicle.amountLeft?.let { amt ->
+                    // FASTag is a rupee wallet; format whole rupees plainly,
+                    // paise only when the balance actually carries them.
+                    val n = if (amt % 1.0 == 0.0) "%,.0f".format(amt) else "%,.2f".format(amt)
+                    "₹$n left"
+                }
+            com.trippulse.app.domain.fastag.FastagMode.NONE -> null
+        }
     }
 
     companion object {
@@ -1428,13 +1465,45 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
     fun setTollDetection(on: Boolean) =
         graph.settings.update { it.copy(tollDetectionEnabled = on) }
 
-    /** The user's FASTag annual-pass state (configured / balance). */
-    val fastagPass: StateFlow<FastagPass.State> = graph.fastagPass.state
+    // ---- vehicles (optional per-vehicle FASTag) ---------------------------
 
-    /** User sets or corrects the pass balance — becomes the new baseline. */
-    fun setPassBalance(value: Int) = graph.fastagPass.setBalance(value)
+    /** The traveller's saved vehicles, oldest first. May be empty. */
+    val vehicles: StateFlow<List<VehicleEntity>> =
+        graph.db.vehicleDao().allFlow()
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
-    fun clearPassBalance() = graph.fastagPass.clear()
+    /**
+     * Add a new vehicle or update an existing one (by [id]). Everything except
+     * the kind is optional: a bare "Bike" with no plate and no FASTag is valid,
+     * and FASTag details are only kept when the chosen mode uses them.
+     */
+    fun saveVehicle(
+        id: String?,
+        kind: com.trippulse.app.domain.fastag.VehicleKind,
+        name: String,
+        registration: String,
+        fastagMode: com.trippulse.app.domain.fastag.FastagMode,
+        passCrossingsLeft: Int?,
+        amountLeft: Double?
+    ) = viewModelScope.launch {
+        val plate = com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(registration)
+        graph.db.vehicleDao().upsert(
+            VehicleEntity(
+                id = id ?: java.util.UUID.randomUUID().toString(),
+                kind = kind.name,
+                name = InputRules.itemText(name),
+                registration = plate,
+                fastagMode = fastagMode.name,
+                passCrossingsLeft = passCrossingsLeft
+                    ?.takeIf { fastagMode == com.trippulse.app.domain.fastag.FastagMode.ANNUAL_PASS },
+                amountLeft = amountLeft
+                    ?.takeIf { fastagMode == com.trippulse.app.domain.fastag.FastagMode.AMOUNT },
+                updatedAtMs = System.currentTimeMillis()
+            )
+        )
+    }
+
+    fun deleteVehicle(id: String) = viewModelScope.launch { graph.db.vehicleDao().delete(id) }
 
     /** What the app has worked out for this device right now, for display. */
     fun detectedRegionSummary(): String {

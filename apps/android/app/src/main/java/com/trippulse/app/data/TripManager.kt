@@ -1,7 +1,6 @@
 package com.trippulse.app.data
 
 import android.content.Context
-import com.trippulse.app.core.FastagPass
 import com.trippulse.app.core.Geo
 import com.trippulse.app.core.SettingsStore
 import com.trippulse.app.core.TimeFmt
@@ -91,7 +90,6 @@ class TripManager(
     private val connectivity: ConnectivityObserver,
     private val notifier: Notifier,
     private val settings: SettingsStore,
-    private val fastagPass: FastagPass,
     private val appScope: CoroutineScope,
     private val cfg: TripConfig = TripConfig.DEFAULT
 ) {
@@ -1725,7 +1723,48 @@ class TripManager(
             t.tripId, EventTypes.TOLL_CROSSED, EventSource.FASTAG_SMS,
             crossing.crossedAtMs, s.lat, s.lng, payload, false
         )
-        fastagPass.applyCrossing(crossing.passType)
+        applyCrossingToVehicle(crossing)
+    }
+
+    /**
+     * Count a recorded crossing off the matching vehicle's FASTag balance.
+     *
+     * The vehicle is found by plate: the SMS's normalised registration against
+     * the registry the traveller keeps in their profile. Only that vehicle is
+     * touched, and only in its own currency of balance — a crossing off an
+     * annual pass, or the debited rupees off a prepaid amount. No plate in the
+     * SMS, no registered match, or no balance configured → nothing changes.
+     * FASTag details are entirely optional, so this is a no-op for anyone who
+     * never filled them in.
+     */
+    private suspend fun applyCrossingToVehicle(crossing: TollCrossing) {
+        val smsPlate = crossing.vehicle
+            ?.let { com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it) }
+            ?.takeIf { it.isNotBlank() } ?: return
+        val vehicles = runCatching { db.vehicleDao().all() }.getOrNull().orEmpty()
+        val match = vehicles.firstOrNull {
+            it.registration.isNotBlank() &&
+                com.trippulse.app.domain.fastag.TollSmsParser.normalizePlate(it.registration) == smsPlate
+        } ?: return
+
+        val now = System.currentTimeMillis()
+        val updated = when (com.trippulse.app.domain.fastag.FastagMode.fromKey(match.fastagMode)) {
+            com.trippulse.app.domain.fastag.FastagMode.ANNUAL_PASS -> {
+                val left = match.passCrossingsLeft ?: return
+                if (!com.trippulse.app.domain.fastag.PassLedger.qualifies(crossing.passType)) return
+                match.copy(passCrossingsLeft = (left - 1).coerceAtLeast(0), updatedAtMs = now)
+            }
+            com.trippulse.app.domain.fastag.FastagMode.AMOUNT -> {
+                val left = match.amountLeft ?: return
+                val debited = crossing.amount ?: return
+                match.copy(
+                    amountLeft = com.trippulse.app.domain.fastag.PassLedger.amountAfter(left, debited),
+                    updatedAtMs = now
+                )
+            }
+            com.trippulse.app.domain.fastag.FastagMode.NONE -> return
+        }
+        runCatching { db.vehicleDao().upsert(updated) }
     }
 
     /** The active journey's registered plate, normalised, or null. */

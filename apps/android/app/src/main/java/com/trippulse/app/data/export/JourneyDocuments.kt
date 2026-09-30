@@ -284,8 +284,12 @@ object JourneyDocuments {
         /** Canonical end labels; default to the stored names. */
         originLabel: String? = null,
         destLabel: String? = null,
-        /** The user's configured FASTag pass balance, or null when unconfigured. */
-        passBalance: Int? = null
+        /**
+         * The journey vehicle's FASTag balance as a ready-to-print line
+         * ("47 crossings left", "₹1,240 left"), or null when the journey carried
+         * no registered vehicle with a tracked balance.
+         */
+        fastagSummary: String? = null
     ): JourneyPdf.Document {
         val origin = originLabel?.takeIf { it.isNotBlank() } ?: trip.originName
         val dest = destLabel?.takeIf { it.isNotBlank() } ?: trip.destName
@@ -338,15 +342,15 @@ object JourneyDocuments {
             }
         )
 
-        // FASTag annual pass — only when the traveller configured a balance.
-        // Journey toll count and pass balance are deliberately separate numbers.
-        val fastag = if (passBalance != null) {
+        // FASTag — only when the journey's vehicle has a tracked balance.
+        // Journey toll count and the vehicle's balance are separate numbers.
+        val fastag = if (fastagSummary != null) {
             JourneyPdf.Section(
-                title = "FASTag annual pass",
+                title = "FASTag",
                 header = null,
                 rows = listOf(
                     JourneyPdf.Row("", "Tolls crossed this journey", report.tollsCrossed.toString()),
-                    JourneyPdf.Row("", "Current balance", passBalance.toString())
+                    JourneyPdf.Row("", "Balance", fastagSummary)
                 )
             )
         } else null

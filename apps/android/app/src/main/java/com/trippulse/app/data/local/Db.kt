@@ -481,6 +481,46 @@ interface SavedPlaceDao {
     suspend fun all(): List<SavedPlaceEntity>
 }
 
+/**
+ * A vehicle the traveller has saved in their profile — optional, and never a
+ * prerequisite for a journey. Registration and FASTag details are optional
+ * too: a vehicle can be just "Bike" with nothing else. When a vehicle carries
+ * a registration and a FASTag, toll SMS matched to that plate keep its balance
+ * up to date (annual-pass crossings, or a money balance).
+ */
+@Entity(tableName = "vehicles")
+data class VehicleEntity(
+    @PrimaryKey val id: String,
+    /** "CAR" or "BIKE". */
+    val kind: String,
+    /** Optional friendly label, e.g. "Swift" or "Amma's Activa". */
+    val name: String = "",
+    /** Normalised plate (letters+digits, upper-case); may be blank. */
+    val registration: String = "",
+    /** "NONE", "ANNUAL_PASS" or "AMOUNT". */
+    val fastagMode: String = "NONE",
+    /** Crossings left, for an annual pass. */
+    val passCrossingsLeft: Int? = null,
+    /** Money balance left, for a normal FASTag. */
+    val amountLeft: Double? = null,
+    val updatedAtMs: Long
+)
+
+@Dao
+interface VehicleDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(v: VehicleEntity)
+
+    @Query("DELETE FROM vehicles WHERE id = :id")
+    suspend fun delete(id: String)
+
+    @Query("SELECT * FROM vehicles ORDER BY updatedAtMs ASC")
+    fun allFlow(): Flow<List<VehicleEntity>>
+
+    @Query("SELECT * FROM vehicles ORDER BY updatedAtMs ASC")
+    suspend fun all(): List<VehicleEntity>
+}
+
 @Dao
 interface RecentDestinationDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -571,9 +611,10 @@ interface ViewerDao {
         SavedPlaceEntity::class,
         ExpenseEntity::class,
         TripLegEntity::class,
-        RecentDestinationEntity::class
+        RecentDestinationEntity::class,
+        VehicleEntity::class
     ],
-    version = 9,
+    version = 10,
     exportSchema = false
 )
 abstract class TripPulseDb : RoomDatabase() {
@@ -587,6 +628,7 @@ abstract class TripPulseDb : RoomDatabase() {
     abstract fun recentDestinationDao(): RecentDestinationDao
     abstract fun expenseDao(): ExpenseDao
     abstract fun legDao(): LegDao
+    abstract fun vehicleDao(): VehicleDao
 
     companion object {
         @Volatile private var INSTANCE: TripPulseDb? = null
@@ -745,6 +787,18 @@ abstract class TripPulseDb : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_9_10 = object : androidx.room.migration.Migration(9, 10) {
+            override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS vehicles (" +
+                        "id TEXT NOT NULL PRIMARY KEY, kind TEXT NOT NULL, " +
+                        "name TEXT NOT NULL, registration TEXT NOT NULL, " +
+                        "fastagMode TEXT NOT NULL, passCrossingsLeft INTEGER, " +
+                        "amountLeft REAL, updatedAtMs INTEGER NOT NULL)"
+                )
+            }
+        }
+
         /**
          * No destructive fallback. A journey in progress is irreplaceable data;
          * losing it because a migration was missing would be the worst possible
@@ -760,7 +814,7 @@ abstract class TripPulseDb : RoomDatabase() {
          */
         val ALL_MIGRATIONS: Array<androidx.room.migration.Migration> = arrayOf(
             MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5,
-            MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9
+            MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10
         )
 
         fun get(context: Context): TripPulseDb =

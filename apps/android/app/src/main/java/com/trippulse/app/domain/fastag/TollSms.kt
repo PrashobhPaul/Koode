@@ -20,7 +20,14 @@ data class TollCrossing(
     /** Parsed from the SMS when present, else the receive time. */
     val crossedAtMs: Long,
     /** Best-effort issuer/bank, e.g. "ICICI"; may be null. */
-    val issuer: String?
+    val issuer: String?,
+    /**
+     * The toll amount debited, in rupees, when the SMS stated one — used to
+     * count down a money-balance FASTag. Null for an annual-pass crossing or
+     * any message that named no debit. Trailing so existing callers/tests are
+     * unaffected.
+     */
+    val amount: Double? = null
 ) {
     /**
      * A stable key for the same real-world crossing, so the same SMS (or a
@@ -76,7 +83,22 @@ object TollSmsParser {
             else -> TollPassType.UNKNOWN
         }
         val crossedAt = extractTime(body) ?: receivedAtMs
-        return TollCrossing(plaza, vehicle, passType, crossedAt, extractIssuer(body, sender))
+        return TollCrossing(plaza, vehicle, passType, crossedAt, extractIssuer(body, sender), extractAmount(body))
+    }
+
+    // A debited toll amount, anchored to a debit verb so a balance line
+    // ("Avl bal Rs.512") or a recharge figure is never mistaken for the toll.
+    private val AMOUNT_PATTERNS = listOf(
+        Regex("""(?:rs\.?|inr|₹)\s*([0-9]+(?:\.[0-9]{1,2})?)\s*(?:has been\s+|is\s+)?(?:debited|deducted|paid)""", RegexOption.IGNORE_CASE),
+        Regex("""(?:debited|deducted|paid)\s*(?:of|:|amount)?\s*(?:rs\.?|inr|₹)\s*([0-9]+(?:\.[0-9]{1,2})?)""", RegexOption.IGNORE_CASE)
+    )
+
+    /** The toll amount debited, in rupees, or null when the SMS named none. */
+    fun extractAmount(b: String): Double? {
+        for (p in AMOUNT_PATTERNS) {
+            p.find(b)?.groupValues?.getOrNull(1)?.toDoubleOrNull()?.let { if (it > 0.0) return it }
+        }
+        return null
     }
 
     private val PLAZA_PATTERNS = listOf(
