@@ -74,3 +74,22 @@ Supabase free tier (as of 2025): 500 MB database, 5 GB egress/month, pauses
 after ~1 week of inactivity (which the maintenance workflow prevents). A trip
 uses a few MB at most and is deleted an hour after the traveller ends the journey, so a personal /
 family deployment stays far inside the free limits indefinitely.
+
+## Toll plazas (location-based toll counting)
+
+Koode counts toll crossings on car and bike journeys from location. It reads
+no SMS and needs no SMS permission, which is what Google Play Protect blocks
+in sideloaded apps. The toll booth list comes from OpenStreetMap
+(`barrier=toll_booth`, © OpenStreetMap contributors, ODbL):
+
+- `tp_toll_plazas` holds the booths. `pg_cron` refreshes it every Sunday
+  (`tp_toll_refresh_request`, then `tp_toll_refresh_collect` every 5 minutes
+  to load the answers). A failed or partial refresh never empties the list.
+- The app calls `tp_toll_plazas(p_since_ms)` and re-downloads only when the
+  list changed, at most every few days.
+- Each release bundles the current list into the APK (the release workflow's
+  "Bundle the toll plaza list" step), so a first journey made offline still
+  counts tolls.
+
+To refresh by hand (SQL editor): `select tp_toll_refresh_request();`, wait a
+minute or two, then `select tp_toll_refresh_collect();`.

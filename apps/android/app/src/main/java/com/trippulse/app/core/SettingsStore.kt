@@ -82,12 +82,11 @@ data class KoodeSettings(
      */
     val shareTimelineOnWhatsApp: Boolean = false,
     /**
-     * Recognise FASTag/toll SMS on this device and turn them into toll events.
-     * Off by default and gated on the RECEIVE_SMS runtime permission — reading
-     * SMS is sensitive, so it is strictly opt-in. Parsing is on-device only;
-     * the SMS body is never stored or uploaded.
+     * Count toll crossings on car and bike journeys from location: the
+     * vehicle's path through a known toll plaza. No SMS and no extra
+     * permission, so it is on by default.
      */
-    val tollDetectionEnabled: Boolean = false
+    val tollDetectionEnabled: Boolean = true
 ) {
     companion object {
         const val THEME_SYSTEM = "SYSTEM"
@@ -131,7 +130,7 @@ class SettingsStore(context: Context) {
         unitPreference = UnitPreference.fromKey(prefs.getString(KEY_UNITS, null)),
         currencyCode = prefs.getString(KEY_CURRENCY, "").orEmpty(),
         shareTimelineOnWhatsApp = prefs.getBoolean(KEY_WHATSAPP, false),
-        tollDetectionEnabled = prefs.getBoolean(KEY_TOLL_SMS, false)
+        tollDetectionEnabled = prefs.getBoolean(KEY_TOLL_AUTO, true)
     )
 
     private fun write(s: KoodeSettings) {
@@ -146,7 +145,7 @@ class SettingsStore(context: Context) {
             .putString(KEY_UNITS, s.unitPreference.key)
             .putString(KEY_CURRENCY, s.currencyCode)
             .putBoolean(KEY_WHATSAPP, s.shareTimelineOnWhatsApp)
-            .putBoolean(KEY_TOLL_SMS, s.tollDetectionEnabled)
+            .putBoolean(KEY_TOLL_AUTO, s.tollDetectionEnabled)
             .apply()
     }
 
@@ -162,6 +161,7 @@ class SettingsStore(context: Context) {
         const val KEY_UNITS = "unit_preference"
         const val KEY_CURRENCY = "currency_code"
         const val KEY_WHATSAPP = "share_timeline_whatsapp"
-        const val KEY_TOLL_SMS = "toll_detection_enabled"
+        /** Location-based toll counting (replaced SMS reading, whose opt-in key was "toll_detection_enabled"). */
+        const val KEY_TOLL_AUTO = "toll_auto_enabled"
     }
 }

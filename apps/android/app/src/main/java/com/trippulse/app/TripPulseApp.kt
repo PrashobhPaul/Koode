@@ -46,6 +46,7 @@ class TripPulseApp : Application() {
                 if (online) {
                     // An approval made offline reaches the followers now.
                     graph.publisher.resume()
+                    graph.tollPlazas.refresh()
                     val trip = graph.db.tripDao().activeTrip() ?: return@collectLatest
                     graph.sync.drain(trip)
                 }

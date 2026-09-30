@@ -80,6 +80,8 @@ object TransportCatalog {
     )
 
     private val privateActions: List<QuickAction> = listOf(
+        // Koode counts plazas from location; this is for the one it missed.
+        QuickAction(EventTypes.TOLL_CROSSED, "🛣", "Toll crossed", "Toll crossed"),
         QuickAction(EventTypes.PASSENGER_JOINED, "👤", "Passenger joined", "A passenger joined"),
         QuickAction(EventTypes.PASSENGER_LEFT, "👋", "Passenger left", "A passenger left"),
         QuickAction(EventTypes.MEDICINE, "💊", "Medicine", "Medicine taken"),

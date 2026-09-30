@@ -1,18 +1,15 @@
 package com.trippulse.app.ui.screens
 
 import kotlinx.coroutines.launch
-import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.ContactsContract
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -113,9 +110,6 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
     }
     fun pickContact(slot: Int) { pickingSlot = slot; contactPicker.launch(Unit) }
 
-    val smsPermission = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { granted -> vm.setTollDetection(granted) }
     // Saved places use the same picker as journey planning: search, Google
     // Maps (share or copy), current location or a dropped pin — then a name.
     var addingPlace by remember { mutableStateOf(false) }
@@ -295,30 +289,27 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
         }
     }
 
-    // ---- FASTag toll updates ----
-    KoodeCard(title = "FASTag toll updates") {
+    // ---- Toll crossings ----
+    KoodeCard(title = "Toll crossings") {
         Text(
-            "Recognise toll-plaza SMS on this phone and add each crossing to your journey timeline. " +
-                "Messages are read on this device only — the plaza, vehicle and time are kept, " +
-                "the message itself is never stored or uploaded.",
+            "On car and bike journeys, Koode counts each toll plaza you drive through, from your " +
+                "location alone — no SMS is read. Missed one? Tap \"Toll crossed\" in Add a note.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
         Spacer(Modifier.height(Spacing.sm))
-        ToggleRow("Detect toll crossings from SMS", settings.tollDetectionEnabled) { on ->
-            if (on) {
-                val granted = ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.RECEIVE_SMS
-                ) == PackageManager.PERMISSION_GRANTED
-                if (granted) vm.setTollDetection(true) else smsPermission.launch(Manifest.permission.RECEIVE_SMS)
-            } else {
-                vm.setTollDetection(false)
-            }
+        ToggleRow("Count toll crossings automatically", settings.tollDetectionEnabled) { on ->
+            vm.setTollDetection(on)
         }
         Spacer(Modifier.height(Spacing.sm))
         Text(
-            "Add a vehicle below with its FASTag and Koode keeps that vehicle's balance up to date " +
-                "as toll SMS come in — matched by number plate.",
+            "Add your vehicle below with its FASTag annual pass, and each crossing is counted off " +
+                "its remaining trips. Toll amounts are asked about privately, after the crossing.",
             color = colors.textMid, style = MaterialTheme.typography.bodySmall
+        )
+        Text(
+            "Toll plaza locations © OpenStreetMap contributors (ODbL).",
+            color = colors.textLow, style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier.padding(top = Spacing.xs)
         )
     }
 
@@ -521,8 +512,8 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
  * The traveller's garage — cars and bikes, each with an optional registration
  * and optional FASTag. Nothing here is required: a vehicle can be a bare
  * "Bike", and a person who never opens this card is unaffected everywhere else.
- * When a vehicle does carry a plate and a FASTag, toll SMS matched to that
- * plate keep its balance current.
+ * When the journey's vehicle is on a FASTag annual pass, each toll crossing
+ * Koode counts on that journey comes off its remaining trips.
  */
 @Composable
 private fun VehiclesCard(

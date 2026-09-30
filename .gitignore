@@ -30,3 +30,6 @@ supabase/.temp/
 
 # Node
 functions/node_modules/
+
+# Generated at release time (toll plaza snapshot)
+apps/android/app/src/main/assets/toll_plazas.*
