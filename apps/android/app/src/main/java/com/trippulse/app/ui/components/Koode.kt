@@ -40,8 +40,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -106,7 +104,7 @@ fun KoodeCard(
                 ) else Modifier
             )
     ) {
-        Column(Modifier.padding(Spacing.lg)) {
+        Column(Modifier.padding(LocalDims.current.cardPadding)) {
             if (title != null) {
                 Text(
                     title.uppercase(),
@@ -188,7 +186,7 @@ fun PrimaryButton(
     val tint = accent ?: colors.accent
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
-    val haptics = LocalHapticFeedback.current
+    val haptics = rememberHaptics()
     val scale by animateFloatAsState(
         targetValue = if (pressed && enabled) Motion.pressScale else 1f,
         animationSpec = spring(dampingRatio = 0.6f), label = "btnPress"
@@ -208,7 +206,7 @@ fun PrimaryButton(
             .clickable(
                 interactionSource = interaction, indication = null, enabled = enabled
             ) {
-                haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                haptics.click()
                 onClick()
             },
         contentAlignment = Alignment.Center
@@ -296,6 +294,7 @@ fun KoodeChip(
         animationSpec = tween(Motion.fast), label = "chipBg"
     )
     val fg = if (selected) (if (colors.isDark) Color(0xFF07131D) else Color.White) else colors.textMid
+    val haptics = rememberHaptics()
 
     Box(
         modifier
@@ -306,7 +305,10 @@ fun KoodeChip(
                 BorderStroke(1.dp, if (selected) Color.Transparent else colors.outline),
                 RoundedCornerShape(Radii.pill)
             )
-            .clickable(interactionSource = interaction, indication = null, onClick = onClick)
+            .clickable(interactionSource = interaction, indication = null) {
+                haptics.tick()
+                onClick()
+            }
             .padding(horizontal = Spacing.lg, vertical = 10.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

@@ -50,6 +50,7 @@ import com.trippulse.app.ui.DriverVm
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.SummaryVm
 import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.BackButton
 import com.trippulse.app.ui.components.DetailRow
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.LocalWindowClass
@@ -182,8 +183,9 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
             .verticalScroll(rememberScrollState())
             .statusBarsPadding()
     ) {
-        Spacer(Modifier.height(Spacing.lg))
+        Spacer(Modifier.height(Spacing.xs))
         AdaptiveContainer {
+            BackButton({ nav.popBackStack() })
             // "Reached Thrissur" only when arrival was detected; "safely" only
             // when the traveller said so themselves.
             val done = trip?.completedAtMs != null

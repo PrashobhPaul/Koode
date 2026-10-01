@@ -69,7 +69,6 @@ import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeHeroCard
 import com.trippulse.app.ui.components.KoodeIcons
 import com.trippulse.app.ui.components.PersonAvatar
-import com.trippulse.app.ui.components.KoodeMarkTile
 import com.trippulse.app.ui.components.LocalWindowClass
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.PulsingDot
@@ -81,6 +80,41 @@ import com.trippulse.app.ui.theme.Motion
 import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
 import kotlinx.coroutines.launch
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.foundation.layout.windowInsetsTopHeight
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.snapshotFlow
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
+import com.trippulse.app.ui.components.ActivityItem
+import com.trippulse.app.ui.components.ActivitySheet
+import com.trippulse.app.ui.components.AdaptiveGrid
+import com.trippulse.app.ui.components.KoodeBottomBar
+import com.trippulse.app.ui.components.KoodeFab
+import com.trippulse.app.ui.components.KoodeNavRail
+import com.trippulse.app.ui.components.KoodeTopBar
+import com.trippulse.app.ui.components.LocalDims
+import com.trippulse.app.ui.components.NavBadge
+import com.trippulse.app.ui.components.NavTab
+import com.trippulse.app.ui.components.TopBarAction
+import com.trippulse.app.ui.components.rememberHaptics
+import kotlinx.coroutines.flow.drop
+import kotlin.math.absoluteValue
+import kotlin.math.roundToInt
 
 /**
  * The Koode shell: four destinations and one primary action.
@@ -90,9 +124,13 @@ import kotlinx.coroutines.launch
  *   👥 People    my circle, and who I follow
  *   ⚙️ More      places, contacts, behaviour, privacy
  *
- * Tabs are a pager, so they can be swiped as well as tapped — Android users
- * reach for the gesture first, and a tab bar that only responds to taps feels
- * like a web page rather than an app.
+ * The frame follows the global apps people already know by feel: the Koode
+ * mark and wordmark top-left with actions top-right (follow, activity, me),
+ * icon + label tabs at the bottom on a phone and a navigation rail on a
+ * tablet or a phone held sideways. Tabs are a pager, so they can be swiped
+ * as well as tapped, with a detent felt under the finger as each one passes.
+ * On a phone the top bar slides away while reading down a page and returns
+ * on the way back up; tapping the current tab again returns it to the top.
  */
 @Composable
 fun HomeScreen(nav: NavHostController) {
@@ -104,9 +142,17 @@ fun HomeScreen(nav: NavHostController) {
     val placeCount by vm.savedPlaceCount.collectAsStateWithLifecycle()
     val update by vm.update.collectAsStateWithLifecycle()
 
-    val pager = rememberPagerState(pageCount = { 4 })
+    val windowClass = LocalWindowClass.current
+    val dims = LocalDims.current
+    val haptics = rememberHaptics()
+    val uriHandler = LocalUriHandler.current
+    val density = LocalDensity.current
+
+    val pager = rememberPagerState(pageCount = { TAB_COUNT })
+    val scrolls = listOf(rememberScrollState(), rememberScrollState(), rememberScrollState(), rememberScrollState())
     val scope = rememberCoroutineScope()
     var deleteTarget by remember { mutableStateOf<String?>(null) }
+    var showActivity by rememberSaveable { mutableStateOf(false) }
 
     val context = LocalContext.current
     var profileVersion by remember { mutableIntStateOf(0) }
@@ -121,63 +167,224 @@ fun HomeScreen(nav: NavHostController) {
         if (!showWelcome && !Profile.isComplete(context)) pager.scrollToPage(3)
     }
 
-    fun goTo(page: Int) = scope.launch { pager.animateScrollToPage(page) }
+    // ---- the collapsing top bar (phones) -------------------------------------
+    val collapses = windowClass.isCompact
+    val barPx = with(density) { (dims.topBarHeight + 1.dp).toPx() }
+    var barOffset by remember { mutableFloatStateOf(0f) }
+    val collapse = remember(barPx, collapses) {
+        object : NestedScrollConnection {
+            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+                if (collapses && available.y != 0f) {
+                    barOffset = (barOffset + available.y).coerceIn(-barPx, 0f)
+                }
+                return Offset.Zero
+            }
+        }
+    }
 
-    Box(Modifier.fillMaxSize().background(colors.background)) {
-        Column(Modifier.fillMaxSize()) {
-            HorizontalPager(
-                state = pager,
-                modifier = Modifier.weight(1f),
-                beyondViewportPageCount = 1
-            ) { page ->
-                Column(
-                    Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .statusBarsPadding()
-                ) {
-                    Spacer(Modifier.height(Spacing.md))
-                    AdaptiveContainer {
-                        when (page) {
-                            0 -> HomeFeed(nav, vm, active, allTrips, following, profileComplete, update) { goTo(3) }
-                            1 -> JourneysSection(nav, active, allTrips) { deleteTarget = it }
-                            2 -> PeopleSection(nav, vm, following, profileComplete) { goTo(3) }
-                            else -> SettingsTab(onProfileChanged = { profileVersion++ })
-                        }
+    // ---- tabs: tap, re-tap, swipe --------------------------------------------
+    var tabAnimating by remember { mutableStateOf(false) }
+    fun goTo(page: Int) {
+        barOffset = 0f
+        scope.launch {
+            tabAnimating = true
+            try { pager.animateScrollToPage(page) } finally { tabAnimating = false }
+        }
+    }
+    fun selectTab(page: Int) {
+        if (pager.currentPage == page) {
+            // Tapping the tab you're on takes its page back to the top.
+            barOffset = 0f
+            scope.launch { scrolls[page].animateScrollTo(0) }
+        } else goTo(page)
+    }
+    // A detent under the finger as each tab passes during a swipe.
+    val currentHaptics by rememberUpdatedState(haptics)
+    LaunchedEffect(pager) {
+        snapshotFlow { pager.currentPage }.drop(1).collect {
+            if (pager.isScrollInProgress && !tabAnimating) currentHaptics.tick()
+            barOffset = 0f
+        }
+    }
+
+    // ---- what needs a look: the bell and the tab badges ----------------------
+    val now = System.currentTimeMillis()
+    val live = following.filter { !it.expired }
+    fun who(v: ViewerTripEntity) = vm.snapshot(v.accessKey)?.ownerName ?: v.label
+    val sos = live.filter { vm.snapshot(it.accessKey)?.sosActive == true }
+    val concern = live.filter { it !in sos && vm.followStatus(it.accessKey).level == "CONCERN" }
+    val waiting = live.filter { it !in sos && it !in concern && it.unreachableSinceMs != null }
+    val reviews = allTrips.filter { it.status == "COMPLETED" && vm.awaitingReview(it.tripId) }
+    val activity = buildList {
+        sos.forEach { v ->
+            add(ActivityItem("sos-${v.accessKey}", "${who(v)} raised an SOS", "Open their journey now.", colors.danger) {
+                nav.navigate(Routes.viewer(v.accessKey))
+            })
+        }
+        concern.forEach { v ->
+            val reason = vm.followStatus(v.accessKey).reason
+            add(ActivityItem("concern-${v.accessKey}", "${who(v)}'s journey needs a look", reason.ifBlank { "Open the journey to see what's happening." }, colors.danger) {
+                nav.navigate(Routes.viewer(v.accessKey))
+            })
+        }
+        waiting.forEach { v ->
+            add(ActivityItem(
+                "waiting-${v.accessKey}", "Waiting for ${who(v)}'s signal",
+                "Last heard ${TimeFmt.ago(now, v.lastSeenAtMs ?: v.joinedAtMs)} — about the signal, not them", colors.warn
+            ) { nav.navigate(Routes.viewer(v.accessKey)) })
+        }
+        reviews.forEach { t ->
+            add(ActivityItem(
+                "review-${t.tripId}", "Review your journey",
+                "${t.originName} → ${t.destName} · followers see it only once you approve", colors.accent
+            ) { nav.navigate(Routes.summary(t.tripId)) })
+        }
+        update?.let { u ->
+            add(ActivityItem("update", "Koode ${u.versionName} is available", "Updating never affects a journey in progress.", colors.traveller) {
+                uriHandler.openUri(u.downloadUrl)
+            })
+        }
+        if (!profileComplete) {
+            add(ActivityItem("setup", "Finish setting up Koode", Profile.missing(context).joinToString(" · "), colors.warn) { goTo(3) })
+        }
+    }
+    val urgent = sos.isNotEmpty() || concern.isNotEmpty()
+    val tabs = listOf(
+        NavTab("Home", KoodeIcons.Home, KoodeIcons.HomeSelected, if (urgent) NavBadge(0, colors.danger) else null),
+        NavTab("Journeys", KoodeIcons.Journeys, KoodeIcons.JourneysSelected, if (reviews.isNotEmpty()) NavBadge(reviews.size, colors.accent) else null),
+        NavTab("People", KoodeIcons.Circle, KoodeIcons.CircleSelected, if (live.isNotEmpty()) NavBadge(live.size, colors.traveller) else null),
+        NavTab("More", KoodeIcons.More, KoodeIcons.MoreSelected, if (!profileComplete || update != null) NavBadge(0, colors.warn) else null)
+    )
+
+    // ---- the one primary action ----------------------------------------------
+    // One journey at a time. While one is running this is the way back into
+    // it rather than the way to start another: two live journeys would mean
+    // two claims about where one person is, and whoever is following would
+    // have no way to know which is true.
+    val liveTrip = active
+    val fabLabel = if (liveTrip != null) "Your journey" else "Start a journey"
+    val fabEnabled = profileComplete || liveTrip != null
+    val onFab = {
+        when {
+            liveTrip != null -> nav.navigate(Routes.driver(liveTrip.tripId))
+            profileComplete -> nav.navigate(Routes.CREATE)
+            else -> goTo(3)
+        }
+    }
+    val fabIcon: @Composable () -> Unit = {
+        if (liveTrip != null) PulsingDot(androidx.compose.material3.LocalContentColor.current, size = 8.dp)
+        else Icon(KoodeIcons.Plus, contentDescription = null, modifier = Modifier.size(22.dp))
+    }
+
+    val elevated = scrolls[pager.currentPage].value > 0 || barOffset < 0f
+    val topBar: @Composable (Modifier) -> Unit = { modifier ->
+        KoodeTopBar(elevated = elevated, onBrand = { nav.navigate(Routes.ABOUT) }, modifier = modifier) {
+            TopBarAction(KoodeIcons.Follow, "Follow a journey", {
+                if (profileComplete) nav.navigate(Routes.JOIN) else goTo(3)
+            })
+            TopBarAction(
+                KoodeIcons.Bell, "Activity", { showActivity = true },
+                badge = if (activity.isNotEmpty()) NavBadge(activity.size, if (urgent) colors.danger else colors.accent) else null
+            )
+            val me = vm.greetingName().ifBlank { "You" }
+            Box(
+                Modifier
+                    .size(dims.actionTarget)
+                    .clip(CircleShape)
+                    .clickable(role = Role.Button, onClickLabel = "Your profile and settings") {
+                        haptics.click()
+                        selectTab(3)
+                    },
+                contentAlignment = Alignment.Center
+            ) {
+                PersonAvatar(me, dims.avatarSize, ring = if (pager.currentPage == 3) colors.accent else null)
+            }
+        }
+    }
+
+    // ---- the pages ------------------------------------------------------------
+    val pages: @Composable (Modifier, Dp) -> Unit = { modifier, topInset ->
+        HorizontalPager(
+            state = pager,
+            modifier = modifier.nestedScroll(collapse),
+            beyondViewportPageCount = 1
+        ) { page ->
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .graphicsLayer {
+                        // Pages ease back and dim slightly as they slide away.
+                        val off = ((pager.currentPage - page) + pager.currentPageOffsetFraction)
+                            .absoluteValue.coerceIn(0f, 1f)
+                        alpha = 1f - 0.35f * off
+                        val s = 1f - 0.04f * off
+                        scaleX = s; scaleY = s
                     }
-                    Spacer(Modifier.height(Spacing.scrollBottom))
+                    .verticalScroll(scrolls[page])
+            ) {
+                Spacer(Modifier.height(topInset + Spacing.sm))
+                AdaptiveContainer {
+                    when (page) {
+                        0 -> HomeFeed(nav, vm, active, allTrips, following, profileComplete, update) { goTo(3) }
+                        1 -> JourneysSection(nav, active, allTrips) { deleteTarget = it }
+                        2 -> PeopleSection(nav, vm, following, profileComplete) { goTo(3) }
+                        else -> SettingsTab(onProfileChanged = { profileVersion++ })
+                    }
+                }
+                Spacer(Modifier.height(Spacing.scrollBottom))
+            }
+        }
+    }
+
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(colors.background)
+            .windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Horizontal))
+    ) {
+        if (windowClass.isCompact) {
+            Column(Modifier.fillMaxSize()) {
+                Box(Modifier.weight(1f).fillMaxWidth()) {
+                    val statusBar = with(density) { WindowInsets.statusBars.getTop(this).toDp() }
+                    pages(Modifier.fillMaxSize(), statusBar + dims.topBarHeight + 1.dp)
+                    topBar(Modifier.offset { IntOffset(0, barOffset.roundToInt()) })
+                    // The status bar stays covered while the top bar is away.
+                    Box(
+                        Modifier
+                            .fillMaxWidth()
+                            .windowInsetsTopHeight(WindowInsets.statusBars)
+                            .background(if (elevated) colors.backgroundElevated else colors.background)
+                    )
+                    KoodeFab(
+                        label = fabLabel,
+                        icon = fabIcon,
+                        expanded = barOffset > -barPx / 2,
+                        enabled = fabEnabled,
+                        onClick = onFab,
+                        modifier = Modifier
+                            .align(Alignment.BottomEnd)
+                            .padding(end = windowClass.gutter, bottom = Spacing.lg)
+                    )
+                }
+                KoodeBottomBar(tabs, pager.currentPage, ::selectTab)
+            }
+        } else {
+            Column(Modifier.fillMaxSize()) {
+                topBar(Modifier)
+                Row(Modifier.weight(1f).fillMaxWidth()) {
+                    KoodeNavRail(tabs, pager.currentPage, ::selectTab) {
+                        KoodeFab(
+                            label = fabLabel,
+                            icon = fabIcon,
+                            expanded = false,
+                            enabled = fabEnabled,
+                            onClick = onFab,
+                            shape = RoundedCornerShape(Radii.md)
+                        )
+                    }
+                    pages(Modifier.weight(1f).fillMaxHeight(), 0.dp)
                 }
             }
-            KoodeTabBar(
-                selected = pager.currentPage,
-                onSelect = { goTo(it) },
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-
-        // The one primary action, floating clear of the tab bar.
-        Box(
-            Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = Spacing.xl, bottom = 96.dp)
-                .navigationBarsPadding()
-        ) {
-            // One journey at a time. While one is running this is the way
-            // back into it rather than the way to start another: two live
-            // journeys would mean two claims about where one person is, and
-            // whoever is following would have no way to know which is true.
-            val live = active
-            StartJourneyFab(
-                enabled = profileComplete,
-                live = live != null,
-                onClick = {
-                    when {
-                        live != null -> nav.navigate(Routes.driver(live.tripId))
-                        profileComplete -> nav.navigate(Routes.CREATE)
-                        else -> goTo(3)
-                    }
-                }
-            )
         }
 
         if (showWelcome) {
@@ -195,11 +402,16 @@ fun HomeScreen(nav: NavHostController) {
         }
     }
 
+    if (showActivity) {
+        ActivitySheet(activity) { showActivity = false }
+    }
+
     if (deleteTarget != null) {
         AlertDialog(
             onDismissRequest = { deleteTarget = null },
             confirmButton = {
                 TextButton(onClick = {
+                    haptics.heavy()
                     vm.deleteTrip(deleteTarget!!)
                     deleteTarget = null
                 }) { Text("Delete forever", color = colors.danger) }
@@ -211,102 +423,7 @@ fun HomeScreen(nav: NavHostController) {
     }
 }
 
-// ---------------------------------------------------------------------------
-// Navigation
-// ---------------------------------------------------------------------------
-
-private data class TabSpec(val icon: ImageVector, val label: String)
-
-private val TABS = listOf(
-    TabSpec(KoodeIcons.Home, "Home"),
-    TabSpec(KoodeIcons.Journeys, "Journeys"),
-    TabSpec(KoodeIcons.Circle, "People"),
-    TabSpec(KoodeIcons.More, "More")
-)
-
-/**
- * The tab bar: Koode's own line icons, the selected tab sitting on a soft
- * accent pill. Emoji were dropped here because they render differently on
- * every phone and made the app's most-seen surface look unfinished.
- */
-@Composable
-private fun KoodeTabBar(selected: Int, onSelect: (Int) -> Unit, modifier: Modifier = Modifier) {
-    val colors = KoodeTheme.colors
-    Column(modifier.background(colors.backgroundElevated)) {
-        Box(Modifier.fillMaxWidth().height(1.dp).background(colors.surfaceRaised))
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .navigationBarsPadding()
-                .padding(vertical = 6.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            TABS.forEachIndexed { index, tab ->
-                val isSelected = index == selected
-                val tint by animateColorAsState(
-                    targetValue = if (isSelected) colors.accent else colors.textMid,
-                    animationSpec = tween(Motion.normal), label = "tabTint"
-                )
-                val pill by animateColorAsState(
-                    targetValue = if (isSelected) colors.accent.copy(alpha = 0.14f) else Color.Transparent,
-                    animationSpec = tween(Motion.normal), label = "tabPill"
-                )
-                Column(
-                    Modifier
-                        .weight(1f)
-                        .clip(RoundedCornerShape(Radii.md))
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null,
-                            role = Role.Tab
-                        ) { onSelect(index) }
-                        .padding(vertical = 4.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Box(
-                        Modifier
-                            .clip(RoundedCornerShape(Radii.pill))
-                            .background(pill)
-                            .padding(horizontal = 18.dp, vertical = 4.dp)
-                    ) {
-                        Icon(tab.icon, contentDescription = null, tint = tint, modifier = Modifier.size(22.dp))
-                    }
-                    Spacer(Modifier.height(3.dp))
-                    Text(
-                        tab.label, color = tint,
-                        style = MaterialTheme.typography.labelSmall,
-                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                        letterSpacing = 0.2.sp
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun StartJourneyFab(enabled: Boolean, live: Boolean, onClick: () -> Unit) {
-    val colors = KoodeTheme.colors
-    val interaction = remember { MutableInteractionSource() }
-    val ink = if (colors.isDark) Color(0xFF07131D) else Color.White
-    Row(
-        Modifier
-            .clip(RoundedCornerShape(Radii.pill))
-            .background(if (enabled || live) colors.accent else colors.surfaceRaised)
-            .clickable(interactionSource = interaction, indication = null, onClick = onClick)
-            .padding(horizontal = Spacing.xl, vertical = 15.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        if (live) PulsingDot(ink, size = 8.dp)
-        else Icon(KoodeIcons.Plus, contentDescription = null, tint = ink, modifier = Modifier.size(20.dp))
-        Spacer(Modifier.width(Spacing.sm))
-        Text(
-            if (live) "Your journey" else "Start a journey",
-            color = ink,
-            style = MaterialTheme.typography.labelLarge
-        )
-    }
-}
+private const val TAB_COUNT = 4
 
 // ---------------------------------------------------------------------------
 // 🏠 Home
@@ -419,15 +536,6 @@ private fun HomeFeed(
                 style = MaterialTheme.typography.headlineMedium
             )
         }
-        Spacer(Modifier.width(Spacing.md))
-        // The mark is the hidden door to About: tapping the logo opens it.
-        KoodeMarkTile(
-            size = 44.dp,
-            contentDescription = "About Koode",
-            modifier = Modifier
-                .clip(RoundedCornerShape(14.dp))
-                .clickable { nav.navigate(Routes.ABOUT) }
-        )
     }
 
     // ---- update nudge -----------------------------------------------------
@@ -834,8 +942,8 @@ private fun JourneysSection(
             "Kept on this phone until you delete it. Open one to see its playback, timeline and costs — and to save them as a PDF.",
             color = colors.textLow, style = MaterialTheme.typography.bodySmall
         )
-        history.forEach { t ->
-            KoodeCard(onClick = { nav.navigate(Routes.summary(t.tripId)) }) {
+        AdaptiveGrid(history) { t, cell ->
+            KoodeCard(modifier = cell, onClick = { nav.navigate(Routes.summary(t.tripId)) }) {
                 Text(
                     "${t.originName} → ${t.destName}",
                     color = colors.textHigh, style = MaterialTheme.typography.titleSmall
@@ -885,8 +993,8 @@ private fun PeopleSection(
             )
         }
     } else {
-        circle.forEach { c ->
-            KoodeCard {
+        AdaptiveGrid(circle) { c, cell ->
+            KoodeCard(modifier = cell) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     PersonAvatar(c.name, 40.dp)
                     Spacer(Modifier.width(Spacing.md))
@@ -911,8 +1019,8 @@ private fun PeopleSection(
         { if (profileComplete) nav.navigate(Routes.JOIN) else goToSettings() },
         leading = "＋"
     )
-    following.forEach { v ->
-        KoodeCard(onClick = { nav.navigate(Routes.viewer(v.accessKey)) }) {
+    AdaptiveGrid(following) { v, cell ->
+        KoodeCard(modifier = cell, onClick = { nav.navigate(Routes.viewer(v.accessKey)) }) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 PersonAvatar(vm.snapshot(v.accessKey)?.ownerName ?: v.label, 40.dp)
                 Spacer(Modifier.width(Spacing.md))
