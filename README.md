@@ -1,195 +1,272 @@
-# Koode — *Always with you*
+<div align="center">
 
-> **Know they're okay, without having to ask.**
+<img src="assets/marketing/banner.webp" alt="Koode — Know they're okay, without having to ask." width="100%">
 
-**Koode** (Malayalam: *"together / with you"*) is a **personal journey companion** that keeps the people you love informed about your journey, wellbeing and safety — without requiring you to constantly call or message them.
+<br>
 
-**Category:** Personal Journey Safety & Wellbeing
-**Philosophy:** *Travel freely. Stay connected. Let the app do the reassuring.*
-**Secondary tagline:** *Your journey. Their peace of mind.*
+# Koode · *Always with you*
 
-Koode is not a location tracker. The family doesn't monitor the traveller — **the app monitors the journey** and evaluates its health continuously:
+**Your journey. Their peace of mind.**
 
-| | Journey Health | Means |
-|---|---|---|
-| 🟢 | **Normal** | Journey progressing normally |
-| 🟡 | **Attention** | Something unusual — late-night travel, a long spell without a logged break, low phone battery, off the usual route, updates arriving slowly |
-| 🔴 | **Concern** | Potentially significant — SOS, no location updates, an unusually long unexplained stop |
+A free, open-source travel companion that keeps the people you love informed of your journey, wellbeing and safety, so you can travel freely and let the app do the reassuring.
 
-What the family sees is a **reassurance channel**, not a GPS console: *"Prashobh's Journey · Hyderabad → Thrissur · 🟢 Journey progressing normally · 📍 Currently near Vijayawada · ⏱ ETA 8:40 PM · 🍛 Last logged 1:15 PM"* — with a live map and friendly timeline below. Wellbeing is always **factual, never medical**: "Last logged water: 1h 20m ago", never a health claim.
+[![Android CI](https://img.shields.io/github/actions/workflow/status/PrashobhPaul/Koode/android-build.yml?branch=main&label=Android%20CI&logo=android&logoColor=white)](https://github.com/PrashobhPaul/Koode/actions/workflows/android-build.yml)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/PrashobhPaul/Koode/codeql.yml?branch=main&label=CodeQL&logo=github)](https://github.com/PrashobhPaul/Koode/actions/workflows/codeql.yml)
+[![Web viewer](https://img.shields.io/github/actions/workflow/status/PrashobhPaul/Koode/pages.yml?branch=main&label=Web%20viewer&logo=githubpages&logoColor=white)](https://prashobhpaul.github.io/Koode/)
+[![Latest release](https://img.shields.io/github/v/release/PrashobhPaul/Koode?label=Latest%20APK&color=14b8a6)](https://github.com/PrashobhPaul/Koode/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/PrashobhPaul/Koode/total?label=Downloads&color=0ea5e9)](https://github.com/PrashobhPaul/Koode/releases)
+[![Stars](https://img.shields.io/github/stars/PrashobhPaul/Koode?style=social)](https://github.com/PrashobhPaul/Koode/stargazers)
 
-The traveller's experience is deliberately minimal: **Start journey → forget the app → travel.** Koode works quietly in the background; the people who matter get a few timely notifications — journey started, needs attention, arrived safely.
+<br>
 
-Private by design: journeys are invitation-only (the traveller approves each follower **by name**), and a journey's shared copy **self-destructs shortly after the traveller ends it**. It stays open source and zero-cost end to end.
+<a href="https://github.com/PrashobhPaul/Koode/releases/latest/download/Koode.apk"><img src="https://img.shields.io/badge/%E2%AC%87%EF%B8%8F%20%20Download%20for%20Android-Koode.apk-14b8a6?style=for-the-badge&logoColor=white" alt="Download Koode.apk" height="44"></a>
+&nbsp;&nbsp;
+<a href="https://prashobhpaul.github.io/Koode/"><img src="https://img.shields.io/badge/%F0%9F%8C%90%20%20Follow%20a%20journey-in%20your%20browser-0ea5e9?style=for-the-badge" alt="Follow a journey in your browser" height="44"></a>
 
-**The rule everything else follows: a journey is over only when its traveller says so.** Not a timer, not a lost signal, not an expiring capability. Anything else — an unreachable server, a flat battery, a tunnel — reads as *"waiting for updates"*, because telling someone waiting at home "journey ended" when it isn't is the exact failure this app exists to prevent.
+<sub>Free forever · No ads · No account · No tracking of *you* · Android 8+ · Any browser for followers</sub>
 
-Ending one is the app's single irreversible act, so it gets a review first: the analysed dashboard everyone will see, a chance to add a missed expense or a closing note, then confirm. **After that nothing is editable by anyone** — the timeline people followed stays the thing that happened. Followers keep access for an hour afterwards, because arrival is exactly when someone who was asleep or on a plane opens the app.
+</div>
 
----
+<br>
 
-## 📲 Download the app
+> **Koode** (Malayalam: *"together, with you"*) is not a location tracker. The family doesn't monitor the traveller. **The app monitors the journey**, and tells the people who matter the one thing they want to know: *they're okay.*
 
-**[⬇️ Download Koode.apk (latest build)](https://github.com/PrashobhPaul/Koode/releases/latest/download/Koode.apk)**
+<br>
 
-### Following someone — with the app
+## ✨ What people see
 
-1. Open the link above on your Android phone and download `Koode.apk`.
-2. Open the downloaded file and allow **Install from unknown sources** if asked.
-3. Open Koode → **People** → **Follow a journey** → type the **journey number** and your name.
+<div align="center">
+<img src="assets/marketing/screens.webp" alt="Koode screens: Home, live journey, follower view, journey health alerts, verified report" width="100%">
+<br><sub>Left to right: Home · your live journey · what a follower sees · journey health and SOS · the verified journey report. App screens are rendered previews of the Koode UI; the browser screens further down are real captures.</sub>
+</div>
 
-The journey number is **8 digits** — the `TP-` in front is printed by the app, not typed — and the passcode, if you were given one, is **6 digits**. No dashes, no letters, nothing a copy-paste can clip. With the passcode you're in immediately; without it the traveller gets a request and approves you by name.
+<br>
 
-You'll then see their live position, ETA, wellbeing and timeline, and get **forced alerts** when the journey **starts**, on **SOS**, and when they **reach the destination** — even with the app in the background.
+**For the traveller** the whole experience is three words: **Start → travel → arrive.** Pick how you're travelling, tap *Start a journey*, put the phone away. Koode runs quietly in the background, logs your breaks with one tap and never asks for a selfie.
 
-### Sharing mid-journey
+**For the people at home** it is a reassurance channel, not a GPS console:
 
-Remembering someone halfway through — *"send it to my sister too"* — is the normal case, so **Invite someone** sits on the live journey card, not back on a screen shown once at the start.
+<div align="center">
 
-If you switch on **timeline sharing** in Settings, the moment you mark a journey complete Koode builds the timeline PDF and opens WhatsApp pre-addressed to each of your emergency contacts, so it sends from your own account with one tap each. Android gives no app the ability to send WhatsApp messages on your behalf without you seeing them — and it shouldn't — so the tap is real, and deliberate. **Costs are never included**: the money tracker stays on your phone.
+| | Journey health | What it means |
+|:-:|---|---|
+| 🟢 | **Normal** | *"Prashobh's journey · Hyderabad → Thrissur · progressing normally · near Vijayawada · arriving 8:40 – 9:25 PM · last water 1 h 20 m ago"* |
+| 🟡 | **Attention** | Late-night travel, a long spell without a break, low phone battery, slow updates, off the usual route |
+| 🔴 | **Concern** | SOS, no location updates, an unusually long unexplained stop |
 
-### Following someone — without the app
+</div>
 
-Not everyone will install an APK, and older parents shouldn't have to. Open
+Alerts arrive only when they matter: **journey started**, **needs attention**, **SOS**, **arrived safely**. Everything else is there when they choose to look.
 
-**[🌐 koode in your browser](https://prashobhpaul.github.io/Koode/)**
+<br>
 
-type the same journey number and passcode, and the same live map, timeline and arrival estimate appear. No install, no account, nothing to set up. (Alerts are the one thing only the app can do.)
+## 🚀 Everything a journey needs
 
-The whole stack is **fully open source and zero cost**: OpenStreetMap + OSRM for maps/routing (no API keys) and Supabase (open-source Postgres, free tier) for live sharing — no Google Maps, no Firebase, no billing accounts anywhere.
+<div align="center">
+<img src="assets/marketing/features.webp" alt="Koode features" width="100%">
+</div>
 
-A single Android app is both the **driver** app and the **viewer** app. The driver creates a trip, shares a `Trip ID` + secret password, and family/friends follow read-only. The journey is captured as a durable local event log first, then synced to the cloud backend (Supabase — open-source Postgres, free tier); a network outage changes *when* the server receives an event, never *whether* it exists.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-This repository is the working implementation of the product/engineering plan in `docs/spec/`.
+### 🗺️ Live, honest tracking
+Near-live position on a free OpenStreetMap map with a **freshness label**: *live, recent, stale, offline*. A stale location is **never** shown as live. Lose signal in a tunnel and followers see *"waiting for updates"*, never a fake position and never a false *"journey ended"*.
 
----
+### ⏱️ A realistic arrival time
+A **range**, not a number. Route time plus the breaks a human actually takes, with an explainable breakdown. It tightens as the journey unfolds.
 
-## What's in the box
+### 💧 Wellbeing, not nagging
+Water, meals, tea, toilet, rest and fuel logged with one tap each. Followers see **facts** (*"last meal 1:15 PM"*), never a health claim. Gentle, mode-aware nudges when it's been a while.
 
-- **Android app** (`apps/android/`) — Kotlin, Jetpack Compose, single `:app` module, manual DI.
-  - Foreground-service GPS tracking with adaptive sampling and Activity-Recognition corroboration.
-  - Local-first **event log** (Room) + **current-state snapshot** + **two-lane sync** (live state first, historical backlog second).
-  - Journey **state machine**, **stop detection** (traffic-light-safe), **break checkpoints**, **overnight** flow, **SOS** (offline-safe), **quick notes**, **route deviation**, inline **journey playback**, **journey summary**.
-  - **Transport rule engine** (`domain/Transport.kt`) — one catalog of per-mode profiles decides break prompts, deviation, refuelling questions, sampling cadence and quick actions, so no screen has to ask "is this a train?".
-  - **Hybrid journeys** — a journey is a list of legs, each with its own mode; the rule set switches when the vehicle does, and legs can be added or re-pointed *while the journey runs*.
-  - **Journey analytics** (`domain/JourneyAnalytics.kt`) — moving vs stopped time, average moving speed against door-to-door speed, break cadence, cost by category with each share, cost per km and per hour, fuel efficiency, per-stage split, plus plain-English insights. One report feeds the dashboard, the closure review and both PDFs.
-  - **Region intelligence** (`domain/Units.kt`) — ₹ and kilometres in India, $ and miles in the US, € in Europe, worked out from the network's country. No model needed; overridable in Settings.
-  - **PDF export** of the timeline and the money tracker: flat, watermarked, generated on device, opening with the analysed dashboard.
-  - Realistic **ETA engine**: route travel time + future break budget + uncertainty, presented as a *range* with an explainable breakdown.
-  - **Freshness** model for viewers: `LIVE / RECENT / STALE / OFFLINE / COMPLETED` — a stale location is never shown as live.
-- **Supabase backend** (`supabase/schema.sql`) — the ENTIRE server side in one SQL file: capability-token security (only the creating driver device can write; viewers are read-only), expiry-gated reads, and self-destruction of expired trips. No functions, no auth service, no push infrastructure.
-- **Browser viewer** (`web/`) — a single static page, no build step, that derives the same capability with WebCrypto and calls the same read-only RPCs. Published to GitHub Pages.
-- **CI** (`.github/workflows/`) — builds the debug APK and runs unit tests on every push/PR, and publishes the browser viewer.
-- **Docs** (`docs/`) — the full spec plus setup/architecture/testing/release guides.
+### 🚨 SOS that works offline
+One press reaches everyone in your circle with your last known spot, even with no network: the alert goes out the moment the phone finds a signal.
 
----
+</td>
+<td width="50%" valign="top">
 
-## Local mode vs cloud mode
+### 🚗 Every way of travelling
+Car, bike, cab, bus, metro, train, flight, ship, and **journeys in stages** (cab → flight → metro). Break prompts, deviation checks and sampling cadence all adapt when the vehicle changes.
 
-The app runs immediately in **local mode** with no backend: full on-device tracking, stop detection, checkpoints, ETA, replay and summary all work; only *remote* viewer sharing is inactive. Fill in the two lines of `apps/android/supabase.properties` and rebuild to activate cloud mode — no code changes.
+### 🌙 Overnight halts
+Stopping for the night? Say so once. Followers see *"halted for the night"*, morning resume is one tap, and the ETA already knows.
 
-| Capability | Local mode | Cloud mode |
-|---|---|---|
-| Tracking, stop/break detection, ETA, playback, summary, PDF export | ✅ | ✅ |
-| Remote followers (journey number + passcode) | — | ✅ |
-| Browser viewer | — | ✅ |
-| Live state + historical backlog sync | — | ✅ |
-| Forced start/SOS/arrival alerts on followers' phones | — | ✅ |
+### 📄 A verified journey report
+Ending a journey is its one irreversible act, so it gets a review first. Then a **tamper-proof PDF**: moving vs stopped time, average speed, break rhythm, cost per km, fuel efficiency and plain-English insights. The money tracker stays on your phone unless you choose to share it.
 
-See **`docs/SUPABASE_SETUP.md`** to enable cloud mode (one-time, ~5 minutes, free). The live map needs no setup at all — it renders free OpenFreeMap vector tiles (OpenStreetMap data) via MapLibre, and routing uses the free OSRM public server (**`docs/MAPS_SETUP.md`**).
+### 🔒 Private by design
+Journeys are **invitation-only**. The traveller approves each follower **by name**, the shared copy **self-destructs** shortly after the journey ends, and nothing is editable afterwards. The thing people followed stays the thing that happened.
 
----
+</td>
+</tr>
+</table>
 
-## Build
+<br>
 
-Prerequisites: JDK 17, Android SDK (compileSdk 35, build-tools 35.0.0). The Gradle wrapper is committed.
+## 🌐 No app? No problem.
+
+<div align="center">
+<img src="assets/marketing/browser.webp" alt="Follow a Koode journey in the browser" width="100%">
+</div>
+
+Older parents shouldn't have to install an APK. Tap **Invite someone** on your live journey card and Koode writes the message. Whoever opens the link sees the **same live map, arrival window, wellbeing and timeline** on any phone, tablet or laptop at **[prashobhpaul.github.io/Koode](https://prashobhpaul.github.io/Koode/)**.
+
+- **With the passcode** (it's in the link) they're in instantly.
+- **Without it**, they type the journey number and their name, and the traveller gets a request to let them in. Approval is remembered on that browser.
+- The page keeps the credential in the part of the URL a browser never sends to any server. Add it to the home screen and it opens like an app.
+- The verified journey report opens from the same page once the traveller has approved it.
+
+The only thing a browser can't do is wake a phone with an alert. That one is the app's job.
+
+<br>
+
+## 🧭 How it works
+
+<div align="center">
+
+| 1 · Start | 2 · Share | 3 · Travel | 4 · Arrive |
+|:-:|:-:|:-:|:-:|
+| Choose how you're travelling and where to. Koode prints an 8-digit **journey number** and a 6-digit **passcode**. | Send the link, or let people **ask by name** and approve them. Add someone mid-journey from the journey card. | Put the phone away. Log breaks with one tap. Koode tracks, estimates, nudges, and tells your circle what matters. | Koode spots the arrival, asks you to confirm, then builds the report. Followers keep access for an hour, then the shared copy is gone. |
+
+</div>
+
+<div align="center"><img src="assets/marketing/art-strip.webp" alt="" width="100%"></div>
+
+<br>
+
+## 📲 Get Koode
+
+<table>
+<tr>
+<td align="center" width="50%">
+<img src="assets/marketing/qr-apk.png" width="160" alt="QR: download Koode.apk"><br>
+<b>Travellers · Android app</b><br>
+<a href="https://github.com/PrashobhPaul/Koode/releases/latest/download/Koode.apk">Download Koode.apk</a><br>
+<sub>Open the file, allow <i>Install from unknown sources</i> once, done.<br>Updating never affects a journey in progress.</sub>
+</td>
+<td align="center" width="50%">
+<img src="assets/marketing/qr-web.png" width="160" alt="QR: open the Koode web viewer"><br>
+<b>Followers · any browser</b><br>
+<a href="https://prashobhpaul.github.io/Koode/">prashobhpaul.github.io/Koode</a><br>
+<sub>Journey number + passcode, or ask by name.<br>Nothing to install, nothing to set up.</sub>
+</td>
+</tr>
+</table>
+
+**Following someone with the app:** open Koode → **People** → **Follow a journey** → type the journey number and your name. The `TP-` is printed for you, the passcode is optional. You'll get the forced alerts (start, SOS, arrival) even with the app in the background.
+
+<br>
+
+## 🆕 What's new
+
+| Version | Highlights |
+|---|---|
+| **6.17** | Browser viewer rebuilt for people without the app: ask to follow by name, approval remembered, verified report, illustrations, add-to-home-screen. New pictures for water, rest, meals and flights. |
+| **6.16** | Illustrations for every travel mode, stop and place across the app. |
+| **6.15** | Travel-companion redesign: journey-first Home, More hub, focused settings, one profile avatar everywhere. |
+| **6.14** | Premium app shell: brand top bar, adaptive tabs and rail, swipe haptics. |
+| **6.13** | Toll crossings detected from location (no SMS permission), server push through Firebase. |
+
+Full history on the [Releases](https://github.com/PrashobhPaul/Koode/releases) page.
+
+<br>
+
+## 👪 Who it's for
+
+- **Anyone who travels** and has someone waiting at home: the weekly intercity commute, the overnight bus, the solo road trip, the first flight alone.
+- **Parents and grandparents** who worry, and shouldn't have to call every hour or learn a new app.
+- **Friends who split up on a trip** and want to know the other car made it.
+- **People who ride at night**: cab, bike or two-wheeler, with an SOS that reaches someone.
+
+Koode is built in India for Indian roads first (₹, kilometres, toll plazas, thalis), and switches to $ / miles or € by region automatically.
+
+<br>
+
+## 🛡️ Data safety
+
+| | |
+|---|---|
+| **What is shared** | Only what a journey needs: position, status, the breaks you log, phone battery, and your display name. Only with people you approved, only while the journey runs. |
+| **What is never shared** | Contacts, messages, call logs, photos, your money tracker, your other journeys. |
+| **Where it lives** | On your phone first (the journey is a local event log). A copy for followers lives on a free, open-source Postgres backend behind capability tokens: only your phone can write, followers can only read, and the copy self-destructs after the journey ends. |
+| **Accounts and ads** | None. No sign-up, no email, no advertising, no analytics SDKs. |
+| **Permissions** | Location (including background, only while a journey runs), notifications, activity recognition, and a foreground service so Android keeps tracking alive. No SMS, no contacts, no camera, no microphone. |
+
+Read the [Privacy policy](docs/PRIVACY.md), the [Terms](docs/TERMS.md) and the [Security policy](SECURITY.md). Koode is **not a medical or safety-guarantee product**: sensor-derived states are inferences, and the app always says which is which.
+
+<br>
+
+## 🧑‍💻 Open source, zero cost, all yours
+
+Koode exists to be useful, not to make money. The entire stack is free software running on free tiers, so anyone can run their own:
+
+- **Android app**: Kotlin + Jetpack Compose, local-first event log, foreground-service tracking, adaptive sampling.
+- **Maps and routing**: OpenStreetMap data via OpenFreeMap tiles and MapLibre, OSRM routing. No API keys, no Google Maps.
+- **Backend**: one SQL file on Supabase (open-source Postgres). Capability-token security, read-only followers, self-destructing journeys. Two small Edge Functions for push and reports.
+- **Web viewer**: a single static page, no build step, published on GitHub Pages.
+- **CI**: builds and tests every push, CodeQL on every change, one-click APK releases.
+
+<details>
+<summary><b>For developers: build, architecture, tests, setup</b></summary>
+
+<br>
+
+Everything engineering lives in **[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)**: what's in the box, local mode vs cloud mode, the build, configuration, CI, testing and the architecture at a glance. Companion guides:
+
+| Guide | What it covers |
+|---|---|
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | The event log, two-lane sync, state machine, ETA engine, freshness model |
+| [SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) | Enabling cloud sharing on a free Supabase project (one time, ~5 minutes) |
+| [PUSH_SETUP.md](docs/PUSH_SETUP.md) | Server push through Firebase |
+| [MAPS_SETUP.md](docs/MAPS_SETUP.md) | Why the map needs no setup at all |
+| [TESTING.md](docs/TESTING.md) · [DEVICE_TESTING.md](docs/DEVICE_TESTING.md) | Unit tests and the staged real-device plan |
+| [RELEASE.md](docs/RELEASE.md) | Cutting a release |
+| [docs/spec/](docs/spec) | The full product and engineering specification |
 
 ```bash
 cd apps/android
-
-# Debug APK
-./gradlew :app:assembleDebug
-# -> app/build/outputs/apk/debug/app-debug.apk
-
-# Unit tests
-./gradlew :app:testDebugUnitTest
+./gradlew :app:assembleDebug        # -> app/build/outputs/apk/debug/app-debug.apk
+./gradlew :app:testDebugUnitTest    # pure-domain unit tests
 ```
 
-Install on a device:
+</details>
 
-```bash
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
+<br>
 
-### Configuration
+## 💛 Help Koode reach the people who need it
 
-- **Maps/routing:** nothing to configure — OpenFreeMap vector tiles and OSRM routing are free and keyless.
-- **Cloud sharing:** fill in the two values in `apps/android/supabase.properties` (see `docs/SUPABASE_SETUP.md`). Empty values build in local mode. The anon key is public by design — all access control lives in `supabase/schema.sql`.
+Koode's only goal is to be used. If it gave you or your family one calmer evening:
 
----
+- ⭐ **Star the repo**: it is the single thing that makes an open-source app discoverable.
+- 📣 **Share it**: forward the APK link or the browser link to someone who travels, or who waits.
+- 🐛 **Report what's wrong** or **ask for what's missing** in [Issues](https://github.com/PrashobhPaul/Koode/issues).
+- 🔧 **Contribute**: pull requests are welcome, from a typo to a new travel mode. Start with [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+- 🌍 **Translate**: Koode speaks plain English today. Help it speak Malayalam, Hindi, Tamil, Telugu or Kannada.
 
-## Continuous integration
+<br>
 
-`.github/workflows/android-build.yml` builds `:app:assembleDebug`, runs unit tests, and uploads the APK + test results as artifacts on every push/PR. `.github/workflows/release-apk.yml` (run manually from the Actions tab, or by pushing a `v*` tag) builds the APK and publishes it as the **latest GitHub Release**, which is what the download link at the top of this README serves. CI is the reproducible build path — it doesn't depend on a local machine's JDK setup.
+## ❓ Questions people ask
 
----
+<details><summary><b>Is Koode a family tracker?</b></summary><br>No. Followers never see the traveller's phone, other journeys or anything outside the journey they were invited to, and a journey can only be followed while it runs. Koode tells people the journey is okay; it does not let them watch the traveller.</details>
 
-## Testing
+<details><summary><b>Does it drain the battery?</b></summary><br>Sampling adapts to the mode and the motion: a train at speed is sampled differently from a car in traffic, and a stopped phone is barely sampled at all. Koode runs as a visible foreground service only while a journey is on.</details>
 
-- **Unit tests** cover the pure logic: journey state machine, stop detection (traffic-light protection, genuine stop, restart, long stop), realistic ETA (range ordering, overnight pending, long-trip minimum buffer), credential/access-key derivation, route deviation, and summary computation. Run with `./gradlew :app:testDebugUnitTest`.
-- **Real-device staged plan** (simulation → short drives → network-failure → overnight → dress rehearsal → the Hyderabad→Thrissur field test) is in **`docs/TESTING.md`**.
+<details><summary><b>What happens when the phone loses signal?</b></summary><br>Nothing is lost. The journey is written to the phone first and synced when a network returns, newest state first, then the backlog. Followers see exactly when the last confirmed update arrived, never a guess.</details>
 
----
+<details><summary><b>Can a follower end or edit a journey?</b></summary><br>No. A journey is over only when its traveller says so. After that, nothing is editable by anyone.</details>
 
-## Architecture at a glance
+<details><summary><b>Why an APK instead of the Play Store?</b></summary><br>Koode is free and open source and ships from GitHub Releases so anyone can verify the build they install. A Play Store listing is on the list; the APK will remain available either way.</details>
 
-```
-Driver device                                   Viewers (same app, viewer mode)
-──────────────                                  ───────────────────────────────
-GPS + sensors + driver actions + SOS + notes
-        │
-        ▼
-   Local event log ── current-state snapshot
-        │
-   two-lane sync
-   (live state first, backlog second)
-        │  (only when connectivity permits)
-        ▼
-   Supabase (Postgres + REST)  ────────────►  live state + timeline + freshness
-   (SQL-enforced: owner-token writes only,
-    expiry-gated reads, 30-min self-destruct)
-```
+<details><summary><b>Can I run my own backend?</b></summary><br>Yes. The whole server side is one SQL file plus two small functions on a free Supabase project. <a href="docs/SUPABASE_SETUP.md">docs/SUPABASE_SETUP.md</a> walks through it.</details>
 
-Full detail in **`docs/ARCHITECTURE.md`**. The three non-negotiable contracts:
+<br>
 
-1. **No lost events.** Anything the driver records is preserved and eventually delivered, even if offline when it happened.
-2. **Live when possible, honest otherwise.** With connectivity, viewers are near-live; without it, they see exactly when the last confirmed update arrived — never a fake current position. On reconnect, the current position is pushed *before* the historical backlog.
-3. **Realistic ETA.** The arrival estimate models a human journey (breaks, fuel, rest, uncertainty), not uninterrupted road travel.
+<div align="center">
 
----
+<img src="apps/android/app/src/main/res/drawable-nodpi/koode_icon.png" width="72" alt="">
 
-## Project structure
+**Koode** · *Travel freely. Stay connected. Let the app do the reassuring.*
 
-```
-apps/android/        Android app (Kotlin/Compose)
-  app/src/main/java/com/trippulse/app/
-    core/            geo + id/time helpers
-    domain/          models, config, state machine, stop/eta/deviation/summary engines
-    data/            Room DB, event codec, routing, sync, Supabase transport, TripManager, ViewerRepository
-    service/         driver tracking service, viewer follow/alert service, receivers
-    notifications/   channels + notifications
-    di/              manual composition root
-    ui/              Compose screens, navigation, view models
-  app/src/test/      unit tests
-supabase/            schema.sql — the entire backend (tables, security, expiry) in one file
-docs/                spec + setup/architecture/testing/release guides
-.github/workflows/   CI
-```
+Made with care in India · [Releases](https://github.com/PrashobhPaul/Koode/releases) · [Browser viewer](https://prashobhpaul.github.io/Koode/) · [Privacy](docs/PRIVACY.md) · [Security](SECURITY.md)
 
----
-
-## Scope
-
-This build delivers **P0 + full P1** at production quality (no mocked functionality): live/near-live sharing, offline resilience, multiple viewers, credentials + expiry, stop/restart detection, water/food/toilet/rest, long-stop + overnight + morning resume, dynamic ETA with break budget, timeline, SOS, notes, route deviation, replay and summary. AI/predictive features (P2/P3) are intentionally out of scope; the deterministic engine comes first.
-
-> **Not a medical or safety-guarantee product.** Sensor-derived states are inferences, driver-confirmed states are explicit, and the two are always distinguished. Don't market it as a medical safety system.
+</div>

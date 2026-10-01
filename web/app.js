@@ -6,11 +6,18 @@
  * no build step, no framework and no account — it derives the same capability
  * the Android app derives, and calls the same read-only RPCs.
  *
- * Security model, unchanged from the app:
- *   accessKey = SHA-256("<journeyId>:<passcode>")
- * computed here with WebCrypto. The passcode itself is never transmitted, and
- * the server only ever sees a hash that grants read access while the journey is
- * live. Nothing on this page can write anything.
+ * Two ways in, exactly as in the app:
+ *
+ *   With the passcode   accessKey = SHA-256("<journeyId>:<passcode>"), computed
+ *                       here with WebCrypto. The passcode itself is never sent;
+ *                       the server only ever sees a hash that grants read access
+ *                       while the journey is live.
+ *   With your name      no passcode: this browser asks to follow under a name
+ *                       (tp_request_join) with a random token it keeps for
+ *                       itself, waits for the traveller to approve it by name,
+ *                       then reads with that token (the *_t RPCs).
+ *
+ * Either way nothing on this page can write to the journey.
  *
  * The rule that governs every message below: a journey is over only when its
  * traveller ended it. A failed fetch means we could not reach the service; it
@@ -70,10 +77,61 @@
     }
   }
 
-  var getMeta = function (key) { return rpc('tp_get_meta', { p_access_key: key }); };
-  var getState = function (key) { return rpc('tp_get_state', { p_access_key: key }); };
-  var getEvents = function (key) { return rpc('tp_get_events', { p_access_key: key, p_since: 0 }); };
   var serverReachable = function () { return rpc('tp_now', {}); };
+
+  /**
+   * The journey's readers for one credential: the access key (passcode) or
+   * this browser's approved token. Everything above this line reads through
+   * one of these and never cares which.
+   *   cred = { kind: 'key', key }  |  { kind: 'token', tripId, token }
+   */
+  function readerFor(cred) {
+    if (cred.kind === 'key') {
+      return {
+        meta: function () { return rpc('tp_get_meta', { p_access_key: cred.key }); },
+        state: function () { return rpc('tp_get_state', { p_access_key: cred.key }); },
+        events: function () { return rpc('tp_get_events', { p_access_key: cred.key, p_since: 0 }); },
+        report: function () { return { action: 'download', accessKey: cred.key }; }
+      };
+    }
+    var args = { p_trip_id: cred.tripId, p_viewer_token: cred.token };
+    return {
+      meta: function () { return rpc('tp_get_meta_t', args); },
+      state: function () { return rpc('tp_get_state_t', args); },
+      events: function () { return rpc('tp_get_events_t', { p_trip_id: cred.tripId, p_viewer_token: cred.token, p_since: 0 }); },
+      report: function () { return { action: 'download', tripId: cred.tripId, viewerToken: cred.token }; }
+    };
+  }
+
+  // ---- this browser's identity when it follows by name --------------------
+  // One random token per browser, like the app's per-device token: the
+  // traveller approves "Amma", and this token is what "Amma" means afterwards.
+  // Kept in localStorage so a refresh, or tomorrow's journey, needs no new
+  // approval. Nothing about it identifies the person to anyone else.
+
+  function store(key, value) {
+    try {
+      if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value);
+    } catch (e) { /* private mode: approvals simply don't survive a reload */ }
+  }
+  function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+  function viewerToken() {
+    var t = load('koode.viewerToken');
+    if (t && t.length >= 32) return t;
+    var bytes = new Uint8Array(24);
+    crypto.getRandomValues(bytes);
+    t = Array.prototype.map.call(bytes, function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    store('koode.viewerToken', t);
+    return t;
+  }
+
+  var requestJoin = function (tripId, name) {
+    return rpc('tp_request_join', { p_trip_id: tripId, p_viewer_token: viewerToken(), p_viewer_name: name });
+  };
+  var joinStatus = function (tripId) {
+    return rpc('tp_join_status', { p_trip_id: tripId, p_viewer_token: viewerToken() });
+  };
 
   // ---- formatting --------------------------------------------------------
 
@@ -247,20 +305,56 @@
     });
   }
 
+  /** The same pictures the app shows for each way of travelling (art/). */
+  var MODE_ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', BUS: 'bus', METRO: 'metro', TRAIN: 'train', SHIP: 'ship', FLIGHT: 'flight' };
+  /** Stops that have a picture of their own on the timeline — the same set as the app. */
+  var EVENT_ART = {
+    FUEL_STOP: 'fuel', CHARGE_STOP: 'fuel',
+    FOOD_REPORTED: 'food', TEA_COFFEE_REPORTED: 'food', SNACK_REPORTED: 'food',
+    TOILET_REPORTED: 'toilet', WATER_REPORTED: 'water', REST_REPORTED: 'rest',
+    OVERNIGHT_CONFIRMED: 'stay', HALT_CONFIRMED: 'stay'
+  };
+  /** Pictures drawn facing left, mirrored so the vehicle faces the flag. */
+  var ART_FACES_LEFT = { BUS: true, METRO: true };
+
   /** Mode chip over the map, and the vehicle riding the progress track. */
   function renderMode(meta, state, progressPct) {
     var mode = (state && state.mode) || (meta && meta.transportMode) || 'CAR';
     var info = window.KoodeMap.MODES[mode] || window.KoodeMap.MODES.CAR;
-    text('mode-pill', info[0] + ' ' + info[1]);
+    var art = MODE_ART[mode];
+    var pill = $('mode-pill');
+    if (pill) {
+      pill.innerHTML = '';
+      if (art) {
+        var pi = document.createElement('img');
+        pi.src = 'art/' + art + '.webp'; pi.alt = ''; pi.className = art in ART_FACES_LEFT ? 'flip' : '';
+        pill.appendChild(pi);
+      } else {
+        pill.appendChild(document.createTextNode(info[0] + ' '));
+      }
+      pill.appendChild(document.createTextNode(info[1]));
+    }
+    var moving = state && state.status === 'DRIVING' && freshnessOf(state) === 'live';
+    var left = 'calc(' + Math.max(0, Math.min(100, progressPct)) + '% - ';
     var v = $('ride-vehicle');
+    var img = $('ride-img');
+    if (art && img) {
+      img.src = 'art/' + art + '.webp';
+      img.className = 'ride-img' + (ART_FACES_LEFT[mode] ? ' flip' : '') + (moving ? ' moving' : '');
+      img.style.left = left + '22px)';
+      show(img); if (v) hide(v);
+      return;
+    }
+    if (img) hide(img);
     if (!v) return;
+    show(v);
     v.textContent = info[0];
     // Most road and sea vehicle emoji face left; turn them toward the flag.
     v.className = 'ride-vehicle' +
       (['CAR', 'CAB', 'BUS', 'BIKE', 'SHIP'].indexOf(mode) >= 0 ? ' flip' : '') +
       (mode === 'FLIGHT' ? ' level' : '') +
-      (state && state.status === 'DRIVING' && freshnessOf(state) === 'live' ? ' moving' : '');
-    v.style.left = 'calc(' + Math.max(0, Math.min(100, progressPct)) + '% - 14px)';
+      (moving ? ' moving' : '');
+    v.style.left = left + '14px)';
   }
 
   // ---- playback ----------------------------------------------------------
@@ -543,6 +637,10 @@
       headline = "Haven't heard for a while";
       card.className = 'card hero warn';
       headlineEl.className = 'headline warn';
+    } else if (state.status === 'ARRIVED') {
+      // Detected, not declared: the journey is still theirs to close.
+      headline = 'Reached ' + ((meta && meta.destination) || 'the destination');
+      dot.className = 'dot live';
     } else {
       headline = 'Journey progressing normally';
       dot.className = 'dot live';
@@ -578,8 +676,9 @@
     var lastAt = state && (state.lastLocationAt || state.updatedAt);
     text('last-update',
       ended ? 'The traveller ended this journey.'
-        : lastAt ? 'Last updated ' + ago(lastAt)
-          : 'Waiting for the first update.');
+        : (state && state.wrappingUp) ? 'Tracking has stopped. The journey report follows once the traveller has reviewed it.'
+          : lastAt ? 'Last updated ' + ago(lastAt)
+            : 'Waiting for the first update — this is about the signal, not about them.');
 
     // ---- map ----
     var origin = meta && meta.originLat != null ? [meta.originLat, meta.originLng] : null;
@@ -632,7 +731,9 @@
       .forEach(function (e) {
         var parts = describeEvent(e);
         var li = document.createElement('li');
-        li.innerHTML = '<span>' + parts[0] + '</span><span>' + escapeHtml(parts[1]) +
+        var ev = EVENT_ART[e.type];
+        var lead = ev ? '<img class="ev" src="art/' + ev + '.webp" alt="">' : '<span>' + parts[0] + '</span>';
+        li.innerHTML = lead + '<span>' + escapeHtml(parts[1]) +
           '</span><span class="when">' + clock(e.eventTime || Date.now()) + '</span>';
         list.appendChild(li);
       });
@@ -661,7 +762,7 @@
 
   // The traveller's approved report: a short-lived signed link from tp-report,
   // for exactly the people who can read the journey.
-  async function openVerifiedReport(accessKey) {
+  async function openVerifiedReport(reader) {
     hide($('verified-error'));
     var popup = window.open('', '_blank');
     try {
@@ -669,7 +770,7 @@
       var res = await fetch(base + '/functions/v1/tp-report', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', apikey: CFG.SUPABASE_ANON_KEY },
-        body: JSON.stringify({ action: 'download', accessKey: accessKey })
+        body: JSON.stringify(reader.report())
       });
       var body = res.ok ? await res.json() : null;
       if (!body || !body.downloadUrl) throw new Error('unavailable');
@@ -681,15 +782,21 @@
     }
   }
 
-  async function startWatching(accessKey) {
+  var watching = null;
+
+  async function startWatching(cred) {
+    if (watching) return;
+    var reader = readerFor(cred);
+    watching = reader;
     hide($('signin'));
     show($('journey'));
-    $('verified-report').onclick = function () { openVerifiedReport(accessKey); };
+    window.scrollTo(0, 0);
+    $('verified-report').onclick = function () { openVerifiedReport(reader); };
 
     var tick = async function () {
-      var meta = await getMeta(accessKey);
-      var state = await getState(accessKey);
-      var events = (await getEvents(accessKey)) || [];
+      var meta = await reader.meta();
+      var state = await reader.state();
+      var events = (await reader.events()) || [];
       // A failed read leaves the last known picture on screen rather than
       // wiping it: silence is not news.
       if (meta || state) render(meta || latest.meta, state || latest.state, events.length ? events : latest.events);
@@ -698,17 +805,175 @@
     tick();
   }
 
-  // ---- sign-in wiring ----------------------------------------------------
+  // ---- sign-in -------------------------------------------------------------
+  //
+  // Mirrors the app's Follow screen: the journey number is required; with a
+  // complete passcode you're in straight away, without one your name goes to
+  // the traveller and this page waits for their yes.
+
+  var waiting = { tripId: null, timer: null };
+
+  function cleanName(raw) {
+    return (raw || '').replace(/\s+/g, ' ').trim().slice(0, 40);
+  }
 
   function updateSubmitState() {
-    var ok = $('code').value.length === CODE_LENGTH && $('passcode').value.length === PASSCODE_LENGTH;
+    var code = $('code').value, pass = $('passcode').value, name = cleanName($('name').value);
+    var withPass = pass.length === PASSCODE_LENGTH;
+    var ok = code.length === CODE_LENGTH && (withPass || (pass.length === 0 && name.length > 0));
     $('watch').disabled = !ok;
+    $('watch').textContent = withPass || pass.length > 0 ? 'Watch the journey' : 'Ask to follow';
+    text('passcode-hint',
+      pass.length === 0 ? "Leave this empty and we'll ask the traveller to let you in by name."
+        : withPass ? "Ready — you'll go straight in."
+          : PASSCODE_LENGTH + ' digits, or leave it empty.');
+    text('code-hint', code.length === CODE_LENGTH ? 'Looks right.' : CODE_LENGTH + ' digits — numbers only, the TP- is already there.');
   }
 
   function showSignInError(message) {
     var el = $('signin-error');
     el.textContent = message;
     show(el);
+  }
+
+  function setBusy(busy, label) {
+    $('watch').disabled = busy;
+    if (label) $('watch').textContent = label;
+    if (!busy) updateSubmitState();
+  }
+
+  function stopWaiting() {
+    if (waiting.timer) { clearTimeout(waiting.timer); waiting.timer = null; }
+    waiting.tripId = null;
+    hide($('waiting'));
+    show($('watch'));
+  }
+
+  /** The traveller said yes: remember it for this journey and open it. */
+  function approved(code) {
+    store('koode.approved.' + code, '1');
+    store('koode.pending.' + code, null);
+    history.replaceState(null, '', '#j=' + code);
+    stopWaiting();
+    startWatching({ kind: 'token', tripId: PREFIX + code, token: viewerToken() });
+  }
+
+  function denied(code) {
+    store('koode.pending.' + code, null);
+    stopWaiting();
+    showSignInError("The traveller didn't approve this request. Ask them for the passcode, or try again.");
+  }
+
+  /** Waits for the traveller's answer, asking every few seconds. */
+  function waitForApproval(code, name) {
+    var tripId = PREFIX + code;
+    waiting.tripId = tripId;
+    store('koode.pending.' + code, name);
+    text('waiting-name', name || 'Someone');
+    hide($('watch'));
+    show($('waiting'));
+    var poll = async function () {
+      if (waiting.tripId !== tripId) return;
+      var status = await joinStatus(tripId);
+      if (waiting.tripId !== tripId) return;
+      if (status === 'APPROVED') { approved(code); return; }
+      if (status === 'DENIED') { denied(code); return; }
+      if (status === 'NOT_FOUND') {
+        store('koode.pending.' + code, null);
+        stopWaiting();
+        showSignInError('That journey is no longer live.');
+        return;
+      }
+      waiting.timer = setTimeout(poll, 4000);
+    };
+    waiting.timer = setTimeout(poll, 4000);
+  }
+
+  async function askToFollow(code, name) {
+    var status = await requestJoin(PREFIX + code, name);
+    if (status === 'APPROVED') { approved(code); return; }
+    if (status === 'DENIED') { denied(code); return; }
+    if (status === 'PENDING') { setBusy(false); waitForApproval(code, name); return; }
+    var reachable = status === 'NOT_FOUND' || await serverReachable();
+    showSignInError(reachable
+      ? "There's no live journey with that number. Check it with the traveller."
+      : "Couldn't reach Koode just now. Check your internet connection and try again.");
+    setBusy(false);
+  }
+
+  async function watchWithPasscode(code, passcode) {
+    var key = await accessKeyFor(PREFIX + code, passcode);
+    var meta = await readerFor({ kind: 'key', key: key }).meta();
+    if (!meta) {
+      // Tell the two failure modes apart before blaming the viewer.
+      var reachable = await serverReachable();
+      showSignInError(reachable
+        ? "That journey number and passcode don't match a live journey. Check both with the traveller."
+        : "Couldn't reach Koode just now. Check your internet connection and try again.");
+      setBusy(false);
+      return;
+    }
+    // Keep the credentials in the URL fragment (never sent to a server), so
+    // a bookmark or a refresh resumes without retyping anything.
+    history.replaceState(null, '', '#' + code + '-' + passcode);
+    startWatching({ kind: 'key', key: key });
+  }
+
+  /**
+   * A follow link, as the app writes it: `#<code>-<passcode>` or
+   * `#j=<code>&p=<passcode>` (the passcode may be absent). The fragment is
+   * never sent to a server. `?j=…&p=…` is accepted too, for links typed by hand.
+   */
+  function parseLink() {
+    var frag = (location.hash || '').replace(/^#/, '');
+    var q = (location.search || '').replace(/^\?/, '');
+    var out = { code: '', passcode: '' };
+    function fromParams(str) {
+      var p = {};
+      str.split('&').forEach(function (kv) {
+        var i = kv.indexOf('='); if (i > 0) p[decodeURIComponent(kv.slice(0, i))] = decodeURIComponent(kv.slice(i + 1));
+      });
+      if (p.j) { out.code = digitsOnly(p.j, CODE_LENGTH); out.passcode = digitsOnly(p.p || '', PASSCODE_LENGTH); return true; }
+      return false;
+    }
+    if (frag.indexOf('=') >= 0 && fromParams(frag)) return out;
+    if (frag.indexOf('-') > 0) {
+      var parts = frag.split('-');
+      out.code = digitsOnly(parts[0], CODE_LENGTH); out.passcode = digitsOnly(parts[1], PASSCODE_LENGTH);
+      return out;
+    }
+    if (frag) { out.code = digitsOnly(frag, CODE_LENGTH); return out; }
+    if (q) fromParams(q);
+    return out;
+  }
+
+  /** Picks up where this browser left off: a link, an approval, or a request still pending. */
+  async function resume() {
+    var link = parseLink();
+    if (link.code.length !== CODE_LENGTH) return;
+    $('code').value = link.code;
+    $('passcode').value = link.passcode;
+    updateSubmitState();
+    if (link.passcode.length === PASSCODE_LENGTH) {
+      setBusy(true, 'Connecting…');
+      await watchWithPasscode(link.code, link.passcode);
+      return;
+    }
+    var tripId = PREFIX + link.code;
+    if (load('koode.approved.' + link.code)) {
+      var meta = await readerFor({ kind: 'token', tripId: tripId, token: viewerToken() }).meta();
+      if (meta) { startWatching({ kind: 'token', tripId: tripId, token: viewerToken() }); return; }
+      store('koode.approved.' + link.code, null);
+    }
+    var pendingName = load('koode.pending.' + link.code);
+    if (pendingName) {
+      $('name').value = pendingName;
+      var status = await joinStatus(tripId);
+      if (status === 'APPROVED') { approved(link.code); return; }
+      if (status === 'PENDING') { waitForApproval(link.code, pendingName); return; }
+      store('koode.pending.' + link.code, null);
+    }
+    $('name').focus();
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -720,51 +985,30 @@
       e.target.value = digitsOnly(e.target.value, PASSCODE_LENGTH);
       updateSubmitState();
     });
+    $('name').addEventListener('input', updateSubmitState);
     window.KoodeMap.init('map');
     $('follow').addEventListener('click', function () { window.KoodeMap.toggleFollow(); });
     $('play').addEventListener('click', togglePlayback);
     $('speed').addEventListener('click', cycleSpeed);
     $('report').addEventListener('click', openSafetyReport);
+    $('cancel-wait').addEventListener('click', function () {
+      var code = digitsOnly($('code').value, CODE_LENGTH);
+      store('koode.pending.' + code, null);
+      stopWaiting();
+      updateSubmitState();
+    });
 
     $('watch').addEventListener('click', async function () {
       hide($('signin-error'));
-      $('watch').disabled = true;
-      $('watch').textContent = 'Connecting…';
-
-      var journeyId = PREFIX + digitsOnly($('code').value, CODE_LENGTH);
+      var code = digitsOnly($('code').value, CODE_LENGTH);
       var passcode = digitsOnly($('passcode').value, PASSCODE_LENGTH);
-      var key = await accessKeyFor(journeyId, passcode);
-      var meta = await getMeta(key);
-
-      if (!meta) {
-        // Tell the two failure modes apart before blaming the viewer.
-        var reachable = await serverReachable();
-        showSignInError(reachable
-          ? "That journey number and passcode don't match a live journey. Check both with the traveller."
-          : "Couldn't reach Koode just now. Check your internet connection and try again.");
-        $('watch').disabled = false;
-        $('watch').textContent = 'Watch the journey';
-        return;
-      }
-
-      // Keep the credentials in the URL fragment (never sent to a server), so
-      // a bookmark or a refresh resumes without retyping anything.
-      history.replaceState(null, '', '#' + digitsOnly($('code').value) + '-' + passcode);
-      startWatching(key);
+      var name = cleanName($('name').value);
+      setBusy(true, passcode ? 'Connecting…' : 'Asking…');
+      if (passcode.length === PASSCODE_LENGTH) await watchWithPasscode(code, passcode);
+      else await askToFollow(code, name);
     });
 
-    // Resume from a bookmarked link.
-    var hash = (location.hash || '').replace('#', '');
-    if (hash.indexOf('-') > 0) {
-      var parts = hash.split('-');
-      var code = digitsOnly(parts[0], CODE_LENGTH);
-      var pass = digitsOnly(parts[1], PASSCODE_LENGTH);
-      if (code.length === CODE_LENGTH && pass.length === PASSCODE_LENGTH) {
-        $('code').value = code;
-        $('passcode').value = pass;
-        updateSubmitState();
-        accessKeyFor(PREFIX + code, pass).then(startWatching);
-      }
-    }
+    updateSubmitState();
+    resume();
   });
 })();
