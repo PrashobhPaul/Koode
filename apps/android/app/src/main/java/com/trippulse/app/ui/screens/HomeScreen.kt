@@ -83,6 +83,9 @@ import com.trippulse.app.ui.HomeTabs
 import com.trippulse.app.ui.HomeVm
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.components.ActivityItem
+import com.trippulse.app.ui.components.ArtImage
+import com.trippulse.app.ui.components.KoodeArt
+import com.trippulse.app.ui.components.ModeArt
 import com.trippulse.app.ui.components.ActivitySheet
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeBottomBar
@@ -502,6 +505,8 @@ private fun RecentJourneys(
                     .padding(start = Spacing.lg, end = if (onDelete != null) 0.dp else Spacing.lg, top = Spacing.sm, bottom = Spacing.sm),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                ModeArt(t.transportMode, 44.dp, faceRight = true)
+                Spacer(Modifier.width(Spacing.md))
                 Column(Modifier.weight(1f)) {
                     Text(
                         "${t.originName} → ${t.destName}",
@@ -616,7 +621,11 @@ private fun HomeFeed(
         scheduled != null -> {
             Text("Your next journey", color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
             KoodeCard(onClick = { nav.navigate(Routes.credentials(scheduled.tripId)) }) {
-                StatusPill("PLANNED", colors.warn)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    StatusPill("PLANNED", colors.warn)
+                    Spacer(Modifier.weight(1f))
+                    ModeArt(scheduled.transportMode, 56.dp, faceRight = true)
+                }
                 Spacer(Modifier.height(Spacing.sm))
                 RouteBlock(scheduled.originName, scheduled.destName)
                 scheduled.plannedDepartureMs?.let {
@@ -626,6 +635,9 @@ private fun HomeFeed(
             }
         }
         else -> {
+            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                ArtImage(KoodeArt.traveller, if (LocalWindowClass.current.isCompact) 188.dp else 232.dp)
+            }
             Text("Ready for your next journey?", color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
             StartJourneyActions(onStart, onSchedule)
         }
@@ -669,7 +681,11 @@ private fun ActiveJourneyHome(
             Text(journeyStateLabel(state, trip), color = colors.textMid, style = MaterialTheme.typography.labelLarge)
         }
         Spacer(Modifier.height(Spacing.md))
-        RouteBlock(trip.originName, trip.destName)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(Modifier.weight(1f)) { RouteBlock(trip.originName, trip.destName) }
+            Spacer(Modifier.width(Spacing.sm))
+            ModeArt(trip.transportMode, 84.dp, faceRight = true)
+        }
         Spacer(Modifier.height(Spacing.md))
         state?.etaLikelyMs?.let {
             Text("ETA ${TimeFmt.clockWithDay(it, now)}", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
@@ -973,7 +989,11 @@ private fun JourneysSection(
                     Text(TransportCatalog.profile(active.transportMode).label, color = colors.textMid, style = MaterialTheme.typography.labelLarge)
                 }
                 Spacer(Modifier.height(Spacing.md))
-                RouteBlock(active.originName, active.destName)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Box(Modifier.weight(1f)) { RouteBlock(active.originName, active.destName) }
+                    Spacer(Modifier.width(Spacing.sm))
+                    ModeArt(active.transportMode, 84.dp, faceRight = true)
+                }
                 Spacer(Modifier.height(Spacing.sm))
                 state?.etaLikelyMs?.let {
                     Text("ETA ${TimeFmt.clockWithDay(it, now)}", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
@@ -1001,6 +1021,10 @@ private fun JourneysSection(
         }
         else -> {
             KoodeHeroCard(accent = colors.accent) {
+                Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    ArtImage(KoodeArt.traveller, 150.dp)
+                }
+                Spacer(Modifier.height(Spacing.sm))
                 Text("Ready to travel?", color = colors.textHigh, style = MaterialTheme.typography.titleLarge)
                 Spacer(Modifier.height(Spacing.xs))
                 Text(

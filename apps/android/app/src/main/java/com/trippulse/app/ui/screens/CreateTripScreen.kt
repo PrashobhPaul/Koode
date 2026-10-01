@@ -382,7 +382,7 @@ private fun StageCard(
             Box(
                 Modifier.size(34.dp).clip(RoundedCornerShape(Radii.pill)).background(colors.surfaceRaised),
                 contentAlignment = Alignment.Center
-            ) { Text(profile.emoji, fontSize = 17.sp) }
+            ) { com.trippulse.app.ui.components.ModeArt(profile.key, 28.dp) }
             Spacer(Modifier.width(Spacing.sm))
             Text(
                 if (total == 1) "Your journey" else "Stage ${index + 1} · ${profile.label}",
@@ -410,7 +410,7 @@ private fun StageCard(
         // ship…) must be visible at once, not hidden off the right edge.
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             TransportCatalog.ALL.forEach { p ->
-                ModeTile(p.emoji, p.label, leg.mode == p.key) { onModeChange(p.key) }
+                ModeTile(p.key, p.label, leg.mode == p.key) { onModeChange(p.key) }
             }
         }
 
@@ -425,7 +425,7 @@ private fun StageCard(
                     .padding(horizontal = 14.dp, vertical = 10.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(profile.emoji, fontSize = 18.sp)
+                com.trippulse.app.ui.components.ModeArt(profile.key, 32.dp)
                 Spacer(Modifier.width(Spacing.sm))
                 Column(Modifier.weight(1f)) {
                     Text("Your ${profile.label.lowercase()}", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
@@ -529,7 +529,7 @@ private fun PlaceFieldRow(
 }
 
 @Composable
-private fun ModeTile(emoji: String, label: String, selected: Boolean, onClick: () -> Unit) {
+private fun ModeTile(mode: String, label: String, selected: Boolean, onClick: () -> Unit) {
     val colors = KoodeTheme.colors
     val shape = RoundedCornerShape(Radii.md)
     Column(
@@ -539,10 +539,10 @@ private fun ModeTile(emoji: String, label: String, selected: Boolean, onClick: (
             .background(if (selected) colors.accent.copy(alpha = 0.16f) else colors.surfaceRaised)
             .border(if (selected) 2.dp else 1.dp, if (selected) colors.accent else Color.Transparent, shape)
             .clickable(onClick = onClick)
-            .padding(vertical = 12.dp),
+            .padding(vertical = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(emoji, fontSize = 24.sp)
+        com.trippulse.app.ui.components.ModeArt(mode, 52.dp)
         Spacer(Modifier.height(4.dp))
         Text(
             label, color = if (selected) colors.textHigh else colors.textMid,

@@ -208,10 +208,14 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     OwnerAvatar(40.dp)
                     Spacer(Modifier.width(Spacing.sm))
                     Column(Modifier.weight(1f)) {
-                        Text(
-                            "${profile.emoji}  ${journeyLabel(s?.journey)}",
-                            color = colors.accent, style = MaterialTheme.typography.titleSmall
-                        )
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            com.trippulse.app.ui.components.ModeArt(profile.key, 22.dp)
+                            Spacer(Modifier.width(6.dp))
+                            Text(
+                                journeyLabel(s?.journey),
+                                color = colors.accent, style = MaterialTheme.typography.titleSmall
+                            )
+                        }
                         Text(
                             activeLeg?.toName ?: t?.destName ?: "Journey",
                             color = colors.textHigh, style = MaterialTheme.typography.headlineMedium,
@@ -351,7 +355,11 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             AnimatedBanner(visible = halting) {
                 KoodeHeroCard(accent = colors.warn) {
                     val type = Halts.Type.from(s?.overnightType)
-                    Text("${type.emoji}  Halting · ${type.label}", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        com.trippulse.app.ui.components.ArtImage(com.trippulse.app.ui.components.KoodeArt.stay, 44.dp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Text("Halting · ${type.label}", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+                    }
                     Spacer(Modifier.height(Spacing.xs))
                     Text(
                         buildString {
