@@ -314,23 +314,36 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     )
                     Spacer(Modifier.height(Spacing.xs))
                     Text(
-                        "It looks like you've arrived. Close your journey when you're ready — you'll review it before anyone following you hears it ended. " +
-                            "If you don't respond, Koode closes it after about ${com.trippulse.app.domain.JourneyClosure.AUTO_CLOSE_AFTER_MIN} minutes, still for your review.",
+                        "It looks like you've arrived at your destination. Close your journey when you're ready.",
                         color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                     )
+                    Text(
+                        "Nobody following you hears it ended until you've reviewed it. With no answer, Koode closes it " +
+                            "after about ${com.trippulse.app.domain.JourneyClosure.AUTO_CLOSE_AFTER_MIN} minutes, still for your review.",
+                        color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                    )
                     Spacer(Modifier.height(Spacing.md))
-                    Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                        Box(Modifier.weight(1f)) {
-                            PrimaryButton("End journey", { showEndReview = true }, height = 46.dp)
-                        }
-                        Box(Modifier.weight(1f)) {
-                            SecondaryButton(
-                                if (hasNextLeg) "Next stage" else "I'm still travelling",
-                                { if (hasNextLeg) vm.nextLeg() else vm.dismissArrivalPrompt() },
-                                accent = colors.textMid, height = 46.dp
-                            )
-                        }
+                    val arrivalScope = rememberCoroutineScope()
+                    if (hasNextLeg) {
+                        PrimaryButton("Next stage", { vm.nextLeg() }, height = 48.dp)
+                        Spacer(Modifier.height(Spacing.sm))
                     }
+                    // End now: closed at the arrival time, straight into the review.
+                    PrimaryButton(
+                        "End journey",
+                        {
+                            arrivalScope.launch {
+                                val endAt = vm.suggestedEndMs()
+                                vm.complete(null, endAt) { nav.navigate(Routes.summary(tripId)) { popUpTo(Routes.HOME) } }
+                            }
+                        },
+                        accent = if (hasNextLeg) colors.textMid else null,
+                        height = 48.dp
+                    )
+                    Spacer(Modifier.height(Spacing.sm))
+                    SecondaryButton("Review journey first", { showEndReview = true }, height = 46.dp)
+                    Spacer(Modifier.height(Spacing.sm))
+                    SecondaryButton("I'm still travelling", { vm.dismissArrivalPrompt() }, accent = colors.textMid, height = 46.dp)
                 }
             }
 

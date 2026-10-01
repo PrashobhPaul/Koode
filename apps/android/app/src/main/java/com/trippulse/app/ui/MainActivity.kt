@@ -45,6 +45,7 @@ import com.trippulse.app.ui.screens.CredentialsScreen
 import com.trippulse.app.ui.screens.DriverScreen
 import com.trippulse.app.ui.screens.HomeScreen
 import com.trippulse.app.ui.screens.JoinViewerScreen
+import com.trippulse.app.ui.screens.SettingsPageScreen
 import com.trippulse.app.ui.screens.SplashScreen
 import com.trippulse.app.ui.screens.SummaryScreen
 import com.trippulse.app.ui.screens.ViewerScreen
@@ -178,11 +179,27 @@ object Routes {
     const val VIEWER = "viewer/{accessKey}"
     const val SUMMARY = "summary/{tripId}"
     const val ABOUT = "about"
+    /** Planning, opened with "later" already chosen. */
+    const val CREATE_LATER = "create/later"
+    const val SETTINGS = "settings/{page}"
 
     fun credentials(tripId: String) = "credentials/$tripId"
     fun driver(tripId: String) = "driver/$tripId"
     fun viewer(accessKey: String) = "viewer/$accessKey"
     fun summary(tripId: String) = "summary/$tripId"
+    fun settings(page: String) = "settings/$page"
+}
+
+/**
+ * A request, from a pushed screen, for Home to show one of its tabs once it is
+ * back on top (e.g. Settings › Journey followers → People).
+ */
+object HomeTabs {
+    private val _pending = kotlinx.coroutines.flow.MutableStateFlow<Int?>(null)
+    val pending: kotlinx.coroutines.flow.StateFlow<Int?> = _pending
+
+    fun request(tab: Int) { _pending.value = tab }
+    fun consumed() { _pending.value = null }
 }
 
 /**
@@ -217,6 +234,10 @@ fun AppNav(modifier: Modifier = Modifier, nav: NavHostController = rememberNavCo
     ) {
         composable(Routes.HOME) { HomeScreen(nav) }
         composable(Routes.CREATE) { CreateTripScreen(nav) }
+        composable(Routes.CREATE_LATER) { CreateTripScreen(nav, scheduleLater = true) }
+        composable(Routes.SETTINGS) { back ->
+            SettingsPageScreen(nav, back.arguments?.getString("page").orEmpty())
+        }
         composable(Routes.CREDENTIALS) { back ->
             CredentialsScreen(nav, back.arguments?.getString("tripId").orEmpty())
         }

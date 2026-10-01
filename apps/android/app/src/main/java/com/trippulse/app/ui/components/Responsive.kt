@@ -165,21 +165,21 @@ data class KoodeDims(
         val narrow = KoodeDims(
             topBarHeight = 54.dp, logoSize = 26.dp, wordmarkSize = 20.sp,
             actionIconSize = 22.dp, actionTarget = 44.dp, avatarSize = 28.dp,
-            navIconSize = 22.dp, navLabelSize = 10.sp, navIndicatorWidth = 52.dp,
+            navIconSize = 22.dp, navLabelSize = 10.sp, navIndicatorWidth = 48.dp,
             railWidth = 80.dp, badgeSize = 16.dp, dotSize = 8.dp,
             cardPadding = 14.dp, fabHeight = 52.dp
         )
         val phone = KoodeDims(
             topBarHeight = 58.dp, logoSize = 28.dp, wordmarkSize = 22.sp,
             actionIconSize = 24.dp, actionTarget = 48.dp, avatarSize = 30.dp,
-            navIconSize = 24.dp, navLabelSize = 11.sp, navIndicatorWidth = 60.dp,
+            navIconSize = 24.dp, navLabelSize = 11.sp, navIndicatorWidth = 52.dp,
             railWidth = 84.dp, badgeSize = 17.dp, dotSize = 9.dp,
             cardPadding = 16.dp, fabHeight = 56.dp
         )
         val tablet = KoodeDims(
             topBarHeight = 66.dp, logoSize = 32.dp, wordmarkSize = 25.sp,
             actionIconSize = 26.dp, actionTarget = 52.dp, avatarSize = 34.dp,
-            navIconSize = 26.dp, navLabelSize = 12.sp, navIndicatorWidth = 64.dp,
+            navIconSize = 26.dp, navLabelSize = 12.sp, navIndicatorWidth = 56.dp,
             railWidth = 96.dp, badgeSize = 18.dp, dotSize = 10.dp,
             cardPadding = 20.dp, fabHeight = 60.dp
         )

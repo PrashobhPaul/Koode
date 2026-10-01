@@ -1,6 +1,5 @@
 package com.trippulse.app.ui.screens
 
-import kotlinx.coroutines.launch
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -41,6 +40,33 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
+import androidx.navigation.NavHostController
+import com.trippulse.app.ui.Routes
+import com.trippulse.app.ui.components.KoodeIcons
+import com.trippulse.app.ui.components.LocalDims
+import com.trippulse.app.ui.components.rememberHaptics
+import com.trippulse.app.ui.theme.Motion
+import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.BuildConfig
 import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.KoodeSettings
@@ -62,450 +88,275 @@ import com.trippulse.app.ui.components.SectionHeader
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Spacing
 
-private const val REPO_URL = "https://github.com/PrashobhPaul/Koode"
+internal const val REPO_URL = "https://github.com/PrashobhPaul/Koode"
 
 /**
- * Settings — profile, saved places, emergency contacts, and the behaviour
- * controls the product asked to expose.
+ * More — a settings hub, not a settings dump.
  *
- * The two cadence settings are the important additions. Location sampling and
- * follower refresh are the app's whole battery budget, and the right answer
- * genuinely differs per journey: a night drive wants precision, a twelve-hour
- * train wants the phone to still be alive at the other end. Making them
- * visible turns "why did my battery die?" into a choice the user already made.
+ * The landing page holds only what is worth seeing at a glance: who you are,
+ * how Koode records a journey (three plain modes, each a real recording
+ * profile) and the categories. Every detailed control is one or two taps
+ * away on a focused page ([SettingsPageScreen]), each reading and writing the
+ * same settings store as before — nothing duplicated, nothing reset.
  */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun SettingsTab(onProfileChanged: () -> Unit) {
+fun SettingsTab(nav: NavHostController) {
     val vm: SettingsVm = viewModel(factory = SettingsVm.Factory)
     val colors = KoodeTheme.colors
     val context = LocalContext.current
-    val uriHandler = LocalUriHandler.current
-
     val settings by vm.settings.collectAsStateWithLifecycle()
     val places by vm.savedPlaces.collectAsStateWithLifecycle()
-    val results by vm.searchResults.collectAsStateWithLifecycle()
-    val searching by vm.searching.collectAsStateWithLifecycle()
-    val message by vm.message.collectAsStateWithLifecycle()
-    val update by vm.update.collectAsStateWithLifecycle()
-    val checking by vm.checkingUpdate.collectAsStateWithLifecycle()
-    val vehicles by vm.vehicles.collectAsStateWithLifecycle()
 
-    var name by remember { mutableStateOf(Profile.name(context)) }
-    var c1 by remember { mutableStateOf(Profile.contact(context, 1)) }
-    var c2 by remember { mutableStateOf(Profile.contact(context, 2)) }
-    var c3 by remember { mutableStateOf(Profile.contact(context, 3)) }
-
-    // Pick an emergency contact from the device's contacts. Uses the system
-    // phone picker, which grants read access only to the one row the user
-    // chose — so no READ_CONTACTS permission and no contact-book upload.
-    var pickingSlot by remember { mutableStateOf(0) }
-    val contactPicker = rememberLauncherForActivityResult(PickPhoneContact()) { uri ->
-        val picked = uri?.let { readPickedContact(context, it) }
-        if (picked != null) {
-            val (nm, ph) = picked
-            val c = Profile.Contact(InputRules.itemText(nm), InputRules.phoneText(ph))
-            when (pickingSlot) { 1 -> c1 = c; 2 -> c2 = c; 3 -> c3 = c }
-        }
-    }
-    fun pickContact(slot: Int) { pickingSlot = slot; contactPicker.launch(Unit) }
-
-    // Saved places use the same picker as journey planning: search, Google
-    // Maps (share or copy), current location or a dropped pin — then a name.
-    var addingPlace by remember { mutableStateOf(false) }
-    var pendingSave by remember { mutableStateOf<com.trippulse.app.data.routing.PlaceSearch.Place?>(null) }
-    var placeNote by remember { mutableStateOf<String?>(null) }
-    val placeScope = androidx.compose.runtime.rememberCoroutineScope()
+    // Re-read the profile whenever this page comes back into view: it is
+    // edited on its own page.
+    var profileVersion by remember { mutableIntStateOf(0) }
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { profileVersion++ }
+    val name = remember(profileVersion) { Profile.name(context) }
+    val photoVer = remember(profileVersion) { Profile.photoVersion(context) }
+    val avatar = remember(profileVersion) { Profile.avatarStyle(context) }
+    val missing = remember(profileVersion, places.size) { Profile.missing(context, places.size) }
 
     SectionHeader("More")
 
-    val missing = Profile.missing(context, places.size)
-    if (missing.isNotEmpty()) {
-        KoodeCard(accent = colors.warn) {
-            Text(
-                "Complete your profile to start using Koode",
-                color = colors.warn, style = MaterialTheme.typography.titleMedium
-            )
-            missing.forEach {
-                Text("• $it", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
-            }
-        }
-    }
-
     // ---- profile ----
-    var photoVer by remember { mutableStateOf(Profile.photoVersion(context)) }
-    var avatar by remember { mutableStateOf(Profile.avatarStyle(context)) }
-    val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null && Profile.savePhoto(context, uri)) photoVer = Profile.photoVersion(context)
-    }
-
-    KoodeCard(title = "Profile") {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Avatar(Profile.photoPath(context), avatar, 64.dp, version = photoVer)
+    SettingsGroup {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .clickable(onClickLabel = "Edit profile") { nav.navigate(Routes.settings(SettingsPage.PROFILE)) }
+                .padding(LocalDims.current.cardPadding),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Avatar(Profile.photoPath(context), avatar, 52.dp, version = photoVer)
             Spacer(Modifier.width(Spacing.md))
-            Column {
-                SecondaryButton(
-                    if (Profile.hasPhoto(context)) "Change photo" else "Add a photo (optional)",
-                    { photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
-                    height = 40.dp
+            Column(Modifier.weight(1f)) {
+                Text(
+                    name.ifBlank { "Add your name" },
+                    color = colors.textHigh, style = MaterialTheme.typography.titleMedium
                 )
-                if (Profile.hasPhoto(context)) {
-                    TextButton(onClick = { Profile.clearPhoto(context); photoVer = Profile.photoVersion(context) }) {
-                        Text("Remove", color = colors.textLow, fontSize = 13.sp)
-                    }
+                Text("Edit profile", color = colors.accent, style = MaterialTheme.typography.bodyMedium)
+            }
+            Icon(KoodeIcons.Chevron, contentDescription = null, tint = colors.textLow, modifier = Modifier.size(18.dp))
+        }
+    }
+
+    if (missing.isNotEmpty()) {
+        SettingsGroup {
+            SettingsRow(
+                title = "Finish setting up Koode",
+                subtitle = missing.joinToString(" · "),
+                titleColor = colors.warn,
+                onClick = {
+                    nav.navigate(
+                        Routes.settings(if (name.isBlank()) SettingsPage.PROFILE else SettingsPage.CONTACTS)
+                    )
                 }
-            }
-        }
-        Spacer(Modifier.height(Spacing.sm))
-        Text(
-            "Shown on your journey and its PDF. With no photo, this avatar stands in:",
-            color = colors.textLow, style = MaterialTheme.typography.bodySmall
-        )
-        Spacer(Modifier.height(Spacing.xs))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            listOf(
-                Profile.AvatarStyle.NEUTRAL to "Neutral",
-                Profile.AvatarStyle.MALE to "Male",
-                Profile.AvatarStyle.FEMALE to "Female"
-            ).forEach { (style, label) ->
-                KoodeChip(label, avatar == style, { avatar = style; Profile.setAvatarStyle(context, style) })
-            }
-        }
-        Spacer(Modifier.height(Spacing.sm))
-        OutlinedTextField(
-            value = name,
-            onValueChange = { name = InputRules.itemText(it) },
-            label = { Text("Your full name") },
-            singleLine = true,
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
-
-    // ---- how often we take a location fix ----
-    KoodeCard(title = "Location updates") {
-        Text(
-            "How often your phone records where you are during a journey. " +
-                "Koode already eases off automatically on trains, buses and flights, and when your battery is low.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(Modifier.height(Spacing.md))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            LocationCadence.entries.forEach { c ->
-                KoodeChip(c.label, settings.locationCadence == c, { vm.setLocationCadence(c) })
-            }
-        }
-        Spacer(Modifier.height(Spacing.sm))
-        Text(
-            settings.locationCadence.summary,
-            color = colors.textLow, style = MaterialTheme.typography.bodySmall
-        )
-    }
-
-    // ---- how often we check on someone we follow ----
-    KoodeCard(title = "When you're following someone") {
-        Text(
-            "How often your phone checks for news about journeys you follow.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(Modifier.height(Spacing.md))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            ViewerRefresh.entries.forEach { r ->
-                KoodeChip(r.label, settings.viewerRefresh == r, { vm.setViewerRefresh(r) })
-            }
-        }
-        Spacer(Modifier.height(Spacing.sm))
-        Text(settings.viewerRefresh.summary, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
-    }
-
-    // ---- battery + feel ----
-    KoodeCard(title = "Battery and feel") {
-        Text(
-            "Switch to battery saver below",
-            color = colors.textHigh, style = MaterialTheme.typography.bodyLarge
-        )
-        Spacer(Modifier.height(Spacing.sm))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            listOf(10, 15, 20, 30).forEach { pct ->
-                KoodeChip("$pct%", settings.batterySaverBelowPct == pct, { vm.setBatterySaverThreshold(pct) })
-            }
-        }
-        Spacer(Modifier.height(Spacing.md))
-        ToggleRow(
-            "Keep the screen on during a journey",
-            settings.keepScreenOnDuringJourney
-        ) { vm.setKeepScreenOn(it) }
-        ToggleRow("Vibrate on important taps", settings.hapticFeedback) { vm.setHaptics(it) }
-    }
-
-    // ---- measurements ----
-    // Worked out from where the phone actually is, and overridable. Nobody
-    // should have to configure this, and nobody should be stuck with the
-    // wrong one either.
-    KoodeCard(title = "Distance, speed and money") {
-        Text(
-            vm.detectedRegionSummary(),
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(Modifier.height(Spacing.md))
-        Text("Distances", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-        Spacer(Modifier.height(Spacing.sm))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            UnitPreference.entries.forEach { p ->
-                KoodeChip(p.label, settings.unitPreference == p, { vm.setUnitPreference(p) })
-            }
-        }
-        Spacer(Modifier.height(Spacing.md))
-        Text("Currency", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-        Spacer(Modifier.height(Spacing.sm))
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            KoodeChip("Match my region", settings.currencyCode.isBlank(), { vm.setCurrencyCode("") })
-            MoneyFormat.COMMON_CODES.forEach { code ->
-                KoodeChip(code, settings.currencyCode == code, { vm.setCurrencyCode(code) })
-            }
-        }
-    }
-
-    // ---- sharing the timeline when a journey ends ----
-    KoodeCard(title = "When a journey ends") {
-        ToggleRow(
-            "Send my timeline to my emergency contacts on WhatsApp",
-            settings.shareTimelineOnWhatsApp
-        ) { vm.setShareTimelineOnWhatsApp(it) }
-        Text(
-            buildString {
-                append("The moment you mark a journey complete, Koode prepares the timeline PDF ")
-                append("addressed to each of your ${vm.circleSize()} emergency contacts and opens ")
-                append("WhatsApp so you can send it. ")
-                append("Costs are never included — the money tracker stays private to you.")
-            },
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        if (settings.shareTimelineOnWhatsApp && !vm.whatsAppAvailable) {
-            Spacer(Modifier.height(Spacing.sm))
-            Text(
-                "WhatsApp isn't installed on this phone, so Koode will offer the normal share sheet instead.",
-                color = colors.warn, style = MaterialTheme.typography.bodySmall
             )
         }
     }
 
-    // ---- Toll crossings ----
-    KoodeCard(title = "Toll crossings") {
-        Text(
-            "On car and bike journeys, Koode counts each toll plaza you drive through, from your " +
-                "location alone — no SMS is read. Missed one? Tap \"Toll crossed\" in Add a note.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(Modifier.height(Spacing.sm))
-        ToggleRow("Count toll crossings automatically", settings.tollDetectionEnabled) { on ->
-            vm.setTollDetection(on)
+    // ---- Koode mode ----
+    GroupLabel("Koode mode")
+    SettingsGroup {
+        Column(Modifier.padding(LocalDims.current.cardPadding)) {
+            Text("Journey recording", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+            Spacer(Modifier.height(Spacing.sm))
+            RecordingModePicker(settings.locationCadence) { vm.setLocationCadence(it) }
+            Spacer(Modifier.height(Spacing.sm))
+            Text(settings.locationCadence.label, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            Text(modeTagline(settings.locationCadence), color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
         }
-        Spacer(Modifier.height(Spacing.sm))
-        Text(
-            "Add your vehicle below with its FASTag annual pass, and each crossing is counted off " +
-                "its remaining trips. Toll amounts are asked about privately, after the crossing.",
-            color = colors.textMid, style = MaterialTheme.typography.bodySmall
-        )
-        Text(
-            "Toll plaza locations © OpenStreetMap contributors (ODbL).",
-            color = colors.textLow, style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier.padding(top = Spacing.xs)
-        )
+        RowDivider()
+        SettingsRow("Advanced recording settings", onClick = { nav.navigate(Routes.settings(SettingsPage.RECORDING)) })
     }
 
-    // ---- My vehicles ----
-    VehiclesCard(
-        vehicles = vehicles,
-        onSave = { id, kind, nm, reg, mode, crossings, amount ->
-            vm.saveVehicle(id, kind, nm, reg, mode, crossings, amount)
-        },
-        onDelete = { id -> vm.deleteVehicle(id) }
+    // ---- categories ----
+    GroupLabel("Settings")
+    SettingsGroup {
+        SettingsRow("Journey settings", icon = KoodeIcons.Journeys, onClick = { nav.navigate(Routes.settings(SettingsPage.JOURNEY)) })
+        RowDivider()
+        SettingsRow("Safety & sharing", icon = KoodeIcons.Shield, onClick = { nav.navigate(Routes.settings(SettingsPage.SAFETY)) })
+        RowDivider()
+        SettingsRow("Notifications", icon = KoodeIcons.Bell, onClick = { nav.navigate(Routes.settings(SettingsPage.NOTIFICATIONS)) })
+        RowDivider()
+        SettingsRow("Places & contacts", icon = KoodeIcons.Pin, onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES_CONTACTS)) })
+        RowDivider()
+        SettingsRow("Privacy & data", icon = KoodeIcons.Lock, onClick = { nav.navigate(Routes.settings(SettingsPage.PRIVACY)) })
+        RowDivider()
+        SettingsRow("Appearance & feel", icon = KoodeIcons.Sun, onClick = { nav.navigate(Routes.settings(SettingsPage.APPEARANCE)) })
+        RowDivider()
+        SettingsRow("About Koode", icon = KoodeIcons.Info, onClick = { nav.navigate(Routes.settings(SettingsPage.ABOUT)) })
+    }
+    Spacer(Modifier.height(Spacing.sm))
+}
+
+/** The three recording profiles, as one segmented control. */
+@Composable
+internal fun RecordingModePicker(selected: LocationCadence, onSelect: (LocationCadence) -> Unit) {
+    val colors = KoodeTheme.colors
+    val haptics = rememberHaptics()
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(Radii.md))
+            .background(colors.backgroundElevated)
+            .padding(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        LocationCadence.entries.forEach { c ->
+            val on = c == selected
+            val bg by animateColorAsState(
+                if (on) colors.accent.copy(alpha = if (colors.isDark) 0.22f else 0.16f) else Color.Transparent,
+                tween(Motion.normal), label = "modeBg"
+            )
+            Box(
+                Modifier
+                    .weight(1f)
+                    .heightIn(min = 44.dp)
+                    .clip(RoundedCornerShape(Radii.sm))
+                    .background(bg)
+                    .selectable(selected = on, role = Role.RadioButton) {
+                        if (!on) { haptics.tick(); onSelect(c) }
+                    }
+                    .padding(horizontal = 4.dp, vertical = 8.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    modeShortLabel(c),
+                    color = if (on) colors.textHigh else colors.textMid,
+                    style = MaterialTheme.typography.labelLarge,
+                    textAlign = TextAlign.Center,
+                    maxLines = 2
+                )
+            }
+        }
+    }
+}
+
+internal fun modeShortLabel(c: LocationCadence): String = when (c) {
+    LocationCadence.SAVER -> "Battery Saver"
+    LocationCadence.BALANCED -> "Balanced"
+    LocationCadence.PRECISE -> "High Precision"
+}
+
+internal fun modeTagline(c: LocationCadence): String = when (c) {
+    LocationCadence.SAVER -> "Fewer location samples, lighter on battery"
+    LocationCadence.BALANCED -> "Optimised for normal journeys"
+    LocationCadence.PRECISE -> "More frequent recording, heavier on battery"
+}
+
+// ---------------------------------------------------------------------------
+// Settings building blocks — compact rows in grouped surfaces
+// ---------------------------------------------------------------------------
+
+/** A small uppercase label above a group. */
+@Composable
+internal fun GroupLabel(text: String) {
+    Text(
+        text.uppercase(),
+        color = KoodeTheme.colors.textLow,
+        style = MaterialTheme.typography.labelSmall,
+        modifier = Modifier.padding(start = 4.dp, top = Spacing.sm)
     )
+}
 
-    // ---- appearance ----
-    KoodeCard(title = "Appearance") {
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            KoodeChip("Follow system", settings.themeMode == KoodeSettings.THEME_SYSTEM,
-                { vm.setThemeMode(KoodeSettings.THEME_SYSTEM) })
-            KoodeChip("Always dark", settings.themeMode == KoodeSettings.THEME_DARK,
-                { vm.setThemeMode(KoodeSettings.THEME_DARK) })
-            KoodeChip("Always light", settings.themeMode == KoodeSettings.THEME_LIGHT,
-                { vm.setThemeMode(KoodeSettings.THEME_LIGHT) })
+/** One rounded surface holding a group of rows. */
+@Composable
+internal fun SettingsGroup(content: @Composable ColumnScope.() -> Unit) {
+    val colors = KoodeTheme.colors
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(Radii.lg))
+            .background(colors.surface)
+            .border(1.dp, colors.outline.copy(alpha = 0.5f), RoundedCornerShape(Radii.lg)),
+        content = content
+    )
+}
+
+@Composable
+internal fun RowDivider() {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .padding(start = Spacing.lg)
+            .height(1.dp)
+            .background(KoodeTheme.colors.outline.copy(alpha = 0.45f))
+    )
+}
+
+/**
+ * One settings row: an optional icon, a title, an optional one-line
+ * subtitle, and a trailing value or chevron. 56 dp minimum — a full touch
+ * target whatever the font scale.
+ */
+@Composable
+internal fun SettingsRow(
+    title: String,
+    subtitle: String? = null,
+    icon: ImageVector? = null,
+    value: String? = null,
+    titleColor: Color? = null,
+    showChevron: Boolean = true,
+    onClick: (() -> Unit)? = null
+) {
+    val colors = KoodeTheme.colors
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .heightIn(min = 56.dp)
+            .then(if (onClick != null) Modifier.clickable(onClickLabel = title, onClick = onClick) else Modifier)
+            .padding(horizontal = Spacing.lg, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (icon != null) {
+            Icon(icon, contentDescription = null, tint = colors.textMid, modifier = Modifier.size(22.dp))
+            Spacer(Modifier.width(Spacing.md))
         }
-    }
-
-    // ---- saved locations ----
-    KoodeCard(title = "Saved places") {
-        Text(
-            "One-tap From / To when you plan a journey.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        places.forEach { p ->
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    p.name, color = colors.textHigh,
-                    style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f)
-                )
-                Text(
-                    "%.3f, %.3f".format(p.lat, p.lng),
-                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
-                )
-                TextButton(onClick = { vm.deletePlace(p.name) }) {
-                    Text("✕", color = colors.textLow, fontSize = 13.sp)
-                }
+        Column(Modifier.weight(1f)) {
+            Text(title, color = titleColor ?: colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            if (subtitle != null) {
+                Text(subtitle, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
             }
         }
-        Spacer(Modifier.height(Spacing.sm))
-        SecondaryButton("Add a place", { placeNote = null; addingPlace = true }, leading = "＋", height = 44.dp)
-        placeNote?.let {
-            Spacer(Modifier.height(Spacing.xs))
-            Text(it, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
+        if (value != null) {
+            Spacer(Modifier.width(Spacing.sm))
+            Text(value, color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
+        }
+        if (onClick != null && showChevron) {
+            Spacer(Modifier.width(Spacing.xs))
+            Icon(KoodeIcons.Chevron, contentDescription = null, tint = colors.textLow, modifier = Modifier.size(18.dp))
         }
     }
+}
 
-    if (addingPlace) {
-        com.trippulse.app.ui.components.PlacePicker(
-            asStart = false,
-            title = "Add a saved place",
-            results = results,
-            searching = searching,
-            saved = places,
-            recent = emptyList(),
-            here = null,
-            pinStart = null,
-            onQuery = { vm.searchPlaces(it) },
-            onPick = { place -> addingPlace = false; vm.searchPlaces(""); pendingSave = place },
-            offerCurrentLocation = true,
-            onOpenGoogleMaps = { query -> com.trippulse.app.ui.components.openGoogleMaps(context, query) },
-            onSharedText = { text ->
-                placeScope.launch {
-                    val place = vm.resolveShared(text)
-                    addingPlace = false
-                    if (place != null) pendingSave = place
-                    else placeNote = "Couldn't read a location from that Google Maps link. Try again, or search by name."
-                }
-            },
-            onSavePlace = { name, point -> vm.addPlace(name, point, name); placeNote = "Saved \u201C$name\u201D." },
-            onDeleteSaved = { vm.deletePlace(it) },
-            onDismiss = { addingPlace = false; vm.searchPlaces("") }
-        )
-    }
-
-    pendingSave?.let { place ->
-        var label by remember(place) {
-            mutableStateOf(if (place.name.startsWith("Current location")) "" else place.name.substringBefore(",").trim())
+/** A switch row inside a group. */
+@Composable
+internal fun SettingsToggle(title: String, checked: Boolean, subtitle: String? = null, onChange: (Boolean) -> Unit) {
+    val colors = KoodeTheme.colors
+    val haptics = rememberHaptics()
+    Row(
+        Modifier
+            .fillMaxWidth()
+            .heightIn(min = 56.dp)
+            .toggleable(value = checked, role = Role.Switch) { haptics.tick(); onChange(it) }
+            .padding(horizontal = Spacing.lg, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Column(Modifier.weight(1f)) {
+            Text(title, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            if (subtitle != null) Text(subtitle, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
         }
-        androidx.compose.material3.AlertDialog(
-            onDismissRequest = { pendingSave = null },
-            title = { Text("Name this place") },
-            text = {
-                Column {
-                    Text(
-                        place.name + if (place.detail.isNotBlank() && !place.name.contains(place.detail)) " · ${place.detail}" else "",
-                        color = colors.textMid, style = MaterialTheme.typography.bodySmall
-                    )
-                    Spacer(Modifier.height(Spacing.sm))
-                    OutlinedTextField(
-                        value = label, onValueChange = { label = InputRules.itemText(it) },
-                        label = { Text("Home, Office, Amma's house…") }, singleLine = true
-                    )
-                }
-            },
-            confirmButton = {
-                TextButton(onClick = {
-                    vm.addPlace(label, place.point, place.name)
-                    placeNote = "Saved \u201C${label.ifBlank { place.name }}\u201D."
-                    pendingSave = null
-                }, enabled = label.isNotBlank()) { Text("Save") }
-            },
-            dismissButton = { TextButton(onClick = { pendingSave = null }) { Text("Cancel") } }
+        Spacer(Modifier.width(Spacing.sm))
+        Switch(
+            checked = checked, onCheckedChange = null,
+            colors = SwitchDefaults.colors(
+                checkedThumbColor = colors.background,
+                checkedTrackColor = colors.accent,
+                uncheckedTrackColor = colors.surfaceRaised
+            )
         )
     }
-
-    // ---- emergency contacts ----
-    KoodeCard(title = "Emergency contacts (at least ${Profile.MIN_CONTACTS})") {
-        Text(
-            "These are your trusted contacts: they're approved automatically when they ask to follow one of your journeys.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(Modifier.height(Spacing.sm))
-        ContactRow("Contact 1", c1, { pickContact(1) }) { c1 = it }
-        ContactRow("Contact 2", c2, { pickContact(2) }) { c2 = it }
-        ContactRow("Contact 3", c3, { pickContact(3) }) { c3 = it }
-    }
-
-    if (message != null) {
-        Text(message!!, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
-    }
-
-    PrimaryButton("Save profile", {
-        vm.saveProfile(name, listOf(c1, c2, c3))
-        onProfileChanged()
-    }, height = 50.dp)
-
-    // ---- updates ----
-    KoodeCard(title = "App version") {
-        Text(
-            "Koode ${vm.installedVersion}",
-            color = colors.textHigh, style = MaterialTheme.typography.titleMedium
-        )
-        Text(
-            if (update != null) "Koode ${update!!.versionName} is available."
-            else "Updating never affects a journey in progress — yours or one you're watching. " +
-                "Your history, places and contacts are carried across untouched.",
-            color = if (update != null) colors.traveller else colors.textMid,
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Spacer(Modifier.height(Spacing.md))
-        ToggleRow("Tell me when an update is out", settings.checkForUpdates) { vm.setCheckForUpdates(it) }
-        Spacer(Modifier.height(Spacing.sm))
-        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            Box(Modifier.weight(1f)) {
-                SecondaryButton(
-                    if (checking) "Checking…" else "Check now",
-                    { vm.checkForUpdateNow() }, enabled = !checking, height = 44.dp
-                )
-            }
-            if (update != null) {
-                Box(Modifier.weight(1f)) {
-                    SecondaryButton(
-                        "Download", { uriHandler.openUri(update!!.downloadUrl) },
-                        accent = colors.traveller, height = 44.dp
-                    )
-                }
-            }
-        }
-    }
-
-    // ---- privacy & legal ----
-    KoodeCard(title = "Privacy and legal") {
-        Text(
-            "Your location is shared only during a journey you started, only with people you approve, " +
-                "and the shared copy self-destructs shortly after you end the journey. Your profile, " +
-                "emergency contacts, history and expenses never leave this phone. No ads, no analytics, no accounts.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        Row {
-            TextButton(onClick = {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("$REPO_URL/blob/main/docs/PRIVACY.md")))
-            }) { Text("Privacy policy", color = colors.accent, fontSize = 13.sp) }
-            TextButton(onClick = {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("$REPO_URL/blob/main/docs/TERMS.md")))
-            }) { Text("Terms of use", color = colors.accent, fontSize = 13.sp) }
-        }
-    }
-
-    KoodeCard(title = "About") {
-        Text(
-            "Koode ${BuildConfig.VERSION_NAME} — Always with you.",
-            color = colors.textHigh, style = MaterialTheme.typography.bodyLarge
-        )
-        Text(
-            "A journey companion that keeps the people you love informed about your journey, wellbeing and safety — without you having to call or message them.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-    }
-    Spacer(Modifier.height(Spacing.lg))
 }
 
 /**
@@ -516,7 +367,7 @@ fun SettingsTab(onProfileChanged: () -> Unit) {
  * Koode counts on that journey comes off its remaining trips.
  */
 @Composable
-private fun VehiclesCard(
+internal fun VehiclesCard(
     vehicles: List<VehicleEntity>,
     onSave: (String?, VehicleKind, String, String, FastagMode, Int?, Double?) -> Unit,
     onDelete: (String) -> Unit
@@ -567,7 +418,7 @@ private fun VehiclesCard(
 
 /** One saved vehicle, with its FASTag balance when it tracks one. */
 @Composable
-private fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Unit) {
+internal fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Unit) {
     val colors = KoodeTheme.colors
     val emoji = if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "🏍" else "🚗"
     val title = v.name.ifBlank { if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "Bike" else "Car" }
@@ -594,7 +445,7 @@ private fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Uni
 /** Add / edit form for one vehicle. Kind is the only required choice. */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun VehicleEditor(
+internal fun VehicleEditor(
     existing: VehicleEntity?,
     onCancel: () -> Unit,
     onSave: (VehicleKind, String, String, FastagMode, Int?, Double?) -> Unit
@@ -677,13 +528,13 @@ private fun VehicleEditor(
 }
 
 /** Whole rupees plainly, paise only when the balance carries them. */
-private fun rupees(amount: Double): String {
+internal fun rupees(amount: Double): String {
     val n = if (amount % 1.0 == 0.0) "%,.0f".format(amount) else "%,.2f".format(amount)
     return "₹$n"
 }
 
 @Composable
-private fun ToggleRow(label: String, checked: Boolean, onChange: (Boolean) -> Unit) {
+internal fun ToggleRow(label: String, checked: Boolean, onChange: (Boolean) -> Unit) {
     val colors = KoodeTheme.colors
     Row(
         Modifier.fillMaxWidth().padding(vertical = 4.dp),
@@ -706,7 +557,7 @@ private fun ToggleRow(label: String, checked: Boolean, onChange: (Boolean) -> Un
 }
 
 @Composable
-private fun ContactRow(
+internal fun ContactRow(
     label: String,
     contact: Profile.Contact,
     onPick: () -> Unit,
@@ -744,7 +595,7 @@ private fun ContactRow(
  * chose and grants read access only to it — so Koode needs no READ_CONTACTS
  * permission and never sees the rest of the address book.
  */
-private class PickPhoneContact : ActivityResultContract<Unit, Uri?>() {
+internal class PickPhoneContact : ActivityResultContract<Unit, Uri?>() {
     override fun createIntent(context: Context, input: Unit): Intent =
         Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
 
@@ -753,7 +604,7 @@ private class PickPhoneContact : ActivityResultContract<Unit, Uri?>() {
 }
 
 /** Reads the display name and number from a picked phone-contact URI. */
-private fun readPickedContact(context: Context, uri: Uri): Pair<String, String>? = runCatching {
+internal fun readPickedContact(context: Context, uri: Uri): Pair<String, String>? = runCatching {
     context.contentResolver.query(
         uri,
         arrayOf(

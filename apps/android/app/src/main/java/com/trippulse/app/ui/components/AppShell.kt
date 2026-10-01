@@ -118,7 +118,7 @@ fun BadgedIcon(
         content()
         AnimatedVisibility(
             visible = badge != null,
-            enter = scaleIn(spring(dampingRatio = 0.5f, stiffness = Spring.StiffnessMedium)) + fadeIn(),
+            enter = scaleIn(tween(Motion.normal)) + fadeIn(tween(Motion.normal)),
             exit = scaleOut() + fadeOut(),
             modifier = Modifier
                 .align(Alignment.TopEnd)
@@ -336,25 +336,14 @@ private fun NavItem(tab: NavTab, isSelected: Boolean, onClick: () -> Unit, modif
         tween(Motion.normal), label = "navIconTint"
     )
     val pillWidth by animateDpAsState(
-        if (isSelected) dims.navIndicatorWidth else dims.navIndicatorWidth * 0.45f,
-        spring(dampingRatio = 0.7f, stiffness = Spring.StiffnessMediumLow), label = "navPill"
+        if (isSelected) dims.navIndicatorWidth else dims.navIndicatorWidth * 0.6f,
+        tween(Motion.normal), label = "navPill"
     )
     val pillAlpha by animateFloatAsState(if (isSelected) 1f else 0f, tween(Motion.normal), label = "navPillAlpha")
 
-    // A small spring when this tab becomes the selected one (not on first show).
-    val bounce = remember { Animatable(1f) }
-    var wasSelected by remember { mutableStateOf(isSelected) }
-    LaunchedEffect(isSelected) {
-        if (isSelected && !wasSelected) {
-            bounce.snapTo(0.82f)
-            bounce.animateTo(1f, spring(dampingRatio = 0.42f, stiffness = Spring.StiffnessMedium))
-        }
-        wasSelected = isSelected
-    }
-
     val interaction = remember { MutableInteractionSource() }
     val pressed by interaction.collectIsPressedAsState()
-    val press by animateFloatAsState(if (pressed) 0.9f else 1f, spring(dampingRatio = 0.6f), label = "navPress")
+    val press by animateFloatAsState(if (pressed) 0.94f else 1f, tween(Motion.fast), label = "navPress")
 
     Column(
         modifier
@@ -372,7 +361,7 @@ private fun NavItem(tab: NavTab, isSelected: Boolean, onClick: () -> Unit, modif
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
-            Modifier.height(dims.navIconSize + 8.dp).width(dims.navIndicatorWidth),
+            Modifier.height(dims.navIconSize + 6.dp).width(dims.navIndicatorWidth),
             contentAlignment = Alignment.Center
         ) {
             Box(
@@ -380,9 +369,9 @@ private fun NavItem(tab: NavTab, isSelected: Boolean, onClick: () -> Unit, modif
                     .width(pillWidth)
                     .fillMaxHeight()
                     .clip(RoundedCornerShape(Radii.pill))
-                    .background(colors.accent.copy(alpha = 0.16f * pillAlpha))
+                    .background(colors.accent.copy(alpha = 0.11f * pillAlpha))
             )
-            BadgedIcon(tab.badge, Modifier.scale(bounce.value * press)) {
+            BadgedIcon(tab.badge, Modifier.scale(press)) {
                 Icon(
                     if (isSelected) tab.selectedIcon else tab.icon,
                     contentDescription = null,

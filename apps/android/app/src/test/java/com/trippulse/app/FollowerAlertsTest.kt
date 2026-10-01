@@ -113,4 +113,17 @@ class FollowerAlertsTest {
         val again = FollowerAlerts.notificationId("k", EventTypes.TRIP_STARTED, 42L, emptyMap())
         assertEquals(first, again)
     }
+
+    @Test fun each_alert_is_filed_under_one_category_that_can_be_switched_off_alone() {
+        assertEquals(FollowerAlerts.Category.SAFETY, FollowerAlerts.category(EventTypes.SOS_ACTIVATED))
+        assertEquals(FollowerAlerts.Category.COMPLETION, FollowerAlerts.category(EventTypes.TRIP_COMPLETED))
+        assertEquals(FollowerAlerts.Category.COMPLETION, FollowerAlerts.category(EventTypes.JOURNEY_REPORT_AVAILABLE))
+        assertEquals(FollowerAlerts.Category.WELLBEING, FollowerAlerts.category(EventTypes.BREAK_CHECKPOINT))
+        assertEquals(FollowerAlerts.Category.WELLBEING, FollowerAlerts.category(EventTypes.WATER_REPORTED))
+        assertEquals(FollowerAlerts.Category.WELLBEING, FollowerAlerts.category(EventTypes.WELLBEING_ALERT))
+        // Refuelling and plan changes are part of the journey, not wellbeing.
+        assertEquals(FollowerAlerts.Category.JOURNEY, FollowerAlerts.category(EventTypes.FUEL_STOP))
+        assertEquals(FollowerAlerts.Category.JOURNEY, FollowerAlerts.category(EventTypes.DESTINATION_CHANGED))
+        assertEquals(FollowerAlerts.Category.JOURNEY, FollowerAlerts.category(EventTypes.TOLL_CROSSED))
+    }
 }

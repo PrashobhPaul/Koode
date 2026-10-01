@@ -27,13 +27,23 @@ class Notifier(private val context: Context) {
             }
         )
         nm.createNotificationChannel(
-            NotificationChannel(CH_EVENTS, "Trip updates", NotificationManager.IMPORTANCE_DEFAULT).apply {
-                description = "Break, overnight and arrival updates"
+            NotificationChannel(CH_EVENTS, "Journey updates", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "Starts, stops, halts, plan changes and arrivals on your journeys and the ones you follow"
             }
         )
         nm.createNotificationChannel(
-            NotificationChannel(CH_COACH, "Wellbeing reminders", NotificationManager.IMPORTANCE_DEFAULT).apply {
-                description = "Reminders to drink water, eat and take breaks during your journey"
+            NotificationChannel(CH_COACH, "Wellbeing", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "Gentle water, food and break suggestions on your journeys, and wellbeing updates on the ones you follow"
+            }
+        )
+        nm.createNotificationChannel(
+            NotificationChannel(CH_COMPLETION, "Journey completion", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "Arrival, closing and review of your journeys, and the approved report of the ones you follow"
+            }
+        )
+        nm.createNotificationChannel(
+            NotificationChannel(CH_EXPENSE, "Expense reminders", NotificationManager.IMPORTANCE_DEFAULT).apply {
+                description = "Private prompts to note what a stop cost you — never while you drive"
             }
         )
         nm.createNotificationChannel(
@@ -115,7 +125,7 @@ class Notifier(private val context: Context) {
      */
     fun showClosePrompt(destination: String, stronger: Boolean) {
         val body = com.trippulse.app.domain.JourneyClosure.closePromptBody(stronger)
-        val n = NotificationCompat.Builder(context, CH_EVENTS)
+        val n = NotificationCompat.Builder(context, CH_COMPLETION)
             .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle(com.trippulse.app.domain.JourneyClosure.closePromptTitle(destination))
             .setContentText(body)
@@ -142,7 +152,7 @@ class Notifier(private val context: Context) {
     fun showReviewPrompt(destination: String, auto: Boolean) {
         val body = if (auto) "Your journey to $destination was closed after you arrived. Review it — it's shared with the people following it only once you approve."
             else "Check what Koode recorded. It's shared with the people following your journey only once you approve."
-        val n = NotificationCompat.Builder(context, CH_EVENTS)
+        val n = NotificationCompat.Builder(context, CH_COMPLETION)
             .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle("Review your journey")
             .setContentText(body)
@@ -224,10 +234,18 @@ class Notifier(private val context: Context) {
      */
     fun showJourneyEvent(
         id: Int, title: String, body: String, urgent: Boolean = false,
-        important: Boolean = false, person: String? = null
+        important: Boolean = false, person: String? = null,
+        category: com.trippulse.app.domain.FollowerAlerts.Category = com.trippulse.app.domain.FollowerAlerts.Category.JOURNEY
     ) =
         postEvent(
-            id, if (urgent) CH_SOS else CH_EVENTS, title, body,
+            id,
+            when {
+                urgent -> CH_SOS
+                category == com.trippulse.app.domain.FollowerAlerts.Category.WELLBEING -> CH_COACH
+                category == com.trippulse.app.domain.FollowerAlerts.Category.COMPLETION -> CH_COMPLETION
+                else -> CH_EVENTS
+            },
+            title, body,
             // A plan change (new destination, mode, halt) heads the tray too.
             high = urgent || important, onlyAlertOnce = !urgent,
             largeIcon = person?.let { personIcon(it) }
@@ -330,7 +348,7 @@ class Notifier(private val context: Context) {
             .addRemoteInput(input)
             .build()
         val body = "${o.category.emoji} ${o.label} · private to you"
-        val n = NotificationCompat.Builder(context, CH_COACH)
+        val n = NotificationCompat.Builder(context, CH_EXPENSE)
             .setSmallIcon(R.drawable.ic_stat_trip)
             .setContentTitle(com.trippulse.app.domain.Expenses.question(o))
             .setContentText(body)
@@ -370,6 +388,8 @@ class Notifier(private val context: Context) {
         const val CH_EVENTS = "trippulse.events"
         const val CH_SOS = "trippulse.sos"
         const val CH_COACH = "trippulse.coach"
+        const val CH_COMPLETION = "koode.completion"
+        const val CH_EXPENSE = "koode.expense"
 
         const val NOTIF_TRACKING = 1001
         private const val ID_ARRIVAL = 2001
