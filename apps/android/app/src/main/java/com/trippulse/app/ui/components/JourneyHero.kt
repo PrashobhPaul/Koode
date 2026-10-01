@@ -126,9 +126,10 @@ fun RideProgress(progress: Float, mode: String?, emoji: String, moving: Boolean,
         animationSpec = infiniteRepeatable(tween(520, easing = FastOutSlowInEasing), RepeatMode.Reverse),
         label = "rideBobY"
     )
-    val vehicleSize = 30.dp
+    val art = KoodeArt.mode(mode)
+    val vehicleSize = if (art != null) 40.dp else 30.dp
 
-    BoxWithConstraints(modifier.fillMaxWidth().height(40.dp)) {
+    BoxWithConstraints(modifier.fillMaxWidth().height(if (art != null) 48.dp else 40.dp)) {
         val track = maxWidth
         // track
         Box(
@@ -158,7 +159,8 @@ fun RideProgress(progress: Float, mode: String?, emoji: String, moving: Boolean,
                 .size(vehicleSize),
             contentAlignment = Alignment.Center
         ) {
-            Text(
+            if (art != null) ModeArt(mode, vehicleSize, faceRight = true)
+            else Text(
                 emoji, fontSize = 22.sp,
                 modifier = Modifier.graphicsLayer {
                     // Most road and sea vehicle emoji face left; turn them to face

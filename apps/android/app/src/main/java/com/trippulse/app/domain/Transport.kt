@@ -105,7 +105,7 @@ object TransportCatalog {
 
     /** A taxi or ride-hail: road-borne, but the traveller isn't driving. */
     val CAB = TransportProfile(
-        key = "CAB", label = "Cab / taxi", emoji = "🚕",
+        key = "CAB", label = "Cab / auto", emoji = "🚕",
         isPrivateVehicle = false, isRoadMode = true,
         stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = false,

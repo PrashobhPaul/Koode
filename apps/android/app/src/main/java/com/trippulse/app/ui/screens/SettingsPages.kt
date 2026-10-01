@@ -466,7 +466,7 @@ private fun SavedPlacesPage(vm: SettingsVm) {
                     Modifier.fillMaxWidth().padding(start = Spacing.lg, end = Spacing.xs, top = 4.dp, bottom = 4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Icon(KoodeIcons.Pin, contentDescription = null, tint = colors.textMid, modifier = Modifier.size(20.dp))
+                    com.trippulse.app.ui.components.ArtImage(com.trippulse.app.ui.components.KoodeArt.place(p.name), 36.dp)
                     Spacer(Modifier.width(Spacing.md))
                     Text(p.name, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
                     TextButton(onClick = { vm.deletePlace(p.name) }) {

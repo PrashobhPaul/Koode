@@ -103,7 +103,9 @@ data class TimelineItem(
     val timeMs: Long,
     val emoji: String,
     val label: String,
-    val detail: String?
+    val detail: String?,
+    /** A bundled illustration for stops that have one (fuel, food, toilet, stay). */
+    val art: Int? = null
 )
 
 /** Builds the timeline model from raw payload maps (shared by both sides). */
@@ -118,7 +120,7 @@ fun timelineItems(
     .map { (type, rest) ->
         val (timeMs, payload) = rest
         val (emoji, label) = eventLine(type, payload)
-        TimelineItem(timeMs, emoji, label, null)
+        TimelineItem(timeMs, emoji, label, null, com.trippulse.app.ui.components.KoodeArt.event(type))
     }
 
 /**
@@ -140,7 +142,8 @@ fun TimelineList(items: List<TimelineItem>, nowMs: Long, modifier: Modifier = Mo
         items.forEachIndexed { index, item ->
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.width(28.dp)) {
-                    Text(item.emoji, fontSize = 15.sp)
+                    if (item.art != null) com.trippulse.app.ui.components.ArtImage(item.art, 26.dp)
+                    else Text(item.emoji, fontSize = 15.sp)
                     if (index != items.lastIndex) {
                         Box(
                             Modifier
