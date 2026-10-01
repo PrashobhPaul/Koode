@@ -178,6 +178,39 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     fun distance(metres: Double): String = graph.measures().distance(metres)
 
 
+    /** Private spending on the running journey: what is recorded, and what is still open. */
+    data class SpendSummary(val total: Double, val entries: Int, val open: Int)
+
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    val activeSpend: StateFlow<SpendSummary?> =
+        graph.tripManager.activeTripFlow()
+            .flatMapLatest { t ->
+                if (t == null) flowOf(null)
+                else combine(graph.db.expenseDao().flowForTrip(t.tripId), graph.tripManager.expenseVersion) { rows, _ ->
+                    SpendSummary(
+                        total = rows.sumOf { it.amount },
+                        entries = rows.size,
+                        open = graph.tripManager.expenseOpportunities(t.tripId).count { it.open }
+                    )
+                }
+            }
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    /** Money in the traveller's own currency. */
+    fun money(amount: Double): String = graph.measures().money(amount)
+
+    /** Whether the running journey is on the traveller's own car or bike. */
+    fun privateVehicle(mode: String?): Boolean = com.trippulse.app.domain.TransportCatalog.profile(mode).isPrivateVehicle
+
+    // ---- "How you're doing": the same answers as the journey screen and the nudges ----
+    fun hadWater() = viewModelScope.launch { graph.tripManager.logNeedMet(com.trippulse.app.domain.WellbeingCoach.Need.WATER) }
+    fun ateSomething() = viewModelScope.launch { graph.tripManager.logNeedMet(com.trippulse.app.domain.WellbeingCoach.Need.FOOD) }
+    fun hadTea() = viewModelScope.launch { graph.tripManager.logNourishment(Nourishment.TEA_COFFEE) }
+    fun takingABreak() = viewModelScope.launch { graph.tripManager.logNeedMet(com.trippulse.app.domain.WellbeingCoach.Need.BREAK) }
+    fun remindLater() = viewModelScope.launch {
+        com.trippulse.app.domain.WellbeingCoach.Need.entries.forEach { graph.tripManager.snoozeNudge(it) }
+    }
+
     /** Erases one journey completely from this device. */
     fun deleteTrip(tripId: String) = viewModelScope.launch {
         with(graph.db) {

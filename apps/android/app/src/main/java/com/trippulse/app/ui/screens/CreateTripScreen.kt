@@ -90,7 +90,7 @@ import com.trippulse.app.core.InputRules
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun CreateTripScreen(nav: NavHostController) {
+fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
     val vm: CreateVm = viewModel(factory = CreateVm.Factory)
     val colors = KoodeTheme.colors
     val windowClass = LocalWindowClass.current
@@ -108,6 +108,11 @@ fun CreateTripScreen(nav: NavHostController) {
     val myName by vm.myName.collectAsStateWithLifecycle()
     val results by vm.searchResults.collectAsStateWithLifecycle()
     val searching by vm.searching.collectAsStateWithLifecycle()
+    // "Schedule for later" from Home/Journeys lands with a departure already
+    // an hour out, which the traveller then adjusts.
+    androidx.compose.runtime.LaunchedEffect(scheduleLater) {
+        if (scheduleLater && vm.departureMs.value == null) vm.departureMs.value = System.currentTimeMillis() + 3_600_000L
+    }
     val here by vm.here.collectAsStateWithLifecycle()
     val notice by vm.notice.collectAsStateWithLifecycle()
 

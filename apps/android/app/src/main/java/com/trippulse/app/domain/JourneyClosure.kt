@@ -112,7 +112,7 @@ object JourneyClosure {
     }
 
     /** The traveller-facing close prompt. */
-    fun closePromptTitle(destination: String): String = "You've reached $destination"
+    fun closePromptTitle(destination: String): String = "Reached $destination"
 
     fun closePromptBody(stronger: Boolean): String =
         if (stronger) "Your journey is still open. End it when you're done, or tell Koode you're still travelling."

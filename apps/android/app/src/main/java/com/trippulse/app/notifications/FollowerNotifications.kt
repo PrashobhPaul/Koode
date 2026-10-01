@@ -53,7 +53,8 @@ object FollowerNotifications {
             body = label,
             urgent = FollowerAlerts.isUrgent(type),
             important = FollowerAlerts.level(type, payload) == FollowerAlerts.Level.IMPORTANT,
-            person = person ?: label
+            person = person ?: label,
+            category = FollowerAlerts.category(type)
         )
         return true
     }

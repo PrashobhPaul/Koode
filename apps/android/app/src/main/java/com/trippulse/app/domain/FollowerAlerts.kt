@@ -96,6 +96,22 @@ object FollowerAlerts {
         EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP
     )
 
+    /**
+     * The notification category an alert is filed under on the follower's
+     * phone, so each kind can be switched off on its own (Android channels)
+     * without touching the others. Safety alerts always stay separate.
+     */
+    enum class Category { SAFETY, JOURNEY, WELLBEING, COMPLETION }
+
+    fun category(type: String): Category = when (type) {
+        in CRITICAL -> Category.SAFETY
+        EventTypes.TRIP_COMPLETED, EventTypes.JOURNEY_REPORT_AVAILABLE -> Category.COMPLETION
+        EventTypes.WATER_REPORTED, EventTypes.FOOD_REPORTED, EventTypes.TEA_COFFEE_REPORTED,
+        EventTypes.SNACK_REPORTED, EventTypes.TOILET_REPORTED, EventTypes.REST_REPORTED,
+        EventTypes.BREAK_CHECKPOINT, EventTypes.WELLBEING_ALERT -> Category.WELLBEING
+        else -> Category.JOURNEY
+    }
+
     /** Events that should ring louder on the follower's phone. */
     fun isUrgent(type: String): Boolean = type in CRITICAL
 

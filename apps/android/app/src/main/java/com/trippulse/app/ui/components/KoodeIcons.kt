@@ -141,4 +141,23 @@ object KoodeIcons {
         )
     }
     val Close: ImageVector by lazy { stroke("close", "M6 6l12 12M18 6L6 18") }
+
+    // ---- settings ----
+    val Lock: ImageVector by lazy {
+        stroke("lock", "M6 11h12v9H6z", "M8.5 11V8a3.5 3.5 0 0 1 7 0v3")
+    }
+    val Sun: ImageVector by lazy {
+        stroke(
+            "sun", circle(12f, 12f, 4f),
+            "M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"
+        )
+    }
+    val Info: ImageVector by lazy { stroke("info", circle(12f, 12f, 9f), "M12 11v6M12 7.5h.01") }
+    val Trash: ImageVector by lazy {
+        stroke("trash", "M4 7h16M10 7V4.5h4V7", "M6.5 7l1 13h9l1-13", "M10 11v5M14 11v5")
+    }
+    val Calendar: ImageVector by lazy {
+        stroke("calendar", "M4 6h16v14H4z", "M4 10h16M8 3.5v4M16 3.5v4")
+    }
+    val Arrow: ImageVector by lazy { stroke("arrow_down", "M12 5v14M7 14l5 5 5-5") }
 }
