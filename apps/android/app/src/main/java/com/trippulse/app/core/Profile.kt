@@ -32,6 +32,17 @@ object Profile {
         }
     }
 
+    private val _revision = kotlinx.coroutines.flow.MutableStateFlow(0L)
+
+    /**
+     * The canonical profile revision: bumped on every change to the photo,
+     * name or avatar style. Every avatar observes this one value, so a photo
+     * added, changed or removed anywhere shows everywhere at once.
+     */
+    val revision: kotlinx.coroutines.flow.StateFlow<Long> = _revision
+
+    private fun changed() { _revision.value = _revision.value + 1 }
+
     private fun photoFile(c: Context) = File(c.applicationContext.filesDir, "profile_photo.jpg")
 
     /** The saved photo file, or null when none has been added. */
@@ -46,6 +57,7 @@ object Profile {
         }
         // Bump so anything keyed on this value recomposes with the new photo.
         prefs(c).edit().putLong("photo_updated", System.currentTimeMillis()).apply()
+        changed()
         hasPhoto(c)
     } catch (_: Exception) {
         false
@@ -54,7 +66,23 @@ object Profile {
     fun clearPhoto(c: Context) {
         runCatching { photoFile(c).delete() }
         prefs(c).edit().putLong("photo_updated", System.currentTimeMillis()).apply()
+        changed()
     }
+
+    /**
+     * Decodes the photo at roughly the size it is shown, so a 30 dp app-bar
+     * avatar never holds a full-resolution camera image. Null when the file is
+     * missing or not a loadable image — every avatar then falls back to the
+     * initial.
+     */
+    fun decodePhoto(path: String, targetPx: Int): android.graphics.Bitmap? = runCatching {
+        val bounds = android.graphics.BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        android.graphics.BitmapFactory.decodeFile(path, bounds)
+        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return@runCatching null
+        var sample = 1
+        while (bounds.outWidth / (sample * 2) >= targetPx && bounds.outHeight / (sample * 2) >= targetPx) sample *= 2
+        android.graphics.BitmapFactory.decodeFile(path, android.graphics.BitmapFactory.Options().apply { inSampleSize = sample })
+    }.getOrNull()
 
     /** Changes whenever the photo is added or removed, for Compose keys. */
     fun photoVersion(c: Context): Long = prefs(c).getLong("photo_updated", 0L)
@@ -63,6 +91,7 @@ object Profile {
 
     fun setAvatarStyle(c: Context, style: AvatarStyle) {
         prefs(c).edit().putString("avatar_style", style.name).apply()
+        changed()
     }
 
     data class Contact(val name: String, val phone: String) {
@@ -75,6 +104,7 @@ object Profile {
 
     fun setName(c: Context, name: String) {
         prefs(c).edit().putString("name", name.trim()).apply()
+        changed()
     }
 
     fun contact(c: Context, slot: Int): Contact = Contact(

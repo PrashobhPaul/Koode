@@ -97,6 +97,7 @@ import com.trippulse.app.ui.components.LocalWindowClass
 import com.trippulse.app.ui.components.NavBadge
 import com.trippulse.app.ui.components.NavTab
 import com.trippulse.app.ui.components.PersonAvatar
+import com.trippulse.app.ui.components.ProfileAvatar
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.PulsingDot
 import com.trippulse.app.ui.components.SecondaryButton
@@ -271,7 +272,6 @@ fun HomeScreen(nav: NavHostController) {
                 KoodeIcons.Bell, "Activity", { showActivity = true },
                 badge = if (activity.isNotEmpty()) NavBadge(activity.size, if (urgent) colors.danger else colors.accent) else null
             )
-            val me = vm.greetingName().ifBlank { "You" }
             Box(
                 Modifier
                     .size(dims.actionTarget)
@@ -282,7 +282,7 @@ fun HomeScreen(nav: NavHostController) {
                     },
                 contentAlignment = Alignment.Center
             ) {
-                PersonAvatar(me, dims.avatarSize, ring = if (pager.currentPage == 3) colors.accent else null)
+                ProfileAvatar(dims.avatarSize, ring = if (pager.currentPage == 3) colors.accent else null)
             }
         }
     }

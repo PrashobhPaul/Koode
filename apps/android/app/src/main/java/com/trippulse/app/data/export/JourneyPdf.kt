@@ -71,8 +71,15 @@ object JourneyPdf {
      * Never fatal — a missing avatar just means no picture on the page.
      */
     private fun avatarForPdf(context: Context): Pair<Bitmap?, Boolean> {
-        Profile.photoPath(context)?.let { path ->
-            runCatching { BitmapFactory.decodeFile(path) }.getOrNull()?.let { return it to true }
+        // The same rule as every avatar in the app (AvatarFace): photo, else
+        // the first letter of the name, else the neutral silhouette.
+        val photo = Profile.photoPath(context)?.let { path ->
+            Profile.decodePhoto(path, 256)
+        }
+        when (val face = com.trippulse.app.domain.AvatarFace.resolve(photo != null, Profile.name(context))) {
+            com.trippulse.app.domain.AvatarFace.Photo -> return photo to true
+            is com.trippulse.app.domain.AvatarFace.Initial -> initialBitmap(context, face.mark)?.let { return it to true }
+            com.trippulse.app.domain.AvatarFace.Neutral -> Unit
         }
         val res = when (Profile.avatarStyle(context)) {
             Profile.AvatarStyle.MALE -> R.drawable.ic_avatar_male
@@ -86,6 +93,25 @@ object JourneyPdf {
         }.getOrNull()
         return bmp to false
     }
+
+    /** The traveller's initial on their colour, as a round bitmap for the header. */
+    private fun initialBitmap(context: Context, mark: com.trippulse.app.domain.PersonMark): Bitmap? = runCatching {
+        val size = 256
+        val bmp = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bmp)
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+        paint.color = mark.argb
+        canvas.drawCircle(size / 2f, size / 2f, size / 2f, paint)
+        paint.color = Color.parseColor("#07131D")
+        paint.textSize = size * 0.44f
+        paint.textAlign = Paint.Align.CENTER
+        paint.typeface = runCatching { androidx.core.content.res.ResourcesCompat.getFont(context, R.font.sora) }
+            .getOrNull()?.let { android.graphics.Typeface.create(it, android.graphics.Typeface.BOLD) }
+            ?: android.graphics.Typeface.DEFAULT_BOLD
+        val y = size / 2f - (paint.descent() + paint.ascent()) / 2f
+        canvas.drawText(mark.initial, size / 2f, y, paint)
+        bmp
+    }.getOrNull()
 
     private const val PAGE_W = 595
     private const val PAGE_H = 842
