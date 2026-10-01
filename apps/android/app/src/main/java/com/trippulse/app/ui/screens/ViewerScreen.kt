@@ -49,7 +49,6 @@ import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.ViewerVm
 import com.trippulse.app.data.export.JourneyPdf
 import com.trippulse.app.ui.components.SecondaryButton
-import com.trippulse.app.ui.components.Avatar
 import com.trippulse.app.ui.components.DetailRow
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.AdaptiveContainer
@@ -188,8 +187,8 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 val owner = meta?.str("ownerName")
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     // The traveller's photo never leaves their phone, so a
-                    // follower sees a neutral avatar beside the name.
-                    Avatar(null, Profile.AvatarStyle.NEUTRAL, 40.dp)
+                    // follower sees their initial (or the neutral avatar).
+                    com.trippulse.app.ui.components.AvatarImage(null, owner, Profile.AvatarStyle.NEUTRAL, 40.dp)
                     Spacer(Modifier.width(Spacing.sm))
                     Column(Modifier.weight(1f)) {
                         Text(

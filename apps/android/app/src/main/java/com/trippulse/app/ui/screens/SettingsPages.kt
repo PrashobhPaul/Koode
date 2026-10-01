@@ -65,7 +65,7 @@ import com.trippulse.app.ui.HomeTabs
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.SettingsVm
 import com.trippulse.app.ui.components.AdaptiveContainer
-import com.trippulse.app.ui.components.Avatar
+import com.trippulse.app.ui.components.ProfileAvatar
 import com.trippulse.app.ui.components.BackButton
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.KoodeIcons
@@ -212,25 +212,27 @@ private fun ProfilePage(vm: SettingsVm, onSaved: () -> Unit) {
     val colors = KoodeTheme.colors
     val context = LocalContext.current
     var name by remember { mutableStateOf(Profile.name(context)) }
-    var photoVer by remember { mutableStateOf(Profile.photoVersion(context)) }
     var gender by remember { mutableStateOf(Profile.avatarStyle(context)) }
     val photoPicker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null && Profile.savePhoto(context, uri)) photoVer = Profile.photoVersion(context)
+        if (uri != null) Profile.savePhoto(context, uri)
     }
+    // Canonical state: the photo shown here is the one every avatar shows.
+    val revision by Profile.revision.collectAsStateWithLifecycle()
+    val hasPhoto = remember(revision) { Profile.hasPhoto(context) }
 
     SettingsGroup {
         GroupBody {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Avatar(Profile.photoPath(context), gender, 72.dp, version = photoVer)
+                ProfileAvatar(72.dp)
                 Spacer(Modifier.width(Spacing.lg))
                 Column(Modifier.weight(1f)) {
                     Text("Profile photo", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
                     Row {
                         TextButton(onClick = {
                             photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-                        }) { Text(if (Profile.hasPhoto(context)) "Change photo" else "Add photo", color = colors.accent) }
-                        if (Profile.hasPhoto(context)) {
-                            TextButton(onClick = { Profile.clearPhoto(context); photoVer = Profile.photoVersion(context) }) {
+                        }) { Text(if (hasPhoto) "Change photo" else "Add photo", color = colors.accent) }
+                        if (hasPhoto) {
+                            TextButton(onClick = { Profile.clearPhoto(context) }) {
                                 Text("Remove", color = colors.textLow)
                             }
                         }

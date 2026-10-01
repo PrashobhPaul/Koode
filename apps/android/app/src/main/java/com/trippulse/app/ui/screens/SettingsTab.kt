@@ -79,7 +79,7 @@ import com.trippulse.app.domain.UnitPreference
 import com.trippulse.app.domain.fastag.FastagMode
 import com.trippulse.app.domain.fastag.VehicleKind
 import com.trippulse.app.ui.SettingsVm
-import com.trippulse.app.ui.components.Avatar
+import com.trippulse.app.ui.components.ProfileAvatar
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.PrimaryButton
@@ -111,9 +111,8 @@ fun SettingsTab(nav: NavHostController) {
     // edited on its own page.
     var profileVersion by remember { mutableIntStateOf(0) }
     LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { profileVersion++ }
-    val name = remember(profileVersion) { Profile.name(context) }
-    val photoVer = remember(profileVersion) { Profile.photoVersion(context) }
-    val avatar = remember(profileVersion) { Profile.avatarStyle(context) }
+    val revision by Profile.revision.collectAsStateWithLifecycle()
+    val name = remember(profileVersion, revision) { Profile.name(context) }
     val missing = remember(profileVersion, places.size) { Profile.missing(context, places.size) }
 
     SectionHeader("More")
@@ -127,7 +126,7 @@ fun SettingsTab(nav: NavHostController) {
                 .padding(LocalDims.current.cardPadding),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Avatar(Profile.photoPath(context), avatar, 52.dp, version = photoVer)
+            ProfileAvatar(52.dp)
             Spacer(Modifier.width(Spacing.md))
             Column(Modifier.weight(1f)) {
                 Text(
