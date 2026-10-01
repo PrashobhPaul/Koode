@@ -121,7 +121,7 @@
     };
   })();
 
-  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), BIKE: BIKE, BUS: BUS, TRAIN: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP };
+  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), BIKE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP };
   function model(mode) { return MODELS[mode] || MODELS.CAR; }
 
   // ---- geometry --------------------------------------------------------------
@@ -277,10 +277,22 @@
 
   function init(containerId) {
     if (map || !window.maplibregl) return;
-    map = new maplibregl.Map({
-      container: containerId, style: STYLE_URL, center: [78.9629, 20.5937], zoom: 4.2,
-      attributionControl: { compact: true }
-    });
+    try {
+      map = new maplibregl.Map({
+        container: containerId, style: STYLE_URL, center: [78.9629, 20.5937], zoom: 4.2,
+        attributionControl: { compact: true }
+      });
+    } catch (e) {
+      // A decade-old laptop without WebGL still gets the journey, the arrival
+      // time and the timeline — just not the map.
+      map = null;
+      var el = document.getElementById(containerId);
+      if (el) {
+        el.innerHTML = '<p class="map-unavailable">The map needs WebGL, which this browser has turned off. ' +
+          'Everything else on this page still works.</p>';
+      }
+      return;
+    }
     map.on('load', function () {
       install();
       ready = true;
@@ -304,7 +316,7 @@
    */
   function draw(opts) {
     pending = opts;
-    if (!ready) return;
+    if (!ready || !map) return;
     var mode = opts.mode || 'CAR';
     state.mode = mode;
     state.live = !!opts.live && !opts.playback;
@@ -366,7 +378,7 @@
     _place: place,
     MODES: {
       CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Bike'], CAB: ['🚕', 'Cab'], BUS: ['🚌', 'Bus'],
-      TRAIN: ['🚆', 'Train'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Ship']
+      TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Ship']
     }
   };
 })();

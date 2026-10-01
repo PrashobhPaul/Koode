@@ -39,6 +39,7 @@ object KoodeArt {
         "METRO" -> R.drawable.art_metro
         "TRAIN" -> R.drawable.art_train
         "SHIP" -> R.drawable.art_ship
+        "FLIGHT" -> R.drawable.art_flight
         else -> null
     }
 
@@ -50,6 +51,8 @@ object KoodeArt {
         EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP -> R.drawable.art_fuel
         EventTypes.FOOD_REPORTED, EventTypes.TEA_COFFEE_REPORTED, EventTypes.SNACK_REPORTED -> R.drawable.art_food
         EventTypes.TOILET_REPORTED -> R.drawable.art_toilet
+        EventTypes.WATER_REPORTED -> R.drawable.art_water
+        EventTypes.REST_REPORTED -> R.drawable.art_rest
         EventTypes.OVERNIGHT_CONFIRMED, EventTypes.HALT_CONFIRMED -> R.drawable.art_stay
         else -> null
     }

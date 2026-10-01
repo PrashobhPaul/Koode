@@ -4,8 +4,26 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Koode — follow a journey</title>
-  <meta name="description" content="Follow a Koode journey in your browser. No app, no account." />
+  <meta name="description" content="Follow a loved one's journey live in your browser — map, arrival time, wellbeing and timeline. No app, no account." />
   <meta name="theme-color" content="#07131d" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Koode" />
+
+  <!-- Link previews, when a follow link is shared in a chat. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Koode" />
+  <meta property="og:title" content="Koode — follow a journey" />
+  <meta property="og:description" content="Know they're okay, without having to ask. Follow a journey live in your browser — no app, no account." />
+  <meta property="og:url" content="https://prashobhpaul.github.io/Koode/" />
+  <meta property="og:image" content="https://prashobhpaul.github.io/Koode/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Koode — follow a journey" />
+  <meta name="twitter:description" content="Know they're okay, without having to ask. Follow a journey live in your browser — no app, no account." />
+  <meta name="twitter:image" content="https://prashobhpaul.github.io/Koode/og.png" />
 
   <!-- MapLibre GL JS: open-source vector maps with 3D; tiles from OpenFreeMap (no key). -->
   <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
@@ -57,6 +75,15 @@
     <!-- Sign in                                                            -->
     <!-- ------------------------------------------------------------------ -->
     <section id="signin">
+      <div class="intro">
+        <img src="art/walk.webp" alt="" class="intro-art" width="150" height="150" />
+        <div>
+          <h2>Follow a journey</h2>
+          <p>Type the number your traveller shared. With their 6-digit passcode you're in
+            straight away; without it, they'll get a request to let you in by name.</p>
+        </div>
+      </div>
+
       <div class="card">
         <h2>Journey number</h2>
         <div class="code-row">
@@ -64,22 +91,40 @@
           <input id="code" type="tel" inputmode="numeric" autocomplete="off"
                  maxlength="8" placeholder="40381927" aria-label="Journey number" />
         </div>
-        <p class="hint">Numbers only — the TP- is already there.</p>
+        <p id="code-hint" class="hint">8 digits — numbers only, the TP- is already there.</p>
       </div>
 
       <div class="card">
-        <h2>Passcode</h2>
+        <h2>Passcode <span class="optional">optional</span></h2>
         <input id="passcode" type="tel" inputmode="numeric" autocomplete="off"
                maxlength="6" placeholder="6 digits" aria-label="Passcode" />
-        <p class="hint">The six digits the traveller shared with you.</p>
+        <p id="passcode-hint" class="hint">Leave this empty and we'll ask the traveller to let you in by name.</p>
       </div>
 
-      <button id="watch" disabled>Watch the journey</button>
+      <div class="card">
+        <h2>Your name</h2>
+        <input id="name" type="text" autocomplete="name" maxlength="40"
+               placeholder="So they know who's asking" aria-label="Your name" />
+      </div>
+
+      <button id="watch" disabled>Ask to follow</button>
+
+      <div id="waiting" class="card accent hidden" role="status">
+        <div class="waiting-head"><span class="spinner" aria-hidden="true"></span> Waiting for approval</div>
+        <p class="hint">They'll see “<span id="waiting-name">Someone</span>” asking to follow. This page opens
+          the journey the moment they say yes — keep it open.</p>
+        <button id="cancel-wait" class="ghost small" type="button">Cancel</button>
+      </div>
       <p id="signin-error" class="error hidden"></p>
 
       <p class="footer">
         Nothing is installed and no account is created. This page reads the
         journey directly, and stops working the moment the traveller ends it.
+      </p>
+      <p class="footer links">
+        <a href="https://github.com/PrashobhPaul/Koode/releases/latest/download/Koode.apk">Get the Koode app</a>
+        · <a href="https://github.com/PrashobhPaul/Koode#readme">About Koode</a>
+        · <a href="https://github.com/PrashobhPaul/Koode/blob/main/docs/PRIVACY.md">Privacy</a>
       </p>
     </section>
 
@@ -96,7 +141,7 @@
             <h2 id="who">Journey</h2>
             <div id="route">—</div>
           </div>
-          <span id="mode-pill" class="pill">🚗 Car</span>
+          <span id="mode-pill" class="pill"><img src="art/car.webp" alt="" />Car</span>
         </div>
         <button id="follow" class="map-pill follow" type="button">🧭  Follow in 3D</button>
         <span id="flight-note" class="map-pill note hidden">┄ estimated flight path</span>
@@ -114,6 +159,7 @@
           <div id="eta" class="big">Calculating…</div>
           <div class="ride">
             <div class="progress"><div id="progress-bar" style="width:0%"></div></div>
+            <img id="ride-img" class="ride-img hidden" src="art/car.webp" alt="" />
             <span id="ride-vehicle" class="ride-vehicle flip">🚗</span>
             <span class="ride-flag">🏁</span>
           </div>
@@ -162,7 +208,8 @@
       </div>
 
       <p class="footer">
-        Want the alerts too? <a id="apk-link" href="https://github.com/PrashobhPaul/Koode/releases/latest">Get the Koode app</a>.
+        Want the alerts too? <a id="apk-link" href="https://github.com/PrashobhPaul/Koode/releases/latest/download/Koode.apk">Get the Koode app</a>
+        · <a href="https://github.com/PrashobhPaul/Koode#readme">About Koode</a>
       </p>
     </section>
   </div>
