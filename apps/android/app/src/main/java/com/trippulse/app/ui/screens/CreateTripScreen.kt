@@ -63,6 +63,7 @@ import com.trippulse.app.ui.LegDraft
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.SharedPlaceInbox
 import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.BackButton
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.LocalWindowClass
@@ -142,8 +143,9 @@ fun CreateTripScreen(nav: NavHostController) {
             .verticalScroll(rememberScrollState())
             .statusBarsPadding()
     ) {
-        Spacer(Modifier.height(Spacing.lg))
+        Spacer(Modifier.height(Spacing.xs))
         AdaptiveContainer {
+            BackButton({ nav.popBackStack() })
             Text("Plan a journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
                 "Tap a place to set it. Add a stage whenever you change vehicle.",

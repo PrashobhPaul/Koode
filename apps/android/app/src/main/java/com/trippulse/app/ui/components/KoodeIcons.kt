@@ -33,6 +33,39 @@ object KoodeIcons {
         return b.build()
     }
 
+    /**
+     * The selected-tab weight of an icon: [solid] paths are filled, the rest
+     * stroked a little heavier — the outlined/filled pair global apps use so
+     * the current tab reads at a glance, even without colour.
+     */
+    private fun solid(name: String, solid: List<String>, lines: List<String> = emptyList(), width: Float = 2.2f): ImageVector {
+        val b = ImageVector.Builder(
+            name = name, defaultWidth = 24.dp, defaultHeight = 24.dp,
+            viewportWidth = 24f, viewportHeight = 24f
+        )
+        for (d in solid) {
+            b.addPath(
+                pathData = addPathNodes(d),
+                fill = SolidColor(Color.Black),
+                stroke = SolidColor(Color.Black),
+                strokeLineWidth = width,
+                strokeLineCap = StrokeCap.Round,
+                strokeLineJoin = StrokeJoin.Round
+            )
+        }
+        for (d in lines) {
+            b.addPath(
+                pathData = addPathNodes(d),
+                fill = null,
+                stroke = SolidColor(Color.Black),
+                strokeLineWidth = width,
+                strokeLineCap = StrokeCap.Round,
+                strokeLineJoin = StrokeJoin.Round
+            )
+        }
+        return b.build()
+    }
+
     /** A circle as path data (cx, cy, r). */
     private fun circle(cx: Float, cy: Float, r: Float) =
         "M${cx - r},$cy a$r,$r 0 1,0 ${2 * r},0 a$r,$r 0 1,0 ${-2 * r},0"
@@ -73,4 +106,39 @@ object KoodeIcons {
     val Share: ImageVector by lazy {
         stroke("share", "M12 3v12M7 8l5-5 5 5", "M5 13v7h14v-7")
     }
+
+    // ---- selected-tab variants ----
+    val HomeSelected: ImageVector by lazy {
+        solid("home_selected", listOf("M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"))
+    }
+    val JourneysSelected: ImageVector by lazy {
+        solid(
+            "journeys_selected", listOf(circle(6f, 17f, 2.3f), circle(18f, 7f, 2.3f)),
+            listOf("M6 15V9a4 4 0 0 1 4-4h2M18 9v6a4 4 0 0 1-4 4h-2")
+        )
+    }
+    val CircleSelected: ImageVector by lazy {
+        solid(
+            "circle_selected", listOf(circle(9f, 8f, 3.5f), "M2.5 20a6.5 6.5 0 0 1 13 0z"),
+            listOf("M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5")
+        )
+    }
+    val MoreSelected: ImageVector by lazy {
+        solid("more_selected", emptyList(), listOf("M4 7h16M4 12h16M4 17h10"), width = 2.5f)
+    }
+
+    // ---- top bar actions ----
+    /** Activity: what needs a look. */
+    val Bell: ImageVector by lazy {
+        stroke("bell", "M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z", "M10 20.5a2.2 2.2 0 0 0 4 0")
+    }
+    /** Follow a journey: a link being joined. */
+    val Follow: ImageVector by lazy {
+        stroke(
+            "follow",
+            "M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1.2 1.2",
+            "M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1.2-1.2"
+        )
+    }
+    val Close: ImageVector by lazy { stroke("close", "M6 6l12 12M18 6L6 18") }
 }

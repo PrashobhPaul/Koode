@@ -47,6 +47,7 @@ import com.trippulse.app.service.TripTrackingService
 import com.trippulse.app.ui.Links
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.BackButton
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.KoodeHeroCard
 import com.trippulse.app.ui.components.PrimaryButton
@@ -179,8 +180,9 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
             .verticalScroll(rememberScrollState())
             .statusBarsPadding()
     ) {
-        Spacer(Modifier.height(Spacing.lg))
+        Spacer(Modifier.height(Spacing.xs))
         AdaptiveContainer {
+            BackButton({ nav.popBackStack() })
             Text("Journey ready", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
                 "Share these two numbers with whoever should be able to follow you.",

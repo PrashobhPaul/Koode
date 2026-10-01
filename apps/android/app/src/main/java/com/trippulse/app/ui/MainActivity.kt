@@ -21,9 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -31,7 +33,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.trippulse.app.TripPulseApp
+import com.trippulse.app.ui.components.KoodeHaptics
+import com.trippulse.app.ui.components.LocalDims
+import com.trippulse.app.ui.components.LocalHaptics
 import com.trippulse.app.ui.components.LocalWindowClass
+import com.trippulse.app.ui.components.rememberDims
 import com.trippulse.app.ui.components.rememberWindowClass
 import com.trippulse.app.ui.screens.AboutScreen
 import com.trippulse.app.ui.screens.CreateTripScreen
@@ -77,7 +83,14 @@ class MainActivity : ComponentActivity() {
             }
 
             TripPulseTheme(themeMode = settings.themeMode) {
-                CompositionLocalProvider(LocalWindowClass provides rememberWindowClass()) {
+                val windowClass = rememberWindowClass()
+                val view = LocalView.current
+                val haptics = remember(view, settings.hapticFeedback) { KoodeHaptics(view, settings.hapticFeedback) }
+                CompositionLocalProvider(
+                    LocalWindowClass provides windowClass,
+                    LocalDims provides rememberDims(windowClass),
+                    LocalHaptics provides haptics
+                ) {
                     Box(Modifier.fillMaxSize().background(KoodeTheme.colors.background)) {
                         val nav = rememberNavController()
                         AppNav(nav = nav)

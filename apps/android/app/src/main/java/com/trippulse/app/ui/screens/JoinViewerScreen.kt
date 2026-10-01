@@ -41,6 +41,7 @@ import com.trippulse.app.ui.FollowLinkInbox
 import com.trippulse.app.ui.JoinVm
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.components.AdaptiveContainer
+import com.trippulse.app.ui.components.BackButton
 import com.trippulse.app.ui.components.KoodeCard
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.SecondaryButton
@@ -97,8 +98,9 @@ fun JoinViewerScreen(nav: NavHostController) {
             .verticalScroll(rememberScrollState())
             .statusBarsPadding()
     ) {
-        Spacer(Modifier.height(Spacing.lg))
+        Spacer(Modifier.height(Spacing.xs))
         AdaptiveContainer {
+            BackButton({ nav.popBackStack() })
             Text("Follow a journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
                 "Type the number your traveller shared. If they gave you a 6-digit passcode too, " +
