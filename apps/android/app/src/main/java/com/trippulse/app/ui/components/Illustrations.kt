@@ -34,7 +34,7 @@ object KoodeArt {
     fun mode(key: String?): Int? = when (TransportCatalog.profile(key).key) {
         "CAR" -> R.drawable.art_car
         "BIKE" -> R.drawable.art_bike
-        "CAB" -> R.drawable.art_auto
+        "CAB" -> R.drawable.art_cab
         "BUS" -> R.drawable.art_bus
         "METRO" -> R.drawable.art_metro
         "TRAIN" -> R.drawable.art_train
@@ -43,7 +43,7 @@ object KoodeArt {
     }
 
     /** Whether a mode's picture faces left (mirrored to face the destination). */
-    fun modeFacesLeft(key: String?): Boolean = TransportCatalog.profile(key).key in setOf("BUS", "CAB", "METRO")
+    fun modeFacesLeft(key: String?): Boolean = TransportCatalog.profile(key).key in setOf("BUS", "METRO")
 
     @DrawableRes
     fun event(type: String): Int? = when (type) {
