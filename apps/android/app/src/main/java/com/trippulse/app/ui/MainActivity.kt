@@ -28,11 +28,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.trippulse.app.TripPulseApp
+import com.trippulse.app.service.TrackingResume
 import com.trippulse.app.ui.components.KoodeHaptics
 import com.trippulse.app.ui.components.LocalDims
 import com.trippulse.app.ui.components.LocalHaptics
@@ -130,6 +133,17 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    /**
+     * An open journey whose tracking service has died is brought back here,
+     * where Android allows a location service to start. Covers a force stop,
+     * an update, a reboot the boot receiver missed, and a battery manager that
+     * removed the service overnight: opening the app is enough.
+     */
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch { TrackingResume.ensureRunning(this@MainActivity) }
     }
 
     /**
