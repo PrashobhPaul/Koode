@@ -166,7 +166,7 @@ fun RideProgress(progress: Float, mode: String?, emoji: String, moving: Boolean,
                     // Most road and sea vehicle emoji face left; turn them to face
                     // the destination. The plane points up-right, so level it.
                     when (mode) {
-                        "CAR", "CAB", "BUS", "BIKE", "SHIP", null -> scaleX = -1f
+                        "CAR", "CAB", "AUTO", "BUS", "BIKE", "SHIP", null -> scaleX = -1f
                         "FLIGHT" -> rotationZ = 45f
                     }
                 }

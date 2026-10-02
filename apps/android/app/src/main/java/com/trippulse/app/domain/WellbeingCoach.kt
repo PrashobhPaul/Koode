@@ -125,13 +125,13 @@ object WellbeingCoach {
         val all = setOf(Need.WATER, Need.FOOD, Need.BREAK)
         return when (mode) {
             // Driving: the road-safety standard is a break every two hours.
-            "CAR", "CAB" -> if (role == Role.DRIVER)
+            "CAR", "CAB", "AUTO" -> if (role == Role.DRIVER)
                 Rules(mode, role, waterMin = 120, food = FoodAccess.PLAN_A_STOP, breakMin = 120,
                     breakKind = BreakKind.DRIVING, remindAfterMin = 25, informAfterMin = 25,
                     informNeeds = all, quietSmallHours = false, suggestsHaltPlanning = true)
             else
                 Rules(mode, role, waterMin = 150,
-                    food = if (mode == "CAB") FoodAccess.AT_A_STOP else FoodAccess.PLAN_A_STOP,
+                    food = if (mode == "CAB" || mode == "AUTO") FoodAccess.AT_A_STOP else FoodAccess.PLAN_A_STOP,
                     breakMin = null, breakKind = BreakKind.STRETCH, remindAfterMin = 30, informAfterMin = 45,
                     informNeeds = setOf(Need.WATER, Need.FOOD), quietSmallHours = true)
             // Riding is more tiring and more exposed: shorter intervals.

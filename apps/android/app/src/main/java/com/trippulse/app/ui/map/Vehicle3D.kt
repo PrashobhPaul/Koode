@@ -211,7 +211,7 @@ object Vehicle3D {
     /** Unknown or future modes fall back to the car, like the transport catalog. */
     fun model(mode: String?): Model = when (mode) {
         "BIKE" -> BIKE
-        "CAB" -> CAB
+        "CAB", "AUTO" -> CAB
         "BUS" -> BUS
         "TRAIN" -> TRAIN
         "FLIGHT" -> FLIGHT

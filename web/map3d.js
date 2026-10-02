@@ -121,7 +121,7 @@
     };
   })();
 
-  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), BIKE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP };
+  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), AUTO: car('#F5C518', true), BIKE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP };
   function model(mode) { return MODELS[mode] || MODELS.CAR; }
 
   // ---- geometry --------------------------------------------------------------
@@ -377,7 +377,7 @@
     /** Geometry only, for parity checks against the app's Vehicle3D.kt. */
     _place: place,
     MODES: {
-      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Bike'], CAB: ['🚕', 'Cab'], BUS: ['🚌', 'Bus'],
+      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Bike'], CAB: ['🚕', 'Cab'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
       TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Ship']
     }
   };
