@@ -314,7 +314,7 @@
    */
   var EVENT_ART = {
     FUEL_STOP: 'fuel', CHARGE_STOP: 'fuel',
-    FOOD_REPORTED: 'food', SNACK_REPORTED: 'food',
+    FOOD_REPORTED: 'food', FOOD_ACKNOWLEDGED: 'food',
     TOILET_REPORTED: 'toilet', WATER_REPORTED: 'water', WATER_ACKNOWLEDGED: 'water', REST_REPORTED: 'rest',
     OVERNIGHT_CONFIRMED: 'stay', HALT_CONFIRMED: 'stay', DEBOARDED: 'walk'
   };
@@ -732,6 +732,7 @@
     // ---- wellbeing ----
     text('food', state && state.foodAt ? 'Last logged ' + ago(state.foodAt) : 'Not logged yet');
     text('water', state && state.waterAt ? 'Last logged ' + ago(state.waterAt) : 'Not logged yet');
+    text('toilet', state && state.toiletAt ? 'Last stop ' + ago(state.toiletAt) : 'Not logged yet');
     var stopped = state && ['STOPPED', 'LONG_STOP', 'POSSIBLE_STOP', 'OVERNIGHT'].indexOf(state.status) >= 0;
     text('rest', stopped ? 'Stopped now'
       : (state && state.lastBreakEndAt) ? 'Last break ' + ago(state.lastBreakEndAt) : 'No break yet');

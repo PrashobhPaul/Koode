@@ -36,8 +36,10 @@ class PicturesTest {
         assertEquals(Pictures.STAY, Pictures.event(EventTypes.OVERNIGHT_CONFIRMED))
         assertEquals(Pictures.STAY, Pictures.event(EventTypes.HALT_CONFIRMED))
         assertEquals(Pictures.WALK, Pictures.event(EventTypes.DEBOARDED))
-        // Tea has no plate of food; it keeps its cup.
+        // Tea and a snack are not a plate of food; they keep their cup and biscuit.
         assertNull(Pictures.event(EventTypes.TEA_COFFEE_REPORTED))
+        assertNull(Pictures.event(EventTypes.SNACK_REPORTED))
+        assertEquals(Pictures.FOOD, Pictures.event(EventTypes.FOOD_ACKNOWLEDGED))
         assertNull(Pictures.event(EventTypes.TOLL_CROSSED))
     }
 

@@ -172,7 +172,10 @@ fun TimelineList(items: List<TimelineItem>, nowMs: Long, modifier: Modifier = Mo
 
 /** A "last logged" line: factual, never a judgement about the traveller. */
 @Composable
-fun WellbeingRow(emoji: String, label: String, atMs: Long?, nowMs: Long) {
+fun WellbeingRow(
+    emoji: String, label: String, atMs: Long?, nowMs: Long,
+    @androidx.annotation.DrawableRes art: Int? = null
+) {
     val colors = KoodeTheme.colors
     Row(
         Modifier.fillMaxWidth().padding(vertical = 4.dp),
@@ -180,7 +183,8 @@ fun WellbeingRow(emoji: String, label: String, atMs: Long?, nowMs: Long) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(emoji, fontSize = 15.sp)
+            if (art != null) com.trippulse.app.ui.components.ArtImage(art, 36.dp)
+            else Text(emoji, fontSize = 15.sp)
             Spacer(Modifier.width(Spacing.sm))
             Text(label, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
         }

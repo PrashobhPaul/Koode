@@ -206,6 +206,7 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     fun hadWater() = viewModelScope.launch { graph.tripManager.logNeedMet(com.trippulse.app.domain.WellbeingCoach.Need.WATER) }
     fun ateSomething() = viewModelScope.launch { graph.tripManager.logNeedMet(com.trippulse.app.domain.WellbeingCoach.Need.FOOD) }
     fun hadTea() = viewModelScope.launch { graph.tripManager.logNourishment(Nourishment.TEA_COFFEE) }
+    fun restroomBreak() = viewModelScope.launch { graph.tripManager.submitCheckpoint(com.trippulse.app.data.TripManager.Checkpoint(toilet = true)) }
     fun takingABreak() = viewModelScope.launch { graph.tripManager.logNeedMet(com.trippulse.app.domain.WellbeingCoach.Need.BREAK) }
     fun remindLater() = viewModelScope.launch {
         com.trippulse.app.domain.WellbeingCoach.Need.entries.forEach { graph.tripManager.snoozeNudge(it) }
