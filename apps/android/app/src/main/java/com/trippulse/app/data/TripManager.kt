@@ -150,10 +150,11 @@ class TripManager(
 
     init {
         sync.onSosDelivered = { tripId -> appendSosDelivered(tripId) }
-        // Watchdog: a journey must never freeze behind one stuck step.
+        // Watchdog: a journey must never freeze behind one stuck step, even
+        // when nobody is waiting to notice.
         appScope.launch {
             while (true) {
-                kotlinx.coroutines.delay(30_000)
+                kotlinx.coroutines.delay(15_000)
                 lock.healIfStuck(System.currentTimeMillis())
             }
         }

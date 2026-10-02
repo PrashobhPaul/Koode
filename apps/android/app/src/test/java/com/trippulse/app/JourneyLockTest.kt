@@ -21,7 +21,6 @@ class JourneyLockTest {
         val r = lock.withLock { if (true) early() else 2 }
         assertEquals(0, r)
         assertEquals(0L, lock.heldForMs(System.currentTimeMillis()))
-        // Free again: a second section runs straight away.
         withTimeout(1_000) { lock.withLock { } }
     }
 
@@ -40,17 +39,31 @@ class JourneyLockTest {
         job.cancel()
     }
 
-    /** The bug this exists for: a holder that never returns used to freeze every later update. */
-    @Test fun aStuckHolderIsCancelledAndTheJourneyCarriesOn() = runBlocking {
+    @Test fun theWatchdogCancelsAStuckHolderSoTheJourneyCarriesOn() = runBlocking {
         val lock = JourneyLock()
         val entered = CompletableDeferred<Unit>()
         val stuck = launch { lock.withLock { entered.complete(Unit); awaitCancellation() } }
         entered.await()
-        val waiting = async { lock.withLock { "next update" } }
         val later = System.currentTimeMillis() + JourneyLock.STUCK_MS + 1_000
         assertTrue(lock.heldForMs(later) > JourneyLock.STUCK_MS)
         assertTrue(lock.healIfStuck(later))
-        assertEquals("next update", withTimeout(2_000) { waiting.await() })
+        assertEquals("next update", withTimeout(2_000) { lock.withLock { "next update" } })
+        assertTrue(stuck.isCancelled)
+    }
+
+    /**
+     * The field bug: a traveller's dinner, halt and expense taps all queued
+     * behind one step that never returned. A tap must save within seconds.
+     */
+    @Test fun aTapWaitingBehindAStuckHolderEvictsItAndSaves() = runBlocking {
+        val lock = JourneyLock()
+        val entered = CompletableDeferred<Unit>()
+        val stuck = launch { lock.withLock { entered.complete(Unit); awaitCancellation() } }
+        entered.await()
+        val started = System.currentTimeMillis()
+        val saved = withTimeout(JourneyLock.WAIT_MS + 5_000) { lock.withLock { "dinner logged" } }
+        assertEquals("dinner logged", saved)
+        assertTrue(System.currentTimeMillis() - started >= JourneyLock.WAIT_MS - 200)
         assertTrue(stuck.isCancelled)
     }
 }
