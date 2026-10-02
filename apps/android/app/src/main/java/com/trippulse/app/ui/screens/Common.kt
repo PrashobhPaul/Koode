@@ -120,7 +120,7 @@ fun timelineItems(
     .map { (type, rest) ->
         val (timeMs, payload) = rest
         val (emoji, label) = eventLine(type, payload)
-        TimelineItem(timeMs, emoji, label, null, com.trippulse.app.ui.components.KoodeArt.event(type))
+        TimelineItem(timeMs, emoji, label, null, com.trippulse.app.ui.components.KoodeArt.event(type, payload))
     }
 
 /**

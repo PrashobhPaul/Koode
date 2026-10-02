@@ -116,6 +116,7 @@ object TravelDetails {
         return when {
             profile.isPrivateVehicle -> privateVehicleFields()
             profile.key == TransportCatalog.CAB.key -> cabFields()
+            profile.key == TransportCatalog.AUTO.key -> autoFields()
             profile.key == TransportCatalog.METRO.key -> metroFields()
             profile.key == TransportCatalog.TRAIN.key -> trainFields()
             profile.key == TransportCatalog.BUS.key -> busFields()
@@ -140,6 +141,11 @@ object TravelDetails {
 
     private fun cabFields() = listOf(
         DetailField(DetailKeys.OPERATOR, "Service", options = CAB_PROVIDERS),
+        DetailField(DetailKeys.REGISTRATION, "Vehicle number", uppercase = true)
+    )
+
+    /** An auto is usually hailed on the street: only its number, if noted. */
+    private fun autoFields() = listOf(
         DetailField(DetailKeys.REGISTRATION, "Vehicle number", uppercase = true)
     )
 

@@ -119,6 +119,21 @@ object TransportCatalog {
         travellingSuffix = " by cab", boardingPointLabel = "Pickup point"
     )
 
+    /**
+     * An auto-rickshaw: hailed on the street or booked, the traveller rides
+     * as a passenger. Same rules as a cab; its own picture, words and fare.
+     */
+    val AUTO = CAB.copy(
+        key = "AUTO", label = "Auto", emoji = "🛺",
+        quickActions = listOf(
+            QuickAction(EventTypes.BOARDED, "🎫", "Got in", "Got into the auto"),
+            QuickAction(EventTypes.TRANSIT_HALTED, "⏸", "Halted", "Auto halted"),
+            QuickAction(EventTypes.TRANSIT_RESUMED, "▶", "Moving again", "Auto is moving again"),
+            QuickAction(EventTypes.DEBOARDED, "🚶", "Got out", "Got out of the auto")
+        ),
+        travellingSuffix = " by auto"
+    )
+
     val BUS = TransportProfile(
         key = "BUS", label = "Bus", emoji = "🚌",
         isPrivateVehicle = false, isRoadMode = true,
@@ -190,7 +205,7 @@ object TransportCatalog {
     )
 
     /** Ordered for the mode picker: private first, then public transport. */
-    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, BUS, METRO, TRAIN, FLIGHT, SHIP)
+    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, AUTO, BUS, METRO, TRAIN, FLIGHT, SHIP)
 
     fun profile(key: String?): TransportProfile =
         ALL.firstOrNull { it.key == key } ?: CAR

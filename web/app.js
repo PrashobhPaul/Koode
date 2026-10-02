@@ -306,16 +306,32 @@
   }
 
   /** The same pictures the app shows for each way of travelling (art/). */
-  var MODE_ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', BUS: 'bus', METRO: 'metro', TRAIN: 'train', SHIP: 'ship', FLIGHT: 'flight' };
-  /** Stops that have a picture of their own on the timeline — the same set as the app. */
+  var MODE_ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', AUTO: 'auto', BUS: 'bus', METRO: 'metro', TRAIN: 'train', SHIP: 'ship', FLIGHT: 'flight' };
+  /**
+   * A timeline entry's picture — the same table as the app (domain/Pictures.kt):
+   * a logged meal is the plate of food, a break that included a meal is the
+   * restaurant it was taken at, getting off is the walker. Tea keeps its cup.
+   */
   var EVENT_ART = {
     FUEL_STOP: 'fuel', CHARGE_STOP: 'fuel',
-    FOOD_REPORTED: 'food', TEA_COFFEE_REPORTED: 'food', SNACK_REPORTED: 'food',
-    TOILET_REPORTED: 'toilet', WATER_REPORTED: 'water', REST_REPORTED: 'rest',
-    OVERNIGHT_CONFIRMED: 'stay', HALT_CONFIRMED: 'stay'
+    FOOD_REPORTED: 'food', SNACK_REPORTED: 'food',
+    TOILET_REPORTED: 'toilet', WATER_REPORTED: 'water', WATER_ACKNOWLEDGED: 'water', REST_REPORTED: 'rest',
+    OVERNIGHT_CONFIRMED: 'stay', HALT_CONFIRMED: 'stay', DEBOARDED: 'walk'
   };
+  /** One picture for a break, by its main reason. */
+  function breakArt(p) {
+    if (p.food || p.tea || p.snack) return 'restaurant';
+    if (p.fuel || p.charge) return 'fuel';
+    if (p.rest) return 'rest';
+    if (p.toilet) return 'toilet';
+    if (p.water) return 'water';
+    return 'rest';
+  }
+  function eventArt(e) {
+    return e.type === 'BREAK_CHECKPOINT' ? breakArt(e.payload || {}) : EVENT_ART[e.type];
+  }
   /** Pictures drawn facing left, mirrored so the vehicle faces the flag. */
-  var ART_FACES_LEFT = { BUS: true, METRO: true };
+  var ART_FACES_LEFT = { BUS: true, METRO: true, AUTO: true };
 
   /** Mode chip over the map, and the vehicle riding the progress track. */
   function renderMode(meta, state, progressPct) {
@@ -327,7 +343,7 @@
       pill.innerHTML = '';
       if (art) {
         var pi = document.createElement('img');
-        pi.src = 'art/' + art + '.webp'; pi.alt = ''; pi.className = art in ART_FACES_LEFT ? 'flip' : '';
+        pi.src = 'art/' + art + '.webp'; pi.alt = '';
         pill.appendChild(pi);
       } else {
         pill.appendChild(document.createTextNode(info[0] + ' '));
@@ -731,7 +747,7 @@
       .forEach(function (e) {
         var parts = describeEvent(e);
         var li = document.createElement('li');
-        var ev = EVENT_ART[e.type];
+        var ev = eventArt(e);
         var lead = ev ? '<img class="ev" src="art/' + ev + '.webp" alt="">' : '<span>' + parts[0] + '</span>';
         li.innerHTML = lead + '<span>' + escapeHtml(parts[1]) +
           '</span><span class="when">' + clock(e.eventTime || Date.now()) + '</span>';

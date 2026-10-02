@@ -15,6 +15,7 @@ A free, open-source travel companion that keeps the people you love informed of 
 [![Web viewer](https://img.shields.io/github/actions/workflow/status/PrashobhPaul/Koode/pages.yml?branch=main&label=Web%20viewer&logo=githubpages&logoColor=white)](https://prashobhpaul.github.io/Koode/)
 [![Latest release](https://img.shields.io/github/v/release/PrashobhPaul/Koode?label=Latest%20APK&color=14b8a6)](https://github.com/PrashobhPaul/Koode/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/PrashobhPaul/Koode/total?label=Downloads&color=0ea5e9)](https://github.com/PrashobhPaul/Koode/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-a78bfa)](LICENSE)
 [![Stars](https://img.shields.io/github/stars/PrashobhPaul/Koode?style=social)](https://github.com/PrashobhPaul/Koode/stargazers)
 
 <br>
@@ -86,7 +87,7 @@ One press reaches everyone in your circle with your last known spot, even with n
 <td width="50%" valign="top">
 
 ### 🚗 Every way of travelling
-Car, bike, cab, bus, metro, train, flight, ship, and **journeys in stages** (cab → flight → metro). Break prompts, deviation checks and sampling cadence all adapt when the vehicle changes.
+Car, bike, cab, auto, bus, metro, train, flight, ship, and **journeys in stages** (auto → flight → metro). Break prompts, deviation checks and sampling cadence all adapt when the vehicle changes.
 
 ### 🌙 Overnight halts
 Stopping for the night? Say so once. Followers see *"halted for the night"*, morning resume is one tap, and the ETA already knows.
@@ -161,6 +162,7 @@ The only thing a browser can't do is wake a phone with an alert. That one is the
 
 | Version | Highlights |
 |---|---|
+| **6.18** | Auto-rickshaw joins the travel modes. Every stop, mode and place has its own picture: a restaurant for a food halt, a plate for a meal, water, rest, toilet, fuel, a resort for an overnight stay, a house, an office. MIT licence. |
 | **6.17** | Browser viewer rebuilt for people without the app: ask to follow by name, approval remembered, verified report, illustrations, add-to-home-screen. New pictures for water, rest, meals and flights. |
 | **6.16** | Illustrations for every travel mode, stop and place across the app. |
 | **6.15** | Travel-companion redesign: journey-first Home, More hub, focused settings, one profile avatar everywhere. |
@@ -198,7 +200,7 @@ Read the [Privacy policy](docs/PRIVACY.md), the [Terms](docs/TERMS.md) and the [
 
 ## 🧑‍💻 Open source, zero cost, all yours
 
-Koode exists to be useful, not to make money. The entire stack is free software running on free tiers, so anyone can run their own:
+Koode exists to be useful, not to make money. It is released under the **[MIT licence](LICENSE)**, and the entire stack is free software running on free tiers, so anyone can use, change and run their own:
 
 - **Android app**: Kotlin + Jetpack Compose, local-first event log, foreground-service tracking, adaptive sampling.
 - **Maps and routing**: OpenStreetMap data via OpenFreeMap tiles and MapLibre, OSRM routing. No API keys, no Google Maps.

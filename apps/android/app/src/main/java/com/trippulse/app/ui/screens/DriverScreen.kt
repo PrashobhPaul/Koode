@@ -1195,7 +1195,7 @@ private fun EditJourneySheet(
 
         // Driving or being driven changes what the coach suggests: a passenger
         // is never asked to take a driving break.
-        if (current?.mode in setOf("CAR", "BIKE", "CAB")) {
+        if (current?.mode in setOf("CAR", "BIKE", "CAB", "AUTO")) {
             val role = WellbeingCoach.Role.fromKey(plan?.role) ?: WellbeingCoach.defaultRole(current?.mode)
             KoodeCard(title = "Travelling as") {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {

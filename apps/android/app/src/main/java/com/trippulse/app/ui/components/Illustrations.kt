@@ -14,59 +14,62 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.sp
 import com.trippulse.app.R
-import com.trippulse.app.domain.EventTypes
+import com.trippulse.app.domain.Pictures
 import com.trippulse.app.domain.TransportCatalog
 
 /**
  * Koode's illustrations: one picture for each way of travelling, each kind
  * of stop and each kind of place, so the same thing looks the same wherever
  * it appears — the mode picker, the journey card, the progress bar, the
- * timeline. Anything without a picture falls back to its emoji.
+ * timeline, saved places. Which picture stands for what is decided once, in
+ * [Pictures] (shared with the web viewer); this only maps names to files.
+ * Anything without a picture falls back to its emoji.
  *
  * Images are bundled WebP (drawable-nodpi, ≤480 px, transparent background).
  */
 object KoodeArt {
 
+    /** Bundled drawable for each [Pictures] name. */
+    private val FILES: Map<String, Int> = mapOf(
+        Pictures.HOME to R.drawable.art_home,
+        Pictures.BUILDING to R.drawable.art_building,
+        Pictures.STAY to R.drawable.art_stay,
+        Pictures.RESTAURANT to R.drawable.art_restaurant,
+        Pictures.TOILET to R.drawable.art_toilet,
+        Pictures.FUEL to R.drawable.art_fuel,
+        Pictures.WALK to R.drawable.art_walk,
+        Pictures.FOOD to R.drawable.art_food,
+        Pictures.WATER to R.drawable.art_water,
+        Pictures.REST to R.drawable.art_rest,
+        "car" to R.drawable.art_car,
+        "bike" to R.drawable.art_bike,
+        "cab" to R.drawable.art_cab,
+        "auto" to R.drawable.art_auto,
+        "metro" to R.drawable.art_metro,
+        "train" to R.drawable.art_train,
+        "bus" to R.drawable.art_bus,
+        "flight" to R.drawable.art_flight,
+        "ship" to R.drawable.art_ship
+    )
+
+    @DrawableRes fun file(name: String?): Int? = name?.let { FILES[it] }
+
     /** The traveller on the way — Home's "ready for your next journey". */
     @DrawableRes val traveller: Int = R.drawable.art_walk
-
-    @DrawableRes
-    fun mode(key: String?): Int? = when (TransportCatalog.profile(key).key) {
-        "CAR" -> R.drawable.art_car
-        "BIKE" -> R.drawable.art_bike
-        "CAB" -> R.drawable.art_cab
-        "BUS" -> R.drawable.art_bus
-        "METRO" -> R.drawable.art_metro
-        "TRAIN" -> R.drawable.art_train
-        "SHIP" -> R.drawable.art_ship
-        "FLIGHT" -> R.drawable.art_flight
-        else -> null
-    }
-
-    /** Whether a mode's picture faces left (mirrored to face the destination). */
-    fun modeFacesLeft(key: String?): Boolean = TransportCatalog.profile(key).key in setOf("BUS", "METRO")
-
-    @DrawableRes
-    fun event(type: String): Int? = when (type) {
-        EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP -> R.drawable.art_fuel
-        EventTypes.FOOD_REPORTED, EventTypes.TEA_COFFEE_REPORTED, EventTypes.SNACK_REPORTED -> R.drawable.art_food
-        EventTypes.TOILET_REPORTED -> R.drawable.art_toilet
-        EventTypes.WATER_REPORTED -> R.drawable.art_water
-        EventTypes.REST_REPORTED -> R.drawable.art_rest
-        EventTypes.OVERNIGHT_CONFIRMED, EventTypes.HALT_CONFIRMED -> R.drawable.art_stay
-        else -> null
-    }
 
     /** Somewhere to stay overnight. */
     @DrawableRes val stay: Int = R.drawable.art_stay
 
-    /** A saved place: a house for home, a building for everywhere else. */
+    @DrawableRes fun mode(key: String?): Int? = file(Pictures.mode(key))
+
+    /** Whether a mode's picture faces left (mirrored to face the destination). */
+    fun modeFacesLeft(key: String?): Boolean = Pictures.modeFacesLeft(key)
+
     @DrawableRes
-    fun place(name: String): Int {
-        val n = name.lowercase()
-        val home = listOf("home", "house", "veedu", "ghar", "amma", "achan", "parents")
-        return if (home.any { it in n }) R.drawable.art_home else R.drawable.art_building
-    }
+    fun event(type: String, payload: Map<String, Any?> = emptyMap()): Int? = file(Pictures.event(type, payload))
+
+    /** A saved place: home, somewhere to stay, a restaurant, fuel, or a building. */
+    @DrawableRes fun place(name: String): Int = file(Pictures.place(name)) ?: R.drawable.art_building
 }
 
 /** A bundled illustration, fitted into a square of [size]. */
