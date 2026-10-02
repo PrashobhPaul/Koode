@@ -71,6 +71,9 @@ class OsrmRoutingProvider(
         fun defaultClient(): OkHttpClient = OkHttpClient.Builder()
             .connectTimeout(12, TimeUnit.SECONDS)
             .readTimeout(12, TimeUnit.SECONDS)
+            // A hard deadline for the whole call — DNS included — so a stalled
+            // mobile network can never hold a journey waiting on a route.
+            .callTimeout(25, TimeUnit.SECONDS)
             .build()
     }
 }

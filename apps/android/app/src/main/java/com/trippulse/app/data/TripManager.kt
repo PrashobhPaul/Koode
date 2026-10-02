@@ -57,6 +57,7 @@ import com.trippulse.app.domain.JourneyPlans
 import com.trippulse.app.domain.JourneyUpdates
 import com.trippulse.app.domain.WellbeingCoach
 import com.trippulse.app.notifications.Notifier
+import kotlinx.coroutines.async
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
@@ -118,7 +119,7 @@ class TripManager(
      */
     var onJourneyApproved: ((com.trippulse.app.data.export.ApprovedJourneyPublisher.Approval) -> Unit)? = null
 
-    private val lock = Mutex()
+    private val lock = JourneyLock()
 
     private var trip: ActiveTripEntity? = null
     private var state: TripStateEntity? = null
@@ -134,6 +135,7 @@ class TripManager(
 
     private var currentRoute: RoutePlan? = null
     private var routeFetchedAtMs: Long = 0
+    @Volatile private var routeRefreshInFlight = false
     private var lastPersistMs: Long = 0
     private var lastPersistPoint: GeoPoint? = null
     private var lastDistancePoint: GeoPoint? = null
@@ -148,6 +150,13 @@ class TripManager(
 
     init {
         sync.onSosDelivered = { tripId -> appendSosDelivered(tripId) }
+        // Watchdog: a journey must never freeze behind one stuck step.
+        appScope.launch {
+            while (true) {
+                kotlinx.coroutines.delay(30_000)
+                lock.healIfStuck(System.currentTimeMillis())
+            }
+        }
     }
 
     // ---- flows for UI ----
@@ -750,7 +759,9 @@ class TripManager(
      * calling it from inside the locked body would deadlock the journey.
      */
     suspend fun onTick() {
-        onTickLocked()
+        // In its own child, so the watchdog can cancel a stuck pass without
+        // ending the service's tick loop with it.
+        kotlinx.coroutines.coroutineScope { launch { onTickLocked() } }
         if (backOnlineDue) {
             backOnlineDue = false
             recordBackOnline()
@@ -998,17 +1009,19 @@ class TripManager(
         val saved = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
             .map { PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
         PlaceResolver.nearestSavedLabel(saved, lat, lng)?.let { return it }
-        return kotlinx.coroutines.withTimeoutOrNull(3_000) {
-            kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
-                try {
-                    @Suppress("DEPRECATION")
-                    android.location.Geocoder(appContext).getFromLocation(lat, lng, 1)?.firstOrNull()?.let { a ->
-                        listOfNotNull(a.subLocality, a.locality ?: a.subAdminArea)
-                            .distinct().joinToString(", ").ifBlank { null }
-                    }
-                } catch (_: Exception) { null }
-            }
+        // The platform geocoder blocks and can't be interrupted, so it runs on
+        // its own and we stop *waiting* after 3 s — a break is saved without a
+        // place name rather than not at all.
+        val lookup = appScope.async(kotlinx.coroutines.Dispatchers.IO) {
+            try {
+                @Suppress("DEPRECATION")
+                android.location.Geocoder(appContext).getFromLocation(lat, lng, 1)?.firstOrNull()?.let { a ->
+                    listOfNotNull(a.subLocality, a.locality ?: a.subAdminArea)
+                        .distinct().joinToString(", ").ifBlank { null }
+                }
+            } catch (_: Exception) { null }
         }
+        return kotlinx.coroutines.withTimeoutOrNull(3_000) { lookup.await() }
     }
 
     /**
@@ -1830,12 +1843,29 @@ class TripManager(
         "components" to b.components.map { mapOf("label" to it.label, "seconds" to it.seconds) }
     )
 
-    private suspend fun maybeRefreshRoute(t: ActiveTripEntity, from: GeoPoint, now: Long) {
+    /**
+     * Refreshes the route in the background. Called with the journey lock held,
+     * so it must never wait on the network itself: a fetch that stalls on a
+     * weak mobile signal would otherwise hold the lock, and every location,
+     * heartbeat and break log behind it, until the app is restarted. The
+     * fetch runs on its own; the result is applied under the lock when it lands.
+     */
+    private fun maybeRefreshRoute(t: ActiveTripEntity, from: GeoPoint, now: Long) {
         val stale = now - routeFetchedAtMs > cfg.routeRefreshMin * 60_000
         val driving = state?.journey == JourneyStatus.DRIVING.name
-        if (stale && driving && activeProfile().isRoadMode) {
-            val r = routing.route(from, legDestination(t))
-            if (r != null) { currentRoute = r; routeFetchedAtMs = now }
+        if (!stale || !driving || !activeProfile().isRoadMode || routeRefreshInFlight) return
+        routeRefreshInFlight = true
+        val to = legDestination(t)
+        val tripId = t.tripId
+        appScope.launch {
+            try {
+                val r = kotlinx.coroutines.withTimeoutOrNull(40_000) { routing.route(from, to) }
+                if (r != null) lock.withLock {
+                    if (trip?.tripId == tripId) { currentRoute = r; routeFetchedAtMs = System.currentTimeMillis() }
+                }
+            } finally {
+                routeRefreshInFlight = false
+            }
         }
     }
 

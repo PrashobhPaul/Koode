@@ -49,6 +49,8 @@ class TripCloud(private val appContext: Context) {
     private val client: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(15, TimeUnit.SECONDS)
+        // Whole-call deadline, DNS included: no upload or read can hang forever.
+        .callTimeout(30, TimeUnit.SECONDS)
         .build()
 
     fun isAvailable(): Boolean = baseUrl.isNotBlank() && anonKey.isNotBlank()
