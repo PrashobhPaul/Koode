@@ -56,6 +56,8 @@ import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.Style
 import org.maplibre.android.style.expressions.Expression
 import org.maplibre.android.style.layers.CircleLayer
+import org.maplibre.android.style.layers.FillExtrusionLayer
+import org.maplibre.android.style.layers.FillLayer
 import org.maplibre.android.style.layers.SymbolLayer
 import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.layers.Property
@@ -64,7 +66,6 @@ import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.geojson.Feature
 import org.maplibre.geojson.FeatureCollection
 import kotlin.math.abs
-import kotlin.math.sin
 
 /**
  * Playback speeds offered by the ▶ control on the map.
@@ -81,9 +82,10 @@ private const val GLIDE_MS = 1100.0
 /**
  * One journey, drawn on a tilting vector map with the traveller's vehicle.
  *
- * The vehicle is the traveller's actual transport — car, bike, cab, auto,
- * bus, metro, train, plane or ship — drawn with Koode's own illustration as an
- * upright sticker that faces its way across the screen (see [VehicleMarker]).
+ * The vehicle is the traveller's actual transport. A car, cab or bus is drawn
+ * from real views of it — top-down and turned to the heading in the overview,
+ * from behind when the camera rides along (see [VehicleMarker]); every other
+ * mode is a low-poly 3D model in true perspective (see [Vehicle3D]).
  * Between fixes it *glides* from the previous
  * position to the new one; it never runs ahead of the last real fix, because a
  * guessed position shown as live is exactly what Koode refuses to do.
@@ -196,9 +198,14 @@ fun JourneyMap(
                     follow = false
                 }
             }
-            // Turn the vehicle to face its way across the screen as the map rotates.
+            // Keep the 3D vehicle the same on-screen size while zooming, and
+            // switch between the top-down and rear views as the camera moves.
             m.addOnCameraMoveListener {
-                if (abs(m.cameraPosition.bearing - motion.renderedCameraBearing) > 4.0) motion.render(m)
+                val cam = m.cameraPosition
+                if (abs(cam.zoom - motion.renderedZoom) > 0.03 ||
+                    abs(cam.bearing - motion.renderedCameraBearing) > 4.0 ||
+                    abs(cam.tilt - motion.renderedTilt) > 4.0
+                ) motion.render(m)
             }
             map = m
         }
@@ -265,7 +272,9 @@ fun JourneyMap(
         val to = target ?: run { motion.clear(); return@LaunchedEffect }
         val from = motion.pos ?: to
         val toBearing = targetBearing
-            ?: if (Geo.haversineM(from, to) > 8.0) Vehicle3D.bearing(from, to) else motion.bearing
+            ?: if (Geo.haversineM(from, to) > 8.0) Vehicle3D.bearing(from, to)
+            else if (motion.pos == null) trailHeading(breadcrumb, to) ?: motion.bearing
+            else motion.bearing
         val fromBearing = motion.bearing
         if (inPlayback || motion.pos == null) {
             motion.pos = to
@@ -379,7 +388,9 @@ private const val SRC_ARC = "kd-arc"
 private const val SRC_ORIGIN = "kd-origin"
 private const val SRC_DEST = "kd-dest"
 private const val SRC_HALO = "kd-halo"
+private const val SRC_GROUND = "kd-ground"
 private const val SRC_VEHICLE = "kd-vehicle"
+private const val SRC_MARKER = "kd-marker"
 private const val L_HALO = "kd-halo-layer"
 
 private data class MapPalette(val accent: Int, val traveller: Int, val warn: Int, val casing: Int)
@@ -387,7 +398,7 @@ private data class MapPalette(val accent: Int, val traveller: Int, val warn: Int
 private fun Style.source(id: String): GeoJsonSource? = getSourceAs(id)
 
 private fun installLayers(s: Style, c: MapPalette) {
-    listOf(SRC_ROUTE, SRC_TRAIL, SRC_ARC, SRC_ORIGIN, SRC_DEST, SRC_HALO, SRC_VEHICLE)
+    listOf(SRC_ROUTE, SRC_TRAIL, SRC_ARC, SRC_ORIGIN, SRC_DEST, SRC_HALO, SRC_GROUND, SRC_VEHICLE, SRC_MARKER)
         .forEach { s.addSource(GeoJsonSource(it)) }
     val white = 0xFFFFFFFF.toInt()
     val cap = PropertyFactory.lineCap(Property.LINE_CAP_ROUND)
@@ -407,6 +418,9 @@ private fun installLayers(s: Style, c: MapPalette) {
         PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(3f),
         PropertyFactory.lineOpacity(0.85f), PropertyFactory.lineDasharray(arrayOf(1.6f, 1.6f))
     ))
+    s.addLayer(FillLayer("kd-ground-layer", SRC_GROUND).withProperties(
+        PropertyFactory.fillColor(Expression.get("c")), PropertyFactory.fillOpacity(0.22f)
+    ))
     s.addLayer(CircleLayer(L_HALO, SRC_HALO).withProperties(
         PropertyFactory.circleColor(c.traveller), PropertyFactory.circleRadius(14f),
         PropertyFactory.circleOpacity(0f), flat
@@ -423,16 +437,32 @@ private fun installLayers(s: Style, c: MapPalette) {
         PropertyFactory.circleColor(c.warn), PropertyFactory.circleRadius(7f),
         PropertyFactory.circleStrokeColor(white), PropertyFactory.circleStrokeWidth(3f), flat
     ))
-    // Last, so it sits over everything: the illustrated vehicle, upright and
-    // facing the camera however the map is tilted or turned.
-    s.addLayer(SymbolLayer("kd-vehicle-layer", SRC_VEHICLE).withProperties(
+    // Last, so they draw over everything else. Modes without real views:
+    // the low-poly 3D model.
+    s.addLayer(FillExtrusionLayer("kd-vehicle-layer", SRC_VEHICLE).withProperties(
+        PropertyFactory.fillExtrusionColor(Expression.get("c")),
+        PropertyFactory.fillExtrusionBase(Expression.get("b")),
+        PropertyFactory.fillExtrusionHeight(Expression.get("h")),
+        PropertyFactory.fillExtrusionOpacity(Expression.literal(1.0f))
+    ))
+    // Car, cab, bus seen from above: flat on the map, turned to the heading.
+    s.addLayer(SymbolLayer("kd-vehicle-top", SRC_MARKER).withProperties(
+        PropertyFactory.iconImage(Expression.get("icon")),
+        PropertyFactory.iconRotate(Expression.get("rot")),
+        PropertyFactory.iconAllowOverlap(true),
+        PropertyFactory.iconIgnorePlacement(true),
+        PropertyFactory.iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_MAP),
+        PropertyFactory.iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_MAP)
+    ).withFilter(Expression.eq(Expression.get("kind"), Expression.literal("top"))))
+    // ...and from behind, upright, when the camera rides along.
+    s.addLayer(SymbolLayer("kd-vehicle-rear", SRC_MARKER).withProperties(
         PropertyFactory.iconImage(Expression.get("icon")),
         PropertyFactory.iconAllowOverlap(true),
         PropertyFactory.iconIgnorePlacement(true),
         PropertyFactory.iconAnchor(Property.ICON_ANCHOR_BOTTOM),
-        PropertyFactory.iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT),
-        PropertyFactory.iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT)
-    ))
+        PropertyFactory.iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT),
+        PropertyFactory.iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT)
+    ).withFilter(Expression.eq(Expression.get("kind"), Expression.literal("rear"))))
 }
 
 /** Where the vehicle is drawn right now; mutated at animation rate. */
@@ -443,34 +473,65 @@ private class VehicleMotion {
     var airborne: Boolean = false
     var style: Style? = null
     var context: android.content.Context? = null
+    var renderedZoom: Double = -1.0
     var renderedCameraBearing: Double = 0.0
+    var renderedTilt: Double = 0.0
     var followPlaced: Boolean = false
     var framedOnce: Boolean = false
-    /** Which way the picture faces on screen; kept while heading straight up or down. */
-    private var faceLeft: Boolean = false
 
     fun render(m: MapLibreMap) {
         val s = style ?: return
         val p = pos ?: return
-        val camera = m.cameraPosition.bearing
-        val across = sin(Math.toRadians(bearing - camera))
-        if (across < -0.2) faceLeft = true else if (across > 0.2) faceLeft = false
-        val name = VehicleMarker.name(mode, faceLeft, airborne)
-        if (s.getImage(name) == null) {
-            val ctx = context ?: return
-            VehicleMarker.bitmap(ctx, mode, faceLeft, airborne)?.let { s.addImage(name, it) } ?: return
+        val cam = m.cameraPosition
+        val views = VehicleMarker.views(mode)
+        val ctx = context
+        if (views != null && ctx != null) {
+            val kind = VehicleMarker.kindFor(bearing, cam.bearing, cam.tilt)
+            val name = VehicleMarker.name(views, kind)
+            val ready = s.getImage(name) != null ||
+                VehicleMarker.bitmap(ctx, views, kind)?.let { s.addImage(name, it); true } == true
+            if (ready) {
+                s.source(SRC_MARKER)?.setGeoJson(Feature.fromGeometry(p.toPoint()).apply {
+                    addStringProperty("icon", name)
+                    addStringProperty("kind", if (kind == VehicleMarker.Kind.TOP) "top" else "rear")
+                    addNumberProperty("rot", bearing)
+                })
+                s.source(SRC_VEHICLE)?.setGeoJson(EMPTY_COLLECTION)
+                s.source(SRC_GROUND)?.setGeoJson(EMPTY_COLLECTION)
+                s.source(SRC_HALO)?.setGeoJson(pointCollection(p))
+                remember(cam)
+                return
+            }
         }
-        s.source(SRC_VEHICLE)?.setGeoJson(
-            Feature.fromGeometry(p.toPoint()).apply { addStringProperty("icon", name) }
-        )
+        s.source(SRC_MARKER)?.setGeoJson(EMPTY_COLLECTION)
+        val mpp = m.projection.getMetersPerPixelAtLatitude(p.lat)
+        val placed = Vehicle3D.place(mode, p, bearing, mpp, airborne)
+        s.source(SRC_VEHICLE)?.setGeoJson(FeatureCollection.fromFeatures(placed.solids.map { solid ->
+            polygonFeature(solid.ring).apply {
+                addStringProperty("c", solid.color)
+                addNumberProperty("b", solid.baseM)
+                addNumberProperty("h", solid.topM)
+            }
+        }))
+        s.source(SRC_GROUND)?.setGeoJson(FeatureCollection.fromFeatures(placed.ground.map { ring ->
+            polygonFeature(ring).apply { addStringProperty("c", placed.groundColor) }
+        }))
         s.source(SRC_HALO)?.setGeoJson(pointCollection(p))
-        renderedCameraBearing = camera
+        remember(cam)
+    }
+
+    private fun remember(cam: CameraPosition) {
+        renderedZoom = cam.zoom
+        renderedCameraBearing = cam.bearing
+        renderedTilt = cam.tilt
     }
 
     fun clear() {
         pos = null
         val s = style ?: return
         s.source(SRC_VEHICLE)?.setGeoJson(EMPTY_COLLECTION)
+        s.source(SRC_GROUND)?.setGeoJson(EMPTY_COLLECTION)
+        s.source(SRC_MARKER)?.setGeoJson(EMPTY_COLLECTION)
         s.source(SRC_HALO)?.setGeoJson(EMPTY_COLLECTION)
     }
 }
@@ -512,6 +573,10 @@ private fun interpolate(path: List<GeoPoint>, cursor: Float): GeoPoint? {
     val next = path.getOrNull(i + 1) ?: return path[i]
     return Vehicle3D.lerp(path[i], next, (cursor - i).toDouble())
 }
+
+/** The heading of the last stretch of the trail into [to]: the way it was going on arrival there. */
+private fun trailHeading(path: List<GeoPoint>, to: GeoPoint): Double? =
+    path.lastOrNull { Geo.haversineM(it, to) > 15.0 }?.let { Vehicle3D.bearing(it, to) }
 
 private fun segmentBearing(path: List<GeoPoint>, cursor: Float): Double? {
     if (path.size < 2) return null
