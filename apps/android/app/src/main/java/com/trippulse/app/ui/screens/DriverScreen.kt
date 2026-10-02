@@ -1604,7 +1604,10 @@ private fun CheckpointSheet(
         } else {
             Text("When did the break start?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                listOf(0 to "Just now", 10 to "10 min ago", 20 to "20 min ago", 30 to "30 min ago", 45 to "45 min ago", 60 to "1 h ago")
+                // Reaches back a whole evening: a dinner logged after the night's
+                // halt is still logged at dinner time.
+                listOf(0 to "Just now", 10 to "10 min ago", 20 to "20 min ago", 30 to "30 min ago", 45 to "45 min ago", 60 to "1 h ago",
+                    120 to "2 h ago", 180 to "3 h ago", 240 to "4 h ago", 360 to "6 h ago")
                     .forEach { (m, label) -> KoodeChip(label, startedAgoMin == m, { startedAgoMin = m }) }
             }
             Spacer(Modifier.height(Spacing.sm))

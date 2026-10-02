@@ -162,6 +162,7 @@ The only thing a browser can't do is wake a phone with an alert. That one is the
 
 | Version | Highlights |
 |---|---|
+| **6.20.2** | A break, halt or expense you log is saved on the phone within 10 seconds no matter what else the app is waiting on; it evicts a stuck step rather than queueing behind it. |
 | **6.20.1** | Fix: a journey could stop updating for its followers if one network step stalled on a weak signal; every step now has a hard deadline and the journey heals itself. Fix: the break log scrolls, so Save is always reachable after choosing a meal. |
 | **6.20** | The car and bus on the map are drawn from real views: top-down and turned to the heading in the overview, from behind when you follow along. Other modes keep their 3D models. The browser overview now lies flat. |
 | **6.19** | The vehicle on the map is now the mode's own illustration, upright with a white outline and a soft shadow, facing its way. Restroom and rest join the one-tap log, and food, water, restroom and rest show their pictures on every wellbeing card. |
