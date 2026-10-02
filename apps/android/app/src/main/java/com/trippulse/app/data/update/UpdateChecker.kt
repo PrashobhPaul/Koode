@@ -41,6 +41,7 @@ class UpdateChecker(
     private val client: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(8, TimeUnit.SECONDS)
         .readTimeout(8, TimeUnit.SECONDS)
+        .callTimeout(15, TimeUnit.SECONDS)
         .build()
 
     /** A newer build than the one running, as far as we can tell. */

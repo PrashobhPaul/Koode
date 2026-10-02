@@ -1398,7 +1398,7 @@ private fun ExpenseSheet(
     val valid = InputRules.isValidExpense(item, amount)
 
     Column(
-        Modifier.fillMaxWidth().padding(Spacing.xl),
+        Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
         Text("Add an expense", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
@@ -1473,7 +1473,7 @@ private fun QuickNoteSheet(
     val colors = KoodeTheme.colors
     var text by remember { mutableStateOf("") }
     Column(
-        Modifier.fillMaxWidth().padding(Spacing.xl),
+        Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
         Text("Add a note", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
@@ -1536,8 +1536,10 @@ private fun CheckpointSheet(
     var refuelCost by remember { mutableStateOf("") }
     var refuelQty by remember { mutableStateOf("") }
 
+    // Scrolls: choosing Food adds "Which meal?", and on a phone that pushed
+    // Save below the bottom of the sheet where it could not be reached.
     Column(
-        Modifier.fillMaxWidth().padding(Spacing.xl),
+        Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
         Text(

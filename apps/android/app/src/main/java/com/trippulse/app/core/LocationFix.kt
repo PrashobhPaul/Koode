@@ -15,6 +15,7 @@ import com.google.android.gms.location.Priority
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.trippulse.app.domain.GeoPoint
 import com.trippulse.app.domain.PlaceResolver
+import kotlinx.coroutines.async
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -88,8 +89,10 @@ object LocationFix {
     private fun recent(l: Location) = System.currentTimeMillis() - l.time <= RECENT_MS
 
     /** A short human name for a point ("Kukatpally, Hyderabad"), using the phone's own geocoder. */
-    suspend fun placeName(c: Context, p: GeoPoint): String? = withTimeoutOrNull(3_000) {
-        withContext(Dispatchers.IO) {
+    suspend fun placeName(c: Context, p: GeoPoint): String? {
+        // The platform geocoder blocks and can't be interrupted, so it runs on
+        // its own and we stop waiting after 3 s instead of hanging with it.
+        val lookup = kotlinx.coroutines.CoroutineScope(Dispatchers.IO).async {
             runCatching {
                 @Suppress("DEPRECATION")
                 Geocoder(c).getFromLocation(p.lat, p.lng, 1)?.firstOrNull()?.let { a ->
@@ -97,6 +100,7 @@ object LocationFix {
                 }
             }.getOrNull()
         }
+        return withTimeoutOrNull(3_000) { lookup.await() }
     }
 
     /**
