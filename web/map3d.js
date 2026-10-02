@@ -2,10 +2,10 @@
  * Koode — 3D journey map for the browser viewer.
  *
  * MapLibre GL JS on free OpenFreeMap vector tiles (no key, no account). The
- * traveller's vehicle is Koode's own illustration for the travel mode — the
- * same picture as in the app — drawn upright like a sticker with a white
- * outline and a soft ground shadow, facing its way across the screen. A plane
- * in flight rides a little above its shadow.
+ * traveller's vehicle matches the app: a car, cab or bus is drawn from real
+ * views of it (top-down and turned to the heading, or from behind when the
+ * camera rides along); every other mode is extruded 3D solids — the SAME
+ * models, from the SAME numbers, as the app's Vehicle3D.kt.
  *
  * Honesty rule shared with the app: the vehicle glides from the previous fix
  * to the new one and stops there. It never runs ahead of the last real fix.
@@ -162,6 +162,13 @@
     var x = Math.cos(la1) * Math.sin(la2) - Math.sin(la1) * Math.cos(la2) * Math.cos(dL);
     return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
   }
+  /** The heading of the last stretch of the trail into [to]: the way it was going on arrival here. */
+  function trailHeading(trail, to) {
+    for (var i = trail.length - 1; i >= 0; i--) {
+      if (distM(trail[i], to) > 15) return bearingOf(trail[i], to);
+    }
+    return state.bearing;
+  }
   function lerpBearing(from, to, t) { var d = ((to - from + 540) % 360) - 180; return (from + d * t + 360) % 360; }
   function distM(a, b) {
     var R = 6371000, dLat = (b[0] - a[0]) * Math.PI / 180, dLng = (b[1] - a[1]) * Math.PI / 180;
@@ -201,33 +208,55 @@
 
   function mpp(lat) { return 40075016.686 * Math.cos(lat * Math.PI / 180) / (512 * Math.pow(2, map.getZoom())); }
 
-  // The same pictures as the app (domain/Pictures.kt); some are drawn facing left.
-  var ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', AUTO: 'auto', BUS: 'bus', METRO: 'metro', TRAIN: 'train', FLIGHT: 'flight', SHIP: 'ship' };
-  var ART_FACES_LEFT = { BUS: true, METRO: true, AUTO: true };
-  var vehicle = null, faceLeft = false;
+  // Car, cab and bus are drawn from real views of them, like the app's
+  // VehicleMarker: top-down and turned to the heading in the overview, from
+  // behind when the camera rides along. Every other mode is its 3D model.
+  var VIEWS = {
+    CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'car', len: 50, rear: 46 },
+    BUS: { key: 'bus', len: 78, rear: 54 }
+  };
+  var vehicle = null;
+
+  function viewKind(cameraBearing, pitch) {
+    var diff = ((state.bearing - cameraBearing + 540) % 360) - 180;
+    return pitch >= 30 && Math.abs(diff) <= 40 ? 'rear' : 'top';
+  }
 
   function renderVehicle() {
     if (!ready || !state.pos) return;
-    if (!vehicle) {
-      var el = document.createElement('div');
-      el.className = 'kd-veh';
-      el.innerHTML = '<span class="kd-veh-shadow"></span><img alt="" draggable="false">';
-      vehicle = new maplibregl.Marker({ element: el, anchor: 'bottom', pitchAlignment: 'viewport', rotationAlignment: 'viewport' })
-        .setLngLat([state.pos[1], state.pos[0]]).addTo(map);
+    var v = VIEWS[state.mode];
+    if (v) {
+      setData('kd-vehicle', EMPTY);
+      setData('kd-ground', EMPTY);
+      var kind = viewKind(map.getBearing(), map.getPitch());
+      if (!vehicle) {
+        var el = document.createElement('div');
+        el.className = 'kd-veh';
+        el.innerHTML = '<img alt="" draggable="false">';
+        vehicle = new maplibregl.Marker({ element: el }).setLngLat([state.pos[1], state.pos[0]]).addTo(map);
+      }
+      var el2 = vehicle.getElement();
+      var img = el2.querySelector('img');
+      var src = 'art/map-' + v.key + '-' + kind + '.webp';
+      if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+      el2.classList.toggle('top', kind === 'top');
+      el2.classList.toggle('rear', kind === 'rear');
+      img.style.height = kind === 'top' ? v.len + 'px' : '';
+      img.style.width = kind === 'rear' ? v.rear + 'px' : '';
+      if (kind === 'top') {
+        vehicle.setRotationAlignment('map').setPitchAlignment('map').setRotation(state.bearing);
+        vehicle.setOffset([0, 0]);
+      } else {
+        vehicle.setRotationAlignment('viewport').setPitchAlignment('viewport').setRotation(0);
+        vehicle.setOffset([0, -Math.round(v.rear * 0.25)]);
+      }
+      vehicle.setLngLat([state.pos[1], state.pos[0]]);
+    } else {
+      if (vehicle) { vehicle.remove(); vehicle = null; }
+      var placed = place(state.mode, state.pos, state.bearing, mpp(state.pos[0]), state.airborne);
+      setData('kd-vehicle', fc(placed.solids));
+      setData('kd-ground', fc(placed.ground));
     }
-    // Face the way it is going across the screen; keep the last facing when
-    // heading straight up or down it.
-    var across = Math.sin((state.bearing - map.getBearing()) * Math.PI / 180);
-    if (across < -0.2) faceLeft = true; else if (across > 0.2) faceLeft = false;
-    var mode = ART[state.mode] ? state.mode : 'CAR';
-    var el2 = vehicle.getElement();
-    var img = el2.querySelector('img');
-    var src = 'art/' + ART[mode] + '.webp';
-    if (img.getAttribute('src') !== src) img.setAttribute('src', src);
-    Object.keys(ART).forEach(function (k) { el2.classList.toggle('kd-veh-' + ART[k], k === mode); });
-    el2.classList.toggle('flip', faceLeft !== !!ART_FACES_LEFT[mode]);
-    el2.classList.toggle('air', !!state.airborne);
-    vehicle.setLngLat([state.pos[1], state.pos[0]]);
     setData('kd-halo', point(state.pos));
   }
 
@@ -252,7 +281,18 @@
     if (pts.length === 1) { map.jumpTo({ center: [pts[0][1], pts[0][0]], zoom: 13, pitch: 0, bearing: 0 }); return; }
     var b = new maplibregl.LngLatBounds([pts[0][1], pts[0][0]], [pts[0][1], pts[0][0]]);
     pts.forEach(function (p) { b.extend([p[1], p[0]]); });
-    map.fitBounds(b, { padding: heroPadding(), pitch: 0, bearing: 0, duration: animate ? 800 : 0, maxZoom: 15 });
+    // fitBounds keeps the current tilt, so level the camera explicitly: the
+    // overview is a flat map of the whole journey.
+    // The follow camera leaves its own padding and tilt on the map, and a
+    // fit adds to them, so measure the fit level and unpadded, then ease
+    // there from wherever the camera is now.
+    var none = { top: 0, bottom: 0, left: 0, right: 0 };
+    var from = { center: map.getCenter(), zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch(), padding: map.getPadding() };
+    map.jumpTo({ pitch: 0, bearing: 0, padding: none });
+    var cam = map.cameraForBounds(b, { padding: heroPadding(), maxZoom: 15 });
+    map.jumpTo(from);
+    if (!cam) return;
+    map.easeTo({ center: cam.center, zoom: Math.min(15, cam.zoom), bearing: 0, pitch: 0, padding: none, duration: animate ? 800 : 0 });
   }
 
   function updateFollowButton() {
@@ -271,16 +311,18 @@
   }
 
   function install() {
-    ['kd-trail', 'kd-arc', 'kd-origin', 'kd-dest', 'kd-halo'].forEach(function (id) {
+    ['kd-trail', 'kd-arc', 'kd-origin', 'kd-dest', 'kd-halo', 'kd-ground', 'kd-vehicle'].forEach(function (id) {
       map.addSource(id, { type: 'geojson', data: EMPTY });
     });
     map.addLayer({ id: 'kd-trail-casing', type: 'line', source: 'kd-trail', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#07131D', 'line-width': 8.5, 'line-opacity': 0.8 } });
     map.addLayer({ id: 'kd-trail-layer', type: 'line', source: 'kd-trail', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#38BDF8', 'line-width': 5 } });
     map.addLayer({ id: 'kd-arc-layer', type: 'line', source: 'kd-arc', paint: { 'line-color': '#38BDF8', 'line-width': 3, 'line-opacity': 0.85, 'line-dasharray': [1.6, 1.6] } });
+    map.addLayer({ id: 'kd-ground-layer', type: 'fill', source: 'kd-ground', paint: { 'fill-color': ['get', 'c'], 'fill-opacity': 0.22 } });
     map.addLayer({ id: 'kd-halo-layer', type: 'circle', source: 'kd-halo', paint: { 'circle-color': '#38BDF8', 'circle-radius': 14, 'circle-opacity': 0, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-origin-layer', type: 'circle', source: 'kd-origin', paint: { 'circle-color': '#2DD4BF', 'circle-radius': 7, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-dest-halo', type: 'circle', source: 'kd-dest', paint: { 'circle-color': '#F59E0B', 'circle-radius': 15, 'circle-opacity': 0.3, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-dest-layer', type: 'circle', source: 'kd-dest', paint: { 'circle-color': '#F59E0B', 'circle-radius': 7, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3, 'circle-pitch-alignment': 'map' } });
+    map.addLayer({ id: 'kd-vehicle-layer', type: 'fill-extrusion', source: 'kd-vehicle', paint: { 'fill-extrusion-color': ['get', 'c'], 'fill-extrusion-base': ['get', 'b'], 'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-opacity': 1 } });
   }
 
   function pulse(t) {
@@ -318,6 +360,8 @@
       install();
       ready = true;
       map.on('rotate', renderVehicle);
+      map.on('pitch', renderVehicle);
+      map.on('zoom', renderVehicle);
       if (pending) draw(pending);
     });
     // Moving the map by hand leaves Follow, as navigation apps do.
@@ -368,7 +412,7 @@
     var from = state.pos || to;
     var toBearing = trail.length >= 2 && opts.playback
       ? bearingOf(trail[Math.max(0, trail.length - 4)], trail[trail.length - 1])
-      : (distM(from, to) > 8 ? bearingOf(from, to) : state.bearing);
+      : (distM(from, to) > 8 ? bearingOf(from, to) : (state.pos ? state.bearing : trailHeading(trail, to)));
     var fromBearing = state.bearing;
 
     if (state.glide) { window.cancelAnimationFrame(state.glide); state.glide = null; }

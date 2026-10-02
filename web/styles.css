@@ -227,23 +227,9 @@ button.small { width: auto; padding: 9px 16px; font-size: 13px; margin-top: 10px
 .row .wb { display: inline-flex; align-items: center; gap: 10px; }
 .row .wb img { width: 34px; height: 34px; object-fit: contain; }
 
-/* The traveller's vehicle on the map: the mode's illustration as an upright
-   sticker — white outline, soft ground shadow, facing its way across the screen. */
-.kd-veh { position: relative; width: 72px; height: 62px; pointer-events: none; }
-.kd-veh img {
-  position: absolute; left: 0; right: 0; bottom: 5px; margin: 0 auto; width: 100%; max-height: 54px; object-fit: contain;
-  filter: drop-shadow(0 0 1.2px #fff) drop-shadow(0 0 1.2px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
-  transition: transform 300ms ease;
-}
-.kd-veh.flip img { transform: scaleX(-1); }
-.kd-veh-shadow {
-  position: absolute; left: 14%; right: 14%; bottom: 0; height: 12px; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
-}
-.kd-veh-bus, .kd-veh-train, .kd-veh-metro, .kd-veh-ship { width: 86px; }
-.kd-veh-flight { width: 82px; }
-.kd-veh-bike, .kd-veh-auto { width: 60px; }
-.kd-veh.air img { bottom: 27px; }
-.kd-veh.air { height: 84px; }
-.kd-veh.air .kd-veh-shadow { left: 26%; right: 26%; opacity: 0.6; }
+/* The traveller's vehicle on the map, from real views of it (car, cab, bus). */
+.kd-veh { pointer-events: none; line-height: 0; }
+.kd-veh img { display: block; }
+.kd-veh.top img { filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55)); }
+.kd-veh.rear img { filter: drop-shadow(0 6px 5px rgba(0, 0, 0, 0.5)); }
 .row:has(.wb) { align-items: center; }
