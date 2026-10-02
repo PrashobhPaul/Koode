@@ -126,4 +126,12 @@ class FollowerAlertsTest {
         assertEquals(FollowerAlerts.Category.JOURNEY, FollowerAlerts.category(EventTypes.DESTINATION_CHANGED))
         assertEquals(FollowerAlerts.Category.JOURNEY, FollowerAlerts.category(EventTypes.TOLL_CROSSED))
     }
+
+    @Test fun a_corrected_or_removed_break_is_never_announced() {
+        val base = mapOf("breakId" to "b1", "countsAsBreak" to true, "food" to true)
+        assertTrue(FollowerAlerts.shouldNotify(EventTypes.BREAK_CHECKPOINT, base))
+        assertFalse(FollowerAlerts.shouldNotify(EventTypes.BREAK_CHECKPOINT, base + mapOf("revised" to true)))
+        assertFalse(FollowerAlerts.shouldNotify(EventTypes.BREAK_CHECKPOINT, base + mapOf("removed" to true)))
+        assertFalse(FollowerAlerts.shouldNotify(EventTypes.TIMELINE_EDIT, mapOf("targetEventId" to "x")))
+    }
 }

@@ -218,7 +218,7 @@
    * the halt question) and the periodic update are notifications, not
    * timeline entries — the same rule as the app.
    */
-  var NOT_IN_TIMELINE = ['WELLBEING_NUDGE', 'JOURNEY_UPDATE', 'HALT_SUGGESTED',
+  var NOT_IN_TIMELINE = ['TIMELINE_EDIT', 'WELLBEING_NUDGE', 'JOURNEY_UPDATE', 'HALT_SUGGESTED',
     'JOURNEY_CLOSE_PROMPTED', 'JOURNEY_REOPENED', 'JOURNEY_CLOSED', 'JOURNEY_REVIEW_STARTED',
     'JOURNEY_ANALYTICS_APPROVED', 'JOURNEY_FINALIZED', 'TRAVEL_EXPENSES_APPROVED',
     'WATER_NUDGE', 'WATER_REMINDER', 'WATER_ACKNOWLEDGED',
@@ -250,10 +250,23 @@
   var FOLDED = ['WATER_REPORTED', 'FOOD_REPORTED', 'TEA_COFFEE_REPORTED', 'SNACK_REPORTED',
     'TOILET_REPORTED', 'REST_REPORTED', 'FUEL_STOP', 'CHARGE_STOP'];
   function condenseBreaks(events) {
-    var latest = {};
+    var latest = {}, removed = {};
     events.forEach(function (e) {
       var id = e.payload && e.payload.breakId;
-      if (e.type === 'BREAK_CHECKPOINT' && id) latest[id] = Math.max(latest[id] || 0, e.eventTime || 0);
+      if (e.type === 'BREAK_CHECKPOINT' && id && (e.eventTime || 0) >= (latest[id] || 0)) {
+        latest[id] = e.eventTime || 0;
+        // The traveller took the break back: its latest version says so.
+        removed[id] = !!e.payload.removed;
+      }
+    });
+    // The traveller's corrections to other entries (TIMELINE_EDIT): the
+    // latest per target wins; removed targets vanish, re-timed ones show
+    // the corrected time (see shownTime).
+    var edits = {}, editAt = {};
+    events.forEach(function (e) {
+      if (e.type !== 'TIMELINE_EDIT' || !e.payload || !e.payload.targetEventId) return;
+      var t = e.payload.targetEventId;
+      if ((e.eventTime || 0) >= (editAt[t] || 0)) { editAt[t] = e.eventTime || 0; edits[t] = e.payload; }
     });
     var kept = {};
     return events.filter(function (e) {
@@ -262,12 +275,35 @@
       if (NOT_IN_TIMELINE.indexOf(e.type) >= 0) return false;
       // A stage that is also a travel-mode change reads once, as the change.
       if (e.type === 'LEG_STARTED' && e.payload && e.payload.announcedAs) return false;
+      var edit = e.eventId && edits[e.eventId];
+      if (edit && edit.removed) return false;
       if (e.type === 'BREAK_CHECKPOINT' && id) {
-        if ((e.eventTime || 0) !== latest[id] || kept[id]) return false;
+        if ((e.eventTime || 0) !== latest[id] || kept[id] || removed[id]) return false;
         kept[id] = true; return true;
       }
+      if (id && removed[id] && FOLDED.indexOf(e.type) >= 0) return false;
       return !(id && FOLDED.indexOf(e.type) >= 0);
+    }).map(function (e) {
+      var edit = e.eventId && edits[e.eventId];
+      if (edit && edit.atMs) {
+        var p = {}; for (var k in (e.payload || {})) p[k] = e.payload[k]; p.atMs = edit.atMs;
+        var c = {}; for (var k2 in e) c[k2] = e[k2]; c.payload = p; return c;
+      }
+      return e;
     });
+  }
+
+  /**
+   * When an entry happened, as opposed to when it was logged. A break logged
+   * after the night's halt still sits at dinner time; a halt confirmed in the
+   * morning still began the night before.
+   */
+  function shownTime(e) {
+    var p = e.payload || {};
+    if (p.atMs) return p.atMs;
+    if (e.type === 'BREAK_CHECKPOINT' && p.startMs) return p.startMs;
+    if (e.type === 'HALT_CONFIRMED' && p.sinceMs) return p.sinceMs;
+    return e.eventTime || 0;
   }
 
   function describeEvent(e) {
@@ -743,7 +779,7 @@
     list.innerHTML = '';
     condenseBreaks(events || [])
       .slice()
-      .sort(function (a, b) { return (b.eventTime || 0) - (a.eventTime || 0); })
+      .sort(function (a, b) { return shownTime(b) - shownTime(a); })
       .slice(0, 40)
       .forEach(function (e) {
         var parts = describeEvent(e);
@@ -751,7 +787,7 @@
         var ev = eventArt(e);
         var lead = ev ? '<img class="ev" src="art/' + ev + '.webp" alt="">' : '<span>' + parts[0] + '</span>';
         li.innerHTML = lead + '<span>' + escapeHtml(parts[1]) +
-          '</span><span class="when">' + clock(e.eventTime || Date.now()) + '</span>';
+          '</span><span class="when">' + clock(shownTime(e) || Date.now()) + '</span>';
         list.appendChild(li);
       });
   }

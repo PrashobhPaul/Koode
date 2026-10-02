@@ -122,7 +122,11 @@ object FollowerAlerts {
         // A break on a private vehicle is announced once, by the aggregate
         // BREAK_CHECKPOINT. On public transport there is no aggregate break
         // (countsAsBreak == false); there the individual items speak instead.
-        if (type == EventTypes.BREAK_CHECKPOINT) return payload["countsAsBreak"] != false
+        // A correction to a break (re-timed or taken back) is not news: the
+        // timeline shows the corrected line, nobody's phone buzzes for it.
+        if (type == EventTypes.BREAK_CHECKPOINT) {
+            return payload["countsAsBreak"] != false && payload["revised"] != true && payload["removed"] != true
+        }
         if (type in BREAK_ITEM_TYPES && payload["breakId"] != null) return false
         // A stage change that is also a travel-mode change is announced once,
         // by TRAVEL_MODE_CHANGED.

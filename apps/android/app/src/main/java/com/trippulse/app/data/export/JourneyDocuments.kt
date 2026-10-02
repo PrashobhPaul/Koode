@@ -299,22 +299,27 @@ object JourneyDocuments {
         // "12m stopped" figure can never disagree.
         val stopDurationByStart = report.stopPeriods.associate { it.startMs to it.seconds }
 
+        val edits = com.trippulse.app.domain.TimelineEdits
+        data class Line(val id: String, val type: String, val eventTimeMs: Long, val payload: Map<String, Any?>)
+        val lines = events.map { Line(it.eventId, it.type, it.eventTimeMs, EventCodec.payloadFromJson(it.payloadJson)) }
+        val corrected = edits.apply(lines, { it.id }, { it.type }, { it.eventTimeMs }, { it.payload }, { l, p -> l.copy(payload = p) })
         val rows = com.trippulse.app.domain.BreakTimeline
-            .forTimeline(events, { it.type }, { it.eventTimeMs }, { EventCodec.payloadFromJson(it.payloadJson) })
+            .forTimeline(corrected, { it.type }, { it.eventTimeMs }, { it.payload })
             .filter { it.type in EventTypes.TIMELINE_TYPES }
-            .sortedBy { it.eventTimeMs }
+            .sortedBy { edits.shownTime(it.type, it.payload, it.eventTimeMs) }
             .map { e ->
-                val payload = EventCodec.payloadFromJson(e.payloadJson)
+                val payload = e.payload
                 val (_, label) = EventNarrator.line(e.type, payload)
                 val withDuration = if (e.type == EventTypes.STOP_STARTED) {
                     stopDurationByStart[e.eventTimeMs]
                         ?.takeIf { it >= 60 }
                         ?.let { "$label · ${TimeFmt.durationShort(it)}" } ?: label
                 } else label
+                val shown = edits.shownTime(e.type, payload, e.eventTimeMs)
                 JourneyPdf.Row(
-                    left = TimeFmt.clock(e.eventTimeMs),
+                    left = TimeFmt.clock(shown),
                     middle = withDuration,
-                    right = TimeFmt.date(e.eventTimeMs)
+                    right = TimeFmt.date(shown)
                 )
             }
 

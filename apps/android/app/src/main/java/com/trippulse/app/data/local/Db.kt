@@ -446,6 +446,9 @@ interface BreakDao {
 
     @Query("DELETE FROM break_records WHERE tripId = :tripId")
     suspend fun deleteForTrip(tripId: String)
+
+    @Query("DELETE FROM break_records WHERE breakId = :breakId")
+    suspend fun deleteById(breakId: String)
 }
 
 @Dao

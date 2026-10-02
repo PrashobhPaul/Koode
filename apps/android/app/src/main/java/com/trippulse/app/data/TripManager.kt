@@ -1092,10 +1092,14 @@ class TripManager(
             val now = System.currentTimeMillis()
             val since = sinceMs?.coerceIn(t.startedAtMs ?: 0L, now) ?: now
             val overnight = Halts.isOvernight(TimeFmt.hourOfDay(since), expectedMinutes)
+            // Written now, even when the halt began hours ago: followers fetch
+            // events after the last one they saw, so a back-dated event would
+            // never reach them. Timelines show `sinceMs` (TimelineEdits).
             insertEvent(
-                t.tripId, EventTypes.HALT_CONFIRMED, EventSource.DRIVER_CONFIRMATION, since, s.lat, s.lng,
+                t.tripId, EventTypes.HALT_CONFIRMED, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
                 buildMap<String, Any?> {
                     put("haltType", type.name); put("source", "USER_CONFIRMED"); put("overnight", overnight)
+                    if (since != now) put("sinceMs", since)
                     place?.let { put("place", it) }
                     expectedMinutes?.let { put("expectedMinutes", it) }
                     Halts.Duration.fromMinutes(expectedMinutes)?.let { put("duration", it.name) }
@@ -1119,6 +1123,74 @@ class TripManager(
             persistAndPush(t, s, force = true); state = s
             onSamplingChanged?.invoke()
         }
+    }
+
+    // -----------------------------------------------------------------------
+    // Corrections: the traveller re-times or removes an entry they wrote.
+    // The log is append-only, so each is a new event (see TimelineEdits).
+    // -----------------------------------------------------------------------
+
+    /**
+     * Changes when a break began and how long it lasted, or removes it.
+     * A new version of the break (same breakId) is written; timelines keep
+     * the latest version only, so the old line disappears everywhere.
+     */
+    suspend fun reviseBreak(breakId: String, startMs: Long?, durationS: Long?, removed: Boolean) = lock.withLock {
+        val t = editableTrip() ?: return@withLock
+        val s = state ?: return@withLock
+        val now = System.currentTimeMillis()
+        val last = db.eventDao().allForTrip(t.tripId)
+            .filter { it.type == EventTypes.BREAK_CHECKPOINT }
+            .map { it to EventCodec.payloadFromJson(it.payloadJson) }
+            .filter { (_, p) -> p["breakId"] == breakId }
+            .maxByOrNull { (e, _) -> e.eventTimeMs } ?: return@withLock
+        val old = last.second
+        val oldStart = (old["startMs"] as? Number)?.toLong() ?: last.first.eventTimeMs
+        val oldDuration = (old["durationS"] as? Number)?.toLong()
+        val newStart = (startMs ?: oldStart).coerceAtMost(now)
+        val newDuration = durationS ?: oldDuration
+        val newEnd = newDuration?.let { (newStart + it * 1000).coerceAtMost(now) }
+        val payload = old + mapOf(
+            "startMs" to newStart, "endMs" to newEnd,
+            "durationS" to newEnd?.let { ((it - newStart) / 1000).coerceAtLeast(0) },
+            "open" to (newEnd == null && !removed), "removed" to removed, "revised" to true
+        )
+        insertEvent(t.tripId, EventTypes.BREAK_CHECKPOINT, EventSource.DRIVER_CONFIRMATION, now,
+            last.first.lat, last.first.lng, payload, false)
+        if (removed) {
+            db.breakDao().deleteById(breakId)
+            if (openBreak?.breakId == breakId) openBreak = null
+        } else {
+            db.breakDao().allForTrip(t.tripId).firstOrNull { it.breakId == breakId }?.let {
+                db.breakDao().upsert(it.copy(startMs = newStart, endMs = newEnd,
+                    durationS = newEnd?.let { e -> ((e - newStart) / 1000).coerceAtLeast(0) }))
+            }
+            if (openBreak?.breakId == breakId) {
+                openBreak = if (newEnd == null) openBreak?.copy(startMs = newStart) else null
+            }
+        }
+        persistAndPush(t, s.copy(updatedAtMs = now), force = true); state = state?.copy(updatedAtMs = now)
+    }
+
+    /**
+     * Re-times or removes any other entry the traveller wrote (a halt, a note,
+     * a single logged item). The entry itself stays in the log; a correction
+     * naming it is appended and every timeline applies it.
+     */
+    suspend fun editTimelineEntry(eventId: String, atMs: Long?, removed: Boolean) = lock.withLock {
+        val t = editableTrip() ?: return@withLock
+        var s = state ?: return@withLock
+        val now = System.currentTimeMillis()
+        val target = db.eventDao().allForTrip(t.tripId).firstOrNull { it.eventId == eventId } ?: return@withLock
+        if (target.type !in EventTypes.USER_EDITABLE) return@withLock
+        val at = atMs?.coerceIn(t.startedAtMs ?: 0L, now)
+        insertEvent(t.tripId, EventTypes.TIMELINE_EDIT, EventSource.DRIVER_CONFIRMATION, now, null, null,
+            mapOf("targetEventId" to eventId, "targetType" to target.type, "atMs" to at, "removed" to removed), false)
+        // A re-timed halt moves the halt itself, so "halting since" stays true.
+        if (target.type == EventTypes.HALT_CONFIRMED && s.overnightType != null && at != null && !removed) {
+            s = s.copy(overnightSinceMs = at)
+        }
+        persistAndPush(t, s.copy(updatedAtMs = now), force = true); state = s.copy(updatedAtMs = now)
     }
 
     /** "Just a long break" / "Not stopped yet": nothing is recorded or shared. */

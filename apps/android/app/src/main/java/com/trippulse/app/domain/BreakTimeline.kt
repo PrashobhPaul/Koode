@@ -30,16 +30,27 @@ object BreakTimeline {
         items: List<T>, type: (T) -> String, time: (T) -> Long, payload: (T) -> Map<String, Any?>, fold: Boolean
     ): List<T> {
         val latest = HashMap<String, Long>()
+        val removed = HashSet<String>()
         items.forEach { e ->
             if (type(e) == EventTypes.BREAK_CHECKPOINT) {
-                (payload(e)["breakId"] as? String)?.let { id -> latest[id] = maxOf(latest[id] ?: Long.MIN_VALUE, time(e)) }
+                (payload(e)["breakId"] as? String)?.let { id ->
+                    val t = time(e)
+                    if (t >= (latest[id] ?: Long.MIN_VALUE)) {
+                        latest[id] = t
+                        if (payload(e)["removed"] == true) removed.add(id) else removed.remove(id)
+                    }
+                }
             }
         }
         val kept = HashSet<String>()
         return items.filter { e ->
             val id = payload(e)["breakId"] as? String
             when {
-                type(e) == EventTypes.BREAK_CHECKPOINT && id != null -> time(e) == latest[id] && kept.add(id)
+                // The latest version wins; a version that says "removed" is the
+                // traveller taking the break back, so nothing is shown for it.
+                type(e) == EventTypes.BREAK_CHECKPOINT && id != null ->
+                    time(e) == latest[id] && payload(e)["removed"] != true && kept.add(id)
+                id != null && id in removed && type(e) in FOLDED_ITEMS -> false
                 fold && id != null && type(e) in FOLDED_ITEMS -> false
                 fold && type(e) == EventTypes.BREAK_CHECKPOINT_SKIPPED -> false
                 else -> true

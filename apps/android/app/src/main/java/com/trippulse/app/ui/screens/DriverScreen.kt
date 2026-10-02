@@ -133,6 +133,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     var showExpense by remember { mutableStateOf(false) }
     var showEdit by remember { mutableStateOf(false) }
     var showHalt by remember { mutableStateOf(false) }
+    var showSpending by remember { mutableStateOf(false) }
+    var editing by remember { mutableStateOf<TimelineItem?>(null) }
     var pickDestination by remember { mutableStateOf(false) }
     var haltPlanDismissed by remember { mutableStateOf(false) }
     var report by remember { mutableStateOf<JourneyAnalytics.JourneyReport?>(null) }
@@ -653,11 +655,20 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             val pendingAsk = opportunities.filter { it.status == com.trippulse.app.domain.Expenses.Status.PENDING }
             val deferred = opportunities.count { it.status == com.trippulse.app.domain.Expenses.Status.DEFERRED }
             if (expenseRows.isNotEmpty() || opportunities.any { it.open }) {
-                KoodeCard(title = "Trip spending so far · private", accent = colors.traveller) {
+                KoodeCard(
+                    title = "Trip spending so far · private", accent = colors.traveller,
+                    onClick = if (expenseRows.isNotEmpty()) ({ showSpending = true }) else null
+                ) {
                     Text(
                         vm.measures.money(expenseRows.sumOf { it.amount }),
                         color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
                     )
+                    if (expenseRows.isNotEmpty()) {
+                        Text(
+                            "${expenseRows.size} ${if (expenseRows.size == 1) "entry" else "entries"} · tap to see, correct or remove",
+                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                        )
+                    }
                     if (pendingAsk.isNotEmpty() && !safeToAsk) {
                         Text(
                             "${pendingAsk.size} expense${if (pendingAsk.size == 1) "" else "s"} to note when you next stop — never while you drive.",
@@ -793,11 +804,16 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 val items = remember(events) {
                     timelineItems(
                         events.map { e ->
-                            e.type to (e.eventTimeMs to com.trippulse.app.data.EventCodec.payloadFromJson(e.payloadJson))
+                            TimelineEvent(e.eventId, e.type, e.eventTimeMs, com.trippulse.app.data.EventCodec.payloadFromJson(e.payloadJson))
                         }
                     )
                 }
-                TimelineList(items, now)
+                Text(
+                    "Tap one of your own entries to change its time or remove it.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+                Spacer(Modifier.height(Spacing.sm))
+                TimelineList(items, now, onEdit = { editing = it })
             }
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
@@ -907,6 +923,43 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     showCheckpoint = false
                 },
                 onSkip = { vm.skipCheckpoint(); showCheckpoint = false }
+            )
+        }
+    }
+
+    // ---- what was spent, line by line ----
+    if (showSpending) {
+        val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        ModalBottomSheet(onDismissRequest = { showSpending = false }, sheetState = sheet) {
+            SpendingSheet(
+                rows = expenseRows,
+                money = { vm.measures.money(it) },
+                onCorrect = { id, amount -> vm.correctExpense(id, amount) },
+                onDelete = { vm.deleteExpense(it) },
+                onAdd = { showSpending = false; showExpense = true }
+            )
+        }
+    }
+
+    // ---- correcting one of the traveller's own timeline entries ----
+    editing?.let { item ->
+        val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+        ModalBottomSheet(onDismissRequest = { editing = null }, sheetState = sheet) {
+            EditEntrySheet(
+                item = item,
+                onSave = { atMs, durationS ->
+                    val breakId = item.breakId
+                    if (breakId != null) vm.reviseBreak(breakId, atMs, durationS, removed = false)
+                    else item.eventId?.let { vm.editTimelineEntry(it, atMs, removed = false) }
+                    editing = null
+                },
+                onRemove = {
+                    val breakId = item.breakId
+                    if (breakId != null) vm.reviseBreak(breakId, null, null, removed = true)
+                    else item.eventId?.let { vm.editTimelineEntry(it, null, removed = true) }
+                    editing = null
+                },
+                onCancel = { editing = null }
             )
         }
     }
@@ -1753,6 +1806,230 @@ private fun CheckpointSheet(
                     if (c.timeInMillis > System.currentTimeMillis()) c.add(java.util.Calendar.DAY_OF_YEAR, -1)
                     pickedStartMs = c.timeInMillis
                     useDetected = false
+                    pickingTime = false
+                }) { Text("Use this time") }
+            },
+            dismissButton = { TextButton({ pickingTime = false }) { Text("Cancel") } }
+        )
+    }
+}
+
+/**
+ * Every expense on this journey, with the two corrections that matter in the
+ * field: a wrong amount, and an entry that should not be there. Private to
+ * the traveller; nothing here is shared.
+ */
+@Composable
+private fun SpendingSheet(
+    rows: List<com.trippulse.app.data.local.ExpenseEntity>,
+    money: (Double) -> String,
+    onCorrect: (Long, Double) -> Unit,
+    onDelete: (Long) -> Unit,
+    onAdd: () -> Unit
+) {
+    val colors = KoodeTheme.colors
+    var editingId by remember { mutableStateOf<Long?>(null) }
+    var amountText by remember { mutableStateOf("") }
+    var confirmDelete by remember { mutableStateOf<Long?>(null) }
+    Column(Modifier.fillMaxWidth()) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f, fill = false)
+                .verticalScroll(rememberScrollState())
+                .padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+        ) {
+            Text("Trip spending", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+            Text(
+                "${money(rows.sumOf { it.amount })} across ${rows.size} ${if (rows.size == 1) "entry" else "entries"}. Private to you.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(Modifier.height(Spacing.xs))
+            rows.sortedByDescending { it.tMs }.forEach { e ->
+                val cat = ExpenseCategory.fromType(e.type)
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(Radii.md))
+                        .background(colors.backgroundElevated)
+                        .padding(Spacing.md)
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(cat.emoji, fontSize = 18.sp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                e.item.ifBlank { cat.label },
+                                color = colors.textHigh, style = MaterialTheme.typography.titleSmall
+                            )
+                            Text(
+                                buildList {
+                                    add(cat.label)
+                                    e.quantity?.let { q ->
+                                        add((if (q % 1.0 == 0.0) q.toLong().toString() else "%.1f".format(q)) + " " + e.unit.orEmpty())
+                                    }
+                                    add(TimeFmt.clockWithDay(e.tMs, System.currentTimeMillis()))
+                                    e.note?.takeIf { it.isNotBlank() }?.let { add(it) }
+                                }.joinToString(" · "),
+                                color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                            )
+                        }
+                        Text(money(e.amount), color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+                    }
+                    if (editingId == e.id) {
+                        Spacer(Modifier.height(Spacing.sm))
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                            OutlinedTextField(
+                                value = amountText, onValueChange = { amountText = InputRules.amountText(it) },
+                                label = { Text("Amount") }, singleLine = true,
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                                modifier = Modifier.weight(1f)
+                            )
+                            TextButton(
+                                onClick = { InputRules.parseAmount(amountText)?.let { onCorrect(e.id, it) }; editingId = null },
+                                enabled = InputRules.parseAmount(amountText) != null
+                            ) { Text("Save", color = colors.accent) }
+                            TextButton(onClick = { editingId = null }) { Text("Cancel", color = colors.textMid) }
+                        }
+                    } else if (confirmDelete == e.id) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                            TextButton(onClick = { onDelete(e.id); confirmDelete = null }) { Text("Remove this entry", color = colors.danger) }
+                            TextButton(onClick = { confirmDelete = null }) { Text("Keep", color = colors.textMid) }
+                        }
+                    } else {
+                        Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                            TextButton(onClick = { editingId = e.id; amountText = InputRules.amountText(e.amount.toString()) }) {
+                                Text("Correct amount", color = colors.accent)
+                            }
+                            TextButton(onClick = { confirmDelete = e.id }) { Text("Remove", color = colors.textMid) }
+                        }
+                    }
+                }
+            }
+            Spacer(Modifier.height(Spacing.sm))
+        }
+        Column(
+            Modifier.fillMaxWidth().padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.sm, bottom = Spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+        ) {
+            PrimaryButton("Add an expense", onAdd, height = 46.dp)
+        }
+    }
+}
+
+/**
+ * Correcting one timeline entry the traveller wrote: when it happened and, for
+ * a break, how long it lasted; or taking it off the timeline altogether.
+ */
+@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
+@Composable
+private fun EditEntrySheet(
+    item: TimelineItem,
+    onSave: (Long?, Long?) -> Unit,
+    onRemove: () -> Unit,
+    onCancel: () -> Unit
+) {
+    val colors = KoodeTheme.colors
+    val isBreak = item.breakId != null
+    var atMs by remember { mutableStateOf<Long?>(null) }
+    var durationMin by remember { mutableStateOf<Int?>(null) }
+    var pickingTime by remember { mutableStateOf(false) }
+    var confirmRemove by remember { mutableStateOf(false) }
+    val currentDurationMin = (item.payload["durationS"] as? Number)?.toLong()?.let { (it / 60).toInt() }
+
+    Column(Modifier.fillMaxWidth()) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f, fill = false)
+                .verticalScroll(rememberScrollState())
+                .padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Spacing.md)
+        ) {
+            Text("Correct this entry", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+            Text(item.label, color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
+            Text(
+                "Currently at ${TimeFmt.clockWithDay(item.timeMs, System.currentTimeMillis())}. The people following you see the corrected line.",
+                color = colors.textLow, style = MaterialTheme.typography.bodySmall
+            )
+
+            Text(if (isBreak) "When did it start?" else "When did it happen?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+            ) {
+                KoodeChip("Keep ${TimeFmt.clock(item.timeMs)}", atMs == null, { atMs = null })
+                listOf(15, 30, 60, 120, 180, 360).forEach { m ->
+                    val candidate = item.timeMs - m * 60_000L
+                    KoodeChip("${if (m < 60) "$m min" else "${m / 60} h"} earlier", atMs == candidate, { atMs = candidate })
+                }
+                KoodeChip(
+                    atMs?.takeIf { a -> listOf(15, 30, 60, 120, 180, 360).none { item.timeMs - it * 60_000L == a } }
+                        ?.let { "At " + TimeFmt.clock(it) } ?: "Pick a time",
+                    false, { pickingTime = true }, leading = "🕗"
+                )
+            }
+
+            if (isBreak) {
+                Text("How long was it?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                FlowRow(
+                    horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                    verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                ) {
+                    KoodeChip(
+                        currentDurationMin?.let { "Keep $it min" } ?: "As recorded", durationMin == null, { durationMin = null }
+                    )
+                    listOf(5, 10, 15, 20, 30, 45, 60, 90, 120).forEach { m ->
+                        KoodeChip(if (m < 60) "$m min" else if (m % 60 == 0) "${m / 60} h" else "1½ h", durationMin == m, { durationMin = m })
+                    }
+                }
+            }
+            Spacer(Modifier.height(Spacing.sm))
+        }
+        Column(
+            Modifier.fillMaxWidth().padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.sm, bottom = Spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+        ) {
+            PrimaryButton(
+                "Save correction",
+                { onSave(atMs, durationMin?.let { it * 60L }) },
+                enabled = atMs != null || durationMin != null, height = 48.dp
+            )
+            if (confirmRemove) {
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    Box(Modifier.weight(1f)) { SecondaryButton("Yes, remove it", onRemove, accent = colors.danger, height = 44.dp) }
+                    Box(Modifier.weight(1f)) { SecondaryButton("Keep it", { confirmRemove = false }, accent = colors.textMid, height = 44.dp) }
+                }
+            } else {
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    Box(Modifier.weight(1f)) { SecondaryButton("Remove from timeline", { confirmRemove = true }, accent = colors.danger, height = 44.dp) }
+                    Box(Modifier.weight(1f)) { SecondaryButton("Cancel", onCancel, accent = colors.textMid, height = 44.dp) }
+                }
+            }
+        }
+    }
+
+    if (pickingTime) {
+        val cal = remember { java.util.Calendar.getInstance().apply { timeInMillis = item.timeMs } }
+        val state = rememberTimePickerState(
+            initialHour = cal.get(java.util.Calendar.HOUR_OF_DAY),
+            initialMinute = cal.get(java.util.Calendar.MINUTE),
+            is24Hour = false
+        )
+        AlertDialog(
+            onDismissRequest = { pickingTime = false },
+            title = { Text(if (isBreak) "When did it start?" else "When did it happen?") },
+            text = { TimeInput(state = state) },
+            confirmButton = {
+                TextButton({
+                    val c = java.util.Calendar.getInstance()
+                    c.set(java.util.Calendar.HOUR_OF_DAY, state.hour)
+                    c.set(java.util.Calendar.MINUTE, state.minute)
+                    c.set(java.util.Calendar.SECOND, 0)
+                    c.set(java.util.Calendar.MILLISECOND, 0)
+                    if (c.timeInMillis > System.currentTimeMillis()) c.add(java.util.Calendar.DAY_OF_YEAR, -1)
+                    atMs = c.timeInMillis
                     pickingTime = false
                 }) { Text("Use this time") }
             },
