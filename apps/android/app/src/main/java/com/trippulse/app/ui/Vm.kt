@@ -879,8 +879,8 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     fun skipCheckpoint() = viewModelScope.launch { graph.tripManager.skipCheckpoint() }
     // ---- halts ----
-    fun confirmHalt(type: com.trippulse.app.domain.Halts.Type, expectedMinutes: Int?) =
-        viewModelScope.launch { graph.tripManager.confirmHalt(type, expectedMinutes) }
+    fun confirmHalt(type: com.trippulse.app.domain.Halts.Type, expectedMinutes: Int?, sinceMs: Long? = null) =
+        viewModelScope.launch { graph.tripManager.confirmHalt(type, expectedMinutes, sinceMs) }
     fun declineHalt() = viewModelScope.launch { graph.tripManager.declineHalt() }
     fun cancelHalt() = viewModelScope.launch { graph.tripManager.cancelHalt() }
     fun resumeFromHalt() = viewModelScope.launch { graph.tripManager.resumeFromHalt() }

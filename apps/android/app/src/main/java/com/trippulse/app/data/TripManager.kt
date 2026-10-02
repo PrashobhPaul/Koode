@@ -1078,7 +1078,11 @@ class TripManager(
      * a rest stop — never guessed. Followers hear one factual line:
      * "Prashobh has taken a room in Salem and is halting here for the night."
      */
-    suspend fun confirmHalt(type: Halts.Type, expectedMinutes: Int? = null) {
+    suspend fun confirmHalt(
+        type: Halts.Type, expectedMinutes: Int? = null,
+        /** When the halt began, if the traveller said; a halt logged late still started on time. */
+        sinceMs: Long? = null
+    ) {
         // Name the place outside the lock: the geocoder can take a second.
         val place = resolvePlace(state?.lat, state?.lng)
         lock.withLock {
@@ -1086,9 +1090,10 @@ class TripManager(
             var s = state ?: return@withLock
             val next = transition(s, JourneyInput.OVERNIGHT_CONFIRM) ?: return@withLock
             val now = System.currentTimeMillis()
-            val overnight = Halts.isOvernight(TimeFmt.hourOfDay(now), expectedMinutes)
+            val since = sinceMs?.coerceIn(t.startedAtMs ?: 0L, now) ?: now
+            val overnight = Halts.isOvernight(TimeFmt.hourOfDay(since), expectedMinutes)
             insertEvent(
-                t.tripId, EventTypes.HALT_CONFIRMED, EventSource.DRIVER_CONFIRMATION, now, s.lat, s.lng,
+                t.tripId, EventTypes.HALT_CONFIRMED, EventSource.DRIVER_CONFIRMATION, since, s.lat, s.lng,
                 buildMap<String, Any?> {
                     put("haltType", type.name); put("source", "USER_CONFIRMED"); put("overnight", overnight)
                     place?.let { put("place", it) }
@@ -1102,7 +1107,7 @@ class TripManager(
                 .remove(etaBaselineKey(t.tripId))
                 .apply()
             s = s.copy(
-                journey = next.name, overnightType = type.name, overnightSinceMs = now, longStopPromptDue = false,
+                journey = next.name, overnightType = type.name, overnightSinceMs = since, longStopPromptDue = false,
                 etaMode = EtaMode.OVERNIGHT_PENDING.name, etaLowMs = null, etaHighMs = null, etaLikelyMs = null,
                 updatedAtMs = now
             )

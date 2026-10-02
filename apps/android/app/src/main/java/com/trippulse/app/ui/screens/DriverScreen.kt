@@ -27,6 +27,8 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TimeInput
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -309,6 +311,42 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
 
         Spacer(Modifier.height(Spacing.lg))
         AdaptiveContainer {
+            // ---- tracking died (force stop, update, battery manager): say so,
+            // and bring it back from here, where Android allows the start ----
+            val journeyOpen = s?.journey?.let { it != JourneyStatus.COMPLETED.name && it != JourneyStatus.EXPIRED.name } == true
+            var trackingAlive by remember { mutableStateOf(true) }
+            LaunchedEffect(journeyOpen) {
+                while (journeyOpen) {
+                    if (!com.trippulse.app.service.TrackingResume.isAlive(context)) {
+                        com.trippulse.app.service.TrackingResume.ensureRunning(context)
+                        kotlinx.coroutines.delay(2_000)
+                    }
+                    trackingAlive = com.trippulse.app.service.TrackingResume.isAlive(context)
+                    kotlinx.coroutines.delay(5_000)
+                }
+            }
+            AnimatedBanner(visible = journeyOpen && !trackingAlive) {
+                KoodeHeroCard(accent = colors.warn) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        PulsingDot(colors.warn, size = 9.dp)
+                        Text("Tracking is off", color = colors.warn, style = MaterialTheme.typography.headlineSmall)
+                    }
+                    Text(
+                        "Your journey is open but nobody following it is getting updates. Resume tracking to go live again.",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    Spacer(Modifier.height(Spacing.md))
+                    PrimaryButton(
+                        "Resume tracking",
+                        {
+                            runCatching { com.trippulse.app.service.TripTrackingService.start(context) }
+                            trackingAlive = true
+                        },
+                        accent = colors.warn, height = 46.dp
+                    )
+                }
+            }
+
             // ---- arrival: the app asks, the traveller decides ----
             AnimatedBanner(visible = arrivalDue) {
                 KoodeHeroCard(accent = colors.accent) {
@@ -381,9 +419,14 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 }
             }
 
-            // ---- stopped a while in your own vehicle: offer to record a halt ----
-            AnimatedBanner(visible = !halting && stationary && profile.stopPromptsEnabled && !haltQuestionDue) {
-                SecondaryButton("I'm taking a halt here", { showHalt = true }, leading = "🛏", height = 44.dp)
+            // ---- a halt is the traveller's call, not stop detection's: the
+            // button is there whenever the journey is open, and says what it
+            // is for when the vehicle hasn't been seen stopping yet ----
+            AnimatedBanner(visible = !halting && !haltQuestionDue && (profile.stopPromptsEnabled || stationary)) {
+                SecondaryButton(
+                    if (stationary) "I'm taking a halt here" else "Taking a halt (hotel, family, rest stop)",
+                    { showHalt = true }, leading = "🛏", height = 44.dp
+                )
             }
 
             // ---- long-haul planning: a suggestion, never a command ----
@@ -872,7 +915,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
         HaltDialog(
             askFirst = haltQuestionDue && !showHalt,
             stoppedForMin = s?.stopStartedAtMs?.let { (now - it) / 60_000 },
-            onConfirm = { type, expected -> showHalt = false; vm.confirmHalt(type, expected) },
+            onConfirm = { type, expected, since -> showHalt = false; vm.confirmHalt(type, expected, since) },
             onDecline = { showHalt = false; if (haltQuestionDue) vm.declineHalt() }
         )
     }
@@ -1511,7 +1554,7 @@ private fun QuickNoteSheet(
  * asked about fuel — and the wording changes with the mode, so a bus passenger
  * is logging what they had, not "what happened on this stop".
  */
-@OptIn(ExperimentalLayoutApi::class)
+@OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 private fun CheckpointSheet(
     profile: TransportProfile,
@@ -1521,8 +1564,14 @@ private fun CheckpointSheet(
     /** True when stop detection already knows when this break began and ended. */
     autoTimed: Boolean = false
 ) {
+    // Timing. "Detected" means stop detection's own start and end are used;
+    // it is the default only when there is a detected stop to use, and any
+    // tap on a time replaces it -- the traveller's word always wins.
+    var useDetected by remember { mutableStateOf(autoTimed) }
     var startedAgoMin by remember { mutableStateOf(0) }
     var lastedMin by remember { mutableStateOf<Int?>(null) }
+    var pickedStartMs by remember { mutableStateOf<Long?>(null) }
+    var pickingTime by remember { mutableStateOf(false) }
     val colors = KoodeTheme.colors
     var water by remember { mutableStateOf(false) }
     var food by remember { mutableStateOf(false) }
@@ -1536,118 +1585,179 @@ private fun CheckpointSheet(
     var refuelCost by remember { mutableStateOf("") }
     var refuelQty by remember { mutableStateOf("") }
 
-    // Scrolls: choosing Food adds "Which meal?", and on a phone that pushed
-    // Save below the bottom of the sheet where it could not be reached.
-    Column(
-        Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(Spacing.xl),
-        verticalArrangement = Arrangement.spacedBy(Spacing.md)
-    ) {
-        Text(
-            if (profile.wellbeingIsBreak) "What happened on this stop?" else "What have you had?",
-            color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
-        )
-        Text(
-            if (profile.wellbeingIsBreak)
-                "Tap all that apply. It takes two seconds and it's what keeps your family relaxed."
-            else "Tap all that apply. On ${profile.label.lowercase()} this is a note, not a stop.",
-            color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-        )
-        FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            KoodeChip("Water", water, { water = !water }, leading = "💧")
-            KoodeChip("Food", food, { food = !food }, leading = "🍛")
-            KoodeChip("Tea / coffee", tea, { tea = !tea }, leading = "☕")
-            KoodeChip("Snack", snack, { snack = !snack }, leading = "🍪")
-            KoodeChip("Toilet", toilet, { toilet = !toilet }, leading = "🚻")
-            KoodeChip("Rest", rest, { rest = !rest }, leading = "😴")
-            // Fuel questions exist only for private vehicles.
-            if (profile.asksAboutFuel) {
-                if (fuelUnit == "kWh") KoodeChip("Charged", charge, { charge = !charge }, leading = "🔌")
-                else KoodeChip("Refuelled", fuel, { fuel = !fuel }, leading = "⛽")
-            }
-        }
-
-        // Koode names the meal from the clock; this row exists only for the
-        // times it guesses wrong, or the traveller wants to be explicit.
-        if (food) {
-            Text("Which meal?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+    // The questions scroll; Save and Not now never do. On a phone, choosing
+    // Food and a time pushed Save off the bottom of the sheet, which read as
+    // "there is no Save". The footer is pinned so it cannot happen again.
+    Column(Modifier.fillMaxWidth()) {
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .weight(1f, fill = false)
+                .verticalScroll(rememberScrollState())
+                .padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Spacing.md)
+        ) {
+            Text(
+                if (profile.wellbeingIsBreak) "What happened on this stop?" else "What have you had?",
+                color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
+            )
+            Text(
+                if (profile.wellbeingIsBreak)
+                    "Tap all that apply. It takes two seconds and it's what keeps your family relaxed."
+                else "Tap all that apply. On ${profile.label.lowercase()} this is a note, not a stop.",
+                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                KoodeChip("Let Koode decide", mealKind == null, { mealKind = null })
-                listOf(Nourishment.BREAKFAST, Nourishment.LUNCH, Nourishment.DINNER, Nourishment.SNACK).forEach { m ->
-                    KoodeChip(m.label, mealKind == m, { mealKind = m }, leading = m.emoji)
+                KoodeChip("Water", water, { water = !water }, leading = "💧")
+                KoodeChip("Food", food, { food = !food }, leading = "🍛")
+                KoodeChip("Tea / coffee", tea, { tea = !tea }, leading = "☕")
+                KoodeChip("Snack", snack, { snack = !snack }, leading = "🍪")
+                KoodeChip("Toilet", toilet, { toilet = !toilet }, leading = "🚻")
+                KoodeChip("Rest", rest, { rest = !rest }, leading = "😴")
+                // Fuel questions exist only for private vehicles.
+                if (profile.asksAboutFuel) {
+                    if (fuelUnit == "kWh") KoodeChip("Charged", charge, { charge = !charge }, leading = "🔌")
+                    else KoodeChip("Refuelled", fuel, { fuel = !fuel }, leading = "⛽")
                 }
             }
-        }
 
-        if (profile.asksAboutFuel && (fuel || charge)) {
-            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                OutlinedTextField(
-                    value = refuelCost, onValueChange = { refuelCost = InputRules.amountText(it) },
-                    label = { Text("Amount") }, singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    modifier = Modifier.weight(1f)
-                )
-                OutlinedTextField(
-                    value = refuelQty, onValueChange = { refuelQty = InputRules.quantityText(it) },
-                    label = { Text(fuelUnit) }, singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    modifier = Modifier.weight(1f)
-                )
+            // Koode names the meal from the clock; this row exists only for the
+            // times it guesses wrong, or the traveller wants to be explicit.
+            if (food) {
+                Text("Which meal?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    KoodeChip("Let Koode decide", mealKind == null, { mealKind = null })
+                    listOf(Nourishment.BREAKFAST, Nourishment.LUNCH, Nourishment.DINNER, Nourishment.SNACK).forEach { m ->
+                        KoodeChip(m.label, mealKind == m, { mealKind = m }, leading = m.emoji)
+                    }
+                }
             }
-        }
 
-        Spacer(Modifier.height(Spacing.md))
-        if (autoTimed) {
-            Text(
-                "Start time and length come from when the vehicle stopped and moved off.",
-                color = colors.textLow, style = MaterialTheme.typography.bodySmall
-            )
-        } else {
-            Text("When did the break start?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            if (profile.asksAboutFuel && (fuel || charge)) {
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    OutlinedTextField(
+                        value = refuelCost, onValueChange = { refuelCost = InputRules.amountText(it) },
+                        label = { Text("Amount") }, singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        modifier = Modifier.weight(1f)
+                    )
+                    OutlinedTextField(
+                        value = refuelQty, onValueChange = { refuelQty = InputRules.quantityText(it) },
+                        label = { Text(fuelUnit) }, singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        modifier = Modifier.weight(1f)
+                    )
+                }
+            }
+
+            Spacer(Modifier.height(Spacing.sm))
+            Text("When did it start?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+            ) {
+                if (autoTimed) KoodeChip("When I stopped", useDetected, { useDetected = true; pickedStartMs = null }, leading = "📍")
                 // Reaches back a whole evening: a dinner logged after the night's
                 // halt is still logged at dinner time.
-                listOf(0 to "Just now", 10 to "10 min ago", 20 to "20 min ago", 30 to "30 min ago", 45 to "45 min ago", 60 to "1 h ago",
-                    120 to "2 h ago", 180 to "3 h ago", 240 to "4 h ago", 360 to "6 h ago")
-                    .forEach { (m, label) -> KoodeChip(label, startedAgoMin == m, { startedAgoMin = m }) }
+                listOf(0 to "Just now", 10 to "10 min ago", 20 to "20 min ago", 30 to "30 min ago", 45 to "45 min ago",
+                    60 to "1 h ago", 120 to "2 h ago", 180 to "3 h ago", 240 to "4 h ago", 360 to "6 h ago")
+                    .forEach { (m, label) ->
+                        KoodeChip(label, !useDetected && pickedStartMs == null && startedAgoMin == m,
+                            { useDetected = false; pickedStartMs = null; startedAgoMin = m })
+                    }
+                KoodeChip(
+                    pickedStartMs?.let { "At " + TimeFmt.clock(it) } ?: "Pick a time",
+                    pickedStartMs != null, { pickingTime = true }, leading = "🕗"
+                )
             }
             Spacer(Modifier.height(Spacing.sm))
             Text("How long was it?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
-            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                KoodeChip(if (startedAgoMin == 0) "Still on it" else "Until now", lastedMin == null, { lastedMin = null })
-                listOf(5, 10, 15, 20, 30, 45, 60).forEach { m -> KoodeChip("$m min", lastedMin == m, { lastedMin = m }) }
-            }
-        }
-        Spacer(Modifier.height(Spacing.md))
-        PrimaryButton(
-            "Save",
-            {
-                onSubmit(
-                    TripManager.Checkpoint(
-                        water = water, food = food, toilet = toilet, rest = rest,
-                        fuel = fuel, charge = charge, tea = tea, snack = snack,
-                        mealKind = mealKind
-                    ),
-                    InputRules.parseAmount(refuelCost), refuelQty.toDoubleOrNull(), fuelUnit
-                ,
-                    // Explicit timing only when stop detection didn't supply it.
-                    if (autoTimed) null else {
-                        val nowMs = System.currentTimeMillis()
-                        val lasted = lastedMin
-                        when {
-                            startedAgoMin == 0 && lasted == null -> null
-                            lasted == null -> nowMs - startedAgoMin * 60_000L
-                            else -> nowMs - (if (startedAgoMin == 0) lasted else startedAgoMin) * 60_000L
-                        }
-                    },
-                    if (autoTimed) null else lastedMin?.let { it * 60L }
-                        ?: if (startedAgoMin > 0) startedAgoMin * 60L else null
+            FlowRow(
+                horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+            ) {
+                val justNow = !useDetected && pickedStartMs == null && startedAgoMin == 0
+                KoodeChip(
+                    when { useDetected -> "Until I moved off"; justNow -> "Still on it"; else -> "Until now" },
+                    lastedMin == null, { lastedMin = null }
                 )
-            },
-            enabled = water || food || tea || snack || toilet || rest || fuel || charge,
-            height = 48.dp
+                listOf(5, 10, 15, 20, 30, 45, 60, 90, 120).forEach { m ->
+                    KoodeChip(if (m < 60) "$m min" else if (m % 60 == 0) "${m / 60} h" else "1½ h", lastedMin == m, { lastedMin = m; useDetected = false })
+                }
+            }
+            Spacer(Modifier.height(Spacing.sm))
+        }
+
+        // ---- pinned footer ----
+        Column(
+            Modifier.fillMaxWidth().padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.sm, bottom = Spacing.xl),
+            verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+        ) {
+            PrimaryButton(
+                "Save",
+                {
+                    val nowMs = System.currentTimeMillis()
+                    val lasted = lastedMin
+                    val picked = pickedStartMs
+                    val startAt: Long? = when {
+                        useDetected -> null
+                        picked != null -> picked
+                        startedAgoMin == 0 && lasted == null -> null
+                        lasted == null -> nowMs - startedAgoMin * 60_000L
+                        else -> nowMs - (if (startedAgoMin == 0) lasted else startedAgoMin) * 60_000L
+                    }
+                    val lastedS: Long? = when {
+                        useDetected -> null
+                        lasted != null -> lasted * 60L
+                        picked != null -> ((nowMs - picked) / 1000L).coerceAtLeast(60L)
+                        startedAgoMin > 0 -> startedAgoMin * 60L
+                        else -> null
+                    }
+                    onSubmit(
+                        TripManager.Checkpoint(
+                            water = water, food = food, toilet = toilet, rest = rest,
+                            fuel = fuel, charge = charge, tea = tea, snack = snack,
+                            mealKind = mealKind
+                        ),
+                        InputRules.parseAmount(refuelCost), refuelQty.toDoubleOrNull(), fuelUnit,
+                        startAt, lastedS
+                    )
+                },
+                enabled = water || food || tea || snack || toilet || rest || fuel || charge,
+                height = 48.dp
+            )
+            SecondaryButton("Not now", onSkip, accent = colors.textMid, height = 44.dp)
+        }
+    }
+
+    // An exact clock time, for the traveller who knows dinner was at 9:10.
+    // A time later than now means yesterday.
+    if (pickingTime) {
+        val cal = remember { java.util.Calendar.getInstance() }
+        val state = rememberTimePickerState(
+            initialHour = cal.get(java.util.Calendar.HOUR_OF_DAY),
+            initialMinute = cal.get(java.util.Calendar.MINUTE),
+            is24Hour = false
         )
-        SecondaryButton("Not now", onSkip, accent = colors.textMid, height = 44.dp)
-        Spacer(Modifier.height(Spacing.md))
+        AlertDialog(
+            onDismissRequest = { pickingTime = false },
+            title = { Text("When did it start?") },
+            text = { TimeInput(state = state) },
+            confirmButton = {
+                TextButton({
+                    val c = java.util.Calendar.getInstance()
+                    c.set(java.util.Calendar.HOUR_OF_DAY, state.hour)
+                    c.set(java.util.Calendar.MINUTE, state.minute)
+                    c.set(java.util.Calendar.SECOND, 0)
+                    c.set(java.util.Calendar.MILLISECOND, 0)
+                    if (c.timeInMillis > System.currentTimeMillis()) c.add(java.util.Calendar.DAY_OF_YEAR, -1)
+                    pickedStartMs = c.timeInMillis
+                    useDetected = false
+                    pickingTime = false
+                }) { Text("Use this time") }
+            },
+            dismissButton = { TextButton({ pickingTime = false }) { Text("Cancel") } }
+        )
     }
 }
 
@@ -1661,12 +1771,14 @@ private fun CheckpointSheet(
 private fun HaltDialog(
     askFirst: Boolean,
     stoppedForMin: Long?,
-    onConfirm: (Halts.Type, Int?) -> Unit,
+    /** Type, expected length in minutes, and when the halt began (null = now). */
+    onConfirm: (Halts.Type, Int?, Long?) -> Unit,
     onDecline: () -> Unit
 ) {
     val colors = KoodeTheme.colors
     var type by remember { mutableStateOf<Halts.Type?>(null) }
     var duration by remember { mutableStateOf<Halts.Duration?>(null) }
+    var sinceMin by remember { mutableStateOf(0) }
     AlertDialog(
         onDismissRequest = { if (!askFirst) onDecline() },
         confirmButton = {},
@@ -1678,13 +1790,17 @@ private fun HaltDialog(
                         color = colors.warn, style = MaterialTheme.typography.labelSmall
                     )
                 }
-                Text("Taking a longer break?")
+                Text(if (askFirst) "Taking a longer break?" else "Taking a halt?")
             }
         },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            Column(
+                Modifier.verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+            ) {
                 Text(
-                    "Looks like you've stopped for a while. Are you taking a halt?",
+                    if (askFirst) "Looks like you've stopped for a while. Are you taking a halt?"
+                    else "A room, family, or a proper rest: the people following you will see you've halted.",
                     color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                 )
                 FlowRow(
@@ -1693,6 +1809,19 @@ private fun HaltDialog(
                 ) {
                     Halts.Type.entries.forEach { t ->
                         KoodeChip(t.label, type == t, { type = t }, leading = t.emoji)
+                    }
+                }
+                // Asked only when the traveller opened this themselves: a halt
+                // logged in the morning still began the night before.
+                if (!askFirst) {
+                    Text("Since when?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    FlowRow(
+                        horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
+                        verticalArrangement = Arrangement.spacedBy(Spacing.sm)
+                    ) {
+                        listOf(0 to "Just now", 30 to "30 min ago", 60 to "1 h ago", 120 to "2 h ago",
+                            180 to "3 h ago", 360 to "6 h ago", 600 to "10 h ago")
+                            .forEach { (m, label) -> KoodeChip(label, sinceMin == m, { sinceMin = m }) }
                     }
                 }
                 Text("For about (optional)", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
@@ -1707,11 +1836,19 @@ private fun HaltDialog(
                 Spacer(Modifier.height(Spacing.xs))
                 PrimaryButton(
                     Halts.confirmLabel(duration),
-                    { type?.let { onConfirm(it, duration?.minutes) } },
+                    {
+                        type?.let {
+                            onConfirm(it, duration?.minutes, if (sinceMin > 0) System.currentTimeMillis() - sinceMin * 60_000L else null)
+                        }
+                    },
                     enabled = type != null, height = 46.dp
                 )
-                SecondaryButton("Just a long break", onDecline, height = 44.dp)
-                SecondaryButton("Not stopped yet", onDecline, accent = colors.textMid, height = 44.dp)
+                if (askFirst) {
+                    SecondaryButton("Just a long break", onDecline, height = 44.dp)
+                    SecondaryButton("Not stopped yet", onDecline, accent = colors.textMid, height = 44.dp)
+                } else {
+                    SecondaryButton("Not now", onDecline, accent = colors.textMid, height = 44.dp)
+                }
                 Text(
                     "The people following this journey are told only if you confirm a halt.",
                     color = colors.textLow, style = MaterialTheme.typography.bodySmall

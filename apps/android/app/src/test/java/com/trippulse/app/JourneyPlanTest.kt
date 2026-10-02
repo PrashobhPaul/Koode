@@ -161,7 +161,11 @@ class JourneyPlanTest {
         assertEquals(JourneyStatus.OVERNIGHT, JourneyStateMachine.next(JourneyStatus.LONG_STOP, JourneyInput.OVERNIGHT_CONFIRM))
         assertEquals(JourneyStatus.LONG_STOP, JourneyStateMachine.next(JourneyStatus.OVERNIGHT, JourneyInput.OVERNIGHT_DECLINE))
         assertEquals(JourneyStatus.DRIVING, JourneyStateMachine.next(JourneyStatus.OVERNIGHT, JourneyInput.RESTART))
-        assertNull(JourneyStateMachine.next(JourneyStatus.DRIVING, JourneyInput.OVERNIGHT_CONFIRM))
+        // The traveller's word wins over stop detection: a halt can be confirmed
+        // while the state still says driving (dead service, logged the morning after).
+        assertEquals(JourneyStatus.OVERNIGHT, JourneyStateMachine.next(JourneyStatus.DRIVING, JourneyInput.OVERNIGHT_CONFIRM))
+        assertEquals(JourneyStatus.OVERNIGHT, JourneyStateMachine.next(JourneyStatus.POSSIBLE_STOP, JourneyInput.OVERNIGHT_CONFIRM))
+        assertNull(JourneyStateMachine.next(JourneyStatus.COMPLETED, JourneyInput.OVERNIGHT_CONFIRM))
     }
 
     @Test fun long_haul_halt_is_suggested_once_to_drivers_only() {

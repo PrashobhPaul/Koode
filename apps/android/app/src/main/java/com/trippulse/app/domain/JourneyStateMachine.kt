@@ -49,6 +49,10 @@ object JourneyStateMachine {
                 JourneyInput.ARRIVED -> JourneyStatus.ARRIVED
                 JourneyInput.PAUSE -> JourneyStatus.PAUSED
                 JourneyInput.MOVING -> JourneyStatus.DRIVING
+                // The traveller is the authority on a halt. Stop detection may
+                // not have caught up (a dead service, a phone left in the car,
+                // a halt logged the morning after); their word wins.
+                JourneyInput.OVERNIGHT_CONFIRM -> JourneyStatus.OVERNIGHT
                 else -> null
             }
 
@@ -56,6 +60,7 @@ object JourneyStateMachine {
                 JourneyInput.STOP_CONFIRMED -> JourneyStatus.STOPPED
                 JourneyInput.RESTART, JourneyInput.MOVING -> JourneyStatus.DRIVING
                 JourneyInput.ARRIVED -> JourneyStatus.ARRIVED
+                JourneyInput.OVERNIGHT_CONFIRM -> JourneyStatus.OVERNIGHT
                 else -> null
             }
 

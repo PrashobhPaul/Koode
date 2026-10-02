@@ -162,6 +162,7 @@ The only thing a browser can't do is wake a phone with an alert. That one is the
 
 | Version | Highlights |
 |---|---|
+| **6.20.3** | Fix: a journey whose tracking had been killed (a force stop, an update, a battery manager) now comes back to life the moment you open the app, and the journey screen shows a **Resume tracking** button whenever it is off. The break log keeps **Save** pinned at the bottom, always asks when the break started and how long it was, and lets you pick an exact clock time. **Taking a halt** is a button on the journey screen whenever a journey is open, with "since when" for a halt logged late. |
 | **6.20.2** | A break, halt or expense you log is saved on the phone within 10 seconds no matter what else the app is waiting on; it evicts a stuck step rather than queueing behind it. |
 | **6.20.1** | Fix: a journey could stop updating for its followers if one network step stalled on a weak signal; every step now has a hard deadline and the journey heals itself. Fix: the break log scrolls, so Save is always reachable after choosing a meal. |
 | **6.20** | The car and bus on the map are drawn from real views: top-down and turned to the heading in the overview, from behind when you follow along. Other modes keep their 3D models. The browser overview now lies flat. |
