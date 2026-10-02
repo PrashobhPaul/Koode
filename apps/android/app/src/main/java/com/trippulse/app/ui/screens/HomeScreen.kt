@@ -78,6 +78,7 @@ import com.trippulse.app.data.local.ViewerTripEntity
 import com.trippulse.app.domain.GeoPoint
 import com.trippulse.app.domain.JourneyStatus
 import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.domain.Pictures
 import com.trippulse.app.domain.WellbeingCoach
 import com.trippulse.app.ui.HomeTabs
 import com.trippulse.app.ui.HomeVm
@@ -717,8 +718,9 @@ private fun ActiveJourneyHome(
     val started = trip.startedAtMs ?: trip.createdAtMs
     fun since(at: Long?) = at?.takeIf { it >= started }
     KoodeCard(title = "How you're doing") {
-        WellbeingLine("Water", since(state?.waterAtMs)?.let { "Had water · ${TimeFmt.clock(it)}" } ?: "Not recorded yet")
-        WellbeingLine("Food", since(state?.foodAtMs)?.let { "Ate · ${TimeFmt.clock(it)}" } ?: "Not recorded yet")
+        WellbeingLine("Water", since(state?.waterAtMs)?.let { "Had water · ${TimeFmt.clock(it)}" } ?: "Not recorded yet", KoodeArt.file(Pictures.WATER))
+        WellbeingLine("Food", since(state?.foodAtMs)?.let { "Ate · ${TimeFmt.clock(it)}" } ?: "Not recorded yet", KoodeArt.file(Pictures.FOOD))
+        WellbeingLine("Restroom", since(state?.toiletAtMs)?.let { "Last stop · ${TimeFmt.clock(it)}" } ?: "Not recorded yet", KoodeArt.file(Pictures.TOILET))
         val breakLine = when {
             ownVehicle && moving && state?.drivingSinceMs != null && since(state.lastBreakEndAtMs) == null ->
                 "${if (TransportCatalog.profile(trip.transportMode).key == "BIKE") "Riding" else "Driving"} for " +
@@ -726,7 +728,7 @@ private fun ActiveJourneyHome(
             since(state?.lastBreakEndAtMs) != null -> "Last break · ${TimeFmt.clock(state!!.lastBreakEndAtMs!!)}"
             else -> "No break recorded yet"
         }
-        WellbeingLine("Break", breakLine)
+        WellbeingLine("Break", breakLine, KoodeArt.file(Pictures.REST))
         Spacer(Modifier.height(Spacing.sm))
         if (ownVehicle && moving) {
             Text(
@@ -738,10 +740,11 @@ private fun ActiveJourneyHome(
                 horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                 verticalArrangement = Arrangement.spacedBy(Spacing.sm)
             ) {
-                KoodeChip("Had water", false, { vm.hadWater() })
-                KoodeChip("Ate something", false, { vm.ateSomething() })
-                KoodeChip("Had tea", false, { vm.hadTea() })
-                KoodeChip("Taking a break", false, { vm.takingABreak() })
+                KoodeChip("Had water", false, { vm.hadWater() }, leadingArt = KoodeArt.file(Pictures.WATER))
+                KoodeChip("Ate something", false, { vm.ateSomething() }, leadingArt = KoodeArt.file(Pictures.FOOD))
+                KoodeChip("Restroom", false, { vm.restroomBreak() }, leadingArt = KoodeArt.file(Pictures.TOILET))
+                KoodeChip("Taking a break", false, { vm.takingABreak() }, leadingArt = KoodeArt.file(Pictures.REST))
+                KoodeChip("Had tea", false, { vm.hadTea() }, leading = "☕")
                 KoodeChip("Remind me later", false, { vm.remindLater() })
             }
         }
@@ -812,10 +815,14 @@ private fun ActiveJourneyHome(
 }
 
 @Composable
-private fun WellbeingLine(label: String, value: String) {
+private fun WellbeingLine(label: String, value: String, @androidx.annotation.DrawableRes art: Int? = null) {
     val colors = KoodeTheme.colors
     Row(Modifier.fillMaxWidth().padding(vertical = 3.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(label, color = colors.textLow, style = MaterialTheme.typography.labelLarge, modifier = Modifier.width(64.dp))
+        if (art != null) {
+            ArtImage(art, 34.dp)
+            Spacer(Modifier.width(Spacing.sm))
+        }
+        Text(label, color = colors.textLow, style = MaterialTheme.typography.labelLarge, modifier = Modifier.width(72.dp))
         Text(value, color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
     }
 }

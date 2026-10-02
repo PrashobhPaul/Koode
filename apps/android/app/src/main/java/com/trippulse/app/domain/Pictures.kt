@@ -46,11 +46,12 @@ object Pictures {
 
     /**
      * A timeline entry's picture. A logged meal is the plate of food; a break
-     * that included a meal is the restaurant it was taken at.
+     * that included a meal is the restaurant it was taken at. Tea and a snack
+     * keep their own cup and biscuit rather than borrowing the plate.
      */
     fun event(type: String, payload: Map<String, Any?> = emptyMap()): String? = when (type) {
         EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP -> FUEL
-        EventTypes.FOOD_REPORTED, EventTypes.SNACK_REPORTED -> FOOD
+        EventTypes.FOOD_REPORTED, EventTypes.FOOD_ACKNOWLEDGED -> FOOD
         EventTypes.TOILET_REPORTED -> TOILET
         EventTypes.WATER_REPORTED, EventTypes.WATER_ACKNOWLEDGED -> WATER
         EventTypes.REST_REPORTED -> REST

@@ -36,6 +36,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.Dp
@@ -55,14 +56,15 @@ import org.maplibre.android.maps.MapLibreMap
 import org.maplibre.android.maps.Style
 import org.maplibre.android.style.expressions.Expression
 import org.maplibre.android.style.layers.CircleLayer
-import org.maplibre.android.style.layers.FillExtrusionLayer
-import org.maplibre.android.style.layers.FillLayer
+import org.maplibre.android.style.layers.SymbolLayer
 import org.maplibre.android.style.layers.LineLayer
 import org.maplibre.android.style.layers.Property
 import org.maplibre.android.style.layers.PropertyFactory
 import org.maplibre.android.style.sources.GeoJsonSource
+import org.maplibre.geojson.Feature
 import org.maplibre.geojson.FeatureCollection
 import kotlin.math.abs
+import kotlin.math.sin
 
 /**
  * Playback speeds offered by the ▶ control on the map.
@@ -77,11 +79,12 @@ private const val FOLLOW_ZOOM = 15.5
 private const val GLIDE_MS = 1100.0
 
 /**
- * One journey, drawn on a tilting vector map with a 3D vehicle.
+ * One journey, drawn on a tilting vector map with the traveller's vehicle.
  *
- * The vehicle is the traveller's actual transport — car, bike, cab, bus,
- * train, plane or ship — built from extruded solids (see [Vehicle3D]) so it is
- * rendered in true perspective. Between fixes it *glides* from the previous
+ * The vehicle is the traveller's actual transport — car, bike, cab, auto,
+ * bus, metro, train, plane or ship — drawn with Koode's own illustration as an
+ * upright sticker that faces its way across the screen (see [VehicleMarker]).
+ * Between fixes it *glides* from the previous
  * position to the new one; it never runs ahead of the last real fix, because a
  * guessed position shown as live is exactly what Koode refuses to do.
  *
@@ -158,9 +161,11 @@ fun JourneyMap(
     // ---- the vehicle, animated outside Compose state ------------------------
     val motion = remember { VehicleMotion() }
     val airborne = mode == "FLIGHT" && (moving || inPlayback)
+    val context = LocalContext.current
     SideEffect {
         motion.mode = mode
         motion.airborne = airborne
+        motion.context = context.applicationContext
     }
 
     val padPx = with(density) {
@@ -191,9 +196,9 @@ fun JourneyMap(
                     follow = false
                 }
             }
-            // Keep the vehicle the same on-screen size while zooming.
+            // Turn the vehicle to face its way across the screen as the map rotates.
             m.addOnCameraMoveListener {
-                if (abs(m.cameraPosition.zoom - motion.renderedZoom) > 0.03) motion.render(m)
+                if (abs(m.cameraPosition.bearing - motion.renderedCameraBearing) > 4.0) motion.render(m)
             }
             map = m
         }
@@ -374,7 +379,6 @@ private const val SRC_ARC = "kd-arc"
 private const val SRC_ORIGIN = "kd-origin"
 private const val SRC_DEST = "kd-dest"
 private const val SRC_HALO = "kd-halo"
-private const val SRC_GROUND = "kd-ground"
 private const val SRC_VEHICLE = "kd-vehicle"
 private const val L_HALO = "kd-halo-layer"
 
@@ -383,7 +387,7 @@ private data class MapPalette(val accent: Int, val traveller: Int, val warn: Int
 private fun Style.source(id: String): GeoJsonSource? = getSourceAs(id)
 
 private fun installLayers(s: Style, c: MapPalette) {
-    listOf(SRC_ROUTE, SRC_TRAIL, SRC_ARC, SRC_ORIGIN, SRC_DEST, SRC_HALO, SRC_GROUND, SRC_VEHICLE)
+    listOf(SRC_ROUTE, SRC_TRAIL, SRC_ARC, SRC_ORIGIN, SRC_DEST, SRC_HALO, SRC_VEHICLE)
         .forEach { s.addSource(GeoJsonSource(it)) }
     val white = 0xFFFFFFFF.toInt()
     val cap = PropertyFactory.lineCap(Property.LINE_CAP_ROUND)
@@ -403,9 +407,6 @@ private fun installLayers(s: Style, c: MapPalette) {
         PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(3f),
         PropertyFactory.lineOpacity(0.85f), PropertyFactory.lineDasharray(arrayOf(1.6f, 1.6f))
     ))
-    s.addLayer(FillLayer("kd-ground-layer", SRC_GROUND).withProperties(
-        PropertyFactory.fillColor(Expression.get("c")), PropertyFactory.fillOpacity(0.22f)
-    ))
     s.addLayer(CircleLayer(L_HALO, SRC_HALO).withProperties(
         PropertyFactory.circleColor(c.traveller), PropertyFactory.circleRadius(14f),
         PropertyFactory.circleOpacity(0f), flat
@@ -422,12 +423,15 @@ private fun installLayers(s: Style, c: MapPalette) {
         PropertyFactory.circleColor(c.warn), PropertyFactory.circleRadius(7f),
         PropertyFactory.circleStrokeColor(white), PropertyFactory.circleStrokeWidth(3f), flat
     ))
-    // Last, so it draws over everything else in the 3D pass.
-    s.addLayer(FillExtrusionLayer("kd-vehicle-layer", SRC_VEHICLE).withProperties(
-        PropertyFactory.fillExtrusionColor(Expression.get("c")),
-        PropertyFactory.fillExtrusionBase(Expression.get("b")),
-        PropertyFactory.fillExtrusionHeight(Expression.get("h")),
-        PropertyFactory.fillExtrusionOpacity(Expression.literal(1.0f))
+    // Last, so it sits over everything: the illustrated vehicle, upright and
+    // facing the camera however the map is tilted or turned.
+    s.addLayer(SymbolLayer("kd-vehicle-layer", SRC_VEHICLE).withProperties(
+        PropertyFactory.iconImage(Expression.get("icon")),
+        PropertyFactory.iconAllowOverlap(true),
+        PropertyFactory.iconIgnorePlacement(true),
+        PropertyFactory.iconAnchor(Property.ICON_ANCHOR_BOTTOM),
+        PropertyFactory.iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_VIEWPORT),
+        PropertyFactory.iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_VIEWPORT)
     ))
 }
 
@@ -438,34 +442,35 @@ private class VehicleMotion {
     var mode: String? = null
     var airborne: Boolean = false
     var style: Style? = null
-    var renderedZoom: Double = -1.0
+    var context: android.content.Context? = null
+    var renderedCameraBearing: Double = 0.0
     var followPlaced: Boolean = false
     var framedOnce: Boolean = false
+    /** Which way the picture faces on screen; kept while heading straight up or down. */
+    private var faceLeft: Boolean = false
 
     fun render(m: MapLibreMap) {
         val s = style ?: return
         val p = pos ?: return
-        val mpp = m.projection.getMetersPerPixelAtLatitude(p.lat)
-        val placed = Vehicle3D.place(mode, p, bearing, mpp, airborne)
-        s.source(SRC_VEHICLE)?.setGeoJson(FeatureCollection.fromFeatures(placed.solids.map { solid ->
-            polygonFeature(solid.ring).apply {
-                addStringProperty("c", solid.color)
-                addNumberProperty("b", solid.baseM)
-                addNumberProperty("h", solid.topM)
-            }
-        }))
-        s.source(SRC_GROUND)?.setGeoJson(FeatureCollection.fromFeatures(placed.ground.map { ring ->
-            polygonFeature(ring).apply { addStringProperty("c", placed.groundColor) }
-        }))
+        val camera = m.cameraPosition.bearing
+        val across = sin(Math.toRadians(bearing - camera))
+        if (across < -0.2) faceLeft = true else if (across > 0.2) faceLeft = false
+        val name = VehicleMarker.name(mode, faceLeft, airborne)
+        if (s.getImage(name) == null) {
+            val ctx = context ?: return
+            VehicleMarker.bitmap(ctx, mode, faceLeft, airborne)?.let { s.addImage(name, it) } ?: return
+        }
+        s.source(SRC_VEHICLE)?.setGeoJson(
+            Feature.fromGeometry(p.toPoint()).apply { addStringProperty("icon", name) }
+        )
         s.source(SRC_HALO)?.setGeoJson(pointCollection(p))
-        renderedZoom = m.cameraPosition.zoom
+        renderedCameraBearing = camera
     }
 
     fun clear() {
         pos = null
         val s = style ?: return
         s.source(SRC_VEHICLE)?.setGeoJson(EMPTY_COLLECTION)
-        s.source(SRC_GROUND)?.setGeoJson(EMPTY_COLLECTION)
         s.source(SRC_HALO)?.setGeoJson(EMPTY_COLLECTION)
     }
 }

@@ -279,7 +279,9 @@ fun KoodeChip(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     leading: String? = null,
-    accent: Color? = null
+    accent: Color? = null,
+    /** A bundled illustration shown before the label, in place of [leading]. */
+    @androidx.annotation.DrawableRes leadingArt: Int? = null
 ) {
     val colors = KoodeTheme.colors
     val tint = accent ?: colors.accent
@@ -309,10 +311,13 @@ fun KoodeChip(
                 haptics.tick()
                 onClick()
             }
-            .padding(horizontal = Spacing.lg, vertical = 10.dp)
+            .padding(start = if (leadingArt != null) Spacing.sm else Spacing.lg, end = Spacing.lg, top = if (leadingArt != null) 6.dp else 10.dp, bottom = if (leadingArt != null) 6.dp else 10.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            if (leading != null) {
+            if (leadingArt != null) {
+                ArtImage(leadingArt, 28.dp)
+                Spacer(Modifier.width(6.dp))
+            } else if (leading != null) {
                 Text(leading, fontSize = 14.sp)
                 Spacer(Modifier.width(6.dp))
             }

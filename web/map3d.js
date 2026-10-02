@@ -2,9 +2,10 @@
  * Koode — 3D journey map for the browser viewer.
  *
  * MapLibre GL JS on free OpenFreeMap vector tiles (no key, no account). The
- * traveller's vehicle is drawn as extruded 3D solids — the SAME models, from
- * the SAME numbers, as the app's Vehicle3D.kt — so a follower in a browser and
- * a follower in the app see the same car, bus, train, plane or ship.
+ * traveller's vehicle is Koode's own illustration for the travel mode — the
+ * same picture as in the app — drawn upright like a sticker with a white
+ * outline and a soft ground shadow, facing its way across the screen. A plane
+ * in flight rides a little above its shadow.
  *
  * Honesty rule shared with the app: the vehicle glides from the previous fix
  * to the new one and stops there. It never runs ahead of the last real fix.
@@ -200,11 +201,33 @@
 
   function mpp(lat) { return 40075016.686 * Math.cos(lat * Math.PI / 180) / (512 * Math.pow(2, map.getZoom())); }
 
+  // The same pictures as the app (domain/Pictures.kt); some are drawn facing left.
+  var ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', AUTO: 'auto', BUS: 'bus', METRO: 'metro', TRAIN: 'train', FLIGHT: 'flight', SHIP: 'ship' };
+  var ART_FACES_LEFT = { BUS: true, METRO: true, AUTO: true };
+  var vehicle = null, faceLeft = false;
+
   function renderVehicle() {
     if (!ready || !state.pos) return;
-    var placed = place(state.mode, state.pos, state.bearing, mpp(state.pos[0]), state.airborne);
-    setData('kd-vehicle', fc(placed.solids));
-    setData('kd-ground', fc(placed.ground));
+    if (!vehicle) {
+      var el = document.createElement('div');
+      el.className = 'kd-veh';
+      el.innerHTML = '<span class="kd-veh-shadow"></span><img alt="" draggable="false">';
+      vehicle = new maplibregl.Marker({ element: el, anchor: 'bottom', pitchAlignment: 'viewport', rotationAlignment: 'viewport' })
+        .setLngLat([state.pos[1], state.pos[0]]).addTo(map);
+    }
+    // Face the way it is going across the screen; keep the last facing when
+    // heading straight up or down it.
+    var across = Math.sin((state.bearing - map.getBearing()) * Math.PI / 180);
+    if (across < -0.2) faceLeft = true; else if (across > 0.2) faceLeft = false;
+    var mode = ART[state.mode] ? state.mode : 'CAR';
+    var el2 = vehicle.getElement();
+    var img = el2.querySelector('img');
+    var src = 'art/' + ART[mode] + '.webp';
+    if (img.getAttribute('src') !== src) img.setAttribute('src', src);
+    Object.keys(ART).forEach(function (k) { el2.classList.toggle('kd-veh-' + ART[k], k === mode); });
+    el2.classList.toggle('flip', faceLeft !== !!ART_FACES_LEFT[mode]);
+    el2.classList.toggle('air', !!state.airborne);
+    vehicle.setLngLat([state.pos[1], state.pos[0]]);
     setData('kd-halo', point(state.pos));
   }
 
@@ -248,18 +271,16 @@
   }
 
   function install() {
-    ['kd-trail', 'kd-arc', 'kd-origin', 'kd-dest', 'kd-halo', 'kd-ground', 'kd-vehicle'].forEach(function (id) {
+    ['kd-trail', 'kd-arc', 'kd-origin', 'kd-dest', 'kd-halo'].forEach(function (id) {
       map.addSource(id, { type: 'geojson', data: EMPTY });
     });
     map.addLayer({ id: 'kd-trail-casing', type: 'line', source: 'kd-trail', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#07131D', 'line-width': 8.5, 'line-opacity': 0.8 } });
     map.addLayer({ id: 'kd-trail-layer', type: 'line', source: 'kd-trail', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#38BDF8', 'line-width': 5 } });
     map.addLayer({ id: 'kd-arc-layer', type: 'line', source: 'kd-arc', paint: { 'line-color': '#38BDF8', 'line-width': 3, 'line-opacity': 0.85, 'line-dasharray': [1.6, 1.6] } });
-    map.addLayer({ id: 'kd-ground-layer', type: 'fill', source: 'kd-ground', paint: { 'fill-color': ['get', 'c'], 'fill-opacity': 0.22 } });
     map.addLayer({ id: 'kd-halo-layer', type: 'circle', source: 'kd-halo', paint: { 'circle-color': '#38BDF8', 'circle-radius': 14, 'circle-opacity': 0, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-origin-layer', type: 'circle', source: 'kd-origin', paint: { 'circle-color': '#2DD4BF', 'circle-radius': 7, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-dest-halo', type: 'circle', source: 'kd-dest', paint: { 'circle-color': '#F59E0B', 'circle-radius': 15, 'circle-opacity': 0.3, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-dest-layer', type: 'circle', source: 'kd-dest', paint: { 'circle-color': '#F59E0B', 'circle-radius': 7, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3, 'circle-pitch-alignment': 'map' } });
-    map.addLayer({ id: 'kd-vehicle-layer', type: 'fill-extrusion', source: 'kd-vehicle', paint: { 'fill-extrusion-color': ['get', 'c'], 'fill-extrusion-base': ['get', 'b'], 'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-opacity': 1 } });
   }
 
   function pulse(t) {
@@ -296,6 +317,7 @@
     map.on('load', function () {
       install();
       ready = true;
+      map.on('rotate', renderVehicle);
       if (pending) draw(pending);
     });
     // Moving the map by hand leaves Follow, as navigation apps do.

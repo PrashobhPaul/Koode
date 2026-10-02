@@ -562,6 +562,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                 .background(colors.backgroundElevated)
                                 .padding(Spacing.md)
                         ) {
+                            tile.art?.let { com.trippulse.app.ui.components.ArtImage(it, 40.dp) }
                             Text(tile.label, color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                             Text(tile.value, color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
                             Text(tile.caption, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
@@ -580,8 +581,12 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                     verticalArrangement = Arrangement.spacedBy(Spacing.sm)
                 ) {
-                    KoodeChip("Had water", false, { vm.logNourishment(Nourishment.WATER) }, leading = "💧")
-                    KoodeChip("Ate something", false, { vm.submitCheckpoint(TripManager.Checkpoint(food = true)) }, leading = "🍛")
+                    val art = com.trippulse.app.ui.components.KoodeArt
+                    val pic = com.trippulse.app.domain.Pictures
+                    KoodeChip("Had water", false, { vm.logNourishment(Nourishment.WATER) }, leading = "💧", leadingArt = art.file(pic.WATER))
+                    KoodeChip("Ate something", false, { vm.submitCheckpoint(TripManager.Checkpoint(food = true)) }, leading = "🍛", leadingArt = art.file(pic.FOOD))
+                    KoodeChip("Restroom", false, { vm.submitCheckpoint(TripManager.Checkpoint(toilet = true)) }, leading = "🚻", leadingArt = art.file(pic.TOILET))
+                    KoodeChip("Rested", false, { vm.submitCheckpoint(TripManager.Checkpoint(rest = true)) }, leading = "😴", leadingArt = art.file(pic.REST))
                     KoodeChip("Had tea", false, { vm.logNourishment(Nourishment.TEA_COFFEE) }, leading = "☕")
                     KoodeChip("Had a snack", false, { vm.logNourishment(Nourishment.SNACK) }, leading = "🍪")
                 }
@@ -1711,7 +1716,7 @@ private fun HaltDialog(
     )
 }
 
-private data class CoachTile(val label: String, val value: String, val caption: String)
+private data class CoachTile(val label: String, val value: String, val caption: String, val art: Int? = null)
 
 /**
  * "How you're doing" as three facts: time since water, since food, and — for
@@ -1729,13 +1734,16 @@ private fun coachTiles(
     val rules = WellbeingCoach.rulesFor(modeKey, role)
     val atWheel = rules != null && rules.breakKind != WellbeingCoach.BreakKind.STRETCH
     return buildList {
-        add(since(s?.waterAtMs)?.let { CoachTile("WATER", it, "since last drink") } ?: CoachTile("WATER", "—", "none recorded yet"))
-        add(since(s?.foodAtMs)?.let { CoachTile("FOOD", it, "since you ate") } ?: CoachTile("FOOD", "—", "none recorded yet"))
+        val water = com.trippulse.app.ui.components.KoodeArt.file(com.trippulse.app.domain.Pictures.WATER)
+        val food = com.trippulse.app.ui.components.KoodeArt.file(com.trippulse.app.domain.Pictures.FOOD)
+        val rest = com.trippulse.app.ui.components.KoodeArt.file(com.trippulse.app.domain.Pictures.REST)
+        add(since(s?.waterAtMs)?.let { CoachTile("WATER", it, "since last drink", water) } ?: CoachTile("WATER", "—", "none recorded yet", water))
+        add(since(s?.foodAtMs)?.let { CoachTile("FOOD", it, "since you ate", food) } ?: CoachTile("FOOD", "—", "none recorded yet", food))
         if (atWheel) {
             val verb = if (rules?.breakKind == WellbeingCoach.BreakKind.RIDING) "RIDING" else "DRIVING"
             val moving = s?.journey == JourneyStatus.DRIVING.name
             val cont = s?.drivingSinceMs?.takeIf { moving }?.let { WellbeingCoach.duration((now - it) / 60_000) }
-            add(cont?.let { CoachTile(verb, it, "without a recorded break") } ?: CoachTile(verb, "—", "stopped now"))
+            add(cont?.let { CoachTile(verb, it, "without a recorded break", rest) } ?: CoachTile(verb, "—", "stopped now", rest))
         }
     }
 }

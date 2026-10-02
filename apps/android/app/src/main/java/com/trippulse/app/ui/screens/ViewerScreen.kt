@@ -46,9 +46,12 @@ import com.trippulse.app.domain.GeoPoint
 import com.trippulse.app.domain.JourneyHealth
 import com.trippulse.app.domain.JourneyStatus
 import com.trippulse.app.domain.TransportCatalog
+import com.trippulse.app.domain.Pictures
 import com.trippulse.app.ui.ViewerVm
 import com.trippulse.app.data.export.JourneyPdf
 import com.trippulse.app.ui.components.SecondaryButton
+import com.trippulse.app.ui.components.KoodeArt
+import com.trippulse.app.ui.components.ArtImage
 import com.trippulse.app.ui.components.DetailRow
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.AdaptiveContainer
@@ -319,8 +322,9 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
 
             // ---- wellbeing: factual "last logged", never medical ----
             KoodeCard(title = "How they're doing") {
-                WellbeingRow("🍛", "Food", state?.l("foodAt"), now)
-                WellbeingRow("💧", "Water", state?.l("waterAt"), now)
+                WellbeingRow("🍛", "Food", state?.l("foodAt"), now, art = KoodeArt.file(Pictures.FOOD))
+                WellbeingRow("💧", "Water", state?.l("waterAt"), now, art = KoodeArt.file(Pictures.WATER))
+                WellbeingRow("🚻", "Restroom", state?.l("toiletAt"), now, art = KoodeArt.file(Pictures.TOILET))
                 RestRow(state?.l("lastBreakEndAt"), state?.str("status"), profile.wellbeingIsBreak, now)
                 state?.l("battery")?.let {
                     Row(
@@ -503,9 +507,14 @@ private fun RestRow(lastBreakEndMs: Long?, journey: String?, breaksApply: Boolea
     )
     Row(
         Modifier.fillMaxWidth().padding(vertical = 4.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("🛑 Rest", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            KoodeArt.file(Pictures.REST)?.let { ArtImage(it, 36.dp) }
+            Spacer(Modifier.width(Spacing.sm))
+            Text("Rest", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+        }
         Text(
             when {
                 // On public transport a halt is the timetable, not a decision
