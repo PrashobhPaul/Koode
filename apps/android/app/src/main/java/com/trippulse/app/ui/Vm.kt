@@ -847,6 +847,13 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         }
 
     fun deleteExpense(id: Long) = viewModelScope.launch { graph.db.expenseDao().delete(id) }
+    fun correctExpense(id: Long, amount: Double) = viewModelScope.launch { graph.db.expenseDao().updateAmount(id, amount) }
+
+    // ---- corrections to the timeline ----
+    fun reviseBreak(breakId: String, startMs: Long?, durationS: Long?, removed: Boolean) =
+        viewModelScope.launch { graph.tripManager.reviseBreak(breakId, startMs, durationS, removed) }
+    fun editTimelineEntry(eventId: String, atMs: Long?, removed: Boolean) =
+        viewModelScope.launch { graph.tripManager.editTimelineEntry(eventId, atMs, removed) }
 
     /** Expense moments noticed on this journey, re-read whenever any changes. */
     val opportunities: StateFlow<List<com.trippulse.app.domain.Expenses.Opportunity>> =

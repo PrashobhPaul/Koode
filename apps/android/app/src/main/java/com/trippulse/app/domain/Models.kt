@@ -113,6 +113,13 @@ object EventTypes {
     const val OVERNIGHT_CONFIRMED = "OVERNIGHT_CONFIRMED"
     const val MORNING_RESUME = "MORNING_RESUME"
 
+    /**
+     * The traveller corrected or removed a timeline entry. The log is
+     * append-only, so a correction is its own event naming the target; every
+     * timeline applies it (see [TimelineEdits]). Never shown or announced.
+     */
+    const val TIMELINE_EDIT = "TIMELINE_EDIT"
+
     // notes / passenger / medicine
     const val QUICK_NOTE = "QUICK_NOTE"
     const val PASSENGER_JOINED = "PASSENGER_JOINED"
@@ -232,6 +239,18 @@ object EventTypes {
         TRAVEL_MODE_CHANGED, PLANNED_HALT_CREATED, PLANNED_HALT_CHANGED, PLANNED_HALT_CANCELLED,
         ETA_SIGNIFICANTLY_CHANGED, JOURNEY_PLAN_REVISED,
         JOURNEY_AUTO_CLOSED, TRAVELLER_CONFIRMED_SAFE, JOURNEY_REPORT_AVAILABLE
+    )
+
+    /**
+     * Entries the traveller wrote themselves, and so may re-time or remove.
+     * Detected and system events (stops, ETA, device, SOS) are the record and
+     * stay as they are.
+     */
+    val USER_EDITABLE: Set<String> = setOf(
+        BREAK_CHECKPOINT, WATER_REPORTED, FOOD_REPORTED, TOILET_REPORTED, REST_REPORTED,
+        TEA_COFFEE_REPORTED, SNACK_REPORTED, FUEL_STOP, CHARGE_STOP, TOLL_CROSSED,
+        HALT_CONFIRMED, QUICK_NOTE, PASSENGER_JOINED, PASSENGER_LEFT, MEDICINE,
+        VEHICLE_ISSUE, INCIDENT
     )
 
     /**

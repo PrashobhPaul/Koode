@@ -398,8 +398,10 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                         ui.events.map { e ->
                             @Suppress("UNCHECKED_CAST")
                             val payload = (e["payload"] as? Map<String, Any?>) ?: emptyMap()
-                            (e["type"] as? String ?: "EVENT") to
-                                (((e["eventTime"] as? Number)?.toLong() ?: 0L) to payload)
+                            TimelineEvent(
+                                e["eventId"] as? String, e["type"] as? String ?: "EVENT",
+                                (e["eventTime"] as? Number)?.toLong() ?: 0L, payload
+                            )
                         }
                     )
                 }

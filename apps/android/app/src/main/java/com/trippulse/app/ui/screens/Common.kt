@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -105,30 +106,51 @@ data class TimelineItem(
     val label: String,
     val detail: String?,
     /** A bundled illustration for stops that have one (fuel, food, toilet, stay). */
-    val art: Int? = null
-)
+    val art: Int? = null,
+    /** The event behind the line, so the traveller's own entries can be corrected. */
+    val eventId: String? = null,
+    val type: String? = null,
+    val payload: Map<String, Any?> = emptyMap()
+) {
+    /** The traveller may re-time or remove this entry. */
+    val editable: Boolean get() = eventId != null && type != null && type in EventTypes.USER_EDITABLE
+    val breakId: String? get() = (payload["breakId"] as? String)?.takeIf { type == EventTypes.BREAK_CHECKPOINT }
+}
+
+/** One event as every timeline takes it, whatever store it came from. */
+data class TimelineEvent(val id: String?, val type: String, val timeMs: Long, val payload: Map<String, Any?>)
 
 /** Builds the timeline model from raw payload maps (shared by both sides). */
-fun timelineItems(
-    events: List<Pair<String, Pair<Long, Map<String, Any?>>>>,
-    limit: Int = 60
-): List<TimelineItem> = com.trippulse.app.domain.BreakTimeline
-    .forTimeline(events, { it.first }, { it.second.first }, { it.second.second })
-    .filter { EventTypes.inTimeline(it.first, it.second.second) }
-    .sortedByDescending { it.second.first }
-    .take(limit)
-    .map { (type, rest) ->
-        val (timeMs, payload) = rest
-        val (emoji, label) = eventLine(type, payload)
-        TimelineItem(timeMs, emoji, label, null, com.trippulse.app.ui.components.KoodeArt.event(type, payload))
-    }
+fun timelineItems(events: List<TimelineEvent>, limit: Int = 60): List<TimelineItem> {
+    val edits = com.trippulse.app.domain.TimelineEdits
+    val corrected = edits.apply(events, { it.id }, { it.type }, { it.timeMs }, { it.payload }, { e, p -> e.copy(payload = p) })
+    return com.trippulse.app.domain.BreakTimeline
+        .forTimeline(corrected, { it.type }, { it.timeMs }, { it.payload })
+        .filter { EventTypes.inTimeline(it.type, it.payload) }
+        // Shown and ordered by when it happened, not when it was logged: a
+        // dinner logged after the night's halt still sits at dinner time.
+        .sortedByDescending { edits.shownTime(it.type, it.payload, it.timeMs) }
+        .take(limit)
+        .map { e ->
+            val (emoji, label) = eventLine(e.type, e.payload)
+            TimelineItem(
+                edits.shownTime(e.type, e.payload, e.timeMs), emoji, label, null,
+                com.trippulse.app.ui.components.KoodeArt.event(e.type, e.payload),
+                eventId = e.id, type = e.type, payload = e.payload
+            )
+        }
+}
 
 /**
  * The timeline. A connecting rail runs down the left so a sequence of events
  * reads as one journey rather than a list of unrelated rows.
  */
 @Composable
-fun TimelineList(items: List<TimelineItem>, nowMs: Long, modifier: Modifier = Modifier) {
+fun TimelineList(
+    items: List<TimelineItem>, nowMs: Long, modifier: Modifier = Modifier,
+    /** When given, the traveller's own entries become tappable (to correct them). */
+    onEdit: ((TimelineItem) -> Unit)? = null
+) {
     val colors = KoodeTheme.colors
     if (items.isEmpty()) {
         Text(
@@ -140,7 +162,13 @@ fun TimelineList(items: List<TimelineItem>, nowMs: Long, modifier: Modifier = Mo
     }
     Column(modifier.fillMaxWidth()) {
         items.forEachIndexed { index, item ->
-            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.Top) {
+            val tappable = onEdit != null && item.editable
+            Row(
+                Modifier
+                    .fillMaxWidth()
+                    .then(if (tappable) Modifier.clickable { onEdit!!(item) } else Modifier),
+                verticalAlignment = Alignment.Top
+            ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.width(28.dp)) {
                     if (item.art != null) com.trippulse.app.ui.components.ArtImage(item.art, 26.dp)
                     else Text(item.emoji, fontSize = 15.sp)
@@ -160,11 +188,14 @@ fun TimelineList(items: List<TimelineItem>, nowMs: Long, modifier: Modifier = Mo
                         Text(item.detail, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
                     }
                 }
-                Text(
-                    TimeFmt.clock(item.timeMs),
-                    color = colors.textLow,
-                    style = MaterialTheme.typography.bodySmall
-                )
+                Column(horizontalAlignment = Alignment.End) {
+                    Text(
+                        TimeFmt.clock(item.timeMs),
+                        color = colors.textLow,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                    if (tappable) Text("edit", color = colors.textLow.copy(alpha = 0.7f), style = MaterialTheme.typography.labelSmall)
+                }
             }
         }
     }
