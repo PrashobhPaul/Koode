@@ -596,7 +596,8 @@ class BarChart(
     private val color: Int = Ink.TEAL_LINE,
     private val title: String? = null
 ) : Block() {
-    data class Bar(val label: String, val value: Double, val color: Int? = null, val icon: Icon? = null)
+    /** [estimated] is the part of [value] that was worked out rather than measured; it is drawn fainter. */
+    data class Bar(val label: String, val value: Double, val color: Int? = null, val icon: Icon? = null, val estimated: Double = 0.0)
 
     override fun height(s: Surface, w: Float) = (if (title != null) 18f else 0f) + h + 24f
 
@@ -620,6 +621,11 @@ class BarChart(
         for (b in bars) {
             val bh = ((base - chartTop) * (b.value / max)).toFloat().coerceAtLeast(if (b.value > 0) 2f else 0f)
             s.rect(bx, base - bh, bx + bw, base, b.color ?: color, 3f)
+            if (b.estimated > 0 && b.value > 0) {
+                // The estimated share sits on top, in the out-of-contact grey.
+                val eh = (bh * (b.estimated / b.value).coerceIn(0.0, 1.0)).toFloat()
+                s.rect(bx, base - bh, bx + bw, base - bh + eh, ChartInk.offline, 3f)
+            }
             if (b.value > 0 && bars.size <= 14) {
                 val v = valueText(b.value)
                 s.text(v, bx + bw / 2 - s.measure(v, vs) / 2, base - bh - 3f, vs)

@@ -101,7 +101,18 @@ class ApprovedJourneyPublisher(
         var state = p
 
         if (!state.analyticsDone) {
-            val summary = SummaryCalculator.compute(events, distanceM, started, ended)
+            var summary = SummaryCalculator.compute(events, distanceM, started, ended)
+            // The story's timing where it can be told: a silence the car moved
+            // through is driving, a halt is not. Nothing here is money.
+            runCatching {
+                val story = ReportFactory.storyFor(context, t, entities.filterNot { it.sensitive }, samples, null, t.originName, t.destName)
+                summary = summary.copy(
+                    drivingSeconds = story.movingSeconds,
+                    stops = story.stops.size,
+                    longestLegSeconds = story.longestDrive?.movingSeconds ?: summary.longestLegSeconds,
+                    longestBreakSeconds = story.longestStop?.seconds ?: summary.longestBreakSeconds
+                )
+            }
             val analytics = ApprovedAnalytics.build(
                 summary, t.originName, t.destName, started, ended, t.transportMode,
                 tollsCrossed = events.count { it.type == EventTypes.TOLL_CROSSED }

@@ -53,10 +53,9 @@ object Reports {
         val modePic = Pictures.mode(i.mode)
         val elapsed = ((i.endedAtMs ?: i.nowMs) - i.startedAtMs) / 1000
         val blocks = ArrayList<Block>()
-        // Driving time and speed from the stretches the phone actually recorded:
-        // a silence is neither driving nor stopping, so it counts as neither.
-        val recorded = s.drives.filter { it.offlineMs == 0L }
-        val moving = recorded.sumOf { it.seconds } to recorded.sumOf { it.distanceM }
+        // Driving time and distance over every stretch, a silence the car moved
+        // through included: the road was driven whether or not the phone saw it.
+        val moving = s.movingSeconds to s.drives.sumOf { it.distanceM }
         val avgKmh = if (moving.first >= 600) moving.second / 1000.0 / (moving.first / 3600.0) else null
         val stoppedS = s.stops.sumOf { it.seconds ?: 0L }
 
@@ -129,7 +128,7 @@ object Reports {
         blocks += Heading("How the journey went")
         if (s.kmByHour.size >= 3) {
             blocks += BarChart(
-                s.kmByHour.map { h -> BarChart.Bar(hourLabel(h.hourStartMs, z), h.metres / 1000.0) },
+                s.kmByHour.map { h -> BarChart.Bar(hourLabel(h.hourStartMs, z), (h.metres + h.estimatedM) / 1000.0, estimated = h.estimatedM / 1000.0) },
                 valueText = { v -> if (v >= 10) "${v.toInt()}" else "%.1f".format(Locale.ENGLISH, v) },
                 title = "Distance by hour (${m.distanceUnit})", h = 110f
             )
@@ -141,9 +140,10 @@ object Reports {
             s.halts.forEach { h -> add((if (h.overnight) "Overnight" else "Halt") to listOfNotNull(h.place?.let(JourneyStory::short), h.endMs?.let { e -> JourneyStory.duration((e - h.atMs) / 1000) } ?: "from ${JourneyStory.clock(h.atMs, z)}").joinToString(" · ")) }
             avgKmh?.let { add("Average while driving" to m.speed(it)) }
             a?.topSpeedKmh?.takeIf { it > 0 }?.let { add("Top speed" to m.speed(it)) }
-            s.drives.filter { it.offlineMs == 0L }.maxByOrNull { it.seconds }?.let { d ->
-                add("Longest stretch without a break" to "${JourneyStory.duration(d.seconds)} · ${m.distance(d.distanceM)}" +
-                    listOfNotNull(d.fromPlace, d.toPlace).takeIf { it.size == 2 }?.let { " · ${JourneyStory.short(it[0])} → ${JourneyStory.short(it[1])}" }.orEmpty())
+            s.longestDrive?.let { d ->
+                add("Longest stretch without a break" to "${JourneyStory.duration(d.movingSeconds)} · ${m.distance(d.distanceM)}" +
+                    listOfNotNull(d.fromPlace, d.toPlace).takeIf { it.size == 2 }?.let { " · ${JourneyStory.short(it[0])} → ${JourneyStory.short(it[1])}" }.orEmpty() +
+                    if (d.offlineMs > 0) " · part of it out of contact" else "")
             }
             s.stops.filter { it.seconds != null }.maxByOrNull { it.seconds!! }?.let { st ->
                 add("Longest stop" to "${JourneyStory.duration(st.seconds!!)} · ${st.title}")

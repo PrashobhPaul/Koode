@@ -1,6 +1,7 @@
 package com.trippulse.app.domain.report
 
 import com.trippulse.app.domain.BreakTimeline
+import com.trippulse.app.domain.DistanceLedger
 import com.trippulse.app.domain.EventTypes
 import com.trippulse.app.domain.Halts
 import com.trippulse.app.domain.Nourishment
@@ -69,7 +70,7 @@ object JourneyStory {
     data class Segment(val fromMs: Long, val toMs: Long, val phase: Phase, val label: String? = null)
 
     /** Distance covered in one clock hour, for the pace chart. */
-    data class HourKm(val hourStartMs: Long, val metres: Double)
+    data class HourKm(val hourStartMs: Long, val metres: Double, val estimatedM: Double = 0.0)
 
     /** What happened at a stop, each with its picture where the app has one. */
     enum class Item(val picture: String?, val word: String) {
@@ -118,9 +119,13 @@ object JourneyStory {
             /** Part of this stretch passed with the phone out of contact; the distance is then an estimate. */
             val offlineMs: Long,
             val fromPlace: String?,
-            val toPlace: String?
+            val toPlace: String?,
+            /** Time inside this stretch the car is known to have stood: a stop logged later, a silence it never moved in. */
+            val stoppedInsideS: Long = 0
         ) : Entry() {
             val seconds: Long get() = ((endMs - atMs) / 1000).coerceAtLeast(0)
+            /** Time actually on the move, including a silence the car moved through. */
+            val movingSeconds: Long get() = (seconds - stoppedInsideS).coerceAtLeast(0)
         }
 
         data class Halt(
@@ -173,7 +178,13 @@ object JourneyStory {
         /** True when the phone was ever out of contact: toll counts may be incomplete. */
         val tollsMayBeMissing: Boolean = false,
         /** The silences, as (from, to). */
-        val offline: List<Pair<Long, Long>> = emptyList()
+        val offline: List<Pair<Long, Long>> = emptyList(),
+        /** Time on the move over the whole journey, a silence the car moved through included. */
+        val movingSeconds: Long = 0,
+        /** Time at stops and halts. */
+        val stoppedSeconds: Long = 0,
+        val longestDrive: Entry.Drive? = null,
+        val longestStop: Entry.Stop? = null
     )
 
     // ------------------------------------------------------------------------
@@ -231,9 +242,12 @@ object JourneyStory {
         val completed = input.endedAtMs != null
 
         // ---- the chain of places the vehicle actually stood at, and the drives between ----
+        // A break logged while on a halt (water in the room) is part of the halt, not a place the car stood.
+        fun insideHalt(s: Entry.Stop) = halts.any { h -> s.atMs >= h.atMs && s.atMs < (h.endMs ?: endMs) }
+        val standing = stops.filterNot { it.loggedLater || insideHalt(it) }
         val anchors = ArrayList<Entry>()
         anchors += Entry.Depart(input.startedAtMs, input.origin)
-        anchors += stops.filterNot { it.loggedLater }
+        anchors += standing
         anchors += halts
         val arrival = if (completed) Entry.Arrive(input.endedAtMs!!, input.destination) else null
         arrival?.let { anchors += it }
@@ -255,14 +269,16 @@ object JourneyStory {
                 offlineMs = gaps.sumOf { (s, e) -> (minOf(e, to) - maxOf(s, from)).coerceAtLeast(0) },
                 fromPlace = placeOf(a),
                 toPlace = anchors.getOrNull(i + 1)?.let { placeOf(it) }
-                    ?: input.samples.lastOrNull { it.tMs <= to }?.let { book.describe(it.lat, it.lng) }
+                    ?: input.samples.lastOrNull { it.tMs <= to }?.let { book.describe(it.lat, it.lng) },
+                stoppedInsideS = stoodInside(input, stops, from, to)
             )
         }
 
         // ---- moments worth a line of their own ----
         val moments = moments(events, input, book, gaps, drives)
 
-        val all = (anchors + stops.filter { it.loggedLater } + drives + moments).sortedWith(
+        // Every stop is told, including the ones that are not anchors (logged later, or in the middle of a halt).
+        val all = (anchors + stops.filterNot { it in standing } + drives + moments).sortedWith(
             compareBy<Entry> { it.atMs }.thenBy { order(it) }
         )
         val days = all.groupBy { localDate(it.atMs, input.zone) }.entries.sortedBy { it.key }.mapIndexed { i, (date, list) ->
@@ -289,8 +305,12 @@ object JourneyStory {
         }
 
         val highlights = highlights(input, stops, halts, drives, tollEvents, meals, water, restroom, refuels)
-        val segments = segments(input, stops, halts, gaps, endMs)
-        val kmByHour = kmByHour(input)
+        val segments = segments(input, standing, halts, gaps, endMs)
+        val stood = stops.filter { it.loggedLater }.map { it.atMs to (it.endMs ?: it.atMs + NOMINAL_STOP_MS) } +
+            halts.map { it.atMs to (it.endMs ?: endMs) }
+        val kmByHour = kmByHour(input, stood)
+        val movingSeconds = drives.sumOf { it.movingSeconds }
+        val stoppedSeconds = standing.sumOf { it.seconds ?: 0L } + halts.sumOf { h -> ((h.endMs ?: endMs) - h.atMs) / 1000 }
         val mode = TransportCatalog.label(input.mode).lowercase(Locale.ENGLISH)
         val headline = if (completed)
             "${name(input.who)} travelled ${km(input.distanceM)} from ${input.origin} to ${input.destination} by $mode."
@@ -316,7 +336,11 @@ object JourneyStory {
             segments = segments,
             kmByHour = kmByHour,
             tollsMayBeMissing = offlineMs > 0,
-            offline = gaps
+            offline = gaps,
+            movingSeconds = movingSeconds,
+            stoppedSeconds = stoppedSeconds,
+            longestDrive = drives.maxByOrNull { it.movingSeconds },
+            longestStop = standing.filter { it.seconds != null }.maxByOrNull { it.seconds!! }
         )
         return draft.copy(paragraphs = Prose.narrate(input, draft, book))
     }
@@ -332,7 +356,7 @@ object JourneyStory {
         data class Span(val a: Long, val b: Long, val phase: Phase, val label: String?, val rank: Int)
         val spans = ArrayList<Span>()
         halts.forEach { spans += Span(it.atMs, it.endMs ?: endMs, Phase.HALT, it.place, 0) }
-        stops.filterNot { it.loggedLater }.forEach { spans += Span(it.atMs, it.endMs ?: endMs, Phase.STOPPED, it.title, 1) }
+        stops.forEach { spans += Span(it.atMs, it.endMs ?: endMs, Phase.STOPPED, it.title, 1) }
         gaps.forEach { (a, b) -> spans += Span(a, b, Phase.OFFLINE, null, 2) }
         val cuts = (spans.flatMap { listOf(it.a, it.b) } + start + endMs).filter { it in start..endMs }.distinct().sorted()
         val out = ArrayList<Segment>()
@@ -349,17 +373,72 @@ object JourneyStory {
         return out
     }
 
-    private fun kmByHour(input: Input): List<HourKm> {
+    /**
+     * Distance per clock hour. A silence the car moved through is spread
+     * over the hours it was on the move -- not over a stop logged inside it
+     * or a halt -- and marked as estimated.
+     */
+    private fun kmByHour(input: Input, stood: List<Pair<Long, Long>>): List<HourKm> {
         val z = input.zone
         val acc = java.util.TreeMap<Long, Double>()
+        val est = java.util.TreeMap<Long, Double>()
+        val s = input.samples
+        fun hourOf(ms: Long) = Instant.ofEpochMilli(ms).atZone(z).withMinute(0).withSecond(0).withNano(0).toInstant().toEpochMilli()
+        fun standing(ms: Long) = stood.any { (a, b) -> ms >= a && ms < b }
+        for (i in 1 until s.size) {
+            val a = s[i - 1]; val b = s[i]
+            val line = PlaceBook.distanceM(a.lat, a.lng, b.lat, b.lng)
+            if (b.tMs - a.tMs >= DistanceLedger.GAP_MS) {
+                if (line < DistanceLedger.GAP_MIN_M) continue
+                val road = line * DistanceLedger.roadFactor(line, ROAD_FACTOR)
+                // Five-minute steps, counting only the ones the car was moving in.
+                val step = 5 * MIN
+                val moving = ArrayList<Long>()
+                var t = a.tMs
+                while (t < b.tMs) { if (!standing(t)) moving += t; t += step }
+                if (moving.isEmpty()) continue
+                val share = road / moving.size
+                for (m in moving) { val h = hourOf(m); est[h] = (est[h] ?: 0.0) + share }
+                continue
+            }
+            val hour = hourOf(b.tMs)
+            acc[hour] = (acc[hour] ?: 0.0) + line
+        }
+        return (acc.keys + est.keys).sorted().map { h -> HourKm(h, acc[h] ?: 0.0, est[h] ?: 0.0) }
+    }
+
+    /**
+     * Time inside a stretch the car is known to have stood: a stop logged
+     * after the fact that falls in it, and any silence it did not move in.
+     */
+    private fun stoodInside(input: Input, stops: List<Entry.Stop>, from: Long, to: Long): Long {
+        var ms = 0L
+        for (st in stops.filter { it.loggedLater }) {
+            val e = st.endMs ?: (st.atMs + NOMINAL_STOP_MS)
+            ms += (minOf(e, to) - maxOf(st.atMs, from)).coerceAtLeast(0)
+        }
         val s = input.samples
         for (i in 1 until s.size) {
             val a = s[i - 1]; val b = s[i]
-            if (b.tMs - a.tMs > 20 * MIN) continue   // a silence is not distance
-            val hour = Instant.ofEpochMilli(b.tMs).atZone(z).withMinute(0).withSecond(0).withNano(0).toInstant().toEpochMilli()
-            acc[hour] = (acc[hour] ?: 0.0) + PlaceBook.distanceM(a.lat, a.lng, b.lat, b.lng)
+            if (b.tMs <= from || a.tMs >= to || b.tMs - a.tMs < DistanceLedger.GAP_MS) continue
+            if (PlaceBook.distanceM(a.lat, a.lng, b.lat, b.lng) < DistanceLedger.GAP_MIN_M) {
+                ms += (minOf(b.tMs, to) - maxOf(a.tMs, from)).coerceAtLeast(0)
+            }
         }
-        return acc.map { (h, m) -> HourKm(h, m) }
+        return ms / 1000
+    }
+
+    /**
+     * When the car left a stop the record never closed: the last fix still
+     * there before the first one clearly away. Null when the record cannot say.
+     */
+    private fun movedOnAt(input: Input, atMs: Long, lat: Double?, lng: Double?): Long? {
+        val s = input.samples
+        val here = if (lat != null && lng != null) lat to lng
+            else s.lastOrNull { it.tMs <= atMs }?.let { it.lat to it.lng } ?: return null
+        val away = s.firstOrNull { it.tMs > atMs && PlaceBook.distanceM(here.first, here.second, it.lat, it.lng) >= MOVED_ON_M } ?: return null
+        val last = s.lastOrNull { it.tMs < away.tMs && it.tMs >= atMs }
+        return (last?.tMs ?: away.tMs).coerceAtLeast(atMs + MIN)
     }
 
     // ------------------------------------------------------------------------
@@ -439,7 +518,7 @@ object JourneyStory {
         val out = ArrayList<Entry.Stop>()
         for (p in periods) {
             val bs = members.getValue(p)
-            val end = p.endMs
+            val end = p.endMs ?: movedOnAt(input, p.startMs, p.lat, p.lng)
             if (bs.isEmpty() && ((end ?: now) - p.startMs) < BRIEF_STOP_MS) continue
             val start = (bs.map { it.startMs }.filter { it >= p.startMs - JOIN_MS } + p.startMs).min()
             out += stopOf(start, end, p.lat, p.lng, bs, ongoing = end == null && input.endedAtMs == null, book)
@@ -456,8 +535,11 @@ object JourneyStory {
         }
         for (g in groups) {
             val start = g.minOf { it.startMs }
-            val end = g.mapNotNull { it.endMs }.maxOrNull()
-            val ongoing = end == null && g.any { it.open } && input.endedAtMs == null
+            val told = g.mapNotNull { it.endMs }.maxOrNull()
+            val ongoing = told == null && g.any { it.open } && input.endedAtMs == null
+            // No length given: the record says when the car moved on, or the
+            // stop is taken as brief. Never does it run to the end of the journey.
+            val end = told ?: if (ongoing) null else movedOnAt(input, start, g.first().lat, g.first().lng) ?: (start + NOMINAL_STOP_MS)
             out += stopOf(start, end, g.first().lat, g.first().lng, g, ongoing, book, loggedLater = g.first().loggedLater)
         }
         return out.sortedBy { it.atMs }
@@ -599,8 +681,8 @@ object JourneyStory {
             out += Highlight(null, "toll", "${tolls.size} toll plaza${if (tolls.size == 1) "" else "s"}",
                 if (covered == tolls.size) "All on the FASTag annual pass" else tolls.mapNotNull { tollName(it.payload) }.distinct().take(2).joinToString(" · ").ifBlank { "Crossed on the way" })
         }
-        drives.filter { it.offlineMs == 0L }.maxByOrNull { it.seconds }?.takeIf { it.seconds >= 30 * 60 }?.let {
-            out += Highlight(Pictures.mode(input.mode), null, "${duration(it.seconds)} longest stretch",
+        drives.maxByOrNull { it.movingSeconds }?.takeIf { it.movingSeconds >= 30 * 60 }?.let {
+            out += Highlight(Pictures.mode(input.mode), null, "${duration(it.movingSeconds)} longest stretch",
                 listOfNotNull(it.fromPlace?.let(::short), it.toPlace?.let(::short)).distinct().joinToString(" → ").ifBlank { km(it.distanceM) })
         }
         halts.lastOrNull()?.let { h ->
@@ -670,10 +752,18 @@ object JourneyStory {
         var d = 0.0
         val before = samples.lastOrNull { it.tMs < from }
         val pts = listOfNotNull(before) + inside
-        for (i in 1 until pts.size) d += PlaceBook.distanceM(pts[i - 1].lat, pts[i - 1].lng, pts[i].lat, pts[i].lng)
+        for (i in 1 until pts.size) {
+            val a = pts[i - 1]; val b = pts[i]
+            val line = PlaceBook.distanceM(a.lat, a.lng, b.lat, b.lng)
+            // A silence the car moved through is a road, not a straight line.
+            d += if (b.tMs - a.tMs >= DistanceLedger.GAP_MS && line >= DistanceLedger.GAP_MIN_M) line * DistanceLedger.roadFactor(line, ROAD_FACTOR) else line
+        }
         // The car reached the next stop: close the gap to it (the phone may have been silent on the way).
         val lastPt = pts.lastOrNull()
-        if (lastPt != null && end != null) d += PlaceBook.distanceM(lastPt.lat, lastPt.lng, end.first, end.second)
+        if (lastPt != null && end != null) {
+            val line = PlaceBook.distanceM(lastPt.lat, lastPt.lng, end.first, end.second)
+            d += if (line >= DistanceLedger.GAP_MIN_M) line * DistanceLedger.roadFactor(line, ROAD_FACTOR) else line
+        }
         return d
     }
 
@@ -772,4 +862,10 @@ object JourneyStory {
     private const val BRIEF_STOP_MS = 10 * MIN
     private const val MIN_DRIVE_MS = 3 * MIN
     private const val MIN_DRIVE_M = 500.0
+    /** A fix this far from a stop means the car has left it. */
+    private const val MOVED_ON_M = 500.0
+    /** A stop with no length and no record of leaving it is taken as brief. */
+    private const val NOMINAL_STOP_MS = 10 * MIN
+    /** Straight line to road for a short hop (the app's usual figure). */
+    private const val ROAD_FACTOR = 1.27
 }

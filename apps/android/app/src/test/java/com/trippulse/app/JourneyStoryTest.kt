@@ -165,6 +165,42 @@ class JourneyStoryTest {
         assertEquals(1, book.size)
     }
 
+    @Test fun a_break_with_no_length_ends_when_the_car_moves_on_not_at_the_end_of_the_journey() {
+        // Water logged on the move at 3:30 PM, no length given, car never stopped.
+        val evs = events() + ev(EventTypes.BREAK_CHECKPOINT, t(15, 30), 11.51, 77.73, mapOf("breakId" to "W2", "water" to true))
+        val s = story(input(evs, ended = t(23, 50)))
+        val w = s.stops.first { Item.WATER in it.items && it.atMs == t(15, 30) }
+        assertNotNull(w.endMs)
+        assertTrue("ends within minutes, not hours: ${(w.endMs!! - w.atMs) / 60_000} min", w.endMs!! - w.atMs <= 5 * 60_000L)
+        // And the day strip never paints the rest of the day as stopped.
+        val stoppedAfter = s.segments.filter { it.phase == JourneyStory.Phase.STOPPED && it.fromMs >= t(15, 30) && it.toMs - it.fromMs > 30 * 60_000L }
+        assertTrue(stoppedAfter.toString(), stoppedAfter.isEmpty())
+    }
+
+    @Test fun a_break_logged_during_a_halt_belongs_to_the_halt() {
+        // Water at 11:45 PM, in the room: the strip stays a halt, and no drive starts from it.
+        val evs = events() + ev(EventTypes.BREAK_CHECKPOINT, t(23, 45), 13.95, 77.68, mapOf("breakId" to "W3", "water" to true))
+        val s = story(input(evs))
+        assertTrue(s.segments.filter { it.fromMs >= t(23, 40) }.all { it.phase == JourneyStory.Phase.HALT })
+        assertTrue(s.drives.none { it.atMs >= t(23, 40) })
+    }
+
+    @Test fun a_silence_the_car_moved_through_counts_as_driving() {
+        val s = story()
+        // Pump 5:20 PM → room 11:40 PM with the phone silent from 5:25: driving, less the 45-minute dinner logged later.
+        val silent = s.drives.first { it.offlineMs > 0 }
+        assertTrue(silent.movingSeconds in (5 * 3600L)..(6 * 3600L))
+        assertTrue(s.movingSeconds >= silent.movingSeconds + 3 * 3600)
+        assertTrue(s.longestDrive === silent)
+        // Its distance is a road, not a straight line.
+        assertTrue(silent.distanceM > 240_000.0)
+        // The hours of the silence carry estimated distance; recorded hours carry none.
+        assertTrue(s.kmByHour.any { it.estimatedM > 0 })
+        assertTrue(s.kmByHour.filter { it.hourStartMs < t(17) }.all { it.estimatedM == 0.0 && it.metres > 0 })
+        // The stop time is the stops and the halt, not the road.
+        assertTrue(s.stoppedSeconds >= 3600 + 20 * 60)
+    }
+
     @Test fun a_completed_journey_arrives() {
         val s = story(input(ended = t(23, 59)))
         assertEquals("Completed", s.status)
