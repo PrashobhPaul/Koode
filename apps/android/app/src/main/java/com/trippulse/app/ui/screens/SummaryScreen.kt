@@ -37,7 +37,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.trippulse.app.core.TimeFmt
-import com.trippulse.app.data.export.JourneyDocuments
+import com.trippulse.app.data.export.ReportFactory
 import com.trippulse.app.data.export.JourneyPdf
 import com.trippulse.app.data.local.ExpenseEntity
 import com.trippulse.app.domain.GeoPoint
@@ -127,10 +127,11 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         scope.launch {
             try {
                 vm.confirmExpenses()
-                val doc = JourneyDocuments.money(
-                    t, expenses, r, measures, originLabel = originLabel, destLabel = destLabel,
+                val doc = ReportFactory.expenses(
+                    context, t, events, samples, r, expenses, measures,
                     opportunities = opportunities, passCrossings = passCrossings,
-                    approvedAtMs = System.currentTimeMillis()
+                    approvedAtMs = System.currentTimeMillis(),
+                    originLabel = originLabel, destLabel = destLabel
                 )
                 val file = kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { JourneyPdf.write(context, doc) }
                 val where = JourneyPdf.saveToDownloads(context, file, "Koode-expenses-${t.tripId}.pdf")
@@ -155,12 +156,13 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         scope.launch {
             try {
                 val doc = when (kind) {
-                    PdfKind.TIMELINE -> JourneyDocuments.timeline(
-                        t, events, r, measures, path = samples.map { it.lat to it.lng },
+                    PdfKind.TIMELINE -> ReportFactory.journey(
+                        context, t, events, samples, r, measures,
                         originLabel = originLabel, destLabel = destLabel, fastagSummary = fastagSummary
                     )
-                    PdfKind.MONEY -> JourneyDocuments.money(
-                        t, expenses, r, measures,
+                    PdfKind.MONEY -> ReportFactory.expenses(
+                        context, t, events, samples, r, expenses, measures,
+                        opportunities = opportunities, passCrossings = passCrossings,
                         originLabel = originLabel, destLabel = destLabel
                     )
                 }

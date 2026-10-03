@@ -193,8 +193,9 @@ object JourneyAnalytics {
         val periods = rawStops
             .map {
                 StopPeriod(
-                    it.startMs.coerceIn(i.startedAtMs, i.endedAtMs),
-                    it.endMs.coerceIn(i.startedAtMs, i.endedAtMs)
+                    // An end recorded before the start (a clock change, a bad edit) is an empty window, not a crash.
+                    it.startMs.coerceIn(i.startedAtMs, maxOf(i.startedAtMs, i.endedAtMs)),
+                    it.endMs.coerceIn(i.startedAtMs, maxOf(i.startedAtMs, i.endedAtMs))
                 )
             }
             .filter { it.endMs > it.startMs }

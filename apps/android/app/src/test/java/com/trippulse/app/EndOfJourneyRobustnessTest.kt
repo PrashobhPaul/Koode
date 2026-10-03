@@ -1,9 +1,13 @@
 package com.trippulse.app
 
-import com.trippulse.app.data.EventCodec
-import com.trippulse.app.data.export.JourneyDocuments
-import com.trippulse.app.data.local.ActiveTripEntity
+import com.trippulse.app.data.export.report.Paginator
+import com.trippulse.app.data.export.report.Reports
+import com.trippulse.app.data.export.report.Surface
+import com.trippulse.app.data.export.report.TextStyle
 import com.trippulse.app.domain.*
+import com.trippulse.app.domain.report.JourneyStory
+import com.trippulse.app.domain.report.PlaceBook
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.util.UUID
 
@@ -37,7 +41,6 @@ class EndFlowReproTmpTest {
     }
 
     @Test fun reproduce() {
-        val trip = ActiveTripEntity("T1","s","k","Hyderabad",17.38,78.48,"Bengaluru",12.97,77.59,null,null,t0,null,t0,at(9.8),null,"COMPLETED",true,true,570_000.0,null)
         val measures = Measures(UnitSystem.METRIC, MoneyFormat.RUPEE)
         val failures = mutableListOf<String>()
         for ((name, events, end) in listOf(Triple("realistic", journey(), at(9.8)), Triple("weird", weird(), at(9.8)), Triple("empty", emptyList(), t0), Triple("endBeforeStart", journey(), t0 - 1000))) {
@@ -49,8 +52,45 @@ class EndFlowReproTmpTest {
                 legs = listOf(JourneyAnalytics.LegInput(0, "CAR", "Hyderabad", "Bengaluru", t0, null)), topSpeedKmh = null)) }
             step("summary") { SummaryCalculator.compute(events, 850_000.0, t0, end) }
             step("narrate") { events.forEach { EventNarrator.line(it.type, it.payload) } }
-            report?.let { r -> step("pdfDoc") { JourneyDocuments.timeline(trip, events.map { EventCodec.toEntity(it, it.eventTimeMs, false) }, r, measures) } }
+            report?.let { r ->
+                // Every report, laid out in full, from the same odd logs.
+                val input = JourneyStory.Input("Asha", "Hyderabad", "Bengaluru", 17.38, 78.48, 12.97, 77.59, "CAR",
+                    t0, end.takeIf { it > t0 }, at(10.0), events,
+                    listOf(JourneyStory.Sample(t0, 17.38, 78.48), JourneyStory.Sample(at(5.0), 15.0, 78.0), JourneyStory.Sample(at(9.8), 12.97, 77.59)),
+                    850_000.0)
+                val book = PlaceBook().also { JourneyStory.seed(input, it) }
+                var story: JourneyStory.Story? = null
+                step("story") { story = JourneyStory.build(input, book) }
+                story?.let { st ->
+                    step("journeyReport") { layout(Reports.journey(Reports.JourneyInput(st, input, book, r, "TP-1", measures, t0))) }
+                    step("expenseReport") { layout(Reports.expenses(Reports.ExpenseInput(st, input, book, r,
+                        listOf(Reports.Expense(Expenses.Category.FUEL, "", 2500.0, 25.0, "L", at(5.0), null)), emptyList(), 2, null, "TP-1", measures, t0))) }
+                    step("lastKnown") { layout(Reports.lastKnown(Reports.LastKnownInput(st, input, book, "TP-1", 15.0, 78.0, 9.0, null, at(5.0),
+                        "No word from Asha", "", at(5.0), 3_600_000L, 40, null, emptyList(), null, t0))) }
+                }
+            }
         }
         println("REPRO RESULT: " + if (failures.isEmpty()) "no exceptions" else failures.joinToString("\n"))
+        assertTrue(failures.joinToString("\n"), failures.isEmpty())
+    }
+
+    private object Measure : Surface {
+        override fun measure(text: String, style: TextStyle) = text.length * style.size * 0.5f
+        override fun text(text: String, x: Float, baseline: Float, style: TextStyle) {}
+        override fun rect(l: Float, t: Float, r: Float, b: Float, color: Int, radius: Float) {}
+        override fun strokeRect(l: Float, t: Float, r: Float, b: Float, color: Int, width: Float, radius: Float) {}
+        override fun circle(cx: Float, cy: Float, r: Float, color: Int) {}
+        override fun strokeCircle(cx: Float, cy: Float, r: Float, color: Int, width: Float) {}
+        override fun line(x1: Float, y1: Float, x2: Float, y2: Float, color: Int, width: Float, dash: Float) {}
+        override fun polyline(pts: FloatArray, color: Int, width: Float) {}
+        override fun polygon(pts: FloatArray, color: Int) {}
+        override fun picture(name: String, l: Float, t: Float, w: Float, h: Float, mirrored: Boolean) = true
+        override fun avatar(cx: Float, cy: Float, r: Float) = true
+        override fun mark(l: Float, t: Float, size: Float, alpha: Float) = true
+    }
+
+    private fun layout(r: com.trippulse.app.data.export.report.Report) {
+        val pages = Paginator.paginate(Measure, r)
+        pages.indices.forEach { Paginator.drawPage(Measure, r, pages, it) }
     }
 }

@@ -21,7 +21,6 @@ import com.trippulse.app.core.ViewerRefresh
 import com.trippulse.app.data.TripManager
 import com.trippulse.app.data.JourneyAlreadyRunning
 import com.trippulse.app.data.ViewerRepository
-import com.trippulse.app.data.export.JourneyDocuments
 import com.trippulse.app.data.export.JourneyPdf
 import com.trippulse.app.data.share.TimelineDelivery
 import com.trippulse.app.data.local.ActiveTripEntity
@@ -1093,7 +1092,8 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         val t = graph.db.tripDao().byId(tripId) ?: return false
         val r = buildReport() ?: return false
         val ev = graph.db.eventDao().allForTrip(tripId)
-        val doc = JourneyDocuments.timeline(t, ev, r, graph.measures())
+        val samples = graph.db.locationDao().allForTrip(tripId)
+        val doc = com.trippulse.app.data.export.ReportFactory.journey(graph.appContext, t, ev, samples, r, graph.measures())
         val file = runCatching { JourneyPdf.write(graph.appContext, doc) }.getOrNull() ?: return false
 
         sendRecipients.value = recipients
@@ -1235,30 +1235,12 @@ class ViewerVm(private val graph: AppGraph, val accessKey: String) : ViewModel()
         reportBusy.value = true
         try {
             val s = ui.value
-            val st = s.state
-            fun ln(k: String): Long? = (st?.get(k) as? Number)?.toLong()
-            fun dn(k: String): Double? = (st?.get(k) as? Number)?.toDouble()
-            val label = s.meta?.get("label") as? String
-            @Suppress("UNCHECKED_CAST")
-            val device = (s.meta?.get("device") as? Map<String, Any?>).orEmpty()
-            val doc = JourneyDocuments.lastKnownPosition(
-                JourneyDocuments.LastKnown(
-                    tripId = s.meta?.get("tripId") as? String ?: accessKey.take(8),
-                    originName = s.meta?.get("origin") as? String ?: "Start",
-                    destName = s.meta?.get("destination") as? String ?: "Destination",
-                    startedAtMs = (s.meta?.get("startedAt") as? Number)?.toLong()
-                        ?: System.currentTimeMillis(),
-                    travellerName = label,
-                    lat = dn("lat"), lng = dn("lng"),
-                    accuracyM = dn("accuracy"), speedKmh = dn("speedKmh"),
-                    fixAtMs = ln("lastLocationAt"),
-                    simChangedAtMs = ln("simChangedAt"),
-                    assessment = darkness.value,
-                    device = device,
-                    events = JourneyDocuments.momentsFromCloud(s.events)
+            val doc = runCatching {
+                com.trippulse.app.data.export.ReportFactory.lastKnown(
+                    graph.appContext, s.meta, s.state, s.events, darkness.value, fallbackRef = accessKey.take(8)
                 )
-            )
-            val file = runCatching { JourneyPdf.write(graph.appContext, doc) }.getOrNull()
+            }.onFailure { android.util.Log.e("ViewerVm", "last-known report failed", it) }.getOrNull()
+            val file = doc?.let { runCatching { JourneyPdf.write(graph.appContext, it) }.getOrNull() }
             lastKnownReport.value = file
             onReady(file)
         } finally {
