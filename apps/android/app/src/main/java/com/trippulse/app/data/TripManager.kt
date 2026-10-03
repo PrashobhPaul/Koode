@@ -35,6 +35,7 @@ import com.trippulse.app.domain.StopDetector
 import com.trippulse.app.domain.SummaryCalculator
 import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.domain.Darkness
+import com.trippulse.app.domain.DistanceLedger
 import com.trippulse.app.domain.DarkReason
 import com.trippulse.app.core.DeviceIdentity
 import com.trippulse.app.core.DeviceDossier
@@ -139,6 +140,14 @@ class TripManager(
     private var lastPersistMs: Long = 0
     private var lastPersistPoint: GeoPoint? = null
     private var lastDistancePoint: GeoPoint? = null
+    /** When the last fix arrived; a long silence before the next one is a stretch to credit. */
+    private var lastFixMs: Long = 0
+    /**
+     * A silence credited from its straight line, waiting for the route to
+     * say how long the road really was (see [refineGapCredit]).
+     */
+    private data class GapCredit(val atMs: Long, val lineM: Double, val creditedM: Double, val remainingBeforeM: Double, val coveredAfterM: Double)
+    private var gapCredit: GapCredit? = null
     private var lastEtaCalcMs: Long = 0
     private var batteryLowFired = false
     private var arrivalPromptShown = false
@@ -182,6 +191,7 @@ class TripManager(
         state = db.stateDao().byId(t.tripId)
         legs = db.legDao().forTrip(t.tripId)
         arrivalPromptShown = state?.arrivalPromptDue == true
+        state?.let { s -> if (!terminal(s)) state = pickUpDistance(t, s) }
         // detectors restart clean; persisted journey state is authoritative
         detector = StopDetector(cfg)
         plans.latest(t.tripId)
@@ -698,10 +708,19 @@ class TripManager(
         // accumulate covered distance only while actually moving (kills jitter)
         var covered = s.distanceCoveredM
         val ldp = lastDistancePoint
-        if (ldp != null && speedKmh >= cfg.restartSpeedKmh) {
+        if (ldp != null && lastFixMs > 0 && now - lastFixMs >= DistanceLedger.GAP_MS) {
+            // The phone was not reporting. Whatever was driven in between is
+            // credited now, from where the record stopped to here.
+            val credit = DistanceLedger.gapCredit(ldp, fix.point, cfg.roadDistanceFactor, gapRoomM(fix.point, covered))
+            if (credit > 0) {
+                covered += credit; lastDistancePoint = fix.point
+                if (s.distanceRemainingM > 0) gapCredit = GapCredit(now, Geo.haversineM(ldp, fix.point), credit, s.distanceRemainingM, covered)
+            }
+        } else if (ldp != null && speedKmh >= cfg.restartSpeedKmh) {
             covered += Geo.haversineM(ldp, fix.point)
         }
         if (speedKmh >= cfg.restartSpeedKmh || ldp == null) lastDistancePoint = fix.point
+        lastFixMs = now
 
         // persist a location sample (throttled by time or distance)
         val movedEnough = lastPersistPoint?.let { Geo.haversineM(it, fix.point) >= 20 } ?: true
@@ -728,6 +747,7 @@ class TripManager(
         maybeRefreshRoute(t, fix.point, now)
         val remainingM = remainingDistanceM(fix.point)
         val remainingS = remainingTravelSeconds(remainingM)
+        covered = refineGapCredit(covered, remainingM, now)
 
         // ----- arrival detection -----
         s = maybeArrival(t, s, fix.point, now)
@@ -1769,6 +1789,9 @@ class TripManager(
     /** How often the story in the live state is retold. */
     private val STORY_EVERY_MS = 5 * 60_000L
 
+    /** How long a silence's credit waits for the route before the guess stands. */
+    private val GAP_REFINE_MS = 15 * 60_000L
+
     private val STATIONARY_STATES = setOf(
         JourneyStatus.POSSIBLE_STOP.name, JourneyStatus.STOPPED.name, JourneyStatus.LONG_STOP.name,
         JourneyStatus.ARRIVED.name, JourneyStatus.OVERNIGHT.name
@@ -2014,6 +2037,54 @@ class TripManager(
             val speedMps = cfg.fallbackAvgSpeedKmh / 3.6
             if (speedMps > 0) (remainingM / speedMps).toLong() else 0
         }
+    }
+
+    /**
+     * How much of the planned route a silence could at most account for:
+     * the route's length less what is already covered and what is still
+     * ahead from [here]. Null when there is no plan to measure against.
+     */
+    private fun gapRoomM(here: GeoPoint, coveredM: Double): Double? {
+        val t = trip ?: return null
+        val route = currentRoute?.takeIf { it.provider != "fallback" && it.polyline.size >= 2 } ?: return null
+        val planned = t.totalRouteDistanceM.takeIf { it > 0 } ?: return null
+        return (planned - coveredM - Geo.remainingAlongPathM(here, route.polyline)).coerceAtLeast(0.0)
+    }
+
+    /**
+     * Once the route is known again after a silence, the road between where
+     * the phone fell silent and where it came back is what the plan had left
+     * then, less what it has left now and what was driven since. That
+     * replaces the straight-line guess, within the bounds a road can have.
+     */
+    private fun refineGapCredit(covered: Double, remainingM: Double, now: Long): Double {
+        val g = gapCredit ?: return covered
+        if (now - g.atMs > GAP_REFINE_MS) { gapCredit = null; return covered }
+        val route = currentRoute ?: return covered
+        if (route.provider == "fallback" || routeFetchedAtMs < g.atMs) return covered
+        gapCredit = null
+        val road = g.remainingBeforeM - remainingM - (covered - g.coveredAfterM)
+        val better = road.coerceIn(g.lineM, g.lineM * cfg.roadDistanceFactor)
+        return covered + (better - g.creditedM)
+    }
+
+    /**
+     * After a restart the first fix must be measured from where the record
+     * stopped, not thrown away; and a journey that lost a stretch before this
+     * rule existed gets it back once, from the samples (see DistanceLedger).
+     */
+    private suspend fun pickUpDistance(t: ActiveTripEntity, s: TripStateEntity): TripStateEntity {
+        val samples = db.locationDao().allForTrip(t.tripId)
+        val last = samples.lastOrNull() ?: return s
+        if (lastDistancePoint == null) { lastDistancePoint = GeoPoint(last.lat, last.lng); lastFixMs = last.tMs }
+        val prefs = appContext.getSharedPreferences("tp_distance_ledger", Context.MODE_PRIVATE)
+        if (prefs.getBoolean(t.tripId, false)) return s
+        prefs.edit().putBoolean(t.tripId, true).apply()
+        val m = coveredDistanceM(s.distanceCoveredM, samples, cfg)
+        if (m - s.distanceCoveredM < 50.0) return s
+        val fixed = s.copy(distanceCoveredM = m, progressPct = progress(m, s.distanceRemainingM))
+        db.stateDao().upsert(fixed)
+        return fixed
     }
 
     private fun progress(coveredM: Double, remainingM: Double): Double {

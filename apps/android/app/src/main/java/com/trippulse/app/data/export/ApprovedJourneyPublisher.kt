@@ -96,12 +96,12 @@ class ApprovedJourneyPublisher(
         val events = entities.map { EventCodec.toDomain(it) }
         val started = t.startedAtMs ?: t.createdAtMs
         val ended = t.completedAtMs ?: a.approvedAtMs
+        val samples = db.locationDao().allForTrip(a.tripId)
+        val distanceM = com.trippulse.app.data.coveredDistanceM(db.stateDao().byId(a.tripId)?.distanceCoveredM ?: 0.0, samples)
         var state = p
 
         if (!state.analyticsDone) {
-            val summary = SummaryCalculator.compute(
-                events, db.stateDao().byId(a.tripId)?.distanceCoveredM ?: 0.0, started, ended
-            )
+            val summary = SummaryCalculator.compute(events, distanceM, started, ended)
             val analytics = ApprovedAnalytics.build(
                 summary, t.originName, t.destName, started, ended, t.transportMode,
                 tollsCrossed = events.count { it.type == EventTypes.TOLL_CROSSED }
@@ -115,14 +115,13 @@ class ApprovedJourneyPublisher(
         }
 
         if (!state.reportDone) {
-            val samples = db.locationDao().allForTrip(a.tripId)
             val legs = db.legDao().forTrip(a.tripId).map {
                 JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat)
             }
             val report = JourneyAnalytics.analyse(
                 JourneyAnalytics.Inputs(
                     events = events.filterIndexed { i, _ -> !entities[i].sensitive },
-                    distanceCoveredM = db.stateDao().byId(a.tripId)?.distanceCoveredM ?: 0.0,
+                    distanceCoveredM = distanceM,
                     startedAtMs = started,
                     endedAtMs = ended,
                     // The followers' report: no expense input, so no money can reach it.
