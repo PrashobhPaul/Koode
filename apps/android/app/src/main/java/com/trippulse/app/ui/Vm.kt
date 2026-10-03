@@ -1038,7 +1038,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         return JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
                 events = events,
-                distanceCoveredM = st?.distanceCoveredM ?: 0.0,
+                distanceCoveredM = com.trippulse.app.data.coveredDistanceM(st?.distanceCoveredM ?: 0.0, samples),
                 startedAtMs = t.startedAtMs ?: t.createdAtMs,
                 endedAtMs = endAtMs ?: System.currentTimeMillis(),
                 expenses = expense,
@@ -1599,7 +1599,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         report.value = JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
                 events = ev.map { com.trippulse.app.data.EventCodec.toDomain(it) },
-                distanceCoveredM = state?.distanceCoveredM ?: 0.0,
+                distanceCoveredM = com.trippulse.app.data.coveredDistanceM(state?.distanceCoveredM ?: 0.0, sp),
                 startedAtMs = t.startedAtMs ?: t.createdAtMs,
                 endedAtMs = t.completedAtMs ?: System.currentTimeMillis(),
                 expenses = expenseRows.map {
