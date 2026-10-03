@@ -102,6 +102,7 @@ class TripTrackingService : Service() {
             startLocationUpdates()
             startTicker()
             registerActivityUpdates()
+            trip?.let { runCatching { graph.restorer.restore(it) } }
         }
         return START_STICKY
     }

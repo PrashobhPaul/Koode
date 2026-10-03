@@ -103,6 +103,10 @@ class AppGraph(context: Context) {
             }
 
     /** Nudges people off old builds; never touches an in-flight journey. */
+    /** Fetches a journey's full path back from the cloud when the phone's copy was trimmed. */
+    val restorer: com.trippulse.app.data.RecordRestorer =
+        com.trippulse.app.data.RecordRestorer(appContext, db, sync, tripManager, publisher)
+
     val updateChecker: UpdateChecker = UpdateChecker(appContext, settings)
 
     fun cloudEnabledByDefault(): Boolean = cloud.isAvailable()

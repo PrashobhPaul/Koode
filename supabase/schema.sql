@@ -174,6 +174,29 @@ begin
   return true;
 end $$;
 
+-- The owner reads the journey's own samples back, oldest first, 2000 at a
+-- time from p_since (exclusive). The phone is the record's author but older
+-- builds trimmed their copy; the cloud holds the whole path.
+create or replace function tp_get_locations(
+  p_access_key text, p_owner_token text, p_since bigint
+) returns jsonb
+language plpgsql security definer set search_path = public as $$
+declare out jsonb;
+begin
+  if not exists (select 1 from tp_trips
+                 where access_key = p_access_key and owner_token = p_owner_token) then
+    return null;
+  end if;
+  select coalesce(jsonb_agg(l.sample order by l.t), '[]'::jsonb) into out
+  from (
+    select sample, (sample->>'t')::bigint as t from tp_locations
+    where access_key = p_access_key and (sample->>'t')::bigint > p_since
+    order by (sample->>'t')::bigint
+    limit 2000
+  ) l;
+  return out;
+end $$;
+
 -- ---------------------------------------------------------------------------
 -- Viewer-side read RPCs (capability = access_key, gated on expiry)
 -- ---------------------------------------------------------------------------
@@ -276,6 +299,7 @@ grant execute on function
   tp_push_state(text, text, jsonb),
   tp_append_event(text, text, text, jsonb, bigint),
   tp_append_locations(text, text, jsonb),
+  tp_get_locations(text, text, bigint),
   tp_get_meta(text),
   tp_get_state(text),
   tp_get_events(text, bigint),

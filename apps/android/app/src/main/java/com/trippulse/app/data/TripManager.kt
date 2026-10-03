@@ -2069,6 +2069,26 @@ class TripManager(
     }
 
     /**
+     * Re-reads the distance a journey covered from its (possibly just
+     * restored) record and keeps the larger figure. Returns what the journey
+     * is now known by. Safe on a finished journey; pushed when live.
+     */
+    suspend fun reconcileDistance(tripId: String): Double = lock.withLock {
+        val s = db.stateDao().byId(tripId) ?: return@withLock 0.0
+        val samples = db.locationDao().allForTrip(tripId)
+        val m = coveredDistanceM(s.distanceCoveredM, samples, cfg)
+        if (m - s.distanceCoveredM < 50.0) return@withLock s.distanceCoveredM
+        val fixed = s.copy(distanceCoveredM = m, progressPct = progress(m, s.distanceRemainingM))
+        db.stateDao().upsert(fixed)
+        val t = trip
+        if (t != null && t.tripId == tripId) {
+            state = fixed
+            if (t.cloudEnabled) appScope.launch { runCatching { sync.pushLiveState(t, stateMap(t, fixed), force = true) } }
+        }
+        m
+    }
+
+    /**
      * After a restart the first fix must be measured from where the record
      * stopped, not thrown away; and a journey that lost a stretch before this
      * rule existed gets it back once, from the samples (see DistanceLedger).

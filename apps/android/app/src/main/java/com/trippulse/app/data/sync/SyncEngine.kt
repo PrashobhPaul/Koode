@@ -3,6 +3,7 @@ package com.trippulse.app.data.sync
 import com.trippulse.app.data.EventCodec
 import com.trippulse.app.data.local.ActiveTripEntity
 import com.trippulse.app.data.local.EventEntity
+import com.trippulse.app.data.local.LocationSampleEntity
 import com.trippulse.app.data.local.TripPulseDb
 import com.trippulse.app.data.remote.TripCloud
 import com.trippulse.app.domain.EventTypes
@@ -136,13 +137,52 @@ class SyncEngine(
             db.locationDao().markSynced(samples.map { it.autoId })
             samples = db.locationDao().pendingBatch(trip.tripId, cfg.locationUploadBatch)
         }
-        // keep the buffer bounded on long journeys
-        db.locationDao().compactAcked(trip.tripId, cfg.locationCompactionThreshold)
+        // The buffer is the journey's own record -- the path on the map, the
+        // story's stops, the distance ledger -- so nothing is trimmed from it.
+    }
+
+    /**
+     * Brings the phone's copy of a journey's path back to what the cloud
+     * holds (older builds trimmed the local copy to its last few hundred
+     * samples). Returns how many samples were added, or null when the cloud
+     * could not be asked, so the caller can try again another time.
+     */
+    suspend fun restoreLocations(trip: ActiveTripEntity): Int? {
+        if (!trip.cloudEnabled) return 0
+        val have = db.locationDao().allForTrip(trip.tripId).mapTo(HashSet()) { it.tMs }
+        var since = 0L
+        var added = 0
+        while (true) {
+            val page = cloud.fetchOwnLocations(trip.accessKey, since) ?: return if (added > 0) added else null
+            var last = since
+            for (m in page) {
+                val t = (m["t"] as? Number)?.toLong() ?: continue
+                val lat = (m["lat"] as? Number)?.toDouble() ?: continue
+                val lng = (m["lng"] as? Number)?.toDouble() ?: continue
+                if (t > last) last = t
+                if (!have.add(t)) continue
+                db.locationDao().insert(
+                    LocationSampleEntity(
+                        tripId = trip.tripId, tMs = t, lat = lat, lng = lng,
+                        accuracyM = (m["accuracy"] as? Number)?.toDouble() ?: 0.0,
+                        speedMps = (m["speed"] as? Number)?.toDouble(),
+                        bearing = (m["bearing"] as? Number)?.toDouble(),
+                        syncStatus = "ACKED"
+                    )
+                )
+                added++
+            }
+            if (page.size < PAGE || last <= since) break
+            since = last
+        }
+        return added
     }
 
     private companion object {
         /** Events per round-trip. */
         const val EVENT_BATCH = 50
+        /** Samples the cloud hands back per page (tp_get_locations). */
+        const val PAGE = 2000
 
         /**
          * Most batches one drain will make. Generous enough that an ordinary
