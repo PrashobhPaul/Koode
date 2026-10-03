@@ -1429,6 +1429,9 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     /** The analysed journey — the same object the dashboard and the PDFs use. */
     val report = MutableStateFlow<JourneyAnalytics.JourneyReport?>(null)
 
+    /** The journey told as a story: the same words and charts the PDF carries. */
+    val story = MutableStateFlow<com.trippulse.app.domain.report.JourneyStory.Story?>(null)
+
     /**
      * Display labels for the journey's ends, resolved offline: a meaningful
      * stored name is kept; a placeholder or coordinate left by an older build
@@ -1611,6 +1614,9 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 topSpeedKmh = sp.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6)
             )
         )
+        story.value = runCatching {
+            com.trippulse.app.data.export.ReportFactory.storyFor(graph.appContext, t, ev, sp, report.value, originLabel.value, destLabel.value)
+        }.onFailure { android.util.Log.w("SummaryVm", "story failed", it) }.getOrNull()
     }
 
     /**

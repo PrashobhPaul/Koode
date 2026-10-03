@@ -500,3 +500,215 @@ class Footnote(private val text: String) : Block() {
         for (l in wrap(s, text, Type.small, w)) { ty += Type.small.leading; s.text(l, x, ty, Type.small) }
     }
 }
+
+// ---------------------------------------------------------------------------
+// Charts
+// ---------------------------------------------------------------------------
+
+/**
+ * One day as a strip of time: moving, stopped, halted, out of contact, with
+ * the stops' pictures pinned above the hour they happened.
+ */
+class DayStrip(
+    private val segments: List<com.trippulse.app.domain.report.JourneyStory.Segment>,
+    private val fromMs: Long,
+    private val toMs: Long,
+    private val zone: java.time.ZoneId,
+    private val pins: List<Pair<Long, Icon>> = emptyList(),
+    private val nowMs: Long? = null
+) : Block() {
+    private val barH = 14f
+    override fun height(s: Surface, w: Float) = 20f + barH + 26f
+
+    override fun draw(s: Surface, x: Float, y: Float, w: Float) {
+        val span = (toMs - fromMs).toDouble().coerceAtLeast(1.0)
+        fun px(t: Long) = (x + (t - fromMs) / span * w).toFloat().coerceIn(x, x + w)
+        val top = y + 20f
+        s.rect(x, top, x + w, top + barH, Ink.SOFT, barH / 2)
+        for (seg in segments) {
+            val a = px(maxOf(seg.fromMs, fromMs)); val b = px(minOf(seg.toMs, toMs))
+            if (b - a < 0.5f) continue
+            val color = when (seg.phase) {
+                com.trippulse.app.domain.report.JourneyStory.Phase.DRIVING -> ChartInk.driving
+                com.trippulse.app.domain.report.JourneyStory.Phase.STOPPED -> ChartInk.stopped
+                com.trippulse.app.domain.report.JourneyStory.Phase.HALT -> ChartInk.halt
+                com.trippulse.app.domain.report.JourneyStory.Phase.OFFLINE -> ChartInk.offline
+            }
+            s.rect(a, top, b, top + barH, color, 0f)
+            if (seg.phase == com.trippulse.app.domain.report.JourneyStory.Phase.OFFLINE) {
+                var hx = a + 3f
+                while (hx < b) { s.line(hx, top + barH - 1f, minOf(hx + barH - 2f, b), top + 1f, Ink.WHITE, 1.1f); hx += 6f }
+            }
+        }
+        // rounded ends over the segments
+        s.strokeRect(x, top, x + w, top + barH, Ink.alpha(Ink.NIGHT, 0.08f), 0.8f, barH / 2)
+        // hour ticks
+        val first = java.time.Instant.ofEpochMilli(fromMs).atZone(zone).withMinute(0).withSecond(0).withNano(0)
+        var t = first
+        val hours = ((toMs - fromMs) / 3_600_000.0).toInt()
+        val step = when { hours <= 8 -> 1; hours <= 14 -> 2; else -> 3 }
+        while (t.toInstant().toEpochMilli() <= toMs) {
+            val ms = t.toInstant().toEpochMilli()
+            if (ms >= fromMs && t.hour % step == 0) {
+                val tx = px(ms)
+                s.line(tx, top + barH + 2f, tx, top + barH + 6f, Ink.FAINT, 0.8f)
+                val label = com.trippulse.app.domain.report.JourneyStory.clock(ms, zone).replace(":00", "")
+                s.text(label, tx - s.measure(label, Type.tiny) / 2, top + barH + 16f, Type.tiny)
+            }
+            t = t.plusHours(1)
+        }
+        for ((at, icon) in pins) {
+            if (at < fromMs || at > toMs) continue
+            val cx = px(at)
+            s.circle(cx, y + 9f, 9f, Ink.WHITE)
+            s.strokeCircle(cx, y + 9f, 9f, Ink.alpha(Ink.TEAL_LINE, 0.6f), 0.8f)
+            s.icon(icon, cx - 6.5f, y + 2.5f, 13f)
+            s.line(cx, y + 18f, cx, top, Ink.alpha(Ink.FAINT, 0.6f), 0.7f)
+        }
+        nowMs?.takeIf { it in fromMs..toMs }?.let { n ->
+            val nx = px(n)
+            s.line(nx, top - 3f, nx, top + barH + 3f, Ink.AMBER, 1.6f)
+        }
+    }
+}
+
+/** The legend under a day strip. */
+class StripLegend(private val offline: Boolean, private val halt: Boolean) : Block() {
+    override fun height(s: Surface, w: Float) = 16f
+    override fun draw(s: Surface, x: Float, y: Float, w: Float) {
+        var cx = x
+        fun key(color: Int, label: String) {
+            s.rect(cx, y + 3f, cx + 10f, y + 10f, color, 2f)
+            s.text(label, cx + 14f, y + 10f, Type.tiny)
+            cx += 14f + s.measure(label, Type.tiny) + 14f
+        }
+        key(ChartInk.driving, "Moving"); key(ChartInk.stopped, "Stopped")
+        if (halt) key(ChartInk.halt, "Halt")
+        if (offline) key(ChartInk.offline, "Out of contact")
+    }
+}
+
+/** Vertical bars with a value on each and a label under each. */
+class BarChart(
+    private val bars: List<Bar>,
+    private val valueText: (Double) -> String,
+    private val h: Float = 120f,
+    private val color: Int = Ink.TEAL_LINE,
+    private val title: String? = null
+) : Block() {
+    data class Bar(val label: String, val value: Double, val color: Int? = null, val icon: Icon? = null)
+
+    override fun height(s: Surface, w: Float) = (if (title != null) 18f else 0f) + h + 24f
+
+    override fun draw(s: Surface, x: Float, y: Float, w: Float) {
+        var top = y
+        title?.let { s.text(it.uppercase(), x, top + 9f, Type.label); top += 18f }
+        if (bars.isEmpty()) { s.text("Nothing to chart.", x, top + 20f, Type.small); return }
+        val max = bars.maxOf { it.value }.coerceAtLeast(1e-9)
+        val base = top + h - 20f
+        val chartTop = top + 14f
+        // grid
+        for (i in 0..3) {
+            val gy = base - (base - chartTop) * i / 3f
+            s.line(x, gy, x + w, gy, ChartInk.grid, 0.6f)
+        }
+        val gap = 6f
+        val bw = ((w - gap * (bars.size - 1)) / bars.size).coerceAtMost(46f)
+        val total = bw * bars.size + gap * (bars.size - 1)
+        var bx = x + (w - total) / 2
+        val vs = TextStyle(Face.BODY, 7.2f, Ink.TEXT, 600)
+        for (b in bars) {
+            val bh = ((base - chartTop) * (b.value / max)).toFloat().coerceAtLeast(if (b.value > 0) 2f else 0f)
+            s.rect(bx, base - bh, bx + bw, base, b.color ?: color, 3f)
+            if (b.value > 0 && bars.size <= 14) {
+                val v = valueText(b.value)
+                s.text(v, bx + bw / 2 - s.measure(v, vs) / 2, base - bh - 3f, vs)
+            }
+            val lw = s.measure(b.label, Type.tiny)
+            if (bars.size <= 16 || bars.indexOf(b) % 2 == 0) s.text(b.label, bx + bw / 2 - lw / 2, base + 12f, Type.tiny)
+            bx += bw + gap
+        }
+    }
+}
+
+/** A ring of shares with a legend beside it. */
+class Donut(
+    private val slices: List<Slice>,
+    private val centreValue: String,
+    private val centreLabel: String,
+    private val valueText: (Double) -> String
+) : Block() {
+    data class Slice(val label: String, val value: Double, val icon: Icon? = null, val sub: String? = null)
+
+    private val r = 52f
+    override fun height(s: Surface, w: Float) = maxOf(r * 2 + 16f, slices.size * 26f + 8f) + 8f
+
+    override fun draw(s: Surface, x: Float, y: Float, w: Float) {
+        val total = slices.sumOf { it.value }.coerceAtLeast(1e-9)
+        val cx = x + r + 10f; val cy = y + r + 8f
+        s.arc(cx, cy, r, 0f, 360f, Ink.SOFT, 16f)
+        var start = 0f
+        slices.forEachIndexed { i, sl ->
+            val sweep = (sl.value / total * 360).toFloat()
+            if (sweep > 0.5f) s.arc(cx, cy, r, start, sweep - 1.2f, ChartInk.series[i % ChartInk.series.size], 16f)
+            start += sweep
+        }
+        val vs = TextStyle(Face.HEAD, 14f, Ink.NIGHT, 700).forText(centreValue)
+        s.text(centreValue, cx - s.measure(centreValue, vs) / 2, cy + 2f, vs)
+        s.text(centreLabel.uppercase(), cx - s.measure(centreLabel.uppercase(), Type.label) / 2, cy + 14f, Type.label)
+        // legend
+        val lx = x + r * 2 + 34f
+        var ly = y + 8f
+        val lw = x + w - lx
+        slices.forEachIndexed { i, sl ->
+            val color = ChartInk.series[i % ChartInk.series.size]
+            s.rect(lx, ly + 4f, lx + 10f, ly + 14f, color, 3f)
+            sl.icon?.let { s.icon(it, lx + 15f, ly, 18f) }
+            val tx = lx + (if (sl.icon != null) 38f else 16f)
+            val pct = "${Math.round(sl.value / total * 100)}%"
+            val v = valueText(sl.value)
+            val right = lx + lw
+            s.text(v, right - s.measure(v, Type.smallStrong), ly + 12f, Type.smallStrong)
+            s.text(fit(s, sl.label, Type.smallStrong, right - tx - s.measure(v, Type.smallStrong) - 10f), tx, ly + 12f, Type.smallStrong)
+            val sub = listOfNotNull(pct, sl.sub).joinToString(" · ")
+            s.text(fit(s, sub, Type.tiny, right - tx), tx, ly + 22f, Type.tiny)
+            ly += 26f
+        }
+    }
+}
+
+/** A plain table: header row, zebra rows, a bold last row if asked. */
+class Table(
+    private val columns: List<Column>,
+    private val rows: List<List<String>>,
+    private val totalRow: List<String>? = null
+) : Block() {
+    data class Column(val title: String, val weight: Float, val right: Boolean = false)
+    private val rowH = 20f
+    override fun height(s: Surface, w: Float) = rowH * (rows.size + 1 + (if (totalRow != null) 1 else 0)) + 6f
+
+    override fun draw(s: Surface, x: Float, y: Float, w: Float) {
+        val totalW = columns.sumOf { it.weight.toDouble() }.toFloat()
+        val xs = ArrayList<Float>(); var cx = x
+        columns.forEach { xs += cx; cx += w * it.weight / totalW }
+        fun cell(i: Int, text: String, ty: Float, style: TextStyle) {
+            val cw = w * columns[i].weight / totalW - 8f
+            val t = fit(s, text, style, cw)
+            val tx = if (columns[i].right) xs[i] + cw - s.measure(t, style) else xs[i]
+            s.text(t, tx, ty, style)
+        }
+        var ty = y
+        columns.forEachIndexed { i, c -> cell(i, c.title.uppercase(), ty + 13f, Type.label) }
+        s.line(x, ty + rowH - 1f, x + w, ty + rowH - 1f, Ink.RULE, 0.8f)
+        ty += rowH
+        rows.forEachIndexed { r, row ->
+            if (r % 2 == 1) s.rect(x - 4f, ty, x + w + 4f, ty + rowH, Ink.alpha(Ink.SOFT, 0.7f), 4f)
+            row.forEachIndexed { i, v -> cell(i, v, ty + 13.5f, if (i == 0) Type.smallStrong else Type.small.with(Ink.TEXT)) }
+            ty += rowH
+        }
+        totalRow?.let { row ->
+            s.line(x, ty, x + w, ty, Ink.NIGHT, 0.9f)
+            row.forEachIndexed { i, v -> cell(i, v, ty + 14f, Type.smallStrong.with(Ink.NIGHT)) }
+        }
+    }
+}

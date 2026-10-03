@@ -122,6 +122,12 @@ class AndroidReportSurface(private val assets: Assets, private val canvas: Canva
         fill.color = color; c.drawPath(p, fill)
     }
 
+    override fun arc(cx: Float, cy: Float, r: Float, startDeg: Float, sweepDeg: Float, color: Int, width: Float) {
+        stroke.color = color; stroke.strokeWidth = width; stroke.pathEffect = null; stroke.strokeCap = Paint.Cap.BUTT
+        canvas?.drawArc(RectF(cx - r, cy - r, cx + r, cy + r), startDeg - 90f, sweepDeg, false, stroke)
+        stroke.strokeCap = Paint.Cap.ROUND
+    }
+
     override fun picture(name: String, l: Float, t: Float, w: Float, h: Float, mirrored: Boolean): Boolean {
         val bmp = assets.picture(name) ?: return false
         val c = canvas ?: return true

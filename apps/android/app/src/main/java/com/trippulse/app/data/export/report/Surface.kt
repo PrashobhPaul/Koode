@@ -20,6 +20,8 @@ interface Surface {
     fun polyline(pts: FloatArray, color: Int, width: Float)
     /** A filled closed polygon. [pts] is x0,y0,x1,y1… */
     fun polygon(pts: FloatArray, color: Int)
+    /** A stroked arc of a circle, angles in degrees clockwise from 12 o'clock. */
+    fun arc(cx: Float, cy: Float, r: Float, startDeg: Float, sweepDeg: Float, color: Int, width: Float)
     /** One of the app's illustrations (see domain.Pictures), fitted into the box. False if unavailable. */
     fun picture(name: String, l: Float, t: Float, w: Float, h: Float, mirrored: Boolean = false): Boolean
     /** The traveller's photo or initial, clipped to a circle. False if unavailable. */
@@ -79,6 +81,19 @@ object Ink {
     val RED_SOFT = argb("#FDECEA")
     val WHITE = argb("#FFFFFF")
     val ON_DARK = argb("#C7D6DE")
+}
+
+/** Colours for charts, in the order series take them. */
+object ChartInk {
+    val series: List<Int> = listOf(
+        Ink.TEAL_LINE, Ink.SKY, Ink.argb("#F59E0B"), Ink.GREEN, Ink.argb("#7C5CBF"), Ink.argb("#D6336C"),
+        Ink.NIGHT_2, Ink.argb("#8EA2AE")
+    )
+    val driving = Ink.TEAL_LINE
+    val stopped = Ink.argb("#F6C66B")
+    val halt = Ink.NIGHT_2
+    val offline = Ink.argb("#C9D4DA")
+    val grid = Ink.alpha(Ink.RULE, 0.9f)
 }
 
 /** The type scale. Sora for headings, DM Sans for reading. */

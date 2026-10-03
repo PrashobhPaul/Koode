@@ -233,3 +233,21 @@ button.small { width: auto; padding: 9px 16px; font-size: 13px; margin-top: 10px
 .kd-veh.top img { filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55)); }
 .kd-veh.rear img { filter: drop-shadow(0 6px 5px rgba(0, 0, 0, 0.5)); }
 .row:has(.wb) { align-items: center; }
+
+/* ---- the story so far ---- */
+.story p { margin: 0 0 10px; font-size: 15px; line-height: 1.55; color: var(--text-high); }
+.story p.lead { font-size: 16px; }
+.story .more { background: none; border: 0; color: var(--accent); font-size: 14px; padding: 0; margin: 0 0 10px; cursor: pointer; width: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 10px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; background: var(--navy-elevated); border-radius: 14px; padding: 6px 12px 6px 8px; }
+.chip img { width: 28px; height: 28px; object-fit: contain; }
+.chip .g { font-size: 18px; width: 28px; text-align: center; }
+.chip b { display: block; font-size: 13px; font-weight: 600; color: var(--text-high); }
+.chip small { display: block; font-size: 11px; color: var(--text-low); }
+.strip-wrap { margin-top: 8px; }
+.strip-title { margin: 0 0 6px; font-size: 11px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-low); }
+#story-strip { width: 100%; height: 34px; display: block; }
+.strip-ends { font-size: 11px; color: var(--text-low); }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px; font-size: 11px; color: var(--text-low); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend i { width: 10px; height: 8px; border-radius: 2px; display: inline-block; }

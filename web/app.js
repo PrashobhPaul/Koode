@@ -774,6 +774,8 @@
       : (state && state.lastBreakEndAt) ? 'Last break ' + ago(state.lastBreakEndAt) : 'No break yet');
     text('battery', state && typeof state.battery === 'number' ? state.battery + '%' : '—');
 
+    renderStory(state && state.story, events || []);
+
     // ---- timeline ----
     var list = $('timeline');
     list.innerHTML = '';
@@ -790,7 +792,84 @@
           '</span><span class="when">' + clock(shownTime(e) || Date.now()) + '</span>';
         list.appendChild(li);
       });
+    var tollNote = $('toll-note');
+    var offline = (events || []).some(function (e) { return e.type === 'DEVICE_BACK_ONLINE'; });
+    var tolls = (events || []).some(function (e) { return e.type === 'TOLL_CROSSED'; });
+    if (tolls && offline) { tollNote.textContent = TOLL_NOTE; show(tollNote); } else hide(tollNote);
   }
+
+  /**
+   * The story so far, as the traveller's phone tells it: the same words the
+   * journey report carries, retold every few minutes and pushed with the
+   * live state. Nothing is composed here; the page only lays it out.
+   */
+  var PHASE_COLOR = { DRIVING: '#2dd4bf', STOPPED: '#f6c66b', HALT: '#38bdf8', OFFLINE: '#6f8a99' };
+  var PHASE_LABEL = { DRIVING: 'Moving', STOPPED: 'Stopped', HALT: 'Halt', OFFLINE: 'Out of contact' };
+  var GLYPH = { toll: '🛣', tea: '☕', snack: '🍪', offline: '📵', phone: '📱', sos: '🆘', note: '💬', pin: '📍', flag: '🏁', clock: '🕒', stopped: '🅿', people: '👥', road: '🛣' };
+  var storyExpanded = false;
+  function renderStory(story, events) {
+    var card = $('story-card');
+    if (!story || !story.paragraphs || !story.paragraphs.length) { hide(card); return; }
+    show(card);
+    var paras = story.paragraphs;
+    var box = $('story-text');
+    box.innerHTML = '';
+    (storyExpanded ? paras : paras.slice(0, 1)).forEach(function (p, i) {
+      var el = document.createElement('p'); el.className = i === 0 ? 'lead' : ''; el.textContent = p; box.appendChild(el);
+    });
+    if (paras.length > 1) {
+      var more = document.createElement('button'); more.type = 'button'; more.className = 'more';
+      more.textContent = storyExpanded ? 'Show less' : 'Read the whole story';
+      more.onclick = function () { storyExpanded = !storyExpanded; renderStory(story, events); };
+      box.appendChild(more);
+    }
+    var chips = $('story-highlights');
+    chips.innerHTML = '';
+    (story.highlights || []).forEach(function (h) {
+      var c = document.createElement('span'); c.className = 'chip';
+      var lead = h.picture ? '<img src="art/' + encodeURIComponent(h.picture) + '.webp" alt="">' : '<span class="g">' + (GLYPH[h.glyph] || '•') + '</span>';
+      c.innerHTML = lead + '<span><b></b><small></small></span>';
+      c.querySelector('b').textContent = h.title || '';
+      c.querySelector('small').textContent = h.detail || '';
+      chips.appendChild(c);
+    });
+    var segs = story.segments || [];
+    var wrap = $('story-strip-wrap');
+    if (segs.length) {
+      show(wrap);
+      var end = segs[segs.length - 1][1];
+      var from = Math.max(segs[0][0], end - 24 * 36e5);
+      var span = Math.max(1, end - from);
+      var svg = $('story-strip');
+      var W = 600, barY = 2, barH = 20;
+      var parts = ['<rect x="0" y="' + barY + '" width="' + W + '" height="' + barH + '" rx="10" fill="#0e2231"/>'];
+      segs.forEach(function (sg) {
+        var a = Math.max(sg[0], from), b = Math.min(sg[1], end);
+        if (b <= a) return;
+        var x = (a - from) / span * W, w = Math.max(0.5, (b - a) / span * W);
+        parts.push('<rect x="' + x.toFixed(1) + '" y="' + barY + '" width="' + w.toFixed(1) + '" height="' + barH + '" fill="' + (PHASE_COLOR[sg[2]] || '#6f8a99') + '"/>');
+      });
+      // hour ticks
+      var t = new Date(from); t.setMinutes(0, 0, 0);
+      var hours = span / 36e5, step = hours <= 8 ? 1 : hours <= 14 ? 2 : 3;
+      for (; t.getTime() <= end; t.setHours(t.getHours() + 1)) {
+        if (t.getTime() >= from && t.getHours() % step === 0) {
+          var tx = ((t.getTime() - from) / span * W).toFixed(1);
+          parts.push('<line x1="' + tx + '" y1="' + (barY + barH + 2) + '" x2="' + tx + '" y2="' + (barY + barH + 7) + '" stroke="#6f8a99" stroke-width="1.5"/>');
+        }
+      }
+      parts.push('<line x1="' + W + '" y1="0" x2="' + W + '" y2="' + (barY + barH + 4) + '" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>');
+      svg.innerHTML = parts.join('');
+      text('strip-label', hours >= 23 ? 'The last 24 hours' : 'So far today');
+      text('strip-from', clock(from)); text('strip-to', clock(end));
+      var present = {}; segs.forEach(function (sg) { present[sg[2]] = true; });
+      $('strip-legend').innerHTML = ['DRIVING', 'STOPPED', 'HALT', 'OFFLINE'].filter(function (k) { return present[k] || k === 'DRIVING'; })
+        .map(function (k) { return '<span><i style="background:' + PHASE_COLOR[k] + '"></i>' + PHASE_LABEL[k] + '</span>'; }).join('');
+    } else hide(wrap);
+    var note = $('story-note');
+    if (story.tollsMayBeMissing) { note.textContent = TOLL_NOTE; show(note); } else hide(note);
+  }
+  var TOLL_NOTE = "Toll plazas are noticed from the phone's position. Any crossed while the phone was out of contact would not be here unless added afterwards.";
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {

@@ -10,6 +10,7 @@ import com.trippulse.app.domain.report.JourneyStory
 import com.trippulse.app.domain.report.JourneyStory.Entry
 import com.trippulse.app.domain.report.JourneyStory.Item
 import com.trippulse.app.domain.report.PlaceBook
+import com.trippulse.app.domain.report.Prose
 import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
@@ -113,7 +114,7 @@ object Reports {
 
         blocks += Space(10f)
         blocks += Heading("Stop by stop", kicker = if (s.days.size > 1) "${s.days.size} days" else null)
-        blocks += timeline(s, i, completed)
+        blocks += timeline(s, i, completed, strips = true)
 
         if (a != null && a.legs.size > 1) {
             blocks += Space(10f)
@@ -126,6 +127,14 @@ object Reports {
 
         blocks += Space(10f)
         blocks += Heading("How the journey went")
+        if (s.kmByHour.size >= 3) {
+            blocks += BarChart(
+                s.kmByHour.map { h -> BarChart.Bar(hourLabel(h.hourStartMs, z), h.metres / 1000.0) },
+                valueText = { v -> if (v >= 10) "${v.toInt()}" else "%.1f".format(Locale.ENGLISH, v) },
+                title = "Distance by hour (${m.distanceUnit})", h = 110f
+            )
+            blocks += Space(6f)
+        }
         blocks += Facts(buildList {
             add("Driving" to "${JourneyStory.duration(moving.first)} over ${m.distance(moving.second)}")
             if (stoppedS > 0) add("At stops" to "${JourneyStory.duration(stoppedS)} across ${s.stops.size} stop${if (s.stops.size == 1) "" else "s"}")
@@ -147,6 +156,7 @@ object Reports {
         })
 
         blocks += Space(6f)
+        if (s.tollsMayBeMissing && s.tolls > 0) blocks += Footnote(Prose.TOLL_NOTE)
         blocks += Footnote(
             "Times are the phone's local time. Places come from the traveller's saved places and the phone's own map data. " +
                 "Distances are as the phone measured them; a stretch with the phone out of contact is estimated."
@@ -161,9 +171,12 @@ object Reports {
     }
 
     /** Every day, every stop, with the road between. Shared by the journey and emergency reports. */
-    fun timeline(s: JourneyStory.Story, i: JourneyStory.Input, completed: Boolean, sinceMs: Long? = null): List<Block> {
+    fun timeline(s: JourneyStory.Story, i: JourneyStory.Input, completed: Boolean, sinceMs: Long? = null, strips: Boolean = false): List<Block> {
         val z = i.zone
         val out = ArrayList<Block>()
+        val character = Prose.Character(i, s)
+        val dice = Prose.Dice(Prose.seed(i.seedKey + ":days"))
+        val endMs = i.endedAtMs ?: i.nowMs
         val days = s.days.map { d -> d to d.entries.filter { sinceMs == null || it.atMs >= sinceMs || (it is Entry.Halt && (it.endMs ?: Long.MAX_VALUE) >= sinceMs) } }
             .filter { it.second.isNotEmpty() }
         val flat = days.flatMap { it.second }
@@ -171,7 +184,22 @@ object Reports {
         val firstNode = flat.firstOrNull { it !is Entry.Drive }
         for ((day, entries) in days) {
             if (s.days.size > 1 || sinceMs != null) {
-                out += DayHeader(day.number, day.title)
+                out += DayHeader(day.number, day.title, note = if (strips) Prose.dayLead(day, character, dice) else null)
+            }
+            if (strips) {
+                val from = maxOf(day.dateMs, i.startedAtMs)
+                val to = minOf(day.dateMs + 24 * 3_600_000L, endMs)
+                if (to - from > 30 * 60_000L) {
+                    out += DayStrip(
+                        s.segments, from, to, z,
+                        pins = entries.filterIsInstance<Entry.Stop>().filter { it.items.isNotEmpty() }.map { it.atMs to stopIcon(it) } +
+                            entries.filterIsInstance<Entry.Halt>().map { it.atMs to Icon(Pictures.STAY) },
+                        nowMs = if (!completed) i.nowMs else null
+                    )
+                    out += StripLegend(offline = s.segments.any { it.phase == JourneyStory.Phase.OFFLINE && it.toMs > from && it.fromMs < to },
+                        halt = s.segments.any { it.phase == JourneyStory.Phase.HALT && it.toMs > from && it.fromMs < to })
+                    out += Space(6f)
+                }
             }
             for (e in entries) {
                 val above = e !== firstNode
@@ -332,21 +360,48 @@ object Reports {
 
         blocks += Space(16f)
         blocks += Heading("Where the money went")
-        moneyStory(x, total, byCat, litres, unknown).forEach { blocks += Paragraph(it, after = 8f) }
-        blocks += Space(4f)
-        for ((cat, amount) in byCat) {
-            val rows = x.expenses.filter { it.category == cat }
-            val qty = rows.sumOf { it.quantity ?: 0.0 }
-            val unit = rows.firstNotNullOfOrNull { it.unit }
-            val sub = buildList {
-                add("${rows.size} ${if (rows.size == 1) "entry" else "entries"}")
-                if (qty > 0 && unit != null) add("${num(qty)} $unit")
-                rows.mapNotNull { placeAt(it.atMs)?.let(JourneyStory::short) }.distinct().takeIf { it.isNotEmpty() }?.let { add(it.take(2).joinToString(", ")) }
-            }.joinToString(" · ")
-            blocks += ShareBar(categoryIcon(cat), cat.label, sub, money(m, amount), if (total > 0) amount / total else 0.0)
-        }
-        if (x.passCrossings > 0) {
-            blocks += ShareBar(Icon(glyph = "toll"), "Tolls", "${x.passCrossings} crossing${if (x.passCrossings == 1) "" else "s"} on the FASTag annual pass", "Free", 0.0)
+        val character = Prose.Character(i, s)
+        val dice = Prose.Dice(Prose.seed(i.seedKey + ":money"))
+        Prose.money(
+            character, dice, total,
+            byCat.map { (c, v) -> Prose.CostShare(c.label, v, x.expenses.count { it.category == c }, c == Expenses.Category.FUEL, c == Expenses.Category.FOOD, c == Expenses.Category.ACCOMMODATION) },
+            litres, kwh, perUnit(m, total, distance), m.distanceUnit,
+            m.efficiency(distance, litres) ?: m.electricEfficiency(distance, kwh), unknown.size, x.passCrossings
+        ) { money(m, it) }.forEach { blocks += Paragraph(it, after = 8f) }
+        if (byCat.isNotEmpty()) {
+            blocks += Space(4f)
+            blocks += Donut(
+                byCat.map { (c, v) ->
+                    val rows = x.expenses.filter { it.category == c }
+                    Donut.Slice(c.label, v, categoryIcon(c), "${rows.size} ${if (rows.size == 1) "entry" else "entries"}")
+                },
+                centreValue = money(m, total), centreLabel = if (unknown.isEmpty()) "total" else "recorded"
+            ) { money(m, it) }
+            blocks += Space(10f)
+            blocks += Table(
+                listOf(Table.Column("Category", 2.2f), Table.Column("Entries", 0.9f, right = true), Table.Column("Quantity", 1.1f, right = true),
+                    Table.Column("Where", 2.4f), Table.Column("Amount", 1.3f, right = true), Table.Column("Share", 0.8f, right = true)),
+                byCat.map { (c, v) ->
+                    val rows = x.expenses.filter { it.category == c }
+                    val qty = rows.sumOf { it.quantity ?: 0.0 }
+                    val unit = rows.firstNotNullOfOrNull { it.unit }
+                    listOf(
+                        c.label, rows.size.toString(),
+                        if (qty > 0 && unit != null) "${num(qty)} $unit" else "—",
+                        rows.mapNotNull { placeAt(it.atMs)?.let(JourneyStory::short) }.distinct().take(2).joinToString(", ").ifBlank { "—" },
+                        money(m, v), "${Math.round(v / total * 100)}%"
+                    )
+                } + (if (x.passCrossings > 0) listOf(listOf("Tolls", x.passCrossings.toString(), "—", "FASTag annual pass", "Free", "0%")) else emptyList()),
+                totalRow = listOf(if (unknown.isEmpty()) "Total" else "Total recorded", x.expenses.size.toString(), "", "", money(m, total), "100%")
+            )
+            val byDayTotals = x.expenses.groupBy { Instant.ofEpochMilli(it.atMs).atZone(z).toLocalDate() }.toSortedMap()
+            if (byDayTotals.size >= 2) {
+                blocks += Space(12f)
+                blocks += BarChart(
+                    byDayTotals.map { (d, rows) -> BarChart.Bar(SHORT_DAY.withZone(z).format(d.atStartOfDay(z)), rows.sumOf { it.amount }) },
+                    valueText = { money(m, it) }, title = "Spend by day", h = 110f, color = Ink.SKY
+                )
+            }
         }
 
         blocks += Space(12f)
@@ -391,6 +446,7 @@ object Reports {
                 x.approvedAtMs?.let { "verified ${stamp(it, z)}" }
             ).joinToString(" · "))
         blocks += Space(8f)
+        if (s.tollsMayBeMissing && (s.tolls > 0 || x.passCrossings > 0)) blocks += Footnote(Prose.TOLL_NOTE)
         blocks += Footnote("This report is private to ${JourneyStory.firstName(i.who)}. Koode never shares it on its own; places are where the phone was when each expense was logged.")
 
         return Report(
@@ -400,54 +456,6 @@ object Reports {
             blocks = blocks,
             title = "Travel expenses"
         )
-    }
-
-    private fun moneyStory(
-        x: ExpenseInput, total: Double, byCat: List<Map.Entry<Expenses.Category, Double>>, litres: Double,
-        unknown: List<Expenses.Opportunity>
-    ): List<String> {
-        val m = x.measures; val s = x.story; val i = x.input
-        if (x.expenses.isEmpty()) return listOf("No expenses were recorded on this journey.")
-        val out = ArrayList<String>()
-        out += buildString {
-            val top = byCat.first()
-            append("${JourneyStory.name(i.who)} spent ${money(m, total)} on this journey")
-            perUnit(m, total, i.distanceM)?.let { append(", about $it for every ${m.distanceUnit} travelled") }
-            append(". ")
-            append("${top.key.label} took the largest share: ${money(m, top.value)}, ${Math.round(top.value / total * 100)}% of the total")
-            if (top.key == Expenses.Category.FUEL && litres > 0) {
-                append(", for ${num(litres)} ${m.volumeUnit}")
-                m.efficiency(i.distanceM, litres)?.let { append(" (about $it)") }
-            }
-            append(".")
-        }
-        val rest = byCat.drop(1)
-        if (rest.isNotEmpty()) {
-            out += buildString {
-                append(JourneyStory.listJoin(rest.take(3).map { (c, v) ->
-                    val n = x.expenses.count { it.category == c }
-                    "${c.label.lowercase(Locale.ENGLISH)} came to ${money(m, v)}" + when (c) {
-                        Expenses.Category.FOOD -> mealsNote(s, n)
-                        else -> if (n > 1) " over $n entries" else ""
-                    }
-                }).replaceFirstChar { it.uppercase() })
-                append(".")
-            }
-        }
-        if (x.passCrossings > 0) {
-            out += if (x.passCrossings >= s.tolls)
-                "All ${s.tolls} toll plazas were covered by the FASTag annual pass, so tolls added nothing to this journey."
-            else "${x.passCrossings} of the ${s.tolls} toll crossings were covered by the FASTag annual pass."
-        }
-        if (unknown.isNotEmpty()) {
-            out += "${unknown.size} expense${if (unknown.size == 1) " has" else "s have"} no amount yet, so the real total is higher than shown."
-        }
-        return out
-    }
-
-    private fun mealsNote(s: JourneyStory.Story, entries: Int): String {
-        val meals = s.meals.filterKeys { it != Nourishment.SNACK && it != Nourishment.TEA_COFFEE }.values.sum()
-        return if (meals > 0) " across ${meals} meal${if (meals == 1) "" else "s"}" else if (entries > 1) " over $entries entries" else ""
     }
 
     fun categoryIcon(c: Expenses.Category): Icon = when (c) {
@@ -561,6 +569,13 @@ object Reports {
         if (tl.isNotEmpty()) {
             blocks += Space(6f)
             blocks += Heading("The hours before", kicker = "Most recent last")
+            val stripFrom = maxOf(since, i.startedAtMs); val stripTo = l.fixAtMs ?: i.nowMs
+            if (stripTo - stripFrom > 30 * 60_000L) {
+                blocks += DayStrip(l.story.segments, stripFrom, stripTo, z,
+                    pins = l.story.stops.filter { it.items.isNotEmpty() && it.atMs in stripFrom..stripTo }.map { it.atMs to stopIcon(it) })
+                blocks += StripLegend(offline = l.story.offline.isNotEmpty(), halt = l.story.halts.isNotEmpty())
+                blocks += Space(8f)
+            }
             blocks += tl
             l.fixAtMs?.let { at ->
                 blocks += TimelineNode(
@@ -604,6 +619,9 @@ object Reports {
     private val SHORT_DAY: DateTimeFormatter = DateTimeFormatter.ofPattern("EEE d MMM", Locale.ENGLISH)
 
     fun stamp(ms: Long, z: ZoneId): String = STAMP.withZone(z).format(Instant.ofEpochMilli(ms))
+
+    /** "1 PM", "11 AM": an hour on a chart axis. */
+    fun hourLabel(ms: Long, z: ZoneId): String = DateTimeFormatter.ofPattern("h a", Locale.ENGLISH).withZone(z).format(Instant.ofEpochMilli(ms))
 
     fun dateRange(start: Long, end: Long?, z: ZoneId): String {
         val a = "${SHORT_DAY.withZone(z).format(Instant.ofEpochMilli(start))}, ${JourneyStory.clock(start, z)}"

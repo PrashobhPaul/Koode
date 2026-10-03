@@ -159,6 +159,20 @@ object ReportFactory {
         )
     }
 
+    /** The story of a journey the phone holds, for the app's own screens. */
+    suspend fun storyFor(
+        context: Context,
+        trip: ActiveTripEntity,
+        events: List<EventEntity>,
+        samples: List<LocationSampleEntity>,
+        analytics: JourneyAnalytics.JourneyReport?,
+        originLabel: String? = null,
+        destLabel: String? = null
+    ): JourneyStory.Story {
+        val input = input(context, trip, events, samples, analytics, originLabel, destLabel)
+        return JourneyStory.build(input, book(context, input))
+    }
+
     // ------------------------------------------------------------------------
 
     private fun input(
@@ -185,7 +199,9 @@ object ReportFactory {
             events = events.map(EventCodec::toDomain),
             samples = thin(sorted).map { JourneyStory.Sample(it.tMs, it.lat, it.lng) },
             distanceM = analytics?.distanceM ?: 0.0,
-            routeDistanceM = trip.totalRouteDistanceM.takeIf { it > 0 }
+            routeDistanceM = trip.totalRouteDistanceM.takeIf { it > 0 },
+            fuelType = trip.fuelType,
+            seedKey = trip.tripId
         )
     }
 
