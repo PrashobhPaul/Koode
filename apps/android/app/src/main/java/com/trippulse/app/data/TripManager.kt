@@ -715,6 +715,7 @@ class TripManager(
             if (credit > 0) {
                 covered += credit; lastDistancePoint = fix.point
                 if (s.distanceRemainingM > 0) gapCredit = GapCredit(now, Geo.haversineM(ldp, fix.point), credit, s.distanceRemainingM, covered)
+                inferTollsAcrossSilence(t, ldp, fix.point, lastFixMs, now, profile)
             }
         } else if (ldp != null && speedKmh >= cfg.restartSpeedKmh) {
             covered += Geo.haversineM(ldp, fix.point)
@@ -2614,6 +2615,36 @@ class TripManager(
         )
     }
 
+    /**
+     * The plazas on the road the car took while the phone was silent. The
+     * road is asked of the router between where the record stopped and where
+     * it resumed; every known plaza on it is a crossing, timed by its share
+     * of the road. Each is marked as worked out, not seen. Called with the
+     * lock held; the router is asked outside it.
+     */
+    private fun inferTollsAcrossSilence(t: ActiveTripEntity, from: GeoPoint, to: GeoPoint, fromMs: Long, toMs: Long, profile: TransportProfile) {
+        if (!profile.isPrivateVehicle || !settings.current.tollDetectionEnabled) return
+        if (Geo.haversineM(from, to) < DistanceLedger.GAP_MIN_M) return
+        val tripId = t.tripId
+        appScope.launch {
+            val plan = runCatching { kotlinx.coroutines.withTimeoutOrNull(30_000) { routing.route(from, to) } }.getOrNull() ?: return@launch
+            if (plan.provider == "fallback" || plan.polyline.size < 2) return@launch
+            lock.withLock {
+                val cur = trip ?: return@withLock
+                if (cur.tripId != tripId) return@withLock
+                val recorded = recentTolls(cur).filter { it.atMs in (fromMs - 60 * 60_000L)..(toMs + 60 * 60_000L) }
+                val found = com.trippulse.app.domain.TollPlazas.alongPath(tollPlazas(), plan.polyline, fromMs, toMs, recorded)
+                val plate = activeRegistrationPlate()
+                for (h in found) {
+                    recordTollLocked(
+                        TollCrossing(h.plaza.name, plate, journeyPassType(plate), h.atMs, issuer = null),
+                        EventSource.SYSTEM_INFERRED, h.plaza.lat, h.plaza.lng, osmId = h.plaza.id, inferred = true
+                    )
+                }
+            }
+        }
+    }
+
     /** "Toll crossed", tapped by the traveller. Called with the lock held. */
     private suspend fun recordManualTollLocked() {
         val t = trip ?: return
@@ -2663,7 +2694,9 @@ class TripManager(
      * traveller's tap. Called with the lock held.
      */
     private suspend fun recordTollLocked(
-        crossing: TollCrossing, source: EventSource, atLat: Double?, atLng: Double?, osmId: String? = null
+        crossing: TollCrossing, source: EventSource, atLat: Double?, atLng: Double?, osmId: String? = null,
+        /** Worked out from the road while the phone was silent, not seen from its position. */
+        inferred: Boolean = false
     ) {
         val t = trip ?: return
         val s = state ?: return
@@ -2706,16 +2739,20 @@ class TripManager(
             osmId?.let { put("osmId", it) }
             crossing.issuer?.let { put("issuer", it) }
             put("tollsOnJourney", count)
+            if (inferred) { put("inferred", true); put("atMs", crossing.crossedAtMs) }
             put("text", buildString {
                 append(crossing.plaza?.let { "Toll crossed at $it" } ?: "Toll crossed")
+                if (inferred) append(" while the phone was out of contact · worked out from the road")
                 append(" · $count ${if (count == 1) "toll" else "tolls"} recorded on this journey")
             })
         }
         // An SMS gives no coordinate: the vehicle's last known point is used,
         // never an invented one. A plaza found on the path is where it is.
+        // A crossing worked out after a silence is written now, with when it
+        // happened in the payload, so followers polling for news receive it.
         insertEvent(
             t.tripId, EventTypes.TOLL_CROSSED, source,
-            crossing.crossedAtMs, atLat ?: s.lat, atLng ?: s.lng, payload, false
+            if (inferred) System.currentTimeMillis() else crossing.crossedAtMs, atLat ?: s.lat, atLng ?: s.lng, payload, false
         )
         if (atLat != null && atLng != null) {
             recentTolls(t).add(com.trippulse.app.domain.TollPlazas.Recent(atLat, atLng, crossing.crossedAtMs))

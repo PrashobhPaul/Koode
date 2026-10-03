@@ -92,6 +92,44 @@ object TollPlazas {
     /** Whether a fix is good enough to take part in detection. */
     fun usable(accuracyM: Double?): Boolean = accuracyM != null && accuracyM <= MAX_ACCURACY_M
 
+    /** A plaza on a road, with when the vehicle would have passed it. */
+    data class OnPath(val plaza: Plaza, val atMs: Long)
+
+    /**
+     * The plazas a road passes through, for a stretch the phone was silent
+     * on: [path] is the road between where the record stopped ([fromMs]) and
+     * where it resumed ([toMs]); each plaza is timed by its share of the
+     * road's length. Plazas with a crossing already [recorded] nearby are
+     * left out, as is any plaza already found on this path.
+     */
+    fun alongPath(index: Index, path: List<GeoPoint>, fromMs: Long, toMs: Long, recorded: List<Recent>): List<OnPath> {
+        if (path.size < 2 || index.size == 0 || toMs <= fromMs) return emptyList()
+        val total = (1 until path.size).sumOf { distanceM(path[it - 1].lat, path[it - 1].lng, path[it].lat, path[it].lng) }
+        if (total <= 0) return emptyList()
+        val out = ArrayList<OnPath>()
+        var run = 0.0
+        for (i in 1 until path.size) {
+            val a = path[i - 1]; val b = path[i]
+            val seg = distanceM(a.lat, a.lng, b.lat, b.lng)
+            val hit = index.near((a.lat + b.lat) / 2, (a.lng + b.lng) / 2, seg / 2 + HIT_RADIUS_M)
+                .map { it to distanceToSegmentM(it.lat, it.lng, a.lat, a.lng, b.lat, b.lng) }
+                .filter { it.second <= HIT_RADIUS_M }
+                .minByOrNull { it.second }?.first
+            // Timed by where on the road the plaza sits, not the segment's middle.
+            val atMs = hit?.let { fromMs + ((run + seg * fractionAlong(it.lat, it.lng, a.lat, a.lng, b.lat, b.lng)) / total * (toMs - fromMs)).toLong() }
+            run += seg
+            if (hit == null || atMs == null) continue
+            val known = recorded.any { distanceM(it.lat, it.lng, hit.lat, hit.lng) <= SAME_PLAZA_M } ||
+                out.any { distanceM(it.plaza.lat, it.plaza.lng, hit.lat, hit.lng) <= SAME_PLAZA_M }
+            if (known) continue
+            val name = hit.name ?: index.near(hit.lat, hit.lng, NAME_RADIUS_M)
+                .filter { it.name != null }
+                .minByOrNull { distanceM(hit.lat, hit.lng, it.lat, it.lng) }?.name
+            out += OnPath(hit.copy(name = name), atMs)
+        }
+        return out
+    }
+
     // ---- storage: "id,lat,lng,name" lines; names may contain commas ----
 
     fun encode(plazas: List<Plaza>): String = plazas.joinToString("\n") {
@@ -119,6 +157,16 @@ object TollPlazas {
         val dx = (lng2 - lng1) * kx
         val dy = (lat2 - lat1) * METRES_PER_DEG_LAT
         return sqrt(dx * dx + dy * dy)
+    }
+
+    /** How far along the segment a→b the point's foot falls, 0 at a, 1 at b. */
+    fun fractionAlong(lat: Double, lng: Double, aLat: Double, aLng: Double, bLat: Double, bLng: Double): Double {
+        val k = cos(Math.toRadians(aLat)) * METRES_PER_DEG_LAT
+        val dx = (bLng - aLng) * k; val dy = (bLat - aLat) * METRES_PER_DEG_LAT
+        val px = (lng - aLng) * k; val py = (lat - aLat) * METRES_PER_DEG_LAT
+        val len2 = dx * dx + dy * dy
+        if (len2 <= 0.0) return 0.0
+        return ((px * dx + py * dy) / len2).coerceIn(0.0, 1.0)
     }
 
     fun distanceToSegmentM(

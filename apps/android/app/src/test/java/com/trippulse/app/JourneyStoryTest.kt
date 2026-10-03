@@ -201,6 +201,18 @@ class JourneyStoryTest {
         assertTrue(s.stoppedSeconds >= 3600 + 20 * 60)
     }
 
+    @Test fun a_halt_nobody_resumed_ends_when_the_car_leaves() {
+        // Room at 11:40 PM, no resume ever tapped; the car drives off north at 7 AM.
+        val away = JourneyStory.Sample(t(31), 14.20, 77.60)
+        val extra = listOf(JourneyStory.Sample(t(30, 55), 13.95, 77.68), away, JourneyStory.Sample(t(31, 30), 14.40, 77.55))
+        val i = input(ended = t(32)).let { it.copy(samples = it.samples + extra, nowMs = t(32)) }
+        val s = story(i)
+        val halt = s.halts.single()
+        assertNotNull(halt.endMs)
+        assertTrue("halt should end around 7 AM, not at the journey's end", halt.endMs!! in t(30, 50)..t(31, 5))
+        assertTrue(s.drives.any { it.atMs >= t(30, 50) })
+    }
+
     @Test fun a_completed_journey_arrives() {
         val s = story(input(ended = t(23, 59)))
         assertEquals("Completed", s.status)

@@ -121,7 +121,9 @@ object JourneyStory {
             val fromPlace: String?,
             val toPlace: String?,
             /** Time inside this stretch the car is known to have stood: a stop logged later, a silence it never moved in. */
-            val stoppedInsideS: Long = 0
+            val stoppedInsideS: Long = 0,
+            /** Of [tolls], how many were worked out from the road while the phone was silent. */
+            val inferredTolls: Int = 0
         ) : Entry() {
             val seconds: Long get() = ((endMs - atMs) / 1000).coerceAtLeast(0)
             /** Time actually on the move, including a silence the car moved through. */
@@ -261,7 +263,7 @@ object JourneyStory {
             if (to == null || to - from < MIN_DRIVE_MS) continue
             val dist = travelled(input.samples, from, to, anchorPoint(anchors.getOrNull(i + 1), input))
             if (dist < MIN_DRIVE_M) continue
-            val inWindow = tollEvents.filter { it.eventTimeMs in from..to }
+            val inWindow = tollEvents.filter { TimelineEdits.shownTime(it.type, it.payload, it.eventTimeMs) in from..to }
             drives += Entry.Drive(
                 atMs = from, endMs = to, distanceM = dist,
                 tolls = inWindow.size,
@@ -270,7 +272,8 @@ object JourneyStory {
                 fromPlace = placeOf(a),
                 toPlace = anchors.getOrNull(i + 1)?.let { placeOf(it) }
                     ?: input.samples.lastOrNull { it.tMs <= to }?.let { book.describe(it.lat, it.lng) },
-                stoppedInsideS = stoodInside(input, stops, from, to)
+                stoppedInsideS = stoodInside(input, stops, from, to),
+                inferredTolls = inWindow.count { it.payload["inferred"] == true }
             )
         }
 
@@ -426,6 +429,12 @@ object JourneyStory {
             }
         }
         return ms / 1000
+    }
+
+    /** Whether any fix between [from] and [to] is back at the place. */
+    private fun cameBack(input: Input, lat: Double?, lng: Double?, from: Long, to: Long): Boolean {
+        if (lat == null || lng == null) return false
+        return input.samples.any { it.tMs > from + MIN && it.tMs < to && PlaceBook.distanceM(lat, lng, it.lat, it.lng) < MOVED_ON_M }
     }
 
     /**
@@ -597,9 +606,18 @@ object JourneyStory {
             if (after.firstOrNull { it.type == EventTypes.HALT_CANCELLED || it.type == EventTypes.HALT_CONFIRMED }?.type == EventTypes.HALT_CANCELLED) {
                 return@mapNotNull null
             }
-            val end = after.firstOrNull {
+            val resumed = after.firstOrNull {
                 it.type in setOf(EventTypes.HALT_RESUMED, EventTypes.MORNING_RESUME, EventTypes.TRIP_RESUMED, EventTypes.HALT_CONFIRMED)
-            }?.eventTimeMs ?: input.endedAtMs
+            }?.eventTimeMs
+            // The halt ends when the traveller says so -- unless the record shows
+            // the car gone well before that and never back, or nothing was said
+            // at all: then it ends when the car left.
+            val left = movedOnAt(input, start, e.lat, e.lng)
+            val end = when {
+                resumed == null -> left ?: input.endedAtMs
+                left != null && resumed - left > LATE_RESUME_MS && !cameBack(input, e.lat, e.lng, left, resumed) -> left
+                else -> resumed
+            }
             val type = Halts.Type.from(e.payload["haltType"] as? String)
             val overnight = e.payload["overnight"] == true
             val place = PlaceBook.clean(e.payload["place"] as? String) ?: book.describe(e.lat, e.lng)
@@ -866,6 +884,8 @@ object JourneyStory {
     private const val MOVED_ON_M = 500.0
     /** A stop with no length and no record of leaving it is taken as brief. */
     private const val NOMINAL_STOP_MS = 10 * MIN
+    /** A resume tapped this long after the car left is a late tap, not the end of the halt. */
+    private const val LATE_RESUME_MS = 30 * MIN
     /** Straight line to road for a short hop (the app's usual figure). */
     private const val ROAD_FACTOR = 1.27
 }
