@@ -84,6 +84,7 @@ class EndFlowReproTmpTest {
         override fun line(x1: Float, y1: Float, x2: Float, y2: Float, color: Int, width: Float, dash: Float) {}
         override fun polyline(pts: FloatArray, color: Int, width: Float) {}
         override fun polygon(pts: FloatArray, color: Int) {}
+        override fun arc(cx: Float, cy: Float, r: Float, startDeg: Float, sweepDeg: Float, color: Int, width: Float) {}
         override fun picture(name: String, l: Float, t: Float, w: Float, h: Float, mirrored: Boolean) = true
         override fun avatar(cx: Float, cy: Float, r: Float) = true
         override fun mark(l: Float, t: Float, size: Float, alpha: Float) = true

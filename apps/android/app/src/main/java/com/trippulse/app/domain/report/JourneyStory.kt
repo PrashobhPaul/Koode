@@ -57,8 +57,19 @@ object JourneyStory {
         val distanceM: Double,
         /** The planned route's length, when known: "320 of 990 km". */
         val routeDistanceM: Double? = null,
-        val zone: ZoneId = ZoneId.systemDefault()
+        val zone: ZoneId = ZoneId.systemDefault(),
+        /** PETROL, DIESEL or ELECTRIC for a private vehicle: "charged up" rather than "refuelled". */
+        val fuelType: String? = null,
+        /** Fixes the wording: one journey always reads the same way. */
+        val seedKey: String = "$origin|$startedAtMs"
     )
+
+    /** What the journey was doing over one span of time, for charts. */
+    enum class Phase { DRIVING, STOPPED, HALT, OFFLINE }
+    data class Segment(val fromMs: Long, val toMs: Long, val phase: Phase, val label: String? = null)
+
+    /** Distance covered in one clock hour, for the pace chart. */
+    data class HourKm(val hourStartMs: Long, val metres: Double)
 
     /** What happened at a stop, each with its picture where the app has one. */
     enum class Item(val picture: String?, val word: String) {
@@ -154,7 +165,15 @@ object JourneyStory {
         val offlineMs: Long,
         val status: String,
         /** Where the journey is now, or ended. */
-        val lastPlace: String?
+        val lastPlace: String?,
+        /** The whole span, phase by phase, for the day strip. */
+        val segments: List<Segment> = emptyList(),
+        /** Distance per clock hour, for the pace chart. */
+        val kmByHour: List<HourKm> = emptyList(),
+        /** True when the phone was ever out of contact: toll counts may be incomplete. */
+        val tollsMayBeMissing: Boolean = false,
+        /** The silences, as (from, to). */
+        val offline: List<Pair<Long, Long>> = emptyList()
     )
 
     // ------------------------------------------------------------------------
@@ -204,7 +223,6 @@ object JourneyStory {
     fun build(input: Input, book: PlaceBook): Story {
         val events = corrected(input.events)
         val endMs = input.endedAtMs ?: input.nowMs
-        val first = firstName(input.who)
 
         val stops = stops(events, input, book)
         val halts = halts(events, input, book)
@@ -270,17 +288,18 @@ object JourneyStory {
             else -> "On the way"
         }
 
-        val paragraphs = paragraphs(input, first, stops, halts, drives, tollEvents, meals, gaps, lastPlace, haltingNow, book)
         val highlights = highlights(input, stops, halts, drives, tollEvents, meals, water, restroom, refuels)
+        val segments = segments(input, stops, halts, gaps, endMs)
+        val kmByHour = kmByHour(input)
         val mode = TransportCatalog.label(input.mode).lowercase(Locale.ENGLISH)
         val headline = if (completed)
             "${name(input.who)} travelled ${km(input.distanceM)} from ${input.origin} to ${input.destination} by $mode."
         else
             "${name(input.who)} is travelling from ${input.origin} to ${input.destination} by $mode."
 
-        return Story(
+        val draft = Story(
             headline = headline,
-            paragraphs = paragraphs,
+            paragraphs = emptyList(),
             days = days,
             highlights = highlights,
             stops = stops,
@@ -293,8 +312,54 @@ object JourneyStory {
             refuels = refuels,
             offlineMs = offlineMs,
             status = status,
-            lastPlace = lastPlace
+            lastPlace = lastPlace,
+            segments = segments,
+            kmByHour = kmByHour,
+            tollsMayBeMissing = offlineMs > 0,
+            offline = gaps
         )
+        return draft.copy(paragraphs = Prose.narrate(input, draft, book))
+    }
+
+    // ------------------------------------------------------------------------
+    // Phases and pace, for the charts
+    // ------------------------------------------------------------------------
+
+    private fun segments(input: Input, stops: List<Entry.Stop>, halts: List<Entry.Halt>, gaps: List<Pair<Long, Long>>, endMs: Long): List<Segment> {
+        val start = input.startedAtMs
+        if (endMs <= start) return emptyList()
+        // Priority when spans overlap: a halt, then a stop, then a silence; the rest is moving.
+        data class Span(val a: Long, val b: Long, val phase: Phase, val label: String?, val rank: Int)
+        val spans = ArrayList<Span>()
+        halts.forEach { spans += Span(it.atMs, it.endMs ?: endMs, Phase.HALT, it.place, 0) }
+        stops.filterNot { it.loggedLater }.forEach { spans += Span(it.atMs, it.endMs ?: endMs, Phase.STOPPED, it.title, 1) }
+        gaps.forEach { (a, b) -> spans += Span(a, b, Phase.OFFLINE, null, 2) }
+        val cuts = (spans.flatMap { listOf(it.a, it.b) } + start + endMs).filter { it in start..endMs }.distinct().sorted()
+        val out = ArrayList<Segment>()
+        for (i in 0 until cuts.size - 1) {
+            val a = cuts[i]; val b = cuts[i + 1]
+            if (b <= a) continue
+            val mid = (a + b) / 2
+            val on = spans.filter { mid >= it.a && mid < it.b }.minByOrNull { it.rank }
+            val phase = on?.phase ?: Phase.DRIVING
+            val last = out.lastOrNull()
+            if (last != null && last.phase == phase && last.label == on?.label && last.toMs == a) out[out.lastIndex] = last.copy(toMs = b)
+            else out += Segment(a, b, phase, on?.label)
+        }
+        return out
+    }
+
+    private fun kmByHour(input: Input): List<HourKm> {
+        val z = input.zone
+        val acc = java.util.TreeMap<Long, Double>()
+        val s = input.samples
+        for (i in 1 until s.size) {
+            val a = s[i - 1]; val b = s[i]
+            if (b.tMs - a.tMs > 20 * MIN) continue   // a silence is not distance
+            val hour = Instant.ofEpochMilli(b.tMs).atZone(z).withMinute(0).withSecond(0).withNano(0).toInstant().toEpochMilli()
+            acc[hour] = (acc[hour] ?: 0.0) + PlaceBook.distanceM(a.lat, a.lng, b.lat, b.lng)
+        }
+        return acc.map { (h, m) -> HourKm(h, m) }
     }
 
     // ------------------------------------------------------------------------
@@ -507,142 +572,6 @@ object JourneyStory {
             out += Entry.Moment(TimelineEdits.shownTime(e.type, e.payload, e.eventTimeMs), null, m.first, m.second, place)
         }
         return out
-    }
-
-    // ------------------------------------------------------------------------
-    // The words
-    // ------------------------------------------------------------------------
-
-    private fun paragraphs(
-        input: Input, first: String, stops: List<Entry.Stop>, halts: List<Entry.Halt>,
-        drives: List<Entry.Drive>, tolls: List<TripEvent>, meals: Map<Nourishment, Int>,
-        gaps: List<Pair<Long, Long>>, lastPlace: String?, haltingNow: Boolean, book: PlaceBook
-    ): List<String> {
-        val z = input.zone
-        val out = ArrayList<String>()
-        val mode = TransportCatalog.label(input.mode).lowercase(Locale.ENGLISH)
-
-        // 1. The shape of it.
-        val elapsed = ((input.endedAtMs ?: input.nowMs) - input.startedAtMs) / 1000
-        out += buildString {
-            append("${name(input.who)} set off from ${input.origin} at ${clock(input.startedAtMs, z)} on ${day(input.startedAtMs, z)}, ")
-            append("heading for ${input.destination} by $mode. ")
-            if (input.endedAtMs != null) {
-                append("$first arrived at ${clock(input.endedAtMs, z)}")
-                if (!sameDay(input.startedAtMs, input.endedAtMs, z)) append(" on ${day(input.endedAtMs, z)}")
-                append(", ${km(input.distanceM)} and ${duration(elapsed)} later.")
-            } else {
-                append("So far $first has covered ${km(input.distanceM)}")
-                input.routeDistanceM?.takeIf { it > input.distanceM }?.let { append(" of the ${km(it)} route") }
-                append(" in ${duration(elapsed)}")
-                when {
-                    haltingNow && lastPlace != null -> append(", and is resting at $lastPlace.")
-                    lastPlace != null -> append(", and was last near $lastPlace.")
-                    else -> append(".")
-                }
-            }
-        }
-
-        // 2. The rhythm of the stops.
-        val real = stops.filterNot { it.items.isEmpty() }
-        if (real.isNotEmpty()) {
-            val moving = drives.filter { it.offlineMs == 0L && it.seconds >= 20 * 60 }
-            val avgGap = if (moving.size >= 2) moving.map { it.seconds }.average().toLong() else null
-            out += buildString {
-                append(when (real.size) {
-                    1 -> "There was one proper break"
-                    else -> "There were ${words(real.size)} proper breaks"
-                })
-                avgGap?.let { append(", roughly one every ${duration(it)} on the road") }
-                append(". ")
-                val mealStops = real.filter { Item.FOOD in it.items }.sortedBy { it.atMs }
-                    .fold(ArrayList<Entry.Stop>()) { acc, s ->
-                        // The same meal logged twice is told once, at its first time.
-                        if (acc.none { it.meal == s.meal && abs(it.atMs - s.atMs) <= 6 * HOUR }) acc += s
-                        acc
-                    }
-                val mealBits = mealStops.map { s ->
-                    val what = s.meal?.label ?: "A meal"
-                    val where = s.place?.let { if (s.loggedLater) "" else " ${at(short(it))}" } ?: ""
-                    "${what.lowercase(Locale.ENGLISH)}$where at ${clock(s.atMs, z)}"
-                }.distinct()
-                if (mealBits.isNotEmpty()) append(sentence(listJoin(mealBits).replaceFirstChar { it.uppercase() }))
-                val teas = real.filter { (Item.TEA in it.items || Item.SNACK in it.items) && Item.FOOD !in it.items }
-                if (teas.isNotEmpty()) {
-                    val t = teas.first()
-                    append(" ${if (mealBits.isEmpty()) "" else "There was "}${stopTitle(t.items, null, null).lowercase(Locale.ENGLISH).let { if (mealBits.isEmpty()) it.replaceFirstChar { c -> c.uppercase() } else it }}")
-                    t.place?.let { append(" ${near(short(it))}") }
-                    append(" around ${clock(t.atMs, z)}.")
-                }
-                val fuel = real.filter { Item.FUEL in it.items || Item.CHARGE in it.items }
-                if (fuel.isNotEmpty()) {
-                    val places = fuel.mapNotNull { it.place?.let(::short) }.distinct()
-                    append(" $first ")
-                    append(if (fuel.any { Item.CHARGE in it.items }) "charged up" else "refuelled")
-                    append(if (fuel.size == 1) " once" else " ${times(fuel.size)}")
-                    if (places.isNotEmpty()) append(", ${at(listJoin(places))}")
-                    append(".")
-                }
-            }.trim()
-        }
-
-        // 3. The road.
-        val longest = drives.filter { it.offlineMs == 0L }.maxByOrNull { it.seconds }
-        if (tolls.isNotEmpty() || longest != null) {
-            out += buildString {
-                if (tolls.isNotEmpty()) {
-                    val named = tolls.mapNotNull { tollName(it.payload) }.distinct()
-                    append("On the road $first crossed ${words(tolls.size)} toll plaza${if (tolls.size == 1) "" else "s"}")
-                    if (named.isNotEmpty()) append(", including ${listJoin(named.take(3))}")
-                    append(". ")
-                }
-                if (longest != null && longest.seconds >= 30 * 60) {
-                    append("The longest unbroken stretch was ${duration(longest.seconds)}")
-                    val a = longest.fromPlace; val b = longest.toPlace
-                    if (a != null && b != null && a != b) append(", from ${short(a)} to ${short(b)}")
-                    append(" (${km(longest.distanceM)}).")
-                }
-            }.trim()
-        }
-
-        // 4. Silences, honestly.
-        for ((from, to) in gaps) {
-            val before = input.samples.lastOrNull { it.tMs <= from }
-            val after = input.samples.firstOrNull { it.tMs >= to }
-            out += buildString {
-                append("The phone was out of contact for ${duration((to - from) / 1000)} from ${clock(from, z)}")
-                before?.let { b -> book.describe(b.lat, b.lng)?.let { append(" ${near(short(it))}") } }
-                append(" and reconnected at ${clock(to, z)}")
-                if (!sameDay(from, to, z)) append(" the next day")
-                if (before != null && after != null) {
-                    val d = PlaceBook.distanceM(before.lat, before.lng, after.lat, after.lng)
-                    book.describe(after.lat, after.lng)?.let { append(" ${at(short(it))}") }
-                    if (d > 5_000) append(", roughly ${km(d)} further on")
-                }
-                append(". Entries logged in between were sent when it came back.")
-            }
-        }
-
-        // 5. The night.
-        halts.lastOrNull()?.let { h ->
-            out += buildString {
-                append("At ${clock(h.atMs, z)}")
-                if (!sameDay(input.startedAtMs, h.atMs, z)) append(" on ${day(h.atMs, z)}")
-                append(", $first ")
-                append(when (h.type) {
-                    Halts.Type.ROOM -> "took a room"
-                    Halts.Type.FRIEND_FAMILY -> "stopped with friends or family"
-                    Halts.Type.REST_STOP -> "pulled in at a rest stop"
-                    Halts.Type.OTHER -> "stopped"
-                })
-                h.place?.let { append(" ${at(it)}") }
-                append(if (h.overnight) " for the night." else " for a halt.")
-                if (h.endMs != null && h.endMs > h.atMs && h.endMs != input.endedAtMs) {
-                    append(" The journey resumed at ${clock(h.endMs, z)}, after ${duration((h.endMs - h.atMs) / 1000)}.")
-                }
-            }
-        }
-        return out.filter { it.isNotBlank() }
     }
 
     private fun highlights(

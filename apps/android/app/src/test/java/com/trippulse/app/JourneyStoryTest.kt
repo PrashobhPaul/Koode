@@ -115,7 +115,7 @@ class JourneyStoryTest {
         val offline = s.drives.single { it.offlineMs > 0 }
         assertTrue("estimate covers the jump north", offline.distanceM > 200_000)
         assertEquals("Palasamudram", offline.toPlace)
-        assertTrue(s.paragraphs.any { it.contains("out of contact for 6 h 5 min") })
+        assertTrue(s.paragraphs.joinToString(" "), s.paragraphs.any { it.contains("6 h 5 min") })
         assertEquals((6 * 60 + 5) * 60_000L, s.offlineMs)
     }
 

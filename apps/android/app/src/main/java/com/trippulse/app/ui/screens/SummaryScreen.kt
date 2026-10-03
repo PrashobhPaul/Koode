@@ -92,6 +92,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val expenses by vm.expenses.collectAsStateWithLifecycle()
     val exporting by vm.exporting.collectAsStateWithLifecycle()
     val report by vm.report.collectAsStateWithLifecycle()
+    val story by vm.story.collectAsStateWithLifecycle()
     val originLabel by vm.originLabel.collectAsStateWithLifecycle()
     val destLabel by vm.destLabel.collectAsStateWithLifecycle()
     val fastagSummary by vm.fastagSummary.collectAsStateWithLifecycle()
@@ -301,7 +302,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                     )
                 }
             } else {
-                JourneyDashboard(r, measures, TransportCatalog.isPrivate(trip?.transportMode))
+                JourneyDashboard(r, measures, TransportCatalog.isPrivate(trip?.transportMode), story = story)
                 // FASTag — only when this journey's vehicle has a tracked
                 // balance. The journey toll count and the vehicle balance are
                 // separate numbers.
@@ -585,7 +586,9 @@ fun JourneyDashboard(
     report: JourneyAnalytics.JourneyReport,
     measures: Measures,
     privateVehicle: Boolean,
-    compact: Boolean = false
+    compact: Boolean = false,
+    /** The journey as a story, with its charts: shown when the screen has it. */
+    story: com.trippulse.app.domain.report.JourneyStory.Story? = null
 ) {
     val colors = KoodeTheme.colors
 
@@ -604,8 +607,43 @@ fun JourneyDashboard(
         }
     }
 
-    // ---- what the numbers mean ----
-    if (report.insights.isNotEmpty()) {
+    // ---- the story, in words and pictures ----
+    if (story != null && story.paragraphs.isNotEmpty()) {
+        KoodeCard(title = "The story", accent = colors.traveller) {
+            (if (compact) story.paragraphs.take(2) else story.paragraphs).forEach {
+                Text(it, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+                Spacer(Modifier.height(Spacing.sm))
+            }
+            if (story.highlights.isNotEmpty()) {
+                Spacer(Modifier.height(Spacing.xs))
+                com.trippulse.app.ui.components.HighlightChips(story.highlights)
+            }
+        }
+        if (story.segments.isNotEmpty()) {
+            KoodeCard(title = if (story.days.size > 1) "Day by day" else "The day") {
+                val zone = java.time.ZoneId.systemDefault()
+                val end = story.segments.last().toMs
+                story.days.forEach { day ->
+                    val from = maxOf(day.dateMs, story.segments.first().fromMs)
+                    val to = minOf(day.dateMs + 24 * 3_600_000L, end)
+                    if (to - from > 30 * 60_000L) {
+                        if (story.days.size > 1) Text(day.title, color = colors.textMid, style = MaterialTheme.typography.titleSmall)
+                        com.trippulse.app.ui.components.DayStripChart(story.segments, from, to, zone,
+                            nowMs = if (story.status != "Completed") System.currentTimeMillis() else null)
+                        Spacer(Modifier.height(Spacing.md))
+                    }
+                }
+                if (!compact && story.kmByHour.size >= 3) {
+                    Text("Distance by hour (${measures.distanceUnit})".uppercase(), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    Spacer(Modifier.height(Spacing.xs))
+                    com.trippulse.app.ui.components.BarsChart(
+                        story.kmByHour.map { h -> com.trippulse.app.data.export.report.Reports.hourLabel(h.hourStartMs, zone) to measures.distanceValue(h.metres) },
+                        valueText = { v -> if (v >= 10) v.toInt().toString() else "%.1f".format(v) }
+                    )
+                }
+            }
+        }
+    } else if (report.insights.isNotEmpty()) {
         KoodeCard(title = "Journey insights", accent = colors.traveller) {
             report.insights.forEach {
                 Text("• $it", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
@@ -640,6 +678,9 @@ fun JourneyDashboard(
         }
         if (report.tollsCrossed > 0) {
             DetailRow("Tolls crossed", report.tollsCrossed.toString(), leading = "🛣")
+            if (story?.tollsMayBeMissing == true) {
+                Text(com.trippulse.app.domain.report.Prose.TOLL_NOTE, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+            }
         }
     }
 
@@ -659,6 +700,16 @@ fun JourneyDashboard(
     // ---- money ----
     if (report.hasCosts) {
         KoodeCard(title = "Money tracker · only you can see this") {
+            if (!compact && report.costLines.size >= 2) {
+                com.trippulse.app.ui.components.DonutChart(
+                    report.costLines.map { line ->
+                        Triple(line.label, line.amount, com.trippulse.app.ui.components.KoodeArt.file(
+                            com.trippulse.app.data.export.report.Reports.categoryIcon(com.trippulse.app.domain.Expenses.Category.fromType(line.type)).picture))
+                    },
+                    centreValue = measures.money(report.totalCost), centreLabel = "total", valueText = { measures.money(it) }
+                )
+                Spacer(Modifier.height(Spacing.md))
+            }
             report.costLines.forEach { line ->
                 DetailRow(
                     line.label,

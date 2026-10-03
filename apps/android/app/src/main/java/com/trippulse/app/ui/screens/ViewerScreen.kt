@@ -320,6 +320,37 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 }
             }
 
+            // ---- the story so far, told by the traveller's phone ----
+            val live = remember(state) { com.trippulse.app.domain.report.StoryCodec.decode(state?.get("story")) }
+            if (live != null && live.paragraphs.isNotEmpty()) {
+                var expanded by remember { mutableStateOf(false) }
+                KoodeCard(title = "The story so far", accent = colors.traveller) {
+                    (if (expanded) live.paragraphs else live.paragraphs.take(1)).forEach {
+                        Text(it, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+                        Spacer(Modifier.height(Spacing.sm))
+                    }
+                    if (live.paragraphs.size > 1) {
+                        TextButton(onClick = { expanded = !expanded }) {
+                            Text(if (expanded) "Show less" else "Read the whole story", color = colors.accent)
+                        }
+                    }
+                    if (live.highlights.isNotEmpty()) com.trippulse.app.ui.components.HighlightChips(live.highlights)
+                    if (live.segments.isNotEmpty()) {
+                        Spacer(Modifier.height(Spacing.md))
+                        val end = live.segments.last().toMs
+                        val from = maxOf(live.segments.first().fromMs, end - 24 * 3_600_000L)
+                        Text("The last ${if (end - from >= 23 * 3_600_000L) "24 hours" else com.trippulse.app.core.TimeFmt.durationShort((end - from) / 1000)}".uppercase(),
+                            color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                        Spacer(Modifier.height(Spacing.xs))
+                        com.trippulse.app.ui.components.DayStripChart(live.segments, from, end, nowMs = end)
+                    }
+                    if (live.tollsMayBeMissing) {
+                        Spacer(Modifier.height(Spacing.sm))
+                        Text(com.trippulse.app.domain.report.Prose.TOLL_NOTE, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+
             // ---- wellbeing: factual "last logged", never medical ----
             KoodeCard(title = "How they're doing") {
                 WellbeingRow("🍛", "Food", state?.l("foodAt"), now, art = KoodeArt.file(Pictures.FOOD))

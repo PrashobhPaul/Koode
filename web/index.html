@@ -167,6 +167,20 @@
         </div>
       </div>
 
+      <!-- The journey told by the traveller's phone: the same story the report carries. -->
+      <div id="story-card" class="card story hidden">
+        <h2>The story so far</h2>
+        <div id="story-text"></div>
+        <div id="story-highlights" class="chips"></div>
+        <div id="story-strip-wrap" class="strip-wrap hidden">
+          <p class="strip-title"><span id="strip-label">The last 24 hours</span></p>
+          <svg id="story-strip" viewBox="0 0 600 34" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="row strip-ends"><span id="strip-from"></span><span id="strip-to"></span></div>
+          <div id="strip-legend" class="legend"></div>
+        </div>
+        <p id="story-note" class="hint hidden"></p>
+      </div>
+
       <div class="card">
         <h2>Replay</h2>
         <div class="controls">
@@ -189,6 +203,7 @@
       <div class="card">
         <h2>Timeline</h2>
         <ul id="timeline" class="timeline"></ul>
+        <p id="toll-note" class="hint hidden"></p>
       </div>
 
       <div id="verified-card" class="card hidden">

@@ -805,8 +805,43 @@ class TripManager(
         if (bat != null && bat > cfg.lowBatteryPct + 5) batteryLowFired = false
 
         s = s.copy(connectivity = connectivityNow().name, updatedAtMs = now)
+        if (now - storyMadeAtMs >= STORY_EVERY_MS) refreshStory(t, s, now)
         persistAndPush(t, s, heartbeat = true)
         state = s
+    }
+
+    // -----------------------------------------------------------------------
+    // The story so far, told by the traveller's phone and pushed with the live
+    // state, so the follower app and the web viewer show the same words.
+    // -----------------------------------------------------------------------
+
+    @Volatile private var storyCache: Map<String, Any?>? = null
+    @Volatile private var storyMadeAtMs = 0L
+
+    private suspend fun refreshStory(t: ActiveTripEntity, s: TripStateEntity, now: Long) {
+        storyMadeAtMs = now
+        runCatching {
+            val events = db.eventDao().allForTrip(t.tripId).filterNot { it.sensitive }.map(EventCodec::toDomain)
+            // One fix a minute is plenty for the story; the full log can be thousands of rows.
+            val samples = ArrayList<com.trippulse.app.domain.report.JourneyStory.Sample>()
+            var last = Long.MIN_VALUE / 2
+            for (p in db.locationDao().allForTrip(t.tripId)) {
+                if (p.tMs - last >= 60_000L) { samples += com.trippulse.app.domain.report.JourneyStory.Sample(p.tMs, p.lat, p.lng); last = p.tMs }
+            }
+            val input = com.trippulse.app.domain.report.JourneyStory.Input(
+                who = ownerName(), origin = t.originName, destination = t.destName,
+                originLat = t.originLat, originLng = t.originLng, destLat = t.destLat, destLng = t.destLng,
+                mode = t.transportMode, startedAtMs = t.startedAtMs ?: t.createdAtMs, endedAtMs = t.completedAtMs,
+                nowMs = now, events = events, samples = samples, distanceM = s.distanceCoveredM,
+                routeDistanceM = t.totalRouteDistanceM.takeIf { it > 0 }, fuelType = t.fuelType, seedKey = t.tripId
+            )
+            // Names from what the phone already knows; no network from inside the tick.
+            val book = com.trippulse.app.domain.report.PlaceBook()
+            runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty().forEach { book.add(it.lat, it.lng, it.name, com.trippulse.app.domain.report.PlaceBook.Rank.SAVED) }
+            com.trippulse.app.domain.report.JourneyStory.seed(input, book)
+            val story = com.trippulse.app.domain.report.JourneyStory.build(input, book)
+            storyCache = com.trippulse.app.domain.report.StoryCodec.encode(story, input, now)
+        }.onFailure { android.util.Log.w("TripManager", "story not refreshed", it) }
     }
 
     // -----------------------------------------------------------------------
@@ -1730,6 +1765,9 @@ class TripManager(
     // -----------------------------------------------------------------------
     // Internals
     // -----------------------------------------------------------------------
+
+    /** How often the story in the live state is retold. */
+    private val STORY_EVERY_MS = 5 * 60_000L
 
     private val STATIONARY_STATES = setOf(
         JourneyStatus.POSSIBLE_STOP.name, JourneyStatus.STOPPED.name, JourneyStatus.LONG_STOP.name,
@@ -2779,6 +2817,7 @@ class TripManager(
         t.wentDarkAtMs?.let { put("wentDarkAt", it) }
         t.darkReason?.let { put("darkReason", it) }
         t.simChangedAtMs?.let { put("simChangedAt", it) }
+        storyCache?.let { put("story", it) }
         put("updatedAt", s.updatedAtMs)
     }
 
