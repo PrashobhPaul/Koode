@@ -187,6 +187,14 @@ class TripCloud(private val appContext: Context) {
     }
 
     /** Batch location samples in a single RPC. */
+    /**
+     * Traveller: the journey's own samples back from the cloud, oldest first,
+     * 2000 at a time after [sinceMs]. Null when offline or refused.
+     */
+    suspend fun fetchOwnLocations(accessKey: String, sinceMs: Long): List<Map<String, Any?>>? =
+        rpcArray("tp_get_locations", mapOf(
+            "p_access_key" to accessKey, "p_owner_token" to ownerToken(accessKey), "p_since" to sinceMs))
+
     suspend fun writeLocations(accessKey: String, samples: Map<String, Map<String, Any?>>): Boolean {
         if (samples.isEmpty()) return true
         return rpcBool(

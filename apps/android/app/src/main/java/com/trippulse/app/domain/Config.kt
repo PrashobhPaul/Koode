@@ -58,7 +58,6 @@ data class TripConfig(
     // ---- sync ----
     val currentStateMinIntervalS: Long = 10,     // throttle live-state pushes
     val locationUploadBatch: Int = 60,
-    val locationCompactionThreshold: Int = 800,  // compact old samples beyond this
     val heartbeatIntervalS: Long = 30,
 
     // ---- credentials / retention ----

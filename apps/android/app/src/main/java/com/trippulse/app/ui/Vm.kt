@@ -1564,6 +1564,13 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                     )
                     fastagSummary.value = resolveFastagSummary(lg)
                     recompute(t, ev, sp, lg, graph.db.expenseDao().allForTrip(tripId))
+                    // A record trimmed by an older build is completed from the
+                    // cloud, and the numbers are worked out again from all of it.
+                    if (graph.restorer.restore(t)) {
+                        val whole = graph.db.locationDao().allForTrip(tripId)
+                        samples.value = whole
+                        recompute(t, ev, whole, lg, graph.db.expenseDao().allForTrip(tripId))
+                    }
                 }
             } catch (e: Exception) {
                 android.util.Log.e("SummaryVm", "Could not load journey $tripId", e)
