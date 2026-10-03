@@ -112,7 +112,7 @@ object Prose {
         }
         val departure: Daypart = Daypart.of(input.startedAtMs, z)
         val realStops: List<Entry.Stop> = story.stops.filter { it.items.isNotEmpty() }
-        val drivingS: Long = story.drives.filter { it.offlineMs == 0L }.sumOf { it.seconds }
+        val drivingS: Long = story.movingSeconds
         val pace: Pace = run {
             val perHour = if (drivingS > 1800) realStops.size / (drivingS / 3600.0) else 0.0
             when {
@@ -124,10 +124,10 @@ object Prose {
         }
         /** Share of recorded driving that fell between 9 PM and 5 AM. */
         val nightShare: Double = run {
-            val night = story.drives.filter { it.offlineMs == 0L }.sumOf { d -> nightSeconds(d.atMs, d.endMs, z) }
+            val night = story.drives.sumOf { d -> if (d.seconds > 0) nightSeconds(d.atMs, d.endMs, z) * d.movingSeconds / d.seconds else 0L }
             if (drivingS > 0) night.toDouble() / drivingS else 0.0
         }
-        val longestDrive: Entry.Drive? = story.drives.filter { it.offlineMs == 0L }.maxByOrNull { it.seconds }
+        val longestDrive: Entry.Drive? = story.longestDrive
         val first: String = JourneyStory.firstName(input.who)
         val name: String = JourneyStory.name(input.who)
 
@@ -260,8 +260,8 @@ object Prose {
             Pace.STEADY -> d.pick("a steady rhythm of", "well paced, with", "the stops came at an even rhythm:")
             Pace.PRESSING -> d.pick("long stretches between", "${c.first} pressed on, with only", "few pauses:")
         }
-        val moving = c.story.drives.filter { it.offlineMs == 0L && it.seconds >= 20 * 60 }
-        val gap = if (moving.size >= 2) moving.map { it.seconds }.average().toLong() else null
+        val moving = c.story.drives.filter { it.movingSeconds >= 20 * 60 }
+        val gap = if (moving.size >= 2) moving.map { it.movingSeconds }.average().toLong() else null
         sb.append(when {
             n == 1 -> d.pick("There was one proper break", "One proper break was logged", "The day had a single proper break")
             else -> "${rhythm.replaceFirstChar { it.uppercase() }} ${words(n)} proper breaks".let {
@@ -335,15 +335,21 @@ object Prose {
             if (named.isNotEmpty()) sb.append(d.pick(", including ${JourneyStory.listJoin(named.take(3))}", ", among them ${JourneyStory.listJoin(named.take(3))}"))
             sb.append(". ")
         }
-        if (longest != null && longest.seconds >= 30 * 60) {
+        if (longest != null && longest.movingSeconds >= 30 * 60) {
             val a = longest.fromPlace?.let(JourneyStory::short); val b = longest.toPlace?.let(JourneyStory::short)
             val span = if (a != null && b != null && a != b) " from $a to $b" else ""
             val night = Daypart.of(longest.atMs, c.z).let { it == Daypart.NIGHT || it == Daypart.LATE_NIGHT || it == Daypart.SMALL_HOURS }
+            val dur = JourneyStory.duration(longest.movingSeconds)
             sb.append(d.pick(
-                "The longest unbroken stretch was ${JourneyStory.duration(longest.seconds)}$span (${JourneyStory.km(longest.distanceM)})${if (night) ", ${c.going} through the night" else ""}.",
-                "The longest pull${span.ifEmpty { "" }} ran ${JourneyStory.duration(longest.seconds)} and ${JourneyStory.km(longest.distanceM)} without a stop${if (night) ", after dark" else ""}.",
-                "${JourneyStory.duration(longest.seconds).replaceFirstChar { it.uppercase() }} of ${c.going} without a break$span was the longest stretch, ${JourneyStory.km(longest.distanceM)} in all${if (night) ", most of it at night" else ""}."
+                "The longest unbroken stretch was $dur$span (${JourneyStory.km(longest.distanceM)})${if (night) ", ${c.going} through the night" else ""}.",
+                "The longest pull${span.ifEmpty { "" }} ran $dur and ${JourneyStory.km(longest.distanceM)} without a stop${if (night) ", after dark" else ""}.",
+                "${dur.replaceFirstChar { it.uppercase() }} of ${c.going} without a break$span was the longest stretch, ${JourneyStory.km(longest.distanceM)} in all${if (night) ", most of it at night" else ""}."
             ))
+            if (longest.offlineMs > 0) sb.append(" ${d.pick(
+                "The phone was out of contact for part of it, so the figures for that stretch are estimates.",
+                "Part of that stretch passed with the phone silent; its distance is an estimate.",
+                "For some of it the phone was out of contact, and the distance is worked out rather than measured."
+            )}")
         }
         if (c.nightShare >= 0.5 && c.drivingS >= 2 * 3600) {
             sb.append(" ${d.pick(
@@ -450,7 +456,7 @@ object Prose {
         val halt = day.entries.filterIsInstance<Entry.Halt>().lastOrNull()
         val arrive = day.entries.any { it is Entry.Arrive }
         val km = drives.sumOf { it.distanceM }
-        val driveS = drives.filter { it.offlineMs == 0L }.sumOf { it.seconds }
+        val driveS = drives.sumOf { it.movingSeconds }
         val meals = stops.mapNotNull { it.meal }.distinct()
         return when {
             arrive && km > 0 -> d.pick("${JourneyStory.km(km)} to the finish, ${words(stops.size)} stop${if (stops.size == 1) "" else "s"}.", "The last ${JourneyStory.km(km)}.")

@@ -167,26 +167,32 @@ fun DonutChart(
     }
 }
 
+/** One bar: [estimated] is the part of [value] worked out rather than measured, drawn in the out-of-contact grey. */
+data class ChartBar(val label: String, val value: Double, val estimated: Double = 0.0)
+
 /** Vertical bars with a label under each. */
 @Composable
 fun BarsChart(
-    bars: List<Pair<String, Double>>,
+    bars: List<ChartBar>,
     valueText: (Double) -> String,
     color: Color = ChartColors.driving,
     modifier: Modifier = Modifier
 ) {
     val colors = KoodeTheme.colors
     if (bars.isEmpty()) return
-    val max = bars.maxOf { it.second }.coerceAtLeast(1e-9)
+    val max = bars.maxOf { it.value }.coerceAtLeast(1e-9)
     Column(modifier.fillMaxWidth()) {
         Row(Modifier.fillMaxWidth().height(96.dp), verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-            bars.forEach { (_, v) ->
+            bars.forEach { b ->
+                val v = b.value
                 Column(Modifier.weight(1f), horizontalAlignment = Alignment.CenterHorizontally) {
                     if (bars.size <= 10 && v > 0) Text(valueText(v), color = colors.textMid, style = MaterialTheme.typography.labelSmall, maxLines = 1)
-                    Box(
-                        Modifier.fillMaxWidth().height((80 * v / max).dp.coerceAtLeast(if (v > 0) 3.dp else 0.dp))
-                            .clip(RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp)).background(color)
-                    )
+                    val total = (80 * v / max).dp.coerceAtLeast(if (v > 0) 3.dp else 0.dp)
+                    val est = if (v > 0) total * (b.estimated / v).toFloat().coerceIn(0f, 1f) else 0.dp
+                    Column(Modifier.fillMaxWidth().height(total).clip(RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp))) {
+                        if (est > 0.dp) Box(Modifier.fillMaxWidth().height(est).background(ChartColors.offline))
+                        Box(Modifier.fillMaxWidth().weight(1f, fill = true).background(color))
+                    }
                 }
             }
         }

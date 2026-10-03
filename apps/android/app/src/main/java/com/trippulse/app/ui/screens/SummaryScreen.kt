@@ -596,14 +596,20 @@ fun JourneyDashboard(
         StatTile("Distance", measures.distance(report.distanceM), Modifier.weight(1f), colors.accent)
         StatTile("Total time", TimeFmt.durationShort(report.totalSeconds), Modifier.weight(1f))
     }
+    // The story's figures where it exists: they count a silence the car moved
+    // through as driving and a halt as stopped, which the event-based numbers do not.
+    val movingS = story?.movingSeconds ?: report.movingSeconds
+    val stoppedS = story?.stoppedSeconds ?: report.stoppedSeconds
+    val stopCount = story?.stops?.size ?: report.stops
+    val avgKmh = if (story != null && movingS >= 600) report.distanceM / 1000.0 / (movingS / 3600.0) else report.averageMovingSpeedKmh
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
-        StatTile("Moving", TimeFmt.durationShort(report.movingSeconds), Modifier.weight(1f))
-        StatTile("Stopped", TimeFmt.durationShort(report.stoppedSeconds), Modifier.weight(1f))
+        StatTile("Moving", TimeFmt.durationShort(movingS), Modifier.weight(1f))
+        StatTile("Stopped", TimeFmt.durationShort(stoppedS), Modifier.weight(1f))
     }
     if (!compact) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
-            StatTile("Average moving", measures.speed(report.averageMovingSpeedKmh), Modifier.weight(1f))
-            StatTile("Stops", report.stops.toString(), Modifier.weight(1f))
+            StatTile("Average moving", measures.speed(avgKmh), Modifier.weight(1f))
+            StatTile("Stops", stopCount.toString(), Modifier.weight(1f))
         }
     }
 
@@ -637,9 +643,14 @@ fun JourneyDashboard(
                     Text("Distance by hour (${measures.distanceUnit})".uppercase(), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                     Spacer(Modifier.height(Spacing.xs))
                     com.trippulse.app.ui.components.BarsChart(
-                        story.kmByHour.map { h -> com.trippulse.app.data.export.report.Reports.hourLabel(h.hourStartMs, zone) to measures.distanceValue(h.metres) },
+                        story.kmByHour.map { h -> com.trippulse.app.ui.components.ChartBar(
+                            com.trippulse.app.data.export.report.Reports.hourLabel(h.hourStartMs, zone),
+                            measures.distanceValue(h.metres + h.estimatedM), measures.distanceValue(h.estimatedM)) },
                         valueText = { v -> if (v >= 10) v.toInt().toString() else "%.1f".format(v) }
                     )
+                    if (story.kmByHour.any { it.estimatedM > 0 }) {
+                        Text("Fainter bars are hours the phone was out of contact: the distance is estimated.", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    }
                 }
             }
         }
@@ -653,15 +664,17 @@ fun JourneyDashboard(
 
     // ---- stops & journey activity ----
     KoodeCard(title = "Stops & journey activity") {
-        DetailRow("Stops", report.stops.toString(), leading = "🅿")
+        DetailRow("Stops", stopCount.toString(), leading = "🅿")
         DetailRow("Breaks logged", report.breakCount.toString(), leading = "✅")
-        report.averageGapBetweenBreaksSeconds?.let {
+        val properBreaks = story?.stops?.count { it.items.isNotEmpty() } ?: 0
+        val breakEvery = if (story != null) (if (properBreaks >= 2 && movingS > 0) movingS / properBreaks else null) else report.averageGapBetweenBreaksSeconds
+        breakEvery?.let {
             DetailRow("A break about every", TimeFmt.durationShort(it), leading = "⏱")
         }
-        DetailRow("Longest stop", TimeFmt.durationShort(report.longestBreakSeconds), leading = "🅿")
+        DetailRow("Longest stop", TimeFmt.durationShort(story?.longestStop?.seconds ?: report.longestBreakSeconds), leading = "🅿")
         DetailRow(
             "Longest continuous moving stretch",
-            TimeFmt.durationShort(report.longestLegSeconds), leading = "🛣"
+            TimeFmt.durationShort(story?.longestDrive?.movingSeconds ?: report.longestLegSeconds), leading = "🛣"
         )
         Spacer(Modifier.height(Spacing.sm))
         listOf(
