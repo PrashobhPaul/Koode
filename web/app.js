@@ -869,7 +869,7 @@
     var note = $('story-note');
     if (story.tollsMayBeMissing) { note.textContent = TOLL_NOTE; show(note); } else hide(note);
   }
-  var TOLL_NOTE = "Toll plazas are noticed from the phone's position. Any crossed while the phone was out of contact would not be here unless added afterwards.";
+  var TOLL_NOTE = "Toll plazas are noticed from the phone's position. For a stretch the phone was out of contact, the plazas on the road between where it fell silent and where it came back are counted and marked as worked out.";
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {

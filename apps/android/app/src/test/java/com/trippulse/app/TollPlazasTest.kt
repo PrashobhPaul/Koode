@@ -25,6 +25,30 @@ class TollPlazasTest {
     private val index = TollPlazas.Index(listOf(boothA, boothB, other))
     private val t0 = 1_759_000_000_000L
 
+    @Test fun plazas_on_the_road_of_a_silence_are_found_and_timed_by_their_share_of_it() {
+        // A road south to north through Paliyekkara, then on past Kumbalam, over two hours of silence.
+        val road = listOf(
+            com.trippulse.app.domain.GeoPoint(10.30000, 76.30320),
+            com.trippulse.app.domain.GeoPoint(10.37240, 76.30320),
+            com.trippulse.app.domain.GeoPoint(10.37600, 76.30320),
+            com.trippulse.app.domain.GeoPoint(10.60000, 76.25000),
+            com.trippulse.app.domain.GeoPoint(10.90990, 76.20000),
+            com.trippulse.app.domain.GeoPoint(10.91010, 76.20000),
+            com.trippulse.app.domain.GeoPoint(11.00000, 76.20000)
+        )
+        val found = TollPlazas.alongPath(index, road, t0, t0 + 2 * 3600_000L, emptyList())
+        assertEquals(listOf("Paliyekkara Toll Plaza", "Kumbalam Toll Plaza"), found.map { it.plaza.name })
+        // Paliyekkara is about a tenth of the way, Kumbalam most of the way.
+        assertTrue(found[0].atMs in (t0 + 5 * 60_000L)..(t0 + 25 * 60_000L))
+        assertTrue(found[1].atMs in (t0 + 90 * 60_000L)..(t0 + 115 * 60_000L))
+        // A plaza already recorded nearby is not counted again.
+        val again = TollPlazas.alongPath(index, road, t0, t0 + 2 * 3600_000L, listOf(Recent(boothA.lat, boothA.lng, t0 + 10 * 60_000L)))
+        assertEquals(listOf("Kumbalam Toll Plaza"), again.map { it.plaza.name })
+        // A road that keeps away from the plazas finds nothing.
+        val away = listOf(com.trippulse.app.domain.GeoPoint(10.30000, 76.40000), com.trippulse.app.domain.GeoPoint(11.00000, 76.40000))
+        assertTrue(TollPlazas.alongPath(index, away, t0, t0 + 3600_000L, emptyList()).isEmpty())
+    }
+
     @Test fun driving_through_a_plaza_between_two_fixes_counts_it() {
         // 400 m apart, straddling the booths: no fix is at the plaza itself.
         val hit = TollPlazas.crossed(index, 10.37240, 76.30320, 10.37600, 76.30320, t0, emptyList())

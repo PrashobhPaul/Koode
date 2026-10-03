@@ -374,7 +374,9 @@ object Prose {
             val before = b4?.let { book.describe(it.lat, it.lng) }?.let(JourneyStory::short)
             val after = aft?.let { book.describe(it.lat, it.lng) }?.let(JourneyStory::short)
             val jumped = if (b4 != null && aft != null) PlaceBook.distanceM(b4.lat, b4.lng, aft.lat, aft.lng) else 0.0
-            val tollsIn = c.story.drives.filter { it.offlineMs > 0 && it.atMs < to && it.endMs > from }.sumOf { it.tolls }
+            val silent = c.story.drives.filter { it.offlineMs > 0 && it.atMs < to && it.endMs > from }
+            val inferred = silent.sumOf { it.inferredTolls }
+            val tollsIn = silent.sumOf { it.tolls } - inferred
             val nextDay = Instant.ofEpochMilli(from).atZone(z).toLocalDate() != Instant.ofEpochMilli(to).atZone(z).toLocalDate()
             val sb = StringBuilder()
             sb.append(d.pick(
@@ -393,8 +395,13 @@ object Prose {
                 "Anything logged meanwhile reached the record once the phone reconnected.",
                 "What was logged during the gap arrived with the reconnection."
             ))
+            if (inferred > 0) sb.append(" ${d.pick(
+                "${words(inferred).replaceFirstChar { it.uppercase() }} toll plaza${if (inferred == 1) "" else "s"} on the road between those two points ${if (inferred == 1) "was" else "were"} worked out and counted.",
+                "The road between those points passes ${words(inferred)} toll plaza${if (inferred == 1) "" else "s"}, so ${if (inferred == 1) "it was" else "they were"} counted.",
+                "${words(inferred).replaceFirstChar { it.uppercase() }} toll plaza${if (inferred == 1) "" else "s"} lie on that road and ${if (inferred == 1) "was" else "were"} added to the count."
+            )}")
             if (tollsIn > 0) sb.append(" ${words(tollsIn).replaceFirstChar { it.uppercase() }} toll crossing${if (tollsIn == 1) "" else "s"} on this stretch ${if (tollsIn == 1) "was" else "were"} added to the record afterwards.")
-            else if (c.modeClass == ModeClass.DRIVE) sb.append(" Toll plazas passed in that time would not have been noticed.")
+            else if (inferred == 0 && c.modeClass == ModeClass.DRIVE) sb.append(" Toll plazas passed in that time would not have been noticed.")
             out += sb.toString()
         }
         return out.joinToString(" ")
@@ -542,7 +549,7 @@ object Prose {
     // ------------------------------------------------------------------------
 
     /** Printed wherever tolls are counted and the phone was ever out of contact. */
-    const val TOLL_NOTE = "Toll plazas are noticed from the phone's position. Any crossed while the phone was out of contact would not be in this record unless added afterwards."
+    const val TOLL_NOTE = "Toll plazas are noticed from the phone's position. For a stretch the phone was out of contact, the plazas on the road between where it fell silent and where it came back are counted and marked as worked out."
 
     fun words(n: Int): String = listOf("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve").getOrNull(n) ?: n.toString()
     fun times(n: Int): String = when (n) { 1 -> "once"; 2 -> "twice"; else -> "${words(n)} times" }
