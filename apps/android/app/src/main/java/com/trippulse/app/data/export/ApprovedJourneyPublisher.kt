@@ -137,9 +137,8 @@ class ApprovedJourneyPublisher(
             // Only what followers could already see: private entries (medicine,
             // the expense confirmation) stay out of their copy.
             val shared = entities.filterNot { it.sensitive }
-            val doc = JourneyDocuments.timeline(
-                t, shared, report, measures(),
-                path = samples.map { it.lat to it.lng },
+            val doc = ReportFactory.journey(
+                context, t, shared, samples, report, measures(),
                 originLabel = PlaceResolver.display(t.originName, PlaceResolver.nearestSavedLabel(saved, t.originLat, t.originLng)),
                 destLabel = PlaceResolver.display(t.destName, PlaceResolver.nearestSavedLabel(saved, t.destLat, t.destLng)),
                 // No FASTag balance either: it is money.

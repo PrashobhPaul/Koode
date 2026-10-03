@@ -60,7 +60,11 @@ object SummaryCalculator {
         val totalS = ((endedAtMs - startedAtMs) / 1000).coerceAtLeast(0)
 
         val periods = rawStops
-            .map { it.first.coerceIn(startedAtMs, endedAtMs) to it.second.coerceIn(startedAtMs, endedAtMs) }
+            .map {
+                // An end recorded before the start is an empty window, not a crash.
+                val end = maxOf(startedAtMs, endedAtMs)
+                it.first.coerceIn(startedAtMs, end) to it.second.coerceIn(startedAtMs, end)
+            }
             .filter { it.second > it.first }
             .sortedBy { it.first }
 
