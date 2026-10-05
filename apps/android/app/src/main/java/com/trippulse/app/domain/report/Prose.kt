@@ -90,7 +90,8 @@ object Prose {
     /** The journey's character, read once from the data. */
     class Character(val input: JourneyStory.Input, val story: JourneyStory.Story) {
         val z: ZoneId = input.zone
-        val modeKey: String = TransportCatalog.profile(input.mode).key
+        /** The journey's own mode: the one it spent longest on (a walk to the metro does not make it a walk). */
+        val modeKey: String = TransportCatalog.profile(JourneyStory.primaryMode(story, input.mode)).key
         val modeClass: ModeClass = when (modeKey) {
             "CAR", "BIKE" -> ModeClass.DRIVE
             "CAB", "AUTO" -> ModeClass.RIDE
@@ -99,7 +100,7 @@ object Prose {
             "SHIP" -> ModeClass.SAIL
             else -> ModeClass.WALK
         }
-        val modeLabel: String = TransportCatalog.label(input.mode).lowercase(Locale.ENGLISH)
+        val modeLabel: String = TransportCatalog.label(modeKey).lowercase(Locale.ENGLISH)
         val electric: Boolean = input.fuelType.equals("ELECTRIC", ignoreCase = true)
         val completed: Boolean = input.endedAtMs != null
         val elapsedS: Long = ((input.endedAtMs ?: input.nowMs) - input.startedAtMs) / 1000
@@ -159,12 +160,39 @@ object Prose {
         val d = Dice(seed(input.seedKey))
         val out = ArrayList<String>()
         out += opening(c, d)
+        stagesLine(c, d)?.let { out += it }
         breaks(c, d)?.let { out += it }
         road(c, d)?.let { out += it }
         silence(c, d, book)?.let { out += it }
         night(c, d)?.let { out += it }
         closing(c, d)?.let { out += it }
         return out.map { it.trim() }.filter { it.isNotBlank() }
+    }
+
+    /**
+     * A journey made more than one way, told in order: "It was made in four
+     * parts: by cab (12 min), on foot (6 min), by metro (24 min) and on foot
+     * again (8 min)."
+     */
+    private fun stagesLine(c: Character, d: Dice): String? {
+        val st = c.story.stages
+        if (st.size < 2) return null
+        val parts = st.mapIndexed { idx, sp ->
+            val how = JourneyStory.byMode(sp.mode)
+            val again = idx > 0 && st.subList(0, idx).any { it.mode.equals(sp.mode, ignoreCase = true) }
+            val mins = sp.seconds / 60
+            buildString {
+                append(how)
+                if (again) append(" again")
+                if (mins >= 1) append(" (${JourneyStory.duration(sp.seconds)})")
+            }
+        }
+        val list = JourneyStory.listJoin(parts)
+        return d.pick(
+            "It was made in ${Prose.words(st.size)} parts: $list.",
+            "The way went $list.",
+            "${Prose.words(st.size).replaceFirstChar { it.uppercase() }} ways of getting there, one after another: $list."
+        )
     }
 
     /** The first paragraph: where, when, how far, and where things stand. */

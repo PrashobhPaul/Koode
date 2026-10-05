@@ -207,12 +207,12 @@ object Reports {
                 out += when (e) {
                     is Entry.Depart -> TimelineNode(
                         JourneyStory.clock(e.atMs, z), null, Icon(Pictures.place(e.place)),
-                        "Set off from ${e.place}", listOf("By ${TransportCatalog.label(i.mode).lowercase(Locale.ENGLISH)}"),
+                        "Set off from ${e.place}", listOf(JourneyStory.byMode(s.stages.firstOrNull()?.mode ?: i.mode).replaceFirstChar { it.uppercase() }),
                         railAbove = false, railBelow = below, ring = Ink.GREEN, strong = true
                     )
                     is Entry.Drive -> TimelineLeg(
                         text = buildString {
-                            append(if (e.offlineMs > 0) "Roughly ${JourneyStory.km(e.distanceM)}" else "Drove ${JourneyStory.km(e.distanceM)}")
+                            append(if (e.offlineMs > 0) "Roughly ${JourneyStory.km(e.distanceM)}" else JourneyStory.stretch(e.mode ?: i.mode, e.distanceM))
                             append(" · ${JourneyStory.duration(e.seconds)}")
                             if (e.tolls > 0) append(" · ${e.tolls} toll${if (e.tolls == 1) "" else "s"}")
                         },

@@ -112,6 +112,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     val events by vm.events.collectAsStateWithLifecycle()
     val pending by vm.pending.collectAsStateWithLifecycle()
     val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
+    val stageMessage by vm.stageMessage.collectAsStateWithLifecycle()
     val requests by vm.joinRequests.collectAsStateWithLifecycle()
     val plan by vm.plan.collectAsStateWithLifecycle()
     val expenseRows by vm.expenses.collectAsStateWithLifecycle()
@@ -711,10 +712,61 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 }
             }
 
-            // ---- mode-specific milestones ----
-            if (profile.quickActions.isNotEmpty() && !profile.isPrivateVehicle) {
-                KoodeCard(title = "${profile.label} updates") {
-                    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+            // ---- the way the phone sees you moving, when it no longer fits the stage ----
+            val sensed = remember(breadcrumb, profile.key) {
+                com.trippulse.app.domain.ModeSense.hint(
+                    profile.key,
+                    breadcrumb.map { com.trippulse.app.domain.ModeSense.Fix(it.tMs, it.lat, it.lng, it.speedMps) },
+                    System.currentTimeMillis()
+                )
+            }
+            var sensedDismissed by remember(activeLeg?.legIndex) { mutableStateOf<com.trippulse.app.domain.ModeSense.Hint?>(null) }
+            AnimatedBanner(visible = sensed != null && sensed != sensedDismissed) {
+                KoodeCard(accent = colors.traveller) {
+                    val walking = sensed == com.trippulse.app.domain.ModeSense.Hint.ON_FOOT
+                    Text(
+                        if (walking) "Looks like you're walking now" else "Moving faster than walking",
+                        color = colors.textHigh, style = MaterialTheme.typography.titleMedium
+                    )
+                    Text(
+                        if (walking) "Out of the ${if (profile.key == TransportCatalog.CAB.key) "cab" else profile.label.lowercase()}? One tap and the journey follows."
+                        else "On something now? Pick it and the journey follows.",
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                    Spacer(Modifier.height(Spacing.sm))
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                        val options = if (walking) listOf(TransportCatalog.WALK)
+                            else TransportCatalog.COMMUTE.filter { it.key != TransportCatalog.WALK.key }
+                        options.forEach { p ->
+                            KoodeChip(if (walking) "Yes, walking" else p.label, false, { vm.quickSwitch(p.key) }, leading = p.emoji)
+                        }
+                        KoodeChip("Not now", false, { sensedDismissed = sensed })
+                    }
+                }
+            }
+
+            // ---- how you're travelling, and changing it in one tap ----
+            // A commute is rarely planned stage by stage: the cab that didn't
+            // come, the walk to the metro, the auto home. Each change is one tap
+            // here, from wherever you are; nothing needs adding up front.
+            val stageSince = activeLeg?.startedAtMs ?: t?.startedAtMs
+            val offerSwitch = !profile.isPrivateVehicle || !moving
+            KoodeCard(title = "How you're travelling") {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(profile.emoji, fontSize = 22.sp)
+                    Spacer(Modifier.width(Spacing.sm))
+                    Column(Modifier.weight(1f)) {
+                        Text(profile.label, color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+                        val from = activeLeg?.fromName?.takeIf { it.isNotBlank() }
+                        Text(
+                            listOfNotNull(stageSince?.let { "Since ${TimeFmt.clock(it)}" }, from?.let { "from $it" }).joinToString(" "),
+                            color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                        )
+                    }
+                }
+                if (profile.quickActions.isNotEmpty() && !profile.isPrivateVehicle) {
+                    Spacer(Modifier.height(Spacing.sm))
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                         profile.quickActions.forEach { action ->
                             KoodeChip(
                                 action.label, false,
@@ -722,6 +774,21 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                 leading = action.emoji
                             )
                         }
+                    }
+                }
+                if (offerSwitch) {
+                    Spacer(Modifier.height(Spacing.md))
+                    Text("NOW ON SOMETHING ELSE?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    Spacer(Modifier.height(Spacing.xs))
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                        TransportCatalog.COMMUTE.filter { it.key != profile.key }.forEach { p ->
+                            KoodeChip(p.label, false, { vm.quickSwitch(p.key) }, leading = p.emoji)
+                        }
+                        KoodeChip("Other", false, { showEdit = true }, leading = "⋯")
+                    }
+                    stageMessage?.let {
+                        Spacer(Modifier.height(Spacing.xs))
+                        Text(it, color = colors.warn, style = MaterialTheme.typography.bodySmall)
                     }
                 }
             }

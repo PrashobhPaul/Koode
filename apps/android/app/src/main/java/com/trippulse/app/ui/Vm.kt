@@ -909,6 +909,19 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     fun clearEditMessage() { editMessage.value = null }
 
+    /** Why a one-tap change of stage did not happen, shown under the chips; null when it did. */
+    val stageMessage = MutableStateFlow<String?>(null)
+
+    /** A change of stage from the journey screen: no details, from wherever the traveller is. */
+    fun quickSwitch(mode: String) = viewModelScope.launch {
+        stageMessage.value = when (graph.tripManager.switchMode(mode, emptyMap())) {
+            is TripManager.SwitchResult.Ok -> null
+            is TripManager.SwitchResult.NotEditable -> "This journey is closed and can no longer be changed."
+            is TripManager.SwitchResult.NoLocationYet -> "Still finding where you are. Try again in a moment."
+            is TripManager.SwitchResult.MissingDetails -> "This one needs a few details: use Other."
+        }
+    }
+
     /**
      * The traveller has changed vehicles.
      *

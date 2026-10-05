@@ -38,6 +38,7 @@ object Pictures {
         "TRAIN" -> "train"
         "FLIGHT" -> "flight"
         "SHIP" -> "ship"
+        "WALK" -> WALK
         else -> null
     }
 
