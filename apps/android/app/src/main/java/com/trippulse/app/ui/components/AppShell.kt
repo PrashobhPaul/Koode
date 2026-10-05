@@ -53,6 +53,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
@@ -69,6 +70,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.trippulse.app.R
 import com.trippulse.app.ui.theme.DisplayFamily
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Motion
@@ -495,7 +497,7 @@ fun ActivitySheet(items: List<ActivityItem>, onDismiss: () -> Unit) {
                 .padding(bottom = Spacing.xl),
             verticalArrangement = Arrangement.spacedBy(Spacing.sm)
         ) {
-            Text("Activity", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.t_activity_81c0d), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
             if (items.isEmpty()) {
                 Text(
                     "You're all caught up. Anything that needs you — a journey to review, someone you follow who needs a look — shows up here.",

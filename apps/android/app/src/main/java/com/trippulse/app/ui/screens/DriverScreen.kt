@@ -1,5 +1,6 @@
 package com.trippulse.app.ui.screens
 
+import com.trippulse.app.R
 import com.trippulse.app.domain.Expenses.Category as ExpenseCategory
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -39,6 +40,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -267,11 +269,11 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         )
                     }
                     EtaMode.ARRIVED.name ->
-                        Text("Arrived", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+                        Text(stringResource(R.string.t_arrived_a22d6), color = colors.accent, style = MaterialTheme.typography.headlineSmall)
                     else -> {
                         Row(verticalAlignment = Alignment.Bottom) {
                             Column(Modifier.weight(1f)) {
-                                Text("ESTIMATED ARRIVAL", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                                Text(stringResource(R.string.t_estimated_arrival_454fa), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                                 Text(
                                     etaRangeText(s?.etaLikelyMs, s?.etaLowMs, s?.etaHighMs),
                                     color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
@@ -279,7 +281,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                             }
                             s?.speedKmh?.takeIf { moving && it >= 1.0 }?.let { kmh ->
                                 Column(horizontalAlignment = Alignment.End) {
-                                    Text("SPEED", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                                    Text(stringResource(R.string.t_speed_265ff), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                                     Text(
                                         measures.speed(kmh, profile.key),
                                         color = colors.textHigh, style = MaterialTheme.typography.titleLarge
@@ -289,7 +291,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         }
                         if (s?.etaBreakdownJson != null) {
                             TextButton(onClick = { showEtaBreakdown = true }, contentPadding = PaddingValues(0.dp)) {
-                                Text("Why this estimate?", color = colors.accent, fontSize = 13.sp)
+                                Text(stringResource(R.string.t_why_this_estimate_551da), color = colors.accent, fontSize = 13.sp)
                             }
                         }
                     }
@@ -336,7 +338,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 KoodeHeroCard(accent = colors.warn) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         PulsingDot(colors.warn, size = 9.dp)
-                        Text("Tracking is off", color = colors.warn, style = MaterialTheme.typography.headlineSmall)
+                        Text(stringResource(R.string.t_tracking_is_off_1dd13), color = colors.warn, style = MaterialTheme.typography.headlineSmall)
                     }
                     Text(
                         "Your journey is open but nobody following it is getting updates. Resume tracking to go live again.",
@@ -374,7 +376,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     Spacer(Modifier.height(Spacing.md))
                     val arrivalScope = rememberCoroutineScope()
                     if (hasNextLeg) {
-                        PrimaryButton("Next stage", { vm.nextLeg() }, height = 48.dp)
+                        PrimaryButton(stringResource(R.string.t_next_stage_f9c81), { vm.nextLeg() }, height = 48.dp)
                         Spacer(Modifier.height(Spacing.sm))
                     }
                     // End now: closed at the arrival time, straight into the review.
@@ -390,9 +392,9 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         height = 48.dp
                     )
                     Spacer(Modifier.height(Spacing.sm))
-                    SecondaryButton("Review journey first", { showEndReview = true }, height = 46.dp)
+                    SecondaryButton(stringResource(R.string.t_review_journey_first_ec2b6), { showEndReview = true }, height = 46.dp)
                     Spacer(Modifier.height(Spacing.sm))
-                    SecondaryButton("I'm still travelling", { vm.dismissArrivalPrompt() }, accent = colors.textMid, height = 46.dp)
+                    SecondaryButton(stringResource(R.string.t_i_m_still_travelling_4e3f9), { vm.dismissArrivalPrompt() }, accent = colors.textMid, height = 46.dp)
                 }
             }
 
@@ -417,10 +419,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     Spacer(Modifier.height(Spacing.md))
                     Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                         Box(Modifier.weight(1f)) {
-                            PrimaryButton("Resume journey", { vm.resumeFromHalt() }, height = 46.dp)
+                            PrimaryButton(stringResource(R.string.t_resume_journey_b03fe), { vm.resumeFromHalt() }, height = 46.dp)
                         }
                         Box(Modifier.weight(1f)) {
-                            SecondaryButton("Cancel halt", { vm.cancelHalt() }, accent = colors.textMid, height = 46.dp)
+                            SecondaryButton(stringResource(R.string.t_cancel_halt_9923b), { vm.cancelHalt() }, accent = colors.textMid, height = 46.dp)
                         }
                     }
                 }
@@ -446,10 +448,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     Spacer(Modifier.height(Spacing.md))
                     Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                         Box(Modifier.weight(1f)) {
-                            SecondaryButton("Plan a halt", { showEdit = true }, accent = colors.traveller, height = 44.dp)
+                            SecondaryButton(stringResource(R.string.t_plan_a_halt_38967), { showEdit = true }, accent = colors.traveller, height = 44.dp)
                         }
                         Box(Modifier.weight(1f)) {
-                            SecondaryButton("Not now", { haltPlanDismissed = true }, accent = colors.textMid, height = 44.dp)
+                            SecondaryButton(stringResource(R.string.t_not_now_e4571), { haltPlanDismissed = true }, accent = colors.textMid, height = 44.dp)
                         }
                     }
                 }
@@ -460,14 +462,14 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 KoodeHeroCard(accent = colors.danger) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         PulsingDot(colors.danger, size = 9.dp)
-                        Text("SOS is active", color = colors.danger, style = MaterialTheme.typography.headlineSmall)
+                        Text(stringResource(R.string.t_sos_is_active_eef6c), color = colors.danger, style = MaterialTheme.typography.headlineSmall)
                     }
                     Text(
                         "Everyone following you has been alerted. Resolve it when you're safe.",
                         color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(Modifier.height(Spacing.md))
-                    PrimaryButton("I'm safe — resolve SOS", { vm.resolveSos() }, height = 46.dp)
+                    PrimaryButton(stringResource(R.string.t_i_m_safe_resolve_sos_d0cf9), { vm.resolveSos() }, height = 46.dp)
                 }
             }
 
@@ -514,7 +516,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 }
             }
             if (stages.size > 1) {
-                KoodeCard(title = "Stages") {
+                KoodeCard(title = stringResource(R.string.t_stages_c1d33)) {
                     stages.forEach { leg ->
                         val isActive = leg.legIndex == (t?.activeLegIndex ?: 0)
                         Row(
@@ -530,9 +532,9 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                 modifier = Modifier.weight(1f)
                             )
                             when {
-                                leg.completedAtMs != null -> StatusPill("Done", colors.textLow)
-                                isActive -> StatusPill("Now", colors.accent, pulsing = true)
-                                else -> StatusPill("Next", colors.textLow)
+                                leg.completedAtMs != null -> StatusPill(stringResource(R.string.t_done_e9b45), colors.textLow)
+                                isActive -> StatusPill(stringResource(R.string.t_now_e3b82), colors.accent, pulsing = true)
+                                else -> StatusPill(stringResource(R.string.t_next_bc981), colors.textLow)
                             }
                         }
                     }
@@ -561,10 +563,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                 modifier = Modifier.weight(1f)
                             )
                             TextButton(onClick = { vm.setViewerApproval(token, true) }) {
-                                Text("Let them in", color = colors.accent, fontSize = 13.sp)
+                                Text(stringResource(R.string.t_let_them_in_5adbc), color = colors.accent, fontSize = 13.sp)
                             }
                             TextButton(onClick = { vm.setViewerApproval(token, false) }) {
-                                Text("No", color = colors.danger, fontSize = 13.sp)
+                                Text(stringResource(R.string.t_no_816c5), color = colors.danger, fontSize = 13.sp)
                             }
                         }
                     }
@@ -572,7 +574,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             }
             // ---- the people following this journey (for this journey only) ----
             val approved = requests.filter { it["status"] == "APPROVED" }
-            KoodeCard(title = "People following this journey") {
+            KoodeCard(title = stringResource(R.string.t_people_following_this_journey_16d5b)) {
                 if (approved.isEmpty()) {
                     Text(
                         "No one yet. Share this journey with the people you'd like to keep informed.",
@@ -591,7 +593,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         )
                         if (token != null) {
                             TextButton(onClick = { vm.setViewerApproval(token, false) }) {
-                                Text("Remove", color = colors.textLow, fontSize = 13.sp)
+                                Text(stringResource(R.string.t_remove_e9639), color = colors.textLow, fontSize = 13.sp)
                             }
                         }
                     }
@@ -606,7 +608,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             // On public transport these are simply notes: eating on a train
             // is not a break, and logging it must not imply the journey stopped.
             // ---- how you're doing: private coaching state, explicit answers ----
-            KoodeCard(title = "How you're doing") {
+            KoodeCard(title = stringResource(R.string.t_how_you_re_doing_da2d4)) {
                 val tiles = coachTiles(s, t?.startedAtMs, plan, profile.key, now)
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     tiles.forEach { tile ->
@@ -638,12 +640,12 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 ) {
                     val art = com.trippulse.app.ui.components.KoodeArt
                     val pic = com.trippulse.app.domain.Pictures
-                    KoodeChip("Had water", false, { vm.logNourishment(Nourishment.WATER) }, leading = "💧", leadingArt = art.file(pic.WATER))
-                    KoodeChip("Ate something", false, { vm.submitCheckpoint(TripManager.Checkpoint(food = true)) }, leading = "🍛", leadingArt = art.file(pic.FOOD))
-                    KoodeChip("Restroom", false, { vm.submitCheckpoint(TripManager.Checkpoint(toilet = true)) }, leading = "🚻", leadingArt = art.file(pic.TOILET))
-                    KoodeChip("Rested", false, { vm.submitCheckpoint(TripManager.Checkpoint(rest = true)) }, leading = "😴", leadingArt = art.file(pic.REST))
-                    KoodeChip("Had tea", false, { vm.logNourishment(Nourishment.TEA_COFFEE) }, leading = "☕")
-                    KoodeChip("Had a snack", false, { vm.logNourishment(Nourishment.SNACK) }, leading = "🍪")
+                    KoodeChip(stringResource(R.string.t_had_water_48a89), false, { vm.logNourishment(Nourishment.WATER) }, leading = "💧", leadingArt = art.file(pic.WATER))
+                    KoodeChip(stringResource(R.string.t_ate_something_309d1), false, { vm.submitCheckpoint(TripManager.Checkpoint(food = true)) }, leading = "🍛", leadingArt = art.file(pic.FOOD))
+                    KoodeChip(stringResource(R.string.t_restroom_8ff8e), false, { vm.submitCheckpoint(TripManager.Checkpoint(toilet = true)) }, leading = "🚻", leadingArt = art.file(pic.TOILET))
+                    KoodeChip(stringResource(R.string.t_rested_1ec20), false, { vm.submitCheckpoint(TripManager.Checkpoint(rest = true)) }, leading = "😴", leadingArt = art.file(pic.REST))
+                    KoodeChip(stringResource(R.string.t_had_tea_a1480), false, { vm.logNourishment(Nourishment.TEA_COFFEE) }, leading = "☕")
+                    KoodeChip(stringResource(R.string.t_had_a_snack_3c99a), false, { vm.logNourishment(Nourishment.SNACK) }, leading = "🍪")
                 }
                 Spacer(Modifier.height(Spacing.md))
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
@@ -654,7 +656,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         )
                     }
                     Box(Modifier.weight(1f)) {
-                        SecondaryButton("Add a note", { showNotes = true }, height = 44.dp)
+                        SecondaryButton(stringResource(R.string.t_add_a_note_f9ee6), { showNotes = true }, height = 44.dp)
                     }
                 }
             }
@@ -697,7 +699,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                             OutlinedTextField(
                                 value = amountText,
                                 onValueChange = { amountText = InputRules.amountText(it) },
-                                placeholder = { Text("Amount") },
+                                placeholder = { Text(stringResource(R.string.t_amount_43dc8)) },
                                 singleLine = true,
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                                 modifier = Modifier.weight(1f)
@@ -705,11 +707,11 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                             TextButton(
                                 onClick = { amountText.toDoubleOrNull()?.let { vm.recordExpenseAmount(o.id, it) } },
                                 enabled = amountText.toDoubleOrNull() != null
-                            ) { Text("Save", color = colors.accent) }
+                            ) { Text(stringResource(R.string.t_save_efc00), color = colors.accent) }
                         }
                         Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                            TextButton(onClick = { vm.markNoExpense(o.id) }) { Text("No expense", color = colors.textMid) }
-                            TextButton(onClick = { vm.deferExpense(o.id) }) { Text("Skip for now", color = colors.textMid) }
+                            TextButton(onClick = { vm.markNoExpense(o.id) }) { Text(stringResource(R.string.t_no_expense_bdc10), color = colors.textMid) }
+                            TextButton(onClick = { vm.deferExpense(o.id) }) { Text(stringResource(R.string.t_skip_for_now_6fc09), color = colors.textMid) }
                         }
                     }
                     if (deferred > 0) {
@@ -747,9 +749,9 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         val options = if (walking) listOf(TransportCatalog.WALK)
                             else TransportCatalog.COMMUTE.filter { it.key != TransportCatalog.WALK.key }
                         options.forEach { p ->
-                            KoodeChip(if (walking) "Yes, walking" else p.label, false, { vm.quickSwitch(p.key) }, leading = p.emoji)
+                            KoodeChip(if (walking) "Yes, walking" else com.trippulse.app.ui.Names.mode(p.key), false, { vm.quickSwitch(p.key) }, leading = p.emoji)
                         }
-                        KoodeChip("Not now", false, { sensedDismissed = sensed })
+                        KoodeChip(stringResource(R.string.t_not_now_e4571), false, { sensedDismissed = sensed })
                     }
                 }
             }
@@ -760,12 +762,12 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             // here, from wherever you are; nothing needs adding up front.
             val stageSince = activeLeg?.startedAtMs ?: t?.startedAtMs
             val offerSwitch = !profile.isPrivateVehicle || !moving
-            KoodeCard(title = "How you're travelling") {
+            KoodeCard(title = stringResource(R.string.t_how_you_re_travelling_7b7fc)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(profile.emoji, fontSize = 22.sp)
                     Spacer(Modifier.width(Spacing.sm))
                     Column(Modifier.weight(1f)) {
-                        Text(profile.label, color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+                        Text(com.trippulse.app.ui.Names.mode(profile.key), color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
                         val from = activeLeg?.fromName?.takeIf { it.isNotBlank() }
                         Text(
                             listOfNotNull(stageSince?.let { "Since ${TimeFmt.clock(it)}" }, from?.let { "from $it" }).joinToString(" "),
@@ -787,13 +789,13 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 }
                 if (offerSwitch) {
                     Spacer(Modifier.height(Spacing.md))
-                    Text("NOW ON SOMETHING ELSE?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(R.string.t_now_on_something_else_de931), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                     Spacer(Modifier.height(Spacing.xs))
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                         TransportCatalog.COMMUTE.filter { it.key != profile.key }.forEach { p ->
-                            KoodeChip(p.label, false, { vm.quickSwitch(p.key) }, leading = p.emoji)
+                            KoodeChip(com.trippulse.app.ui.Names.mode(p.key), false, { vm.quickSwitch(p.key) }, leading = p.emoji)
                         }
-                        KoodeChip("Other", false, { showEdit = true }, leading = "⋯")
+                        KoodeChip(stringResource(R.string.t_other_6e6a6), false, { showEdit = true }, leading = "⋯")
                     }
                     stageMessage?.let {
                         Spacer(Modifier.height(Spacing.xs))
@@ -844,9 +846,9 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                 Box(Modifier.weight(1f)) {
                     if (s?.journey == JourneyStatus.PAUSED.name) {
-                        SecondaryButton("Resume", { vm.resume() }, leading = "▶", height = 46.dp)
+                        SecondaryButton(stringResource(R.string.t_resume_b3bd0), { vm.resume() }, leading = "▶", height = 46.dp)
                     } else {
-                        SecondaryButton("Pause", { vm.pause() }, leading = "⏸", height = 46.dp)
+                        SecondaryButton(stringResource(R.string.t_pause_78196), { vm.pause() }, leading = "⏸", height = 46.dp)
                     }
                 }
                 Box(Modifier.weight(1f)) {
@@ -876,7 +878,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             }
 
             // ---- timeline ----
-            SectionHeader("Timeline")
+            SectionHeader(stringResource(R.string.t_timeline_01851))
             KoodeCard {
                 val items = remember(events) {
                     timelineItems(
@@ -903,8 +905,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
         }
         AlertDialog(
             onDismissRequest = { showEtaBreakdown = false },
-            confirmButton = { TextButton(onClick = { showEtaBreakdown = false }) { Text("Got it") } },
-            title = { Text("How the estimate is built") },
+            confirmButton = { TextButton(onClick = { showEtaBreakdown = false }) { Text(stringResource(R.string.t_got_it_5b802)) } },
+            title = { Text(stringResource(R.string.t_how_the_estimate_is_built_30f16)) },
             text = {
                 Column {
                     val travel = (map["travelSeconds"] as? Number)?.toLong() ?: 0
@@ -1148,7 +1150,7 @@ private fun EndJourneyReview(
             .padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("End this journey?", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text(stringResource(R.string.t_end_this_journey_c2f21), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
         Text(
             "Tracking stops now. Next you'll review what Koode recorded — nothing is shared with the people " +
                 "following you until you approve it.",
@@ -1156,18 +1158,18 @@ private fun EndJourneyReview(
         )
 
         if (report == null) {
-            Text("Working out the numbers…", color = colors.textLow, style = MaterialTheme.typography.bodyMedium)
+            Text(stringResource(R.string.t_working_out_the_numbers_badf6), color = colors.textLow, style = MaterialTheme.typography.bodyMedium)
         } else {
             JourneyDashboard(report, measures, privateVehicle, compact = true)
         }
 
-        SecondaryButton("Add a missing expense", onAddExpense, leading = "₹", height = 44.dp)
+        SecondaryButton(stringResource(R.string.t_add_a_missing_expense_08cab), onAddExpense, leading = "₹", height = 44.dp)
 
         OutlinedTextField(
             value = note,
             onValueChange = { note = it },
-            label = { Text("Anything to add? (optional)") },
-            placeholder = { Text("Roads were clear") },
+            label = { Text(stringResource(R.string.t_anything_to_add_optional_d0e20)) },
+            placeholder = { Text(stringResource(R.string.t_roads_were_clear_05690)) },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -1198,7 +1200,7 @@ private fun EndJourneyReview(
                 Spacer(Modifier.height(Spacing.sm))
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     KoodeChip("End at ${TimeFmt.clock(arrivalMs)}", endAtArrival, { endAtArrival = true }, leading = "🏁")
-                    KoodeChip("End now", !endAtArrival, { endAtArrival = false })
+                    KoodeChip(stringResource(R.string.t_end_now_fb5bb), !endAtArrival, { endAtArrival = false })
                 }
             }
             Spacer(Modifier.height(Spacing.md))
@@ -1208,7 +1210,7 @@ private fun EndJourneyReview(
             { onConfirm(note.trim().ifBlank { null }, if (endAtArrival) arrivalMs else null) },
             leading = "🏁"
         )
-        SecondaryButton("Not yet — keep going", onCancel, accent = colors.textMid, height = 44.dp)
+        SecondaryButton(stringResource(R.string.t_not_yet_keep_going_f97ef), onCancel, accent = colors.textMid, height = 44.dp)
         Spacer(Modifier.height(Spacing.lg))
     }
 }
@@ -1241,7 +1243,7 @@ internal fun SendTimelineSheet(
             .padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("Journey complete 🏁", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+        Text(stringResource(R.string.t_journey_complete_71362), color = colors.accent, style = MaterialTheme.typography.headlineSmall)
         Text(
             if (whatsAppAvailable)
                 "Your timeline is ready. Tap a name to open WhatsApp with the document attached — " +
@@ -1278,12 +1280,12 @@ internal fun SendTimelineSheet(
             }
         }
 
-        SecondaryButton("Send another way", onShareOther, leading = "📤", height = 44.dp)
+        SecondaryButton(stringResource(R.string.t_send_another_way_c0e8a), onShareOther, leading = "📤", height = 44.dp)
         Text(
             "Only the timeline goes. Your money tracker stays on this phone.",
             color = colors.textLow, style = MaterialTheme.typography.bodySmall
         )
-        PrimaryButton("Done", onDone)
+        PrimaryButton(stringResource(R.string.t_done_e9b45), onDone)
         Spacer(Modifier.height(Spacing.lg))
     }
 }
@@ -1355,27 +1357,27 @@ private fun EditJourneySheet(
             .padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("What's changing", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text(stringResource(R.string.t_what_s_changing_53e22), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
         Text(
             "Plans change. Each change is kept as a new version of your journey plan, " +
                 "and everyone following you is told what changed.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
         )
 
-        KoodeCard(title = "Where you're going") {
+        KoodeCard(title = stringResource(R.string.t_where_you_re_going_111c4)) {
             Text(destination ?: "—", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
             plan?.takeIf { it.version > 1 }?.let {
                 Text("Plan version ${it.version}", color = colors.textLow, style = MaterialTheme.typography.bodySmall)
             }
             Spacer(Modifier.height(Spacing.sm))
-            SecondaryButton("Change destination", onChangeDestination, leading = "🧭", height = 44.dp)
+            SecondaryButton(stringResource(R.string.t_change_destination_2b6ae), onChangeDestination, leading = "🧭", height = 44.dp)
         }
 
         // Driving or being driven changes what the coach suggests: a passenger
         // is never asked to take a driving break.
         if (current?.mode in setOf("CAR", "BIKE", "CAB", "AUTO")) {
             val role = WellbeingCoach.Role.fromKey(plan?.role) ?: WellbeingCoach.defaultRole(current?.mode)
-            KoodeCard(title = "Travelling as") {
+            KoodeCard(title = stringResource(R.string.t_travelling_as_3d8e7)) {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     KoodeChip(
                         if (current?.mode == "BIKE") "Rider" else "Driver",
@@ -1389,12 +1391,12 @@ private fun EditJourneySheet(
             }
         }
 
-        KoodeCard(title = "Planned halt") {
+        KoodeCard(title = stringResource(R.string.t_planned_halt_8df3b)) {
             var haltText by remember(plan?.plannedHalt) { mutableStateOf(plan?.plannedHalt.orEmpty()) }
             OutlinedTextField(
                 value = haltText,
                 onValueChange = { haltText = it.take(60) },
-                label = { Text("Where you plan to halt (e.g. Salem)") },
+                label = { Text(stringResource(R.string.t_where_you_plan_to_halt_e_g_salem_3296d)) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -1409,7 +1411,7 @@ private fun EditJourneySheet(
                 }
                 if (plan?.plannedHalt != null) {
                     Box(Modifier.weight(1f)) {
-                        SecondaryButton("Remove", { haltText = ""; onPlannedHalt(null) }, accent = colors.textMid, height = 44.dp)
+                        SecondaryButton(stringResource(R.string.t_remove_e9639), { haltText = ""; onPlannedHalt(null) }, accent = colors.textMid, height = 44.dp)
                     }
                 }
             }
@@ -1417,7 +1419,7 @@ private fun EditJourneySheet(
 
         // Every version is kept: the plan's history is part of the journey.
         if (planHistory.size > 1) {
-            KoodeCard(title = "Plan history") {
+            KoodeCard(title = stringResource(R.string.t_plan_history_f5fdf)) {
                 planHistory.sortedByDescending { it.version }.forEach { v ->
                     Row(Modifier.fillMaxWidth().padding(vertical = 4.dp)) {
                         Text(
@@ -1440,7 +1442,7 @@ private fun EditJourneySheet(
         }
 
         if (legs.isNotEmpty()) {
-            KoodeCard(title = "Stages so far") {
+            KoodeCard(title = stringResource(R.string.t_stages_so_far_a6fb6)) {
                 legs.sortedBy { it.legIndex }.forEach { leg ->
                     val done = leg.completedAtMs != null
                     val active = leg.legIndex == activeLegIndex
@@ -1459,13 +1461,13 @@ private fun EditJourneySheet(
                             }
                         }
                         when {
-                            done -> StatusPill("Done", colors.textLow)
+                            done -> StatusPill(stringResource(R.string.t_done_e9b45), colors.textLow)
                             active -> TextButton(onClick = {
                                 correcting = true
                                 mode = leg.mode
                                 details = LegDetails.fromJson(leg.detailsJson)
-                            }) { Text("Correct details", color = colors.accent, fontSize = 13.sp) }
-                            else -> StatusPill("Planned", colors.textMid)
+                            }) { Text(stringResource(R.string.t_correct_details_1d31f), color = colors.accent, fontSize = 13.sp) }
+                            else -> StatusPill(stringResource(R.string.t_planned_9cbe4), colors.textMid)
                         }
                     }
                 }
@@ -1484,7 +1486,7 @@ private fun EditJourneySheet(
                 Spacer(Modifier.height(Spacing.sm))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     TransportCatalog.ALL.forEach { p ->
-                        KoodeChip(p.label, mode == p.key, { onModeChosen(p.key) }, leading = p.emoji)
+                        KoodeChip(com.trippulse.app.ui.Names.mode(p.key), mode == p.key, { onModeChosen(p.key) }, leading = p.emoji)
                     }
                 }
                 Spacer(Modifier.height(Spacing.md))
@@ -1545,7 +1547,7 @@ private fun EditJourneySheet(
         if (message != null) {
             Text(message, color = colors.accent, style = MaterialTheme.typography.bodyMedium)
         }
-        SecondaryButton("Close", onClose)
+        SecondaryButton(stringResource(R.string.t_close_bbfa7), onClose)
         Spacer(Modifier.height(Spacing.lg))
     }
 }
@@ -1574,7 +1576,7 @@ private fun ExpenseSheet(
         Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("Add an expense", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text(stringResource(R.string.t_add_an_expense_52852), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
         Text(
             "Private to you — it stays on this phone and nobody following you ever sees it.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
@@ -1590,20 +1592,20 @@ private fun ExpenseSheet(
         OutlinedTextField(
             value = item,
             onValueChange = { item = InputRules.itemText(it) },
-            label = { Text("Item — what was it?") },
-            placeholder = { Text("Highway dhaba lunch") },
+            label = { Text(stringResource(R.string.t_item_what_was_it_37426)) },
+            placeholder = { Text(stringResource(R.string.t_highway_dhaba_lunch_c1328)) },
             singleLine = true,
-            supportingText = { Text("Letters only", color = colors.textLow, fontSize = 11.sp) },
+            supportingText = { Text(stringResource(R.string.t_letters_only_fff61), color = colors.textLow, fontSize = 11.sp) },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = amount,
             onValueChange = { amount = InputRules.amountText(it) },
-            label = { Text("Amount") },
-            placeholder = { Text("450") },
+            label = { Text(stringResource(R.string.t_amount_43dc8)) },
+            placeholder = { Text(stringResource(R.string.t_450_d96ad)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-            supportingText = { Text("Numbers only", color = colors.textLow, fontSize = 11.sp) },
+            supportingText = { Text(stringResource(R.string.t_numbers_only_eb324), color = colors.textLow, fontSize = 11.sp) },
             modifier = Modifier.fillMaxWidth()
         )
         if (type == "FUEL") {
@@ -1611,13 +1613,13 @@ private fun ExpenseSheet(
                 OutlinedTextField(
                     value = qty,
                     onValueChange = { qty = InputRules.quantityText(it) },
-                    label = { Text("Quantity") },
+                    label = { Text(stringResource(R.string.t_quantity_44f6a)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.weight(1f)
                 )
-                KoodeChip("Litres", unit == "L", { unit = "L" })
-                KoodeChip("kWh", unit == "kWh", { unit = "kWh" })
+                KoodeChip(stringResource(R.string.t_litres_92517), unit == "L", { unit = "L" })
+                KoodeChip(stringResource(R.string.t_kwh_72c28), unit == "kWh", { unit = "kWh" })
             }
             Text(
                 "Used for this journey's fuel-efficiency figure.",
@@ -1649,7 +1651,7 @@ private fun QuickNoteSheet(
         Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(Spacing.xl),
         verticalArrangement = Arrangement.spacedBy(Spacing.md)
     ) {
-        Text("Add a note", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+        Text(stringResource(R.string.t_add_a_note_f9ee6), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             profile.quickActions
                 .filter { !moving || it.availableWhileMoving }
@@ -1660,7 +1662,7 @@ private fun QuickNoteSheet(
         if (!moving) {
             OutlinedTextField(
                 value = text, onValueChange = { text = it },
-                label = { Text("Anything else") }, modifier = Modifier.fillMaxWidth()
+                label = { Text(stringResource(R.string.t_anything_else_ead90)) }, modifier = Modifier.fillMaxWidth()
             )
             PrimaryButton(
                 "Add note",
@@ -1738,25 +1740,25 @@ private fun CheckpointSheet(
                 color = colors.textMid, style = MaterialTheme.typography.bodyMedium
             )
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                KoodeChip("Water", water, { water = !water }, leading = "💧")
-                KoodeChip("Food", food, { food = !food }, leading = "🍛")
-                KoodeChip("Tea / coffee", tea, { tea = !tea }, leading = "☕")
-                KoodeChip("Snack", snack, { snack = !snack }, leading = "🍪")
-                KoodeChip("Toilet", toilet, { toilet = !toilet }, leading = "🚻")
-                KoodeChip("Rest", rest, { rest = !rest }, leading = "😴")
+                KoodeChip(stringResource(R.string.t_water_de9b1), water, { water = !water }, leading = "💧")
+                KoodeChip(stringResource(R.string.t_food_35b25), food, { food = !food }, leading = "🍛")
+                KoodeChip(stringResource(R.string.t_tea_coffee_e3814), tea, { tea = !tea }, leading = "☕")
+                KoodeChip(stringResource(R.string.t_snack_071a0), snack, { snack = !snack }, leading = "🍪")
+                KoodeChip(stringResource(R.string.t_toilet_0a527), toilet, { toilet = !toilet }, leading = "🚻")
+                KoodeChip(stringResource(R.string.t_rest_b79e5), rest, { rest = !rest }, leading = "😴")
                 // Fuel questions exist only for private vehicles.
                 if (profile.asksAboutFuel) {
-                    if (fuelUnit == "kWh") KoodeChip("Charged", charge, { charge = !charge }, leading = "🔌")
-                    else KoodeChip("Refuelled", fuel, { fuel = !fuel }, leading = "⛽")
+                    if (fuelUnit == "kWh") KoodeChip(stringResource(R.string.t_charged_deb41), charge, { charge = !charge }, leading = "🔌")
+                    else KoodeChip(stringResource(R.string.t_refuelled_4dec1), fuel, { fuel = !fuel }, leading = "⛽")
                 }
             }
 
             // Koode names the meal from the clock; this row exists only for the
             // times it guesses wrong, or the traveller wants to be explicit.
             if (food) {
-                Text("Which meal?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                Text(stringResource(R.string.t_which_meal_a5e8e), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                    KoodeChip("Let Koode decide", mealKind == null, { mealKind = null })
+                    KoodeChip(stringResource(R.string.t_let_koode_decide_c4d43), mealKind == null, { mealKind = null })
                     listOf(Nourishment.BREAKFAST, Nourishment.LUNCH, Nourishment.DINNER, Nourishment.SNACK).forEach { m ->
                         KoodeChip(m.label, mealKind == m, { mealKind = m }, leading = m.emoji)
                     }
@@ -1767,7 +1769,7 @@ private fun CheckpointSheet(
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     OutlinedTextField(
                         value = refuelCost, onValueChange = { refuelCost = InputRules.amountText(it) },
-                        label = { Text("Amount") }, singleLine = true,
+                        label = { Text(stringResource(R.string.t_amount_43dc8)) }, singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                         modifier = Modifier.weight(1f)
                     )
@@ -1781,12 +1783,12 @@ private fun CheckpointSheet(
             }
 
             Spacer(Modifier.height(Spacing.sm))
-            Text("When did it start?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            Text(stringResource(R.string.t_when_did_it_start_0d5bc), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                 verticalArrangement = Arrangement.spacedBy(Spacing.sm)
             ) {
-                if (autoTimed) KoodeChip("When I stopped", useDetected, { useDetected = true; pickedStartMs = null }, leading = "📍")
+                if (autoTimed) KoodeChip(stringResource(R.string.t_when_i_stopped_7cd0d), useDetected, { useDetected = true; pickedStartMs = null }, leading = "📍")
                 // Reaches back a whole evening: a dinner logged after the night's
                 // halt is still logged at dinner time.
                 listOf(0 to "Just now", 10 to "10 min ago", 20 to "20 min ago", 30 to "30 min ago", 45 to "45 min ago",
@@ -1801,7 +1803,7 @@ private fun CheckpointSheet(
                 )
             }
             Spacer(Modifier.height(Spacing.sm))
-            Text("How long was it?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            Text(stringResource(R.string.t_how_long_was_it_5f98d), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                 verticalArrangement = Arrangement.spacedBy(Spacing.sm)
@@ -1856,7 +1858,7 @@ private fun CheckpointSheet(
                 enabled = water || food || tea || snack || toilet || rest || fuel || charge,
                 height = 48.dp
             )
-            SecondaryButton("Not now", onSkip, accent = colors.textMid, height = 44.dp)
+            SecondaryButton(stringResource(R.string.t_not_now_e4571), onSkip, accent = colors.textMid, height = 44.dp)
         }
     }
 
@@ -1871,7 +1873,7 @@ private fun CheckpointSheet(
         )
         AlertDialog(
             onDismissRequest = { pickingTime = false },
-            title = { Text("When did it start?") },
+            title = { Text(stringResource(R.string.t_when_did_it_start_0d5bc)) },
             text = { TimeInput(state = state) },
             confirmButton = {
                 TextButton({
@@ -1884,9 +1886,9 @@ private fun CheckpointSheet(
                     pickedStartMs = c.timeInMillis
                     useDetected = false
                     pickingTime = false
-                }) { Text("Use this time") }
+                }) { Text(stringResource(R.string.t_use_this_time_70a50)) }
             },
-            dismissButton = { TextButton({ pickingTime = false }) { Text("Cancel") } }
+            dismissButton = { TextButton({ pickingTime = false }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
         )
     }
 }
@@ -1917,7 +1919,7 @@ private fun SpendingSheet(
                 .padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.xl),
             verticalArrangement = Arrangement.spacedBy(Spacing.sm)
         ) {
-            Text("Trip spending", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.t_trip_spending_dbc63), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
             Text(
                 "${money(rows.sumOf { it.amount })} across ${rows.size} ${if (rows.size == 1) "entry" else "entries"}. Private to you.",
                 color = colors.textMid, style = MaterialTheme.typography.bodyMedium
@@ -1959,27 +1961,27 @@ private fun SpendingSheet(
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                             OutlinedTextField(
                                 value = amountText, onValueChange = { amountText = InputRules.amountText(it) },
-                                label = { Text("Amount") }, singleLine = true,
+                                label = { Text(stringResource(R.string.t_amount_43dc8)) }, singleLine = true,
                                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                                 modifier = Modifier.weight(1f)
                             )
                             TextButton(
                                 onClick = { InputRules.parseAmount(amountText)?.let { onCorrect(e.id, it) }; editingId = null },
                                 enabled = InputRules.parseAmount(amountText) != null
-                            ) { Text("Save", color = colors.accent) }
-                            TextButton(onClick = { editingId = null }) { Text("Cancel", color = colors.textMid) }
+                            ) { Text(stringResource(R.string.t_save_efc00), color = colors.accent) }
+                            TextButton(onClick = { editingId = null }) { Text(stringResource(R.string.t_cancel_77dfd), color = colors.textMid) }
                         }
                     } else if (confirmDelete == e.id) {
                         Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                            TextButton(onClick = { onDelete(e.id); confirmDelete = null }) { Text("Remove this entry", color = colors.danger) }
-                            TextButton(onClick = { confirmDelete = null }) { Text("Keep", color = colors.textMid) }
+                            TextButton(onClick = { onDelete(e.id); confirmDelete = null }) { Text(stringResource(R.string.t_remove_this_entry_b9aca), color = colors.danger) }
+                            TextButton(onClick = { confirmDelete = null }) { Text(stringResource(R.string.t_keep_466fc), color = colors.textMid) }
                         }
                     } else {
                         Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                             TextButton(onClick = { editingId = e.id; amountText = InputRules.amountText(e.amount.toString()) }) {
-                                Text("Correct amount", color = colors.accent)
+                                Text(stringResource(R.string.t_correct_amount_4634a), color = colors.accent)
                             }
-                            TextButton(onClick = { confirmDelete = e.id }) { Text("Remove", color = colors.textMid) }
+                            TextButton(onClick = { confirmDelete = e.id }) { Text(stringResource(R.string.t_remove_e9639), color = colors.textMid) }
                         }
                     }
                 }
@@ -1990,7 +1992,7 @@ private fun SpendingSheet(
             Modifier.fillMaxWidth().padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.sm, bottom = Spacing.xl),
             verticalArrangement = Arrangement.spacedBy(Spacing.sm)
         ) {
-            PrimaryButton("Add an expense", onAdd, height = 46.dp)
+            PrimaryButton(stringResource(R.string.t_add_an_expense_52852), onAdd, height = 46.dp)
         }
     }
 }
@@ -2024,7 +2026,7 @@ private fun EditEntrySheet(
                 .padding(start = Spacing.xl, end = Spacing.xl, top = Spacing.xl),
             verticalArrangement = Arrangement.spacedBy(Spacing.md)
         ) {
-            Text("Correct this entry", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.t_correct_this_entry_f7815), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
             Text(item.label, color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
             Text(
                 "Currently at ${TimeFmt.clockWithDay(item.timeMs, System.currentTimeMillis())}. The people following you see the corrected line.",
@@ -2049,7 +2051,7 @@ private fun EditEntrySheet(
             }
 
             if (isBreak) {
-                Text("How long was it?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                Text(stringResource(R.string.t_how_long_was_it_5f98d), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                     verticalArrangement = Arrangement.spacedBy(Spacing.sm)
@@ -2075,13 +2077,13 @@ private fun EditEntrySheet(
             )
             if (confirmRemove) {
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                    Box(Modifier.weight(1f)) { SecondaryButton("Yes, remove it", onRemove, accent = colors.danger, height = 44.dp) }
-                    Box(Modifier.weight(1f)) { SecondaryButton("Keep it", { confirmRemove = false }, accent = colors.textMid, height = 44.dp) }
+                    Box(Modifier.weight(1f)) { SecondaryButton(stringResource(R.string.t_yes_remove_it_5289f), onRemove, accent = colors.danger, height = 44.dp) }
+                    Box(Modifier.weight(1f)) { SecondaryButton(stringResource(R.string.t_keep_it_d9f36), { confirmRemove = false }, accent = colors.textMid, height = 44.dp) }
                 }
             } else {
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                    Box(Modifier.weight(1f)) { SecondaryButton("Remove from timeline", { confirmRemove = true }, accent = colors.danger, height = 44.dp) }
-                    Box(Modifier.weight(1f)) { SecondaryButton("Cancel", onCancel, accent = colors.textMid, height = 44.dp) }
+                    Box(Modifier.weight(1f)) { SecondaryButton(stringResource(R.string.t_remove_from_timeline_c2826), { confirmRemove = true }, accent = colors.danger, height = 44.dp) }
+                    Box(Modifier.weight(1f)) { SecondaryButton(stringResource(R.string.t_cancel_77dfd), onCancel, accent = colors.textMid, height = 44.dp) }
                 }
             }
         }
@@ -2108,9 +2110,9 @@ private fun EditEntrySheet(
                     if (c.timeInMillis > System.currentTimeMillis()) c.add(java.util.Calendar.DAY_OF_YEAR, -1)
                     atMs = c.timeInMillis
                     pickingTime = false
-                }) { Text("Use this time") }
+                }) { Text(stringResource(R.string.t_use_this_time_70a50)) }
             },
-            dismissButton = { TextButton({ pickingTime = false }) { Text("Cancel") } }
+            dismissButton = { TextButton({ pickingTime = false }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
         )
     }
 }
@@ -2168,7 +2170,7 @@ private fun HaltDialog(
                 // Asked only when the traveller opened this themselves: a halt
                 // logged in the morning still began the night before.
                 if (!askFirst) {
-                    Text("Since when?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(R.string.t_since_when_3fbbd), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                     FlowRow(
                         horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                         verticalArrangement = Arrangement.spacedBy(Spacing.sm)
@@ -2178,7 +2180,7 @@ private fun HaltDialog(
                             .forEach { (m, label) -> KoodeChip(label, sinceMin == m, { sinceMin = m }) }
                     }
                 }
-                Text("For about (optional)", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                Text(stringResource(R.string.t_for_about_optional_93471), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                 FlowRow(
                     horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                     verticalArrangement = Arrangement.spacedBy(Spacing.sm)
@@ -2198,10 +2200,10 @@ private fun HaltDialog(
                     enabled = type != null, height = 46.dp
                 )
                 if (askFirst) {
-                    SecondaryButton("Just a long break", onDecline, height = 44.dp)
-                    SecondaryButton("Not stopped yet", onDecline, accent = colors.textMid, height = 44.dp)
+                    SecondaryButton(stringResource(R.string.t_just_a_long_break_dc30f), onDecline, height = 44.dp)
+                    SecondaryButton(stringResource(R.string.t_not_stopped_yet_f7943), onDecline, accent = colors.textMid, height = 44.dp)
                 } else {
-                    SecondaryButton("Not now", onDecline, accent = colors.textMid, height = 44.dp)
+                    SecondaryButton(stringResource(R.string.t_not_now_e4571), onDecline, accent = colors.textMid, height = 44.dp)
                 }
                 Text(
                     "The people following this journey are told only if you confirm a halt.",

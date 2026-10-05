@@ -30,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.Modifier
@@ -40,6 +41,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.TripPulseApp
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.data.local.ActiveTripEntity
@@ -183,14 +185,14 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
         Spacer(Modifier.height(Spacing.xs))
         AdaptiveContainer {
             BackButton({ nav.popBackStack() })
-            Text("Journey ready", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
+            Text(stringResource(R.string.t_journey_ready_c1ecd), color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
                 "Share these two numbers with whoever should be able to follow you.",
                 color = colors.textMid, style = MaterialTheme.typography.bodyLarge
             )
 
             KoodeHeroCard(accent = colors.accent) {
-                Text("JOURNEY NUMBER", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                Text(stringResource(R.string.t_journey_number_18819), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                 Spacer(Modifier.height(Spacing.sm))
                 Text(
                     if (code.isEmpty()) "…" else TripCredentials.pretty(t!!.tripId),
@@ -215,7 +217,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
             }
 
             KoodeHeroCard(accent = colors.warn) {
-                Text("PASSCODE", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                Text(stringResource(R.string.t_passcode_1ea8d), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                 Spacer(Modifier.height(Spacing.sm))
                 Text(
                     t?.secret ?: "…",
@@ -240,7 +242,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
                 )
             }
 
-            KoodeCard(title = "Share") {
+            KoodeCard(title = stringResource(R.string.t_share_09ca5)) {
                 Text(
                     "The message includes a one-tap link, so someone can follow you without installing anything or typing a number.",
                     color = colors.textMid, style = MaterialTheme.typography.bodyMedium
@@ -272,7 +274,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
                 Spacer(Modifier.height(Spacing.md))
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     Box(Modifier.weight(1f)) {
-                        SecondaryButton("Share with passcode", {
+                        SecondaryButton(stringResource(R.string.t_share_with_passcode_3f80a), {
                             if (t != null) context.startActivity(
                                 Intent.createChooser(
                                     Intent(Intent.ACTION_SEND).apply {
@@ -285,7 +287,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
                         }, height = 44.dp)
                     }
                     Box(Modifier.weight(1f)) {
-                        SecondaryButton("Number only", {
+                        SecondaryButton(stringResource(R.string.t_number_only_81d33), {
                             if (t != null) context.startActivity(
                                 Intent.createChooser(
                                     Intent(Intent.ACTION_SEND).apply {
@@ -320,7 +322,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
                 enabled = t != null && !starting,
                 leading = "🚦"
             )
-            SecondaryButton("Back", { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
+            SecondaryButton(stringResource(R.string.t_back_b52b3), { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }
@@ -355,7 +357,7 @@ private fun LateStartDialog(
     val colors = com.trippulse.app.ui.theme.KoodeTheme.colors
     androidx.compose.material3.AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Already on your way?") },
+        title = { Text(stringResource(R.string.t_already_on_your_way_09ebb)) },
         text = {
             androidx.compose.foundation.layout.Column {
                 Text(
@@ -373,6 +375,6 @@ private fun LateStartDialog(
                 }
             }
         },
-        confirmButton = { androidx.compose.material3.TextButton(onClick = onStartingNow) { Text("I'm starting here, now") } }
+        confirmButton = { androidx.compose.material3.TextButton(onClick = onStartingNow) { Text(stringResource(R.string.t_i_m_starting_here_now_3439a)) } }
     )
 }

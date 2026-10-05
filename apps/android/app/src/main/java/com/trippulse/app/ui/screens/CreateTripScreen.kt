@@ -42,6 +42,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -55,6 +56,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.domain.TransportCatalog
@@ -151,7 +153,7 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
         Spacer(Modifier.height(Spacing.xs))
         AdaptiveContainer {
             BackButton({ nav.popBackStack() })
-            Text("Plan a journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
+            Text(stringResource(R.string.t_plan_a_journey_0b992), color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
                 "Tap a place to set it. Add a stage whenever you change vehicle.",
                 color = colors.textMid, style = MaterialTheme.typography.bodyLarge
@@ -160,7 +162,7 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
             AnimatedVisibility(visible = notice != null) {
                 KoodeCard(accent = colors.accent, onClick = { vm.notice.value = null }) {
                     Text(notice.orEmpty(), color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
-                    Text("Tap to dismiss", color = colors.textLow, style = MaterialTheme.typography.bodySmall)
+                    Text(stringResource(R.string.t_tap_to_dismiss_f242a), color = colors.textLow, style = MaterialTheme.typography.bodySmall)
                 }
             }
 
@@ -189,7 +191,7 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
                 )
             }
 
-            SecondaryButton("Add another stage", { vm.addLeg() }, leading = "＋", accent = colors.traveller, height = 44.dp)
+            SecondaryButton(stringResource(R.string.t_add_another_stage_53468), { vm.addLeg() }, leading = "＋", accent = colors.traveller, height = 44.dp)
 
             // ---- live preview of the stage being edited ----
             if (editingLeg.from != null || editingLeg.to != null) {
@@ -214,7 +216,7 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
             }
 
             // ---- passcode ----
-            KoodeCard(title = "Passcode for followers") {
+            KoodeCard(title = stringResource(R.string.t_passcode_for_followers_fb2b5)) {
                 Text(
                     "Six digits. Anyone with your journey number AND this passcode goes straight in — " +
                         "everyone else waits for your approval.",
@@ -232,19 +234,19 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
                     )
                     Spacer(Modifier.width(Spacing.sm))
                     Box(Modifier.width(110.dp)) {
-                        SecondaryButton("Suggest", { vm.regeneratePasscode() }, height = 48.dp)
+                        SecondaryButton(stringResource(R.string.t_suggest_70240), { vm.regeneratePasscode() }, height = 48.dp)
                     }
                 }
             }
 
             // ---- departure ----
-            KoodeCard(title = "Departure") {
+            KoodeCard(title = stringResource(R.string.t_departure_0a9a1)) {
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                    KoodeChip("Now", departure == null, { vm.departureMs.value = null; customWhen = "" })
-                    KoodeChip("In an hour", false, {
+                    KoodeChip(stringResource(R.string.t_now_e3b82), departure == null, { vm.departureMs.value = null; customWhen = "" })
+                    KoodeChip(stringResource(R.string.t_in_an_hour_7e237), false, {
                         vm.departureMs.value = System.currentTimeMillis() + 3_600_000L; customWhen = ""
                     })
-                    KoodeChip("Tomorrow 6 AM", false, {
+                    KoodeChip(stringResource(R.string.t_tomorrow_6_am_6defb), false, {
                         val cal = java.util.Calendar.getInstance().apply {
                             add(java.util.Calendar.DAY_OF_YEAR, 1)
                             set(java.util.Calendar.HOUR_OF_DAY, 6); set(java.util.Calendar.MINUTE, 0)
@@ -258,13 +260,13 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
                     OutlinedTextField(
                         value = customWhen,
                         onValueChange = { customWhen = it },
-                        label = { Text("Or yyyy-MM-dd HH:mm") },
+                        label = { Text(stringResource(R.string.t_or_yyyy_mm_dd_hh_mm_5a300)) },
                         singleLine = true,
                         modifier = Modifier.weight(1f)
                     )
                     Spacer(Modifier.width(Spacing.sm))
                     Box(Modifier.width(90.dp)) {
-                        SecondaryButton("Set", {
+                        SecondaryButton(stringResource(R.string.t_set_448ab), {
                             val parsed = runCatching {
                                 java.text.SimpleDateFormat("yyyy-MM-dd HH:mm", java.util.Locale.US)
                                     .parse(customWhen.trim())?.time
@@ -284,17 +286,17 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
             }
 
             // ---- emergency contact ----
-            KoodeCard(title = "Emergency contact (optional)") {
+            KoodeCard(title = stringResource(R.string.t_emergency_contact_optional_e1305)) {
                 val emName by vm.emergencyName.collectAsStateWithLifecycle()
                 val emPhone by vm.emergencyPhone.collectAsStateWithLifecycle()
                 OutlinedTextField(
                     value = emName, onValueChange = { vm.emergencyName.value = InputRules.itemText(it) },
-                    label = { Text("Name") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+                    label = { Text(stringResource(R.string.t_name_709a2)) }, singleLine = true, modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(Modifier.height(Spacing.sm))
                 OutlinedTextField(
                     value = emPhone, onValueChange = { vm.emergencyPhone.value = InputRules.phoneText(it) },
-                    label = { Text("Phone") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    label = { Text(stringResource(R.string.t_phone_77064)) }, singleLine = true, modifier = Modifier.fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone)
                 )
             }
@@ -306,7 +308,7 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
                     // next step is the journey they are on, not a retry.
                     running?.let { tripId ->
                         Spacer(Modifier.height(Spacing.md))
-                        PrimaryButton("Open my journey", { nav.navigate(Routes.driver(tripId)) { popUpTo(Routes.HOME) } })
+                        PrimaryButton(stringResource(R.string.t_open_my_journey_24469), { nav.navigate(Routes.driver(tripId)) { popUpTo(Routes.HOME) } })
                     }
                 }
             }
@@ -323,7 +325,7 @@ fun CreateTripScreen(nav: NavHostController, scheduleLater: Boolean = false) {
                     leading = "🧭"
                 )
             }
-            SecondaryButton("Cancel", { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
+            SecondaryButton(stringResource(R.string.t_cancel_77dfd), { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }
@@ -389,7 +391,7 @@ private fun StageCard(
                 color = colors.textHigh, style = MaterialTheme.typography.titleMedium
             )
             Spacer(Modifier.weight(1f))
-            if (total > 1) TextButton(onClick = onRemove) { Text("Remove", color = colors.textLow, fontSize = 12.sp) }
+            if (total > 1) TextButton(onClick = onRemove) { Text(stringResource(R.string.t_remove_e9639), color = colors.textLow, fontSize = 12.sp) }
         }
 
         if (!isEditing) {
@@ -404,13 +406,13 @@ private fun StageCard(
         RouteFields(leg = leg, onPickFrom = onPickFrom, onPickTo = onPickTo)
 
         Spacer(Modifier.height(Spacing.lg))
-        Text("HOW ARE YOU TRAVELLING?", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+        Text(stringResource(R.string.t_how_are_you_travelling_af7a1), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
         Spacer(Modifier.height(Spacing.sm))
         // FlowRow, not a horizontal scroll: every mode (train, flight, metro,
         // ship…) must be visible at once, not hidden off the right edge.
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             TransportCatalog.ALL.forEach { p ->
-                ModeTile(p.key, p.label, leg.mode == p.key) { onModeChange(p.key) }
+                ModeTile(p.key, com.trippulse.app.ui.Names.mode(p.key), leg.mode == p.key) { onModeChange(p.key) }
             }
         }
 
@@ -434,7 +436,7 @@ private fun StageCard(
                         color = colors.textHigh, style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis
                     )
                 }
-                TextButton(onClick = { changeVehicle = true }) { Text("Change", color = colors.traveller) }
+                TextButton(onClick = { changeVehicle = true }) { Text(stringResource(R.string.t_change_64fbd), color = colors.traveller) }
             }
         } else {
             TravelDetailFields(mode = leg.mode, values = leg.details, onChange = onDetailChange)

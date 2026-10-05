@@ -28,6 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.TripPulseApp
 import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TimeFmt
@@ -258,22 +260,22 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 Spacer(Modifier.height(Spacing.xs))
                 when {
                     ui.endedByOwner ->
-                        Text("Journey complete", color = colors.accent, style = MaterialTheme.typography.headlineSmall)
+                        Text(stringResource(R.string.t_journey_complete_25c2b), color = colors.accent, style = MaterialTheme.typography.headlineSmall)
                     etaMode == EtaMode.OVERNIGHT_PENDING.name -> {
-                        Text("Halting", color = colors.warn, style = MaterialTheme.typography.titleMedium)
+                        Text(stringResource(R.string.t_halting_a3c26), color = colors.warn, style = MaterialTheme.typography.titleMedium)
                         state?.str("overnightType")?.let {
                             Text(overnightText(it), color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
                         }
                     }
                     else -> {
-                        Text("EXPECTED ARRIVAL", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                        Text(stringResource(R.string.t_expected_arrival_c38d9), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                         Text(
                             etaText(state?.l("etaLikely"), state?.l("etaLow"), state?.l("etaHigh")),
                             color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
                         )
                         if (state?.get("etaBreakdown") != null) {
                             TextButton(onClick = { showEta = true }, contentPadding = PaddingValues(0.dp)) {
-                                Text("Why this estimate?", color = colors.accent, fontSize = 13.sp)
+                                Text(stringResource(R.string.t_why_this_estimate_551da), color = colors.accent, fontSize = 13.sp)
                             }
                         }
                     }
@@ -304,7 +306,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 KoodeHeroCard(accent = colors.danger) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         PulsingDot(colors.danger, size = 9.dp)
-                        Text("SOS active", color = colors.danger, style = MaterialTheme.typography.headlineSmall)
+                        Text(stringResource(R.string.t_sos_active_b7cf7), color = colors.danger, style = MaterialTheme.typography.headlineSmall)
                     }
                     Text(
                         "The traveller has raised an emergency alert.",
@@ -324,7 +326,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
             val live = remember(state) { com.trippulse.app.domain.report.StoryCodec.decode(state?.get("story")) }
             if (live != null && live.paragraphs.isNotEmpty()) {
                 var expanded by remember { mutableStateOf(false) }
-                KoodeCard(title = "The story so far", accent = colors.traveller) {
+                KoodeCard(title = stringResource(R.string.t_the_story_so_far_b457c), accent = colors.traveller) {
                     (if (expanded) live.paragraphs else live.paragraphs.take(1)).forEach {
                         Text(it, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
                         Spacer(Modifier.height(Spacing.sm))
@@ -352,7 +354,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
             }
 
             // ---- wellbeing: factual "last logged", never medical ----
-            KoodeCard(title = "How they're doing") {
+            KoodeCard(title = stringResource(R.string.t_how_they_re_doing_58c31)) {
                 WellbeingRow("🍛", "Food", state?.l("foodAt"), now, art = KoodeArt.file(Pictures.FOOD))
                 WellbeingRow("💧", "Water", state?.l("waterAt"), now, art = KoodeArt.file(Pictures.WATER))
                 WellbeingRow("🚻", "Restroom", state?.l("toiletAt"), now, art = KoodeArt.file(Pictures.TOILET))
@@ -362,7 +364,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                         Modifier.fillMaxWidth().padding(vertical = 4.dp),
                         horizontalArrangement = Arrangement.SpaceBetween
                     ) {
-                        Text("📱 Phone", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+                        Text(stringResource(R.string.t_phone_dbab7), color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
                         Text("$it%", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
                     }
                 }
@@ -422,7 +424,7 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
             }
 
             // ---- timeline ----
-            SectionHeader("Timeline")
+            SectionHeader(stringResource(R.string.t_timeline_01851))
             KoodeCard {
                 val timeline = remember(ui.events) {
                     timelineItems(
@@ -510,8 +512,8 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
         val bd = state?.get("etaBreakdown") as? Map<String, Any?>
         AlertDialog(
             onDismissRequest = { showEta = false },
-            confirmButton = { TextButton(onClick = { showEta = false }) { Text("Got it") } },
-            title = { Text("How the estimate is built") },
+            confirmButton = { TextButton(onClick = { showEta = false }) { Text(stringResource(R.string.t_got_it_5b802)) } },
+            title = { Text(stringResource(R.string.t_how_the_estimate_is_built_30f16)) },
             text = {
                 Column {
                     val travel = (bd?.get("travelSeconds") as? Number)?.toLong() ?: 0
@@ -546,7 +548,7 @@ private fun RestRow(lastBreakEndMs: Long?, journey: String?, breaksApply: Boolea
         Row(verticalAlignment = Alignment.CenterVertically) {
             KoodeArt.file(Pictures.REST)?.let { ArtImage(it, 36.dp) }
             Spacer(Modifier.width(Spacing.sm))
-            Text("Rest", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(R.string.t_rest_b79e5), color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
         }
         Text(
             when {

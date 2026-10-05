@@ -33,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
@@ -61,6 +62,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.ui.Routes
 import com.trippulse.app.ui.components.KoodeIcons
 import com.trippulse.app.ui.components.LocalDims
@@ -115,7 +117,7 @@ fun SettingsTab(nav: NavHostController) {
     val name = remember(profileVersion, revision) { Profile.name(context) }
     val missing = remember(profileVersion, places.size) { Profile.missing(context, places.size) }
 
-    SectionHeader("More")
+    SectionHeader(stringResource(R.string.t_more_4bab2))
 
     // ---- profile ----
     SettingsGroup {
@@ -133,7 +135,7 @@ fun SettingsTab(nav: NavHostController) {
                     name.ifBlank { "Add your name" },
                     color = colors.textHigh, style = MaterialTheme.typography.titleMedium
                 )
-                Text("Edit profile", color = colors.accent, style = MaterialTheme.typography.bodyMedium)
+                Text(stringResource(R.string.t_edit_profile_15141), color = colors.accent, style = MaterialTheme.typography.bodyMedium)
             }
             Icon(KoodeIcons.Chevron, contentDescription = null, tint = colors.textLow, modifier = Modifier.size(18.dp))
         }
@@ -155,10 +157,10 @@ fun SettingsTab(nav: NavHostController) {
     }
 
     // ---- Koode mode ----
-    GroupLabel("Koode mode")
+    GroupLabel(stringResource(R.string.t_koode_mode_12d30))
     SettingsGroup {
         Column(Modifier.padding(LocalDims.current.cardPadding)) {
-            Text("Journey recording", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+            Text(stringResource(R.string.t_journey_recording_84ffb), color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
             Spacer(Modifier.height(Spacing.sm))
             RecordingModePicker(settings.locationCadence) { vm.setLocationCadence(it) }
             Spacer(Modifier.height(Spacing.sm))
@@ -166,25 +168,25 @@ fun SettingsTab(nav: NavHostController) {
             Text(modeTagline(settings.locationCadence), color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
         }
         RowDivider()
-        SettingsRow("Advanced recording settings", onClick = { nav.navigate(Routes.settings(SettingsPage.RECORDING)) })
+        SettingsRow(stringResource(R.string.t_advanced_recording_settings_0d599), onClick = { nav.navigate(Routes.settings(SettingsPage.RECORDING)) })
     }
 
     // ---- categories ----
-    GroupLabel("Settings")
+    GroupLabel(stringResource(R.string.t_settings_c7f73))
     SettingsGroup {
-        SettingsRow("Journey settings", icon = KoodeIcons.Journeys, onClick = { nav.navigate(Routes.settings(SettingsPage.JOURNEY)) })
+        SettingsRow(stringResource(R.string.t_journey_settings_42c98), icon = KoodeIcons.Journeys, onClick = { nav.navigate(Routes.settings(SettingsPage.JOURNEY)) })
         RowDivider()
-        SettingsRow("Safety & sharing", icon = KoodeIcons.Shield, onClick = { nav.navigate(Routes.settings(SettingsPage.SAFETY)) })
+        SettingsRow(stringResource(R.string.t_safety_sharing_0eb69), icon = KoodeIcons.Shield, onClick = { nav.navigate(Routes.settings(SettingsPage.SAFETY)) })
         RowDivider()
-        SettingsRow("Notifications", icon = KoodeIcons.Bell, onClick = { nav.navigate(Routes.settings(SettingsPage.NOTIFICATIONS)) })
+        SettingsRow(stringResource(R.string.t_notifications_753a2), icon = KoodeIcons.Bell, onClick = { nav.navigate(Routes.settings(SettingsPage.NOTIFICATIONS)) })
         RowDivider()
-        SettingsRow("Places & contacts", icon = KoodeIcons.Pin, onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES_CONTACTS)) })
+        SettingsRow(stringResource(R.string.t_places_contacts_0f8de), icon = KoodeIcons.Pin, onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES_CONTACTS)) })
         RowDivider()
-        SettingsRow("Privacy & data", icon = KoodeIcons.Lock, onClick = { nav.navigate(Routes.settings(SettingsPage.PRIVACY)) })
+        SettingsRow(stringResource(R.string.t_privacy_data_bc345), icon = KoodeIcons.Lock, onClick = { nav.navigate(Routes.settings(SettingsPage.PRIVACY)) })
         RowDivider()
-        SettingsRow("Appearance & feel", icon = KoodeIcons.Sun, onClick = { nav.navigate(Routes.settings(SettingsPage.APPEARANCE)) })
+        SettingsRow(stringResource(R.string.t_appearance_feel_ec916), icon = KoodeIcons.Sun, onClick = { nav.navigate(Routes.settings(SettingsPage.APPEARANCE)) })
         RowDivider()
-        SettingsRow("About Koode", icon = KoodeIcons.Info, onClick = { nav.navigate(Routes.settings(SettingsPage.ABOUT)) })
+        SettingsRow(stringResource(R.string.t_about_koode_34334), icon = KoodeIcons.Info, onClick = { nav.navigate(Routes.settings(SettingsPage.ABOUT)) })
     }
     Spacer(Modifier.height(Spacing.sm))
 }
@@ -375,7 +377,7 @@ internal fun VehiclesCard(
     // null = editor closed; "" = adding a new vehicle; otherwise the id being edited.
     var editorFor by remember { mutableStateOf<String?>(null) }
 
-    KoodeCard(title = "My vehicles") {
+    KoodeCard(title = stringResource(R.string.t_my_vehicles_9afa7)) {
         Text(
             "Add your cars and bikes. Registration and FASTag are optional — fill in only what you want.",
             color = colors.textMid, style = MaterialTheme.typography.bodyMedium
@@ -410,7 +412,7 @@ internal fun VehiclesCard(
                 }
             )
         } else {
-            SecondaryButton("Add a vehicle", { editorFor = "" }, height = 46.dp)
+            SecondaryButton(stringResource(R.string.t_add_a_vehicle_13127), { editorFor = "" }, height = 46.dp)
         }
     }
 }
@@ -436,7 +438,7 @@ internal fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Un
                 Text(sub, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
             }
         }
-        TextButton(onClick = onEdit) { Text("Edit") }
+        TextButton(onClick = onEdit) { Text(stringResource(R.string.t_edit_53016)) }
         TextButton(onClick = onDelete) { Text("✕", color = colors.textLow, fontSize = 13.sp) }
     }
 }
@@ -462,36 +464,36 @@ internal fun VehicleEditor(
 
     Column {
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            KoodeChip("Car", kind == VehicleKind.CAR, { kind = VehicleKind.CAR })
-            KoodeChip("Motorbike", kind == VehicleKind.BIKE, { kind = VehicleKind.BIKE })
+            KoodeChip(stringResource(R.string.t_car_bc47a), kind == VehicleKind.CAR, { kind = VehicleKind.CAR })
+            KoodeChip(stringResource(R.string.t_motorbike_9333f), kind == VehicleKind.BIKE, { kind = VehicleKind.BIKE })
         }
         Spacer(Modifier.height(Spacing.sm))
         OutlinedTextField(
             value = name, onValueChange = { name = it.take(40) },
-            label = { Text("Name (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+            label = { Text(stringResource(R.string.t_name_optional_9c9f0)) }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
         Spacer(Modifier.height(Spacing.sm))
         OutlinedTextField(
             value = reg,
             onValueChange = { reg = it.uppercase().filter { c -> c.isLetterOrDigit() || c == ' ' || c == '-' }.take(15) },
-            label = { Text("Registration (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
+            label = { Text(stringResource(R.string.t_registration_optional_c9138)) }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
         // A toll pass is an Indian thing; elsewhere the card stops at the registration.
         if (com.trippulse.app.ui.theme.LocalMarket.current.tolls == com.trippulse.app.domain.TollSystem.FASTAG) {
         Spacer(Modifier.height(Spacing.sm))
-        Text("FASTag (optional)", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+        Text(stringResource(R.string.t_fastag_optional_97ae9), color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(Spacing.xs))
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            KoodeChip("None", mode == FastagMode.NONE, { mode = FastagMode.NONE })
-            KoodeChip("Annual pass", mode == FastagMode.ANNUAL_PASS, { mode = FastagMode.ANNUAL_PASS })
-            KoodeChip("Amount", mode == FastagMode.AMOUNT, { mode = FastagMode.AMOUNT })
+            KoodeChip(stringResource(R.string.t_none_6eef6), mode == FastagMode.NONE, { mode = FastagMode.NONE })
+            KoodeChip(stringResource(R.string.t_annual_pass_b2f52), mode == FastagMode.ANNUAL_PASS, { mode = FastagMode.ANNUAL_PASS })
+            KoodeChip(stringResource(R.string.t_amount_43dc8), mode == FastagMode.AMOUNT, { mode = FastagMode.AMOUNT })
         }
         when (mode) {
             FastagMode.ANNUAL_PASS -> {
                 Spacer(Modifier.height(Spacing.sm))
                 OutlinedTextField(
                     value = crossings, onValueChange = { crossings = it.filter(Char::isDigit).take(5) },
-                    label = { Text("Crossings left") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    label = { Text(stringResource(R.string.t_crossings_left_f3a1f)) }, singleLine = true, modifier = Modifier.fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
                 )
             }
@@ -500,7 +502,7 @@ internal fun VehicleEditor(
                 OutlinedTextField(
                     value = amount,
                     onValueChange = { s -> amount = s.filter { it.isDigit() || it == '.' }.take(8) },
-                    label = { Text("Amount left (₹)") }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    label = { Text(stringResource(R.string.t_amount_left_75183)) }, singleLine = true, modifier = Modifier.fillMaxWidth(),
                     keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Number)
                 )
             }
@@ -523,7 +525,7 @@ internal fun VehicleEditor(
                 )
             }
             Box(Modifier.weight(1f)) {
-                SecondaryButton("Cancel", onCancel, height = 46.dp)
+                SecondaryButton(stringResource(R.string.t_cancel_77dfd), onCancel, height = 46.dp)
             }
         }
     }
@@ -571,7 +573,7 @@ internal fun ContactRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(label, color = KoodeTheme.colors.textMid, style = MaterialTheme.typography.bodyMedium)
-        TextButton(onClick = onPick) { Text("Pick from contacts") }
+        TextButton(onClick = onPick) { Text(stringResource(R.string.t_pick_from_contacts_7b281)) }
     }
     Row(
         Modifier.fillMaxWidth().padding(vertical = 3.dp),
@@ -585,7 +587,7 @@ internal fun ContactRow(
         OutlinedTextField(
             value = contact.phone,
             onValueChange = { onChange(contact.copy(phone = InputRules.phoneText(it))) },
-            label = { Text("Phone") }, singleLine = true, modifier = Modifier.weight(1f),
+            label = { Text(stringResource(R.string.t_phone_77064)) }, singleLine = true, modifier = Modifier.weight(1f),
             keyboardOptions = KeyboardOptions(keyboardType = androidx.compose.ui.text.input.KeyboardType.Phone)
         )
     }

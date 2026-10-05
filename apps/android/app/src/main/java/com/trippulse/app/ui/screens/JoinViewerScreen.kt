@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.KeyboardType
@@ -34,6 +35,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.TripCredentials
 import androidx.compose.runtime.LaunchedEffect
@@ -101,7 +103,7 @@ fun JoinViewerScreen(nav: NavHostController) {
         Spacer(Modifier.height(Spacing.xs))
         AdaptiveContainer {
             BackButton({ nav.popBackStack() })
-            Text("Follow a journey", color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
+            Text(stringResource(R.string.t_follow_a_journey_a75a3), color = colors.textHigh, style = MaterialTheme.typography.displaySmall)
             Text(
                 "Type the number your traveller shared. If they gave you a 6-digit passcode too, " +
                     "you're in straight away — otherwise they'll get a request to let you in.",
@@ -111,7 +113,7 @@ fun JoinViewerScreen(nav: NavHostController) {
             Spacer(Modifier.height(Spacing.sm))
 
             // ---- journey number: prefix is ours, digits are theirs ----
-            KoodeCard(title = "Journey number") {
+            KoodeCard(title = stringResource(R.string.t_journey_number_2040b)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Box(
                         Modifier
@@ -129,7 +131,7 @@ fun JoinViewerScreen(nav: NavHostController) {
                     OutlinedTextField(
                         value = code,
                         onValueChange = { code = InputRules.digits(it, TripCredentials.CODE_LENGTH) },
-                        placeholder = { Text("40381927") },
+                        placeholder = { Text(stringResource(R.string.t_40381927_f63f0)) },
                         singleLine = true,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                         modifier = Modifier.weight(1f)
@@ -143,11 +145,11 @@ fun JoinViewerScreen(nav: NavHostController) {
                 )
             }
 
-            KoodeCard(title = "Passcode (optional)") {
+            KoodeCard(title = stringResource(R.string.t_passcode_optional_deb85)) {
                 OutlinedTextField(
                     value = passcode,
                     onValueChange = { passcode = InputRules.digits(it, TripCredentials.PASSCODE_LENGTH) },
-                    placeholder = { Text("6 digits") },
+                    placeholder = { Text(stringResource(R.string.t_6_digits_ab7fe)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.NumberPassword),
                     modifier = Modifier.fillMaxWidth()
@@ -162,11 +164,11 @@ fun JoinViewerScreen(nav: NavHostController) {
                 )
             }
 
-            KoodeCard(title = "Your name") {
+            KoodeCard(title = stringResource(R.string.t_your_name_ab422)) {
                 OutlinedTextField(
                     value = viewerName,
                     onValueChange = { viewerName = InputRules.itemText(it) },
-                    placeholder = { Text("So they know who's asking") },
+                    placeholder = { Text(stringResource(R.string.t_so_they_know_who_s_asking_3e39d)) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -210,7 +212,7 @@ fun JoinViewerScreen(nav: NavHostController) {
                         color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(Modifier.height(Spacing.md))
-                    SecondaryButton("Cancel", { vm.cancelWaiting() }, accent = colors.textMid, height = 42.dp)
+                    SecondaryButton(stringResource(R.string.t_cancel_77dfd), { vm.cancelWaiting() }, accent = colors.textMid, height = 42.dp)
                 }
             }
 
@@ -230,11 +232,11 @@ fun JoinViewerScreen(nav: NavHostController) {
                     enabled = canSubmit
                 )
             }
-            SecondaryButton("Back", { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
+            SecondaryButton(stringResource(R.string.t_back_b52b3), { nav.popBackStack() }, accent = colors.textMid, height = 44.dp)
 
             if (saved.isNotEmpty()) {
                 Spacer(Modifier.height(Spacing.sm))
-                Text("Recently followed", color = colors.textMid, style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.t_recently_followed_43ab8), color = colors.textMid, style = MaterialTheme.typography.titleMedium)
                 saved.forEach { v ->
                     KoodeCard(onClick = { nav.navigate(Routes.viewer(v.accessKey)) }) {
                         Text(v.label, color = colors.textHigh, style = MaterialTheme.typography.titleSmall)

@@ -32,6 +32,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
@@ -122,7 +123,7 @@ fun AboutScreen(nav: NavHostController) {
                 }
                 Spacer(Modifier.height(Spacing.lg))
 
-                KoodeCard(title = "What Koode is") {
+                KoodeCard(title = stringResource(R.string.t_what_koode_is_111d6)) {
                     Text(
                         "A journey companion that keeps the people you love informed about " +
                             "your journey, wellbeing and safety — without you having to call or " +
@@ -133,7 +134,7 @@ fun AboutScreen(nav: NavHostController) {
                 }
                 Spacer(Modifier.height(Spacing.md))
 
-                KoodeCard(title = "The promise", accent = colors.accent) {
+                KoodeCard(title = stringResource(R.string.t_the_promise_54753), accent = colors.accent) {
                     PromiseLine("Your location is shared only during a journey you start.")
                     PromiseLine("Only with the people you approve.")
                     PromiseLine("The shared copy self-destructs shortly after the journey ends.")
@@ -142,7 +143,7 @@ fun AboutScreen(nav: NavHostController) {
                 }
                 Spacer(Modifier.height(Spacing.md))
 
-                SectionHeader("Follow, get, or read the code")
+                SectionHeader(stringResource(R.string.t_follow_get_or_read_the_code_79c7a))
                 Spacer(Modifier.height(Spacing.sm))
                 LinkRow("🌐", "Open the web viewer", "Follow a journey in any browser") {
                     uri.openUri(Links.WEB_VIEWER)

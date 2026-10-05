@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -34,6 +35,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.trippulse.app.R
 import com.trippulse.app.ui.components.KoodeIcons
 import com.trippulse.app.ui.components.KoodeMarkTile
 import com.trippulse.app.ui.components.PrimaryButton
@@ -78,7 +80,7 @@ fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             KoodeMarkTile(size = 40.dp, contentDescription = null)
             Spacer(Modifier.width(10.dp))
-            Text("Koode", color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
+            Text(stringResource(R.string.t_koode_0eaf0), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -103,7 +105,7 @@ fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
         // Told in pictures and four short lines, the same in every country,
         // because an unread notice protects nobody. Continuing is consent.
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text("Your data", color = colors.textLow, style = MaterialTheme.typography.labelLarge)
+            Text(stringResource(R.string.t_your_data_48cd1), color = colors.textLow, style = MaterialTheme.typography.labelLarge)
             com.trippulse.app.domain.PrivacyNotice.POINTS.forEach { p ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     val res = com.trippulse.app.ui.components.KoodeArt.file(p.picture)
@@ -118,9 +120,9 @@ fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
             }
             Text(com.trippulse.app.domain.PrivacyNotice.NEVER, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
             Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
-                Text("Privacy policy", color = colors.accent, style = MaterialTheme.typography.labelLarge,
+                Text(stringResource(R.string.t_privacy_policy_7ceac), color = colors.accent, style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier.clickable { uriHandler.openUri(com.trippulse.app.domain.PrivacyNotice.POLICY_URL) })
-                Text("Terms", color = colors.accent, style = MaterialTheme.typography.labelLarge,
+                Text(stringResource(R.string.t_terms_a55a2), color = colors.accent, style = MaterialTheme.typography.labelLarge,
                     modifier = Modifier.clickable { uriHandler.openUri(com.trippulse.app.domain.PrivacyNotice.TERMS_URL) })
             }
         }
@@ -128,7 +130,7 @@ fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
         Spacer(Modifier.height(Spacing.sm))
 
         Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            PrimaryButton("I understand — get started", onGetStarted)
+            PrimaryButton(stringResource(R.string.t_i_understand_get_started_916b3), onGetStarted)
             Text(com.trippulse.app.domain.PrivacyNotice.CONSENT_LINE, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
             Box(
                 Modifier
@@ -138,7 +140,7 @@ fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
                     .clickable(role = Role.Button, onClick = onSkip),
                 contentAlignment = Alignment.Center
             ) {
-                Text("Look around first", color = colors.accent, style = MaterialTheme.typography.labelLarge)
+                Text(stringResource(R.string.t_look_around_first_35442), color = colors.accent, style = MaterialTheme.typography.labelLarge)
             }
         }
     }

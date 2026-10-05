@@ -41,6 +41,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
@@ -52,6 +53,7 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.BuildConfig
 import com.trippulse.app.core.InputRules
 import com.trippulse.app.core.KoodeSettings
@@ -229,14 +231,14 @@ private fun ProfilePage(vm: SettingsVm, onSaved: () -> Unit) {
                 ProfileAvatar(72.dp)
                 Spacer(Modifier.width(Spacing.lg))
                 Column(Modifier.weight(1f)) {
-                    Text("Profile photo", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                    Text(stringResource(R.string.t_profile_photo_33f38), color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
                     Row {
                         TextButton(onClick = {
                             photoPicker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                         }) { Text(if (hasPhoto) "Change photo" else "Add photo", color = colors.accent) }
                         if (hasPhoto) {
                             TextButton(onClick = { Profile.clearPhoto(context) }) {
-                                Text("Remove", color = colors.textLow)
+                                Text(stringResource(R.string.t_remove_e9639), color = colors.textLow)
                             }
                         }
                     }
@@ -250,23 +252,23 @@ private fun ProfilePage(vm: SettingsVm, onSaved: () -> Unit) {
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = InputRules.itemText(it) },
-                label = { Text("Full name") },
+                label = { Text(stringResource(R.string.t_full_name_eeb69)) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(Modifier.height(Spacing.md))
-            Text("Gender", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+            Text(stringResource(R.string.t_gender_8a754), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
             Spacer(Modifier.height(Spacing.sm))
             // Exactly two choices. A profile saved earlier as "neutral" simply
             // shows neither selected until one is picked.
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                KoodeChip("Male", gender == Profile.AvatarStyle.MALE, { gender = Profile.AvatarStyle.MALE })
-                KoodeChip("Female", gender == Profile.AvatarStyle.FEMALE, { gender = Profile.AvatarStyle.FEMALE })
+                KoodeChip(stringResource(R.string.t_male_3f3a4), gender == Profile.AvatarStyle.MALE, { gender = Profile.AvatarStyle.MALE })
+                KoodeChip(stringResource(R.string.t_female_b7c17), gender == Profile.AvatarStyle.FEMALE, { gender = Profile.AvatarStyle.FEMALE })
             }
         }
     }
 
-    PrimaryButton("Save", {
+    PrimaryButton(stringResource(R.string.t_save_efc00), {
         if (gender != Profile.AvatarStyle.NEUTRAL) Profile.setAvatarStyle(context, gender)
         vm.saveProfile(name, Profile.contacts(context))
         onSaved()
@@ -284,7 +286,7 @@ private fun RecordingPage(vm: SettingsVm) {
     val context = LocalContext.current
     val settings by vm.settings.collectAsStateWithLifecycle()
 
-    GroupLabel("Koode mode")
+    GroupLabel(stringResource(R.string.t_koode_mode_12d30))
     SettingsGroup {
         GroupBody {
             RecordingModePicker(settings.locationCadence) { vm.setLocationCadence(it) }
@@ -309,10 +311,10 @@ private fun RecordingPage(vm: SettingsVm) {
             "Koode also eases off by itself on trains, buses and flights."
     )
 
-    GroupLabel("Battery")
+    GroupLabel(stringResource(R.string.t_battery_4a9be))
     SettingsGroup {
         GroupBody {
-            Text("Switch to Battery Saver below", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(R.string.t_switch_to_battery_saver_below_5a3ff), color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
             Spacer(Modifier.height(Spacing.sm))
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                 listOf(10, 15, 20, 30).forEach { pct ->
@@ -334,7 +336,7 @@ private fun RecordingPage(vm: SettingsVm) {
         )
     }
 
-    GroupLabel("When you follow someone")
+    GroupLabel(stringResource(R.string.t_when_you_follow_someone_9785d))
     SettingsGroup {
         GroupBody {
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
@@ -364,22 +366,22 @@ private fun openBatterySettings(context: Context) {
 private fun JourneySettingsPage(nav: NavHostController) {
     val market = com.trippulse.app.ui.theme.LocalMarket.current
     SettingsGroup {
-        SettingsRow("Journey recording", subtitle = "Koode mode, battery, background", onClick = { nav.navigate(Routes.settings(SettingsPage.RECORDING)) })
+        SettingsRow(stringResource(R.string.t_journey_recording_84ffb), subtitle = "Koode mode, battery, background", onClick = { nav.navigate(Routes.settings(SettingsPage.RECORDING)) })
         RowDivider()
         // Toll crossings can only be noticed where Koode has the plazas (India today).
         if (market.canDetectTolls) {
-            SettingsRow("Travel detection", subtitle = "Toll crossings", onClick = { nav.navigate(Routes.settings(SettingsPage.DETECTION)) })
+            SettingsRow(stringResource(R.string.t_travel_detection_3a341), subtitle = "Toll crossings", onClick = { nav.navigate(Routes.settings(SettingsPage.DETECTION)) })
             RowDivider()
         }
-        SettingsRow("Region & clock", subtitle = market.name.ifBlank { "Where your phone is" }, onClick = { nav.navigate(Routes.settings(SettingsPage.REGION)) })
+        SettingsRow(stringResource(R.string.t_region_clock_55360), subtitle = market.name.ifBlank { "Where your phone is" }, onClick = { nav.navigate(Routes.settings(SettingsPage.REGION)) })
         RowDivider()
-        SettingsRow("Distance & speed units", onClick = { nav.navigate(Routes.settings(SettingsPage.UNITS)) })
+        SettingsRow(stringResource(R.string.t_distance_speed_units_9e619), onClick = { nav.navigate(Routes.settings(SettingsPage.UNITS)) })
         RowDivider()
-        SettingsRow("Currency", onClick = { nav.navigate(Routes.settings(SettingsPage.CURRENCY)) })
+        SettingsRow(stringResource(R.string.t_currency_e070d), onClick = { nav.navigate(Routes.settings(SettingsPage.CURRENCY)) })
         RowDivider()
-        SettingsRow("Vehicles", subtitle = if (market.tolls == com.trippulse.app.domain.TollSystem.FASTAG) "Cars, motorbikes and FASTag" else "Cars and motorbikes", onClick = { nav.navigate(Routes.settings(SettingsPage.VEHICLES)) })
+        SettingsRow(stringResource(R.string.t_vehicles_60261), subtitle = if (market.tolls == com.trippulse.app.domain.TollSystem.FASTAG) "Cars, motorbikes and FASTag" else "Cars and motorbikes", onClick = { nav.navigate(Routes.settings(SettingsPage.VEHICLES)) })
         RowDivider()
-        SettingsRow("Saved places", onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES)) })
+        SettingsRow(stringResource(R.string.t_saved_places_36451), onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES)) })
     }
 }
 
@@ -398,7 +400,7 @@ private fun DetectionPage(vm: SettingsVm) {
             (vm.market().tollPassName ?: "pass") + " on your vehicle, each crossing is counted off its " +
             "remaining trips; toll amounts are asked about privately, after the crossing."
     )
-    Note("Toll plaza locations © OpenStreetMap contributors (ODbL).")
+    Note(stringResource(R.string.t_toll_plaza_locations_openstreetmap_contr_c589c))
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -409,7 +411,7 @@ private fun UnitsPage(vm: SettingsVm) {
         GroupBody {
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                 UnitPreference.entries.forEach { p ->
-                    KoodeChip(p.label, settings.unitPreference == p, { vm.setUnitPreference(p) })
+                    KoodeChip(com.trippulse.app.ui.Names.unit(p), settings.unitPreference == p, { vm.setUnitPreference(p) })
                 }
             }
         }
@@ -427,23 +429,23 @@ private fun UnitsPage(vm: SettingsVm) {
 private fun RegionPage(vm: SettingsVm) {
     val settings by vm.settings.collectAsStateWithLifecycle()
     val market = vm.market()
-    GroupLabel("Country")
+    GroupLabel(stringResource(R.string.t_country_d523e))
     SettingsGroup {
         GroupBody {
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                KoodeChip("Where my phone is", settings.countryOverride.isBlank(), { vm.setCountryOverride("") })
+                KoodeChip(stringResource(R.string.t_where_my_phone_is_4bce6), settings.countryOverride.isBlank(), { vm.setCountryOverride("") })
                 com.trippulse.app.domain.Markets.PICKER.forEach { m ->
                     KoodeChip(m.name, settings.countryOverride == m.countryCode, { vm.setCountryOverride(m.countryCode) })
                 }
             }
         }
     }
-    GroupLabel("Clock")
+    GroupLabel(stringResource(R.string.t_clock_04f6b))
     SettingsGroup {
         GroupBody {
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                 com.trippulse.app.domain.ClockPreference.entries.forEach { p ->
-                    KoodeChip(p.label, settings.clockPreference == p, { vm.setClockPreference(p) })
+                    KoodeChip(com.trippulse.app.ui.Names.clock(p), settings.clockPreference == p, { vm.setClockPreference(p) })
                 }
             }
         }
@@ -463,14 +465,14 @@ private fun CurrencyPage(vm: SettingsVm) {
     SettingsGroup {
         GroupBody {
             FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                KoodeChip("Match my region", settings.currencyCode.isBlank(), { vm.setCurrencyCode("") })
+                KoodeChip(stringResource(R.string.t_match_my_region_94e84), settings.currencyCode.isBlank(), { vm.setCurrencyCode("") })
                 MoneyFormat.COMMON_CODES.forEach { code ->
                     KoodeChip(code, settings.currencyCode == code, { vm.setCurrencyCode(code) })
                 }
             }
         }
     }
-    Note("Used for your private trip spending. It is never shared with the people following you.")
+    Note(stringResource(R.string.t_used_for_your_private_trip_spending_it_i_f1dea))
 }
 
 @Composable
@@ -499,7 +501,7 @@ private fun SavedPlacesPage(vm: SettingsVm) {
     if (places.isEmpty()) {
         SettingsGroup {
             GroupBody {
-                Text("No saved places yet", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.t_no_saved_places_yet_70069), color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
                 Text(
                     "Save Home, Office or a relative's house for one-tap From / To when you plan a journey.",
                     color = colors.textMid, style = MaterialTheme.typography.bodySmall
@@ -524,7 +526,7 @@ private fun SavedPlacesPage(vm: SettingsVm) {
             }
         }
     }
-    SecondaryButton("Add a place", { note = null; adding = true }, leading = "＋", height = 48.dp)
+    SecondaryButton(stringResource(R.string.t_add_a_place_29c5f), { note = null; adding = true }, leading = "＋", height = 48.dp)
     note?.let { Text(it, color = colors.accent, style = MaterialTheme.typography.bodyMedium) }
 
     if (adding) {
@@ -561,7 +563,7 @@ private fun SavedPlacesPage(vm: SettingsVm) {
         }
         androidx.compose.material3.AlertDialog(
             onDismissRequest = { pendingSave = null },
-            title = { Text("Name this place") },
+            title = { Text(stringResource(R.string.t_name_this_place_8eb81)) },
             text = {
                 Column {
                     Text(
@@ -571,7 +573,7 @@ private fun SavedPlacesPage(vm: SettingsVm) {
                     Spacer(Modifier.height(Spacing.sm))
                     OutlinedTextField(
                         value = label, onValueChange = { label = InputRules.itemText(it) },
-                        label = { Text("Home, Office, Amma's house…") }, singleLine = true
+                        label = { Text(stringResource(R.string.t_home_office_amma_s_house_046ac)) }, singleLine = true
                     )
                 }
             },
@@ -580,9 +582,9 @@ private fun SavedPlacesPage(vm: SettingsVm) {
                     vm.addPlace(label, place.point, place.name)
                     note = "Saved “${label.ifBlank { place.name }}”."
                     pendingSave = null
-                }, enabled = label.isNotBlank()) { Text("Save") }
+                }, enabled = label.isNotBlank()) { Text(stringResource(R.string.t_save_efc00)) }
             },
-            dismissButton = { TextButton(onClick = { pendingSave = null }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { pendingSave = null }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
         )
     }
 }
@@ -594,13 +596,13 @@ private fun SavedPlacesPage(vm: SettingsVm) {
 @Composable
 private fun SafetyPage(nav: NavHostController) {
     SettingsGroup {
-        SettingsRow("Emergency contacts", onClick = { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) })
+        SettingsRow(stringResource(R.string.t_emergency_contacts_61689), onClick = { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) })
         RowDivider()
-        SettingsRow("Journey followers", subtitle = "Who you can share a journey with", onClick = { openTab(nav, 2) })
+        SettingsRow(stringResource(R.string.t_journey_followers_0823d), subtitle = "Who you can share a journey with", onClick = { openTab(nav, 2) })
         RowDivider()
-        SettingsRow("Journey sharing preferences", onClick = { nav.navigate(Routes.settings(SettingsPage.SHARING)) })
+        SettingsRow(stringResource(R.string.t_journey_sharing_preferences_72cd9), onClick = { nav.navigate(Routes.settings(SettingsPage.SHARING)) })
         RowDivider()
-        SettingsRow("SOS settings", onClick = { nav.navigate(Routes.settings(SettingsPage.SOS)) })
+        SettingsRow(stringResource(R.string.t_sos_settings_184c1), onClick = { nav.navigate(Routes.settings(SettingsPage.SOS)) })
     }
 }
 
@@ -639,7 +641,7 @@ private fun ContactsPage(vm: SettingsVm) {
         }
     }
     message?.let { Text(it, color = colors.accent, style = MaterialTheme.typography.bodyMedium) }
-    PrimaryButton("Save", { vm.saveProfile(Profile.name(context), listOf(c1, c2, c3)) }, height = 50.dp)
+    PrimaryButton(stringResource(R.string.t_save_efc00), { vm.saveProfile(Profile.name(context), listOf(c1, c2, c3)) }, height = 50.dp)
 }
 
 @Composable
@@ -674,7 +676,7 @@ private fun SosPage(nav: NavHostController) {
     val colors = KoodeTheme.colors
     SettingsGroup {
         GroupBody {
-            Text("How SOS works", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+            Text(stringResource(R.string.t_how_sos_works_d2dd7), color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
             Spacer(Modifier.height(Spacing.xs))
             Text(
                 "Hold SOS on your journey screen. After a short countdown you can cancel, everyone following " +
@@ -688,7 +690,7 @@ private fun SosPage(nav: NavHostController) {
             )
         }
         RowDivider()
-        SettingsRow("Emergency contacts", onClick = { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) })
+        SettingsRow(stringResource(R.string.t_emergency_contacts_61689), onClick = { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) })
     }
 }
 
@@ -707,25 +709,25 @@ private fun NotificationsPage(nav: NavHostController) {
         if (!appOn) "Off" else if (channelOn(context, channel)) "On" else "Off"
 
     SettingsGroup {
-        SettingsRow("Journey updates", subtitle = "Starts, stops, halts, plan changes", value = remember(version) { state(Notifier.CH_EVENTS) },
+        SettingsRow(stringResource(R.string.t_journey_updates_29854), subtitle = "Starts, stops, halts, plan changes", value = remember(version) { state(Notifier.CH_EVENTS) },
             onClick = { openChannel(context, Notifier.CH_EVENTS) })
         RowDivider()
-        SettingsRow("Wellbeing updates", subtitle = "Water, food and break suggestions", value = remember(version) { state(Notifier.CH_COACH) },
+        SettingsRow(stringResource(R.string.t_wellbeing_updates_7a8a1), subtitle = "Water, food and break suggestions", value = remember(version) { state(Notifier.CH_COACH) },
             onClick = { openChannel(context, Notifier.CH_COACH) })
         RowDivider()
-        SettingsRow("Journey completion", subtitle = "Arrival, closing, review and reports", value = remember(version) { state(Notifier.CH_COMPLETION) },
+        SettingsRow(stringResource(R.string.t_journey_completion_fbff4), subtitle = "Arrival, closing, review and reports", value = remember(version) { state(Notifier.CH_COMPLETION) },
             onClick = { openChannel(context, Notifier.CH_COMPLETION) })
         RowDivider()
-        SettingsRow("Expense reminders", subtitle = "Private, never while you drive", value = remember(version) { state(Notifier.CH_EXPENSE) },
+        SettingsRow(stringResource(R.string.t_expense_reminders_fc42c), subtitle = "Private, never while you drive", value = remember(version) { state(Notifier.CH_EXPENSE) },
             onClick = { openChannel(context, Notifier.CH_EXPENSE) })
     }
-    Note("SOS and safety alerts always come through.")
+    Note(stringResource(R.string.t_sos_and_safety_alerts_always_come_throug_e2c8f))
 
-    GroupLabel("Communication")
+    GroupLabel(stringResource(R.string.t_communication_ade0d))
     SettingsGroup {
-        SettingsRow("Push notifications", value = if (appOn) "On" else "Off", onClick = { openAppNotifications(context) })
+        SettingsRow(stringResource(R.string.t_push_notifications_03be2), value = if (appOn) "On" else "Off", onClick = { openAppNotifications(context) })
         RowDivider()
-        SettingsRow("WhatsApp", subtitle = "Share your timeline when a journey ends", onClick = { nav.navigate(Routes.settings(SettingsPage.SHARING)) })
+        SettingsRow(stringResource(R.string.t_whatsapp_b336f), subtitle = "Share your timeline when a journey ends", onClick = { nav.navigate(Routes.settings(SettingsPage.SHARING)) })
     }
 }
 
@@ -763,11 +765,11 @@ private fun openAppNotifications(context: Context) {
 @Composable
 private fun PlacesContactsPage(nav: NavHostController) {
     SettingsGroup {
-        SettingsRow("Saved places", onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES)) })
+        SettingsRow(stringResource(R.string.t_saved_places_36451), onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES)) })
         RowDivider()
-        SettingsRow("Journey followers", onClick = { openTab(nav, 2) })
+        SettingsRow(stringResource(R.string.t_journey_followers_0823d), onClick = { openTab(nav, 2) })
         RowDivider()
-        SettingsRow("Manage contacts", subtitle = "Your emergency contacts", onClick = { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) })
+        SettingsRow(stringResource(R.string.t_manage_contacts_d9e07), subtitle = "Your emergency contacts", onClick = { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) })
     }
 }
 
@@ -778,7 +780,7 @@ private fun PrivacyPage(nav: NavHostController, vm: SettingsVm) {
     var confirmErase by remember { mutableStateOf(false) }
     var busy by remember { mutableStateOf(false) }
     var done by remember { mutableStateOf<String?>(null) }
-    GroupLabel("Your rights")
+    GroupLabel(stringResource(R.string.t_your_rights_e7110))
     SettingsGroup {
         GroupBody {
             Text(
@@ -788,41 +790,41 @@ private fun PrivacyPage(nav: NavHostController, vm: SettingsVm) {
             )
         }
         RowDivider()
-        SettingsRow("Export my data", subtitle = "Every journey, place, vehicle and setting, as a file you keep", onClick = if (busy) null else {
+        SettingsRow(stringResource(R.string.t_export_my_data_146d9), subtitle = "Every journey, place, vehicle and setting, as a file you keep", onClick = if (busy) null else {
             {
                 busy = true
                 vm.exportData(onReady = { busy = false; context.startActivity(it) }, onFailed = { busy = false; done = "The export could not be written." })
             }
         })
         RowDivider()
-        SettingsRow("Erase everything", subtitle = "Ends any live journey, then removes all of your data from this phone", onClick = if (busy) null else { { confirmErase = true } })
+        SettingsRow(stringResource(R.string.t_erase_everything_ba938), subtitle = "Ends any live journey, then removes all of your data from this phone", onClick = if (busy) null else { { confirmErase = true } })
         if (confirmErase) {
             GroupBody {
-                Text("This cannot be undone. Journeys, places, vehicles, contacts and settings on this phone will be gone, and anyone following a live journey will lose it within the hour.",
+                Text(stringResource(R.string.t_this_cannot_be_undone_journeys_places_ve_a5e1d),
                     color = KoodeTheme.colors.danger, style = MaterialTheme.typography.bodyMedium)
                 Spacer(Modifier.height(Spacing.sm))
                 Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                    KoodeChip("Erase everything", false, {
+                    KoodeChip(stringResource(R.string.t_erase_everything_ba938), false, {
                         busy = true; confirmErase = false
                         vm.eraseEverything { busy = false; done = "Everything has been erased. Koode is as it was when installed." }
                     })
-                    KoodeChip("Keep my data", false, { confirmErase = false })
+                    KoodeChip(stringResource(R.string.t_keep_my_data_6e43f), false, { confirmErase = false })
                 }
             }
         }
         done?.let { RowDivider(); GroupBody { Text(it, color = KoodeTheme.colors.textMid, style = MaterialTheme.typography.bodyMedium) } }
     }
-    GroupLabel("What is kept, and where")
+    GroupLabel(stringResource(R.string.t_what_is_kept_and_where_f76bd))
     SettingsGroup {
-        SettingsRow("Location permissions", onClick = { openAppSettings(context) })
+        SettingsRow(stringResource(R.string.t_location_permissions_35815), onClick = { openAppSettings(context) })
         RowDivider()
-        SettingsRow("Journey history", subtitle = "Kept on this phone until you delete it", onClick = { openTab(nav, 1) })
+        SettingsRow(stringResource(R.string.t_journey_history_2fea6), subtitle = "Kept on this phone until you delete it", onClick = { openTab(nav, 1) })
         RowDivider()
-        SettingsRow("Shared journey data", onClick = { nav.navigate(Routes.settings(SettingsPage.SHARED_DATA)) })
+        SettingsRow(stringResource(R.string.t_shared_journey_data_083dc), onClick = { nav.navigate(Routes.settings(SettingsPage.SHARED_DATA)) })
         RowDivider()
-        SettingsRow("Data & storage", onClick = { nav.navigate(Routes.settings(SettingsPage.STORAGE)) })
+        SettingsRow(stringResource(R.string.t_data_storage_d1a11), onClick = { nav.navigate(Routes.settings(SettingsPage.STORAGE)) })
         RowDivider()
-        SettingsRow("Privacy policy", onClick = { openRepoDoc(context, "blob/main/docs/PRIVACY.md") })
+        SettingsRow(stringResource(R.string.t_privacy_policy_7ceac), onClick = { openRepoDoc(context, "blob/main/docs/PRIVACY.md") })
     }
 }
 
@@ -860,16 +862,16 @@ private fun StoragePage(nav: NavHostController) {
             )
         }
         RowDivider()
-        SettingsRow("Journey history", subtitle = "Open or delete past journeys", onClick = { openTab(nav, 1) })
+        SettingsRow(stringResource(R.string.t_journey_history_2fea6), subtitle = "Open or delete past journeys", onClick = { openTab(nav, 1) })
         RowDivider()
-        SettingsRow("Storage used by Koode", onClick = { openAppSettings(context) })
+        SettingsRow(stringResource(R.string.t_storage_used_by_koode_105c9), onClick = { openAppSettings(context) })
     }
 }
 
 @Composable
 private fun AppearancePage(vm: SettingsVm) {
     val settings by vm.settings.collectAsStateWithLifecycle()
-    GroupLabel("Theme")
+    GroupLabel(stringResource(R.string.t_theme_a797e))
     SettingsGroup {
         listOf(
             KoodeSettings.THEME_SYSTEM to "Follow system",
@@ -885,11 +887,11 @@ private fun AppearancePage(vm: SettingsVm) {
             )
         }
     }
-    GroupLabel("Feel")
+    GroupLabel(stringResource(R.string.t_feel_6b8eb))
     SettingsGroup {
-        SettingsToggle("Vibrate on important taps", settings.hapticFeedback) { vm.setHaptics(it) }
+        SettingsToggle(stringResource(R.string.t_vibrate_on_important_taps_7d258), settings.hapticFeedback) { vm.setHaptics(it) }
         RowDivider()
-        SettingsToggle("Keep the screen on during a journey", settings.keepScreenOnDuringJourney) { vm.setKeepScreenOn(it) }
+        SettingsToggle(stringResource(R.string.t_keep_the_screen_on_during_a_journey_b6490), settings.keepScreenOnDuringJourney) { vm.setKeepScreenOn(it) }
     }
 }
 
@@ -904,7 +906,7 @@ private fun AboutKoodePage(nav: NavHostController, vm: SettingsVm) {
 
     SettingsGroup {
         GroupBody {
-            Text("Koode", color = colors.textHigh, style = MaterialTheme.typography.titleLarge)
+            Text(stringResource(R.string.t_koode_0eaf0), color = colors.textHigh, style = MaterialTheme.typography.titleLarge)
             Text("Version ${BuildConfig.VERSION_NAME}", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
             update?.let {
                 Spacer(Modifier.height(Spacing.sm))
@@ -917,24 +919,24 @@ private fun AboutKoodePage(nav: NavHostController, vm: SettingsVm) {
                 }
                 update?.let { u ->
                     Box(Modifier.weight(1f)) {
-                        SecondaryButton("Download", { uriHandler.openUri(u.downloadUrl) }, accent = colors.traveller, height = 44.dp)
+                        SecondaryButton(stringResource(R.string.t_download_a479c), { uriHandler.openUri(u.downloadUrl) }, accent = colors.traveller, height = 44.dp)
                     }
                 }
             }
         }
         RowDivider()
-        SettingsToggle("Tell me when an update is out", settings.checkForUpdates) { vm.setCheckForUpdates(it) }
+        SettingsToggle(stringResource(R.string.t_tell_me_when_an_update_is_out_a70a3), settings.checkForUpdates) { vm.setCheckForUpdates(it) }
     }
     SettingsGroup {
-        SettingsRow("What's new", onClick = { openRepoDoc(context, "releases") })
+        SettingsRow(stringResource(R.string.t_what_s_new_4d8dc), onClick = { openRepoDoc(context, "releases") })
         RowDivider()
-        SettingsRow("Our story", onClick = { nav.navigate(Routes.ABOUT) })
+        SettingsRow(stringResource(R.string.t_our_story_5a2d8), onClick = { nav.navigate(Routes.ABOUT) })
         RowDivider()
-        SettingsRow("Privacy policy", onClick = { openRepoDoc(context, "blob/main/docs/PRIVACY.md") })
+        SettingsRow(stringResource(R.string.t_privacy_policy_7ceac), onClick = { openRepoDoc(context, "blob/main/docs/PRIVACY.md") })
         RowDivider()
-        SettingsRow("Terms", onClick = { openRepoDoc(context, "blob/main/docs/TERMS.md") })
+        SettingsRow(stringResource(R.string.t_terms_a55a2), onClick = { openRepoDoc(context, "blob/main/docs/TERMS.md") })
         RowDivider()
-        SettingsRow("Open source licenses", onClick = { nav.navigate(Routes.settings(SettingsPage.LICENSES)) })
+        SettingsRow(stringResource(R.string.t_open_source_licenses_6d319), onClick = { nav.navigate(Routes.settings(SettingsPage.LICENSES)) })
     }
 }
 
@@ -960,5 +962,5 @@ private fun LicensesPage() {
             }
         }
     }
-    Note("Koode's own source is published at github.com/PrashobhPaul/Koode.")
+    Note(stringResource(R.string.t_koode_s_own_source_is_published_at_githu_f2f08))
 }
