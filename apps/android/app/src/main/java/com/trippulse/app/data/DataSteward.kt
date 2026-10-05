@@ -119,7 +119,7 @@ class DataSteward(
             }
         }
         runCatching {
-            db.viewerDao().allFlow().first().forEach { v -> runCatching { push.unregisterFor(v.ref) } }
+            db.viewerDao().allFlow().first().forEach { v -> runCatching { push.unregisterFor(v.accessKey) } }
         }
         runCatching { db.clearAllTables() }
         prefFiles.forEach { name ->
