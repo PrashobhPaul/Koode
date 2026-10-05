@@ -569,9 +569,9 @@ object Prose {
         }
         if (passCrossings > 0) {
             out += if (passCrossings >= c.story.tolls) d.pick(
-                "All ${words(c.story.tolls)} toll plazas were covered by the FASTag annual pass, so tolls added nothing to the bill.",
+                "All ${words(c.story.tolls)} toll plazas were covered by the ${c.input.tollPassName ?: "pass"}, so tolls added nothing to the bill.",
                 "Tolls cost nothing: every one of the ${words(c.story.tolls)} crossings was on the annual pass."
-            ) else "${words(passCrossings).replaceFirstChar { it.uppercase() }} of the ${words(c.story.tolls)} toll crossings were covered by the FASTag annual pass."
+            ) else "${words(passCrossings).replaceFirstChar { it.uppercase() }} of the ${words(c.story.tolls)} toll crossings were covered by the ${c.input.tollPassName ?: "pass"}."
         }
         if (unknown > 0) out += "${words(unknown).replaceFirstChar { it.uppercase() }} expense${if (unknown == 1) " has" else "s have"} no amount yet, so the true total is higher than shown."
         return out

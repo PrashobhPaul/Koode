@@ -615,13 +615,15 @@ object Reports {
     // ------------------------------------------------------------------------
 
     private val DAY: DateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, d MMMM", Locale.ENGLISH)
-    private val STAMP: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a", Locale.ENGLISH)
+    private val STAMP: DateTimeFormatter
+        get() = DateTimeFormatter.ofPattern("d MMM yyyy, ${com.trippulse.app.core.TimeFmt.clockPattern}", com.trippulse.app.core.TimeFmt.currentLocale)
     private val SHORT_DAY: DateTimeFormatter = DateTimeFormatter.ofPattern("EEE d MMM", Locale.ENGLISH)
 
     fun stamp(ms: Long, z: ZoneId): String = STAMP.withZone(z).format(Instant.ofEpochMilli(ms))
 
     /** "1 PM", "11 AM": an hour on a chart axis. */
-    fun hourLabel(ms: Long, z: ZoneId): String = DateTimeFormatter.ofPattern("h a", Locale.ENGLISH).withZone(z).format(Instant.ofEpochMilli(ms))
+    fun hourLabel(ms: Long, z: ZoneId): String =
+        DateTimeFormatter.ofPattern(if (com.trippulse.app.core.TimeFmt.is24h) "HH:mm" else "h a", com.trippulse.app.core.TimeFmt.currentLocale).withZone(z).format(Instant.ofEpochMilli(ms))
 
     fun dateRange(start: Long, end: Long?, z: ZoneId): String {
         val a = "${SHORT_DAY.withZone(z).format(Instant.ofEpochMilli(start))}, ${JourneyStory.clock(start, z)}"

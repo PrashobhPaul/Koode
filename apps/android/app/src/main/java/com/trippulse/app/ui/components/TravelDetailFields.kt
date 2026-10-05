@@ -42,7 +42,7 @@ fun TravelDetailFields(
     modifier: Modifier = Modifier
 ) {
     val colors = KoodeTheme.colors
-    val fields = TravelDetails.fieldsFor(mode)
+    val fields = TravelDetails.fieldsFor(mode, com.trippulse.app.ui.theme.LocalMarket.current)
     if (fields.isEmpty()) return
 
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(Spacing.md)) {

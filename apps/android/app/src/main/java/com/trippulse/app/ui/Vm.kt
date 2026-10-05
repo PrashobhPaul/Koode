@@ -131,6 +131,10 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
     /** Closed and waiting for the traveller's review before anything is shared. */
     fun awaitingReview(tripId: String): Boolean = graph.tripManager.closureRecord(tripId)?.pendingReview == true
 
+    /** Whether the current privacy notice has been read and accepted. */
+    fun privacyAccepted(): Boolean = graph.settings.current.privacyAcceptedVersion >= com.trippulse.app.domain.PrivacyNotice.VERSION
+    fun acceptPrivacy() = graph.settings.update { it.copy(privacyAcceptedVersion = com.trippulse.app.domain.PrivacyNotice.VERSION) }
+
     /**
      * The humanised status of a followed journey, as last evaluated by the
      * follow service. Read from preferences so Home renders instantly with no
@@ -1732,6 +1736,43 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
     /** Blank means "follow wherever I am", which is the default. */
     fun setCurrencyCode(code: String) =
         graph.settings.update { it.copy(currencyCode = code.trim().uppercase()) }
+
+    fun setClockPreference(p: com.trippulse.app.domain.ClockPreference) {
+        graph.settings.update { it.copy(clockPreference = p) }
+        graph.configureTime()
+    }
+
+    fun setCountryOverride(cc: String) {
+        graph.settings.update { it.copy(countryOverride = cc.trim().uppercase()) }
+        graph.configureTime()
+    }
+
+    fun acceptPrivacy(version: Int) = graph.settings.update { it.copy(privacyAcceptedVersion = version) }
+
+    /** The traveller's market, as the settings pages read it. */
+    fun market(): com.trippulse.app.domain.Market = graph.market()
+
+    // ---- the traveller's data: take it, or erase it --------------------------
+
+    /** Writes the export and hands back a chooser to save or send it. */
+    fun exportData(onReady: (android.content.Intent) -> Unit, onFailed: () -> Unit) {
+        viewModelScope.launch {
+            runCatching { graph.steward.export() }
+                .onSuccess { onReady(graph.steward.shareIntent(it)) }
+                .onFailure { android.util.Log.w("SettingsVm", "export failed", it); onFailed() }
+        }
+    }
+
+    /** Everything Koode holds, gone; the app is as installed afterwards. */
+    fun eraseEverything(onDone: () -> Unit) {
+        viewModelScope.launch {
+            runCatching { graph.steward.eraseEverything() }
+                .onFailure { android.util.Log.w("SettingsVm", "erase failed", it) }
+            // The in-memory settings must forget too, or the next write resurrects them.
+            graph.settings.update { com.trippulse.app.core.KoodeSettings() }
+            onDone()
+        }
+    }
 
     fun setShareTimelineOnWhatsApp(on: Boolean) =
         graph.settings.update { it.copy(shareTimelineOnWhatsApp = on) }

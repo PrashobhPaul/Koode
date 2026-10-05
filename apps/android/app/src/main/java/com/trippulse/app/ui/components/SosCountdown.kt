@@ -103,9 +103,12 @@ fun SosCountdown(
     recipients: List<String>,
     seconds: Int = 5,
     onSend: () -> Unit,
-    onCancel: () -> Unit
+    onCancel: () -> Unit,
+    /** The local emergency number (112, 911, 119…); null hides the call button. */
+    emergencyNumber: String? = null
 ) {
     val haptics = LocalHapticFeedback.current
+    val context = androidx.compose.ui.platform.LocalContext.current
     var left by remember { mutableIntStateOf(seconds) }
     var fired by remember { mutableStateOf(false) }
 
@@ -228,6 +231,23 @@ fun SosCountdown(
                     contentAlignment = Alignment.Center
                 ) {
                     Text("Send now", color = Color.White, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                }
+                // Opens the dialler with the number ready; the traveller makes
+                // the call. Koode never phones anyone on its own.
+                if (!emergencyNumber.isNullOrBlank()) Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(56.dp)
+                        .clip(RoundedCornerShape(18.dp))
+                        .border(1.5.dp, SosInkSoft, RoundedCornerShape(18.dp))
+                        .clickable(role = Role.Button) {
+                            runCatching {
+                                context.startActivity(android.content.Intent(android.content.Intent.ACTION_DIAL, android.net.Uri.parse("tel:$emergencyNumber")))
+                            }
+                        },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("📞  Call $emergencyNumber", color = SosInk, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp)
                 }
                 Box(
                     Modifier

@@ -476,6 +476,8 @@ internal fun VehicleEditor(
             onValueChange = { reg = it.uppercase().filter { c -> c.isLetterOrDigit() || c == ' ' || c == '-' }.take(15) },
             label = { Text("Registration (optional)") }, singleLine = true, modifier = Modifier.fillMaxWidth()
         )
+        // A toll pass is an Indian thing; elsewhere the card stops at the registration.
+        if (com.trippulse.app.ui.theme.LocalMarket.current.tolls == com.trippulse.app.domain.TollSystem.FASTAG) {
         Spacer(Modifier.height(Spacing.sm))
         Text("FASTag (optional)", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
         Spacer(Modifier.height(Spacing.xs))
@@ -503,6 +505,7 @@ internal fun VehicleEditor(
                 )
             }
             FastagMode.NONE -> {}
+        }
         }
         Spacer(Modifier.height(Spacing.sm))
         Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {

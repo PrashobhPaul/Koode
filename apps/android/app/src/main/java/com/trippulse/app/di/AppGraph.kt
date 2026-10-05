@@ -52,9 +52,39 @@ class AppGraph(context: Context) {
     fun measures(refreshRegion: Boolean = false): Measures {
         val s = settings.current
         return Measures.resolve(
-            countryCode = region.countryCode(refresh = refreshRegion),
+            countryCode = countryCode(refreshRegion),
             unitPreference = s.unitPreference,
-            currencyOverride = s.currencyCode.ifBlank { null }
+            currencyOverride = s.currencyCode.ifBlank { null },
+            locale = java.util.Locale.getDefault()
+        )
+    }
+
+    /** Where the traveller is, or the country they pinned. */
+    fun countryCode(refreshRegion: Boolean = false): String? =
+        settings.current.countryOverride.ifBlank { null } ?: region.countryCode(refresh = refreshRegion)
+
+    /**
+     * The market the traveller lives in: everything that differs by country
+     * (clock, date order, emergency number, toll scheme, wording, privacy
+     * law), with their own choices on top. Resolved on demand like [measures].
+     */
+    fun market(refreshRegion: Boolean = false): com.trippulse.app.domain.Market {
+        val s = settings.current
+        return com.trippulse.app.domain.Market.resolve(
+            countryCode = countryCode(refreshRegion),
+            unitPreference = s.unitPreference,
+            clockPreference = s.clockPreference,
+            phoneUses24h = runCatching { android.text.format.DateFormat.is24HourFormat(appContext) }.getOrNull()
+        )
+    }
+
+    /** Times and dates everywhere follow the market; called at start and whenever a setting changes. */
+    fun configureTime() {
+        val m = market()
+        com.trippulse.app.core.TimeFmt.configure(
+            locale = java.util.Locale.getDefault(),
+            twentyFourHour = m.clock == com.trippulse.app.domain.ClockStyle.TWENTY_FOUR_HOUR,
+            dateOrder = m.dateOrder
         )
     }
 
@@ -65,6 +95,9 @@ class AppGraph(context: Context) {
     /** Server push for journeys this phone follows (inert without Firebase values). */
     val push: com.trippulse.app.data.push.PushRegistry =
         com.trippulse.app.data.push.PushRegistry(appContext, cloud)
+
+    /** Export everything, or erase everything: the traveller's rights over their data. */
+    val steward: com.trippulse.app.data.DataSteward by lazy { com.trippulse.app.data.DataSteward(appContext, db, cloud, push) }
 
     // Free OSRM public router first, deterministic estimator when offline.
     private val routing: RoutingProvider =

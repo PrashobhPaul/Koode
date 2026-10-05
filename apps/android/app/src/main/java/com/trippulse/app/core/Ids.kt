@@ -124,10 +124,39 @@ object TripCredentials {
 /** Human-friendly time formatting shared by traveller and viewer UI. */
 object TimeFmt {
 
-    private val clockFmt = DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)
-    private val clockDayFmt = DateTimeFormatter.ofPattern("EEE hh:mm a", Locale.ENGLISH)
-    private val dateFmt = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)
-    private val dateTimeFmt = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a", Locale.ENGLISH)
+    /**
+     * How this phone writes a time and a date: set once from the market and
+     * the phone's own settings (see AppGraph), read everywhere. The defaults
+     * are what the app always showed, so nothing changes until configured.
+     */
+    @Volatile private var locale: Locale = Locale.ENGLISH
+    @Volatile private var twentyFourHour: Boolean = false
+    @Volatile private var dateOrder: com.trippulse.app.domain.DateOrder = com.trippulse.app.domain.DateOrder.DMY
+    @Volatile private var clockFmt = DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)
+    @Volatile private var clockDayFmt = DateTimeFormatter.ofPattern("EEE hh:mm a", Locale.ENGLISH)
+    @Volatile private var dateFmt = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.ENGLISH)
+    @Volatile private var dateTimeFmt = DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a", Locale.ENGLISH)
+
+    fun configure(locale: Locale, twentyFourHour: Boolean, dateOrder: com.trippulse.app.domain.DateOrder) {
+        this.locale = locale
+        this.twentyFourHour = twentyFourHour
+        this.dateOrder = dateOrder
+        val clock = if (twentyFourHour) "HH:mm" else "hh:mm a"
+        val date = when (dateOrder) {
+            com.trippulse.app.domain.DateOrder.DMY -> "dd MMM yyyy"
+            com.trippulse.app.domain.DateOrder.MDY -> "MMM dd, yyyy"
+            com.trippulse.app.domain.DateOrder.YMD -> "yyyy/MM/dd"
+        }
+        clockFmt = DateTimeFormatter.ofPattern(clock, locale)
+        clockDayFmt = DateTimeFormatter.ofPattern("EEE $clock", locale)
+        dateFmt = DateTimeFormatter.ofPattern(date, locale)
+        dateTimeFmt = DateTimeFormatter.ofPattern("$date, $clock", locale)
+    }
+
+    /** The clock pattern in force, for anything that formats times on its own (the story, the PDF). */
+    val clockPattern: String get() = if (twentyFourHour) "HH:mm" else "h:mm a"
+    val currentLocale: Locale get() = locale
+    val is24h: Boolean get() = twentyFourHour
 
     fun clock(ms: Long, zone: ZoneId = ZoneId.systemDefault()): String =
         clockFmt.format(Instant.ofEpochMilli(ms).atZone(zone))

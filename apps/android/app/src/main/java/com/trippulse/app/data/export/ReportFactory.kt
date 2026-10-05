@@ -184,7 +184,8 @@ object ReportFactory {
         analytics: JourneyAnalytics.JourneyReport?,
         originLabel: String?,
         destLabel: String?,
-        measures: Measures = Measures.INDIA
+        measures: Measures = Measures.INDIA,
+        market: com.trippulse.app.domain.Market = marketOf(context)
     ): JourneyStory.Input {
         val now = System.currentTimeMillis()
         val sorted = samples.sortedBy { it.tMs }
@@ -204,9 +205,15 @@ object ReportFactory {
             routeDistanceM = trip.totalRouteDistanceM.takeIf { it > 0 },
             fuelType = trip.fuelType,
             seedKey = trip.tripId,
-            measures = measures
+            measures = measures,
+            tollPassName = market.tollPassName
         )
     }
+
+    /** The traveller's market, from the app, so a report never names an Indian toll pass abroad. */
+    private fun marketOf(context: Context): com.trippulse.app.domain.Market =
+        runCatching { (context.applicationContext as com.trippulse.app.TripPulseApp).graph.market() }
+            .getOrDefault(com.trippulse.app.domain.Markets.INDIA)
 
     /** A fix every 20 s is far more than a printed route needs; keep about one a minute. */
     private fun thin(samples: List<LocationSampleEntity>): List<LocationSampleEntity> {

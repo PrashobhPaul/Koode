@@ -130,7 +130,13 @@ data class MoneyFormat(
  */
 data class Measures(
     val units: UnitSystem,
-    val currency: MoneyFormat
+    val currency: MoneyFormat,
+    /**
+     * How numbers are written where the phone is set: "1,240.00" or
+     * "1.240,00", and whether the currency symbol leads or trails. The
+     * phone's own locale, so an expat sees their own notation.
+     */
+    val locale: Locale = Locale.ENGLISH
 ) {
     // ---- distance ----
 
@@ -207,12 +213,31 @@ data class Measures(
 
     // ---- money ----
 
-    /** "₹1,240" / "$18.50" — grouped, and only as precise as the currency is. */
+    /**
+     * "₹1,240.00", "$18.50", "1.240,00 €": grouped and separated as the
+     * locale writes numbers, the symbol where the locale puts it, and only as
+     * precise as the currency is. Koode's own glyph for the currency, because
+     * the JDK's choice ("INR", "US$") reads badly next to a number.
+     */
     fun money(amount: Double): String {
         val digits = currency.fractionDigits
-        val formatted = if (digits == 0) String.format(Locale.ENGLISH, "%,.0f", amount)
+        val symbols = java.text.DecimalFormatSymbols.getInstance(locale)
+        // Group and separate as the locale does, written out by hand so the
+        // JDK's own idea of the currency symbol never gets in the way.
+        val english = if (digits == 0) String.format(Locale.ENGLISH, "%,.0f", amount)
         else String.format(Locale.ENGLISH, "%,.${digits}f", amount)
-        return "${currency.symbol}$formatted"
+        val number = english.map { ch ->
+            when (ch) {
+                ',' -> symbols.groupingSeparator
+                '.' -> symbols.decimalSeparator
+                else -> ch
+            }
+        }.joinToString("").replace('\u202f', ' ').replace('\u00a0', ' ')
+        // Where the locale writes the symbol after the number ("1.240,50 €"), so do we.
+        val probe = java.text.NumberFormat.getCurrencyInstance(locale) as? java.text.DecimalFormat
+        val trailing = probe != null && probe.positivePrefix.isBlank() && probe.positiveSuffix.isNotBlank()
+        val symbol = currency.symbol
+        return if (trailing) "$number ${symbol.trim()}" else "$symbol$number"
     }
 
     /** Money with the ISO code, for documents that must be unambiguous. */
@@ -275,7 +300,8 @@ data class Measures(
         fun resolve(
             countryCode: String?,
             unitPreference: UnitPreference = UnitPreference.AUTO,
-            currencyOverride: String? = null
+            currencyOverride: String? = null,
+            locale: Locale = Locale.ENGLISH
         ): Measures {
             val units = when (unitPreference) {
                 UnitPreference.METRIC -> UnitSystem.METRIC
@@ -284,7 +310,7 @@ data class Measures(
             }
             val currency = MoneyFormat.forCode(currencyOverride)
                 ?: MoneyFormat.forCountry(countryCode)
-            return Measures(units, currency)
+            return Measures(units, currency, locale)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.trippulse.app.core
 
 import android.content.Context
+import com.trippulse.app.domain.ClockPreference
 import com.trippulse.app.domain.UnitPreference
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -74,6 +75,12 @@ data class KoodeSettings(
     val unitPreference: UnitPreference = UnitPreference.DEFAULT,
     /** An ISO currency code the user pinned, or blank to follow their region. */
     val currencyCode: String = "",
+    /** 12- or 24-hour clock; AUTO follows the phone's own setting, then the region. */
+    val clockPreference: ClockPreference = ClockPreference.DEFAULT,
+    /** ISO country the traveller pinned, or "" to follow where the phone is. */
+    val countryOverride: String = "",
+    /** The privacy notice version the traveller accepted; 0 until they have. */
+    val privacyAcceptedVersion: Int = 0,
     /**
      * Send the journey timeline to the circle on WhatsApp when a journey ends.
      *
@@ -129,6 +136,9 @@ class SettingsStore(context: Context) {
         themeMode = prefs.getString(KEY_THEME, KoodeSettings.THEME_SYSTEM) ?: KoodeSettings.THEME_SYSTEM,
         unitPreference = UnitPreference.fromKey(prefs.getString(KEY_UNITS, null)),
         currencyCode = prefs.getString(KEY_CURRENCY, "").orEmpty(),
+        clockPreference = ClockPreference.fromKey(prefs.getString(KEY_CLOCK, null)),
+        countryOverride = prefs.getString(KEY_COUNTRY, "").orEmpty(),
+        privacyAcceptedVersion = prefs.getInt(KEY_PRIVACY_VERSION, 0),
         shareTimelineOnWhatsApp = prefs.getBoolean(KEY_WHATSAPP, false),
         tollDetectionEnabled = prefs.getBoolean(KEY_TOLL_AUTO, true)
     )
@@ -144,6 +154,9 @@ class SettingsStore(context: Context) {
             .putString(KEY_THEME, s.themeMode)
             .putString(KEY_UNITS, s.unitPreference.key)
             .putString(KEY_CURRENCY, s.currencyCode)
+            .putString(KEY_CLOCK, s.clockPreference.key)
+            .putString(KEY_COUNTRY, s.countryOverride)
+            .putInt(KEY_PRIVACY_VERSION, s.privacyAcceptedVersion)
             .putBoolean(KEY_WHATSAPP, s.shareTimelineOnWhatsApp)
             .putBoolean(KEY_TOLL_AUTO, s.tollDetectionEnabled)
             .apply()
@@ -159,6 +172,9 @@ class SettingsStore(context: Context) {
         const val KEY_UPDATES = "check_updates"
         const val KEY_THEME = "theme_mode"
         const val KEY_UNITS = "unit_preference"
+        const val KEY_CLOCK = "clock_preference"
+        const val KEY_COUNTRY = "country_override"
+        const val KEY_PRIVACY_VERSION = "privacy_accepted_version"
         const val KEY_CURRENCY = "currency_code"
         const val KEY_WHATSAPP = "share_timeline_whatsapp"
         /** Location-based toll counting (replaced SMS reading, whose opt-in key was "toll_detection_enabled"). */

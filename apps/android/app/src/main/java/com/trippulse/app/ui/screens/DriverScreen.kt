@@ -870,7 +870,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         .filter { it["status"] == "APPROVED" }
                         .mapNotNull { (it["name"] as? String)?.takeIf { n -> n.isNotBlank() } },
                     onSend = { sosCountdown = false; vm.activateSos() },
-                    onCancel = { sosCountdown = false }
+                    onCancel = { sosCountdown = false },
+                    emergencyNumber = com.trippulse.app.ui.theme.LocalMarket.current.emergencyNumber
                 )
             }
 

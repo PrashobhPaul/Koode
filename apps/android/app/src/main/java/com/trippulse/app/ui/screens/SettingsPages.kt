@@ -84,6 +84,7 @@ object SettingsPage {
     const val DETECTION = "detection"
     const val UNITS = "units"
     const val CURRENCY = "currency"
+    const val REGION = "region"
     const val VEHICLES = "vehicles"
     const val PLACES = "places"
     const val SAFETY = "safety"
@@ -112,6 +113,7 @@ fun SettingsPageScreen(nav: NavHostController, page: String) {
         SettingsPage.DETECTION -> "Travel detection"
         SettingsPage.UNITS -> "Distance & speed units"
         SettingsPage.CURRENCY -> "Currency"
+        SettingsPage.REGION -> "Region & clock"
         SettingsPage.VEHICLES -> "Vehicles"
         SettingsPage.PLACES -> "Saved places"
         SettingsPage.SAFETY -> "Safety & sharing"
@@ -147,6 +149,7 @@ fun SettingsPageScreen(nav: NavHostController, page: String) {
                 SettingsPage.DETECTION -> DetectionPage(vm)
                 SettingsPage.UNITS -> UnitsPage(vm)
                 SettingsPage.CURRENCY -> CurrencyPage(vm)
+                SettingsPage.REGION -> RegionPage(vm)
                 SettingsPage.VEHICLES -> VehiclesPage(vm)
                 SettingsPage.PLACES -> SavedPlacesPage(vm)
                 SettingsPage.SAFETY -> SafetyPage(nav)
@@ -155,7 +158,7 @@ fun SettingsPageScreen(nav: NavHostController, page: String) {
                 SettingsPage.SOS -> SosPage(nav)
                 SettingsPage.NOTIFICATIONS -> NotificationsPage(nav)
                 SettingsPage.PLACES_CONTACTS -> PlacesContactsPage(nav)
-                SettingsPage.PRIVACY -> PrivacyPage(nav)
+                SettingsPage.PRIVACY -> PrivacyPage(nav, vm)
                 SettingsPage.SHARED_DATA -> SharedDataPage()
                 SettingsPage.STORAGE -> StoragePage(nav)
                 SettingsPage.APPEARANCE -> AppearancePage(vm)
@@ -359,16 +362,22 @@ private fun openBatterySettings(context: Context) {
 
 @Composable
 private fun JourneySettingsPage(nav: NavHostController) {
+    val market = com.trippulse.app.ui.theme.LocalMarket.current
     SettingsGroup {
         SettingsRow("Journey recording", subtitle = "Koode mode, battery, background", onClick = { nav.navigate(Routes.settings(SettingsPage.RECORDING)) })
         RowDivider()
-        SettingsRow("Travel detection", subtitle = "Toll crossings", onClick = { nav.navigate(Routes.settings(SettingsPage.DETECTION)) })
+        // Toll crossings can only be noticed where Koode has the plazas (India today).
+        if (market.canDetectTolls) {
+            SettingsRow("Travel detection", subtitle = "Toll crossings", onClick = { nav.navigate(Routes.settings(SettingsPage.DETECTION)) })
+            RowDivider()
+        }
+        SettingsRow("Region & clock", subtitle = market.name.ifBlank { "Where your phone is" }, onClick = { nav.navigate(Routes.settings(SettingsPage.REGION)) })
         RowDivider()
         SettingsRow("Distance & speed units", onClick = { nav.navigate(Routes.settings(SettingsPage.UNITS)) })
         RowDivider()
         SettingsRow("Currency", onClick = { nav.navigate(Routes.settings(SettingsPage.CURRENCY)) })
         RowDivider()
-        SettingsRow("Vehicles", subtitle = "Cars, bikes and FASTag", onClick = { nav.navigate(Routes.settings(SettingsPage.VEHICLES)) })
+        SettingsRow("Vehicles", subtitle = if (market.tolls == com.trippulse.app.domain.TollSystem.FASTAG) "Cars, motorbikes and FASTag" else "Cars and motorbikes", onClick = { nav.navigate(Routes.settings(SettingsPage.VEHICLES)) })
         RowDivider()
         SettingsRow("Saved places", onClick = { nav.navigate(Routes.settings(SettingsPage.PLACES)) })
     }
@@ -385,9 +394,9 @@ private fun DetectionPage(vm: SettingsVm) {
         ) { vm.setTollDetection(it) }
     }
     Note(
-        "Missed one? Tap “Toll crossed” in Add a note on your journey. With a FASTag annual pass on " +
-            "your vehicle, each crossing is counted off its remaining trips; toll amounts are asked about " +
-            "privately, after the crossing."
+        "Missed one? Tap “Toll crossed” in Add a note on your journey. With a " +
+            (vm.market().tollPassName ?: "pass") + " on your vehicle, each crossing is counted off its " +
+            "remaining trips; toll amounts are asked about privately, after the crossing."
     )
     Note("Toll plaza locations © OpenStreetMap contributors (ODbL).")
 }
@@ -406,6 +415,45 @@ private fun UnitsPage(vm: SettingsVm) {
         }
     }
     Note(vm.detectedRegionSummary())
+}
+
+/**
+ * Where the traveller is decides the clock, the date order, the emergency
+ * number, the toll scheme and the wording; the phone's own country is used
+ * unless one is pinned here (a Londoner on holiday in Kerala keeps miles).
+ */
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun RegionPage(vm: SettingsVm) {
+    val settings by vm.settings.collectAsStateWithLifecycle()
+    val market = vm.market()
+    GroupLabel("Country")
+    SettingsGroup {
+        GroupBody {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                KoodeChip("Where my phone is", settings.countryOverride.isBlank(), { vm.setCountryOverride("") })
+                com.trippulse.app.domain.Markets.PICKER.forEach { m ->
+                    KoodeChip(m.name, settings.countryOverride == m.countryCode, { vm.setCountryOverride(m.countryCode) })
+                }
+            }
+        }
+    }
+    GroupLabel("Clock")
+    SettingsGroup {
+        GroupBody {
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                com.trippulse.app.domain.ClockPreference.entries.forEach { p ->
+                    KoodeChip(p.label, settings.clockPreference == p, { vm.setClockPreference(p) })
+                }
+            }
+        }
+    }
+    Note(
+        "Set for ${market.name.ifBlank { "your region" }}: emergency number ${market.emergencyNumber}" +
+            (market.policeNumber?.let { " (police $it)" } ?: "") + ", " +
+            (if (market.clock == com.trippulse.app.domain.ClockStyle.TWENTY_FOUR_HOUR) "24-hour clock" else "12-hour clock") + ", " +
+            (if (market.canDetectTolls) "toll plazas noticed automatically." else "toll plazas not noticed here yet.")
+    )
 }
 
 @OptIn(ExperimentalLayoutApi::class)
@@ -724,8 +772,47 @@ private fun PlacesContactsPage(nav: NavHostController) {
 }
 
 @Composable
-private fun PrivacyPage(nav: NavHostController) {
+private fun PrivacyPage(nav: NavHostController, vm: SettingsVm) {
     val context = LocalContext.current
+    val market = com.trippulse.app.ui.theme.LocalMarket.current
+    var confirmErase by remember { mutableStateOf(false) }
+    var busy by remember { mutableStateOf(false) }
+    var done by remember { mutableStateOf<String?>(null) }
+    GroupLabel("Your rights")
+    SettingsGroup {
+        GroupBody {
+            Text(
+                "Under ${market.legal.label} you can take a copy of everything Koode holds about you, or erase it all. " +
+                    "Both are done here, on this phone, with nothing to ask anyone for.",
+                color = KoodeTheme.colors.textMid, style = MaterialTheme.typography.bodyMedium
+            )
+        }
+        RowDivider()
+        SettingsRow("Export my data", subtitle = "Every journey, place, vehicle and setting, as a file you keep", onClick = if (busy) null else {
+            {
+                busy = true
+                vm.exportData(onReady = { busy = false; context.startActivity(it) }, onFailed = { busy = false; done = "The export could not be written." })
+            }
+        })
+        RowDivider()
+        SettingsRow("Erase everything", subtitle = "Ends any live journey, then removes all of your data from this phone", onClick = if (busy) null else { { confirmErase = true } })
+        if (confirmErase) {
+            GroupBody {
+                Text("This cannot be undone. Journeys, places, vehicles, contacts and settings on this phone will be gone, and anyone following a live journey will lose it within the hour.",
+                    color = KoodeTheme.colors.danger, style = MaterialTheme.typography.bodyMedium)
+                Spacer(Modifier.height(Spacing.sm))
+                Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                    KoodeChip("Erase everything", false, {
+                        busy = true; confirmErase = false
+                        vm.eraseEverything { busy = false; done = "Everything has been erased. Koode is as it was when installed." }
+                    })
+                    KoodeChip("Keep my data", false, { confirmErase = false })
+                }
+            }
+        }
+        done?.let { RowDivider(); GroupBody { Text(it, color = KoodeTheme.colors.textMid, style = MaterialTheme.typography.bodyMedium) } }
+    }
+    GroupLabel("What is kept, and where")
     SettingsGroup {
         SettingsRow("Location permissions", onClick = { openAppSettings(context) })
         RowDivider()

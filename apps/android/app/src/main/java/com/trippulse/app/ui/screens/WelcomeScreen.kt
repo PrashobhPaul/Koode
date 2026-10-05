@@ -62,6 +62,7 @@ object Onboarding {
 @Composable
 fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
     val colors = KoodeTheme.colors
+    val uriHandler = androidx.compose.ui.platform.LocalUriHandler.current
     Column(
         Modifier
             .fillMaxSize()
@@ -95,15 +96,40 @@ fun WelcomeScreen(onGetStarted: () -> Unit, onSkip: () -> Unit) {
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Promise(KoodeIcons.Shield, colors.accent, "Looks after you", "Suggestions that fit a car, a bike, a bus or a train")
-            Promise(KoodeIcons.Circle, colors.traveller, "You choose who follows", "Approve each person before they see anything")
-            Promise(KoodeIcons.Pin, colors.accent, "Live, only during a journey", "Sharing ends when the journey does")
             Promise(KoodeIcons.Alert, colors.danger, "SOS in one tap", "With a few seconds to cancel a mistake")
+        }
+
+        // ---- your data, before anything is collected ----
+        // Told in pictures and four short lines, the same in every country,
+        // because an unread notice protects nobody. Continuing is consent.
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text("Your data", color = colors.textLow, style = MaterialTheme.typography.labelLarge)
+            com.trippulse.app.domain.PrivacyNotice.POINTS.forEach { p ->
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    val res = com.trippulse.app.ui.components.KoodeArt.file(p.picture)
+                    if (res != null) com.trippulse.app.ui.components.ArtImage(res, 44.dp, Modifier, contentDescription = null)
+                    else Box(Modifier.size(44.dp), contentAlignment = Alignment.Center) { Text(p.glyph, fontSize = 26.sp) }
+                    Spacer(Modifier.width(12.dp))
+                    Column {
+                        Text(p.title, color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                        Text(p.body, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+            Text(com.trippulse.app.domain.PrivacyNotice.NEVER, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
+            Row(horizontalArrangement = Arrangement.spacedBy(Spacing.md)) {
+                Text("Privacy policy", color = colors.accent, style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.clickable { uriHandler.openUri(com.trippulse.app.domain.PrivacyNotice.POLICY_URL) })
+                Text("Terms", color = colors.accent, style = MaterialTheme.typography.labelLarge,
+                    modifier = Modifier.clickable { uriHandler.openUri(com.trippulse.app.domain.PrivacyNotice.TERMS_URL) })
+            }
         }
 
         Spacer(Modifier.height(Spacing.sm))
 
         Column(verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-            PrimaryButton("Get started", onGetStarted)
+            PrimaryButton("I understand — get started", onGetStarted)
+            Text(com.trippulse.app.domain.PrivacyNotice.CONSENT_LINE, color = colors.textLow, style = MaterialTheme.typography.bodySmall)
             Box(
                 Modifier
                     .fillMaxWidth()

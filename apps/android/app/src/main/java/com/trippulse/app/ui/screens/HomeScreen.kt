@@ -161,8 +161,10 @@ fun HomeScreen(nav: NavHostController) {
 
     // A brand-new person first meets the welcome; someone who has seen it but
     // not finished setting up lands on setup, since nothing works without it.
+    // Shown to a new traveller, and again to anyone who has not yet read
+    // the current privacy notice: continuing past it is their consent.
     var showWelcome by remember {
-        mutableStateOf(!Onboarding.welcomeSeen(context) && !Profile.isComplete(context))
+        mutableStateOf((!Onboarding.welcomeSeen(context) && !Profile.isComplete(context)) || !vm.privacyAccepted())
     }
     fun openSetup() {
         nav.navigate(Routes.settings(if (Profile.name(context).isBlank()) SettingsPage.PROFILE else SettingsPage.CONTACTS))
@@ -359,11 +361,13 @@ fun HomeScreen(nav: NavHostController) {
             WelcomeScreen(
                 onGetStarted = {
                     Onboarding.markWelcomeSeen(context)
+                    vm.acceptPrivacy()
                     showWelcome = false
-                    openSetup()
+                    if (!Profile.isComplete(context)) openSetup()
                 },
                 onSkip = {
                     Onboarding.markWelcomeSeen(context)
+                    vm.acceptPrivacy()
                     showWelcome = false
                 }
             )
