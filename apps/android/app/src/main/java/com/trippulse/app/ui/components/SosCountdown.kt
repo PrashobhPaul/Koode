@@ -28,6 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -47,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.trippulse.app.R
 import com.trippulse.app.ui.theme.BodyFamily
 import com.trippulse.app.ui.theme.DisplayFamily
 import com.trippulse.app.ui.theme.Radii
@@ -103,9 +105,12 @@ fun SosCountdown(
     recipients: List<String>,
     seconds: Int = 5,
     onSend: () -> Unit,
-    onCancel: () -> Unit
+    onCancel: () -> Unit,
+    /** The local emergency number (112, 911, 119…); null hides the call button. */
+    emergencyNumber: String? = null
 ) {
     val haptics = LocalHapticFeedback.current
+    val context = androidx.compose.ui.platform.LocalContext.current
     var left by remember { mutableIntStateOf(seconds) }
     var fired by remember { mutableStateOf(false) }
 
@@ -140,7 +145,7 @@ fun SosCountdown(
             verticalArrangement = Arrangement.spacedBy(22.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text("SOS", color = SosRing, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 13.sp, letterSpacing = 1.2.sp)
+                Text(stringResource(R.string.t_sos_2b6eb), color = SosRing, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 13.sp, letterSpacing = 1.2.sp)
                 Text(
                     "Sending your SOS", color = SosInk, fontFamily = DisplayFamily,
                     fontWeight = FontWeight.Bold, fontSize = 28.sp, textAlign = TextAlign.Center
@@ -227,7 +232,24 @@ fun SosCountdown(
                         .clickable(role = Role.Button) { send() },
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("Send now", color = Color.White, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                    Text(stringResource(R.string.t_send_now_dae33), color = Color.White, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                }
+                // Opens the dialler with the number ready; the traveller makes
+                // the call. Koode never phones anyone on its own.
+                if (!emergencyNumber.isNullOrBlank()) Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(56.dp)
+                        .clip(RoundedCornerShape(18.dp))
+                        .border(1.5.dp, SosInkSoft, RoundedCornerShape(18.dp))
+                        .clickable(role = Role.Button) {
+                            runCatching {
+                                context.startActivity(android.content.Intent(android.content.Intent.ACTION_DIAL, android.net.Uri.parse("tel:$emergencyNumber")))
+                            }
+                        },
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("📞  Call $emergencyNumber", color = SosInk, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp)
                 }
                 Box(
                     Modifier
@@ -238,7 +260,7 @@ fun SosCountdown(
                         .clickable(role = Role.Button) { if (!fired) onCancel() },
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("Cancel — I'm okay", color = SosInk, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp)
+                    Text(stringResource(R.string.t_cancel_i_m_okay_0836d), color = SosInk, fontFamily = BodyFamily, fontWeight = FontWeight.Bold, fontSize = 17.sp)
                 }
             }
         }

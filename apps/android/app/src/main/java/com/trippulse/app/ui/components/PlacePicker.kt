@@ -27,9 +27,11 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import com.trippulse.app.R
 import com.trippulse.app.ui.SharedPlaceInbox
 import com.trippulse.app.core.LocationFix
 import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.runtime.key
@@ -232,12 +234,12 @@ fun PlacePicker(
         var name by remember(point) { mutableStateOf("") }
         AlertDialog(
             onDismissRequest = { savePrompt = null },
-            title = { Text("Save this place") },
+            title = { Text(stringResource(R.string.t_save_this_place_39cf3)) },
             text = {
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = InputRules.itemText(it) },
-                    label = { Text("Name it (Home, Office, Amma's house…)") },
+                    label = { Text(stringResource(R.string.t_name_it_home_office_amma_s_house_8d27d)) },
                     singleLine = true
                 )
             },
@@ -245,9 +247,9 @@ fun PlacePicker(
                 TextButton(
                     onClick = { onSavePlace(name, point); savePrompt = null },
                     enabled = name.isNotBlank()
-                ) { Text("Save") }
+                ) { Text(stringResource(R.string.t_save_efc00)) }
             },
-            dismissButton = { TextButton(onClick = { savePrompt = null }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { savePrompt = null }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
         )
     }
 }
@@ -275,7 +277,7 @@ private fun SearchTab(
         OutlinedTextField(
             value = query,
             onValueChange = onQueryChange,
-            placeholder = { Text("Search a place, or paste a Google Maps link") },
+            placeholder = { Text(stringResource(R.string.t_search_a_place_or_paste_a_google_maps_li_86dd1)) },
             singleLine = true,
             trailingIcon = {
                 when {
@@ -438,7 +440,7 @@ private fun PinTab(
                 enabled = center != null,
                 leading = "📍"
             )
-            SecondaryButton("Save this spot as a place", { center?.let(onAskSave) }, enabled = center != null, height = 44.dp)
+            SecondaryButton(stringResource(R.string.t_save_this_spot_as_a_place_a8704), { center?.let(onAskSave) }, enabled = center != null, height = 44.dp)
         }
     }
 }

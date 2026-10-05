@@ -50,6 +50,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -70,6 +71,7 @@ import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.data.local.ActiveTripEntity
@@ -161,8 +163,10 @@ fun HomeScreen(nav: NavHostController) {
 
     // A brand-new person first meets the welcome; someone who has seen it but
     // not finished setting up lands on setup, since nothing works without it.
+    // Shown to a new traveller, and again to anyone who has not yet read
+    // the current privacy notice: continuing past it is their consent.
     var showWelcome by remember {
-        mutableStateOf(!Onboarding.welcomeSeen(context) && !Profile.isComplete(context))
+        mutableStateOf((!Onboarding.welcomeSeen(context) && !Profile.isComplete(context)) || !vm.privacyAccepted())
     }
     fun openSetup() {
         nav.navigate(Routes.settings(if (Profile.name(context).isBlank()) SettingsPage.PROFILE else SettingsPage.CONTACTS))
@@ -359,11 +363,13 @@ fun HomeScreen(nav: NavHostController) {
             WelcomeScreen(
                 onGetStarted = {
                     Onboarding.markWelcomeSeen(context)
+                    vm.acceptPrivacy()
                     showWelcome = false
-                    openSetup()
+                    if (!Profile.isComplete(context)) openSetup()
                 },
                 onSkip = {
                     Onboarding.markWelcomeSeen(context)
+                    vm.acceptPrivacy()
                     showWelcome = false
                 }
             )
@@ -382,11 +388,11 @@ fun HomeScreen(nav: NavHostController) {
                     haptics.heavy()
                     vm.deleteTrip(deleteTarget!!)
                     deleteTarget = null
-                }) { Text("Delete forever", color = colors.danger) }
+                }) { Text(stringResource(R.string.t_delete_forever_8debd), color = colors.danger) }
             },
-            dismissButton = { TextButton(onClick = { deleteTarget = null }) { Text("Keep") } },
-            title = { Text("Delete this journey from your phone?") },
-            text = { Text("Its route, timeline, playback and money records are removed from this device permanently.") }
+            dismissButton = { TextButton(onClick = { deleteTarget = null }) { Text(stringResource(R.string.t_keep_466fc)) } },
+            title = { Text(stringResource(R.string.t_delete_this_journey_from_your_phone_05d59)) },
+            text = { Text(stringResource(R.string.t_its_route_timeline_playback_and_money_re_1fa3e)) }
         )
     }
 }
@@ -404,7 +410,7 @@ private const val LIVE_FRESH_MS = 5 * 60_000L
 @Composable
 private fun StartJourneyActions(onStart: () -> Unit, onSchedule: () -> Unit) {
     val colors = KoodeTheme.colors
-    PrimaryButton("Start a journey", onStart, height = 52.dp)
+    PrimaryButton(stringResource(R.string.t_start_a_journey_30fa2), onStart, height = 52.dp)
     Row(
         Modifier
             .fillMaxWidth()
@@ -416,7 +422,7 @@ private fun StartJourneyActions(onStart: () -> Unit, onSchedule: () -> Unit) {
     ) {
         Icon(KoodeIcons.Calendar, contentDescription = null, tint = colors.accent, modifier = Modifier.size(18.dp))
         Spacer(Modifier.width(Spacing.sm))
-        Text("Schedule for later", color = colors.accent, style = MaterialTheme.typography.labelLarge)
+        Text(stringResource(R.string.t_schedule_for_later_69ba3), color = colors.accent, style = MaterialTheme.typography.labelLarge)
     }
 }
 
@@ -482,11 +488,11 @@ private fun RecentJourneys(
 ) {
     val colors = KoodeTheme.colors
     val now = System.currentTimeMillis()
-    GroupLabel("Recent journeys")
+    GroupLabel(stringResource(R.string.t_recent_journeys_5a476))
     if (trips.isEmpty()) {
         SettingsGroup {
             Column(Modifier.fillMaxWidth().padding(LocalDims.current.cardPadding)) {
-                Text("No journeys yet", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.t_no_journeys_yet_bce9b), color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
                 Text(
                     "Your completed journeys will appear here.",
                     color = colors.textMid, style = MaterialTheme.typography.bodySmall
@@ -588,7 +594,7 @@ private fun HomeFeed(
                     onClick = { uriHandler.openUri(u.downloadUrl) }
                 )
                 RowDivider()
-                SettingsRow("Not now", showChevron = false, onClick = { vm.dismissUpdate() })
+                SettingsRow(stringResource(R.string.t_not_now_e4571), showChevron = false, onClick = { vm.dismissUpdate() })
             }
         }
     }
@@ -606,7 +612,7 @@ private fun HomeFeed(
     // ---- a closed journey waiting for the traveller's approval -------------------
     allTrips.filter { it.status == "COMPLETED" && vm.awaitingReview(it.tripId) }.forEach { t ->
         KoodeCard(accent = colors.accent, onClick = { nav.navigate(Routes.summary(t.tripId)) }) {
-            Text("Review your journey", color = colors.accent, style = MaterialTheme.typography.titleMedium)
+            Text(stringResource(R.string.t_review_your_journey_ba64a), color = colors.accent, style = MaterialTheme.typography.titleMedium)
             Text("${t.originName} → ${t.destName}", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
             Text(
                 "Shared with the people following it only once you approve.",
@@ -620,10 +626,10 @@ private fun HomeFeed(
     when {
         running != null -> ActiveJourneyHome(nav, vm, running, myState, now)
         scheduled != null -> {
-            Text("Your next journey", color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
+            Text(stringResource(R.string.t_your_next_journey_59655), color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
             KoodeCard(onClick = { nav.navigate(Routes.credentials(scheduled.tripId)) }) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    StatusPill("PLANNED", colors.warn)
+                    StatusPill(stringResource(R.string.t_planned_58ac3), colors.warn)
                     Spacer(Modifier.weight(1f))
                     ModeArt(scheduled.transportMode, 56.dp, faceRight = true)
                 }
@@ -639,7 +645,7 @@ private fun HomeFeed(
             Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 ArtImage(KoodeArt.traveller, if (LocalWindowClass.current.isCompact) 188.dp else 232.dp)
             }
-            Text("Ready for your next journey?", color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
+            Text(stringResource(R.string.t_ready_for_your_next_journey_2805e), color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
             StartJourneyActions(onStart, onSchedule)
         }
     }
@@ -677,7 +683,7 @@ private fun ActiveJourneyHome(
         Row(verticalAlignment = Alignment.CenterVertically) {
             PulsingDot(colors.accent, size = 7.dp)
             Spacer(Modifier.width(Spacing.xs))
-            Text("ON YOUR JOURNEY", color = colors.accent, style = MaterialTheme.typography.labelSmall)
+            Text(stringResource(R.string.t_on_your_journey_387f3), color = colors.accent, style = MaterialTheme.typography.labelSmall)
             Spacer(Modifier.weight(1f))
             Text(journeyStateLabel(state, trip), color = colors.textMid, style = MaterialTheme.typography.labelLarge)
         }
@@ -709,7 +715,7 @@ private fun ActiveJourneyHome(
             }
         }
         Spacer(Modifier.height(Spacing.md))
-        PrimaryButton("View journey", { nav.navigate(Routes.driver(trip.tripId)) }, height = 48.dp)
+        PrimaryButton(stringResource(R.string.t_view_journey_d14e7), { nav.navigate(Routes.driver(trip.tripId)) }, height = 48.dp)
     }
 
     // ---- how you're doing: private, explicit, never forced ----
@@ -717,7 +723,7 @@ private fun ActiveJourneyHome(
     val moving = state?.journey == JourneyStatus.DRIVING.name
     val started = trip.startedAtMs ?: trip.createdAtMs
     fun since(at: Long?) = at?.takeIf { it >= started }
-    KoodeCard(title = "How you're doing") {
+    KoodeCard(title = stringResource(R.string.t_how_you_re_doing_da2d4)) {
         WellbeingLine("Water", since(state?.waterAtMs)?.let { "Had water · ${TimeFmt.clock(it)}" } ?: "Not recorded yet", KoodeArt.file(Pictures.WATER))
         WellbeingLine("Food", since(state?.foodAtMs)?.let { "Ate · ${TimeFmt.clock(it)}" } ?: "Not recorded yet", KoodeArt.file(Pictures.FOOD))
         WellbeingLine("Restroom", since(state?.toiletAtMs)?.let { "Last stop · ${TimeFmt.clock(it)}" } ?: "Not recorded yet", KoodeArt.file(Pictures.TOILET))
@@ -740,19 +746,19 @@ private fun ActiveJourneyHome(
                 horizontalArrangement = Arrangement.spacedBy(Spacing.sm),
                 verticalArrangement = Arrangement.spacedBy(Spacing.sm)
             ) {
-                KoodeChip("Had water", false, { vm.hadWater() }, leadingArt = KoodeArt.file(Pictures.WATER))
-                KoodeChip("Ate something", false, { vm.ateSomething() }, leadingArt = KoodeArt.file(Pictures.FOOD))
-                KoodeChip("Restroom", false, { vm.restroomBreak() }, leadingArt = KoodeArt.file(Pictures.TOILET))
-                KoodeChip("Taking a break", false, { vm.takingABreak() }, leadingArt = KoodeArt.file(Pictures.REST))
-                KoodeChip("Had tea", false, { vm.hadTea() }, leading = "☕")
-                KoodeChip("Remind me later", false, { vm.remindLater() })
+                KoodeChip(stringResource(R.string.t_had_water_48a89), false, { vm.hadWater() }, leadingArt = KoodeArt.file(Pictures.WATER))
+                KoodeChip(stringResource(R.string.t_ate_something_309d1), false, { vm.ateSomething() }, leadingArt = KoodeArt.file(Pictures.FOOD))
+                KoodeChip(stringResource(R.string.t_restroom_8ff8e), false, { vm.restroomBreak() }, leadingArt = KoodeArt.file(Pictures.TOILET))
+                KoodeChip(stringResource(R.string.t_taking_a_break_dcbe1), false, { vm.takingABreak() }, leadingArt = KoodeArt.file(Pictures.REST))
+                KoodeChip(stringResource(R.string.t_had_tea_a1480), false, { vm.hadTea() }, leading = "☕")
+                KoodeChip(stringResource(R.string.t_remind_me_later_bebc1), false, { vm.remindLater() })
             }
         }
     }
 
     // ---- food & expenses: private to the traveller ----
     spend?.let { sp ->
-        KoodeCard(title = "Food & expenses · private", onClick = { nav.navigate(Routes.driver(trip.tripId)) }) {
+        KoodeCard(title = stringResource(R.string.t_food_expenses_private_d421d), onClick = { nav.navigate(Routes.driver(trip.tripId)) }) {
             Text(
                 if (sp.entries == 0) "Nothing recorded yet" else "${vm.money(sp.total)} recorded",
                 color = colors.textHigh, style = MaterialTheme.typography.titleMedium
@@ -787,7 +793,7 @@ private fun ActiveJourneyHome(
                 }
             }
         }) {
-            Text("Share", color = colors.accent, style = MaterialTheme.typography.labelLarge)
+            Text(stringResource(R.string.t_share_09ca5), color = colors.accent, style = MaterialTheme.typography.labelLarge)
         }
     }
     if (journeyFollowers.isEmpty()) {
@@ -861,7 +867,7 @@ private fun SharedLiveJourneys(
     var featuredKey by rememberSaveable { mutableStateOf<String?>(null) }
     val featured = subjects.firstOrNull { it.key == featuredKey } ?: subjects.firstOrNull()
 
-    GroupLabel("Shared with you")
+    GroupLabel(stringResource(R.string.t_shared_with_you_72f2b))
     if (featured != null) {
         Box(Modifier.fillMaxWidth().clip(RoundedCornerShape(Radii.lg))) {
             JourneyMap(
@@ -982,13 +988,13 @@ private fun JourneysSection(
     val state by vm.activeState.collectAsStateWithLifecycle()
     com.trippulse.app.ui.components.CrashNotice()
     Column {
-        Text("Journeys", color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
-        Text("Your trips, in one place", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
+        Text(stringResource(R.string.t_journeys_449ac), color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
+        Text(stringResource(R.string.t_your_trips_in_one_place_ea4fc), color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
     }
 
     when {
         active != null && active.status == "ACTIVE" -> {
-            GroupLabel("Active")
+            GroupLabel(stringResource(R.string.t_active_a733b))
             KoodeHeroCard(accent = colors.accent, onClick = { nav.navigate(Routes.driver(active.tripId)) }) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     StatusPill(journeyStateLabel(state, active).uppercase(), colors.accent, pulsing = state?.journey == JourneyStatus.DRIVING.name)
@@ -1016,7 +1022,7 @@ private fun JourneysSection(
             }
         }
         active != null && active.status == "CREATED" -> {
-            GroupLabel("Scheduled")
+            GroupLabel(stringResource(R.string.t_scheduled_1cd1b))
             SettingsGroup {
                 SettingsRow(
                     "${active.originName} → ${active.destName}",
@@ -1032,7 +1038,7 @@ private fun JourneysSection(
                     ArtImage(KoodeArt.traveller, 150.dp)
                 }
                 Spacer(Modifier.height(Spacing.sm))
-                Text("Ready to travel?", color = colors.textHigh, style = MaterialTheme.typography.titleLarge)
+                Text(stringResource(R.string.t_ready_to_travel_def02), color = colors.textHigh, style = MaterialTheme.typography.titleLarge)
                 Spacer(Modifier.height(Spacing.xs))
                 Text(
                     "Start a journey and Koode will travel with you.",
@@ -1074,11 +1080,11 @@ private fun PeopleSection(
     val circle = remember(version) { Profile.contacts(context).filter { it.filled } }
     val now = System.currentTimeMillis()
 
-    Text("People", color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
+    Text(stringResource(R.string.t_people_b3755), color = colors.textHigh, style = MaterialTheme.typography.headlineMedium)
 
     // ---- journey followers: who I can choose to share a journey with ----
     Column {
-        Text("Journey followers", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+        Text(stringResource(R.string.t_journey_followers_0823d), color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
         Text(
             "People you can choose to share a journey with.",
             color = colors.textMid, style = MaterialTheme.typography.bodySmall
@@ -1092,15 +1098,15 @@ private fun PeopleSection(
             }
         }
     }
-    SecondaryButton("Add a person", { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) }, leading = "＋", height = 48.dp)
+    SecondaryButton(stringResource(R.string.t_add_a_person_cdfcb), { nav.navigate(Routes.settings(SettingsPage.CONTACTS)) }, leading = "＋", height = 48.dp)
 
     // ---- journeys shared with me ----
     Spacer(Modifier.height(Spacing.xs))
-    Text("Shared with you", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
+    Text(stringResource(R.string.t_shared_with_you_72f2b), color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
     if (following.isEmpty()) {
         SettingsGroup {
             Column(Modifier.fillMaxWidth().padding(LocalDims.current.cardPadding)) {
-                Text("No active journeys", color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
+                Text(stringResource(R.string.t_no_active_journeys_8be79), color = colors.textHigh, style = MaterialTheme.typography.titleSmall)
                 Text(
                     "When someone shares a journey with you, it will appear here.",
                     color = colors.textMid, style = MaterialTheme.typography.bodySmall
@@ -1148,6 +1154,6 @@ private fun PeopleSection(
     ) {
         Icon(KoodeIcons.Follow, contentDescription = null, tint = colors.accent, modifier = Modifier.size(20.dp))
         Spacer(Modifier.width(Spacing.sm))
-        Text("Follow a journey", color = colors.accent, style = MaterialTheme.typography.labelLarge)
+        Text(stringResource(R.string.t_follow_a_journey_a75a3), color = colors.accent, style = MaterialTheme.typography.labelLarge)
     }
 }

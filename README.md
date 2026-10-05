@@ -162,6 +162,7 @@ The only thing a browser can't do is wake a phone with an alert. That one is the
 
 | Version | Highlights |
 |---|---|
+| **6.27.0** | Built for the world. Where you are decides your units, your clock (12/24-hour, honouring the phone), your date order, your emergency number — now a *Call 112 / 911 / 119* button on the SOS screen — the toll scheme (FASTag only in India), and what a ticket reference is called. Money is written the way your locale writes numbers. A privacy notice in pictures before anything is collected; *Export my data* and *Erase everything* in Settings → Privacy & data. Every piece of interface text is now a translatable resource, and a new country is one row in a table — Japan is already a row. |
 | **6.26.0** | Every way of travelling has its own vehicle on the map, drawn from real views of it: a taxi, an electric auto, a motorbike with its rider, a bicycle, a ferry riding its wake, a metro and a train seen from above, and a walker who stands upright, seen from behind or from the front by the way they're heading. Made for travellers in Europe and the US as much as India: Bicycle is a new way of travelling, a motorbike is called a motorbike, and a ferry or boat across a harbour or strait is now its own mode — boarded in one tap like the metro — apart from a cruise or long sailing, which keeps its cabin and booking and has its own ship. Distances follow the traveller: kilometres or miles by where they are (the people following see the same), and a cruise is measured as the ship measures it, in nautical miles and knots. On a journey of several stages the replay changes vehicle where you changed, and walked stretches are dotted. Follow in 3D no longer gets stuck zoomed out to the whole world. Stages read as they happened, with pictures: a stage ends where the next began, "En route" is named, and a change tapped twice is one stage — journeys recorded by older builds are put right too. |
 | **6.25.0** | Made for the daily commute. Walking is now a way of travelling. The journey screen shows how you're travelling and changes it in one tap — walking, metro, cab, auto, bus — from wherever you are, with nothing planned ahead. "Got out" puts you on foot by itself, and the phone notices when you're walking or suddenly moving fast and offers the change. Each stage ends where it really ended and takes the name of the place, a double tap is recorded once, and reports tell a commute in its parts: "Walked 600 m", "By metro 9.4 km". |
 | **6.24.1** | What the phone could not see, it works out. When the phone comes back after a silence, the road between where it fell silent and where it came back is asked of the router and every toll plaza on it is counted, timed by its place on the road and marked as worked out — no more adding missed tolls by hand. A halt nobody resumed ends when the record shows the car leaving, and a resume tapped long after leaving is read as the late tap it was. |
@@ -194,7 +195,40 @@ Full history on the [Releases](https://github.com/PrashobhPaul/Koode/releases) p
 - **Friends who split up on a trip** and want to know the other car made it.
 - **People who ride at night**: cab, bike or two-wheeler, with an SOS that reaches someone.
 
-Koode is built in India for Indian roads first (₹, kilometres, toll plazas, thalis), and switches to $ / miles or € by region automatically.
+Koode was born on Indian roads and is built for everyone's: it reads where you are and speaks in your units, your currency, your clock and your emergency number. See **Works where you live** below.
+
+<br>
+
+## 🌍 Works where you live
+
+<div align="center">
+<img src="assets/marketing/global.webp" alt="Koode works where you live: units, currency, clock and emergency number follow the country" width="100%">
+</div>
+
+Everything that differs by country is **one row per country**, read everywhere — so a new market is a new row, not new code. The phone's own settings (24-hour clock, locale number format) are honoured first; you can pin a country or a clock in *Settings → Region & clock*.
+
+| | Distance | Money | Clock · dates | Emergency | Tolls | Privacy law |
+|:-:|---|---|---|---|---|---|
+| 🇮🇳 India | km, km/h | ₹1,240.00 | 12 h · 5 Oct 2026 | 112 | FASTag plazas noticed automatically | DPDP Act |
+| 🇺🇸 United States | mi, mph, mpg | $1,240.50 | 12 h · Oct 5, 2026 | 911 | — | State laws (CCPA/CPRA…) |
+| 🇬🇧 United Kingdom | mi, mph | £18.50 | 24 h · 5 Oct 2026 | 999 | — | UK GDPR |
+| 🇪🇺 Europe / EEA | km | 1.240,50 € | 24 h · 5 Oct 2026 | 112 | vignette / tag | GDPR |
+| 🇯🇵 Japan | km | ¥1,240 | 24 h · 2026/10/05 | 119 · police 110 | ETC | APPI |
+| 🇦🇺 Australia | km | A$18.50 | 12 h · 5 Oct 2026 | 000 | — | Privacy Act |
+
+A **cruise** is measured as the ship measures it, in nautical miles and knots, whatever your road units. A **ferry** across the harbour keeps them.
+
+**Pictures first.** Every way of travelling, every wellbeing item and every line on the map (asphalt, rails, a wake, footsteps) has its own illustration, so the app reads at a glance before the words do:
+
+<div align="center">
+<img src="web/art/car.webp" height="56"> <img src="web/art/bike.webp" height="56"> <img src="web/art/cycle.webp" height="56"> <img src="web/art/cab.webp" height="56"> <img src="web/art/auto.webp" height="56"> <img src="web/art/bus.webp" height="56"> <img src="web/art/metro.webp" height="56"> <img src="web/art/train.webp" height="56"> <img src="web/art/flight.webp" height="56"> <img src="web/art/ferry.webp" height="56"> <img src="web/art/cruise.webp" height="56"> <img src="web/art/walk.webp" height="56">
+<br>
+<img src="web/art/water.webp" height="48"> <img src="web/art/food.webp" height="48"> <img src="web/art/toilet.webp" height="48"> <img src="web/art/rest.webp" height="48"> <img src="web/art/fuel.webp" height="48"> <img src="web/art/stay.webp" height="48"> <img src="web/art/restaurant.webp" height="48"> <img src="web/art/home.webp" height="48">
+</div>
+
+**Languages.** The interface is English today, built to be translated: every UI string is a resource, every market a row, every right the same in every country. The next languages are Japanese and German; see [docs/LOCALIZATION.md](docs/LOCALIZATION.md) for how a language is added, and what is still in English by design (the journey story, which is composed rather than filled in).
+
+**Your data, your rights.** The privacy notice is read before anything is collected, in pictures. *Export my data* and *Erase everything* are one tap each, in *Settings → Privacy & data* — no account, no form, nobody to ask. Details in [the privacy policy](docs/PRIVACY.md).
 
 <br>
 

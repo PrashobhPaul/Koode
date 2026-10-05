@@ -28,6 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.trippulse.app.R
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.data.export.ReportFactory
 import com.trippulse.app.data.export.JourneyPdf
@@ -228,7 +230,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                         color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                     )
                 }
-                KoodeCard(title = "Check these details") {
+                KoodeCard(title = stringResource(R.string.t_check_these_details_f826d)) {
                     ReviewRow("Destination", destLabel ?: trip?.destName ?: "—", onEdit = { editingDestination = true })
                     val end = trip?.completedAtMs
                     val arrived = trip?.arrivedAtMs
@@ -237,7 +239,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                         editLabel = if (arrived != null && end != null && kotlin.math.abs(end - arrived) > 5 * 60_000L) "Use arrival time" else null,
                         onEdit = { arrived?.let { vm.correctEndTime(it) } }
                     )
-                    ReviewRow("Travelling by", TransportCatalog.label(trip?.transportMode), onEdit = null)
+                    ReviewRow("Travelling by", com.trippulse.app.ui.Names.mode(trip?.transportMode), onEdit = null)
                     report?.let { ReviewRow("Tolls recorded", it.tollsCrossed.toString(), onEdit = null) }
                     Spacer(Modifier.height(Spacing.sm))
                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -310,7 +312,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 // balance. The journey toll count and the vehicle balance are
                 // separate numbers.
                 fastagSummary?.let { balance ->
-                    KoodeCard(title = "FASTag") {
+                    KoodeCard(title = stringResource(R.string.t_fastag_c9c54)) {
                         DetailRow("Tolls crossed this journey", r.tollsCrossed.toString(), leading = "🛣")
                         DetailRow("Balance", balance, leading = "🎫")
                     }
@@ -319,7 +321,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
 
             // ---- private: reconcile and confirm the traveller's own expenses ----
             if (trip?.completedAtMs != null && (expenses.isNotEmpty() || opportunities.isNotEmpty())) {
-                KoodeCard(title = "Your travel expenses · private", accent = colors.traveller) {
+                KoodeCard(title = stringResource(R.string.t_your_travel_expenses_private_97272), accent = colors.traveller) {
                     Text(checklist.headline, color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                     Text(measures.money(checklist.recordedTotal), color = colors.textHigh, style = MaterialTheme.typography.headlineSmall)
                     checklist.items.forEach { item ->
@@ -353,7 +355,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                             OutlinedTextField(
                                 value = amountText,
                                 onValueChange = { amountText = com.trippulse.app.core.InputRules.amountText(it) },
-                                placeholder = { Text("Amount") },
+                                placeholder = { Text(stringResource(R.string.t_amount_43dc8)) },
                                 singleLine = true,
                                 keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
                                     keyboardType = androidx.compose.ui.text.input.KeyboardType.Decimal
@@ -363,18 +365,18 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                             TextButton(
                                 onClick = { amountText.toDoubleOrNull()?.let { vm.recordExpenseAmount(o.id, it) } },
                                 enabled = amountText.toDoubleOrNull() != null
-                            ) { Text("Save", color = colors.accent) }
+                            ) { Text(stringResource(R.string.t_save_efc00), color = colors.accent) }
                         }
                         Row {
-                            TextButton(onClick = { vm.markNoExpense(o.id) }) { Text("No expense", color = colors.textMid) }
-                            TextButton(onClick = { vm.leaveExpenseUnknown(o.id) }) { Text("Leave unknown", color = colors.textMid) }
+                            TextButton(onClick = { vm.markNoExpense(o.id) }) { Text(stringResource(R.string.t_no_expense_bdc10), color = colors.textMid) }
+                            TextButton(onClick = { vm.leaveExpenseUnknown(o.id) }) { Text(stringResource(R.string.t_leave_unknown_a6e97), color = colors.textMid) }
                         }
                     }
 
                     // Everything recorded can be corrected or removed.
                     if (expenses.isNotEmpty()) {
                         Spacer(Modifier.height(Spacing.sm))
-                        Text("Recorded", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                        Text(stringResource(R.string.t_recorded_d5383), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                         expenses.forEach { e ->
                             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                                 Column(Modifier.weight(1f)) {
@@ -388,8 +390,8 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                                     )
                                 }
                                 if (closure?.expensesApprovedAtMs == null) {
-                                    TextButton(onClick = { editingExpense = e }) { Text("Edit", color = colors.accent) }
-                                    TextButton(onClick = { vm.deleteExpense(e.id) }) { Text("Delete", color = colors.textLow) }
+                                    TextButton(onClick = { editingExpense = e }) { Text(stringResource(R.string.t_edit_53016), color = colors.accent) }
+                                    TextButton(onClick = { vm.deleteExpense(e.id) }) { Text(stringResource(R.string.t_delete_f6fdb), color = colors.textLow) }
                                 }
                             }
                         }
@@ -405,7 +407,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                             color = colors.accent, style = MaterialTheme.typography.titleSmall
                         )
                     } else {
-                        SecondaryButton("Add expense", { addingExpense = true }, leading = "＋", height = 44.dp)
+                        SecondaryButton(stringResource(R.string.t_add_expense_d8356), { addingExpense = true }, leading = "＋", height = 44.dp)
                         Spacer(Modifier.height(Spacing.sm))
                         PrimaryButton(
                             if (exporting) "Saving…" else "Confirm expenses",
@@ -421,11 +423,11 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                     }
                 }
             } else if (trip?.completedAtMs != null && closure?.expensesApprovedAtMs == null) {
-                SecondaryButton("Add a travel expense (private)", { addingExpense = true }, leading = "₹", height = 44.dp)
+                SecondaryButton(stringResource(R.string.t_add_a_travel_expense_private_8ccf1), { addingExpense = true }, leading = "₹", height = 44.dp)
             }
 
             // ---- exports ----
-            SectionHeader("Keep a copy")
+            SectionHeader(stringResource(R.string.t_keep_a_copy_7bfaf))
             KoodeCard {
                 Text(
                     "Both documents carry the same figures you see above, the Koode watermark, " +
@@ -458,7 +460,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
             }
 
             Spacer(Modifier.height(Spacing.sm))
-            PrimaryButton("Done", { nav.popBackStack(Routes.HOME, inclusive = false) })
+            PrimaryButton(stringResource(R.string.t_done_e9b45), { nav.popBackStack(Routes.HOME, inclusive = false) })
             Spacer(Modifier.height(Spacing.scrollBottom))
         }
     }
@@ -468,16 +470,16 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         var text by remember { mutableStateOf(destLabel ?: trip?.destName.orEmpty()) }
         AlertDialog(
             onDismissRequest = { editingDestination = false },
-            title = { Text("Where did this journey end?") },
+            title = { Text(stringResource(R.string.t_where_did_this_journey_end_bc081)) },
             text = {
                 OutlinedTextField(value = text, onValueChange = { text = it.take(80) }, singleLine = true)
             },
             confirmButton = {
                 TextButton(onClick = { editingDestination = false; vm.correctDestination(text) }, enabled = text.isNotBlank()) {
-                    Text("Save")
+                    Text(stringResource(R.string.t_save_efc00))
                 }
             },
-            dismissButton = { TextButton(onClick = { editingDestination = false }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { editingDestination = false }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
         )
     }
 
@@ -497,9 +499,9 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
             },
             confirmButton = {
                 TextButton(onClick = { text.toDoubleOrNull()?.let { vm.correctExpense(e.id, it) }; editingExpense = null },
-                    enabled = text.toDoubleOrNull() != null) { Text("Save") }
+                    enabled = text.toDoubleOrNull() != null) { Text(stringResource(R.string.t_save_efc00)) }
             },
-            dismissButton = { TextButton(onClick = { editingExpense = null }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { editingExpense = null }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
         )
     }
 
@@ -509,7 +511,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
         var text by remember { mutableStateOf("") }
         AlertDialog(
             onDismissRequest = { addingExpense = false },
-            title = { Text("Add an expense") },
+            title = { Text(stringResource(R.string.t_add_an_expense_52852)) },
             text = {
                 Column {
                     androidx.compose.foundation.layout.FlowRow(
@@ -523,7 +525,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                     Spacer(Modifier.height(Spacing.sm))
                     OutlinedTextField(
                         value = text, onValueChange = { text = com.trippulse.app.core.InputRules.amountText(it) },
-                        placeholder = { Text("Amount") }, singleLine = true,
+                        placeholder = { Text(stringResource(R.string.t_amount_43dc8)) }, singleLine = true,
                         keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
                             keyboardType = androidx.compose.ui.text.input.KeyboardType.Decimal
                         )
@@ -532,9 +534,9 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
             },
             confirmButton = {
                 TextButton(onClick = { text.toDoubleOrNull()?.let { vm.addExpense(category, it) }; addingExpense = false },
-                    enabled = text.toDoubleOrNull() != null) { Text("Add") }
+                    enabled = text.toDoubleOrNull() != null) { Text(stringResource(R.string.t_add_61cc5)) }
             },
-            dismissButton = { TextButton(onClick = { addingExpense = false }) { Text("Cancel") } }
+            dismissButton = { TextButton(onClick = { addingExpense = false }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
         )
     }
 
@@ -618,7 +620,7 @@ fun JourneyDashboard(
 
     // ---- the story, in words and pictures ----
     if (story != null && story.paragraphs.isNotEmpty()) {
-        KoodeCard(title = "The story", accent = colors.traveller) {
+        KoodeCard(title = stringResource(R.string.t_the_story_7c454), accent = colors.traveller) {
             (if (compact) story.paragraphs.take(2) else story.paragraphs).forEach {
                 Text(it, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
                 Spacer(Modifier.height(Spacing.sm))
@@ -652,13 +654,13 @@ fun JourneyDashboard(
                         valueText = { v -> if (v >= 10) v.toInt().toString() else "%.1f".format(v) }
                     )
                     if (story.kmByHour.any { it.estimatedM > 0 }) {
-                        Text("Fainter bars are hours the phone was out of contact: the distance is estimated.", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
+                        Text(stringResource(R.string.t_fainter_bars_are_hours_the_phone_was_out_3f465), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                     }
                 }
             }
         }
     } else if (report.insights.isNotEmpty()) {
-        KoodeCard(title = "Journey insights", accent = colors.traveller) {
+        KoodeCard(title = stringResource(R.string.t_journey_insights_4bb49), accent = colors.traveller) {
             report.insights.forEach {
                 Text("• $it", color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
             }
@@ -666,7 +668,7 @@ fun JourneyDashboard(
     }
 
     // ---- stops & journey activity ----
-    KoodeCard(title = "Stops & journey activity") {
+    KoodeCard(title = stringResource(R.string.t_stops_journey_activity_1a3f9)) {
         DetailRow("Stops", stopCount.toString(), leading = "🅿")
         DetailRow("Breaks logged", report.breakCount.toString(), leading = "✅")
         val properBreaks = story?.stops?.count { it.items.isNotEmpty() } ?: 0
@@ -702,7 +704,7 @@ fun JourneyDashboard(
 
     // ---- stages ----
     if (report.legs.size > 1) {
-        KoodeCard(title = "Stages") {
+        KoodeCard(title = stringResource(R.string.t_stages_c1d33)) {
             report.legs.forEach { leg ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     com.trippulse.app.ui.components.ModeArt(leg.mode, 34.dp, faceRight = true)
@@ -719,7 +721,7 @@ fun JourneyDashboard(
 
     // ---- money ----
     if (report.hasCosts) {
-        KoodeCard(title = "Money tracker · only you can see this") {
+        KoodeCard(title = stringResource(R.string.t_money_tracker_only_you_can_see_this_d5366)) {
             if (!compact && report.costLines.size >= 2) {
                 com.trippulse.app.ui.components.DonutChart(
                     report.costLines.map { line ->

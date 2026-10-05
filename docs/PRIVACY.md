@@ -38,6 +38,43 @@ exists so that someone who was asleep or on a plane can still open the link
 and see that you got there safely. What remains afterwards exists only on your own phone,
 under your control, until you delete it in the app.
 
+
+## Your rights, in every country
+
+Koode gives every traveller the same two controls, wherever they live, because
+the laws that matter here — the EU and UK GDPR, India's Digital Personal Data
+Protection Act, the US state privacy laws (CCPA/CPRA and their siblings) and
+Japan's Act on the Protection of Personal Information — all come down to the
+same promises: you know what is collected and why, it is kept no longer than
+needed, and you can take it or take it back.
+
+| Right | How | Where |
+|---|---|---|
+| **Access / portability** | *Export my data* writes everything Koode holds — journeys, events, positions, breaks, expenses, saved places, vehicles, followed journeys and settings — as one JSON file you can keep or send anywhere. Credentials that let a phone write to a live journey are left out. | Settings → Privacy & data |
+| **Erasure** | *Erase everything* ends any live journey (so the server deletes its copy on its own one-hour timer), forgets push registrations for journeys you follow, then clears every table, every preference and the profile photo. The app is as installed afterwards. | Settings → Privacy & data |
+| **Consent** | The privacy notice is shown before anything is collected, and shown again whenever its substance changes. Continuing past it is your consent; the version you accepted is recorded on the phone only. | First screen |
+| **Objection / restriction** | There is nothing to object to that you did not start: location is read only during a journey you began, and stops when it ends. | Journey screen |
+
+Nothing above needs an email, a form or a reply from anyone: there is no
+account, so there is nobody to ask.
+
+## Retention
+
+| Data | Kept |
+|---|---|
+| Shared journey data on the server | Until one hour after you end the journey, then deleted |
+| Approved journey report on the server | Until the journey's expiry, then deleted with it |
+| Everything on your phone | Until you delete a journey, or erase everything |
+| Push registration for a journey you follow | Until you unfollow it, the journey expires, or you erase everything |
+
+## Where the server is
+
+Koode's backend is a single Postgres project. Journeys started by travellers
+in the EU/EEA, the UK and Japan are stored there like everyone else's, under
+the same one-hour deletion rule. A regional deployment (an EU-resident
+project chosen by country) is planned; until then, this is the honest
+statement of where the data sits.
+
 ## Wellbeing information is factual, not medical
 
 Koode records when you *log* things — a meal, water, a rest stop — and shows

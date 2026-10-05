@@ -145,6 +145,13 @@ class TripManager(
         currencyOverride = settings.current.currencyCode.ifBlank { null }
     )
 
+    /** The traveller's market: toll scheme, wording, emergency number. See Markets. */
+    private fun market(): com.trippulse.app.domain.Market = com.trippulse.app.domain.Market.resolve(
+        countryCode = settings.current.countryOverride.ifBlank { null } ?: runCatching { region.countryCode() }.getOrNull(),
+        unitPreference = settings.current.unitPreference,
+        clockPreference = settings.current.clockPreference
+    )
+
     private val _routeAhead = kotlinx.coroutines.flow.MutableStateFlow<List<GeoPoint>>(emptyList())
     /** The road the router found for the stage being travelled, for the map; empty when there is none. */
     val routeAhead: StateFlow<List<GeoPoint>> = _routeAhead
@@ -557,7 +564,7 @@ class TripManager(
         }
         if (!TravelDetails.isComplete(newMode, details)) {
             return SwitchResult.MissingDetails(
-                TravelDetails.missingRequired(newMode, details).map { it.label }
+                TravelDetails.missingRequired(newMode, details, market()).map { it.label }
             )
         }
 
@@ -963,7 +970,7 @@ class TripManager(
                 mode = t.transportMode, startedAtMs = t.startedAtMs ?: t.createdAtMs, endedAtMs = t.completedAtMs,
                 nowMs = now, events = events, samples = samples, distanceM = s.distanceCoveredM,
                 routeDistanceM = t.totalRouteDistanceM.takeIf { it > 0 }, fuelType = t.fuelType, seedKey = t.tripId,
-                measures = measures()
+                measures = measures(), tollPassName = market().tollPassName
             )
             // Names from what the phone already knows; no network from inside the tick.
             val book = com.trippulse.app.domain.report.PlaceBook()
@@ -2726,7 +2733,8 @@ class TripManager(
      * Called with the lock held.
      */
     private suspend fun maybeTollFromLocation(t: ActiveTripEntity, fix: Fix, now: Long, profile: TransportProfile) {
-        if (!profile.isPrivateVehicle || !settings.current.tollDetectionEnabled) { lastTollFix = null; return }
+        // Plazas can only be noticed where Koode knows where they are (see TollSystem).
+        if (!profile.isPrivateVehicle || !settings.current.tollDetectionEnabled || !market().canDetectTolls) { lastTollFix = null; return }
         if (!com.trippulse.app.domain.TollPlazas.usable(fix.accuracyM.toDouble())) return
         val prev = lastTollFix
         lastTollFix = fix
@@ -2751,7 +2759,7 @@ class TripManager(
      * lock held; the router is asked outside it.
      */
     private fun inferTollsAcrossSilence(t: ActiveTripEntity, from: GeoPoint, to: GeoPoint, fromMs: Long, toMs: Long, profile: TransportProfile) {
-        if (!profile.isPrivateVehicle || !settings.current.tollDetectionEnabled) return
+        if (!profile.isPrivateVehicle || !settings.current.tollDetectionEnabled || !market().canDetectTolls) return
         if (Geo.haversineM(from, to) < DistanceLedger.GAP_MIN_M) return
         val tripId = t.tripId
         appScope.launch {

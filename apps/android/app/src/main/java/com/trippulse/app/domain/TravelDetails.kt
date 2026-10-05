@@ -111,15 +111,15 @@ object TravelDetails {
     )
 
     /** Fields for [mode], in the order they should be shown. */
-    fun fieldsFor(mode: String?): List<DetailField> {
+    fun fieldsFor(mode: String?, market: Market = Markets.INDIA): List<DetailField> {
         val profile = TransportCatalog.profile(mode)
         return when {
             profile.isPrivateVehicle -> privateVehicleFields()
             profile.key == TransportCatalog.CAB.key -> cabFields()
             profile.key == TransportCatalog.AUTO.key -> autoFields()
             profile.key == TransportCatalog.METRO.key -> metroFields()
-            profile.key == TransportCatalog.TRAIN.key -> trainFields()
-            profile.key == TransportCatalog.BUS.key -> busFields()
+            profile.key == TransportCatalog.TRAIN.key -> trainFields(market)
+            profile.key == TransportCatalog.BUS.key -> busFields(market)
             profile.key == TransportCatalog.FLIGHT.key -> flightFields()
             profile.key == TransportCatalog.SHIP.key -> shipFields()
             // A ferry is boarded like a metro: nothing to insist on.
@@ -162,17 +162,17 @@ object TravelDetails {
     // Long-distance ticketed travel (train, flight, ship) insists on the seat
     // and the PNR/booking reference — both alphanumeric — so a follower has
     // exactly what an airline or railway desk would ask for.
-    private fun trainFields() = listOf(
+    private fun trainFields(market: Market) = listOf(
         DetailField(DetailKeys.OPERATOR, "Train number or name"),
         DetailField(DetailKeys.COACH, "Coach", uppercase = true, hint = "S3, B1, A2"),
         DetailField(DetailKeys.SEAT, "Seat or berth", required = true, alphanumeric = true),
-        DetailField(DetailKeys.PNR, "PNR", required = true, alphanumeric = true)
+        DetailField(DetailKeys.PNR, market.bookingRefLabel, required = true, alphanumeric = true)
     )
 
-    private fun busFields() = listOf(
+    private fun busFields(market: Market) = listOf(
         DetailField(DetailKeys.OPERATOR, "Operator", options = BUS_OPERATORS),
         DetailField(DetailKeys.SEAT, "Seat", uppercase = true),
-        DetailField(DetailKeys.PNR, "PNR or booking reference", alphanumeric = true)
+        DetailField(DetailKeys.PNR, market.bookingRefLabel, alphanumeric = true)
     )
 
     private fun flightFields() = listOf(
@@ -188,8 +188,8 @@ object TravelDetails {
     )
 
     /** Keys still empty that [mode] insists on. Empty means good to go. */
-    fun missingRequired(mode: String?, values: Map<String, String>): List<DetailField> =
-        fieldsFor(mode).filter { it.required && values[it.key].isNullOrBlank() }
+    fun missingRequired(mode: String?, values: Map<String, String>, market: Market = Markets.INDIA): List<DetailField> =
+        fieldsFor(mode, market).filter { it.required && values[it.key].isNullOrBlank() }
 
     fun isComplete(mode: String?, values: Map<String, String>): Boolean =
         missingRequired(mode, values).isEmpty()

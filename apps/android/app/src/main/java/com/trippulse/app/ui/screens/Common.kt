@@ -24,11 +24,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.trippulse.app.R
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.domain.EventNarrator
 import com.trippulse.app.domain.EventTypes
@@ -194,7 +196,7 @@ fun TimelineList(
                         color = colors.textLow,
                         style = MaterialTheme.typography.bodySmall
                     )
-                    if (tappable) Text("edit", color = colors.textLow.copy(alpha = 0.7f), style = MaterialTheme.typography.labelSmall)
+                    if (tappable) Text(stringResource(R.string.t_edit_9ead4), color = colors.textLow.copy(alpha = 0.7f), style = MaterialTheme.typography.labelSmall)
                 }
             }
         }

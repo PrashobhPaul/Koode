@@ -64,7 +64,9 @@ object JourneyStory {
         /** Fixes the wording: one journey always reads the same way. */
         val seedKey: String = "$origin|$startedAtMs",
         /** The traveller's own units: a Texan's story is told in miles, a cruise in nautical miles. */
-        val measures: com.trippulse.app.domain.Measures = com.trippulse.app.domain.Measures.INDIA
+        val measures: com.trippulse.app.domain.Measures = com.trippulse.app.domain.Measures.INDIA,
+        /** What a toll pass is called where the traveller lives ("FASTag annual pass"); null where there is none. */
+        val tollPassName: String? = "FASTag annual pass"
     )
 
     /** What the journey was doing over one span of time, for charts. */
@@ -781,7 +783,7 @@ object JourneyStory {
         if (tolls.isNotEmpty()) {
             val covered = tolls.count { it.payload["passCovered"] == true }
             out += Highlight(null, "toll", "${tolls.size} toll plaza${if (tolls.size == 1) "" else "s"}",
-                if (covered == tolls.size) "All on the FASTag annual pass" else tolls.mapNotNull { tollName(it.payload) }.distinct().take(2).joinToString(" · ").ifBlank { "Crossed on the way" })
+                if (covered == tolls.size) "All on the ${input.tollPassName ?: "pass"}" else tolls.mapNotNull { tollName(it.payload) }.distinct().take(2).joinToString(" · ").ifBlank { "Crossed on the way" })
         }
         drives.maxByOrNull { it.movingSeconds }?.takeIf { it.movingSeconds >= 30 * 60 }?.let {
             out += Highlight(Pictures.mode(input.mode), null, "${duration(it.movingSeconds)} longest stretch",
@@ -919,7 +921,9 @@ object JourneyStory {
     /** "Kottagoundampatti, Kattagoundampatti" → "Kottagoundampatti" where space is short. */
     fun short(place: String): String = place.substringBefore(",").trim()
 
-    private val CLOCK: DateTimeFormatter = DateTimeFormatter.ofPattern("h:mm a", Locale.ENGLISH)
+    /** The clock as the traveller reads it: 12- or 24-hour, set once for the app (see TimeFmt). */
+    private val CLOCK: DateTimeFormatter
+        get() = DateTimeFormatter.ofPattern(com.trippulse.app.core.TimeFmt.clockPattern, com.trippulse.app.core.TimeFmt.currentLocale)
     private val DAY: DateTimeFormatter = DateTimeFormatter.ofPattern("EEEE d MMMM", Locale.ENGLISH)
     private val DAY_TITLE: DateTimeFormatter = DateTimeFormatter.ofPattern("EEEE, d MMMM", Locale.ENGLISH)
 

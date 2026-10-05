@@ -90,10 +90,16 @@ class MainActivity : ComponentActivity() {
                 val windowClass = rememberWindowClass()
                 val view = LocalView.current
                 val haptics = remember(view, settings.hapticFeedback) { KoodeHaptics(view, settings.hapticFeedback) }
+                // The market is re-read when a setting changes, so a pinned
+                // country or clock takes effect at once.
+                val market = remember(settings.countryOverride, settings.unitPreference, settings.clockPreference) {
+                    graph.configureTime(); graph.market()
+                }
                 CompositionLocalProvider(
                     LocalWindowClass provides windowClass,
                     LocalDims provides rememberDims(windowClass),
-                    LocalHaptics provides haptics
+                    LocalHaptics provides haptics,
+                    com.trippulse.app.ui.theme.LocalMarket provides market
                 ) {
                     Box(Modifier.fillMaxSize().background(KoodeTheme.colors.background)) {
                         val nav = rememberNavController()
