@@ -420,7 +420,7 @@ internal fun VehiclesCard(
 internal fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Unit) {
     val colors = KoodeTheme.colors
     val emoji = if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "🏍" else "🚗"
-    val title = v.name.ifBlank { if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "Bike" else "Car" }
+    val title = v.name.ifBlank { if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "Motorbike" else "Car" }
     val balance = when (FastagMode.fromKey(v.fastagMode)) {
         FastagMode.ANNUAL_PASS -> v.passCrossingsLeft
             ?.let { "Annual pass · $it crossing${if (it == 1) "" else "s"} left" }
@@ -463,7 +463,7 @@ internal fun VehicleEditor(
     Column {
         FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
             KoodeChip("Car", kind == VehicleKind.CAR, { kind = VehicleKind.CAR })
-            KoodeChip("Bike", kind == VehicleKind.BIKE, { kind = VehicleKind.BIKE })
+            KoodeChip("Motorbike", kind == VehicleKind.BIKE, { kind = VehicleKind.BIKE })
         }
         Spacer(Modifier.height(Spacing.sm))
         OutlinedTextField(

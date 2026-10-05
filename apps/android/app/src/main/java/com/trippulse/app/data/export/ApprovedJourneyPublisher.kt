@@ -105,7 +105,7 @@ class ApprovedJourneyPublisher(
             // The story's timing where it can be told: a silence the car moved
             // through is driving, a halt is not. Nothing here is money.
             runCatching {
-                val story = ReportFactory.storyFor(context, t, entities.filterNot { it.sensitive }, samples, null, t.originName, t.destName)
+                val story = ReportFactory.storyFor(context, t, entities.filterNot { it.sensitive }, samples, null, t.originName, t.destName, measures())
                 summary = summary.copy(
                     drivingSeconds = story.movingSeconds,
                     stops = story.stops.size,

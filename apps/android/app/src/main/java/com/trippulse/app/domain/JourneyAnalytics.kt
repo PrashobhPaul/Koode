@@ -251,9 +251,12 @@ object JourneyAnalytics {
         val litres = i.expenses.filter { it.type == "FUEL" && it.unit == "L" }.sumOf { it.quantity ?: 0.0 }
         val kwh = i.expenses.filter { it.type == "FUEL" && it.unit == "kWh" }.sumOf { it.quantity ?: 0.0 }
 
-        val legReports = i.legs.map { leg ->
+        // A change tapped twice is one stage, not two.
+        val legReports = StageRepair.folded(i.legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
+            a.copy(toName = b.toName, completedAtMs = b.completedAtMs)
+        }.mapIndexed { n, leg ->
             LegReport(
-                index = leg.index, mode = leg.mode,
+                index = n, mode = leg.mode,
                 fromName = leg.fromName, toName = leg.toName,
                 seconds = if (leg.startedAtMs != null && leg.completedAtMs != null)
                     ((leg.completedAtMs - leg.startedAtMs) / 1000).coerceAtLeast(0) else null,
@@ -319,9 +322,9 @@ object JourneyAnalytics {
         if (r.averageMovingSpeedKmh > 0 && r.overallSpeedKmh > 0) {
             val diff = r.averageMovingSpeedKmh - r.overallSpeedKmh
             if (diff > 8) {
-                add(
-                    "Stops cost about ${diff.roundToLong()} km/h off the door-to-door average."
-                )
+                // Told as a share, so it reads the same in miles, kilometres or knots.
+                val share = (diff / r.averageMovingSpeedKmh * 100).roundToLong()
+                add("Stops took about $share% off the door-to-door average pace.")
             }
         }
         if (r.hasCosts) {

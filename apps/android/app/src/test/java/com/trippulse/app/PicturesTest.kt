@@ -17,7 +17,7 @@ class PicturesTest {
         assertEquals("two modes share a picture", pictures.size, pictures.toSet().size)
         assertEquals("auto", Pictures.mode("AUTO"))
         assertEquals("flight", Pictures.mode("FLIGHT"))
-        assertEquals("ship", Pictures.mode("SHIP"))
+        assertEquals("cruise", Pictures.mode("SHIP"))
     }
 
     @Test fun pictureDrawnFacingLeftAreMirrored() {

@@ -49,7 +49,10 @@ object KoodeArt {
         "train" to R.drawable.art_train,
         "bus" to R.drawable.art_bus,
         "flight" to R.drawable.art_flight,
-        "ship" to R.drawable.art_ship
+        "ship" to R.drawable.art_ship,
+        "cycle" to R.drawable.art_cycle,
+        "ferry" to R.drawable.art_ferry,
+        "cruise" to R.drawable.art_cruise
     )
 
     @DrawableRes fun file(name: String?): Int? = name?.let { FILES[it] }

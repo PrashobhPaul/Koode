@@ -98,9 +98,10 @@ object TransportCatalog {
         travellingSuffix = " by car", boardingPointLabel = "Starting point"
     )
 
+    /** A motorbike or scooter. Called that, not "bike": in most of the world a bike has pedals. */
     val BIKE = CAR.copy(
-        key = "BIKE", label = "Bike", emoji = "🏍",
-        travellingSuffix = " by bike"
+        key = "BIKE", label = "Motorbike", emoji = "🏍",
+        travellingSuffix = " by motorbike"
     )
 
     /** A taxi or ride-hail: road-borne, but the traveller isn't driving. */
@@ -185,12 +186,12 @@ object TransportCatalog {
     )
 
     /**
-     * A ship or ferry. Rules mirror the train's: the traveller isn't operating
-     * it, halts are part of the service, and long stretches without signal are
-     * normal once away from the coast.
+     * A cruise or a long sailing. Rules mirror the train's: the traveller isn't
+     * operating it, halts are part of the service, a cabin is booked, and long
+     * stretches without signal are normal once away from the coast.
      */
     val SHIP = TransportProfile(
-        key = "SHIP", label = "Ship / ferry", emoji = "🚢",
+        key = "SHIP", label = "Cruise / ship", emoji = "🚢",
         isPrivateVehicle = false, isRoadMode = false,
         stopPromptsEnabled = false,
         wellbeingIsBreak = false, expectsOfflineStretches = true,
@@ -202,6 +203,26 @@ object TransportCatalog {
             QuickAction(EventTypes.DEBOARDED, "🚶", "Disembarked", "Got off the ship")
         ),
         travellingSuffix = " by ship", boardingPointLabel = "Port or jetty"
+    )
+
+    /**
+     * A ferry, water taxi or boat across a harbour, river or strait: a commute
+     * or a short crossing, like the metro on water. No booking is insisted on,
+     * and the signal is usually there.
+     */
+    val FERRY = TransportProfile(
+        key = "FERRY", label = "Ferry / boat", emoji = "⛴️",
+        isPrivateVehicle = false, isRoadMode = false,
+        stopPromptsEnabled = false,
+        wellbeingIsBreak = false, expectsOfflineStretches = false,
+        defaultCadence = LocationCadence.SAVER,
+        quickActions = listOf(
+            QuickAction(EventTypes.BOARDED, "🎫", "Boarded", "Boarded the ferry"),
+            QuickAction(EventTypes.TRANSIT_HALTED, "⚓", "Docked", "Ferry is docked"),
+            QuickAction(EventTypes.TRANSIT_RESUMED, "🌊", "Sailing", "Ferry is sailing"),
+            QuickAction(EventTypes.DEBOARDED, "🚶", "Got off", "Got off the ferry")
+        ),
+        travellingSuffix = " by ferry", boardingPointLabel = "Pier or jetty"
     )
 
     /**
@@ -219,15 +240,29 @@ object TransportCatalog {
         travellingSuffix = " on foot", boardingPointLabel = "Starting point"
     )
 
+    /**
+     * A bicycle: the traveller pedals, so nothing to fuel and no driving-hours
+     * rules; movement is judged at cycling pace (see [TripConfig.forMode]).
+     */
+    val CYCLE = TransportProfile(
+        key = "CYCLE", label = "Bicycle", emoji = "🚲",
+        isPrivateVehicle = false, isRoadMode = true,
+        stopPromptsEnabled = false,
+        wellbeingIsBreak = true, expectsOfflineStretches = false,
+        defaultCadence = LocationCadence.BALANCED,
+        quickActions = emptyList(),
+        travellingSuffix = " by bicycle", boardingPointLabel = "Starting point"
+    )
+
     /** Ordered for the mode picker: private first, then public transport, then on foot. */
-    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, AUTO, BUS, METRO, TRAIN, FLIGHT, SHIP, WALK)
+    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, AUTO, BUS, METRO, TRAIN, FLIGHT, FERRY, SHIP, CYCLE, WALK)
 
     /**
      * The ways a day's commute is made, in the order they are offered for a
      * one-tap change part-way. None asks for details, so a change never
      * stops at a form.
      */
-    val COMMUTE: List<TransportProfile> get() = listOf(WALK, METRO, CAB, AUTO, BUS)
+    val COMMUTE: List<TransportProfile> get() = listOf(WALK, CYCLE, METRO, BUS, CAB, FERRY, AUTO)
 
     fun profile(key: String?): TransportProfile =
         ALL.firstOrNull { it.key == key } ?: CAR

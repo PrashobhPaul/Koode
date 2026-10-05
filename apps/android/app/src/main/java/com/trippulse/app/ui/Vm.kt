@@ -174,7 +174,7 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     /** A distance in the traveller's own units. */
-    fun distance(metres: Double): String = graph.measures().distance(metres)
+    fun distance(metres: Double, mode: String? = null): String = graph.measures().distance(metres, mode)
 
 
     /** Private spending on the running journey: what is recorded, and what is still open. */
@@ -760,6 +760,9 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 // ---------------------------------------------------------------------------
 
 class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
+
+    /** The road ahead for the stage being travelled, when the router found one. */
+    val routeAhead: StateFlow<List<com.trippulse.app.domain.GeoPoint>> = graph.tripManager.routeAhead
 
     val trip: StateFlow<ActiveTripEntity?> =
         graph.tripManager.activeTripFlow()
@@ -1584,6 +1587,12 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                         samples.value = whole
                         recompute(t, ev, whole, lg, graph.db.expenseDao().allForTrip(tripId))
                     }
+                    // Stages left reading wrong by an older build are put right before the report is read.
+                    if (graph.tripManager.repairStages(tripId)) {
+                        val fixed = graph.db.legDao().forTrip(tripId)
+                        legs.value = fixed
+                        recompute(t, ev, samples.value, fixed, graph.db.expenseDao().allForTrip(tripId))
+                    }
                 }
             } catch (e: Exception) {
                 android.util.Log.e("SummaryVm", "Could not load journey $tripId", e)
@@ -1635,7 +1644,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
             )
         )
         story.value = runCatching {
-            com.trippulse.app.data.export.ReportFactory.storyFor(graph.appContext, t, ev, sp, report.value, originLabel.value, destLabel.value)
+            com.trippulse.app.data.export.ReportFactory.storyFor(graph.appContext, t, ev, sp, report.value, originLabel.value, destLabel.value, graph.measures())
         }.onFailure { android.util.Log.w("SummaryVm", "story failed", it) }.getOrNull()
     }
 

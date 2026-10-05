@@ -122,7 +122,7 @@
     };
   })();
 
-  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), AUTO: car('#F5C518', true), BIKE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP };
+  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), AUTO: car('#F5C518', true), BIKE: BIKE, CYCLE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP, FERRY: SHIP };
   function model(mode) { return MODELS[mode] || MODELS.CAR; }
 
   // ---- geometry --------------------------------------------------------------
@@ -208,17 +208,25 @@
 
   function mpp(lat) { return 40075016.686 * Math.cos(lat * Math.PI / 180) / (512 * Math.pow(2, map.getZoom())); }
 
-  // Car, cab and bus are drawn from real views of them, like the app's
-  // VehicleMarker: top-down and turned to the heading in the overview, from
-  // behind when the camera rides along. Every other mode is its 3D model.
+  // Every mode on the ground or water is drawn from real views of it, like
+  // the app's VehicleMarker: top-down and turned to the heading in the
+  // overview, from behind when the camera rides along. The metro and the
+  // train are seen only from above; a walker always stands, from behind when
+  // heading up the screen and from the front when heading down it. Only a
+  // flight is its 3D model.
   var VIEWS = {
-    CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'car', len: 50, rear: 46 },
-    BUS: { key: 'bus', len: 78, rear: 54 }
+    CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'cab', len: 50, rear: 46 },
+    AUTO: { key: 'auto', len: 40, rear: 38 }, BIKE: { key: 'bike', len: 40, rear: 32 },
+    CYCLE: { key: 'cycle', len: 38, rear: 22 }, BUS: { key: 'bus', len: 78, rear: 54 },
+    METRO: { key: 'metro', len: 96, topOnly: true }, TRAIN: { key: 'train', len: 104, topOnly: true },
+    SHIP: { key: 'cruise', len: 100, rear: 66 }, FERRY: { key: 'ship', len: 66, rear: 62 }, WALK: { key: 'walk', upright: 46 }
   };
   var vehicle = null;
 
-  function viewKind(cameraBearing, pitch) {
+  function viewKind(v, cameraBearing, pitch) {
     var diff = ((state.bearing - cameraBearing + 540) % 360) - 180;
+    if (v.upright) return Math.abs(diff) <= 90 ? 'rear' : 'front';
+    if (v.topOnly) return 'top';
     return pitch >= 30 && Math.abs(diff) <= 40 ? 'rear' : 'top';
   }
 
@@ -228,7 +236,7 @@
     if (v) {
       setData('kd-vehicle', EMPTY);
       setData('kd-ground', EMPTY);
-      var kind = viewKind(map.getBearing(), map.getPitch());
+      var kind = viewKind(v, map.getBearing(), map.getPitch());
       if (!vehicle) {
         var el = document.createElement('div');
         el.className = 'kd-veh';
@@ -240,15 +248,15 @@
       var src = 'art/map-' + v.key + '-' + kind + '.webp';
       if (img.getAttribute('src') !== src) img.setAttribute('src', src);
       el2.classList.toggle('top', kind === 'top');
-      el2.classList.toggle('rear', kind === 'rear');
-      img.style.height = kind === 'top' ? v.len + 'px' : '';
-      img.style.width = kind === 'rear' ? v.rear + 'px' : '';
+      el2.classList.toggle('rear', kind !== 'top');
+      img.style.height = kind === 'top' ? v.len + 'px' : (v.upright ? v.upright + 'px' : '');
+      img.style.width = kind !== 'top' && !v.upright ? v.rear + 'px' : '';
       if (kind === 'top') {
         vehicle.setRotationAlignment('map').setPitchAlignment('map').setRotation(state.bearing);
         vehicle.setOffset([0, 0]);
       } else {
         vehicle.setRotationAlignment('viewport').setPitchAlignment('viewport').setRotation(0);
-        vehicle.setOffset([0, -Math.round(v.rear * 0.25)]);
+        vehicle.setOffset([0, -Math.round(v.upright ? v.upright * 0.45 : v.rear * 0.25)]);
       }
       vehicle.setLngLat([state.pos[1], state.pos[0]]);
     } else {
@@ -268,11 +276,15 @@
 
   function followCamera(entering) {
     if (!state.pos) return;
+    // A jump while the camera eases in would stop it part-way, at whatever
+    // zoom it had reached -- from the overview, that is the whole world.
+    if (!entering && Date.now() < (state.easingUntil || 0)) return;
     var opts = {
       center: [state.pos[1], state.pos[0]], bearing: state.bearing, pitch: FOLLOW_TILT,
       zoom: entering ? FOLLOW_ZOOM : map.getZoom(), padding: heroPadding()
     };
-    if (entering) map.easeTo(Object.assign({ duration: 900 }, opts)); else map.jumpTo(opts);
+    if (entering) { map.easeTo(Object.assign({ duration: 900 }, opts)); state.easingUntil = Date.now() + 950; }
+    else map.jumpTo(opts);
   }
 
   function frameAll(points, animate) {
@@ -314,8 +326,7 @@
     ['kd-trail', 'kd-arc', 'kd-origin', 'kd-dest', 'kd-halo', 'kd-ground', 'kd-vehicle'].forEach(function (id) {
       map.addSource(id, { type: 'geojson', data: EMPTY });
     });
-    map.addLayer({ id: 'kd-trail-casing', type: 'line', source: 'kd-trail', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#07131D', 'line-width': 8.5, 'line-opacity': 0.8 } });
-    map.addLayer({ id: 'kd-trail-layer', type: 'line', source: 'kd-trail', layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': '#38BDF8', 'line-width': 5 } });
+    installTrail();
     map.addLayer({ id: 'kd-arc-layer', type: 'line', source: 'kd-arc', paint: { 'line-color': '#38BDF8', 'line-width': 3, 'line-opacity': 0.85, 'line-dasharray': [1.6, 1.6] } });
     map.addLayer({ id: 'kd-ground-layer', type: 'fill', source: 'kd-ground', paint: { 'fill-color': ['get', 'c'], 'fill-opacity': 0.22 } });
     map.addLayer({ id: 'kd-halo-layer', type: 'circle', source: 'kd-halo', paint: { 'circle-color': '#38BDF8', 'circle-radius': 14, 'circle-opacity': 0, 'circle-pitch-alignment': 'map' } });
@@ -323,6 +334,80 @@
     map.addLayer({ id: 'kd-dest-halo', type: 'circle', source: 'kd-dest', paint: { 'circle-color': '#F59E0B', 'circle-radius': 15, 'circle-opacity': 0.3, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-dest-layer', type: 'circle', source: 'kd-dest', paint: { 'circle-color': '#F59E0B', 'circle-radius': 7, 'circle-stroke-color': '#fff', 'circle-stroke-width': 3, 'circle-pitch-alignment': 'map' } });
     map.addLayer({ id: 'kd-vehicle-layer', type: 'fill-extrusion', source: 'kd-vehicle', paint: { 'fill-extrusion-color': ['get', 'c'], 'fill-extrusion-base': ['get', 'b'], 'fill-extrusion-height': ['get', 'h'], 'fill-extrusion-opacity': 1 } });
+  }
+
+  // The trail drawn as what it was travelled on, like the app's JourneyMap:
+  // asphalt with its centre line, a green cycle lane, rails on sleepers, a
+  // foaming wake, footsteps, a dashed line through the air. Each keeps a soft
+  // edge in the traveller's colour.
+  var TRAVELLER = '#38BDF8';
+  var lastTrail = { type: 'FeatureCollection', features: [] };
+  function installTrail() {
+    function look() {
+      var kinds = Array.prototype.slice.call(arguments);
+      return kinds.length === 1 ? ['==', ['get', 'look'], kinds[0]]
+        : ['any'].concat(kinds.map(function (k) { return ['==', ['get', 'look'], k]; }));
+    }
+    var round = { 'line-cap': 'round', 'line-join': 'round' };
+    var butt = { 'line-cap': 'butt', 'line-join': 'round' };
+    function add(id, filter, paint, layout) {
+      map.addLayer({ id: id, type: 'line', source: 'kd-trail', filter: filter, layout: layout || round, paint: paint });
+    }
+    add('kd-trail-edge', look('road', 'cycle'), { 'line-color': TRAVELLER, 'line-width': 11, 'line-opacity': 0.9 });
+    add('kd-trail-glow', look('rail', 'water'), { 'line-color': TRAVELLER, 'line-width': 14, 'line-opacity': 0.35, 'line-blur': 3 });
+    add('kd-trail-road', look('road'), { 'line-color': '#3B4048', 'line-width': 8 });
+    add('kd-trail-road-paint', look('road'), { 'line-color': '#F4F1E8', 'line-width': 1.2, 'line-dasharray': [4, 3.5] }, butt);
+    add('kd-trail-cycle', look('cycle'), { 'line-color': '#2E9E5B', 'line-width': 7 });
+    add('kd-trail-cycle-paint', look('cycle'), { 'line-color': '#F4F1E8', 'line-width': 1, 'line-dasharray': [3, 3] }, butt);
+    add('kd-trail-ballast', look('rail'), { 'line-color': '#70747B', 'line-width': 8 });
+    add('kd-trail-sleepers', look('rail'), { 'line-color': '#8B5E34', 'line-width': 9, 'line-dasharray': [0.3, 0.45] }, butt);
+    add('kd-trail-rail-0', look('rail'), { 'line-color': '#DCE2E8', 'line-width': 1.4, 'line-offset': -2.4 });
+    add('kd-trail-rail-1', look('rail'), { 'line-color': '#DCE2E8', 'line-width': 1.4, 'line-offset': 2.4 });
+    add('kd-trail-wake', look('water'), { 'line-color': '#4FC3F7', 'line-width': 10, 'line-opacity': 0.55, 'line-blur': 2.5 });
+    add('kd-trail-foam', look('water'), { 'line-color': '#E8F7FD', 'line-width': 2.4, 'line-dasharray': [1.5, 2] });
+    add('kd-trail-walk', look('foot'), { 'line-color': TRAVELLER, 'line-width': 5.5, 'line-dasharray': [0.01, 2.2] });
+    add('kd-trail-air', look('air'), { 'line-color': TRAVELLER, 'line-width': 3, 'line-dasharray': [2, 1.6] }, butt);
+  }
+
+  /** What a stretch looks like, by how it was travelled (MapStages.look in the app). */
+  function lookOf(mode) {
+    switch (mode) {
+      case 'TRAIN': case 'METRO': return 'rail';
+      case 'FERRY': case 'SHIP': return 'water';
+      case 'WALK': return 'foot';
+      case 'CYCLE': return 'cycle';
+      case 'FLIGHT': return 'air';
+      default: return 'road';
+    }
+  }
+
+  /** The mode at a moment: the latest stage begun by then (the first before any). */
+  function modeAt(stages, t, fallback) {
+    if (!stages || !stages.length) return fallback;
+    var m = stages[0].mode;
+    for (var i = 0; i < stages.length; i++) if (stages[i].fromMs <= t) m = stages[i].mode;
+    return m;
+  }
+
+  /** The trail cut into one line per stage, neighbours sharing their joining point. */
+  function trailFeatures(trail, times, stages, fallback) {
+    if (trail.length < 2) return EMPTY;
+    var useTimes = stages && stages.length > 1 && times && times.length >= trail.length;
+    var features = [], start = 0;
+    var mode = useTimes ? modeAt(stages, times[0], fallback) : fallback;
+    function push(a, b, m) {
+      if (b - a < 1) return;
+      features.push({ type: 'Feature', properties: { look: lookOf(m) },
+        geometry: { type: 'LineString', coordinates: trail.slice(a, b + 1).map(function (p) { return [p[1], p[0]]; }) } });
+    }
+    if (useTimes) {
+      for (var i = 1; i < trail.length; i++) {
+        var m = modeAt(stages, times[i], fallback);
+        if (m !== mode) { push(start, i, mode); start = i; mode = m; }
+      }
+    }
+    push(start, trail.length - 1, mode);
+    return fc(features);
   }
 
   function pulse(t) {
@@ -389,7 +474,8 @@
     state.airborne = mode === 'FLIGHT' && (!!opts.moving || !!opts.playback);
 
     var trail = opts.trail || [];
-    setData('kd-trail', line(trail));
+    lastTrail = trailFeatures(trail, opts.trailTimes, opts.stages, mode);
+    setData('kd-trail', lastTrail);
     setData('kd-origin', point(opts.origin));
     setData('kd-dest', point(opts.destination));
     var arcFrom = opts.current || opts.origin;
@@ -442,9 +528,12 @@
     toggleFollow: function () { setFollow(!state.follow, true); },
     /** Geometry only, for parity checks against the app's Vehicle3D.kt. */
     _place: place,
+    /** The trail's stretches as last drawn, for checks: [look, points] per stretch. */
+    _trail: function () { return lastTrail.features.map(function (f) { return [f.properties.look, f.geometry.coordinates.length]; }); },
     MODES: {
-      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Bike'], CAB: ['🚕', 'Cab'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
-      TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Ship']
+      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Motorbike'], CAB: ['🚕', 'Cab'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
+      TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Cruise / ship'], FERRY: ['⛴️', 'Ferry / boat'],
+      CYCLE: ['🚲', 'Bicycle'], WALK: ['🚶', 'Walking']
     }
   };
 })();

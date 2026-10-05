@@ -112,6 +112,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     val events by vm.events.collectAsStateWithLifecycle()
     val pending by vm.pending.collectAsStateWithLifecycle()
     val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
+    val routeAhead by vm.routeAhead.collectAsStateWithLifecycle()
     val stageMessage by vm.stageMessage.collectAsStateWithLifecycle()
     val requests by vm.joinRequests.collectAsStateWithLifecycle()
     val plan by vm.plan.collectAsStateWithLifecycle()
@@ -201,7 +202,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     breadcrumbTimesMs = remember(breadcrumb) { breadcrumb.map { it.tMs } },
                     bearingDeg = s?.bearing?.toFloat(),
                     live = s?.connectivity != "OFFLINE",
+                    // The road still ahead, for a stage that goes by road.
+                    route = if (profile.isRoadMode) routeAhead else emptyList(),
                     mode = profile.key,
+                    stages = remember(legs) { com.trippulse.app.domain.MapStages.of(legs.map { it.startedAtMs to it.mode }) },
                     moving = moving,
                     immersive = true,
                     height = mapHeight,
@@ -277,7 +281,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                 Column(horizontalAlignment = Alignment.End) {
                                     Text("SPEED", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                                     Text(
-                                        measures.speed(kmh),
+                                        measures.speed(kmh, profile.key),
                                         color = colors.textHigh, style = MaterialTheme.typography.titleLarge
                                     )
                                 }
@@ -301,11 +305,11 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     // Distances are rendered in the traveller's own units,
                     // worked out from where they actually are.
                     Text(
-                        "${measures.distance(s?.distanceCoveredM ?: 0.0)} done",
+                        "${measures.distance(s?.distanceCoveredM ?: 0.0, profile.key)} done",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                     Text(
-                        "${measures.distance(s?.distanceRemainingM ?: 0.0)} to go",
+                        "${measures.distance(s?.distanceRemainingM ?: 0.0, profile.key)} to go",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                 }
@@ -503,16 +507,21 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             }
 
             // ---- stages, when there is more than one ----
-            if (legs.size > 1) {
+            // A change tapped twice is one stage: the pair reads as one.
+            val stages = remember(legs) {
+                com.trippulse.app.domain.StageRepair.folded(legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
+                    b.copy(fromName = a.fromName, fromLat = a.fromLat, fromLng = a.fromLng, startedAtMs = a.startedAtMs)
+                }
+            }
+            if (stages.size > 1) {
                 KoodeCard(title = "Stages") {
-                    legs.forEach { leg ->
-                        val legProfile = TransportCatalog.profile(leg.mode)
+                    stages.forEach { leg ->
                         val isActive = leg.legIndex == (t?.activeLegIndex ?: 0)
                         Row(
                             Modifier.fillMaxWidth().padding(vertical = 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(legProfile.emoji, fontSize = 15.sp)
+                            com.trippulse.app.ui.components.ModeArt(leg.mode, 34.dp, faceRight = true)
                             Spacer(Modifier.width(Spacing.sm))
                             Text(
                                 "${leg.fromName} → ${leg.toName}",

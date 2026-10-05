@@ -160,6 +160,14 @@ object WellbeingCoach {
             "METRO" -> Rules(mode, role, waterMin = 90, food = FoodAccess.NONE, breakMin = null,
                 breakKind = BreakKind.STRETCH, remindAfterMin = null, informAfterMin = null,
                 informNeeds = emptySet(), quietSmallHours = true)
+            // A ferry crossing: water on a long one, food if the boat sells it. Nothing shared.
+            "FERRY" -> Rules(mode, role, waterMin = 120, food = FoodAccess.IF_AVAILABLE, breakMin = null,
+                breakKind = BreakKind.STRETCH, remindAfterMin = null, informAfterMin = null,
+                informNeeds = emptySet(), quietSmallHours = true)
+            // On a bicycle: pedalling is thirsty work; water often, a stretch when stopped. Nothing shared.
+            "CYCLE" -> Rules(mode, role, waterMin = 45, food = FoodAccess.PLAN_A_STOP, breakMin = null,
+                breakKind = BreakKind.STRETCH, remindAfterMin = null, informAfterMin = null,
+                informNeeds = emptySet(), quietSmallHours = true)
             // On foot: water on a long walk, a meal if it runs through one. Nothing shared.
             "WALK" -> Rules(mode, role, waterMin = 60, food = FoodAccess.PLAN_A_STOP, breakMin = null,
                 breakKind = BreakKind.STRETCH, remindAfterMin = null, informAfterMin = null,
