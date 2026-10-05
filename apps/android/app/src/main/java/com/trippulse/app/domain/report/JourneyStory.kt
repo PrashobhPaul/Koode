@@ -449,9 +449,19 @@ object JourneyStory {
      * stages of one mode are one span.
      */
     private fun stageSpans(events: List<TripEvent>, input: Input, endMs: Long): List<StageSpan> {
-        val starts = events.filter { it.type == EventTypes.LEG_STARTED && it.payload["mode"] is String }
+        // A stage starts at a LEG_STARTED; an older build recorded some mode
+        // changes only as a plan change, which says what it changed to.
+        val changes = events.filter { it.type == EventTypes.TRAVEL_MODE_CHANGED && it.payload["toMode"] is String }
             .sortedBy { it.eventTimeMs }
-            .map { (it.payload["mode"] as String) to it.eventTimeMs }
+        val starts0 = (events.filter { it.type == EventTypes.LEG_STARTED && it.payload["mode"] is String }
+            .map { (it.payload["mode"] as String) to it.eventTimeMs } +
+            changes.map { (it.payload["toMode"] as String) to it.eventTimeMs })
+            .sortedBy { it.second }
+        // Before the first change it was going by what it changed from.
+        val first = changes.firstOrNull()
+        val firstMode = first?.payload?.get("fromMode") as? String
+        val starts = if (first != null && firstMode != null && starts0.none { it.second < first.eventTimeMs })
+            listOf(firstMode to input.startedAtMs) + starts0 else starts0
         if (starts.isEmpty()) return listOf(StageSpan(input.mode, input.startedAtMs, endMs))
         val out = ArrayList<StageSpan>()
         for ((i, st) in starts.withIndex()) {
@@ -492,6 +502,7 @@ object JourneyStory {
         return when (TransportCatalog.profile(mode).key) {
             "CAR" -> "Drove $d"
             "BIKE" -> "Rode $d"
+            "CYCLE" -> "Cycled $d"
             "WALK" -> "Walked $d"
             "FLIGHT" -> "Flew $d"
             "SHIP" -> "Sailed $d"

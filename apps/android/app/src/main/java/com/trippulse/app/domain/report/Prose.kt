@@ -94,7 +94,7 @@ object Prose {
         val modeKey: String = TransportCatalog.profile(JourneyStory.primaryMode(story, input.mode)).key
         val modeClass: ModeClass = when (modeKey) {
             "CAR", "BIKE" -> ModeClass.DRIVE
-            "CAB", "AUTO" -> ModeClass.RIDE
+            "CAB", "AUTO", "CYCLE" -> ModeClass.RIDE
             "BUS", "METRO", "TRAIN" -> ModeClass.TRANSIT
             "FLIGHT" -> ModeClass.FLY
             "SHIP" -> ModeClass.SAIL
@@ -136,7 +136,7 @@ object Prose {
         val went: String = when (modeClass) { ModeClass.DRIVE -> "drove"; ModeClass.RIDE -> "rode"; ModeClass.TRANSIT -> "travelled"; ModeClass.FLY -> "flew"; ModeClass.SAIL -> "sailed"; ModeClass.WALK -> "walked" }
         val going: String = when (modeClass) { ModeClass.DRIVE -> "driving"; ModeClass.RIDE -> "riding"; ModeClass.TRANSIT -> "travelling"; ModeClass.FLY -> "flying"; ModeClass.SAIL -> "sailing"; ModeClass.WALK -> "walking" }
         val theRoad: String = when (modeClass) { ModeClass.DRIVE, ModeClass.RIDE -> "the road"; ModeClass.TRANSIT -> "the line"; ModeClass.FLY -> "the air"; ModeClass.SAIL -> "the water"; ModeClass.WALK -> "the way" }
-        val vehicle: String = when (modeKey) { "CAR" -> "the car"; "BIKE" -> "the bike"; "CAB" -> "the cab"; "AUTO" -> "the auto"; "BUS" -> "the bus"; "METRO" -> "the metro"; "TRAIN" -> "the train"; "FLIGHT" -> "the plane"; "SHIP" -> "the ship"; else -> "foot" }
+        val vehicle: String = when (modeKey) { "CAR" -> "the car"; "BIKE" -> "the bike"; "CAB" -> "the cab"; "AUTO" -> "the auto"; "BUS" -> "the bus"; "METRO" -> "the metro"; "TRAIN" -> "the train"; "FLIGHT" -> "the plane"; "SHIP" -> "the ship"; "CYCLE" -> "the cycle"; else -> "foot" }
         val refuelled: String = if (electric) "charged up" else "refuelled"
 
         private fun nightSeconds(a: Long, b: Long, z: ZoneId): Long {

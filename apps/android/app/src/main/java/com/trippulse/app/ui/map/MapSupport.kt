@@ -90,6 +90,19 @@ internal fun lineCollection(points: List<GeoPoint>): FeatureCollection =
     if (points.size < 2) EMPTY_COLLECTION
     else FeatureCollection.fromFeatures(listOf(Feature.fromGeometry(LineString.fromLngLats(points.map { it.toPoint() }))))
 
+/** The trail as one line per stage, walked stretches marked so they draw as dots. */
+internal fun trailCollection(
+    points: List<GeoPoint>, timesMs: List<Long>, stages: List<com.trippulse.app.domain.MapStages.Stage>, fallback: String?
+): FeatureCollection {
+    val runs = com.trippulse.app.domain.MapStages.runs(timesMs, stages, fallback, points.size)
+    if (runs.isEmpty()) return EMPTY_COLLECTION
+    return FeatureCollection.fromFeatures(runs.map { r ->
+        Feature.fromGeometry(LineString.fromLngLats(points.subList(r.from, r.to + 1).map { it.toPoint() })).apply {
+            addBooleanProperty("walk", com.trippulse.app.domain.MapStages.onFoot(r.mode))
+        }
+    })
+}
+
 internal fun pointCollection(p: GeoPoint?): FeatureCollection =
     if (p == null) EMPTY_COLLECTION else FeatureCollection.fromFeatures(listOf(Feature.fromGeometry(p.toPoint())))
 

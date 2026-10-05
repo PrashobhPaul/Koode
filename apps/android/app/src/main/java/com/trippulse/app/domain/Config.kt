@@ -92,7 +92,10 @@ data class TripConfig(
  * standing in traffic: movement, distance and stops are judged at walking
  * pace. Every other mode keeps the vehicle thresholds.
  */
-fun TripConfig.forMode(mode: String?): TripConfig =
-    if (TransportCatalog.profile(mode).key == TransportCatalog.WALK.key)
+fun TripConfig.forMode(mode: String?): TripConfig = when (TransportCatalog.profile(mode).key) {
+    TransportCatalog.WALK.key ->
         copy(possibleStopSpeedKmh = 1.0, restartSpeedKmh = 2.5, stopDisplacementM = 40.0, restartDisplacementM = 80.0)
-    else this
+    TransportCatalog.CYCLE.key ->
+        copy(possibleStopSpeedKmh = 2.0, restartSpeedKmh = 5.0, stopDisplacementM = 60.0, restartDisplacementM = 120.0)
+    else -> this
+}

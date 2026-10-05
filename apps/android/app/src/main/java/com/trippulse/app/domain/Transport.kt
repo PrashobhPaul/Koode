@@ -219,15 +219,29 @@ object TransportCatalog {
         travellingSuffix = " on foot", boardingPointLabel = "Starting point"
     )
 
+    /**
+     * A bicycle: the traveller pedals, so nothing to fuel and no driving-hours
+     * rules; movement is judged at cycling pace (see [TripConfig.forMode]).
+     */
+    val CYCLE = TransportProfile(
+        key = "CYCLE", label = "Cycle", emoji = "🚲",
+        isPrivateVehicle = false, isRoadMode = true,
+        stopPromptsEnabled = false,
+        wellbeingIsBreak = true, expectsOfflineStretches = false,
+        defaultCadence = LocationCadence.BALANCED,
+        quickActions = emptyList(),
+        travellingSuffix = " by cycle", boardingPointLabel = "Starting point"
+    )
+
     /** Ordered for the mode picker: private first, then public transport, then on foot. */
-    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, AUTO, BUS, METRO, TRAIN, FLIGHT, SHIP, WALK)
+    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, AUTO, BUS, METRO, TRAIN, FLIGHT, SHIP, CYCLE, WALK)
 
     /**
      * The ways a day's commute is made, in the order they are offered for a
      * one-tap change part-way. None asks for details, so a change never
      * stops at a form.
      */
-    val COMMUTE: List<TransportProfile> get() = listOf(WALK, METRO, CAB, AUTO, BUS)
+    val COMMUTE: List<TransportProfile> get() = listOf(WALK, METRO, CAB, AUTO, BUS, CYCLE)
 
     fun profile(key: String?): TransportProfile =
         ALL.firstOrNull { it.key == key } ?: CAR

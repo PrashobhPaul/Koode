@@ -18,6 +18,7 @@ import com.trippulse.app.data.routing.RoutingProvider
 import com.trippulse.app.data.sync.ConnectivityObserver
 import com.trippulse.app.data.sync.SyncEngine
 import com.trippulse.app.domain.Connectivity
+import com.trippulse.app.domain.StageRepair
 import com.trippulse.app.domain.EtaEngine
 import com.trippulse.app.domain.EtaMode
 import com.trippulse.app.domain.EventSource
@@ -199,8 +200,53 @@ class TripManager(
         // detectors restart clean; persisted journey state is authoritative
         detector = StopDetector(cfg.forMode(activeLeg()?.mode ?: t.transportMode))
         plans.latest(t.tripId)
+        appScope.launch { repairStages(t.tripId) }
         t
     }
+
+    /**
+     * Reads a journey's stages against each other and puts right what an
+     * older build or a hurried tap left wrong: a finished stage ends where the
+     * next began, and a switch point still called "En route" is named. Safe
+     * to run again; changes nothing that is already right.
+     */
+    suspend fun repairStages(tripId: String): Boolean {
+        val rows = db.legDao().forTrip(tripId)
+        if (rows.size < 2) return false
+        var changed = false
+        lock.withLock {
+            val now = db.legDao().forTrip(tripId)
+            val ends = StageRepair.endsWhereNextBegan(now.map { it.toStage() }).associateBy { it.index }
+            now.forEach { r ->
+                ends[r.legIndex]?.let { e ->
+                    db.legDao().upsert(r.copy(toName = e.toName, toLat = e.toLat, toLng = e.toLng)); changed = true
+                }
+            }
+        }
+        // Name each switch point once, outside the lock (the geocoder can be slow).
+        db.legDao().forTrip(tripId).filter { it.fromName == EN_ROUTE && it.startedAtMs != null }.forEach { r ->
+            val name = runCatching { resolvePlace(r.fromLat, r.fromLng) }.getOrNull() ?: return@forEach
+            lock.withLock {
+                val now = db.legDao().forTrip(tripId)
+                now.firstOrNull { it.legIndex == r.legIndex && it.fromName == EN_ROUTE }
+                    ?.let { db.legDao().upsert(it.copy(fromName = name)); changed = true }
+                now.firstOrNull { it.legIndex == r.legIndex - 1 && it.toName == EN_ROUTE }
+                    ?.let { db.legDao().upsert(it.copy(toName = name)); changed = true }
+            }
+        }
+        if (changed) lock.withLock {
+            val t = trip
+            if (t?.tripId == tripId) {
+                legs = db.legDao().forTrip(tripId)
+                if (t.cloudEnabled) appScope.launch { sync.writeMetaUpdate(t, metaMap(t)) }
+            }
+        }
+        return changed
+    }
+
+    private fun TripLegEntity.toStage() = StageRepair.Stage(
+        legIndex, mode, fromName, fromLat, fromLng, toName, toLat, toLng, startedAtMs, completedAtMs
+    )
 
     // -----------------------------------------------------------------------
     // Transport rules for the leg currently being travelled
@@ -1856,7 +1902,7 @@ class TripManager(
     private val SAME_SWITCH_MS = 60_000L
 
     /** What a change of stage away from any saved place is called until the geocoder names it. */
-    private val EN_ROUTE = "En route"
+    private val EN_ROUTE = StageRepair.EN_ROUTE
 
     private val STATIONARY_STATES = setOf(
         JourneyStatus.POSSIBLE_STOP.name, JourneyStatus.STOPPED.name, JourneyStatus.LONG_STOP.name,

@@ -24,7 +24,7 @@ object Pictures {
     /** Every name, for checks that a file exists for each. */
     val ALL: List<String> = listOf(
         HOME, BUILDING, STAY, RESTAURANT, TOILET, FUEL, WALK, FOOD, WATER, REST,
-        "car", "bike", "cab", "auto", "metro", "train", "bus", "flight", "ship"
+        "car", "bike", "cab", "auto", "metro", "train", "bus", "flight", "ship", "cycle"
     )
 
     /** A travel mode's picture. Every mode in the catalog has one. */
@@ -38,6 +38,7 @@ object Pictures {
         "TRAIN" -> "train"
         "FLIGHT" -> "flight"
         "SHIP" -> "ship"
+        "CYCLE" -> "cycle"
         "WALK" -> WALK
         else -> null
     }

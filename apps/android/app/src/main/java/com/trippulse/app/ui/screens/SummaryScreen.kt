@@ -89,6 +89,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val trip by vm.trip.collectAsStateWithLifecycle()
     val events by vm.events.collectAsStateWithLifecycle()
     val samples by vm.samples.collectAsStateWithLifecycle()
+    val mapLegs by vm.legs.collectAsStateWithLifecycle()
     val expenses by vm.expenses.collectAsStateWithLifecycle()
     val exporting by vm.exporting.collectAsStateWithLifecycle()
     val report by vm.report.collectAsStateWithLifecycle()
@@ -283,6 +284,8 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                     current = samples.lastOrNull()?.let { GeoPoint(it.lat, it.lng) },
                     breadcrumb = remember(samples) { samples.map { GeoPoint(it.lat, it.lng) } },
                     breadcrumbTimesMs = remember(samples) { samples.map { it.tMs } },
+                    mode = mapLegs.lastOrNull()?.mode ?: trip?.transportMode,
+                    stages = remember(mapLegs) { com.trippulse.app.domain.MapStages.of(mapLegs.map { it.startedAtMs to it.mode }) },
                     live = false,
                     height = windowClass.mapHeight,
                     showPlayControl = true
@@ -701,11 +704,15 @@ fun JourneyDashboard(
     if (report.legs.size > 1) {
         KoodeCard(title = "Stages") {
             report.legs.forEach { leg ->
-                DetailRow(
-                    "${leg.fromName} → ${leg.toName}",
-                    leg.seconds?.let { TimeFmt.durationShort(it) } ?: "—",
-                    leading = TransportCatalog.emoji(leg.mode)
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    com.trippulse.app.ui.components.ModeArt(leg.mode, 34.dp, faceRight = true)
+                    Spacer(Modifier.width(Spacing.sm))
+                    DetailRow(
+                        "${leg.fromName} → ${leg.toName}",
+                        leg.seconds?.let { TimeFmt.durationShort(it) } ?: "—",
+                        modifier = Modifier.weight(1f)
+                    )
+                }
             }
         }
     }

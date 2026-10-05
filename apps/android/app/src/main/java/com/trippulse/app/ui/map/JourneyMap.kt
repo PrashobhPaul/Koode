@@ -46,6 +46,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.trippulse.app.core.Geo
 import com.trippulse.app.core.TimeFmt
 import com.trippulse.app.domain.GeoPoint
+import com.trippulse.app.domain.MapStages
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
@@ -82,10 +83,13 @@ private const val GLIDE_MS = 1100.0
 /**
  * One journey, drawn on a tilting vector map with the traveller's vehicle.
  *
- * The vehicle is the traveller's actual transport. A car, cab or bus is drawn
- * from real views of it — top-down and turned to the heading in the overview,
- * from behind when the camera rides along (see [VehicleMarker]); every other
- * mode is a low-poly 3D model in true perspective (see [Vehicle3D]).
+ * The vehicle is the traveller's actual transport, stage by stage: a cab, an
+ * auto, a metro, a walker, each drawn from real views of it — top-down and
+ * turned to the heading in the overview, from behind when the camera rides
+ * along (see [VehicleMarker]). A flight is a low-poly 3D model that lifts off
+ * (see [Vehicle3D]). On a journey of several stages the replay changes
+ * vehicle where the traveller changed mode, and walked stretches of the
+ * trail are dotted.
  * Between fixes it *glides* from the previous
  * position to the new one; it never runs ahead of the last real fix, because a
  * guessed position shown as live is exactly what Koode refuses to do.
@@ -97,7 +101,9 @@ private const val GLIDE_MS = 1100.0
  * The replay still lives on the map itself: ▶ drives the vehicle along the
  * path actually recorded.
  *
- * @param mode transport mode key of the active stage; picks the 3D model.
+ * @param mode transport mode key of the active stage; picks the vehicle.
+ * @param stages when each stage began and its mode, for a journey of several:
+ *   the replay shows the vehicle of the moment, and walked stretches are dotted.
  * @param moving whether the traveller is in motion (lifts a flight into the
  *   air; a parked plane stays on the apron).
  * @param immersive edge-to-edge hero use: no border, Follow on by default.
@@ -119,6 +125,7 @@ fun JourneyMap(
     showPlayControl: Boolean = true,
     onLongPress: ((GeoPoint) -> Unit)? = null,
     mode: String? = null,
+    stages: List<MapStages.Stage> = emptyList(),
     moving: Boolean = false,
     immersive: Boolean = false,
     controlsPadding: PaddingValues = PaddingValues(0.dp)
@@ -162,10 +169,14 @@ fun JourneyMap(
 
     // ---- the vehicle, animated outside Compose state ------------------------
     val motion = remember { VehicleMotion() }
-    val airborne = mode == "FLIGHT" && (moving || inPlayback)
+    // Replaying a journey of several stages: the vehicle of that moment.
+    val shownMode = if (inPlayback && stages.isNotEmpty())
+        breadcrumbTimesMs.getOrNull(playbackIndex)?.let { MapStages.modeAt(stages, it, mode) } ?: mode
+    else mode
+    val airborne = shownMode == "FLIGHT" && (moving || inPlayback)
     val context = LocalContext.current
     SideEffect {
-        motion.mode = mode
+        motion.mode = shownMode
         motion.airborne = airborne
         motion.context = context.applicationContext
     }
@@ -238,15 +249,18 @@ fun JourneyMap(
     }
 
     // Static layers: route, trail, ends, flight estimate.
-    LaunchedEffect(style, route, breadcrumb, playbackIndex, inPlayback, current, origin, destination, mode) {
+    LaunchedEffect(style, route, breadcrumb, playbackIndex, inPlayback, current, origin, destination, mode, stages) {
         val s = style ?: return@LaunchedEffect
         val trail = when {
             inPlayback -> breadcrumb.subList(0, playbackIndex + 1) + listOfNotNull(target)
             current != null && breadcrumb.lastOrNull() != current -> breadcrumb + current
             else -> breadcrumb
         }
+        // Points past the recorded ones (the gliding vehicle, the live fix) belong to the latest stage.
+        val times = if (breadcrumbTimesMs.size != breadcrumb.size) emptyList()
+        else breadcrumbTimesMs.take(trail.size).let { t -> t + List(trail.size - t.size) { Long.MAX_VALUE } }
         s.source(SRC_ROUTE)?.setGeoJson(lineCollection(route))
-        s.source(SRC_TRAIL)?.setGeoJson(lineCollection(trail))
+        s.source(SRC_TRAIL)?.setGeoJson(trailCollection(trail, times, stages, mode))
         s.source(SRC_ORIGIN)?.setGeoJson(pointCollection(origin))
         s.source(SRC_DEST)?.setGeoJson(pointCollection(destination))
         val arcFrom = target ?: origin
@@ -266,7 +280,7 @@ fun JourneyMap(
     }
 
     // Glide the vehicle to each new target.
-    LaunchedEffect(style, target, targetBearing, mode, airborne) {
+    LaunchedEffect(style, target, targetBearing, shownMode, airborne) {
         val m = map ?: return@LaunchedEffect
         if (style == null) return@LaunchedEffect
         val to = target ?: run { motion.clear(); return@LaunchedEffect }
@@ -408,12 +422,18 @@ private fun installLayers(s: Style, c: MapPalette) {
     s.addLayer(LineLayer("kd-route-layer", SRC_ROUTE).withProperties(
         PropertyFactory.lineColor(c.accent), PropertyFactory.lineWidth(5f), PropertyFactory.lineOpacity(0.5f), cap, join
     ))
+    val ridden = Expression.neq(Expression.get("walk"), Expression.literal(true))
     s.addLayer(LineLayer("kd-trail-casing", SRC_TRAIL).withProperties(
         PropertyFactory.lineColor(c.casing), PropertyFactory.lineWidth(8.5f), cap, join
-    ))
+    ).withFilter(ridden))
     s.addLayer(LineLayer("kd-trail-layer", SRC_TRAIL).withProperties(
         PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(5f), cap, join
-    ))
+    ).withFilter(ridden))
+    // On foot: a line of footstep dots rather than a road.
+    s.addLayer(LineLayer("kd-trail-walk", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(5.5f), cap, join,
+        PropertyFactory.lineDasharray(arrayOf(0.01f, 2.2f))
+    ).withFilter(Expression.eq(Expression.get("walk"), Expression.literal(true))))
     s.addLayer(LineLayer("kd-arc-layer", SRC_ARC).withProperties(
         PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(3f),
         PropertyFactory.lineOpacity(0.85f), PropertyFactory.lineDasharray(arrayOf(1.6f, 1.6f))
@@ -445,7 +465,7 @@ private fun installLayers(s: Style, c: MapPalette) {
         PropertyFactory.fillExtrusionHeight(Expression.get("h")),
         PropertyFactory.fillExtrusionOpacity(Expression.literal(1.0f))
     ))
-    // Car, cab, bus seen from above: flat on the map, turned to the heading.
+    // Seen from above: flat on the map, turned to the heading.
     s.addLayer(SymbolLayer("kd-vehicle-top", SRC_MARKER).withProperties(
         PropertyFactory.iconImage(Expression.get("icon")),
         PropertyFactory.iconRotate(Expression.get("rot")),
@@ -454,7 +474,7 @@ private fun installLayers(s: Style, c: MapPalette) {
         PropertyFactory.iconRotationAlignment(Property.ICON_ROTATION_ALIGNMENT_MAP),
         PropertyFactory.iconPitchAlignment(Property.ICON_PITCH_ALIGNMENT_MAP)
     ).withFilter(Expression.eq(Expression.get("kind"), Expression.literal("top"))))
-    // ...and from behind, upright, when the camera rides along.
+    // ...and upright: from behind when the camera rides along, and a walker always.
     s.addLayer(SymbolLayer("kd-vehicle-rear", SRC_MARKER).withProperties(
         PropertyFactory.iconImage(Expression.get("icon")),
         PropertyFactory.iconAllowOverlap(true),
@@ -478,6 +498,8 @@ private class VehicleMotion {
     var renderedTilt: Double = 0.0
     var followPlaced: Boolean = false
     var framedOnce: Boolean = false
+    /** Until when the camera is easing into Follow; moves meanwhile would freeze it part-way. */
+    var easingUntilMs: Long = 0L
 
     fun render(m: MapLibreMap) {
         val s = style ?: return
@@ -486,14 +508,14 @@ private class VehicleMotion {
         val views = VehicleMarker.views(mode)
         val ctx = context
         if (views != null && ctx != null) {
-            val kind = if (views.uprightOnly) VehicleMarker.Kind.REAR else VehicleMarker.kindFor(bearing, cam.bearing, cam.tilt)
+            val kind = VehicleMarker.kindFor(views, bearing, cam.bearing, cam.tilt)
             val name = VehicleMarker.name(views, kind)
             val ready = s.getImage(name) != null ||
                 VehicleMarker.bitmap(ctx, views, kind)?.let { s.addImage(name, it); true } == true
             if (ready) {
                 s.source(SRC_MARKER)?.setGeoJson(Feature.fromGeometry(p.toPoint()).apply {
                     addStringProperty("icon", name)
-                    addStringProperty("kind", if (kind == VehicleMarker.Kind.TOP) "top" else "rear")
+                    addStringProperty("kind", if (kind == VehicleMarker.Kind.TOP) "top" else "rear") // REAR and FRONT both stand
                     addNumberProperty("rot", bearing)
                 })
                 s.source(SRC_VEHICLE)?.setGeoJson(EMPTY_COLLECTION)
@@ -539,16 +561,21 @@ private class VehicleMotion {
 /** Ride along: tilted, heading-up, vehicle kept clear of any overlaid card. */
 private fun followCamera(m: MapLibreMap, motion: VehicleMotion, padPx: DoubleArray, entering: Boolean) {
     val p = motion.pos ?: return
-    val zoom = if (entering || !motion.followPlaced) FOLLOW_ZOOM else m.cameraPosition.zoom
+    val now = android.os.SystemClock.uptimeMillis()
+    // A move while the camera eases in would cancel the ease and keep whatever
+    // zoom it had reached -- from the overview, that is the whole world.
+    if (!entering && motion.followPlaced && now < motion.easingUntilMs) return
     val position = CameraPosition.Builder()
         .target(p.toLatLng())
-        .zoom(zoom)
+        .zoom(FOLLOW_ZOOM)
         .tilt(FOLLOW_TILT)
         .bearing(motion.bearing)
         .padding(padPx[0], padPx[1], padPx[2], padPx[3])
         .build()
-    if (entering) m.easeCamera(CameraUpdateFactory.newCameraPosition(position), 900)
-    else m.moveCamera(CameraUpdateFactory.newCameraPosition(position))
+    if (entering) {
+        m.easeCamera(CameraUpdateFactory.newCameraPosition(position), 900)
+        motion.easingUntilMs = now + 950
+    } else m.moveCamera(CameraUpdateFactory.newCameraPosition(position))
     motion.followPlaced = true
 }
 

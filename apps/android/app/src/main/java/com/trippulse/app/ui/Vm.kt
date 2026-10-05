@@ -1584,6 +1584,12 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                         samples.value = whole
                         recompute(t, ev, whole, lg, graph.db.expenseDao().allForTrip(tripId))
                     }
+                    // Stages left reading wrong by an older build are put right before the report is read.
+                    if (graph.tripManager.repairStages(tripId)) {
+                        val fixed = graph.db.legDao().forTrip(tripId)
+                        legs.value = fixed
+                        recompute(t, ev, samples.value, fixed, graph.db.expenseDao().allForTrip(tripId))
+                    }
                 }
             } catch (e: Exception) {
                 android.util.Log.e("SummaryVm", "Could not load journey $tripId", e)

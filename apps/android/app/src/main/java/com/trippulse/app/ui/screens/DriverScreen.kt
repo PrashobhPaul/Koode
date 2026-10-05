@@ -202,6 +202,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     bearingDeg = s?.bearing?.toFloat(),
                     live = s?.connectivity != "OFFLINE",
                     mode = profile.key,
+                    stages = remember(legs) { com.trippulse.app.domain.MapStages.of(legs.map { it.startedAtMs to it.mode }) },
                     moving = moving,
                     immersive = true,
                     height = mapHeight,
@@ -503,16 +504,21 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             }
 
             // ---- stages, when there is more than one ----
-            if (legs.size > 1) {
+            // A change tapped twice is one stage: the pair reads as one.
+            val stages = remember(legs) {
+                com.trippulse.app.domain.StageRepair.folded(legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
+                    b.copy(fromName = a.fromName, fromLat = a.fromLat, fromLng = a.fromLng, startedAtMs = a.startedAtMs)
+                }
+            }
+            if (stages.size > 1) {
                 KoodeCard(title = "Stages") {
-                    legs.forEach { leg ->
-                        val legProfile = TransportCatalog.profile(leg.mode)
+                    stages.forEach { leg ->
                         val isActive = leg.legIndex == (t?.activeLegIndex ?: 0)
                         Row(
                             Modifier.fillMaxWidth().padding(vertical = 4.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(legProfile.emoji, fontSize = 15.sp)
+                            com.trippulse.app.ui.components.ModeArt(leg.mode, 34.dp, faceRight = true)
                             Spacer(Modifier.width(Spacing.sm))
                             Text(
                                 "${leg.fromName} → ${leg.toName}",

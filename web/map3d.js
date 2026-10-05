@@ -208,17 +208,25 @@
 
   function mpp(lat) { return 40075016.686 * Math.cos(lat * Math.PI / 180) / (512 * Math.pow(2, map.getZoom())); }
 
-  // Car, cab and bus are drawn from real views of them, like the app's
-  // VehicleMarker: top-down and turned to the heading in the overview, from
-  // behind when the camera rides along. Every other mode is its 3D model.
+  // Every mode on the ground or water is drawn from real views of it, like
+  // the app's VehicleMarker: top-down and turned to the heading in the
+  // overview, from behind when the camera rides along. The metro and the
+  // train are seen only from above; a walker always stands, from behind when
+  // heading up the screen and from the front when heading down it. Only a
+  // flight is its 3D model.
   var VIEWS = {
-    CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'car', len: 50, rear: 46 },
-    BUS: { key: 'bus', len: 78, rear: 54 }
+    CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'cab', len: 50, rear: 46 },
+    AUTO: { key: 'auto', len: 40, rear: 38 }, BIKE: { key: 'bike', len: 40, rear: 32 },
+    CYCLE: { key: 'cycle', len: 38, rear: 22 }, BUS: { key: 'bus', len: 78, rear: 54 },
+    METRO: { key: 'metro', len: 96, topOnly: true }, TRAIN: { key: 'train', len: 104, topOnly: true },
+    SHIP: { key: 'ship', len: 66, rear: 62 }, WALK: { key: 'walk', upright: 46 }
   };
   var vehicle = null;
 
-  function viewKind(cameraBearing, pitch) {
+  function viewKind(v, cameraBearing, pitch) {
     var diff = ((state.bearing - cameraBearing + 540) % 360) - 180;
+    if (v.upright) return Math.abs(diff) <= 90 ? 'rear' : 'front';
+    if (v.topOnly) return 'top';
     return pitch >= 30 && Math.abs(diff) <= 40 ? 'rear' : 'top';
   }
 
@@ -228,7 +236,7 @@
     if (v) {
       setData('kd-vehicle', EMPTY);
       setData('kd-ground', EMPTY);
-      var kind = viewKind(map.getBearing(), map.getPitch());
+      var kind = viewKind(v, map.getBearing(), map.getPitch());
       if (!vehicle) {
         var el = document.createElement('div');
         el.className = 'kd-veh';
@@ -240,15 +248,15 @@
       var src = 'art/map-' + v.key + '-' + kind + '.webp';
       if (img.getAttribute('src') !== src) img.setAttribute('src', src);
       el2.classList.toggle('top', kind === 'top');
-      el2.classList.toggle('rear', kind === 'rear');
-      img.style.height = kind === 'top' ? v.len + 'px' : '';
-      img.style.width = kind === 'rear' ? v.rear + 'px' : '';
+      el2.classList.toggle('rear', kind !== 'top');
+      img.style.height = kind === 'top' ? v.len + 'px' : (v.upright ? v.upright + 'px' : '');
+      img.style.width = kind !== 'top' && !v.upright ? v.rear + 'px' : '';
       if (kind === 'top') {
         vehicle.setRotationAlignment('map').setPitchAlignment('map').setRotation(state.bearing);
         vehicle.setOffset([0, 0]);
       } else {
         vehicle.setRotationAlignment('viewport').setPitchAlignment('viewport').setRotation(0);
-        vehicle.setOffset([0, -Math.round(v.rear * 0.25)]);
+        vehicle.setOffset([0, -Math.round(v.upright ? v.upright * 0.45 : v.rear * 0.25)]);
       }
       vehicle.setLngLat([state.pos[1], state.pos[0]]);
     } else {
@@ -268,11 +276,15 @@
 
   function followCamera(entering) {
     if (!state.pos) return;
+    // A jump while the camera eases in would stop it part-way, at whatever
+    // zoom it had reached -- from the overview, that is the whole world.
+    if (!entering && Date.now() < (state.easingUntil || 0)) return;
     var opts = {
       center: [state.pos[1], state.pos[0]], bearing: state.bearing, pitch: FOLLOW_TILT,
       zoom: entering ? FOLLOW_ZOOM : map.getZoom(), padding: heroPadding()
     };
-    if (entering) map.easeTo(Object.assign({ duration: 900 }, opts)); else map.jumpTo(opts);
+    if (entering) { map.easeTo(Object.assign({ duration: 900 }, opts)); state.easingUntil = Date.now() + 950; }
+    else map.jumpTo(opts);
   }
 
   function frameAll(points, animate) {
@@ -444,7 +456,8 @@
     _place: place,
     MODES: {
       CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Bike'], CAB: ['🚕', 'Cab'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
-      TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Ship']
+      TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Ship'],
+      CYCLE: ['🚲', 'Cycle'], WALK: ['🚶', 'Walking']
     }
   };
 })();
