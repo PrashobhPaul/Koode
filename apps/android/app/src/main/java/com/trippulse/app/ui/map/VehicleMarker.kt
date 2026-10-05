@@ -31,14 +31,18 @@ internal object VehicleMarker {
 
     class Views(val key: String, @DrawableRes val top: Int, @DrawableRes val rear: Int,
                 /** On-screen length of the top view, and width of the rear view, in dp. */
-                val topLengthDp: Float, val rearWidthDp: Float)
+                val topLengthDp: Float, val rearWidthDp: Float,
+                /** A person, not a vehicle: always drawn standing, never turned flat to a heading. */
+                val uprightOnly: Boolean = false)
 
     private val CAR = Views("car", R.drawable.map_car_top, R.drawable.map_car_rear, 50f, 46f)
     private val BUS = Views("bus", R.drawable.map_bus_top, R.drawable.map_bus_rear, 78f, 54f)
+    private val WALKER = Views("walk", R.drawable.art_walk, R.drawable.art_walk, 40f, 40f, uprightOnly = true)
 
     fun views(mode: String?): Views? = when (TransportCatalog.profile(mode).key) {
         "CAR", "CAB" -> CAR
         "BUS" -> BUS
+        "WALK" -> WALKER
         else -> null
     }
 

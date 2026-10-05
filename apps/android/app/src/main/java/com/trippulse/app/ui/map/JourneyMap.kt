@@ -486,7 +486,7 @@ private class VehicleMotion {
         val views = VehicleMarker.views(mode)
         val ctx = context
         if (views != null && ctx != null) {
-            val kind = VehicleMarker.kindFor(bearing, cam.bearing, cam.tilt)
+            val kind = if (views.uprightOnly) VehicleMarker.Kind.REAR else VehicleMarker.kindFor(bearing, cam.bearing, cam.tilt)
             val name = VehicleMarker.name(views, kind)
             val ready = s.getImage(name) != null ||
                 VehicleMarker.bitmap(ctx, views, kind)?.let { s.addImage(name, it); true } == true

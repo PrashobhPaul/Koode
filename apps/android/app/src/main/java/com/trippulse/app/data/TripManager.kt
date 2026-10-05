@@ -44,6 +44,7 @@ import com.trippulse.app.domain.DetailKeys
 import com.trippulse.app.domain.LegDetails
 import com.trippulse.app.domain.TransportProfile
 import com.trippulse.app.domain.TripConfig
+import com.trippulse.app.domain.forMode
 import com.trippulse.app.domain.fastag.TollCrossing
 import com.trippulse.app.domain.TripEvent
 import com.trippulse.app.domain.WellbeingTimes
@@ -142,6 +143,9 @@ class TripManager(
     private var lastDistancePoint: GeoPoint? = null
     /** When the last fix arrived; a long silence before the next one is a stretch to credit. */
     private var lastFixMs: Long = 0
+    /** The last quick entry, so a double tap records it once. */
+    private var lastNoteKey: String? = null
+    private var lastNoteAtMs = 0L
     /**
      * A silence credited from its straight line, waiting for the route to
      * say how long the road really was (see [refineGapCredit]).
@@ -193,7 +197,7 @@ class TripManager(
         arrivalPromptShown = state?.arrivalPromptDue == true
         state?.let { s -> if (!terminal(s)) state = pickUpDistance(t, s) }
         // detectors restart clean; persisted journey state is authoritative
-        detector = StopDetector(cfg)
+        detector = StopDetector(cfg.forMode(activeLeg()?.mode ?: t.transportMode))
         plans.latest(t.tripId)
         t
     }
@@ -464,20 +468,33 @@ class TripManager(
         newMode: String,
         details: Map<String, String> = emptyMap(),
         breakdown: Boolean = false
-    ): SwitchResult = lock.withLock {
-        val t = editableTrip() ?: return@withLock SwitchResult.NotEditable
-        val s0 = state ?: return@withLock SwitchResult.NotEditable
+    ): SwitchResult = lock.withLock { switchModeLocked(newMode, details, breakdown) }
+
+    /** [switchMode] with the lock already held. */
+    private suspend fun switchModeLocked(
+        newMode: String,
+        details: Map<String, String>,
+        breakdown: Boolean
+    ): SwitchResult {
+        val t = editableTrip() ?: return SwitchResult.NotEditable
+        val s0 = state ?: return SwitchResult.NotEditable
 
         // Without a fix there is no honest place to end the current stage, and
         // inventing one would put a line on the map that nobody travelled.
         val lat = s0.lat
         val lng = s0.lng
-        if (lat == null || lng == null) return@withLock SwitchResult.NoLocationYet
+        if (lat == null || lng == null) return SwitchResult.NoLocationYet
 
         val current = activeLeg()
         val previousMode = current?.mode ?: t.transportMode
+        // The same change tapped twice in a row is one change.
+        val startedCurrent = current?.startedAtMs
+        if (current != null && newMode.equals(current.mode, ignoreCase = true) &&
+            startedCurrent != null && System.currentTimeMillis() - startedCurrent < SAME_SWITCH_MS) {
+            return SwitchResult.Ok
+        }
         if (!TravelDetails.isComplete(newMode, details)) {
-            return@withLock SwitchResult.MissingDetails(
+            return SwitchResult.MissingDetails(
                 TravelDetails.missingRequired(newMode, details).map { it.label }
             )
         }
@@ -485,8 +502,10 @@ class TripManager(
         val now = System.currentTimeMillis()
         val hereName = nameForPoint(GeoPoint(lat, lng))
 
+        // The stage that ends here ends *here*: the cab that dropped you at the
+        // metro went to the metro, not to the destination it was heading for.
         current?.let {
-            db.legDao().markCompleted(t.tripId, it.legIndex, now)
+            db.legDao().upsert(it.copy(completedAtMs = now, toName = hereName, toLat = lat, toLng = lng))
             fareOpportunity(t.tripId, it.mode, it.fromName, hereName, now)
         }
 
@@ -555,11 +574,36 @@ class TripManager(
             revisePlan(updated, s, now, mode = newMode, role = WellbeingCoach.defaultRole(newMode).name)
             coachTick(updated, s, now)
         }
+        // Movement is judged at the new stage's pace: walking is going somewhere.
+        detector = StopDetector(cfg.forMode(newMode))
         persistAndPush(updated, s, force = true)
         state = s
         if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
         onSamplingChanged?.invoke()
-        SwitchResult.Ok
+        if (hereName == EN_ROUTE) nameSwitchPointLater(t.tripId, lat, lng, current?.legIndex, nextIndex)
+        return SwitchResult.Ok
+    }
+
+    /**
+     * A change made away from any saved place is first called "En route";
+     * the phone's geocoder is asked afterwards, outside the lock, and the
+     * two stages that meet there take its name when it answers.
+     */
+    private fun nameSwitchPointLater(tripId: String, lat: Double, lng: Double, endedIndex: Int?, startedIndex: Int) {
+        appScope.launch {
+            val name = runCatching { resolvePlace(lat, lng) }.getOrNull() ?: return@launch
+            lock.withLock {
+                if (trip?.tripId != tripId) return@withLock
+                val rows = db.legDao().forTrip(tripId)
+                rows.firstOrNull { it.legIndex == startedIndex && it.fromName == EN_ROUTE }
+                    ?.let { db.legDao().upsert(it.copy(fromName = name)) }
+                endedIndex?.let { i ->
+                    rows.firstOrNull { it.legIndex == i && it.toName == EN_ROUTE }
+                        ?.let { db.legDao().upsert(it.copy(toName = name)) }
+                }
+                legs = db.legDao().forTrip(tripId)
+            }
+        }
     }
 
     /**
@@ -575,7 +619,7 @@ class TripManager(
     private suspend fun nameForPoint(p: GeoPoint): String {
         val saved = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
             .map { PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
-        return PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, NEAR_PLACE_M) ?: "En route"
+        return PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, NEAR_PLACE_M) ?: EN_ROUTE
     }
 
     /** Why a mid-journey mode change did or did not happen. */
@@ -651,7 +695,7 @@ class TripManager(
 
         // A new leg is a new road: reset the detector and refetch the route so
         // no state leaks across a change of vehicle.
-        detector = StopDetector(cfg)
+        detector = StopDetector(cfg.forMode(next.mode))
         currentRoute = routing.route(GeoPoint(next.fromLat, next.fromLng), GeoPoint(next.toLat, next.toLng))
         routeFetchedAtMs = now
 
@@ -705,7 +749,9 @@ class TripManager(
         val speedKmh = fix.speedMps?.takeIf { it >= 0f }?.let { it * 3.6 }
             ?: derivedSpeedKmh(fix)
 
-        // accumulate covered distance only while actually moving (kills jitter)
+        // accumulate covered distance only while actually moving (kills jitter);
+        // "moving" is the stage's own pace -- a walk is not a car in traffic
+        val moveKmh = cfg.forMode(activeLeg()?.mode ?: t.transportMode).restartSpeedKmh
         var covered = s.distanceCoveredM
         val ldp = lastDistancePoint
         if (ldp != null && lastFixMs > 0 && now - lastFixMs >= DistanceLedger.GAP_MS) {
@@ -717,10 +763,10 @@ class TripManager(
                 if (s.distanceRemainingM > 0) gapCredit = GapCredit(now, Geo.haversineM(ldp, fix.point), credit, s.distanceRemainingM, covered)
                 inferTollsAcrossSilence(t, ldp, fix.point, lastFixMs, now, profile)
             }
-        } else if (ldp != null && speedKmh >= cfg.restartSpeedKmh) {
+        } else if (ldp != null && speedKmh >= moveKmh) {
             covered += Geo.haversineM(ldp, fix.point)
         }
-        if (speedKmh >= cfg.restartSpeedKmh || ldp == null) lastDistancePoint = fix.point
+        if (speedKmh >= moveKmh || ldp == null) lastDistancePoint = fix.point
         lastFixMs = now
 
         // persist a location sample (throttled by time or distance)
@@ -1400,12 +1446,24 @@ class TripManager(
         // "Toll crossed" is a toll like any other: counted, pass, expense.
         if (type == EventTypes.TOLL_CROSSED) { recordManualTollLocked(); return@withLock }
         val now = System.currentTimeMillis()
+        // The same entry tapped twice in a row is one entry.
+        val key = "$type|${text.orEmpty()}"
+        if (key == lastNoteKey && now - lastNoteAtMs < SAME_NOTE_MS) return@withLock
+        lastNoteKey = key; lastNoteAtMs = now
+        val mode = activeLeg()?.mode ?: t.transportMode
         val sensitive = EventTypes.isSensitiveByDefault(type)
         val payload = buildMap<String, Any?> {
             if (!text.isNullOrBlank()) put("text", text)
-            put("mode", activeLeg()?.mode ?: t.transportMode)
+            put("mode", mode)
         }
         insertEvent(t.tripId, type, EventSource.DRIVER_MANUAL, now, s.lat, s.lng, payload, sensitive)
+        // Out of a vehicle someone else drives means on foot until the next
+        // one: the stage changes by itself, so nobody plans a commute ahead.
+        if (type == EventTypes.DEBOARDED && !TransportCatalog.isPrivate(mode) &&
+            TransportCatalog.profile(mode).key != TransportCatalog.WALK.key) {
+            switchModeLocked(TransportCatalog.WALK.key, emptyMap(), false)
+        }
+        Unit
     }
 
     suspend fun activateSos() = lock.withLock {
@@ -1792,6 +1850,13 @@ class TripManager(
 
     /** How long a silence's credit waits for the route before the guess stands. */
     private val GAP_REFINE_MS = 15 * 60_000L
+
+    /** A repeat of the same quick entry or the same change of mode within this is a double tap. */
+    private val SAME_NOTE_MS = 2 * 60_000L
+    private val SAME_SWITCH_MS = 60_000L
+
+    /** What a change of stage away from any saved place is called until the geocoder names it. */
+    private val EN_ROUTE = "En route"
 
     private val STATIONARY_STATES = setOf(
         JourneyStatus.POSSIBLE_STOP.name, JourneyStatus.STOPPED.name, JourneyStatus.LONG_STOP.name,

@@ -123,7 +123,9 @@ object JourneyStory {
             /** Time inside this stretch the car is known to have stood: a stop logged later, a silence it never moved in. */
             val stoppedInsideS: Long = 0,
             /** Of [tolls], how many were worked out from the road while the phone was silent. */
-            val inferredTolls: Int = 0
+            val inferredTolls: Int = 0,
+            /** How this stretch was made: the stage the journey was on. */
+            val mode: String? = null
         ) : Entry() {
             val seconds: Long get() = ((endMs - atMs) / 1000).coerceAtLeast(0)
             /** Time actually on the move, including a silence the car moved through. */
@@ -186,8 +188,15 @@ object JourneyStory {
         /** Time at stops and halts. */
         val stoppedSeconds: Long = 0,
         val longestDrive: Entry.Drive? = null,
-        val longestStop: Entry.Stop? = null
+        val longestStop: Entry.Stop? = null,
+        /** The ways the journey was made, in order, one span per change of mode. */
+        val stages: List<StageSpan> = emptyList()
     )
+
+    /** One way of travelling, from when it began to when the next began (or the journey ended). */
+    data class StageSpan(val mode: String, val fromMs: Long, val toMs: Long) {
+        val seconds: Long get() = ((toMs - fromMs) / 1000).coerceAtLeast(0)
+    }
 
     // ------------------------------------------------------------------------
     // Naming
@@ -244,6 +253,7 @@ object JourneyStory {
         val completed = input.endedAtMs != null
 
         // ---- the chain of places the vehicle actually stood at, and the drives between ----
+        val stages = stageSpans(events, input, endMs)
         // A break logged while on a halt (water in the room) is part of the halt, not a place the car stood.
         fun insideHalt(s: Entry.Stop) = halts.any { h -> s.atMs >= h.atMs && s.atMs < (h.endMs ?: endMs) }
         val standing = stops.filterNot { it.loggedLater || insideHalt(it) }
@@ -273,7 +283,8 @@ object JourneyStory {
                 toPlace = anchors.getOrNull(i + 1)?.let { placeOf(it) }
                     ?: input.samples.lastOrNull { it.tMs <= to }?.let { book.describe(it.lat, it.lng) },
                 stoppedInsideS = stoodInside(input, stops, from, to),
-                inferredTolls = inWindow.count { it.payload["inferred"] == true }
+                inferredTolls = inWindow.count { it.payload["inferred"] == true },
+                mode = modeAt(stages, (from + to) / 2) ?: input.mode
             )
         }
 
@@ -343,7 +354,8 @@ object JourneyStory {
             movingSeconds = movingSeconds,
             stoppedSeconds = stoppedSeconds,
             longestDrive = drives.maxByOrNull { it.movingSeconds },
-            longestStop = standing.filter { it.seconds != null }.maxByOrNull { it.seconds!! }
+            longestStop = standing.filter { it.seconds != null }.maxByOrNull { it.seconds!! },
+            stages = stages
         )
         return draft.copy(paragraphs = Prose.narrate(input, draft, book))
     }
@@ -429,6 +441,62 @@ object JourneyStory {
             }
         }
         return ms / 1000
+    }
+
+    /**
+     * The ways the journey was made, from the stage starts it recorded (the
+     * first stage, every planned stage, every change part-way). Consecutive
+     * stages of one mode are one span.
+     */
+    private fun stageSpans(events: List<TripEvent>, input: Input, endMs: Long): List<StageSpan> {
+        val starts = events.filter { it.type == EventTypes.LEG_STARTED && it.payload["mode"] is String }
+            .sortedBy { it.eventTimeMs }
+            .map { (it.payload["mode"] as String) to it.eventTimeMs }
+        if (starts.isEmpty()) return listOf(StageSpan(input.mode, input.startedAtMs, endMs))
+        val out = ArrayList<StageSpan>()
+        for ((i, st) in starts.withIndex()) {
+            val from = if (i == 0) minOf(input.startedAtMs, st.second) else st.second
+            val to = starts.getOrNull(i + 1)?.second ?: endMs
+            if (to <= from) continue
+            val last = out.lastOrNull()
+            if (last != null && last.mode.equals(st.first, ignoreCase = true)) out[out.lastIndex] = last.copy(toMs = to)
+            else out += StageSpan(st.first, from, to)
+        }
+        return out.ifEmpty { listOf(StageSpan(input.mode, input.startedAtMs, endMs)) }
+    }
+
+    private fun modeAt(stages: List<StageSpan>, tMs: Long): String? =
+        (stages.lastOrNull { it.fromMs <= tMs } ?: stages.firstOrNull())?.mode
+
+    /**
+     * The mode a journey is best described by: the one it spent longest on,
+     * not counting walking when there was anything else.
+     */
+    fun primaryMode(story: Story, fallback: String): String {
+        val byMode = story.stages.groupBy { TransportCatalog.profile(it.mode).key }.mapValues { (_, v) -> v.sumOf { it.seconds } }
+        val ridden = byMode.filterKeys { it != TransportCatalog.WALK.key }
+        return (ridden.ifEmpty { byMode }).maxByOrNull { it.value }?.key ?: fallback
+    }
+
+    /** "by cab", "on foot", "by air". */
+    fun byMode(mode: String?): String = when (TransportCatalog.profile(mode).key) {
+        "WALK" -> "on foot"
+        "FLIGHT" -> "by air"
+        "CAB" -> "by cab"
+        else -> "by " + TransportCatalog.label(mode).lowercase(Locale.ENGLISH)
+    }
+
+    /** How a stretch reads on the timeline: "Drove 12 km", "Walked 600 m", "By metro 9.4 km". */
+    fun stretch(mode: String?, metres: Double): String {
+        val d = km(metres)
+        return when (TransportCatalog.profile(mode).key) {
+            "CAR" -> "Drove $d"
+            "BIKE" -> "Rode $d"
+            "WALK" -> "Walked $d"
+            "FLIGHT" -> "Flew $d"
+            "SHIP" -> "Sailed $d"
+            else -> "${byMode(mode).replaceFirstChar { it.uppercase() }} $d"
+        }
     }
 
     /** Whether any fix between [from] and [to] is back at the place. */
