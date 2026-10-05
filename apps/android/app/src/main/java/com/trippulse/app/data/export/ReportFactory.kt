@@ -56,7 +56,7 @@ object ReportFactory {
         destLabel: String? = null,
         fastagSummary: String? = null
     ): Report {
-        val input = input(context, trip, events, samples, analytics, originLabel, destLabel)
+        val input = input(context, trip, events, samples, analytics, originLabel, destLabel, measures)
         val book = book(context, input)
         val story = JourneyStory.build(input, book)
         return Reports.journey(
@@ -79,7 +79,7 @@ object ReportFactory {
         originLabel: String? = null,
         destLabel: String? = null
     ): Report {
-        val input = input(context, trip, events, samples, analytics, originLabel, destLabel)
+        val input = input(context, trip, events, samples, analytics, originLabel, destLabel, measures)
         val book = book(context, input)
         val story = JourneyStory.build(input, book)
         return Reports.expenses(
@@ -167,9 +167,10 @@ object ReportFactory {
         samples: List<LocationSampleEntity>,
         analytics: JourneyAnalytics.JourneyReport?,
         originLabel: String? = null,
-        destLabel: String? = null
+        destLabel: String? = null,
+        measures: Measures = Measures.INDIA
     ): JourneyStory.Story {
-        val input = input(context, trip, events, samples, analytics, originLabel, destLabel)
+        val input = input(context, trip, events, samples, analytics, originLabel, destLabel, measures)
         return JourneyStory.build(input, book(context, input))
     }
 
@@ -182,7 +183,8 @@ object ReportFactory {
         samples: List<LocationSampleEntity>,
         analytics: JourneyAnalytics.JourneyReport?,
         originLabel: String?,
-        destLabel: String?
+        destLabel: String?,
+        measures: Measures = Measures.INDIA
     ): JourneyStory.Input {
         val now = System.currentTimeMillis()
         val sorted = samples.sortedBy { it.tMs }
@@ -201,7 +203,8 @@ object ReportFactory {
             distanceM = analytics?.distanceM ?: 0.0,
             routeDistanceM = trip.totalRouteDistanceM.takeIf { it > 0 },
             fuelType = trip.fuelType,
-            seedKey = trip.tripId
+            seedKey = trip.tripId,
+            measures = measures
         )
     }
 

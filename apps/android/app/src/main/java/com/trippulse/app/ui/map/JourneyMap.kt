@@ -259,7 +259,7 @@ fun JourneyMap(
         // Points past the recorded ones (the gliding vehicle, the live fix) belong to the latest stage.
         val times = if (breadcrumbTimesMs.size != breadcrumb.size) emptyList()
         else breadcrumbTimesMs.take(trail.size).let { t -> t + List(trail.size - t.size) { Long.MAX_VALUE } }
-        s.source(SRC_ROUTE)?.setGeoJson(lineCollection(route))
+        s.source(SRC_ROUTE)?.setGeoJson(lineCollection(MapStages.ahead(route, if (inPlayback) null else current)))
         s.source(SRC_TRAIL)?.setGeoJson(trailCollection(trail, times, stages, mode))
         s.source(SRC_ORIGIN)?.setGeoJson(pointCollection(origin))
         s.source(SRC_DEST)?.setGeoJson(pointCollection(destination))
@@ -409,6 +409,97 @@ private const val L_HALO = "kd-halo-layer"
 
 private data class MapPalette(val accent: Int, val traveller: Int, val warn: Int, val casing: Int)
 
+private const val ASPHALT = 0xFF3B4048.toInt()
+private const val ROAD_PAINT = 0xFFF4F1E8.toInt()
+private const val CYCLE_GREEN = 0xFF2E9E5B.toInt()
+private const val BALLAST = 0xFF70747B.toInt()
+private const val SLEEPER = 0xFF8B5E34.toInt()
+private const val STEEL = 0xFFDCE2E8.toInt()
+private const val WAKE = 0xFF4FC3F7.toInt()
+private const val FOAM = 0xFFE8F7FD.toInt()
+
+/**
+ * The trail drawn as what it was travelled on: asphalt with its centre line
+ * for anything on wheels, a green cycle lane, rails on sleepers for the train
+ * and the metro, a foaming wake on the water, footsteps on foot, a dashed line
+ * through the air. Each kind keeps a soft edge in the traveller's colour, so
+ * it still reads as their journey.
+ */
+private fun installTrail(
+    s: Style, c: MapPalette,
+    cap: org.maplibre.android.style.layers.PropertyValue<String>,
+    join: org.maplibre.android.style.layers.PropertyValue<String>
+) {
+    fun look(vararg kinds: String): Expression =
+        if (kinds.size == 1) Expression.eq(Expression.get("look"), Expression.literal(kinds[0]))
+        else Expression.any(*kinds.map { Expression.eq(Expression.get("look"), Expression.literal(it)) }.toTypedArray())
+    val butt = PropertyFactory.lineCap(Property.LINE_CAP_BUTT)
+    val rounded = PropertyFactory.lineCap(Property.LINE_CAP_ROUND)
+
+    // The traveller's colour, as the kerb of whatever they travelled on.
+    s.addLayer(LineLayer("kd-trail-edge", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(11f), PropertyFactory.lineOpacity(0.9f), cap, join
+    ).withFilter(look(MapStages.ROAD, MapStages.CYCLE_LANE)))
+    s.addLayer(LineLayer("kd-trail-glow", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(14f), PropertyFactory.lineOpacity(0.35f),
+        PropertyFactory.lineBlur(3f), cap, join
+    ).withFilter(look(MapStages.RAIL, MapStages.WATER)))
+
+    // Road: asphalt and a dashed centre line.
+    s.addLayer(LineLayer("kd-trail-road", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(ASPHALT), PropertyFactory.lineWidth(8f), cap, join
+    ).withFilter(look(MapStages.ROAD)))
+    s.addLayer(LineLayer("kd-trail-road-paint", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(ROAD_PAINT), PropertyFactory.lineWidth(1.2f),
+        PropertyFactory.lineDasharray(arrayOf(4f, 3.5f)), join
+    ).withFilter(look(MapStages.ROAD)))
+
+    // Cycle lane: green, with its own dashed line.
+    s.addLayer(LineLayer("kd-trail-cycle", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(CYCLE_GREEN), PropertyFactory.lineWidth(7f), cap, join
+    ).withFilter(look(MapStages.CYCLE_LANE)))
+    s.addLayer(LineLayer("kd-trail-cycle-paint", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(ROAD_PAINT), PropertyFactory.lineWidth(1f),
+        PropertyFactory.lineDasharray(arrayOf(3f, 3f)), join
+    ).withFilter(look(MapStages.CYCLE_LANE)))
+
+    // Rail: a ballast bed, wooden sleepers across it, two steel rails on top.
+    s.addLayer(LineLayer("kd-trail-ballast", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(BALLAST), PropertyFactory.lineWidth(8f), cap, join
+    ).withFilter(look(MapStages.RAIL)))
+    s.addLayer(LineLayer("kd-trail-sleepers", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(SLEEPER), PropertyFactory.lineWidth(9f), butt, join,
+        PropertyFactory.lineDasharray(arrayOf(0.3f, 0.45f))
+    ).withFilter(look(MapStages.RAIL)))
+    listOf(-2.4f, 2.4f).forEachIndexed { i, offset ->
+        s.addLayer(LineLayer("kd-trail-rail-$i", SRC_TRAIL).withProperties(
+            PropertyFactory.lineColor(STEEL), PropertyFactory.lineWidth(1.4f), PropertyFactory.lineOffset(offset), join
+        ).withFilter(look(MapStages.RAIL)))
+    }
+
+    // Water: a wake spreading behind, foam along its middle.
+    s.addLayer(LineLayer("kd-trail-wake", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(WAKE), PropertyFactory.lineWidth(10f), PropertyFactory.lineOpacity(0.55f),
+        PropertyFactory.lineBlur(2.5f), cap, join
+    ).withFilter(look(MapStages.WATER)))
+    s.addLayer(LineLayer("kd-trail-foam", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(FOAM), PropertyFactory.lineWidth(2.4f), rounded, join,
+        PropertyFactory.lineDasharray(arrayOf(1.5f, 2f))
+    ).withFilter(look(MapStages.WATER)))
+
+    // On foot: a line of footstep dots.
+    s.addLayer(LineLayer("kd-trail-walk", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(5.5f), rounded, join,
+        PropertyFactory.lineDasharray(arrayOf(0.01f, 2.2f))
+    ).withFilter(look(MapStages.FOOT)))
+
+    // Through the air: a dashed flight line.
+    s.addLayer(LineLayer("kd-trail-air", SRC_TRAIL).withProperties(
+        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(3f), join,
+        PropertyFactory.lineDasharray(arrayOf(2f, 1.6f))
+    ).withFilter(look(MapStages.AIR)))
+}
+
 private fun Style.source(id: String): GeoJsonSource? = getSourceAs(id)
 
 private fun installLayers(s: Style, c: MapPalette) {
@@ -419,21 +510,15 @@ private fun installLayers(s: Style, c: MapPalette) {
     val join = PropertyFactory.lineJoin(Property.LINE_JOIN_ROUND)
     val flat = PropertyFactory.circlePitchAlignment(Property.CIRCLE_PITCH_ALIGNMENT_MAP)
 
+    // The road still ahead: the same road, faded, waiting to be driven.
     s.addLayer(LineLayer("kd-route-layer", SRC_ROUTE).withProperties(
-        PropertyFactory.lineColor(c.accent), PropertyFactory.lineWidth(5f), PropertyFactory.lineOpacity(0.5f), cap, join
+        PropertyFactory.lineColor(ASPHALT), PropertyFactory.lineWidth(7f), PropertyFactory.lineOpacity(0.55f), cap, join
     ))
-    val ridden = Expression.neq(Expression.get("walk"), Expression.literal(true))
-    s.addLayer(LineLayer("kd-trail-casing", SRC_TRAIL).withProperties(
-        PropertyFactory.lineColor(c.casing), PropertyFactory.lineWidth(8.5f), cap, join
-    ).withFilter(ridden))
-    s.addLayer(LineLayer("kd-trail-layer", SRC_TRAIL).withProperties(
-        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(5f), cap, join
-    ).withFilter(ridden))
-    // On foot: a line of footstep dots rather than a road.
-    s.addLayer(LineLayer("kd-trail-walk", SRC_TRAIL).withProperties(
-        PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(5.5f), cap, join,
-        PropertyFactory.lineDasharray(arrayOf(0.01f, 2.2f))
-    ).withFilter(Expression.eq(Expression.get("walk"), Expression.literal(true))))
+    s.addLayer(LineLayer("kd-route-centre", SRC_ROUTE).withProperties(
+        PropertyFactory.lineColor(ROAD_PAINT), PropertyFactory.lineWidth(1.1f), PropertyFactory.lineOpacity(0.55f),
+        PropertyFactory.lineDasharray(arrayOf(4f, 4f)), join
+    ))
+    installTrail(s, c, cap, join)
     s.addLayer(LineLayer("kd-arc-layer", SRC_ARC).withProperties(
         PropertyFactory.lineColor(c.traveller), PropertyFactory.lineWidth(3f),
         PropertyFactory.lineOpacity(0.85f), PropertyFactory.lineDasharray(arrayOf(1.6f, 1.6f))

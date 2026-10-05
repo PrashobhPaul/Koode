@@ -448,8 +448,8 @@ private fun journeyStateLabel(state: TripStateEntity?, trip: ActiveTripEntity): 
 }
 
 /** "412 km left · 6h 24m to go", from whatever is known. */
-private fun progressLine(vm: HomeVm, state: TripStateEntity?, now: Long): String? = listOfNotNull(
-    state?.distanceRemainingM?.takeIf { it > 0 }?.let { "${vm.distance(it)} left" },
+private fun progressLine(vm: HomeVm, state: TripStateEntity?, now: Long, mode: String? = null): String? = listOfNotNull(
+    state?.distanceRemainingM?.takeIf { it > 0 }?.let { "${vm.distance(it, mode)} left" },
     state?.etaLikelyMs?.takeIf { it > now }?.let { "${WellbeingCoach.duration((it - now) / 60_000)} to go" }
 ).joinToString(" · ").ifBlank { null }
 
@@ -691,7 +691,7 @@ private fun ActiveJourneyHome(
         state?.etaLikelyMs?.let {
             Text("ETA ${TimeFmt.clockWithDay(it, now)}", color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
         }
-        progressLine(vm, state, now)?.let {
+        progressLine(vm, state, now, trip.transportMode)?.let {
             Text(it, color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
         }
         if (state?.lat != null && state.lng != null) {

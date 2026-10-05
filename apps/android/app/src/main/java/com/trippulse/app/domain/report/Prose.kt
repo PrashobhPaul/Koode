@@ -102,6 +102,8 @@ object Prose {
         }
         /** "cab", "motorbike", "ferry": the word for the mode in a sentence. */
         val modeLabel: String = com.trippulse.app.domain.JourneyPlans.modeWord(modeKey)
+        /** A distance as this traveller tells it: their units, and at sea the ship's. */
+        fun km(m: Double): String = JourneyStory.km(m, input.measures, modeKey)
         val electric: Boolean = input.fuelType.equals("ELECTRIC", ignoreCase = true)
         val completed: Boolean = input.endedAtMs != null
         val elapsedS: Long = ((input.endedAtMs ?: input.nowMs) - input.startedAtMs) / 1000
@@ -234,13 +236,13 @@ object Prose {
             val arrDay = if (sameDay) "" else " on ${JourneyStory.day(end, z)}"
             val dur = JourneyStory.duration(c.elapsedS)
             sb.append(d.pick(
-                "${c.first} arrived at $arr$arrDay, ${JourneyStory.km(i.distanceM)} and $dur later.",
-                "The journey took $dur over ${JourneyStory.km(i.distanceM)}; ${c.first} reached ${JourneyStory.short(i.destination)} at $arr$arrDay.",
-                "${JourneyStory.km(i.distanceM)} and $dur on, ${c.first} was at ${JourneyStory.short(i.destination)}: $arr$arrDay."
+                "${c.first} arrived at $arr$arrDay, ${c.km(i.distanceM)} and $dur later.",
+                "The journey took $dur over ${c.km(i.distanceM)}; ${c.first} reached ${JourneyStory.short(i.destination)} at $arr$arrDay.",
+                "${c.km(i.distanceM)} and $dur on, ${c.first} was at ${JourneyStory.short(i.destination)}: $arr$arrDay."
             ))
         } else {
-            val covered = JourneyStory.km(i.distanceM)
-            val ofRoute = i.routeDistanceM?.takeIf { it > i.distanceM }?.let { " of the ${JourneyStory.km(it)} route" } ?: ""
+            val covered = c.km(i.distanceM)
+            val ofRoute = i.routeDistanceM?.takeIf { it > i.distanceM }?.let { " of the ${c.km(it)} route" } ?: ""
             val dur = JourneyStory.duration(c.elapsedS)
             val halting = story(c).halts.lastOrNull()?.let { it.endMs == null } == true
             val where = c.story.lastPlace
@@ -370,9 +372,9 @@ object Prose {
             val night = Daypart.of(longest.atMs, c.z).let { it == Daypart.NIGHT || it == Daypart.LATE_NIGHT || it == Daypart.SMALL_HOURS }
             val dur = JourneyStory.duration(longest.movingSeconds)
             sb.append(d.pick(
-                "The longest unbroken stretch was $dur$span (${JourneyStory.km(longest.distanceM)})${if (night) ", ${c.going} through the night" else ""}.",
-                "The longest pull${span.ifEmpty { "" }} ran $dur and ${JourneyStory.km(longest.distanceM)} without a stop${if (night) ", after dark" else ""}.",
-                "${dur.replaceFirstChar { it.uppercase() }} of ${c.going} without a break$span was the longest stretch, ${JourneyStory.km(longest.distanceM)} in all${if (night) ", most of it at night" else ""}."
+                "The longest unbroken stretch was $dur$span (${c.km(longest.distanceM)})${if (night) ", ${c.going} through the night" else ""}.",
+                "The longest pull${span.ifEmpty { "" }} ran $dur and ${c.km(longest.distanceM)} without a stop${if (night) ", after dark" else ""}.",
+                "${dur.replaceFirstChar { it.uppercase() }} of ${c.going} without a break$span was the longest stretch, ${c.km(longest.distanceM)} in all${if (night) ", most of it at night" else ""}."
             ))
             if (longest.offlineMs > 0) sb.append(" ${d.pick(
                 "The phone was out of contact for part of it, so the figures for that stretch are estimates.",
@@ -417,7 +419,7 @@ object Prose {
             sb.append(d.pick(", reconnecting at", " and came back at", ", and was heard from again at"))
             sb.append(" ${JourneyStory.clock(to, z)}${if (nextDay) " the next day" else ""}")
             after?.let { sb.append(" ${JourneyStory.at(it)}") }
-            if (jumped > 5_000) sb.append(", roughly ${JourneyStory.km(jumped)} further on")
+            if (jumped > 5_000) sb.append(", roughly ${c.km(jumped)} further on")
             sb.append(". ")
             sb.append(d.pick(
                 "Entries logged in between were sent when it came back.",
@@ -462,7 +464,7 @@ object Prose {
             )}")
         } else if (h.endMs == null && !c.completed) {
             val remaining = c.input.routeDistanceM?.let { it - c.input.distanceM }?.takeIf { it > 1_000 }
-            remaining?.let { sb.append(" ${d.pick("${JourneyStory.km(it)} remain to ${JourneyStory.short(c.input.destination)}.", "That leaves about ${JourneyStory.km(it)} for the morning.", "${JourneyStory.short(c.input.destination)} is still ${JourneyStory.km(it)} away.")}") }
+            remaining?.let { sb.append(" ${d.pick("${c.km(it)} remain to ${JourneyStory.short(c.input.destination)}.", "That leaves about ${c.km(it)} for the morning.", "${JourneyStory.short(c.input.destination)} is still ${c.km(it)} away.")}") }
         }
         return sb.toString()
     }
@@ -474,10 +476,10 @@ object Prose {
         val tolls = c.story.tolls
         return when (c.length) {
             Length.SHORT -> d.pick("A short hop, done in ${JourneyStory.duration(c.elapsedS)}.", null, "Door to door in ${JourneyStory.duration(c.elapsedS)}.")
-            Length.HALF_DAY -> d.pick("Half a day's travel, ${words(stops)} break${if (stops == 1) "" else "s"} and ${JourneyStory.km(c.input.distanceM)}.", null)
-            Length.LONG_DAY -> d.pick("A full day on ${c.theRoad}: ${JourneyStory.km(c.input.distanceM)}, ${words(stops)} break${if (stops == 1) "" else "s"}${if (tolls > 0) ", ${words(tolls)} tolls" else ""}.", "That was the whole day: ${JourneyStory.duration(c.elapsedS)} from door to door.", null)
-            Length.MARATHON -> d.pick("A long haul by any measure: ${JourneyStory.duration(c.elapsedS)} and ${JourneyStory.km(c.input.distanceM)}.", null)
-            Length.MULTI_DAY -> d.pick("${words(c.story.days.size).replaceFirstChar { it.uppercase() }} days, ${JourneyStory.km(c.input.distanceM)}, ${words(stops)} breaks and ${words(c.story.halts.size)} night${if (c.story.halts.size == 1) "" else "s"} on the way.", null)
+            Length.HALF_DAY -> d.pick("Half a day's travel, ${words(stops)} break${if (stops == 1) "" else "s"} and ${c.km(c.input.distanceM)}.", null)
+            Length.LONG_DAY -> d.pick("A full day on ${c.theRoad}: ${c.km(c.input.distanceM)}, ${words(stops)} break${if (stops == 1) "" else "s"}${if (tolls > 0) ", ${words(tolls)} tolls" else ""}.", "That was the whole day: ${JourneyStory.duration(c.elapsedS)} from door to door.", null)
+            Length.MARATHON -> d.pick("A long haul by any measure: ${JourneyStory.duration(c.elapsedS)} and ${c.km(c.input.distanceM)}.", null)
+            Length.MULTI_DAY -> d.pick("${words(c.story.days.size).replaceFirstChar { it.uppercase() }} days, ${c.km(c.input.distanceM)}, ${words(stops)} breaks and ${words(c.story.halts.size)} night${if (c.story.halts.size == 1) "" else "s"} on the way.", null)
         }
     }
 
@@ -495,11 +497,11 @@ object Prose {
         val driveS = drives.sumOf { it.movingSeconds }
         val meals = stops.mapNotNull { it.meal }.distinct()
         return when {
-            arrive && km > 0 -> d.pick("${JourneyStory.km(km)} to the finish, ${words(stops.size)} stop${if (stops.size == 1) "" else "s"}.", "The last ${JourneyStory.km(km)}.")
-            halt != null && km > 1_000 -> d.pick("${JourneyStory.km(km)} and then a halt ${halt.place?.let { JourneyStory.at(JourneyStory.short(it)) } ?: ""}.".replace(" .", "."), "${JourneyStory.duration(driveS)} of ${c.going}, ending ${halt.place?.let { JourneyStory.at(JourneyStory.short(it)) } ?: "with a halt"}.")
+            arrive && km > 0 -> d.pick("${c.km(km)} to the finish, ${words(stops.size)} stop${if (stops.size == 1) "" else "s"}.", "The last ${c.km(km)}.")
+            halt != null && km > 1_000 -> d.pick("${c.km(km)} and then a halt ${halt.place?.let { JourneyStory.at(JourneyStory.short(it)) } ?: ""}.".replace(" .", "."), "${JourneyStory.duration(driveS)} of ${c.going}, ending ${halt.place?.let { JourneyStory.at(JourneyStory.short(it)) } ?: "with a halt"}.")
             km > 1_000 -> d.pick(
-                "${JourneyStory.km(km)} in ${JourneyStory.duration(driveS)} of ${c.going}${if (stops.isNotEmpty()) ", ${words(stops.size)} stop${if (stops.size == 1) "" else "s"}" else ""}.",
-                "${words(stops.size).replaceFirstChar { it.uppercase() }} stop${if (stops.size == 1) "" else "s"} over ${JourneyStory.km(km)}${if (meals.isNotEmpty()) ", ${JourneyStory.listJoin(meals.map { it.label.lowercase(Locale.ENGLISH) })} on the way" else ""}.".replace("No stops", "No stops")
+                "${c.km(km)} in ${JourneyStory.duration(driveS)} of ${c.going}${if (stops.isNotEmpty()) ", ${words(stops.size)} stop${if (stops.size == 1) "" else "s"}" else ""}.",
+                "${words(stops.size).replaceFirstChar { it.uppercase() }} stop${if (stops.size == 1) "" else "s"} over ${c.km(km)}${if (meals.isNotEmpty()) ", ${JourneyStory.listJoin(meals.map { it.label.lowercase(Locale.ENGLISH) })} on the way" else ""}.".replace("No stops", "No stops")
             )
             stops.isNotEmpty() -> "${words(stops.size).replaceFirstChar { it.uppercase() }} stop${if (stops.size == 1) "" else "s"}, little distance."
             else -> null

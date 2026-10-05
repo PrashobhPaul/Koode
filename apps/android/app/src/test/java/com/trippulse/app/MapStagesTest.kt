@@ -51,6 +51,33 @@ class MapStagesTest {
         assertEquals("METRO", MapStages.modeAt(stages, Long.MAX_VALUE, "CAB"))
     }
 
+    @Test fun each_stretch_looks_like_what_it_was_travelled_on() {
+        assertEquals(MapStages.ROAD, MapStages.look("CAB"))
+        assertEquals(MapStages.ROAD, MapStages.look("BUS"))
+        assertEquals(MapStages.ROAD, MapStages.look("BIKE"))
+        assertEquals(MapStages.CYCLE_LANE, MapStages.look("CYCLE"))
+        assertEquals(MapStages.RAIL, MapStages.look("METRO"))
+        assertEquals(MapStages.RAIL, MapStages.look("TRAIN"))
+        assertEquals(MapStages.WATER, MapStages.look("FERRY"))
+        assertEquals(MapStages.WATER, MapStages.look("SHIP"))
+        assertEquals(MapStages.FOOT, MapStages.look("WALK"))
+        assertEquals(MapStages.AIR, MapStages.look("FLIGHT"))
+        // Every mode has a look; an unknown one is a road.
+        TransportCatalog.ALL.forEach { assertTrue(MapStages.look(it.key).isNotBlank()) }
+        assertEquals(MapStages.ROAD, MapStages.look("HOVERCRAFT"))
+    }
+
+    @Test fun the_road_ahead_starts_where_the_traveller_is() {
+        val road = (0..10).map { com.trippulse.app.domain.GeoPoint(17.40 + it * 0.01, 78.40) }
+        val here = com.trippulse.app.domain.GeoPoint(17.452, 78.401)
+        val ahead = MapStages.ahead(road, here)
+        assertEquals(here, ahead.first())
+        assertEquals(road.last(), ahead.last())
+        // Nothing already travelled is drawn ahead.
+        assertTrue(ahead.drop(1).all { it.lat > 17.452 })
+        assertEquals(road, MapStages.ahead(road, null))
+    }
+
     @Test fun a_cycle_is_its_own_mode_with_its_own_picture_and_pace() {
         val cycle = TransportCatalog.profile("CYCLE")
         assertEquals("CYCLE", cycle.key)

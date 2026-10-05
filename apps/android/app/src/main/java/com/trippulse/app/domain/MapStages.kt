@@ -57,4 +57,40 @@ object MapStages {
 
     /** Walked stretches are drawn as dots, not a road line. */
     fun onFoot(mode: String?): Boolean = TransportCatalog.profile(mode).key == TransportCatalog.WALK.key
+
+    /**
+     * What a stretch of the trail looks like: a road for anything on wheels,
+     * a cycle lane, rails for the train and the metro, a wake on the water,
+     * footsteps on foot, a dashed line through the air.
+     */
+    fun look(mode: String?): String = when (TransportCatalog.profile(mode).key) {
+        "TRAIN", "METRO" -> RAIL
+        "FERRY", "SHIP" -> WATER
+        "WALK" -> FOOT
+        "CYCLE" -> CYCLE_LANE
+        "FLIGHT" -> AIR
+        else -> ROAD
+    }
+
+    const val ROAD = "road"
+    const val CYCLE_LANE = "cycle"
+    const val RAIL = "rail"
+    const val WATER = "water"
+    const val FOOT = "foot"
+    const val AIR = "air"
+
+    /**
+     * The part of a route still to come from [here]: from the route point
+     * nearest to it onwards. The road already travelled is the trail's.
+     */
+    fun ahead(route: List<GeoPoint>, here: GeoPoint?): List<GeoPoint> {
+        if (here == null || route.size < 2) return route
+        var best = 0
+        var bestD = Double.MAX_VALUE
+        route.forEachIndexed { i, p ->
+            val d = com.trippulse.app.core.Geo.haversineM(p, here)
+            if (d < bestD) { bestD = d; best = i }
+        }
+        return listOf(here) + route.subList((best + 1).coerceAtMost(route.size - 1), route.size)
+    }
 }

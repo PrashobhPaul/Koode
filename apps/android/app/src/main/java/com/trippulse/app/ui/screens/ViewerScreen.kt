@@ -286,11 +286,11 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 )
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                     Text(
-                        "${measures.distance(state?.d("distanceCoveredM") ?: 0.0)} completed",
+                        "${measures.distance(state?.d("distanceCoveredM") ?: 0.0, liveProfile.key)} completed",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                     Text(
-                        "${measures.distance(state?.d("distanceRemainingM") ?: 0.0)} to go",
+                        "${measures.distance(state?.d("distanceRemainingM") ?: 0.0, liveProfile.key)} to go",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                 }

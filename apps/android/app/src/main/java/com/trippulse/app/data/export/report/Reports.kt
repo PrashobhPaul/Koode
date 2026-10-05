@@ -212,7 +212,7 @@ object Reports {
                     )
                     is Entry.Drive -> TimelineLeg(
                         text = buildString {
-                            append(if (e.offlineMs > 0) "Roughly ${JourneyStory.km(e.distanceM)}" else JourneyStory.stretch(e.mode ?: i.mode, e.distanceM))
+                            append(if (e.offlineMs > 0) "Roughly ${JourneyStory.km(e.distanceM, i.measures, e.mode ?: i.mode)}" else JourneyStory.stretch(e.mode ?: i.mode, e.distanceM, i.measures))
                             append(" · ${JourneyStory.duration(e.seconds)}")
                             if (e.tolls > 0) append(" · ${e.tolls} toll${if (e.tolls == 1) "" else "s"}")
                         },
@@ -600,7 +600,7 @@ object Reports {
             "Heading to" to i.destination,
             "Journey number" to l.tripRef,
             "Started" to "${JourneyStory.clock(i.startedAtMs, z)}, ${JourneyStory.day(i.startedAtMs, z)}",
-            "Covered" to JourneyStory.km(i.distanceM)
+            "Covered" to JourneyStory.km(i.distanceM, i.measures, JourneyStory.primaryMode(l.story, i.mode))
         ))
         blocks += Footnote("Every time is the phone's local time. Positions come from the phone's satellite and network fixes. This document records facts only; it does not guess at what they mean.")
         return Report(

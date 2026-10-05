@@ -322,9 +322,9 @@ object JourneyAnalytics {
         if (r.averageMovingSpeedKmh > 0 && r.overallSpeedKmh > 0) {
             val diff = r.averageMovingSpeedKmh - r.overallSpeedKmh
             if (diff > 8) {
-                add(
-                    "Stops cost about ${diff.roundToLong()} km/h off the door-to-door average."
-                )
+                // Told as a share, so it reads the same in miles, kilometres or knots.
+                val share = (diff / r.averageMovingSpeedKmh * 100).roundToLong()
+                add("Stops took about $share% off the door-to-door average pace.")
             }
         }
         if (r.hasCosts) {

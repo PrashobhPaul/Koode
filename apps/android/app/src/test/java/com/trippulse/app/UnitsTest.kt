@@ -83,6 +83,35 @@ class UnitsTest {
         assertEquals("256 mi", Measures.resolve("US").distance(412_000.0))
     }
 
+    @Test fun a_cruise_is_measured_as_the_ship_measures_it() {
+        // Nautical miles and knots at sea, whatever the reader's road units.
+        assertEquals("10.0 nmi", Measures.INDIA.distance(18_520.0, "SHIP"))
+        assertEquals("10.0 nmi", Measures.resolve("US").distance(18_520.0, "SHIP"))
+        assertEquals("20 kn", Measures.resolve("US").speed(37.04, "SHIP"))
+        // A ferry across the harbour is a commute: road units.
+        assertEquals("1.9 km", Measures.INDIA.distance(1_852.0, "FERRY"))
+        assertEquals("1.2 mi", Measures.resolve("US").distance(1_852.0, "FERRY"))
+        assertEquals("49 mph", Measures.resolve("US").speed(80.0, "FERRY"))
+    }
+
+    @Test fun distances_in_a_sentence_follow_the_traveller() {
+        val us = Measures.resolve("US")
+        assertEquals("400 m", Measures.INDIA.distanceTold(400.0))
+        assertEquals("3.2 km", Measures.INDIA.distanceTold(3_200.0))
+        assertEquals("412 km", Measures.INDIA.distanceTold(412_000.0))
+        // Feet only below a tenth of a mile, as the road signs and nav apps do.
+        assertEquals("328 ft", us.distanceTold(100.0))
+        assertEquals("0.2 mi", us.distanceTold(400.0))
+        assertEquals("2.0 mi", us.distanceTold(3_200.0))
+        assertEquals("256 mi", us.distanceTold(412_000.0))
+        assertEquals("8.5 nmi", us.distanceTold(15_742.0, "SHIP"))
+        assertEquals("120 m", us.distanceTold(120.0, "SHIP"))
+        // The story tells it the same way.
+        assertEquals("256 mi", com.trippulse.app.domain.report.JourneyStory.km(412_000.0, us))
+        assertEquals("Sailed 10 nmi", com.trippulse.app.domain.report.JourneyStory.stretch("SHIP", 18_520.0, us))
+        assertEquals("Drove 256 mi", com.trippulse.app.domain.report.JourneyStory.stretch("CAR", 412_000.0, us))
+    }
+
     @Test fun speed_converts_for_imperial_readers() {
         assertEquals("80 km/h", Measures.INDIA.speed(80.0))
         assertEquals("49 mph", Measures.resolve("US").speed(80.0))

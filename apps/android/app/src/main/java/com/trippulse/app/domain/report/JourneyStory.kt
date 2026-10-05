@@ -62,7 +62,9 @@ object JourneyStory {
         /** PETROL, DIESEL or ELECTRIC for a private vehicle: "charged up" rather than "refuelled". */
         val fuelType: String? = null,
         /** Fixes the wording: one journey always reads the same way. */
-        val seedKey: String = "$origin|$startedAtMs"
+        val seedKey: String = "$origin|$startedAtMs",
+        /** The traveller's own units: a Texan's story is told in miles, a cruise in nautical miles. */
+        val measures: com.trippulse.app.domain.Measures = com.trippulse.app.domain.Measures.INDIA
     )
 
     /** What the journey was doing over one span of time, for charts. */
@@ -330,7 +332,7 @@ object JourneyStory {
             .maxByOrNull { it.seconds }?.mode ?: input.mode
         val mode = byMode(mainMode)
         val headline = if (completed)
-            "${name(input.who)} travelled ${km(input.distanceM)} from ${input.origin} to ${input.destination} $mode."
+            "${name(input.who)} travelled ${km(input.distanceM, input.measures, mainMode)} from ${input.origin} to ${input.destination} $mode."
         else
             "${name(input.who)} is travelling from ${input.origin} to ${input.destination} $mode."
 
@@ -500,8 +502,8 @@ object JourneyStory {
     }
 
     /** How a stretch reads on the timeline: "Drove 12 km", "Walked 600 m", "By metro 9.4 km". */
-    fun stretch(mode: String?, metres: Double): String {
-        val d = km(metres)
+    fun stretch(mode: String?, metres: Double, measures: com.trippulse.app.domain.Measures = com.trippulse.app.domain.Measures.INDIA): String {
+        val d = km(metres, measures, mode)
         return when (TransportCatalog.profile(mode).key) {
             "CAR" -> "Drove $d"
             "BIKE" -> "Rode $d"
@@ -783,7 +785,7 @@ object JourneyStory {
         }
         drives.maxByOrNull { it.movingSeconds }?.takeIf { it.movingSeconds >= 30 * 60 }?.let {
             out += Highlight(Pictures.mode(input.mode), null, "${duration(it.movingSeconds)} longest stretch",
-                listOfNotNull(it.fromPlace?.let(::short), it.toPlace?.let(::short)).distinct().joinToString(" → ").ifBlank { km(it.distanceM) })
+                listOfNotNull(it.fromPlace?.let(::short), it.toPlace?.let(::short)).distinct().joinToString(" → ").ifBlank { km(it.distanceM, input.measures, it.mode) })
         }
         halts.lastOrNull()?.let { h ->
             out += Highlight(Pictures.STAY, null, if (h.overnight) "Overnight halt" else "Halt",
@@ -934,11 +936,9 @@ object JourneyStory {
         }
     }
 
-    fun km(m: Double): String = when {
-        m < 1_000 -> "${m.toInt()} m"
-        m < 10_000 -> "%.1f km".format(Locale.ENGLISH, m / 1000)
-        else -> "${(m / 1000).toInt()} km"
-    }
+    /** A distance as a sentence tells it, in the traveller's units; at sea in nautical miles. */
+    fun km(m: Double, measures: com.trippulse.app.domain.Measures = com.trippulse.app.domain.Measures.INDIA, mode: String? = null): String =
+        measures.distanceTold(m, mode)
 
     private fun words(n: Int) = listOf("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve").getOrNull(n) ?: n.toString()
     private fun times(n: Int) = when (n) { 1 -> "once"; 2 -> "twice"; else -> "${words(n)} times" }

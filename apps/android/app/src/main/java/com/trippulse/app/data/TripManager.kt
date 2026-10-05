@@ -136,7 +136,23 @@ class TripManager(
     private var tollRecent: MutableList<com.trippulse.app.domain.TollPlazas.Recent>? = null
     private var tollRecentTrip: String? = null
 
+    private val region by lazy { com.trippulse.app.core.RegionDetector(appContext) }
+
+    /** How this traveller measures and prices things, from their setting and where the phone is. */
+    private fun measures(): com.trippulse.app.domain.Measures = com.trippulse.app.domain.Measures.resolve(
+        countryCode = runCatching { region.countryCode() }.getOrNull(),
+        unitPreference = settings.current.unitPreference,
+        currencyOverride = settings.current.currencyCode.ifBlank { null }
+    )
+
+    private val _routeAhead = kotlinx.coroutines.flow.MutableStateFlow<List<GeoPoint>>(emptyList())
+    /** The road the router found for the stage being travelled, for the map; empty when there is none. */
+    val routeAhead: StateFlow<List<GeoPoint>> = _routeAhead
     private var currentRoute: RoutePlan? = null
+        set(v) {
+            field = v
+            _routeAhead.value = v?.takeIf { it.provider != "fallback" }?.polyline.orEmpty()
+        }
     private var routeFetchedAtMs: Long = 0
     @Volatile private var routeRefreshInFlight = false
     private var lastPersistMs: Long = 0
@@ -946,7 +962,8 @@ class TripManager(
                 originLat = t.originLat, originLng = t.originLng, destLat = t.destLat, destLng = t.destLng,
                 mode = t.transportMode, startedAtMs = t.startedAtMs ?: t.createdAtMs, endedAtMs = t.completedAtMs,
                 nowMs = now, events = events, samples = samples, distanceM = s.distanceCoveredM,
-                routeDistanceM = t.totalRouteDistanceM.takeIf { it > 0 }, fuelType = t.fuelType, seedKey = t.tripId
+                routeDistanceM = t.totalRouteDistanceM.takeIf { it > 0 }, fuelType = t.fuelType, seedKey = t.tripId,
+                measures = measures()
             )
             // Names from what the phone already knows; no network from inside the tick.
             val book = com.trippulse.app.domain.report.PlaceBook()
@@ -2637,13 +2654,13 @@ class TripManager(
             coachPrefs.edit().putLong(key, now).apply()
             if (changes.isNotEmpty()) {
                 val rules = WellbeingCoach.rulesFor(modeKey, role)
-                val measures = com.trippulse.app.domain.Measures.resolve(null, settings.current.unitPreference)
+                val measures = measures()
                 val text = JourneyUpdates.text(
                     JourneyUpdates.Facts(
                         nowMs = now, startedAtMs = started, moving = snap.moving,
                         driving = rules?.breakKind == WellbeingCoach.BreakKind.DRIVING,
                         riding = rules?.breakKind == WellbeingCoach.BreakKind.RIDING,
-                        distanceLeft = s.distanceRemainingM.takeIf { it > 0 }?.let { measures.distance(it) },
+                        distanceLeft = s.distanceRemainingM.takeIf { it > 0 }?.let { measures.distance(it, modeKey) },
                         etaClock = s.etaLikelyMs?.let { TimeFmt.clockWithDay(it, now) },
                         waterAtMs = s.waterAtMs, foodAtMs = s.foodAtMs, breakAtMs = s.lastBreakEndAtMs
                     )
@@ -2999,6 +3016,8 @@ class TripManager(
         // journey that is simply taking longer than expected.
         "expiresAt" to (t.expiresAtMs ?: (t.createdAtMs + LIVE_CAPABILITY_MS)),
         "totalRouteDistanceM" to t.totalRouteDistanceM,
+        // The traveller's own road units, so the people following see what they see.
+        "units" to measures().units.key,
         "legCount" to legs.size,
         "activeLeg" to t.activeLegIndex,
         "legs" to legs.map {

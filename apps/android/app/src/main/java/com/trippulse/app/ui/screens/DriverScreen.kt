@@ -112,6 +112,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     val events by vm.events.collectAsStateWithLifecycle()
     val pending by vm.pending.collectAsStateWithLifecycle()
     val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
+    val routeAhead by vm.routeAhead.collectAsStateWithLifecycle()
     val stageMessage by vm.stageMessage.collectAsStateWithLifecycle()
     val requests by vm.joinRequests.collectAsStateWithLifecycle()
     val plan by vm.plan.collectAsStateWithLifecycle()
@@ -201,6 +202,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     breadcrumbTimesMs = remember(breadcrumb) { breadcrumb.map { it.tMs } },
                     bearingDeg = s?.bearing?.toFloat(),
                     live = s?.connectivity != "OFFLINE",
+                    // The road still ahead, for a stage that goes by road.
+                    route = if (profile.isRoadMode) routeAhead else emptyList(),
                     mode = profile.key,
                     stages = remember(legs) { com.trippulse.app.domain.MapStages.of(legs.map { it.startedAtMs to it.mode }) },
                     moving = moving,
@@ -278,7 +281,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                 Column(horizontalAlignment = Alignment.End) {
                                     Text("SPEED", color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                                     Text(
-                                        measures.speed(kmh),
+                                        measures.speed(kmh, profile.key),
                                         color = colors.textHigh, style = MaterialTheme.typography.titleLarge
                                     )
                                 }
@@ -302,11 +305,11 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     // Distances are rendered in the traveller's own units,
                     // worked out from where they actually are.
                     Text(
-                        "${measures.distance(s?.distanceCoveredM ?: 0.0)} done",
+                        "${measures.distance(s?.distanceCoveredM ?: 0.0, profile.key)} done",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                     Text(
-                        "${measures.distance(s?.distanceRemainingM ?: 0.0)} to go",
+                        "${measures.distance(s?.distanceRemainingM ?: 0.0, profile.key)} to go",
                         color = colors.textMid, style = MaterialTheme.typography.bodySmall
                     )
                 }

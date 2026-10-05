@@ -53,7 +53,8 @@ internal object VehicleMarker {
     private val BUS = Views("bus", R.drawable.map_bus_top, R.drawable.map_bus_rear, 78f, 54f)
     private val METRO = Views("metro", R.drawable.map_metro_top, null, 96f, 0f)
     private val TRAIN = Views("train", R.drawable.map_train_top, null, 104f, 0f)
-    private val SHIP = Views("ship", R.drawable.map_ship_top, R.drawable.map_ship_rear, 66f, 62f)
+    private val FERRY = Views("ship", R.drawable.map_ship_top, R.drawable.map_ship_rear, 66f, 62f)
+    private val CRUISE = Views("cruise", R.drawable.map_cruise_top, R.drawable.map_cruise_rear, 100f, 66f)
     private val WALKER = Views("walk", R.drawable.map_walk_front, R.drawable.map_walk_rear, 0f, 0f,
         front = R.drawable.map_walk_front, uprightOnly = true, uprightHeightDp = 46f)
 
@@ -66,7 +67,8 @@ internal object VehicleMarker {
         "BUS" -> BUS
         "METRO" -> METRO
         "TRAIN" -> TRAIN
-        "SHIP", "FERRY" -> SHIP
+        "FERRY" -> FERRY
+        "SHIP" -> CRUISE
         "WALK" -> WALKER
         else -> null
     }

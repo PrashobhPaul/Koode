@@ -174,7 +174,7 @@ class HomeVm(private val graph: AppGraph) : ViewModel() {
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     /** A distance in the traveller's own units. */
-    fun distance(metres: Double): String = graph.measures().distance(metres)
+    fun distance(metres: Double, mode: String? = null): String = graph.measures().distance(metres, mode)
 
 
     /** Private spending on the running journey: what is recorded, and what is still open. */
@@ -760,6 +760,9 @@ class CreateVm(private val graph: AppGraph) : ViewModel() {
 // ---------------------------------------------------------------------------
 
 class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
+
+    /** The road ahead for the stage being travelled, when the router found one. */
+    val routeAhead: StateFlow<List<com.trippulse.app.domain.GeoPoint>> = graph.tripManager.routeAhead
 
     val trip: StateFlow<ActiveTripEntity?> =
         graph.tripManager.activeTripFlow()
@@ -1641,7 +1644,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
             )
         )
         story.value = runCatching {
-            com.trippulse.app.data.export.ReportFactory.storyFor(graph.appContext, t, ev, sp, report.value, originLabel.value, destLabel.value)
+            com.trippulse.app.data.export.ReportFactory.storyFor(graph.appContext, t, ev, sp, report.value, originLabel.value, destLabel.value, graph.measures())
         }.onFailure { android.util.Log.w("SummaryVm", "story failed", it) }.getOrNull()
     }
 

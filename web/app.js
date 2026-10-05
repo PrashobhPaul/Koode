@@ -155,9 +155,20 @@
     return h + 'h ' + Math.round((s % 3600) / 60) + 'm ago';
   }
 
-  function km(metres) {
-    var v = (metres || 0) / 1000;
-    return v >= 100 ? Math.round(v) + ' km' : v.toFixed(1) + ' km';
+  /**
+   * A distance in the traveller's own units (the journey says which), and at
+   * sea on a cruise in nautical miles, as the ship itself measures it.
+   */
+  function dist(metres, mode) {
+    var m = metres || 0;
+    function fmt(v, unit) { return (v >= 100 ? Math.round(v) : v.toFixed(1)) + ' ' + unit; }
+    if (mode === 'SHIP') return fmt(m / 1852, 'nmi');
+    var units = (latest.meta && latest.meta.units) || 'METRIC';
+    return units === 'IMPERIAL' ? fmt(m / 1609.344, 'mi') : fmt(m / 1000, 'km');
+  }
+  function modeNow() {
+    var st = latest.state || {};
+    return st.mode || (latest.meta && latest.meta.transportMode) || 'CAR';
   }
 
   var EVENT_LABELS = {
@@ -311,8 +322,8 @@
     var p0 = e.payload || {};
     if (type === 'BREAK_CHECKPOINT' && p0.breakId && p0.countsAsBreak !== false) return ['✅', describeBreak(p0)];
     if (type === 'TRIP_STARTED' && p0.startedEarlier) {
-      var km = (p0.estimatedDistanceBeforeTrackingM || 0) / 1000;
-      return ['🚗', km >= 1 ? 'Journey started · about ' + Math.round(km) + ' km before tracking began (estimated)' : 'Journey started · logged later'];
+      var before = p0.estimatedDistanceBeforeTrackingM || 0;
+      return ['🚗', before >= 1000 ? 'Journey started · about ' + dist(before, modeNow()) + ' before tracking began (estimated)' : 'Journey started · logged later'];
     }
     var known = EVENT_LABELS[type] || ['•', type.toLowerCase().replace(/_/g, ' ')];
     var payload = e.payload || {};
@@ -333,6 +344,8 @@
       origin: origin,
       destination: destination,
       trail: travelled || [],
+      trailTimes: playback.times,
+      stages: playback.stages,
       current: current,
       mode: st.mode || (latest.meta && latest.meta.transportMode) || 'CAR',
       moving: st.status === 'DRIVING',
@@ -341,8 +354,31 @@
     });
   }
 
+  /**
+   * When each stage began and how it was travelled, from the journey's own
+   * record: a stage start, or a change of mode (which older builds recorded
+   * alone). Before the first change it went by what it changed from.
+   */
+  function stagesOf(events) {
+    var starts = [];
+    var firstChange = null;
+    events.slice().sort(function (a, b) { return (a.eventTime || 0) - (b.eventTime || 0); }).forEach(function (e) {
+      var p = e.payload || {};
+      if (e.type === 'LEG_STARTED' && p.mode) starts.push({ fromMs: e.eventTime || 0, mode: p.mode });
+      if (e.type === 'TRAVEL_MODE_CHANGED' && p.toMode) {
+        if (!firstChange) firstChange = e;
+        starts.push({ fromMs: e.eventTime || 0, mode: p.toMode });
+      }
+    });
+    if (firstChange && firstChange.payload.fromMode &&
+        !starts.some(function (s) { return s.fromMs < (firstChange.eventTime || 0); })) {
+      starts.unshift({ fromMs: 0, mode: firstChange.payload.fromMode });
+    }
+    return starts;
+  }
+
   /** The same pictures the app shows for each way of travelling (art/). */
-  var MODE_ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', AUTO: 'auto', BUS: 'bus', METRO: 'metro', TRAIN: 'train', SHIP: 'ship', FERRY: 'ferry', FLIGHT: 'flight', CYCLE: 'cycle', WALK: 'walk' };
+  var MODE_ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', AUTO: 'auto', BUS: 'bus', METRO: 'metro', TRAIN: 'train', SHIP: 'cruise', FERRY: 'ferry', FLIGHT: 'flight', CYCLE: 'cycle', WALK: 'walk' };
   /**
    * A timeline entry's picture — the same table as the app (domain/Pictures.kt):
    * a logged meal is the plate of food, a break that included a meal is the
@@ -411,7 +447,7 @@
 
   // ---- playback ----------------------------------------------------------
 
-  var playback = { path: [], times: [], cursor: 0, playing: false, speedIndex: 0, timer: null };
+  var playback = { path: [], times: [], stages: [], cursor: 0, playing: false, speedIndex: 0, timer: null };
 
   function stopPlayback() {
     playback.playing = false;
@@ -433,7 +469,7 @@
       playback.cursor = Math.min(playback.path.length - 1, playback.cursor + step);
       var i = Math.floor(playback.cursor);
       drawJourney(playback.path[0], latest.destination, playback.path.slice(0, i + 1), playback.path[i]);
-      if (playback.times[i]) text('play-time', clockWithDay(playback.times[i]));
+      if (playback.times[i] && playback.times[i] < Number.MAX_SAFE_INTEGER) text('play-time', clockWithDay(playback.times[i]));
       if (playback.cursor >= playback.path.length - 1) stopPlayback();
     }, 60);
   }
@@ -747,7 +783,10 @@
     playback.path = path;
     playback.times = (events || [])
       .filter(function (e) { return e.lat != null && e.lng != null; })
-      .map(function (e) { return e.eventTime; });
+      .map(function (e) { return e.eventTime; })
+      .sort(function (a, b) { return (a || 0) - (b || 0); });
+    if (current) playback.times.push(Number.MAX_SAFE_INTEGER);
+    playback.stages = stagesOf(events || []);
 
     if (!playback.playing) drawJourney(origin, destination, path, current);
     $('play').disabled = path.length < 2;
@@ -762,8 +801,8 @@
     var progress = Math.round(((state && state.progress) || 0) * 100);
     $('progress-bar').style.width = Math.max(0, Math.min(100, progress)) + '%';
     renderMode(meta, state, progress);
-    text('covered', km(state && state.distanceCoveredM) + ' completed');
-    text('remaining', km(state && state.distanceRemainingM) + ' to go');
+    text('covered', dist(state && state.distanceCoveredM, modeNow()) + ' completed');
+    text('remaining', dist(state && state.distanceRemainingM, modeNow()) + ' to go');
 
     // ---- wellbeing ----
     text('food', state && state.foodAt ? 'Last logged ' + ago(state.foodAt) : 'Not logged yet');

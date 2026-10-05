@@ -2,6 +2,7 @@ package com.trippulse.app.domain
 
 import java.util.Currency
 import java.util.Locale
+import kotlin.math.roundToInt
 
 /**
  * How a journey is measured and priced, worked out rather than assumed.
@@ -136,9 +137,57 @@ data class Measures(
     private val metresPerMile = 1609.344
     private val metresPerKm = 1000.0
 
+    private val metresPerNauticalMile = 1852.0
+
     val distanceUnit: String get() = if (units == UnitSystem.IMPERIAL) "mi" else "km"
     val speedUnit: String get() = if (units == UnitSystem.IMPERIAL) "mph" else "km/h"
     val volumeUnit: String get() = if (units == UnitSystem.IMPERIAL) "gal" else "L"
+
+    // ---- at sea ----
+
+    /**
+     * A cruise or a long sailing is measured the way the ship measures it,
+     * in nautical miles and knots, whatever the reader's road units: that is
+     * what the ship's own displays say and what a passenger compares against.
+     * A ferry across a harbour is a commute, and keeps the road units.
+     */
+    fun atSea(mode: String?): Boolean = TransportCatalog.profile(mode).key == TransportCatalog.SHIP.key
+
+    fun distanceUnit(mode: String?): String = if (atSea(mode)) "nmi" else distanceUnit
+    fun speedUnit(mode: String?): String = if (atSea(mode)) "kn" else speedUnit
+
+    fun distanceValue(metres: Double, mode: String?): Double =
+        if (atSea(mode)) metres / metresPerNauticalMile else distanceValue(metres)
+
+    /** [distance], in the units of the way the traveller is going. */
+    fun distance(metres: Double, mode: String?): String {
+        val value = distanceValue(metres, mode)
+        val unit = distanceUnit(mode)
+        return if (value >= 100) "${value.toInt()} $unit"
+        else String.format(Locale.ENGLISH, "%.1f %s", value, unit)
+    }
+
+    /** [speed], in knots at sea. */
+    fun speed(kmh: Double, mode: String?): String {
+        if (!atSea(mode)) return speed(kmh)
+        return "${(kmh / 1.852).toInt()} kn"
+    }
+
+    /**
+     * A distance as it is told in a sentence: short ones in metres or feet
+     * ("400 m", "1,300 ft"), then one decimal up to ten ("3.2 km", "6.8 mi",
+     * "8.5 nmi"), then whole units ("412 km", "256 mi").
+     */
+    fun distanceTold(metres: Double, mode: String? = null): String {
+        val sea = atSea(mode)
+        if (!sea && units == UnitSystem.IMPERIAL && metres < 0.1 * metresPerMile)
+            return String.format(Locale.ENGLISH, "%,d ft", (metres * 3.28084).roundToInt())
+        if ((sea || units == UnitSystem.METRIC) && metres < (if (sea) 0.1 * metresPerNauticalMile else 1000.0))
+            return "${metres.toInt()} m"
+        val value = distanceValue(metres, mode)
+        val unit = distanceUnit(mode)
+        return if (value < 10) String.format(Locale.ENGLISH, "%.1f %s", value, unit) else "${value.toInt()} $unit"
+    }
 
     /** Distance in the user's own units, e.g. "412 km" or "256 mi". */
     fun distance(metres: Double): String {

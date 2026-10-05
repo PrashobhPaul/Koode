@@ -98,7 +98,7 @@ internal fun trailCollection(
     if (runs.isEmpty()) return EMPTY_COLLECTION
     return FeatureCollection.fromFeatures(runs.map { r ->
         Feature.fromGeometry(LineString.fromLngLats(points.subList(r.from, r.to + 1).map { it.toPoint() })).apply {
-            addBooleanProperty("walk", com.trippulse.app.domain.MapStages.onFoot(r.mode))
+            addStringProperty("look", com.trippulse.app.domain.MapStages.look(r.mode))
         }
     })
 }
