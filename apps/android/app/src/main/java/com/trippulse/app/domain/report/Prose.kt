@@ -97,10 +97,11 @@ object Prose {
             "CAB", "AUTO", "CYCLE" -> ModeClass.RIDE
             "BUS", "METRO", "TRAIN" -> ModeClass.TRANSIT
             "FLIGHT" -> ModeClass.FLY
-            "SHIP" -> ModeClass.SAIL
+            "SHIP", "FERRY" -> ModeClass.SAIL
             else -> ModeClass.WALK
         }
-        val modeLabel: String = TransportCatalog.label(modeKey).lowercase(Locale.ENGLISH)
+        /** "cab", "motorbike", "ferry": the word for the mode in a sentence. */
+        val modeLabel: String = com.trippulse.app.domain.JourneyPlans.modeWord(modeKey)
         val electric: Boolean = input.fuelType.equals("ELECTRIC", ignoreCase = true)
         val completed: Boolean = input.endedAtMs != null
         val elapsedS: Long = ((input.endedAtMs ?: input.nowMs) - input.startedAtMs) / 1000
@@ -136,7 +137,7 @@ object Prose {
         val went: String = when (modeClass) { ModeClass.DRIVE -> "drove"; ModeClass.RIDE -> "rode"; ModeClass.TRANSIT -> "travelled"; ModeClass.FLY -> "flew"; ModeClass.SAIL -> "sailed"; ModeClass.WALK -> "walked" }
         val going: String = when (modeClass) { ModeClass.DRIVE -> "driving"; ModeClass.RIDE -> "riding"; ModeClass.TRANSIT -> "travelling"; ModeClass.FLY -> "flying"; ModeClass.SAIL -> "sailing"; ModeClass.WALK -> "walking" }
         val theRoad: String = when (modeClass) { ModeClass.DRIVE, ModeClass.RIDE -> "the road"; ModeClass.TRANSIT -> "the line"; ModeClass.FLY -> "the air"; ModeClass.SAIL -> "the water"; ModeClass.WALK -> "the way" }
-        val vehicle: String = when (modeKey) { "CAR" -> "the car"; "BIKE" -> "the bike"; "CAB" -> "the cab"; "AUTO" -> "the auto"; "BUS" -> "the bus"; "METRO" -> "the metro"; "TRAIN" -> "the train"; "FLIGHT" -> "the plane"; "SHIP" -> "the ship"; "CYCLE" -> "the cycle"; else -> "foot" }
+        val vehicle: String = when (modeKey) { "CAR" -> "the car"; "BIKE" -> "the motorbike"; "CAB" -> "the cab"; "AUTO" -> "the auto"; "BUS" -> "the bus"; "METRO" -> "the metro"; "TRAIN" -> "the train"; "FLIGHT" -> "the plane"; "SHIP" -> "the ship"; "FERRY" -> "the ferry"; "CYCLE" -> "the bicycle"; else -> "foot" }
         val refuelled: String = if (electric) "charged up" else "refuelled"
 
         private fun nightSeconds(a: Long, b: Long, z: ZoneId): Long {

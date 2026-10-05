@@ -122,7 +122,7 @@
     };
   })();
 
-  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), AUTO: car('#F5C518', true), BIKE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP };
+  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), AUTO: car('#F5C518', true), BIKE: BIKE, CYCLE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP, FERRY: SHIP };
   function model(mode) { return MODELS[mode] || MODELS.CAR; }
 
   // ---- geometry --------------------------------------------------------------
@@ -219,7 +219,7 @@
     AUTO: { key: 'auto', len: 40, rear: 38 }, BIKE: { key: 'bike', len: 40, rear: 32 },
     CYCLE: { key: 'cycle', len: 38, rear: 22 }, BUS: { key: 'bus', len: 78, rear: 54 },
     METRO: { key: 'metro', len: 96, topOnly: true }, TRAIN: { key: 'train', len: 104, topOnly: true },
-    SHIP: { key: 'ship', len: 66, rear: 62 }, WALK: { key: 'walk', upright: 46 }
+    SHIP: { key: 'ship', len: 66, rear: 62 }, FERRY: { key: 'ship', len: 66, rear: 62 }, WALK: { key: 'walk', upright: 46 }
   };
   var vehicle = null;
 
@@ -455,9 +455,9 @@
     /** Geometry only, for parity checks against the app's Vehicle3D.kt. */
     _place: place,
     MODES: {
-      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Bike'], CAB: ['🚕', 'Cab'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
-      TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Ship'],
-      CYCLE: ['🚲', 'Cycle'], WALK: ['🚶', 'Walking']
+      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Motorbike'], CAB: ['🚕', 'Cab'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
+      TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Cruise / ship'], FERRY: ['⛴️', 'Ferry / boat'],
+      CYCLE: ['🚲', 'Bicycle'], WALK: ['🚶', 'Walking']
     }
   };
 })();

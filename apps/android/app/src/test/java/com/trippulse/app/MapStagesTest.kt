@@ -58,5 +58,28 @@ class MapStagesTest {
         assertEquals("cycle", Pictures.mode("CYCLE"))
         assertTrue(TransportCatalog.COMMUTE.any { it.key == "CYCLE" })
         assertEquals(5.0, TripConfig().forMode("CYCLE").restartSpeedKmh, 0.0)
+        assertEquals("Bicycle", cycle.label)
+        // A bike with an engine is called a motorbike: elsewhere a "bike" has pedals.
+        assertEquals("Motorbike", TransportCatalog.label("BIKE"))
+    }
+
+    @Test fun a_ferry_is_a_crossing_and_a_cruise_is_a_voyage() {
+        val ferry = TransportCatalog.profile("FERRY")
+        val ship = TransportCatalog.profile("SHIP")
+        assertEquals("FERRY", ferry.key)
+        assertEquals("Cruise / ship", ship.label)
+        // A ferry is boarded like a metro; a cruise insists on its cabin and booking.
+        assertTrue(com.trippulse.app.domain.TravelDetails.isComplete("FERRY", emptyMap()))
+        assertFalse(com.trippulse.app.domain.TravelDetails.isComplete("SHIP", emptyMap()))
+        assertFalse(ferry.expectsOfflineStretches)
+        assertTrue(ship.expectsOfflineStretches)
+        assertTrue(TransportCatalog.COMMUTE.any { it.key == "FERRY" })
+        assertEquals("ferry", Pictures.mode("FERRY"))
+        assertEquals("by ferry", com.trippulse.app.domain.report.JourneyStory.byMode("FERRY"))
+        assertEquals("by motorbike", com.trippulse.app.domain.report.JourneyStory.byMode("BIKE"))
+        assertEquals("by bicycle", com.trippulse.app.domain.report.JourneyStory.byMode("CYCLE"))
+        assertEquals("Sailed 3.2 km", com.trippulse.app.domain.report.JourneyStory.stretch("FERRY", 3_200.0))
+        // Every commute change is one tap: none of them stops at a form.
+        TransportCatalog.COMMUTE.forEach { assertTrue(it.key, com.trippulse.app.domain.TravelDetails.isComplete(it.key, emptyMap())) }
     }
 }

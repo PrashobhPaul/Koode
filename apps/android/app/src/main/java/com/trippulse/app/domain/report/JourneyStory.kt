@@ -325,11 +325,14 @@ object JourneyStory {
         val kmByHour = kmByHour(input, stood)
         val movingSeconds = drives.sumOf { it.movingSeconds }
         val stoppedSeconds = standing.sumOf { it.seconds ?: 0L } + halts.sumOf { h -> ((h.endMs ?: endMs) - h.atMs) / 1000 }
-        val mode = TransportCatalog.label(input.mode).lowercase(Locale.ENGLISH)
+        // Told by the mode it spent longest on: a walk to the metro does not make it a walk.
+        val mainMode = (stages.filter { TransportCatalog.profile(it.mode).key != TransportCatalog.WALK.key }.ifEmpty { stages })
+            .maxByOrNull { it.seconds }?.mode ?: input.mode
+        val mode = byMode(mainMode)
         val headline = if (completed)
-            "${name(input.who)} travelled ${km(input.distanceM)} from ${input.origin} to ${input.destination} by $mode."
+            "${name(input.who)} travelled ${km(input.distanceM)} from ${input.origin} to ${input.destination} $mode."
         else
-            "${name(input.who)} is travelling from ${input.origin} to ${input.destination} by $mode."
+            "${name(input.who)} is travelling from ${input.origin} to ${input.destination} $mode."
 
         val draft = Story(
             headline = headline,
@@ -493,7 +496,7 @@ object JourneyStory {
         "WALK" -> "on foot"
         "FLIGHT" -> "by air"
         "CAB" -> "by cab"
-        else -> "by " + TransportCatalog.label(mode).lowercase(Locale.ENGLISH)
+        else -> "by " + com.trippulse.app.domain.JourneyPlans.modeWord(TransportCatalog.profile(mode).key)
     }
 
     /** How a stretch reads on the timeline: "Drove 12 km", "Walked 600 m", "By metro 9.4 km". */
@@ -505,7 +508,7 @@ object JourneyStory {
             "CYCLE" -> "Cycled $d"
             "WALK" -> "Walked $d"
             "FLIGHT" -> "Flew $d"
-            "SHIP" -> "Sailed $d"
+            "SHIP", "FERRY" -> "Sailed $d"
             else -> "${byMode(mode).replaceFirstChar { it.uppercase() }} $d"
         }
     }

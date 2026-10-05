@@ -215,7 +215,7 @@ object Vehicle3D {
         "BUS" -> BUS
         "TRAIN", "METRO" -> TRAIN
         "FLIGHT" -> FLIGHT
-        "SHIP" -> SHIP
+        "SHIP", "FERRY" -> SHIP
         else -> CAR
     }
 

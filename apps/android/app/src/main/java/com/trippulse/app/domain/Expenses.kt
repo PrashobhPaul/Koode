@@ -39,7 +39,7 @@ object Expenses {
                 "METRO" -> METRO
                 "TRAIN" -> TRAIN
                 "FLIGHT" -> FLIGHT
-                "SHIP" -> SHIP
+                "SHIP", "FERRY" -> SHIP
                 else -> null
             }
         }

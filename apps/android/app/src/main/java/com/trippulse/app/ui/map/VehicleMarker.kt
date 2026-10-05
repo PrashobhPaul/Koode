@@ -66,7 +66,7 @@ internal object VehicleMarker {
         "BUS" -> BUS
         "METRO" -> METRO
         "TRAIN" -> TRAIN
-        "SHIP" -> SHIP
+        "SHIP", "FERRY" -> SHIP
         "WALK" -> WALKER
         else -> null
     }

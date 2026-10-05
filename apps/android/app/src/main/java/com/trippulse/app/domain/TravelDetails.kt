@@ -122,6 +122,8 @@ object TravelDetails {
             profile.key == TransportCatalog.BUS.key -> busFields()
             profile.key == TransportCatalog.FLIGHT.key -> flightFields()
             profile.key == TransportCatalog.SHIP.key -> shipFields()
+            // A ferry is boarded like a metro: nothing to insist on.
+            profile.key == TransportCatalog.FERRY.key -> listOf(DetailField(DetailKeys.OPERATOR, "Ferry or service"))
             else -> emptyList()
         }
     }

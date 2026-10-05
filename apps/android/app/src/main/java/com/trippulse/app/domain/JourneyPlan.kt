@@ -142,6 +142,7 @@ object JourneyPlans {
     fun modeWord(mode: String): String = when (mode.uppercase()) {
         "CAB" -> "cab"
         "SHIP" -> "ship"
+        "FERRY" -> "ferry"
         else -> TransportCatalog.label(mode).substringBefore(" ").lowercase()
     }
 
