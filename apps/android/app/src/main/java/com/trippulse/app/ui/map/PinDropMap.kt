@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -56,6 +57,7 @@ fun PinDropMap(
         mapView.getMapAsync { m ->
             m.uiSettings.setLogoEnabled(false)
             m.uiSettings.setCompassEnabled(false)
+            m.uiSettings.setAttributionEnabled(false)
             m.uiSettings.setTiltGesturesEnabled(false)
             m.uiSettings.setRotateGesturesEnabled(false)
             val focus = start ?: GeoPoint(20.5937, 78.9629)
@@ -77,6 +79,7 @@ fun PinDropMap(
 
     Box(modifier.fillMaxWidth().height(height)) {
         AndroidView(factory = { mapView }, modifier = Modifier.fillMaxSize())
+        MapCreditLine(touched = false, modifier = Modifier.align(Alignment.BottomEnd).padding(6.dp))
         // The pin's tip sits exactly on the map centre.
         val pinColor = colors.warn
         Canvas(Modifier.align(Alignment.Center).size(36.dp, 48.dp).offset(y = (-24).dp)) {

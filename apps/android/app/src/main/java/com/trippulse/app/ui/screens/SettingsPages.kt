@@ -951,6 +951,8 @@ private fun LicensesPage() {
         "ZXing" to "Apache License 2.0",
         "Firebase Cloud Messaging, Google Play services location" to "Android SDK License",
         "Sora, DM Sans typefaces" to "SIL Open Font License 1.1",
+        "Map data © OpenStreetMap contributors" to "Open Database License (ODbL)",
+        "Map tiles: OpenFreeMap, © OpenMapTiles" to "MIT License; OpenMapTiles schema CC-BY 4.0",
         "Toll plaza locations: OpenStreetMap contributors" to "Open Database License (ODbL)"
     )
     SettingsGroup {

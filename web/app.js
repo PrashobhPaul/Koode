@@ -30,7 +30,6 @@
   var PREFIX = 'TP-';
   var CODE_LENGTH = 8;
   var PASSCODE_LENGTH = 6;
-  var PLAYBACK_SPEEDS = [5, 10, 20, 30];
 
   // ---- tiny DOM helpers --------------------------------------------------
   function $(id) { return document.getElementById(id); }
@@ -350,7 +349,7 @@
       mode: st.mode || (latest.meta && latest.meta.transportMode) || 'CAR',
       moving: st.status === 'DRIVING',
       live: freshnessOf(st) === 'live',
-      playback: playback.playing
+      playback: playback.active
     });
   }
 
@@ -457,37 +456,89 @@
   }
 
   // ---- playback ----------------------------------------------------------
+  // The replay paces itself, exactly as the app's map does (MapStages.replayStep):
+  // the whole journey in about 25 s, every stage at least 2.5 s on screen.
 
-  var playback = { path: [], times: [], stages: [], cursor: 0, playing: false, speedIndex: 0, timer: null };
+  var REPLAY_FRAME_MS = 60, REPLAY_WHOLE_MS = 25000, REPLAY_MIN_MS = 6000, REPLAY_STAGE_MS = 2500;
+  var playback = { path: [], times: [], stages: [], cursor: 0, playing: false, active: false, timer: null, base: 0, runs: [], touchedAt: 0 };
 
-  function stopPlayback() {
+  function replayBaseStep(points) {
+    if (points < 2) return 0;
+    var ms = Math.min(REPLAY_WHOLE_MS, Math.max(REPLAY_MIN_MS, (points - 1) * 250));
+    return (points - 1) / (ms / REPLAY_FRAME_MS);
+  }
+  /** The trail cut into runs by stage, as MapStages.runs: [from, to] point indices. */
+  function replayRuns(times, stages) {
+    var n = playback.path.length;
+    if (n < 2 || stages.length < 2 || times.length < n) return [[0, n - 1]];
+    function modeAt(t) { var m = stages[0].mode; stages.forEach(function (s) { if (s.fromMs <= t) m = s.mode; }); return m; }
+    var out = [], start = 0, mode = modeAt(times[0]);
+    for (var i = 1; i < n; i++) { var m = modeAt(times[i]); if (m !== mode) { out.push([start, i]); start = i; mode = m; } }
+    if (start < n - 1 || !out.length) out.push([start, n - 1]);
+    return out;
+  }
+  function replayStep(cursor) {
+    var i = Math.floor(cursor), run = null;
+    playback.runs.forEach(function (r) { if (r[0] <= i && i < r[1]) run = r; });
+    if (!run) return playback.base;
+    var floor = (run[1] - run[0]) / (REPLAY_STAGE_MS / REPLAY_FRAME_MS);
+    return Math.max(playback.base / 40, Math.min(playback.base, floor));
+  }
+
+  function showReplay(on) {
+    var strip = $('replay-strip');
+    if (on) { show(strip); hide($('play')); } else { hide(strip); show($('play')); strip.classList.remove('quiet'); }
+  }
+  function drawCursor() {
+    var n = playback.path.length;
+    var i = Math.floor(playback.cursor);
+    drawJourney(playback.path[0], latest.destination, playback.path.slice(0, i + 1), playback.path[i]);
+    if (playback.times[i] && playback.times[i] < Number.MAX_SAFE_INTEGER) text('play-time', clockWithDay(playback.times[i]));
+    var pct = n > 1 ? playback.cursor / (n - 1) : 0;
+    $('replay-scrub').value = String(Math.round(pct * 1000));
+    $('replay-strip').style.setProperty('--replay-pct', (pct * 100).toFixed(1) + '%');
+  }
+
+  function pausePlayback() {
     playback.playing = false;
     if (playback.timer) { clearInterval(playback.timer); playback.timer = null; }
-    $('play').textContent = '▶';
+    $('replay-toggle').textContent = '▶';
+    $('replay-strip').classList.remove('quiet');
+  }
+
+  function stopPlayback() {
+    pausePlayback();
+    playback.active = false;
+    playback.cursor = Math.max(0, playback.path.length - 1);
     text('play-time', '');
+    showReplay(false);
+    render(latest.meta, latest.state, latest.events);
   }
 
   function togglePlayback() {
-    if (playback.playing) { stopPlayback(); render(latest.meta, latest.state, latest.events); return; }
+    if (playback.playing) { pausePlayback(); return; }
     if (playback.path.length < 2) return;
     if (playback.cursor >= playback.path.length - 1) playback.cursor = 0;
+    playback.base = replayBaseStep(playback.path.length);
+    playback.runs = replayRuns(playback.times, playback.stages);
     playback.playing = true;
-    $('play').textContent = '⏸';
-    // 60 ms frames, with speed deciding how many recorded points each consumes —
-    // the same model the app's map uses, so both replay at the same rate.
+    playback.active = true;
+    playback.touchedAt = Date.now();
+    showReplay(true);
+    $('replay-toggle').textContent = '⏸';
     playback.timer = setInterval(function () {
-      var step = PLAYBACK_SPEEDS[playback.speedIndex] * 0.06;
-      playback.cursor = Math.min(playback.path.length - 1, playback.cursor + step);
-      var i = Math.floor(playback.cursor);
-      drawJourney(playback.path[0], latest.destination, playback.path.slice(0, i + 1), playback.path[i]);
-      if (playback.times[i] && playback.times[i] < Number.MAX_SAFE_INTEGER) text('play-time', clockWithDay(playback.times[i]));
-      if (playback.cursor >= playback.path.length - 1) stopPlayback();
-    }, 60);
+      playback.cursor = Math.min(playback.path.length - 1, playback.cursor + replayStep(playback.cursor));
+      drawCursor();
+      // Left alone for a few seconds, the strip thins to a line.
+      $('replay-strip').classList.toggle('quiet', Date.now() - playback.touchedAt > 3000);
+      if (playback.cursor >= playback.path.length - 1) pausePlayback();
+    }, REPLAY_FRAME_MS);
   }
 
-  function cycleSpeed() {
-    playback.speedIndex = (playback.speedIndex + 1) % PLAYBACK_SPEEDS.length;
-    $('speed').textContent = PLAYBACK_SPEEDS[playback.speedIndex] + '×';
+  function scrubPlayback() {
+    pausePlayback();
+    playback.cursor = Number($('replay-scrub').value) / 1000 * Math.max(0, playback.path.length - 1);
+    drawCursor();
   }
 
   // ---- rendering ---------------------------------------------------------
@@ -799,7 +850,8 @@
     if (current) playback.times.push(Number.MAX_SAFE_INTEGER);
     playback.stages = stagesOf(events || []);
 
-    if (!playback.playing) drawJourney(origin, destination, path, current);
+    // While the replay strip is open (playing or paused on a moment), the live position waits.
+    if (!playback.active) drawJourney(origin, destination, path, current);
     $('play').disabled = path.length < 2;
 
     // ---- arrival + progress ----
@@ -1171,7 +1223,12 @@
     window.KoodeMap.init('map');
     $('follow').addEventListener('click', function () { window.KoodeMap.toggleFollow(); });
     $('play').addEventListener('click', togglePlayback);
-    $('speed').addEventListener('click', cycleSpeed);
+    $('replay-toggle').addEventListener('click', function () { playback.touchedAt = Date.now(); togglePlayback(); });
+    $('replay-scrub').addEventListener('input', scrubPlayback);
+    $('replay-close').addEventListener('click', stopPlayback);
+    $('replay-strip').addEventListener('click', function (e) { if (this.classList.contains('quiet')) { e.stopPropagation(); playback.touchedAt = Date.now(); this.classList.remove('quiet'); } }, true);
+    // The map data's credit is shown when the map loads, then fades after five seconds.
+    setTimeout(function () { var c = $('map-credit'); if (c) c.classList.add('gone'); }, 5000);
     $('report').addEventListener('click', openSafetyReport);
     $('cancel-wait').addEventListener('click', function () {
       var code = digitsOnly($('code').value, CODE_LENGTH);

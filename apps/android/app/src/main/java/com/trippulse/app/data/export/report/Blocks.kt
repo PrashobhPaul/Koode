@@ -200,7 +200,7 @@ class RouteMap(
      */
     class Backdrop(val image: Any, val widthPx: Int, val heightPx: Int, val project: (lat: Double, lng: Double) -> Pair<Float, Float>) {
         companion object {
-            const val CREDIT = "© OpenStreetMap contributors · OpenFreeMap"
+            const val CREDIT = "OpenFreeMap © OpenMapTiles · Data © OpenStreetMap contributors"
             /** Room the route keeps from the edges, as a share of its extent. */
             const val PADDING = 0.18
         }

@@ -51,6 +51,23 @@ class MapStagesTest {
         assertEquals("METRO", MapStages.modeAt(stages, Long.MAX_VALUE, "CAB"))
     }
 
+    @Test fun a_replay_paces_itself() {
+        // Six hours at a fix every 15 s: the whole journey in 25 seconds.
+        val n = 1441
+        val base = MapStages.replayBaseStep(n)
+        val frames = (n - 1) / base
+        assertEquals(MapStages.REPLAY_WHOLE_MS / MapStages.REPLAY_FRAME_MS, frames.toLong())
+        // A short record is not stretched past six seconds' worth of frames... nor squeezed below.
+        assertEquals(19f / (MapStages.REPLAY_MIN_MS / MapStages.REPLAY_FRAME_MS), MapStages.replayBaseStep(20), 1e-4f)
+        assertEquals(0f, MapStages.replayBaseStep(1), 0f)
+        // A four-minute walk inside the drive gets its two and a half seconds.
+        val runs = listOf(MapStages.Run(0, 700, "CAR"), MapStages.Run(700, 716, "WALK"), MapStages.Run(716, 1440, "METRO"))
+        assertEquals(base, MapStages.replayStep(100f, runs, base), 0f)
+        val walk = MapStages.replayStep(705f, runs, base)
+        assertTrue(walk < base)
+        assertEquals(MapStages.REPLAY_STAGE_MS / MapStages.REPLAY_FRAME_MS, (16 / walk).toLong())
+    }
+
     @Test fun each_stretch_looks_like_what_it_was_travelled_on() {
         assertEquals(MapStages.ROAD, MapStages.look("CAB"))
         assertEquals(MapStages.ROAD, MapStages.look("BUS"))
