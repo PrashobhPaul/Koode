@@ -3053,6 +3053,15 @@ class TripManager(
         if (pending != null) put("wrappingUp", true)
         put("legIndex", s.legIndex)
         s.lat?.let { put("lat", it) }; s.lng?.let { put("lng", it) }
+        // The next two kilometres of the planned road, so a follower's map can
+        // glide the vehicle round the bends between fixes instead of cutting
+        // the corner. Only the road ahead, never the road behind.
+        val here = s.lat?.let { la -> s.lng?.let { lo -> GeoPoint(la, lo) } }
+        if (here != null && TransportCatalog.profile(t.transportMode).isRoadMode) {
+            com.trippulse.app.domain.MapStages.roadAhead(_routeAhead.value, here)
+                .takeIf { it.size >= 2 }
+                ?.let { road -> put("roadAhead", road.map { listOf(Math.round(it.lat * 1e5) / 1e5, Math.round(it.lng * 1e5) / 1e5) }) }
+        }
         s.accuracyM?.let { put("accuracy", it) }
         s.speedKmh?.let { put("speedKmh", it) }
         s.bearing?.let { put("bearing", it) }

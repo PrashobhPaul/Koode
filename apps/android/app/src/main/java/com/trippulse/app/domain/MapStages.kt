@@ -111,6 +111,109 @@ object MapStages {
      * The part of a route still to come from [here]: from the route point
      * nearest to it onwards. The road already travelled is the trail's.
      */
+    /**
+     * The road between two fixes, when the planned road explains them: both
+     * fixes lie within [snapM] of the road, in order along it, and the road
+     * between them is not a long detour (at most [maxDetour] × the straight
+     * line, plus 50 m). The vehicle then glides along the road, round its
+     * bends, rather than cutting the corner. Null when the road does not
+     * explain the move: the glide is then a straight line, as before.
+     */
+    fun alongRoad(road: List<GeoPoint>, from: GeoPoint, to: GeoPoint, snapM: Double = 60.0, maxDetour: Double = 2.5): List<GeoPoint>? {
+        if (road.size < 2) return null
+        val a = snap(road, from) ?: return null
+        val b = snap(road, to) ?: return null
+        if (a.distanceM > snapM || b.distanceM > snapM) return null
+        if (b.segment < a.segment || (b.segment == a.segment && b.t < a.t)) return null
+        val path = ArrayList<GeoPoint>()
+        path += a.point
+        for (i in a.segment + 1..b.segment) path += road[i]
+        path += b.point
+        val straight = com.trippulse.app.core.Geo.haversineM(from, to)
+        if (pathLengthM(path) > straight * maxDetour + 50.0) return null
+        return path
+    }
+
+    /** Where along [path] a share [fraction] of its length falls, and the heading there. */
+    fun pointAlong(path: List<GeoPoint>, fraction: Double): Pair<GeoPoint, Double?> {
+        if (path.isEmpty()) error("empty path")
+        if (path.size == 1) return path[0] to null
+        val total = pathLengthM(path)
+        var left = total * fraction.coerceIn(0.0, 1.0)
+        for (i in 1 until path.size) {
+            val a = path[i - 1]; val b = path[i]
+            val d = com.trippulse.app.core.Geo.haversineM(a, b)
+            if (left <= d || i == path.size - 1) {
+                val t = if (d <= 0.0) 0.0 else (left / d).coerceIn(0.0, 1.0)
+                val p = GeoPoint(a.lat + (b.lat - a.lat) * t, a.lng + (b.lng - a.lng) * t)
+                return p to if (d > 0.5) headingDeg(a, b) else null
+            }
+            left -= d
+        }
+        return path.last() to null
+    }
+
+    /**
+     * The road ahead to hand to followers with each state: from the point of
+     * [road] nearest [here], about [lengthM] of it, at most [maxPoints] points.
+     * Enough for a follower's map to glide along the next bends.
+     */
+    fun roadAhead(road: List<GeoPoint>, here: GeoPoint, lengthM: Double = 2_000.0, maxPoints: Int = 40): List<GeoPoint> {
+        if (road.size < 2) return emptyList()
+        val s = snap(road, here) ?: return emptyList()
+        val out = arrayListOf(s.point)
+        var run = 0.0
+        var i = s.segment + 1
+        while (i < road.size && out.size < maxPoints && run < lengthM) {
+            run += com.trippulse.app.core.Geo.haversineM(out.last(), road[i])
+            out += road[i]
+            i++
+        }
+        return out
+    }
+
+    private data class Snap(val segment: Int, val t: Double, val point: GeoPoint, val distanceM: Double)
+
+    /** The nearest point of [road] to [p]: which segment, how far along it, and how far off. */
+    private fun snap(road: List<GeoPoint>, p: GeoPoint): Snap? {
+        var best: Snap? = null
+        val k = Math.cos(Math.toRadians(p.lat))
+        for (i in 0 until road.size - 1) {
+            val a = road[i]; val b = road[i + 1]
+            val ax = (a.lng - p.lng) * k; val ay = a.lat - p.lat
+            val bx = (b.lng - p.lng) * k; val by = b.lat - p.lat
+            val dx = bx - ax; val dy = by - ay
+            val len2 = dx * dx + dy * dy
+            val t = if (len2 <= 0.0) 0.0 else (-(ax * dx + ay * dy) / len2).coerceIn(0.0, 1.0)
+            val q = GeoPoint(a.lat + (b.lat - a.lat) * t, a.lng + (b.lng - a.lng) * t)
+            val d = com.trippulse.app.core.Geo.haversineM(p, q)
+            if (best == null || d < best.distanceM) best = Snap(i, t, q, d)
+        }
+        return best
+    }
+
+    private fun pathLengthM(path: List<GeoPoint>): Double =
+        (1 until path.size).sumOf { com.trippulse.app.core.Geo.haversineM(path[it - 1], path[it]) }
+
+    private fun headingDeg(a: GeoPoint, b: GeoPoint): Double {
+        val la1 = Math.toRadians(a.lat); val la2 = Math.toRadians(b.lat)
+        val dl = Math.toRadians(b.lng - a.lng)
+        val y = Math.sin(dl) * Math.cos(la2)
+        val x = Math.cos(la1) * Math.sin(la2) - Math.sin(la1) * Math.cos(la2) * Math.cos(dl)
+        return (Math.toDegrees(Math.atan2(y, x)) + 360.0) % 360.0
+    }
+
+    /**
+     * How long a live glide lasts: the gap the fixes have been arriving at,
+     * so the vehicle is always moving and reaches each fix as the next one
+     * comes in. It is never ahead of a real fix, only ever behind the latest.
+     */
+    fun glideMs(observedGapMs: Long?): Long =
+        (observedGapMs ?: GLIDE_MIN_MS).coerceIn(GLIDE_MIN_MS, GLIDE_MAX_MS)
+
+    const val GLIDE_MIN_MS = 1_100L
+    const val GLIDE_MAX_MS = 30_000L
+
     fun ahead(route: List<GeoPoint>, here: GeoPoint?): List<GeoPoint> {
         if (here == null || route.size < 2) return route
         var best = 0
