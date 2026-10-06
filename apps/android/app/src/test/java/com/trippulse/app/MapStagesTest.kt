@@ -68,6 +68,51 @@ class MapStagesTest {
         assertEquals(MapStages.REPLAY_STAGE_MS / MapStages.REPLAY_FRAME_MS, (16 / walk).toLong())
     }
 
+    // An L-shaped road: 1 km north, then 1 km east.
+    private val corner = com.trippulse.app.domain.GeoPoint(17.459, 78.40)
+    private val road = (0..10).map { com.trippulse.app.domain.GeoPoint(17.45 + it * 0.0009, 78.40) } +
+        (1..10).map { com.trippulse.app.domain.GeoPoint(17.459, 78.40 + it * 0.00094) }
+
+    @Test fun between_two_fixes_the_vehicle_follows_the_road_round_the_bend() {
+        val before = com.trippulse.app.domain.GeoPoint(17.4581, 78.40002)   // 100 m before the corner
+        val after = com.trippulse.app.domain.GeoPoint(17.45902, 78.40094)   // 100 m after it
+        val path = MapStages.alongRoad(road, before, after)!!
+        assertTrue("goes through the corner", path.any { com.trippulse.app.core.Geo.haversineM(it, corner) < 1.0 })
+        val (mid, heading) = MapStages.pointAlong(path, 0.5)
+        assertTrue("halfway is at the corner, not cut across it", com.trippulse.app.core.Geo.haversineM(mid, corner) < 10.0)
+        assertTrue(heading != null)
+        // Early on it heads north, late on it heads east.
+        assertEquals(0.0, MapStages.pointAlong(path, 0.2).second!!, 2.0)
+        assertEquals(90.0, MapStages.pointAlong(path, 0.8).second!!, 2.0)
+    }
+
+    @Test fun the_road_is_used_only_when_it_explains_the_move() {
+        val onRoad = com.trippulse.app.domain.GeoPoint(17.4581, 78.40002)
+        val farOff = com.trippulse.app.domain.GeoPoint(17.4581, 78.4100)   // a kilometre east of the road
+        assertEquals(null, MapStages.alongRoad(road, onRoad, farOff))
+        // Backwards along the road is not this road.
+        val later = com.trippulse.app.domain.GeoPoint(17.459, 78.405)
+        assertEquals(null, MapStages.alongRoad(road, later, onRoad))
+        // No road: no path.
+        assertEquals(null, MapStages.alongRoad(emptyList(), onRoad, later))
+    }
+
+    @Test fun followers_get_the_next_two_kilometres() {
+        val here = com.trippulse.app.domain.GeoPoint(17.4500, 78.40001)
+        val ahead = MapStages.roadAhead(road, here, lengthM = 1_500.0)
+        assertTrue(ahead.size in 3..40)
+        val len = (1 until ahead.size).sumOf { com.trippulse.app.core.Geo.haversineM(ahead[it - 1], ahead[it]) }
+        assertTrue("about the length asked for: $len", len in 1_400.0..1_700.0)
+        assertTrue(MapStages.roadAhead(road, here, maxPoints = 5).size <= 5)
+    }
+
+    @Test fun a_live_glide_lasts_as_long_as_the_gap_between_fixes() {
+        assertEquals(15_000L, MapStages.glideMs(15_000L))
+        assertEquals(MapStages.GLIDE_MIN_MS, MapStages.glideMs(null))
+        assertEquals(MapStages.GLIDE_MAX_MS, MapStages.glideMs(600_000L))
+        assertEquals(MapStages.GLIDE_MIN_MS, MapStages.glideMs(200L))
+    }
+
     @Test fun each_stretch_looks_like_what_it_was_travelled_on() {
         assertEquals(MapStages.ROAD, MapStages.look("CAB"))
         assertEquals(MapStages.ROAD, MapStages.look("BUS"))

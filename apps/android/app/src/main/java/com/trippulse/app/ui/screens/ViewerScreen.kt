@@ -174,10 +174,20 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
         // ---- the journey, map first ----
         JourneyHero(
             map = { mapHeight, controlsPadding ->
+                // The traveller's phone sends the next stretch of its road with
+                // each fix, so the vehicle here can glide round the bends.
+                @Suppress("UNCHECKED_CAST")
+                val roadAhead = (state?.get("roadAhead") as? List<Any?>).orEmpty().mapNotNull { p ->
+                    val ll = p as? List<*> ?: return@mapNotNull null
+                    val la = (ll.getOrNull(0) as? Number)?.toDouble()
+                    val lo = (ll.getOrNull(1) as? Number)?.toDouble()
+                    if (la != null && lo != null) com.trippulse.app.domain.GeoPoint(la, lo) else null
+                }
                 JourneyMap(
                     current = current,
                     origin = origin,
                     destination = dest,
+                    route = roadAhead,
                     breadcrumb = breadcrumb,
                     live = ui.freshness == Freshness.LIVE || ui.freshness == Freshness.RECENT,
                     mode = liveProfile.key,

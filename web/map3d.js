@@ -22,7 +22,8 @@
   var CAR_PX = 44;
   var FOLLOW_TILT = 58;
   var FOLLOW_ZOOM = 15.5;
-  var GLIDE_MS = 1100;
+  // A live glide lasts as long as fixes have been arriving apart (MapStages.glideMs).
+  var GLIDE_MIN_MS = 1100, GLIDE_MAX_MS = 30000;
 
   // ---- models: keep in step with apps/android/.../ui/map/Vehicle3D.kt ----
   var GLASS = '#1E2B38', TYRE = '#141414', LIGHT = '#FFF3C4', TAIL = '#C1121F',
@@ -176,6 +177,45 @@
       Math.cos(a[0] * Math.PI / 180) * Math.cos(b[0] * Math.PI / 180) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
     return 2 * R * Math.asin(Math.sqrt(h));
   }
+  // ---- the road between two fixes (a port of MapStages.alongRoad / pointAlong) ----
+  function snapTo(road, p) {
+    var best = null, k = Math.cos(p[0] * Math.PI / 180);
+    for (var i = 0; i < road.length - 1; i++) {
+      var a = road[i], b = road[i + 1];
+      var ax = (a[1] - p[1]) * k, ay = a[0] - p[0], bx = (b[1] - p[1]) * k, by = b[0] - p[0];
+      var dx = bx - ax, dy = by - ay, len2 = dx * dx + dy * dy;
+      var t = len2 <= 0 ? 0 : Math.max(0, Math.min(1, -(ax * dx + ay * dy) / len2));
+      var q = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t], d = distM(p, q);
+      if (!best || d < best.d) best = { seg: i, t: t, q: q, d: d };
+    }
+    return best;
+  }
+  function pathLen(path) { var s = 0; for (var i = 1; i < path.length; i++) s += distM(path[i - 1], path[i]); return s; }
+  /** The road between [from] and [to] when the road explains the move; null otherwise. */
+  function alongRoad(road, from, to) {
+    if (!road || road.length < 2) return null;
+    var a = snapTo(road, from), b = snapTo(road, to);
+    if (!a || !b || a.d > 60 || b.d > 60) return null;
+    if (b.seg < a.seg || (b.seg === a.seg && b.t < a.t)) return null;
+    var path = [a.q];
+    for (var i = a.seg + 1; i <= b.seg; i++) path.push(road[i]);
+    path.push(b.q);
+    return pathLen(path) > distM(from, to) * 2.5 + 50 ? null : path;
+  }
+  /** The point a share [f] of the way along [path], and the heading there. */
+  function pointAlong(path, f) {
+    var left = pathLen(path) * Math.max(0, Math.min(1, f));
+    for (var i = 1; i < path.length; i++) {
+      var a = path[i - 1], b = path[i], d = distM(a, b);
+      if (left <= d || i === path.length - 1) {
+        var t = d <= 0 ? 0 : Math.max(0, Math.min(1, left / d));
+        return { p: [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t], heading: d > 0.5 ? bearingOf(a, b) : null };
+      }
+      left -= d;
+    }
+    return { p: path[path.length - 1], heading: null };
+  }
+
   function greatCircle(a, b, n) {
     n = n || 64;
     var r = Math.PI / 180, la1 = a[0] * r, lo1 = a[1] * r, la2 = b[0] * r, lo2 = b[1] * r;
@@ -507,6 +547,16 @@
     var fromBearing = state.bearing;
 
     if (state.glide) { window.cancelAnimationFrame(state.glide); state.glide = null; }
+    // How far apart the fixes have been arriving: the glide fills that gap, so
+    // the vehicle is always moving and only ever behind the latest real fix.
+    if (!opts.playback && (!state.lastFix || distM(state.lastFix, to) > 0.5)) {
+      var nowMs = Date.now();
+      if (state.lastFixAt) {
+        var gap = nowMs - state.lastFixAt;
+        state.fixGap = state.fixGap ? state.fixGap * 0.6 + gap * 0.4 : gap;
+      }
+      state.lastFix = to; state.lastFixAt = nowMs;
+    }
     if (opts.playback || !state.pos) {
       state.pos = to; state.bearing = toBearing;
       renderVehicle();
@@ -514,12 +564,22 @@
       state.framedPending = false;
       return;
     }
+    var glideMs = Math.max(GLIDE_MIN_MS, Math.min(GLIDE_MAX_MS, state.fixGap || GLIDE_MIN_MS));
+    // Round the road's bends when the road explains the move (the phone sends the next 2 km).
+    var road = alongRoad(opts.road, from, to);
     var start = null;
     function step(ts) {
       if (start === null) start = ts;
-      var t = Math.min(1, (ts - start) / GLIDE_MS), e = t * t * (3 - 2 * t);
-      state.pos = [from[0] + (to[0] - from[0]) * e, from[1] + (to[1] - from[1]) * e];
-      state.bearing = lerpBearing(fromBearing, toBearing, e);
+      var t = Math.min(1, (ts - start) / glideMs);
+      var e = glideMs > 2500 ? t : t * t * (3 - 2 * t);
+      if (road) {
+        var at = pointAlong(road, e);
+        state.pos = at.p;
+        if (at.heading !== null) state.bearing = lerpBearing(state.bearing, at.heading, 0.2);
+      } else {
+        state.pos = [from[0] + (to[0] - from[0]) * e, from[1] + (to[1] - from[1]) * e];
+        state.bearing = lerpBearing(fromBearing, toBearing, e);
+      }
       renderVehicle();
       if (state.follow) followCamera(false);
       state.glide = t < 1 ? window.requestAnimationFrame(step) : null;
@@ -533,6 +593,8 @@
     toggleFollow: function () { setFollow(!state.follow, true); },
     /** Geometry only, for parity checks against the app's Vehicle3D.kt. */
     _place: place,
+    /** Road geometry, for parity checks against MapStages. */
+    _alongRoad: alongRoad, _pointAlong: pointAlong,
     /** The trail's stretches as last drawn, for checks: [look, points] per stretch. */
     _trail: function () { return lastTrail.features.map(function (f) { return [f.properties.look, f.geometry.coordinates.length]; }); },
     MODES: {

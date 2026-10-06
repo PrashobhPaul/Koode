@@ -42,7 +42,8 @@ class SyncEngine(
         val now = System.currentTimeMillis()
         if (!force && now - lastStatePushMs < cfg.currentStateMinIntervalS * 1000) return
         lastStatePushMs = now
-        cloud.pushCurrentState(trip.accessKey, state)
+        // Followers listening for the live nudge read the new state at once.
+        if (cloud.pushCurrentState(trip.accessKey, state)) cloud.nudgeFollowers(trip.accessKey)
     }
 
     /** Ensure meta exists in the cloud (first connect or after re-enable). */

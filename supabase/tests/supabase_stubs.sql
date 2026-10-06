@@ -28,3 +28,9 @@ create table storage.objects (
   id uuid primary key default gen_random_uuid(), bucket_id text references storage.buckets (id),
   name text, metadata jsonb, created_at timestamptz default now()
 );
+
+-- realtime: a broadcast is recorded instead of sent, so tests can see it
+create schema realtime;
+create table realtime.sent (topic text, event text, payload jsonb, private boolean, at timestamptz default now());
+create function realtime.send(payload jsonb, event text, topic text, private boolean default true) returns void
+language sql as $$ insert into realtime.sent (topic, event, payload, private) values (topic, event, payload, private) $$;

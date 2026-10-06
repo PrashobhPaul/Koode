@@ -69,7 +69,6 @@ import kotlin.math.abs
 
 private const val FOLLOW_TILT = 58.0
 private const val FOLLOW_ZOOM = 15.5
-private const val GLIDE_MS = 1100.0
 
 /**
  * One journey, drawn on a tilting vector map with the traveller's vehicle.
@@ -303,13 +302,32 @@ fun JourneyMap(
             if (follow) followCamera(m, motion, padPx, entering = !motion.followPlaced)
             return@LaunchedEffect
         }
+        // Glide for as long as fixes have been arriving apart, so the vehicle
+        // is always moving and reaches this fix as the next one comes in: it
+        // is only ever behind the latest real fix, never ahead of it. Along
+        // the road when the road explains the move, round its bends.
+        val arrived = System.currentTimeMillis()
+        if (motion.lastFixAtMs > 0L) {
+            val gap = arrived - motion.lastFixAtMs
+            motion.fixGapMs = motion.fixGapMs?.let { (it * 0.6 + gap * 0.4).toLong() } ?: gap
+        }
+        motion.lastFixAtMs = arrived
+        val glideMs = MapStages.glideMs(motion.fixGapMs).toDouble()
+        val road = MapStages.alongRoad(route, from, to)
         val start = withFrameNanos { it }
         while (true) {
             val now = withFrameNanos { it }
-            val t = ((now - start) / 1_000_000.0 / GLIDE_MS).coerceIn(0.0, 1.0)
-            val e = t * t * (3 - 2 * t) // smoothstep
-            motion.pos = Vehicle3D.lerp(from, to, e)
-            motion.bearing = Vehicle3D.lerpBearing(fromBearing, toBearing, e)
+            val t = ((now - start) / 1_000_000.0 / glideMs).coerceIn(0.0, 1.0)
+            // A long glide moves at an even pace; a short one eases in and out.
+            val e = if (glideMs > 2_500.0) t else t * t * (3 - 2 * t)
+            if (road != null) {
+                val (p, heading) = MapStages.pointAlong(road, e)
+                motion.pos = p
+                motion.bearing = heading?.let { h -> Vehicle3D.lerpBearing(motion.bearing, h, 0.2) } ?: motion.bearing
+            } else {
+                motion.pos = Vehicle3D.lerp(from, to, e)
+                motion.bearing = Vehicle3D.lerpBearing(fromBearing, toBearing, e)
+            }
             motion.render(m)
             if (follow) followCamera(m, motion, padPx, entering = false)
             if (t >= 1.0) break
@@ -603,6 +621,9 @@ private class VehicleMotion {
     var framedOnce: Boolean = false
     /** Until when the camera is easing into Follow; moves meanwhile would freeze it part-way. */
     var easingUntilMs: Long = 0L
+    /** When the last live fix arrived, and the gap the fixes have been coming at. */
+    var lastFixAtMs: Long = 0L
+    var fixGapMs: Long? = null
 
     fun render(m: MapLibreMap) {
         val s = style ?: return

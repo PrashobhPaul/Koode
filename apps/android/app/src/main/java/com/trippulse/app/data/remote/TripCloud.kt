@@ -5,7 +5,13 @@ import com.trippulse.app.BuildConfig
 import com.trippulse.app.data.EventCodec
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeoutOrNull
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -54,6 +60,9 @@ class TripCloud(private val appContext: Context) {
         .build()
 
     fun isAvailable(): Boolean = baseUrl.isNotBlank() && anonKey.isNotBlank()
+
+    /** Listens for a journey's live nudges (see [LiveNudge]). */
+    private val liveNudge by lazy { LiveNudge(baseUrl, anonKey, client) }
 
     /** No auth service in this design — the capability tokens ARE the auth. */
     suspend fun ensureAuth(): String? = if (isAvailable()) "capability" else null
@@ -427,10 +436,73 @@ class TripCloud(private val appContext: Context) {
     // actually changed — see ViewerRepository.statePollMs.
     // -----------------------------------------------------------------------
 
+    /**
+     * The live state, read again when the poll says, or at once when the
+     * traveller's phone nudges (see [LiveNudge]): the channel to listen on
+     * arrives inside the state itself.
+     */
     fun currentStateFlow(
         accessKey: String,
         nextDelayMs: (Map<String, Any?>?) -> Long
-    ): Flow<Map<String, Any?>?> = pollingFlow(nextDelayMs) { fetchState(accessKey) }
+    ): Flow<Map<String, Any?>?> = channelFlow {
+        val wake = Channel<Unit>(Channel.CONFLATED)
+        var listening: String? = null
+        var listener: Job? = null
+        var failures = 0
+        while (isActive) {
+            val st = fetchState(accessKey)
+            failures = if (st == null) (failures + 1).coerceAtMost(MAX_BACKOFF_STEPS) else 0
+            send(st)
+            val channel = (st?.get("liveChannel") as? String)?.takeIf { it.isNotBlank() }
+            if (channel != null && channel != listening) {
+                listener?.cancel()
+                listening = channel
+                listener = launch { liveNudge.nudges(channel).collect { wake.trySend(Unit) } }
+            }
+            val base = nextDelayMs(st).coerceIn(MIN_POLL_MS, MAX_POLL_MS)
+            val wait = (base * (1L shl failures)).coerceAtMost(MAX_POLL_MS)
+            if (withTimeoutOrNull(wait) { wake.receive() } != null) {
+                // A burst of nudges is one read.
+                delay(NUDGE_SETTLE_MS)
+                wake.tryReceive()
+            }
+        }
+    }.distinctUntilChanged().flowOn(Dispatchers.IO)
+
+    // ---- the traveller's side of the nudge ---------------------------------
+
+    private val liveChannels = java.util.concurrent.ConcurrentHashMap<String, String>()
+
+    /**
+     * Tells anyone following this journey that a new state is there to read.
+     * Sent through Realtime's broadcast endpoint, which needs nothing from the
+     * database; the server's own broadcast (tp_push_state) does the same once
+     * Realtime has its message tables, and a follower treats two nudges as one.
+     * Best effort: a nudge that fails costs nothing, followers poll.
+     */
+    suspend fun nudgeFollowers(accessKey: String) {
+        if (!isAvailable()) return
+        val channel = liveChannels[accessKey]
+            ?: (rpcObject("tp_get_state", mapOf("p_access_key" to accessKey))?.get("liveChannel") as? String)
+                ?.also { liveChannels[accessKey] = it }
+            ?: return
+        withContext(Dispatchers.IO) {
+            runCatching {
+                val message = JSONObject()
+                    .put("topic", "koode:$channel")
+                    .put("event", "fix")
+                    .put("payload", JSONObject().put("at", System.currentTimeMillis()))
+                    .put("private", false)
+                val req = Request.Builder()
+                    .url("$baseUrl/realtime/v1/api/broadcast")
+                    .addHeader("apikey", anonKey)
+                    .addHeader("Authorization", "Bearer $anonKey")
+                    .post(JSONObject().put("messages", JSONArray().put(message)).toString().toRequestBody(json))
+                    .build()
+                client.newCall(req).execute().close()
+            }
+        }
+    }
 
     fun metaFlow(
         accessKey: String,
@@ -483,5 +555,6 @@ class TripCloud(private val appContext: Context) {
         const val MIN_POLL_MS = 4_000L
         const val MAX_POLL_MS = 600_000L
         const val MAX_BACKOFF_STEPS = 4
+        const val NUDGE_SETTLE_MS = 600L
     }
 }

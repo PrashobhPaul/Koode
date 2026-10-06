@@ -1458,3 +1458,50 @@ begin
 exception when others then
   raise notice 'pg_cron not available; refresh toll plazas by calling tp_toll_refresh_request() then tp_toll_refresh_collect().';
 end $$;
+
+-- ---------------------------------------------------------------------------
+-- v6: a live nudge for followers (Supabase Realtime broadcast)
+--
+-- Followers used to ask for the state every 20 s. Now each state write also
+-- broadcasts a data-free "fix" message on the journey's live channel, and a
+-- follower who is listening fetches at once through the same approved read
+-- as before. The message carries nothing but a time: where the traveller is
+-- is still only ever read through tp_get_state / tp_get_state_t.
+--
+-- The channel name is random per journey and is handed out only inside the
+-- state itself (state.liveChannel), so only someone who may already read the
+-- state can listen for its nudges. A nudge that cannot be sent never costs
+-- the state write; followers keep polling as the fallback.
+-- ---------------------------------------------------------------------------
+
+alter table tp_trips add column if not exists live_channel text;
+alter table tp_trips alter column live_channel set default replace(gen_random_uuid()::text, '-', '');
+update tp_trips set live_channel = replace(gen_random_uuid()::text, '-', '') where live_channel is null;
+
+create or replace function tp_push_state(
+  p_access_key text, p_owner_token text, p_state jsonb
+) returns boolean
+language plpgsql security definer set search_path = public as $$
+declare v_channel text;
+begin
+  select live_channel into v_channel from tp_trips
+  where access_key = p_access_key and owner_token = p_owner_token;
+  if not found then
+    return false;
+  end if;
+  if v_channel is null then
+    v_channel := replace(gen_random_uuid()::text, '-', '');
+    update tp_trips set live_channel = v_channel where access_key = p_access_key;
+  end if;
+  insert into tp_state (access_key, state, updated_at)
+  values (p_access_key, p_state || jsonb_build_object('liveChannel', v_channel), now())
+  on conflict (access_key) do update set state = excluded.state, updated_at = now();
+  begin
+    perform realtime.send(
+      jsonb_build_object('at', (extract(epoch from now()) * 1000)::bigint),
+      'fix', 'koode:' || v_channel, false);
+  exception when others then
+    null; -- Realtime unavailable: the write stands, followers poll.
+  end;
+  return true;
+end $$;

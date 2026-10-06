@@ -346,6 +346,9 @@
       trailTimes: playback.times,
       stages: playback.stages,
       current: current,
+      // The next stretch of the traveller's road, sent with each fix: the
+      // vehicle glides round its bends instead of cutting the corner.
+      road: Array.isArray(st.roadAhead) ? st.roadAhead : null,
       mode: st.mode || (latest.meta && latest.meta.transportMode) || 'CAR',
       moving: st.status === 'DRIVING',
       live: freshnessOf(st) === 'live',
@@ -1016,6 +1019,57 @@
     }
   }
 
+  // ---- the live nudge ----------------------------------------------------
+  // The traveller's phone writes its position every few seconds; each write
+  // broadcasts a data-free "fix" on the journey's own channel (Supabase
+  // Realtime). Listening for it lets this page fetch at once instead of
+  // waiting for the next poll. The channel name only reaches readers who may
+  // read the state (it travels inside it), the message carries no position,
+  // and if Realtime is unreachable the poll below simply carries on.
+
+  var live = { ws: null, channel: null, heartbeat: null, retry: 0, ref: 0, onNudge: null };
+
+  function liveClose() {
+    var ws = live.ws;
+    live.ws = null; live.channel = null;
+    if (live.heartbeat) { clearInterval(live.heartbeat); live.heartbeat = null; }
+    if (ws) { try { ws.close(); } catch (e) { /* already closed */ } }
+  }
+
+  function liveListen(channel, onNudge) {
+    live.onNudge = onNudge;
+    if (!channel || (channel === live.channel && live.ws)) return;
+    liveClose();
+    if (!window.WebSocket || !CFG.SUPABASE_URL || !CFG.SUPABASE_ANON_KEY) return;
+    var url = CFG.SUPABASE_URL.replace(/\/$/, '').replace(/^http/, 'ws') +
+      '/realtime/v1/websocket?apikey=' + encodeURIComponent(CFG.SUPABASE_ANON_KEY) + '&vsn=1.0.0';
+    var ws;
+    try { ws = new WebSocket(url); } catch (e) { return; }
+    live.ws = ws; live.channel = channel;
+    var topic = 'realtime:koode:' + channel;
+    function send(msg) { try { ws.send(JSON.stringify(msg)); } catch (e) { /* closing */ } }
+    ws.onopen = function () {
+      live.retry = 0;
+      send({ topic: topic, event: 'phx_join', ref: String(++live.ref), join_ref: '1',
+        payload: { config: { broadcast: { ack: false, self: false }, presence: { key: '' }, private: false } } });
+      live.heartbeat = setInterval(function () {
+        send({ topic: 'phoenix', event: 'heartbeat', payload: {}, ref: String(++live.ref) });
+      }, 25000);
+    };
+    ws.onmessage = function (m) {
+      var msg;
+      try { msg = JSON.parse(m.data); } catch (e) { return; }
+      if (msg && msg.event === 'broadcast' && msg.payload && msg.payload.event === 'fix' && live.onNudge) live.onNudge();
+    };
+    ws.onclose = function () {
+      if (live.ws !== ws) return; // replaced or closed on purpose
+      if (live.heartbeat) { clearInterval(live.heartbeat); live.heartbeat = null; }
+      live.ws = null; live.channel = null;
+      var wait = Math.min(60000, 2000 * Math.pow(2, live.retry++));
+      setTimeout(function () { if (!live.ws && live.onNudge) liveListen(channel, live.onNudge); }, wait);
+    };
+  }
+
   var watching = null;
 
   async function startWatching(cred) {
@@ -1027,14 +1081,29 @@
     window.scrollTo(0, 0);
     $('verified-report').onclick = function () { openVerifiedReport(reader); };
 
+    var pollTimer = null, busy = false;
     var tick = async function () {
-      var meta = await reader.meta();
-      var state = await reader.state();
-      var events = (await reader.events()) || [];
-      // A failed read leaves the last known picture on screen rather than
-      // wiping it: silence is not news.
-      if (meta || state) render(meta || latest.meta, state || latest.state, events.length ? events : latest.events);
-      setTimeout(tick, pollIntervalMs(state, events));
+      if (busy) return;
+      busy = true;
+      if (pollTimer) { clearTimeout(pollTimer); pollTimer = null; }
+      try {
+        var meta = await reader.meta();
+        var state = await reader.state();
+        var events = (await reader.events()) || [];
+        // A failed read leaves the last known picture on screen rather than
+        // wiping it: silence is not news.
+        if (meta || state) render(meta || latest.meta, state || latest.state, events.length ? events : latest.events);
+        if (state && endedByOwner(state, events)) liveClose();
+        else if (state && state.liveChannel) liveListen(state.liveChannel, nudged);
+        pollTimer = setTimeout(tick, pollIntervalMs(state, events));
+      } finally {
+        busy = false;
+      }
+    };
+    // A nudge brings the next read forward; a burst of them is one read.
+    var nudged = function () {
+      if (pollTimer) clearTimeout(pollTimer);
+      pollTimer = setTimeout(tick, 600);
     };
     tick();
   }
