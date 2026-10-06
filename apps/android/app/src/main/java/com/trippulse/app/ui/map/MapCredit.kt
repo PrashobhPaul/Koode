@@ -9,6 +9,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
@@ -35,7 +38,7 @@ object MapCredit {
 @Composable
 fun MapCreditLine(touched: Boolean, modifier: Modifier = Modifier) {
     val colors = KoodeTheme.colors
-    var shown by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(true) }
+    var shown by remember { mutableStateOf(true) }
     LaunchedEffect(Unit) { delay(MapCredit.SHOWN_MS); shown = false }
     val alpha by animateFloatAsState(if (shown && !touched) 1f else 0f, tween(600), label = "mapCredit")
     if (alpha <= 0.01f) return
