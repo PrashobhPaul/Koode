@@ -58,6 +58,7 @@ import com.trippulse.app.ui.components.DetailRow
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.ModeArt
 import com.trippulse.app.ui.components.KoodeHeroCard
 import com.trippulse.app.ui.components.LocalWindowClass
 import com.trippulse.app.ui.components.PulsingDot
@@ -251,12 +252,18 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                 Spacer(Modifier.height(Spacing.md))
                 val etaMode = state?.str("etaMode")
                 val journey = state?.str("status")
-                Text(
-                    if (offlineExpected && ui.freshness == Freshness.OFFLINE)
-                        "✈️ In the air — offline as expected"
-                    else travelModeLine(journey, liveMode),
-                    color = colors.textMid, style = MaterialTheme.typography.bodyMedium
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    // The traveller's vehicle, drawn, where the line is about moving.
+                    val inAir = offlineExpected && ui.freshness == Freshness.OFFLINE
+                    if (inAir || journey == JourneyStatus.DRIVING.name || journey == JourneyStatus.POSSIBLE_STOP.name) {
+                        ModeArt(if (inAir) TransportCatalog.FLIGHT.key else liveMode, 30.dp)
+                        Spacer(Modifier.width(Spacing.sm))
+                    }
+                    Text(
+                        if (inAir) "In the air — offline as expected" else travelModeLine(journey, liveMode),
+                        color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                    )
+                }
                 Spacer(Modifier.height(Spacing.xs))
                 when {
                     ui.endedByOwner ->
@@ -567,8 +574,8 @@ private fun RestRow(lastBreakEndMs: Long?, journey: String?, breaksApply: Boolea
 private fun travelModeLine(journey: String?, mode: String?): String {
     val profile = TransportCatalog.profile(mode)
     return when (journey) {
-        JourneyStatus.DRIVING.name -> "${profile.emoji} Travelling${profile.travellingSuffix}"
-        JourneyStatus.POSSIBLE_STOP.name -> "${profile.emoji} Slowing down"
+        JourneyStatus.DRIVING.name -> "Travelling${profile.travellingSuffix}"
+        JourneyStatus.POSSIBLE_STOP.name -> "Slowing down"
         JourneyStatus.STOPPED.name -> if (profile.wellbeingIsBreak) "⏸ Taking a break" else "⏸ Halted"
         JourneyStatus.LONG_STOP.name -> "⏸ Stopped a while"
         JourneyStatus.OVERNIGHT.name -> "🌙 Resting overnight"

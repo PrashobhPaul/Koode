@@ -76,6 +76,8 @@ import com.trippulse.app.ui.components.TravelDetailFields
 import com.trippulse.app.ui.components.AdaptiveContainer
 import com.trippulse.app.ui.components.OwnerAvatar
 import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.ModeArt
+import com.trippulse.app.ui.components.KoodeArt
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.KoodeHeroCard
 import com.trippulse.app.ui.components.LocalWindowClass
@@ -749,7 +751,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         val options = if (walking) listOf(TransportCatalog.WALK)
                             else TransportCatalog.COMMUTE.filter { it.key != TransportCatalog.WALK.key }
                         options.forEach { p ->
-                            KoodeChip(if (walking) "Yes, walking" else com.trippulse.app.ui.Names.mode(p.key), false, { vm.quickSwitch(p.key) }, leading = p.emoji)
+                            KoodeChip(if (walking) "Yes, walking" else com.trippulse.app.ui.Names.mode(p.key), false, { vm.quickSwitch(p.key) }, leadingArt = KoodeArt.mode(p.key))
                         }
                         KoodeChip(stringResource(R.string.t_not_now_e4571), false, { sensedDismissed = sensed })
                     }
@@ -764,7 +766,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             val offerSwitch = !profile.isPrivateVehicle || !moving
             KoodeCard(title = stringResource(R.string.t_how_you_re_travelling_7b7fc)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(profile.emoji, fontSize = 22.sp)
+                    ModeArt(profile.key, 40.dp)
                     Spacer(Modifier.width(Spacing.sm))
                     Column(Modifier.weight(1f)) {
                         Text(com.trippulse.app.ui.Names.mode(profile.key), color = colors.textHigh, style = MaterialTheme.typography.titleMedium)
@@ -793,7 +795,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     Spacer(Modifier.height(Spacing.xs))
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                         TransportCatalog.COMMUTE.filter { it.key != profile.key }.forEach { p ->
-                            KoodeChip(com.trippulse.app.ui.Names.mode(p.key), false, { vm.quickSwitch(p.key) }, leading = p.emoji)
+                            KoodeChip(com.trippulse.app.ui.Names.mode(p.key), false, { vm.quickSwitch(p.key) }, leadingArt = KoodeArt.mode(p.key))
                         }
                         KoodeChip(stringResource(R.string.t_other_6e6a6), false, { showEdit = true }, leading = "⋯")
                     }
@@ -1448,7 +1450,7 @@ private fun EditJourneySheet(
                     val active = leg.legIndex == activeLegIndex
                     val vehicle = LegDetails.summaryOf(leg.mode, leg.detailsJson)
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        Text(TransportCatalog.emoji(leg.mode), fontSize = 15.sp)
+                        ModeArt(leg.mode, 34.dp)
                         Spacer(Modifier.width(Spacing.sm))
                         Column(Modifier.weight(1f)) {
                             Text(
@@ -1486,7 +1488,7 @@ private fun EditJourneySheet(
                 Spacer(Modifier.height(Spacing.sm))
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                     TransportCatalog.ALL.forEach { p ->
-                        KoodeChip(com.trippulse.app.ui.Names.mode(p.key), mode == p.key, { onModeChosen(p.key) }, leading = p.emoji)
+                        KoodeChip(com.trippulse.app.ui.Names.mode(p.key), mode == p.key, { onModeChosen(p.key) }, leadingArt = KoodeArt.mode(p.key))
                     }
                 }
                 Spacer(Modifier.height(Spacing.md))

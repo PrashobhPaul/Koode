@@ -400,10 +400,17 @@
     return 'rest';
   }
   function eventArt(e) {
-    return e.type === 'BREAK_CHECKPOINT' ? breakArt(e.payload || {}) : EVENT_ART[e.type];
+    var p = e.payload || {};
+    if (e.type === 'BREAK_CHECKPOINT') return breakArt(p);
+    // A change of vehicle shows the vehicle changed to; a stage, the one it is made on.
+    if (e.type === 'TRAVEL_MODE_CHANGED') return MODE_ART[p.toMode];
+    if (e.type === 'LEG_STARTED') return MODE_ART[p.mode];
+    return EVENT_ART[e.type];
   }
   /** Pictures drawn facing left, mirrored so the vehicle faces the flag. */
   var ART_FACES_LEFT = { BUS: true, METRO: true, AUTO: true };
+  /** The vehicle nose to tail, long and low, for riding the progress line (Pictures.side). */
+  var RIDE_ART = { METRO: 'metro-side' };
 
   /** Mode chip over the map, and the vehicle riding the progress track. */
   function renderMode(meta, state, progressPct) {
@@ -426,10 +433,14 @@
     var left = 'calc(' + Math.max(0, Math.min(100, progressPct)) + '% - ';
     var v = $('ride-vehicle');
     var img = $('ride-img');
-    if (art && img) {
-      img.src = 'art/' + art + '.webp';
-      img.className = 'ride-img' + (ART_FACES_LEFT[mode] ? ' flip' : '') + (moving ? ' moving' : '');
-      img.style.left = left + '22px)';
+    var side = RIDE_ART[mode];
+    if ((side || art) && img) {
+      var pct = Math.max(0, Math.min(100, progressPct));
+      img.src = 'art/' + (side || art) + '.webp';
+      img.className = 'ride-img' + (side ? ' wide' : '') + (ART_FACES_LEFT[mode] ? ' flip' : '') + (moving ? ' moving' : '');
+      // A side view stays on the track from end to end; a square picture is
+      // centred on where the traveller is.
+      img.style.left = side ? 'calc(' + pct + '% - ' + (pct * 1.04).toFixed(1) + 'px)' : left + '22px)';
       show(img); if (v) hide(v);
       return;
     }

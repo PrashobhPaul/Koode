@@ -52,7 +52,8 @@ object KoodeArt {
         "ship" to R.drawable.art_ship,
         "cycle" to R.drawable.art_cycle,
         "ferry" to R.drawable.art_ferry,
-        "cruise" to R.drawable.art_cruise
+        "cruise" to R.drawable.art_cruise,
+        "metro-side" to R.drawable.art_metro_side
     )
 
     @DrawableRes fun file(name: String?): Int? = name?.let { FILES[it] }
@@ -64,6 +65,9 @@ object KoodeArt {
     @DrawableRes val stay: Int = R.drawable.art_stay
 
     @DrawableRes fun mode(key: String?): Int? = file(Pictures.mode(key))
+
+    /** The picture that rides the progress line: the side view where there is one, else the mode's picture. */
+    @DrawableRes fun ride(key: String?): Int? = file(Pictures.side(key)) ?: mode(key)
 
     /** Whether a mode's picture faces left (mirrored to face the destination). */
     fun modeFacesLeft(key: String?): Boolean = Pictures.modeFacesLeft(key)
