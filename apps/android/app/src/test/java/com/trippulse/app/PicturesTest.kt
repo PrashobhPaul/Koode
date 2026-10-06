@@ -26,6 +26,15 @@ class PicturesTest {
         assertTrue(!Pictures.modeFacesLeft("CAR"))
     }
 
+    @Test fun aMetroRidesTheProgressLineSeenFromThePlatform() {
+        assertEquals("metro-side", Pictures.side("METRO"))
+        assertNull(Pictures.side("CAR"))
+        assertNull(Pictures.side("TRAIN"))
+        // The side view faces the way the metro's picture does, so one rule mirrors both.
+        assertTrue(Pictures.modeFacesLeft("METRO"))
+        assertTrue(Pictures.SIDES.containsAll(TransportCatalog.ALL.mapNotNull { Pictures.side(it.key) }))
+    }
+
     @Test fun eachStopShowsWhatItWas() {
         assertEquals(Pictures.FOOD, Pictures.event(EventTypes.FOOD_REPORTED))
         assertEquals(Pictures.WATER, Pictures.event(EventTypes.WATER_REPORTED))
@@ -69,9 +78,9 @@ class PicturesTest {
     @Test fun everyPictureShipsInTheAppAndTheWebViewer() {
         val module = listOf(File("."), File("apps/android/app")).first { File(it, "src/main/res").isDirectory }
         val web = File(module, "../../../web/art")
-        val missing = Pictures.ALL.flatMap { name ->
+        val missing = (Pictures.ALL + Pictures.SIDES).flatMap { name ->
             listOfNotNull(
-                "drawable-nodpi/art_$name.webp".takeUnless { File(module, "src/main/res/$it").isFile },
+                "drawable-nodpi/art_${name.replace('-', '_')}.webp".takeUnless { File(module, "src/main/res/$it").isFile },
                 "web/art/$name.webp".takeUnless { File(web, "$name.webp").isFile }
             )
         }

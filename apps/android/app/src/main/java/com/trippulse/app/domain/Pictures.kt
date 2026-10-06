@@ -48,6 +48,21 @@ object Pictures {
     fun modeFacesLeft(key: String?): Boolean = TransportCatalog.profile(key).key in setOf("BUS", "METRO", "AUTO")
 
     /**
+     * The vehicle seen from the platform, nose to tail, for riding the
+     * progress line between the start and the flag: a long, low picture that
+     * sits on the track the way the real thing sits on its rails. Modes
+     * without one ride their ordinary picture. Drawn facing the same way as
+     * the mode's picture, so [modeFacesLeft] applies to both.
+     */
+    fun side(key: String?): String? = when (TransportCatalog.profile(key).key) {
+        "METRO" -> "metro-side"
+        else -> null
+    }
+
+    /** Every side view, for checks that a file exists for each. */
+    val SIDES: List<String> = listOf("metro-side")
+
+    /**
      * A timeline entry's picture. A logged meal is the plate of food; a break
      * that included a meal is the restaurant it was taken at. Tea and a snack
      * keep their own cup and biscuit rather than borrowing the plate.

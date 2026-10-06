@@ -7,6 +7,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -32,12 +33,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.isSpecified
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.trippulse.app.domain.TransportCatalog
 import com.trippulse.app.ui.theme.KoodeTheme
 import com.trippulse.app.ui.theme.Radii
 import com.trippulse.app.ui.theme.Spacing
@@ -126,8 +131,14 @@ fun RideProgress(progress: Float, mode: String?, emoji: String, moving: Boolean,
         animationSpec = infiniteRepeatable(tween(520, easing = FastOutSlowInEasing), RepeatMode.Reverse),
         label = "rideBobY"
     )
-    val art = KoodeArt.mode(mode)
-    val vehicleSize = if (art != null) 40.dp else 30.dp
+    val art = KoodeArt.ride(mode)
+    val painter = art?.let { painterResource(it) }
+    // A side view is long and low; it is given the width it needs and sits
+    // on the track. Everything else keeps its square.
+    val aspect = painter?.intrinsicSize?.takeIf { it.isSpecified && it.height > 0f }?.let { it.width / it.height } ?: 1f
+    val wide = aspect >= 2.2f
+    val vehicleHeight = when { wide -> 30.dp; art != null -> 40.dp; else -> 30.dp }
+    val vehicleWidth = if (wide) (vehicleHeight * aspect).coerceAtMost(104.dp) else vehicleHeight
 
     BoxWithConstraints(modifier.fillMaxWidth().height(if (art != null) 48.dp else 40.dp)) {
         val track = maxWidth
@@ -151,15 +162,22 @@ fun RideProgress(progress: Float, mode: String?, emoji: String, moving: Boolean,
         // destination flag
         Text("🏁", fontSize = 16.sp, modifier = Modifier.align(Alignment.CenterEnd))
         // the vehicle
-        val x = (track - vehicleSize) * animated
+        val x = (track - vehicleWidth) * animated
         Box(
             Modifier
                 .align(Alignment.CenterStart)
-                .offset(x = x, y = (-6).dp - (2.dp * bob))
-                .size(vehicleSize),
+                .offset(x = x, y = (if (wide) (-7).dp else (-6).dp) - (2.dp * bob))
+                .size(vehicleWidth, vehicleHeight),
             contentAlignment = Alignment.Center
         ) {
-            if (art != null) ModeArt(mode, vehicleSize, faceRight = true)
+            if (painter != null) Image(
+                painter = painter,
+                contentDescription = TransportCatalog.profile(mode).label,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(vehicleWidth, vehicleHeight)
+                    .graphicsLayer { if (KoodeArt.modeFacesLeft(mode)) scaleX = -1f }
+            )
             else Text(
                 emoji, fontSize = 22.sp,
                 modifier = Modifier.graphicsLayer {
