@@ -400,7 +400,12 @@
     return 'rest';
   }
   function eventArt(e) {
-    return e.type === 'BREAK_CHECKPOINT' ? breakArt(e.payload || {}) : EVENT_ART[e.type];
+    var p = e.payload || {};
+    if (e.type === 'BREAK_CHECKPOINT') return breakArt(p);
+    // A change of vehicle shows the vehicle changed to; a stage, the one it is made on.
+    if (e.type === 'TRAVEL_MODE_CHANGED') return MODE_ART[p.toMode];
+    if (e.type === 'LEG_STARTED') return MODE_ART[p.mode];
+    return EVENT_ART[e.type];
   }
   /** Pictures drawn facing left, mirrored so the vehicle faces the flag. */
   var ART_FACES_LEFT = { BUS: true, METRO: true, AUTO: true };

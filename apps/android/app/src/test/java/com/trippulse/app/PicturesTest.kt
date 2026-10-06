@@ -37,6 +37,10 @@ class PicturesTest {
 
     @Test fun eachStopShowsWhatItWas() {
         assertEquals(Pictures.FOOD, Pictures.event(EventTypes.FOOD_REPORTED))
+        // A change of vehicle is drawn as the vehicle changed to, not a glyph.
+        assertEquals("metro", Pictures.event(EventTypes.TRAVEL_MODE_CHANGED, mapOf("fromMode" to "CAB", "toMode" to "METRO")))
+        assertEquals("cab", Pictures.event(EventTypes.LEG_STARTED, mapOf("mode" to "CAB")))
+        assertNull(Pictures.event(EventTypes.TRAVEL_MODE_CHANGED))
         assertEquals(Pictures.WATER, Pictures.event(EventTypes.WATER_REPORTED))
         assertEquals(Pictures.REST, Pictures.event(EventTypes.REST_REPORTED))
         assertEquals(Pictures.TOILET, Pictures.event(EventTypes.TOILET_REPORTED))

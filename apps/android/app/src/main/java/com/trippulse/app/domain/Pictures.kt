@@ -76,6 +76,9 @@ object Pictures {
         EventTypes.OVERNIGHT_CONFIRMED, EventTypes.HALT_CONFIRMED -> STAY
         EventTypes.DEBOARDED -> WALK
         EventTypes.BREAK_CHECKPOINT -> breakStop(payload)
+        // A change of vehicle shows the vehicle changed to; a stage, the one it is made on.
+        EventTypes.TRAVEL_MODE_CHANGED -> (payload["toMode"] as? String)?.let { mode(it) }
+        EventTypes.LEG_STARTED -> (payload["mode"] as? String)?.let { mode(it) }
         else -> null
     }
 

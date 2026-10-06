@@ -83,6 +83,7 @@ import com.trippulse.app.domain.fastag.VehicleKind
 import com.trippulse.app.ui.SettingsVm
 import com.trippulse.app.ui.components.ProfileAvatar
 import com.trippulse.app.ui.components.KoodeCard
+import com.trippulse.app.ui.components.ModeArt
 import com.trippulse.app.ui.components.KoodeChip
 import com.trippulse.app.ui.components.PrimaryButton
 import com.trippulse.app.ui.components.SecondaryButton
@@ -421,7 +422,6 @@ internal fun VehiclesCard(
 @Composable
 internal fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Unit) {
     val colors = KoodeTheme.colors
-    val emoji = if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "🏍" else "🚗"
     val title = v.name.ifBlank { if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "Motorbike" else "Car" }
     val balance = when (FastagMode.fromKey(v.fastagMode)) {
         FastagMode.ANNUAL_PASS -> v.passCrossingsLeft
@@ -430,7 +430,8 @@ internal fun VehicleRow(v: VehicleEntity, onEdit: () -> Unit, onDelete: () -> Un
         FastagMode.NONE -> null
     }
     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-        Text("$emoji  ", style = MaterialTheme.typography.bodyLarge)
+        ModeArt(if (VehicleKind.fromKey(v.kind) == VehicleKind.BIKE) "BIKE" else "CAR", 40.dp)
+        Spacer(Modifier.width(Spacing.sm))
         Column(Modifier.weight(1f)) {
             Text(title, color = colors.textHigh, style = MaterialTheme.typography.bodyLarge)
             val sub = listOfNotNull(v.registration.takeIf { it.isNotBlank() }, balance).joinToString(" · ")
