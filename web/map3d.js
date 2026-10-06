@@ -428,7 +428,8 @@
     try {
       map = new maplibregl.Map({
         container: containerId, style: STYLE_URL, center: [78.9629, 20.5937], zoom: 4.2,
-        attributionControl: { compact: true }
+        // The credit is drawn by the page (#map-credit), shown on load and then faded.
+        attributionControl: false
       });
     } catch (e) {
       // A decade-old laptop without WebGL still gets the journey, the arrival
@@ -450,6 +451,10 @@
       if (pending) draw(pending);
     });
     // Moving the map by hand leaves Follow, as navigation apps do.
+    // The map's credit fades on the first touch, as the attribution guidelines allow.
+    ['dragstart', 'zoomstart', 'rotatestart', 'pitchstart'].forEach(function (ev) {
+      map.on(ev, function (e) { if (e.originalEvent) { var c = document.getElementById('map-credit'); if (c) c.classList.add('gone'); } });
+    });
     ['dragstart', 'rotatestart', 'pitchstart'].forEach(function (ev) {
       map.on(ev, function (e) { if (e.originalEvent && state.follow) setFollow(false, false); });
     });

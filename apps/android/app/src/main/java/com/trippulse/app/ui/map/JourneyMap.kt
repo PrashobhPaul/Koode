@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -67,14 +66,6 @@ import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.geojson.Feature
 import org.maplibre.geojson.FeatureCollection
 import kotlin.math.abs
-
-/**
- * Playback speeds offered by the ▶ control on the map.
- *
- * Starts at 5× because real journeys are slow: a one-to-one replay of a
- * six-hour drive is not a feature. Each tap steps up, then wraps.
- */
-val PLAYBACK_SPEEDS = listOf(5, 10, 20, 30)
 
 private const val FOLLOW_TILT = 58.0
 private const val FOLLOW_ZOOM = 15.5
@@ -143,18 +134,31 @@ fun JourneyMap(
 
     // ---- playback -----------------------------------------------------------
     var playing by remember { mutableStateOf(false) }
-    var speedIndex by remember { mutableIntStateOf(0) }
-    var cursor by remember(breadcrumb.size) { mutableFloatStateOf(breadcrumb.lastIndex.coerceAtLeast(0).toFloat()) }
+    var cursor by remember { mutableFloatStateOf(breadcrumb.lastIndex.coerceAtLeast(0).toFloat()) }
+    // A new live point moves the cursor along only when no replay is open:
+    // a replay playing or paused on a moment stays where it is.
+    var lastSeenIndex by remember { mutableIntStateOf(breadcrumb.lastIndex) }
+    LaunchedEffect(breadcrumb.size) {
+        if (!playing && cursor >= lastSeenIndex.coerceAtLeast(0).toFloat()) cursor = breadcrumb.lastIndex.coerceAtLeast(0).toFloat()
+        if (cursor > breadcrumb.lastIndex.coerceAtLeast(0).toFloat()) cursor = breadcrumb.lastIndex.coerceAtLeast(0).toFloat()
+        lastSeenIndex = breadcrumb.lastIndex
+    }
+    // The strip shrinks to a thin line while it plays untouched.
+    var stripTouchedAt by remember { mutableStateOf(0L) }
+    var touchedMap by remember { mutableStateOf(false) }
     val canPlay = showPlayControl && breadcrumb.size >= 2
     val playbackIndex = cursor.toInt().coerceIn(0, (breadcrumb.size - 1).coerceAtLeast(0))
     val inPlayback = playing || (canPlay && playbackIndex < breadcrumb.lastIndex)
 
-    LaunchedEffect(playing, speedIndex, breadcrumb.size) {
+    // The pace is chosen for the viewer: the whole journey in about 25 s,
+    // each stage at least 2.5 s (see MapStages.replayStep).
+    LaunchedEffect(playing, breadcrumb.size) {
         if (!playing || breadcrumb.size < 2) return@LaunchedEffect
-        val pointsPerFrame = PLAYBACK_SPEEDS[speedIndex] * 0.06f
+        val base = MapStages.replayBaseStep(breadcrumb.size)
+        val runs = MapStages.runs(breadcrumbTimesMs, stages, mode, size = breadcrumb.size)
         while (playing && cursor < breadcrumb.lastIndex.toFloat()) {
-            delay(60)
-            cursor = (cursor + pointsPerFrame).coerceAtMost(breadcrumb.lastIndex.toFloat())
+            delay(MapStages.REPLAY_FRAME_MS)
+            cursor = (cursor + MapStages.replayStep(cursor, runs, base)).coerceAtMost(breadcrumb.lastIndex.toFloat())
         }
         if (cursor >= breadcrumb.lastIndex.toFloat()) playing = false
     }
@@ -196,7 +200,8 @@ fun JourneyMap(
         mapView.getMapAsync { m ->
             m.uiSettings.setLogoEnabled(false)
             m.uiSettings.setCompassEnabled(false)
-            m.uiSettings.setAttributionEnabled(true)
+            // The map credit is drawn by MapCreditLine, which fades after load.
+            m.uiSettings.setAttributionEnabled(false)
             m.uiSettings.setRotateGesturesEnabled(true)
             m.uiSettings.setTiltGesturesEnabled(true)
             m.addOnMapLongClickListener { ll ->
@@ -205,8 +210,9 @@ fun JourneyMap(
                 true
             }
             m.addOnCameraMoveStartedListener { reason ->
-                if (reason == MapLibreMap.OnCameraMoveStartedListener.REASON_API_GESTURE && follow) {
-                    follow = false
+                if (reason == MapLibreMap.OnCameraMoveStartedListener.REASON_API_GESTURE) {
+                    touchedMap = true
+                    if (follow) follow = false
                 }
             }
             // Keep the 3D vehicle the same on-screen size while zooming, and
@@ -370,23 +376,35 @@ fun JourneyMap(
             }
         }
 
+        MapCreditLine(
+            touched = touchedMap || inPlayback,
+            modifier = Modifier.align(Alignment.BottomEnd).padding(controlsPadding).padding(6.dp)
+        )
+
         if (canPlay) {
-            PlaybackControls(
+            ReplayControls(
                 playing = playing,
-                speed = PLAYBACK_SPEEDS[speedIndex],
+                inPlayback = inPlayback,
                 progress = if (breadcrumb.lastIndex <= 0) 0f else cursor / breadcrumb.lastIndex.toFloat(),
                 timeLabel = breadcrumbTimesMs.getOrNull(playbackIndex)
+                    ?.takeIf { it < Long.MAX_VALUE }
                     ?.let { TimeFmt.clockWithDay(it, System.currentTimeMillis()) },
+                touchedAt = stripTouchedAt,
                 onPlayPause = {
+                    stripTouchedAt = System.currentTimeMillis()
                     if (!playing && cursor >= breadcrumb.lastIndex.toFloat()) cursor = 0f
                     playing = !playing
                 },
-                onCycleSpeed = { speedIndex = (speedIndex + 1) % PLAYBACK_SPEEDS.size },
                 onScrub = { fraction ->
+                    stripTouchedAt = System.currentTimeMillis()
                     playing = false
                     cursor = fraction * breadcrumb.lastIndex.toFloat()
                 },
-                modifier = Modifier.align(Alignment.BottomStart).padding(controlsPadding).padding(Spacing.md)
+                onClose = {
+                    playing = false
+                    cursor = breadcrumb.lastIndex.toFloat()
+                },
+                modifier = Modifier.align(Alignment.BottomStart).padding(controlsPadding)
             )
         }
     }
@@ -720,66 +738,92 @@ private fun MapPill(label: String, onClick: (() -> Unit)?) {
 }
 
 /**
- * The map's own transport controls.
+ * Replay, kept out of the map's way.
  *
- * Deliberately floating on the map rather than sitting below it as a "Replay"
- * button: replay is a way of looking at this map, not a different screen.
+ * At rest it is one ▶ pill in the corner, the same size as the camera pill
+ * opposite. Playing, it is a strip along the map's bottom edge (pause, the
+ * scrubber, the journey's clock) that thins to a line after a few seconds
+ * untouched, so the vehicle is never covered. There is no speed to choose:
+ * the replay paces itself (see MapStages.replayStep).
  */
 @Composable
-private fun PlaybackControls(
+private fun ReplayControls(
     playing: Boolean,
-    speed: Int,
+    inPlayback: Boolean,
     progress: Float,
     timeLabel: String?,
+    touchedAt: Long,
     onPlayPause: () -> Unit,
-    onCycleSpeed: () -> Unit,
     onScrub: (Float) -> Unit,
+    onClose: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val colors = KoodeTheme.colors
-    Column(
+    if (!inPlayback) {
+        Box(modifier.padding(Spacing.md)) { MapPill("▶  Replay", onClick = onPlayPause) }
+        return
+    }
+    // Thin while it plays untouched for a few seconds; a tap on the line opens it.
+    var now by remember { mutableStateOf(System.currentTimeMillis()) }
+    LaunchedEffect(playing, touchedAt) {
+        now = System.currentTimeMillis()
+        while (playing) { delay(500); now = System.currentTimeMillis() }
+    }
+    var reopenedAt by remember { mutableStateOf(0L) }
+    val quiet = playing && now - maxOf(touchedAt, reopenedAt) > 3_000L
+    if (quiet) {
+        Box(
+            modifier
+                .fillMaxWidth()
+                .height(22.dp)
+                .clickable { reopenedAt = System.currentTimeMillis() },
+            contentAlignment = Alignment.BottomStart
+        ) {
+            Box(Modifier.fillMaxWidth().height(3.dp).background(colors.outline.copy(alpha = 0.5f)))
+            Box(Modifier.fillMaxWidth(progress.coerceIn(0f, 1f)).height(3.dp).background(colors.accent))
+        }
+        return
+    }
+    Row(
         modifier
-            .clip(RoundedCornerShape(Radii.md))
+            .fillMaxWidth()
             .background(colors.background.copy(alpha = 0.86f))
-            .border(1.dp, colors.outline.copy(alpha = 0.7f), RoundedCornerShape(Radii.md))
-            .padding(horizontal = Spacing.md, vertical = Spacing.sm)
+            .padding(horizontal = Spacing.sm, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(
-                Modifier
-                    .size(38.dp)
-                    .clip(RoundedCornerShape(Radii.pill))
-                    .background(colors.accent)
-                    .clickable(onClick = onPlayPause),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(if (playing) "⏸" else "▶", fontSize = 15.sp)
-            }
-            Spacer(Modifier.width(Spacing.sm))
-            Box(
-                Modifier
-                    .clip(RoundedCornerShape(Radii.pill))
-                    .background(colors.surfaceRaised)
-                    .clickable(onClick = onCycleSpeed)
-                    .padding(horizontal = 12.dp, vertical = 7.dp)
-            ) {
-                Text("${speed}×", color = colors.accent, style = MaterialTheme.typography.labelSmall, fontSize = 12.sp)
-            }
-            if (timeLabel != null) {
-                Spacer(Modifier.width(Spacing.sm))
-                Text(timeLabel, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
-            }
+        Box(
+            Modifier
+                .size(34.dp)
+                .clip(RoundedCornerShape(Radii.pill))
+                .background(colors.accent)
+                .clickable(onClick = onPlayPause),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(if (playing) "⏸" else "▶", fontSize = 13.sp)
         }
         Slider(
             value = progress.coerceIn(0f, 1f),
             onValueChange = onScrub,
-            modifier = Modifier.width(210.dp).height(20.dp),
+            modifier = Modifier.weight(1f).height(20.dp).padding(horizontal = Spacing.sm),
             colors = SliderDefaults.colors(
                 thumbColor = colors.accent,
                 activeTrackColor = colors.accent,
                 inactiveTrackColor = colors.outline
             )
         )
+        if (timeLabel != null) {
+            Text(timeLabel, color = colors.textMid, style = MaterialTheme.typography.bodySmall)
+            Spacer(Modifier.width(Spacing.sm))
+        }
+        Box(
+            Modifier
+                .size(28.dp)
+                .clip(RoundedCornerShape(Radii.pill))
+                .clickable(onClick = onClose),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("✕", color = colors.textMid, fontSize = 13.sp)
+        }
     }
 }
 

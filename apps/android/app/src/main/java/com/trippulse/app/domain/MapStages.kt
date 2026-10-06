@@ -55,6 +55,34 @@ object MapStages {
         return out
     }
 
+    /**
+     * How fast a replay runs, chosen for the viewer rather than by them: the
+     * whole journey plays in [REPLAY_WHOLE_MS] (a short one in no less than
+     * [REPLAY_MIN_MS]), and every stage gets at least [REPLAY_STAGE_MS] on
+     * screen, so the walk to the metro is seen even in a six-hour drive.
+     * The answer is in recorded points per frame of [REPLAY_FRAME_MS].
+     */
+    const val REPLAY_FRAME_MS = 60L
+    const val REPLAY_WHOLE_MS = 25_000L
+    const val REPLAY_MIN_MS = 6_000L
+    const val REPLAY_STAGE_MS = 2_500L
+
+    /** Points per frame for the journey as a whole. */
+    fun replayBaseStep(points: Int): Float {
+        if (points < 2) return 0f
+        val ms = ((points - 1) * 250L).coerceIn(REPLAY_MIN_MS, REPLAY_WHOLE_MS)
+        return (points - 1).toFloat() / (ms / REPLAY_FRAME_MS).toFloat()
+    }
+
+    /** Points per frame at [cursor]: the base pace, slowed inside a short stage. */
+    fun replayStep(cursor: Float, runs: List<Run>, base: Float): Float {
+        if (base <= 0f) return 0f
+        val i = cursor.toInt()
+        val run = runs.lastOrNull { it.from <= i && i < it.to } ?: return base
+        val floor = (run.to - run.from).toFloat() / (REPLAY_STAGE_MS / REPLAY_FRAME_MS).toFloat()
+        return minOf(base, floor).coerceAtLeast(base / 40f)
+    }
+
     /** Walked stretches are drawn as dots, not a road line. */
     fun onFoot(mode: String?): Boolean = TransportCatalog.profile(mode).key == TransportCatalog.WALK.key
 
