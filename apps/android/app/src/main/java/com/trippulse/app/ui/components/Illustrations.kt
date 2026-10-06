@@ -53,7 +53,8 @@ object KoodeArt {
         "cycle" to R.drawable.art_cycle,
         "ferry" to R.drawable.art_ferry,
         "cruise" to R.drawable.art_cruise,
-        "metro-side" to R.drawable.art_metro_side
+        "metro-side" to R.drawable.art_metro_side,
+        "bike-taxi" to R.drawable.art_bike_taxi
     )
 
     @DrawableRes fun file(name: String?): Int? = name?.let { FILES[it] }

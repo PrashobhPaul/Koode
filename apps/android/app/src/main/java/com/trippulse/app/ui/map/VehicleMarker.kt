@@ -62,7 +62,7 @@ internal object VehicleMarker {
         "CAR" -> CAR
         "CAB" -> CAB
         "AUTO" -> AUTO
-        "BIKE" -> BIKE
+        "BIKE", "BIKE_TAXI" -> BIKE
         "CYCLE" -> CYCLE
         "BUS" -> BUS
         "METRO" -> METRO

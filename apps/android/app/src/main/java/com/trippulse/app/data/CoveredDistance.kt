@@ -17,3 +17,12 @@ fun coveredDistanceM(liveM: Double, samples: List<LocationSampleEntity>, cfg: Tr
     )
     return DistanceLedger.reconcile(liveM, record)
 }
+
+/**
+ * How far the record moved during a stage, or null when the stage has no
+ * end yet or too few fixes fell inside it to say.
+ */
+fun legDistanceM(samples: List<LocationSampleEntity>, startedAtMs: Long?, completedAtMs: Long?): Double? {
+    if (startedAtMs == null || completedAtMs == null) return null
+    return com.trippulse.app.domain.StageRepair.pathLengthM(samples, { it.tMs }, { it.lat }, { it.lng }, startedAtMs, completedAtMs)
+}

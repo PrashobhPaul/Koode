@@ -24,6 +24,8 @@ interface Surface {
     fun arc(cx: Float, cy: Float, r: Float, startDeg: Float, sweepDeg: Float, color: Int, width: Float)
     /** One of the app's illustrations (see domain.Pictures), fitted into the box. False if unavailable. */
     fun picture(name: String, l: Float, t: Float, w: Float, h: Float, mirrored: Boolean = false): Boolean
+    /** A raster handed to the report (a rendered map), stretched over the box and clipped to its corners. False if unavailable. */
+    fun image(image: Any, l: Float, t: Float, w: Float, h: Float, radius: Float): Boolean = false
     /** The traveller's photo or initial, clipped to a circle. False if unavailable. */
     fun avatar(cx: Float, cy: Float, r: Float): Boolean
     /** The Koode mark. */

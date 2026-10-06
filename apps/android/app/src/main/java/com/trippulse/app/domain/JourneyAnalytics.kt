@@ -52,7 +52,9 @@ object JourneyAnalytics {
         val startedAtMs: Long?,
         val completedAtMs: Long?,
         /** Seat or berth, for the timeline/PDF. PNR is deliberately not carried. */
-        val seat: String? = null
+        val seat: String? = null,
+        /** How far the record moved during the stage, when known: a short walk between rides is not a stage. */
+        val distanceM: Double? = null
     )
 
     data class Inputs(
@@ -252,9 +254,11 @@ object JourneyAnalytics {
         val kwh = i.expenses.filter { it.type == "FUEL" && it.unit == "kWh" }.sumOf { it.quantity ?: 0.0 }
 
         // A change tapped twice is one stage, not two.
-        val legReports = StageRepair.folded(i.legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
-            a.copy(toName = b.toName, completedAtMs = b.completedAtMs)
-        }.mapIndexed { n, leg ->
+        val legReports = StageRepair.ridden(
+            StageRepair.folded(i.legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
+                a.copy(toName = b.toName, completedAtMs = b.completedAtMs, distanceM = listOfNotNull(a.distanceM, b.distanceM).takeIf { it.isNotEmpty() }?.sum())
+            }, { it.mode }, { it.distanceM }
+        ).mapIndexed { n, leg ->
             LegReport(
                 index = n, mode = leg.mode,
                 fromName = leg.fromName, toName = leg.toName,

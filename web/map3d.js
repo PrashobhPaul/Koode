@@ -122,7 +122,7 @@
     };
   })();
 
-  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), AUTO: car('#F5C518', true), BIKE: BIKE, CYCLE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP, FERRY: SHIP };
+  var MODELS = { CAR: car('#E5484D', false), CAB: car('#F5C518', true), AUTO: car('#F5C518', true), BIKE: BIKE, BIKE_TAXI: BIKE, CYCLE: BIKE, BUS: BUS, TRAIN: TRAIN, METRO: TRAIN, FLIGHT: FLIGHT, SHIP: SHIP, FERRY: SHIP };
   function model(mode) { return MODELS[mode] || MODELS.CAR; }
 
   // ---- geometry --------------------------------------------------------------
@@ -216,7 +216,7 @@
   // flight is its 3D model.
   var VIEWS = {
     CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'cab', len: 50, rear: 46 },
-    AUTO: { key: 'auto', len: 40, rear: 38 }, BIKE: { key: 'bike', len: 40, rear: 32 },
+    AUTO: { key: 'auto', len: 40, rear: 38 }, BIKE: { key: 'bike', len: 40, rear: 32 }, BIKE_TAXI: { key: 'bike', len: 40, rear: 32 },
     CYCLE: { key: 'cycle', len: 38, rear: 22 }, BUS: { key: 'bus', len: 78, rear: 54 },
     METRO: { key: 'metro', len: 96, topOnly: true }, TRAIN: { key: 'train', len: 104, topOnly: true },
     SHIP: { key: 'cruise', len: 100, rear: 66 }, FERRY: { key: 'ship', len: 66, rear: 62 }, WALK: { key: 'walk', upright: 46 }
@@ -531,7 +531,7 @@
     /** The trail's stretches as last drawn, for checks: [look, points] per stretch. */
     _trail: function () { return lastTrail.features.map(function (f) { return [f.properties.look, f.geometry.coordinates.length]; }); },
     MODES: {
-      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Motorbike'], CAB: ['🚕', 'Cab'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
+      CAR: ['🚗', 'Car'], BIKE: ['🏍', 'Motorbike'], CAB: ['🚕', 'Cab'], BIKE_TAXI: ['🏍', 'Bike taxi'], AUTO: ['🛺', 'Auto'], BUS: ['🚌', 'Bus'],
       TRAIN: ['🚆', 'Train'], METRO: ['🚇', 'Metro'], FLIGHT: ['✈️', 'Flight'], SHIP: ['🚢', 'Cruise / ship'], FERRY: ['⛴️', 'Ferry / boat'],
       CYCLE: ['🚲', 'Bicycle'], WALK: ['🚶', 'Walking']
     }

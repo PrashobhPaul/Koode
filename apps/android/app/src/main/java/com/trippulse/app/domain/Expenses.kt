@@ -17,7 +17,7 @@ object Expenses {
 
     enum class Category(val label: String, val emoji: String) {
         FUEL("Fuel", "⛽"), TOLL("Tolls", "🛣"), FOOD("Food", "🍛"),
-        CAB("Cab", "🚕"), AUTO("Auto", "🛺"), METRO("Metro", "🚇"), BUS("Bus", "🚌"),
+        CAB("Cab", "🚕"), BIKE_TAXI("Bike taxi", "🏍"), AUTO("Auto", "🛺"), METRO("Metro", "🚇"), BUS("Bus", "🚌"),
         TRAIN("Train", "🚆"), FLIGHT("Flight", "✈️"), SHIP("Ship / ferry", "🚢"),
         PARKING("Parking", "🅿️"), ACCOMMODATION("Accommodation", "🏨"),
         VEHICLE_REPAIR("Vehicle repair", "🔧"), OTHER("Other", "🧾");
@@ -34,6 +34,7 @@ object Expenses {
             /** The fare category of a travel mode, or null for your own vehicle. */
             fun fareFor(modeKey: String?): Category? = when (modeKey?.uppercase()) {
                 "CAB" -> CAB
+                "BIKE_TAXI" -> BIKE_TAXI
                 "AUTO" -> AUTO
                 "BUS" -> BUS
                 "METRO" -> METRO

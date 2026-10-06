@@ -68,6 +68,46 @@ object StageRepair {
         return out
     }
 
+    /**
+     * A walk counts as a way of travelling from this far. Shorter, between
+     * two rides, it is the change between them: the platform, the car park,
+     * the minutes waiting for the cab. Told as the change, not as a stage.
+     */
+    const val WALK_COUNTS_FROM_M = 1000.0
+
+    /**
+     * Whether a stage counts as a way the journey was made. Everything ridden
+     * does. Walking does from [WALK_COUNTS_FROM_M]; a walk whose distance is
+     * not known is kept, because nothing is dropped on a guess.
+     */
+    fun countsAsStage(mode: String, distanceM: Double?): Boolean =
+        TransportCatalog.profile(mode).key != TransportCatalog.WALK.key || distanceM == null || distanceM >= WALK_COUNTS_FROM_M
+
+    /**
+     * The stages that count (see [countsAsStage]), the short walks between
+     * rides left out. A journey made only of short walks keeps them: they are
+     * all it was.
+     */
+    fun <T> ridden(items: List<T>, mode: (T) -> String, distanceM: (T) -> Double?): List<T> {
+        val kept = items.filter { countsAsStage(mode(it), distanceM(it)) }
+        return kept.ifEmpty { items }
+    }
+
+    /**
+     * How far the record moved between [from] and [to], along the fixes.
+     * Null when fewer than two fixes fall inside: the distance is then not
+     * known, and a caller must not treat it as zero.
+     */
+    fun <P> pathLengthM(points: List<P>, tMs: (P) -> Long, lat: (P) -> Double, lng: (P) -> Double, from: Long, to: Long): Double? {
+        val inside = points.filter { tMs(it) in from..to }
+        if (inside.size < 2) return null
+        var d = 0.0
+        for (i in 1 until inside.size) {
+            d += Geo.haversineM(GeoPoint(lat(inside[i - 1]), lng(inside[i - 1])), GeoPoint(lat(inside[i]), lng(inside[i])))
+        }
+        return d
+    }
+
     /** What a switch point away from any saved place is called until it is named. */
     const val EN_ROUTE = "En route"
 }

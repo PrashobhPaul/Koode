@@ -152,7 +152,9 @@ object JourneyStory {
             val endMs: Long?,
             val kind: MomentKind,
             val text: String,
-            val place: String?
+            val place: String?,
+            /** For a change of vehicle: the vehicle changed to, which is the picture the moment is drawn with. */
+            val mode: String? = null
         ) : Entry()
 
         data class Arrive(override val atMs: Long, val place: String) : Entry()
@@ -257,7 +259,11 @@ object JourneyStory {
         val completed = input.endedAtMs != null
 
         // ---- the chain of places the vehicle actually stood at, and the drives between ----
-        val stages = stageSpans(events, input, endMs)
+        // A walk of a few hundred metres between the metro and the cab is the
+        // change between them, not a way the journey was made.
+        val allSpans = stageSpans(events, input, endMs)
+        val stages = com.trippulse.app.domain.StageRepair.ridden(allSpans, { it.mode }) { travelled(input.samples, it.fromMs, it.toMs, null) }
+        val transfers = allSpans.filterNot { it in stages }
         // A break logged while on a halt (water in the room) is part of the halt, not a place the car stood.
         fun insideHalt(s: Entry.Stop) = halts.any { h -> s.atMs >= h.atMs && s.atMs < (h.endMs ?: endMs) }
         val standing = stops.filterNot { it.loggedLater || insideHalt(it) }
@@ -293,7 +299,7 @@ object JourneyStory {
         }
 
         // ---- moments worth a line of their own ----
-        val moments = moments(events, input, book, gaps, drives)
+        val moments = moments(events, input, book, gaps, drives, stages, transfers)
 
         // Every stop is told, including the ones that are not anchors (logged later, or in the middle of a halt).
         val all = (anchors + stops.filterNot { it in standing } + drives + moments).sortedWith(
@@ -495,11 +501,30 @@ object JourneyStory {
         return (ridden.ifEmpty { byMode }).maxByOrNull { it.value }?.key ?: fallback
     }
 
+    /** A change of vehicle within this of a walk's start or end belongs to that walk. */
+    private const val TRANSFER_SLACK_MS = 3 * 60_000L
+
+    /** "the metro", "a cab", "a bike taxi", "walking": a vehicle as the object of a sentence. */
+    fun vehicleWord(mode: String?): String = when (TransportCatalog.profile(mode).key) {
+        "WALK" -> "walking"
+        "CAR" -> "the car"
+        "BIKE" -> "the motorbike"
+        "CYCLE" -> "the bicycle"
+        "CAB" -> "a cab"
+        "BIKE_TAXI" -> "a bike taxi"
+        "AUTO" -> "an auto"
+        "FLIGHT" -> "a flight"
+        "SHIP" -> "the ship"
+        "FERRY" -> "the ferry"
+        else -> "the " + com.trippulse.app.domain.JourneyPlans.modeWord(TransportCatalog.profile(mode).key)
+    }
+
     /** "by cab", "on foot", "by air". */
     fun byMode(mode: String?): String = when (TransportCatalog.profile(mode).key) {
         "WALK" -> "on foot"
         "FLIGHT" -> "by air"
         "CAB" -> "by cab"
+        "BIKE_TAXI" -> "by bike taxi"
         else -> "by " + com.trippulse.app.domain.JourneyPlans.modeWord(TransportCatalog.profile(mode).key)
     }
 
@@ -728,6 +753,8 @@ object JourneyStory {
     private fun moments(
         events: List<TripEvent>, input: Input, book: PlaceBook,
         gaps: List<Pair<Long, Long>>, drives: List<Entry.Drive>
+    ,
+        stages: List<StageSpan> = emptyList(), transfers: List<StageSpan> = emptyList()
     ): List<Entry.Moment> {
         val out = ArrayList<Entry.Moment>()
         // A silence already told inside a drive ("the phone was offline for part of it") needs no line of its own.
@@ -738,7 +765,38 @@ object JourneyStory {
                 "Phone out of contact for ${duration((to - from) / 1000)}",
                 back?.let { book.describe(it.lat, it.lng) })
         }
+        // A change of vehicle is told as what it was changed to, in Koode's own
+        // words; a short walk between two rides is the one change from the
+        // first ride to the second, however many taps it took.
+        val skip = HashSet<TripEvent>()
         for (e in events) {
+            if (e.type != EventTypes.TRAVEL_MODE_CHANGED) continue
+            val from = e.payload["fromMode"] as? String
+            val to = e.payload["toMode"] as? String ?: continue
+            val at = TimelineEdits.shownTime(e.type, e.payload, e.eventTimeMs)
+            val transfer = transfers.firstOrNull { abs(it.fromMs - at) < TRANSFER_SLACK_MS || abs(it.toMs - at) < TRANSFER_SLACK_MS }
+            if (transfer != null && TransportCatalog.profile(to).key == TransportCatalog.WALK.key) {
+                // The walk begins: one moment for the whole change.
+                val next = stages.firstOrNull { it.fromMs >= transfer.toMs - TRANSFER_SLACK_MS }?.mode
+                val place = book.describe(e.lat, e.lng)
+                val walked = travelled(input.samples, transfer.fromMs, transfer.toMs, null)
+                out += if (next != null) Entry.Moment(
+                    transfer.fromMs, transfer.toMs, MomentKind.MODE,
+                    "Changed from ${vehicleWord(from)} to ${vehicleWord(next)}", place, mode = next
+                ) else Entry.Moment(
+                    transfer.fromMs, transfer.toMs, MomentKind.MODE,
+                    "Off ${vehicleWord(from)}, the last ${km(walked, input.measures, "WALK")} on foot", place, mode = "WALK"
+                )
+                skip += e
+            } else if (transfer != null && from != null && TransportCatalog.profile(from).key == TransportCatalog.WALK.key) {
+                skip += e // the walk ends: already told by the moment it began with
+            } else if (from == null || TransportCatalog.profile(from).key != TransportCatalog.profile(to).key) {
+                out += Entry.Moment(at, null, MomentKind.MODE, "Changed from ${vehicleWord(from)} to ${vehicleWord(to)}", book.describe(e.lat, e.lng), mode = to)
+                skip += e
+            } else skip += e
+        }
+        for (e in events) {
+            if (e in skip) continue
             val place = book.describe(e.lat, e.lng)
             val text = e.payload["text"] as? String
             val m = when (e.type) {

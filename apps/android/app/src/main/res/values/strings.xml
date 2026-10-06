@@ -299,6 +299,7 @@
     <string name="mode_bike">Motorbike</string>
     <string name="mode_cycle">Bicycle</string>
     <string name="mode_cab">Cab / taxi</string>
+    <string name="mode_bike_taxi">Bike taxi</string>
     <string name="mode_auto">Auto</string>
     <string name="mode_bus">Bus</string>
     <string name="mode_metro">Metro</string>

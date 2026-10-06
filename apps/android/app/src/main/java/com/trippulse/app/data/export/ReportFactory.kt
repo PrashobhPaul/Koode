@@ -7,6 +7,7 @@ import com.trippulse.app.core.LocationFix
 import com.trippulse.app.core.Profile
 import com.trippulse.app.core.TripCredentials
 import com.trippulse.app.data.EventCodec
+import com.trippulse.app.data.export.report.Paginator
 import com.trippulse.app.data.export.report.Report
 import com.trippulse.app.data.export.report.Reports
 import com.trippulse.app.data.local.ActiveTripEntity
@@ -59,8 +60,9 @@ object ReportFactory {
         val input = input(context, trip, events, samples, analytics, originLabel, destLabel, measures)
         val book = book(context, input)
         val story = JourneyStory.build(input, book)
+        val map = MapSnapshots.backdrop(context, samples.map { it.lat to it.lng }, Paginator.PAGE_W - Paginator.MARGIN * 2, 214f)
         return Reports.journey(
-            Reports.JourneyInput(story, input, book, analytics, TripCredentials.pretty(trip.tripId), measures, System.currentTimeMillis(), fastagSummary)
+            Reports.JourneyInput(story, input, book, analytics, TripCredentials.pretty(trip.tripId), measures, System.currentTimeMillis(), fastagSummary, mapBackdrop = map)
         )
     }
 
@@ -139,6 +141,7 @@ object ReportFactory {
         val device = (meta?.get("device") as? Map<String, Any?>).orEmpty()
         val ref = mStr("tripId")?.let { TripCredentials.pretty(it) } ?: fallbackRef
         val name = JourneyStory.name(who)
+        val map = MapSnapshots.backdrop(context, points.map { it.lat to it.lng }, Paginator.PAGE_W - Paginator.MARGIN * 2, 190f)
         return Reports.lastKnown(
             Reports.LastKnownInput(
                 story = story, input = input, book = book, tripRef = ref,
@@ -154,7 +157,8 @@ object ReportFactory {
                 deviceNote = if (device.isEmpty()) null else
                     "Android does not let ordinary apps read the IMEI or the hardware MAC address; Koode never sees them. " +
                         "The carrier can identify the phone from the public IP address and the times above.",
-                preparedAtMs = now
+                preparedAtMs = now,
+                mapBackdrop = map
             )
         )
     }
