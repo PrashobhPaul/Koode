@@ -127,7 +127,8 @@ class ApprovedJourneyPublisher(
 
         if (!state.reportDone) {
             val legs = db.legDao().forTrip(a.tripId).map {
-                JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat)
+                JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat,
+                    distanceM = com.trippulse.app.data.legDistanceM(samples, it.startedAtMs, it.completedAtMs))
             }
             val report = JourneyAnalytics.analyse(
                 JourneyAnalytics.Inputs(

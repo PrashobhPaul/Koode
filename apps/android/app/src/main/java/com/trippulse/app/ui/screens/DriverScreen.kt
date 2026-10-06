@@ -511,11 +511,17 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             }
 
             // ---- stages, when there is more than one ----
-            // A change tapped twice is one stage: the pair reads as one.
-            val stages = remember(legs) {
-                com.trippulse.app.domain.StageRepair.folded(legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
-                    b.copy(fromName = a.fromName, fromLat = a.fromLat, fromLng = a.fromLng, startedAtMs = a.startedAtMs)
-                }
+            // A change tapped twice is one stage: the pair reads as one. A walk
+            // of a few hundred metres between two rides is the change between
+            // them, not a stage.
+            val stages = remember(legs, breadcrumb.size) {
+                val repair = com.trippulse.app.domain.StageRepair
+                repair.ridden(
+                    repair.folded(legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
+                        b.copy(fromName = a.fromName, fromLat = a.fromLat, fromLng = a.fromLng, startedAtMs = a.startedAtMs)
+                    },
+                    { it.mode }
+                ) { leg -> com.trippulse.app.data.legDistanceM(breadcrumb, leg.startedAtMs, leg.completedAtMs) }
             }
             if (stages.size > 1) {
                 KoodeCard(title = stringResource(R.string.t_stages_c1d33)) {

@@ -17,7 +17,7 @@ object Names {
 
     private val MODE = mapOf(
         "CAR" to R.string.mode_car, "BIKE" to R.string.mode_bike, "CYCLE" to R.string.mode_cycle,
-        "CAB" to R.string.mode_cab, "AUTO" to R.string.mode_auto, "BUS" to R.string.mode_bus,
+        "CAB" to R.string.mode_cab, "BIKE_TAXI" to R.string.mode_bike_taxi, "AUTO" to R.string.mode_auto, "BUS" to R.string.mode_bus,
         "METRO" to R.string.mode_metro, "TRAIN" to R.string.mode_train, "FLIGHT" to R.string.mode_flight,
         "FERRY" to R.string.mode_ferry, "SHIP" to R.string.mode_ship, "WALK" to R.string.mode_walk
     )

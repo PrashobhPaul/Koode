@@ -174,7 +174,12 @@ class Paragraph(
     }
 }
 
-/** The recorded route, with each stop pinned on it by its picture. */
+/**
+ * The recorded route, with each stop pinned on it by its picture.
+ *
+ * Drawn over a real map when the phone could render one ([Backdrop], from
+ * MapLibre); on a light grid, like a paper map, when it could not.
+ */
 class RouteMap(
     private val path: List<Point>,
     private val markers: List<Marker>,
@@ -182,10 +187,24 @@ class RouteMap(
     private val endLabel: String?,
     private val endIcon: Icon? = null,
     private val h: Float = 214f,
-    private val endIsCurrent: Boolean = false
+    private val endIsCurrent: Boolean = false,
+    private val backdrop: Backdrop? = null
 ) : Block() {
     data class Point(val tMs: Long, val lat: Double, val lng: Double)
     data class Marker(val lat: Double, val lng: Double, val icon: Icon)
+
+    /**
+     * A rendered map the route is drawn over: the raster, its size, and the
+     * projection from a place to a pixel on it. The map data is
+     * OpenStreetMap's, so the credit is drawn with it.
+     */
+    class Backdrop(val image: Any, val widthPx: Int, val heightPx: Int, val project: (lat: Double, lng: Double) -> Pair<Float, Float>) {
+        companion object {
+            const val CREDIT = "© OpenStreetMap contributors · OpenFreeMap"
+            /** Room the route keeps from the edges, as a share of its extent. */
+            const val PADDING = 0.18
+        }
+    }
 
     override fun height(s: Surface, w: Float) = h + 10f
 
@@ -195,25 +214,34 @@ class RouteMap(
             s.text("No route was recorded.", x + 16f, y + h / 2, Type.small)
             return
         }
-        // light grid, like a paper map
-        var gx = x + 24f
-        while (gx < x + w) { s.line(gx, y + 1f, gx, y + h - 1f, Ink.alpha(Ink.RULE, 0.55f), 0.5f); gx += 30f }
-        var gy = y + 18f
-        while (gy < y + h) { s.line(x + 1f, gy, x + w - 1f, gy, Ink.alpha(Ink.RULE, 0.55f), 0.5f); gy += 30f }
+        val onMap = backdrop != null && s.image(backdrop.image, x, y, w, h, 14f)
+        val px: (Double) -> Float
+        val py: (Double) -> Float
+        if (onMap) {
+            val sx = w / backdrop!!.widthPx; val sy = h / backdrop.heightPx
+            px = { lng -> x + backdrop.project(0.0, lng).first * sx }
+            py = { lat -> y + backdrop.project(lat, 0.0).second * sy }
+        } else {
+            // light grid, like a paper map
+            var gx = x + 24f
+            while (gx < x + w) { s.line(gx, y + 1f, gx, y + h - 1f, Ink.alpha(Ink.RULE, 0.55f), 0.5f); gx += 30f }
+            var gy = y + 18f
+            while (gy < y + h) { s.line(x + 1f, gy, x + w - 1f, gy, Ink.alpha(Ink.RULE, 0.55f), 0.5f); gy += 30f }
 
-        val lats = path.map { it.lat } + markers.map { it.lat }
-        val lngs = path.map { it.lng } + markers.map { it.lng }
-        val minLat = lats.min(); val maxLat = lats.max()
-        val minLng = lngs.min(); val maxLng = lngs.max()
-        val midLat = Math.toRadians((minLat + maxLat) / 2)
-        val spanX = ((maxLng - minLng) * Math.cos(midLat)).coerceAtLeast(1e-4)
-        val spanY = (maxLat - minLat).coerceAtLeast(1e-4)
-        val padX = 64f; val padY = 30f
-        val scale = minOf((w - padX * 2) / spanX, (h - padY * 2) / spanY)
-        val offX = x + (w - spanX * scale).toFloat() / 2
-        val offY = y + (h - spanY * scale).toFloat() / 2
-        fun px(lng: Double) = (offX + (lng - minLng) * Math.cos(midLat) * scale).toFloat()
-        fun py(lat: Double) = (offY + (maxLat - lat) * scale).toFloat()
+            val lats = path.map { it.lat } + markers.map { it.lat }
+            val lngs = path.map { it.lng } + markers.map { it.lng }
+            val minLat = lats.min(); val maxLat = lats.max()
+            val minLng = lngs.min(); val maxLng = lngs.max()
+            val midLat = Math.toRadians((minLat + maxLat) / 2)
+            val spanX = ((maxLng - minLng) * Math.cos(midLat)).coerceAtLeast(1e-4)
+            val spanY = (maxLat - minLat).coerceAtLeast(1e-4)
+            val padX = 64f; val padY = 30f
+            val scale = minOf((w - padX * 2) / spanX, (h - padY * 2) / spanY)
+            val offX = x + (w - spanX * scale).toFloat() / 2
+            val offY = y + (h - spanY * scale).toFloat() / 2
+            px = { lng -> (offX + (lng - minLng) * Math.cos(midLat) * scale).toFloat() }
+            py = { lat -> (offY + (maxLat - lat) * scale).toFloat() }
+        }
 
         // Draw in runs; a silence (no fixes for 20+ minutes) is a dashed straight line.
         var run = ArrayList<Float>()
@@ -243,6 +271,12 @@ class RouteMap(
             s.icon(it, cx - 11f, cy - 11f, 22f)
             endLabel?.let { l -> label(s, cx, cy - 22f, l, x, w) }
         } ?: dot(s, px(b.lng), py(b.lat), if (endIsCurrent) Ink.AMBER else Ink.SKY, endLabel, x, w, leftSide = false)
+        if (onMap) {
+            val st = TextStyle(Face.BODY, 6.4f, Ink.MUTED, 500)
+            val tw = s.measure(Backdrop.CREDIT, st) + 10f
+            s.rect(x + w - tw - 6f, y + h - 14f, x + w - 6f, y + h - 3f, Ink.alpha(Ink.WHITE, 0.82f), 4f)
+            s.text(Backdrop.CREDIT, x + w - tw - 1f, y + h - 5.5f, st)
+        }
     }
 
     private fun dot(s: Surface, cx: Float, cy: Float, color: Int, text: String?, x: Float, w: Float, leftSide: Boolean) {
@@ -367,14 +401,23 @@ class TimelineNode(
 }
 
 /** The road between two stops, told quietly on the rail. */
-class TimelineLeg(private val text: String, private val sub: String? = null, private val dashed: Boolean = false, private val glyph: String = "road") : Block() {
+class TimelineLeg(
+    private val text: String,
+    private val sub: String? = null,
+    private val dashed: Boolean = false,
+    private val glyph: String = "road",
+    /** The vehicle the stretch was made on; drawn in place of [glyph] when it has a picture. */
+    private val icon: Icon? = null
+) : Block() {
     private val railX = 76f
     override fun height(s: Surface, w: Float) = if (sub != null) 34f else 24f
     override fun draw(s: Surface, x: Float, y: Float, w: Float) {
         val h = height(s, w)
         val rx = x + railX
         s.line(rx, y, rx, y + h, if (dashed) Ink.FAINT else Ink.alpha(Ink.TEAL_LINE, 0.55f), if (dashed) 1.4f else 2.2f, dash = if (dashed) 3.5f else 0f)
-        Glyphs.draw(s, glyph, x + 104f + 6f, y + h / 2 - (if (sub != null) 4f else 0f), 12f, Ink.MUTED)
+        val cy = y + h / 2 - (if (sub != null) 4f else 0f)
+        val drawn = icon?.picture?.let { s.picture(it, x + 98f, cy - 10f, 24f, 20f, icon.mirrored) } == true
+        if (!drawn) Glyphs.draw(s, glyph, x + 104f + 6f, cy, 12f, Ink.MUTED)
         val st = TextStyle(Face.BODY, 8.8f, Ink.MUTED, 500)
         s.text(fit(s, text, st, w - 124f), x + 120f, y + h / 2 + 3f - (if (sub != null) 5f else 0f), st)
         sub?.let { s.text(fit(s, it, Type.tiny, w - 124f), x + 120f, y + h / 2 + 9f, Type.tiny) }

@@ -121,6 +121,23 @@ object TransportCatalog {
     )
 
     /**
+     * A bike taxi (Rapido, Uber Moto, a Go-Jek): pillion behind a rider. A
+     * passenger, like in a cab, so no fuel and no driving-hours rules; it
+     * moves like a motorbike, so the map draws the motorbike. "Cab" stays
+     * for a car with a driver.
+     */
+    val BIKE_TAXI = CAB.copy(
+        key = "BIKE_TAXI", label = "Bike taxi", emoji = "🏍",
+        quickActions = listOf(
+            QuickAction(EventTypes.BOARDED, "🎫", "Hopped on", "Got on the bike taxi"),
+            QuickAction(EventTypes.TRANSIT_HALTED, "⏸", "Halted", "Bike taxi halted"),
+            QuickAction(EventTypes.TRANSIT_RESUMED, "▶", "Moving again", "Bike taxi is moving again"),
+            QuickAction(EventTypes.DEBOARDED, "🚶", "Got off", "Got off the bike taxi")
+        ),
+        travellingSuffix = " by bike taxi"
+    )
+
+    /**
      * An auto-rickshaw: hailed on the street or booked, the traveller rides
      * as a passenger. Same rules as a cab; its own picture, words and fare.
      */
@@ -255,14 +272,14 @@ object TransportCatalog {
     )
 
     /** Ordered for the mode picker: private first, then public transport, then on foot. */
-    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, AUTO, BUS, METRO, TRAIN, FLIGHT, FERRY, SHIP, CYCLE, WALK)
+    val ALL: List<TransportProfile> = listOf(CAR, BIKE, CAB, BIKE_TAXI, AUTO, BUS, METRO, TRAIN, FLIGHT, FERRY, SHIP, CYCLE, WALK)
 
     /**
      * The ways a day's commute is made, in the order they are offered for a
      * one-tap change part-way. None asks for details, so a change never
      * stops at a form.
      */
-    val COMMUTE: List<TransportProfile> get() = listOf(WALK, CYCLE, METRO, BUS, CAB, FERRY, AUTO)
+    val COMMUTE: List<TransportProfile> get() = listOf(WALK, CYCLE, METRO, BUS, CAB, BIKE_TAXI, AUTO, FERRY)
 
     fun profile(key: String?): TransportProfile =
         ALL.firstOrNull { it.key == key } ?: CAR

@@ -44,7 +44,9 @@ object Reports {
         val measures: Measures,
         val preparedAtMs: Long,
         /** "47 crossings left" — the vehicle's FASTag balance, when tracked. */
-        val fastagSummary: String? = null
+        val fastagSummary: String? = null,
+        /** A rendered map for the route, when the phone could make one. */
+        val mapBackdrop: RouteMap.Backdrop? = null
     )
 
     fun journey(j: JourneyInput): Report {
@@ -99,6 +101,7 @@ object Reports {
             blocks += Space(8f)
             blocks += Heading("The route")
             blocks += RouteMap(
+                backdrop = j.mapBackdrop,
                 path = i.samples.map { RouteMap.Point(it.tMs, it.lat, it.lng) },
                 markers = s.stops.filter { it.lat != null && it.lng != null && !it.loggedLater && it.items.isNotEmpty() }
                     .map { RouteMap.Marker(it.lat!!, it.lng!!, stopIcon(it)) } +
@@ -222,7 +225,8 @@ object Reports {
                             else -> null
                         },
                         dashed = e.offlineMs > 0,
-                        glyph = if (e.offlineMs > 0) "offline" else "road"
+                        glyph = if (e.offlineMs > 0) "offline" else "road",
+                        icon = Pictures.mode(e.mode ?: i.mode)?.let { Icon(it, mirrored = Pictures.modeFacesLeft(e.mode ?: i.mode)) }
                     )
                     is Entry.Stop -> TimelineNode(
                         JourneyStory.clock(e.atMs, z),
@@ -245,7 +249,8 @@ object Reports {
                     )
                     is Entry.Moment -> TimelineNode(
                         JourneyStory.clock(e.atMs, z), e.endMs?.let { JourneyStory.duration((it - e.atMs) / 1000) },
-                        Icon(glyph = momentGlyph(e.kind)), e.text,
+                        // A change of vehicle is drawn as the vehicle changed to.
+                        e.mode?.let { m -> Pictures.mode(m)?.let { Icon(it, mirrored = Pictures.modeFacesLeft(m)) } } ?: Icon(glyph = momentGlyph(e.kind)), e.text,
                         listOfNotNull(e.place?.let { if (e.kind == JourneyStory.MomentKind.OFFLINE) "Back in contact ${JourneyStory.at(it)}" else JourneyStory.near(it).replaceFirstChar { c -> c.uppercase() } }),
                         railAbove = above, railBelow = below,
                         ring = if (e.kind == JourneyStory.MomentKind.SOS || e.kind == JourneyStory.MomentKind.INCIDENT) Ink.RED else Ink.FAINT
@@ -465,6 +470,7 @@ object Reports {
         Expenses.Category.TOLL -> Icon(glyph = "toll")
         Expenses.Category.PARKING -> Icon(glyph = "parking")
         Expenses.Category.CAB -> Icon("cab")
+        Expenses.Category.BIKE_TAXI -> Icon("bike-taxi")
         Expenses.Category.AUTO -> Icon("auto")
         Expenses.Category.METRO -> Icon("metro")
         Expenses.Category.BUS -> Icon("bus")
@@ -512,7 +518,9 @@ object Reports {
         val simChangedAtMs: Long?,
         val device: List<Pair<String, String>>,
         val deviceNote: String?,
-        val preparedAtMs: Long
+        val preparedAtMs: Long,
+        /** A rendered map for the route, when the phone could make one. */
+        val mapBackdrop: RouteMap.Backdrop? = null
     )
 
     fun lastKnown(l: LastKnownInput): Report {
@@ -547,6 +555,7 @@ object Reports {
         })
         if (i.samples.size >= 2) {
             blocks += RouteMap(
+                backdrop = l.mapBackdrop,
                 path = i.samples.map { RouteMap.Point(it.tMs, it.lat, it.lng) },
                 markers = l.story.stops.filter { it.lat != null && !it.loggedLater && it.items.isNotEmpty() }.map { RouteMap.Marker(it.lat!!, it.lng!!, stopIcon(it)) },
                 startLabel = JourneyStory.short(i.origin),

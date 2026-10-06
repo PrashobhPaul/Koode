@@ -378,7 +378,7 @@
   }
 
   /** The same pictures the app shows for each way of travelling (art/). */
-  var MODE_ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', AUTO: 'auto', BUS: 'bus', METRO: 'metro', TRAIN: 'train', SHIP: 'cruise', FERRY: 'ferry', FLIGHT: 'flight', CYCLE: 'cycle', WALK: 'walk' };
+  var MODE_ART = { CAR: 'car', BIKE: 'bike', CAB: 'cab', BIKE_TAXI: 'bike-taxi', AUTO: 'auto', BUS: 'bus', METRO: 'metro', TRAIN: 'train', SHIP: 'cruise', FERRY: 'ferry', FLIGHT: 'flight', CYCLE: 'cycle', WALK: 'walk' };
   /**
    * A timeline entry's picture — the same table as the app (domain/Pictures.kt):
    * a logged meal is the plate of food, a break that included a meal is the

@@ -128,6 +128,16 @@ class AndroidReportSurface(private val assets: Assets, private val canvas: Canva
         stroke.strokeCap = Paint.Cap.ROUND
     }
 
+    override fun image(image: Any, l: Float, t: Float, w: Float, h: Float, radius: Float): Boolean {
+        val bmp = image as? Bitmap ?: return false
+        val c = canvas ?: return true
+        c.save()
+        c.clipPath(Path().apply { addRoundRect(RectF(l, t, l + w, t + h), radius, radius, Path.Direction.CW) })
+        c.drawBitmap(bmp, null, RectF(l, t, l + w, t + h), bitmapPaint)
+        c.restore()
+        return true
+    }
+
     override fun picture(name: String, l: Float, t: Float, w: Float, h: Float, mirrored: Boolean): Boolean {
         val bmp = assets.picture(name) ?: return false
         val c = canvas ?: return true
