@@ -92,6 +92,10 @@ RATIO_MAX = {"M": 1.5, "W": 2.5}
 SAME_NAME_M = 200.0
 SAME_SPOT_M = 40.0
 
+# A rebuild this much smaller than the file it replaces is refused: a city
+# does not lose a fifth of its stations between two builds.
+SHRINK_LIMIT = 0.8
+
 
 def overpass(query, attempts=6, required=True):
     data = urllib.parse.urlencode({"data": query}).encode()
@@ -100,7 +104,14 @@ def overpass(query, attempts=6, required=True):
         try:
             req = urllib.request.Request(url, data=data, headers={"User-Agent": "Koode transit builder (github.com/PrashobhPaul/Koode)"})
             with urllib.request.urlopen(req, timeout=360) as r:
-                return json.load(r)
+                answer = json.load(r)
+            # A query that ran out of time or memory still answers 200, with
+            # whatever it had found so far and a remark saying so. Half an
+            # answer is not an answer: ask again.
+            remark = str(answer.get("remark", ""))
+            if "error" in remark.lower() or "timed out" in remark.lower():
+                raise RuntimeError("partial answer: " + remark[:200])
+            return answer
         except Exception as e:  # a busy server answers 429/504; ask the next, then wait
             print(f"overpass attempt {i + 1} ({url}) failed: {e}", file=sys.stderr)
             if (i + 1) % len(OVERPASS) == 0:
@@ -349,11 +360,13 @@ def render(cc, stations, lines, rail, date):
 
 
 def count_stations(path):
+    """(metro and ferry stations, railway stations) in a country's file."""
     try:
         with open(path, encoding="utf-8") as f:
-            return sum(1 for l in f if l.startswith("S|") or l.startswith("T|"))
+            lines = f.readlines()
+        return sum(1 for l in lines if l.startswith("S|")), sum(1 for l in lines if l.startswith("T|"))
     except OSError:
-        return 0
+        return 0, 0
 
 
 def main():
@@ -380,10 +393,14 @@ def main():
 
     stations, lines = build_network(routes, stops)
     rows = build_rail(rail)
-    total = len(stations) + len(rows)
-    before = count_stations(a.previous) if a.previous else 0
-    if total == 0 or (before >= 20 and total < before * 0.6):
-        raise SystemExit(f"{a.country}: {total} stations against {before} before; not writing (is OpenStreetMap or Overpass broken?)")
+    # Each kind is checked on its own: thousands of railway stations must
+    # not hide a metro list that came back with most of its cities missing.
+    metro_before, rail_before = count_stations(a.previous) if a.previous else (0, 0)
+    if len(stations) + len(rows) == 0:
+        raise SystemExit(f"{a.country}: nothing found; not writing")
+    for what, now, before in (("metro and ferry", len(stations), metro_before), ("railway", len(rows), rail_before)):
+        if before >= 20 and now < before * SHRINK_LIMIT:
+            raise SystemExit(f"{a.country}: {now} {what} stations against {before} before; not writing (is OpenStreetMap or Overpass broken?)")
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w", encoding="utf-8", newline="\n") as f:
         f.write(render(a.country, stations, lines, rows, time.strftime("%Y-%m-%d")))

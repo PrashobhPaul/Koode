@@ -123,6 +123,13 @@ class BuildTest(unittest.TestCase):
         self.assertIn('area["ISO3166-1"="IN"]', b.scoped(b.Q_ROUTES, "IN"))
         self.assertIn("(area.a)", b.scoped(b.Q_STOPS, "IN"))
 
+    def test_metro_and_railway_are_counted_apart(self):
+        import tempfile
+        with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8") as f:
+            f.write("# x\nS|1|2|A|N|M\nS|1|2|B|N|M\nT|1|2|C\n")
+        self.assertEqual(b.count_stations(f.name), (2, 1))
+        self.assertEqual(b.count_stations("/nonexistent"), (0, 0))
+
     def test_rail_dedupes_node_and_way_of_one_station(self):
         rows = b.build_rail({"elements": [
             {"type": "node", "id": 1, "lat": 17.4337, "lon": 78.5016, "tags": {"name": "Secunderabad Junction"}},
