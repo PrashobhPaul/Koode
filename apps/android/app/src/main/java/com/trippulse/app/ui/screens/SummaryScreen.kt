@@ -244,11 +244,9 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                     val ways = mapLegs.filter { it.startedAtMs != null }.map { it.mode }
                         .let { all -> all.filter { TransportCatalog.profile(it).key != TransportCatalog.WALK.key }.ifEmpty { all } }
                         .distinctBy { TransportCatalog.profile(it).key }
-                    ReviewRow(
-                        "Travelling by",
-                        ways.joinToString(" · ") { com.trippulse.app.ui.Names.mode(it) }.ifBlank { com.trippulse.app.ui.Names.mode(trip?.transportMode) },
-                        onEdit = null
-                    )
+                    val wayNames = ways.map { com.trippulse.app.ui.Names.mode(it) }
+                    val onlyMode = com.trippulse.app.ui.Names.mode(trip?.transportMode)
+                    ReviewRow("Travelling by", wayNames.joinToString(" · ").ifBlank { onlyMode }, onEdit = null)
                     report?.let { ReviewRow("Tolls recorded", it.tollsCrossed.toString(), onEdit = null) }
                     Spacer(Modifier.height(Spacing.sm))
                     Row(verticalAlignment = Alignment.CenterVertically) {
