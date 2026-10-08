@@ -43,8 +43,11 @@ Q_RAIL = ('[out:json][timeout:300];area{area}->.a;(nw(area.a)["railway"~"^(stati
 
 # A line under construction is drawn in OpenStreetMap long before anyone rides it.
 UNBUILT = re.compile(r"\b(u/c|under construction|proposed|planned)\b", re.I)
-# Words that are about the building, not the place: "Habsiguda Metro Station" is Habsiguda.
-SUFFIX = re.compile(r"\s*(\(.*?\)|metro\s+station|metro|station|stn\.?|rrts)\s*$", re.I)
+# Words that are about the building, not the place: "Habsiguda Metro Station" is
+# Habsiguda. A bus or railway station is part of the name ("MG Bus Station").
+SUFFIX = re.compile(r"\s*(\([^)]*\b(interchange|line|metro|station|platform)\b[^)]*\)|\[.*?\]|(?<!\bbus)(?<!\brailway)\s+(metro\s+station|metro|station|stn\.?)|rrts)\s*$", re.I)
+# "Nadaprabhu Kempegowda Station, Majestic": riders say the part after the comma.
+ALIAS = re.compile(r"^.*\b(station|stn\.?)\s*,\s*(.+)$", re.I)
 
 # Along-track figures outside these bounds mean the track was not mapped
 # cleanly between two stops; the straight line, a little longer, is used.
@@ -108,6 +111,9 @@ def name_of(tags):
 
 def base_name(name):
     n = re.sub(r"\s+", " ", name).strip()
+    m = ALIAS.match(n)
+    if m:
+        n = m.group(2).strip()
     for _ in range(3):
         m = SUFFIX.sub("", n).strip()
         if m == n or not m:

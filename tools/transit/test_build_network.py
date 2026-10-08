@@ -69,6 +69,12 @@ class BuildTest(unittest.TestCase):
         self.assertEqual(b.base_name("Habsiguda Metro Station"), "Habsiguda")
         self.assertEqual(b.base_name("Ameerpet (Interchange)"), "Ameerpet")
         self.assertEqual(b.base_name("MG Road"), "MG Road")
+        self.assertEqual(b.base_name("Mahatma Gandhi Bus Station"), "Mahatma Gandhi Bus Station")
+        self.assertEqual(b.base_name("Krantivira Sangolli Rayanna Railway Station"), "Krantivira Sangolli Rayanna Railway Station")
+        self.assertEqual(b.base_name("Nadaprabhu Kempegowda Station, Majestic"), "Majestic")
+        self.assertEqual(b.base_name("Sir M. Visvesvaraya Stn., Central College"), "Central College")
+        self.assertEqual(b.base_name("Dahisar (East) [Line 2]"), "Dahisar (East)")
+        self.assertEqual(b.base_name("Kochi Metro"), "Kochi")
 
     def test_rail_dedupes_node_and_way_of_one_station(self):
         rows = b.build_rail({"elements": [
