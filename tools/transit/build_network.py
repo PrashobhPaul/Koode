@@ -41,9 +41,9 @@ OVERPASS = [u for u in os.environ.get("OVERPASS_URL", "").split() if u] or [
 ]
 AREA = '["ISO3166-1"="{cc}"]'
 # Countries whose boundary is too costly for Overpass to search within (the
-# UK's takes in every island and its territorial sea) are searched by a box
-# instead: south, west, north, east.
-BOXES = {"GB": "49.8,-8.7,60.9,1.9"}
+# UK's takes in every island and its territorial sea; France's its overseas
+# territories) are searched by a box instead: south, west, north, east.
+BOXES = {"GB": "49.8,-8.7,60.9,1.9", "FR": "41.3,-5.3,51.2,9.7"}
 
 
 def scoped(query, cc):
