@@ -33,11 +33,20 @@ import time
 import urllib.parse
 import urllib.request
 
-OVERPASS = os.environ.get("OVERPASS_URL", "https://overpass-api.de/api/interpreter")
+# The public Overpass servers, tried in turn: one that is busy answers 504.
+OVERPASS = [u for u in os.environ.get("OVERPASS_URL", "").split() if u] or [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+]
 AREA = '["ISO3166-1"="{cc}"]'
 ROUTES = "^(subway|light_rail|monorail|ferry)$"
 
-Q_ROUTES = '[out:json][timeout:300];area{area}->.a;rel(area.a)["route"~"' + ROUTES + '"];out body geom;'
+# Metro lines and ferries are asked for apart: a country's sea ferries carry
+# long courses that can make one query too big, and a ferry query that fails
+# must not cost the country its metro.
+Q_ROUTES = '[out:json][timeout:300];area{area}->.a;rel(area.a)["route"~"^(subway|light_rail|monorail)$"];out body geom;'
+Q_FERRIES = '[out:json][timeout:300];area{area}->.a;rel(area.a)["route"="ferry"];out body geom;'
 Q_STOPS = ('[out:json][timeout:300];area{area}->.a;rel(area.a)["route"~"' + ROUTES + '"]->.r;'
            '(node(r.r);way(r.r)["public_transport"];way(r.r)["amenity"="ferry_terminal"];)->.stops;'
            '(nw(area.a)["railway"="station"]["station"~"subway|light_rail|monorail"];'
@@ -72,17 +81,21 @@ SAME_NAME_M = 350.0
 SAME_SPOT_M = 40.0
 
 
-def overpass(query, attempts=4):
+def overpass(query, attempts=6, required=True):
     data = urllib.parse.urlencode({"data": query}).encode()
     for i in range(attempts):
+        url = OVERPASS[i % len(OVERPASS)]
         try:
-            req = urllib.request.Request(OVERPASS, data=data, headers={"User-Agent": "Koode transit builder (github.com/PrashobhPaul/Koode)"})
+            req = urllib.request.Request(url, data=data, headers={"User-Agent": "Koode transit builder (github.com/PrashobhPaul/Koode)"})
             with urllib.request.urlopen(req, timeout=360) as r:
                 return json.load(r)
-        except Exception as e:  # Overpass answers 429/504 when busy; wait and ask again
-            print(f"overpass attempt {i + 1} failed: {e}", file=sys.stderr)
-            time.sleep(60 * (i + 1))
-    raise SystemExit("Overpass did not answer")
+        except Exception as e:  # a busy server answers 429/504; ask the next, then wait
+            print(f"overpass attempt {i + 1} ({url}) failed: {e}", file=sys.stderr)
+            if (i + 1) % len(OVERPASS) == 0:
+                time.sleep(60 * ((i + 1) // len(OVERPASS)))
+    if required:
+        raise SystemExit("Overpass did not answer")
+    return {"elements": []}
 
 
 def metres(lat1, lon1, lat2, lon2):
@@ -336,7 +349,14 @@ def main():
 
     area = AREA.format(cc=a.country)
     load = lambda p: json.load(open(p, encoding="utf-8"))
-    routes = overpass(Q_ROUTES.format(area=area)) if a.fetch else load(a.routes)
+    if a.fetch:
+        routes = overpass(Q_ROUTES.format(area=area))
+        ferries = overpass(Q_FERRIES.format(area=area), attempts=3, required=False)
+        if not ferries["elements"]:
+            print(f"{a.country}: no ferries this time", file=sys.stderr)
+        routes = {"elements": routes.get("elements", []) + ferries.get("elements", [])}
+    else:
+        routes = load(a.routes)
     stops = overpass(Q_STOPS.format(area=area)) if a.fetch else load(a.stops)
     rail = overpass(Q_RAIL.format(area=area)) if a.fetch else (load(a.rail) if a.rail else {"elements": []})
 
