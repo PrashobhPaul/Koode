@@ -62,7 +62,7 @@ class TransitNetwork(val stations: List<Station>, private val edges: List<List<E
         val queue = PriorityQueue<Pair<Double, Int>>(compareBy { it.first })
         queue += 0.0 to from
         while (queue.isNotEmpty()) {
-            val (d, at) = queue.poll()
+            val (d, at) = queue.poll() ?: break
             if (d > dist[at]) continue
             if (at == to) break
             for (e in edges[at]) {
