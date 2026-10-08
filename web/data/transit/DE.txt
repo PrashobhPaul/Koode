@@ -363,70 +363,70 @@ S|49.34882|9.11282|Mosbach-Neckarelz|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.34663|9.13391|Mosbach West|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.31654|9.13757|Neckarzimmern|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.24628|9.16531|Offenau|Heilbronner Hohenloher Haller Nahverkehr|M
-S|49.13784|9.37918|Affaltrach|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.13784|9.37918|Affaltrach|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.07391|8.74819|Bauerbach|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14039|9.18165|Böckingen Berufsschulzentrum|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14067|9.19119|Böckingen Sonnenbrunnen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.13930|9.16546|Böckingen West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14039|9.18165|Böckingen Berufsschulzentrum|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14067|9.19119|Böckingen Sonnenbrunnen|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.13930|9.16546|Böckingen West|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.00974|8.52661|Berghausen Hummelberg|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.18724|9.45328|Bitzfeld|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.18724|9.45328|Bitzfeld|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.03704|8.69352|Bretten Bahnhof|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.03698|8.72370|Bretten Kupferhälde|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.03669|8.67369|Bretten Rinklingen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.03178|8.71827|Bretten Schulzentrum|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.03378|8.70309|Bretten Stadtmitte|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.03048|8.70911|Bretten Wannenweg|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.17296|9.44057|Bretzfeld|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.17296|9.44057|Bretzfeld|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.02390|8.64788|Dürrenbüchig|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14995|9.31603|Ellhofen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14995|9.31603|Ellhofen|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.13609|8.91480|Eppingen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.13270|8.90481|Eppingen West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14383|9.40285|Eschenau|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14060|9.23485|Finanzamt|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14383|9.40285|Eschenau|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14060|9.23485|Finanzamt|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.08466|8.78320|Flehingen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14129|9.22889|Friedensplatz|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14129|9.22889|Friedensplatz|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.15141|8.98431|Gemmingen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.15461|8.97731|Gemmingen West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.04488|8.72476|Gölshausen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.05181|8.73986|Gölshausen Industriegebiet|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14158|9.22328|Harmonie|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14158|9.22328|Harmonie|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.14263|9.20853|Hauptbahnhof/Willy-Brandt-Platz|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.20200|9.52728|Öhringen-Cappel|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.20336|9.50202|Öhringen Hauptbahnhof|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.20022|9.48571|Öhringen West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.20336|9.50202|Öhringen Hauptbahnhof|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.20022|9.48571|Öhringen West|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.02826|8.57511|Jöhlingen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.03088|8.57005|Jöhlingen West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14506|9.12178|Leingarten|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14565|9.11271|Leingarten Mitte|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14419|9.13095|Leingarten Ost|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14599|9.10598|Leingarten West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14263|9.21393|Neckarturm am Kurt-Schumacher-Platz|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14506|9.12178|Leingarten|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14565|9.11271|Leingarten Mitte|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14419|9.13095|Leingarten Ost|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14599|9.10598|Leingarten West|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14263|9.21393|Neckarturm am Kurt-Schumacher-Platz|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.08396|8.77500|Oberderdingen-Flehingen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14002|9.24084|Pfühlpark|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14201|9.21858|Rathaus|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.16169|9.43427|Scheppach|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14062|9.06941|Schwaigern Ost|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14002|9.24084|Pfühlpark|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14201|9.21858|Rathaus|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.16169|9.43427|Scheppach|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14062|9.06941|Schwaigern Ost|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.13894|9.04259|Schwaigern West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.13839|9.05687|Schwaigern (Württemberg)|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14840|9.34057|Sülzbach|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14489|9.35137|Sülzbach Schule|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14840|9.34057|Sülzbach|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14489|9.35137|Sülzbach Schule|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.13686|9.01477|Stetten am Heuchelberg|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.10830|8.85210|Sulzfeld (Baden)|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|48.99685|8.41059|Tivoli|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14032|9.25268|Trappensee|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14821|9.28622|Weinsberg|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14874|9.30544|Weinsberg/Ellhofen Gewerbegebiet|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.15125|9.27389|Weinsberg West|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14032|9.25268|Trappensee|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14821|9.28622|Weinsberg|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14874|9.30544|Weinsberg/Ellhofen Gewerbegebiet|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.15125|9.27389|Weinsberg West|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.00046|8.41062|Werderstraße|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14980|9.42232|Wieslensdorf|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
-S|49.14265|9.35783|Willsbach|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
+S|49.14980|9.42232|Wieslensdorf|Heilbronner Hohenloher Haller Nahverkehr|M
+S|49.14265|9.35783|Willsbach|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.01552|8.60481|Wössingen Bahnhof|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.01574|8.60978|Wössingen Ost|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.10474|8.81665|Zaisenhausen|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.14865|9.22146||Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|M
 S|49.14914|9.22162||Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|M
 S|49.24014|9.06024|Babstadt|Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|M
-S|49.23150|9.19968|Bad Friedrichshall Hauptbahnhof|Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|M
+S|49.23150|9.19968|Bad Friedrichshall Hauptbahnhof|Heilbronner Hohenloher Haller Nahverkehr|M
 S|49.21886|9.21079|Bad Friedrichshall-Kochendorf|Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|M
 S|49.23777|9.10154|Bad Rappenau|Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|M
 S|49.24037|9.11358|Bad Rappenau Kurpark|Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|M
@@ -455,10 +455,11 @@ S|48.80232|8.43898|Bad Herrenalb|Karlsruher Verkehrsverbund|M
 S|48.80896|8.44404|Bad Herrenalb Kullenmühle|Karlsruher Verkehrsverbund|M
 S|48.82011|8.44511|Bad Herrenalb Steinhäusle|Karlsruher Verkehrsverbund|M
 S|48.81584|8.30311|Bad Rotenfels Bahnhof/Rotherma|Karlsruher Verkehrsverbund|M
-S|48.81995|8.29712|Bad Rotenfels Schloss|Karlsruher Verkehrsverbund|M
+S|48.81901|8.29843|Bad Rotenfels Schloss|Karlsruher Verkehrsverbund|M
 S|48.81132|8.31233|Bad Rotenfels Weinbrennerstraße|Karlsruher Verkehrsverbund|M
 S|48.99436|8.39963|Bahnhofsvorplatz|Karlsruher Verkehrsverbund|M
 S|48.96518|8.40482|Battstraße|Karlsruher Verkehrsverbund|M
+S|49.19259|8.29748|Bellheim Am Mühlbuckel|Karlsruher Verkehrsverbund|M
 S|49.19259|8.29748|Bellheim Am Mühlbuckel|Karlsruher Verkehrsverbund|M
 S|49.18849|8.29454|Bellheim Bahnhof|Karlsruher Verkehrsverbund|M
 S|49.00252|8.53608|Berghausen Am Stadion|Karlsruher Verkehrsverbund|M
@@ -468,7 +469,7 @@ S|48.83214|8.27759|Bischweier|Karlsruher Verkehrsverbund|M
 S|49.04708|8.37867|Bärenweg|Karlsruher Verkehrsverbund|M
 S|48.92930|8.45059|Busenbach|Karlsruher Verkehrsverbund|M
 S|48.98447|8.40363|Dammerstock|Karlsruher Verkehrsverbund|M
-S|49.00887|8.41771|Durlacher Tor/KIT-Campus Süd|Karlsruher Verkehrsverbund|M
+S|49.00887|8.41771|Durlacher Tor/KIT-Campus Süd (U)|Karlsruher Verkehrsverbund|M
 S|48.99456|8.39483|Ebertstraße|Karlsruher Verkehrsverbund|M
 S|49.07580|8.39800|Eggenstein|Karlsruher Verkehrsverbund|M
 S|49.03330|8.33840|Eggensteiner Straße|Karlsruher Verkehrsverbund|M
@@ -494,14 +495,15 @@ S|48.80549|8.32020|Gaggenau|Karlsruher Verkehrsverbund|M
 S|48.79803|8.32743|Gaggenau Mercedes-Benz-Werk|Karlsruher Verkehrsverbund|M
 S|48.68664|8.36241|Gausbach|Karlsruher Verkehrsverbund|M
 S|49.22588|8.36464|Germersheim|Karlsruher Verkehrsverbund|M
-S|49.21985|8.37937|Germersheim Mitte/Rhein|Karlsruher Verkehrsverbund|M
+S|49.21869|8.37985|Germersheim Mitte/Rhein|Karlsruher Verkehrsverbund|M
+S|49.22101|8.37889|Germersheim Mitte/Rhein|Karlsruher Verkehrsverbund|M
 S|49.20836|8.37381|Germersheim Süd/Nolte|Karlsruher Verkehrsverbund|M
 S|48.76863|8.33687|Gernsbach|Karlsruher Verkehrsverbund|M
 S|48.76309|8.33904|Gernsbach Mitte|Karlsruher Verkehrsverbund|M
 S|49.00747|8.42499|Gottesauer Platz/BGV|Karlsruher Verkehrsverbund|M
 S|49.00621|8.49246|Grötzingen Bahnhof|Karlsruher Verkehrsverbund|M
 S|49.00588|8.51245|Grötzingen Krappmühlenweg|Karlsruher Verkehrsverbund|M
-S|49.00525|8.50385|Grötzingen Oberausstraße|Karlsruher Verkehrsverbund|M
+S|49.00525|8.50385|Grötzingen Oberausstraße|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|M
 S|49.03339|8.37663|Haus Bethlehem|Karlsruher Verkehrsverbund|M
 S|49.03041|8.34121|Herweghstraße|Karlsruher Verkehrsverbund|M
 S|48.73980|8.34862|Hilpertsau|Karlsruher Verkehrsverbund|M
@@ -514,7 +516,8 @@ S|49.00720|8.47241|Hubstraße|Karlsruher Verkehrsverbund|M
 S|48.86920|8.51107|Ittersbach|Karlsruher Verkehrsverbund|M
 S|48.88482|8.50871|Ittersbach Industrie|Karlsruher Verkehrsverbund|M
 S|48.86610|8.51047|Ittersbach Rathaus|Karlsruher Verkehrsverbund|M
-S|49.09177|8.27225|Jockgrim Bahnhof|Karlsruher Verkehrsverbund|M
+S|49.09024|8.27215|Jockgrim Bahnhof|Karlsruher Verkehrsverbund|M
+S|49.09331|8.27234|Jockgrim Bahnhof|Karlsruher Verkehrsverbund|M
 S|49.00263|8.46262|Karlsruhe-Durlach|Karlsruher Verkehrsverbund|M
 S|49.02640|8.34156|Karlsruhe-Knielingen|Karlsruher Verkehrsverbund|M
 S|49.01456|8.35111|Karlsruhe-Mühlburg|Karlsruher Verkehrsverbund|M
@@ -564,13 +567,14 @@ S|49.10947|8.27302|Rheinzabern Alte Römerstraße|Karlsruher Verkehrsverbund|M
 S|49.11977|8.27423|Rheinzabern Bahnhof|Karlsruher Verkehrsverbund|M
 S|49.11442|8.27324|Rheinzabern Rappengasse|Karlsruher Verkehrsverbund|M
 S|49.16079|8.29025|Rülzheim Bahnhof|Karlsruher Verkehrsverbund|M
-S|49.15158|8.27935|Rülzheim Freizeitzentrum|Karlsruher Verkehrsverbund|M
+S|49.15045|8.27916|Rülzheim Freizeitzentrum|Karlsruher Verkehrsverbund|M
+S|49.15270|8.27955|Rülzheim Freizeitzentrum|Karlsruher Verkehrsverbund|M
 S|49.00555|8.40977|Rüppurrer Tor|Karlsruher Verkehrsverbund|M
 S|49.00364|8.42737|Schloss Gottesaue/Hochschule für Musik|Karlsruher Verkehrsverbund|M
 S|48.98094|8.40383|Schloss Rüppurr|Karlsruher Verkehrsverbund|M
 S|49.02531|8.34624|Siemens|Karlsruher Verkehrsverbund|M
-S|48.98775|8.54358|Söllingen (Pfinztal)|Karlsruher Verkehrsverbund|M
-S|48.99090|8.54090|Söllingen Reetzstraße|Karlsruher Verkehrsverbund|M
+S|48.98775|8.54358|Söllingen (Pfinztal)|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|M
+S|48.99090|8.54090|Söllingen Reetzstraße|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|M
 S|49.19523|8.36031|Sondernheim|Karlsruher Verkehrsverbund|M
 S|48.89757|8.47464|Spielberg|Karlsruher Verkehrsverbund|M
 S|49.01677|8.35286|Starckstraße|Karlsruher Verkehrsverbund|M
@@ -603,6 +607,7 @@ S|48.86085|8.21605|Rastatt|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|M
 S|48.75978|8.15842|Sinzheim|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|M
 S|48.77060|8.16968|Sinzheim Nord|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|M
 S|48.88857|8.24053|Ötigheim|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|M
+S|48.82089|8.29581|Bad Rotenfels Schloss|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|M
 S|48.50354|8.37202|Baiersbronn|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|M
 S|48.51070|8.37597|Baiersbronn Schule|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|M
 S|48.44442|8.58914|Bittelbronn|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|M
@@ -1402,6 +1407,7 @@ S|52.48651|13.36117|Julius-Leber-Brücke|Verkehrsverbund Berlin-Brandenburg|M
 S|52.53079|13.30063|Jungfernheide|Verkehrsverbund Berlin-Brandenburg|M
 S|52.51009|13.28313|Kaiserdamm|Verkehrsverbund Berlin-Brandenburg|M
 S|52.45998|13.38463|Kaiserin-Augusta-Straße|Verkehrsverbund Berlin-Brandenburg|M
+S|52.57802|13.32917|Karl-Bonhoeffer-Nervenklinik|Verkehrsverbund Berlin-Brandenburg|M
 S|52.57862|13.33350|Karl-Bonhoeffer-Nervenklinik|Verkehrsverbund Berlin-Brandenburg|M
 S|52.47627|13.43934|Karl-Marx-Straße|Verkehrsverbund Berlin-Brandenburg|M
 S|52.48047|13.52728|Karlshorst|Verkehrsverbund Berlin-Brandenburg|M
@@ -1540,6 +1546,7 @@ S|52.44690|13.56157|Spindlersfeld|Verkehrsverbund Berlin-Brandenburg|M
 S|52.51130|13.40412|Spittelmarkt|Verkehrsverbund Berlin-Brandenburg|M
 S|52.52704|13.53655|Springpfuhl|Verkehrsverbund Berlin-Brandenburg|M
 S|52.51062|13.38985|Stadtmitte|Verkehrsverbund Berlin-Brandenburg|M
+S|52.51208|13.38966|Stadtmitte|Verkehrsverbund Berlin-Brandenburg|M
 S|52.52374|13.46489|Storkower Straße|Verkehrsverbund Berlin-Brandenburg|M
 S|52.53224|13.83369|Strausberg|Verkehrsverbund Berlin-Brandenburg|M
 S|52.51810|13.43153|Strausberger Platz|Verkehrsverbund Berlin-Brandenburg|M
@@ -1716,7 +1723,7 @@ S|50.63218|12.79778|Zwönitz|Verkehrsverbund Mittelsachsen|M
 S|51.05440|13.81986|Oberloschwitz|Verkehrsverbund Oberelbe|M
 S|51.05358|13.81649|Talstation Schwebebahn|Verkehrsverbund Oberelbe|M
 S|51.26687|6.65101|Bovert|Verkehrsverbund Rhein-Ruhr|M
-S|51.27597|6.76718|D-Flughafen Terminal S U|Verkehrsverbund Rhein-Ruhr|M
+S|51.27597|6.76718|D-Flughafen Terminal S U|VRR|M
 S|51.32657|6.57982|Dießem|Verkehrsverbund Rhein-Ruhr|M
 S|51.24463|6.71735|Düsseldorf-Lörick|Verkehrsverbund Rhein-Ruhr|M
 S|51.17943|6.82749|Elbruchstraße|Verkehrsverbund Rhein-Ruhr|M
@@ -1886,7 +1893,7 @@ S|47.68241|9.21156|Autofähre Staad - Meersburg|Bodensee-Oberschwaben Verkehrsve
 S|47.66053|9.17910|Anlegestelle-BSB-Konstanz|Bodensee-Schiffsbetriebe GmbH|W
 S|47.76573|9.15958|Überlingen|Bodensee-Schiffsbetriebe GmbH|W
 S|47.74167|9.15858|Dingelsdorf|Bodensee-Schiffsbetriebe GmbH|W
-S|47.65017|9.48320|Friedrichshafen 4|Bodensee-Schiffsbetriebe GmbH|W
+S|47.65024|9.48351|Friedrichshafen 6|BSB|W
 S|47.67248|9.31354|Hagnau|Bodensee-Schiffsbetriebe GmbH|W
 S|47.66098|9.36765|Immenstaad|Bodensee-Schiffsbetriebe GmbH|W
 S|47.71800|8.96221|Iznang|Bodensee-Schiffsbetriebe GmbH|W
@@ -1914,7 +1921,7 @@ S|53.76565|7.69650|Spiekeroog II|DB Fernverkehr AG Inselverkehr Wangerooge|W
 S|53.77428|7.86693|Westanleger|DB Fernverkehr AG Inselverkehr Wangerooge|W
 S|53.33099|6.93256|Delfzijl ferry terminal|Dollard Route|W
 S|53.33957|7.18489|Emden Ostmole ferry terminal|Dollard Route|W
-S|50.91656|14.15207|Bad Schandau, Elbkai|Doprava Ústeckého kraje|W
+S|50.91656|14.15255|Bad Schandau, Stadt|Doprava Ústeckého kraje|W
 S|50.78129|14.20856|Děčín|Doprava Ústeckého kraje|W
 S|50.84288|14.21753|Dolní Žleb|Doprava Ústeckého kraje|W
 S|50.87338|14.23523|Hřensko, Přístaviště|Doprava Ústeckého kraje|W
@@ -2128,7 +2135,7 @@ S|54.69256|8.57712|Fährhafen Wyk Anleger 3|Wyker Dampfschiffs-Reederei|W
 S|54.61800|8.54824|Langeneß|Wyker Dampfschiffs-Reederei|W
 S|54.68164|8.75398|Schlüttsiel|Wyker Dampfschiffs-Reederei|W
 S|54.62914|8.39826|Wittdün Fähranleger|Wyker Dampfschiffs-Reederei|W
-S|47.67540|9.04728|Mannenbach (See)|https://am4962.wixsite.com/solarfaehre-rau/|W
+S|47.67540|9.04728|Mannenbach (See)|Schweizerische Schifffahrtsgesellschaft Untersee und Rhein|W
 S|47.68995|9.05450|Solarfähre Reichenau|https://am4962.wixsite.com/solarfaehre-rau/|W
 S|50.82744|6.99225|Lülsdorf|no|W
 S|50.82563|6.98638|Wesseling|no|W
@@ -2209,490 +2216,490 @@ L|Heilbronner Hohenloher Haller Nahverkehr|S4|#9f184c|391 392:1814 393:1337 369:
 L|Heilbronner Hohenloher Haller Nahverkehr|S41||390 400:420 403:326 435:406 445:503 424:330 436:819 433:737 437:1057 441:1188 438:956 439:553 440:1031 427:2368 426:1665 362:3516 356:4244 357:2775 361:1860 359:4309 360:1665 358:969
 L|Heilbronner Hohenloher Haller Nahverkehr|S41||358 360:937 359:1679 361:4319 357:1856 356:2771 362:4393 426:3368 427:1665 440:2363 439:1034 438:554 441:965 437:1187 433:1058 436:808 423:803 445:349 434:494 403:307 400:365 390:401
 L|Heilbronner Hohenloher Haller Nahverkehr|Stadtbahn S4|#9f184c|406 407:1047 405:952 399:2722 397:549 396:631 398:752 367:2521 365:1221 366:718 400:1700 403:326 389:347 384:410 382:493 402:455 413:917 416:1913 414:971 415:1438 378:783 408:1852 409:881 419:518 363:1715 381:1923 418:1491 404:1675 376:1327 369:1831 393:2783 392:1222 391:1928
-L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|447 457:364 555:305 448:441 523:446 483:317 540:361 524:558 468:496 498:585 574:594 577:660 576:1054 515:530 510:898 499:1516 501:852 368:1773 395:4254 394:450 420:2630 421:351 377:3019 372:2390 370:1461 374:827 375:576 373:717 371:736 387:912 388:1362 364:2700 401:3128 383:606 422:3428 411:2865 380:4988 379:841 386:5898 385:640 410:2989 406:2135 407:1049 405:951 399:2722 397:549 396:631 398:752 367:2521 365:1221 366:718 390:1280 400:420 403:326 389:347 384:410 382:493 402:455 413:917 416:1913 414:971 415:1438 378:783 408:1852 409:881 419:518 363:1715 381:1923 418:1491 404:1675 376:1327 369:1831 393:2783 392:1222 391:1928
-L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|447 457:364 555:305 412:585 417:418 565:502 468:798 498:531 574:594 577:660 576:1054 515:530 510:898 499:1516 501:852 368:1773 395:4254 394:450 420:2630 421:351 377:3019 372:2390 370:1461 374:827 375:576 373:717 371:736 387:912
-L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|391 392:1814 393:1337 369:2784 376:1833 404:1328 418:1626 381:1650 363:1801 419:1718 409:546 408:876 378:1830 415:783 414:1433 416:973 413:2047 402:854 382:460 384:417 389:410 403:346 400:365 390:401 366:1353 365:688 367:1156 398:2659 396:616 397:699 399:450 405:2757 407:950 406:1047 410:2135 385:3010 386:618 379:5897 380:796 411:5155 422:2823 383:3348 401:606 364:3046 388:2633 387:1362 371:915 373:736 375:717 374:576 370:841 372:1446 377:2389 421:2988 420:444 394:2608 395:490 368:4170 501:1773 499:879 510:1531 515:873 576:590 577:1063 574:627 498:616 468:597 524:499 540:552 483:379 523:327 448:420 555:436 457:294 447:298
-L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|402 382:460 384:417 389:410 403:346 400:365 390:401 366:1353 365:688 367:1156 398:2659 396:616 397:699 399:450 405:2757 407:950 406:1047 410:2135 385:3010 386:618 379:5897 380:796 411:5155 422:2823 383:3348 401:606 364:3046 388:2633 387:1362 371:915 373:736 375:717 374:576 370:841 372:1446 377:2389 421:2988 420:444 394:2608 395:490 368:4170 501:1773 499:879 510:1531 515:873 576:590 577:1063 574:627 498:616 468:504 565:810 417:513 412:386 555:632 457:294 447:298
-L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4 Eilzug|#9f184c|370 394:9874 499:7311 515:2404 576:590 577:1063 574:627 498:616 468:597 524:499 540:552 483:379 523:327 448:420 555:436 457:294 447:298
+L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|447 457:364 558:305 448:441 526:446 484:317 543:361 527:558 469:496 500:585 578:594 581:660 580:1054 518:530 512:898 501:1516 503:852 368:1773 395:4254 394:450 420:2630 421:351 377:3019 372:2390 370:1461 374:827 375:576 373:717 371:736 387:912 388:1362 364:2700 401:3128 383:606 422:3428 411:2865 380:4988 379:841 386:5898 385:640 410:2989 406:2135 407:1049 405:951 399:2722 397:549 396:631 398:752 367:2521 365:1221 366:718 390:1280 400:420 403:326 389:347 384:410 382:493 402:455 413:917 416:1913 414:971 415:1438 378:783 408:1852 409:881 419:518 363:1715 381:1923 418:1491 404:1675 376:1327 369:1831 393:2783 392:1222 391:1928
+L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|447 457:364 558:305 412:585 417:418 569:502 469:798 500:531 578:594 581:660 580:1054 518:530 512:898 501:1516 503:852 368:1773 395:4254 394:450 420:2630 421:351 377:3019 372:2390 370:1461 374:827 375:576 373:717 371:736 387:912
+L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|391 392:1814 393:1337 369:2784 376:1833 404:1328 418:1626 381:1650 363:1801 419:1718 409:546 408:876 378:1830 415:783 414:1433 416:973 413:2047 402:854 382:460 384:417 389:410 403:346 400:365 390:401 366:1353 365:688 367:1156 398:2659 396:616 397:699 399:450 405:2757 407:950 406:1047 410:2135 385:3010 386:618 379:5897 380:796 411:5155 422:2823 383:3348 401:606 364:3046 388:2633 387:1362 371:915 373:736 375:717 374:576 370:841 372:1446 377:2389 421:2988 420:444 394:2608 395:490 368:4170 503:1773 501:879 512:1531 518:873 580:590 581:1063 578:627 500:616 469:597 527:499 543:552 484:379 526:327 448:420 558:436 457:294 447:298
+L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4|#9f184c|402 382:460 384:417 389:410 403:346 400:365 390:401 366:1353 365:688 367:1156 398:2659 396:616 397:699 399:450 405:2757 407:950 406:1047 410:2135 385:3010 386:618 379:5897 380:796 411:5155 422:2823 383:3348 401:606 364:3046 388:2633 387:1362 371:915 373:736 375:717 374:576 370:841 372:1446 377:2389 421:2988 420:444 394:2608 395:490 368:4170 503:1773 501:879 512:1531 518:873 580:590 581:1063 578:627 500:616 469:504 569:810 417:513 412:386 558:632 457:294 447:298
+L|Heilbronner Hohenloher Haller Nahverkehr;Karlsruher Verkehrsverbund|Stadtbahn S4 Eilzug|#9f184c|370 394:9874 501:7311 518:2404 580:590 581:1063 578:627 500:616 469:597 527:499 543:552 484:379 526:327 448:420 558:436 457:294 447:298
 L|Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|S42||390 400:388 403:326 435:406 445:503 424:330 436:819 433:737 437:1057 441:1188 438:956 439:553 440:1031 427:2368 426:1657 430:2474 431:3023 429:1964 428:927 425:3074 432:4892 444:7012 443:699 442:2113
 L|Heilbronner Hohenloher Haller Nahverkehr;Verkehrsverbund Rhein-Neckar|S42||442 443:2113 444:698 432:7012 425:4893 428:3073 429:927 431:1964 430:3026 426:2471 427:1656 440:2363 439:1034 438:554 441:965 437:1187 433:1058 436:808 423:803 445:349 434:494 403:307 400:365
-L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|506 507:208 508:515 537:268 536:663 535:417 538:367 532:1966 533:456 534:863 472:604 474:698 470:444 473:572 549:2120 446:360 465:559 579:441 502:1386 526:415 449:667 521:557 548:393 589:572 546:569 486:796 539:605 540:155 483:381 523:328 448:422 555:449 457:294 447:317 467:1260 567:371 551:622 575:567 458:676 478:1388 481:896 477:647 480:463 476:473 479:2116 466:859 484:1861 487:2985 541:2825 489:3222 453:1971 452:1269 451:854
-L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|451 452:848 453:1269 489:1971 541:3221 487:2859 484:3034 466:1768 479:872 476:2130 480:459 477:462 481:643 478:924 458:1435 575:629 551:567 567:609 467:408 447:1224 457:423 555:305 448:429 523:437 483:322 540:358 539:167 486:602 546:824 589:551 548:542 521:337 449:581 526:696 502:303 579:1504 465:364 446:643 549:348 473:2162 470:496 474:460 472:680 534:605 533:914 532:454 538:1917 535:338 536:445 537:663 508:268 507:451 506:207
-L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|476 480:459 477:462 481:643 478:924 458:1435 575:629 551:567 567:609 467:408 447:1224 457:423 555:305 448:429 523:437 483:322 540:358 539:167 486:602 546:824 589:551 548:542 521:337 449:581 526:696 502:303 579:1504 465:364 446:643 549:348 473:2162 470:496 474:460 472:680 534:605 533:914 532:454 520:2643
-L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|520 532:2771 533:456 534:863 472:604 474:698 470:444 473:572 549:2120 446:360 465:559 579:441 502:1386 526:415 449:667 521:557 548:393 589:572 546:569 486:796 539:605 540:155 483:381 523:328 448:422 555:449 457:294 447:317 467:1260 567:371 551:622 575:567 458:676 478:1388 481:896 477:647 480:463 476:473 479:2116 466:859 484:1861 487:2985 541:2825 489:3222 453:1971 452:1269 451:854
-L|Karlsruher Verkehrsverbund|Stadtbahn S11|#008000|506 507:208 508:515 537:268 536:663 535:417 538:367 532:1966 533:456 534:863 472:604 474:698 470:444 473:572 549:2120 446:360 465:559 579:441 502:1386 526:415 449:667 521:557 548:393 589:572 546:569 486:796 539:605 540:155 483:381 523:328 448:422 555:449 457:294 447:317 467:1260 567:371 551:622 575:567 458:676 478:1388 481:896 477:647 480:463 476:473 479:2116 466:859 558:2115 557:640 530:1500 529:729 531:724 572:2506 512:4266 511:1885 513:464
-L|Karlsruher Verkehrsverbund|Stadtbahn S11|#008000|513 511:395 512:1863 572:4245 531:2515 529:747 530:718 557:1542 558:583 466:2087 479:872 476:2130 480:459 477:462 481:643 478:924 458:1435 575:629 551:567 567:609 467:408 447:1224 457:423 555:305 448:429 523:437 483:322 539:526 486:602 546:824 589:551 548:542 521:337 449:581 526:696 502:303 579:1504 465:364 446:643 549:348 473:2162 470:496 474:460 472:680 534:605 533:914 532:454 538:1917 535:338 536:445 537:663 508:268 507:451 506:207
-L|Karlsruher Verkehrsverbund|Stadtbahn S11|#008000|513 511:395 512:1863 572:4245 531:2515 529:747 530:718 557:1542 558:583 466:2087 479:872 476:2130 480:459 477:462 481:643 478:924 458:1435 575:629 551:567 567:609 467:408 447:1224 457:423 555:305 448:429 523:437 483:322 540:358 539:167 486:602 546:824 589:551 548:542 521:337 449:581 526:696 502:303 579:1504 465:364 446:643 549:348 473:2162 470:496 474:460 472:680 534:605 533:914 532:454 520:2643
-L|Karlsruher Verkehrsverbund|Stadtbahn S12|#008000|513 511:395 512:1863 572:4245 531:2515 529:747 530:718 557:1542 558:583 466:2087 480:3461 477:462 481:643 447:5784 469:180 522:425 542:485 519:339 565:1111 552:530 580:537 566:326 574:546
-L|Karlsruher Verkehrsverbund|Stadtbahn S12|#008000|574 566:546 580:318 552:507 565:546 482:488 519:490 542:457 522:492 469:396 447:189 481:5766 477:647 480:463 466:3447 558:2115 557:640 530:1500 529:729 531:724 572:2506 512:4266 511:1885 513:464
-L|Karlsruher Verkehrsverbund|Stadtbahn S5|#f49694|569 570:386 461:1340 462:583 463:676 500:639 501:624 499:872 510:1531 515:873 576:590 577:1063 574:627 498:616 468:597 524:499 539:567 486:599 546:893 589:471 505:447 554:344 475:401 527:496 573:478 547:416 568:620 503:701 471:379 559:249 543:2227 544:597 545:581 582:1579 583:558 586:429 587:491 581:467 584:486 585:514
-L|Karlsruher Verkehrsverbund|Stadtbahn S5 Wörth => Söllingen|#f49694|585 584:514 581:486 587:467 586:485 583:449 582:545 545:1587 544:514 543:620 559:2311 471:249 503:380 568:646 547:678 573:428 527:474 475:517 554:371 505:358 589:489 546:457 486:901 539:604 524:580 468:496 498:585 574:594 577:660 576:1054 515:530 510:898 499:1516 501:844 500:648 463:613 462:726 461:532 570:1340 569:386
-L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|447 457:364 555:305 448:441 523:446 483:317 540:361 539:161 486:599 546:893 589:471 505:447 554:344 475:401 527:494 573:478 547:416 568:620 503:701 471:379 559:249 543:2227 544:597 545:581 582:1575 588:1202 514:4522 560:1838 562:598 561:615 564:3586 563:1333 460:3180 459:585 571:4898 495:1907 494:1738 493:1383
-L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|493 494:1648 495:1533 571:1944 459:5010 460:483 563:3213 564:1438 561:3485 562:579 560:541 514:2077 588:4279 582:1109 545:1587 544:514 559:2931 471:249 503:380 568:646 547:678 573:428 527:474 475:517 554:371 505:358 589:489 546:457 486:901 539:604 524:580 468:496 498:585 574:594 577:660 576:1054 515:530 510:898 499:1516 501:844 500:648 463:613 462:726 461:532 570:1340
-L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|493 494:1648 495:1533 571:1944 459:5010 460:483 563:3213 564:1438 561:3485 562:579 560:541 514:2077 588:4279 582:1109 545:1587 544:514 543:620 559:2311 471:249 503:380 568:646 547:678 573:428 527:474 475:517 554:371 505:358 589:489 546:457 486:901 539:604 540:156 483:379 523:327 448:420 555:436 457:294 447:298
-L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|493 494:1648 495:1533 571:1944 459:5010 460:483 563:3213 564:1438 561:3485 562:579 560:541 514:2077 588:4279 582:1109 545:1587 544:514 543:620 559:2311 471:249 503:380 568:646 547:678 573:428 527:474 475:517 554:371 505:358 589:489 546:457 486:901 539:604 524:580 468:496 498:585 574:594 577:660 576:1054 515:530 510:898 499:1516 501:844 500:648 463:613 462:726 461:532 570:1340
-L|Karlsruher Verkehrsverbund|Stadtbahn S51 Eilzug|#f49694|493 494:1648 495:1533 571:1944 459:5010 460:483 563:3213 564:1438 561:3485 562:579 560:541 514:2077 588:4279 582:1109 545:1587 544:514 568:4206 527:1580 475:517 554:371 505:358 589:489 546:457 486:882 485:110 519:533 482:493 565:487 468:781 498:531 574:528
-L|Karlsruher Verkehrsverbund|Stadtbahn S52|#f49694|493 494:1652 495:1533 571:1944 459:5010 460:483 563:3213 564:1438 561:3485 562:579 560:541 514:2077 588:4279 582:1107 545:1588 544:514 516:3532 517:1445 518:1623 447:2799 457:364 555:305 448:441 523:446 483:317 540:326
-L|Karlsruher Verkehrsverbund|Stadtbahn S52|#f49694|540 483:421 523:327 448:420 555:436 457:294 447:298 518:2796 517:1642 516:1537 582:5519 514:5724 560:1838 561:1169 563:4920 460:3180 571:5483 494:4026 493:1383
-L|Karlsruher Verkehrsverbund|Stadtbahn S52|#f49694|540 483:421 523:327 448:420 555:436 457:294 447:298 582:13485 514:5724 561:3006 563:4920 460:3180 571:5483 494:4026 493:1383
-L|Karlsruher Verkehrsverbund|Stadtbahn S52 Eilzug|#f49694|493 494:1652 571:3478 460:5493 563:3213 561:4924 514:3197 582:5386 447:13484 457:364 555:305 448:441 523:446 483:317 540:326
-L|Karlsruher Verkehrsverbund|Stadtbahn S8|#6d682a|574 498:616 468:597 524:499 540:552 483:379 523:327 448:420 555:436 457:294 447:298 598:5320 597:5253 596:1127 595:2265 602:2739 599:3579 556:1392 525:3055 464:1718 455:2031 454:496 456:844 490:868 491:995 553:1007 509:1492 496:1569 497:659 550:2164 504:751 578:1562 450:1193 528:2100 492:2228 488:707
-L|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|Stadtbahn S7|#FFF90A|574 498:616 468:597 524:499 540:552 483:379 523:327 448:420 555:436 457:294 447:298 598:5320 597:5253 596:1127 595:2265 602:2739 599:3662 592:5508 591:2726 601:2677 600:1454 593:3025 594:4304 590:8400
-L|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|Stadtbahn S7|#FFF90A|590 594:8404 593:4347 600:2983 601:1454 591:2678 592:2727 599:5509 602:3661 595:2742 596:2314 597:1160 598:5170 447:5325 457:364 555:305 448:441 523:446 483:317 540:361 524:558 468:496 498:585 574:528
-L|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|Stadtbahn S8|#6d682a|574 498:616 468:597 524:499 540:552 483:379 523:327 448:420 555:436 457:294 447:298 598:5320 597:5253 596:1127 595:2265 602:2739 599:3579 556:1392 525:3055 464:1718 455:2031 454:496 456:844 490:868 491:995 553:1007 509:1492 496:1569 497:659 550:2164 504:751 578:1562 450:1193 528:2100 492:2228 488:707 623:4526 622:2708 625:2376 627:1334 621:1960 624:3148 618:2103 604:3747 603:884 616:2497 615:3183 614:787 613:1159 612:750 617:3114 608:1692 607:1588 626:3838 605:3360 620:6272 619:5457 611:2246 610:2311 609:2408 606:4144
-L|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|Stadtbahn S8|#6d682a|606 609:4160 610:2385 619:4557 620:5455 605:6270 626:3361 607:3839 608:1588 617:1692 612:3113 613:750 614:1159 615:787 616:3183 603:2497 604:884 618:3747 624:2103 621:3148 627:1961 625:1334 622:2376 623:2709 488:4527 492:707 528:2229 450:2100 578:1193 504:1626 550:686 497:2164 496:663 509:1568 553:1492 491:1007 490:998 456:867 454:852 455:769 464:1915 525:1538 556:3071 599:1328 602:3644 595:2742 596:2314 597:1160 598:5170 447:5325 457:364 555:305 448:441 523:446 483:317 540:361 524:558 468:496 498:585 574:528
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|S6|#3d2d7c|650 651:1892 634:916 635:529 636:762 633:1195 647:5171 646:591 649:1307 652:1161 648:1531 642:1123 641:1006 637:2653 638:481 630:1362 628:1005 631:573 629:255
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|S6|#3d2d7c|629 631:255 628:573 630:1005 638:1362 637:481 641:2653 642:1006 648:1123 652:1531 649:1161 646:1307 647:591 633:5175 636:1195 635:762 634:530 651:911 650:1887
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Eilzug|#f49694|447 457:364 448:746 523:446 483:317 540:361 524:558 468:496 498:585 574:594 515:2245 569:7586 653:512 644:2048 654:2129 645:2866 632:1835 640:2256 639:374 643:3054 650:3423
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Eilzug Pforzheim Hauptbahnhof => Karlsruhe Albtalbahnhof|#f49694|650 643:3421 639:3054 640:384 632:2245 645:1777 654:2917 644:2135 569:2672 515:7495 574:2280 498:616 468:597 524:499 540:535 483:381 523:328 448:435 555:436 457:294 447:298
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Pforzheim Hbf => Wörth-Badepark|#f49694|650 643:3425 639:3054 640:384 632:2245 645:1777 654:2917 644:2135 653:1966 569:705 570:355 461:1341 462:583 463:676 500:639 501:624 499:872 510:1531 515:873 576:590 577:1063 574:627 498:616 468:597 524:499 539:567 486:599 546:893 589:471 505:447 554:344 475:401 527:496 573:478 547:416 568:620 503:701 471:379 559:249 543:2227 544:597 545:581 582:1579 583:558 586:429 587:491 581:467 584:486 585:514
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Wörth Badepark => Pforzheim|#f49694|585 584:514 581:486 587:467 586:485 583:449 582:545 545:1587 544:514 543:620 559:2311 471:249 503:380 568:646 547:678 573:428 527:474 475:517 554:371 505:358 589:489 546:457 486:901 539:604 524:580 468:496 498:585 574:594 577:660 576:1054 515:530 510:898 499:1516 501:844 500:648 463:613 462:726 461:532 570:1343 569:465 653:512 644:2048 654:2129 645:2866 632:1835 640:2256 639:374 643:3054 650:3425
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S51|#f49694|650 643:3425 639:3054 640:384 632:2245 645:1777 654:2917 644:2135 653:1966 569:705 570:355 461:1341 462:583 463:676 500:639 501:624 499:872 510:1531 515:873 576:590 577:1063 574:627 498:616 468:597 524:499 539:567 486:599 546:893 589:471 505:447 554:344 475:401 527:494 573:478 547:416 568:620 503:701 471:379 559:249 543:2227 544:597 545:581 582:1575 588:1202 514:4522 560:1838 562:598 561:615 564:3586 563:1333 460:3180 459:585 571:4898 495:1907 494:1738 493:1383
-L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S51|#f49694|650 643:3425 639:3054 640:384 632:2245 645:1777 654:2917 569:4807 570:355 461:1341 462:583 463:676 500:639 501:624 499:872 510:1531 515:873 576:590 577:1063 574:627 498:616 468:597 524:499 539:567 486:599 546:893 589:471 505:447 554:344 475:401 527:494 573:478 547:416 568:620 503:701 471:379 559:249 544:2824 545:581 582:1575 588:1202 514:4522 560:1838 562:598 561:615 564:3586 563:1333 460:3180 459:585 571:4898 495:1907 494:1738 493:1383
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U1|#46B450|706 733:918 750:604 663:686 700:916 669:1102 736:695 687:927 738:1093 705:881 732:1087 678:1022 748:811 677:790 723:638
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U1|#46B450|723 677:640 748:789 678:812 732:1024 705:1098 738:881 687:1065 736:918 669:722 700:1095 663:908 750:705 733:600 706:902
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U2|#B4283C|666 686:1040 665:651 685:1104 657:951 668:1010 712:650 734:1091 689:1118 694:749 742:497 699:742 687:581 736:917 669:722 700:1095 737:723 746:544 679:668 695:1269 692:869 693:1573 701:970 744:1178 716:988 710:1639 709:943
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U2|#B4283C|709 710:944 716:1645 744:974 701:1180 693:973 692:1562 695:874 679:1265 746:660 737:545 700:704 669:1101 736:695 687:928 699:579 742:741 694:500 689:749 734:1116 712:1090 668:650 657:1010 685:949 665:1123 686:651 666:1040
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|672 659:949 667:788 704:1198 655:780 720:815 740:1109 662:1132 691:841 728:625 681:675 736:830 707:894 722:639 745:810 680:719 713:568 661:1038 734:791 727:825 724:925 721:1056 723:1374 715:898 714:798
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|672 659:949 667:788 704:1198 655:780 720:815 740:1109 662:1132 691:841 728:625 681:675 736:830 707:894 722:639 745:810 680:719 713:568 661:1038 734:791 727:825 724:925
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|714 715:798 723:899 721:1373 724:1040 727:936 734:797 661:818 713:983 680:567 745:719 722:811 707:629 736:853 681:832 728:675 691:638 662:839 740:1133 720:1091 655:809 704:787 667:1195 659:800 672:937
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|724 727:936 734:797 661:818 713:983 680:567 745:719 722:811 707:629 736:853 681:832 728:675 691:638 662:839 740:1133 720:1091 655:809 704:787 667:1195 659:800 672:937
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|658 731:786 660:540 729:804 708:794 703:916 722:946 696:796 687:515 743:766 735:908 688:653 747:822
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|658 731:786 660:540 729:804 708:794 703:916 722:946 696:796 687:515 743:766
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|747 688:823 735:654 743:929 687:728 696:553 722:775 703:919 708:940 729:801 660:806 731:547 658:773
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|743 687:728 696:553 722:775 703:919 708:940 729:801 660:806 731:547 658:773
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U5|#A06E1E|702 671:661 747:791 688:823 735:654 743:929 687:728 696:553 722:775 703:919 708:940 725:1084 692:1600 711:1005 730:1690 718:770 741:759 717:727
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U5|#A06E1E|717 741:720 718:761 730:771 711:1694 692:1010 725:1578 708:1139 703:914 722:946 696:796 687:515 743:766 735:908 688:653 747:822 671:791 702:661
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|675 674:2559 676:1787 673:4092 697:922 670:1415 739:1141 656:597 719:741 664:805 713:725 680:568 745:719 722:811 707:629 736:853 681:832 728:675 691:638 684:1193 726:841 749:750 690:1101 683:1086 682:1127 698:659
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|673 697:922 670:1415 739:1141 656:597 719:741 664:805 713:725 680:568 745:719 722:811 707:629 736:853 681:832 728:675 691:638 684:1193 726:841 749:750 690:1101 683:1086 682:1127 698:659
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|698 682:780 683:1099 690:990 749:1099 726:749 684:845 691:1227 728:617 681:675 736:830 707:894 722:639 745:810 680:719 713:568 664:721 719:804 656:742 739:706 670:1033 697:1415 673:919 676:4093 674:1784 675:2566
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|698 682:780 683:1099 690:990 749:1099 726:749 684:845 691:1227 728:617 681:675 736:830 707:894 722:639 745:810 680:719 713:568 664:721 719:804 656:742 739:706 670:1033 697:1415 673:919
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U7|#46B450|718 730:771 711:1694 692:1011 695:874 679:1265 746:660 737:545 700:704 669:1101 736:695 687:927 738:1093 705:881 732:1087 678:1022 748:811 677:790 723:638
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U7|#46B450|723 677:640 748:789 678:812 732:1024 705:1098 738:881 687:1065 736:918 669:722 700:1095 737:723 746:544 679:668 695:1269 692:869 711:1006 730:1690 718:770
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U8|#B4283C|718 730:771 711:1694 692:1011 695:874 679:1265 746:660 737:545 700:704 669:1101 736:695 687:928 699:579 742:741 694:500 689:749 734:1116 727:826 724:925
-L|Münchner Verkehrs- und Tarifverbund|U-Bahn U8|#B4283C|724 727:936 734:799 689:1118 694:749 742:497 699:742 687:581 736:917 669:722 700:1095 737:723 746:544 679:668 695:1269 692:869 711:1006 730:1690 718:770
-L|Parkeisenbahn Chemnitz|Parkeisenbahn Chemnitz||753 751:363 752:430
-L|Rhein-Main-Verkehrsverbund|U1|#b8282e|770 771:528 818:1129 808:578 785:658 836:638 784:628 831:748 801:550 788:548 769:643 761:660 804:620 791:559 775:532 764:599 781:447 835:541 823:875 824:596
-L|Rhein-Main-Verkehrsverbund|U1|#b8282e|824 823:586 835:870 781:540 764:450 775:598 791:533 804:558 761:620 769:660 788:555 801:638 831:632 784:666 836:630 785:895 808:660 818:596 771:1112 770:530
-L|Rhein-Main-Verkehrsverbund|U2|#00a54f|774 809:788 806:2355 757:1966 794:519 817:1822 821:600 784:619 831:748 801:550 788:548 769:643 761:660 804:620 791:559 775:532 764:599 781:447 835:541 823:875 824:596
-L|Rhein-Main-Verkehrsverbund|U2|#00a54f|806 757:1966 794:519 817:1822 821:600 784:619 831:748 801:550 788:548 769:643 761:660 804:620 791:559 775:532 764:599 781:447 835:541 823:875 824:596
-L|Rhein-Main-Verkehrsverbund|U2|#00a54f|824 823:586 835:870 781:540 764:450 775:598 791:533 804:558 761:620 769:660 788:555 801:638 831:632 784:666 821:677 817:570 794:1843 757:531 806:1905 809:2357 774:790
-L|Rhein-Main-Verkehrsverbund|U2|#00a54f|824 823:586 835:870 781:540 764:450 775:598 791:533 804:558 761:620 769:660 788:555 801:638 831:632 784:666 821:677 817:570 794:1843 757:531 806:1905
-L|Rhein-Main-Verkehrsverbund|U3|#4a5eaa|790 830:406 820:422 798:524 773:396 799:771 810:706 812:619 811:581 756:889 832:1006 807:2440 834:588 836:1030 784:628 831:748 801:550 788:548 769:643 761:660 804:620 791:559 775:532 764:599 781:447 835:541 823:875 824:596
-L|Rhein-Main-Verkehrsverbund|U3|#4a5eaa|824 823:586 835:870 781:540 764:450 775:598 791:533 804:558 761:620 769:660 788:555 801:638 831:632 784:666 836:630 834:1031 807:642 832:2390 756:1001 811:886 812:586 810:621 799:705 773:772 798:398 820:523 830:422 790:406
-L|Rhein-Main-Verkehrsverbund|U4|#F172AC|755 765:961 779:714 835:926 760:705 796:636 803:897 789:567 758:572 825:892 822:2113 777:599 797:531 787:482 763:363
-L|Rhein-Main-Verkehrsverbund|U4|#F172AC|763 787:413 797:428 777:531 822:627 825:1941 758:890 789:572 803:567 796:910 760:623 835:706 779:906 765:717 755:919
-L|Rhein-Main-Verkehrsverbund|U5|#007942|779 835:924 760:705 796:636 772:1437 759:465 780:585 802:729 766:466 828:529 819:407 826:408 815:421
-L|Rhein-Main-Verkehrsverbund|U5|#007942|815 826:422 819:409 828:406 766:392 802:620 780:710 759:586 772:366 805:593 796:946 760:623 835:706 779:906
-L|Rhein-Main-Verkehrsverbund|U6|#007ec6|782 776:578 792:578 795:660 800:654 755:605 833:750 754:675 781:540 796:668 837:794 813:727
-L|Rhein-Main-Verkehrsverbund|U6|#007ec6|813 837:755 796:821 781:641 754:534 833:672 755:754 800:601 795:652 792:662 776:483 782:671
-L|Rhein-Main-Verkehrsverbund|U7|#E4A024|763 787:413 797:428 777:531 822:627 793:778 762:650 814:564 778:517 837:731 796:820 781:641 754:534 833:672 755:754 800:601 795:652 792:662 767:390 783:470 827:656 768:288 786:611
-L|Rhein-Main-Verkehrsverbund|U7|#E4A024|786 768:605 827:295 783:656 767:474 792:390 795:660 800:654 755:605 833:750 754:675 781:540 796:668 837:794 778:741 814:516 762:568 793:723 822:732 777:599 797:531 787:482 763:363
-L|Rhein-Main-Verkehrsverbund|U8|#C77DB5|816 829:705 807:853 834:588 836:1030 784:628 831:748 801:550 788:548 769:643 761:660 804:620 791:559 775:532 764:599 781:447 835:541 823:875 824:596
-L|Rhein-Main-Verkehrsverbund|U8|#C77DB5|824 823:586 835:870 781:540 764:450 775:598 791:533 804:558 761:620 769:660 788:555 801:638 831:632 784:666 836:630 834:1031 807:642 829:864 816:678
-L|Rhein-Main-Verkehrsverbund|U9|#EED700|770 771:528 818:1129 808:578 785:658 834:551 807:642 829:864 816:678 794:1915 757:531 806:1905
-L|Rhein-Main-Verkehrsverbund|U9|#EED700|806 757:1966 794:519 816:1866 829:705 807:853 834:588 785:547 808:660 818:596 771:1112 770:530
-L|VRR|Monorail H1|#C31313|895 879:550 1051:1018 1043:1059
-L|VRR|Monorail H1|#C31313|1043 1051:1056 879:1021 895:550
-L|VRR|Monorail H2|#C31313|879 878:999
-L|VRR|Monorail H2|#C31313|878 879:1001
-L|VRR|Monorail H3|#C31313|895 879:550 878:1013
-L|VRR|Monorail H3|#C31313|878 879:1014 895:550
-L|VRR|Schwebebahn|#00FFFF|1058 875:776 923:861 1036:630 1075:665 1053:717 1068:870 999:523 1017:821 995:672 1073:420 960:499 965:737 1056:1002 970:765 839:544 847:733 1067:750 1072:578 991:625
-L|VRR|Schwebebahn|#00FFFF|991 1072:643 1067:561 847:750 839:733 970:544 1056:764 965:1002 960:737 1073:499 995:420 1017:672 999:821 1068:523 1053:870 1075:717 1036:666 923:630 875:861 1058:781
-L|VRR|SkyTrain 1|red|905 904:224 903:593 840:1543
-L|VRR|SkyTrain 1|red|840 903:1536 904:602 905:241
-L|VRR|SkyTrain 1E|red|905 904:224 840:2136
-L|VRR|SkyTrain 1E|red|840 904:2138 905:241
-L|VRR|SkyTrain K|red|905 904:224 903:594
-L|VRR|SkyTrain K|red|903 904:602 905:241
-L|VRR|U-Bahn U11|#342a82|876 1027:440 902:511 843:844 871:442 855:685 934:997 944:400 952:548 846:537 948:552 845:778 877:653 859:703 1048:907 865:816 938:719 899:554 1000:586 1021:827 974:417 976:616 978:816
-L|VRR|U-Bahn U11|#342a82|978 976:810 974:639 1021:417 1000:868 899:595 938:558 865:682 1048:803 859:909 877:688 845:669 948:771 846:555 952:536 944:547 934:401 855:997 871:685 843:440 902:842 1027:510 876:445
-L|VRR|U-Bahn U17|#68b6e3|952 846:537 948:552 845:778 877:653 859:703 1048:907 865:816 938:719 899:554 868:662 1002:568 909:393 942:793 922:589 966:678 972:755
-L|VRR|U-Bahn U17|#68b6e3|972 966:752 922:676 942:591 909:795 1002:395 868:593 899:669 938:558 865:682 1048:803 859:909 877:688 845:669 948:771 846:555 952:536
-L|VRR|U-Bahn U18|#0080c8|865 938:719 899:554 868:662 1023:802 941:540 874:604 1070:715 1015:844 1019:578 894:917 930:882 979:622 880:686 916:533 1060:587 981:588
-L|VRR|U-Bahn U18|#0080c8|981 1060:589 916:629 880:529 979:669 930:600 894:886 1019:803 1015:692 1070:871 874:731 941:612 1023:507 868:826 899:677 938:558 865:682
-L|VRR|U-Bahn U35 CampusLinie|#294488|943 967:533 1022:603 914:473 973:672 873:788 1064:914 1063:642 996:525 870:650 1006:655 882:626 901:643 1074:919 1016:704 1014:640 866:1166 940:750 854:716 937:690 936:417 1029:949
-L|VRR|U-Bahn U35 CampusLinie|#294488|1029 936:949 937:417 854:684 940:723 866:787 1014:1154 1016:614 1074:699 901:922 882:642 1006:636 870:652 996:667 1063:505 1064:678 873:908 973:828 914:611 1022:515 967:579 943:521
-L|VRR|U71|#59c6f2|935 962:255 1059:369 838:433 1034:393 1042:534 867:608 957:545 917:535 863:490 931:405 1024:420 998:527 1065:566 1046:276 1025:585 872:240 886:597 887:394 933:418 921:542 851:491 1009:521 1020:269 1010:275
-L|VRR|U71|#59c6f2|1010 1020:195 1009:349 851:534 921:484 933:707 887:335 886:343 872:630 1025:415 1046:459 1065:306 998:590 1024:520 931:368 863:419 917:490 957:535 867:576 1042:536 1034:504 838:481 1059:465 962:262 935:296
-L|VRR|U72|#25b8c5|1012 1069:361 900:318 910:325 1011:731 889:1013 939:419 994:508 1008:324 1007:979 985:391 918:684 1054:293 1030:666 885:611 890:365 1046:529 1065:311 998:590 1024:520 931:368 863:419 917:490 957:535 867:576 953:518 858:336 1047:476 1049:605 1033:454 1066:884 1734:604 1726:413 1719:737 1724:652 988:667 853:710 1032:716 950:304 1028:605 1052:559 864:223 862:450
-L|VRR|U72|#25b8c5|862 864:549 1052:229 1028:512 950:596 1032:372 853:628 988:787 1724:705 1719:612 1726:736 1734:347 1066:673 1033:884 1049:482 1047:606 858:445 953:391 867:489 957:545 917:535 863:490 931:405 1024:420 998:527 1065:566 1046:272 890:477 885:451 1030:663 1054:625 918:291 985:676 1007:389 1008:956 994:349 939:506 889:420 1011:988 910:761 900:329 1069:305 1012:383
-L|VRR|U73|#4465AD|1050 1033:454 1049:455 1047:606 858:445 953:391 867:489 957:545 917:535 863:490 931:405 1024:420 998:527 1065:566 1046:272 890:477 885:451 1030:663 1039:627 1001:607 857:789 907:365 1061:283 912:569 1031:210 883:454 926:481 983:520 913:246
-L|VRR|U73|#4465AD|913 983:290 926:473 883:495 1031:480 912:185 1061:578 907:283 857:372 1001:726 1039:673 1030:681 885:611 890:365 1046:529 1065:311 998:590 1024:520 931:368 863:419 917:490 957:535 867:576 953:518 858:336 1047:476 1049:605 1033:419 1050:532
-L|VRR|U75|#008fc2|1055 844:302 896:360 946:387 848:224 1026:402 968:804 1018:465 956:692 924:629 888:598 997:517 1041:494 931:503 1045:769 971:844 860:516 861:493 884:664 927:904 989:336 929:583 841:495 925:542 1057:426 849:571 869:736 987:1391
-L|VRR|U75|#008fc2|987 869:1343 849:788 1057:571 925:422 841:542 929:495 989:582 927:339 884:901 861:670 860:566 971:471 1045:815 931:761 1041:557 997:462 888:546 924:687 956:545 1018:734 968:422 1026:934 848:190 946:305 896:383 844:297 1055:325
-L|VRR|U77|#7197cf|852 1004:382 928:303 881:310 861:597 860:553 971:471 1045:815 931:761 1041:557 997:462 888:546 924:687 956:545 1018:734 968:422
-L|VRR|U77|#7197cf|968 1018:465 956:692 924:629 888:598 997:517 1041:494 931:503 1045:769 971:844 860:516 861:501 881:569 928:310 1004:292 852:389
-L|VRR|U78|#009adf|888 997:514 1041:490 931:514 898:1545 954:499 915:540 1044:322 1013:612 990:437 977:446 906:658 984:398 975:743
-L|VRR|U78|#009adf|888 997:514 1041:490 931:514 898:1545 954:499 915:540 1044:322 1013:612 990:437 977:446 906:658 984:398 1037:643 975:384
-L|VRR|U78|#009adf|975 984:734 906:394 977:646 990:445 1013:444 1044:499 915:558 954:336 898:578 931:1546 1041:546 997:467 888:546
-L|VRR|U79|#009A93|892 856:488 893:3171 891:1025 961:716 1040:596 1003:783 986:450 963:335 951:712 919:806 920:393 964:505 945:443 1062:1008 982:1029 1035:887 980:616 1038:709 955:993 908:2036 1071:2362 850:562 949:928 959:540 958:669 842:678 969:1692 906:953 977:641 990:445 1013:444 1044:499 915:558 954:336 898:578 931:1546 1041:546 997:467 888:546 992:723 897:408 993:581 947:575 1005:524 1066:680 1033:926 1050:624
-L|VRR|U79|#009A93|892 856:488 893:3171 891:1025 961:716 1040:596 1003:783 986:450 963:335 951:712 919:806 920:393 964:505 945:443 1062:1008 982:1029 1035:887 980:616 1038:709 955:993 908:2036 1071:2362 850:562 949:928 959:540 958:669 842:678 969:1692 906:953 977:641 990:445 1013:444 1044:499 915:558 954:336 898:578 931:1546 1041:546 997:467 888:546
-L|VRR|U79|#009A93|1050 1033:541 1066:931 1005:667 947:522 993:576 897:622 992:367 888:765 997:514 1041:490 931:514 898:1545 954:499 915:540 1044:322 1013:612 990:437 977:446 906:643 969:954 842:1798 958:650 959:589 949:644 850:830 1071:580 908:2339 955:2032 1038:993 980:709 1035:617 982:887 1062:1031 945:1005 964:442 920:505 919:393 951:809 963:718 986:439 1003:341 1040:865 961:590 891:685 893:1027 856:3170 892:478
-L|VRR|U79|#009A93|888 997:514 1041:490 931:514 898:1545 954:499 915:540 1044:322 1013:612 990:437 977:446 906:643 969:954 842:1798 958:650 959:589 949:644 850:830 1071:580 908:2339 955:2032 1038:993 980:709 1035:617 982:887 1062:1031 945:1005 964:442 920:505 919:393 951:809 963:718 986:439 1003:341 1040:865 961:590 891:685 893:1027 856:3170 892:478
-L|VRR|U80|#005558|888 997:514 1041:490 931:514 898:1545 954:499 915:540 1044:322 1013:612 990:437 977:446 906:643 1716:1852
-L|VRR|U80|#005558|1716 906:1860 977:641 990:445 1013:444 1044:499 915:558 954:336 898:578 931:1546 1041:546 997:467 888:546
-L|VRR|U83|#1d3a8f|935 962:255 1059:369 838:433 1034:393 1042:534 867:608 957:545 917:535 863:490 931:405 1024:420 998:527 1065:566 1046:272 890:477 885:451 1030:663 1039:627 1001:607 857:810 932:422 911:375
-L|VRR|U83|#1d3a8f|911 932:371 857:426 1001:707 1039:673 1030:681 885:611 890:365 1046:529 1065:311 998:590 1024:520 931:368 863:419 917:490 957:535 867:576 1042:536 1034:504 838:481 1059:465 962:262 935:296
-L|Verkehrs- und Tarifverbund Stuttgart|U1|#C7956C|1143 1238:528 1090:764 1114:645 1174:639 1256:893 1219:737 1087:426 1088:194 1099:646 1138:676 1247:600 1192:397 1253:502 1179:508 1186:707 1177:547 1083:428 1259:797 1081:499 1197:337 1079:494 1089:820 1146:655 1115:532 1237:527 1121:432
-L|Verkehrs- und Tarifverbund Stuttgart|U1|#C7956C|1121 1237:431 1115:521 1146:537 1089:656 1079:819 1197:494 1081:337 1259:530 1083:806 1177:437 1186:542 1179:667 1253:576 1192:433 1247:398 1138:566 1099:647 1088:579 1087:202 1219:429 1256:718 1174:944 1114:588 1090:822 1238:612 1143:503
-L|Verkehrs- und Tarifverbund Stuttgart|U11|#CCCCCC|1138 1099:647 1088:579 1219:573 1211:679 1103:417 1247:787 1192:398 1253:502 1179:508 1186:707 1177:547 1102:768 1191:503
-L|Verkehrs- und Tarifverbund Stuttgart|U11|#CCCCCC|1191 1102:503 1177:821 1186:542 1179:667 1253:576 1192:433 1247:398 1138:566
-L|Verkehrs- und Tarifverbund Stuttgart|U12|#93BBE9|1108 1165:447 1245:631 1246:392 1264:669 1182:664 1213:482 1243:805 1204:550 1106:421 1105:456 1272:932 1093:2121 1107:259 1199:543 1103:311 1233:463 1138:591 1101:1153 1184:496 1187:483 1196:593 1172:590 1277:784 1214:520 1137:510 1096:558 1266:1022 1175:501 1149:548 1082:449 1180:470 1077:2268 1078:614 1076:674 1212:1213
-L|Verkehrs- und Tarifverbund Stuttgart|U12|#93BBE9|1212 1076:1216 1078:675 1077:612 1180:2333 1082:404 1149:419 1175:608 1266:427 1096:1135 1137:489 1214:556 1277:472 1172:800 1196:605 1187:568 1184:484 1101:566 1138:1166 1233:537 1103:466 1199:312 1107:538 1093:258 1272:2170 1105:884 1106:455 1204:329 1243:526 1213:988 1182:408 1264:666 1246:792 1245:332 1165:637 1108:450
-L|Verkehrs- und Tarifverbund Stuttgart|U13|#EDA5B4|1140 1250:855 1270:576 1271:440 1260:680 1234:444 1116:425 1091:668 1157:922 1109:520 1259:639 1083:806 1177:437 1273:547 1217:304 1135:487 1218:539 1172:646 1208:401 1176:502 1122:773 1274:752 1124:674 1244:605 1123:503
-L|Verkehrs- und Tarifverbund Stuttgart|U13|#EDA5B4|1123 1244:610 1124:606 1274:759 1122:739 1176:701 1208:497 1172:405 1218:569 1135:658 1217:476 1273:273 1177:548 1083:428 1259:797 1109:603 1157:441 1091:927 1116:741 1234:425 1260:442 1271:684 1270:472 1250:575 1140:824
-L|Verkehrs- und Tarifverbund Stuttgart|U14|#69BE51|1261 1262:453 1120:263 1263:303 1113:890 1154:266 1268:672 1143:1010 1238:526 1090:764 1114:645 1174:639 1256:893 1211:455 1103:419 1247:787 1192:398 1253:502 1179:508 1186:707 1273:890 1217:322 1181:527 1161:506 1190:475 1189:648 1127:479 1110:718 1266:471 1175:501 1149:548 1082:449 1180:402
-L|Verkehrs- und Tarifverbund Stuttgart|U14|#69BE51|1180 1082:403 1149:419 1175:608 1266:427 1110:515 1127:713 1189:506 1190:648 1161:476 1181:497 1217:534 1273:303 1186:917 1179:667 1253:576 1192:433 1247:398 1103:789 1211:418 1256:453 1174:944 1114:588 1090:822 1238:612 1143:528 1268:1021 1154:671 1113:340 1263:817 1120:298 1262:267 1261:456
-L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1208 1239:764 1094:486 1129:462 1150:442 1278:412 1159:395 1226:748 1275:255 1145:502 1160:502 1252:386
-L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1199 1103:311 1233:463 1138:591 1249:885 1207:848 1173:613 1208:713 1239:764 1094:486 1129:462 1150:442 1278:412 1159:395 1226:748 1275:255 1145:502 1160:502 1252:386
-L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1144 1092:480 1230:691 1242:544 1241:580 1220:1080 1255:1106 1133:661 1203:765 1100:529 1251:257 1141:411 1117:211 1199:579 1103:311 1233:463 1138:591 1249:885 1207:848 1173:613 1208:713 1239:764 1094:486 1129:462 1150:442 1278:412 1159:395 1226:748 1275:255 1145:502 1160:502 1252:386
-L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1220 1255:1106 1133:661 1203:765 1100:529 1251:257 1141:411 1117:211 1199:579 1103:311 1233:463 1138:591 1249:885 1207:848 1173:613 1208:713 1239:764 1094:486 1129:462 1150:442 1278:412 1159:395 1226:748 1275:255 1145:502 1160:502 1252:386
-L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1252 1160:388 1145:502 1275:505 1226:252 1159:777 1278:364 1150:411 1129:507 1094:399 1239:364 1208:890 1173:710 1207:620 1249:864 1138:922 1233:537 1103:466 1199:312 1117:587 1141:196 1251:407 1100:357 1203:315 1133:638 1255:637 1220:1239 1241:1135 1242:527 1230:546 1092:691 1144:481
-L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1252 1160:388 1145:502 1275:505 1226:252 1159:777 1278:364 1150:411 1129:507 1094:399 1239:364 1208:890 1173:710 1207:620 1249:864 1138:922 1233:537 1103:466 1199:312 1117:587 1141:196 1251:407 1100:357 1203:315 1133:638 1255:637 1220:1114
-L|Verkehrs- und Tarifverbund Stuttgart|U16|#BAC219|1121 1237:431 1115:521 1146:537 1089:656 1079:819 1197:494 1081:337 1259:530 1083:806 1177:437 1273:547 1217:304 1135:487 1218:539 1172:646 1208:401 1176:502 1122:773 1274:752 1124:674 1244:605 1123:503 1163:968 1171:824 1210:560 1276:371 1086:455 1224:615 1134:379
-L|Verkehrs- und Tarifverbund Stuttgart|U16|#BAC219|1134 1224:372 1086:625 1276:527 1210:333 1171:525 1163:824 1123:857 1244:610 1124:606 1274:759 1122:739 1176:701 1208:497 1172:405 1218:569 1135:658 1217:476 1273:273 1177:548 1083:428 1259:797 1081:499 1197:337 1079:494 1089:820 1146:655 1115:532 1237:527 1121:432
-L|Verkehrs- und Tarifverbund Stuttgart|U19|#CCCCCC|1195 1254:582 1139:1144 1198:490 1136:577 1162:704 1104:535 1083:376 1102:979 1191:503
-L|Verkehrs- und Tarifverbund Stuttgart|U19|#CCCCCC|1191 1102:503 1083:1011 1104:371 1162:506 1136:698 1198:597 1139:476 1254:1143 1195:578
-L|Verkehrs- und Tarifverbund Stuttgart|U2|#F58220|1095 1111:373 1185:399 1084:359 1170:395 1142:636 1265:441 1080:360 1236:320 1232:532 1087:568 1219:429 1211:679 1103:417 1247:787 1192:398 1253:502 1179:508 1186:707 1177:547 1083:428 1104:371 1162:506 1136:698 1198:597 1139:476 1254:1143 1195:578
-L|Verkehrs- und Tarifverbund Stuttgart|U2|#F58220|1195 1254:582 1139:1144 1198:490 1136:577 1162:704 1104:535 1083:376 1177:437 1186:542 1179:667 1253:576 1192:433 1247:398 1103:789 1211:418 1219:649 1087:426 1232:504 1236:600 1080:320 1265:361 1142:443 1170:662 1084:355 1185:397 1111:369 1095:375
-L|Verkehrs- und Tarifverbund Stuttgart|U3|#935F39|1205 1164:3030 1225:318 1206:470 1240:606 1182:523 1264:665 1246:792 1245:332 1153:619 1261:503
-L|Verkehrs- und Tarifverbund Stuttgart|U3|#935F39|1261 1153:465 1245:688 1246:392 1264:669 1182:665 1240:546 1206:577 1225:470 1164:319 1205:3032
-L|Verkehrs- und Tarifverbund Stuttgart|U4|#7A68AE|1260 1271:698 1152:346 1151:441 1098:652 1269:343 1130:520 1201:354 1200:314 1085:422 1155:271 1253:525 1192:433 1247:398 1103:789 1211:418 1219:649 1087:426 1088:175 1216:422 1223:416 1148:468
-L|Verkehrs- und Tarifverbund Stuttgart|U4|#7A68AE|1148 1223:459 1216:414 1088:422 1087:176 1219:429 1211:679 1103:417 1247:787 1192:398 1253:502 1155:512 1085:293 1200:331 1201:324 1130:381 1269:524 1098:312 1151:581 1152:385 1271:473 1260:694
-L|Verkehrs- und Tarifverbund Stuttgart|U5|#00BAF2|1158 1207:972 1249:864 1138:922 1233:537 1103:466 1199:312 1107:538 1093:258 1272:2170 1105:884 1106:455 1204:329 1243:526 1213:988 1182:408 1264:666 1215:728 1183:698 1167:1068 1169:420 1166:759 1168:529
-L|Verkehrs- und Tarifverbund Stuttgart|U5|#00BAF2|1168 1166:518 1169:759 1167:374 1183:1116 1215:698 1264:726 1182:664 1213:482 1243:805 1204:550 1106:421 1105:456 1272:932 1093:2121 1107:259 1199:543 1103:311 1233:463 1138:591 1249:885 1207:862 1158:974
-L|Verkehrs- und Tarifverbund Stuttgart|U6|#EC008C|1131 1132:688 1097:695 1134:444 1224:373 1086:625 1276:527 1210:333 1171:525 1163:824 1123:857 1244:610 1124:606 1274:759 1122:739 1176:701 1208:497 1173:710 1207:620 1249:864 1138:922 1233:537 1103:466 1199:312 1107:538 1093:258 1272:2170 1105:884 1106:455 1204:329 1243:526 1213:988 1182:408 1264:666 1215:728 1183:698 1119:1573 1118:570 1112:605 1229:499 1248:1768 1178:690 1125:646
-L|Verkehrs- und Tarifverbund Stuttgart|U6|#EC008C|1125 1178:643 1248:682 1229:1775 1112:495 1118:616 1119:569 1183:1566 1215:698 1264:726 1182:664 1213:482 1243:805 1204:550 1106:421 1105:456 1272:932 1093:2121 1107:259 1199:543 1103:311 1233:463 1138:591 1249:885 1207:848 1173:613 1208:713 1176:502 1122:773 1274:752 1124:674 1244:605 1123:503 1163:968 1171:824 1210:560 1276:371 1086:455 1224:615 1134:381 1097:376 1132:763 1131:691
-L|Verkehrs- und Tarifverbund Stuttgart|U7|#0EB48D|1193 1194:451 1228:1368 1227:606 1202:557 1222:745 1221:798 1144:1734 1092:482 1230:691 1242:544 1241:580 1220:1097 1267:483 1093:1994 1107:259 1199:543 1103:311 1233:463 1138:591 1249:885 1207:848 1173:613 1208:713 1239:764 1094:486 1129:462 1150:442 1156:385 1235:657 1128:557 1258:374 1147:630 1257:521 1126:531 1188:546
-L|Verkehrs- und Tarifverbund Stuttgart|U7|#0EB48D|1188 1126:546 1257:537 1147:518 1258:634 1128:370 1235:557 1156:655 1150:389 1129:507 1094:399 1239:364 1208:890 1173:710 1207:620 1249:864 1138:922 1233:537 1103:466 1199:312 1107:538 1093:258 1267:2010 1220:483 1241:1142 1242:527 1230:546 1092:691 1144:479 1221:1733 1222:799 1202:746 1227:549 1228:611 1194:1391 1193:453
-L|Verkehrs- und Tarifverbund Stuttgart|U8|#C3B47D|1261 1153:465 1245:688 1246:392 1264:669 1182:664 1213:482 1243:805 1204:550 1106:421 1105:456 1272:932 1267:1209 1220:483 1241:1142 1242:527 1230:546 1092:691 1144:479 1221:1733 1222:799 1202:746 1227:549 1228:611 1194:1391 1193:453
-L|Verkehrs- und Tarifverbund Stuttgart|U8|#C3B47D|1193 1194:451 1228:1368 1227:606 1202:557 1222:745 1221:798 1144:1734 1092:482 1230:691 1242:544 1241:580 1220:1097 1267:483 1272:1204 1105:884 1106:455 1204:329 1243:526 1213:988 1182:408 1264:666 1246:792 1245:332 1153:619 1261:503
-L|Verkehrs- und Tarifverbund Stuttgart|U9|#FFD503|1140 1250:855 1270:576 1271:599 1152:346 1151:441 1098:652 1269:338 1231:654 1209:461 1085:535 1155:271 1253:525 1192:433 1247:398 1138:566 1099:647 1088:579 1232:498 1236:600 1080:320 1265:361 1142:443 1170:662 1084:355 1185:397 1111:369 1095:375
-L|Verkehrs- und Tarifverbund Stuttgart|U9|#FFD503|1095 1111:373 1185:399 1084:359 1170:395 1142:636 1265:441 1080:360 1236:320 1232:532 1088:566 1099:583 1138:676 1247:600 1192:397 1253:502 1155:512 1085:293 1209:455 1231:456 1269:684 1098:310 1151:581 1152:385 1271:629 1270:472 1250:575 1140:824
-L|Verkehrsverbund Berlin-Brandenburg|S1|#D474AE|1464 1423:1724 1319:2983 1311:3092 1387:2178 1354:4134 1384:2029 1561:1528 1578:1356 1576:2541 1522:1734 1580:1052 1320:1257 1356:1002 1392:873 1459:1515 1465:975 1352:787 1322:661 1485:966 1290:774 1585:1643 1398:718 1517:1062 1348:1176 1341:926 1496:1213 1321:1293 1430:1061 1546:1511 1586:1261 1445:1917 1514:1394 1456:1691 1564:1574
-L|Verkehrsverbund Berlin-Brandenburg|S1|#D474AE|1564 1456:1638 1514:1712 1445:1326 1586:1981 1546:1186 1430:1511 1321:1114 1496:1317 1341:1168 1348:1001 1517:1178 1398:954 1585:858 1290:1504 1485:823 1322:1014 1352:604 1465:782 1459:897 1392:1601 1356:869 1320:1120 1522:2197 1576:1734 1578:2537 1561:1359 1384:1527 1354:2030 1387:4134 1311:2212 1319:3177 1423:2869 1464:1727
-L|Verkehrsverbund Berlin-Brandenburg|S15|#D474AE|1356 1568:1776 1300:2186
-L|Verkehrsverbund Berlin-Brandenburg|S15|#D474AE|1300 1568:2315 1356:1635
-L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1301 1304:1951 1587:2302 1502:1818 1325:2091 1405:2703 1313:3183 1473:1784 1472:1855 1320:1599 1356:1032 1392:873 1459:1515 1465:975 1352:787 1322:661 1485:966 1290:774 1584:1573 1527:1773 1488:1854 1292:1428 1437:2757 1326:1613 1512:1388 1427:1368 1435:3042 1314:2661
-L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1325 1405:2703 1313:3183 1473:1784 1472:1855 1320:1599 1356:1032 1392:873 1459:1515 1465:975 1352:787 1322:661 1485:966 1290:774 1584:1573 1527:1773 1488:1854 1292:1428 1437:2757 1326:1613 1512:1388
-L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1314 1435:2803 1427:2899 1512:1478 1326:1282 1437:1677 1292:2807 1488:1310 1527:1902 1584:1826 1290:1473 1485:829 1322:1014 1352:604 1465:782 1459:897 1392:1601 1356:869 1320:1099 1472:1514 1473:1929 1313:1725 1405:3184 1325:2767 1502:1975 1587:1900 1304:2333 1302:1999
-L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1512 1326:1282 1437:1677 1292:2807 1488:1310 1527:1902 1584:1826 1290:1473 1485:829 1322:1014 1352:604 1465:782 1459:897 1392:1601 1356:869 1320:1099 1472:1514 1473:1929 1313:1725 1405:3184 1325:2767
-L|Verkehrsverbund Berlin-Brandenburg|S25|#018A47|1381 1378:2236 1524:1715 1547:4276 1334:2356 1402:857 1286:1467 1522:2285 1580:1052 1320:1257 1356:1002 1392:873 1459:1515 1465:975 1352:787 1322:661 1485:966 1290:774 1584:1573 1527:1773 1488:1856 1526:1330 1422:1312 1428:1400 1467:1515 1429:1070 1548:2864
-L|Verkehrsverbund Berlin-Brandenburg|S25|#018A47|1548 1429:2912 1467:1028 1428:1638 1422:1267 1526:1314 1488:1324 1527:1901 1584:1826 1290:1473 1485:829 1322:1014 1352:604 1465:782 1459:897 1392:1601 1356:869 1320:1120 1522:2197 1286:2285 1402:1467 1334:857 1547:2355 1524:4278 1378:1728 1381:2224
-L|Verkehrsverbund Berlin-Brandenburg|S26|#018A47|1313 1473:1784 1472:1855 1320:1599 1356:1032 1392:873 1459:1515 1465:975 1352:787 1322:661 1485:966 1290:774 1584:1573 1527:1773 1488:1856 1526:1330 1422:1312 1428:1400 1467:1515 1429:1070 1548:2798
-L|Verkehrsverbund Berlin-Brandenburg|S26|#018A47|1548 1429:2846 1467:1028 1428:1638 1422:1267 1526:1314 1488:1324 1527:1901 1584:1826 1290:1473 1485:829 1322:1014 1352:604 1465:782 1459:897 1392:1601 1356:869 1320:1099 1472:1514 1473:1929 1313:1725
-L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1338 1575:2256 1490:2831 1351:4546 1385:1371 1416:1516 1582:2166 1404:2247 1305:2525 1509:1514 1471:722 1565:1267 1470:1102 1395:1190 1283:975 1367:707 1352:1079 1373:1421 1297:1666 1551:1134 1590:858 1511:959 1329:1040 1572:1453 1444:941 1375:1355 1461:1368 1480:1039 1545:3317 1534:878
-L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1351 1385:1371 1416:1516 1582:2166 1404:2247 1305:2525 1509:1514 1471:721 1565:1267 1470:1100
-L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1534 1545:832 1480:3315 1461:1110 1375:1387 1444:1222 1572:1083 1329:1453 1511:939 1590:982 1551:865 1297:1122 1373:1698 1352:1361 1367:1101 1283:700 1395:1016 1470:1130 1565:1248 1471:1300 1509:636 1305:1554 1404:2501 1582:2269 1416:2168 1385:1506 1351:1380 1490:4542 1575:2826 1338:2269
-L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1470 1565:1244 1471:1303 1509:636 1305:1554 1404:2501 1582:2269 1416:2168 1385:1506 1351:1380
-L|Verkehrsverbund Berlin-Brandenburg|S41|#9F4C37|1356 1521:1801 1487:825 1360:1052 1421:1644 1540:949 1343:1218 1471:1438 1553:1182 1532:2367 1454:961 1383:839 1549:3376 1527:1517 1517:1139 1393:720 1327:795 1377:1292 1389:1215 1369:1006 1572:770 1443:780 1570:1214 1399:2197 1306:2059 1571:1033 1568:1805 1356:1635
-L|Verkehrsverbund Berlin-Brandenburg|S42|#C36939|1356 1568:1776 1571:1780 1306:1051 1399:1999 1570:2218 1443:1234 1572:794 1369:657 1389:1071 1377:1195 1327:1286 1393:889 1517:696 1527:1136 1549:1526 1383:3356 1454:898 1532:951 1553:2362 1471:1180 1343:1441 1540:1210 1421:971 1360:1591 1487:1074 1521:898 1356:1626
-L|Verkehrsverbund Berlin-Brandenburg|S46|#BA8A4D|1570 1443:1234 1572:794 1369:657 1389:1071 1377:1195 1327:1286 1393:889 1517:696 1527:1136 1549:1526 1383:3356 1454:898 1410:1766 1295:1602 1519:1955 1396:1336 1280:1763 1364:3336 1335:5444 1588:2642 1574:3423 1412:2460
-L|Verkehrsverbund Berlin-Brandenburg|S46|#BA8A4D|1412 1574:2603 1588:3393 1335:2665 1364:5414 1280:3342 1396:1775 1519:1319 1295:1951 1410:1616 1454:1786 1383:839 1549:3376 1527:1517 1517:1139 1393:720 1327:795 1377:1292 1389:1215 1369:1006 1572:770 1443:780 1570:1214
-L|Verkehrsverbund Berlin-Brandenburg|S47|#BA8A4D|1527 1549:1526 1383:3356 1454:898 1410:1766 1295:1602 1519:1953 1460:2194 1536:1843
-L|Verkehrsverbund Berlin-Brandenburg|S47|#BA8A4D|1536 1460:1946 1519:2189 1295:1951 1410:1616 1454:1786 1383:839 1549:3376 1527:1517
-L|Verkehrsverbund Berlin-Brandenburg|S5|#F25721|1543 1544:2100 1376:3589 1541:3416 1479:2995 1346:1971 1453:4201 1391:1818 1309:1805 1436:2552 1406:1368 1581:1033 1307:1287 1350:2531 1426:1624 1457:1093 1471:1180 1565:1267 1470:1102 1395:1190 1283:975 1367:707 1352:1079 1373:1421 1297:1666 1551:1134 1590:858 1511:959 1329:1040 1572:1453
-L|Verkehrsverbund Berlin-Brandenburg|S5|#F25721|1572 1329:1500 1511:939 1590:982 1551:865 1297:1122 1373:1698 1352:1361 1367:1101 1283:700 1395:1016 1470:1130 1565:1248 1471:1300 1457:1139 1426:1124 1350:1584 1307:2512 1581:1296 1406:1016 1436:1244 1309:2651 1391:1839 1453:1839 1346:4043 1479:1973 1541:2995 1376:3421 1544:3589 1543:2100
-L|Verkehrsverbund Berlin-Brandenburg|S7|#8070B7|1282 1441:1729 1491:846 1438:893 1484:999 1538:947 1350:2557 1426:1624 1457:1093 1471:1180 1565:1267 1470:1102 1395:1190 1283:975 1367:707 1352:1079 1373:1421 1297:1666 1551:1134 1590:858 1511:959 1329:1040 1572:1484 1366:2053 1456:7803 1564:1554 1362:4808 1294:2303 1486:1758
-L|Verkehrsverbund Berlin-Brandenburg|S7|#8070B7|1486 1294:1756 1362:2427 1564:4694 1456:1657 1366:7770 1572:2178 1329:1453 1511:939 1590:982 1551:865 1297:1122 1373:1698 1352:1361 1367:1101 1283:700 1395:1016 1470:1130 1565:1248 1471:1300 1457:1139 1426:1124 1350:1584 1538:2574 1484:986 1438:957 1491:854 1441:885 1282:1710
-L|Verkehrsverbund Berlin-Brandenburg|S75|#8070B7|1470 1565:1245 1471:1247 1457:1194 1426:1124 1350:1584 1538:2574 1355:3372 1388:1285 1566:949
-L|Verkehrsverbund Berlin-Brandenburg|S75|#8070B7|1566 1388:951 1355:1443 1538:3353 1350:2557 1426:1624 1457:1093 1471:1182 1565:1267 1470:1100
-L|Verkehrsverbund Berlin-Brandenburg|S8|#52B447|1311 1387:2556 1298:2504 1520:1435 1446:3254 1313:9283 1473:1784 1472:1855 1320:1599 1521:1628 1487:825 1360:1052 1421:1644 1540:949 1343:1218 1471:1438 1553:1182 1482:2110 1295:1625 1519:1947 1396:1336 1280:1763 1364:3336 1335:5444 1588:2642 1574:3423
-L|Verkehrsverbund Berlin-Brandenburg|S8|#52B447|1574 1588:3536 1335:2665 1364:5414 1280:3342 1396:1775 1519:1319 1295:1951 1482:1631 1553:2112 1471:1180 1343:1441 1540:1210 1421:971 1360:1591 1487:1074 1521:898 1320:1553 1472:1514 1473:1929 1313:1725 1446:9241 1520:3315 1298:1511 1387:2366 1311:2637
-L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1354 1384:2029 1561:1528 1578:1356 1576:2541 1522:1734 1580:1052 1320:1257 1521:1629 1487:825 1360:1052 1421:1644 1540:949 1343:1218 1471:1438 1553:1182 1482:2112 1295:1625 1519:1947 1396:1336 1280:1763 1284:3893 1365:1458 1518:2181 1563:4517 1342:3432
-L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1561 1578:1356 1576:2541 1522:1734 1580:1052 1320:1257 1521:1629 1487:825 1360:1052 1421:1644 1540:949 1343:1218 1471:1438 1553:1182 1482:2112 1295:1625 1519:1947 1396:1336 1280:1763 1284:3893 1365:1458 1518:2181 1563:4517 1342:3432
-L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1472 1320:1599 1521:1628 1487:825 1360:1052 1421:1644 1540:949 1343:1218 1471:1438 1553:1182 1482:2112 1295:1625 1519:1947 1396:1336 1280:1763 1284:3893 1365:1458 1518:2181 1563:4517 1342:3432
-L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1342 1563:3410 1518:4554 1365:2248 1284:1466 1280:3877 1396:1775 1519:1319 1295:1951 1482:1631 1553:2112 1471:1180 1343:1441 1540:1210 1421:971 1360:1591 1487:1074 1521:898 1320:1552 1522:2197 1576:1734 1578:2537 1561:1359 1384:1527 1354:2030
-L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1342 1563:3410 1518:4554 1365:2248 1284:1466 1280:3877 1396:1775 1519:1319 1295:1951 1482:1631 1553:2112 1471:1180 1343:1441 1540:1210 1421:971 1360:1591 1487:1074 1521:898 1320:1553 1472:1514
-L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1342 1563:3410 1518:4554 1365:2248 1284:1466 1280:3877 1396:1775 1519:1319 1295:1951 1482:1631 1553:2112 1471:1180 1343:1441 1540:1210 1421:971 1360:1591 1487:1074 1521:898 1320:1552 1522:2197 1576:1734 1578:2537 1561:1359
-L|Verkehrsverbund Berlin-Brandenburg|S9|#9A3052|1534 1545:832 1480:3315 1461:1110 1375:1387 1444:1222 1572:1035 1329:1500 1511:939 1590:982 1551:865 1297:1122 1373:1698 1352:1361 1367:1101 1283:700 1395:1016 1470:1130 1565:1248 1553:1656 1482:2110 1295:1625 1519:1947 1396:1336 1280:1763 1284:3893 1365:1458 1518:2181 1563:4517 1342:3432
-L|Verkehrsverbund Berlin-Brandenburg|S9|#9A3052|1342 1563:3410 1518:4554 1365:2248 1284:1466 1280:3877 1396:1775 1519:1319 1295:1951 1482:1631 1553:2112 1565:2372 1470:1102 1395:1190 1283:975 1367:707 1352:1079 1373:1421 1297:1666 1551:1134 1590:858 1511:959 1329:1040 1572:1453 1444:941 1375:1355 1461:1368 1480:1039 1545:3317 1534:878
-L|Verkehrsverbund Berlin-Brandenburg|U1|#7DAD4C|1555 1418:350 1579:848 1458:874 1419:512 1357:879 1439:604 1370:547 1489:1018 1415:884 1363:640 1515:924 1565:771
-L|Verkehrsverbund Berlin-Brandenburg|U1|#7DAD4C|1565 1515:786 1363:959 1415:660 1489:875 1370:1032 1439:521 1357:626 1419:877 1458:441 1579:862 1418:872 1555:359
-L|Verkehrsverbund Berlin-Brandenburg|U2|#DA421E|1472 1559:830 1521:1132 1333:867 1530:1049 1504:590 1283:751 1411:639 1449:592 1537:475 1374:597 1539:419 1291:387 1485:549 1442:664 1357:491 1317:920 1458:615 1579:818 1590:871 1339:969 1332:802 1312:411 1533:602 1400:920 1550:697 1455:1176 1462:594 1508:1173
-L|Verkehrsverbund Berlin-Brandenburg|U2|#DA421E|1508 1462:1228 1455:638 1550:1167 1400:712 1533:833 1312:677 1332:365 1339:842 1590:984 1579:797 1458:820 1317:615 1357:983 1442:465 1485:629 1291:626 1539:366 1374:348 1537:644 1449:433 1411:601 1283:658 1504:829 1530:597 1333:965 1521:910 1559:1094 1472:822
-L|Verkehrsverbund Berlin-Brandenburg|U3|#16683D|1417 1463:1149 1468:1072 1347:903 1331:908 1483:887 1323:949 1497:876 1377:715 1340:1213 1390:767 1535:601 1293:491 1579:579 1458:872 1419:512 1357:879 1439:604 1370:547 1489:1018 1415:884 1363:640 1515:924 1565:771
-L|Verkehrsverbund Berlin-Brandenburg|U3|#16683D|1565 1515:787 1363:959 1415:660 1489:875 1370:1032 1439:521 1357:626 1419:877 1458:441 1579:862 1293:653 1535:483 1390:615 1340:776 1377:1149 1497:810 1323:774 1483:1008 1331:878 1347:878 1468:903 1463:1108 1417:1093
-L|Verkehrsverbund Berlin-Brandenburg|U4|#F0D722|1393 1494:496 1296:684 1558:846 1458:850
-L|Verkehrsverbund Berlin-Brandenburg|U4|#F0D722|1458 1558:911 1296:849 1494:674 1393:457
-L|Verkehrsverbund Berlin-Brandenburg|U5|#7E5330|1373 1328:583 1322:775 1557:588 1450:655 1506:650 1283:495 1513:544 1542:809 1567:900 1344:596 1510:781 1343:708 1434:809 1426:791 1349:1145 1552:1182 1308:1821 1337:1209 1581:1354 1407:1426 1408:840 1330:789 1380:759 1433:830 1386:1006
-L|Verkehrsverbund Berlin-Brandenburg|U5|#7E5330|1386 1433:1020 1380:846 1330:764 1408:712 1407:836 1581:1551 1337:1320 1308:1104 1552:1908 1349:1198 1426:1116 1434:791 1343:792 1510:760 1344:677 1567:690 1542:907 1513:772 1283:566 1506:468 1450:672 1557:647 1322:509 1328:753 1373:593
-L|Verkehrsverbund Berlin-Brandenburg|U6|#8C6DAB|1285 1573:745 1556:884 1401:638 1288:641 1549:466 1476:909 1481:925 1440:919 1370:585 1413:785 1539:428 1557:766 1352:359 1466:584 1451:679 1525:607 1499:732 1568:502 1425:511 1529:552 1498:1124 1281:621 1420:577
-L|Verkehrsverbund Berlin-Brandenburg|U6|#8C6DAB|1420 1281:640 1498:552 1529:1160 1425:517 1568:572 1499:501 1525:668 1451:592 1466:694 1352:618 1557:429 1539:662 1413:524 1370:756 1440:534 1481:999 1476:830 1549:914 1288:510 1401:626 1556:682 1573:809 1285:741
-L|Verkehrsverbund Berlin-Brandenburg|U7|#528DBA|1507 1591:1087 1583:651 1432:845 1397:787 1324:1033 1477:821 1315:771 1361:1288 1454:700 1403:859 1492:693 1382:843 1528:1179 1358:854 1440:696 1439:793 1584:1175 1409:810 1336:689 1296:605 1299:729 1316:614 1340:705 1414:577 1279:612 1577:746 1312:564 1501:595 1447:1046 1399:540 1394:969 1368:495 1531:893 1503:687 1478:1021 1372:1012 1589:1078 1287:854 1495:690
-L|Verkehrsverbund Berlin-Brandenburg|U7|#528DBA|1495 1287:661 1589:852 1372:1085 1478:1020 1503:1009 1531:689 1368:928 1394:498 1399:860 1447:599 1501:1093 1312:602 1577:549 1279:738 1414:658 1340:558 1316:672 1299:682 1296:722 1336:608 1409:682 1584:803 1439:1145 1440:774 1358:742 1528:851 1382:1182 1492:825 1403:705 1454:900 1361:674 1315:1214 1477:844 1324:831 1397:1016 1432:802 1583:854 1591:622 1507:1039
-L|Verkehrsverbund Berlin-Brandenburg|U8|#224F86|1383 1424:608 1318:824 1382:722 1523:761 1415:743 1448:834 1379:837 1395:641 1283:726 1569:765 1505:565 1303:842 1560:572 1356:826 1474:627 1469:783 1345:1026 1500:801 1475:893 1431:754 1402:662 1493:1158 1578:1149
-L|Verkehrsverbund Berlin-Brandenburg|U8|#224F86|1578 1493:1131 1402:1214 1431:520 1475:751 1500:944 1345:740 1469:1037 1474:825 1356:578 1560:819 1303:561 1505:850 1569:675 1283:651 1395:785 1379:579 1448:836 1415:893 1523:642 1382:912 1318:672 1424:661 1383:784
-L|Verkehrsverbund Berlin-Brandenburg|U9|#F3791D|1469 1452:769 1425:777 1289:809 1571:808 1310:494 1554:700 1371:893 1590:1378 1418:396 1535:820 1359:474 1299:513 1327:1139 1353:639 1562:676 1516:517 1496:585
-L|Verkehrsverbund Berlin-Brandenburg|U9|#F3791D|1496 1516:582 1562:625 1353:587 1327:732 1299:1029 1359:511 1535:697 1418:600 1590:390 1371:1415 1554:927 1310:669 1571:542 1289:812 1425:714 1452:778 1469:767
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1599 1602:905 1604:947 1603:631 1600:889 1601:708 1636:828 1622:943 1595:869 1620:708 1594:698 1606:491 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752 1593:1486 1621:533 1615:700 1632:559 1614:586 1605:471 1616:444
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1599 1602:905 1604:947 1603:631 1600:889 1601:708 1636:828 1622:943 1595:869 1620:708 1594:698 1606:491 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752 1593:1486 1621:533
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1604 1603:631 1600:889 1601:708 1636:828 1622:943 1595:869 1620:708 1594:698 1606:491 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752 1593:1486 1621:533 1615:700 1632:559 1614:586 1605:471 1616:444
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1595 1620:708 1594:698 1606:491 1627:628 1638:436 1617:628 1624:573 1592:689
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1595 1620:708 1594:698 1606:491 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1595 1620:708 1594:698 1606:491 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752 1593:1486 1621:533 1615:700 1632:559 1614:586 1605:471 1616:444
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1595 1620:708 1594:698 1606:491 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752 1593:1486 1621:533
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1606 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752 1593:1486 1621:533 1615:700 1632:559 1614:586 1605:471 1616:444
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1606 1627:628 1638:436 1617:628 1624:573 1592:689 1618:624 1597:673 1609:752 1593:1486 1621:533
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1632 1614:586 1605:471 1616:444
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1616 1605:442 1614:470 1632:586 1615:558 1621:712 1593:532 1609:1488 1597:739 1618:678 1592:619 1624:692 1617:573 1638:650 1627:440 1606:628 1594:490 1620:699 1595:710 1622:866 1636:942 1601:830 1600:703 1603:886 1604:642 1602:949 1599:907
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U2|red|1631 1611:1333 1634:670 1637:513 1630:755 1627:977 1626:747 1624:528 1639:813 1628:531 1629:585 1633:656 1623:897 1610:829 1640:947 1596:2415
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U2|red|1596 1640:2415 1610:942 1623:828 1633:894 1629:650 1628:599 1639:530 1624:788 1626:532 1627:746 1630:982 1637:757 1634:513 1611:668 1631:1320
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U3|#00868B|1607 1608:900 1635:602 1630:980 1627:977 1626:747 1624:528 1639:813 1628:531 1619:994 1612:463 1598:548 1613:511 1625:726
-L|Verkehrsverbund Großraum Nürnberg|U-Bahn U3|#00868B|1625 1613:728 1598:515 1612:548 1619:464 1628:968 1639:530 1624:788 1626:532 1627:746 1630:982 1635:926 1608:606 1607:890
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C11|green|1702 1642:657 1643:1747 1695:4059 1644:2547 1645:1493 1689:1652 1646:717 1647:1308 1648:610 1649:979 1651:644 1699:514 1652:401 1700:439 1698:430 1708:425 1677:584 1696:584 1706:338 1680:851 1688:419 1711:367 1697:274 1705:427 1682:320 1666:209
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C11|green|1666 1693:164 1705:384 1697:341 1711:395 1688:338 1680:450 1706:849 1696:235 1677:681 1708:586 1698:425 1700:439 1652:433 1699:347 1651:510 1649:646 1648:979 1647:610 1646:1308 1689:717 1645:1652 1644:1493 1695:2546 1643:4058 1642:1747 1702:657
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C13|green|1655 1656:1084 1685:2453 1684:2531 1712:3823 1691:2612 1672:2746 1704:3607 1641:578 1686:3606 1662:2427 1661:1158 1683:2084 1671:2171 1675:1648 1674:304 1673:744 1676:974 1665:811 1664:1130 1657:1452 1703:2076 1707:620 1650:488 1701:384 1658:601 1654:398 1711:506 1697:275 1705:374 1682:320 1666:209 1668:2253 1663:1361 1709:2778 1710:2481 1660:4861
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C13|green|1660 1710:5021 1709:2324 1663:2773 1668:1361 1666:2251 1682:264 1705:287 1697:402 1711:314 1654:481 1658:388 1701:583 1650:410 1707:460 1703:707 1657:2153 1664:1367 1665:1129 1676:811 1673:994 1674:725 1675:304 1671:1645 1683:2169 1661:2018 1662:1224 1686:2429 1641:3606 1704:719 1672:3467 1691:2746 1712:2610 1684:3818 1685:2530 1656:2453 1655:1084
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C14|green|1704 1641:578 1686:3606 1662:2427 1661:1158 1683:2084 1671:2171 1675:1648 1674:304 1673:744 1676:974 1665:811 1664:1130 1657:1452 1703:2076 1707:620 1650:488 1701:384 1658:601 1654:398 1711:506 1697:275 1705:374 1682:320 1666:209 1669:5914 1692:2677 1694:3040 1653:3962 1687:2039
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C14|green|1687 1653:2083 1694:3857 1692:3102 1669:2645 1666:5943 1682:264 1705:287 1697:402 1711:314 1654:481 1658:388 1701:583 1650:410 1707:460 1703:707 1657:2153 1664:1367 1665:1129 1676:811 1673:994 1674:725 1675:304 1671:1645 1683:2169 1661:2018 1662:1224 1686:2429 1641:3606 1704:719
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C15|green|1703 1707:620 1650:488 1701:384 1658:601 1654:398 1711:506 1697:275 1705:374 1682:320 1666:209 1667:3609 1690:5305 1659:2228 1679:4485 1678:1114 1670:2782 1681:6284
-L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C15|green|1681 1670:6282 1678:2782 1679:1114 1659:4483 1690:2185 1667:5190 1666:3613 1682:264 1705:287 1697:402 1711:314 1654:481 1658:388 1701:583 1650:430 1707:440 1703:618
-L|Verkehrsverbund Oberelbe|Schwebebahn||1714 1713:254
-L|Verkehrsverbund Oberelbe|Schwebebahn||1713 1714:254
-L|Verkehrsverbund Rhein-Ruhr|U70|#70b1d0|924 888:598 997:517 1041:494 931:503 1045:769 861:1862 1004:1234 1718:1343 1732:1523 1723:2663 1715:1305 1725:1848 1722:3315 1728:1954 1717:1383 1729:850 1735:800
-L|Verkehrsverbund Rhein-Ruhr|U70|#70b1d0|1735 1729:1067 1717:814 1728:1387 1722:1944 1725:3317 1715:1958 1723:1198 1732:2631 1718:1558 1004:1395 861:1202 1045:1839 931:761 1041:557 997:462 888:546
-L|Verkehrsverbund Rhein-Ruhr|U76|#0063af|1724 1719:627 1726:736 1734:347 1066:740 1005:636 947:522 993:576 897:622 992:367 888:759 997:517 1041:494 931:503 1045:769 971:844 860:516 861:501 881:569 928:310 1004:354 1730:354 1731:518 1718:470 1732:1523 1721:1958 1723:705 1715:1305 1727:1059 1725:789 1733:1095 1722:2220 1720:657 1728:1297 1717:1383 1729:850 1735:800
-L|Verkehrsverbund Rhein-Ruhr|U76|#0063af|1735 1729:1067 1717:814 1728:1387 1720:1389 1722:555 1733:2312 1725:1005 1727:869 1715:1089 1723:1198 1721:701 1732:1930 1718:1558 1731:463 1730:519 1004:413 928:296 881:310 861:597 860:553 971:471 1045:815 931:761 1041:557 997:462 888:546 992:727 897:408 993:581 947:575 1005:524 1066:636 1734:676 1726:413 1719:737 1724:652
-L|Verkehrsverbund Rhein-Ruhr|U81|#668982|975 906:1132 1716:2052
-L|Verkehrsverbund Rhein-Ruhr|U81|#668982|1716 906:1857 975:1330
-L|WestfalenTarif|StadtBahn 1|blue|1784 1785:488 1777:292 1746:421 1747:456 1772:593 1755:343 1745:662 1751:977 1754:619 1743:514 1736:571 1764:704 1775:331 1759:430 1757:490 1792:992 1760:610 1749:592 1761:407 1758:284 1781:359
-L|WestfalenTarif|StadtBahn 1|blue|1781 1758:297 1761:369 1749:381 1760:601 1792:601 1757:994 1759:499 1775:423 1764:330 1736:692 1743:586 1754:490 1751:618 1745:977 1755:668 1772:343 1747:594 1746:491 1777:384 1785:369 1784:409
-L|WestfalenTarif|StadtBahn 2|green|1737 1748:630 1769:568 1780:780 1741:528 1783:399 1779:1140 1798:719 1753:389 1782:352 1789:267 1742:879 1757:883 1759:499 1775:423 1764:330 1739:641 1793:324 1770:374 1774:476 1787:641
-L|WestfalenTarif|StadtBahn 2|green|1787 1774:662 1770:475 1793:327 1739:305 1764:723 1775:331 1759:430 1757:490 1742:860 1789:879 1782:267 1753:353 1798:390 1779:721 1783:1060 1741:503 1780:533 1769:755 1748:556 1737:632
-L|WestfalenTarif|StadtBahn 3|yellow|1740 1795:243 1762:410 1765:520 1738:405 1771:432 1797:614 1757:753 1759:507 1775:423 1750:570
-L|WestfalenTarif|StadtBahn 3|yellow|1750 1775:606 1759:430 1757:490 1797:741 1771:604 1738:433 1765:350 1762:575 1795:434 1740:234
-L|WestfalenTarif|StadtBahn 4|red|1766 1796:410 1794:633 1744:635 1756:460 1778:576 1786:690 1757:1262 1759:507 1775:423 1768:485 1763:659 1773:434 1788:639 1767:589 1776:589 1752:577 1791:537 1790:289
-L|WestfalenTarif|StadtBahn 4|red|1766 1796:410 1794:633 1744:635 1756:460 1778:576 1786:690 1757:1043
-L|WestfalenTarif|StadtBahn 4|red|1757 1786:1054 1778:675 1756:573 1744:460 1794:637 1796:632 1766:414
-L|WestfalenTarif|StadtBahn 4|red|1790 1791:302 1752:639 1776:483 1767:608 1788:551 1773:654 1763:418 1768:657 1775:512 1759:430 1757:490 1786:1266 1778:675 1756:573 1744:460 1794:637 1796:632 1766:414
-L|saarVV|Saarbahn S 1|#EF7C00|1835 1825:628 1824:467 1800:587 1823:540 1836:537 1806:384 1813:398 1812:299 1819:411 1837:513 1808:422 1814:508 1830:251 1832:1251 1833:2120 1831:2278 1816:2484
-L|saarVV|Saarbahn S 1|#EF7C00|1816 1831:2628 1833:2174 1832:2068 1830:1321 1814:393 1808:377 1837:425 1819:490 1812:431 1813:267 1806:421 1836:369 1823:515 1800:517 1824:588 1825:524 1835:571
-L|saarVV;TER Grand Est|Saarbahn S 1|#EF7C00|1821 1820:1136 1822:1183 1817:1380 1818:522 1802:3105 1801:661 1815:795 1811:567 1809:1037 1810:593 1839:765 1840:656 1838:533 1804:2040 1803:586 1826:404 1827:340 1828:858 1841:558 1829:442 1807:2392 1835:2249 1825:628 1824:467 1800:587 1823:540 1836:537 1806:384 1813:398 1812:299 1819:411 1837:513 1808:422 1814:508 1830:251 1832:1251 1833:2120 1831:2278 1816:2470 1799:1901 1805:2787 1834:1964
-L|saarVV;TER Grand Est|Saarbahn S 1|#EF7C00|1834 1805:1964 1799:2893 1816:1793 1831:2617 1833:2174 1832:2068 1830:1321 1814:393 1808:377 1837:425 1819:490 1812:431 1813:267 1806:421 1836:369 1823:515 1800:517 1824:588 1825:524 1835:599 1807:2269 1829:2344 1841:446 1828:577 1827:836 1826:348 1803:470 1804:521 1838:2049 1840:527 1839:657 1810:766 1809:593 1811:1037 1815:567 1801:795 1802:662 1818:3105 1817:522 1822:1380 1820:1199 1821:1121
-L|5-Seen-Fahrt und Kellersee-Fahrt GmbH|5-Seen-Fahrt||1842 1843:5517 1844:3275
-L|AG Ems|Veer Borkum - Eemshaven||1895 1845:17978
-L|AG Ems|Veer Eemshaven - Borkum||1845 1895:18001
-L|AG Reederei Norden-Frisia|Norddeich - Juist||1848 1847:14098
-L|AG Reederei Norden-Frisia|Norddeich - Juist||1848 1847:19418
-L|AG Reederei Norden-Frisia|Norddeich - Juist||1848 1847:24149
-L|AG Reederei Norden-Frisia|Norddeich - Juist||1848 1847:19418
-L|AG Reederei Norden-Frisia|Norddeich - Norderney||1849 1846:10641
-L|ATG Alster-Touristik GmbH|Alsterkreuzfahrt||1852 1850:985 1855:1447 1857:1101 1851:578 1854:2241 1853:1959 1856:555 1858:1077
-L|ATG Alster-Touristik GmbH|Alsterkreuzfahrt||1852 1850:984 1855:1372 1857:1091 1851:520 1854:2276 1853:2097 1856:515 1858:1076
-L|BSB|3802||1860 1859:8018 1891:35707 1890:5615
-L|BSB|3802||1860 1859:7910 1864:4624 1861:3866 1862:5277 1886:9615 1888:9689 1887:4765 1891:4116 1890:9939 1883:9033
-L|BSB|3802||1860 1859:7910 1864:4624 1861:3866 1862:5277 1886:9615 1888:9689 1887:4765 1891:4116 1883:9235
-L|BSB|3802||1860 1859:6517
-L|BSB|3802||1860 1859:7910 1864:4624 1863:2368 1861:1389 1862:5277 1886:7908
-L|BSB|3802||1859 1860:6514
-L|BSB|3802||1886 1888:9428 1887:4765 1891:4116 1883:9235
-L|BSB|3802||1886 1888:9428 1887:4765 1891:4116 1890:9939 1883:9033
-L|BSB|3802||1886 1862:7905 1861:5276 1863:1389 1864:2367 1859:4622 1860:7908
-L|BSB|3802||1883 1892:8419
-L|BSB|3802||1883 1890:9025 1891:9937 1887:4115 1888:4765 1886:9687 1862:9613 1861:5276 1863:1389 1864:2367 1859:4622 1860:7908
-L|BSB|3802||1883 1891:9237 1887:4115 1888:4765 1886:9426
-L|BSB|3802||1883 1890:9025 1891:9937 1887:4115 1888:4765 1886:9426
-L|BSB|3802||1890 1891:5614 1859:35630 1860:8015
-L|BSB|3802||1892 1883:8416
-L|BSB|3804||1891 1894:5263
-L|BSB|3804||1891 1883:8277
-L|BSB|3804||1891 1890:9512 1894:4069 1885:9317 1884:3857
-L|BSB|3804||1883 1891:16587 1894:5707 1890:4764 1885:8264 1884:2927
-L|BSB|3804||1883 1891:16480 1890:9882 1894:4069 1885:9317 1884:3857
-L|BSB|3804||1883 1891:8280
-L|BSB|3804||1883 1891:16480 1890:9882 1894:4069 1885:9317 1884:3857
-L|BSB|3804||1890 1894:2569
-L|BSB|3804||1884 1885:3480 1891:16584 1883:13224
-L|BSB|3804||1884 1885:3856 1894:9314 1890:4068 1891:9510
-L|BSB|3804||1884 1885:2926 1890:8264 1894:4765 1891:5707 1883:16581
-L|BSB|3804||1884 1885:3856 1894:9314 1890:4068 1891:9879 1883:16472
-L|BSB|3804||1894 1890:3172 1891:8183
-L|BSB|3804||1894 1890:2569
-L|BSB|Linie 2||1860 1859:7910 1864:4624 1863:2368 1861:1389 1862:5277 1886:7908
-L|BSB Bodensee Schifffahrt & SBS Schweizerische Bodensee Schifffahrt|3810||1865 1866:12956
-L|Bayerische Seenschifffahrt|Linie A||1874 1872:2952 1868:8372 1869:7112 1870:1048
-L|Bayerische Seenschifffahrt|Linie B||1872 1874:2953 1870:8978 1869:1048 1868:7112
-L|Bayerische Seenschifffahrt|Linie C||1867 1871:3543 1872:1609 1873:2832 1874:474 1875:662 1868:4213
-L|Bayerische Seenschifffahrt|Linie D||1872 1871:1609 1867:3543 1868:1654 1875:4213 1874:662 1873:473
-L|Betriebe der Stadt|Weiße Flotte Mülheim||1879 1876:2544 1877:2361 1878:899 1880:2925
-L|Betriebe der Stadt|Weiße Flotte Mülheim||1879 1876:2544 1877:2361 1878:899 1880:2910
-L|Bodensee-Oberschwaben Verkehrsverbund|Autofähre Konstanz => Meersburg||1882 1881:4268
-L|Bodensee-Oberschwaben Verkehrsverbund|Autofähre Meersburg => Konstanz||1881 1882:4351
-L|Bodensee-Schiffsbetriebe GmbH|Linie 1||1886 1888:9422 1887:4765 1891:4116 1883:8352 1890:12228
-L|Bodensee-Schiffsbetriebe GmbH|Linie 3||1884 1885:3856 1894:9314 1890:4068 1892:9931 1883:16845
-L|Bodensee-Schiffsbetriebe GmbH|Linie 4||2032 1889:8391 1893:2854
-L|Bodensee-Schiffsbetriebe GmbH|Linie 4||1893 1889:3717 2128:17630 2032:2619
-L|Bodensee-Schiffsbetriebe GmbH|Linie 4||1893 2128:10849 2032:1724
-L|CMS Schifffahrt|Überlingen - Insel Mainau||1884 2009:3102 1890:5039
-L|CMS Schifffahrt|Überlingen - Uhldingen - Insel Mainau||1884 2009:3102 1894:4303 1890:2569
-L|Cassen Eils & Frisia Touristik GmbH|Juist - Borkum||1847 1895:27206
-L|Celler Schifffahrt GbR|Wappen von Celle|#0080ff|1897 1896:4795 1899:5965 1898:2644
-L|Celler Schifffahrt GbR|Wappen von Celle|#0080ff|1898 1899:2644 1896:5964 1897:4795
-L|Chiemsee-Schifffahrt|Chiemsee-Schifffahrt||1903 1904:5516 1901:11514 1903:2340 1904:5516 1902:11381
-L|Chiemsee-Schifffahrt|Große Chiemseetour||1903 1901:2340 1905:13488 1900:10292 1901:8543 1903:2340 1904:5516
-L|Chiemsee-Schifffahrt Ludwig Feßler KG|Bernau/Felden - Herreninsel||1906 1903:8933 1906:8932
-L|Chiemsee-Schifffahrt Ludwig Feßler KG|Gstadt - Fraueninsel||1902 1901:3258 1902:3258
-L|Chiemsee-Schifffahrt Ludwig Feßler KG|Gstadt - Fraueninsel||1902 1908:1859 1902:1859
-L|Chiemsee-Schifffahrt Ludwig Feßler KG|Übersee/Feldwies - Fraueninsel - Herreninsel||1907 1901:11009 1903:5127 1901:5127 1907:11006
-L|DB Fernverkehr AG Inselverkehr Wangerooge|Wangerooge - Spiekeroog||1911 1910:14415 1909:82
-L|Dollard Route|Fähre Delfzijl - Emden||1912 1913:18065
-L|Dollard Route|Fähre Ditzum - Emden||1927 1913:7166
-L|Dollard Route|Fähre Emden - Delfzijl||1913 1912:18062
-L|Dollard Route|Fähre Emden - Ditzum||1913 1927:7163
-L|Doprava Ústeckého kraje|T92 Ústí nad Labem => Bad Schandau||1918 1915:24608 1916:8554 1917:3811 1914:8456
-L|Ernst Mändli AG Nohl Tel. 052 659 69 00|3760||1920 1924:5169 1922:5122 1921:4606 1923:4220 1919:10516
-L|Ernst Mändli AG Nohl Tel. 052 659 69 00|3760||1919 1923:10513 1921:4220 1922:4605 1924:5121 1920:5169
-L|Finnlines Plc|Travemünde – Helsinki||1925 1926:1209568
-L|Fähre Ditzum - Petkum|Fähre Ditzum - Petkum||1928 1927:320 1929:1524
-L|Hamburger Verkehrsverbund|Fähre 5160|#009BB6|1946 1935:437
-L|Hamburger Verkehrsverbund|Fähre 5160|#009BB6|1935 1946:437
-L|Hamburger Verkehrsverbund|Fähre 5170|#009BB6|1937 1947:365
-L|Hamburger Verkehrsverbund|Fähre 5170|#009BB6|1947 1937:365
-L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1944 1931:1340 1938:1231 1954:3440 1948:447
-L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1944 1931:1340 1938:1682 1942:418 1954:1770 1948:447
-L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1948 1954:447 1938:3440 1931:1275 1944:1295
-L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1948 1954:447 1942:1771 1938:418 1944:3507
-L|Hamburger Verkehrsverbund|Fähre 62|#FA1E41|1941 1936:823 1949:2095 1938:1543 1931:1271 1943:1293
-L|Hamburger Verkehrsverbund|Fähre 62|#FA1E41|1941 1950:2555 1930:3602 1952:3514 1936:3777 1949:2095 1938:1543 1931:1271 1943:1293
-L|Hamburger Verkehrsverbund|Fähre 62|#FA1E41|1945 1931:1252 1938:1230 1949:1543 1936:2095 1941:823
-L|Hamburger Verkehrsverbund|Fähre 64|#FA8200|1941 1950:1300 1952:895
-L|Hamburger Verkehrsverbund|Fähre 64|#FA8200|1952 1950:895 1941:1299
-L|Hamburger Verkehrsverbund|Fähre 65|#006464|1941 1934:5524
-L|Hamburger Verkehrsverbund|Fähre 65|#006464|1934 1941:5522
-L|Hamburger Verkehrsverbund|Fähre 68|#1D54E6|1952 1930:1573
-L|Hamburger Verkehrsverbund|Fähre 68|#1D54E6|1930 1952:1573
-L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1943 1933:1613 1939:815
-L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1943 1939:1165
-L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1939 1933:815 1943:1613
-L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1939 1943:1165
-L|Hamburger Verkehrsverbund|Fähre 73|#A77FED|1943 1953:581 1932:1499 1940:641
-L|Hamburger Verkehrsverbund|Fähre 73|#A77FED|1940 1932:641 1953:1549 1943:571
-L|Hamburger Verkehrsverbund|Fähre 75|#B49678|1944 1951:609
-L|Hamburger Verkehrsverbund|Fähre 75|#B49678|1951 1944:609
-L|Katamaran-Reederei Bodensee|Katamaran Firedrichshafen->Konstanz||1955 1956:23503
-L|Katamaran-Reederei Bodensee GmbH|Katamaran Konstanz->Friedrichshafen||1956 1955:23498
-L|NAH.SH;VRK|Fördelinie||1959 1968:1153 1966:1257 1965:2689 1964:3437 1962:1934 1961:1673 1963:1625 1967:4195 1969:840
-L|NAH.SH;VRK|Schwentinelinie F2|#50B035|1966 1960:3370 1970:666 1966:4030
-L|Neubrandenburger Verkehrsbetriebe GmbH (neu.sw)|Linienschiff "Uns Fritzing"||1972 1976:793 1973:4354 1974:3224 1971:2889 1975:2062
-L|Neubrandenburger Verkehrsbetriebe GmbH (neu.sw)|Linienschiff "Uns Fritzing"||1975 1971:2062 1974:2889 1973:3224 1976:4356 1972:793
-L|Nordseebad Spiekeroog GmbH|Neuharlingersiel - Spiekeroog||1909 1910:122 1977:7870
-L|Personenschiffahrt Giess|Personenfähre Wallhausen->Überlingen||1981 1884:2711
-L|Personenschiffahrt Wilfried Griess|Möwe||1956 1979:2097 1978:1992 2016:4852 1956:3187
-L|Personenschifffahrt Ewald Giess|Personenfähre Überlingen-Bodman||1884 1980:4752 2008:3933 2007:4429 2006:2767
-L|Personenschifffahrt Giess|Personenfähre Überlingen->Wallhausen||1884 1981:2710
-L|Personenschifffahrt Meyer|MS Kemnade||1982 1984:481 1985:6491 1986:1928 1983:876
-L|Plöner Motorschifffahrt Elke Glau-Koll e.K.|Bosau Fahrt||1987 1991:3790 1990:3956 1989:589 1988:3214
-L|Plöner Motorschifffahrt Elke Glau-Koll e.K.|Große Plöner Seerundfahrt||1988 1990:1833 1989:589 1991:2765
-L|Primus-Linie|Ausflugsfahrt Frankfurt Seligenstadt Aschaffenburg||1993 1992:7941 1994:11783 1995:14284
-L|Rederi AB Nordö-Link|Travemünde – Malmö||1996 1997:249146
-L|Reederei Hillern Warrings GmbH & Co. KG|Wilhelmshaven - Eckwarderhörne||2000 1999:11003
-L|Scandlines|Fugleflugtslinjen||2002 2003:18798
-L|Scandlines|Fugleflugtslinjen||2003 2002:18781
-L|Scandlines|Gedser => Rostock||2001 2004:48082
-L|Scandlines|Rostock => Gedser||2004 2001:48113
-L|Schiffahrt der Inselgemeinde Langeoog|Langeoog - Spiekeroog||1910 1909:82
-L|Schifffahrt Lang|Höri Fähre MS Seestern||2005 2027:1955 2034:1800 2023:3063 2032:6472 2027:5900 2005:1956
-L|Schifffahrtsbetrieb Deinis|Personenfähre Überlingen-Sipplingen||1884 2008:5953 2007:4429 2006:2767
-L|Schifffahrtsbetrieb Held|Überlingen - Insel Mainau||1884 2009:3107 1890:5039
-L|Schliersee Schifffahrt Mayr GbR|Schliersee Schifffahrt Mayr GbR||2010 2012:3680 2013:813 2011:1435
-L|Schweizerische Bodensee Schifffahrt AG|3800||1859 2021:16404
-L|Schweizerische Bodensee Schifffahrt AG|3800||1859 1864:4624 2021:14027
-L|Schweizerische Bodensee Schifffahrt AG|3800||1862 2015:23668 1862:23683
-L|Schweizerische Bodensee Schifffahrt AG|3800||2029 1883:1586 1890:9385 1891:9937
-L|Schweizerische Bodensee Schifffahrt AG|3800||2029 1890:10784 1891:10542
-L|Schweizerische Bodensee Schifffahrt AG|3800||2029 2016:2582 2014:5153 2020:7262 2019:4076
-L|Schweizerische Bodensee Schifffahrt AG|3800||1891 1883:9243 2029:1591
-L|Schweizerische Bodensee Schifffahrt AG|3800||1891 2029:8502
-L|Schweizerische Bodensee Schifffahrt AG|3800||2021 1859:16419
-L|Schweizerische Bodensee Schifffahrt AG|3800||2021 1860:28241 1859:13503
-L|Schweizerische Bodensee Schifffahrt AG|3800||2019 2015:7633 1862:12652 2021:30093
-L|Schweizerische Bodensee Schifffahrt AG|3800||2019 2029:18028
-L|Schweizerische Bodensee Schifffahrt AG|3800||2019 2020:4077 2014:7265 2016:5155 2029:2582
-L|Schweizerische Bodensee Schifffahrt AG|3800||2019 1862:15457 2021:22434
-L|Schweizerische Bodensee Schifffahrt AG|3801||1888 1887:4765 2014:13210 2017:2507 2019:8849
-L|Schweizerische Bodensee Schifffahrt AG|3801||2019 1888:22272 1887:4848 2014:11827 2017:2520 1888:8170
-L|Schweizerische Bodensee Schifffahrt AG|DLE||2021 1859:35789 1864:4624 2021:29213
-L|Schweizerische Bodensee Schifffahrt AG|DLE||2021 1864:34799 1859:4622 2021:37459 2018:3361 2015:3022 2019:7636
-L|Schweizerische Bodensee Schifffahrt AG|DLE||2021 1864:29237 1859:4622 2021:35762
-L|Schweizerische Bodensee Schifffahrt AG|DLE||2019 2015:7633 2018:3021 2021:3360 1860:46184 1859:14497 2021:34915
-L|Schweizerische Bodensee Schifffahrt AG|LA||2015 1862:12652 2015:12644 2019:7636
-L|Schweizerische Bodensee Schifffahrt AG|LA||2019 2015:15266 1862:12652 2021:14257 2018:3361 2015:4365 2019:15272
-L|Schweizerische Bodensee Schifffahrt AG|MA Mainau||2019 2029:19142 1890:6690 1891:10911 1883:8352 2016:3221 2014:11019 2020:14286 2019:7814
-L|Schweizerische Bodensee Schifffahrt AG|MA Mainau||2019 2020:8154 2014:14530 2016:10321 2029:2538 1883:978 1890:12034 1891:10606 2029:8588 2016:2538 2014:10317 2020:14524 2019:8152
-L|Schweizerische Bodensee-Schiffahrtsgesellschaft|3800||2021 1864:14039 1859:4622
-L|Schweizerische Schifffahrtsgesellschaft Untersee und Rhein|3820||2033 2024:4733 2025:4482 2035:9790 2031:3119 2030:1713 2036:1502 2028:3476 2034:1055 2027:1129 2023:2960 2128:2310 2032:3099 2026:4219 2022:8471 2029:871
-L|Schweizerische Schifffahrtsgesellschaft Untersee und Rhein|3820||2028 2034:1055 2027:1129 2023:2960 2128:2310 2032:3099 2026:4219 2022:8471 2029:871
-L|Schweizerische Schifffahrtsgesellschaft Untersee und Rhein|3820||2029 2022:871 2026:8472 2032:4220 2128:3100 2023:2310 2027:2960 2034:1129 2028:1055 2036:3476 2030:1502 2031:1713 2035:3120 2025:9794 2024:4482 2033:4733
-L|Stadtverkehr Lübeck GmbH|Priwallfähre||2037 2038:238
-L|Stadtverkehr Lübeck GmbH|Priwallfähre||2038 2037:231
-L|Stadtwerke Witten|MS Schwalbe II||1982 2040:2085 2121:1243 2120:97 2041:2021 2039:1787
-L|Stadtwerke Witten|MS Schwalbe II||2039 2041:1787 2120:2021 2121:97 2040:1243 1982:2085
-L|Stena Line|Göteborg - Kiel||2043 2042:431400
-L|Stena Line|Kiel - Göteborg||2042 2043:440629
-L|TT-Line GmbH & Co. KG|TT-Line GmbH & Co. KG||2045 2044:225734
-L|TT-Line GmbH & Co. KG|TT-Line GmbH & Co. KG||2045 2046:95304
-L|Unity Line|Świnoujście - Trelleborg||2048 2047:181628
-L|Verkehrsgemeinschaft Westmecklenburg|Pfaffenteichfähre||2049 2051:718 2050:647 2052:623
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F1||2054 2058:243
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F10|#0080BA|2053 2067:3847
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F10|#0080BA|2067 2053:3897
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F11|#0080BA|2069 2055:197
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F11|#0080BA|2055 2069:197
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F12|#0080BA|2068 2060:271
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F12|#0080BA|2060 2068:251
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F21|#0080BA|2070 2059:871
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F21|#0080BA|2059 2070:871
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F23|#0080BA|2064 2063:430 2061:1191 2062:761
-L|Verkehrsverbund Berlin-Brandenburg|Fähre F23|#0080BA|2062 2061:761 2063:1191 2064:430
-L|Verkehrsverbund Berlin-Brandenburg|Fährlinie F39|#0080BA|2065 2066:323
-L|Verkehrsverbund Berlin-Brandenburg|Fährlinie F39|#0080BA|2066 2065:323
-L|Verkehrsverbund Berlin-Brandenburg|Havelfähre Neuendorf||2057 2056:97
-L|Verkehrsverbund Oberelbe|F1 Fähre Hrensko||2084 2101:91
-L|Verkehrsverbund Oberelbe|F1 Fähre Schöna - Hrensko||2101 2084:91
-L|Verkehrsverbund Oberelbe|F10 Fähre Heidenau - Birkwitz||2072 2083:120
-L|Verkehrsverbund Oberelbe|F14 Autofähre Kleinzschachwitz - Pillnitz||2086 2094:136
-L|Verkehrsverbund Oberelbe|F16||2090 2093:99
-L|Verkehrsverbund Oberelbe|F16||2093 2090:107
-L|Verkehrsverbund Oberelbe|F17 Fähre Johannstadt - Neustadt||2076 2075:112
-L|Verkehrsverbund Oberelbe|F2 Fähre Schmilka - Hirschmühle||2100 2085:109
-L|Verkehrsverbund Oberelbe|F28||2092 2074:102
-L|Verkehrsverbund Oberelbe|F29||2099 2098:116
-L|Verkehrsverbund Oberelbe|F29||2098 2099:116
-L|Verkehrsverbund Oberelbe|F3 Fähre Krippen - Postelwitz||2097 2088:183
-L|Verkehrsverbund Oberelbe|F30||2102 2091:93
-L|Verkehrsverbund Oberelbe|F30||2091 2102:100
-L|Verkehrsverbund Oberelbe|F4 Krippen-Bad Schandau, Stadt||2088 1914:1304
-L|Verkehrsverbund Oberelbe|F5 Fähre Bad Schandau - Krippen||2071 1914:1009 2089:198
-L|Verkehrsverbund Oberelbe|F6 Fähre Königstein - Halbestadt||2087 2082:76
-L|Verkehrsverbund Oberelbe|F8 Fähre Pötzscha - Stadt Wehlen||2078 2077:77
-L|Verkehrsverbund Oberelbe|F9 Fähre Pirna - Pirna-Copitz||2096 2095:95
-L|Verkehrsverbund Oberelbe|Fähre F24||2081 2073:98
-L|Verkehrsverbund Oberelbe|Fähre F7 Rathen||2079 2080:96
-L|Verkehrsverbund Oberelbe|Längsfahrt||1914 2088:1304 2100:4996 2084:1959
-L|Verkehrsverbund Warnow|Fähre Gehlsdorf - Schnickmannstraße||2103 2106:1585
-L|Verkehrsverbund Warnow|Fähre Gehlsdorf Kabutzenhof|#00b9f2|2103 2105:498
-L|Verkehrsverbund Warnow|Fähre Kabutzenhof - Gehlsdorf||2103 2105:498
-L|Verkehrsverbund Warnow|Fähre Warnemünde - Hohe Düne||2104 2107:342
-L|Verkehrsverbund Warnow|Verkehrsverbund Warnow|#00b9f2|2105 2103:498
-L|Vorpommersche Schifffahrtsgesellschaft|Hafen- Ryck- & Boddenrundfahrt||2109 2108:14826 2110:5963 2109:8830
-L|Wakenitz Schifffahrt Quandt oHG|Wakenitz-Schifffahrt||2113 2111:7711 2114:5318 2112:6864
-L|Weisse Flotte|Zingst - Neuendorf||2116 2115:46064
-L|Weisse Flotte Baldeney GmbH|Weiße Flotte Baldeney|white|2117 2119:5966 2118:1299
-L|Wittener Gesellschaft für Arbeit und Beschäftigungsförderung|Ruhrtalfähre||2121 2120:90
-L|Wittener Gesellschaft für Arbeit und Beschäftigungsförderung|Ruhrtalfähre||2120 2121:90
-L|Wyker Dampfschiffs-Reederei|Amrum - Dagebüll||2127 2123:23429
-L|Wyker Dampfschiffs-Reederei|Amrum - Föhr - Dagebüll||2127 2124:15311 2122:12104
-L|Wyker Dampfschiffs-Reederei|Dagebüll - Amrum||2123 2127:23389
-L|Wyker Dampfschiffs-Reederei|Dagebüll - Föhr - Amrum||2122 2124:12089 2127:15306
-L|Wyker Dampfschiffs-Reederei|Langeneß - Hooge - Schlüttsiel||2125 2126:16338
-L|Wyker Dampfschiffs-Reederei|Schlüttsiel - Hooge - Langeneß||2126 2125:16319
-L|https://am4962.wixsite.com/solarfaehre-rau/|Solarfähre Reichenau->Mannenbach||2129 2128:1713
-L|no|Fähre||2130 2131:495
-L|no|Fähre||2131 2130:495
-L|ÜSTRA Hannoversche Verkehrsbetriebe AG|Maschseeflotte||2132 2133:1077 2136:1250 2134:627 2137:1015 2135:1025
+L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|508 509:208 510:515 540:268 539:663 538:417 541:367 535:1966 536:456 537:863 473:604 475:698 471:444 474:572 552:2120 446:360 466:559 583:441 504:1386 529:415 449:667 524:557 551:393 593:572 549:569 487:796 542:605 543:155 484:381 526:328 448:422 558:449 457:294 447:317 468:1260 571:371 554:622 579:567 458:676 479:1388 482:896 478:647 481:463 477:473 480:2116 467:859 485:1861 488:2985 544:2825 490:3222 453:1971 452:1269 451:854
+L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|451 452:848 453:1269 490:1971 544:3221 488:2859 485:3034 467:1768 480:872 477:2130 481:459 478:462 482:643 479:924 458:1435 579:629 554:567 571:609 468:408 447:1224 457:423 558:305 448:429 526:437 484:322 543:358 542:167 487:602 549:824 593:551 551:542 524:337 449:581 529:696 504:303 583:1504 466:364 446:643 552:348 474:2162 471:496 475:460 473:680 537:605 536:914 535:454 541:1917 538:338 539:445 540:663 510:268 509:451 508:207
+L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|477 481:459 478:462 482:643 479:924 458:1435 579:629 554:567 571:609 468:408 447:1224 457:423 558:305 448:429 526:437 484:322 543:358 542:167 487:602 549:824 593:551 551:542 524:337 449:581 529:696 504:303 583:1504 466:364 446:643 552:348 474:2162 471:496 475:460 473:680 537:605 536:914 535:454 523:2643
+L|Karlsruher Verkehrsverbund|Stadtbahn S1|#008000|523 535:2771 536:456 537:863 473:604 475:698 471:444 474:572 552:2120 446:360 466:559 583:441 504:1386 529:415 449:667 524:557 551:393 593:572 549:569 487:796 542:605 543:155 484:381 526:328 448:422 558:449 457:294 447:317 468:1260 571:371 554:622 579:567 458:676 479:1388 482:896 478:647 481:463 477:473 480:2116 467:859 485:1861 488:2985 544:2825 490:3222 453:1971 452:1269 451:854
+L|Karlsruher Verkehrsverbund|Stadtbahn S11|#008000|508 509:208 510:515 540:268 539:663 538:417 541:367 535:1966 536:456 537:863 473:604 475:698 471:444 474:572 552:2120 446:360 466:559 583:441 504:1386 529:415 449:667 524:557 551:393 593:572 549:569 487:796 542:605 543:155 484:381 526:328 448:422 558:449 457:294 447:317 468:1260 571:371 554:622 579:567 458:676 479:1388 482:896 478:647 481:463 477:473 480:2116 467:859 561:2115 560:640 533:1500 532:729 534:724 576:2506 514:4266 513:1885 515:464
+L|Karlsruher Verkehrsverbund|Stadtbahn S11|#008000|515 513:395 514:1863 576:4245 534:2515 532:747 533:718 560:1542 561:583 467:2087 480:872 477:2130 481:459 478:462 482:643 479:924 458:1435 579:629 554:567 571:609 468:408 447:1224 457:423 558:305 448:429 526:437 484:322 542:526 487:602 549:824 593:551 551:542 524:337 449:581 529:696 504:303 583:1504 466:364 446:643 552:348 474:2162 471:496 475:460 473:680 537:605 536:914 535:454 541:1917 538:338 539:445 540:663 510:268 509:451 508:207
+L|Karlsruher Verkehrsverbund|Stadtbahn S11|#008000|515 513:395 514:1863 576:4245 534:2515 532:747 533:718 560:1542 561:583 467:2087 480:872 477:2130 481:459 478:462 482:643 479:924 458:1435 579:629 554:567 571:609 468:408 447:1224 457:423 558:305 448:429 526:437 484:322 543:358 542:167 487:602 549:824 593:551 551:542 524:337 449:581 529:696 504:303 583:1504 466:364 446:643 552:348 474:2162 471:496 475:460 473:680 537:605 536:914 535:454 523:2643
+L|Karlsruher Verkehrsverbund|Stadtbahn S12|#008000|515 513:395 514:1863 576:4245 534:2515 532:747 533:718 560:1542 561:583 467:2087 481:3461 478:462 482:643 447:5784 470:180 525:425 545:485 522:339 569:1111 555:530 584:537 570:326 578:546
+L|Karlsruher Verkehrsverbund|Stadtbahn S12|#008000|578 570:546 584:318 555:507 569:546 483:488 522:490 545:457 525:492 470:396 447:189 482:5766 478:647 481:463 467:3447 561:2115 560:640 533:1500 532:729 534:724 576:2506 514:4266 513:1885 515:464
+L|Karlsruher Verkehrsverbund|Stadtbahn S5|#f49694|573 574:386 462:1340 463:583 464:676 502:639 503:624 501:872 512:1531 518:873 580:590 581:1063 578:627 500:616 469:597 527:499 542:567 487:599 549:893 593:471 507:447 557:344 476:401 530:496 577:478 550:416 572:620 505:701 472:379 562:249 546:2227 547:597 548:581 586:1579 587:558 590:429 591:491 585:467 588:486 589:514
+L|Karlsruher Verkehrsverbund|Stadtbahn S5 Wörth => Söllingen|#f49694|589 588:514 585:486 591:467 590:485 587:449 586:545 548:1587 547:514 546:620 562:2311 472:249 505:380 572:646 550:678 577:428 530:474 476:517 557:371 507:358 593:489 549:457 487:901 542:604 527:580 469:496 500:585 578:594 581:660 580:1054 518:530 512:898 501:1516 503:844 502:648 464:613 463:726 462:532 574:1340 573:386
+L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|447 457:364 558:305 448:441 526:446 484:317 543:361 542:161 487:599 549:893 593:471 507:447 557:344 476:401 530:494 577:478 550:416 572:620 505:701 472:379 562:249 546:2227 547:597 548:581 586:1575 592:1202 517:4522 563:1838 565:598 564:615 568:3586 566:1333 461:3180 460:585 575:4898 497:1907 496:1738 494:1383
+L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|494 495:1648 497:1533 575:1944 459:5010 461:483 566:3213 567:1438 564:3485 565:579 563:541 516:2077 592:4279 586:1109 548:1587 547:514 562:2931 472:249 505:380 572:646 550:678 577:428 530:474 476:517 557:371 507:358 593:489 549:457 487:901 542:604 527:580 469:496 500:585 578:594 581:660 580:1054 518:530 512:898 501:1516 503:844 502:648 464:613 463:726 462:532 574:1340
+L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|494 495:1648 497:1533 575:1944 459:5010 461:483 566:3213 567:1438 564:3485 565:579 563:541 516:2077 592:4279 586:1109 548:1587 547:514 546:620 562:2311 472:249 505:380 572:646 550:678 577:428 530:474 476:517 557:371 507:358 593:489 549:457 487:901 542:604 543:156 484:379 526:327 448:420 558:436 457:294 447:298
+L|Karlsruher Verkehrsverbund|Stadtbahn S51|#f49694|494 495:1648 497:1533 575:1944 459:5010 461:483 566:3213 567:1438 564:3485 565:579 563:541 516:2077 592:4279 586:1109 548:1587 547:514 546:620 562:2311 472:249 505:380 572:646 550:678 577:428 530:474 476:517 557:371 507:358 593:489 549:457 487:901 542:604 527:580 469:496 500:585 578:594 581:660 580:1054 518:530 512:898 501:1516 503:844 502:648 464:613 463:726 462:532 574:1340
+L|Karlsruher Verkehrsverbund|Stadtbahn S51 Eilzug|#f49694|494 495:1648 497:1533 575:1944 459:5010 461:483 566:3213 567:1438 564:3485 565:579 563:541 516:2077 592:4279 586:1109 548:1587 547:514 572:4206 530:1580 476:517 557:371 507:358 593:489 549:457 487:882 486:110 522:533 483:493 569:487 469:781 500:531 578:528
+L|Karlsruher Verkehrsverbund|Stadtbahn S52|#f49694|494 495:1652 497:1533 575:1944 459:5010 461:483 566:3213 567:1438 564:3485 565:579 563:541 516:2077 592:4279 586:1107 548:1588 547:514 519:3532 520:1445 521:1623 447:2799 457:364 558:305 448:441 526:446 484:317 543:326
+L|Karlsruher Verkehrsverbund|Stadtbahn S52|#f49694|543 484:421 526:327 448:420 558:436 457:294 447:298 521:2796 520:1642 519:1537 586:5519 517:5724 563:1838 564:1169 566:4920 461:3180 575:5483 496:4026 494:1383
+L|Karlsruher Verkehrsverbund|Stadtbahn S52|#f49694|543 484:421 526:327 448:420 558:436 457:294 447:298 586:13485 517:5724 564:3006 566:4920 461:3180 575:5483 496:4026 494:1383
+L|Karlsruher Verkehrsverbund|Stadtbahn S52 Eilzug|#f49694|494 495:1652 575:3478 461:5493 566:3213 564:4924 516:3197 586:5386 447:13484 457:364 558:305 448:441 526:446 484:317 543:326
+L|Karlsruher Verkehrsverbund|Stadtbahn S8|#6d682a|578 500:616 469:597 527:499 543:552 484:379 526:327 448:420 558:436 457:294 447:298 602:5320 601:5253 600:1127 599:2265 606:2739 603:3579 559:1392 528:3055 465:1718 455:2031 454:496 456:844 491:868 492:995 556:1007 511:1492 498:1569 499:659 553:2164 506:751 582:1562 450:1193 531:2100 493:2228 489:707
+L|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|Stadtbahn S7|#FFF90A|578 500:616 469:597 527:499 543:552 484:379 526:327 448:420 558:436 457:294 447:298 602:5320 601:5253 600:1127 599:2265 606:2739 603:3662 596:5508 595:2726 605:2677 604:1454 597:3025 598:4304 594:8400
+L|Karlsruher Verkehrsverbund;Tarifverbund Ortenau|Stadtbahn S7|#FFF90A|594 598:8404 597:4347 604:2983 605:1454 595:2678 596:2727 603:5509 606:3661 599:2742 600:2314 601:1160 602:5170 447:5325 457:364 558:305 448:441 526:446 484:317 543:361 527:558 469:496 500:585 578:528
+L|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|Stadtbahn S8|#6d682a|578 500:616 469:597 527:499 543:552 484:379 526:327 448:420 558:436 457:294 447:298 602:5320 601:5253 600:1127 599:2265 606:2739 603:3579 559:1392 528:3055 465:1718 455:2031 454:496 456:844 491:868 492:995 556:1007 511:1492 498:1569 499:659 553:2164 506:751 582:1562 450:1193 531:2100 493:2228 489:707 628:4526 627:2708 630:2376 632:1334 626:1960 629:3148 623:2103 609:3747 608:884 621:2497 620:3183 619:787 618:1159 617:750 622:3114 613:1692 612:1588 631:3838 610:3360 625:6272 624:5457 616:2246 615:2311 614:2408 611:4144
+L|Karlsruher Verkehrsverbund;Verkehrs-Gemeinschaft Landkreis Freudenstadt|Stadtbahn S8|#6d682a|611 614:4160 615:2385 624:4557 625:5455 610:6270 631:3361 612:3839 613:1588 622:1692 617:3113 618:750 619:1159 620:787 621:3183 608:2497 609:884 623:3747 629:2103 626:3148 632:1961 630:1334 627:2376 628:2709 489:4527 493:707 531:2229 450:2100 582:1193 506:1626 553:686 499:2164 498:663 511:1568 556:1492 492:1007 491:998 456:867 454:852 607:769 465:1915 528:1538 559:3071 603:1328 606:3644 599:2742 600:2314 601:1160 602:5170 447:5325 457:364 558:305 448:441 526:446 484:317 543:361 527:558 469:496 500:585 578:528
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|S6|#3d2d7c|655 656:1892 639:916 640:529 641:762 638:1195 652:5171 651:591 654:1307 657:1161 653:1531 647:1123 646:1006 642:2653 643:481 635:1362 633:1005 636:573 634:255
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|S6|#3d2d7c|634 636:255 633:573 635:1005 643:1362 642:481 646:2653 647:1006 653:1123 657:1531 654:1161 651:1307 652:591 638:5175 641:1195 640:762 639:530 656:911 655:1887
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Eilzug|#f49694|447 457:364 448:746 526:446 484:317 543:361 527:558 469:496 500:585 578:594 518:2245 573:7586 658:512 649:2048 659:2129 650:2866 637:1835 645:2256 644:374 648:3054 655:3423
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Eilzug Pforzheim Hauptbahnhof => Karlsruhe Albtalbahnhof|#f49694|655 648:3421 644:3054 645:384 637:2245 650:1777 659:2917 649:2135 573:2672 518:7495 578:2280 500:616 469:597 527:499 543:535 484:381 526:328 448:435 558:436 457:294 447:298
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Pforzheim Hbf => Wörth-Badepark|#f49694|655 648:3425 644:3054 645:384 637:2245 650:1777 659:2917 649:2135 658:1966 573:705 574:355 462:1341 463:583 464:676 502:639 503:624 501:872 512:1531 518:873 580:590 581:1063 578:627 500:616 469:597 527:499 542:567 487:599 549:893 593:471 507:447 557:344 476:401 530:496 577:478 550:416 572:620 505:701 472:379 562:249 546:2227 547:597 548:581 586:1579 587:558 590:429 591:491 585:467 588:486 589:514
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S5 Wörth Badepark => Pforzheim|#f49694|589 588:514 585:486 591:467 590:485 587:449 586:545 548:1587 547:514 546:620 562:2311 472:249 505:380 572:646 550:678 577:428 530:474 476:517 557:371 507:358 593:489 549:457 487:901 542:604 527:580 469:496 500:585 578:594 581:660 580:1054 518:530 512:898 501:1516 503:844 502:648 464:613 463:726 462:532 574:1343 573:465 658:512 649:2048 659:2129 650:2866 637:1835 645:2256 644:374 648:3054 655:3425
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S51|#f49694|655 648:3425 644:3054 645:384 637:2245 650:1777 659:2917 649:2135 658:1966 573:705 574:355 462:1341 463:583 464:676 502:639 503:624 501:872 512:1531 518:873 580:590 581:1063 578:627 500:616 469:597 527:499 542:567 487:599 549:893 593:471 507:447 557:344 476:401 530:494 577:478 550:416 572:620 505:701 472:379 562:249 546:2227 547:597 548:581 586:1575 592:1202 517:4522 563:1838 565:598 564:615 568:3586 566:1333 461:3180 460:585 575:4898 497:1907 496:1738 494:1383
+L|Karlsruher Verkehrsverbund;Verkehrsverbund Pforzheim-Enzkreis|Stadtbahn S51|#f49694|655 648:3425 644:3054 645:384 637:2245 650:1777 659:2917 573:4807 574:355 462:1341 463:583 464:676 502:639 503:624 501:872 512:1531 518:873 580:590 581:1063 578:627 500:616 469:597 527:499 542:567 487:599 549:893 593:471 507:447 557:344 476:401 530:494 577:478 550:416 572:620 505:701 472:379 562:249 547:2824 548:581 586:1575 592:1202 517:4522 563:1838 565:598 564:615 568:3586 566:1333 461:3180 460:585 575:4898 497:1907 496:1738 494:1383
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U1|#46B450|711 738:918 755:604 668:686 705:916 674:1102 741:695 692:927 743:1093 710:881 737:1087 683:1022 753:811 682:790 728:638
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U1|#46B450|728 682:640 753:789 683:812 737:1024 710:1098 743:881 692:1065 741:918 674:722 705:1095 668:908 755:705 738:600 711:902
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U2|#B4283C|671 691:1040 670:651 690:1104 662:951 673:1010 717:650 739:1091 694:1118 699:749 747:497 704:742 692:581 741:917 674:722 705:1095 742:723 751:544 684:668 700:1269 697:869 698:1573 706:970 749:1178 721:988 715:1639 714:943
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U2|#B4283C|714 715:944 721:1645 749:974 706:1180 698:973 697:1562 700:874 684:1265 751:660 742:545 705:704 674:1101 741:695 692:928 704:579 747:741 699:500 694:749 739:1116 717:1090 673:650 662:1010 690:949 670:1123 691:651 671:1040
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|677 664:949 672:788 709:1198 660:780 725:815 745:1109 667:1132 696:841 733:625 686:675 741:830 712:894 727:639 750:810 685:719 718:568 666:1038 739:791 732:825 729:925 726:1056 728:1374 720:898 719:798
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|677 664:949 672:788 709:1198 660:780 725:815 745:1109 667:1132 696:841 733:625 686:675 741:830 712:894 727:639 750:810 685:719 718:568 666:1038 739:791 732:825 729:925
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|719 720:798 728:899 726:1373 729:1040 732:936 739:797 666:818 718:983 685:567 750:719 727:811 712:629 741:853 686:832 733:675 696:638 667:839 745:1133 725:1091 660:809 709:787 672:1195 664:800 677:937
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U3|#E66432|729 732:936 739:797 666:818 718:983 685:567 750:719 727:811 712:629 741:853 686:832 733:675 696:638 667:839 745:1133 725:1091 660:809 709:787 672:1195 664:800 677:937
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|663 736:786 665:540 734:804 713:794 708:916 727:946 701:796 692:515 748:766 740:908 693:653 752:822
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|663 736:786 665:540 734:804 713:794 708:916 727:946 701:796 692:515 748:766
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|752 693:823 740:654 748:929 692:728 701:553 727:775 708:919 713:940 734:801 665:806 736:547 663:773
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U4|#00A082|748 692:728 701:553 727:775 708:919 713:940 734:801 665:806 736:547 663:773
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U5|#A06E1E|707 676:661 752:791 693:823 740:654 748:929 692:728 701:553 727:775 708:919 713:940 730:1084 697:1600 716:1005 735:1690 723:770 746:759 722:727
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U5|#A06E1E|722 746:720 723:761 735:771 716:1694 697:1010 730:1578 713:1139 708:914 727:946 701:796 692:515 748:766 740:908 693:653 752:822 676:791 707:661
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|680 679:2559 681:1787 678:4092 702:922 675:1415 744:1141 661:597 724:741 669:805 718:725 685:568 750:719 727:811 712:629 741:853 686:832 733:675 696:638 689:1193 731:841 754:750 695:1101 688:1086 687:1127 703:659
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|678 702:922 675:1415 744:1141 661:597 724:741 669:805 718:725 685:568 750:719 727:811 712:629 741:853 686:832 733:675 696:638 689:1193 731:841 754:750 695:1101 688:1086 687:1127 703:659
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|703 687:780 688:1099 695:990 754:1099 731:749 689:845 696:1227 733:617 686:675 741:830 712:894 727:639 750:810 685:719 718:568 669:721 724:804 661:742 744:706 675:1033 702:1415 678:919 681:4093 679:1784 680:2566
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U6|#005A96|703 687:780 688:1099 695:990 754:1099 731:749 689:845 696:1227 733:617 686:675 741:830 712:894 727:639 750:810 685:719 718:568 669:721 724:804 661:742 744:706 675:1033 702:1415 678:919
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U7|#46B450|723 735:771 716:1694 697:1011 700:874 684:1265 751:660 742:545 705:704 674:1101 741:695 692:927 743:1093 710:881 737:1087 683:1022 753:811 682:790 728:638
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U7|#46B450|728 682:640 753:789 683:812 737:1024 710:1098 743:881 692:1065 741:918 674:722 705:1095 742:723 751:544 684:668 700:1269 697:869 716:1006 735:1690 723:770
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U8|#B4283C|723 735:771 716:1694 697:1011 700:874 684:1265 751:660 742:545 705:704 674:1101 741:695 692:928 704:579 747:741 699:500 694:749 739:1116 732:826 729:925
+L|Münchner Verkehrs- und Tarifverbund|U-Bahn U8|#B4283C|729 732:936 739:799 694:1118 699:749 747:497 704:742 692:581 741:917 674:722 705:1095 742:723 751:544 684:668 700:1269 697:869 716:1006 735:1690 723:770
+L|Parkeisenbahn Chemnitz|Parkeisenbahn Chemnitz||758 756:363 757:430
+L|Rhein-Main-Verkehrsverbund|U1|#b8282e|775 776:528 823:1129 813:578 790:658 841:638 789:628 836:748 806:550 793:548 774:643 766:660 809:620 796:559 780:532 769:599 786:447 840:541 828:875 829:596
+L|Rhein-Main-Verkehrsverbund|U1|#b8282e|829 828:586 840:870 786:540 769:450 780:598 796:533 809:558 766:620 774:660 793:555 806:638 836:632 789:666 841:630 790:895 813:660 823:596 776:1112 775:530
+L|Rhein-Main-Verkehrsverbund|U2|#00a54f|779 814:788 811:2355 762:1966 799:519 822:1822 826:600 789:619 836:748 806:550 793:548 774:643 766:660 809:620 796:559 780:532 769:599 786:447 840:541 828:875 829:596
+L|Rhein-Main-Verkehrsverbund|U2|#00a54f|811 762:1966 799:519 822:1822 826:600 789:619 836:748 806:550 793:548 774:643 766:660 809:620 796:559 780:532 769:599 786:447 840:541 828:875 829:596
+L|Rhein-Main-Verkehrsverbund|U2|#00a54f|829 828:586 840:870 786:540 769:450 780:598 796:533 809:558 766:620 774:660 793:555 806:638 836:632 789:666 826:677 822:570 799:1843 762:531 811:1905 814:2357 779:790
+L|Rhein-Main-Verkehrsverbund|U2|#00a54f|829 828:586 840:870 786:540 769:450 780:598 796:533 809:558 766:620 774:660 793:555 806:638 836:632 789:666 826:677 822:570 799:1843 762:531 811:1905
+L|Rhein-Main-Verkehrsverbund|U3|#4a5eaa|795 835:406 825:422 803:524 778:396 804:771 815:706 817:619 816:581 761:889 837:1006 812:2440 839:588 841:1030 789:628 836:748 806:550 793:548 774:643 766:660 809:620 796:559 780:532 769:599 786:447 840:541 828:875 829:596
+L|Rhein-Main-Verkehrsverbund|U3|#4a5eaa|829 828:586 840:870 786:540 769:450 780:598 796:533 809:558 766:620 774:660 793:555 806:638 836:632 789:666 841:630 839:1031 812:642 837:2390 761:1001 816:886 817:586 815:621 804:705 778:772 803:398 825:523 835:422 795:406
+L|Rhein-Main-Verkehrsverbund|U4|#F172AC|760 770:961 784:714 840:926 765:705 801:636 808:897 794:567 763:572 830:892 827:2113 782:599 802:531 792:482 768:363
+L|Rhein-Main-Verkehrsverbund|U4|#F172AC|768 792:413 802:428 782:531 827:627 830:1941 763:890 794:572 808:567 801:910 765:623 840:706 784:906 770:717 760:919
+L|Rhein-Main-Verkehrsverbund|U5|#007942|784 840:924 765:705 801:636 777:1437 764:465 785:585 807:729 771:466 833:529 824:407 831:408 820:421
+L|Rhein-Main-Verkehrsverbund|U5|#007942|820 831:422 824:409 833:406 771:392 807:620 785:710 764:586 777:366 810:593 801:946 765:623 840:706 784:906
+L|Rhein-Main-Verkehrsverbund|U6|#007ec6|787 781:578 797:578 800:660 805:654 760:605 838:750 759:675 786:540 801:668 842:794 818:727
+L|Rhein-Main-Verkehrsverbund|U6|#007ec6|818 842:755 801:821 786:641 759:534 838:672 760:754 805:601 800:652 797:662 781:483 787:671
+L|Rhein-Main-Verkehrsverbund|U7|#E4A024|768 792:413 802:428 782:531 827:627 798:778 767:650 819:564 783:517 842:731 801:820 786:641 759:534 838:672 760:754 805:601 800:652 797:662 772:390 788:470 832:656 773:288 791:611
+L|Rhein-Main-Verkehrsverbund|U7|#E4A024|791 773:605 832:295 788:656 772:474 797:390 800:660 805:654 760:605 838:750 759:675 786:540 801:668 842:794 783:741 819:516 767:568 798:723 827:732 782:599 802:531 792:482 768:363
+L|Rhein-Main-Verkehrsverbund|U8|#C77DB5|821 834:705 812:853 839:588 841:1030 789:628 836:748 806:550 793:548 774:643 766:660 809:620 796:559 780:532 769:599 786:447 840:541 828:875 829:596
+L|Rhein-Main-Verkehrsverbund|U8|#C77DB5|829 828:586 840:870 786:540 769:450 780:598 796:533 809:558 766:620 774:660 793:555 806:638 836:632 789:666 841:630 839:1031 812:642 834:864 821:678
+L|Rhein-Main-Verkehrsverbund|U9|#EED700|775 776:528 823:1129 813:578 790:658 839:551 812:642 834:864 821:678 799:1915 762:531 811:1905
+L|Rhein-Main-Verkehrsverbund|U9|#EED700|811 762:1966 799:519 821:1866 834:705 812:853 839:588 790:547 813:660 823:596 776:1112 775:530
+L|VRR|Monorail H1|#C31313|900 884:550 1056:1018 1048:1059
+L|VRR|Monorail H1|#C31313|1048 1056:1056 884:1021 900:550
+L|VRR|Monorail H2|#C31313|884 883:999
+L|VRR|Monorail H2|#C31313|883 884:1001
+L|VRR|Monorail H3|#C31313|900 884:550 883:1013
+L|VRR|Monorail H3|#C31313|883 884:1014 900:550
+L|VRR|Schwebebahn|#00FFFF|1063 880:776 928:861 1041:630 1080:665 1058:717 1073:870 1004:523 1022:821 1000:672 1078:420 965:499 970:737 1061:1002 975:765 844:544 852:733 1072:750 1077:578 996:625
+L|VRR|Schwebebahn|#00FFFF|996 1077:643 1072:561 852:750 844:733 975:544 1061:764 970:1002 965:737 1078:499 1000:420 1022:672 1004:821 1073:523 1058:870 1080:717 1041:666 928:630 880:861 1063:781
+L|VRR|SkyTrain 1|red|910 909:224 908:593 845:1543
+L|VRR|SkyTrain 1|red|845 908:1536 909:602 910:241
+L|VRR|SkyTrain 1E|red|910 909:224 845:2136
+L|VRR|SkyTrain 1E|red|845 909:2138 910:241
+L|VRR|SkyTrain K|red|910 909:224 908:594
+L|VRR|SkyTrain K|red|908 909:602 910:241
+L|VRR|U-Bahn U11|#342a82|881 1032:440 907:511 848:844 876:442 860:685 939:997 949:400 957:548 851:537 953:552 850:778 882:653 864:703 1053:907 870:816 943:719 904:554 1005:586 1026:827 979:417 981:616 983:816
+L|VRR|U-Bahn U11|#342a82|983 981:810 979:639 1026:417 1005:868 904:595 943:558 870:682 1053:803 864:909 882:688 850:669 953:771 851:555 957:536 949:547 939:401 860:997 876:685 848:440 907:842 1032:510 881:445
+L|VRR|U-Bahn U17|#68b6e3|957 851:537 953:552 850:778 882:653 864:703 1053:907 870:816 943:719 904:554 873:662 1007:568 914:393 947:793 927:589 971:678 977:755
+L|VRR|U-Bahn U17|#68b6e3|977 971:752 927:676 947:591 914:795 1007:395 873:593 904:669 943:558 870:682 1053:803 864:909 882:688 850:669 953:771 851:555 957:536
+L|VRR|U-Bahn U18|#0080c8|870 943:719 904:554 873:662 1028:802 946:540 879:604 1075:715 1020:844 1024:578 899:917 935:882 984:622 885:686 921:533 1065:587 986:588
+L|VRR|U-Bahn U18|#0080c8|986 1065:589 921:629 885:529 984:669 935:600 899:886 1024:803 1020:692 1075:871 879:731 946:612 1028:507 873:826 904:677 943:558 870:682
+L|VRR|U-Bahn U35 CampusLinie|#294488|948 972:533 1027:603 919:473 978:672 878:788 1069:914 1068:642 1001:525 875:650 1011:655 887:626 906:643 1079:919 1021:704 1019:640 871:1166 945:750 859:716 942:690 941:417 1034:949
+L|VRR|U-Bahn U35 CampusLinie|#294488|1034 941:949 942:417 859:684 945:723 871:787 1019:1154 1021:614 1079:699 906:922 887:642 1011:636 875:652 1001:667 1068:505 1069:678 878:908 978:828 919:611 1027:515 972:579 948:521
+L|VRR|U71|#59c6f2|940 967:255 1064:369 843:433 1039:393 1047:534 872:608 962:545 922:535 868:490 936:405 1029:420 1003:527 1070:566 1051:276 1030:585 877:240 891:597 892:394 938:418 926:542 856:491 1014:521 1025:269 1015:275
+L|VRR|U71|#59c6f2|1015 1025:195 1014:349 856:534 926:484 938:707 892:335 891:343 877:630 1030:415 1051:459 1070:306 1003:590 1029:520 936:368 868:419 922:490 962:535 872:576 1047:536 1039:504 843:481 1064:465 967:262 940:296
+L|VRR|U72|#25b8c5|1017 1074:361 905:318 915:325 1016:731 894:1013 944:419 999:508 1013:324 1012:979 990:391 923:684 1059:293 1035:666 890:611 895:365 1051:529 1070:311 1003:590 1029:520 936:368 868:419 922:490 962:535 872:576 958:518 863:336 1052:476 1054:605 1038:454 1071:884 1741:604 1733:413 1726:737 1731:652 993:667 858:710 1037:716 955:304 1033:605 1057:559 869:223 867:450
+L|VRR|U72|#25b8c5|867 869:549 1057:229 1033:512 955:596 1037:372 858:628 993:787 1731:705 1726:612 1733:736 1741:347 1071:673 1038:884 1054:482 1052:606 863:445 958:391 872:489 962:545 922:535 868:490 936:405 1029:420 1003:527 1070:566 1051:272 895:477 890:451 1035:663 1059:625 923:291 990:676 1012:389 1013:956 999:349 944:506 894:420 1016:988 915:761 905:329 1074:305 1017:383
+L|VRR|U73|#4465AD|1055 1038:454 1054:455 1052:606 863:445 958:391 872:489 962:545 922:535 868:490 936:405 1029:420 1003:527 1070:566 1051:272 895:477 890:451 1035:663 1044:627 1006:607 862:789 912:365 1066:283 917:569 1036:210 888:454 931:481 988:520 918:246
+L|VRR|U73|#4465AD|918 988:290 931:473 888:495 1036:480 917:185 1066:578 912:283 862:372 1006:726 1044:673 1035:681 890:611 895:365 1051:529 1070:311 1003:590 1029:520 936:368 868:419 922:490 962:535 872:576 958:518 863:336 1052:476 1054:605 1038:419 1055:532
+L|VRR|U75|#008fc2|1060 849:302 901:360 951:387 853:224 1031:402 973:804 1023:465 961:692 929:629 893:598 1002:517 1046:494 936:503 1050:769 976:844 865:516 866:493 889:664 932:904 994:336 934:583 846:495 930:542 1062:426 854:571 874:736 992:1391
+L|VRR|U75|#008fc2|992 874:1343 854:788 1062:571 930:422 846:542 934:495 994:582 932:339 889:901 866:670 865:566 976:471 1050:815 936:761 1046:557 1002:462 893:546 929:687 961:545 1023:734 973:422 1031:934 853:190 951:305 901:383 849:297 1060:325
+L|VRR|U77|#7197cf|857 1009:382 933:303 886:310 866:597 865:553 976:471 1050:815 936:761 1046:557 1002:462 893:546 929:687 961:545 1023:734 973:422
+L|VRR|U77|#7197cf|973 1023:465 961:692 929:629 893:598 1002:517 1046:494 936:503 1050:769 976:844 865:516 866:501 886:569 933:310 1009:292 857:389
+L|VRR|U78|#009adf|893 1002:514 1046:490 936:514 903:1545 959:499 920:540 1049:322 1018:612 995:437 982:446 911:658 989:398 980:743
+L|VRR|U78|#009adf|893 1002:514 1046:490 936:514 903:1545 959:499 920:540 1049:322 1018:612 995:437 982:446 911:658 989:398 1042:643 980:384
+L|VRR|U78|#009adf|980 989:734 911:394 982:646 995:445 1018:444 1049:499 920:558 959:336 903:578 936:1546 1046:546 1002:467 893:546
+L|VRR|U79|#009A93|897 861:488 898:3171 896:1025 966:716 1045:596 1008:783 991:450 968:335 956:712 924:806 925:393 969:505 950:443 1067:1008 987:1029 1040:887 985:616 1043:709 960:993 913:2036 1076:2362 855:562 954:928 964:540 963:669 847:678 974:1692 911:953 982:641 995:445 1018:444 1049:499 920:558 959:336 903:578 936:1546 1046:546 1002:467 893:546 997:723 902:408 998:581 952:575 1010:524 1071:680 1038:926 1055:624
+L|VRR|U79|#009A93|897 861:488 898:3171 896:1025 966:716 1045:596 1008:783 991:450 968:335 956:712 924:806 925:393 969:505 950:443 1067:1008 987:1029 1040:887 985:616 1043:709 960:993 913:2036 1076:2362 855:562 954:928 964:540 963:669 847:678 974:1692 911:953 982:641 995:445 1018:444 1049:499 920:558 959:336 903:578 936:1546 1046:546 1002:467 893:546
+L|VRR|U79|#009A93|1055 1038:541 1071:931 1010:667 952:522 998:576 902:622 997:367 893:765 1002:514 1046:490 936:514 903:1545 959:499 920:540 1049:322 1018:612 995:437 982:446 911:643 974:954 847:1798 963:650 964:589 954:644 855:830 1076:580 913:2339 960:2032 1043:993 985:709 1040:617 987:887 1067:1031 950:1005 969:442 925:505 924:393 956:809 968:718 991:439 1008:341 1045:865 966:590 896:685 898:1027 861:3170 897:478
+L|VRR|U79|#009A93|893 1002:514 1046:490 936:514 903:1545 959:499 920:540 1049:322 1018:612 995:437 982:446 911:643 974:954 847:1798 963:650 964:589 954:644 855:830 1076:580 913:2339 960:2032 1043:993 985:709 1040:617 987:887 1067:1031 950:1005 969:442 925:505 924:393 956:809 968:718 991:439 1008:341 1045:865 966:590 896:685 898:1027 861:3170 897:478
+L|VRR|U80|#005558|893 1002:514 1046:490 936:514 903:1545 959:499 920:540 1049:322 1018:612 995:437 982:446 911:643 1723:1852
+L|VRR|U80|#005558|1723 911:1860 982:641 995:445 1018:444 1049:499 920:558 959:336 903:578 936:1546 1046:546 1002:467 893:546
+L|VRR|U83|#1d3a8f|940 967:255 1064:369 843:433 1039:393 1047:534 872:608 962:545 922:535 868:490 936:405 1029:420 1003:527 1070:566 1051:272 895:477 890:451 1035:663 1044:627 1006:607 862:810 937:422 916:375
+L|VRR|U83|#1d3a8f|916 937:371 862:426 1006:707 1044:673 1035:681 890:611 895:365 1051:529 1070:311 1003:590 1029:520 936:368 868:419 922:490 962:535 872:576 1047:536 1039:504 843:481 1064:465 967:262 940:296
+L|Verkehrs- und Tarifverbund Stuttgart|U1|#C7956C|1148 1243:528 1095:764 1119:645 1179:639 1261:893 1224:737 1092:426 1093:194 1104:646 1143:676 1252:600 1197:397 1258:502 1184:508 1191:707 1182:547 1088:428 1264:797 1086:499 1202:337 1084:494 1094:820 1151:655 1120:532 1242:527 1126:432
+L|Verkehrs- und Tarifverbund Stuttgart|U1|#C7956C|1126 1242:431 1120:521 1151:537 1094:656 1084:819 1202:494 1086:337 1264:530 1088:806 1182:437 1191:542 1184:667 1258:576 1197:433 1252:398 1143:566 1104:647 1093:579 1092:202 1224:429 1261:718 1179:944 1119:588 1095:822 1243:612 1148:503
+L|Verkehrs- und Tarifverbund Stuttgart|U11|#CCCCCC|1143 1104:647 1093:579 1224:573 1216:679 1108:417 1252:787 1197:398 1258:502 1184:508 1191:707 1182:547 1107:768 1196:503
+L|Verkehrs- und Tarifverbund Stuttgart|U11|#CCCCCC|1196 1107:503 1182:821 1191:542 1184:667 1258:576 1197:433 1252:398 1143:566
+L|Verkehrs- und Tarifverbund Stuttgart|U12|#93BBE9|1113 1170:447 1250:631 1251:392 1269:669 1187:664 1218:482 1248:805 1209:550 1111:421 1110:456 1277:932 1098:2121 1112:259 1204:543 1108:311 1238:463 1143:591 1106:1153 1189:496 1192:483 1201:593 1177:590 1282:784 1219:520 1142:510 1101:558 1271:1022 1180:501 1154:548 1087:449 1185:470 1082:2268 1083:614 1081:674 1217:1213
+L|Verkehrs- und Tarifverbund Stuttgart|U12|#93BBE9|1217 1081:1216 1083:675 1082:612 1185:2333 1087:404 1154:419 1180:608 1271:427 1101:1135 1142:489 1219:556 1282:472 1177:800 1201:605 1192:568 1189:484 1106:566 1143:1166 1238:537 1108:466 1204:312 1112:538 1098:258 1277:2170 1110:884 1111:455 1209:329 1248:526 1218:988 1187:408 1269:666 1251:792 1250:332 1170:637 1113:450
+L|Verkehrs- und Tarifverbund Stuttgart|U13|#EDA5B4|1145 1255:855 1275:576 1276:440 1265:680 1239:444 1121:425 1096:668 1162:922 1114:520 1264:639 1088:806 1182:437 1278:547 1222:304 1140:487 1223:539 1177:646 1213:401 1181:502 1127:773 1279:752 1129:674 1249:605 1128:503
+L|Verkehrs- und Tarifverbund Stuttgart|U13|#EDA5B4|1128 1249:610 1129:606 1279:759 1127:739 1181:701 1213:497 1177:405 1223:569 1140:658 1222:476 1278:273 1182:548 1088:428 1264:797 1114:603 1162:441 1096:927 1121:741 1239:425 1265:442 1276:684 1275:472 1255:575 1145:824
+L|Verkehrs- und Tarifverbund Stuttgart|U14|#69BE51|1266 1267:453 1125:263 1268:303 1118:890 1159:266 1273:672 1148:1010 1243:526 1095:764 1119:645 1179:639 1261:893 1216:455 1108:419 1252:787 1197:398 1258:502 1184:508 1191:707 1278:890 1222:322 1186:527 1166:506 1195:475 1194:648 1132:479 1115:718 1271:471 1180:501 1154:548 1087:449 1185:402
+L|Verkehrs- und Tarifverbund Stuttgart|U14|#69BE51|1185 1087:403 1154:419 1180:608 1271:427 1115:515 1132:713 1194:506 1195:648 1166:476 1186:497 1222:534 1278:303 1191:917 1184:667 1258:576 1197:433 1252:398 1108:789 1216:418 1261:453 1179:944 1119:588 1095:822 1243:612 1148:528 1273:1021 1159:671 1118:340 1268:817 1125:298 1267:267 1266:456
+L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1213 1244:764 1099:486 1134:462 1155:442 1283:412 1164:395 1231:748 1280:255 1150:502 1165:502 1257:386
+L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1204 1108:311 1238:463 1143:591 1254:885 1212:848 1178:613 1213:713 1244:764 1099:486 1134:462 1155:442 1283:412 1164:395 1231:748 1280:255 1150:502 1165:502 1257:386
+L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1149 1097:480 1235:691 1247:544 1246:580 1225:1080 1260:1106 1138:661 1208:765 1105:529 1256:257 1146:411 1122:211 1204:579 1108:311 1238:463 1143:591 1254:885 1212:848 1178:613 1213:713 1244:764 1099:486 1134:462 1155:442 1283:412 1164:395 1231:748 1280:255 1150:502 1165:502 1257:386
+L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1225 1260:1106 1138:661 1208:765 1105:529 1256:257 1146:411 1122:211 1204:579 1108:311 1238:463 1143:591 1254:885 1212:848 1178:613 1213:713 1244:764 1099:486 1134:462 1155:442 1283:412 1164:395 1231:748 1280:255 1150:502 1165:502 1257:386
+L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1257 1165:388 1150:502 1280:505 1231:252 1164:777 1283:364 1155:411 1134:507 1099:399 1244:364 1213:890 1178:710 1212:620 1254:864 1143:922 1238:537 1108:466 1204:312 1122:587 1146:196 1256:407 1105:357 1208:315 1138:638 1260:637 1225:1239 1246:1135 1247:527 1235:546 1097:691 1149:481
+L|Verkehrs- und Tarifverbund Stuttgart|U15|#005AAB|1257 1165:388 1150:502 1280:505 1231:252 1164:777 1283:364 1155:411 1134:507 1099:399 1244:364 1213:890 1178:710 1212:620 1254:864 1143:922 1238:537 1108:466 1204:312 1122:587 1146:196 1256:407 1105:357 1208:315 1138:638 1260:637 1225:1114
+L|Verkehrs- und Tarifverbund Stuttgart|U16|#BAC219|1126 1242:431 1120:521 1151:537 1094:656 1084:819 1202:494 1086:337 1264:530 1088:806 1182:437 1278:547 1222:304 1140:487 1223:539 1177:646 1213:401 1181:502 1127:773 1279:752 1129:674 1249:605 1128:503 1168:968 1176:824 1215:560 1281:371 1091:455 1229:615 1139:379
+L|Verkehrs- und Tarifverbund Stuttgart|U16|#BAC219|1139 1229:372 1091:625 1281:527 1215:333 1176:525 1168:824 1128:857 1249:610 1129:606 1279:759 1127:739 1181:701 1213:497 1177:405 1223:569 1140:658 1222:476 1278:273 1182:548 1088:428 1264:797 1086:499 1202:337 1084:494 1094:820 1151:655 1120:532 1242:527 1126:432
+L|Verkehrs- und Tarifverbund Stuttgart|U19|#CCCCCC|1200 1259:582 1144:1144 1203:490 1141:577 1167:704 1109:535 1088:376 1107:979 1196:503
+L|Verkehrs- und Tarifverbund Stuttgart|U19|#CCCCCC|1196 1107:503 1088:1011 1109:371 1167:506 1141:698 1203:597 1144:476 1259:1143 1200:578
+L|Verkehrs- und Tarifverbund Stuttgart|U2|#F58220|1100 1116:373 1190:399 1089:359 1175:395 1147:636 1270:441 1085:360 1241:320 1237:532 1092:568 1224:429 1216:679 1108:417 1252:787 1197:398 1258:502 1184:508 1191:707 1182:547 1088:428 1109:371 1167:506 1141:698 1203:597 1144:476 1259:1143 1200:578
+L|Verkehrs- und Tarifverbund Stuttgart|U2|#F58220|1200 1259:582 1144:1144 1203:490 1141:577 1167:704 1109:535 1088:376 1182:437 1191:542 1184:667 1258:576 1197:433 1252:398 1108:789 1216:418 1224:649 1092:426 1237:504 1241:600 1085:320 1270:361 1147:443 1175:662 1089:355 1190:397 1116:369 1100:375
+L|Verkehrs- und Tarifverbund Stuttgart|U3|#935F39|1210 1169:3030 1230:318 1211:470 1245:606 1187:523 1269:665 1251:792 1250:332 1158:619 1266:503
+L|Verkehrs- und Tarifverbund Stuttgart|U3|#935F39|1266 1158:465 1250:688 1251:392 1269:669 1187:665 1245:546 1211:577 1230:470 1169:319 1210:3032
+L|Verkehrs- und Tarifverbund Stuttgart|U4|#7A68AE|1265 1276:698 1157:346 1156:441 1103:652 1274:343 1135:520 1206:354 1205:314 1090:422 1160:271 1258:525 1197:433 1252:398 1108:789 1216:418 1224:649 1092:426 1093:175 1221:422 1228:416 1153:468
+L|Verkehrs- und Tarifverbund Stuttgart|U4|#7A68AE|1153 1228:459 1221:414 1093:422 1092:176 1224:429 1216:679 1108:417 1252:787 1197:398 1258:502 1160:512 1090:293 1205:331 1206:324 1135:381 1274:524 1103:312 1156:581 1157:385 1276:473 1265:694
+L|Verkehrs- und Tarifverbund Stuttgart|U5|#00BAF2|1163 1212:972 1254:864 1143:922 1238:537 1108:466 1204:312 1112:538 1098:258 1277:2170 1110:884 1111:455 1209:329 1248:526 1218:988 1187:408 1269:666 1220:728 1188:698 1172:1068 1174:420 1171:759 1173:529
+L|Verkehrs- und Tarifverbund Stuttgart|U5|#00BAF2|1173 1171:518 1174:759 1172:374 1188:1116 1220:698 1269:726 1187:664 1218:482 1248:805 1209:550 1111:421 1110:456 1277:932 1098:2121 1112:259 1204:543 1108:311 1238:463 1143:591 1254:885 1212:862 1163:974
+L|Verkehrs- und Tarifverbund Stuttgart|U6|#EC008C|1136 1137:688 1102:695 1139:444 1229:373 1091:625 1281:527 1215:333 1176:525 1168:824 1128:857 1249:610 1129:606 1279:759 1127:739 1181:701 1213:497 1178:710 1212:620 1254:864 1143:922 1238:537 1108:466 1204:312 1112:538 1098:258 1277:2170 1110:884 1111:455 1209:329 1248:526 1218:988 1187:408 1269:666 1220:728 1188:698 1124:1573 1123:570 1117:605 1234:499 1253:1768 1183:690 1130:646
+L|Verkehrs- und Tarifverbund Stuttgart|U6|#EC008C|1130 1183:643 1253:682 1234:1775 1117:495 1123:616 1124:569 1188:1566 1220:698 1269:726 1187:664 1218:482 1248:805 1209:550 1111:421 1110:456 1277:932 1098:2121 1112:259 1204:543 1108:311 1238:463 1143:591 1254:885 1212:848 1178:613 1213:713 1181:502 1127:773 1279:752 1129:674 1249:605 1128:503 1168:968 1176:824 1215:560 1281:371 1091:455 1229:615 1139:381 1102:376 1137:763 1136:691
+L|Verkehrs- und Tarifverbund Stuttgart|U7|#0EB48D|1198 1199:451 1233:1368 1232:606 1207:557 1227:745 1226:798 1149:1734 1097:482 1235:691 1247:544 1246:580 1225:1097 1272:483 1098:1994 1112:259 1204:543 1108:311 1238:463 1143:591 1254:885 1212:848 1178:613 1213:713 1244:764 1099:486 1134:462 1155:442 1161:385 1240:657 1133:557 1263:374 1152:630 1262:521 1131:531 1193:546
+L|Verkehrs- und Tarifverbund Stuttgart|U7|#0EB48D|1193 1131:546 1262:537 1152:518 1263:634 1133:370 1240:557 1161:655 1155:389 1134:507 1099:399 1244:364 1213:890 1178:710 1212:620 1254:864 1143:922 1238:537 1108:466 1204:312 1112:538 1098:258 1272:2010 1225:483 1246:1142 1247:527 1235:546 1097:691 1149:479 1226:1733 1227:799 1207:746 1232:549 1233:611 1199:1391 1198:453
+L|Verkehrs- und Tarifverbund Stuttgart|U8|#C3B47D|1266 1158:465 1250:688 1251:392 1269:669 1187:664 1218:482 1248:805 1209:550 1111:421 1110:456 1277:932 1272:1209 1225:483 1246:1142 1247:527 1235:546 1097:691 1149:479 1226:1733 1227:799 1207:746 1232:549 1233:611 1199:1391 1198:453
+L|Verkehrs- und Tarifverbund Stuttgart|U8|#C3B47D|1198 1199:451 1233:1368 1232:606 1207:557 1227:745 1226:798 1149:1734 1097:482 1235:691 1247:544 1246:580 1225:1097 1272:483 1277:1204 1110:884 1111:455 1209:329 1248:526 1218:988 1187:408 1269:666 1251:792 1250:332 1158:619 1266:503
+L|Verkehrs- und Tarifverbund Stuttgart|U9|#FFD503|1145 1255:855 1275:576 1276:599 1157:346 1156:441 1103:652 1274:338 1236:654 1214:461 1090:535 1160:271 1258:525 1197:433 1252:398 1143:566 1104:647 1093:579 1237:498 1241:600 1085:320 1270:361 1147:443 1175:662 1089:355 1190:397 1116:369 1100:375
+L|Verkehrs- und Tarifverbund Stuttgart|U9|#FFD503|1100 1116:373 1190:399 1089:359 1175:395 1147:636 1270:441 1085:360 1241:320 1237:532 1093:566 1104:583 1143:676 1252:600 1197:397 1258:502 1160:512 1090:293 1214:455 1236:456 1274:684 1103:310 1156:581 1157:385 1276:629 1275:472 1255:575 1145:824
+L|Verkehrsverbund Berlin-Brandenburg|S1|#D474AE|1470 1429:1724 1324:2983 1316:3092 1392:2178 1359:4134 1389:2029 1568:1528 1585:1356 1583:2541 1528:1734 1587:1052 1325:1257 1361:1002 1397:873 1465:1515 1471:975 1357:787 1327:661 1491:966 1295:774 1592:1643 1403:718 1523:1062 1353:1176 1346:926 1502:1213 1326:1293 1436:1061 1553:1511 1593:1261 1451:1917 1520:1394 1462:1691 1571:1574
+L|Verkehrsverbund Berlin-Brandenburg|S1|#D474AE|1571 1462:1638 1520:1712 1451:1326 1593:1981 1553:1186 1436:1511 1326:1114 1502:1317 1346:1168 1353:1001 1523:1178 1403:954 1592:858 1295:1504 1491:823 1327:1014 1357:604 1471:782 1465:897 1397:1601 1361:869 1325:1120 1528:2197 1583:1734 1585:2537 1568:1359 1389:1527 1359:2030 1392:4134 1316:2212 1324:3177 1429:2869 1470:1727
+L|Verkehrsverbund Berlin-Brandenburg|S15|#D474AE|1361 1575:1776 1305:2186
+L|Verkehrsverbund Berlin-Brandenburg|S15|#D474AE|1305 1575:2315 1361:1635
+L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1306 1309:1951 1594:2302 1508:1818 1330:2091 1411:2703 1318:3183 1479:1784 1478:1855 1325:1599 1361:1032 1397:873 1465:1515 1471:975 1357:787 1327:661 1491:966 1295:774 1591:1573 1533:1773 1494:1854 1297:1428 1443:2757 1331:1613 1518:1388 1433:1368 1441:3042 1319:2661
+L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1330 1411:2703 1318:3183 1479:1784 1478:1855 1325:1599 1361:1032 1397:873 1465:1515 1471:975 1357:787 1327:661 1491:966 1295:774 1591:1573 1533:1773 1494:1854 1297:1428 1443:2757 1331:1613 1518:1388
+L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1319 1441:2803 1433:2899 1518:1478 1331:1282 1443:1677 1297:2807 1494:1310 1533:1902 1591:1826 1295:1473 1491:829 1327:1014 1357:604 1471:782 1465:897 1397:1601 1361:869 1325:1099 1478:1514 1479:1929 1318:1725 1411:3184 1330:2767 1508:1975 1594:1900 1309:2333 1307:1999
+L|Verkehrsverbund Berlin-Brandenburg|S2|#018A47|1518 1331:1282 1443:1677 1297:2807 1494:1310 1533:1902 1591:1826 1295:1473 1491:829 1327:1014 1357:604 1471:782 1465:897 1397:1601 1361:869 1325:1099 1478:1514 1479:1929 1318:1725 1411:3184 1330:2767
+L|Verkehrsverbund Berlin-Brandenburg|S25|#018A47|1386 1383:2236 1530:1715 1554:4276 1339:2356 1407:857 1291:1467 1528:2285 1587:1052 1325:1257 1361:1002 1397:873 1465:1515 1471:975 1357:787 1327:661 1491:966 1295:774 1591:1573 1533:1773 1494:1856 1532:1330 1428:1312 1434:1400 1473:1515 1435:1070 1555:2864
+L|Verkehrsverbund Berlin-Brandenburg|S25|#018A47|1555 1435:2912 1473:1028 1434:1638 1428:1267 1532:1314 1494:1324 1533:1901 1591:1826 1295:1473 1491:829 1327:1014 1357:604 1471:782 1465:897 1397:1601 1361:869 1325:1120 1528:2197 1291:2285 1407:1467 1339:857 1554:2355 1530:4278 1383:1728 1386:2224
+L|Verkehrsverbund Berlin-Brandenburg|S26|#018A47|1318 1479:1784 1478:1855 1325:1599 1361:1032 1397:873 1465:1515 1471:975 1357:787 1327:661 1491:966 1295:774 1591:1573 1533:1773 1494:1856 1532:1330 1428:1312 1434:1400 1473:1515 1435:1070 1555:2798
+L|Verkehrsverbund Berlin-Brandenburg|S26|#018A47|1555 1435:2846 1473:1028 1434:1638 1428:1267 1532:1314 1494:1324 1533:1901 1591:1826 1295:1473 1491:829 1327:1014 1357:604 1471:782 1465:897 1397:1601 1361:869 1325:1099 1478:1514 1479:1929 1318:1725
+L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1343 1582:2256 1496:2831 1356:4546 1390:1371 1422:1516 1589:2166 1410:2247 1310:2525 1515:1514 1477:722 1572:1267 1476:1102 1400:1190 1288:975 1372:707 1357:1079 1378:1421 1302:1666 1558:1134 1597:858 1517:959 1334:1040 1579:1453 1450:941 1380:1355 1467:1368 1486:1039 1552:3317 1540:878
+L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1356 1390:1371 1422:1516 1589:2166 1410:2247 1310:2525 1515:1514 1477:721 1572:1267 1476:1100
+L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1540 1552:832 1486:3315 1467:1110 1380:1387 1450:1222 1579:1083 1334:1453 1517:939 1597:982 1558:865 1302:1122 1378:1698 1357:1361 1372:1101 1288:700 1400:1016 1476:1130 1572:1248 1477:1300 1515:636 1310:1554 1410:2501 1589:2269 1422:2168 1390:1506 1356:1380 1496:4542 1582:2826 1343:2269
+L|Verkehrsverbund Berlin-Brandenburg|S3|#055A99|1476 1572:1244 1477:1303 1515:636 1310:1554 1410:2501 1589:2269 1422:2168 1390:1506 1356:1380
+L|Verkehrsverbund Berlin-Brandenburg|S41|#9F4C37|1361 1527:1801 1493:825 1365:1052 1427:1644 1547:949 1348:1218 1477:1438 1560:1182 1538:2367 1460:961 1388:839 1556:3376 1533:1517 1523:1139 1398:720 1332:795 1382:1292 1394:1215 1374:1006 1579:770 1449:780 1577:1214 1404:2197 1311:2059 1578:1033 1575:1805 1361:1635
+L|Verkehrsverbund Berlin-Brandenburg|S42|#C36939|1361 1575:1776 1578:1780 1311:1051 1404:1999 1577:2218 1449:1234 1579:794 1374:657 1394:1071 1382:1195 1332:1286 1398:889 1523:696 1533:1136 1556:1526 1388:3356 1460:898 1538:951 1560:2362 1477:1180 1348:1441 1547:1210 1427:971 1365:1591 1493:1074 1527:898 1361:1626
+L|Verkehrsverbund Berlin-Brandenburg|S46|#BA8A4D|1577 1449:1234 1579:794 1374:657 1394:1071 1382:1195 1332:1286 1398:889 1523:696 1533:1136 1556:1526 1388:3356 1460:898 1416:1766 1300:1602 1525:1955 1401:1336 1285:1763 1369:3336 1340:5444 1595:2642 1581:3423 1418:2460
+L|Verkehrsverbund Berlin-Brandenburg|S46|#BA8A4D|1418 1581:2603 1595:3393 1340:2665 1369:5414 1285:3342 1401:1775 1525:1319 1300:1951 1416:1616 1460:1786 1388:839 1556:3376 1533:1517 1523:1139 1398:720 1332:795 1382:1292 1394:1215 1374:1006 1579:770 1449:780 1577:1214
+L|Verkehrsverbund Berlin-Brandenburg|S47|#BA8A4D|1533 1556:1526 1388:3356 1460:898 1416:1766 1300:1602 1525:1953 1466:2194 1542:1843
+L|Verkehrsverbund Berlin-Brandenburg|S47|#BA8A4D|1542 1466:1946 1525:2189 1300:1951 1416:1616 1460:1786 1388:839 1556:3376 1533:1517
+L|Verkehrsverbund Berlin-Brandenburg|S5|#F25721|1550 1551:2100 1381:3589 1548:3416 1485:2995 1351:1971 1459:4201 1396:1818 1314:1805 1442:2552 1412:1368 1588:1033 1312:1287 1355:2531 1432:1624 1463:1093 1477:1180 1572:1267 1476:1102 1400:1190 1288:975 1372:707 1357:1079 1378:1421 1302:1666 1558:1134 1597:858 1517:959 1334:1040 1579:1453
+L|Verkehrsverbund Berlin-Brandenburg|S5|#F25721|1579 1334:1500 1517:939 1597:982 1558:865 1302:1122 1378:1698 1357:1361 1372:1101 1288:700 1400:1016 1476:1130 1572:1248 1477:1300 1463:1139 1432:1124 1355:1584 1312:2512 1588:1296 1412:1016 1442:1244 1314:2651 1396:1839 1459:1839 1351:4043 1485:1973 1548:2995 1381:3421 1551:3589 1550:2100
+L|Verkehrsverbund Berlin-Brandenburg|S7|#8070B7|1287 1447:1729 1497:846 1444:893 1490:999 1544:947 1355:2557 1432:1624 1463:1093 1477:1180 1572:1267 1476:1102 1400:1190 1288:975 1372:707 1357:1079 1378:1421 1302:1666 1558:1134 1597:858 1517:959 1334:1040 1579:1484 1371:2053 1462:7803 1571:1554 1367:4808 1299:2303 1492:1758
+L|Verkehrsverbund Berlin-Brandenburg|S7|#8070B7|1492 1299:1756 1367:2427 1571:4694 1462:1657 1371:7770 1579:2178 1334:1453 1517:939 1597:982 1558:865 1302:1122 1378:1698 1357:1361 1372:1101 1288:700 1400:1016 1476:1130 1572:1248 1477:1300 1463:1139 1432:1124 1355:1584 1544:2574 1490:986 1444:957 1497:854 1447:885 1287:1710
+L|Verkehrsverbund Berlin-Brandenburg|S75|#8070B7|1476 1572:1245 1477:1247 1463:1194 1432:1124 1355:1584 1544:2574 1360:3372 1393:1285 1573:949
+L|Verkehrsverbund Berlin-Brandenburg|S75|#8070B7|1573 1393:951 1360:1443 1544:3353 1355:2557 1432:1624 1463:1093 1477:1182 1572:1267 1476:1100
+L|Verkehrsverbund Berlin-Brandenburg|S8|#52B447|1316 1392:2556 1303:2504 1526:1435 1452:3254 1318:9283 1479:1784 1478:1855 1325:1599 1527:1628 1493:825 1365:1052 1427:1644 1547:949 1348:1218 1477:1438 1560:1182 1488:2110 1300:1625 1525:1947 1401:1336 1285:1763 1369:3336 1340:5444 1595:2642 1581:3423
+L|Verkehrsverbund Berlin-Brandenburg|S8|#52B447|1581 1595:3536 1340:2665 1369:5414 1285:3342 1401:1775 1525:1319 1300:1951 1488:1631 1560:2112 1477:1180 1348:1441 1547:1210 1427:971 1365:1591 1493:1074 1527:898 1325:1553 1478:1514 1479:1929 1318:1725 1452:9241 1526:3315 1303:1511 1392:2366 1316:2637
+L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1359 1389:2029 1568:1528 1585:1356 1583:2541 1528:1734 1587:1052 1325:1257 1527:1629 1493:825 1365:1052 1427:1644 1547:949 1348:1218 1477:1438 1560:1182 1488:2112 1300:1625 1525:1947 1401:1336 1285:1763 1289:3893 1370:1458 1524:2181 1570:4517 1347:3432
+L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1568 1585:1356 1583:2541 1528:1734 1587:1052 1325:1257 1527:1629 1493:825 1365:1052 1427:1644 1547:949 1348:1218 1477:1438 1560:1182 1488:2112 1300:1625 1525:1947 1401:1336 1285:1763 1289:3893 1370:1458 1524:2181 1570:4517 1347:3432
+L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1478 1325:1599 1527:1628 1493:825 1365:1052 1427:1644 1547:949 1348:1218 1477:1438 1560:1182 1488:2112 1300:1625 1525:1947 1401:1336 1285:1763 1289:3893 1370:1458 1524:2181 1570:4517 1347:3432
+L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1347 1570:3410 1524:4554 1370:2248 1289:1466 1285:3877 1401:1775 1525:1319 1300:1951 1488:1631 1560:2112 1477:1180 1348:1441 1547:1210 1427:971 1365:1591 1493:1074 1527:898 1325:1552 1528:2197 1583:1734 1585:2537 1568:1359 1389:1527 1359:2030
+L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1347 1570:3410 1524:4554 1370:2248 1289:1466 1285:3877 1401:1775 1525:1319 1300:1951 1488:1631 1560:2112 1477:1180 1348:1441 1547:1210 1427:971 1365:1591 1493:1074 1527:898 1325:1553 1478:1514
+L|Verkehrsverbund Berlin-Brandenburg|S85|#52B447|1347 1570:3410 1524:4554 1370:2248 1289:1466 1285:3877 1401:1775 1525:1319 1300:1951 1488:1631 1560:2112 1477:1180 1348:1441 1547:1210 1427:971 1365:1591 1493:1074 1527:898 1325:1552 1528:2197 1583:1734 1585:2537 1568:1359
+L|Verkehrsverbund Berlin-Brandenburg|S9|#9A3052|1540 1552:832 1486:3315 1467:1110 1380:1387 1450:1222 1579:1035 1334:1500 1517:939 1597:982 1558:865 1302:1122 1378:1698 1357:1361 1372:1101 1288:700 1400:1016 1476:1130 1572:1248 1560:1656 1488:2110 1300:1625 1525:1947 1401:1336 1285:1763 1289:3893 1370:1458 1524:2181 1570:4517 1347:3432
+L|Verkehrsverbund Berlin-Brandenburg|S9|#9A3052|1347 1570:3410 1524:4554 1370:2248 1289:1466 1285:3877 1401:1775 1525:1319 1300:1951 1488:1631 1560:2112 1572:2372 1476:1102 1400:1190 1288:975 1372:707 1357:1079 1378:1421 1302:1666 1558:1134 1597:858 1517:959 1334:1040 1579:1453 1450:941 1380:1355 1467:1368 1486:1039 1552:3317 1540:878
+L|Verkehrsverbund Berlin-Brandenburg|U1|#7DAD4C|1562 1424:350 1586:848 1464:874 1425:512 1362:879 1445:604 1375:547 1495:1018 1421:884 1368:640 1521:924 1572:771
+L|Verkehrsverbund Berlin-Brandenburg|U1|#7DAD4C|1572 1521:786 1368:959 1421:660 1495:875 1375:1032 1445:521 1362:626 1425:877 1464:441 1586:862 1424:872 1562:359
+L|Verkehrsverbund Berlin-Brandenburg|U2|#DA421E|1478 1566:830 1527:1132 1338:867 1536:1049 1510:590 1288:751 1417:639 1455:592 1543:475 1379:597 1546:419 1296:387 1491:549 1448:664 1362:491 1322:920 1464:615 1586:818 1597:871 1344:969 1337:802 1317:411 1539:602 1405:920 1557:697 1461:1176 1468:594 1514:1173
+L|Verkehrsverbund Berlin-Brandenburg|U2|#DA421E|1514 1468:1228 1461:638 1557:1167 1405:712 1539:833 1317:677 1337:365 1344:842 1597:984 1586:797 1464:820 1322:615 1362:983 1448:465 1491:629 1296:626 1546:366 1379:348 1543:644 1455:433 1417:601 1288:658 1510:829 1536:597 1338:965 1527:910 1566:1094 1478:822
+L|Verkehrsverbund Berlin-Brandenburg|U3|#16683D|1423 1469:1149 1474:1072 1352:903 1336:908 1489:887 1328:949 1503:876 1382:715 1345:1213 1395:767 1541:601 1298:491 1586:579 1464:872 1425:512 1362:879 1445:604 1375:547 1495:1018 1421:884 1368:640 1521:924 1572:771
+L|Verkehrsverbund Berlin-Brandenburg|U3|#16683D|1572 1521:787 1368:959 1421:660 1495:875 1375:1032 1445:521 1362:626 1425:877 1464:441 1586:862 1298:653 1541:483 1395:615 1345:776 1382:1149 1503:810 1328:774 1489:1008 1336:878 1352:878 1474:903 1469:1108 1423:1093
+L|Verkehrsverbund Berlin-Brandenburg|U4|#F0D722|1398 1500:496 1301:684 1565:846 1464:850
+L|Verkehrsverbund Berlin-Brandenburg|U4|#F0D722|1464 1565:911 1301:849 1500:674 1398:457
+L|Verkehrsverbund Berlin-Brandenburg|U5|#7E5330|1378 1333:583 1327:775 1564:588 1456:655 1512:650 1288:495 1519:544 1549:809 1574:900 1349:596 1516:781 1348:708 1440:809 1432:791 1354:1145 1559:1182 1313:1821 1342:1209 1588:1354 1413:1426 1414:840 1335:789 1385:759 1439:830 1391:1006
+L|Verkehrsverbund Berlin-Brandenburg|U5|#7E5330|1391 1439:1020 1385:846 1335:764 1414:712 1413:836 1588:1551 1342:1320 1313:1104 1559:1908 1354:1198 1432:1116 1440:791 1348:792 1516:760 1349:677 1574:690 1549:907 1519:772 1288:566 1512:468 1456:672 1564:647 1327:509 1333:753 1378:593
+L|Verkehrsverbund Berlin-Brandenburg|U6|#8C6DAB|1290 1580:745 1563:884 1406:638 1293:641 1556:466 1482:909 1487:925 1446:919 1375:585 1419:785 1545:428 1564:766 1357:359 1472:584 1457:679 1531:607 1505:732 1575:502 1431:511 1535:552 1504:1124 1286:621 1426:577
+L|Verkehrsverbund Berlin-Brandenburg|U6|#8C6DAB|1426 1286:640 1504:552 1535:1160 1431:517 1575:572 1505:501 1531:668 1457:592 1472:694 1357:618 1564:429 1545:662 1419:524 1375:756 1446:534 1487:999 1482:830 1556:914 1293:510 1406:626 1563:682 1580:809 1290:741
+L|Verkehrsverbund Berlin-Brandenburg|U7|#528DBA|1513 1598:1087 1590:651 1438:845 1402:787 1329:1033 1483:821 1320:771 1366:1288 1460:700 1409:859 1498:693 1387:843 1534:1179 1363:854 1446:696 1445:793 1591:1175 1415:810 1341:689 1301:605 1304:729 1321:614 1345:705 1420:577 1284:612 1584:746 1317:564 1507:595 1453:1046 1404:540 1399:969 1373:495 1537:893 1509:687 1484:1021 1377:1012 1596:1078 1292:854 1501:690
+L|Verkehrsverbund Berlin-Brandenburg|U7|#528DBA|1501 1292:661 1596:852 1377:1085 1484:1020 1509:1009 1537:689 1373:928 1399:498 1404:860 1453:599 1507:1093 1317:602 1584:549 1284:738 1420:658 1345:558 1321:672 1304:682 1301:722 1341:608 1415:682 1591:803 1445:1145 1446:774 1363:742 1534:851 1387:1182 1498:825 1409:705 1460:900 1366:674 1320:1214 1483:844 1329:831 1402:1016 1438:802 1590:854 1598:622 1513:1039
+L|Verkehrsverbund Berlin-Brandenburg|U8|#224F86|1388 1430:608 1323:824 1387:722 1529:761 1421:743 1454:834 1384:837 1400:641 1288:726 1576:765 1511:565 1308:842 1567:572 1361:826 1480:627 1475:783 1350:1026 1506:801 1481:893 1437:754 1408:662 1499:1158 1585:1149
+L|Verkehrsverbund Berlin-Brandenburg|U8|#224F86|1585 1499:1131 1408:1214 1437:520 1481:751 1506:944 1350:740 1475:1037 1480:825 1361:578 1567:819 1308:561 1511:850 1576:675 1288:651 1400:785 1384:579 1454:836 1421:893 1529:642 1387:912 1323:672 1430:661 1388:784
+L|Verkehrsverbund Berlin-Brandenburg|U9|#F3791D|1475 1458:769 1431:777 1294:809 1578:808 1315:494 1561:700 1376:893 1597:1378 1424:396 1541:820 1364:474 1304:513 1332:1139 1358:639 1569:676 1522:517 1502:585
+L|Verkehrsverbund Berlin-Brandenburg|U9|#F3791D|1502 1522:582 1569:625 1358:587 1332:732 1304:1029 1364:511 1541:697 1424:600 1597:390 1376:1415 1561:927 1315:669 1578:542 1294:812 1431:714 1458:778 1475:767
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1606 1609:905 1611:947 1610:631 1607:889 1608:708 1643:828 1629:943 1602:869 1627:708 1601:698 1613:491 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752 1600:1486 1628:533 1622:700 1639:559 1621:586 1612:471 1623:444
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1606 1609:905 1611:947 1610:631 1607:889 1608:708 1643:828 1629:943 1602:869 1627:708 1601:698 1613:491 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752 1600:1486 1628:533
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1611 1610:631 1607:889 1608:708 1643:828 1629:943 1602:869 1627:708 1601:698 1613:491 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752 1600:1486 1628:533 1622:700 1639:559 1621:586 1612:471 1623:444
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1602 1627:708 1601:698 1613:491 1634:628 1645:436 1624:628 1631:573 1599:689
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1602 1627:708 1601:698 1613:491 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1602 1627:708 1601:698 1613:491 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752 1600:1486 1628:533 1622:700 1639:559 1621:586 1612:471 1623:444
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1602 1627:708 1601:698 1613:491 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752 1600:1486 1628:533
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1613 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752 1600:1486 1628:533 1622:700 1639:559 1621:586 1612:471 1623:444
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1613 1634:628 1645:436 1624:628 1631:573 1599:689 1625:624 1604:673 1616:752 1600:1486 1628:533
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1639 1621:586 1612:471 1623:444
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U1|#000066|1623 1612:442 1621:470 1639:586 1622:558 1628:712 1600:532 1616:1488 1604:739 1625:678 1599:619 1631:692 1624:573 1645:650 1634:440 1613:628 1601:490 1627:699 1602:710 1629:866 1643:942 1608:830 1607:703 1610:886 1611:642 1609:949 1606:907
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U2|red|1638 1618:1333 1641:670 1644:513 1637:755 1634:977 1633:747 1631:528 1646:813 1635:531 1636:585 1640:656 1630:897 1617:829 1647:947 1603:2415
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U2|red|1603 1647:2415 1617:942 1630:828 1640:894 1636:650 1635:599 1646:530 1631:788 1633:532 1634:746 1637:982 1644:757 1641:513 1618:668 1638:1320
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U3|#00868B|1614 1615:900 1642:602 1637:980 1634:977 1633:747 1631:528 1646:813 1635:531 1626:994 1619:463 1605:548 1620:511 1632:726
+L|Verkehrsverbund Großraum Nürnberg|U-Bahn U3|#00868B|1632 1620:728 1605:515 1619:548 1626:464 1635:968 1646:530 1631:788 1633:532 1634:746 1637:982 1642:926 1615:606 1614:890
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C11|green|1709 1649:657 1650:1747 1702:4059 1651:2547 1652:1493 1696:1652 1653:717 1654:1308 1655:610 1656:979 1658:644 1706:514 1659:401 1707:439 1705:430 1715:425 1684:584 1703:584 1713:338 1687:851 1695:419 1718:367 1704:274 1712:427 1689:320 1673:209
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C11|green|1673 1700:164 1712:384 1704:341 1718:395 1695:338 1687:450 1713:849 1703:235 1684:681 1715:586 1705:425 1707:439 1659:433 1706:347 1658:510 1656:646 1655:979 1654:610 1653:1308 1696:717 1652:1652 1651:1493 1702:2546 1650:4058 1649:1747 1709:657
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C13|green|1662 1663:1084 1692:2453 1691:2531 1719:3823 1698:2612 1679:2746 1711:3607 1648:578 1693:3606 1669:2427 1668:1158 1690:2084 1678:2171 1682:1648 1681:304 1680:744 1683:974 1672:811 1671:1130 1664:1452 1710:2076 1714:620 1657:488 1708:384 1665:601 1661:398 1718:506 1704:275 1712:374 1689:320 1673:209 1675:2253 1670:1361 1716:2778 1717:2481 1667:4861
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C13|green|1667 1717:5021 1716:2324 1670:2773 1675:1361 1673:2251 1689:264 1712:287 1704:402 1718:314 1661:481 1665:388 1708:583 1657:410 1714:460 1710:707 1664:2153 1671:1367 1672:1129 1683:811 1680:994 1681:725 1682:304 1678:1645 1690:2169 1668:2018 1669:1224 1693:2429 1648:3606 1711:719 1679:3467 1698:2746 1719:2610 1691:3818 1692:2530 1663:2453 1662:1084
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C14|green|1711 1648:578 1693:3606 1669:2427 1668:1158 1690:2084 1678:2171 1682:1648 1681:304 1680:744 1683:974 1672:811 1671:1130 1664:1452 1710:2076 1714:620 1657:488 1708:384 1665:601 1661:398 1718:506 1704:275 1712:374 1689:320 1673:209 1676:5914 1699:2677 1701:3040 1660:3962 1694:2039
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C14|green|1694 1660:2083 1701:3857 1699:3102 1676:2645 1673:5943 1689:264 1712:287 1704:402 1718:314 1661:481 1665:388 1708:583 1657:410 1714:460 1710:707 1664:2153 1671:1367 1672:1129 1683:811 1680:994 1681:725 1682:304 1678:1645 1690:2169 1668:2018 1669:1224 1693:2429 1648:3606 1711:719
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C15|green|1710 1714:620 1657:488 1708:384 1665:601 1661:398 1718:506 1704:275 1712:374 1689:320 1673:209 1674:3609 1697:5305 1666:2228 1686:4485 1685:1114 1677:2782 1688:6284
+L|Verkehrsverbund Mittelsachsen|ChemnitzBahn C15|green|1688 1677:6282 1685:2782 1686:1114 1666:4483 1697:2185 1674:5190 1673:3613 1689:264 1712:287 1704:402 1718:314 1661:481 1665:388 1708:583 1657:430 1714:440 1710:618
+L|Verkehrsverbund Oberelbe|Schwebebahn||1721 1720:254
+L|Verkehrsverbund Oberelbe|Schwebebahn||1720 1721:254
+L|Verkehrsverbund Rhein-Ruhr|U70|#70b1d0|929 893:598 1002:517 1046:494 936:503 1050:769 866:1862 1009:1234 1725:1343 1739:1523 1730:2663 1722:1305 1732:1848 1729:3315 1735:1954 1724:1383 1736:850 1742:800
+L|Verkehrsverbund Rhein-Ruhr|U70|#70b1d0|1742 1736:1067 1724:814 1735:1387 1729:1944 1732:3317 1722:1958 1730:1198 1739:2631 1725:1558 1009:1395 866:1202 1050:1839 936:761 1046:557 1002:462 893:546
+L|Verkehrsverbund Rhein-Ruhr|U76|#0063af|1731 1726:627 1733:736 1741:347 1071:740 1010:636 952:522 998:576 902:622 997:367 893:759 1002:517 1046:494 936:503 1050:769 976:844 865:516 866:501 886:569 933:310 1009:354 1737:354 1738:518 1725:470 1739:1523 1728:1958 1730:705 1722:1305 1734:1059 1732:789 1740:1095 1729:2220 1727:657 1735:1297 1724:1383 1736:850 1742:800
+L|Verkehrsverbund Rhein-Ruhr|U76|#0063af|1742 1736:1067 1724:814 1735:1387 1727:1389 1729:555 1740:2312 1732:1005 1734:869 1722:1089 1730:1198 1728:701 1739:1930 1725:1558 1738:463 1737:519 1009:413 933:296 886:310 866:597 865:553 976:471 1050:815 936:761 1046:557 1002:462 893:546 997:727 902:408 998:581 952:575 1010:524 1071:636 1741:676 1733:413 1726:737 1731:652
+L|Verkehrsverbund Rhein-Ruhr|U81|#668982|980 911:1132 1723:2052
+L|Verkehrsverbund Rhein-Ruhr|U81|#668982|1723 911:1857 980:1330
+L|WestfalenTarif|StadtBahn 1|blue|1791 1792:488 1784:292 1753:421 1754:456 1779:593 1762:343 1752:662 1758:977 1761:619 1750:514 1743:571 1771:704 1782:331 1766:430 1764:490 1799:992 1767:610 1756:592 1768:407 1765:284 1788:359
+L|WestfalenTarif|StadtBahn 1|blue|1788 1765:297 1768:369 1756:381 1767:601 1799:601 1764:994 1766:499 1782:423 1771:330 1743:692 1750:586 1761:490 1758:618 1752:977 1762:668 1779:343 1754:594 1753:491 1784:384 1792:369 1791:409
+L|WestfalenTarif|StadtBahn 2|green|1744 1755:630 1776:568 1787:780 1748:528 1790:399 1786:1140 1805:719 1760:389 1789:352 1796:267 1749:879 1764:883 1766:499 1782:423 1771:330 1746:641 1800:324 1777:374 1781:476 1794:641
+L|WestfalenTarif|StadtBahn 2|green|1794 1781:662 1777:475 1800:327 1746:305 1771:723 1782:331 1766:430 1764:490 1749:860 1796:879 1789:267 1760:353 1805:390 1786:721 1790:1060 1748:503 1787:533 1776:755 1755:556 1744:632
+L|WestfalenTarif|StadtBahn 3|yellow|1747 1802:243 1769:410 1772:520 1745:405 1778:432 1804:614 1764:753 1766:507 1782:423 1757:570
+L|WestfalenTarif|StadtBahn 3|yellow|1757 1782:606 1766:430 1764:490 1804:741 1778:604 1745:433 1772:350 1769:575 1802:434 1747:234
+L|WestfalenTarif|StadtBahn 4|red|1773 1803:410 1801:633 1751:635 1763:460 1785:576 1793:690 1764:1262 1766:507 1782:423 1775:485 1770:659 1780:434 1795:639 1774:589 1783:589 1759:577 1798:537 1797:289
+L|WestfalenTarif|StadtBahn 4|red|1773 1803:410 1801:633 1751:635 1763:460 1785:576 1793:690 1764:1043
+L|WestfalenTarif|StadtBahn 4|red|1764 1793:1054 1785:675 1763:573 1751:460 1801:637 1803:632 1773:414
+L|WestfalenTarif|StadtBahn 4|red|1797 1798:302 1759:639 1783:483 1774:608 1795:551 1780:654 1770:418 1775:657 1782:512 1766:430 1764:490 1793:1266 1785:675 1763:573 1751:460 1801:637 1803:632 1773:414
+L|saarVV|Saarbahn S 1|#EF7C00|1842 1832:628 1831:467 1807:587 1830:540 1843:537 1813:384 1820:398 1819:299 1826:411 1844:513 1815:422 1821:508 1837:251 1839:1251 1840:2120 1838:2278 1823:2484
+L|saarVV|Saarbahn S 1|#EF7C00|1823 1838:2628 1840:2174 1839:2068 1837:1321 1821:393 1815:377 1844:425 1826:490 1819:431 1820:267 1813:421 1843:369 1830:515 1807:517 1831:588 1832:524 1842:571
+L|saarVV;TER Grand Est|Saarbahn S 1|#EF7C00|1828 1827:1136 1829:1183 1824:1380 1825:522 1809:3105 1808:661 1822:795 1818:567 1816:1037 1817:593 1846:765 1847:656 1845:533 1811:2040 1810:586 1833:404 1834:340 1835:858 1848:558 1836:442 1814:2392 1842:2249 1832:628 1831:467 1807:587 1830:540 1843:537 1813:384 1820:398 1819:299 1826:411 1844:513 1815:422 1821:508 1837:251 1839:1251 1840:2120 1838:2278 1823:2470 1806:1901 1812:2787 1841:1964
+L|saarVV;TER Grand Est|Saarbahn S 1|#EF7C00|1841 1812:1964 1806:2893 1823:1793 1838:2617 1840:2174 1839:2068 1837:1321 1821:393 1815:377 1844:425 1826:490 1819:431 1820:267 1813:421 1843:369 1830:515 1807:517 1831:588 1832:524 1842:599 1814:2269 1836:2344 1848:446 1835:577 1834:836 1833:348 1810:470 1811:521 1845:2049 1847:527 1846:657 1817:766 1816:593 1818:1037 1822:567 1808:795 1809:662 1825:3105 1824:522 1829:1380 1827:1199 1828:1121
+L|5-Seen-Fahrt und Kellersee-Fahrt GmbH|5-Seen-Fahrt||1849 1850:5517 1851:3275
+L|AG Ems|Veer Borkum - Eemshaven||1902 1852:17978
+L|AG Ems|Veer Eemshaven - Borkum||1852 1902:18001
+L|AG Reederei Norden-Frisia|Norddeich - Juist||1855 1854:14098
+L|AG Reederei Norden-Frisia|Norddeich - Juist||1855 1854:19418
+L|AG Reederei Norden-Frisia|Norddeich - Juist||1855 1854:24149
+L|AG Reederei Norden-Frisia|Norddeich - Juist||1855 1854:19418
+L|AG Reederei Norden-Frisia|Norddeich - Norderney||1856 1853:10641
+L|ATG Alster-Touristik GmbH|Alsterkreuzfahrt||1859 1857:985 1862:1447 1864:1101 1858:578 1861:2241 1860:1959 1863:555 1865:1077
+L|ATG Alster-Touristik GmbH|Alsterkreuzfahrt||1859 1857:984 1862:1372 1864:1091 1858:520 1861:2276 1860:2097 1863:515 1865:1076
+L|BSB|3802||1867 1866:8018 1898:35707 1897:5615
+L|BSB|3802||1867 1866:7910 1871:4624 1868:3866 1869:5277 1893:9615 1895:9689 1894:4765 1898:4116 1897:9939 1890:9033
+L|BSB|3802||1867 1866:7910 1871:4624 1868:3866 1869:5277 1893:9615 1895:9689 1894:4765 1898:4116 1890:9235
+L|BSB|3802||1867 1866:6517
+L|BSB|3802||1867 1866:7910 1871:4624 1870:2368 1868:1389 1869:5277 1893:7908
+L|BSB|3802||1866 1867:6514
+L|BSB|3802||1893 1895:9428 1894:4765 1898:4116 1890:9235
+L|BSB|3802||1893 1895:9428 1894:4765 1898:4116 1897:9939 1890:9033
+L|BSB|3802||1893 1869:7905 1868:5276 1870:1389 1871:2367 1866:4622 1867:7908
+L|BSB|3802||1890 1899:8419
+L|BSB|3802||1890 1897:9025 1898:9937 1894:4115 1895:4765 1893:9687 1869:9613 1868:5276 1870:1389 1871:2367 1866:4622 1867:7908
+L|BSB|3802||1890 1898:9237 1894:4115 1895:4765 1893:9426
+L|BSB|3802||1890 1897:9025 1898:9937 1894:4115 1895:4765 1893:9426
+L|BSB|3802||1897 1898:5614 1866:35630 1867:8015
+L|BSB|3802||1899 1890:8416
+L|BSB|3804||1898 1901:5263
+L|BSB|3804||1898 1890:8277
+L|BSB|3804||1898 1897:9512 1901:4069 1892:9317 1891:3857
+L|BSB|3804||1890 1898:16587 1901:5707 1897:4764 1892:8264 1891:2927
+L|BSB|3804||1890 1898:16480 1897:9882 1901:4069 1892:9317 1891:3857
+L|BSB|3804||1890 1898:8280
+L|BSB|3804||1890 1898:16480 1897:9882 1901:4069 1892:9317 1891:3857
+L|BSB|3804||1897 1901:2569
+L|BSB|3804||1891 1892:3480 1898:16584 1890:13224
+L|BSB|3804||1891 1892:3856 1901:9314 1897:4068 1898:9510
+L|BSB|3804||1891 1892:2926 1897:8264 1901:4765 1898:5707 1890:16581
+L|BSB|3804||1891 1892:3856 1901:9314 1897:4068 1898:9879 1890:16472
+L|BSB|3804||1901 1897:3172 1898:8183
+L|BSB|3804||1901 1897:2569
+L|BSB|Linie 2||1867 1866:7910 1871:4624 1870:2368 1868:1389 1869:5277 1893:7908
+L|BSB Bodensee Schifffahrt & SBS Schweizerische Bodensee Schifffahrt|3810||1872 1873:12956
+L|Bayerische Seenschifffahrt|Linie A||1881 1879:2952 1875:8372 1876:7112 1877:1048
+L|Bayerische Seenschifffahrt|Linie B||1879 1881:2953 1877:8978 1876:1048 1875:7112
+L|Bayerische Seenschifffahrt|Linie C||1874 1878:3543 1879:1609 1880:2832 1881:474 1882:662 1875:4213
+L|Bayerische Seenschifffahrt|Linie D||1879 1878:1609 1874:3543 1875:1654 1882:4213 1881:662 1880:473
+L|Betriebe der Stadt|Weiße Flotte Mülheim||1886 1883:2544 1884:2361 1885:899 1887:2925
+L|Betriebe der Stadt|Weiße Flotte Mülheim||1886 1883:2544 1884:2361 1885:899 1887:2910
+L|Bodensee-Oberschwaben Verkehrsverbund|Autofähre Konstanz => Meersburg||1889 1888:4268
+L|Bodensee-Oberschwaben Verkehrsverbund|Autofähre Meersburg => Konstanz||1888 1889:4351
+L|Bodensee-Schiffsbetriebe GmbH|Linie 1||1893 1895:9422 1894:4765 1898:4116 1890:8352 1897:12228
+L|Bodensee-Schiffsbetriebe GmbH|Linie 3||1891 1892:3856 1901:9314 1897:4068 1899:9931 1890:16845
+L|Bodensee-Schiffsbetriebe GmbH|Linie 4||2039 1896:8391 1900:2854
+L|Bodensee-Schiffsbetriebe GmbH|Linie 4||1900 1896:3717 2135:17630 2039:2619
+L|Bodensee-Schiffsbetriebe GmbH|Linie 4||1900 2135:10849 2039:1724
+L|CMS Schifffahrt|Überlingen - Insel Mainau||1891 2016:3102 1897:5039
+L|CMS Schifffahrt|Überlingen - Uhldingen - Insel Mainau||1891 2016:3102 1901:4303 1897:2569
+L|Cassen Eils & Frisia Touristik GmbH|Juist - Borkum||1854 1902:27206
+L|Celler Schifffahrt GbR|Wappen von Celle|#0080ff|1904 1903:4795 1906:5965 1905:2644
+L|Celler Schifffahrt GbR|Wappen von Celle|#0080ff|1905 1906:2644 1903:5964 1904:4795
+L|Chiemsee-Schifffahrt|Chiemsee-Schifffahrt||1910 1911:5516 1908:11514 1910:2340 1911:5516 1909:11381
+L|Chiemsee-Schifffahrt|Große Chiemseetour||1910 1908:2340 1912:13488 1907:10292 1908:8543 1910:2340 1911:5516
+L|Chiemsee-Schifffahrt Ludwig Feßler KG|Bernau/Felden - Herreninsel||1913 1910:8933 1913:8932
+L|Chiemsee-Schifffahrt Ludwig Feßler KG|Gstadt - Fraueninsel||1909 1908:3258 1909:3258
+L|Chiemsee-Schifffahrt Ludwig Feßler KG|Gstadt - Fraueninsel||1909 1915:1859 1909:1859
+L|Chiemsee-Schifffahrt Ludwig Feßler KG|Übersee/Feldwies - Fraueninsel - Herreninsel||1914 1908:11009 1910:5127 1908:5127 1914:11006
+L|DB Fernverkehr AG Inselverkehr Wangerooge|Wangerooge - Spiekeroog||1918 1917:14415 1916:82
+L|Dollard Route|Fähre Delfzijl - Emden||1919 1920:18065
+L|Dollard Route|Fähre Ditzum - Emden||1934 1920:7166
+L|Dollard Route|Fähre Emden - Delfzijl||1920 1919:18062
+L|Dollard Route|Fähre Emden - Ditzum||1920 1934:7163
+L|Doprava Ústeckého kraje|T92 Ústí nad Labem => Bad Schandau||1925 1922:24608 1923:8554 1924:3811 1921:8456
+L|Ernst Mändli AG Nohl Tel. 052 659 69 00|3760||1927 1931:5169 1929:5122 1928:4606 1930:4220 1926:10516
+L|Ernst Mändli AG Nohl Tel. 052 659 69 00|3760||1926 1930:10513 1928:4220 1929:4605 1931:5121 1927:5169
+L|Finnlines Plc|Travemünde – Helsinki||1932 1933:1209568
+L|Fähre Ditzum - Petkum|Fähre Ditzum - Petkum||1935 1934:320 1936:1524
+L|Hamburger Verkehrsverbund|Fähre 5160|#009BB6|1953 1942:437
+L|Hamburger Verkehrsverbund|Fähre 5160|#009BB6|1942 1953:437
+L|Hamburger Verkehrsverbund|Fähre 5170|#009BB6|1944 1954:365
+L|Hamburger Verkehrsverbund|Fähre 5170|#009BB6|1954 1944:365
+L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1951 1938:1340 1945:1231 1961:3440 1955:447
+L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1951 1938:1340 1945:1682 1949:418 1961:1770 1955:447
+L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1955 1961:447 1945:3440 1938:1275 1951:1295
+L|Hamburger Verkehrsverbund|Fähre 61|#8C0041|1955 1961:447 1949:1771 1945:418 1951:3507
+L|Hamburger Verkehrsverbund|Fähre 62|#FA1E41|1948 1943:823 1956:2095 1945:1543 1938:1271 1950:1293
+L|Hamburger Verkehrsverbund|Fähre 62|#FA1E41|1948 1957:2555 1937:3602 1959:3514 1943:3777 1956:2095 1945:1543 1938:1271 1950:1293
+L|Hamburger Verkehrsverbund|Fähre 62|#FA1E41|1952 1938:1252 1945:1230 1956:1543 1943:2095 1948:823
+L|Hamburger Verkehrsverbund|Fähre 64|#FA8200|1948 1957:1300 1959:895
+L|Hamburger Verkehrsverbund|Fähre 64|#FA8200|1959 1957:895 1948:1299
+L|Hamburger Verkehrsverbund|Fähre 65|#006464|1948 1941:5524
+L|Hamburger Verkehrsverbund|Fähre 65|#006464|1941 1948:5522
+L|Hamburger Verkehrsverbund|Fähre 68|#1D54E6|1959 1937:1573
+L|Hamburger Verkehrsverbund|Fähre 68|#1D54E6|1937 1959:1573
+L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1950 1940:1613 1946:815
+L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1950 1946:1165
+L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1946 1940:815 1950:1613
+L|Hamburger Verkehrsverbund|Fähre 72|#32B4FA|1946 1950:1165
+L|Hamburger Verkehrsverbund|Fähre 73|#A77FED|1950 1960:581 1939:1499 1947:641
+L|Hamburger Verkehrsverbund|Fähre 73|#A77FED|1947 1939:641 1960:1549 1950:571
+L|Hamburger Verkehrsverbund|Fähre 75|#B49678|1951 1958:609
+L|Hamburger Verkehrsverbund|Fähre 75|#B49678|1958 1951:609
+L|Katamaran-Reederei Bodensee|Katamaran Firedrichshafen->Konstanz||1962 1963:23503
+L|Katamaran-Reederei Bodensee GmbH|Katamaran Konstanz->Friedrichshafen||1963 1962:23498
+L|NAH.SH;VRK|Fördelinie||1966 1975:1153 1973:1257 1972:2689 1971:3437 1969:1934 1968:1673 1970:1625 1974:4195 1976:840
+L|NAH.SH;VRK|Schwentinelinie F2|#50B035|1973 1967:3370 1977:666 1973:4030
+L|Neubrandenburger Verkehrsbetriebe GmbH (neu.sw)|Linienschiff "Uns Fritzing"||1979 1983:793 1980:4354 1981:3224 1978:2889 1982:2062
+L|Neubrandenburger Verkehrsbetriebe GmbH (neu.sw)|Linienschiff "Uns Fritzing"||1982 1978:2062 1981:2889 1980:3224 1983:4356 1979:793
+L|Nordseebad Spiekeroog GmbH|Neuharlingersiel - Spiekeroog||1916 1917:122 1984:7870
+L|Personenschiffahrt Giess|Personenfähre Wallhausen->Überlingen||1988 1891:2711
+L|Personenschiffahrt Wilfried Griess|Möwe||1963 1986:2097 1985:1992 2023:4852 1963:3187
+L|Personenschifffahrt Ewald Giess|Personenfähre Überlingen-Bodman||1891 1987:4752 2015:3933 2014:4429 2013:2767
+L|Personenschifffahrt Giess|Personenfähre Überlingen->Wallhausen||1891 1988:2710
+L|Personenschifffahrt Meyer|MS Kemnade||1989 1991:481 1992:6491 1993:1928 1990:876
+L|Plöner Motorschifffahrt Elke Glau-Koll e.K.|Bosau Fahrt||1994 1998:3790 1997:3956 1996:589 1995:3214
+L|Plöner Motorschifffahrt Elke Glau-Koll e.K.|Große Plöner Seerundfahrt||1995 1997:1833 1996:589 1998:2765
+L|Primus-Linie|Ausflugsfahrt Frankfurt Seligenstadt Aschaffenburg||2000 1999:7941 2001:11783 2002:14284
+L|Rederi AB Nordö-Link|Travemünde – Malmö||2003 2004:249146
+L|Reederei Hillern Warrings GmbH & Co. KG|Wilhelmshaven - Eckwarderhörne||2007 2006:11003
+L|Scandlines|Fugleflugtslinjen||2009 2010:18798
+L|Scandlines|Fugleflugtslinjen||2010 2009:18781
+L|Scandlines|Gedser => Rostock||2008 2011:48082
+L|Scandlines|Rostock => Gedser||2011 2008:48113
+L|Schiffahrt der Inselgemeinde Langeoog|Langeoog - Spiekeroog||1917 1916:82
+L|Schifffahrt Lang|Höri Fähre MS Seestern||2012 2034:1955 2041:1800 2030:3063 2039:6472 2034:5900 2012:1956
+L|Schifffahrtsbetrieb Deinis|Personenfähre Überlingen-Sipplingen||1891 2015:5953 2014:4429 2013:2767
+L|Schifffahrtsbetrieb Held|Überlingen - Insel Mainau||1891 2016:3107 1897:5039
+L|Schliersee Schifffahrt Mayr GbR|Schliersee Schifffahrt Mayr GbR||2017 2019:3680 2020:813 2018:1435
+L|Schweizerische Bodensee Schifffahrt AG|3800||1866 2028:16404
+L|Schweizerische Bodensee Schifffahrt AG|3800||1866 1871:4624 2028:14027
+L|Schweizerische Bodensee Schifffahrt AG|3800||1869 2022:23668 1869:23683
+L|Schweizerische Bodensee Schifffahrt AG|3800||2036 1890:1586 1897:9385 1898:9937
+L|Schweizerische Bodensee Schifffahrt AG|3800||2036 1897:10784 1898:10542
+L|Schweizerische Bodensee Schifffahrt AG|3800||2036 2023:2582 2021:5153 2027:7262 2026:4076
+L|Schweizerische Bodensee Schifffahrt AG|3800||1898 1890:9243 2036:1591
+L|Schweizerische Bodensee Schifffahrt AG|3800||1898 2036:8502
+L|Schweizerische Bodensee Schifffahrt AG|3800||2028 1866:16419
+L|Schweizerische Bodensee Schifffahrt AG|3800||2028 1867:28241 1866:13503
+L|Schweizerische Bodensee Schifffahrt AG|3800||2026 2022:7633 1869:12652 2028:30093
+L|Schweizerische Bodensee Schifffahrt AG|3800||2026 2036:18028
+L|Schweizerische Bodensee Schifffahrt AG|3800||2026 2027:4077 2021:7265 2023:5155 2036:2582
+L|Schweizerische Bodensee Schifffahrt AG|3800||2026 1869:15457 2028:22434
+L|Schweizerische Bodensee Schifffahrt AG|3801||1895 1894:4765 2021:13210 2024:2507 2026:8849
+L|Schweizerische Bodensee Schifffahrt AG|3801||2026 1895:22272 1894:4848 2021:11827 2024:2520 1895:8170
+L|Schweizerische Bodensee Schifffahrt AG|DLE||2028 1866:35789 1871:4624 2028:29213
+L|Schweizerische Bodensee Schifffahrt AG|DLE||2028 1871:34799 1866:4622 2028:37459 2025:3361 2022:3022 2026:7636
+L|Schweizerische Bodensee Schifffahrt AG|DLE||2028 1871:29237 1866:4622 2028:35762
+L|Schweizerische Bodensee Schifffahrt AG|DLE||2026 2022:7633 2025:3021 2028:3360 1867:46184 1866:14497 2028:34915
+L|Schweizerische Bodensee Schifffahrt AG|LA||2022 1869:12652 2022:12644 2026:7636
+L|Schweizerische Bodensee Schifffahrt AG|LA||2026 2022:15266 1869:12652 2028:14257 2025:3361 2022:4365 2026:15272
+L|Schweizerische Bodensee Schifffahrt AG|MA Mainau||2026 2036:19142 1897:6690 1898:10911 1890:8352 2023:3221 2021:11019 2027:14286 2026:7814
+L|Schweizerische Bodensee Schifffahrt AG|MA Mainau||2026 2027:8154 2021:14530 2023:10321 2036:2538 1890:978 1897:12034 1898:10606 2036:8588 2023:2538 2021:10317 2027:14524 2026:8152
+L|Schweizerische Bodensee-Schiffahrtsgesellschaft|3800||2028 1871:14039 1866:4622
+L|Schweizerische Schifffahrtsgesellschaft Untersee und Rhein|3820||2040 2031:4733 2032:4482 2042:9790 2038:3119 2037:1713 2043:1502 2035:3476 2041:1055 2034:1129 2030:2960 2135:2310 2039:3099 2033:4219 2029:8471 2036:871
+L|Schweizerische Schifffahrtsgesellschaft Untersee und Rhein|3820||2035 2041:1055 2034:1129 2030:2960 2135:2310 2039:3099 2033:4219 2029:8471 2036:871
+L|Schweizerische Schifffahrtsgesellschaft Untersee und Rhein|3820||2036 2029:871 2033:8472 2039:4220 2135:3100 2030:2310 2034:2960 2041:1129 2035:1055 2043:3476 2037:1502 2038:1713 2042:3120 2032:9794 2031:4482 2040:4733
+L|Stadtverkehr Lübeck GmbH|Priwallfähre||2044 2045:238
+L|Stadtverkehr Lübeck GmbH|Priwallfähre||2045 2044:231
+L|Stadtwerke Witten|MS Schwalbe II||1989 2047:2085 2128:1243 2127:97 2048:2021 2046:1787
+L|Stadtwerke Witten|MS Schwalbe II||2046 2048:1787 2127:2021 2128:97 2047:1243 1989:2085
+L|Stena Line|Göteborg - Kiel||2050 2049:431400
+L|Stena Line|Kiel - Göteborg||2049 2050:440629
+L|TT-Line GmbH & Co. KG|TT-Line GmbH & Co. KG||2052 2051:225734
+L|TT-Line GmbH & Co. KG|TT-Line GmbH & Co. KG||2052 2053:95304
+L|Unity Line|Świnoujście - Trelleborg||2055 2054:181628
+L|Verkehrsgemeinschaft Westmecklenburg|Pfaffenteichfähre||2056 2058:718 2057:647 2059:623
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F1||2061 2065:243
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F10|#0080BA|2060 2074:3847
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F10|#0080BA|2074 2060:3897
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F11|#0080BA|2076 2062:197
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F11|#0080BA|2062 2076:197
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F12|#0080BA|2075 2067:271
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F12|#0080BA|2067 2075:251
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F21|#0080BA|2077 2066:871
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F21|#0080BA|2066 2077:871
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F23|#0080BA|2071 2070:430 2068:1191 2069:761
+L|Verkehrsverbund Berlin-Brandenburg|Fähre F23|#0080BA|2069 2068:761 2070:1191 2071:430
+L|Verkehrsverbund Berlin-Brandenburg|Fährlinie F39|#0080BA|2072 2073:323
+L|Verkehrsverbund Berlin-Brandenburg|Fährlinie F39|#0080BA|2073 2072:323
+L|Verkehrsverbund Berlin-Brandenburg|Havelfähre Neuendorf||2064 2063:97
+L|Verkehrsverbund Oberelbe|F1 Fähre Hrensko||2091 2108:91
+L|Verkehrsverbund Oberelbe|F1 Fähre Schöna - Hrensko||2108 2091:91
+L|Verkehrsverbund Oberelbe|F10 Fähre Heidenau - Birkwitz||2079 2090:120
+L|Verkehrsverbund Oberelbe|F14 Autofähre Kleinzschachwitz - Pillnitz||2093 2101:136
+L|Verkehrsverbund Oberelbe|F16||2097 2100:99
+L|Verkehrsverbund Oberelbe|F16||2100 2097:107
+L|Verkehrsverbund Oberelbe|F17 Fähre Johannstadt - Neustadt||2083 2082:112
+L|Verkehrsverbund Oberelbe|F2 Fähre Schmilka - Hirschmühle||2107 2092:109
+L|Verkehrsverbund Oberelbe|F28||2099 2081:102
+L|Verkehrsverbund Oberelbe|F29||2106 2105:116
+L|Verkehrsverbund Oberelbe|F29||2105 2106:116
+L|Verkehrsverbund Oberelbe|F3 Fähre Krippen - Postelwitz||2104 2095:183
+L|Verkehrsverbund Oberelbe|F30||2109 2098:93
+L|Verkehrsverbund Oberelbe|F30||2098 2109:100
+L|Verkehrsverbund Oberelbe|F4 Krippen-Bad Schandau, Stadt||2095 1921:1304
+L|Verkehrsverbund Oberelbe|F5 Fähre Bad Schandau - Krippen||2078 1921:1009 2096:198
+L|Verkehrsverbund Oberelbe|F6 Fähre Königstein - Halbestadt||2094 2089:76
+L|Verkehrsverbund Oberelbe|F8 Fähre Pötzscha - Stadt Wehlen||2085 2084:77
+L|Verkehrsverbund Oberelbe|F9 Fähre Pirna - Pirna-Copitz||2103 2102:95
+L|Verkehrsverbund Oberelbe|Fähre F24||2088 2080:98
+L|Verkehrsverbund Oberelbe|Fähre F7 Rathen||2086 2087:96
+L|Verkehrsverbund Oberelbe|Längsfahrt||1921 2095:1304 2107:4996 2091:1959
+L|Verkehrsverbund Warnow|Fähre Gehlsdorf - Schnickmannstraße||2110 2113:1585
+L|Verkehrsverbund Warnow|Fähre Gehlsdorf Kabutzenhof|#00b9f2|2110 2112:498
+L|Verkehrsverbund Warnow|Fähre Kabutzenhof - Gehlsdorf||2110 2112:498
+L|Verkehrsverbund Warnow|Fähre Warnemünde - Hohe Düne||2111 2114:342
+L|Verkehrsverbund Warnow|Verkehrsverbund Warnow|#00b9f2|2112 2110:498
+L|Vorpommersche Schifffahrtsgesellschaft|Hafen- Ryck- & Boddenrundfahrt||2116 2115:14826 2117:5963 2116:8830
+L|Wakenitz Schifffahrt Quandt oHG|Wakenitz-Schifffahrt||2120 2118:7711 2121:5318 2119:6864
+L|Weisse Flotte|Zingst - Neuendorf||2123 2122:46064
+L|Weisse Flotte Baldeney GmbH|Weiße Flotte Baldeney|white|2124 2126:5966 2125:1299
+L|Wittener Gesellschaft für Arbeit und Beschäftigungsförderung|Ruhrtalfähre||2128 2127:90
+L|Wittener Gesellschaft für Arbeit und Beschäftigungsförderung|Ruhrtalfähre||2127 2128:90
+L|Wyker Dampfschiffs-Reederei|Amrum - Dagebüll||2134 2130:23429
+L|Wyker Dampfschiffs-Reederei|Amrum - Föhr - Dagebüll||2134 2131:15311 2129:12104
+L|Wyker Dampfschiffs-Reederei|Dagebüll - Amrum||2130 2134:23389
+L|Wyker Dampfschiffs-Reederei|Dagebüll - Föhr - Amrum||2129 2131:12089 2134:15306
+L|Wyker Dampfschiffs-Reederei|Langeneß - Hooge - Schlüttsiel||2132 2133:16338
+L|Wyker Dampfschiffs-Reederei|Schlüttsiel - Hooge - Langeneß||2133 2132:16319
+L|https://am4962.wixsite.com/solarfaehre-rau/|Solarfähre Reichenau->Mannenbach||2136 2135:1713
+L|no|Fähre||2137 2138:495
+L|no|Fähre||2138 2137:495
+L|ÜSTRA Hannoversche Verkehrsbetriebe AG|Maschseeflotte||2139 2140:1077 2143:1250 2141:627 2144:1015 2142:1025
 T|50.76777|6.09138|Aachen Central Train Station
 T|50.77004|6.07365|Aachen Schanz
 T|50.78072|6.06961|Aachen West
