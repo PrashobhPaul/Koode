@@ -1,0 +1,51 @@
+name: Transit data
+
+# Rebuilds the metro network and railway station lists the app and web
+# viewer read offline (apps/android/app/src/main/assets, web/data) from
+# OpenStreetMap (© OpenStreetMap contributors, ODbL), and commits them to the
+# branch it was run on when anything changed. Run it by hand when a city opens
+# a line or new stations.
+on:
+  # A change to the builder on a working branch rebuilds the data there, so
+  # it is reviewed with the change.
+  push:
+    branches-ignore: [main]
+    paths: ['tools/transit/**']
+  workflow_dispatch:
+    inputs:
+      country:
+        description: ISO 3166-1 country code
+        default: IN
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      COUNTRY: ${{ inputs.country || 'IN' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test the builder
+        run: python3 -m unittest tools/transit/test_build_network.py
+
+      - name: Build from OpenStreetMap
+        run: |
+          [[ "$COUNTRY" =~ ^[A-Z]{2}$ ]] || { echo "Country must be two capital letters"; exit 1; }
+          python3 tools/transit/build_network.py --fetch --country "$COUNTRY"
+
+      - name: Commit if changed
+        run: |
+          # The build date in the header changes every run; only commit real data changes.
+          if [ -z "$(git ls-files --others --exclude-standard)" ] && git diff --quiet -I '^# .*Built '; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/android/app/src/main/assets web/data
+          git commit -m "Transit data from OpenStreetMap ($COUNTRY)"
+          git push
