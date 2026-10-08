@@ -78,7 +78,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      # The branch as it is now, not as it was when the run began: the data
+      # is laid over the latest, so nothing committed meanwhile is fought.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
       - uses: actions/download-artifact@v4
         with:
           pattern: transit-*
@@ -99,6 +103,15 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apps/android/app/src/main/assets web/data
           git commit -m "Transit data from OpenStreetMap"
-          # The branch may have moved on while the countries were building.
-          git pull --rebase origin "$GITHUB_REF_NAME"
-          git push origin "HEAD:$GITHUB_REF_NAME"
+          # If the branch moved on in the minute since, rebuild on top of it:
+          # the files just built are the newest, so they win.
+          for i in 1 2 3; do
+            git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            ours=$(git rev-parse HEAD)
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard "origin/$GITHUB_REF_NAME"
+            git checkout "$ours" -- apps/android/app/src/main/assets web/data
+            git add apps/android/app/src/main/assets web/data
+            git commit -m "Transit data from OpenStreetMap" || exit 0
+          done
+          exit 1
