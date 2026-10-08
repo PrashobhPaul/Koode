@@ -55,7 +55,7 @@ jobs:
   build:
     needs: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     strategy:
       fail-fast: false
       # Overpass serves a couple of queries at a time per address; more only queues.
