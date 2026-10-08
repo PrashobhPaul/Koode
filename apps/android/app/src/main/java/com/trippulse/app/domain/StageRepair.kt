@@ -94,6 +94,35 @@ object StageRepair {
     }
 
     /**
+     * The stages of a journey as a traveller tells them: [ridden], less a
+     * walk from a place to the same place ([goesNowhere]: the last steps of
+     * arriving), and a ride after a short walk between rides starting where
+     * the ride before it ended. Off the metro at Durgam Cheruvu, a few
+     * hundred metres to the bike taxi: the bike taxi is from Durgam Cheruvu
+     * Metro, not the street corner it was waiting at.
+     */
+    fun <T> told(
+        items: List<T>, mode: (T) -> String, distanceM: (T) -> Double?,
+        fromName: (T) -> String, toName: (T) -> String, startingAt: (T, String) -> T
+    ): List<T> {
+        val out = ArrayList<T>()
+        var walkedFrom = false
+        for (it in items) {
+            when {
+                goesNowhere(mode(it), fromName(it), toName(it)) -> Unit
+                !countsAsStage(mode(it), distanceM(it)) -> if (out.isNotEmpty()) walkedFrom = true
+                else -> {
+                    val prev = out.lastOrNull()
+                    val to = prev?.let(toName)
+                    out += if (walkedFrom && to != null && to.isNotBlank() && to != EN_ROUTE) startingAt(it, to) else it
+                    walkedFrom = false
+                }
+            }
+        }
+        return out.ifEmpty { ridden(items, mode, distanceM) }
+    }
+
+    /**
      * How far the record moved between [from] and [to], along the fixes.
      * Null when fewer than two fixes fall inside: the distance is then not
      * known, and a caller must not treat it as zero.
