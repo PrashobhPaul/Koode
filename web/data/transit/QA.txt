@@ -1,0 +1,76 @@
+# Transit for Koode, QA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|25.25766|51.44414|Al Aziziyah|Doha Metro|M
+S|25.29126|51.52008|Al Bidda|Doha Metro|M
+S|25.27480|51.53968|Al Doha Al Jadeda|Doha Metro|M
+S|25.27045|51.53497|Al Mansoura|Doha Metro|M
+S|25.26342|51.55809|Al Matar Al Qadeem|Doha Metro|M
+S|25.29316|51.48401|Al Messila|Doha Metro|M
+S|25.35014|51.52400|Al Qassar|Doha Metro|M
+S|25.30140|51.46091|Al Rayyan Al Qadeem|Doha Metro|M
+S|25.32431|51.34799|Al Riffa|Doha Metro|M
+S|25.28242|51.50504|Al Sadd|Doha Metro|M
+S|25.30935|51.45317|Al Shaqab|Doha Metro|M
+S|25.27274|51.48525|Al Sudan|Doha Metro|M
+S|25.26757|51.46883|Al Waab|Doha Metro|M
+S|25.19359|51.59606|Al Wakra|Doha Metro|M
+S|25.28043|51.51494|Bin Mahmoud|Doha Metro|M
+S|25.30762|51.51572|Corniche|Doha Metro|M
+S|25.32292|51.52773|DECC|Doha Metro|M
+S|25.31708|51.42610|Education City|Doha Metro|M
+S|25.22847|51.57830|Free Zone|Doha Metro|M
+S|25.29054|51.50053|Hamad Hospital|Doha Metro|M
+S|25.25704|51.61486|Hamad International Airport|Doha Metro|M
+S|25.28071|51.49693|Joaan|Doha Metro|M
+S|25.36210|51.52171|Katara|Doha Metro|M
+S|25.37083|51.52491|Legtaifiya|Doha Metro|M
+S|25.41504|51.48774|Lusail QNB|Doha Metro|M
+S|25.28282|51.52558|Msheireb|Doha Metro|M
+S|25.28469|51.54934|National Museum|Doha Metro|M
+S|25.24965|51.56680|Oqba Ibn Nafie|Doha Metro|M
+S|25.31933|51.44184|Qatar National Library|Doha Metro|M
+S|25.38234|51.49300|Qatar University|Doha Metro|M
+S|25.27904|51.57085|Ras Bu Abboud|Doha Metro|M
+S|25.21155|51.58648|Ras Bu Fontas|Doha Metro|M
+S|25.28661|51.53621|Souq Waqif|Doha Metro|M
+S|25.25937|51.45246|Sport City|Doha Metro|M
+S|25.29243|51.50602|The White Palace|Doha Metro|M
+S|25.26941|51.54943|Umm Ghuwailina|Doha Metro|M
+S|25.31515|51.51982|West Bay|Doha Metro|M
+S|25.41750|51.50612|Al Sa'ad Plaza|Lusail Tram|M
+S|25.41580|51.49706|Boulevard|Lusail LRT|M
+S|25.41642|51.50035|Crescent Junction|Lusail LRT|M
+S|25.41471|51.49146|Grand Masjed|Lusail LRT|M
+S|25.42085|51.50035|Al Khayl Street|Lusail Tram|M
+S|25.40249|51.50494|Al Wessil|Lusail Tram|M
+S|25.41065|51.49498|Al Yasmeen|Lusail Tram|M
+S|25.42888|51.49676|Crescent Park - North|Lusail Tram|M
+S|25.41655|51.50104|Downtown Lusail|Lusail Tram|M
+S|25.42655|51.49130|Erkiyah|Lusail Tram|M
+S|25.42505|51.49887|Fox Hills - North|Lusail Tram|M
+S|25.41205|51.50086|Fox Hills - South|Lusail Tram|M
+S|25.41796|51.49332|Lusail Stadium|Lusail Tram|M
+S|25.38893|51.52575|Marina - Central|Lusail Tram|M
+S|25.39723|51.52273|Marina - North|Lusail Tram|M
+S|25.38559|51.52695|Marina - South|Lusail Tram|M
+S|25.40345|51.49977|Naifa|Lusail Tram|M
+S|25.43277|51.49215|Rawdat Lusail|Lusail Tram|M
+S|25.42241|51.50811|Seef Lusail - North|Lusail Tram|M
+S|25.41309|51.50968|Seef Lusail - South|Lusail Tram|M
+S|25.40739|51.51599|Tarfat - North|Lusail Tram|M
+S|25.40203|51.51882|Tarfat - South|Lusail Tram|M
+S|25.41019|51.51217|Wadi|Lusail Tram|M
+S|25.39287|51.52430|Yacht Club|Lusail Tram|M
+L|Doha Metro|الخط الأحمر للمترو|#E2251C|13 31:2260 18:2053 27:2618 4:1767 35:1096 2:1156 25:1726 1:1104 15:1921 36:984 16:1287 6:3316 22:1391 23:1078 29:3781 24:4047
+L|Doha Metro|الخط الأحمر للمترو|#F9B428|30 26:2392 32:1381 25:1152 14:1124 9:1072 21:844 11:1528 12:1741 33:1889 0:872
+L|Doha Metro|الخط الأحمر للمترو|#E2251C|20 27:6846 4:1767 35:1096 2:1156 25:1726 1:1104 15:1921 36:984 16:1287 6:3316 22:1391 23:1078 29:3781 24:4047
+L|Doha Metro|الخط الأحمر للمترو|#009530|3 25:1684 1:1120 34:1717 19:594 5:1746 7:2503 10:1205 28:1780 17:1621 8:8305
+L|Doha Metro|الخط الأحمر للمترو|#009530|8 17:8308 28:1619 10:1775 7:1208 5:2503 19:1750 34:592 1:1709 25:1123 3:1683
+L|Doha Metro|الخط الذهبي للمترو|#E2251C|24 29:4048 23:3773 22:1074 6:1393 16:3316 36:1282 15:989 1:1922 25:1107 2:1727 35:1155 4:1095 27:1765 18:2616 31:2055 13:2260
+L|Doha Metro|الخط الذهبي للمترو|#E2251C|24 29:4048 23:3773 22:1074 6:1393 16:3316 36:1282 15:989 1:1922 25:1107 2:1727 35:1155 4:1095 27:1765 20:6873
+L|Doha Metro|الخط الذهبي للمترو|#F9B428|0 33:872 12:1890 11:1741 21:1527 9:844 14:1072 25:1125 32:1151 26:1378 30:2391
+L|Lusail LRT|Lusaii LRT - Purple Line|#7C66A4|24 40:410 38:621 39:364 37:622 39:620 38:366 40:622 24:410
+L|Lusail Tram|Lusail Tram Orange Line|#DD722D|23 52:2061 50:388 60:459 51:507 58:726 42:1502 53:580 48:1034 45:498 41:481 47:488 44:474 54:866 46:748 49:971 43:825 53:1005 42:580 58:1502 51:726 60:507 50:459 52:388 23:2061
+L|Lusail Tram|Lusail Tram Pink Line|#D64488|23 52:2061 50:388 60:459 51:507 58:726 57:659 59:522 56:408 37:623 55:608
+L|Lusail Tram|Lusail Tram Pink Line|#D64488|55 37:615 56:625 59:408 57:518 58:660 51:724 60:507 50:459 52:389 23:2060
+L|Lusail Tram|Lusail Tram Turquoise Line|#4BA7A6|24 40:410 43:610 48:645 45:497 41:482 47:488 44:474 54:866 46:748 49:971 40:431 24:410

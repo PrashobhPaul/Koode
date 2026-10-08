@@ -1,0 +1,2891 @@
+# Transit for Koode, CZ. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|50.07025|14.40392|Anděl|Pražské metro|M
+S|50.09838|14.36288|Bořislavka|Pražské metro|M
+S|50.04442|14.44876|Budějovická|Pražské metro|M
+S|50.03158|14.49114|Chodov|Pražské metro|M
+S|50.10046|14.39306|Dejvická|Pražské metro|M
+S|50.07464|14.51496|Depo Hostivař|Pražské metro|M
+S|50.07817|14.47594|Želivského|Pražské metro|M
+S|50.10893|14.57678|Černý Most|Pražské metro|M
+S|50.10608|14.49163|Českomoravská|Pražské metro|M
+S|50.09022|14.43926|Florenc|Pražské metro|M
+S|50.03087|14.52724|Háje|Pražské metro|M
+S|50.10665|14.53665|Hloubětín|Pražské metro|M
+S|50.09744|14.40318|Hradčanská|Pražské metro|M
+S|50.05001|14.34279|Hůrka|Pražské metro|M
+S|50.09695|14.46353|Invalidovna|Pražské metro|M
+S|50.07433|14.43031|I. P. Pavlova|Pražské metro|M
+S|50.07771|14.45073|Jiřího z Poděbrad|Pražské metro|M
+S|50.05418|14.36977|Jinonice|Pražské metro|M
+S|50.04184|14.45929|Kačerov|Pražské metro|M
+S|50.07457|14.41693|Karlovo náměstí|Pražské metro|M
+S|50.09339|14.45179|Křižíkova|Pražské metro|M
+S|50.12414|14.45423|Kobylisy|Pražské metro|M
+S|50.11038|14.51658|Kolbenova|Pražské metro|M
+S|50.12664|14.46958|Ládví|Pražské metro|M
+S|50.12473|14.51622|Letňany|Pražské metro|M
+S|50.04450|14.33048|Lužiny|Pražské metro|M
+S|50.04567|14.32138|Luka|Pražské metro|M
+S|50.08350|14.43413|Main|Pražské metro|M
+S|50.09152|14.40932|Malostranská|Pražské metro|M
+S|50.08369|14.42436|Můstek|Pražské metro|M
+S|50.07987|14.43136|Muzeum|Pražské metro|M
+S|50.10901|14.44013|Nádraží Holešovice|Pražské metro|M
+S|50.09592|14.34849|Nádraží Veleslavín|Pražské metro|M
+S|50.07531|14.34130|Nemocnice Motol|Pražské metro|M
+S|50.07530|14.43908|Náměstí Míru|Pražské metro|M
+S|50.08882|14.43060|Náměstí Republiky|Pražské metro|M
+S|50.05085|14.35213|Nové Butovice|Pražské metro|M
+S|50.07995|14.42029|Národní třída|Pražské metro|M
+S|50.02790|14.50921|Opatov|Pražské metro|M
+S|50.10392|14.47434|Palmovka|Pražské metro|M
+S|50.05108|14.43963|Pankrác|Pražské metro|M
+S|50.08664|14.34506|Petřiny|Pražské metro|M
+S|50.05683|14.43336|Pražského povstání|Pražské metro|M
+S|50.11933|14.49850|Prosek|Pražské metro|M
+S|50.05811|14.38775|Radlická|Pražské metro|M
+S|50.10684|14.56050|Rajská zahrada|Pražské metro|M
+S|50.03756|14.47709|Roztyly|Pražské metro|M
+S|50.06846|14.50797|Skalka|Pražské metro|M
+S|50.06120|14.40909|Smíchovské nádraží|Pražské metro|M
+S|50.08822|14.41763|Staroměstská|Pražské metro|M
+S|50.12617|14.48959|Střížkov|Pražské metro|M
+S|50.04668|14.30622|Stodůlky|Pražské metro|M
+S|50.07297|14.49075|Strašnická|Pražské metro|M
+S|50.10017|14.43851|Vltavská|Pražské metro|M
+S|50.06317|14.43052|Vyšehrad|Pražské metro|M
+S|50.11012|14.50127|Vysočanská|Pražské metro|M
+S|50.05324|14.29116|Zličín|Pražské metro|M
+S|48.80442|16.83106|Janohrad|1. PLAVEBNÍ s.r.o.|W
+S|48.81433|16.81541|Minaret|1. PLAVEBNÍ s.r.o.|W
+S|50.91656|14.15255|Bad Schandau, Stadt|Doprava Ústeckého kraje|W
+S|50.78129|14.20856|Děčín|Doprava Ústeckého kraje|W
+S|50.84288|14.21753|Dolní Žleb|Doprava Ústeckého kraje|W
+S|50.87338|14.23523|Hřensko, Přístaviště|Doprava Ústeckého kraje|W
+S|50.65902|14.04537|Ústí nad Labem, přístav centrum|Doprava Ústeckého kraje|W
+S|49.23008|16.51627|Bystrc|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.25827|16.46311|Hrad Veveří|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.23465|16.50829|Kozí horka|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.26112|16.45492|Mečkov|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.25771|16.48146|Pod Trnůvkou|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.24841|16.49382|Rokle|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.26552|16.45669|Skály|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.24413|16.50690|Sokolské koupaliště|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.24162|16.50165|U kotvy|Integrovaný dopravní systém Jihomoravského kraje|W
+S|49.27586|16.45671|Veverská Bítýška|Integrovaný dopravní systém Jihomoravského kraje|W
+S|48.69660|14.07481|Dolní Vltavice|Lipno Line|W
+S|48.75966|14.02074|Horní Planá|Lipno Line|W
+S|48.63527|14.22501|Lipno nad Vltavou|Lipno Line|W
+S|48.63334|14.17227|Přední Výtoň|Lipno Line|W
+S|49.51281|14.16699|Orlík zámek|Orlická lodní doprava|W
+S|49.60556|14.17776|Přehrada Orlík|Orlická lodní doprava|W
+S|49.53143|14.17210|Radava|Orlická lodní doprava|W
+S|49.58069|14.16882|Trhovky|Orlická lodní doprava|W
+S|49.52493|14.16451|Velký vír|Orlická lodní doprava|W
+S|49.43998|14.19091|Přístaviště Zvíkov - hrad|Orlickí lodní|W
+S|50.06465|14.41309|Císařská louka|PID|W
+S|50.06548|14.41264|Kotevní|PID|W
+S|50.00225|14.40134|Lahovičky|PID|W
+S|50.00235|14.40281|Nádraží Modřany|PID|W
+S|50.12252|14.39772|Podhoří|PID|W
+S|50.13457|14.39205|Sedlec|PID|W
+S|50.12266|14.39547|V Podbabě|PID|W
+S|50.13576|14.39350|Zámky|PID|W
+S|48.75773|14.01514|Bližší Lhota|Přívoz Horní Planá - Bližší Lhota|W
+S|48.76029|14.02098|Horní Planá - přívoz|Přívoz Horní Planá - Bližší Lhota|W
+S|49.79567|14.42248|Ždáň|QUARTER s.r.o.|W
+S|49.78009|14.41465|Hotel Laguna|QUARTER s.r.o.|W
+S|49.78891|14.40999|Hrdlička|QUARTER s.r.o.|W
+S|49.76679|14.41313|Živohošť - most Lanový park|QUARTER s.r.o.|W
+S|49.79222|14.41973|Měřín|QUARTER s.r.o.|W
+S|49.75365|14.42151|Nová Živohošť|QUARTER s.r.o.|W
+S|49.80820|14.42484|Rabyně|QUARTER s.r.o.|W
+S|49.80314|14.42320|Skalice|QUARTER s.r.o.|W
+S|49.82329|14.43085|Slapská přehrada|QUARTER s.r.o.|W
+S|49.76189|14.41951|Stará Živohošť|QUARTER s.r.o.|W
+S|50.87490|14.23618|Hřensko|Verkehrsverbund Oberelbe|W
+S|50.91275|14.16928|Krippen|Verkehrsverbund Oberelbe|W
+S|50.89139|14.22967|Schmilka|Verkehrsverbund Oberelbe|W
+S|50.87526|14.23501|Schöna|Verkehrsverbund Oberelbe|W
+S|48.68814|14.06824||Wolfi Vok s.r.o.|W
+S|48.69625|14.07739|Wolfi Vok s.r.o.|Wolfi Vok s.r.o.|W
+L|Pražské metro|Metro A|#75ac40|33 41:1515 32:1164 1:1080 4:2171 12:828 28:834 49:751 29:735 30:686 34:831 16:852 6:1815 52:1190 47:1424 5:952
+L|Pražské metro|Metro A|#75ac40|5 47:1037 52:1403 6:1205 16:1819 34:856 30:789 29:700 49:725 28:754 12:846 4:824 1:2180 32:1088 41:1227 33:1472
+L|Pražské metro|Metro B|#f5d30f|7 45:1175 11:1735 22:1547 55:1108 8:820 39:1292 14:1122 20:991 9:1006 35:553 29:811 37:483 19:666 0:1233 48:1111 44:1717 17:1408 36:1335 13:670 25:1149 26:693 51:1163 56:1423
+L|Pražské metro|Metro B|#f5d30f|56 51:1442 26:1143 25:706 13:1138 36:680 17:1337 44:1395 48:1664 0:1109 19:1208 37:683 29:457 35:824 9:535 20:1021 14:993 39:1128 8:1285 55:821 22:1100 11:1546 45:1732 7:1190
+L|Pražské metro|Metro C|#e63323|24 43:1812 50:1060 23:1589 21:1146 31:2722 53:1041 9:1168 27:808 30:427 15:697 54:1238 42:784 40:793 2:993 18:819 46:1365 3:1206 38:1412 10:1342
+L|Pražské metro|Metro C|#e63323|10 38:1349 3:1400 46:1209 18:1367 2:821 40:983 42:797 54:771 15:1241 30:679 27:424 9:818 53:1175 31:1055 21:2743 23:1121 50:1580 43:1062 24:1827
+L|1. PLAVEBNÍ s.r.o.|Trasa II||58 57:1713
+L|Doprava Ústeckého kraje|T92 Ústí nad Labem => Bad Schandau||63 60:24608 61:8554 62:3811 59:8456
+L|Integrovaný dopravní systém Jihomoravského kraje|Lodní doprava na Brněnské přehradě|#00224B|64 66:831 71:1137 72:509 69:1017 68:1474 65:1441 67:727 70:543 73:1234
+L|Lipno Line|Lipno Line|green|75 74:8662 77:10810 76:4197
+L|Orlická lodní doprava|Popelíky - Orlík zámek||79 81:3050 80:5887 82:976 78:1461
+L|Orlickí lodní|Orlík zámek - Zvíkov hrad||78 83:8893
+L|PID|P1||89 91:168
+L|PID|P2||90 88:174
+L|PID|P2||88 90:161
+L|PID|P5||84 85:223
+L|PID|P6||86 87:114
+L|Pražská integrovaná doprava|P1||91 89:168
+L|Přívoz Horní Planá - Bližší Lhota|Přívoz Horní Planá - Bližší Lhota||92 93:554
+L|QUARTER s.r.o.|Lodní doprava Slapy||102 101:2478 100:617 94:1507 98:463 96:853 95:1112 97:1592 103:767 99:996
+L|Verkehrsverbund Oberelbe|F1 Fähre Hrensko||104 107:91
+L|Verkehrsverbund Oberelbe|F1 Fähre Schöna - Hrensko||107 104:91
+L|Verkehrsverbund Oberelbe|Längsfahrt||59 105:1304 106:4996 104:1959
+L|Wolfi Vok s.r.o.|Dolní Vltavice - Kyselov||108 109:1210
+T|49.29533|16.66348|Adamov
+T|49.30070|16.65059|Adamov zastávka
+T|50.61541|16.12499|Adršpach
+T|49.02971|15.13773|Albeř
+T|49.79287|18.52453|Albrechtice u Českého Těšína
+T|50.21624|17.66354|Amalín
+T|49.85457|16.55655|Anenská Studánka
+T|50.77158|15.24939|Antonínov
+T|50.20901|12.20007|Aš
+T|50.21900|12.18342|Aš město
+T|50.22937|12.17412|Aš předměstí
+T|49.17621|16.35441|Babice
+T|49.27667|16.67304|Babice nad Svitavou
+T|49.74113|17.26861|Babice u Šternberka
+T|49.39929|12.86840|Babylon
+T|49.86549|15.22044|Bahno
+T|50.47216|14.92279|Bakov nad Jizerou
+T|50.47900|14.93921|Bakov nad Jizerou město
+T|49.44583|14.59872|Balkova Lhota
+T|50.35500|15.31097|Bartoušov zastávka
+T|49.96858|16.87526|Bartoňov
+T|49.31748|15.39824|Batelov
+T|49.12640|14.08394|Bavorov
+T|49.65119|18.36914|Baška
+T|50.43613|15.08532|Bechov
+T|49.30034|14.47749|Bechyně
+T|49.29339|14.48275|Bechyně zastávka
+T|49.30977|14.55382|Bechyňská Smoleč
+T|49.44171|17.16657|Bedihošť
+T|49.32912|15.00867|Benešov nad Lipou
+T|50.73833|14.30540|Benešov nad Ploučnicí
+T|49.77977|14.68264|Benešov u Prahy
+T|50.39669|17.08150|Bernartice u Javorníka
+T|49.95740|14.07665|Beroun
+T|49.96701|14.08368|Beroun-Závodí
+T|49.90315|12.96956|Bezdružice
+T|49.44498|13.87580|Bezdědovice
+T|49.38071|13.23675|Bezděkov u Klatov
+T|49.82721|13.59592|Bezděkov u Radnic
+T|50.51613|14.72941|Bezděz
+T|49.33206|17.33868|Bezměrov
+T|50.08305|12.83098|Bečov nad Teplou
+T|50.45658|13.71180|Bečov u Mostu
+T|49.95567|15.07094|Bečváry
+T|49.29230|14.51143|Bežerovice
+T|49.07704|17.71660|Biskupice u Luhačovic
+T|49.79757|13.07373|Blahousty
+T|49.09636|14.07598|Blanice
+T|49.35253|16.64715|Blansko
+T|49.36128|16.63924|Blansko město
+T|49.52554|17.24630|Blatec
+T|48.94070|17.43952|Blatnice pod svatým Antonínkem
+T|49.72308|13.15922|Blatnice u Nýřan
+T|50.10000|13.38983|Blatno u Jesenice
+T|49.43090|13.87258|Blatná
+T|49.13986|15.09159|Blažejov
+T|49.16381|16.79842|Blažovice
+T|50.21470|15.93603|Blešno
+T|49.58122|13.53131|Blovice
+T|49.92780|16.93891|Bludov
+T|49.94089|16.90279|Bludov lázně
+T|49.50154|12.99494|Blížejov
+T|50.61360|14.39534|Blíževedly
+T|49.00435|15.85430|Blížkovice
+T|49.56371|18.74029|Bocanovice (Boconowice)
+T|50.15482|13.04590|Bochov
+T|50.59695|16.21109|Bohdašín
+T|50.02680|16.90169|Bohdíkov
+T|50.68619|13.87375|Bohosudov zastávka
+T|50.09085|16.37968|Bohousová
+T|49.09283|13.80086|Bohumilice v Čechách
+T|49.09766|13.81410|Bohumilice v Čechách zastávka
+T|49.90075|18.35960|Bohumín
+T|49.21342|14.39205|Bohunice
+T|50.32827|16.09577|Bohuslavice nad Metují
+T|50.31222|16.07969|Bohuslavice nad Metují zastávka
+T|49.09629|17.92616|Bohuslavice nad Vláří
+T|50.55107|15.97880|Bohuslavice nad Úpou
+T|49.05518|17.11909|Bohuslavice u Kyjova
+T|48.98793|16.35606|Bohutice
+T|49.95169|16.87595|Bohutín
+T|49.66246|17.28115|Bohuňovice
+T|49.08624|15.85273|Bohušice
+T|50.24023|17.71503|Bohušov
+T|50.49129|14.14943|Bohušovice nad Ohří
+T|49.86782|14.34510|Bojanovice
+T|49.03583|17.79508|Bojkovice
+T|49.03540|17.81133|Bojkovice město
+T|49.88037|14.34875|Bojov
+T|49.96324|18.07304|Bolatice
+T|50.21464|16.06509|Bolehošť
+T|50.73372|14.18791|Boletice nad Labem
+T|49.68455|14.95041|Bolina
+T|49.71748|12.77860|Bor
+T|49.68798|12.78134|Bor zastávka
+T|49.40116|16.36603|Borač
+T|50.53551|15.23223|Borek pod Troskami
+T|49.63513|12.76840|Borek u Tachova
+T|50.06745|13.13258|Borek u Žlutic
+T|50.09713|16.08563|Borohrádek
+T|48.89142|14.64207|Borovany
+T|50.50916|15.60494|Borovnice
+T|50.50005|15.65876|Borovnička
+T|49.52723|13.29995|Borovy
+T|49.74307|16.16172|Borová u Poličky
+T|49.73192|16.17431|Borová u Poličky zastávka
+T|48.92703|14.44401|Boršov nad Vltavou
+T|49.49129|16.65147|Boskovice
+T|50.35947|13.08284|Boč
+T|48.91630|16.85010|Bořetice
+T|49.98034|15.92224|Bořice
+T|50.58564|13.93699|Bořislav
+T|48.73789|16.86712|Boří les
+T|50.01551|15.01524|Bošice
+T|49.99958|15.01251|Bošice zastávka
+T|49.44778|14.49258|Božejovice
+T|48.82324|16.28765|Božice u Znojma
+T|50.25615|12.77519|Božičany
+T|50.18347|14.65520|Brandýs nad Labem
+T|50.18034|14.67805|Brandýs nad Labem zastávka
+T|50.18362|14.66495|Brandýs nad Labem-Zápská
+T|50.00019|16.28412|Brandýs nad Orlicí
+T|50.18421|14.17304|Brandýsek
+T|49.40308|14.34617|Branice
+T|49.88913|17.87799|Branka u Opavy
+T|49.15039|17.13426|Brankovice
+T|49.45937|17.90581|Branky na Moravě
+T|50.14717|17.01490|Branná
+T|49.30570|15.74926|Bransouze
+T|50.05211|17.61178|Brantice
+T|49.73847|14.00310|Bratkovice
+T|50.71658|14.72871|Brniště
+T|49.18238|16.61548|Brno dolní nádraží
+T|49.19067|16.61326|Brno hlavní nádraží
+T|49.13205|16.65725|Brno-Chrlice
+T|49.16741|16.60680|Brno-Horní Heršpice
+T|49.23089|16.59680|Brno-Královo Pole
+T|49.22074|16.62645|Brno-Lesná
+T|49.16958|16.68201|Brno-Slatina
+T|49.16217|16.57013|Brno-Starý Lískovec
+T|49.18898|16.63124|Brno-Černovice
+T|49.25060|16.59040|Brno-Řečkovice
+T|49.20415|16.63611|Brno-Židenice
+T|49.82864|12.74155|Brod nad Tichou
+T|49.48205|17.33742|Brodek u Přerova
+T|50.58070|16.33952|Broumov
+T|50.60801|16.32801|Broumov-Olivětín
+T|50.60853|13.93616|Brozánky
+T|50.95175|14.43883|Brtníky
+T|49.09426|18.03659|Brumov
+T|49.08512|18.02567|Brumov střed
+T|48.94721|16.90570|Brumovice
+T|49.99369|17.47449|Bruntál
+T|49.43726|17.96704|Brňov
+T|50.47880|14.98663|Buda
+T|49.79584|17.61390|Budišov nad Budišovkou
+T|49.27259|16.00910|Budišov u Třebíče
+T|48.97444|14.48861|Budweis
+T|50.40482|14.13441|Budyně nad Ohří
+T|49.72241|15.18463|Budčice
+T|48.70209|14.43229|Bujanov
+T|50.44331|14.83336|Bukovno
+T|50.38811|15.42490|Butoves
+T|49.14563|16.99951|Bučovice
+T|49.89161|15.23991|Bykáň
+T|49.06763|18.01408|Bylnice
+T|49.59877|17.32261|Bystrovany
+T|50.62551|13.86275|Bystřany v Čechách
+T|49.63622|18.71733|Bystřice (Bystrzyca)
+T|49.51335|16.24806|Bystřice nad Pernštejnem
+T|49.39306|17.66555|Bystřice pod Hostýnem
+T|49.74198|14.66709|Bystřice u Benešova
+T|49.41719|17.95871|Bystřička
+T|50.30572|14.60393|Byšice
+T|48.96914|17.26295|Bzenec
+T|48.93673|17.28920|Bzenec přívoz
+T|48.97044|17.29413|Bzenec-Olšovec
+T|49.70602|15.73362|Bílek
+T|50.55436|13.77224|Bílina
+T|50.54108|13.75956|Bílina kyselka
+T|50.57196|13.78646|Bílina-Chudeřice
+T|49.75330|18.01417|Bílovec
+T|49.24275|16.67370|Bílovice nad Svitavou
+T|50.45191|15.73308|Bílá Třemešná
+T|50.01730|16.74761|Bílá Voda
+T|50.82116|14.91854|Bílý Kostel nad Nisou
+T|50.87606|15.20618|Bílý Potok pod Smrkem
+T|49.36298|15.73476|Bítovčice
+T|50.06165|15.27178|Býchory
+T|49.90958|14.17816|Běleč
+T|49.58358|17.80022|Bělotín
+T|50.45234|13.76628|Bělušice
+T|49.58869|12.72103|Bělá nad Radbuzou
+T|49.59203|12.70868|Bělá nad Radbuzou zastávka
+T|50.48828|14.83578|Bělá pod Bezdězem
+T|50.49332|14.78727|Bělá pod Bezdězem město
+T|50.50018|14.86883|Bělá pod Bezdězem zastávka
+T|50.53257|15.44250|Bělá u Staré Paky
+T|50.53371|15.44562|Bělá u Staré Paky zastávka
+T|49.50449|13.88635|Bělčice
+T|50.18591|15.34131|Běrunice
+T|49.30479|13.30326|Běšiny
+T|49.84235|13.58761|Břasy
+T|48.75397|16.89327|Břeclav
+T|49.34962|17.45521|Břest
+T|49.87310|12.96764|Břetislav
+T|49.63230|15.61617|Břevnice
+T|50.54560|15.03606|Březina nad Jizerou
+T|50.76099|14.24393|Březiny u Děčína
+T|49.55833|13.96399|Březnice
+T|50.39588|13.42108|Březno u Chomutova
+T|50.41346|15.00489|Březno u Mladé Boleslavi
+T|50.35172|13.72204|Březno u Postoloprt
+T|49.63318|16.52054|Březová nad Svitavou
+T|49.65555|16.50819|Březová nad Svitavou-Dlouhá
+T|50.60485|16.23488|Březová u Broumova
+T|48.81322|16.55354|Březí
+T|48.87314|16.36751|Břežany
+T|50.41277|14.11484|Břežany nad Ohří
+T|49.91335|17.38257|Břidličná
+T|49.91794|17.40290|Břidličná lesy
+T|49.91236|17.36968|Břidličná zastávka
+T|50.40795|13.72312|Břvany
+T|50.36355|14.21853|Bříza obec
+T|49.83131|12.98123|Cebiv
+T|50.32563|15.71663|Cerekvice nad Bystřicí
+T|49.90572|16.20622|Cerekvice nad Loučnou
+T|49.90098|16.21881|Cerekvice nad Loučnou zastávka
+T|50.07823|15.07812|Cerhenice
+T|49.83634|13.83709|Cerhovice
+T|49.58790|16.70499|Cetkovice
+T|49.74956|15.06259|Chabeřice
+T|50.35929|14.14898|Charvatce
+T|48.75988|16.84230|Charvátská Nová Ves
+T|50.07353|12.38057|Cheb
+T|50.07411|12.34813|Cheb-Skalka
+T|50.05056|12.41027|Cheb-Všeboř
+T|50.07613|13.77724|Chlum u Rakovníka
+T|50.16338|15.45746|Chlumec nad Cidlinou
+T|50.70369|13.92647|Chlumec u Chabařovic
+T|48.87007|14.41955|Chlumec u Českých Budějovic
+T|50.26717|14.45636|Chlumín
+T|49.62287|13.29207|Chlumčany u Dobřan
+T|50.34434|13.84556|Chlumčany u Loun
+T|49.89569|15.05634|Chmeliště
+T|49.87001|14.80626|Chocerady
+T|49.99372|16.22316|Choceň
+T|50.23171|12.75238|Chodov
+T|49.90299|12.72450|Chodová Planá
+T|49.36508|13.06756|Chodská Lhota
+T|49.65808|17.06110|Cholina
+T|49.98988|15.64207|Choltice zastávka
+T|50.45679|13.39938|Chomutov
+T|50.46995|13.41395|Chomutov město
+T|50.72373|14.18617|Choratice
+T|49.67701|16.74514|Chornice
+T|50.54714|13.98913|Chotiměř
+T|49.97043|15.12117|Chotouchov
+T|49.47240|14.66932|Chotoviny
+T|50.07153|14.99644|Chotutice
+T|50.83767|14.87165|Chotyně
+T|49.07863|14.52928|Chotýčany
+T|49.71172|15.68372|Chotěboř
+T|50.26778|13.35115|Chotěbudice
+T|49.78142|18.59825|Chotěbuz (Kocobędz)
+T|50.57548|13.78450|Chotějovice
+T|50.33979|14.81048|Chotětov
+T|50.51895|15.75985|Chotěvice
+T|50.44175|14.07015|Chotěšov pod Hazmburkem
+T|49.65706|13.19829|Chotěšov u Stoda
+T|49.90132|15.91088|Chrast u Chrudimi
+T|50.79676|14.95782|Chrastava-Andělská Hora
+T|50.14327|16.94959|Chrastice
+T|48.95636|14.05508|Chroboly
+T|49.36937|17.36090|Chropyně
+T|50.06501|14.99721|Chroustov
+T|49.94828|15.78679|Chrudim
+T|49.95748|15.79405|Chrudim město
+T|49.95925|15.78118|Chrudim zastávka
+T|49.83963|14.57695|Chrást nad Sázavou
+T|49.78550|13.49748|Chrást u Plzně
+T|49.79143|13.49148|Chrást u Plzně obec
+T|49.80010|13.49697|Chrást u Plzně zastávka
+T|50.14190|13.66336|Chrášťany
+T|50.14849|13.67087|Chrášťany zastávka
+T|49.98884|18.11320|Chuchelná
+T|49.69458|17.03899|Chudobín
+T|50.03750|15.41842|Chvaletice
+T|50.59926|16.03812|Chvaleč
+T|49.16450|14.29280|Chvalešovice
+T|49.32128|17.11138|Chvalkovice na Hané
+T|50.23999|14.33763|Chvatěruby
+T|49.34165|14.98430|Chválkov
+T|50.11106|13.24789|Chyše
+T|49.41559|14.81063|Chýnov
+T|50.05883|14.21206|Chýně
+T|50.05171|14.22100|Chýně jih
+T|49.71237|15.19478|Chřenovice
+T|49.70790|15.23564|Chřenovice-Podhradí
+T|50.86784|14.52348|Chřibská
+T|50.50077|15.33655|Cidlina
+T|50.17921|12.84148|Cihelny
+T|50.16475|12.61558|Citice
+T|48.87891|15.97748|Citonice
+T|50.37848|14.30655|Ctiněves
+T|49.94242|15.32913|Církvice
+T|50.36657|14.41909|Cítov
+T|49.70898|13.17035|DIOSS
+T|50.25481|12.88652|Dalovice
+T|50.13968|12.56734|Dasnice
+T|49.88772|14.39889|Davle
+T|49.08598|15.43920|Dačice
+T|49.07845|15.43969|Dačice město
+T|49.44997|13.28682|Dehtín
+T|50.38175|13.47972|Denětice
+T|50.75349|15.30890|Desná
+T|50.76423|15.33561|Desná-Pustinská
+T|50.75928|15.31390|Desná-Riedlova vila
+T|49.27756|13.17478|Dešenice
+T|50.22566|13.60626|Deštnice
+T|50.21909|12.87272|Diana
+T|50.22171|12.88304|Divadelní náměstí
+T|49.09797|17.91506|Divnice
+T|50.46673|13.96808|Dlažkovice
+T|50.42120|15.03997|Dlouhá Lhota
+T|49.93547|16.42270|Dlouhá Třebová
+T|50.26171|15.72592|Dlouhé Dvory
+T|49.36226|14.96545|Dobešov
+T|50.71619|14.19127|Dobkovice
+T|49.66971|18.47282|Dobratice-Vojkovice
+T|50.37083|13.79900|Dobroměřice
+T|49.42010|14.76997|Dobronice u Chýnova
+T|49.47831|15.64169|Dobronín
+T|49.34489|17.60889|Dobrotice
+T|50.35505|14.94018|Dobrovice
+T|50.11072|14.22003|Dobrovíz
+T|50.10734|14.21379|Dobrovíz-Amazon
+T|50.28935|16.15217|Dobruška
+T|49.55613|13.99941|Dobrá Voda u Březnice
+T|50.34592|15.60974|Dobrá Voda u Hořic
+T|49.35677|15.27435|Dobrá Voda u Pelhřimova
+T|48.87734|13.86149|Dobrá na Šumavě
+T|49.67086|18.41426|Dobrá u Frýdku-Místku
+T|48.82024|16.53324|Dobré Pole
+T|49.65648|13.30327|Dobřany
+T|49.68130|13.32380|Dobřany zastávka
+T|50.15968|15.65657|Dobřenice
+T|49.92751|14.28791|Dobřichovice
+T|49.37199|13.08774|Dobříkov na Šumavě
+T|49.99593|16.13541|Dobříkov u Chocně
+T|49.75246|14.76177|Dobříčkov
+T|50.43755|14.29685|Dobříň
+T|49.78989|14.18336|Dobříš
+T|50.14010|15.26367|Dobšice nad Cidlinou
+T|50.28307|15.69529|Dohalice
+T|50.57345|14.64725|Doksy
+T|50.22470|14.34848|Dolany nad Vltavou
+T|50.34011|13.62794|Dolejší Hůrky
+T|48.91221|16.36781|Dolenice
+T|49.92304|18.11913|Dolní Benešov
+T|49.92434|18.08253|Dolní Benešov-Zábřeh
+T|50.38968|14.43580|Dolní Beřkovice
+T|49.03428|15.37483|Dolní Bolíkov
+T|50.44165|15.13209|Dolní Bousov
+T|49.66143|15.38049|Dolní Březinka
+T|49.94703|14.39701|Dolní Břežany-Jarov
+T|50.01260|16.47437|Dolní Dobrouč
+T|50.75024|14.33589|Dolní Habartice
+T|49.58041|13.09315|Dolní Kamenice
+T|50.95638|14.51798|Dolní Křečany
+T|49.38729|16.63387|Dolní Lhota
+T|49.98937|16.39739|Dolní Libchavy
+T|50.08939|16.72103|Dolní Lipka
+T|49.35645|16.34715|Dolní Loučky
+T|50.23924|12.41269|Dolní Luby
+T|49.91249|18.41439|Dolní Lutyně
+T|50.06573|16.74743|Dolní Orlice
+T|49.41392|14.11292|Dolní Ostrovec
+T|50.88632|14.62058|Dolní Podluží
+T|50.76054|15.32315|Dolní Polubný
+T|50.98353|14.28332|Dolní Poustevna
+T|49.28829|13.80085|Dolní Poříčí
+T|49.19397|15.03346|Dolní Radouň
+T|49.32284|15.74739|Dolní Smrčné
+T|49.81690|13.57551|Dolní Stupno
+T|50.59687|14.04837|Dolní Zálezly
+T|50.01176|12.54041|Dolní Žandov
+T|49.89477|17.77324|Dolní Životice
+T|50.84644|14.21516|Dolní Žleb
+T|50.83737|14.22313|Dolní Žleb zastávka
+T|49.35278|17.16166|Doloplazy
+T|49.73536|12.73938|Doly
+T|50.60385|15.17120|Dolánky
+T|49.58610|15.56442|Dolík
+T|49.30065|13.91566|Domanice
+T|49.74029|17.44499|Domašov nad Bystřicí
+T|49.71498|14.83687|Domašín
+T|49.43513|12.94277|Domažlice
+T|49.43573|12.92502|Domažlice město
+T|50.47945|13.35160|Domina
+T|48.82794|14.33486|Domoradice
+T|50.39724|15.10631|Domousnice
+T|50.23300|13.72250|Domoušice
+T|49.43932|16.62152|Doubravice nad Svitavou
+T|49.42832|16.35166|Doubravník
+T|50.21164|12.83186|Doubí u Karlových Varů
+T|50.60798|15.10192|Doubí u Turnova
+T|49.32171|14.71992|Doubí u Tábora
+T|50.10943|16.25892|Doudleby nad Orlicí
+T|49.20839|14.80044|Doňov
+T|49.58316|17.07939|Drahanovice
+T|49.93664|15.06261|Drahobudice
+T|49.55238|17.68215|Drahotuše
+T|50.39871|14.01257|Dubany
+T|49.62917|12.72195|Dubec
+T|50.60998|14.35939|Dubičná
+T|49.33550|13.17791|Dubová Lhota
+T|50.69744|13.76230|Dubí
+T|50.61750|13.75487|Duchcov
+T|49.38422|15.49852|Dvorce
+T|48.85501|14.89743|Dvory nad Lužnicí
+T|49.98420|16.19196|Dvořisko
+T|50.41362|15.79887|Dvůr Králové nad Labem
+T|48.85006|16.12050|Dyje
+T|50.25568|15.21574|Dymokury
+T|49.14083|14.62245|Dynín zastávka
+T|49.61028|16.84814|Dzbel
+T|49.10623|14.30111|Dívčice
+T|50.23247|17.64474|Dívčí Hrad
+T|49.77891|13.50313|Dýšina
+T|49.76737|13.50427|Dýšina-Horomyslice
+T|49.16445|14.95114|Děbolín
+T|49.03427|15.72522|Dědice
+T|50.56179|16.18794|Dědov
+T|49.88050|18.17109|Děhylov
+T|50.37328|15.17666|Dětenice
+T|49.90023|18.46647|Dětmarovice
+T|49.83843|17.39494|Dětřichov nad Bystřicí
+T|50.77348|14.20130|Děčín hlavní nádraží
+T|50.77513|14.22329|Děčín východ
+T|50.77281|14.19324|Děčín zastávka
+T|50.77992|14.15387|Děčín-Bynov
+T|50.77907|14.17113|Děčín-Oldřichov
+T|50.79377|14.23060|Děčín-Prostřední Žleb
+T|50.78503|14.20940|Děčín-Přípeř
+T|50.76657|14.21479|Děčín-Staré Město
+T|50.81714|14.22141|Děčín-Čertova Voda
+T|50.18919|14.20161|Dřetovice
+T|50.24275|14.63442|Dřísy
+T|49.17982|16.35600|Důl Ferdinand
+T|49.92569|16.17361|Džbánov
+T|49.75168|13.51111|Ejpovice
+T|50.98981|15.02502|Filipovka
+T|50.15590|12.37983|Fonsau
+T|49.11851|14.73654|Frahelž
+T|50.72395|14.33189|Františkov nad Ploučnicí
+T|49.08082|16.43671|Františkova polní dráha
+T|50.12430|12.35537|Františkovy Lázně
+T|50.11702|12.35902|Františkovy Lázně-Aquaforum
+T|49.54197|18.22414|Frenštát pod Radhoštěm
+T|49.54458|18.20813|Frenštát pod Radhoštěm město
+T|49.67760|18.35392|Frýdek-Místek
+T|49.58898|18.35456|Frýdlant nad Ostravicí
+T|49.58509|18.36057|Frýdlant nad Ostravicí zastávka
+T|49.56992|18.36064|Frýdlant nad Ostravicí-Nová Dědina
+T|50.91902|15.07283|Frýdlant v Čechách
+T|50.92682|15.07649|Frýdlant v Čechách předměstí
+T|49.71352|17.91274|Fulnek
+T|49.83667|15.46807|Golčův Jeníkov
+T|49.82169|15.47303|Golčův Jeníkov město
+T|48.98459|15.87437|Grešlové Mýto
+T|49.53401|17.30531|Grygov
+T|50.92884|15.19762|Hajniště
+T|49.32224|18.15379|Halenkov
+T|49.31605|18.14216|Halenkov zastávka
+T|49.56734|15.89689|Hamry nad Sázavou
+T|49.21212|13.17422|Hamry-Hojsova Stráž
+T|50.07193|16.92946|Hanušovice
+T|50.05828|16.92304|Hanušovice Holba
+T|50.08930|16.92019|Hanušovice zastávka
+T|50.77136|15.39386|Harrachov
+T|49.91379|15.05797|Hatě
+T|49.41654|12.87561|Havlovice
+T|49.59918|15.58811|Havlíčkův Brod
+T|49.61451|15.53910|Havlíčkův Brod-Perknov
+T|49.79170|18.41249|Havířov
+T|49.78829|18.43966|Havířov střed
+T|49.79079|18.46052|Havířov-Suchá
+T|49.03262|17.62004|Havřice
+T|50.16192|12.27923|Hazlov
+T|50.87959|15.18494|Hejnice
+T|48.61915|14.34928|Herbertov
+T|49.98965|16.75327|Heroltice
+T|49.52543|15.47314|Herálec
+T|48.75172|16.38995|Hevlín
+T|49.60106|14.58441|Heřmaničky
+T|49.71047|13.08740|Heřmanova Huť
+T|49.95096|15.65853|Heřmanův Městec
+T|49.24451|14.13948|Heřmaň
+T|49.23650|14.13595|Heřmaň obec
+T|49.71345|17.75829|Heřmánky
+T|49.67769|17.98448|Hladké Životice
+T|49.67978|17.95097|Hladké Životice místní nádraží
+T|50.15364|12.60721|Hlavno
+T|50.36364|14.56263|Hleďsebe
+T|49.37091|17.63188|Hlinsko pod Hostýnem
+T|49.76665|15.90166|Hlinsko v Čechách
+T|49.03249|14.42020|Hluboká nad Vltavou
+T|49.05069|14.46421|Hluboká nad Vltavou-Zámostí
+T|48.89605|14.67543|Hluboká u Borovan
+T|50.00240|15.21874|Hluboký Důl
+T|49.64763|17.40847|Hlubočky
+T|49.62584|17.40307|Hlubočky zastávka
+T|49.61303|17.39466|Hlubočky-Mariánské Údolí
+T|49.90096|18.19414|Hlučín
+T|49.63911|17.28119|Hlušovice
+T|49.98177|15.29356|Hlízov
+T|49.67863|18.53918|Hnojník
+T|50.00158|16.46132|Hnátnice
+T|50.45325|14.36124|Hněvice
+T|50.31250|15.72168|Hněvčeves
+T|49.27173|15.48414|Hodice
+T|49.78567|15.16394|Hodkov
+T|49.77776|15.15420|Hodkov zastávka
+T|50.66773|15.09995|Hodkovice nad Mohelkou
+T|50.60486|16.07189|Hodkovice u Trutnova
+T|48.84147|16.16442|Hodonice
+T|48.85632|17.12205|Hodonín
+T|48.77891|14.10433|Hodňov
+T|49.19157|13.22271|Hojsova Stráž-Brčálník
+T|50.00046|17.80377|Holasovice
+T|50.28497|13.55865|Holedeček
+T|50.38551|13.45323|Holetice
+T|49.78816|15.92724|Holetín
+T|49.07878|14.21027|Holečkov
+T|49.32702|17.57093|Holešov
+T|50.06971|15.99266|Holice
+T|48.85169|14.44771|Holkov
+T|49.71802|12.86285|Holostřevy
+T|49.77405|13.69996|Holoubkov
+T|49.17983|16.82463|Holubice
+T|48.89317|14.32464|Holubov
+T|49.59732|13.10141|Holýšov
+T|49.32105|13.71024|Horažďovice
+T|49.33130|13.73888|Horažďovice předměstí
+T|49.63777|17.20153|Horka nad Moravou
+T|49.73881|15.12886|Horka nad Sázavou
+T|49.88227|15.91169|Horka u Chrudimi
+T|50.52664|15.57064|Horka u Staré Paky
+T|49.39544|14.64257|Horky u Tábora
+T|49.87250|15.44307|Horky u Čáslavi
+T|49.75252|13.00912|Hornický skanzen
+T|50.62313|16.08296|Horní Adršpach
+T|50.35708|14.35509|Horní Beřkovice
+T|50.38816|12.76641|Horní Blatná
+T|50.59672|15.58698|Horní Branná
+T|49.85084|13.37959|Horní Bříza
+T|49.83816|13.35887|Horní Bříza zastávka
+T|49.31114|15.32469|Horní Cerekev
+T|48.60183|14.42193|Horní Dvořiště
+T|50.38783|17.10735|Horní Heřmanice
+T|49.94734|13.36290|Horní Hradiště
+T|50.63983|13.70373|Horní Háj
+T|50.79942|14.43649|Horní Kamenice
+T|49.69591|15.28343|Horní Ledeč
+T|49.18913|18.05835|Horní Lideč
+T|50.22457|17.08339|Horní Lipová
+T|49.41498|17.45246|Horní Moštěnice
+T|49.49795|14.05657|Horní Nerestce
+T|50.45043|15.57223|Horní Nová Ves
+T|48.76494|14.02633|Horní Planá
+T|48.75217|14.04419|Horní Planá zastávka
+T|50.88292|14.55640|Horní Podluží
+T|50.70614|14.40009|Horní Police
+T|50.99694|14.30095|Horní Poustevna
+T|50.22577|17.65479|Horní Povelice
+T|50.42280|14.38631|Horní Počaply
+T|49.17187|15.03306|Horní Skrýchov
+T|50.13665|12.81479|Horní Slavkov-Kounice
+T|49.79288|18.48804|Horní Suchá
+T|50.63228|15.46189|Horní Sytová
+T|49.68141|18.50405|Horní Tošanovice
+T|48.96261|13.77460|Horní Vltavice
+T|50.95190|15.19755|Horní Řasnice
+T|50.55740|14.26551|Horní Řepčice
+T|49.16718|14.66608|Horusice
+T|49.52439|12.93757|Horšovský týn
+T|49.52095|18.01663|Hostašovice
+T|50.53674|15.73780|Hostinné
+T|50.53921|15.72016|Hostinné město
+T|50.08408|14.25836|Hostivice
+T|50.07174|14.22460|Hostivice-Litovice
+T|50.07515|14.26665|Hostivice-Sadová
+T|50.08365|14.23041|Hostivice-U hřbitova
+T|50.58542|13.81054|Hostomice nad Bílinou
+T|49.83149|14.04783|Hostomice pod Brdy
+T|49.56047|12.77796|Hostouň
+T|50.10499|14.20946|Hostouň u Prahy
+T|49.11983|16.78276|Hostěrádky-Rešov
+T|49.05360|17.87224|Hostětín
+T|49.03489|14.46650|Hosín
+T|50.18051|14.52766|Hovorčovice
+T|49.30496|18.05865|Hovězí
+T|50.16828|13.64118|Hořesedly
+T|50.37906|13.50382|Hořetice
+T|48.77150|14.18287|Hořice na Šumavě
+T|50.35627|15.63486|Hořice v Podkrkonoší
+T|49.84303|13.89878|Hořovice
+T|50.15321|15.02935|Hořátev
+T|49.87296|16.77399|Hoštejn
+T|49.18727|13.89312|Hoštice u Volyně
+T|49.29162|17.05964|Hoštice-Heroltice
+T|50.49154|14.32738|Hoštka
+T|49.99314|12.84471|Hoštěc
+T|50.62322|15.50131|Hrabačov
+T|49.90798|17.03852|Hrabišín
+T|48.79887|16.38526|Hrabětice
+T|49.47624|18.00473|Hrachovec
+T|48.92660|14.36552|Hradce
+T|50.21454|15.81012|Hradec Králové hlavní nádraží
+T|50.22239|15.84129|Hradec Králové zastávka
+T|50.20229|15.79852|Hradec Králové-Kukleny
+T|50.22183|15.85958|Hradec Králové-Slezské Předměstí
+T|49.87756|17.87594|Hradec nad Moravicí
+T|49.70118|16.48474|Hradec nad Svitavou
+T|50.35901|13.30813|Hradec u Kadaně
+T|49.63612|13.12249|Hradec u Stoda
+T|50.28658|17.27486|Hradec-Nová Ves
+T|49.44975|13.77332|Hradiště u Blatné
+T|50.59361|13.87603|Hradiště v Čechách
+T|49.33457|16.43730|Hradčany
+T|49.04430|17.57452|Hradčovice
+T|49.56544|17.74200|Hranice na Moravě
+T|49.54583|17.74186|Hranice na Moravě město
+T|50.30215|12.18209|Hranice v Čechách
+T|48.87311|14.87961|Hrdlořezy
+T|50.48521|14.17409|Hrdly
+T|50.49040|15.26436|Hrdoňovice
+T|49.01954|14.48234|Hrdějovice
+T|50.66015|13.72206|Hrob
+T|50.45810|14.22976|Hrobce
+T|49.96637|15.90823|Hrochův Týnec
+T|50.47257|16.17711|Hronov
+T|50.49023|16.18624|Hronov zastávka
+T|50.30693|12.86866|Hroznětín
+T|50.31302|12.86141|Hroznětín zastávka
+T|50.55043|15.21290|Hrubá Skála
+T|49.66970|17.43859|Hrubá Voda
+T|49.66843|17.42171|Hrubá Voda zastávka
+T|49.69103|17.44334|Hrubá Voda-Smilov
+T|48.78696|16.98118|Hrušky zastávka
+T|48.81017|16.38303|Hrušovany nad Jevišovkou-Šanov
+T|49.03446|16.59129|Hrušovany u Brna
+T|49.91116|16.19663|Hrušová
+T|49.61375|18.73948|Hrádek (Gródek)
+T|50.85567|14.84690|Hrádek nad Nisou
+T|49.71356|13.65346|Hrádek u Rokycan
+T|49.26222|13.49055|Hrádek u Sušice
+T|49.52767|13.92853|Hudčice
+T|49.31646|17.47672|Hulín
+T|49.53498|15.34807|Humpolec
+T|49.04965|14.02616|Husinec
+T|49.30310|18.09225|Huslenky
+T|49.30937|18.11968|Huslenky zastávka
+T|49.52351|17.86427|Hustopeče nad Bečvou
+T|48.93738|16.73615|Hustopeče u Brna
+T|49.11504|17.46506|Huštěnovice
+T|49.87251|14.77179|Hvězdonice
+T|49.22279|15.75837|Hvězdoňovice
+T|50.62428|16.28870|Hynčice
+T|50.61954|13.72550|Háj u Duchcova
+T|49.90120|18.09409|Háj ve Slezsku
+T|50.28023|12.93777|Hájek
+T|49.98884|14.04484|Hýskov
+T|50.22185|12.58086|Hřebeny
+T|49.76287|16.58364|Hřebeč - Doly MPD
+T|49.76619|16.58624|Hřebeč - Gerhard MPD
+T|50.28542|13.72521|Hřivice
+T|49.32069|15.30929|Hříběcí
+T|49.04537|15.15833|Hůrky
+T|50.22062|12.88432|Imperial
+T|49.30634|17.08720|Ivanovice na Hané
+T|49.09822|16.37261|Ivančice
+T|49.09472|16.40205|Ivančice letovisko
+T|49.09901|16.38263|Ivančice město
+T|50.70040|15.43513|Jablonec nad Jizerou
+T|50.68071|15.45120|Jablonec nad Jizerou-Hradsko
+T|50.72094|15.16079|Jablonec nad Nisou
+T|50.72087|15.17381|Jablonec nad Nisou centrum
+T|50.72636|15.14928|Jablonec nad Nisou dolní nádraží
+T|50.72041|15.18540|Jablonec nad Nisou zastávka
+T|50.73154|15.19040|Jablonecké Paseky
+T|50.02582|16.59392|Jablonné nad Orlicí
+T|50.76942|14.75811|Jablonné v Podještědí
+T|49.37668|17.94738|Jablůnka
+T|49.03676|15.76449|Jackov
+T|49.91739|17.69136|Jakartovice
+T|49.69683|17.78866|Jakubčovice nad Odrou
+T|49.93405|17.31801|Jamartice
+T|50.03996|16.60261|Jamné nad Orlicí
+T|49.35612|17.62291|Jankovice
+T|49.35243|13.20365|Janovice nad Úhlavou
+T|50.58698|16.08479|Janovice u Trutnova
+T|49.30813|18.02000|Janová
+T|49.26323|17.38015|Jarohněvice
+T|50.34176|15.91010|Jaroměř
+T|50.35708|15.91134|Jaroměř zastávka
+T|49.09420|15.86540|Jaroměřice nad Rokytnou
+T|49.18160|15.07877|Jarošov nad Nežárkou
+T|48.86098|17.52064|Javorník nad Veličkou zastávka
+T|50.39483|17.01571|Javorník ve Slezsku
+T|50.84277|14.57036|Jedlová
+T|50.22012|12.87504|Jelení skok
+T|49.01604|15.58110|Jemnice
+T|50.09427|14.21170|Jeneč
+T|50.09463|14.21329|Jeneč zastávka
+T|50.63619|13.75535|Jeníkov-Oldřichov
+T|49.98086|15.65634|Jeníkovice
+T|49.60637|16.86107|Jesenec
+T|50.09319|13.47185|Jesenice
+T|50.65179|15.32784|Jesenný
+T|50.22765|17.19339|Jeseník
+T|49.61574|17.90240|Jeseník nad Odrou
+T|49.08829|17.11318|Jestřabice
+T|50.61413|14.60040|Jestřebí
+T|49.37011|13.66554|Jetenovice
+T|49.38212|14.29125|Jetětice
+T|48.82025|16.46729|Jevišovka
+T|49.63082|16.73087|Jevíčko
+T|49.32092|15.48166|Jezdovice
+T|50.34282|15.67663|Jeřice
+T|50.70741|15.08640|Jeřmanice
+T|49.57767|14.59697|Ješetice
+T|49.41450|15.59939|Jihlava
+T|49.40394|15.58345|Jihlava město
+T|49.44377|15.60845|Jihlava-Bosch Diesel
+T|49.41029|15.56808|Jihlava-Staré Hory
+T|49.25277|15.29467|Jihlávka
+T|50.60439|15.51374|Jilemnice
+T|49.89724|18.14190|Jilešovice
+T|50.32648|13.75105|Jimlín
+T|49.78219|13.98738|Jince
+T|50.09908|16.98929|Jindřichov na Moravě
+T|50.24858|17.53854|Jindřichov ve Slezsku
+T|50.95875|15.25420|Jindřichovice pod Smrkem
+T|50.95911|15.22815|Jindřichovice pod Smrkem-Skanzen
+T|49.15516|15.00420|Jindřichův Hradec
+T|49.15495|15.00565|Jindřichův Hradec - místní nádraží
+T|49.14886|15.05259|Jindřiš
+T|49.14584|15.06160|Jindřiš zastávka
+T|50.47901|15.33503|Jinolice
+T|50.02901|14.26272|Jinočany
+T|50.49231|13.44876|Jirkov
+T|50.48560|13.44776|Jirkov zastávka
+T|49.74903|18.15080|Jistebník
+T|50.51370|15.29886|Jivany
+T|50.43050|15.36127|Jičín
+T|50.45053|15.38094|Jičín zastávka
+T|50.37397|15.33671|Jičíněves
+T|50.75695|15.26388|Jiřetín pod Bukovou
+T|50.88309|14.58046|Jiřetín pod Jedlovou
+T|50.23886|14.54676|Jiřice
+T|50.98793|14.57746|Jiříkov-Filipov
+T|49.77808|16.58022|Josefka
+T|50.77944|15.24036|Josefův Důl
+T|50.23921|15.05180|Jíkev
+T|48.87798|14.70349|Jílovice
+T|50.75974|14.10542|Jílové u Děčína
+T|49.87761|14.50005|Jílové u Prahy
+T|49.71019|17.44219|Jívová
+T|50.38173|13.27693|Kadaň
+T|50.37685|13.27671|Kadaň předměstí
+T|50.39608|13.27576|Kadaň-Bystřice
+T|50.41168|13.25874|Kadaň-Prunéřov
+T|50.28363|13.22557|Kadaňský Rohozec
+T|50.60033|15.87284|Kalná Voda
+T|50.75594|14.07025|Kamenec
+T|49.29485|15.07473|Kamenice nad Lipou
+T|49.52426|15.43545|Kamenice u Humpolce
+T|50.78281|14.46449|Kamenický Šenov
+T|49.50723|15.65514|Kamenná
+T|50.18898|15.00325|Kamenné Zboží
+T|50.14025|14.03819|Kamenné Žehrovice
+T|50.23931|14.20607|Kamenný Most u Kralup nad Vltavou
+T|49.86687|14.51697|Kamenný Přívoz
+T|49.71712|13.19197|Kamenný Újezd u Nýřan
+T|49.72261|13.61699|Kamenný Újezd u Rokycan
+T|48.89115|14.44893|Kamenný Újezd u Českých Budějovic
+T|50.41573|14.61487|Kanina
+T|49.53117|17.10468|Kaple
+T|48.77514|14.46883|Kaplice
+T|49.08235|15.17096|Kaproun
+T|49.18362|14.86055|Kardašova Řečice
+T|50.77371|14.98371|Karlov pod Ještědem
+T|50.10500|17.43921|Karlovice
+T|50.10759|17.42770|Karlovice zastávka
+T|50.56173|15.19652|Karlovice-Sedmihorky
+T|50.23546|12.86672|Karlovy Vary
+T|50.23034|12.86386|Karlovy Vary dolní nádraží
+T|50.22236|12.84520|Karlovy Vary-Aréna
+T|50.20198|12.83759|Karlovy Vary-Březová
+T|50.22884|12.83170|Karlovy Vary-Dvory
+T|49.93200|14.17514|Karlštejn
+T|49.35029|18.24524|Karolinka
+T|49.35038|18.23195|Karolinka zastávka
+T|49.85567|18.52672|Karviná hlavní nádraží
+T|49.45663|13.74448|Kasejovice
+T|50.15811|12.40362|Kateřina
+T|49.26940|13.82345|Katovice
+T|50.44310|14.77751|Katusice
+T|49.89381|13.37495|Kaznějov
+T|50.15637|13.99512|Kačice
+T|49.82246|13.77901|Kařez
+T|49.80082|13.76780|Kařízek
+T|50.26169|13.41794|Kaštice
+T|49.38366|13.03222|Kdyně
+T|50.16011|12.83883|Kfely
+T|49.74914|13.53823|Klabava
+T|50.12776|14.11380|Kladno
+T|50.14124|14.08466|Kladno město
+T|50.16340|14.12998|Kladno-Dubí
+T|50.14737|14.08608|Kladno-Ostrovec
+T|50.13181|14.06704|Kladno-Rozdělov
+T|50.16627|14.15391|Kladno-Vrapice
+T|50.16156|14.11492|Kladno-Švermov
+T|49.40147|13.27412|Klatovy
+T|49.38644|13.29409|Klatovy město
+T|50.39422|14.24682|Kleneč
+T|49.43892|12.82253|Klenčí pod Čerchovem
+T|48.99299|16.88674|Klobouky u Brna
+T|50.29818|13.99659|Klobuky v Čechách
+T|49.73756|17.76954|Klokočov
+T|50.09429|14.90376|Klučov
+T|50.38514|13.19634|Klášterec nad Ohří
+T|50.55857|15.66080|Klášterská Lhota
+T|49.89686|14.35974|Klínec
+T|49.53466|16.68957|Knínice u Boskovic
+T|50.14225|13.64082|Kněževes
+T|50.47266|15.01664|Kněžmost
+T|50.49283|15.32015|Kněžnice
+T|50.22802|17.69901|Koberno
+T|50.33826|17.12519|Kobylá nad Vidnavkou
+T|48.93400|16.88123|Kobylí na Moravě
+T|49.24392|16.02493|Kojatín
+T|49.14951|15.82580|Kojetice na Moravě
+T|50.23732|14.49919|Kojetice u Prahy
+T|49.34541|17.30473|Kojetín
+T|50.04051|15.39797|Kojice
+T|50.30716|14.65645|Kojovice
+T|49.88242|12.96437|Kokašice
+T|50.19669|14.21809|Koleč
+T|50.13570|13.60349|Kolešovice
+T|49.29513|13.43571|Kolinec
+T|50.40663|14.97794|Kolomuty
+T|50.02533|15.21440|Kolín
+T|50.01169|15.23385|Kolín dílny
+T|50.01533|15.22300|Kolín místní nádraží
+T|50.03080|15.19497|Kolín zastávka
+T|50.03738|15.21007|Kolín-Zálabí
+T|50.00955|16.89725|Komňátka
+T|49.59162|16.88368|Konice
+T|49.88485|12.97555|Konstantinovy Lázně
+T|50.26834|13.72663|Konětopy
+T|50.33400|15.26046|Kopidlno
+T|49.59554|18.14730|Kopřivnice
+T|49.60388|18.14945|Kopřivnice zastávka
+T|49.65537|13.58869|Kornatice
+T|49.66414|13.56895|Kornatice rybník
+T|49.11314|17.16147|Koryčany
+T|50.10731|13.51873|Kosobody
+T|49.65929|14.48011|Kosova Hora
+T|49.05266|17.39697|Kostelany nad Moravou
+T|49.50907|17.06504|Kostelec na Hané
+T|50.22111|14.58065|Kostelec nad Labem
+T|50.11665|16.22405|Kostelec nad Orlicí
+T|50.11990|16.20509|Kostelec nad Orlicí město
+T|49.92073|15.65112|Kostelec u Heřmanova Městce
+T|49.92857|15.64909|Kostelec u Heřmanova Městce-Písník
+T|49.35719|15.48183|Kostelec u Jihlavy
+T|49.35514|15.48895|Kostelec u Jihlavy masna
+T|50.18589|14.96192|Kostomlaty nad Labem
+T|50.38038|14.33038|Kostomlaty pod Řípem
+T|50.01288|15.89755|Kostěnice
+T|49.28365|17.40329|Kotojedy
+T|49.46294|13.66601|Kotouň
+T|50.36697|13.15501|Kotvina
+T|50.21615|13.66544|Kounov
+T|49.39717|13.01204|Kout na Šumavě
+T|50.09889|17.10447|Kouty nad Desnou
+T|50.00562|14.98792|Kouřim
+T|50.39231|15.46955|Kovač
+T|50.18196|14.24731|Kováry
+T|50.43005|13.03508|Kovářská
+T|50.44014|13.06964|Kovářská městys
+T|49.41372|13.61295|Kovčín
+T|49.91049|18.15386|Kozmice
+T|49.76235|13.24511|Kozolupy
+T|49.97317|15.13854|Kořenice
+T|50.77014|15.36573|Kořenov
+T|50.76257|15.34719|Kořenov zastávka
+T|50.40037|13.95395|Koštice nad Ohří
+T|50.63298|13.98793|Koštov
+T|50.31696|14.67020|Košátky
+T|50.56882|15.40366|Košťálov
+T|49.99366|13.51918|Kožlany
+T|49.54032|17.24999|Kožušany
+T|49.21526|15.80425|Krahulov
+T|49.19241|16.20368|Kralice nad Oslavou
+T|49.48640|17.18095|Kraličky
+T|49.98897|13.49020|Kralovice u Rakovníka
+T|50.23854|14.31341|Kralupy nad Vltavou
+T|50.23185|14.28363|Kralupy nad Vltavou předměstí
+T|50.22448|14.29795|Kralupy nad Vltavou-Minice
+T|50.33063|12.50279|Kraslice
+T|50.31177|12.51884|Kraslice předměstí
+T|50.34018|12.49708|Kraslice-Pod vlekem
+T|49.87714|15.22384|Krasoňovice
+T|49.84948|16.69341|Krasíkov
+T|50.15755|15.61095|Kratonohy
+T|50.81298|14.95236|Kratzau
+T|50.62901|14.40455|Kravaře v Čechách
+T|49.93497|18.00999|Kravaře ve Slezsku
+T|49.93095|18.03916|Kravaře-Kouty
+T|49.84897|14.55324|Krhanice
+T|49.47702|17.98987|Krhová
+T|50.08900|17.68331|Krnov
+T|50.09407|17.71253|Krnov-Cvilín
+T|50.37687|14.86930|Krnsko
+T|49.30215|17.40378|Kroměříž
+T|49.29183|17.40742|Kroměříž-Oskol
+T|50.32354|14.70128|Kropáčova Vrutice
+T|49.77837|16.03683|Krouna
+T|49.78624|16.03507|Krouna zastávka
+T|50.09007|13.43376|Krty
+T|48.98355|16.91602|Krumvíř
+T|50.67857|13.85060|Krupka
+T|50.68241|13.86093|Krupka město
+T|50.67239|13.87560|Krupka-Bohosudov
+T|50.16973|13.72294|Krupá
+T|50.16883|13.42280|Kryry
+T|50.77199|14.94184|Kryštofovo Údolí
+T|50.67296|15.97042|Královec
+T|50.25974|14.06793|Královice u Zlonic
+T|50.18927|12.67489|Královské Poříčí
+T|50.08065|16.75614|Králíky
+T|50.08673|16.74867|Králíky zastávka
+T|49.94280|14.04026|Králův Dvůr
+T|49.92883|14.02102|Králův Dvůr-Popovice
+T|50.91902|14.51216|Krásná Lípa
+T|50.90718|14.51205|Krásná Lípa město
+T|50.80147|15.03837|Krásná Studánka
+T|50.12554|17.63805|Krásné Loučky
+T|50.25571|13.36844|Krásný Dvůr
+T|50.11592|12.84814|Krásný Jez
+T|50.12383|12.84904|Krásný Jez zastávka
+T|50.93773|15.12854|Krásný Les
+T|50.93078|15.10913|Krásný Les bažantnice
+T|50.52795|15.24768|Ktová
+T|48.98302|13.77465|Kubova Huť
+T|50.39591|15.88465|Kuks
+T|50.03732|17.51599|Kunov
+T|49.05191|17.47006|Kunovice
+T|49.03832|17.46107|Kunovice zastávka
+T|49.44005|17.81874|Kunovice-Loučka
+T|50.58385|15.62278|Kunčice nad Labem
+T|49.53500|18.29636|Kunčice pod Ondřejníkem
+T|49.79630|16.63777|Kunčina
+T|49.11199|15.16282|Kunžak-Lomy
+T|49.96194|15.30060|Kutná Hora hlavní nádraží
+T|49.94986|15.27735|Kutná Hora město
+T|49.92374|15.25859|Kutná Hora-Poličany
+T|49.95768|15.29038|Kutná Hora-Sedlec
+T|49.93725|15.26755|Kutná Hora-Vrchlice
+T|49.30099|16.53464|Kuřim
+T|49.72931|16.36733|Květná
+T|49.72684|16.35427|Květná zastávka
+T|50.49997|15.37614|Kyje u Jičína
+T|49.01636|17.12293|Kyjov
+T|49.00313|17.12400|Kyjov zastávka
+T|49.92508|17.90895|Kylešovice
+T|50.12587|12.51942|Kynšperk nad Ohří
+T|50.81482|14.53363|Kytlice
+T|49.78681|15.01863|Kácov
+T|49.77581|15.03107|Kácov zastávka
+T|48.81302|14.26541|Kájov
+T|50.15509|15.56122|Káranice
+T|49.57250|16.90630|Křemenec
+T|48.90463|14.33134|Křemže
+T|50.63820|15.93570|Křenov
+T|49.14432|16.83408|Křenovice dolní nádraží
+T|49.14347|16.82448|Křenovice horní nádraží
+T|49.53534|13.02512|Křenovy
+T|50.39779|13.98137|Křesín
+T|49.38690|14.93841|Křeč
+T|50.75706|14.20423|Křešice u Děčína
+T|50.52621|14.21594|Křešice u Litoměřic
+T|50.48977|13.27598|Křimov
+T|50.48768|13.29527|Křimov zastávka
+T|50.49017|13.32497|Křimov-Suchdol
+T|50.26602|15.14360|Křinec
+T|50.03825|13.86881|Křivoklát
+T|49.38464|16.08040|Křižanov
+T|49.14502|16.93516|Křižanovice
+T|50.75141|14.91862|Křižany
+T|48.81320|16.88086|Ladná
+T|50.67358|15.92990|Lampertice
+T|49.90859|16.60331|Lanškroun
+T|49.99270|16.44730|Lanšperk
+T|48.73292|16.96240|Lanžhot
+T|49.72996|15.15965|Laziště
+T|50.06543|13.79985|Lašovice
+T|49.46801|16.01541|Laštovičky
+T|50.60574|13.85939|Lbín
+T|49.69803|15.27023|Ledeč nad Sázavou
+T|49.84733|14.93211|Ledečko
+T|50.28419|15.18600|Ledečky
+T|50.34437|15.23584|Ledkov
+T|48.79411|16.80168|Lednice
+T|48.78107|16.80328|Lednice rybníky
+T|50.37749|13.77349|Lenešice
+T|48.92839|13.79691|Lenora
+T|48.92329|13.80290|Lenora zastávka
+T|49.28665|18.00100|Leskovec
+T|49.42964|15.07940|Leskovice
+T|50.03138|16.50791|Letohrad
+T|49.55645|16.57076|Letovice
+T|49.53574|16.57671|Letovice zastávka
+T|50.52434|15.53074|Levínská Olešnice
+T|50.65878|14.19765|Leština
+T|49.76120|15.39872|Leština u Světlé
+T|50.11917|13.35422|Ležky
+T|49.72099|14.81513|Lhota Veselka
+T|49.18346|14.31105|Lhota pod Horami
+T|50.16670|15.69618|Lhota pod Libčany
+T|50.03634|15.52570|Lhota pod Přeloučí
+T|49.90717|18.04725|Lhota u Opavy
+T|50.58661|15.98643|Lhota u Trutnova
+T|49.02196|15.60673|Lhotice u Jemnice
+T|49.50370|17.93415|Lhotka nad Bečvou
+T|50.38207|14.54178|Lhotka u Mělníka
+T|50.37331|14.55100|Lhotka u Mělníka zastávka
+T|50.76131|15.04590|Liberec
+T|50.75351|15.03334|Liberec-Horní Růžodol
+T|50.74726|15.06159|Liberec-Rochlice
+T|50.59607|15.94609|Libeč
+T|50.12770|15.18300|Libice nad Cidlinou
+T|49.87863|17.06225|Libina
+T|50.13059|13.26998|Libkovice
+T|50.56414|14.04084|Libochovany
+T|50.41071|14.05496|Libochovice
+T|50.40751|14.03728|Libochovice město
+T|49.87557|13.99191|Libomyšl
+T|50.75605|14.04582|Libouchec
+T|50.48611|15.16353|Libošovice
+T|50.48984|15.30355|Libuň
+T|50.50015|15.30054|Libuň zastávka
+T|50.35637|15.21544|Libáň
+T|50.44868|13.83138|Libčeves
+T|50.19978|14.36442|Libčice nad Vltavou
+T|50.18944|14.37271|Libčice nad Vltavou-Letky
+T|50.41448|14.43562|Liběchov
+T|49.38160|14.61970|Libějice
+T|49.10527|14.23255|Libějovice
+T|50.57204|14.28494|Liběšice
+T|50.55609|15.41757|Libštát
+T|50.09731|16.65896|Lichkov
+T|49.22998|18.04364|Lidečko
+T|49.20966|18.05299|Lidečko ves
+T|49.75193|16.71283|Linhartice
+T|50.13643|17.61401|Linhartovy
+T|49.02016|13.73560|Lipka
+T|49.64476|13.61003|Lipnice
+T|48.63403|14.24404|Lipno nad Vltavou
+T|49.52918|17.57278|Lipník nad Bečvou
+T|48.90979|17.45789|Lipov
+T|50.18388|16.26480|Lipovka
+T|50.22838|17.13090|Lipová Lázně
+T|50.24464|17.14334|Lipová Lázně jeskyně
+T|50.22959|17.16064|Lipová Lázně zastávka
+T|50.02911|12.45777|Lipová u Chebu
+T|50.99467|14.35825|Lipová u Šluknova
+T|50.22354|17.60872|Liptaň
+T|49.90334|14.15607|Liteň
+T|50.08698|16.35781|Litice nad Orlicí
+T|50.55881|14.03336|Litochovice nad Labem
+T|49.87478|16.30410|Litomyšl
+T|49.88117|16.29269|Litomyšl zastávka
+T|49.88583|16.27978|Litomyšl-Nedošín
+T|50.53703|14.11821|Litoměřice Cihelna
+T|50.53258|14.13897|Litoměřice Město
+T|50.54101|14.13163|Litoměřice horní nádraží
+T|49.71287|17.07463|Litovel
+T|49.70199|17.07097|Litovel město
+T|49.69414|17.07133|Litovel předměstí
+T|49.88743|17.73434|Litultovice
+T|50.59300|13.61013|Litvínov
+T|50.59152|13.61430|Litvínov město
+T|50.34611|13.64857|Lišany u Žatce
+T|49.44369|13.79019|Lnáře
+T|50.25087|14.53076|Lobkovice
+T|50.27290|15.82454|Lochenice
+T|49.84640|13.97435|Lochovice
+T|49.99288|14.16309|Loděnice
+T|50.18994|12.75259|Loket
+T|50.59328|13.66121|Lom u Mostu
+T|50.59829|13.65192|Lom u Mostu zastávka
+T|49.74803|12.88118|Lom u Stříbra
+T|49.81748|12.68549|Lom u Tachova
+T|49.09115|14.73024|Lomnice nad Lužnicí
+T|50.52686|15.37409|Lomnice nad Popelkou
+T|49.87322|17.41934|Lomnice u Rýmařova
+T|49.82208|13.01607|Lomnička
+T|49.95404|14.18972|Lomy Mořina
+T|50.59303|13.63108|Louka u Litvínova
+T|50.03873|12.82734|Louka u Mariánských Lázní
+T|48.91228|17.48447|Louka u Ostrohu
+T|49.41036|17.71535|Loukov
+T|50.55871|15.05655|Loukov u Mnichova Hradiště
+T|49.79462|18.58731|Louky nad Olší
+T|50.36141|13.82325|Louny
+T|50.35028|13.79624|Louny město
+T|50.35366|13.80620|Louny střed
+T|49.36580|13.11547|Loučim
+T|50.20379|12.75181|Loučky
+T|50.07182|17.08650|Loučná nad Desnou
+T|50.05485|17.08239|Loučná nad Desnou-Filipová
+T|50.08832|17.09067|Loučná nad Desnou-Rejhotice
+T|48.62064|14.25656|Loučovice
+T|48.62438|14.24527|Loučovice zastávka
+T|50.50969|14.05958|Lovosice
+T|50.52173|14.04549|Lovosice město
+T|50.51942|14.04247|Lovosice zastávka
+T|50.51057|14.08129|Lovosice závod
+T|50.17042|15.38244|Lovčice obec
+T|49.20121|15.05070|Lovětín
+T|49.21157|15.05806|Lovětín obec
+T|50.12630|13.32796|Lubenec
+T|50.12947|13.30720|Lubenec zastávka
+T|50.07862|13.69602|Lubná
+T|50.25342|12.40096|Luby u Chebu
+T|49.36480|13.30603|Luby u Klatov
+T|50.21785|12.58745|Luh nad Svatavou
+T|50.89179|15.15191|Luh pod Smrkem
+T|49.09887|17.75197|Luhačovice
+T|50.03480|13.02931|Luhov
+T|49.36951|15.71005|Luka nad Jihlavou
+T|49.86593|14.46169|Luka pod Medníkem
+T|50.50301|14.09224|Lukavec
+T|49.82541|16.91677|Lukavice na Moravě
+T|50.04927|16.48427|Lukavice v Čechách
+T|50.19004|15.48691|Luková
+T|49.88032|16.60390|Luková u Rudoltic v Čechách
+T|49.24859|16.92302|Luleč
+T|49.86804|16.84144|Lupěné
+T|49.51850|17.03110|Lutotín
+T|50.73951|15.22537|Lučany nad Nisou
+T|50.32135|14.94447|Luštěnice
+T|49.54814|13.31457|Lužany
+T|50.32254|14.40267|Lužec nad Vltavou
+T|50.88634|15.16483|Lužec pod Smrkem
+T|48.82768|17.06223|Lužice
+T|49.05366|14.75010|Lužnice
+T|50.14488|13.77031|Lužná u Rakovníka
+T|49.24293|18.02022|Lužná u Vsetína
+T|50.78100|14.78785|Lvová
+T|50.19560|14.84187|Lysá nad Labem
+T|50.20019|14.80183|Lysá nad Labem-Dvorce
+T|50.42626|15.57725|Lázně Bělohrad
+T|49.99328|12.61445|Lázně Kynžvart
+T|50.16861|14.71142|Lázně Toušeň
+T|50.44623|14.81077|Líny
+T|49.55643|15.53844|Lípa
+T|49.21601|17.76962|Lípa nad Dřevnicí
+T|50.14147|16.10250|Lípa nad Orlicí
+T|49.69828|18.32836|Lískovec u Frýdku
+T|50.46281|15.04580|Lítkovice
+T|49.42146|14.37143|Líšnice
+T|50.64721|15.21223|Líšný
+T|49.10909|13.86729|Lčovice
+T|49.86391|14.71577|Lštění
+T|50.78740|14.98436|Machnín
+T|50.78766|14.97222|Machnín hrad
+T|48.95053|14.86819|Majdalena
+T|48.96499|14.85755|Majdalena zastávka
+T|50.49343|15.18740|Malechovice
+T|49.12384|13.88329|Malenice nad Volyňkou
+T|49.90674|15.23098|Malešov
+T|50.11365|13.38132|Malměřice
+T|49.29925|13.36711|Malonice
+T|49.09191|14.21827|Malovice u Netolic
+T|49.82220|14.93107|Malovidy
+T|50.48676|14.92303|Malá Bělá
+T|49.80950|14.26861|Malá Hraštice
+T|50.01006|17.31725|Malá Morávka
+T|50.63420|15.19220|Malá Skála
+T|50.74231|14.27258|Malá Veleň
+T|50.67178|14.16847|Malé Březno nad Labem
+T|50.66955|14.17271|Malé Březno zastávka
+T|50.73900|14.02367|Malé Chvojno
+T|49.93220|17.94561|Malé Hoštice
+T|50.52962|16.05077|Malé Svatoňovice
+T|50.53847|14.05641|Malé Žernoseky
+T|49.40233|15.63154|Malý Beranov
+T|49.10802|15.44759|Malý Pěčín
+T|49.78710|12.65804|Malý Rapotín
+T|49.14361|15.11443|Malý Ratmírov
+T|50.33326|14.52598|Malý Újezd
+T|49.36022|14.58591|Malšice
+T|49.63579|17.87565|Mankovice
+T|49.14915|16.97257|Marefy
+T|49.95694|12.69452|Mariánské Lázně
+T|49.95886|12.70449|Mariánské Lázně město
+T|50.77223|14.34619|Markvartice
+T|49.37020|16.04404|Martinice u Velkého Meziříčí
+T|50.58083|15.54049|Martinice v Krkonoších
+T|50.77043|14.12377|Martiněves u Děčína
+T|49.40122|13.88674|Mačkov
+T|49.51836|12.89773|Mašovice
+T|49.51012|12.87524|Meclov
+T|49.97462|15.76766|Medlešice
+T|50.32704|12.86511|Merklín
+T|49.70330|16.74203|Mezihoří
+T|50.62656|16.24242|Meziměstí
+T|48.78869|14.24049|Mezipotočí
+T|49.44780|14.58109|Meziříčí
+T|49.53661|14.65452|Mezno
+T|49.65513|13.62309|Mešno
+T|48.80212|16.62545|Mikulov na Moravě
+T|50.69349|13.72376|Mikulov v Krušných horách
+T|50.70200|13.70200|Mikulov-Nové Město
+T|50.30219|17.31981|Mikulovice
+T|50.98463|14.33645|Mikulášovice dolní nádraží
+T|50.95648|14.39040|Mikulášovice horní nádraží
+T|50.96228|14.35764|Mikulášovice střed
+T|49.46677|12.98471|Milavče
+T|49.17267|14.22063|Milenovice
+T|49.44177|14.37785|Milevsko
+T|49.46201|13.60838|Mileč
+T|49.96035|12.76162|Milhostov u Mariánských Lázní
+T|50.20252|13.66749|Milostín
+T|49.53418|17.83590|Milotice nad Bečvou
+T|50.01412|17.55728|Milotice nad Opavou
+T|50.22910|14.88172|Milovice
+T|49.74418|12.93842|Milíkov
+T|49.63238|14.02180|Milín
+T|50.65800|14.71463|Mimoň
+T|49.66698|14.53939|Minartice
+T|50.95079|15.02911|Minkovice
+T|48.93539|16.36249|Miroslav
+T|49.50991|14.03437|Mirovice
+T|49.70025|13.66627|Mirošov
+T|49.68983|13.66299|Mirošov město
+T|49.90979|14.72065|Mirošovice u Prahy
+T|49.86049|15.00508|Mirošovice u Rataj nad Sázavou
+T|49.86580|15.04786|Mitrov
+T|49.89453|17.71283|Mladecko
+T|49.70421|17.00357|Mladeč
+T|49.70278|17.01448|Mladeč jeskyně
+T|50.09246|16.62953|Mladkov
+T|49.98706|13.36518|Mladotice
+T|49.97180|13.34628|Mladotice zastávka
+T|50.40732|14.88725|Mladá Boleslav hlavní nádraží
+T|50.41923|14.91613|Mladá Boleslav město
+T|50.44802|14.88732|Mladá Boleslav-Debř
+T|50.60715|15.84082|Mladé Buky
+T|49.82530|16.58824|Mladějov na Moravě
+T|49.82436|16.58745|Mladějov na Moravě MPD
+T|50.48104|15.22623|Mladějov v Čechách
+T|49.75843|17.23519|Mladějovice
+T|50.31769|15.22075|Mlýnec
+T|50.05694|15.26635|Mlýnek
+T|50.00382|16.74803|Mlýnický Dvůr
+T|50.81143|14.49824|Mlýny
+T|50.31942|14.34810|Mlčechvosty
+T|50.35991|14.27616|Mnetěš
+T|49.16927|14.88308|Mnich
+T|49.93264|14.70711|Mnichovice
+T|50.51838|14.97830|Mnichovo Hradiště
+T|49.85391|14.26997|Mníšek pod Brdy
+T|50.83252|15.06538|Mníšek u Liberce
+T|50.13645|14.79468|Mochov
+T|50.14524|14.76923|Mochov zastávka
+T|49.25648|13.97622|Modlešovice
+T|50.75806|14.08161|Modrá u Děčína
+T|49.13389|16.60623|Modřice
+T|49.77693|16.94270|Mohelnice
+T|50.67871|14.12509|Mojžíř
+T|49.27542|13.46707|Mokrosuky
+T|49.79646|14.23651|Mokrovraty
+T|49.90932|18.03186|Mokré Lazce
+T|50.71779|13.69136|Moldava v Krušných horách
+T|50.00226|15.94624|Moravany
+T|49.75848|16.96803|Moravičany
+T|49.62315|16.52450|Moravská Chrastová
+T|48.79957|17.02203|Moravská Nová Ves
+T|49.76670|16.66629|Moravská Třebová
+T|49.08516|16.42900|Moravské Bránice
+T|49.05752|15.80925|Moravské Budějovice
+T|49.78453|17.43213|Moravský Beroun
+T|50.02586|16.75309|Moravský Karlov
+T|49.04649|16.33835|Moravský Krumlov
+T|48.97715|17.31470|Moravský Písek
+T|48.99101|17.32986|Moravský Písek zastávka
+T|50.51114|13.65871|Most
+T|50.54338|13.62209|Most-Kopisty
+T|50.56474|13.62353|Most-Minerva
+T|50.49075|15.69250|Mostek
+T|49.52427|18.75125|Mosty u Jablunkova (Mosty koło Jabłonkowa)
+T|49.50965|18.75152|Mosty u Jablunkova zastávka
+T|49.52882|18.06841|Mořkov hlavní trať
+T|49.69364|18.11901|Mošnov, Ostrava Airport
+T|49.83251|14.69799|Mrač
+T|49.65705|15.37362|Mrzkovice
+T|49.96384|12.83257|Mrázov
+T|50.13601|14.68961|Mstětice
+T|49.01555|15.37806|Mutišov
+T|50.21716|13.70451|Mutějovice
+T|50.18750|13.70253|Mutějovice zastávka
+T|48.90465|17.03993|Mutěnice
+T|48.91208|17.02671|Mutěnice zastávka
+T|49.54479|12.77323|Mutěnín
+T|49.67698|17.04880|Myslechovice
+T|49.20791|15.48637|Mysliboř
+T|49.29858|14.73499|Myslkovice
+T|49.52956|14.02394|Myslín
+T|49.76473|14.72350|Myslíč
+T|50.44184|13.33032|Málkov
+T|49.57943|15.61849|Mírovka
+T|50.23952|12.76387|Mírová
+T|49.78327|13.73959|Mýto
+T|49.91110|14.38330|Měchenice
+T|50.26672|13.53216|Měcholupy
+T|50.42854|13.12991|Měděnec
+T|50.42721|13.10748|Měděnec zastávka
+T|50.34436|14.54657|Mělnická Vrutice
+T|50.35300|14.49240|Mělník
+T|50.37510|14.46785|Mělník-Mlazice
+T|49.34382|17.24717|Měrovice nad Hanou
+T|50.21064|15.30030|Městec Králové
+T|49.71499|16.72461|Městečko Trnávka
+T|49.73080|14.80539|Městečko u Benešova
+T|50.05020|13.85719|Městečko u Křivoklátu
+T|50.16812|17.57859|Město Albrechtice
+T|50.20465|14.51353|Měšice u Prahy
+T|50.43572|14.64082|Mšeno
+T|50.36165|14.13301|Mšené Lázně
+T|49.70775|13.18766|Na Humboldtce
+T|49.16311|17.50474|Napajedla
+T|49.45045|14.64006|Nasavrky
+T|50.11724|12.47807|Nebanice
+T|50.08228|14.39919|Nebozízek
+T|50.38622|14.58973|Nebužely
+T|49.65744|16.78044|Nectava
+T|49.03262|17.37511|Nedakonice
+T|49.45446|16.33593|Nedvědice
+T|50.58419|15.35198|Nedvězí
+T|50.31911|12.72750|Nejdek
+T|50.32911|12.72227|Nejdek zastávka
+T|50.34819|12.76961|Nejdek-Oldřichov
+T|50.34934|12.75131|Nejdek-Sejfy
+T|50.31090|12.75013|Nejdek-Suchá
+T|50.34152|12.72934|Nejdek-Tisová
+T|49.22352|15.06261|Nekrasín
+T|49.43839|13.61055|Nekvasovy
+T|50.28352|14.30880|Nelahozeves
+T|50.26291|14.30250|Nelahozeves zámek
+T|49.55898|17.24426|Nemilany
+T|49.28470|13.34409|Nemilkov
+T|49.13296|17.11423|Nemotice
+T|50.38727|15.36048|Nemyčeves
+T|49.12573|14.60552|Neplachov
+T|49.49745|13.60881|Nepomuk
+T|50.37421|14.91116|Nepřevázka
+T|50.26272|14.51748|Neratovice
+T|50.25693|14.52001|Neratovice město
+T|50.25783|14.50756|Neratovice sídliště
+T|49.14926|17.08021|Nesovice
+T|49.87480|14.12869|Nesvačily
+T|49.05408|14.19005|Netolice
+T|49.06500|14.21609|Netolice zastávka
+T|50.26008|14.42225|Netřeba
+T|49.85000|14.01187|Neumětely
+T|50.24056|14.21793|Neuměřice
+T|49.13689|17.04792|Nevojice
+T|49.33572|17.16147|Nezamyslice
+T|49.02217|17.74887|Nezdenice
+T|49.32609|13.29947|Neznašovy
+T|49.64249|13.51679|Nezvěstice
+T|50.67019|14.13999|Neštědice
+T|50.67215|14.10633|Neštěmice
+T|49.15013|13.90597|Nišovice
+T|50.00333|13.99835|Nižbor
+T|50.15998|14.27800|Noutonice
+T|50.76007|14.94170|Novina
+T|50.65887|13.82044|Novosedlice
+T|48.82580|16.49420|Novosedly
+T|49.34120|15.28657|Nová Buková
+T|49.01920|15.11106|Nová Bystřice
+T|49.42574|15.11810|Nová Cerekev
+T|49.83570|17.07229|Nová Hradečná
+T|49.71714|13.63764|Nová Huť
+T|50.83077|14.58581|Nová Huť v Lužických horách
+T|50.48670|15.52306|Nová Paka
+T|50.49455|15.51263|Nová Paka město
+T|48.78994|13.95361|Nová Pec
+T|50.27353|12.78005|Nová Role
+T|50.29117|12.75593|Nová Role zastávka
+T|48.81188|14.92285|Nová Ves nad Lužnicí
+T|50.72355|15.19425|Nová Ves nad Nisou
+T|50.51894|15.40763|Nová Ves nad Popelkou
+T|49.82742|14.27000|Nová Ves pod Pleší
+T|50.05499|15.15079|Nová Ves u Kolína
+T|49.79291|16.57621|Nová Ves u Kunčiny MPD
+T|49.80230|16.57656|Nová Ves u Kunčiny zastávka MPD
+T|50.49558|13.26463|Nová Ves u Křimova
+T|49.78380|15.40390|Nová Ves u Leštiny
+T|48.92121|14.52956|Nová Ves u Českých Budějovic
+T|49.23696|15.06665|Nová Včelnice
+T|50.35714|12.71942|Nové Hamry
+T|50.02478|17.52682|Nové Heřminovy
+T|48.95185|14.49883|Nové Hodějovice
+T|48.82289|14.80920|Nové Hrady
+T|50.49730|14.12019|Nové Kopisty
+T|50.11609|17.00504|Nové Losiny
+T|49.56858|16.08034|Nové Město na Moravě
+T|49.56491|16.06011|Nové Město na Moravě zastávka
+T|50.15022|15.50219|Nové Město nad Cidlinou
+T|50.35349|16.13773|Nové Město nad Metují
+T|50.92477|15.22420|Nové Město pod Smrkem
+T|50.30217|14.31687|Nové Ouholice
+T|50.21397|12.74564|Nové Sedlo u Lokte
+T|50.15203|13.88184|Nové Strašecí
+T|48.82959|13.79419|Nové Údolí
+T|50.76059|14.54725|Nový Bor
+T|50.24489|15.48585|Nový Bydžov
+T|50.14700|12.39931|Nový Drahov
+T|49.34075|18.20408|Nový Hrozenkov
+T|49.33455|18.17744|Nový Hrozenkov zastávka
+T|49.59892|18.00875|Nový Jičín město
+T|50.22018|12.42098|Nový Kostel
+T|49.47754|12.81258|Nový Kramolín
+T|49.94589|17.03444|Nový Malín
+T|50.02392|14.22465|Nučice
+T|50.01509|14.21240|Nučice zastávka
+T|50.19337|15.04601|Nymburk hlavní nádraží
+T|50.18459|15.03358|Nymburk město
+T|50.41743|16.17164|Náchod
+T|50.40841|16.15202|Náchod zastávka
+T|50.42336|16.18748|Náchod-Běloves
+T|50.44113|16.19274|Náchod-Malé Poříčí
+T|49.59809|17.07036|Náměšť na Hané
+T|49.20684|16.14796|Náměšť nad Oslavou
+T|50.67621|15.31932|Návarov
+T|49.10103|18.04442|Návojná
+T|49.59000|18.75442|Návsí (Nawsie)
+T|49.33658|16.27057|Níhov
+T|49.55536|15.79860|Nížkov
+T|49.29765|13.15338|Nýrsko
+T|49.71495|13.20949|Nýřany
+T|49.70854|13.19898|Nýřany-zastávka
+T|49.34488|17.21651|Němčice nad Hanou
+T|49.87139|13.40292|Obora u Kaznějova
+T|49.42893|14.95346|Obrataň
+T|49.42265|14.94894|Obrataň zastávka
+T|49.42855|14.95349|Obrataň-JHMD
+T|50.50433|13.70072|Obrnice
+T|50.44645|15.07347|Obrubce
+T|49.64352|17.07210|Odrlice
+T|49.66964|17.83374|Odry
+T|49.68510|17.80937|Odry-Loučky
+T|50.33359|15.50701|Ohnišťany
+T|49.51322|12.84952|Ohnišťovice
+T|50.58909|13.84211|Ohníč
+T|50.52727|14.67442|Okna
+T|49.63067|15.48771|Okrouhlice
+T|49.24796|15.77083|Okříšky
+T|48.90317|15.94911|Olbramkostel
+T|49.66710|14.62423|Olbramovice
+T|50.85543|15.09176|Oldřichov v Hájích
+T|49.72850|16.19402|Oldřiš
+T|50.47776|14.19414|Oleško
+T|50.45740|16.08431|Olešnice
+T|49.56165|16.12407|Olešná na Moravě
+T|50.14941|13.69566|Olešná u Rakovníka
+T|49.59284|17.27835|Olomouc hlavní nádraží
+T|49.59411|17.24118|Olomouc město
+T|49.60229|17.23665|Olomouc-Hejčín
+T|49.58706|17.24479|Olomouc-Nová Ulice
+T|49.57095|17.26073|Olomouc-Nové Sady
+T|49.58556|17.25486|Olomouc-Smetanovy sady
+T|49.61652|17.22405|Olomouc-Řepčín
+T|50.23262|14.24496|Olovnice
+T|50.24659|14.25382|Olovnice zastávka
+T|50.25463|12.55831|Oloví
+T|49.16107|16.44677|Omice
+T|48.72518|14.44754|Omlenice
+T|50.27243|17.34345|Ondřejovice
+T|50.26297|17.35390|Ondřejovice zastávka
+T|50.54247|14.01288|Oparno
+T|49.81507|16.48603|Opatov
+T|49.79365|16.48730|Opatovec
+T|50.15604|15.78377|Opatovice nad Labem
+T|50.16528|15.78889|Opatovice nad Labem-Pohřebačka
+T|49.93447|17.90805|Opava východ
+T|49.92927|17.93486|Opava zastávka
+T|49.93881|17.88823|Opava západ
+T|49.91755|17.95824|Opava-Komárov
+T|50.27853|16.08571|Opočno pod Orlickými horami
+T|50.31253|13.73403|Opočno u Loun
+T|49.91452|15.84215|Orel
+T|50.10723|13.54415|Oráčov
+T|50.61438|13.71041|Osek
+T|50.62586|13.68506|Osek město
+T|49.51701|17.52240|Osek nad Bečvou
+T|50.36965|15.16306|Osenice
+T|50.24168|15.08610|Oskořínek
+T|49.11886|16.34664|Oslavany
+T|49.33831|15.98889|Oslavice
+T|49.31900|15.96679|Oslavička
+T|49.59678|13.92631|Oslí
+T|50.26821|17.72245|Osoblaha
+T|49.83736|14.08432|Osov
+T|49.32975|16.16812|Osová Bítýška
+T|50.76342|15.01207|Ostašov
+T|49.16510|16.54386|Ostopovice
+T|49.85067|18.26707|Ostrava hlavní nádraží
+T|49.82911|18.28291|Ostrava střed
+T|49.77896|18.34020|Ostrava-Bartovice
+T|49.79068|18.29148|Ostrava-Kunčice
+T|49.80905|18.29677|Ostrava-Kunčičky
+T|49.83699|18.23950|Ostrava-Mariánské Hory
+T|49.83508|18.28043|Ostrava-Stodolní
+T|49.82103|18.20989|Ostrava-Svinov
+T|49.84222|18.19568|Ostrava-Třebovice
+T|49.80155|18.26237|Ostrava-Vítkovice
+T|49.53775|18.39362|Ostravice
+T|49.55041|18.38045|Ostravice zastávka
+T|50.36898|15.54454|Ostroměř
+T|50.30167|12.95773|Ostrov nad Ohří
+T|49.49578|15.99195|Ostrov nad Oslavou
+T|49.61531|14.00886|Ostrov u Tochovic
+T|49.00977|17.43655|Ostrožská Nová Ves
+T|49.01817|17.44622|Ostrožská Nová Ves lázně
+T|50.18338|17.05092|Ostružná
+T|50.18790|14.89073|Ostrá
+T|49.51744|13.04270|Osvračín
+T|49.42314|17.74260|Osíčko
+T|49.91897|17.87032|Otice
+T|50.20606|14.74613|Otradovice
+T|49.20251|17.53127|Otrokovice
+T|49.20040|17.54634|Otrokovice-Trávníky
+T|50.03912|12.88703|Otročín
+T|50.21023|14.27018|Otvovice
+T|48.80631|13.93878|Ovesná
+T|49.95663|12.78498|Ovesné Kladruby
+T|48.94066|14.05441|Ovesné u Prachatic
+T|50.25365|14.61441|Ovčáry
+T|50.24334|16.06326|Očelice
+T|49.35044|16.13653|Ořechov
+T|49.78613|12.84600|Ošelín
+T|49.45990|15.01728|Pacov
+T|49.44776|14.53513|Padařov
+T|50.94836|14.46303|Panský
+T|50.65291|14.14331|Panství Velichov
+T|50.03159|15.77264|Pardubice centrum
+T|50.03171|15.75609|Pardubice hlavní nádraží
+T|50.02432|15.75101|Pardubice závodiště
+T|50.03047|15.66937|Pardubice-Opočínek
+T|50.03122|15.78893|Pardubice-Pardubičky
+T|50.04557|15.74284|Pardubice-Rosice nad Labem
+T|50.06199|15.74833|Pardubice-Semtín
+T|50.03194|15.72383|Pardubice-Svítkov
+T|50.02737|15.83083|Pardubice-Černá za Bory
+T|49.73630|18.30323|Paskov
+T|50.09503|14.16565|Pavlov
+T|49.82123|12.77988|Pavlovice
+T|49.39123|13.62049|Pačejov
+T|49.83347|14.62609|Pecerady
+T|50.12208|16.30570|Peklo nad Zdobnicí
+T|49.41946|15.22237|Pelhřimov
+T|48.78353|13.98667|Pernek-Hory
+T|50.36558|12.77340|Pernink
+T|49.77094|12.67936|Pernolec
+T|50.67733|14.71828|Pertoltice pod Ralskem
+T|50.33590|13.95885|Peruc
+T|50.36759|13.11289|Perštejn
+T|49.57618|15.55275|Petrkov
+T|50.13533|13.43406|Petrohrad
+T|50.00038|17.03021|Petrov nad Desnou
+T|50.00518|17.04288|Petrov nad Desnou zastávka
+T|49.87934|14.42869|Petrov u Prahy
+T|48.87892|17.27386|Petrov u Strážnice
+T|49.87629|14.41135|Petrov-Chlomek
+T|50.17372|16.04611|Petrovice nad Orlicí
+T|49.32079|13.17939|Petrovice nad Úhlavou
+T|49.89405|18.55035|Petrovice u Karviné
+T|48.84586|14.75546|Petříkov
+T|50.60185|16.00409|Petříkovice
+T|50.08197|14.39679|Petřín
+T|49.04458|15.39796|Peč
+T|50.08975|15.02766|Pečky
+T|49.41451|12.85898|Pila
+T|50.53422|15.81291|Pilníkov
+T|50.72728|15.03544|Pilínkov
+T|49.04575|17.84649|Pitín
+T|49.03746|17.84312|Pitín zastávka
+T|49.38746|17.18874|Pivín
+T|49.35327|14.70660|Planá nad Lužnicí
+T|49.86114|12.73032|Planá u Mariánských Lázní
+T|49.93090|13.37965|Plasy
+T|50.00884|15.96136|Platěnice
+T|50.70160|15.31737|Plavy
+T|49.52907|15.39873|Plačkov
+T|50.04941|15.01622|Plaňany
+T|50.04560|15.02396|Plaňany zastávka
+T|50.03881|16.16211|Plchůvky
+T|50.21116|12.34470|Plesná
+T|49.77706|13.16662|Plešnice
+T|48.86408|14.35090|Plešovice
+T|50.54989|14.20573|Ploskovice
+T|50.23542|15.79202|Plotiště nad Labem
+T|50.51420|15.38679|Ploužnice
+T|49.87866|14.87544|Plužiny
+T|49.69138|13.46519|Plzenecká železnice
+T|49.74333|13.38826|Plzeň hlavní nádraží
+T|49.73679|13.37488|Plzeň zastávka
+T|49.78589|13.38569|Plzeň-Bolevec
+T|49.76844|13.40027|Plzeň-Bílá Hora
+T|49.75832|13.41582|Plzeň-Doubravka
+T|49.72155|13.38298|Plzeň-Doudlevce
+T|49.74027|13.36727|Plzeň-Jižní Předměstí
+T|49.75161|13.30364|Plzeň-Křimice
+T|49.80391|13.39617|Plzeň-Orlík
+T|49.74168|13.34632|Plzeň-Skvrňany
+T|49.73485|13.40769|Plzeň-Slovany
+T|49.74743|13.32647|Plzeň-Zadní Skvrňany
+T|49.51340|12.81163|Poběžovice
+T|50.07499|17.44827|Pocheň
+T|49.34638|13.13548|Pocinovice
+T|50.22352|13.40434|Podbořany
+T|49.43188|17.79740|Podhradní Lhota
+T|50.25295|12.17635|Podhradí
+T|50.60068|15.62474|Podhůří
+T|48.83747|16.85406|Podivín
+T|50.09050|16.84929|Podlesí
+T|50.21819|14.15577|Podlešín
+T|50.46995|13.95483|Podsedice
+T|50.14964|15.12380|Poděbrady
+T|49.60031|15.65705|Pohled
+T|49.61002|15.61407|Pohledští Dvořáci
+T|49.65109|15.45621|Pohleď
+T|50.29158|16.07881|Pohoří
+T|49.79349|15.98137|Pokřikov
+T|49.77898|18.18999|Polanka nad Odrou
+T|50.51098|14.26762|Polepy
+T|50.20475|14.60998|Polerady nad Labem
+T|48.79945|14.12032|Polečnice
+T|50.51334|16.21193|Police nad Metují
+T|49.45055|17.86813|Police u Valašského Meziříčí
+T|49.06853|17.71122|Polichno
+T|49.71889|16.26398|Polička
+T|48.79863|14.14796|Polná na Šumavě
+T|49.57453|17.85548|Polom
+T|50.33634|13.35041|Poláky
+T|49.72073|16.32538|Pomezí
+T|50.08611|12.27211|Pomezí nad Ohří
+T|49.72126|16.29075|Pomezí zastávka
+T|50.64887|15.45699|Poniklá
+T|50.66670|15.45096|Poniklá zastávka
+T|49.15498|16.74926|Ponětovice
+T|49.22024|15.17830|Popelín
+T|48.92433|16.66802|Popice
+T|49.08021|17.96911|Popov
+T|49.10332|16.60564|Popovice u Rajhradu
+T|49.04642|17.52691|Popovice u Uherského Hradiště
+T|50.03535|12.93309|Poseč
+T|50.36048|13.69172|Postoloprty
+T|49.32089|17.36107|Postoupky
+T|49.73810|14.78220|Postupice
+T|49.45892|12.81478|Postřekov
+T|49.91014|16.92303|Postřelmov
+T|49.15438|18.04268|Poteč
+T|50.02399|13.37489|Potvorov
+T|50.08380|16.31522|Potštejn
+T|50.43036|12.73850|Potůčky
+T|50.41914|12.73421|Potůčky zastávka
+T|50.08020|16.96378|Potůčník
+T|50.01825|12.82201|Poutnov
+T|48.94205|16.63047|Pouzdřany
+T|50.67058|14.15680|Povrly
+T|50.68744|14.18728|Povrly-Roztoky
+T|49.23927|16.04123|Pozďatín
+T|50.41532|13.68586|Počerady
+T|49.23702|15.21248|Počátky-Žirovnice
+T|49.42164|14.86649|Pořín
+T|50.11114|14.92215|Poříčany
+T|49.83741|14.67655|Poříčí nad Sázavou
+T|49.84173|14.65238|Poříčí nad Sázavou-Svárov
+T|48.75085|16.85196|Poštorná
+T|49.25821|13.84909|Pracejovice
+T|49.01504|14.00864|Prachatice
+T|49.00565|13.99764|Prachatice lázně
+T|50.57297|14.03643|Prackovice nad Labem
+T|50.08296|14.43609|Prague Main Station
+T|50.08768|14.43420|Prague Masaryk Station
+T|50.09492|14.34613|Prague-Veleslavín
+T|50.02790|14.40685|Praha-Braník
+T|50.10026|14.43993|Praha-Bubny
+T|50.08223|14.59794|Praha-Běchovice
+T|50.08361|14.61496|Praha-Běchovice střed
+T|50.06458|14.36217|Praha-Cibulka
+T|50.09695|14.39950|Praha-Dejvice
+T|50.08832|14.56921|Praha-Dolní Počernice
+T|50.06554|14.47264|Praha-Eden
+T|50.04055|14.39409|Praha-Hlubočepy
+T|50.11066|14.43975|Praha-Holešovice
+T|50.03285|14.34857|Praha-Holyně
+T|50.04809|14.56548|Praha-Horní Měcholupy
+T|50.11658|14.61199|Praha-Horní Počernice
+T|50.05502|14.53884|Praha-Hostivař
+T|50.05568|14.37174|Praha-Jinonice
+T|50.04200|14.46244|Praha-Kačerov
+T|50.13483|14.55582|Praha-Kbely
+T|50.08715|14.66360|Praha-Klánovice
+T|50.01379|14.62607|Praha-Kolovraty
+T|49.99034|14.40432|Praha-Komořany
+T|50.03430|14.44656|Praha-Krč
+T|50.09726|14.54431|Praha-Kyje
+T|50.10076|14.50181|Praha-Libeň
+T|50.05294|14.46988|Praha-Michle autovlak
+T|50.00397|14.40299|Praha-Modřany zastávka
+T|50.11234|14.39559|Praha-Podbaba
+T|49.98563|14.36382|Praha-Radotín
+T|50.10762|14.56012|Praha-Rajská zahrada
+T|50.08418|14.31218|Praha-Ruzyně
+T|50.12300|14.57076|Praha-Satalice
+T|50.13197|14.39445|Praha-Sedlec
+T|50.06097|14.40799|Praha-Smíchov
+T|50.06217|14.34603|Praha-Stodůlky
+T|50.03368|14.59161|Praha-Uhříněves
+T|50.00978|14.38892|Praha-Velká Chuchle
+T|50.06468|14.44690|Praha-Vršovice
+T|50.11228|14.49724|Praha-Vysočany
+T|50.10363|14.43076|Praha-Výstaviště
+T|50.06216|14.50357|Praha-Zahradní Město
+T|49.97017|14.39967|Praha-Zbraslav
+T|50.06420|14.29778|Praha-Zličín
+T|50.04317|14.40619|Praha-Zlíchov
+T|50.14888|14.51945|Praha-Čakovice
+T|50.14924|14.51977|Praha-Čakovice severní nástupiště
+T|50.15497|14.51890|Praha-Čakovice zámecký park
+T|50.03232|14.30943|Praha-Řeporyje
+T|50.04558|14.40220|Praha-Žvahov
+T|50.17517|15.73174|Praskačka
+T|49.86879|13.92945|Praskolesy
+T|48.84870|16.37023|Pravice
+T|49.14740|14.14060|Pražák
+T|50.66133|13.83837|Proboštov
+T|49.50309|17.48480|Prosenice
+T|50.63108|13.84212|Prosetice
+T|49.83250|15.96185|Prosetín
+T|50.72832|15.11574|Proseč nad Nisou
+T|49.86384|14.53232|Prosečnice
+T|50.54742|15.69649|Prosečné
+T|49.47215|17.12956|Prostějov hlavní nádraží
+T|49.47901|17.11087|Prostějov místní nádraží
+T|50.09910|16.75388|Prostřední Lipka
+T|50.08959|13.20709|Protivec
+T|49.21247|14.21190|Protivín
+T|49.19633|14.22249|Protivín zastávka
+T|49.41894|16.36716|Prudká zastávka
+T|49.61704|18.36191|Pržno
+T|49.52923|16.95784|Ptení
+T|50.05499|13.81696|Pustověty
+T|49.75454|16.08172|Pustá Kamenice
+T|49.75249|16.09297|Pustá Kamenice zastávka
+T|49.26409|14.13168|Putim
+T|49.96743|15.10622|Pučery
+T|49.86153|14.69943|Pyšely
+T|50.29091|14.02944|Páleček
+T|50.37695|13.93660|Pátek
+T|49.29651|14.14293|Písek
+T|49.30211|14.15189|Písek jih
+T|49.31380|14.16153|Písek město
+T|49.31296|14.13578|Písek zastávka
+T|49.32726|14.11031|Písek-Dobešice
+T|50.27881|17.26003|Písečná
+T|48.84853|13.91074|Pěkná
+T|50.31942|13.34522|Pětipsy
+T|50.16096|16.41944|Pěčín
+T|49.78859|13.09029|Pňovany
+T|49.78602|13.12999|Pňovany zastávka
+T|49.85577|15.22458|Předbořice
+T|49.82433|16.01852|Předhradí
+T|50.25269|15.81776|Předměřice nad Labem
+T|49.21819|13.89400|Přední Zborovice
+T|49.72346|13.12479|Přehýšov
+T|50.03966|15.57450|Přelouč
+T|49.44705|17.44480|Přerov
+T|50.15265|15.40736|Převýšov
+T|49.57514|13.32253|Přeštice
+T|49.60076|13.29907|Přeštice-Zastávka
+T|49.56971|15.74279|Přibyslav
+T|49.57909|15.71790|Přibyslav zastávka
+T|49.63592|18.14227|Příbor
+T|49.68882|14.00336|Příbram
+T|49.67406|14.00106|Příbram sídliště
+T|49.63812|17.14521|Příkazy
+T|49.66304|13.65144|Příkosice
+T|49.67059|13.66547|Příkosice zastávka
+T|50.14000|13.63459|Přílepy
+T|49.34351|15.74146|Přímělkov
+T|48.82907|14.34128|Přísečná
+T|50.07138|13.67796|Příčina
+T|50.57910|15.07866|Příšovice
+T|48.68111|14.44420|Pšenice
+T|50.34525|15.29568|Pševes
+T|50.10439|13.59805|Pšovlky
+T|50.38080|15.10492|Rabakov
+T|50.58055|14.00314|Radejčín
+T|50.07328|15.00729|Radim
+T|49.14616|15.47185|Radkov
+T|49.85813|13.59657|Radnice
+T|49.32036|13.94903|Radomyšl
+T|49.31338|13.93264|Radomyšl zastávka
+T|50.29804|13.27687|Radonice u Kadaně
+T|49.13426|16.46167|Radostice
+T|48.90094|14.61151|Radostice u Trocnova
+T|49.83832|14.01747|Radouš
+T|49.23224|13.90187|Radošovice
+T|50.57534|16.06003|Radvanice
+T|49.54745|15.50961|Radňov
+T|49.56185|16.03328|Radňovice
+T|49.08483|16.60531|Rajhrad
+T|50.09910|13.73614|Rakovník
+T|50.10571|13.74970|Rakovník zastávka
+T|50.10170|13.71408|Rakovník západ
+T|48.86698|16.82134|Rakvice
+T|49.01429|16.34508|Rakšice
+T|50.19346|17.06358|Ramzová
+T|49.40676|15.51325|Rantířov
+T|49.18360|16.25731|Rapotice
+T|50.01482|17.03292|Rapotín
+T|50.00934|17.03131|Rapotín zastávka
+T|50.89649|15.13162|Raspenava
+T|49.84379|14.95053|Rataje nad Sázavou
+T|49.84970|14.97823|Rataje nad Sázavou předměstí
+T|49.84432|14.94800|Rataje nad Sázavou zastávka
+T|49.83995|14.94115|Rataje nad Sázavou-Ivaň
+T|49.98157|15.16047|Ratboř
+T|50.02486|13.92320|Račice nad Berounkou
+T|50.04030|16.91267|Raškov
+T|49.24465|14.10860|Ražice
+T|49.80910|13.97059|Rejkovice
+T|49.72413|13.14158|Rochlov
+T|49.28120|15.07965|Rodinov
+T|48.97802|14.03859|Rohanov
+T|48.89284|17.19850|Rohatec
+T|48.89244|17.21235|Rohatec kolonie (zast)
+T|48.88324|17.17840|Rohatec zastávka
+T|50.43713|15.10755|Rohatsko
+T|49.34833|13.95027|Rojice
+T|49.74018|13.59187|Rokycany
+T|49.73225|13.60354|Rokycany předměstí
+T|50.71216|15.42286|Rokytnice nad Jizerou
+T|49.46081|17.37373|Rokytnice u Přerova
+T|50.16158|16.46520|Rokytnice v Orlických horách
+T|50.36807|15.13396|Rokytňany
+T|49.89483|15.52825|Ronov nad Doubravou
+T|49.89266|15.54340|Ronov nad Doubravou zastávka
+T|49.56637|15.77391|Ronov nad Sázavou
+T|49.71242|18.61643|Ropice (Ropica)
+T|49.71666|18.62707|Ropice zastávka (Ropica przystanek)
+T|49.69377|18.59654|Ropice-Zálesí
+T|49.17872|16.38386|Rosice u Brna
+T|50.07867|14.80581|Rostoklaty
+T|50.28705|12.53548|Rotava
+T|50.42653|14.26415|Roudnice nad Labem
+T|50.42169|14.25869|Roudnice nad Labem město
+T|50.42860|14.28206|Roudnice nad Labem-Bezděkov
+T|50.41705|14.25307|Roudnice nad Labem-Hracholusky
+T|49.19711|16.86786|Rousínov
+T|50.53139|15.26428|Rovensko pod Troskami
+T|50.02890|15.96951|Roveň
+T|49.54761|16.17293|Rovné-Divišov
+T|49.60171|16.53247|Rozhraní
+T|49.66993|15.63261|Rozsochatec
+T|49.53740|16.19491|Rozsochy
+T|49.72839|16.73082|Rozstání
+T|50.55454|15.49006|Roztoky u Jilemnice
+T|50.02356|13.87393|Roztoky u Křivoklátu
+T|50.15975|14.39847|Roztoky u Prahy
+T|50.16799|14.36476|Roztoky-Žalov
+T|48.62639|14.36289|Rožmberk nad Vltavou
+T|49.60208|13.88203|Rožmitál pod Třemšínem
+T|49.46049|18.13439|Rožnov pod Radhoštěm
+T|49.47287|16.24531|Rožná
+T|50.29919|15.18024|Rožďalovice
+T|50.60164|13.91245|Rtyně nad Bílinou
+T|50.51558|16.07329|Rtyně v Podkrkonoší
+T|50.49953|16.09112|Rtyně v Podkrkonoší zastávka
+T|49.98353|16.88858|Ruda nad Moravou
+T|50.03607|17.40110|Rudná pod Pradědem
+T|50.02308|17.33889|Rudná pod Pradědem zastávka
+T|50.03938|14.24266|Rudná u Prahy
+T|50.03497|14.23568|Rudná zastávka
+T|49.89267|16.57206|Rudoltice v Čechách
+T|49.29784|15.95084|Rudíkov
+T|50.95693|14.55077|Rumburk
+T|50.96927|14.57942|Rumburk zastávka
+T|50.62478|16.26882|Ruprechtice
+T|50.45026|13.16872|Rusová
+T|50.88305|14.50993|Rybniště
+T|50.12756|16.34314|Rybná nad Zdobnicí
+T|48.64957|14.43168|Rybník
+T|50.15825|16.27341|Rychnov nad Kněžnou
+T|50.16628|16.27066|Rychnov nad Kněžnou zastávka
+T|50.68391|15.14416|Rychnov u Jablonce nad Nisou
+T|50.36073|15.96932|Rychnovek
+T|49.85734|14.28159|Rymaně
+T|50.13865|13.92605|Rynholec
+T|50.78700|14.82668|Rynoltice
+T|49.39457|15.23163|Rynárec
+T|49.02392|15.68723|Rácovice
+T|50.69428|15.10841|Rádlo
+T|49.40809|16.62770|Rájec-Jestřebí
+T|49.92968|17.28447|Rýmařov
+T|50.26791|12.89094|Sadov
+T|50.27559|12.88079|Sadov-Podlesí
+T|50.29538|15.69378|Sadová
+T|50.13134|14.98662|Sadská
+T|50.02652|12.50420|Salajna
+T|49.33033|15.48461|Salavice
+T|49.88611|14.83496|Samechov
+T|49.86093|14.91635|Samopše
+T|50.59291|14.05342|Sebuzín
+T|48.77478|16.69664|Sedlec u Mikulova
+T|49.80628|13.52773|Sedlecko
+T|49.22469|15.49590|Sedlejov
+T|50.63667|15.09911|Sedlejovice
+T|49.38460|13.93638|Sedlice
+T|49.37816|13.94475|Sedlice město
+T|49.67619|18.08960|Sedlnice
+T|49.99007|16.06444|Sedlíšťka
+T|49.65586|14.43418|Sedlčany
+T|49.84763|16.47417|Semanín
+T|50.60329|15.32417|Semily
+T|50.33160|15.87741|Semonice
+T|49.53467|12.98292|Semošice
+T|50.51797|15.28095|Semínova Lhota
+T|49.62150|17.10003|Senice na Hané
+T|49.63253|17.08665|Senice na Hané zastávka
+T|49.89710|14.72762|Senohraby
+T|50.09552|13.64649|Senomaty
+T|49.06592|15.15766|Senotín
+T|49.44059|14.42051|Sepekov
+T|49.37957|14.69735|Sezimovo Ústí
+T|49.10809|16.46267|Silůvky
+T|49.47993|16.61011|Skalice nad Svitavou
+T|50.74176|14.52224|Skalice u České Lípy
+T|50.16619|12.36873|Skalná
+T|50.43222|14.75531|Skalsko
+T|49.43713|16.05416|Sklené nad Oslavou
+T|49.92470|14.37618|Skochovice
+T|49.65618|18.12897|Skotnice
+T|49.90559|15.46144|Skovice
+T|50.44322|14.66450|Skramouš
+T|49.63890|17.17395|Skrbeň
+T|50.05210|17.48436|Skrbovice
+T|50.01839|17.77703|Skrochovice
+T|49.88859|14.14787|Skuhrov pod Brdy
+T|49.59756|13.90483|Skuhrov pod Třemšínem
+T|49.83765|15.99519|Skuteč
+T|49.71329|12.81323|Skviřín
+T|49.22387|14.16440|Skály
+T|50.27193|15.49879|Skřivany
+T|48.94709|14.01801|Skříněřov
+T|50.22852|14.07584|Slaný
+T|50.22634|14.10269|Slaný předměstí
+T|49.38492|14.62891|Slapy
+T|50.13685|16.37752|Slatina nad Zdobnicí
+T|50.42987|14.06094|Slatina pod Hazmburkem
+T|49.97500|16.16328|Slatina u Vysokého Mýta
+T|49.56716|17.10893|Slatinice
+T|49.91892|15.82515|Slatiňany
+T|49.13094|15.46219|Slaviboř
+T|49.07413|17.89932|Slavičín
+T|49.14498|16.87351|Slavkov u Brna
+T|49.91679|17.84828|Slavkov u Opavy
+T|49.52075|15.45613|Slavníč
+T|48.99367|15.34937|Slavonice
+T|50.36033|13.90063|Slavětín nad Ohří
+T|49.52306|13.89511|Slavětín u Březnice
+T|50.14696|16.24200|Slemeno
+T|50.21215|17.68352|Slezské Rudoltice
+T|50.17507|15.36675|Slibovice
+T|49.44577|14.08186|Smetanova Lhota
+T|50.29508|15.49541|Smidary
+T|50.04955|13.05053|Smilov
+T|50.30037|15.85845|Smiřice
+T|49.66065|15.34893|Smrčná
+T|50.74011|15.24359|Smržovka
+T|50.73480|15.28041|Smržovka dolní nádraží
+T|50.73202|15.25440|Smržovka střed
+T|50.73503|15.24956|Smržovka-Luční
+T|49.41861|14.74017|Smyslov
+T|50.46560|15.16775|Sobotka
+T|50.01768|17.06667|Sobotín
+T|49.69886|15.75958|Sobíňov
+T|50.37536|15.51868|Sobčice
+T|49.25538|14.72602|Soběslav
+T|49.78977|14.95985|Soběšín
+T|49.10803|16.73345|Sokolnice-Telnice
+T|50.18612|12.64456|Sokolov
+T|50.20360|16.25417|Solnice
+T|50.19996|16.25632|Solnice zastávka
+T|50.25142|13.74813|Solopysky
+T|49.97646|14.14868|Solvayovy lomy
+T|50.14552|12.40286|Soos
+T|50.07051|16.34037|Sopotnice
+T|48.90798|13.82915|Soumarský Most
+T|49.14238|17.49515|Spytihněv
+T|48.92603|13.96947|Spálenec
+T|50.63412|15.30080|Spálov
+T|49.41604|12.98625|Spáňov
+T|49.93695|14.13114|Srbsko
+T|49.52467|13.59177|Srby
+T|50.63704|14.58461|Srní u České Lípy
+T|49.98987|16.17086|Sruby
+T|49.69405|17.93197|Stachovice
+T|50.61695|13.96965|Stadice
+T|49.38421|13.01055|Starec
+T|50.41109|16.10056|Starkoč
+T|50.20981|14.69232|Stará Boleslav
+T|49.78500|14.19955|Stará Huť
+T|50.51620|15.48667|Stará Paka
+T|50.24570|12.83580|Stará Role
+T|50.21994|12.87786|Stará louka
+T|50.00006|15.75707|Staré Jesenčany
+T|50.94780|14.49173|Staré Křečany
+T|50.40605|15.35301|Staré Místo u Jičína
+T|50.16227|16.94202|Staré Město pod Sněžníkem
+T|49.07623|17.42270|Staré Město u Uherského Hradiště
+T|49.73948|12.70115|Staré Sedliště
+T|50.58738|14.62937|Staré Splavy
+T|50.01106|15.29593|Starý Kolín
+T|49.69536|13.47807|Starý Plzenec
+T|50.72087|14.37538|Starý Šachov
+T|49.54761|13.07184|Staňkov
+T|49.19512|15.80429|Stařeč
+T|49.88594|13.95943|Stašov
+T|50.04944|12.44168|Stebnice
+T|50.11985|13.41300|Stebno
+T|49.39290|14.32535|Stehlovice
+T|50.14119|13.96548|Stochov
+T|49.63972|13.15521|Stod
+T|48.85894|13.82076|Stožec
+T|50.01436|13.52731|Strachovice
+T|49.85159|12.97910|Strahov
+T|49.25523|13.91671|Strakonice
+T|49.94951|14.67800|Strančice
+T|50.18742|14.90790|Stratov
+T|50.36179|14.24210|Straškov
+T|49.54243|16.92876|Stražisko
+T|49.76210|14.74878|Struhařov
+T|49.08109|14.06079|Strunkovice nad Blanicí
+T|49.21012|13.88751|Strunkovice nad Volyňkou obec
+T|49.73079|15.83379|Stružinec
+T|50.69829|14.44991|Stružnice
+T|50.78857|15.02556|Stráž nad Nisou
+T|50.34051|13.05914|Stráž nad Ohří
+T|49.66512|12.77280|Stráž u Tachova
+T|48.89751|17.31853|Strážnice
+T|49.22255|16.06967|Studenec
+T|49.70756|18.06661|Studénka
+T|49.71633|18.06512|Studénka město
+T|49.82633|13.57684|Stupno
+T|50.62982|14.43765|Stvolínky
+T|49.67047|15.31952|Stvořidla
+T|50.10428|15.75762|Stéblová
+T|50.09313|15.75254|Stéblová obec
+T|49.80638|13.54352|Střapole
+T|49.76030|15.02183|Střechov nad Sázavou
+T|50.12455|14.25455|Středokluky
+T|49.15394|16.48414|Střelice
+T|49.15653|16.50618|Střelice dolní
+T|49.17628|18.09988|Střelná
+T|50.67049|13.74059|Střelná v Krušných horách
+T|49.30515|13.77891|Střelské Hoštice
+T|49.54363|14.62134|Střezimíř
+T|49.69722|17.15693|Střeň
+T|49.88348|14.85711|Stříbrná Skalice
+T|49.59727|15.68287|Stříbrné Hory
+T|49.74132|13.00064|Stříbro
+T|49.45892|15.62547|Střítež u Jihlavy
+T|49.38474|14.94261|Střítež u Černovic
+T|49.67888|18.56930|Střítež u Českého Těšína
+T|49.13411|15.13491|Střížovice
+T|48.90228|14.88282|Suchdol nad Lužnicí
+T|48.89222|14.88034|Suchdol nad Lužnicí zastávka
+T|49.64251|17.93887|Suchdol nad Odrou
+T|50.53244|16.00550|Suchovršice
+T|49.40666|14.94578|Sudkův Důl
+T|50.43803|14.74472|Sudoměř u Mladé Boleslavi
+T|49.24939|14.05712|Sudoměř u Písku
+T|48.87177|17.24320|Sudoměřice nad Moravou
+T|49.29483|14.54131|Sudoměřice u Bechyně
+T|49.50719|14.65958|Sudoměřice u Tábora
+T|50.49951|14.03628|Sulejovice
+T|49.76209|13.06180|Sulislav
+T|49.24674|13.54179|Sušice
+T|50.19020|12.62478|Svatava
+T|50.19744|12.60725|Svatava zastávka
+T|49.79926|17.66778|Svatoňovice
+T|49.04604|18.03529|Svatý Štěpán
+T|49.13801|14.10383|Svinětice
+T|49.75945|16.47945|Svitavy
+T|49.76352|16.45537|Svitavy zastávka
+T|49.73517|16.48336|Svitavy-Lány
+T|49.49967|16.59867|Svitávka
+T|50.62221|15.81994|Svoboda nad Úpou
+T|49.94383|17.65398|Svobodné Heřmanice
+T|50.19830|13.63217|Svojetín
+T|49.75508|13.65597|Svojkovice
+T|49.76310|12.91111|Svojšín
+T|50.79047|14.59258|Svor
+T|49.57410|12.76977|Svržno
+T|50.66321|14.10351|Svádov
+T|50.26848|15.19275|Svídnice
+T|50.57902|13.79764|Světec
+T|49.97020|14.65797|Světice
+T|50.04313|17.39442|Světlá Hora
+T|49.67050|15.41729|Světlá nad Sázavou
+T|49.66921|15.40152|Světlá nad Sázavou město
+T|49.69044|15.42421|Světlá nad Sázavou-Josefodol
+T|50.62934|15.07848|Sychrov
+T|50.13936|16.21861|Synkov
+T|50.51344|15.43673|Syřenov
+T|49.71779|16.21487|Sádek u Poličky
+T|50.13017|15.24119|Sány
+T|49.87520|14.90618|Sázava
+T|49.56286|15.84746|Sázava u Žďáru
+T|49.86926|14.89387|Sázava zastávka
+T|49.72988|15.39861|Sázavka
+T|49.80220|12.63884|Tachov
+T|49.79402|12.64262|Tachov zastávka
+T|50.54637|15.46517|Tample
+T|50.74347|15.31103|Tanvald
+T|50.73702|15.30526|Tanvald zastávka
+T|50.76096|15.26755|Tanvaldský Špičák
+T|50.09936|14.98505|Tatce
+T|49.85945|16.71044|Tatenice
+T|49.43880|13.80985|Tchořovice
+T|50.31185|13.97195|Telce
+T|50.72690|13.96470|Telnice
+T|49.18256|15.46459|Telč
+T|49.17444|15.46238|Telč-Staré Město
+T|49.19569|14.34660|Temelín
+T|49.53006|17.74851|Teplice nad Bečvou
+T|50.58164|16.17874|Teplice nad Metují
+T|50.59225|16.17262|Teplice nad Metují město
+T|50.59696|16.14974|Teplice nad Metují skály
+T|50.64657|13.82927|Teplice v Čechách
+T|50.63375|13.81372|Teplice zámecká zahrada
+T|50.14910|12.85276|Teplička
+T|49.97564|12.85996|Teplá
+T|48.95657|16.93807|Terezín
+T|49.17247|16.40763|Tetčice
+T|50.27766|12.17680|Thonbrunn
+T|50.26747|14.55665|Tišice
+T|49.34699|16.41811|Tišnov
+T|49.25404|17.50132|Tlumačov
+T|49.72445|13.24215|Tlučná
+T|49.58877|13.98792|Tochovice
+T|49.59823|13.99446|Tochovice zastávka
+T|49.69838|14.65221|Tomice
+T|50.32274|17.10773|Tomíkovice
+T|50.30181|13.72839|Touchovice u Loun
+T|49.98546|15.01497|Toušice
+T|50.05058|12.99126|Toužim
+T|49.42592|17.28212|Tovačov
+T|49.42944|13.30936|Točník
+T|49.42017|12.83953|Trhanov
+T|49.70740|15.01003|Trhový Štěpánov
+T|50.64747|13.98700|Trmice
+T|50.31927|13.59723|Trnovany
+T|50.54352|14.17655|Trnovany u Litoměřic
+T|50.44465|14.71872|Trnová
+T|48.90278|14.58713|Trocnov
+T|49.81325|17.07630|Troubelice střed
+T|49.82541|17.06691|Troubelice zastávka
+T|49.16397|16.52646|Troubsko
+T|49.84516|16.56959|Trpík
+T|49.81549|13.04687|Trpísty
+T|50.56520|15.91106|Trutnov hlavní nádraží
+T|50.57784|15.94516|Trutnov střed
+T|50.57791|15.96070|Trutnov zastávka
+T|50.57917|15.95853|Trutnov-Poříčí
+T|50.59080|15.88181|Trutnov-Staré město
+T|50.56095|15.88758|Trutnov-Volanov
+T|50.58082|15.88823|Trutnov-Zelená Louka
+T|50.11392|12.39958|Tršnice
+T|49.88984|16.26037|Tržek
+T|50.13623|14.26808|Tuchoměřice
+T|50.07698|14.77046|Tuklaty
+T|49.97446|15.84980|Tuněchody
+T|50.58706|15.13884|Turnov
+T|50.57954|15.15202|Turnov město
+T|50.34065|13.59724|Tvršice
+T|49.41422|14.67697|Tábor
+T|49.39304|14.69306|Tábor-Čápův Dvůr
+T|48.97113|17.21636|Tábořiště
+T|49.22320|14.40832|Týn nad Vltavou
+T|50.03772|15.35967|Týnec nad Labem
+T|49.83421|14.59327|Týnec nad Sázavou
+T|49.88607|15.23537|Týniště
+T|50.15481|16.07425|Týniště nad Orlicí
+T|50.69608|14.20311|Těchlovice
+T|50.06900|16.60821|Těchonín
+T|48.61950|14.32159|Těchoraz
+T|50.20009|15.98225|Třebechovice pod Orebem
+T|49.33379|14.57275|Třebelice
+T|49.02093|15.65772|Třebelovice
+T|50.47394|14.00145|Třebenice
+T|50.48148|13.98613|Třebenice město
+T|50.12562|14.96074|Třebestovice
+T|50.13152|12.40398|Třebeň
+T|49.93149|15.34145|Třebešice
+T|49.85817|16.49739|Třebovice v Čechách
+T|50.32734|15.70376|Třebovětice
+T|49.01530|14.76073|Třeboň
+T|49.00730|14.77771|Třeboň lázně
+T|50.52343|13.57967|Třebušice
+T|50.45760|13.90828|Třebívlice
+T|49.21148|15.88443|Třebíč
+T|49.20889|15.85285|Třebíč-Borovina
+T|49.48192|13.61441|Třebčice
+T|49.55080|17.11819|Třebčín
+T|49.31757|17.51951|Třebětice
+T|50.19991|17.57379|Třemešná ve Slezsku
+T|49.62538|12.70127|Třemešné pod Přimdou
+T|49.87205|15.57627|Třemošnice
+T|49.81914|13.39468|Třemošná u Plzně
+T|49.29840|15.47653|Třešť
+T|49.28743|15.48199|Třešť město
+T|49.68777|18.66127|Třinec (Trzyniec)
+T|49.67089|18.68086|Třinec centrum (Trzyniec Centrum)
+T|49.70229|18.64093|Třinec-Konská (Trzyniec-Końska)
+T|48.88334|14.34864|Třísov
+T|49.98737|16.01472|Uhersko
+T|49.06682|17.45725|Uherské Hradiště
+T|49.02180|17.64362|Uherský Brod
+T|48.98195|17.40342|Uherský Ostroh
+T|49.88227|15.05983|Uhlířské Janovice
+T|49.02259|16.96501|Uhřice u Kyjova
+T|50.10519|14.13630|Unhošť
+T|49.77922|17.11592|Uničov
+T|49.77755|17.14483|Uničov zastávka
+T|50.69090|13.89717|Unčín
+T|49.05353|15.41895|Urbaneč
+T|49.25794|17.99947|Valašská Polanka
+T|49.14223|18.02264|Valašské Klobouky
+T|49.47452|17.96071|Valašské Meziříčí
+T|49.16580|18.06316|Valašské Příkazy
+T|50.98123|14.50704|Valdek
+T|48.74755|16.74275|Valtice
+T|48.74867|16.76213|Valtice město
+T|50.67241|14.12193|Valtířov
+T|49.97685|12.66592|Valy u Mariánských Lázní
+T|50.03217|15.61355|Valy u Přelouče
+T|50.03068|15.61397|Valy u Přelouče zastávka
+T|49.93369|17.43706|Valšov
+T|50.11775|16.28274|Vamberk
+T|50.90318|14.63820|Varnsdorf
+T|50.90962|14.61259|Varnsdorf staré nádraží
+T|50.91857|14.60426|Varnsdorf–Brewery Kocour
+T|49.72989|13.28467|Vejprnice
+T|50.50074|13.03372|Vejprty
+T|50.48332|13.03382|Vejprty koupaliště
+T|50.46646|13.02228|Vejprty zastávka
+T|49.97302|15.87314|Vejvanovice
+T|49.81074|16.58622|Veksl MPD
+T|50.21460|15.02357|Veleliby
+T|50.29698|13.57257|Veletice
+T|48.81990|14.43658|Velešín
+T|48.83620|14.45309|Velešín město
+T|50.06762|15.12477|Velim
+T|50.26724|14.23992|Velká Bučina
+T|49.59344|17.34508|Velká Bystřice
+T|49.59759|17.36451|Velká Bystřice zastávka
+T|50.37557|16.02917|Velká Jesenice
+T|50.36227|17.12692|Velká Kraš
+T|49.33693|13.95664|Velká Turná
+T|48.87901|17.51056|Velká nad Veličkou
+T|49.93095|17.35222|Velká Štáhle
+T|49.74861|18.03102|Velké Albrechtice
+T|50.66423|14.14630|Velké Březno
+T|50.71146|15.31378|Velké Hamry
+T|50.71961|15.31349|Velké Hamry město
+T|49.93815|17.96954|Velké Hoštice
+T|49.29842|13.66346|Velké Hydčice
+T|49.36218|18.30133|Velké Karlovice
+T|49.35874|18.28617|Velké Karlovice zastávka
+T|50.03176|17.04264|Velké Losiny
+T|50.04001|17.05581|Velké Losiny zastávka
+T|50.02504|17.03726|Velké Losiny zámek
+T|49.34587|16.02182|Velké Meziříčí
+T|49.35278|16.00886|Velké Meziříčí zastávka
+T|49.61141|16.69074|Velké Opatovice
+T|48.88979|16.82359|Velké Pavlovice
+T|48.90169|16.82237|Velké Pavlovice zastávka
+T|49.92550|14.62910|Velké Popovice
+T|50.46354|16.18195|Velké Poříčí
+T|50.54023|16.02204|Velké Svatoňovice
+T|50.16480|15.10066|Velké Zboží
+T|50.52620|14.08045|Velké Žernoseky
+T|50.53874|14.06322|Velké Žernoseky zastávka
+T|49.34586|13.70081|Velký Bor
+T|50.34671|14.51561|Velký Borek
+T|50.69845|14.72832|Velký Grunov
+T|50.19655|12.37245|Velký Luh
+T|50.10191|15.19347|Velký Osek
+T|49.12031|15.44760|Velký Pěčín
+T|50.29310|12.87733|Velký Rybník
+T|50.74256|14.73331|Velký Valtinov
+T|50.99319|14.37967|Velký Šenov
+T|51.00472|14.39401|Velký Šenov zastávka
+T|50.07375|15.19999|Veltruby
+T|50.35953|13.86433|Veltěže
+T|50.28218|14.24318|Velvary
+T|50.60651|13.89524|Velvěty
+T|49.74544|16.41250|Vendolí
+T|49.73655|16.39581|Vendolí zastávka
+T|49.65641|18.69606|Vendryně (Wędrynia)
+T|50.01149|16.55769|Verměřovice
+T|49.01901|15.83141|Vesce
+T|50.74354|15.08078|Vesec u Liberce
+T|50.79442|14.36287|Veselé pod Rabštejnem
+T|49.19383|14.71679|Veselí nad Lužnicí
+T|49.17707|14.69595|Veselí nad Lužnicí zastávka
+T|48.94890|17.38244|Veselí nad Moravou
+T|48.96702|17.39887|Veselí nad Moravou-Milokošť
+T|48.93725|17.36146|Veselí nad Moravou-Zarazice
+T|50.01678|15.62335|Veselí u Přelouče
+T|49.55551|16.00318|Veselíčko
+T|49.53690|18.13310|Veřovice
+T|49.97688|17.01383|Vikýřovice
+T|49.96687|17.00377|Vikýřovice u penzionu
+T|49.98529|17.01976|Vikýřovice-Lesní
+T|50.74705|14.18088|Vilsnice
+T|50.30812|13.33171|Vilémov u Kadaně
+T|50.30407|13.31112|Vilémov u Kadaně město
+T|50.99236|14.32101|Vilémov u Šluknova
+T|49.68451|15.30897|Vilémovice
+T|49.05557|13.79085|Vimperk
+T|49.04878|13.76411|Vimperk zastávka
+T|50.39931|15.38072|Vitiněves
+T|50.28262|13.33819|Vitčice
+T|49.22008|17.84320|Vizovice
+T|50.97329|15.02860|Višňová
+T|49.85483|14.10025|Vižina
+T|49.21181|15.98212|Vladislav zastávka
+T|50.08746|16.90017|Vlaské
+T|49.36922|14.22329|Vlastec
+T|49.72879|15.17186|Vlastějovice
+T|49.70046|14.89749|Vlašim
+T|49.69808|14.90412|Vlašim zastávka
+T|49.80426|15.40515|Vlkaneč
+T|49.48657|12.81471|Vlkanov
+T|49.14808|14.72840|Vlkov nad Lužnicí
+T|49.32704|16.20087|Vlkov-Osová
+T|49.87491|14.81435|Vlkovec
+T|49.94669|12.74267|Vlkovice
+T|48.98789|17.16648|Vlkoš
+T|49.03305|18.05303|Vlárský průsmyk
+T|49.41571|15.15842|Vlásenice
+T|49.47426|16.16576|Vláček Union Pacific
+T|49.30549|15.95057|Vlčatín
+T|50.54663|15.83419|Vlčice
+T|50.67115|14.60730|Vlčí Důl-Dobranov
+T|48.93081|17.34759|Vnorovy
+T|49.76013|13.27569|Vochov
+T|50.10307|12.84551|Vodná
+T|50.33656|14.94714|Voděrady
+T|49.14512|14.18001|Vodňany
+T|50.38443|15.49795|Vojice
+T|50.30739|13.01618|Vojkovice nad Ohří
+T|49.05660|16.59766|Vojkovice nad Svratkou
+T|50.16762|12.32767|Vojtanov
+T|50.16250|12.31314|Vojtanov obec
+T|49.79205|15.97200|Vojtěchov
+T|48.90714|13.88346|Volary
+T|50.42874|13.68558|Volevčice
+T|49.17044|13.89292|Volyně
+T|49.66159|14.55648|Voračice
+T|49.63786|14.61956|Votice
+T|48.97663|17.21936|Vracov
+T|48.97108|17.21590|Vracov hlavní nádraží
+T|49.48280|17.15072|Vrahovice
+T|49.78987|14.98604|Vranice
+T|49.76224|13.04084|Vranov u Stříbra
+T|48.96373|16.60480|Vranovice
+T|49.93847|14.38112|Vrané nad Vltavou
+T|49.77075|18.30279|Vratimov
+T|50.74013|15.09350|Vratislavice nad Nisou
+T|50.33513|14.37149|Vraňany
+T|50.36757|14.26406|Vražkov
+T|49.85483|15.93739|Vrbatův Kostelec
+T|50.30965|14.00071|Vrbičany
+T|50.38992|14.14047|Vrbka
+T|50.32726|13.90594|Vrbno nad Lesy
+T|50.11787|17.38782|Vrbno pod Pradědem
+T|50.11422|17.39818|Vrbno pod Pradědem zastávka
+T|49.50173|17.19806|Vrbátky
+T|50.05470|15.00032|Vrbčany
+T|50.61850|15.62312|Vrchlabí
+T|49.65856|14.57935|Vrchotovy Janovice
+T|49.34024|14.17101|Vrcovice
+T|49.91474|15.43027|Vrdy-Koudelov
+T|49.34940|13.29982|Vrhaveč
+T|50.18410|13.37382|Vroutek
+T|48.91732|14.35732|Vrábče
+T|50.44315|14.68691|Vrátno
+T|49.98417|14.12416|Vráž u Berouna
+T|49.39187|14.12488|Vráž u Písku
+T|49.33494|17.99435|Vsetín
+T|50.34164|12.71234|Vysoká Pec
+T|49.95559|16.14699|Vysoké Mýto
+T|49.95033|16.15588|Vysoké Mýto město
+T|49.17838|16.29146|Vysoké Popovice
+T|50.26047|13.39174|Vysoké Třebušice
+T|50.11651|16.93765|Vysoké Žibřidovice
+T|49.27851|16.99152|Vyškov na Moravě
+T|48.79642|14.86555|Vyšné
+T|48.62373|14.30880|Vyšší Brod klášter
+T|50.39310|16.12301|Václavice
+T|50.28428|17.09452|Vápenná
+T|49.97493|17.85859|Vávrovice
+T|49.04280|17.50260|Vésky
+T|50.62715|15.48413|Víchová nad Jizerou
+T|49.75306|15.87800|Vítanov
+T|49.77413|17.74759|Vítkov
+T|48.78868|14.47286|Výheň
+T|50.05290|15.25562|Výrovna
+T|50.48102|13.21115|Výsluní
+T|50.39252|13.68892|Výškov v Čechách
+T|49.30480|15.04285|Včelnička
+T|48.92391|14.44913|Včelná
+T|49.79870|16.57429|Větrná MPD
+T|49.40821|17.41602|Věžky
+T|49.45190|16.27020|Věžná
+T|49.32468|14.56640|Všechlapy
+T|50.25702|14.95789|Všejany
+T|49.81604|13.56413|Všenice
+T|49.93285|14.30507|Všenory
+T|49.86714|14.10674|Všeradice
+T|50.25262|15.76461|Všestary
+T|50.04153|13.60252|Všesulov
+T|50.28246|14.58498|Všetaty
+T|50.21446|15.48981|Zachrašťany
+T|49.58519|13.94040|Zadní Poříčí
+T|49.91874|14.20261|Zadní Třebaň
+T|50.93396|14.48232|Zahrady u Rumburka
+T|50.63729|14.50620|Zahrádky u České Lípy
+T|49.90053|15.87988|Zaječice
+T|48.88967|16.78150|Zaječí
+T|49.37960|15.25941|Zajíčkov
+T|50.03497|15.00836|Zalešany
+T|49.18754|16.35855|Zastávka u Brna
+T|50.05637|13.62925|Zavidov
+T|49.46818|18.04126|Zašová
+T|50.03579|13.91830|Zbečno
+T|49.52114|16.58389|Zboněk
+T|49.25354|17.28310|Zborovice
+T|49.24631|17.28972|Zborovice zastávka
+T|49.81570|15.18962|Zbraslavice
+T|49.08966|14.32660|Zbudov
+T|50.02628|14.28052|Zbuzany
+T|48.93715|13.97695|Zbytiny
+T|49.13263|16.80676|Zbýšov
+T|49.68057|13.21568|Zbůch
+T|49.60648|13.51700|Zdemyslice
+T|49.90777|13.97967|Zdice
+T|50.77013|14.87671|Zdislava
+T|49.68953|14.96949|Zdislavice
+T|49.22872|17.31529|Zdounky
+T|50.31544|14.78610|Zdětín u Chotětova
+T|49.52830|16.98773|Zdětín u Prostějova
+T|50.13029|14.66552|Zeleneč
+T|49.24927|13.17893|Zelená Lhota
+T|50.23333|14.26693|Zeměchy
+T|48.85046|14.35146|Zlatá Koruna
+T|50.25937|17.38323|Zlaté Hory
+T|49.87959|14.73343|Zlenice
+T|49.06558|14.36165|Zliv
+T|50.28488|14.07830|Zlonice
+T|50.21486|14.50751|Zlonín
+T|49.22646|17.65841|Zlín střed
+T|49.22925|17.67247|Zlín-Dlouhá
+T|49.21650|17.62360|Zlín-Louky
+T|49.20981|17.59934|Zlín-Malenovice
+T|49.20552|17.57372|Zlín-Malenovice zastávka
+T|49.22588|17.69122|Zlín-Podvesná
+T|49.21979|17.64032|Zlín-Prštné
+T|49.22092|17.71548|Zlín-Příluky
+T|49.20765|17.58469|Zlín-U mlýna
+T|48.85270|16.05908|Znojmo
+T|48.86534|16.04861|Znojmo nemocnice
+T|48.82077|16.04424|Znojmo-Nový Šaldorf
+T|49.69973|14.86928|Znosim
+T|49.73863|15.10396|Zruč nad Sázavou
+T|49.74317|15.08548|Zruč nad Sázavou zastávka
+T|50.64698|14.21745|Zubrnice-Týniště
+T|49.46107|18.09402|Zubří
+T|50.23061|14.18388|Zvoleněves
+T|49.12501|14.26481|Záblatíčko
+T|48.97061|17.21602|Záboří
+T|50.03094|15.34889|Záboří nad Labem
+T|49.16054|14.27432|Záboří u Číčenic
+T|49.87221|16.88708|Zábřeh na Moravě
+T|49.88451|16.88869|Zábřeh na Moravě zastávka
+T|49.21588|17.80862|Zádveřice
+T|49.29144|17.49127|Záhlinice
+T|49.02127|17.77792|Záhorovice
+T|50.07837|13.19341|Záhořice
+T|49.34323|14.20355|Záhoří
+T|50.19967|14.25150|Zákolany
+T|50.19697|14.25021|Zákolany zastávka
+T|50.67872|14.64986|Zákupy-Božíkov
+T|50.45652|14.32507|Záluží
+T|49.99493|16.10838|Zámrsk
+T|50.10013|16.29681|Záměl
+T|49.51622|12.83295|Zámělíč
+T|49.96268|15.03192|Zásmuky
+T|50.03953|17.59634|Zátor
+T|48.95076|13.80275|Zátoň
+T|48.95169|13.82263|Zátoň-Boubín
+T|49.89760|18.50926|Závada
+T|49.48048|13.87023|Závišín
+T|49.87729|15.56246|Závratec
+T|49.32763|13.15784|Úborsko
+T|50.17007|14.35193|Úholičky
+T|49.97740|15.86232|Úhřetice
+T|50.08265|14.40354|Újezd
+T|49.57799|12.74962|Újezd Svatého Kříže
+T|50.04576|13.89260|Újezd nad Zbečnem
+T|49.10729|16.74566|Újezd u Brna
+T|50.03183|16.17888|Újezd u Chocně
+T|49.77514|17.18713|Újezd u Uničova
+T|49.03284|17.68519|Újezdec u Luhačovic
+T|49.15067|14.24339|Újezdec u Číčenic
+T|50.46592|14.03754|Úpohlavy
+T|50.60925|13.87851|Úpořiny
+T|50.65943|14.04452|Ústí nad Labem hlavní nádraží
+T|50.66424|14.08140|Ústí nad Labem sever
+T|50.65819|14.02976|Ústí nad Labem západ
+T|50.64989|14.04854|Ústí nad Labem-Střekov
+T|49.97136|16.37798|Ústí nad Orlicí
+T|49.96856|16.39541|Ústí nad Orlicí město
+T|50.51614|15.45757|Ústí u Staré Paky
+T|49.30975|18.00340|Ústí u Vsetína zastávka
+T|50.04937|17.75502|Úvalno
+T|50.07504|14.72266|Úvaly
+T|50.58541|14.33492|Úštěk
+T|50.58389|14.33280|Úštěk horní nádraží
+T|50.25642|14.37640|Úžice
+T|49.75302|16.05987|Čachnov
+T|50.27256|14.94900|Čachovice
+T|50.12848|16.17359|Častolovice
+T|50.12762|16.19047|Častolovice zastávka
+T|49.31952|16.46580|Čebín
+T|49.25154|14.01566|Čejetice
+T|48.94219|16.95861|Čejč
+T|49.55292|18.33425|Čeladná
+T|49.51348|17.09676|Čelechovice na Hané
+T|50.15821|14.75451|Čelákovice
+T|50.15988|14.73539|Čelákovice zastávka
+T|50.16755|14.76546|Čelákovice-Jiřina
+T|49.41198|17.19131|Čelčice
+T|49.34902|14.57988|Čenkov u Malšic
+T|50.13142|15.76995|Čeperka
+T|50.06481|16.13585|Čermná nad Orlicí
+T|49.78831|17.70853|Čermná ve Slezsku
+T|49.52750|17.77177|Černotín
+T|51.00784|15.03756|Černousy
+T|50.45441|13.36339|Černovice u Chomutova
+T|49.37395|14.96548|Černovice u Tábora
+T|49.98707|16.42699|Černovír
+T|49.95951|14.32342|Černošice
+T|49.94639|14.33042|Černošice-Mokropsy
+T|50.31555|15.86958|Černožice
+T|48.74276|14.08699|Černá v Pošumaví
+T|49.84097|15.21622|Černíny
+T|48.92663|14.40574|Černý Dub
+T|48.86067|13.86073|Černý Kříž
+T|50.05364|15.23117|Černý most
+T|50.33451|16.10560|Černčice
+T|48.64425|14.28626|Čertova Stěna
+T|49.72398|17.09132|Červenka
+T|49.72114|17.07645|Červenka zastávka
+T|50.04710|16.74648|Červená Voda
+T|50.03668|16.74600|Červená Voda - Pod rozhlednou
+T|49.37171|14.27317|Červená nad Vltavou
+T|49.98769|15.20605|Červené Pečky
+T|49.49582|13.30495|Červené Poříčí
+T|50.48381|16.07556|Červený Kostelec
+T|50.10473|16.78374|Červený Potok
+T|49.56023|14.61375|Červený Újezd u Votic zastávka
+T|49.85041|14.70163|Čerčany
+T|49.28511|16.56624|Česká
+T|50.79584|14.41390|Česká Kamenice
+T|49.37456|12.86519|Česká Kubice
+T|50.67689|14.53254|Česká Lípa hlavní nádraží
+T|50.69174|14.53319|Česká Lípa střelnice
+T|50.68238|14.52281|Česká Lípa-Holý vrch
+T|50.55243|16.18484|Česká Metuje
+T|50.39553|16.05407|Česká Skalice
+T|49.89708|16.44668|Česká Třebová
+T|50.25315|17.21534|Česká Ves
+T|50.25977|17.22758|Česká Ves bazén
+T|48.95926|14.47543|České Budějovice jižní zastávka
+T|48.99449|14.47946|České Budějovice severní zastávka
+T|50.43855|13.02058|České Hamry
+T|48.76939|14.95760|České Velenice
+T|50.07664|14.86653|Český Brod
+T|48.82239|14.31706|Český Krumlov
+T|49.74329|18.62246|Český Těšín
+T|49.81390|14.93676|Český Šternberk
+T|49.80862|14.92971|Český Šternberk zastávka
+T|50.13037|16.14735|Čestice
+T|49.47038|14.07669|Čimelice
+T|50.24377|15.23297|Činěves
+T|49.85821|14.31952|Čisovice
+T|50.03291|13.56853|Čistá
+T|49.11116|13.82914|Čkyně
+T|49.86845|14.71395|Čtyřkoly
+T|49.56404|16.91296|Čunín
+T|49.91526|15.39473|Čáslav
+T|49.28197|15.76325|Číchov
+T|49.15360|14.22152|Číčenice
+T|50.48368|14.03917|Čížkovice
+T|49.75196|15.04869|Čížov
+T|49.35361|14.09781|Čížová
+T|50.93887|15.15114|Řasnice
+T|50.93953|15.16327|Řasnice zastávka
+T|50.61270|13.95486|Řehlovice
+T|49.27770|13.91423|Řepice
+T|50.40689|14.95556|Řepov
+T|50.64249|13.80082|Řetenice
+T|49.91651|14.23869|Řevnice
+T|50.14908|13.83280|Řevničov
+T|50.03165|15.47836|Řečany nad Labem
+T|50.43067|16.10269|Řešetova Lhota
+T|50.17912|14.35527|Řež
+T|49.36521|16.30837|Řikonín
+T|49.89198|16.24630|Řídký
+T|49.37907|17.45393|Říkovice
+T|49.20709|14.73248|Řípec
+T|49.22439|14.72414|Řípec-Dráchov
+T|50.40711|15.11017|Řítonice
+T|49.99771|14.66352|Říčany
+T|48.91258|16.70639|Šakvice
+T|50.09181|13.62873|Šanov
+T|48.78086|16.02608|Šatov
+T|49.55408|16.69939|Šebetov
+T|49.12220|15.83255|Šebkovice
+T|49.24990|17.36385|Šelešovice
+T|49.77653|18.37014|Šenov
+T|49.61136|17.99347|Šenov u Nového Jičína
+T|49.68457|13.98911|Ševčínská štola
+T|49.68371|13.98732|Ševčínský důl
+T|49.09728|14.57427|Ševětín
+T|49.43799|14.97493|Šimpach
+T|50.06660|17.47345|Široká Niva
+T|49.15685|16.72940|Šlapanice
+T|49.16334|16.71987|Šlapanice zastávka
+T|49.54517|15.65267|Šlapanov
+T|51.00646|14.46159|Šluknov
+T|51.00675|14.43543|Šluknov zastávka
+T|49.53682|17.81219|Špičky
+T|49.16159|13.22262|Špičák
+T|49.68369|17.28478|Štarnov
+T|49.72066|17.28579|Šternberk
+T|49.82797|15.20794|Štipoklasy
+T|49.58287|18.13228|Štramberk
+T|49.90074|17.82308|Štáblovice
+T|50.24311|12.15571|Štítary
+T|49.91297|18.00577|Štítina
+T|49.97018|16.75475|Štíty
+T|50.04990|13.11966|Štědrá
+T|49.95062|18.03460|Štěpánkovice
+T|49.67102|17.22120|Štěpánov
+T|49.37316|16.38983|Štěpánovice
+T|49.66677|14.51693|Štětkovice
+T|50.45663|14.39387|Štětí
+T|49.62666|16.81738|Šubířov
+T|49.03003|17.72379|Šumice
+T|48.92314|15.87431|Šumná
+T|49.96191|16.98309|Šumperk
+T|50.10722|13.56714|Švihov u Jesenice
+T|49.47374|13.29075|Švihov u Klatov
+T|49.31389|15.35591|Švábov
+T|50.40785|15.56080|Šárovcova Lhota
+T|49.65759|13.53736|Šťáhlavice
+T|49.66923|13.50378|Šťáhlavy
+T|50.03964|15.02422|Žabonosy
+T|50.41547|14.08509|Žabovřesky nad Ohří
+T|49.01118|16.59486|Žabčice
+T|50.58918|13.90060|Žalany
+T|50.58722|13.91624|Žalany zastávka
+T|50.52477|14.09586|Žalhostice
+T|50.07390|16.45007|Žamberk
+T|50.71210|14.38969|Žandov
+T|50.33656|13.55521|Žatec
+T|50.33809|13.53505|Žatec západ
+T|50.29015|13.23910|Ždov
+T|49.70006|15.80441|Ždírec nad Doubravou
+T|49.55078|13.57392|Ždírec u Plzně
+T|49.21963|17.74421|Želechovice nad Dřevnicí
+T|50.52518|13.72515|Želenice nad Bílinou
+T|50.46229|15.37589|Železnice
+T|49.13636|13.23691|Železná Ruda centrum
+T|49.14333|13.22938|Železná Ruda město
+T|49.12196|13.21033|Železná Ruda-Alžbětín
+T|50.63994|15.26536|Železný Brod
+T|50.24183|13.55722|Želeč
+T|50.36309|13.28566|Želina
+T|49.75535|15.14086|Želivec
+T|49.46906|13.63048|Želvice
+T|50.60135|13.77174|Želénky
+T|49.56463|18.13068|Ženklava
+T|49.86048|16.65491|Žichlínek
+T|49.26771|13.61735|Žichovice
+T|49.03279|16.61720|Židlochovice
+T|50.44788|13.86524|Židovice
+T|50.04676|13.36286|Žihle
+T|50.58705|13.96505|Žim
+T|50.40331|15.84796|Žireč
+T|50.36112|15.32459|Žitětín
+T|50.39423|14.61312|Živonín
+T|49.46341|13.69134|Životice
+T|50.36456|13.54197|Žiželice
+T|49.88341|15.55560|Žlebské Chvalovice
+T|49.89029|15.47744|Žleby
+T|49.89430|15.48992|Žleby zastávka
+T|50.01606|13.95585|Žloukovice
+T|50.08459|13.15941|Žlutice
+T|48.76384|14.10094|Žlábek
+T|50.30742|17.10279|Žulová
+T|50.14813|12.33551|Žírovice-Seníky
+T|50.53743|16.20410|Žďár nad Metují
+T|50.11952|16.06707|Žďár nad Orlicí
+T|49.55379|15.93917|Žďár nad Sázavou
+T|49.26408|15.07491|Žďár u Kamenice nad Lipou
+T|49.82629|15.97806|Žďárec u Skutče

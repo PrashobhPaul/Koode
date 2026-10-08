@@ -1,0 +1,750 @@
+# Transit for Koode, PT. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|41.23712|-8.66960|Aeroporto|Metro do Porto|M
+S|41.14859|-8.61097|Aliados|Metro do Porto|M
+S|41.36435|-8.74492|Alto de Pega|Metro do Porto|M
+S|41.21689|-8.64103|Araújo|Metro do Porto|M
+S|41.34595|-8.72807|Azurara|Metro do Porto|M
+S|41.18552|-8.54585|Baguim|Metro do Porto|M
+S|41.14977|-8.60583|Bolhão|Metro do Porto|M
+S|41.23752|-8.66524|Botica|Metro do Porto|M
+S|41.18383|-8.69145|Brito Capelo|Metro do Porto|M
+S|41.18337|-8.55386|Campainha|Metro do Porto|M
+S|41.15073|-8.58564|Campanhã|Metro do Porto|M
+S|41.14875|-8.59869|Campo 24 de Agosto|Metro do Porto|M
+S|41.15856|-8.62190|Carolina Michaelis|Metro do Porto|M
+S|41.17984|-8.54351|Carreira|Metro do Porto|M
+S|41.16063|-8.62869|Casa da Música|Metro do Porto|M
+S|41.26273|-8.61699|Castêlo da Maia|Metro do Porto|M
+S|41.18065|-8.68125|Câmara de Matosinhos|Metro do Porto|M
+S|41.12966|-8.60617|Câmara Gaia|Metro do Porto|M
+S|41.20069|-8.64975|Cândido dos Reis|Metro do Porto|M
+S|41.16508|-8.59890|Combatentes|Metro do Porto|M
+S|41.16569|-8.57868|Contumil|Metro do Porto|M
+S|41.23300|-8.65663|Crestins|Metro do Porto|M
+S|41.22231|-8.63900|Custió|Metro do Porto|M
+S|41.20029|-8.65558|Custóias|Metro do Porto|M
+S|41.11953|-8.60623|Dom João II|Metro do Porto|M
+S|41.16050|-8.58205|Dragon Stadium|Metro do Porto|M
+S|41.32118|-8.71868|Espaço Natureza|Metro do Porto|M
+S|41.21603|-8.65456|Esposade|Metro do Porto|M
+S|41.18574|-8.66122|Estádio do Mar|Metro do Porto|M
+S|41.15723|-8.60928|Faria Guimarães|Metro do Porto|M
+S|41.17127|-8.54278|Fânzeres|Metro do Porto|M
+S|41.19415|-8.65578|Fonte do Cuco|Metro do Porto|M
+S|41.16549|-8.63635|Francos|Metro do Porto|M
+S|41.23433|-8.62396|Fórum Maia|Metro do Porto|M
+S|41.13393|-8.60753|General Torres|Metro do Porto|M
+S|41.14652|-8.59304|Heroísmo|Metro do Porto|M
+S|41.10582|-8.59115|Hospital Santos Silva|Metro do Porto|M
+S|41.18323|-8.60227|Hospital São João|Metro do Porto|M
+S|41.18121|-8.60456|IPO|Metro do Porto|M
+S|41.26885|-8.61543|ISMAI|Metro do Porto|M
+S|41.13761|-8.60871|Jardim do Morro|Metro do Porto|M
+S|41.12610|-8.60566|João de Deus|Metro do Porto|M
+S|41.15709|-8.61680|Lapa|Metro do Porto|M
+S|41.17574|-8.56218|Levada|Metro do Porto|M
+S|41.25493|-8.66805|Lidador|Metro do Porto|M
+S|41.25355|-8.62837|Mandim|Metro do Porto|M
+S|41.11064|-8.60003|Manuel Leão|Metro do Porto|M
+S|41.16117|-8.60430|Marquês|Metro do Porto|M
+S|41.18012|-8.68859|Matosinhos Sul|Metro do Porto|M
+S|41.18748|-8.69339|Mercado|Metro do Porto|M
+S|41.31506|-8.71422|Mindelo|Metro do Porto|M
+S|41.29366|-8.69927|Modivas Centro|Metro do Porto|M
+S|41.28523|-8.69356|Modivas Sul|Metro do Porto|M
+S|41.17063|-8.57727|Nasoni|Metro do Porto|M
+S|41.17369|-8.57382|Nau Vitória|Metro do Porto|M
+S|41.18241|-8.65218|NorteShopping / Sete Bicas|Metro do Porto|M
+S|41.22913|-8.62658|Parque Maia|Metro do Porto|M
+S|41.17907|-8.67357|Parque Real|Metro do Porto|M
+S|41.24636|-8.66185|Pedras Rubras|Metro do Porto|M
+S|41.18034|-8.66625|Pedro Hispano|Metro do Porto|M
+S|41.20821|-8.64715|Pias|Metro do Porto|M
+S|41.17460|-8.60366|Pólo Universitário|Metro do Porto|M
+S|41.36923|-8.74965|Portas Fronhas|Metro do Porto|M
+S|41.37790|-8.75834|Póvoa de Varzim|Metro do Porto|M
+S|41.17297|-8.64185|Ramalde|Metro do Porto|M
+S|41.17937|-8.56022|Rio Tinto|Metro do Porto|M
+S|41.34034|-8.72553|Árvore|Metro do Porto|M
+S|41.16930|-8.59866|Salgueiros|Metro do Porto|M
+S|41.35392|-8.73564|Santa Clara|Metro do Porto|M
+S|41.11550|-8.60661|Santo Ovídio|Metro do Porto|M
+S|41.18808|-8.65451|Senhora da Hora|Metro do Porto|M
+S|41.18819|-8.68520|Senhor de Matosinhos|Metro do Porto|M
+S|41.14479|-8.61082|São Bento|Metro do Porto|M
+S|41.37318|-8.75380|São Brás|Metro do Porto|M
+S|41.15244|-8.60936|Trindade|Metro do Porto|M
+S|41.33421|-8.72067|Varziela|Metro do Porto|M
+S|41.19030|-8.66103|Vasco da Gama|Metro do Porto|M
+S|41.30048|-8.70398|VC Fashion Outlet / Modivas|Metro do Porto|M
+S|41.17507|-8.54188|Venda Nova|Metro do Porto|M
+S|41.23842|-8.65823|Verdes|Metro do Porto|M
+S|41.09860|-8.58851|Vila D'Este|Metro do Porto|M
+S|41.35906|-8.73985|Vila do Conde|Metro do Porto|M
+S|41.27027|-8.67955|Vilar do Pinheiro|Metro do Porto|M
+S|41.17724|-8.64653|Viso|Metro do Porto|M
+S|41.24386|-8.62854|Zona Industrial|Metro do Porto|M
+S|38.68435|-9.14970|25 de Abril|Metropolitano Sul do Tejo|M
+S|38.67663|-9.16428|Almada|Metropolitano Sul do Tejo|M
+S|38.66053|-9.15732|António Gedeão|Metropolitano Sul do Tejo|M
+S|38.67333|-9.16662|Bento Gonçalves|Metropolitano Sul do Tejo|M
+S|38.66396|-9.19035|Boa Esperança|Metropolitano Sul do Tejo|M
+S|38.68755|-9.14738|Cacilhas|Metropolitano Sul do Tejo|M
+S|38.64249|-9.15179|Casa do Povo|Metropolitano Sul do Tejo|M
+S|38.63712|-9.15099|Corroios|Metropolitano Sul do Tejo|M
+S|38.66770|-9.16481|Cova da Piedade|Metropolitano Sul do Tejo|M
+S|38.66553|-9.19399|Fomega|Metropolitano Sul do Tejo|M
+S|38.68250|-9.15228|Gil Vicente|Metropolitano Sul do Tejo|M
+S|38.65584|-9.15438|Laranjeiro|Metropolitano Sul do Tejo|M
+S|38.66454|-9.20030|Monte de Caparica|Metropolitano Sul do Tejo|M
+S|38.66436|-9.16001|Parque da Paz|Metropolitano Sul do Tejo|M
+S|38.66623|-9.17998|Pragal|Metropolitano Sul do Tejo|M
+S|38.66896|-9.17016|Ramalha|Metropolitano Sul do Tejo|M
+S|38.64853|-9.15313|Santo Amaro|Metropolitano Sul do Tejo|M
+S|38.67949|-9.15762|São João Baptista|Metropolitano Sul do Tejo|M
+S|38.66362|-9.20717|Universidade|Metropolitano Sul do Tejo|M
+S|38.76862|-9.12827|Aeroporto|Metropolitano de Lisboa|M
+S|38.73713|-9.13288|Alameda|Metropolitano de Lisboa|M
+S|38.76033|-9.20455|Alfornelos|Metropolitano de Lisboa|M
+S|38.74990|-9.17979|Alto dos Moinhos|Metropolitano de Lisboa|M
+S|38.75313|-9.14400|Alvalade|Metropolitano de Lisboa|M
+S|38.75842|-9.21833|Amadora Este|Metropolitano de Lisboa|M
+S|38.77960|-9.15946|Ameixoeira|Metropolitano de Lisboa|M
+S|38.72699|-9.13486|Anjos|Metropolitano de Lisboa|M
+S|38.74232|-9.13338|Areeiro|Metropolitano de Lisboa|M
+S|38.73269|-9.13423|Arroios|Metropolitano de Lisboa|M
+S|38.71902|-9.14481|Avenida|Metropolitano de Lisboa|M
+S|38.71041|-9.14060|Baixa-Chiado|Metropolitano de Lisboa|M
+S|38.74754|-9.11766|Bela Vista|Metropolitano de Lisboa|M
+S|38.76296|-9.10406|Cabo Ruivo|Metropolitano de Lisboa|M
+S|38.70615|-9.14683|Cais do Sodré|Metropolitano de Lisboa|M
+S|38.76017|-9.15787|Campo Grande|Metropolitano de Lisboa|M
+S|38.74111|-9.14678|Campo Pequeno|Metropolitano de Lisboa|M
+S|38.75923|-9.19271|Carnide|Metropolitano de Lisboa|M
+S|38.75482|-9.11387|Chelas|Metropolitano de Lisboa|M
+S|38.75152|-9.15904|Cidade Universitária|Metropolitano de Lisboa|M
+S|38.75340|-9.18927|Colégio Militar/Luz|Metropolitano de Lisboa|M
+S|38.77508|-9.11553|Encarnação|Metropolitano de Lisboa|M
+S|38.74705|-9.14820|Entrecampos|Metropolitano de Lisboa|M
+S|38.72309|-9.13524|Intendente|Metropolitano de Lisboa|M
+S|38.74209|-9.16891|Jardim Zoológico|Metropolitano de Lisboa|M
+S|38.74825|-9.17304|Laranjeiras|Metropolitano de Lisboa|M
+S|38.77293|-9.15925|Lumiar|Metropolitano de Lisboa|M
+S|38.72444|-9.14972|Marquês de Pombal|Metropolitano de Lisboa|M
+S|38.71750|-9.13601|Martim Moniz|Metropolitano de Lisboa|M
+S|38.77491|-9.10300|Moscavide|Metropolitano de Lisboa|M
+S|38.79327|-9.17298|Odivelas|Metropolitano de Lisboa|M
+S|38.73947|-9.12395|Olaias|Metropolitano de Lisboa|M
+S|38.76080|-9.11176|Olivais|Metropolitano de Lisboa|M
+S|38.76801|-9.09970|Oriente|Metropolitano de Lisboa|M
+S|38.72879|-9.15015|Parque|Metropolitano de Lisboa|M
+S|38.73039|-9.14674|Picoas|Metropolitano de Lisboa|M
+S|38.76225|-9.19686|Pontinha|Metropolitano de Lisboa|M
+S|38.73768|-9.15925|Praça de Espanha|Metropolitano de Lisboa|M
+S|38.76740|-9.15555|Quinta das Conchas|Metropolitano de Lisboa|M
+S|38.72010|-9.15484|Rato|Metropolitano de Lisboa|M
+S|38.75196|-9.22415|Reboleira|Metropolitano de Lisboa|M
+S|38.71535|-9.14154|Restauradores|Metropolitano de Lisboa|M
+S|38.74801|-9.14125|Roma|Metropolitano de Lisboa|M
+S|38.71401|-9.13813|Rossio|Metropolitano de Lisboa|M
+S|38.73471|-9.14400|Saldanha|Metropolitano de Lisboa|M
+S|38.71369|-9.12245|Santa Apolónia|Metropolitano de Lisboa|M
+S|38.78561|-9.17182|Senhor Roubado|Metropolitano de Lisboa|M
+S|38.73407|-9.15271|São Sebastião|Metropolitano de Lisboa|M
+S|38.76007|-9.16642|Telheiras|Metropolitano de Lisboa|M
+S|38.70702|-9.13443|Terreiro do Paço|Metropolitano de Lisboa|M
+S|41.14477|-8.64627|Afurada|Andante|W
+S|41.14795|-8.64817|Cais do Ouro|Andante|W
+S|38.52036|-8.88928|Setúbal (Cais 3)|Atlantic Ferries|W
+S|38.52142|-8.88518|Setúbal (Doca do Comércio)|Atlantic Ferries|W
+S|38.46733|-8.86307|Tróia (Cais Sul)|Atlantic Ferries|W
+S|38.49482|-8.90097|Tróia (Ponta do Adoxe)|Atlantic Ferries|W
+S|38.65177|-27.21481|Angra do Heroísmo|Atlânticoline|W
+S|38.60026|-28.01022|Calheta|Atlânticoline|W
+S|39.05336|-27.96938|Graciosa|Atlânticoline|W
+S|38.54064|-28.62070|Horta|Atlânticoline|W
+S|38.53521|-28.53008|Madalena|Atlânticoline|W
+S|38.71135|-27.05246|Praia da Vitória|Atlânticoline|W
+S|39.45141|-31.12595|Santa Cruz das Flores|Atlânticoline|W
+S|38.53131|-28.32103|São Roque|Atlânticoline|W
+S|38.67896|-28.20360|Velas|Atlânticoline|W
+S|39.67191|-31.10993|Vila do Corvo|Atlânticoline|W
+S|40.64990|-8.73003|Forte da Barra|AveiroBus|W
+S|40.66068|-8.72975|São Jacinto|AveiroBus|W
+S|40.14824|-8.85835|Cais Norte (Figueira)|CM Figueira da Foz|W
+S|40.14152|-8.86045|Cais Sul (Cabedelo)|CM Figueira da Foz|W
+S|38.65145|-9.07900|Barreiro|Transtejo Soflusa|W
+S|38.69449|-9.19840|Belém|Transtejo Soflusa|W
+S|38.68827|-9.14835|Cacilhas|Transtejo Soflusa|W
+S|38.70437|-9.14584|Cais do Sodré|Transtejo Soflusa|W
+S|38.69953|-9.00637|Montijo|Transtejo Soflusa|W
+S|38.69444|-9.22509|Pedrouços/Algés|Transtejo Soflusa|W
+S|38.67815|-9.20693|Porto Brandão|Transtejo Soflusa|W
+S|38.64789|-9.09555|Seixal|Transtejo Soflusa|W
+S|38.70629|-9.13343|Terreiro do Paço|Transtejo Soflusa|W
+S|38.67487|-9.23088|Trafaria|Transtejo Soflusa|W
+L|Metro do Porto|Linha A|#3CAEEF|71 49:948 8:550 48:534 16:617 57:721 59:657 28:785 76:660 70:645 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862 6:440 11:681 35:573 10:955 25:1151
+L|Metro do Porto|Linha A|#3CAEEF|25 10:1151 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 76:650 28:661 59:784 57:656 16:722 48:617 8:531 49:564 71:887
+L|Metro do Porto|Linha B|#E62621|25 10:1151 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 31:684 23:687 27:1770 21:2027 79:590 58:956 44:1142 82:1983 52:2029 51:1046 77:854 50:1823 26:773 75:1531 66:856 4:662 68:1215 81:669 2:727 62:669 73:559 63:623
+L|Metro do Porto|Linha B|#E62621|63 73:624 62:559 2:669 81:727 68:670 4:1213 66:663 75:854 26:1533 50:773 77:1822 51:854 52:1046 82:2029 44:1983 58:1141 79:956 21:589 27:2024 23:1770 31:689 70:683 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862 6:440 11:681 35:573 10:955 25:1151
+L|Metro do Porto|Linha Bx|#E62621|25 10:1151 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 58:6713 77:7055 50:1823 75:2304 81:3402 62:1396 63:1182
+L|Metro do Porto|Linha Bx|#E62621|63 62:1183 81:1395 75:3399 50:2306 77:1822 58:7053 70:6712 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862 6:440 11:681 35:573 10:955 25:1151
+L|Metro do Porto|Linha C|#8BC63E|39 15:702 45:1459 84:1195 33:1116 56:815 22:1413 3:655 60:1252 18:912 31:910 70:686 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862 6:440 11:681 35:573 10:955
+L|Metro do Porto|Linha C|#8BC63E|10 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 31:685 18:909 60:911 3:1254 22:651 56:1411 33:822 84:1115 45:1190 15:1461 39:701
+L|Metro do Porto|Linha D|#F9C212|80 36:957 46:956 69:1008 24:460 41:714 17:401 34:486 40:419 72:801 1:438 74:426 29:553 47:648 19:673 67:478 61:774 38:826 37:351
+L|Metro do Porto|Linha D|#F9C212|37 38:356 61:825 67:776 19:476 47:670 29:652 74:555 1:425 72:439 40:801 34:419 17:486 41:399 24:714 69:460 46:1014 36:952 80:949
+L|Metro do Porto|Linha E|#937BB8|0 7:398 79:677 21:590 27:2024 23:1770 31:689 70:684 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862
+L|Metro do Porto|Linha E|#937BB8|0 7:398 79:677 21:590 27:2024 23:1770 31:689 70:684 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862 6:440 11:681 35:573 10:955 25:1151
+L|Metro do Porto|Linha E|#937BB8|25 10:1151 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 31:684 23:687 27:1770 21:2027 79:589 7:686 0:393
+L|Metro do Porto|Linha E|#937BB8|74 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 31:684 23:687 27:1770 21:2027 79:589 7:686 0:393
+L|Metro do Porto|Linha F|#F68B1F|71 49:948 8:550 48:534 16:617 57:721 59:657 28:785 76:660 70:645 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862 6:440 11:681 35:573 10:955 25:1205 20:570 53:646 54:495 43:1091 65:454 9:853 5:745 13:782 78:581 30:437
+L|Metro do Porto|Linha F|#F68B1F|30 78:440 13:578 5:788 9:747 65:856 43:453 54:1090 53:496 20:645 25:669 10:1110 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 76:650 28:661 59:784 57:656 16:722 48:617 8:531 49:564 71:887
+L|Metropolitano Sul do Tejo|Linha 1|#01A3E1|90 85:547 95:304 102:572 86:661 88:429 93:688 98:649 87:485 96:582 101:818 91:687 92:692
+L|Metropolitano Sul do Tejo|Linha 1|#01A3E1|92 91:691 101:684 96:819 87:583 98:485 93:652 88:683 86:424 102:660 95:573 85:304 90:553
+L|Metropolitano Sul do Tejo|Linha 2|#FFCC01|99 100:932 93:621 98:649 87:485 96:582 101:818 91:687 92:692
+L|Metropolitano Sul do Tejo|Linha 2|#FFCC01|92 91:691 101:684 96:819 87:583 98:485 93:652 100:623 99:934
+L|Metropolitano Sul do Tejo|Linha 3|#BCD019|90 85:550 95:304 102:572 86:661 88:429 100:621 99:934 89:984 94:410 97:566 103:609
+L|Metropolitano Sul do Tejo|Linha 3|#BCD019|103 97:610 94:565 89:409 99:986 100:932 88:625 86:424 102:660 95:573 85:304 90:554
+L|Metropolitano de Lisboa|Linha Amarela|#F4BC18|143 131:671 139:689 148:529 120:707 126:665 123:1298 119:1323 142:921 130:770 110:686 150:1686 134:974
+L|Metropolitano de Lisboa|Linha Amarela|#F4BC18|134 150:975 110:1688 130:684 142:770 119:925 123:1318 126:1298 120:665 148:706 139:532 131:689 143:672
+L|Metropolitano de Lisboa|Linha Azul|#4E84C4|149 153:1280 115:864 145:662 114:399 131:683 138:606 151:575 141:674 128:1030 129:818 107:676 124:929 121:903 140:524 106:723 109:1240 144:914
+L|Metropolitano de Lisboa|Linha Azul|#4E84C4|144 109:917 106:1243 140:720 121:536 124:895 107:929 129:676 128:818 141:1030 151:674 138:752 131:429 114:681 145:399 115:664 153:855 149:1278
+L|Metropolitano de Lisboa|Linha Verde|#00AAA6|118 115:894 147:521 132:486 127:616 111:421 113:635 105:474 112:595 146:1056 108:616 119:1836 152:781
+L|Metropolitano de Lisboa|Linha Verde|#00AAA6|152 119:779 108:1842 146:616 112:1057 105:596 113:474 111:635 127:421 132:616 147:492 115:515 118:901
+L|Metropolitano de Lisboa|Linha Vermelha|#DF096F|151 148:763 105:1064 135:807 116:1068 122:870 136:669 117:819 137:799 133:1028 125:1171 104:1372
+L|Metropolitano de Lisboa|Linha Vermelha|#DF096F|104 125:1370 133:1173 137:1033 117:804 136:815 122:668 116:871 135:1071 105:807 148:1065 151:761
+L|Andante|Travessia Fluvial||154 155:386
+L|Andante|Travessia Fluvial||155 154:386
+L|Atlantic Ferries|Atlantic Ferries||157 158:6662
+L|Atlantic Ferries|Atlantic Ferries||158 157:6663
+L|Atlantic Ferries|Atlantic Ferries||156 159:3075
+L|Atlantic Ferries|Atlantic Ferries||159 156:3076
+L|Atlânticoline|Linha Azul||163 164:8118
+L|Atlânticoline|Linha Azul||164 163:8119
+L|Atlânticoline|Linha Branca||163 167:27507 168:31553 162:58965 165:110876
+L|Atlânticoline|Linha Branca||165 162:111139 168:58873 167:31558 163:27511
+L|Atlânticoline|Linha Laranja||167 168:19368
+L|Atlânticoline|Linha Laranja||168 167:19359
+L|Atlânticoline|Linha Lilás||163 164:9851 161:46513 160:73845
+L|Atlânticoline|Linha Lilás||160 161:73798 164:46473 163:9852
+L|Atlânticoline|Linha Rosa||166 169:24432
+L|Atlânticoline|Linha Rosa||169 166:24432
+L|Atlânticoline|Linha Verde||163 164:10028 168:32909
+L|Atlânticoline|Linha Verde||163 167:27507 168:28279
+L|Atlânticoline|Linha Verde||168 164:32860 163:10029
+L|Atlânticoline|Linha Verde||168 167:28290 163:27511
+L|AveiroBus|Linha 13|#498CB0|170 171:1428
+L|AveiroBus|Linha 13|#498CB0|171 170:1428
+L|CM Figueira da Foz|Ferry Figueira da Foz → Cabedelo||172 173:931
+L|Transtejo Soflusa|Transtejo Soflusa|#FBBA00|177 176:1830
+L|Transtejo Soflusa|Transtejo Soflusa|#FBBA00|176 177:1830
+L|Transtejo Soflusa|Transtejo Soflusa|#009A9D|177 181:8287
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|177 181:17971 174:3695 177:19572
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|177 174:19565 181:3695 177:17975
+L|Transtejo Soflusa|Transtejo Soflusa|#009A9D|181 177:8289
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|181 174:1844
+L|Transtejo Soflusa|Transtejo Soflusa|#E71E6C|177 178:13107
+L|Transtejo Soflusa|Transtejo Soflusa|#E71E6C|178 177:13107
+L|Transtejo Soflusa|Transtejo Soflusa|#5284C4|182 174:8844
+L|Transtejo Soflusa|Transtejo Soflusa|#5284C4|174 182:8847
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|175 180:2257 183:2258
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|175 183:5988 180:4555
+L|Transtejo Soflusa|Transtejo Soflusa|#ee7502|180 183:3058 179:4560 180:2649
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|180 183:4555 175:5989
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|183 180:2258 175:2257
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|174 181:1844
+L|Transtejo Soflusa|Transtejo Soflusa|#ee7502|179 183:4559 180:3058 179:2650
+T|39.44019|-8.19432|Abrantes
+T|40.25134|-8.45022|Adémia
+T|41.77562|-8.86161|Afife
+T|38.76652|-9.29847|Agualva-Cacém
+T|41.05051|-8.65116|Aguda
+T|40.61324|-8.45321|Aguieira
+T|40.41521|-8.45684|Aguim
+T|39.79359|-8.58932|Albergaria dos Doze
+T|37.12869|-8.23302|Albufeira - Ferreiras
+T|40.13387|-7.44878|Alcaide
+T|39.91893|-7.43634|Alcains
+T|37.16991|-8.34867|Alcantarilha
+T|40.20055|-7.51721|Alcaria
+T|38.40693|-8.09549|Alcáçovas
+T|38.70235|-9.17402|Alcântara-Mar
+T|38.70741|-9.17326|Alcântara-Terra
+T|40.60046|-6.88579|Aldeia
+T|41.17646|-7.37781|Alegria
+T|39.47367|-8.18685|Alferrarede
+T|37.16790|-8.30323|Algoz
+T|38.79770|-9.34116|Algueirão-Mem Martins
+T|38.69838|-9.22939|Algés
+T|38.92393|-9.01141|Alhandra
+T|38.65180|-9.02654|Alhos Vedros
+T|37.09510|-8.02395|Almancil
+T|39.46232|-8.37404|Almourol
+T|40.09514|-7.46193|Alpedrinha
+T|41.64843|-8.73962|Alvarães
+T|39.47231|-8.04464|Alvega - Ortiga
+T|38.88988|-9.03411|Alverca
+T|38.23272|-7.99998|Alvito
+T|38.75968|-9.23573|Amadora
+T|40.19234|-8.54412|Ameal
+T|37.69001|-8.41493|Amoreiras - Odemira
+T|41.10640|-8.00741|Aregos
+T|41.68411|-8.79932|Areia - Darque
+T|41.48999|-8.50888|Arentim
+T|41.72115|-8.85557|Areosa
+T|40.90924|-8.50103|Arrifana
+T|39.09684|-7.33335|Arronches
+T|41.19674|-8.63064|Arroteia
+T|39.13888|-7.38228|Assumar
+T|40.80842|-8.58540|Avanca
+T|40.64339|-8.64046|Aveiro
+T|41.52014|-8.46834|Aveleda
+T|39.06844|-8.86638|Azambuja
+T|40.63990|-8.59187|Azurva
+T|38.65958|-9.04434|Baixa da Banheira
+T|40.67738|-7.32777|Baraçal
+T|39.52602|-7.83506|Barca da Amieira - Envendos
+T|41.53678|-8.60900|Barcelos
+T|41.14053|-7.88746|Barqueiros
+T|39.46161|-8.43524|Barquinha
+T|39.48195|-8.00124|Barragem de Belver
+T|38.65290|-9.07927|Barreiro
+T|38.65977|-9.07158|Barreiro-A
+T|41.38981|-8.52618|Barrimau
+T|41.64626|-8.70109|Barroselas
+T|41.14320|-8.60824|Batalha
+T|38.01834|-7.85839|Beja
+T|40.33336|-7.33612|Belmonte - Manteigas
+T|39.49199|-7.95870|Belver
+T|38.69618|-9.19759|Belém
+T|39.35243|-8.13562|Bemposta
+T|40.21451|-8.45611|Bencanta
+T|40.43488|-7.26830|Benespera
+T|38.74437|-9.19962|Benfica
+T|39.78826|-7.56222|Benquerenças
+T|38.71076|-9.14580|Bica - Largo do Calhariz
+T|38.70862|-9.14677|Bica - Rua de São Paulo
+T|40.12236|-8.76457|Bifurcação de Lares
+T|38.80685|-9.09468|Bobadela
+T|37.12255|-8.15227|Boliqueime
+T|37.01403|-7.92102|Bom João
+T|39.26509|-9.15333|Bombarral
+T|41.54805|-8.43446|Braga
+T|38.74709|-9.10280|Braço de Prata
+T|41.23527|-8.27422|Bustelo
+T|40.58723|-8.49807|Cabanões
+T|41.22056|-8.53570|Cabeda
+T|37.17638|-7.53810|Cacela
+T|40.68479|-8.59817|Cacia
+T|38.70598|-9.14574|Cais do Sodré
+T|39.40675|-9.14026|Caldas da Rainha
+T|41.15290|-7.82667|Caldas de Moledo
+T|41.87406|-8.83427|Caminha
+T|41.15168|-8.63335|Campo Alegre
+T|38.73251|-9.16774|Campolide
+T|38.73151|-9.16886|Campolide-A
+T|40.49106|-7.90649|Canas - Felgueira
+T|40.71636|-8.56400|Canelas
+T|41.36368|-8.43765|Caniços
+T|41.58589|-8.63271|Carapeços
+T|38.68783|-9.33732|Carcavelos
+T|40.30596|-7.37068|Caria
+T|39.54859|-8.46283|Carrascal - Delongo
+T|39.00552|-8.95373|Carregado
+T|40.43330|-8.00760|Carregal do Sal
+T|41.48693|-8.56411|Carreira
+T|41.75041|-8.86336|Carreço-A
+T|41.97984|-8.70266|Carvalha-A
+T|40.63540|-8.45289|Carvalhal da Portela
+T|40.92511|-8.62617|Carvalheira - Maceda
+T|39.57105|-8.39535|Carvalhos de Figueiredo
+T|38.49821|-8.15822|Casa Branca
+T|41.15986|-8.62905|Casa da Música
+T|40.20477|-8.48388|Casais
+T|40.57944|-8.48791|Casal do Álvaro
+T|38.70087|-9.41791|Cascais
+T|38.98907|-8.96536|Castanheira do Ribatejo
+T|40.40805|-8.08432|Castelejo
+T|39.81803|-7.49066|Castelo Branco
+T|40.06439|-7.46069|Castelo Novo
+T|37.19680|-7.48385|Castro Marim
+T|40.93956|-8.53749|Cavaco
+T|39.71445|-8.54545|Caxarias
+T|38.69875|-9.27439|Caxias
+T|41.25286|-8.22717|Caíde
+T|40.66523|-7.38256|Celorico da Beira
+T|39.60282|-9.07346|Centro
+T|40.51158|-7.04740|Cerdeira
+T|39.27572|-7.80793|Chança
+T|39.65436|-8.49385|Chão de Maçãs - Fátima
+T|40.22473|-8.44048|Coimbra-B
+T|41.12437|-8.63408|Coimbrões
+T|38.58465|-9.05157|Coina
+T|37.14438|-7.60562|Conceição
+T|41.16883|-8.57472|Contumil
+T|38.63649|-9.15174|Corroios
+T|40.94065|-8.63025|Cortegaça
+T|41.48172|-8.52876|Couto de Cambeses
+T|40.86814|-8.49413|Couto de Cucujães
+T|41.42151|-8.30085|Covas
+T|41.15237|-7.68807|Covelinhas
+T|40.27754|-7.49606|Covilhã
+T|39.26945|-7.63528|Crato
+T|38.69980|-9.25220|Cruz Quebrada
+T|38.16317|-7.89485|Cuba
+T|41.37647|-8.34191|Cuca
+T|40.42455|-8.45610|Curia
+T|39.54793|-8.42979|Curvaceiras
+T|41.17151|-8.35543|Cête
+T|39.34450|-9.17240|Dagorda - Peniche
+T|41.68023|-8.78195|Darque
+T|41.12905|-8.62102|Devesas
+T|39.04256|-9.18462|Dois Portos
+T|40.13252|-7.47346|Donas
+T|41.63907|-8.66702|Durrães
+T|40.60944|-8.53170|Eirol
+T|40.63114|-8.56839|Eixo
+T|38.89554|-7.14228|Elvas
+T|38.74457|-9.14859|Entrecampos
+T|39.46165|-8.47375|Entroncamento
+T|41.21712|-8.55415|Ermesinde
+T|41.12428|-7.95090|Ermida
+T|38.00277|-8.41398|Ermidas-Sado
+T|40.91963|-8.51641|Escapães
+T|40.64150|-8.61798|Esgueira
+T|41.37946|-8.52156|Esmeriz
+T|40.96277|-8.63550|Esmoriz
+T|39.05077|-8.90252|Espadanal da Azambuja
+T|40.20907|-8.47077|Espadaneira
+T|41.00629|-8.64439|Espinho
+T|41.00217|-8.64353|Espinho - Vouga
+T|41.90934|-8.79293|Esqueiro
+T|40.75115|-8.57548|Estarreja
+T|41.69680|-8.83027|Estação
+T|38.70325|-9.39873|Estoril
+T|37.14344|-8.48549|Estômbar - Lagoa
+T|41.40556|-8.52943|Famalicão
+T|39.53163|-9.08571|Famalicão da Nazaré
+T|40.87923|-8.49491|Faria
+T|37.01926|-7.94044|Faro
+T|40.14929|-7.41038|Fatela - Penamacor
+T|40.66398|-7.91281|Feira de São Mateus
+T|39.02245|-9.17936|Feliteira
+T|38.63643|-8.69154|Fernando Pó
+T|41.14454|-7.33150|Ferradosa
+T|37.13876|-8.51907|Ferragudo
+T|41.53081|-8.44148|Ferreiros
+T|41.16188|-7.61125|Ferrão
+T|40.14848|-8.84690|Figueira da Foz
+T|38.60989|-9.10152|Fogueteiro
+T|40.14191|-8.81379|Fontela
+T|40.14633|-8.82490|Fontela-A
+T|40.17948|-8.60708|Formoselha - Santo Varão
+T|40.61031|-7.52704|Fornos de Algodres
+T|38.62063|-9.12884|Foros de Amora
+T|41.08157|-8.64748|Francelos
+T|39.61401|-7.71577|Fratel
+T|40.59322|-6.90446|Freineda
+T|41.13469|-7.21117|Freixo de Numão - Mós do Douro
+T|37.72721|-8.33791|Funcheira
+T|40.14101|-7.49628|Fundão
+T|39.61651|-8.49501|Fungalvaz
+T|37.06021|-7.75179|Fuseta
+T|37.05366|-7.74966|Fuseta-A
+T|41.12976|-8.62028|Gaia
+T|41.15161|-8.62616|Galiza
+T|40.52177|-7.21455|Gata
+T|41.13319|-8.60868|General Torres
+T|41.36456|-8.38876|Giesteira
+T|38.71615|-9.14270|Glória - Restauradores
+T|38.71415|-9.14395|Glória - São Pedro de Alcântara
+T|41.16623|-7.79912|Godim
+T|41.91999|-8.76315|Gondarém
+T|40.57340|-7.60209|Gouveia
+T|41.03853|-8.64713|Granja
+T|40.16491|-8.63471|Granja do Ulmeiro - Alfarelos
+T|38.71643|-9.13155|Graça - Miradouro
+T|38.71663|-9.13236|Graça - Rua dos Lagares
+T|38.18179|-8.55453|Grândola
+T|40.55246|-7.23985|Guarda
+T|39.94816|-8.80178|Guia
+T|41.21471|-8.65865|Guifões
+T|41.43513|-8.29430|Guimarães
+T|41.18511|-8.59841|Hospital São João
+T|41.14807|-8.61923|Hospital de Santo António
+T|41.70176|-8.83416|Igreja
+T|41.18122|-8.34217|Irivo
+T|38.94977|-9.23340|Jerumelo
+T|41.14067|-8.11942|Juncal
+T|37.10833|-8.67129|Lagos Train Station
+T|39.52882|-8.46903|Lamarosa
+T|40.98377|-8.60529|Lapa
+T|40.47423|-7.92216|Lapa do Lobo
+T|39.98867|-7.44083|Lardosa
+T|40.12955|-8.78751|Lares
+T|38.71784|-9.14182|Lavra - Largo da Anunciada
+T|38.71864|-9.14016|Lavra - Rua Câmara Pestana
+T|38.66183|-9.05831|Lavradio
+T|41.24383|-8.55678|Leandro
+T|39.75666|-8.82796|Leiria
+T|41.20841|-8.62954|Leça do Balio
+T|38.76782|-9.09907|Lisboa - Oriente
+T|38.71459|-9.14184|Lisboa - Rossio
+T|38.71463|-9.12204|Lisboa - Santa Apolónia
+T|39.83794|-8.59339|Litém
+T|37.07375|-7.73128|Livramento
+T|41.21685|-8.15568|Livração
+T|41.36560|-8.36349|Lordelo
+T|37.10426|-8.05827|Loulé
+T|40.01626|-8.81550|Louriçal
+T|41.43693|-8.53821|Louro
+T|41.35095|-8.52649|Lousado
+T|40.39021|-8.38502|Luso - Buçaco
+T|37.08889|-7.70000|Luz
+T|40.65343|-8.45834|Macinhata
+T|41.11149|-8.63777|Madalena
+T|38.89744|-9.29136|Mafra
+T|38.92859|-9.25801|Malveira
+T|40.58664|-7.76020|Mangualde
+T|41.18097|-8.13680|Marco de Canaveses
+T|39.73640|-8.92684|Marinha Grande
+T|39.68719|-8.94591|Martingança
+T|40.14038|-8.67629|Marujal
+T|38.73903|-9.10876|Marvila
+T|38.75165|-9.28420|Massamá-Barcarena
+T|39.36850|-8.55432|Mato Miranda
+T|41.52689|-8.45838|Mazagão
+T|40.38877|-7.28728|Maçainhas
+T|40.37542|-8.45385|Mealhada
+T|37.11858|-8.64747|Meia Praia
+T|41.24892|-8.25811|Meinedo
+T|38.79325|-9.33081|Mercês
+T|37.25544|-8.29077|Messines - Alte
+T|37.15416|-8.60966|Mexilhoeira Grande
+T|41.50821|-8.58190|Midões
+T|38.78957|-9.31264|Mira Sintra-Meleças
+T|41.06716|-8.64986|Miramar
+T|41.11759|-7.97252|Mirão
+T|40.51935|-7.01331|Miuzela
+T|40.45046|-8.45939|Mogofores
+T|40.57465|-7.80957|Moimenta - Alcafache
+T|38.64465|-8.99579|Moita
+T|41.84792|-8.86433|Moledo do Minho
+T|38.75546|-9.26545|Monte Abraão
+T|38.70360|-9.40644|Monte Estoril
+T|37.19004|-7.44833|Monte Gordo
+T|39.85599|-8.84777|Monte Real
+T|39.90033|-8.83442|Monte Redondo
+T|40.98226|-8.62552|Monte de Paramos
+T|40.40811|-8.26441|Monte dos Lobos
+T|40.16007|-8.65409|Montemor
+T|40.39086|-8.24125|Mortágua
+T|38.77765|-9.09949|Moscavide
+T|41.09462|-8.06920|Mosteirô
+T|41.42897|-8.52208|Mouquim
+T|40.60529|-8.46008|Mourisca do Vouga
+T|39.46785|-8.08505|Mouriscas-A
+T|40.53018|-7.84991|Nelas
+T|41.40320|-8.31957|Nespereira
+T|41.45474|-8.54429|Nine
+T|38.68848|-9.31892|Oeiras
+T|40.54355|-8.54991|Oiã
+T|41.19293|-8.33769|Oleiros
+T|37.03036|-7.83997|Olhão
+T|41.25733|-8.19897|Oliveira
+T|40.84018|-8.48177|Oliveira de Azeméis
+T|40.51016|-8.49874|Oliveira do Bairro
+T|40.45039|-7.96332|Oliveirinha - Cabanas
+T|40.57216|-8.47674|Oronhe
+T|39.19123|-9.17717|Outeiro
+T|40.86404|-8.61667|Ovar
+T|39.57960|-8.47376|Paialvo
+T|41.10357|-8.09087|Pala
+T|38.57158|-8.87275|Palmela-A
+T|41.20226|-8.55690|Palmilheira
+T|40.33857|-8.43162|Pampilhosa
+T|40.41896|-8.04602|Papízios
+T|41.16009|-8.37297|Parada
+T|40.48120|-8.48014|Paraimo
+T|40.97569|-8.63691|Paramos
+T|38.68974|-9.35640|Parede
+T|41.20436|-8.32353|Paredes
+T|37.08026|-7.98491|Parque das Cidades
+T|39.65553|-8.98492|Pataias
+T|38.69711|-9.29054|Paço de Arcos
+T|40.97205|-8.58395|Paços de Brandão
+T|39.29427|-9.16267|Paúl
+T|38.87056|-9.29547|Pedra Furada
+T|37.09142|-7.67314|Pedras d'el Rei
+T|38.66223|-8.61940|Pegões
+T|39.96777|-8.63326|Pelariga
+T|41.21766|-8.29494|Penafiel
+T|38.59005|-8.99524|Penalva
+T|38.63816|-8.95626|Penteado
+T|40.18636|-8.58495|Pereira
+T|41.37740|-8.32410|Pereirinhas
+T|38.98867|-9.19740|Pero Negro
+T|38.63012|-8.91283|Pinhal Novo
+T|41.19040|-7.54513|Pinhão
+T|38.63439|-8.74337|Poceirão
+T|41.13029|-7.12349|Pocinho
+T|39.91649|-8.63016|Pombal
+T|39.26549|-8.01304|Ponte de Sor
+T|37.13309|-7.64821|Porta Nova
+T|39.19892|-7.46112|Portalegre
+T|41.30086|-8.54875|Portela
+T|38.80225|-9.37637|Portela de Sintra
+T|37.14465|-8.53749|Portimão
+T|41.14919|-8.58471|Porto - Campanhã
+T|41.14549|-8.60951|Porto - São Bento
+T|41.12184|-7.91063|Porto de Rei
+T|37.16363|-8.38881|Poço Barreto
+T|38.66604|-9.17985|Pragal
+T|37.08695|-7.66304|Praia do Barril
+T|39.46722|-8.34757|Praia do Ribatejo
+T|38.51793|-8.83791|Praias Sado A
+T|38.52493|-8.88652|Praça do Quebedo
+T|38.85929|-9.06420|Póvoa
+T|38.75880|-9.25697|Queluz-Belas
+T|40.35675|-8.41207|Quinta do Valongo - Vacariça
+T|40.59104|-8.61269|Quintans
+T|39.13952|-9.21598|Ramalhal
+T|38.75096|-9.22296|Reboleira
+T|41.15382|-8.39920|Recarei-Sobreira
+T|41.23157|-8.17523|Recesinhos
+T|41.16074|-7.86654|Rede
+T|39.09951|-8.79353|Reguengo - Vale da Pedra - Pontével
+T|39.76962|-7.59121|Retaxo
+T|40.13068|-8.74535|Reveles
+T|39.43220|-8.50455|Riachos - Torres Novas - Golegã
+T|41.14097|-8.60951|Ribeira
+T|40.96096|-8.57121|Rio Meão
+T|41.18454|-8.55715|Rio Tinto
+T|38.78424|-9.32097|Rio de Mouro
+T|40.50701|-7.09071|Rochoso
+T|38.74569|-9.13551|Roma-Areeiro
+T|41.49764|-8.49628|Ruilhe
+T|39.07297|-9.20985|Runa
+T|41.15857|-7.78363|Régua
+T|39.65512|-7.67283|Ródão
+T|40.51156|-7.23890|Sabugal
+T|38.83056|-9.30001|Sabugo
+T|38.79497|-9.09980|Sacavém
+T|39.49242|-9.14728|Salir do Porto
+T|40.72886|-8.56487|Salreu
+T|40.98406|-8.59332|Sampaio - Oleiros
+T|40.92667|-8.53096|Sanfins
+T|39.55275|-8.39343|Santa Cita
+T|37.49580|-8.48138|Santa Clara - Sabóia
+T|40.39050|-8.12439|Santa Comba Dão
+T|38.74695|-9.21323|Santa Cruz - Damaia
+T|39.00605|-7.25339|Santa Eulália-A
+T|38.84104|-9.08011|Santa Iria
+T|39.44754|-8.29647|Santa Margarida
+T|39.14416|-8.75890|Santana-Cartaxo
+T|39.24212|-8.67509|Santarém
+T|40.85132|-8.48959|Santiago de Riba-Ul
+T|38.68703|-9.31255|Santo Amaro
+T|41.11713|-8.60528|Santo Ovídio
+T|41.35107|-8.47341|Santo Tirso
+T|38.70617|-9.15528|Santos
+T|41.55491|-8.37794|Santuário
+T|38.96892|-9.19932|Sapataria
+T|39.75639|-7.62378|Sarnadas
+T|41.89651|-8.81924|Seixas
+T|39.67844|-8.50798|Seiça - Ourém
+T|41.86948|-8.84352|Senhora da Agonia
+T|41.64664|-8.72098|Senhora das Neves
+T|40.67216|-8.45272|Sernada do Vouga
+T|38.74024|-9.16667|Sete Rios
+T|39.11359|-8.77786|Setil
+T|38.53120|-8.88455|Setúbal
+T|41.56604|-8.62778|Silva
+T|40.99034|-8.64074|Silvalde
+T|40.98882|-8.63035|Silvalde - Vouga
+T|37.17567|-8.44046|Silves
+T|40.01090|-8.63354|Simões
+T|38.79926|-9.38536|Sintra
+T|40.02687|-7.45535|Soalheira
+T|41.11996|-8.61473|Soares dos Reis
+T|40.41481|-8.30143|Soito
+T|39.54287|-8.47163|Soudos - Vila Nova
+T|40.05502|-8.63949|Soure
+T|40.28624|-8.42565|Souselas
+T|41.19712|-8.50200|Suzão
+T|41.14572|-8.61133|São Bento
+T|41.25841|-8.55816|São Frutuoso
+T|41.19714|-8.57921|São Gemil
+T|40.89860|-8.49522|São João da Madeira
+T|38.66809|-8.58564|São João das Craveiras
+T|40.62221|-8.54805|São João de Loure
+T|40.95549|-8.55116|São João de Ver
+T|38.70106|-9.38547|São João do Estoril
+T|39.32202|-9.17945|São Mamede
+T|41.19031|-8.61331|São Mamede de Infesta
+T|41.16977|-8.46778|São Martinho do Campo
+T|39.50801|-9.13317|São Martinho do Porto
+T|41.99361|-8.66637|São Pedro da Torre
+T|38.69537|-9.37170|São Pedro do Estoril
+T|41.27796|-8.55359|São Romão
+T|40.66047|-7.91191|Sé
+T|39.60525|-9.07447|Sítio
+T|41.50918|-8.48299|Tadim
+T|40.60112|-8.52437|Taipa-Requeixo
+T|41.60879|-8.63480|Tamel
+T|39.46127|-8.39533|Tancos
+T|40.20592|-8.50028|Taveiro
+T|37.12099|-7.65570|Tavira
+T|41.55469|-8.38081|Tenões
+T|41.16377|-8.43793|Terronhas
+T|39.71674|-7.68173|Tojeirinha
+T|39.59848|-8.41281|Tomar
+T|39.30967|-7.90849|Torre das Vargens
+T|39.09271|-9.25431|Torres Vedras
+T|40.23887|-7.51239|Tortosendo
+T|39.46043|-8.24803|Tramagal
+T|41.16126|-8.41894|Trancoso
+T|41.22906|-8.55175|Travagem
+T|40.59421|-8.51447|Travassô
+T|41.33737|-8.54765|Trofa
+T|41.20736|-7.42013|Tua
+T|37.16489|-8.25638|Tunes
+T|41.09902|-8.63206|Valadares
+T|39.58445|-9.01763|Valado
+T|39.31373|-8.62998|Vale de Figueira
+T|40.11474|-7.42423|Vale de Prazeres
+T|39.18841|-8.72384|Vale de Santarém
+T|42.02470|-8.63929|Valença
+T|41.18825|-8.48727|Valongo
+T|40.62420|-8.44992|Valongo - Vouga
+T|41.14313|-7.31604|Vargelas
+T|38.60624|-8.88862|Venda do Alcaide
+T|38.67955|-8.45456|Vendas Novas
+T|39.85087|-8.65228|Vermoil
+T|40.13966|-8.70346|Verride
+T|41.14122|-7.26203|Vesúvio
+T|41.69521|-8.83156|Viana do Castelo
+T|40.49782|-7.14799|Vila Fernando
+T|40.72477|-7.25815|Vila Franca das Naves
+T|38.95530|-8.98623|Vila Franca de Xira
+T|41.24610|-8.18483|Vila Meã
+T|38.29379|-8.03506|Vila Nova da Baronia
+T|39.03647|-8.92803|Vila Nova da Rainha
+T|40.10775|-8.63789|Vila Nova de Anços
+T|41.93597|-8.74832|Vila Nova de Cerveira
+T|40.19295|-8.52500|Vila Pouca do Campo
+T|37.19971|-7.42146|Vila Real de Santo António
+T|40.92427|-8.53539|Vila da Feira
+T|41.35744|-8.40624|Vila das Aves
+T|40.60610|-6.82924|Vilar Formoso
+T|40.26324|-8.44136|Vilela - Fornos
+T|39.08658|-8.82787|Virtudes
+T|41.37909|-8.31237|Vizela
+T|40.83420|-8.60150|Válega
+T|39.00637|-9.18320|Zibreira
+T|41.20072|-8.55650|Águas Santas
+T|40.57752|-8.44827|Águeda
+T|41.81306|-8.86248|Âncora-Praia
+T|38.56041|-7.90711|Évora
+T|39.36490|-9.15902|Óbidos

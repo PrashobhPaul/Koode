@@ -1,0 +1,1538 @@
+# Transit for Koode, AR. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|-32.90450|-68.85295|25 de Mayo|MendoTRAN|M
+S|-32.94167|-68.81518|9 de Julio|MendoTRAN|M
+S|-32.95492|-68.79527|Alta Italia|MendoTRAN|M
+S|-32.83975|-68.83684|Avellaneda|MendoTRAN|M
+S|-32.89036|-68.85015|Belgrano|MendoTRAN|M
+S|-32.87638|-68.84646|Coronel Moldes|MendoTRAN|M
+S|-32.85231|-68.83998|General Roca|MendoTRAN|M
+S|-32.92148|-68.83981|Godoy Cruz|MendoTRAN|M
+S|-32.95969|-68.78269|Gutiérrez|MendoTRAN|M
+S|-32.93287|-68.82595|Independencia|MendoTRAN|M
+S|-32.85980|-68.84211|José María Godoy|MendoTRAN|M
+S|-32.87005|-68.84477|Lugones|MendoTRAN|M
+S|-32.94737|-68.80819|Luzuriaga|MendoTRAN|M
+S|-32.84740|-68.83881|Marcos Burgos|MendoTRAN|M
+S|-32.95711|-68.78953|Maza|MendoTRAN|M
+S|-32.88282|-68.84819|Mendoza|MendoTRAN|M
+S|-32.93827|-68.81933|Parque TIC|MendoTRAN|M
+S|-32.85505|-68.84055|Patricias Mendocinas|MendoTRAN|M
+S|-32.89680|-68.85185|Pedro Molina|MendoTRAN|M
+S|-32.90864|-68.85196|Pellegrini|MendoTRAN|M
+S|-32.95253|-68.80121|Piedra Buena|MendoTRAN|M
+S|-32.92691|-68.83323|Progreso|MendoTRAN|M
+S|-32.86642|-68.84380|Rubilar|MendoTRAN|M
+S|-32.91599|-68.84650|San Martín|MendoTRAN|M
+S|-32.87936|-68.84723|Suipacha|MendoTRAN|M
+S|-34.51296|-58.48749|Avenida Maipú|Mitre|M
+S|-34.50852|-58.48481|Borges|Mitre|M
+S|-27.76760|-64.26976|Botánico|Mitre|M
+S|-34.42993|-58.56290|Canal San Fernando|Mitre|M
+S|-34.41855|-58.57680|Delta|Mitre|M
+S|-27.77951|-64.26310|Forum|Mitre|M
+S|-34.48916|-58.48123|Juan Anchorena|Mitre|M
+S|-27.73247|-64.24035|La Banda|Mitre|M
+S|-34.47237|-58.49308|Las Barrancas|Mitre|M
+S|-34.50256|-58.48198|Libertador|Mitre|M
+S|-34.44455|-58.53903|Marina Nueva|Mitre|M
+S|-27.75720|-64.26135|Nodo Tecnológico|Mitre|M
+S|-34.45052|-58.52385|Punta Chica|Mitre|M
+S|-34.43753|-58.55394|San Fernando R|Mitre|M
+S|-34.46540|-58.50827|San Isidro R|Mitre|M
+S|-34.90498|-57.94318|Arquitectura|Roca|M
+S|-34.93147|-57.92806|Avenida 7|Roca|M
+S|-34.93594|-57.93282|Circunvalación|Roca|M
+S|-34.92025|-57.91905|Diagonal 73|Roca|M
+S|-34.94827|-57.94660|Hospital San Juan de Dios|Roca|M
+S|-34.90335|-57.93580|Informática|Roca|M
+S|-34.90427|-57.94955|La Plata|Roca|M
+S|-34.90901|-57.92784|Medicina|Roca|M
+S|-34.94048|-57.93795|Meridiano V|Roca|M
+S|-34.91218|-57.92426|Periodismo|Roca|M
+S|-34.92536|-57.92126|Policlínico|Roca|M
+S|-34.60444|-58.38027|9 de Julio|Subte de Buenos Aires|M
+S|-34.61811|-58.43596|Acoyte|Subte de Buenos Aires|M
+S|-34.59171|-58.40707|Agüero|Subte de Buenos Aires|M
+S|-34.60988|-58.40086|Alberti|Subte de Buenos Aires|M
+S|-34.60897|-58.38063|Avenida de Mayo|Subte de Buenos Aires|M
+S|-34.62697|-58.42640|Avenida La Plata|Subte de Buenos Aires|M
+S|-34.61296|-58.37765|Belgrano|Subte de Buenos Aires|M
+S|-34.62548|-58.41612|Boedo|Subte de Buenos Aires|M
+S|-34.60974|-58.37411|Bolívar|Subte de Buenos Aires|M
+S|-34.58825|-58.41121|Bulnes|Subte de Buenos Aires|M
+S|-34.60445|-58.39275|Callao|Subte de Buenos Aires|M
+S|-34.59964|-58.39267|Callao - Raquel Liberman|Subte de Buenos Aires|M
+S|-34.62645|-58.45611|Carabobo|Subte de Buenos Aires|M
+S|-34.60408|-58.41135|Carlos Gardel|Subte de Buenos Aires|M
+S|-34.60368|-58.38127|Carlos Pellegrini|Subte de Buenos Aires|M
+S|-34.63543|-58.39904|Caseros|Subte de Buenos Aires|M
+S|-34.61171|-58.42152|Castro Barros|Subte de Buenos Aires|M
+S|-34.59651|-58.37210|Catalinas|Subte de Buenos Aires|M
+S|-34.60757|-58.37429|Catedral|Subte de Buenos Aires|M
+S|-34.60922|-58.39256|Congreso|Subte de Buenos Aires|M
+S|-34.55580|-58.46222|Congreso de Tucumán|Subte de Buenos Aires|M
+S|-34.62739|-58.38112|Constitución|Subte de Buenos Aires|M
+S|-34.60370|-58.37022|Correo Central|Subte de Buenos Aires|M
+S|-34.60412|-58.40534|Corrientes|Subte de Buenos Aires|M
+S|-34.59920|-58.40394|Córdoba|Subte de Buenos Aires|M
+S|-34.60477|-58.37951|Diagonal Norte|Subte de Buenos Aires|M
+S|-34.59176|-58.44749|Dorrego|Subte de Buenos Aires|M
+S|-34.57797|-58.48074|Echeverría|Subte de Buenos Aires|M
+S|-34.63146|-58.44236|Emilio Mitre|Subte de Buenos Aires|M
+S|-34.62274|-58.39145|Entre Ríos - Rodolfo Walsh|Subte de Buenos Aires|M
+S|-34.60174|-58.37811|Esmeralda y Lavalle|Subte de Buenos Aires|M
+S|-34.58307|-58.39105|Facultad de Derecho - Julieta Lanteri|Subte de Buenos Aires|M
+S|-34.59975|-58.39774|Facultad de Medicina|Subte de Buenos Aires|M
+S|-34.58718|-58.45515|Federico Lacroze|Subte de Buenos Aires|M
+S|-34.60335|-58.37456|Florida|Subte de Buenos Aires|M
+S|-34.59502|-58.37790|General San Martín|Subte de Buenos Aires|M
+S|-34.62469|-58.40975|General Urquiza|Subte de Buenos Aires|M
+S|-34.64171|-58.41268|Hospitales|Subte de Buenos Aires|M
+S|-34.62307|-58.40233|Humberto I|Subte de Buenos Aires|M
+S|-34.62931|-58.40100|Inclán-Mezquita Al Ahmad|Subte de Buenos Aires|M
+S|-34.61809|-58.38014|Independencia|Subte de Buenos Aires|M
+S|-34.61811|-58.38146|Independencia - Santa Mama Antula|Subte de Buenos Aires|M
+S|-34.56626|-58.45207|José Hernández|Subte de Buenos Aires|M
+S|-34.62803|-58.43389|José María Moreno|Subte de Buenos Aires|M
+S|-34.57398|-58.48681|Juan Manuel de Rosas|Subte de Buenos Aires|M
+S|-34.62384|-58.40276|Jujuy|Subte de Buenos Aires|M
+S|-34.56244|-58.45638|Juramento|Subte de Buenos Aires|M
+S|-34.58755|-58.39722|Las Heras|Subte de Buenos Aires|M
+S|-34.60298|-58.36973|Leandro N. Alem|Subte de Buenos Aires|M
+S|-34.60912|-58.38265|Lima|Subte de Buenos Aires|M
+S|-34.61083|-58.41555|Loria|Subte de Buenos Aires|M
+S|-34.58121|-58.47434|Los Incas - Parque Chas|Subte de Buenos Aires|M
+S|-34.59903|-58.43969|Malabia - Osvaldo Pugliese|Subte de Buenos Aires|M
+S|-34.63631|-58.45019|Medalla Milagrosa|Subte de Buenos Aires|M
+S|-34.60320|-58.42081|Medrano - Almagro|Subte de Buenos Aires|M
+S|-34.57520|-58.43468|Ministro Carranza|Subte de Buenos Aires|M
+S|-34.61247|-58.38053|Moreno|Subte de Buenos Aires|M
+S|-34.60215|-58.43113|Ángel Gallardo|Subte de Buenos Aires|M
+S|-34.57025|-58.44436|Olleros|Subte de Buenos Aires|M
+S|-34.60916|-58.40602|Once - 30 de Diciembre|Subte de Buenos Aires|M
+S|-34.57849|-58.42562|Palermo|Subte de Buenos Aires|M
+S|-34.63849|-58.40631|Parque Patricios|Subte de Buenos Aires|M
+S|-34.60965|-58.39852|Pasco|Subte de Buenos Aires|M
+S|-34.60464|-58.39941|Pasteur - AMIA|Subte de Buenos Aires|M
+S|-34.60858|-58.37450|Perú|Subte de Buenos Aires|M
+S|-34.62321|-58.39757|Pichincha|Subte de Buenos Aires|M
+S|-34.60884|-58.37857|Piedras|Subte de Buenos Aires|M
+S|-34.64292|-58.46168|Plaza de los Virreyes - Eva Perón|Subte de Buenos Aires|M
+S|-34.60880|-58.37114|Plaza de Mayo|Subte de Buenos Aires|M
+S|-34.58146|-58.42111|Plaza Italia|Subte de Buenos Aires|M
+S|-34.60975|-58.40636|Plaza Miserere|Subte de Buenos Aires|M
+S|-34.62059|-58.44139|Primera Junta|Subte de Buenos Aires|M
+S|-34.60456|-58.40545|Pueyrredón|Subte de Buenos Aires|M
+S|-34.59492|-58.40314|Pueyrredón|Subte de Buenos Aires|M
+S|-34.62356|-58.44864|Puán|Subte de Buenos Aires|M
+S|-34.59198|-58.37651|Retiro|Subte de Buenos Aires|M
+S|-34.59136|-58.37424|Retiro|Subte de Buenos Aires|M
+S|-34.61524|-58.42949|Río de Janeiro|Subte de Buenos Aires|M
+S|-34.62235|-58.38520|San José|Subte de Buenos Aires|M
+S|-34.62907|-58.46348|San José de Flores|Subte de Buenos Aires|M
+S|-34.62224|-58.37993|San Juan|Subte de Buenos Aires|M
+S|-34.63094|-58.47049|San Pedrito|Subte de Buenos Aires|M
+S|-34.59471|-58.40243|Santa Fe - Carlos Jáuregui|Subte de Buenos Aires|M
+S|-34.58517|-58.41589|Scalabrini Ortiz|Subte de Buenos Aires|M
+S|-34.60941|-58.38675|Sáenz Peña|Subte de Buenos Aires|M
+S|-34.60144|-58.38488|Tribunales - Teatro Colón|Subte de Buenos Aires|M
+S|-34.58408|-58.46637|Tronador - Villa Ortúzar|Subte de Buenos Aires|M
+S|-34.60404|-58.38708|Uruguay|Subte de Buenos Aires|M
+S|-34.63982|-58.45801|Varela|Subte de Buenos Aires|M
+S|-34.61521|-58.40474|Venezuela|Subte de Buenos Aires|M
+S|-34.90272|-56.21372|Buquebus|Buquebus|W
+S|-34.59728|-58.36760|Buquebus|Buquebus|W
+S|-34.47404|-57.84416|Terminal Fluviomarítima Colonia|Buquebus|W
+L|MendoTRAN|Metrotranvía 100|red|8 14:699 2:588 20:615 12:863 1:912 16:539 9:860 21:948 7:858 23:871 19:967 0:468 18:862 4:730 15:854 24:392 5:335 11:720 22:411 10:751 17:548 6:307 13:554 3:866
+L|MendoTRAN|Metrotranvía 101|red|3 13:866 6:554 17:307 10:546 22:753 11:410 5:720 24:335 15:393 4:854 18:729 0:864 19:469 23:970 7:871 21:858 9:948 16:860 1:540 12:910 20:865 2:616 14:588 8:699
+L|Mitre|Tren al Desarrollo|blue|30 27:1579 36:1528 32:4324
+L|Mitre|Tren al Desarrollo|blue|32 36:4323 27:1533 30:1579
+L|Mitre|Tren de la Costa|#37bbed|25 26:583 34:715 31:1483 33:2303 39:1609 37:2195 35:1580 38:1595 28:1177 29:1771
+L|Mitre|Tren de la Costa|#37bbed|29 28:1772 38:1176 35:1594 37:1583 39:2196 33:1606 31:2307 34:1497 26:703 25:584
+L|Roca|Tren Universitario|#37bbed|46 40:629 45:716 47:963 49:482 41:2558 48:1343 43:2870 50:609 42:1576 44:1855
+L|Roca|Tren Universitario|#37bbed|44 42:1854 50:1575 43:609 48:2870 41:1343 49:2558 47:482 45:963 40:716 46:629
+L|Subte de Buenos Aires|Línea A|#1CA4CB|119 115:334 117:399 100:386 135:371 70:543 54:764 121:510 101:888 67:559 128:828 52:672 122:569 125:741 63:755 130:736 132:703
+L|Subte de Buenos Aires|Línea A|#1CA4CB|132 130:705 63:735 125:755 122:741 52:569 128:672 67:829 101:560 121:923 113:713 70:549 135:543 100:370 117:386 115:399 119:335
+L|Subte de Buenos Aires|Línea B|#C20924|99 85:477 65:616 138:534 61:521 114:611 123:555 64:543 105:876 108:955 103:872 77:1076 84:884 137:1097 102:807 78:709 95:713
+L|Subte de Buenos Aires|Línea B|#C20924|95 78:711 102:706 137:809 84:1097 77:886 103:1076 108:869 105:955 64:875 123:544 114:554 61:611 138:521 65:535 85:615 99:478
+L|Subte de Buenos Aires|Línea C|#003EA1|127 86:526 81:755 76:422 55:568 107:375 91:626 131:488 72:600
+L|Subte de Buenos Aires|Línea C|#003EA1|72 131:600 91:488 107:626 55:376 76:571 81:417 86:757 127:526
+L|Subte de Buenos Aires|Línea D|#217861|69 51:681 136:537 62:782 83:464 124:879 53:511 60:548 134:541 120:627 111:530 106:911 109:1039 93:828 97:592 71:908
+L|Subte de Buenos Aires|Línea D|#217861|71 97:909 93:591 109:828 106:1039 111:911 120:532 134:628 60:540 53:549 124:513 83:877 62:465 136:785 51:536 69:680
+L|Subte de Buenos Aires|Línea E|#6B297E|118 139:479 104:850 79:976 94:912 56:694 58:961 87:588 96:647 116:480 80:564 129:574 92:715 57:665 59:493 73:849 68:822 126:656
+L|Subte de Buenos Aires|Línea E|#6B297E|126 68:664 73:822 59:858 57:493 92:662 129:724 80:573 116:563 96:480 87:647 58:589 56:959 94:695 79:908 104:980 139:847 118:478
+L|Subte de Buenos Aires|Línea H|#F4CC21|82 98:765 133:962 75:512 74:560 110:563 140:681 89:897 90:701 66:702 112:872 88:812
+L|Subte de Buenos Aires|Línea H|#F4CC21|88 112:822 66:858 90:702 89:701 140:896 110:682 74:564 75:560 133:512 98:964 82:764
+L|Buquebus|Buenos Aires - Colonia||142 143:49985
+L|Buquebus|Buenos Aires - Montevideo||142 141:202580
+T|-33.00119|-68.80938|1085 - FADEP
+T|-34.78036|-58.73801|20 de Junio
+T|-29.36691|-56.83002|25 de Febrero
+T|-35.42435|-60.16676|25 de Mayo
+T|-34.57188|-58.42520|3 de Febrero
+T|-35.45418|-60.87678|9 de Julio (Sarmiento)
+T|-35.28139|-58.80296|Abbott
+T|-27.38926|-59.08513|Aborigen
+T|-34.47989|-58.50400|Acassuso
+T|-35.68391|-57.95399|Adela
+T|-34.50298|-58.66605|Adolfo Sourdeaux
+T|-34.79781|-58.39424|Adrogué
+T|-32.92171|-60.78201|Aeroclub Rosario
+T|-38.95558|-68.14085|Aeropuerto
+T|-40.84688|-65.84330|Aguada Cecilio
+T|-41.06791|-68.38236|Aguada de Guerra
+T|-34.70980|-58.50612|Agustín De Elía
+T|-34.70607|-58.77937|Agustín Ferrari
+T|-31.43105|-68.49261|Albardón
+T|-27.45471|-58.99137|Alberdi
+T|-31.45439|-59.59780|Alcaraz
+T|-33.54166|-61.12271|Alcorta
+T|-32.70403|-60.81575|Aldao
+T|-26.81811|-65.14572|Alderetes
+T|-34.71069|-58.51445|Aldo Bonzi
+T|-33.35725|-63.71924|Alejandro
+T|-34.98056|-58.37391|Alejandro Korn
+T|-34.97754|-58.67454|Alejandro Petión
+T|-38.89176|-63.14278|Algarrobo
+T|-31.74552|-68.31092|Algarrobo Verde
+T|-38.97666|-67.82572|Allen
+T|-33.90959|-59.39216|Alsina
+T|-31.39821|-64.18025|Alta Córdoba
+T|-37.64840|-62.70000|Alta Vista
+T|-34.66998|-59.36790|Altamira
+T|-35.36121|-58.15125|Altamirano
+T|-33.83621|-66.13913|Alto Pelado
+T|-33.15525|-68.35649|Alto Verde
+T|-29.08547|-56.54431|Alvear
+T|-34.84987|-62.46799|Ameghino
+T|-35.48564|-62.97638|América
+T|-32.39364|-63.06289|Ana Zumarán
+T|-32.66741|-60.87185|Andino
+T|-35.03469|-60.27730|Andrés Vaccarezza
+T|-36.52880|-64.01029|Anguil
+T|-30.58156|-65.72786|Antigua Estación de Tren - Castro Barros
+T|-26.11784|-64.59502|Antilla
+T|-35.20072|-59.34568|Antonio Carboni
+T|-34.59560|-58.51055|Antonio Devoto
+T|-22.83593|-63.83110|Antonio Quijarro
+T|-32.92617|-60.73907|Antártida Argentina
+T|-27.41098|-59.05495|Anunciación
+T|-38.96901|-63.85538|Anzoátegui
+T|-38.62293|-60.88277|Aparicio
+T|-32.03842|-60.30547|Apeadero Barrio Azul
+T|-35.13407|-58.21919|Apeadero KM 82
+T|-22.42218|-65.70063|Apeadero Km 1397
+T|-31.38860|-59.50491|Apeadero Km 160
+T|-32.92761|-60.72617|Apeadero Km 9
+T|-35.07545|-60.42831|Apeadero Mecha
+T|-34.14831|-63.26337|Apeadero km 474
+T|-27.91403|-55.81189|Apóstoles
+T|-32.24514|-60.16316|Aranguren
+T|-37.04747|-63.26766|Arano
+T|-27.41139|-64.49837|Ardiles
+T|-25.91953|-65.12440|Arenal
+T|-34.27023|-61.29286|Arenales
+T|-33.14384|-61.47060|Arequito
+T|-29.53588|-62.26704|Argentina
+T|-31.33955|-64.25704|Argüello
+T|-34.53755|-58.47794|Aristóbulo del Valle
+T|-33.26626|-60.97172|Arminda
+T|-32.78658|-61.60340|Armstrong
+T|-34.06157|-60.09971|Arrecifes
+T|-34.21063|-61.35716|Arribeños
+T|-32.48842|-63.40362|Arroyo Cabral
+T|-37.51592|-62.31168|Arroyo Corto
+T|-33.15626|-60.50897|Arroyo Seco
+T|-37.08192|-62.54066|Arroyo Venado
+T|-30.23352|-61.73142|Arrufó
+T|-33.08707|-61.79025|Arteaga
+T|-27.05357|-64.92155|Aráoz
+T|-33.98052|-59.28865|Atucha
+T|-31.42183|-61.42477|Aurelia
+T|-30.59465|-64.20768|Avellaneda
+T|-26.69111|-60.73370|Avia Terai
+T|-37.14975|-58.47267|Ayacucho
+T|-37.49039|-59.29334|Azucena
+T|-36.78586|-59.85310|Azul
+T|-38.72158|-62.25457|Bahía Blanca
+T|-29.60414|-58.16466|Baibiene
+T|-34.74351|-60.98781|Baigorrita
+T|-38.76510|-61.92000|Bajo Hondo
+T|-37.83473|-58.26443|Balcarce
+T|-32.54858|-62.98462|Ballesteros
+T|-34.81209|-61.65825|Balsa
+T|-34.47958|-58.60301|Bancalari R
+T|-35.00994|-63.37455|Banderaló
+T|-34.74359|-58.39542|Banfield
+T|-33.81948|-59.51712|Baradero
+T|-33.02940|-68.59808|Barcala
+T|-37.63754|-59.38688|Barker
+T|-32.23462|-60.98082|Barrancas
+T|-38.95542|-68.17824|Barrio Unión
+T|-32.94140|-60.70776|Barrio Vila
+T|-38.31273|-60.23121|Barrow
+T|-34.51502|-58.48923|Bartolomé Mitre
+T|-24.74114|-65.39599|Batalla de Salta
+T|-37.57578|-61.81931|Bathurst
+T|-33.75982|-66.64137|Beazley
+T|-34.46071|-58.52658|Beccar
+T|-27.45161|-58.99480|Belgrano
+T|-34.55887|-58.44894|Belgrano C
+T|-34.56781|-58.46246|Belgrano R
+T|-32.61209|-62.69408|Bell Ville
+T|-34.56380|-58.68467|Bella Vista
+T|-27.03155|-65.30423|Bella Vista
+T|-27.83098|-64.06134|Beltrán
+T|-34.40931|-58.68455|Benavídez
+T|-39.09561|-65.48096|Benjamín Zorrilla
+T|-34.96690|-60.12734|Benítez
+T|-33.33870|-61.86152|Berabevú
+T|-34.76413|-58.20842|Berazategui
+T|-31.58957|-67.65870|Bermejo
+T|-34.70939|-58.28038|Bernal
+T|-35.02182|-63.58217|Bernardo Larroudé
+T|-32.17048|-61.15943|Bernardo de Irigoyen
+T|-35.85717|-62.51214|Beruti
+T|-24.68461|-65.14811|Betania
+T|-32.37370|-59.92815|Betbeder
+T|-31.30791|-64.46302|Bialet Massé
+T|-33.37792|-61.18179|Bigand
+T|-34.88142|-58.01880|Blancanieves
+T|-34.54237|-61.25324|Blandengues
+T|-36.20792|-63.07790|Bocayuva
+T|-33.45429|-61.32104|Bombal
+T|-29.81867|-57.43045|Bonpland
+T|-37.80377|-63.03710|Bordenave
+T|-37.64659|-58.24014|Bosch
+T|-34.81952|-58.23010|Bosques
+T|-34.50903|-58.56489|Boulogne Sur Mer
+T|-31.34053|-59.44610|Bovril
+T|-35.11968|-60.47848|Bragado
+T|-42.26684|-71.13886|Bruno J. Thomae
+T|-32.89172|-68.75812|Buena Nueva
+T|-31.23320|-63.33348|Buey Muerto
+T|-32.99759|-68.85475|Bulnes
+T|-34.82497|-58.39132|Burzaco
+T|-31.10293|-60.72574|Cabal
+T|-34.61924|-58.44366|Caballito
+T|-38.48387|-61.89571|Cabildo
+T|-32.93116|-60.66296|Cabín 5
+T|-36.37337|-59.50713|Cacharí
+T|-24.27456|-66.03433|Cachiñal
+T|-31.35645|-66.81013|Caclillo
+T|-27.41525|-59.04529|Cacuí
+T|-33.55470|-67.24859|Cadetes de Chile
+T|-24.69131|-67.98827|Caipe
+T|-31.51219|-58.13533|Calabacillas
+T|-29.89354|-60.28943|Calchaquí
+T|-38.72315|-62.06030|Calderón
+T|-38.76466|-61.41726|Calvo
+T|-37.88993|-57.60500|Camet
+T|-34.15675|-58.95859|Campana
+T|-26.80489|-60.84158|Campo Largo
+T|-24.91096|-65.64618|Campo Quijano
+T|-24.66417|-65.10193|Campo Santo (El Bordo)
+T|-34.54379|-58.68575|Campo de Mayo
+T|-37.21589|-58.68233|Cangallo
+T|-37.34583|-59.00068|Cantera Aguirre
+T|-37.54762|-63.24485|Canónigo Gorriti
+T|-32.75554|-68.80741|Capdeville
+T|-34.88586|-58.02043|Caperucita
+T|-30.86077|-64.52268|Capilla del Monte
+T|-34.28695|-59.10174|Capilla del Señor
+T|-51.73046|-70.12729|Capitán Eyroa
+T|-34.55531|-58.66986|Capitán Lozano
+T|-34.52880|-58.53739|Carapachay
+T|-32.85715|-61.14716|Carcarañá
+T|-37.17997|-62.74942|Carhué
+T|-35.62949|-61.36313|Carlos Casares
+T|-34.91000|-58.59434|Carlos Spegazzini
+T|-40.79146|-62.97945|Carmen de Patagones
+T|-32.91089|-64.02436|Carnerillo
+T|-31.01996|-64.11486|Caroya
+T|-33.59847|-61.30962|Carreras
+T|-34.43757|-58.56739|Carupá
+T|-31.34700|-64.40353|Casa Bamba
+T|-31.15342|-64.47261|Casa Grande
+T|-30.96700|-61.74040|Casablanca
+T|-32.26307|-61.12728|Casalegno
+T|-28.94801|-62.80205|Casares
+T|-37.29052|-62.29845|Cascada
+T|-34.60459|-58.56456|Caseros
+T|-32.46535|-58.48097|Caseros
+T|-31.37330|-64.44184|Cassaffousth
+T|-34.65206|-58.64200|Castelar
+T|-34.32772|-62.37288|Castellanos
+T|-36.09303|-57.81046|Castelli
+T|-34.61052|-59.89724|Castilla
+T|-25.68383|-54.44902|Cataratas
+T|-36.41075|-63.42094|Catriló
+T|-31.64766|-68.28534|Caucete (San Martín)
+T|-31.10971|-60.58321|Cayastacito
+T|-28.29124|-56.11422|Caza Pava
+T|-33.85464|-66.36919|Cazador
+T|-31.98518|-68.54965|Cañada Honda
+T|-32.05319|-61.59967|Cañada Rosquín
+T|-34.41419|-62.96298|Cañada Seca
+T|-34.83637|-64.58702|Cañada Verde
+T|-32.82239|-61.39490|Cañada de Gómez
+T|-31.42943|-63.58903|Cañada de Machado
+T|-33.41106|-61.60612|Cañada del Ucle
+T|-30.22606|-60.36420|Cañadita
+T|-35.05924|-58.75443|Cañuelas
+T|-35.28908|-63.78030|Ceballos
+T|-34.43921|-58.82414|Cecilia Grierson
+T|-25.67860|-54.45317|Central
+T|-33.39854|-60.62384|Cepeda
+T|-29.88206|-61.94650|Ceres
+T|-26.85783|-65.12748|Cevil Pozo
+T|-33.24472|-61.35967|Chabás
+T|-34.62970|-60.47019|Chacabuco
+T|-30.76212|-57.98025|Chajarí
+T|-33.55369|-65.00464|Chaján
+T|-36.64004|-59.14836|Chapaleofú
+T|-33.79831|-61.74744|Chapuy
+T|-27.65085|-59.86104|Charadai
+T|-27.21498|-61.19188|Charata
+T|-35.57907|-57.98273|Chascomús
+T|-38.33742|-62.64216|Chasicó
+T|-27.50696|-64.41995|Chaupí Pozo
+T|-28.95171|-58.56920|Chavarría
+T|-33.30795|-62.03470|Chañar Ladeado
+T|-25.10117|-64.22037|Chañar Muyo
+T|-39.08823|-66.52036|Chelforó
+T|-34.24786|-59.21755|Chenaut
+T|-31.34120|-66.59207|Chepes
+T|-39.11658|-66.94301|Chichinales
+T|-35.73114|-61.74184|Chiclana
+T|-34.54205|-58.56717|Chilavert
+T|-39.16724|-66.14519|Chimpay
+T|-34.91735|-59.99616|Chivilcoy Sud
+T|-27.91621|-61.39899|Chorotis
+T|-24.75721|-65.74459|Chorrillos
+T|-33.59982|-61.60284|Chovet
+T|-28.49685|-64.85929|Choya
+T|-34.18317|-62.02154|Christophersen
+T|-24.75002|-68.06268|Chuculaqui
+T|-30.46839|-64.66820|Chuña
+T|-38.94192|-67.99642|Cipolletti
+T|-34.86574|-58.04209|City Bell
+T|-34.54307|-58.44777|Ciudad Universitaria
+T|-34.63993|-58.54108|Ciudadela
+T|-31.82683|-58.82217|Clara
+T|-32.50927|-61.02835|Clarke
+T|-34.80115|-58.33811|Claypole
+T|-41.24637|-70.03505|Clemente Onelli
+T|-37.80131|-57.63027|Cobo
+T|-31.90094|-68.39044|Cochagual
+T|-34.56533|-58.47512|Coghlan
+T|-31.96450|-63.38590|Colazo
+T|-34.57302|-58.44819|Colegiales
+T|-34.66229|-60.54189|Coliqueo
+T|-31.75620|-60.40915|Colonia Avellaneda
+T|-28.60416|-62.95187|Colonia Dora
+T|-31.00549|-61.59593|Colonia El Cisne
+T|-33.88775|-61.09409|Colón
+T|-41.03241|-70.26361|Comallo
+T|-30.88461|-65.79125|Comandante Leal
+T|-24.97918|-65.58292|Combate de Rosario de Lerma
+T|-31.40371|-58.01243|Concordia Central
+T|-35.27336|-63.06746|Condarco
+T|-38.95531|-68.19607|Constituyentes
+T|-32.97268|-68.74861|Coquimbito
+T|-31.96471|-60.91936|Coronda
+T|-33.02364|-60.64058|Coronel Aguirre
+T|-33.31513|-60.60031|Coronel Bogado
+T|-35.16797|-58.23197|Coronel Brandsen
+T|-38.71378|-61.29837|Coronel Dorrego
+T|-34.78772|-62.20457|Coronel Granada
+T|-35.02081|-63.91233|Coronel Hilario Lagos
+T|-39.02184|-67.63930|Coronel Juan José Gómez
+T|-34.59718|-58.52439|Coronel Lynch
+T|-38.71118|-62.31881|Coronel Maldonado
+T|-37.96330|-61.36900|Coronel Pringles (Roca)
+T|-37.46967|-61.91501|Coronel Suárez (FRPB)
+T|-37.46058|-61.93211|Coronel Suárez (Roca)
+T|-37.45452|-57.72857|Coronel Vidal
+T|-33.28101|-62.18584|Corral de Bustos
+T|-32.84671|-61.25233|Correa
+T|-27.49787|-58.81441|Corrientes
+T|-27.47139|-58.82281|Corrientes (FEC)
+T|-34.55559|-59.20674|Cortínes
+T|-26.95566|-60.96959|Corzuela
+T|-31.24369|-64.46773|Cosquín
+T|-27.52724|-59.57418|Cote Lai
+T|-33.00712|-61.80676|Cruz Alta
+T|-33.02873|-68.79780|Cruz de Piedra
+T|-30.72003|-64.80529|Cruz del Eje
+T|-26.89327|-65.12635|Cruz del Norte
+T|-34.62171|-60.40816|Cucha Cucha
+T|-35.20436|-62.76829|Cuenca
+T|-32.71514|-60.73403|Cullen
+T|-31.19820|-60.93103|Cululú
+T|-37.48629|-62.10582|Cura Malal
+T|-30.39668|-61.65361|Curupaity
+T|-31.42033|-64.17509|Córdoba
+T|-36.60359|-61.74731|Daireaux
+T|-32.61002|-63.58141|Dalmacio Velez Sarsfield
+T|-37.68661|-63.15889|Darregueira
+T|-39.20575|-65.74106|Darwin
+T|-34.66204|-58.37665|Darío Santillán y Maximiliano Kosteki
+T|-37.12732|-59.10468|De La Canal
+T|-34.45346|-58.79656|Del Viso
+T|-37.32029|-63.23580|Delfín Huergo
+T|-35.35152|-60.74504|Dennehy
+T|-31.21081|-66.31897|Desiderio Tello
+T|-29.80165|-60.27258|Desvio Km 213
+T|-29.60411|-60.23565|Desvio Km 236
+T|-29.18749|-60.15891|Desvio Km 282
+T|-29.09315|-60.14165|Desvio Km 293
+T|-24.19301|-66.51468|Desvío "Km. 1368"
+T|-27.77633|-59.90627|Desvío Kilómetro 443
+T|-27.58646|-59.71122|Desvío Kilómetro 474
+T|-27.41268|-59.33704|Desvío Kilómetro 519
+T|-27.41364|-59.29233|Desvío Kilómetro 523
+T|-27.39411|-59.16676|Desvío Kilómetro 535
+T|-27.56255|-61.85202|Desvío La Paloma
+T|-34.60267|-58.51278|Devoto
+T|-31.40709|-62.30633|Devoto
+T|-30.42822|-64.35408|Deán Funes
+T|-37.91290|-62.93827|Diecisiete de Agosto
+T|-24.38485|-65.85933|Diego de Almagro
+T|-34.37550|-62.12904|Diego de Alvear
+T|-37.31351|-59.16749|Divisadero Cantera La Movediza
+T|-31.76417|-60.51607|División de los Andes
+T|-31.71324|-68.30314|Divisoria
+T|-34.47205|-58.57434|Doctor Albert Schweitzer
+T|-34.64912|-58.41661|Doctor Antonio Sáenz
+T|-34.52313|-58.49413|Doctor Cetrángolo
+T|-34.48792|-59.07570|Doctor Domingo Cabred
+T|-34.59321|-58.49466|Doctor Francisco Beiró
+T|-34.56846|-58.47912|Doctor Luis María Drago
+T|-36.30309|-57.68750|Dolores
+T|-36.14999|-59.26780|Domingo Harosteguy
+T|-35.07051|-58.29042|Domselaar
+T|-34.70332|-58.29628|Don Bosco
+T|-34.50263|-58.64249|Don Torcuato
+T|-35.77661|-63.71785|Dorila
+T|-34.91895|-62.76444|Drabble
+T|-37.45697|-62.42393|Ducós
+T|-37.94439|-62.28807|Dufaur
+T|-31.32710|-64.33200|Dumesnil
+T|-37.25102|-60.50392|Durañona
+T|-34.79346|-61.77864|Dussaud
+T|-32.37311|-61.08883|Díaz
+T|-33.55331|-61.47696|Dúrham
+T|-37.67660|-61.70779|D’Orbigny
+T|-38.95579|-68.10532|ETON
+T|-34.81882|-62.33606|Eduardo Costa
+T|-36.96204|-59.09647|Egaña
+T|-34.58022|-58.64035|Ejército de los Andes
+T|-24.84812|-65.71686|El Alisal
+T|-33.91346|-60.94309|El Arbolito
+T|-26.01711|-62.33519|El Caburé
+T|-30.80085|-65.65694|El Chacho
+T|-27.23084|-64.70110|El Charco
+T|-38.95568|-68.11688|El Cholar
+T|-30.98726|-58.97703|El Cimarrón
+T|-31.01901|-63.60855|El Crispin
+T|-25.38260|-64.65586|El Galpón
+T|-33.00410|-60.68976|El Gaucho
+T|-34.83325|-58.49614|El Jagüel
+T|-33.69316|-61.68764|El Jardín
+T|-38.06751|-58.85935|El Lenguaraz
+T|-34.59447|-58.50312|El Libertador
+T|-42.05487|-71.16576|El Maitén
+T|-38.10763|-58.57108|El Moro
+T|-34.60493|-58.59604|El Palomar
+T|-33.57056|-59.97843|El Paraíso
+T|-31.58328|-59.89381|El Pingo
+T|-25.33380|-64.02073|El Quebrachal
+T|-33.66390|-63.53883|El Rastreador
+T|-31.09347|-58.29070|El Redomón
+T|-33.66145|-60.70569|El Socorro
+T|-27.70326|-58.76814|El Sombrero
+T|-34.46282|-58.64597|El Talar
+T|-54.83319|-68.42380|El Tren del Fin del Mundo
+T|-31.38339|-62.82772|El Tío
+T|-38.55900|-61.09061|El Zorro
+T|-35.04623|-63.12179|Elordi
+T|-35.24308|-59.48529|Elvira
+T|-23.21315|-64.09458|Embarcación
+T|-31.06282|-60.71775|Emilia
+T|-41.35239|-69.72851|Empalme
+T|-38.75602|-62.07634|Empalme Grünbein
+T|-31.54463|-60.80907|Empalme San Carlos
+T|-33.26050|-60.38327|Empalme Villa Constitucion
+T|-27.94630|-58.79989|Empedrado
+T|-35.12758|-62.39263|Encina
+T|-31.73930|-60.32920|Enrique Berduc
+T|-33.14564|-59.20822|Enrique Carbó
+T|-37.39467|-62.80309|Erize
+T|-35.26870|-59.55728|Ernestina
+T|-34.34964|-58.79509|Escobar
+T|-37.35804|-62.43715|Espartillar
+T|-32.82003|-68.81752|Espejo
+T|-29.54284|-60.22443|Espín
+T|-42.90379|-71.31807|Esquel
+T|-32.11234|-60.22928|Estacion Camps
+T|-32.37711|-58.88051|Estación Basavilbaso
+T|-31.45205|-64.25197|Estación B° Flores
+T|-39.18918|-65.95888|Estación Coronel Belisle
+T|-37.37372|-64.59616|Estación General Acha
+T|-28.39466|-64.66827|Estación Km 55
+T|-32.04037|-68.16853|Estación Km 936
+T|-31.11480|-63.60136|Estación Tala Norte
+T|-32.67181|-60.78907|Estación Timbúes
+T|-35.64732|-60.46910|Estación Valdés
+T|-30.93349|-64.49291|Estación del Monoriel
+T|-34.81100|-58.25670|Estanislao S. Zeballos
+T|-37.45510|-63.25342|Esteban Agustín Gascón
+T|-29.77432|-61.48891|Esteban Rams
+T|-38.34919|-61.80305|Estomba
+T|-30.94437|-61.85679|Eusebia
+T|-34.85412|-58.52293|Ezeiza
+T|-34.75185|-58.23421|Ezpeleta
+T|-37.06743|-58.30287|Fair
+T|-40.50604|-67.04475|Falckner
+T|-35.18795|-64.10282|Falucho
+T|-32.80391|-58.88264|Faustino M. Parera
+T|-30.98892|-58.05653|Federación
+T|-30.94534|-58.78876|Federal
+T|-34.58675|-58.45549|Federico Lacroze
+T|-38.01045|-62.81636|Felipe Solá
+T|-29.10900|-58.34087|Felipe Yofré
+T|-27.92280|-63.89360|Fernández
+T|-34.59554|-58.53532|Fernández Moreno
+T|-31.46246|-64.10590|Ferreyra
+T|-33.19352|-60.46593|Fighiera
+T|-33.45874|-61.48490|Firmat
+T|-34.81114|-58.27407|Florencio Varela
+T|-34.62782|-58.46607|Flores
+T|-34.63237|-58.48089|Floresta
+T|-34.53714|-58.51306|Florida (Belgrano)
+T|-34.53015|-58.49444|Florida (Mitre)
+T|-27.87551|-63.98018|Forres
+T|-27.40899|-59.23392|Fortín Cardozo
+T|-26.88409|-60.90871|Fortín Las Chuñas
+T|-38.85594|-65.27226|Fortín Uno
+T|-27.44012|-59.00775|Fotheringam
+T|-23.94316|-64.80094|Fraile Pintado
+T|-35.84709|-62.06995|Francisco Madero
+T|-36.68668|-63.38179|Francisco Murature
+T|-33.41333|-60.86760|Francisco Paz
+T|-31.75826|-60.52075|Francisco Ramírez
+T|-34.63224|-58.85528|Francisco Álvarez
+T|-34.61017|-59.63010|Franklin
+T|-34.01378|-63.43197|Fray Cayetano Rodríguez
+T|-33.00932|-68.65148|Fray Luis Beltrán
+T|-35.51508|-61.00130|French
+T|-28.63779|-65.13133|Frías
+T|-37.41623|-58.80873|Fulton
+T|-32.91705|-60.81062|Funes
+T|-37.44528|-64.40132|Gamay
+T|-40.75023|-68.00369|Ganzú Lauquen
+T|-28.95093|-60.13511|Garabato
+T|-38.36336|-62.20526|García del Río
+T|-37.28393|-59.35936|Gardey
+T|-25.70142|-54.44488|Garganta del Diablo
+T|-27.48492|-55.82569|Garupá
+T|-28.15126|-63.53846|Garza
+T|-34.42157|-58.73665|Garín
+T|-38.94362|-63.63801|Gaviotas
+T|-32.81137|-63.87714|General Cabrera
+T|-31.52588|-58.40180|General Campos
+T|-32.75316|-63.79134|General Deheza
+T|-27.38594|-59.10857|General Dónovan
+T|-36.65604|-57.79123|General Guido
+T|-34.89225|-58.91784|General Hornos
+T|-34.58049|-58.50170|General Juan Martín de Pueyrredón
+T|-37.25057|-61.25832|General La Madrid
+T|-33.10968|-60.56375|General Lagos
+T|-34.92803|-58.94454|General Las Heras
+T|-34.53286|-58.70092|General Lemos
+T|-34.01026|-63.92429|General Levalle
+T|-40.74668|-64.49175|General Lorenzo Vintter
+T|-40.83685|-63.36003|General Nicolás H. Palacios
+T|-27.41087|-59.41841|General Obligado
+T|-34.45603|-58.61980|General Pacheco
+T|-35.66120|-63.75064|General Pico
+T|-27.31766|-61.28031|General Pinedo
+T|-34.77052|-61.89168|General Pinto
+T|-37.27687|-57.77884|General Pirán
+T|-31.97903|-60.40520|General Racedo
+T|-32.17267|-60.19724|General Ramírez
+T|-34.61043|-59.75055|General Rivas
+T|-32.73217|-61.91613|General Roca
+T|-34.60883|-58.95318|General Rodríguez
+T|-24.25062|-65.20419|General Savio
+T|-34.57473|-58.48785|General Urquiza
+T|-35.02882|-63.01976|General Villegas
+T|-34.68567|-58.38269|Gerli
+T|-27.61936|-62.16670|Girardet
+T|-34.88864|-58.38368|Glew
+T|-31.40109|-60.74620|Gobernador Candioti
+T|-33.65928|-59.86907|Gobernador Castro
+T|-33.33348|-67.97154|Gobernador Civit
+T|-31.98903|-58.96722|Gobernador Domínguez
+T|-26.57417|-64.55868|Gobernador Garmendia
+T|-31.75198|-60.45437|Gobernador Héctor D. Maya
+T|-24.59205|-65.84367|Gobernador Manuel Solá
+T|-51.68126|-72.08807|Gobernador Mayer
+T|-51.86663|-70.60236|Gobernador Moyano
+T|-31.77198|-60.49523|Gobernador Parera
+T|-26.74042|-64.64963|Gobernador Piedrabuena
+T|-32.33944|-59.37199|Gobernador Solá
+T|-28.05300|-56.02630|Gobernador Virasoro
+T|-33.37005|-60.50767|Godoy
+T|-34.60197|-59.28742|Goldney
+T|-34.77163|-58.64675|González Catán
+T|-35.55839|-63.38000|González Moreno
+T|-35.67450|-58.95739|Gorchs
+T|-34.64778|-59.35272|Gowland
+T|-37.71818|-62.60523|Goyena
+T|-27.29702|-64.61038|Gramilla
+T|-32.86286|-60.70930|Granadero Baigorria
+T|-26.87396|-62.71553|Granadero Gatica
+T|-34.48529|-58.72533|Grand Bourg
+T|-34.71342|-60.60058|Gregorio Villafañe
+T|-38.75418|-62.18104|Grünbein
+T|-31.60413|-60.67689|Guadalupe
+T|-32.06660|-68.57876|Guanacache
+T|-28.99104|-62.12885|Guardia Escolta
+T|-33.46091|-62.43806|Guatimozín
+T|-37.66506|-63.53777|Guatraché
+T|-31.71937|-68.13359|Guayamas
+T|-29.12726|-60.14791|Guaycurú
+T|-34.91796|-58.38068|Guernica
+T|-35.97088|-57.85003|Guerrero
+T|-34.79108|-58.15537|Guillermo Enrique Hudson
+T|-32.95949|-68.78268|Gutiérrez
+T|-32.03331|-61.22263|Gálvez
+T|-35.44979|-58.09397|Gándara
+T|-27.42429|-59.02960|Güemes
+T|-24.67319|-65.04409|Güemes
+T|-34.64493|-58.59176|Haedo (Roca)
+T|-34.64454|-58.59177|Haedo (Sarmiento)
+T|-31.50910|-59.83898|Hasenkamp
+T|-35.13307|-62.51371|Hereford
+T|-27.61005|-61.34752|Hermoso Campo
+T|-27.44833|-58.99848|Hernandarias
+T|-32.42961|-63.73624|Hernando
+T|-32.33850|-60.02469|Hernández
+T|-28.48290|-63.06647|Herrera
+T|-36.62000|-64.30535|Hilario Lagos
+T|-36.86316|-60.16038|Hinojo
+T|-34.72160|-63.50956|Hipólito Bouchard
+T|-33.74711|-59.15455|Holt
+T|-25.71868|-64.90427|Horcones
+T|-35.02694|-58.72970|Hospital Cuenca Alta Néstor Kirchner
+T|-34.78615|-58.40784|Hospital Español
+T|-34.86459|-58.53616|Hospital Ezeiza
+T|-31.36931|-64.21119|Hospital Neonatal
+T|-37.06198|-61.92975|Huanguelén (Roca)
+T|-30.01070|-61.21592|Huanqueros
+T|-33.83046|-66.20205|Huejeda
+T|-31.07437|-64.49428|Huerta Grande
+T|-33.79914|-61.33692|Hughes
+T|-34.83827|-64.36843|Huinca Renancó
+T|-34.59112|-58.63230|Hurlingham
+T|-28.68145|-62.88749|Icaño
+T|-38.95582|-68.07951|Ignacio Rivas
+T|-34.76092|-58.61771|Independencia
+T|-38.32794|-60.89116|Indio Rico
+T|-34.71033|-58.50591|Ingeniero Castello
+T|-34.80895|-58.30221|Ingeniero Dante Ardigó
+T|-33.12512|-68.41146|Ingeniero Giagnoni
+T|-41.32919|-69.54668|Ingeniero Jacobacci
+T|-34.38295|-58.73637|Ingeniero Maschwitz
+T|-24.68199|-65.77264|Ingeniero Maury
+T|-34.62271|-58.89363|Ingeniero Pablo Marín
+T|-34.22215|-58.89656|Ingeniero Romulo Otamendi
+T|-34.65818|-58.57304|Ingeniero S. Brian
+T|-38.78629|-62.26459|Ingeniero White
+T|-35.24527|-63.59021|Intendente Alvear
+T|-34.73323|-58.47485|Intendente Pedro P. Turner
+T|-34.76833|-60.69179|Irala
+T|-37.25237|-58.91883|Iraola
+T|-32.92588|-58.95004|Irazusta
+T|-38.55402|-60.69667|Irene
+T|-33.98288|-59.67317|Ireneo Portela
+T|-34.41441|-61.92876|Iriarte
+T|-34.70454|-58.58750|Isidro Casanova
+T|-33.24235|-62.40223|Isla Verde
+T|-36.61525|-64.31454|Isla de los Niños
+T|-31.13866|-58.11532|Isthilart
+T|-36.82518|-61.12531|Iturregui
+T|-34.65952|-58.66588|Ituzaingó
+T|-27.48649|-61.32680|Itín
+T|-30.41127|-64.54080|Jaime Peter
+T|-32.16413|-63.46388|James Craik
+T|-35.27765|-58.19807|Jeppener
+T|-30.97953|-64.09492|Jesús María
+T|-25.12072|-64.12797|Joaquín Victor González
+T|-32.58868|-68.69459|Jocolí
+T|-31.72575|-60.29518|Jorge Méndez
+T|-34.58786|-58.62103|Jorge Newbery
+T|-38.67449|-61.09215|José A. Guisasola
+T|-34.59010|-58.46630|José Artigas
+T|-34.51925|-58.75003|José C. Paz
+T|-34.71078|-58.53728|José Ingenieros
+T|-34.53449|-58.57622|José León Suárez
+T|-31.82550|-68.22543|José Marti
+T|-34.59001|-58.57185|José María Bosch
+T|-34.79192|-58.38130|José Mármol
+T|-33.30259|-68.04402|José Néstor Lencinas
+T|-35.16781|-59.23257|José Santos Arévalo
+T|-24.79167|-65.43547|José de San Martín
+T|-34.54254|-58.49469|Juan B. Justo
+T|-32.96496|-68.79695|Juan B. Justo
+T|-34.57330|-58.64558|Juan B. de La Salle
+T|-34.43684|-61.81182|Juan Bautista Alberdi
+T|-33.49724|-60.51359|Juan Bernabé Molina
+T|-36.34936|-61.25627|Juan F. Ibarra
+T|-35.85236|-62.29899|Juan José Paso
+T|-34.83396|-58.18561|Juan María Gutiérrez
+T|-34.77138|-58.44410|Juan XXIII
+T|-38.87048|-64.54593|Juan de Garay
+T|-33.71417|-61.04848|Juncal
+T|-34.58422|-60.94982|Junín
+T|-29.37544|-58.19703|Justino Solari
+T|-33.86041|-65.17391|Justo Daract
+T|-34.70900|-58.55190|Justo Villegas
+T|-34.60073|-59.17352|Jáuregui
+T|-34.71001|-58.50605|Kilómetro 12
+T|-30.10449|-57.66822|Kilómetro 173
+T|-34.68011|-58.76027|Kilómetro 34,5
+T|-27.45927|-59.49192|Kilómetro 501
+T|-34.16020|-58.97714|Kilómetro 83
+T|-34.98639|-58.68971|Kloosterman
+T|-34.74333|-58.46511|Km 34
+T|-24.65234|-67.30784|Km. 1506
+T|-37.78279|-61.14254|Krabbé
+T|-34.58664|-58.45552|LACROZE
+T|-27.73283|-64.23958|La Banda
+T|-31.34330|-64.33848|La Calera
+T|-32.54332|-61.54994|La California
+T|-33.43377|-63.29848|La Carlota (Mitre)
+T|-33.97584|-64.08512|La Cautiva
+T|-37.35919|-61.54183|La Colina
+T|-31.26662|-58.10671|La Criolla
+T|-29.16941|-56.64687|La Cruz
+T|-30.98235|-64.49401|La Cumbre
+T|-34.94363|-61.15861|La Delfina
+T|-35.59160|-61.24318|La Dorita
+T|-33.35184|-67.91456|La Dormida
+T|-31.09372|-64.48770|La Falda
+T|-34.59851|-58.99742|La Fraternidad
+T|-32.70186|-68.75310|La Hullera
+T|-35.08037|-60.59082|La Limpia
+T|-34.49763|-58.48841|La Lucila
+T|-54.82804|-68.43776|La Macarena
+T|-27.64578|-65.24937|La Madrid
+T|-26.75966|-60.54001|La Mascota
+T|-24.31683|-64.96894|La Mendieta
+T|-35.16513|-58.78825|La Noria
+T|-34.59699|-58.46723|La Paternal
+T|-33.46284|-67.55339|La Paz
+T|-31.73459|-60.31725|La Picada
+T|-34.90452|-57.94945|La Plata
+T|-36.36667|-62.72073|La Porteña
+T|-30.56960|-63.51608|La Posta
+T|-28.40968|-64.75577|La Punta
+T|-34.63987|-58.82797|La Reja
+T|-30.10918|-61.79076|La Rubia
+T|-27.87088|-59.93887|La Sabana
+T|-33.87015|-66.28924|La Seña
+T|-34.69306|-58.52818|La Tablada
+T|-31.35197|-64.23775|La Tablada
+T|-27.97718|-59.97822|La Vicuña
+T|-38.52350|-62.28922|La Viticola
+T|-38.52328|-62.28905|La Vitícola
+T|-36.05099|-62.87611|La Zanja
+T|-36.95189|-58.09365|Labardén
+T|-33.71581|-61.31317|Labordeboy
+T|-34.12243|-63.38799|Laboulaye
+T|-34.75062|-58.58437|Laferrere
+T|-27.25517|-59.23396|Laguna Blanca
+T|-31.77729|-63.80280|Laguna Larga
+T|-33.86410|-64.85594|Laguna Oscura
+T|-31.30814|-60.65758|Laguna Paiva
+T|-24.22760|-66.91680|Laguna Seca
+T|-32.86372|-68.77878|Lagunita
+T|-34.70739|-58.39060|Lanús
+T|-27.16218|-59.38688|Lapachito
+T|-37.54877|-60.78777|Laprida
+T|-35.05146|-60.36641|Larrea
+T|-37.08680|-57.83202|Las Armas
+T|-30.38156|-63.59687|Las Arrias
+T|-27.08970|-61.08420|Las Breñas
+T|-31.81016|-68.32614|Las Casuarinas
+T|-31.93618|-60.42696|Las Delicias
+T|-36.02588|-59.09721|Las Flores
+T|-31.77341|-60.50421|Las Garzas
+T|-31.42757|-59.74447|Las Garzas
+T|-37.61667|-60.87778|Las Hermanas
+T|-33.09119|-64.29244|Las Higueras
+T|-33.80432|-65.54481|Las Isletas
+T|-31.83073|-63.44858|Las Junturas
+T|-34.61612|-58.92196|Las Malvinas
+T|-37.19667|-61.12358|Las Martinetas
+T|-38.08095|-58.45793|Las Nutrias
+T|-34.06971|-59.15015|Las Palmas
+T|-30.62980|-61.62852|Las Palmeras
+T|-34.56544|-61.12989|Las Parvas
+T|-32.69904|-63.71185|Las Perdices
+T|-27.46219|-62.91573|Las Tinajas
+T|-33.60279|-65.19788|Las Vizcacheras
+T|-37.41128|-61.27989|Lastra
+T|-33.82450|-65.42539|Lavaisse
+T|-28.19522|-65.11190|Lavalle
+T|-34.51666|-61.39038|Leandro N. Alem
+T|-34.49553|-64.80967|Lecueder
+T|-23.82107|-64.79390|Ledesma
+T|-34.20663|-62.97725|Leguizamón
+T|-32.66485|-62.29866|Leones
+T|-36.87250|-63.03919|Leubucó
+T|-35.87388|-57.89547|Lezama
+T|-34.58462|-59.05670|Lezica y Torrezuri
+T|-34.69216|-58.68648|Libertad
+T|-30.01375|-57.85961|Libertad
+T|-33.71037|-59.03363|Libertador General San Martín
+T|-33.09208|-68.47802|Libertador General San Martín
+T|-37.90891|-58.91264|Licenciado Matienzo
+T|-26.93809|-62.94968|Lilo Viejo
+T|-34.04120|-59.19458|Lima
+T|-34.85834|-61.52292|Lincoln
+T|-34.63887|-58.52634|Liniers
+T|-34.56258|-58.43638|Lisandro de la Torre
+T|-31.18946|-60.74271|Llambí Campbell
+T|-34.79712|-58.42939|Llavallol
+T|-38.15417|-58.77701|Lobería
+T|-35.18478|-59.09291|Lobos
+T|-29.50283|-61.69219|Logroño
+T|-34.76114|-58.39734|Lomas de Zamora
+T|-34.85939|-58.38725|Longchamps
+T|-36.46954|-63.61896|Lonquimay
+T|-28.10161|-59.98032|Los Amores
+T|-31.48977|-68.30219|Los Angacos
+T|-27.38363|-59.09148|Los Aromos
+T|-34.75601|-62.18404|Los Callejones
+T|-34.33089|-58.98745|Los Cardales
+T|-29.17338|-61.84479|Los Charabones
+T|-31.16953|-58.18570|Los Charrúas
+T|-26.40865|-61.41443|Los Frentones
+T|-26.79928|-60.83680|Los Hacheros
+T|-41.30487|-69.18413|Los Juncos
+T|-40.84572|-68.09016|Los Menucos
+T|-33.10232|-61.32647|Los Molinos
+T|-33.13998|-61.60407|Los Nogales
+T|-37.93939|-58.32838|Los Pinos
+T|-26.13364|-62.06364|Los Pirpintos
+T|-34.49878|-58.69504|Los Polvorines
+T|-33.37744|-61.71102|Los Quirquinchos
+T|-28.56349|-64.98084|Los Ralos
+T|-34.99923|-61.02843|Los Toldos
+T|-34.59378|-58.54698|Lourdes
+T|-34.85111|-59.05383|Lozano
+T|-32.38811|-59.53375|Lucas González
+T|-30.86751|-60.61691|Luciano Leiva
+T|-29.80600|-64.71065|Lucio V. Mansilla
+T|-32.93178|-60.68616|Ludueña
+T|-34.67722|-58.47705|Lugano
+T|-28.33802|-63.34085|Lugones
+T|-34.80328|-58.44858|Luis Guillón
+T|-34.55444|-58.48680|Luis María Saavedra
+T|-34.57763|-59.10517|Luján
+T|-25.20929|-64.92487|Lumbrera
+T|-33.03608|-68.82414|Lunlunta
+T|-37.53181|-61.28873|Líbano
+T|-34.44692|-58.67737|López Camelo
+T|-24.83758|-65.46218|Macacha Güemes
+T|-25.40370|-63.98059|Macapillo
+T|-26.93161|-60.05051|Machagai
+T|-32.45696|-60.88967|Maciel
+T|-33.95446|-60.29614|Maguire
+T|-23.62814|-65.40871|Maimará
+T|-39.06122|-67.31018|Mainque
+T|-36.86243|-57.88627|Maipú
+T|-27.20738|-59.29020|Makallé
+T|-31.46823|-64.35950|Malagueño
+T|-34.55743|-58.54786|Malaver
+T|-29.34763|-62.43970|Malbrán
+T|-40.77777|-65.45057|Mancha Blanca
+T|-31.84303|-63.74540|Manfredi
+T|-31.26783|-60.81212|Manucho
+T|-34.46283|-58.77562|Manuel Alberti
+T|-33.00574|-68.81416|Manuel Antonio Sáez
+T|-34.87994|-58.01054|Manuel Bernardo Gonnet
+T|-23.25343|-64.13740|Manuel Elordi
+T|-28.75448|-58.64835|Manuel Florencio Mantilla
+T|-26.95774|-65.27284|Manuel Garcia Fernandez
+T|-34.71021|-59.54092|Manuel José García
+T|-33.76275|-60.64694|Manuel Ocampo
+T|-34.45224|-59.00673|Manzanares
+T|-41.24992|-68.70265|Maquinchao
+T|-30.90497|-63.52901|Maquinista Gallini
+T|-33.60151|-67.09929|Maquinista Levet
+T|-34.74479|-58.80808|Maquinista Ricardo Cal
+T|-34.40685|-58.77202|Maquinista Savio
+T|-24.47678|-65.07496|Maquinista Verón
+T|-37.98848|-57.56453|Mar del Plata
+T|-31.46274|-67.35269|Marayes
+T|-30.57930|-60.47203|Marcelino Escalada
+T|-32.69882|-62.10667|Marcos Juárez
+T|-34.78651|-58.82968|Marcos Paz (Belgrano)
+T|-34.78308|-58.83661|Marcos Paz (Sarmiento)
+T|-29.69283|-60.25214|Margarita
+T|-36.12983|-62.97734|Mari Lauquen
+T|-30.48269|-60.87190|Maria Eugenia
+T|-34.72437|-58.79304|Mariano Acosta
+T|-33.91340|-60.83736|Mariano H. Alfonso
+T|-31.66919|-61.35047|Mariano Saavedra
+T|-34.70868|-58.73063|Marinos del Crucero General Belgrano
+T|-34.69014|-58.50748|Marinos del Fournier
+T|-35.31695|-59.95234|Martín Berraondo
+T|-36.40988|-59.14337|Martín Colman
+T|-34.58897|-58.59067|Martín Coronado
+T|-34.48862|-58.49641|Martínez
+T|-34.75612|-58.60085|María Eva Duarte
+T|-34.01068|-61.91017|María Teresa
+T|-31.39085|-66.97931|Mascasín
+T|-34.38280|-58.82975|Matheu
+T|-31.79148|-60.98006|Matilde
+T|-31.71591|-63.51375|Matorrales
+T|-36.79912|-63.33519|Maza
+T|-32.95696|-68.78948|Maza
+T|-35.06628|-60.40666|Mechita
+T|-31.97973|-68.41769|Media Agua
+T|-33.64776|-61.44675|Melincué
+T|-34.59171|-60.61118|Membrillar
+T|-29.19013|-58.08246|Mercedes
+T|-34.64482|-59.42662|Mercedes (Belgrano)
+T|-34.65770|-59.43236|Mercedes (Sarmiento)
+T|-34.65658|-59.44381|Mercedes C
+T|-34.65678|-59.43145|Mercedes P.
+T|-34.66445|-58.72788|Merlo
+T|-34.69716|-58.64672|Merlo Gómez
+T|-24.49080|-65.86599|Meseta
+T|-25.50039|-64.97485|Metán
+T|-38.49227|-60.46885|Micaela Cascallares
+T|-36.15536|-63.50904|Miguel Cané
+T|-31.76853|-60.51254|Miguel David
+T|-31.03095|-60.50933|Miguel Escalada
+T|-36.85309|-63.68844|Miguel Riglos
+T|-33.52945|-61.46424|Miguel Torres
+T|-34.58107|-58.51724|Miguelete
+T|-31.00923|-65.99310|Milagro
+T|-24.20145|-66.40365|Mina Concordia
+T|-34.57552|-58.43471|Ministro Carranza
+T|-40.50833|-67.26468|Ministro Ramos Mexía
+T|-36.30892|-59.43586|Miramonte
+T|-36.53349|-59.13367|Miranda
+T|-30.62109|-57.96694|Mocoretá
+T|-31.19906|-64.46453|Molinari
+T|-32.76701|-68.32893|Moluches
+T|-35.76368|-57.92519|Monasterio
+T|-30.48800|-61.63565|Monigotes
+T|-35.43668|-58.81753|Monte
+T|-30.24847|-57.64807|Monte Caseros
+T|-31.34501|-63.94551|Monte Cristo
+T|-34.81448|-58.46968|Monte Grande
+T|-32.61273|-62.58992|Monte Leña
+T|-25.80586|-62.83080|Monte Quemado
+T|-31.51565|-60.67828|Monte Vera
+T|-34.65051|-58.78962|Moreno
+T|-32.59502|-62.83485|Morrison
+T|-34.75790|-60.84035|Morse
+T|-34.64824|-58.61977|Morón
+T|-33.67111|-66.97342|Mosmota
+T|-34.53166|-58.52384|Munro
+T|-24.29104|-66.15107|Muñano
+T|-34.55129|-58.70343|Muñiz
+T|-37.07734|-60.76818|Muñoz
+T|-35.06145|-60.70470|Máximo Fernández (Est. Juan F. Salaberry)
+T|-34.93636|-58.62059|Máximo Paz
+T|-33.48001|-60.95786|Máximo Paz
+T|-38.82239|-62.69608|Médanos
+T|-33.43589|-59.06893|Médanos
+T|-40.50556|-66.56196|Nahuel Niyeu
+T|-42.95770|-71.17598|Nahuel Pan
+T|-37.62428|-58.74849|Napaleofú
+T|-26.73182|-60.61881|Napenay
+T|-38.43980|-62.24484|Napostá
+T|-30.94913|-60.46864|Naré
+T|-38.95589|-68.05825|Neuquén Central
+T|-38.43949|-60.98961|Nicolás Descalzi
+T|-36.82864|-59.99031|Nieves
+T|-32.38466|-59.79741|Nogoyá
+T|-35.27193|-59.77484|Norberto de la Riestra
+T|-33.78281|-65.71663|Nueva Escocia
+T|-31.11712|-61.51605|Nueva Lehmann
+T|-30.96894|-58.61694|Nueva Vizcaya
+T|-32.88990|-60.72655|Nuevo Alberdi
+T|-34.54849|-58.46274|Núñez
+T|-30.76501|-63.42847|Obispo Trejo (Mitre)
+T|-35.30525|-64.00641|Ojeda
+T|-41.55699|-69.86885|Ojo de Agua
+T|-24.11522|-66.71832|Olacapato
+T|-35.23664|-60.60986|Olascoaga
+T|-36.89610|-60.31415|Olavarría
+T|-32.33018|-59.44806|Olegario V. Andrade
+T|-32.04182|-63.57132|Oliva
+T|-34.62801|-59.25540|Olivera
+T|-32.57263|-60.85211|Oliveros
+T|-34.50782|-58.48060|Olivos
+T|-37.12989|-62.02562|Ombú
+T|-31.91419|-63.68321|Oncativo
+T|-34.60838|-58.40701|Once de Septiembre
+T|-31.82342|-60.51562|Oro Verde
+T|-34.02944|-60.65493|Ortiz Basualdo
+T|-31.31283|-58.05801|Osvaldo Magnasco
+T|-34.58170|-60.70022|O’Higgins
+T|-34.49371|-58.70637|Pablo Nogués
+T|-34.58835|-58.60799|Pablo Podestá
+T|-33.75778|-63.48976|Pacheco de Melo
+T|-24.90670|-65.49207|Pacto de los Cerrillos
+T|-34.54363|-58.50018|Padilla
+T|-39.03451|-67.53879|Padre Alejandro Stefenelli
+T|-30.70886|-61.62463|Palacios
+T|-34.57894|-58.42683|Palermo
+T|-33.04736|-68.56214|Palmira
+T|-29.67601|-62.13784|Palo Negro
+T|-24.89863|-64.97329|Palomitas
+T|-24.53382|-65.07512|Pampa Blanca
+T|-26.23038|-61.83688|Pampa de los Guanacos
+T|-27.15590|-61.14102|Pampa del Cielo
+T|-32.83602|-68.83592|Panqueua
+T|-32.93325|-60.67184|Parada Cruce Alberdi
+T|-31.43875|-64.13030|Parada Km 692
+T|-33.85187|-65.19044|Paradero Kilómetro 656
+T|-37.69429|-60.98258|Paragüil
+T|-31.74205|-60.53215|Paraná
+T|-36.24515|-59.36513|Pardo
+T|-36.51854|-59.63392|Parish
+T|-32.97414|-68.80109|Parque Metropolitano
+T|-54.83588|-68.47107|Parque Nacional Tren del Fin del Mundo
+T|-36.45746|-57.75845|Parravicini
+T|-37.22595|-62.16205|Pasman
+T|-30.76538|-65.19081|Paso Viejo
+T|-29.71493|-57.10059|Paso de los Libres
+T|-34.65822|-58.76207|Paso del Rey
+T|-35.13756|-62.23954|Pasteur
+T|-32.75706|-58.88688|Pastor Britos
+T|-36.50392|-61.02433|Paula
+T|-33.87362|-65.02412|Paunero
+T|-33.24288|-60.40767|Pavón
+T|-34.77497|-62.06121|Pazos Kanki
+T|-33.65139|-60.89431|Pearson
+T|-35.26605|-59.63132|Pedernales
+T|-32.96924|-68.69336|Pedregal
+T|-34.59248|-58.47628|Pedro Arata
+T|-30.03824|-60.31688|Pedro Gómez Cello
+T|-35.81555|-61.89394|Pehuajó
+T|-38.19457|-62.69155|Pelicurá
+T|-38.05726|-61.66737|Peralta
+T|-33.07710|-68.88198|Perdriel
+T|-34.83658|-58.09463|Pereyra
+T|-24.37651|-65.11412|Perico
+T|-41.06140|-71.01207|Perito Moreno
+T|-34.88287|-58.02076|Peter Pan
+T|-23.32704|-64.22853|Pichanal
+T|-38.83138|-64.93724|Pichi Mahuida
+T|-31.66154|-68.22563|Pie de Palo
+T|-38.39427|-58.67180|Pieres
+T|-37.60103|-62.41161|Pigüé
+T|-31.68249|-63.88531|Pilar
+T|-34.46866|-58.90823|Pilar (San Martín)
+T|-41.12475|-70.72125|Pilcaniyeu
+T|-27.74979|-55.79570|Pindapoy
+T|-32.75016|-60.74116|Pino de San Lorenzo
+T|-29.14353|-62.65780|Pinto
+T|-31.30057|-63.75765|Piquillín
+T|-22.32514|-63.75423|Piquirenda
+T|-33.50318|-67.41190|Pirguita
+T|-36.50659|-61.55935|Pirovano
+T|-33.10961|-60.80492|Piñero
+T|-37.42253|-61.73470|Piñeyro
+T|-36.14825|-59.14652|Plaza Montero
+T|-34.88535|-58.01796|Plaza de la Amistad
+T|-34.78233|-58.17080|Plátanos
+T|-22.05537|-63.68743|Pocitos
+T|-37.73172|-61.32444|Pontaut
+T|-27.38017|-55.88388|Posadas
+T|-23.65637|-65.42939|Posta de Hornillos
+T|-28.93852|-61.70273|Pozo Borrado
+T|-27.01274|-61.01846|Pozo del Indio
+T|-26.79468|-60.44080|Presidencia Roque Sáenz Peña
+T|-27.00429|-59.84331|Presidencia de la Plaza
+T|-34.49099|-58.83846|Presidente Derqui
+T|-34.66496|-58.44757|Presidente Illia
+T|-33.88605|-64.52987|Pretot Freyre
+T|-35.91752|-62.63712|Primera Junta
+T|-32.25556|-58.41976|Primero de Mayo
+T|-31.14218|-61.00345|Progreso
+T|-32.34558|-58.43628|Pronunciamiento
+T|-37.54119|-62.75976|Puan
+T|-24.52163|-65.86625|Puerta Tastil
+T|-27.37410|-59.08921|Puerto Tirol
+T|-32.72497|-60.73585|Puerto de San Lorenzo
+T|-32.99468|-68.86427|Pueyrredón
+T|-32.05418|-60.44714|Puiggari
+T|-33.01643|-61.04374|Pujato
+T|-34.88213|-58.01543|Pulgarcito
+T|-38.88178|-62.08377|Punta Alta
+T|-51.61432|-69.01109|Punta Loyola
+T|-31.54849|-68.30249|Puntilla Blanca
+T|-23.74847|-65.47001|Purmamarca
+T|-32.99690|-60.76882|Pérez
+T|-24.50975|-68.16766|Quebrada del Agua
+T|-36.05334|-63.56210|Quemú Quemú
+T|-34.72240|-58.53068|Querandí
+T|-37.09138|-61.19993|Quilcó
+T|-30.21435|-64.50340|Quilino
+T|-34.72467|-58.26079|Quilmes
+T|-28.78816|-65.11151|Quirós
+T|-26.87335|-60.21667|Quitilipi
+T|-34.79672|-58.35907|Rafael Calzada
+T|-34.69970|-58.62632|Rafael Castillo
+T|-31.24920|-61.47636|Rafaela (Mitre)
+T|-33.50185|-60.06755|Ramallo
+T|-30.67362|-60.50095|Ramayón
+T|-32.31000|-68.65970|Ramblón
+T|-34.64045|-58.56427|Ramos Mejía
+T|-37.54101|-58.34081|Ramos Otero
+T|-31.75267|-60.44872|Ramón Adolfino Parera
+T|-32.49202|-63.10145|Ramón J. Carcano
+T|-26.95751|-65.04427|Ranchillos
+T|-34.78938|-58.20318|Ranelagh
+T|-26.39201|-64.50458|Rapelli
+T|-36.77739|-59.09781|Rauch
+T|-34.61048|-60.06749|Rawson
+T|-28.81475|-62.84739|Real Sayana
+T|-35.03351|-64.24629|Realicó
+T|-36.65142|-61.08697|Recalde
+T|-31.49273|-60.72991|Recreo
+T|-29.27930|-65.05548|Recreo
+T|-34.72706|-58.39363|Remedios de Escalada
+T|-37.82707|-61.22114|Reserva
+T|-27.46380|-58.98105|Resistencia
+T|-32.10345|-68.59815|Retamito
+T|-34.59016|-58.37392|Retiro (Belgrano)
+T|-34.59115|-58.37468|Retiro (Mitre)
+T|-34.58935|-58.37322|Retiro (San Martín)
+T|-27.58501|-58.75012|Riachuelo
+T|-35.02165|-58.72383|Ricardo Levene
+T|-34.88142|-57.99608|Ringuelet
+T|-27.56514|-59.66175|Rio Tapenagá
+T|-34.53661|-58.46800|Rivadavia
+T|-32.97753|-68.80263|Rivadavia
+T|-37.15983|-63.24870|Rivera
+T|-32.34562|-58.96943|Rocamora
+T|-37.14642|-60.97722|Rocha
+T|-32.91788|-68.73889|Rodeo de la Cruz
+T|-32.99604|-68.68659|Rodeo del Medio
+T|-31.36407|-64.22025|Rodríguez del Busto
+T|-32.89982|-60.90721|Roldán
+T|-37.16767|-63.39495|Rolón
+T|-34.17069|-63.15379|Rosales
+T|-32.93073|-60.65753|Rosario Norte
+T|-32.94416|-60.69264|Rosario Oeste
+T|-33.00931|-60.65035|Rosario Sur
+T|-25.80345|-64.97220|Rosario de la Frontera
+T|-32.29663|-59.14073|Rosario del Tala
+T|-27.59302|-61.94574|Roversi
+T|-34.58754|-58.62985|Rubén Darío
+T|-33.33367|-60.46061|Rueda
+T|-34.26077|-62.71082|Rufino
+T|-33.86830|-63.46393|Ruiz Díaz de Guzmán
+T|-26.11411|-65.27793|Ruiz de los Llanos
+T|-33.89833|-61.82768|Runciman
+T|-33.00472|-68.78826|Russel
+T|-38.99499|-64.09590|Río Colorado
+T|-27.14816|-65.35724|Río Colorado
+T|-33.13087|-64.33913|Río Cuarto
+T|-34.27798|-58.89032|Río Luján
+T|-26.30765|-61.65475|Río Muerto
+T|-25.31178|-64.91350|Río Piedras
+T|-31.33236|-63.62241|Río Primero
+T|-31.65366|-63.91055|Río Segundo
+T|-33.76895|-59.63498|Río Tala
+T|-32.17161|-64.11052|Río Tercero
+T|-51.53620|-72.27735|Río Turbio
+T|-31.57077|-61.38002|Sa Pereira
+T|-37.76387|-62.35186|Saavedra
+T|-34.57497|-61.07812|Saforcada
+T|-28.26412|-58.65705|Saladas
+T|-24.37773|-66.99220|Salar de Pocitos
+T|-34.18638|-63.07691|Salas
+T|-38.20683|-61.77484|Saldungaray
+T|-34.57246|-58.40266|Saldías
+T|-36.75088|-62.95417|Salliqueló
+T|-24.77708|-65.41128|Salta
+T|-31.76970|-60.48296|Salvador Caputto
+T|-38.01977|-58.35514|San Agustín
+T|-34.56347|-58.54073|San Andrés
+T|-28.93261|-65.09459|San Antonio
+T|-40.73341|-64.94387|San Antonio Oeste
+T|-34.66551|-58.69848|San Antonio de Padua
+T|-24.22693|-66.31612|San Antonio de los Cobres
+T|-41.13040|-71.27417|San Carlos de Bariloche
+T|-36.23636|-61.10693|San Carlos de Bolívar
+T|-30.31148|-61.23631|San Cristóbal
+T|-33.86917|-62.09359|San Eduardo
+T|-30.92370|-64.53516|San Esteban
+T|-34.44423|-58.55877|San Fernando C
+T|-32.37062|-61.35792|San Genaro
+T|-32.87918|-61.02280|San Gerónimo
+T|-34.32486|-62.04924|San Gregorio
+T|-30.35724|-61.92334|San Guillermo
+T|-37.34117|-58.42379|San Ignacio
+T|-34.47201|-58.51357|San Isidro C
+T|-34.64417|-59.52355|San Jacinto
+T|-33.11980|-61.71429|San José de la Esquina
+T|-30.00749|-64.62570|San José de las Salinas
+T|-34.67382|-58.55585|San Justo
+T|-30.78381|-60.59015|San Justo (Ramal C)
+T|-32.75325|-60.74697|San Lorenzo
+T|-37.79037|-58.84623|San Manuel
+T|-32.63237|-62.48034|San Marcos Sud
+T|-31.90501|-61.28144|San Martin de Tours
+T|-34.57371|-58.53158|San Martín
+T|-27.45935|-58.98603|San Martín
+T|-35.52560|-63.19716|San Mauricio
+T|-34.54401|-58.71351|San Miguel
+T|-33.34417|-60.22598|San Nicolas R
+T|-34.61418|-60.24686|San Patricio
+T|-33.69439|-59.68287|San Pedro
+T|-27.95511|-65.16883|San Pedro
+T|-24.23118|-64.86207|San Pedro de Jujuy
+T|-27.70345|-64.27563|San Ramón
+T|-38.74160|-61.53874|San Román
+T|-31.34594|-64.46078|San Roque
+T|-28.57668|-58.70408|San Roque
+T|-31.62915|-58.50377|San Salvador
+T|-34.01043|-62.23916|Sancti Spíritu
+T|-33.14474|-61.27937|Sanford
+T|-35.27355|-63.21406|Sansinena
+T|-30.84178|-58.00917|Santa Ana
+T|-34.78034|-58.43748|Santa Catalina
+T|-31.76217|-61.32249|Santa Clara
+T|-31.31580|-66.47253|Santa Cruz
+T|-37.34432|-60.60523|Santa Elena
+T|-33.83393|-61.50872|Santa Emilia
+T|-33.88822|-61.69089|Santa Isabel
+T|-33.87736|-59.87432|Santa Lucía
+T|-37.12502|-60.41580|Santa Luisa
+T|-28.31383|-61.54549|Santa Margarita
+T|-31.27809|-64.46267|Santa María
+T|-33.25603|-68.15298|Santa Rosa
+T|-34.82513|-58.21299|Santa Sofía
+T|-33.43882|-60.78880|Santa Teresa
+T|-35.67622|-61.51259|Santo Tomás
+T|-28.55083|-56.06166|Santo Tomé
+T|-31.65866|-60.76834|Santo Tomé (Belgrano)
+T|-34.60369|-58.54098|Santos Lugares
+T|-35.02369|-63.68892|Sarah
+T|-34.67886|-58.34466|Sarandí
+T|-34.56243|-58.66024|Sargento Barrufaldi
+T|-34.53720|-58.69492|Sargento Cabral
+T|-30.77397|-64.10766|Sarmiento
+T|-27.42089|-59.03547|Sarmiento
+T|-32.89149|-60.69946|Sarratea
+T|-31.75018|-61.82888|Sastre (Belgrano)
+T|-31.76933|-60.83827|Sauce Viejo
+T|-30.15903|-63.59577|Sebastián Elcano
+T|-31.95890|-60.12203|Seguí
+T|-29.76981|-62.05089|Selva
+T|-23.04744|-63.93006|Senda Hachada
+T|-32.60668|-60.95018|Serodino
+T|-30.63704|-65.38559|Serrezuela
+T|-36.20367|-57.74274|Sevigné
+T|-36.62334|-59.72656|Shaw
+T|-40.58888|-67.75436|Sierra Colorada
+T|-38.13851|-61.79435|Sierra de la Ventana
+T|-27.43179|-59.01720|Sierras de Córdoba
+T|-26.29182|-64.50074|Siete de Abril
+T|-30.44802|-60.43196|Silva
+T|-27.26045|-65.35257|Simoca
+T|-24.45293|-68.28840|Socompa
+T|-34.50400|-58.79768|Sol y Verde
+T|-33.01840|-60.75332|Soldini
+T|-32.91239|-60.69693|Sorrento
+T|-31.73675|-59.91209|Sosa
+T|-30.84894|-65.00977|Soto
+T|-34.80659|-58.21273|Sourigues
+T|-35.54747|-63.81573|Speluzzi
+T|-35.00209|-58.99980|Speratti
+T|-38.75474|-62.25462|Spurr
+T|-37.99014|-61.54375|Stegmann
+T|-30.53380|-61.96493|Suardi
+T|-34.50632|-59.11137|Sucre
+T|-34.77333|-59.69038|Suipacha
+T|-30.94640|-61.56694|Sunchales
+T|-27.13807|-64.80990|Superintendente Ledesma
+T|-34.60317|-58.52789|Sáenz Peña
+T|-33.43604|-60.14686|Sánchez
+T|-34.71245|-58.52414|Sánchez de Mendeville
+T|-30.76877|-64.93649|Tabaquillo
+T|-28.00844|-63.74434|Taboada
+T|-31.80258|-59.93938|Tabossi
+T|-24.51904|-67.70454|Taca Taca
+T|-30.84485|-61.59741|Tacural
+T|-26.73181|-65.25332|Tafi Viejo
+T|-38.20216|-58.73604|Tamangueyú
+T|-32.24089|-63.98233|Tancacha
+T|-37.31063|-59.13661|Tandil
+T|-29.50445|-56.97730|Tapebicuá
+T|-34.70231|-58.51160|Tapiales
+T|-28.40381|-65.10064|Tapso
+T|-34.18889|-62.53967|Tarragona
+T|-34.77610|-58.39618|Temperley
+T|-34.54886|-58.67880|Teniente Agneta
+T|-34.14329|-61.47635|Teodelina
+T|-37.46057|-61.93210|Terminal Roca
+T|-32.99893|-68.84709|Terrada
+T|-31.86873|-60.49488|Tezanos Pinto
+T|-36.92546|-63.29604|Thames
+T|-33.31107|-60.31226|Theobald
+T|-26.69886|-60.75211|Tierra de Luchadores
+T|-34.47897|-58.73947|Tierras Altas
+T|-34.42353|-58.58176|Tigre
+T|-23.57283|-65.39846|Tilcara
+T|-32.67183|-60.78931|Timbúes
+T|-29.26544|-60.17315|Toba
+T|-34.03381|-60.15713|Todd
+T|-24.58821|-67.39081|Tolar Grande
+T|-31.55624|-64.00954|Toledo
+T|-34.89091|-57.96809|Tolosa
+T|-34.69815|-59.31774|Tomás Jofré
+T|-36.84367|-63.52195|Tomás M. de Anchorena
+T|-38.10169|-62.22950|Tornquist
+T|-28.82657|-56.47049|Torrent
+T|-32.74865|-61.82133|Tortugas
+T|-34.47066|-58.75800|Tortuguitas
+T|-29.23394|-61.77374|Tostado
+T|-29.63886|-64.85280|Totoralejos
+T|-33.78486|-66.06759|Travesía
+T|-36.27823|-62.54926|Treinta de Agosto
+T|-35.96730|-62.73719|Trenque Lauquen
+T|-38.38459|-60.27227|Tres Arroyos
+T|-36.45665|-62.86566|Tres Lomas
+T|-38.28919|-62.20962|Tres Picos
+T|-35.90546|-63.64370|Trilí
+T|-31.33614|-64.28946|Tristán Narvaja
+T|-34.88942|-58.56785|Tristán Suárez
+T|-34.59190|-58.55935|Tropezón
+T|-31.42595|-63.19640|Tránsito
+T|-30.74626|-65.23484|Tuclame
+T|-26.82094|-65.21101|Tucumán (Mitre)
+T|-26.82774|-65.21561|Tucumán CC (Belgrano)
+T|-23.85346|-65.46527|Tumbaya
+T|-34.79507|-58.40764|Turdera
+T|-32.28783|-63.35506|Tío Pujio
+T|-34.57744|-59.08723|Universidad de Luján
+T|-34.87016|-58.54326|Unión Ferroviaria
+T|-24.53587|-67.20540|Unquillal
+T|-36.43372|-61.41879|Urdampilleta
+T|-32.68475|-58.89174|Urdinarrain
+T|-35.11547|-58.89841|Uribelarrea
+T|-36.50807|-63.85840|Uriburu
+T|-25.71440|-63.04200|Urutaú
+T|-40.68862|-66.14463|Valcheta
+T|-31.11680|-64.48555|Valle Hermoso
+T|-31.74636|-67.99244|Vallecito
+T|-36.34322|-61.03193|Vallimanca
+T|-34.48886|-61.53844|Vedia (San Martín)
+T|-24.52516|-67.91559|Vega de Arizaro
+T|-32.38601|-59.66453|Veinte de Setiembre
+T|-37.39933|-59.51141|Vela
+T|-33.75465|-61.95770|Venado Tuerto
+T|-27.81623|-61.38226|Venados Grandes
+T|-24.20297|-66.41316|Viaducto La Polvorilla
+T|-31.87321|-60.00860|Viale
+T|-40.79765|-63.87459|Vicealmirante Eduardo O’Connor
+T|-34.50416|-58.61948|Vicealmirante Montes
+T|-34.96226|-58.64797|Vicente Casares
+T|-34.52484|-58.47276|Vicente López
+T|-36.69922|-59.78281|Vicente Pereda
+T|-34.45631|-58.54095|Victoria
+T|-33.91050|-64.38820|Vicuña Mackenna
+T|-30.94359|-60.65753|Videla
+T|-32.99257|-68.80948|Videla Castillo
+T|-40.83755|-62.98067|Viedma
+T|-33.00210|-68.83152|Vieytes
+T|-35.84684|-59.03544|Vilela
+T|-34.52369|-58.54628|Villa Adelina
+T|-33.17705|-60.66806|Villa Amelia
+T|-34.47866|-58.87697|Villa Astolfi
+T|-34.55091|-58.55597|Villa Ballester
+T|-37.67548|-59.39382|Villa Cacique
+T|-34.00340|-61.60259|Villa Cañás
+T|-33.22467|-60.34044|Villa Constitución
+T|-34.59329|-58.44805|Villa Crespo
+T|-33.02307|-60.62542|Villa Diego
+T|-34.69147|-58.32542|Villa Domínico
+T|-34.84957|-58.07525|Villa Elisa
+T|-32.16022|-58.41390|Villa Elisa
+T|-34.77438|-58.19502|Villa España
+T|-31.90511|-60.47574|Villa Fontana
+T|-30.67918|-64.16008|Villa Gutiérrez
+T|-34.63626|-58.50209|Villa Luro
+T|-34.12030|-59.42933|Villa Lía
+T|-34.68418|-58.49240|Villa Madero
+T|-32.98501|-68.78017|Villa Maipú
+T|-32.41263|-63.24478|Villa María
+T|-31.66417|-59.89981|Villa María Grande
+T|-33.66131|-65.45816|Villa Mercedes
+T|-28.62281|-61.62300|Villa Minetti
+T|-33.30986|-61.05804|Villa Mugueta
+T|-38.68313|-62.38416|Villa Olga
+T|-34.41626|-58.87213|Villa Rosa
+T|-30.54179|-60.74926|Villa Saralegui
+T|-35.28195|-63.37222|Villa Sauze
+T|-34.66228|-58.44106|Villa Soldati
+T|-30.20945|-61.87714|Villa Trinidad
+T|-34.34043|-64.91681|Villa Valeria
+T|-34.50337|-58.68071|Villa de Mayo
+T|-34.60140|-58.49407|Villa del Parque
+T|-31.56448|-63.53995|Villa del Rosario
+T|-33.34998|-61.44448|Villada
+T|-31.89081|-58.99397|Villaguay Este
+T|-34.82896|-58.93848|Villars
+T|-27.78250|-64.14944|Vilmer
+T|-26.48447|-65.34655|Vipos
+T|-34.45064|-58.55071|Virreyes
+T|-37.66392|-57.66937|Vivoratá
+T|-23.91559|-65.46641|Volcán
+T|-34.88920|-62.63626|Volta
+T|-37.44937|-60.67574|Voluntad
+T|-38.17904|-60.17394|Vásquez
+T|-35.42517|-63.90526|Vértiz
+T|-39.23233|-65.58159|Vía de Cruce Km 966.800
+T|-33.87065|-64.68904|Washington
+T|-34.93864|-64.31033|Watt
+T|-33.78963|-61.20893|Wheelwright
+T|-34.69752|-58.31139|Wilde
+T|-34.57835|-58.65678|William Case Morris
+T|-22.35513|-63.77269|Yacuy
+T|-22.43200|-63.78971|Yariguarendá
+T|-25.59447|-64.94436|Yatasto
+T|-31.47118|-58.26306|Yeruá
+T|-31.38345|-58.11912|Yuquerí
+T|-23.64701|-64.46926|Yuto
+T|-36.98537|-63.12956|Yutuyaco
+T|-34.85792|-58.89230|Zamudio
+T|-33.80524|-66.41486|Zanjitas
+T|-35.05848|-59.04193|Zapiola
+T|-33.01843|-60.87909|Zavalla
+T|-34.37014|-58.86933|Zelaya
+T|-35.54181|-58.88791|Zenón Videla Dorna
+T|-27.71540|-61.36516|Zuberbühler
+T|-34.09782|-59.03784|Zárate (Mitre)
+T|-34.12177|-59.02788|Zárate Nueva
+T|-33.12952|-60.80199|Álvarez
+T|-30.36995|-61.13155|Ñanducita
+T|-41.09821|-71.13875|Ñirihuau
+T|-41.88444|-70.90775|Ñorquincó

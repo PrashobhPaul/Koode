@@ -1,0 +1,1452 @@
+# Transit for Koode, BR. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|-23.43257|-46.49254|GRU CPTM|Aeromóvel GRU|M
+S|-23.42949|-46.49022|GRU TPS1|Aeromóvel GRU|M
+S|-23.42586|-46.48175|GRU TPS2|Aeromóvel GRU|M
+S|-23.42284|-46.47709|GRU TPS3|Aeromóvel GRU|M
+S|-7.13039|-34.91289|Alto do Mateus|CBTU|M
+S|-7.12747|-34.92804|Bayeux|CBTU|M
+S|-6.97422|-34.83599|Cabedelo|CBTU|M
+S|-7.12729|-34.90162|Ilha do Bispo|CBTU|M
+S|-7.03644|-34.85033|Jacaré|CBTU|M
+S|-7.00394|-34.83362|Jardim Camboinha|CBTU|M
+S|-6.99019|-34.83266|Jardim Manguinhos|CBTU|M
+S|-7.11513|-34.89067|João Pessoa|CBTU|M
+S|-7.10002|-34.86389|Mandacaru|CBTU|M
+S|-7.01962|-34.84157|Poço|CBTU|M
+S|-7.07518|-34.85524|Renascer|CBTU|M
+S|-7.12489|-34.98030|Santa Rita|CBTU|M
+S|-7.11997|-34.95545|Várzea Nova|CBTU|M
+S|-5.79343|-35.22401|Alecrim I|CBTU Natal|M
+S|-5.79432|-35.22334|Alecrim II|CBTU Natal|M
+S|-5.93207|-35.25914|Boa Esperança|CBTU Natal|M
+S|-5.81132|-35.23518|Bom Pastor|CBTU Natal|M
+S|-6.02521|-35.23091|Bonfim|CBTU Natal|M
+S|-5.94314|-35.24186|Cajupiranga|CBTU Natal|M
+S|-5.63227|-35.42135|Ceará-Mirim|CBTU Natal|M
+S|-5.82278|-35.24261|Cidade Esperança|CBTU Natal|M
+S|-5.85473|-35.24756|Cidade Satélite|CBTU Natal|M
+S|-5.70746|-35.28846|Estrela do Mar|CBTU Natal|M
+S|-5.70606|-35.30450|Extremoz|CBTU Natal|M
+S|-5.77127|-35.25113|Igapó|CBTU Natal|M
+S|-5.88271|-35.25509|Jardim Aeroporto|CBTU Natal|M
+S|-5.63680|-35.38620|Lagoa Grande|CBTU Natal|M
+S|-5.64623|-35.35209|Massangana|CBTU Natal|M
+S|-5.78029|-35.20625|Natal|CBTU Natal|M
+S|-5.72840|-35.27682|Nordelândia|CBTU Natal|M
+S|-5.73801|-35.27001|Nova Natal|CBTU Natal|M
+S|-5.80362|-35.22693|Padre João Maria|CBTU Natal|M
+S|-5.91599|-35.25785|Parnamirim|CBTU Natal|M
+S|-5.84671|-35.24520|Pitimbu|CBTU Natal|M
+S|-5.83319|-35.24517|Prómorar|CBTU Natal|M
+S|-5.79593|-35.23759|Quintas|CBTU Natal|M
+S|-5.66207|-35.33428|Raposa|CBTU Natal|M
+S|-5.75655|-35.24182|Santa Catarina|CBTU Natal|M
+S|-6.07037|-35.23463|São José de Mipibu|CBTU Natal|M
+S|-5.75235|-35.25167|Soledade|CBTU Natal|M
+S|-22.95175|-43.21069|Christ the Redeemer|Estrada de Ferro do Corcovado|M
+S|-22.94075|-43.19851|Cosme Velho|Estrada de Ferro do Corcovado|M
+S|-22.94633|-43.20214|Morro do Inglês|Estrada de Ferro do Corcovado|M
+S|-22.94712|-43.21749|Paineiras|Estrada de Ferro do Corcovado|M
+S|-3.78022|-38.54153|Aeroporto|Metrofor|M
+S|-3.83954|-38.60063|Alto Alegre|Metrofor|M
+S|-3.73489|-38.59203|Antônio Bezerra|Metrofor|M
+S|-3.74892|-38.49373|Antônio Sales|Metrofor|M
+S|-3.82678|-38.59190|Aracapé|Metrofor|M
+S|-3.76264|-38.63980|Araturi|Metrofor|M
+S|-3.73954|-38.53964|Benfica|Metrofor|M
+S|-3.76106|-38.52896|Borges de Melo|Metrofor|M
+S|-3.89481|-38.62060|Carlito Benevides|Metrofor|M
+S|-3.73579|-38.66035|Caucaia|Metrofor|M
+S|-3.72013|-38.53527|Central - Chico da Silva|Metrofor|M
+S|-3.76530|-38.61537|Conjunto Ceará|Metrofor|M
+S|-3.74957|-38.60288|Conjunto São Miguel|Metrofor|M
+S|-3.75728|-38.55746|Couto Fernandes|Metrofor|M
+S|-3.81712|-38.58579|Esperança|Metrofor|M
+S|-3.77133|-38.54310|Expedicionários|Metrofor|M
+S|-3.88747|-38.62692|Francisco Alves Marinho|Metrofor|M
+S|-3.72066|-38.47702|Iate|Metrofor|M
+S|-3.72626|-38.53245|José de Alencar|Metrofor|M
+S|-3.76938|-38.62282|Jurema|Metrofor|M
+S|-3.76607|-38.56010|Juscelino Kubitschek|Metrofor|M
+S|-3.72031|-38.56490|Álvaro Weyne|Metrofor|M
+S|-3.79864|-38.57488|Manoel Sátiro|Metrofor|M
+S|-3.87794|-38.62558|Maracanaú|Metrofor|M
+S|-3.80758|-38.57760|Mondubim|Metrofor|M
+S|-3.77344|-38.55295|Montese|Metrofor|M
+S|-3.72616|-38.48028|Mucuripe|Metrofor|M
+S|-3.73003|-38.58108|Padre Andrade|Metrofor|M
+S|-3.74562|-38.54578|Padre Cícero|Metrofor|M
+S|-3.73872|-38.48658|Papicu|Metrofor|M
+S|-3.77581|-38.56389|Parangaba|Metrofor|M
+S|-3.75754|-38.61196|Parque Albano|Metrofor|M
+S|-3.75213|-38.50055|Pontes Vieira|Metrofor|M
+S|-3.75147|-38.55164|Porangabussu|Metrofor|M
+S|-3.85078|-38.60837|Rachel de Queiroz|Metrofor|M
+S|-3.73181|-38.53458|São Benedito|Metrofor|M
+S|-3.76076|-38.51252|São João do Tauape|Metrofor|M
+S|-3.71927|-38.53699|Tirol - Moura Brasil|Metrofor|M
+S|-3.78417|-38.57236|Vila Pery|Metrofor|M
+S|-3.76976|-38.53438|Vila União|Metrofor|M
+S|-3.86744|-38.62017|Virgílio Távora|Metrofor|M
+S|-22.82500|-43.34930|Acari / Fazenda Botafogo|Metrô Rio|M
+S|-22.91845|-43.21775|Afonso Pena / Tijuca|Metrô Rio|M
+S|-22.98454|-43.22363|Antero de Quental / Leblon|Metrô Rio|M
+S|-22.95037|-43.18420|Botafogo|Metrô Rio|M
+S|-22.97568|-43.19448|Cantagalo / Copacabana - Sentido Gen. Osório / Jd. Oceânico|Metrô Rio|M
+S|-22.96384|-43.18139|Cardeal Arcoverde - Sentido Gen. Osório / Jd. Oceânico|Metrô Rio|M
+S|-22.90755|-43.17804|Carioca|Metrô Rio|M
+S|-22.92595|-43.17655|Catete|Metrô Rio|M
+S|-22.90461|-43.19106|Central do Brasil / Centro|Metrô Rio|M
+S|-22.90875|-43.20630|Cidade Nova|Metrô Rio|M
+S|-22.91090|-43.17568|Cinelândia / Centro|Metrô Rio|M
+S|-22.83187|-43.34292|Coelho Neto|Metrô Rio|M
+S|-22.84266|-43.33455|Colégio|Metrô Rio|M
+S|-22.87928|-43.27193|Del Castilho|Metrô Rio|M
+S|-22.81630|-43.35848|Engenheiro Rubens Paiva|Metrô Rio|M
+S|-22.86792|-43.29738|Engenho da Rainha|Metrô Rio|M
+S|-22.91354|-43.20657|Estácio|Metrô Rio|M
+S|-22.93718|-43.17854|Flamengo|Metrô Rio|M
+S|-22.98212|-43.19644|General Osório / Ipanema|Metrô Rio|M
+S|-22.92063|-43.17662|Glória|Metrô Rio|M
+S|-22.87457|-43.28346|Inhaúma|Metrô Rio|M
+S|-22.84802|-43.32327|Irajá|Metrô Rio|M
+S|-22.98373|-43.21627|Jardim de Alah / Leblon|Metrô Rio|M
+S|-23.00683|-43.31096|Jardim Oceânico / Barra da Tijuca|Metrô Rio|M
+S|-22.93114|-43.17768|Largo do Machado|Metrô Rio|M
+S|-22.90972|-43.23389|Maracanã|Metrô Rio|M
+S|-22.88149|-43.26019|Maria da Graça|Metrô Rio|M
+S|-22.98372|-43.20602|Nossa Senhora da Paz / Ipanema|Metrô Rio|M
+S|-22.80632|-43.36548|Pavuna|Metrô Rio|M
+S|-22.90992|-43.20028|Praça Onze|Metrô Rio|M
+S|-22.90329|-43.18620|Saara / Presidente Vargas|Metrô Rio|M
+S|-22.92417|-43.23257|Saens Peña / Tijuca|Metrô Rio|M
+S|-22.96731|-43.18735|Siqueira Campos / Copacabana - Sentido Gen. Osório / Jd. Ocêanico|Metrô Rio|M
+S|-22.99123|-43.25503|São Conrado|Metrô Rio|M
+S|-22.90969|-43.22099|São Cristóvão|Metrô Rio|M
+S|-22.92058|-43.22367|São Francisco Xavier / Tijuca|Metrô Rio|M
+S|-22.86260|-43.30679|Thomáz Coelho|Metrô Rio|M
+S|-22.89685|-43.24448|Triagem|Metrô Rio|M
+S|-22.90289|-43.18180|Uruguaiana / Engenheiro Fernando Mac Dowell|Metrô Rio|M
+S|-22.93093|-43.23829|Uruguai / Tijuca|Metrô Rio|M
+S|-22.85404|-43.31315|Vicente de Carvalho|Metrô Rio|M
+S|-12.96892|-38.47701|Acesso Norte|Metrô de Salvador|M
+S|-12.90419|-38.34109|Aeroporto|Metrô de Salvador|M
+S|-12.92576|-38.38124|Bairro da Paz|Metrô de Salvador|M
+S|-12.95573|-38.42901|CAB|Metrô de Salvador|M
+S|-12.97801|-38.47110|Detran|Metrô de Salvador|M
+S|-12.93794|-38.40574|Flamboyant|Metrô de Salvador|M
+S|-12.96449|-38.43623|Imbuí|Metrô de Salvador|M
+S|-12.92151|-38.35902|Mussurunga|Metrô de Salvador|M
+S|-12.97566|-38.45785|Pernambués|Metrô de Salvador|M
+S|-12.94542|-38.42134|Pituaçu|Metrô de Salvador|M
+S|-12.97839|-38.46343|Rodoviária|Metrô de Salvador|M
+S|-12.93459|-38.39450|Tamburugy|Metrô de Salvador|M
+S|-3.67754|-40.34746|Alto da Brasília|Metrô de Sobral|M
+S|-3.68545|-40.34323|Boulevard do Arco|Metrô de Sobral|M
+S|-3.68244|-40.35417|Campo dos Velhos|Metrô de Sobral|M
+S|-3.69869|-40.33256|Cohab II|Metrô de Sobral|M
+S|-3.66656|-40.37418|Cohab III|Metrô de Sobral|M
+S|-3.69171|-40.34126|Dom Expedito|Metrô de Sobral|M
+S|-3.68916|-40.35848|Dom José|Metrô de Sobral|M
+S|-3.67195|-40.34310|Grendene|Metrô de Sobral|M
+S|-3.67444|-40.36829|José Euclides|Metrô de Sobral|M
+S|-3.67987|-40.36322|Junco|Metrô de Sobral|M
+S|-3.66274|-40.34121|Novo Recanto|Metrô de Sobral|M
+S|-3.69809|-40.36285|Sumaré|Metrô de Sobral|M
+S|-23.59782|-46.65231|AACD – Servidor|Metrô de São Paulo|M
+S|-23.65007|-46.70421|Adolfo Pinheiro - Unisa|Metrô de São Paulo|M
+S|-23.62700|-46.66190|Aeroporto de Congonhas|Metrô de São Paulo|M
+S|-23.64163|-46.69942|Alto da Boa Vista|Metrô de São Paulo|M
+S|-23.60224|-46.61249|Alto do Ipiranga|Metrô de São Paulo|M
+S|-23.58144|-46.63838|Ana Rosa|Metrô de São Paulo|M
+S|-23.54777|-46.63932|Anhangabaú|Metrô de São Paulo|M
+S|-23.52540|-46.62925|Armênia|Metrô de São Paulo|M
+S|-23.54024|-46.48471|Artur Alvim|Metrô de São Paulo|M
+S|-23.54287|-46.58962|Belém|Metrô de São Paulo|M
+S|-23.63347|-46.69287|Borba Gato|Metrô de São Paulo|M
+S|-23.54650|-46.60693|Bresser-Mooca|Metrô de São Paulo|M
+S|-23.56859|-46.64776|Brigadeiro|Metrô de São Paulo|M
+S|-23.62680|-46.68813|Brooklin|Metrô de São Paulo|M
+S|-23.62955|-46.67359|Brooklin Paulista|Metrô de São Paulo|M
+S|-23.54786|-46.61592|Brás|Metrô de São Paulo|M
+S|-23.57190|-46.70809|Butantã|Metrô de São Paulo|M
+S|-23.59550|-46.53761|Camilo Haddad|Metrô de São Paulo|M
+S|-23.61860|-46.68227|Campo Belo|Metrô de São Paulo|M
+S|-23.64929|-46.75895|Campo Limpo|Metrô de São Paulo|M
+S|-23.65917|-46.76800|Capão Redondo|Metrô de São Paulo|M
+S|-23.50927|-46.62497|Carandiru|Metrô de São Paulo|M
+S|-23.53789|-46.56426|Carrão – Assaí Atacadista|Metrô de São Paulo|M
+S|-23.59268|-46.63068|Chácara Klabin|Metrô de São Paulo|M
+S|-23.61399|-46.69550|Chucri Zaidan|Metrô de São Paulo|M
+S|-23.55405|-46.67088|Clínicas|Metrô de São Paulo|M
+S|-23.63501|-46.64129|Conceição|Metrô de São Paulo|M
+S|-23.55701|-46.66161|Consolação|Metrô de São Paulo|M
+S|-23.54230|-46.47121|Corinthians-Itaquera|Metrô de São Paulo|M
+S|-23.60974|-46.66853|Eucaliptos|Metrô de São Paulo|M
+S|-23.56689|-46.69341|Faria Lima - PagBank|Metrô de São Paulo|M
+S|-23.61180|-46.48746|Fazenda da Juta|Metrô de São Paulo|M
+S|-23.56639|-46.68406|Fradique Coutinho|Metrô de São Paulo|M
+S|-23.50189|-46.69398|Freguesia do Ó|Metrô de São Paulo|M
+S|-23.64393|-46.73398|Giovanni Gronchi|Metrô de São Paulo|M
+S|-23.52057|-46.68810|Água Branca|Metrô de São Paulo|M
+S|-23.52930|-46.51664|Guilhermina-Esperança|Metrô de São Paulo|M
+S|-23.54895|-46.65229|Higienópolis-Mackenzie (Linha 4)|Metrô de São Paulo|M
+S|-23.59819|-46.64557|Hospital São Paulo|Metrô de São Paulo|M
+S|-23.64634|-46.64105|Jabaquara - Comitê Paralímpico Brasileiro|Metrô de São Paulo|M
+S|-23.55523|-46.63586|Japão - Liberdade|Metrô de São Paulo|M
+S|-23.59921|-46.46907|Jardim Colonial|Metrô de São Paulo|M
+S|-23.60653|-46.50764|Jardim Planalto|Metrô de São Paulo|M
+S|-23.49240|-46.61701|Jardim São Paulo - Ayrton Senna|Metrô de São Paulo|M
+S|-23.49376|-46.69145|João Paulo I|Metrô de São Paulo|M
+S|-23.65446|-46.71017|Largo Treze|Metrô de São Paulo|M
+S|-23.53659|-46.63326|Luz|Metrô de São Paulo|M
+S|-23.53398|-46.65590|Marechal Deodoro|Metrô de São Paulo|M
+S|-23.60384|-46.66219|Moema|Metrô de São Paulo|M
+S|-23.62241|-46.70277|Morumbi|Metrô de São Paulo|M
+S|-23.58215|-46.56184|Oratório|Metrô de São Paulo|M
+S|-23.56089|-46.67193|Oscar Freire|Metrô de São Paulo|M
+S|-23.52597|-46.66747|Palmeiras - Barra Funda|Metrô de São Paulo|M
+S|-23.48702|-46.60884|Parada Inglesa|Metrô de São Paulo|M
+S|-23.57539|-46.64096|Paraíso|Metrô de São Paulo|M
+S|-23.53105|-46.50158|Patriarca • Vila Ré|Metrô de São Paulo|M
+S|-23.55534|-46.66224|Paulista|Metrô de São Paulo|M
+S|-23.54970|-46.62598|Pedro II|Metrô de São Paulo|M
+S|-23.53349|-46.54267|Penha - Lojas Besni|Metrô de São Paulo|M
+S|-23.53217|-46.67652|Perdizes|Metrô de São Paulo|M
+S|-23.56725|-46.70195|Pinheiros|Metrô de São Paulo|M
+S|-23.51613|-46.62510|Portuguesa - Tietê|Metrô de São Paulo|M
+S|-23.61057|-46.63790|Praça da Árvore|Metrô de São Paulo|M
+S|-23.54302|-46.64395|República|Metrô de São Paulo|M
+S|-23.55044|-46.63345|Sé|Metrô de São Paulo|M
+S|-23.60128|-46.60256|Sacomã|Metrô de São Paulo|M
+S|-23.61843|-46.63920|Saúde – Ultrafarma|Metrô de São Paulo|M
+S|-23.53932|-46.64896|Santa Cecília|Metrô de São Paulo|M
+S|-23.59903|-46.63667|Santa Cruz|Metrô de São Paulo|M
+S|-23.51411|-46.69166|Santa Marina|Metrô de São Paulo|M
+S|-23.50244|-46.62509|Santana|Metrô de São Paulo|M
+S|-23.65565|-46.72097|Santo Amaro|Metrô de São Paulo|M
+S|-23.59591|-46.62071|Santos - Imigrantes|Metrô de São Paulo|M
+S|-23.55103|-46.67759|Santuário Nossa Senhora de Fátima - Sumaré|Metrô de São Paulo|M
+S|-23.61470|-46.50084|Sapopemba|Metrô de São Paulo|M
+S|-23.52711|-46.68344|SESC-Pompeia|Metrô de São Paulo|M
+S|-23.54404|-46.63432|São Bento|Metrô de São Paulo|M
+S|-23.56182|-46.63866|São Joaquim|Metrô de São Paulo|M
+S|-23.62558|-46.64082|São Judas|Metrô de São Paulo|M
+S|-23.58894|-46.54464|São Lucas|Metrô de São Paulo|M
+S|-23.61228|-46.47729|São Mateus|Metrô de São Paulo|M
+S|-23.58614|-46.72391|São Paulo – Morumbi|Metrô de São Paulo|M
+S|-23.59278|-46.58951|Tamanduateí|Metrô de São Paulo|M
+S|-23.54025|-46.57664|Tatuapé|Metrô de São Paulo|M
+S|-23.53091|-46.63254|Tiradentes|Metrô de São Paulo|M
+S|-23.56331|-46.65420|Trianon-Masp|Metrô de São Paulo|M
+S|-23.48007|-46.60327|Tucuruvi|Metrô de São Paulo|M
+S|-23.62204|-46.67889|Vereador José Diniz|Metrô de São Paulo|M
+S|-23.56882|-46.63991|Vergueiro - Sebrae|Metrô de São Paulo|M
+S|-23.61558|-46.68858|Vila Cordeiro|Metrô de São Paulo|M
+S|-23.64025|-46.74577|Vila das Belezas|Metrô de São Paulo|M
+S|-23.54650|-46.69112|Vila Madalena|Metrô de São Paulo|M
+S|-23.58915|-46.63466|Vila Mariana|Metrô de São Paulo|M
+S|-23.53192|-46.53087|Vila Matilde|Metrô de São Paulo|M
+S|-23.58443|-46.58194|Vila Prudente|Metrô de São Paulo|M
+S|-23.59343|-46.73481|Vila Sônia - Professora Elizabeth Tenreiro|Metrô de São Paulo|M
+S|-23.60074|-46.52734|Vila Tolstói|Metrô de São Paulo|M
+S|-23.60296|-46.51554|Vila União|Metrô de São Paulo|M
+S|-5.03145|-42.45800|Altos|Metrô de Teresina|M
+S|-5.09308|-42.75449|Boa Esperança|Metrô de Teresina|M
+S|-3.19282|-41.64645|Bom Princípio|Metrô de Teresina|M
+S|-4.12819|-41.77908|Brasileira|Metrô de Teresina|M
+S|-4.83139|-42.16204|Campo Maior|Metrô de Teresina|M
+S|-4.45128|-41.95040|Capitão de Campos|Metrô de Teresina|M
+S|-3.46928|-41.55924|Cocal|Metrô de Teresina|M
+S|-3.65292|-41.58950|Deserto|Metrô de Teresina|M
+S|-5.10811|-42.75507|Dirceu II|Metrô de Teresina|M
+S|-5.09190|-42.81900|Engenheiro Alberto Tavares Silva|Metrô de Teresina|M
+S|-2.89426|-41.72034|Floriópolis|Metrô de Teresina|M
+S|-5.08462|-42.80375|Frei Serafim|Metrô de Teresina|M
+S|-3.36840|-41.59323|Freixeiras|Metrô de Teresina|M
+S|-5.11092|-42.76145|Itararé|Metrô de Teresina|M
+S|-2.88147|-41.66682|Luís Correia|Metrô de Teresina|M
+S|-5.08171|-42.82208|Matinha|Metrô de Teresina|M
+S|-4.93078|-42.30056|Miradouro|Metrô de Teresina|M
+S|-2.90503|-41.77174|Parnaíba|Metrô de Teresina|M
+S|-5.10421|-42.74627|Parque Ideal|Metrô de Teresina|M
+S|-3.93428|-41.70314|Piracuruca|Metrô de Teresina|M
+S|-4.27348|-41.78525|Piripiri|Metrô de Teresina|M
+S|-5.09872|-42.74493|Renascença|Metrô de Teresina|M
+S|-4.61329|-42.04184|Sambaíba|Metrô de Teresina|M
+S|-5.09389|-42.76467|São João|Metrô de Teresina|M
+S|-8.13417|-34.91467|Aeroporto|Metrô do Recife|M
+S|-8.07728|-34.90630|Afogados|Metrô do Recife|M
+S|-8.08480|-34.97501|Alto do Céu|Metrô do Recife|M
+S|-8.10989|-34.90908|Antônio Falcão|Metrô do Recife|M
+S|-8.08888|-34.94580|Barro|Metrô do Recife|M
+S|-8.28638|-35.03646|Cabo|Metrô do Recife|M
+S|-8.16840|-34.93408|Cajueiro Seco|Metrô do Recife|M
+S|-8.02463|-34.99533|Camaragibe|Metrô do Recife|M
+S|-8.09398|-34.97278|Cavaleiro|Metrô do Recife|M
+S|-8.09144|-34.96472|Coqueiral|Metrô do Recife|M
+S|-8.03642|-34.98855|Cosme e Damião|Metrô do Recife|M
+S|-8.07596|-34.97880|Curado|Metrô do Recife|M
+S|-8.10802|-35.00516|Engenho Velho|Metrô do Recife|M
+S|-8.10695|-34.99306|Floriano|Metrô do Recife|M
+S|-8.09020|-34.90751|Imbiribeira|Metrô do Recife|M
+S|-8.07774|-34.91334|Ipiranga|Metrô do Recife|M
+S|-8.11113|-35.01526|Jaboatão|Metrô do Recife|M
+S|-8.07321|-34.89539|Joana Bezerra|Metrô do Recife|M
+S|-8.10614|-34.98341|Jorge Lins|Metrô do Recife|M
+S|-8.08153|-34.90490|Largo da Paz|Metrô do Recife|M
+S|-8.07934|-34.92118|Mangueira|Metrô do Recife|M
+S|-8.13837|-34.96806|Marcos Freire|Metrô do Recife|M
+S|-8.15446|-34.92019|Monte dos Guararapes|Metrô do Recife|M
+S|-8.19470|-34.95659|Ângelo de Souza|Metrô do Recife|M
+S|-8.24545|-34.97725|Ponte dos Carvalhos|Metrô do Recife|M
+S|-8.22177|-34.96537|Pontezinha|Metrô do Recife|M
+S|-8.14706|-34.91762|Porta Larga|Metrô do Recife|M
+S|-8.16110|-34.92677|Prazeres|Metrô do Recife|M
+S|-8.06917|-34.88537|Recife|Metrô do Recife|M
+S|-8.06416|-34.98097|Rodoviária|Metrô do Recife|M
+S|-8.08416|-34.93013|Santa Luzia|Metrô do Recife|M
+S|-8.27983|-35.02392|Santo Inácio|Metrô do Recife|M
+S|-8.11620|-34.91055|Shopping|Metrô do Recife|M
+S|-8.12235|-34.91186|Tancredo Neves|Metrô do Recife|M
+S|-8.09036|-34.95664|Tejipió|Metrô do Recife|M
+S|-8.08599|-34.93625|Werneck|Metrô do Recife|M
+S|-15.80574|-47.88944|102 Sul|Metrô-DF|M
+S|-15.81499|-47.89865|106 Sul|Metrô-DF|M
+S|-15.81896|-47.90397|108 Sul|Metrô-DF|M
+S|-15.82284|-47.90935|110 Sul|Metrô-DF|M
+S|-15.82673|-47.91472|112 Sul|Metrô-DF|M
+S|-15.83064|-47.92012|114 Sul|Metrô-DF|M
+S|-15.83673|-48.01706|Arniqueiras|Metrô-DF|M
+S|-15.83705|-47.93252|Asa Sul|Metrô-DF|M
+S|-15.80557|-48.12131|Ceilândia|Metrô-DF|M
+S|-15.82228|-48.11191|Ceilândia Centro|Metrô-DF|M
+S|-15.81488|-48.11613|Ceilândia Norte|Metrô-DF|M
+S|-15.83778|-48.10329|Ceilândia Sul|Metrô-DF|M
+S|-15.79325|-47.88464|Central|Metrô-DF|M
+S|-15.83545|-48.08615|Centro Metropolitano|Metrô-DF|M
+S|-15.83515|-48.03863|Concessionárias|Metrô-DF|M
+S|-15.83239|-48.04528|Estrada Parque|Metrô-DF|M
+S|-15.82305|-47.97502|Feira|Metrô-DF|M
+S|-15.86495|-48.05980|Furnas|Metrô-DF|M
+S|-15.79948|-47.88607|Galeria|Metrô-DF|M
+S|-15.82668|-47.98338|Guará|Metrô-DF|M
+S|-15.83062|-48.10730|Guariroba|Metrô-DF|M
+S|-15.84000|-48.02826|Águas Claras|Metrô-DF|M
+S|-15.83328|-48.05633|Praça do Relógio|Metrô-DF|M
+S|-15.87368|-48.08491|Samambaia|Metrô-DF|M
+S|-15.86904|-48.07158|Samambaia Sul|Metrô-DF|M
+S|-15.83243|-47.95067|Shopping|Metrô-DF|M
+S|-15.85185|-48.04188|Taguatinga Sul|Metrô-DF|M
+S|-29.98958|-51.17583|Aeromóvel|Trensurb|M
+S|-29.98770|-51.18295|Aeroporto|Trensurb|M
+S|-29.97677|-51.17891|Anchieta|Trensurb|M
+S|-29.91899|-51.18208|Canoas / La Salle|Trensurb|M
+S|-29.85202|-51.17935|Esteio|Trensurb|M
+S|-29.99727|-51.19749|Farrapos|Trensurb|M
+S|-29.70095|-51.13498|Fenac|Trensurb|M
+S|-29.93798|-51.17738|Fátima|Trensurb|M
+S|-29.71590|-51.13497|Industrial / Tintas Killing|Trensurb|M
+S|-29.83281|-51.16552|Luiz Pasteur|Trensurb|M
+S|-29.90370|-51.17883|Mathias Velho|Trensurb|M
+S|-30.02622|-51.22824|Mercado|Trensurb|M
+S|-29.95465|-51.17657|Niterói|Trensurb|M
+S|-29.68676|-51.13290|Novo Hamburgo|Trensurb|M
+S|-29.87681|-51.18088|Petrobras|Trensurb|M
+S|-29.74904|-51.14516|Rio dos Sinos|Trensurb|M
+S|-30.02219|-51.21989|Rodoviária|Trensurb|M
+S|-29.72973|-51.14036|Santo Afonso|Trensurb|M
+S|-29.82320|-51.14908|Sapucaia|Trensurb|M
+S|-29.76892|-51.14111|São Leopoldo|Trensurb|M
+S|-29.88757|-51.17959|São Luís|Trensurb|M
+S|-30.00632|-51.20939|São Pedro|Trensurb|M
+S|-29.78691|-51.14050|Unisinos|Trensurb|M
+S|-9.58681|-35.79824|ABC|VLT|M
+S|-9.62514|-35.75259|Bebedouro|VLT|M
+S|-9.64959|-35.74324|Bom Parto|VLT|M
+S|-9.58989|-35.78668|Fernão Velho|VLT|M
+S|-9.59562|-35.77895|Goiabeira|VLT|M
+S|-9.49566|-35.84422|Gustavo Paiva|VLT|M
+S|-9.67193|-35.72000|Jaraguá|VLT|M
+S|-9.47847|-35.85953|Lourenço de Albuquerque|VLT|M
+S|-9.66795|-35.73737|Maceió|VLT|M
+S|-9.66268|-35.74334|Mercado|VLT|M
+S|-9.48729|-35.85404|Rio Largo|VLT|M
+S|-9.57940|-35.81039|Rio Novo|VLT|M
+S|-9.57351|-35.82469|Satuba|VLT|M
+S|-9.62128|-35.76099|Sururu de Capote|VLT|M
+S|-9.53134|-35.85059|Utinga|VLT|M
+S|-23.94011|-46.31916||VLT da Baixada Santista|M
+S|-23.93657|-46.31917||VLT da Baixada Santista|M
+S|-23.95953|-46.33315|Ana Costa|VLT da Baixada Santista|M
+S|-23.96166|-46.33897|Bernardino de Campos|VLT da Baixada Santista|M
+S|-23.93949|-46.32280|Bittencourt|VLT da Baixada Santista|M
+S|-23.94438|-46.32327|Campos Sales|VLT da Baixada Santista|M
+S|-23.95043|-46.32378|Carvalho de Mendonça|VLT da Baixada Santista|M
+S|-23.95760|-46.32374|Conselheiro Nébias|VLT da Baixada Santista|M
+S|-23.96468|-46.38085|Emmerich|VLT da Baixada Santista|M
+S|-23.96841|-46.36238|Itararé|VLT da Baixada Santista|M
+S|-23.96744|-46.35778|João Ribeiro|VLT da Baixada Santista|M
+S|-23.93652|-46.32504|José Bonifácio|VLT da Baixada Santista|M
+S|-23.93652|-46.32504|José Bonifácio|VLT da Baixada Santista|M
+S|-23.96830|-46.37087|José Monteiro|VLT da Baixada Santista|M
+S|-23.96171|-46.39792|Mascarenhas|VLT da Baixada Santista|M
+S|-23.93442|-46.32985|Mauá|VLT da Baixada Santista|M
+S|-23.96632|-46.37633|Nossa Senhora das Graças|VLT da Baixada Santista|M
+S|-23.96556|-46.35249|Nossa Senhora de Lourdes|VLT da Baixada Santista|M
+S|-23.96311|-46.34591|Pinheiro Machado|VLT da Baixada Santista|M
+S|-23.93353|-46.33492|São Bento|VLT da Baixada Santista|M
+S|-23.96269|-46.38769|São Vicente|VLT da Baixada Santista|M
+S|-23.96076|-46.40931|Terminal Barreiros|VLT da Baixada Santista|M
+S|-23.95696|-46.31357|Terminal Porto|VLT da Baixada Santista|M
+S|-23.94680|-46.32041|Universidades I|VLT da Baixada Santista|M
+S|-23.94748|-46.32358|Universidades II|VLT da Baixada Santista|M
+S|-23.93468|-46.33407|Valongo|VLT da Baixada Santista|M
+S|-23.95776|-46.32840|Washington Luis|VLT da Baixada Santista|M
+S|-23.95061|-46.32077|Xavier Pinheiro|VLT da Baixada Santista|M
+S|-7.21927|-39.33435|Antônio Vieira|VLT do Cariri|M
+S|-7.23242|-39.40743|Crato|VLT do Cariri|M
+S|-7.22089|-39.34657|Escola|VLT do Cariri|M
+S|-7.20622|-39.30493|Fátima|VLT do Cariri|M
+S|-7.20982|-39.31410|Juazeiro do Norte|VLT do Cariri|M
+S|-7.22485|-39.37995|Muriti|VLT do Cariri|M
+S|-7.22482|-39.39398|Padre Cícero|VLT do Cariri|M
+S|-7.21965|-39.36420|São José|VLT do Cariri|M
+S|-7.21841|-39.32520|Teatro|VLT do Cariri|M
+S|-22.93240|-43.09928|Charitas|Barcas Rio|W
+S|-22.80407|-43.17766|Cocotá|Barcas Rio|W
+S|-22.76197|-43.10647|Paquetá|Barcas Rio|W
+S|-22.89422|-43.12497|Praça Arariboia|Barcas Rio|W
+S|-22.90274|-43.17145|Praça XV|Barcas Rio|W
+S|-32.03046|-52.08830|Balsa|Becker Transportes;F. Andreis|W
+S|-32.01206|-52.04378|Balsa|Becker Transportes;F. Andreis|W
+S|-29.08647|-51.71640|Santa Tereza|Lacel|W
+S|-29.08652|-51.71513|São Valentim do Sul|Lacel|W
+S|-22.89762|-43.16691|Ilha Fiscal|Marinha do Brasil|W
+S|-22.90034|-43.17428|Praça XV|Marinha do Brasil|W
+S|-29.94633|-51.71766||Navegação Bom Jesus; Eça Belizário|W
+S|-29.95345|-51.72401|Terminal Hidroviário Josué Guimarães|Navegação Bom Jesus; Eça Belizário|W
+S|-23.73927|-46.65584|Atracadouro Cantinho do Céu|SPTrans|W
+S|-23.69780|-46.66811|Atracadouro Mar Paulista|SPTrans|W
+S|-29.79880|-51.19098|Balsa do Carioca Nova Santa Rita|Seu Chico da Balsa|W
+S|-29.79899|-51.18991|Balsa do Carioca Sapucaia do Sul|Seu Chico da Balsa|W
+S|-32.02949|-52.09573|Hidroviária|Transnorte|W
+S|-32.01290|-52.04396|Hidroviária|Transnorte|W
+S|-29.95195|-51.70976|São Jerônimo|Transportadora Inácio|W
+S|-29.94528|-51.71226|Triunfo|Transportadora Inácio|W
+S|-30.02559|-51.22882|Barco Cisne Branco|Transporte Hidroviário de Passageiros de Porto Alegre|W
+S|-30.08026|-51.24925|Píer Pontal|Transporte Hidroviário de Passageiros de Porto Alegre|W
+S|-30.10752|-51.31094|Terminal Hidroviário de Guaíba|Transporte Hidroviário de Passageiros de Porto Alegre|W
+L|Aeromóvel GRU|Aeromóvel GRU||0 1:500 2:1410 3:648
+L|Aeromóvel GRU|Aeromóvel GRU||3 2:648 1:1410 0:500
+L|CBTU|CBTU|green|15 16:2868 5:3583 4:1744 7:1386 11:2145 12:3564 14:3426 8:4367 13:2107 9:1967 10:1557 6:1816
+L|CBTU|CBTU|green|6 10:1816 9:1557 13:1967 8:2107 14:4367 12:3426 11:3564 7:2145 4:1386 5:1744 16:3583 15:2868
+L|CBTU Natal|Linha Norte||32 17:2749 39:1590 28:3226 41:2086 43:1719 34:2705 33:1332 26:3372 27:1814 40:6443 31:2703 30:4004 23:4066
+L|CBTU Natal|Linha Norte||23 30:4066 31:4004 40:2703 27:6443 26:1814 33:3372 34:1332 43:2705 41:1719 28:2086 39:3226 17:1590 32:2749
+L|CBTU Natal|Linha Sul||32 18:2836 35:1291 20:1263 24:1509 38:1202 37:1581 25:928 29:3436 36:3692 19:1780 22:2897 21:11393 42:5227
+L|CBTU Natal|Linha Sul||42 21:5227 22:11393 19:2897 36:1780 29:3692 25:3436 37:928 38:1581 24:1202 20:1509 35:1263 18:1291 32:2836
+L|Estrada de Ferro do Corcovado|Trem do Corcovado|#D32232|45 46:728 47:1693 44:967
+L|Estrada de Ferro do Corcovado|Trem do Corcovado|#D32232|44 47:933 46:1704 45:766
+L|Metrofor|Linha Oeste|#008000|85 69:3157 75:2247 50:1206 60:2310 79:1444 59:814 67:1121 53:2158 57:4249
+L|Metrofor|Linha Oeste|#008000|57 53:4249 67:2158 59:1121 79:814 60:1444 50:2310 75:1206 69:2247 85:3158
+L|Metrofor|Linha Parangaba-Mucuripe|#6B297E|78 73:1289 63:1242 87:1006 55:1174 84:2104 80:1755 51:872 77:1382 74:1593 65:766
+L|Metrofor|Linha Parangaba-Mucuripe|#6B297E|65 74:766 77:1587 51:1383 80:872 84:1753 55:2110 87:1170 63:1004 73:1244 78:1290
+L|Metrofor|Linha Sul|#FF0000|56 64:1057 71:1082 88:1334 82:2256 49:1502 52:1705 62:1245 72:1391 70:1079 86:1675 78:1322 68:1266 61:1140 81:909 76:879 54:1000 83:1054 66:628 58:991
+L|Metrofor|Linha Sul|#FF0000|58 66:978 83:626 54:1054 76:999 81:881 61:908 68:1144 78:1259 86:1327 70:1672 72:1077 62:1377 52:1312 49:1721 82:1518 88:2249 71:1329 64:1076 56:1077
+L|Metrofor|Ramal Aeroporto-Castelão|#FF6100|63 48:1086
+L|Metrofor|Ramal Aeroporto-Castelão|#FF6100|48 63:1086
+L|Metrô Rio|Linha 4|#FFCC29|107 116:1148 111:1021 91:803 122:3310 112:6017
+L|Metrô Rio|Linha 4|#FFCC29|112 122:6145 91:3284 111:780 116:1067 107:1033
+L|Metrô Rio|Metrô Linha 2|#028F34|117 103:1310 89:1515 100:1004 101:1511 110:1342 129:1235 125:1191 104:1203 109:1660 102:1322 115:1247 126:2491 114:1937 123:1339 98:1546 97:1703 119:508 127:460 95:662 99:448 108:1126 96:601 113:592 106:683 92:1672
+L|Metrô Rio|Metrô Linha 2|#028F34|92 106:1672 113:683 96:592 108:601 99:1126 95:447 127:662 119:460 97:508 98:1704 123:1542 114:1342 126:1952 115:2490 102:1247 109:1322 104:1660 125:1210 129:1188 110:1235 101:1341 100:1514 89:1005 103:1512 117:1316
+L|Metrô Rio|Metrô Rio Linha 1|#e77405|128 120:966 124:994 90:685 105:1288 118:778 97:1115 119:508 127:460 95:662 99:448 108:1126 96:601 113:592 106:683 92:1672 94:1660 121:725 93:1235 107:690
+L|Metrô Rio|Metrô Rio Linha 1|#e77405|107 93:692 121:1233 94:724 92:1669 106:1672 113:683 96:592 108:601 99:1126 95:447 127:662 119:460 97:508 118:1115 105:781 90:1281 124:685 120:994 128:966
+L|Metrô de Salvador|Linha 2||130 134:1289 140:895 138:733 136:2747 133:1233 139:1416 135:2003 141:1289 132:1762 137:2461 131:3609
+L|Metrô de Salvador|Linha 2||131 137:3609 132:2461 141:1762 135:1289 139:2003 133:1416 136:1233 138:2747 140:733 134:895 130:1289
+L|Metrô de Sobral|Linha Norte|blue|152 149:1070 142:803 144:1015 151:1155 150:838 146:1153
+L|Metrô de Sobral|Linha Norte|blue|146 150:1153 151:838 144:1155 142:1015 149:803 152:1070
+L|Metrô de Sobral|Linha Sul|red|145 147:1292 143:736 144:1317 148:1024 153:1120
+L|Metrô de Sobral|Linha Sul|red|153 148:1120 144:1024 143:1317 147:736 145:1292
+L|Metrô de São Paulo|Linha 1 - Azul|#1266af|193 180:1258 232:1023 220:855 216:874 222:1274 246:1142 159:977 208:719 242:754 231:804 194:790 218:567 200:1533 238:694 161:679 215:1304 175:716 224:785 197:1396 207:1136 240:903
+L|Metrô de São Paulo|Linha 1 - Azul|#1266af|240 207:1020 197:1024 224:1510 175:675 215:817 161:1201 238:682 200:695 230:785 218:740 194:564 231:796 242:796 208:742 159:736 246:969 222:1143 216:1274 220:873 232:855 180:1024 193:1258
+L|Metrô de São Paulo|Linha 15 - Prata|#7b9192|195 234:1770 185:1273 228:1480 196:1283 251:952 250:1211 171:1218 233:1026 204:2027 248:2297
+L|Metrô de São Paulo|Linha 15 - Prata|#7b9192|248 204:2209 233:2019 171:1035 250:1221 251:1285 196:958 228:1296 185:1488 234:1183 195:1778
+L|Metrô de São Paulo|Linha 17 - Ouro|#DE7C00|156 168:1577 241:995 172:596 243:635 178:734 203:1438
+L|Metrô de São Paulo|Linha 17 - Ouro|#DE7C00|203 178:1430 243:731 172:624 241:597 168:996 156:1597
+L|Metrô de São Paulo|Linha 2 - Verde|#008162|248 236:1229 219:1680 158:1023 226:1140 177:1113 159:1466 208:734 166:1054 239:885 181:886 179:1205 227:765 245:1458
+L|Metrô de São Paulo|Linha 2 - Verde|#008162|245 227:1458 179:769 181:1194 239:885 166:887 208:1044 159:740 177:1476 226:1191 158:1055 219:1038 236:1683 248:1231
+L|Metrô de São Paulo|Linha 3 - Vermelha|#ef3f32|206 201:1535 221:920 217:813 160:597 218:699 211:737 169:1055 165:911 163:1827 237:1362 176:1280 212:2274 247:1208 190:1511 209:1694 162:2133 182:1473
+L|Metrô de São Paulo|Linha 3 - Vermelha|#D9001C|182 162:1466 209:2132 190:1700 247:1504 212:1216 176:2274 237:1278 163:1363 165:1827 169:911 211:1056 218:737 160:685 217:591 221:816 201:920 206:1540
+L|Metrô de São Paulo|Linha 4 - Amarela|#FFD700|200 217:1220 191:1142 210:1239 205:1163 186:1402 184:1046 214:812 170:850 235:2473 249:1399
+L|Metrô de São Paulo|Linha 4 - Amarela|#ffd500|249 235:1399 170:2477 214:845 184:809 186:1050 205:1402 210:1164 191:1239 217:1143 200:1222
+L|Metrô de São Paulo|Linha 5 - Lilás|#9200C3|174 173:1450 244:1764 188:1666 225:2254 199:1114 155:838 157:1098 164:1078 167:915 172:1048 183:1781 202:919 154:1287 192:689 222:852 177:956
+L|Metrô de São Paulo|Linha 5 - Lilás|#9200C3|177 222:953 192:851 154:689 202:1292 183:918 172:1782 167:1169 164:792 157:1217 155:962 199:833 225:1113 188:2316 244:1607 173:1865 174:1455
+L|Metrô de São Paulo|Linha 6 - Laranja|#F96815|198 187:937 223:1409 189:799 229:916 213:865
+L|Metrô de São Paulo|Linha 6 - Laranja|#F96815|213 229:864 189:913 223:802 187:1404 198:935
+L|Metrô de Teresina|Linha 1 - Eng. Alberto T. Silva → Itararé|#8A8988|261 267:1324 263:2953 275:4774 253:1139 273:1321 270:773 260:1070 265:772 252:41147 268:21875 256:19207 274:28995 257:20587 255:45375 271:26029 259:38446 258:21906 264:12511 254:23863 269:49892 262:8015 266:7422 272:191245
+L|Metrô de Teresina|Linha 1 - Itararé → Eng. Alberto T. Silva|#8A8988|265 260:772 270:1070 273:773 253:1321 275:1139 263:4774 267:2953 261:1324 252:47834 268:21875 256:19207 274:28995 257:20587 255:45375 271:26029 259:38446 258:21906 264:12511 254:23863 269:49892 262:8015 266:7422 272:191245
+L|Metrô do Recife|Linha Centro - 1|#e77405|304 293:1287 277:1287 291:810 296:889 306:1155 311:703 280:1137 310:1236 285:917 278:1412 287:1073 305:1337 286:3226 283:1484
+L|Metrô do Recife|Linha Centro - 1|#e77405|283 286:1485 305:3223 287:1337 278:1074 285:1420 310:925 280:1237 311:1136 306:703 296:1155 291:887 277:814 293:1286 304:1303
+L|Metrô do Recife|Linha Centro - 2|#D9001C|304 293:1287 277:1287 291:810 296:889 306:1155 311:703 280:1137 310:1236 285:917 284:1006 289:2945 288:1371 292:1174
+L|Metrô do Recife|Linha Centro - 2|#D9001C|292 288:1174 289:1369 284:2944 285:1002 310:920 280:1237 311:1136 306:703 296:1155 291:887 277:814 293:1286 304:1303
+L|Metrô do Recife|Linha Sul|#1a5ba3|304 293:1302 295:1497 290:1006 279:2213 308:717 309:691 276:1347 302:1452 298:887 303:1029 282:1141
+L|Metrô do Recife|Linha Sul|#1a5ba3|282 303:1139 298:1033 302:879 276:1462 309:1348 308:688 279:717 290:2212 295:1004 293:1491 304:1305
+L|Metrô do Recife|VLT Cabo - Cajueiro Seco|#008000|281 307:1580 300:6650 301:2983 299:3219 282:3910
+L|Metrô do Recife|VLT Cajueiro Seco --> Curado|#999e9e|282 297:5608 294:4706 287:3994
+L|Metrô do Recife|VLT Cajueiro Seco–Cabo|#008000|282 299:3989 301:3140 300:2980 307:6649 281:1579
+L|Metrô do Recife|VLT Curado --> Cajueiro Seco|#999e9e|287 294:3994 297:4707 282:5611
+L|Metrô-DF|Linha Laranja|#EB9710|324 330:717 312:788 313:1423 314:722 315:716 316:718 317:720 319:1532 337:2140 328:2998 331:983 318:3980 333:1274 338:2178 329:2435 336:1353 335:1536
+L|Metrô-DF|Linha Laranja|#EB9710|335 336:1532 329:1356 338:2433 333:2157 318:1278 331:3979 328:982 337:2995 319:2142 317:1533 316:720 315:718 314:716 313:724 312:1423 330:791 324:718
+L|Metrô-DF|Linha Verde|#076C57|324 330:717 312:788 313:1423 314:722 315:716 316:718 317:720 319:1532 337:2140 328:2998 331:983 318:3980 333:1274 326:1284 327:787 334:1225 325:3266 323:2292 332:900 321:1046 322:934 320:1168
+L|Metrô-DF|Linha Verde|#076C57|320 322:1169 321:935 332:1046 323:901 325:2295 334:3267 327:1224 326:786 333:1286 318:1277 331:3979 328:982 337:2995 319:2142 317:1533 316:720 315:718 314:716 313:724 312:1423 330:791 324:718
+L|Trensurb|Conexão Metrô-Aeroporto|black|339 340:807
+L|Trensurb|Conexão Metrô-Aeroporto|black|340 339:807
+L|Trensurb|Norte|#000080|350 355:927 360:2067 344:1796 340:1899 341:1273 351:2476 346:1844 342:2163 349:1758 359:1872 353:1211 343:2810 348:2576 357:1978 361:4720 358:2097 354:2325 356:2198 347:1615 345:1688 352:1594
+L|Trensurb|Norte|#000080|350 355:927 360:2067 344:1796 340:1899 341:1273 351:2476 346:1844 342:2163 349:1758 359:1872 353:1211 343:2810 348:2576 357:1978
+L|Trensurb|Sul|#000080|352 345:1598 347:1689 356:1616 354:2195 358:2327 361:2095 357:4726 348:1981 343:2568 353:2810 359:1209 349:1875 342:1755 346:2164 351:1843 341:2477 340:1273 344:1907 360:1792 355:2070 350:930
+L|Trensurb|Sul|#000080|357 348:1981 343:2568 353:2810 359:1209 349:1875 342:1755 346:2164 351:1843 341:2477 340:1273 344:1907 360:1792 355:2070 350:930
+L|VLT|Linha Azul|#1a5ba3|363 375:1034 366:3984 365:1057 362:1399 373:1720 374:1976 376:6936 367:5313 372:1773 369:1247
+L|VLT|Linha Azul|#1a5ba3|369 372:1247 367:1773 376:5313 374:6936 373:1977 362:1720 365:1395 366:1059 375:3985 363:1034
+L|VLT|Linha Verde|#78b942|364 371:1710 370:1313 368:2329
+L|VLT|Linha Verde|#78b942|368 370:2329 371:1316 364:1702
+L|VLT da Baixada Santista|VLT Linha 1|#005CA9|398 391:1169 397:1042 385:744 393:494 390:585 386:937 387:508 394:577 395:720 380:741 379:634 403:527 384:478 399:1130
+L|VLT da Baixada Santista|VLT Linha 1|#005CA9|399 384:1122 403:483 379:525 380:634 395:739 394:722 387:584 386:504 390:939 393:581 385:501 397:740 391:1040 398:1171
+L|VLT da Baixada Santista|VLT Linha 2|#F26A21|398 391:1169 397:1042 385:744 393:494 390:585 386:937 387:508 394:577 395:720 380:741 379:634 403:527 384:478 404:1021 400:423 377:755 378:451 389:396 392:717 396:672 402:165
+L|VLT da Baixada Santista|VLT Linha 2|#F26A21|402 388:941 381:536 382:543 401:344 383:328 384:853 403:483 379:525 380:634 395:739 394:722 387:584 386:504 390:939 393:581 385:501 397:740 391:1040 398:1171
+L|VLT do Cariri|VLT do Cariri|green|408 409:1134 413:1824 405:1060 407:1431 412:2640 410:2074 411:1713 406:1929
+L|VLT do Cariri|VLT do Cariri|green|406 411:1929 410:1713 412:2074 407:2640 405:1430 413:1060 409:1824 408:1134
+L|Barcas Rio|Charitas - Praça XV||414 418:8447
+L|Barcas Rio|Cocotá - Praça XV||415 418:13189
+L|Barcas Rio|Paquetá - Praça XV||416 418:18055
+L|Barcas Rio|Praça Arariboia - Praça XV||417 418:4995
+L|Barcas Rio|Praça XV - Charitas||418 414:8448
+L|Barcas Rio|Praça XV - Cocotá||418 415:13186
+L|Barcas Rio|Praça XV - Paquetá||418 416:18051
+L|Barcas Rio|Praça XV - Praça Arariboia||418 417:5079
+L|Becker Transportes;F. Andreis|Travessia Aquaviária de Veículos Rio Grande - São José do Norte||420 419:4934
+L|Lacel|Balsa Santa Tereza - São Valentim do Sul||421 422:124
+L|Lacel|Balsa São Valentim do Sul - Santa Tereza||422 421:124
+L|Marinha do Brasil|Espaço Cultural da Marinha-Ilha Fiscal||423 424:1170
+L|Navegação Bom Jesus; Eça Belizário|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||425 426:998
+L|Navegação Bom Jesus; Eça Belizário|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||426 425:998
+L|SPTrans|626A-10 Mar Paulista|#0082BA|427 428:5174
+L|Seu Chico da Balsa|Balsa do Carioca||430 429:105
+L|Transnorte|Travessia Aquaviária de Passageiros São José do Norte - Rio Grande||431 432:5661
+L|Transnorte|Travessia Aquaviária de Passageiros São José do Norte - Rio Grande||432 431:5662
+L|Transportadora Inácio|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||433 434:793
+L|Transportadora Inácio|Travessia Hidroviária de Veículos Triunfo - São Jerônimo||434 433:793
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba|#FFA500|437 435:14278
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba|#FFA500|435 437:14283
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba / Pontal|#FFA500|437 436:8087 435:7253
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba / Pontal|#FFA500|435 436:7254 437:8088
+T|-9.43068|-40.50325|Abandonada
+T|-7.11202|-36.83977|Abismo
+T|-11.66137|-38.01707|Acajutiba
+T|-6.81213|-38.09624|Acauã
+T|-19.52678|-42.66670|Acesita
+T|-23.62700|-46.66190|Aeroporto de Congonhas
+T|-23.43312|-46.49379|Aeroporto-Guarulhos
+T|-5.49909|-36.50382|Afonso Bezerra
+T|-8.51682|-41.00304|Afrânio
+T|-22.78864|-43.38139|Agostinho Porto
+T|-19.49394|-41.06092|Aimorés
+T|-6.70751|-38.25913|Alagoinha
+T|-8.00101|-37.41685|Albuquerque Né
+T|-29.77824|-55.78868|Alegrete
+T|-7.61438|-35.23431|Aliança
+T|-22.67204|-43.59309|Aljezur
+T|-5.11694|-42.17441|Altamira
+T|-7.13036|-34.91290|Alto do Mateus
+T|-7.12161|-37.16406|Aluísio Beltrão
+T|-12.49529|-49.02942|Alvorada
+T|-23.53056|-46.98394|Amador Bueno
+T|-4.06458|-40.52696|Amanaira
+T|-18.53441|-48.19707|Amanhece
+T|-23.53024|-46.97277|Ambuitá
+T|-22.82440|-43.40322|Anchieta
+T|-23.04808|-50.22998|Andirá
+T|-22.26336|-43.36635|Andrade Costa
+T|-21.73660|-44.31107|Andrelândia
+T|-22.85869|-47.02985|Anhumas
+T|-2.56734|-44.33191|Anjo da Guarda
+T|-6.72976|-38.44973|Antenor Navarro
+T|-5.36512|-39.32470|Antiga Estacao RFSA
+T|-29.74697|-55.93954|Antiga Estação Capivari
+T|-17.73504|-39.26231|Antiga Estação Caravelas da Estrada de Ferro Bahia Minas
+T|-19.96165|-43.41567|Antiga Estação Feroviaria (Rota do Ferro)
+T|-22.29538|-44.93885|Antiga Estação Ferroviaria
+T|-21.30873|-47.56989|Antiga Estação Ferroviária
+T|-20.75509|-42.88128|Antiga Estação Ferroviária
+T|-20.69446|-44.83319|Antiga Estação Ferroviária
+T|-20.10145|-42.45355|Antiga Estação Ferroviária
+T|-6.09632|-37.63741|Antiga Estação Ferroviária
+T|-23.27137|-51.04358|Antiga Estação Ferroviária de Ibiporã
+T|-31.86161|-52.82179|Antiga Estação Ferroviária de Pedro Osório
+T|-10.85100|-37.13251|Antiga Estação Ferroviária de Socorro
+T|-23.22834|-50.86051|Antiga Estação Ferroviária do Distrito Cruzeiro do Norte
+T|-30.00864|-52.89929|Antiga Estação Férrea de Cachoeira do Sul (DESATIVADA)
+T|-8.76661|-63.90901|Antiga Estação da Estrada de Ferro Madeira-Mamoré
+T|-8.21467|-41.08330|Antiga Estação de Acauã
+T|-22.23719|-42.05527|Antiga Estação de Glicério
+T|-21.52458|-47.36903|Antiga Estação de Nhumirim
+T|-22.67997|-44.31954|Antiga Estação de Trem
+T|-21.62326|-41.01782|Antiga Estação de Trem de Atafona
+T|-8.12024|-35.29681|Antiga Estação ferroviária
+T|-23.35937|-45.98329|Antiga Parada Bom Jesus E.F.C.B
+T|-23.37071|-46.02203|Antiga estação São Silvestre
+T|-32.17698|-52.16738|Antiga estação de trem
+T|-1.13097|-47.06120|Antiga estação do trem
+T|-23.55441|-46.38363|Antonio Gianetti Neto
+T|-6.89346|-35.48093|Antonio Guedes
+T|-19.65567|-42.86866|Antônio Dias
+T|-23.51707|-46.85833|Antônio João
+T|-3.54837|-39.84791|Anário Braga
+T|-10.90785|-37.06583|Aracaju
+T|-23.50008|-46.33911|Aracaré
+T|-20.49328|-40.77179|Araguaya
+T|-7.32748|-48.07448|Araguaína
+T|-8.44428|-35.34764|Arapibu
+T|-18.49248|-48.27061|Ararapira
+T|-22.40326|-43.41894|Arcozelo
+T|-7.12259|-36.94084|Areia de Baraúnas
+T|-6.93885|-37.38801|Argemiro de Souza
+T|-19.82394|-40.36089|Aricanga
+T|-8.12289|-39.00220|Arlindo Luz
+T|-6.82534|-37.67209|Arruda Câmara
+T|-22.11152|-44.29312|Augusto Pestana
+T|-22.89304|-43.53740|Augusto Vasconcelos
+T|-22.72021|-43.52329|Austin
+T|-23.70598|-46.68832|Autódromo
+T|-22.32121|-43.40449|Avelar
+T|-19.51058|-41.01367|Baixo Guandu
+T|-30.21208|-56.25951|Baltazar Brum
+T|-23.31012|-46.72334|Baltazar Fidélis
+T|-22.87536|-43.46570|Bangu
+T|-19.07171|-41.52872|Barra de Cuieté
+T|-22.47280|-43.82260|Barra do Piraí
+T|-21.15931|-47.81396|Barracão
+T|-8.81135|-35.20063|Barreiros
+T|-22.83321|-43.36656|Barros Filho
+T|-21.18594|-43.97965|Barroso
+T|-23.51261|-46.87508|Barueri
+T|-22.13590|-43.24924|Barão de Angra
+T|-22.47028|-43.48959|Barão de Javari
+T|-31.87470|-53.02282|Basílio
+T|-7.12749|-34.92804|Bayeux
+T|-20.94747|-48.47593|Bebedouro
+T|-22.76407|-43.39982|Belford Roxo
+T|-22.90629|-43.58102|Benjamim do Monte
+T|-29.17369|-51.51758|Bento Gonçalves
+T|-15.86103|-47.98135|Bernardo Sayão
+T|-23.60471|-46.69678|Berrini
+T|-8.66741|-35.67146|Boa Sorte
+T|-20.85186|-54.81875|Bolicho
+T|-21.03355|-44.77291|Bom Sucesso
+T|-22.65271|-43.18020|Bongaba
+T|-12.98380|-38.48372|Bonocô
+T|-22.86761|-43.25529|Bonsucesso
+T|-6.80628|-35.59944|Borborema
+T|-28.73075|-54.91269|Bossoroca
+T|-23.23587|-46.76761|Botujuru
+T|-15.77547|-47.94100|Brasília
+T|-23.53626|-46.22516|Braz Cubas
+T|-21.46904|-55.12001|Brinhante
+T|-23.62956|-46.67358|Brooklin Paulista
+T|-23.54533|-46.61644|Brás
+T|-22.83039|-43.29300|Brás de Pina
+T|-21.66919|-48.24604|Bueno de Andrada
+T|-20.38813|-53.94790|Bálsamo
+T|-20.43418|-43.84586|CSN - Terminal Ferroviário Itacolomy
+T|-21.42537|-43.67289|Cabangu
+T|-6.97415|-34.83606|Cabedelo
+T|-29.88715|-54.82859|Cacequi
+T|-25.43006|-48.93562|Cadeado
+T|-23.36615|-46.75165|Caieiras
+T|-21.82956|-51.98722|Caiuá
+T|-6.61484|-35.44283|Caiçara
+T|-23.52545|-46.33277|Calmon Viana
+T|-23.05408|-50.05686|Cambará
+T|-23.27626|-51.27928|Cambé
+T|-23.59554|-46.53758|Camilo Haddad
+T|-7.22963|-35.89763|Campina Grande (Nova)
+T|-22.90227|-43.56000|Campo Grande
+T|-23.20669|-46.78542|Campo Limpo Paulista
+T|-21.28159|-43.82109|Campolide
+T|-22.70400|-43.28083|Campos Elíseos
+T|-5.14834|-41.15107|Cana Brava
+T|-12.66713|-38.54209|Candeias
+T|-6.37705|-35.14359|Canguaretama
+T|-8.88365|-36.18948|Canhotinho
+T|-21.43146|-46.97440|Canoas
+T|-3.63241|-44.37875|Cantanhede
+T|-23.65823|-46.48972|Capuava
+T|-23.51854|-46.83528|Carapicuíba
+T|-16.90601|-48.39926|Caraíba
+T|-22.52887|-50.53697|Cardoso de Almeida
+T|-3.13941|-44.30167|Carema
+T|-3.94779|-40.47097|Cariré
+T|-22.17824|-44.28011|Carlos Euler
+T|-22.75097|-47.00024|Carlos Gomes
+T|-7.84520|-35.25701|Carpina
+T|-8.28303|-35.96944|Caruaru
+T|-21.78844|-47.09998|Casa Branca
+T|-22.88273|-43.32807|Cascadura
+T|-5.31727|-41.55475|Castelo do Piauí
+T|-8.67110|-35.72006|Catende
+T|-6.95613|-35.46063|Catolé
+T|-22.87454|-43.31575|Cavalcanti
+T|-22.25156|-43.34384|Cavaru
+T|-4.85848|-43.36510|Caxias
+T|-26.77309|-51.01443|Caçador
+T|-23.53749|-46.74253|Ceasa
+T|-22.90355|-43.19142|Central do Brasil
+T|-22.42578|-42.01097|Centro Ferroviário de Cultura Guilherme Nogueira
+T|-22.59810|-50.45322|Cervinho
+T|-23.60485|-48.17096|Cezarino
+T|-22.95175|-43.21069|Christ the Redeemer
+T|-23.61398|-46.69550|Chucri Zaidan
+T|-23.58524|-46.69118|Cidade Jardim
+T|-23.55760|-46.71187|Cidade Universitária
+T|-22.59333|-43.01553|Citrolândia
+T|-8.63953|-35.26872|Cocaú
+T|-4.45305|-43.88809|Codó
+T|-22.77873|-43.38735|Coelho da Rocha
+T|-19.54192|-40.65274|Colatina
+T|-8.08352|-48.23347|Colinas do Tocantins
+T|-23.86640|-46.67465|Colonia
+T|-23.52575|-46.79571|Comandante Sampaio
+T|-23.48511|-46.48229|Comendador Ermelino
+T|-22.74441|-43.48843|Comendador Soares
+T|-21.88729|-45.07263|Conceição do Rio Verde
+T|-6.88157|-37.59212|Condado
+T|-23.20029|-50.72758|Congonhas
+T|-22.53381|-43.56689|Conrado
+T|-19.16565|-41.47704|Conselheiro Pena
+T|-23.41096|-49.98059|Conselheiro Zacarias
+T|-13.76269|-41.04141|Contendas
+T|-22.82402|-43.29592|Cordovil
+T|-23.17969|-50.65099|Cornélio Procópio
+T|-4.12895|-44.12693|Coroatá
+T|-21.31011|-46.66271|Coronel Manuel Joaquim
+T|-18.04984|-48.13101|Coronel Pirineus
+T|-23.40448|-46.78843|Corredor
+T|-22.77238|-43.30670|Corte Oito
+T|-8.47370|-35.54357|Cortês
+T|-22.94062|-43.19851|Cosme Velho
+T|-22.91277|-43.61445|Cosmos
+T|-22.82180|-43.37026|Costa Barros
+T|-23.07686|-49.95056|Costa Júnior
+T|-21.76607|-45.21924|Cota
+T|-5.17653|-40.66464|Crateús
+T|-3.67575|-39.11771|Croatá
+T|-22.57725|-44.95693|Cruzeiro
+T|-8.59466|-35.44793|Cuiambuca
+T|-18.26537|-48.14689|Cumari
+T|-25.43743|-49.25627|Curitiba
+T|-23.50411|-46.14911|César de Souza
+T|-22.88020|-43.27039|Del Castilho
+T|-22.85507|-43.38353|Deodoro
+T|-19.73900|-43.01827|Desembargador Drumond
+T|-22.77146|-46.98947|Desembargador Furtado
+T|-6.78201|-35.51358|Desvio BX-8
+T|-29.70257|-54.21157|Dilermando de Aguiar
+T|-19.91593|-43.46685|Dois Irmãos
+T|-23.54177|-46.44813|Dom Bosco
+T|-20.39908|-40.62230|Domingos Martins
+T|-23.51879|-46.72167|Domingos de Moraes
+T|-6.68680|-35.41943|Duas Estradas
+T|-22.78717|-43.30955|Duque de Caxias
+T|-20.54261|-49.72607|Ecatu
+T|-22.79623|-43.42264|Edson Passos
+T|-17.06571|-48.40240|Egerineu Teixeira
+T|-20.12554|-45.73955|Engenheiro Adelmar
+T|-20.68284|-49.69065|Engenheiro Balduíno
+T|-17.14647|-48.35415|Engenheiro Balduíno
+T|-7.04246|-36.17780|Engenheiro Benévolo
+T|-18.34838|-48.22878|Engenheiro Bethout
+T|-23.53520|-46.92867|Engenheiro Cardoso
+T|-7.90672|-38.08926|Engenheiro Cornélio
+T|-21.54494|-46.89147|Engenheiro Gomide
+T|-23.49809|-46.51990|Engenheiro Goulart
+T|-4.59877|-40.63479|Engenheiro João Thomé
+T|-23.47923|-46.36778|Engenheiro Manoel Feio
+T|-22.67906|-43.60557|Engenheiro Pedreira
+T|-17.84108|-48.17510|Engenheiro Raul Gonçalves
+T|-17.90583|-48.16874|Engenheiro Raul Gonçalves-nova
+T|-21.31823|-46.28533|Engenheiro Trompowski
+T|-22.90346|-43.27076|Engenho Novo
+T|-8.36615|-35.22891|Escada
+T|-21.46107|-45.58740|Espera
+T|-7.12578|-37.04513|Espinharas
+T|-21.90188|-47.62428|Estacão Ferroviária
+T|-21.22557|-45.00059|Estação
+T|-22.84271|-43.27762|Estação 1
+T|-22.84450|-43.27734|Estação 2
+T|-22.84488|-43.27707|Estação 3
+T|-22.01224|-43.33514|Estação Afonso Arinos
+T|-19.49383|-41.06099|Estação Aimorés
+T|-20.27963|-44.91358|Estação Aquiles Lobo
+T|-19.82391|-40.36095|Estação Aricanga
+T|-19.51066|-41.01369|Estação Baixo Guandu
+T|-19.07167|-41.52882|Estação Barra do Cuieté
+T|-19.62097|-47.85247|Estação Batutira
+T|-22.44599|-45.34318|Estação Biguá
+T|-24.96495|-50.11167|Estação Boqueirão
+T|-19.80420|-43.87916|Estação Capitão Eduardo
+T|-28.45335|-48.96680|Estação Capivari de Baixo
+T|-31.76646|-52.50092|Estação Capão do Leão (DESATIVADA)
+T|-24.92739|-50.08254|Estação Carambeí
+T|-19.75422|-43.87948|Estação Carreira Comprida
+T|-12.76899|-39.42675|Estação Castro Alves
+T|-10.93867|-40.41718|Estação CentraI - Piemonte I
+T|-21.12713|-44.24163|Estação Chagas Dória
+T|-22.85299|-45.24349|Estação Cidade do Romeiro
+T|-22.77840|-43.38752|Estação Coelho da Rocha
+T|-21.25619|-44.99854|Estação Costa Pinto
+T|-20.73826|-48.90780|Estação Cultura
+T|-22.02299|-47.89564|Estação Cultura de São Carlos
+T|-21.85153|-47.47789|Estação Cultural Fepasa
+T|-28.95601|-55.29976|Estação Cândida Vargas
+T|-4.82420|-38.99061|Estação Daniel de Queiroz
+T|-23.82777|-46.81328|Estação De Embu Guaçu - Rumo Logistica
+T|-19.91599|-43.46688|Estação Dois Irmãos
+T|-19.64624|-44.00898|Estação Doutor Lund
+T|-21.25205|-44.96479|Estação Engenheiro Bhering
+T|-19.84599|-43.86901|Estação Engenheiro Hebster
+T|-23.13848|-45.78720|Estação Eugênio de Melo
+T|-14.20467|-41.66346|Estação FCA - Brumado
+T|-21.45585|-43.54961|Estação Ferroviaria
+T|-19.96665|-44.20195|Estação Ferroviaria
+T|-31.94055|-52.31453|Estação Ferroviaria Povo Novo
+T|-29.79086|-53.56596|Estação Ferroviaria de Arroio do Só
+T|-5.39725|-49.09805|Estação Ferroviaria de Marabá
+T|-21.68487|-51.07075|Estação Ferroviária
+T|-21.51614|-44.74045|Estação Ferroviária
+T|-10.69610|-37.03346|Estação Ferroviária
+T|-4.96868|-39.01153|Estação Ferroviária
+T|-17.36397|-44.96074|Estação Ferroviária (Desativada)
+T|-23.57407|-48.38718|Estação Ferroviária Angatuba
+T|-23.71063|-48.48067|Estação Ferroviária Aracaçú
+T|-29.89302|-51.79206|Estação Ferroviária Argemiro Dornelles
+T|-23.11522|-46.57909|Estação Ferroviária Atibaia (desativada)
+T|-27.30746|-51.57308|Estação Ferroviária Barra do Leão (DESATIVADA)
+T|-23.79718|-48.59741|Estação Ferroviária Buri
+T|-23.09935|-45.70491|Estação Ferroviária C.B.
+T|-20.48618|-55.63631|Estação Ferroviária Camisão
+T|-28.97133|-51.46842|Estação Ferroviária Coronel Salgado
+T|-3.69857|-45.41517|Estação Ferroviária De Santa Inês
+T|-23.89034|-48.77336|Estação Ferroviária Engenheiro Barcello
+T|-23.60442|-48.44662|Estação Ferroviária Engenheiro Hermillo
+T|-23.59730|-48.11168|Estação Ferroviária Engenheiro Mendonça
+T|-21.27754|-46.69160|Estação Ferroviária JAPY
+T|-20.53435|-43.98201|Estação Ferroviária Jeceaba
+T|-19.84204|-43.12777|Estação Ferroviária João Monlevade
+T|-21.01012|-42.84100|Estação Ferroviária Leopoldina
+T|-21.75446|-41.34262|Estação Ferroviária Leopoldina (desativada)
+T|-23.47986|-47.95578|Estação Ferroviária Morro do Alto
+T|-23.46113|-47.93847|Estação Ferroviária Parada Rocha
+T|-20.33232|-40.35649|Estação Ferroviária Pedro Nolasco
+T|-29.58546|-53.78280|Estação Ferroviária Pinhal (Demolida)
+T|-22.23420|-45.93353|Estação Ferroviária Pouso Alegre (desativada)
+T|-29.95711|-52.36519|Estação Ferroviária Ramiz Galvão (DESATIVADA)
+T|-23.59713|-48.31728|Estação Ferroviária Rechan
+T|-22.22692|-45.90711|Estação Ferroviária Turistica
+T|-19.86508|-46.07106|Estação Ferroviária Victor Tamm
+T|-22.05521|-46.97798|Estação Ferroviária de Aguaí
+T|-21.73726|-44.31053|Estação Ferroviária de Andrelândia
+T|-20.47615|-55.79094|Estação Ferroviária de Aquidauana
+T|-18.63963|-48.21471|Estação Ferroviária de Araguari
+T|-4.91177|-47.40407|Estação Ferroviária de Açailândia
+T|-4.33552|-38.86987|Estação Ferroviária de Baturité
+T|-19.91834|-43.93366|Estação Ferroviária de Belo Horizonte
+T|-20.69612|-45.37623|Estação Ferroviária de Bugios
+T|-28.14686|-54.72545|Estação Ferroviária de Cerro Largo (Desativada)
+T|-19.54181|-40.65284|Estação Ferroviária de Colatina
+T|-19.16580|-41.47721|Estação Ferroviária de Conselheiro Pena
+T|-21.09311|-44.62841|Estação Ferroviária de Coqueiros
+T|-20.18642|-45.68514|Estação Ferroviária de Garças de Minas
+T|-18.13677|-48.09148|Estação Ferroviária de Goiandira
+T|-18.85200|-41.95104|Estação Ferroviária de Governador Valadares
+T|-23.41432|-46.03183|Estação Ferroviária de Guararema
+T|-21.14409|-44.73739|Estação Ferroviária de Ibituruna
+T|-21.06172|-44.30925|Estação Ferroviária de Ibitutinga
+T|-22.43746|-46.82583|Estação Ferroviária de Itapira (desativada)
+T|-20.33311|-47.80227|Estação Ferroviária de Ituverava
+T|-23.15334|-49.96547|Estação Ferroviária de Jacarezinho
+T|-21.50732|-51.43287|Estação Ferroviária de Junqueirópolis
+T|-20.35468|-45.47442|Estação Ferroviária de Loanda
+T|-29.56725|-54.45253|Estação Ferroviária de Mata
+T|-21.59871|-48.36183|Estação Ferroviária de Matão
+T|-20.44836|-55.43003|Estação Ferroviária de Palmeiras
+T|-22.41483|-50.57274|Estação Ferroviária de Paraguaçu Paulista
+T|-5.99417|-49.89496|Estação Ferroviária de Parauapebas
+T|-31.77078|-52.35159|Estação Ferroviária de Pelotas
+T|-20.47875|-55.53391|Estação Ferroviária de Piraputanga
+T|-19.48182|-44.15357|Estação Ferroviária de Prudente de Morais
+T|-19.32368|-41.25548|Estação Ferroviária de Resplendor
+T|-29.97964|-52.38386|Estação Ferroviária de Rio Pardo
+T|-28.25543|-54.81939|Estação Ferroviária de Rolador
+T|-21.46476|-48.38894|Estação Ferroviária de Santa Ernestina
+T|-20.21442|-50.93764|Estação Ferroviária de Santa Fé do Sul
+T|-21.13336|-44.25745|Estação Ferroviária de São João del Rei
+T|-28.40932|-54.94257|Estação Ferroviária de São Luiz Gonzaga
+T|-21.48736|-47.55604|Estação Ferroviária de São Simão
+T|-27.10353|-51.24558|Estação Ferroviária de Tangará
+T|-20.64918|-42.85893|Estação Ferroviária de Teixeiras
+T|-5.14945|-39.17829|Estação Ferroviária de Uruquê
+T|-20.38990|-40.49139|Estação Ferroviária de Viana
+T|-21.64783|-41.75175|Estação Ferroviária desativada
+T|-23.53669|-47.25903|Estação Ferroviária desativada Alumínio
+T|-22.87389|-48.44431|Estação Ferroviária desativada Botucatu
+T|-23.55125|-47.08457|Estação Ferroviária desativada Mailasky
+T|-23.54442|-47.18337|Estação Ferroviária desativada Mairinque
+T|-22.96691|-48.16043|Estação Ferroviária desativada Piramboia
+T|-23.53848|-47.03694|Estação Ferroviária desativada São João Novo
+T|-23.53643|-47.14167|Estação Ferroviária desativada São Roque
+T|-23.35112|-47.68618|Estação Ferroviária desativada de Iperó
+T|-20.28786|-40.37646|Estação Flexal
+T|-19.31702|-42.36398|Estação Frederico Sellow
+T|-19.93482|-40.40396|Estação Fundão
+T|-29.91798|-53.06396|Estação Férrea Pertile (abandonada)
+T|-27.27524|-52.33845|Estação Galeria
+T|-19.88178|-43.85936|Estação General Carneiro
+T|-19.40699|-42.42655|Estação Ipaba
+T|-19.19364|-48.12126|Estação Irará
+T|-20.25501|-43.79959|Estação Itabirito
+T|-19.53938|-47.80790|Estação Itiguapira
+T|-20.70245|-41.01605|Estação Jaciguá
+T|-23.48494|-46.38564|Estação Jardim Romano
+T|-26.80199|-48.61894|Estação João Alves de Queiroz
+T|-23.18547|-46.87905|Estação Jundiaí
+T|-14.68129|-42.51012|Estação Licínio de Almeida
+T|-19.59807|-47.97303|Estação Mangabeira
+T|-24.88962|-49.92659|Estação Maracanã
+T|-22.39461|-50.60061|Estação Marinaldo R. Louzada
+T|-19.50526|-40.91499|Estação Mascarenhas
+T|-19.67712|-43.96134|Estação Nova Granja
+T|-29.89429|-51.94887|Estação Pagador Martel
+T|-22.15989|-43.29050|Estação Paraíba do Sul
+T|-19.08208|-42.16064|Estação Pedra Corrida
+T|-19.15407|-42.23424|Estação Periquito
+T|-19.74855|-40.36654|Estação Piraqueaçu
+T|-22.85941|-45.25388|Estação Porto Itaguaçu
+T|-19.47344|-42.53135|Estação Pouso de Água Limpa
+T|-22.09159|-45.04303|Estação Ramon
+T|-20.08989|-43.78947|Estação Rio Acima
+T|-11.47975|-37.93266|Estação Rio Real
+T|-28.51004|-50.95192|Estação Rumo Vacaria
+T|-19.77064|-43.87168|Estação Santa Luzia
+T|-23.65232|-46.52829|Estação Santo André-Prefeito Celso Daniel
+T|-7.98315|-38.29707|Estação Serra Talhada
+T|-22.02870|-43.20729|Estação Serraria
+T|-19.01288|-41.54860|Estação São Tomé do Rio Doce
+T|-20.63014|-49.71107|Estação Tanabi
+T|-18.98029|-41.64794|Estação Tumiritinga
+T|-14.77488|-42.65085|Estação Urandi
+T|-19.69025|-43.92450|Estação Vespasiano
+T|-19.94212|-44.26994|Estação Vianopolis
+T|-22.30591|-43.38849|Estação Vila Rica
+T|-22.51309|-44.09855|Estação Volta Redonda (MRS)
+T|-29.73834|-55.65451|Estação da Palma
+T|-21.79812|-41.25100|Estação de Cambayba
+T|-21.82895|-45.39449|Estação de Campanha
+T|-20.49550|-49.80441|Estação de Cosmorama
+T|-21.10441|-44.58039|Estação de Ferroviária de Nazareno
+T|-29.50303|-54.69154|Estação de Jaguari
+T|-3.92656|-38.61044|Estação de Monguba
+T|-21.44131|-44.81580|Estação de Paulo Freitas
+T|0.88716|-51.99627|Estação de Serra do Navio
+T|-17.11002|-43.80504|Estação de Trem de Bocaiuva
+T|-22.87610|-43.33852|Estação de Trem de Madureira
+T|-21.91077|-44.25522|Estação de trem de Arantina
+T|-19.53204|-40.81356|Estação de trem de Itapina
+T|-21.31763|-44.86932|Estação desativada
+T|-21.20101|-47.79682|Estação do Monorail da COCLÃNDIA
+T|-11.09396|-40.43601|Estação do Piemonte Norte III - Região de Saúde / Sede de Caém
+T|-21.25255|-44.96411|Estação do Prudente
+T|-21.98576|-44.93861|Estação do Teleférico
+T|-23.25689|-47.30575|Estação ferroviária Itu
+T|-23.21018|-47.29007|Estação ferroviária Salto
+T|-7.86453|-37.97040|Estação ferroviária de Flores (desativada)
+T|-22.39207|-46.74833|Estação ferroviária desativada Barão Ataliba Nogueira
+T|-22.92824|-45.46067|Estrada de Ferro Central do Brasil
+T|-27.10241|-49.45650|Estrada de Ferro Santa Catarina
+T|-6.57574|-47.47034|Estreito
+T|-23.51574|-46.18505|Estudantes
+T|-3.83442|-38.59660|FTL - Pátio Aracapé
+T|-22.28893|-44.25740|Falcão
+T|-23.61182|-46.48747|Fazenda da Juta
+T|-8.04062|-38.47152|Felipe Camarão
+T|-8.10691|-38.86996|Fernandes Vieira
+T|-23.54081|-46.36838|Ferraz de Vasconcelos
+T|-25.43046|-48.71609|Ferroviária de Antonina
+T|-20.28786|-40.37638|Flexal
+T|-7.86449|-37.97040|Flores
+T|-8.80273|-35.82983|Florestal
+T|-6.66411|-38.22389|Fortuna
+T|-22.58876|-43.18441|Fragoso
+T|-23.28208|-46.74245|Francisco Morato
+T|-21.07013|-48.03763|Francisco Schmidt
+T|-23.32979|-46.72641|Franco da Rocha
+T|-19.31703|-42.36391|Frederico Sellow
+T|-8.74526|-35.81069|Frei Caneca
+T|-23.20884|-50.94255|Frei Timóteo
+T|-22.01274|-45.12523|Freitas
+T|-8.38404|-35.32170|Frexeiras
+T|-19.93487|-40.40391|Fundão
+T|-27.27574|-52.33758|Funicular Termas
+T|-8.58368|-35.38793|Gameleira
+T|-7.30568|-35.56730|Gameleira
+T|-8.88836|-36.49330|Garanhuns
+T|-29.25546|-51.52196|Garibaldi
+T|-23.52346|-46.81590|General Miguel Costa
+T|-22.19380|-55.57921|General Rondon
+T|-22.35058|-43.40831|General Zenóbio
+T|-6.57419|-38.10046|Goiabeira
+T|-18.13530|-48.08340|Goiandira
+T|-18.13571|-48.08744|Goiandira-RMV
+T|-6.26202|-35.21370|Goianinha
+T|-21.83530|-45.08662|Gonçalinho
+T|-22.47917|-43.49773|Governador Portela
+T|-18.85189|-41.95112|Governador Valadares
+T|-23.73639|-46.69700|Grajaú
+T|-22.75167|-43.30422|Gramacho
+T|-3.11438|-40.83071|Granja
+T|-23.62753|-46.71200|Granja Julieta
+T|-8.20464|-35.57267|Gravatá
+T|-23.54233|-46.41570|Guaianases
+T|-22.51990|-42.97746|Guapimirim
+T|-23.69210|-46.44872|Guapituba
+T|-6.85811|-35.48685|Guarabira
+T|-3.72954|-38.80023|Guararu
+T|-8.97203|-48.36868|Guaraí
+T|-23.44741|-46.49375|Guarulhos-Cecap
+T|-20.66148|-54.79597|Guavira
+T|-22.71347|-43.16708|Guia de Pacobaíba
+T|-22.87526|-43.45668|Guilherme da Silveira
+T|-23.25718|-49.99571|Guimarães Carneiro
+T|-11.76538|-48.99807|Gurupi
+T|-23.57357|-46.69864|Hebraica - Rebouças
+T|-22.84962|-43.35726|Honório Gurgel
+T|-18.37275|-48.24650|Horto Florestal
+T|-3.67597|-40.23777|Humberto Monte
+T|-5.05048|-40.92459|Ibiapaba
+T|-20.60027|-40.85887|Ibitiruí
+T|-19.47861|-46.53055|Ibiá
+T|-8.80193|-35.87926|Igarapeba
+T|-6.36380|-39.29986|Iguatu
+T|-7.12727|-34.90159|Ilha do Bispo
+T|-5.09308|-42.78815|Ilhotas
+T|-22.64222|-43.21951|Imbariê
+T|-5.58589|-47.44042|Imperatriz
+T|-23.52372|-46.73760|Imperatriz Leopoldina
+T|-23.09201|-47.21664|Indaiatuba
+T|-7.30101|-35.61977|Ingá
+T|-22.90901|-43.59509|Inhoaíba
+T|-19.48524|-42.55334|Intendente Câmara
+T|-6.45967|-38.02864|Inveja
+T|-19.40699|-42.42644|Ipaba
+T|-17.74202|-48.17213|Ipameri
+T|-23.58249|-46.59663|Ipiranga
+T|-4.32397|-40.70660|Ipu
+T|-4.53955|-40.72332|Ipueiras
+T|-22.65313|-43.06625|Iriri
+T|-7.33496|-35.34227|Itabaiana
+T|-19.63407|-43.23170|Itabira
+T|-22.08626|-55.35446|Itahum
+T|-23.49398|-46.40216|Itaim Paulista
+T|-6.81244|-35.46454|Itamataí
+T|-3.38633|-44.36598|Itapecuru
+T|-23.54553|-46.93526|Itapevi
+T|-19.53196|-40.81352|Itapina
+T|-3.49707|-39.58362|Itapipoca
+T|-23.48604|-46.34802|Itaquaquecetuba
+T|-22.88416|-43.25506|Jacarezinho
+T|-7.03644|-34.85039|Jacaré
+T|-29.93241|-53.13614|Jacuí
+T|-22.70440|-46.99255|Jaguariúna
+T|-15.80535|-43.31202|Janaúba
+T|-23.52760|-46.90237|Jandira
+T|-22.64458|-43.65298|Japeri
+T|-8.73021|-35.79606|Jaqueira
+T|-23.45511|-46.73880|Jaraguá
+T|-23.51421|-46.88932|Jardim Belval
+T|-7.00394|-34.83362|Jardim Camboinha
+T|-23.59921|-46.46906|Jardim Colonial
+T|-22.56246|-42.99502|Jardim Guapimirim
+T|-23.49269|-46.42147|Jardim Helena - Vila Mara
+T|-22.63583|-43.03036|Jardim Nova Marília
+T|-23.60654|-46.50761|Jardim Planalto
+T|-22.69024|-43.26244|Jardim Primavera
+T|-23.48503|-46.38574|Jardim Romano
+T|-23.52350|-46.89353|Jardim Silveira
+T|-16.13387|-47.95295|Jardim do Ingá
+T|-8.62594|-35.52460|Joaquim Nabuco
+T|-22.60535|-43.02484|Jororó
+T|-23.53912|-46.43167|José Bonifácio
+T|-5.54038|-35.82060|João Câmara
+T|-23.63992|-46.72351|João Dias
+T|-7.08189|-36.73479|João Leite
+T|-30.29592|-56.31182|João Marcelino
+T|-19.84211|-43.12777|João Monlevade
+T|-7.11516|-34.89055|João Pessoa
+T|-22.25218|-50.76636|João Ramalho
+T|-7.06654|-36.57958|Juazeirinho
+T|-23.54273|-46.25813|Jundiapeba
+T|-23.19474|-46.87242|Jundiaí
+T|-13.23740|-40.88274|Juracy
+T|-23.59327|-48.23167|Jurití
+T|-23.67730|-46.70231|Jurubatuba
+T|-23.55802|-46.60828|Juventus - Mooca
+T|-23.53322|-46.64056|Júlio Prestes
+T|-21.38363|-46.75547|Júlio Tavares
+T|-29.22370|-53.68290|Júlio de Castilhos
+T|-19.23489|-41.34861|Krenak
+T|-25.59203|-49.46958|LAB (KM 141)
+T|-22.62180|-43.70409|Lages
+T|-21.89239|-47.03479|Lagoa Branca
+T|-7.84209|-35.31278|Lagoa do Carro
+T|-5.69719|-36.24288|Lajes
+T|-23.51752|-46.70404|Lapa (Linha 7)
+T|-23.52000|-46.69917|Lapa - Senac (Linha 8)
+T|-7.31772|-35.40074|Lauro Müller
+T|-23.05904|-50.02115|Leoflora
+T|-16.62104|-48.74053|Leonardo de Bulhões
+T|-23.67066|-48.44442|Ligiana
+T|-20.51923|-43.80039|Lobo Leite
+T|-23.45839|-46.05832|Luis Carlos
+T|-20.19290|-43.82865|MRS - Estação Ferroviária Andaime
+T|-5.10833|-36.62591|Macau
+T|-22.87668|-43.33762|Madureira
+T|-22.86808|-43.41358|Magalhães Bastos
+T|-22.65173|-43.04250|Magé
+T|-6.90321|-37.51688|Malta
+T|-22.90851|-43.23683|Mangueira / Jamelão
+T|-22.87968|-43.25089|Manguinhos
+T|-6.78579|-35.59675|Manitu
+T|-22.63044|-43.21049|Manoel Belo
+T|-21.60792|-55.16918|Maracaju
+T|-22.90930|-43.23329|Maracanã
+T|-8.78427|-35.81061|Maraial
+T|-27.46190|-51.90494|Marcelino Ramos
+T|-13.00428|-40.53161|Marcionílio Souza
+T|-20.41093|-40.67296|Marechal Floriano
+T|-22.86077|-43.37129|Marechal Hermes
+T|-20.37335|-43.41681|Mariana
+T|-3.22413|-40.69593|Martinópole
+T|-25.43939|-48.91891|Marumbi
+T|-19.50511|-40.91490|Mascarenhas
+T|-3.52581|-40.34279|Massapê
+T|-20.55751|-40.81335|Mathilde
+T|-23.66826|-46.46155|Mauá
+T|-22.55263|-43.18262|Meio da Serra
+T|-23.75424|-46.70924|Mendes - Vila Natal
+T|-22.87322|-43.33687|Mercadão de Madureira
+T|-23.06668|-50.12610|Mereilles
+T|-22.78255|-43.42867|Mesquita
+T|-22.33941|-43.41060|Mestre Xisto
+T|-22.45430|-43.46925|Miguel Pereira
+T|-3.69769|-45.99107|Mineirinho
+T|-23.39768|-46.77185|Mineral
+T|-20.24111|-56.37959|Miranda
+T|-8.10917|-38.72864|Mirandiba
+T|-20.81299|-49.51374|Mirassol
+T|-22.87509|-43.44766|Mocidade/Padre Miguel
+T|-21.47335|-46.99061|Mococa
+T|-7.32633|-35.49363|Mogeiro
+T|-23.52149|-46.19785|Mogi das Cruzes
+T|-18.73186|-47.49838|Monte Carmelo
+T|-22.50144|-43.47331|Monte Líbano
+T|-16.72839|-43.86264|Montes Claros
+T|-22.65847|-43.23060|Morabi
+T|-8.11900|-35.10289|Moreno
+T|-5.23943|-41.77541|Morro Alegre
+T|-22.94657|-43.20281|Morro do Inglês
+T|-23.62159|-46.70164|Morumbi
+T|-21.38174|-41.46864|Murundu
+T|-21.13338|-47.98763|Museu Ferroviário
+T|-19.52556|-42.64424|Mário Carvalho
+T|-22.90173|-43.27803|Méier
+T|-7.75131|-35.22913|Nazaré da Mata
+T|-23.07045|-50.16271|Niepce da Silva
+T|-22.80859|-43.41501|Nilópolis
+T|-6.47587|-35.43674|Nova Cruz
+T|-20.54289|-49.32805|Nova Granada
+T|-22.76066|-43.45009|Nova Iguaçu
+T|-4.70749|-40.56657|Nova Russas
+T|-5.04714|-41.08226|Oiticica
+T|-22.84719|-43.26636|Olaria
+T|-22.81742|-43.41001|Olinda
+T|-20.73822|-48.90770|Olímpia
+T|-22.89560|-43.29369|Olímpica de Engenho de Dentro
+T|-22.06925|-45.26374|Olímpio Noronha
+T|-23.58210|-46.56164|Oratório
+T|-23.52770|-46.77592|Osasco
+T|-22.86919|-43.35014|Oswaldo Cruz
+T|-20.39085|-43.50692|Ouro Preto
+T|-22.91625|-43.63247|Paciência
+T|-22.57468|-43.60276|Paes Leme
+T|-8.68060|-35.58509|Palmares
+T|-9.40738|-36.62727|Palmeira dos Índios
+T|-23.52546|-46.66751|Palmeiras-Barra Funda
+T|-8.89217|-36.10061|Paquevira
+T|-22.61126|-43.71071|Paracambi
+T|-22.62072|-43.20243|Parada Angélica
+T|-22.53690|-42.98224|Parada Bananal
+T|-22.27783|-43.37862|Parada Caiapó
+T|-18.34280|-44.37086|Parada Clarimundo Gonçalves
+T|-32.24287|-53.22549|Parada Herculano de Freitas
+T|-22.57979|-43.00540|Parada Ideal
+T|-32.35884|-53.30878|Parada Joaquim Caetano
+T|-28.97793|-55.23567|Parada Juvêncio Machado
+T|-19.23494|-41.34860|Parada Krenak
+T|-18.30047|-44.16131|Parada Mandiobas
+T|-22.54597|-42.98511|Parada Modelo
+T|-22.45933|-43.47949|Parada Prefeitura / Parada do Primo
+T|-22.65402|-43.15254|Parada Santa Dalila
+T|-22.66567|-43.09275|Parada Santa Guilhermina
+T|-22.29391|-43.39275|Parada Taboôes
+T|-23.40228|-46.78266|Parada da Onça
+T|-22.81666|-43.30074|Parada de Lucas
+T|-23.87853|-46.79330|Parada ferroviária Mário Souto
+T|-23.77667|-46.30217|Paranapiacaba (Expresso Turístico)
+T|-22.65027|-43.20823|Parque Estrela
+T|-22.21063|-44.23555|Passa Vinte
+T|-21.02241|-48.17606|Passagem
+T|-7.02366|-37.27886|Patos
+T|-22.42636|-43.42419|Paty do Alferes
+T|-7.89311|-35.17904|Paudalho
+T|-8.13667|-41.14592|Paulistana
+T|-22.80561|-43.36702|Pavuna/São João de Meriti
+T|-19.08205|-42.16067|Pedra Corrida
+T|-5.58279|-36.10473|Pedra Preta
+T|-22.44158|-43.44024|Pedras Ruivas
+T|-22.74254|-46.91189|Pedreira
+T|-22.84068|-46.99524|Pedro Américo
+T|-5.51963|-36.39139|Pedro Avelino
+T|-6.43945|-35.21939|Pedro Velho
+T|-22.84038|-43.27863|Penha
+T|-22.83663|-43.28504|Penha Circular
+T|-8.79882|-35.90826|Peri-Peri
+T|-19.15410|-42.23415|Periquito
+T|-23.40492|-46.75370|Perus
+T|-22.60942|-43.17966|Piabetá
+T|-22.89040|-43.30966|Piedade
+T|-22.88098|-43.29157|Pilares
+T|-23.56643|-46.70306|Pinheiros
+T|-23.50398|-46.71482|Piqueri
+T|-21.88731|-51.73132|Piquerobi
+T|-21.25802|-55.05123|Piqui
+T|-8.65904|-35.63657|Pirangi
+T|-3.72790|-44.22565|Pirapemas
+T|-19.74856|-40.36647|Piraqueaçu
+T|-27.41947|-51.77666|Piratuba
+T|-4.24515|-40.64615|Pires Ferreira
+T|-23.48850|-46.72600|Pirituba
+T|-6.78173|-35.49794|Pirpirituba
+T|-21.01080|-48.21794|Pitangueiras
+T|-23.31838|-50.00632|Platina
+T|-7.06953|-36.06833|Pocinhos
+T|-6.77449|-37.80314|Pombal
+T|-8.13941|-35.39842|Pombos
+T|-21.02135|-48.03901|Pontal
+T|-6.44772|-47.40453|Porto Franco
+T|-21.88496|-42.69873|Porto Novo
+T|-26.23065|-51.08419|Porto União da Vitória
+T|-22.83456|-43.08402|Porto da Madama
+T|-16.97903|-48.41005|Posto km 265
+T|-23.52523|-46.34326|Poá
+T|-7.01963|-34.84165|Poço
+T|-22.90989|-43.21296|Praça da Bandeira
+T|-22.86435|-43.36165|Prefeito Bento Ribeiro
+T|-23.65210|-46.52818|Prefeito Celso Daniel - Santo André
+T|-23.63837|-46.53670|Prefeito Saladino
+T|-23.53123|-46.76174|Presidente Altino
+T|-22.01352|-51.55427|Presidente Bernardes
+T|-22.12976|-55.44136|Presidente Dutra
+T|-22.77002|-43.43442|Presidente Juscelino
+T|-23.01583|-49.95404|Presidente Munhoz
+T|-21.87516|-51.84654|Presidente Venceslau
+T|-23.72287|-46.69177|Primavera - Interlagos
+T|-21.85950|-46.67751|Prédio da antiga estação ferroviária Cascata
+T|-7.14420|-35.95778|Puxinanã
+T|-30.23842|-56.30441|Quaraí-Mirim
+T|-22.25069|-50.69956|Quatá
+T|-13.04496|-40.74606|Queimadinhas
+T|-22.71611|-43.55590|Queimados
+T|-18.43829|-48.25508|Quilômetro 38
+T|-22.88852|-43.32122|Quintino
+T|-8.82766|-36.01628|Quipapá
+T|-23.52272|-46.80707|Quitaúna
+T|-4.96913|-39.01180|Quixadá
+T|-23.82686|-46.36141|Raiz da Serra
+T|-22.85509|-43.26009|Ramos
+T|-22.87476|-43.42941|Realengo
+T|-3.08830|-44.29549|Recurso
+T|-7.07520|-34.85528|Renascer
+T|-4.13915|-40.58061|Reriutaba
+T|-19.32370|-41.25537|Resplendor
+T|-29.81082|-53.37686|Restinga Seca
+T|-22.90147|-43.25551|Riachuelo
+T|-21.55708|-46.87986|Ribeiro do Valle
+T|-20.60765|-48.95614|Ribeiro dos Santos
+T|-8.51029|-35.37403|Ribeirão
+T|-23.71424|-46.41425|Ribeirão Pires - Antônio Bespalec
+T|-21.14925|-47.78383|Ribeirão Preto
+T|-21.19102|-45.05925|Ribeirão Vermelho
+T|-22.84038|-43.39843|Ricardo de Albuquerque
+T|-23.74338|-46.39180|Rio Grande da Serra
+T|-26.25953|-49.51571|Rio Negrinho
+T|-29.97956|-52.38398|Rio Pardo
+T|-19.93205|-43.17277|Rio Piracicaba
+T|-30.01884|-55.98294|Rivadávia Corrêa
+T|-22.85466|-43.35179|Rocha Miranda
+T|-22.77734|-43.40670|Rocha Sobrinho
+T|-17.35166|-48.24512|Roncador
+T|-23.85802|-48.69665|Rondinha
+T|-7.42381|-35.34816|Rosa e Silva
+T|-20.92769|-48.60846|Rosário
+T|-2.93967|-44.25086|Rosário
+T|-30.26047|-54.92079|Rosário do Sul
+T|-8.15467|-35.45640|Russinha
+T|-21.98349|-44.23908|Rutilo
+T|-28.68157|-49.35014|Réplica da 1ª Estação Ferroviária de Criciúma, e Passeio no Trenzinho do parque
+T|-23.47985|-46.08752|Sabaúna
+T|-23.52914|-46.91728|Sagrado Coração
+T|-22.84200|-50.02560|Saguaragi
+T|-8.07500|-39.12539|Salgueiro
+T|-22.90057|-49.97254|Salto Grande
+T|-22.90198|-43.26208|Sampaio
+T|-22.91555|-43.68409|Santa Cruz
+T|-6.53234|-38.05780|Santa Cruz
+T|-23.40164|-46.81938|Santa Fé
+T|-6.72013|-38.63953|Santa Helena
+T|-3.69855|-45.41516|Santa Inês
+T|-22.28250|-50.65192|Santa Lina
+T|-23.54497|-46.94748|Santa Rita
+T|-23.51662|-46.84796|Santa Terezinha
+T|-22.33532|-55.71859|Santa Virgínia
+T|-29.19061|-54.87332|Santiago
+T|-23.65623|-46.71912|Santo Amaro
+T|-21.97047|-51.65157|Santo Anastácio
+T|-5.26843|-41.71587|Santo Antonio
+T|-22.87965|-43.51140|Santíssimo
+T|-22.35115|-50.62162|Sapezal
+T|-23.61471|-46.50083|Sapopemba
+T|-22.32004|-46.69646|Sapucaí
+T|-22.67775|-43.24720|Saracuruna
+T|-31.93865|-52.31487|Segunda Estação Ferroviária Povo Novo
+T|-22.87579|-43.48611|Senador Camará
+T|-3.35290|-40.46365|Senador Sá
+T|-8.97125|-36.06449|Serra Grande
+T|-21.13331|-47.98758|Sertãozinho
+T|-6.74809|-35.44060|Sertãozinho
+T|-21.71853|-55.32669|Sete Voltas
+T|-30.08889|-56.07403|Severino Ribeiro Carneiro
+T|-20.93141|-54.95761|Sidrolândia
+T|-22.90413|-43.27517|Silva Freire
+T|-22.94573|-43.20501|Silvestre
+T|-16.69768|-48.62254|Silvânia
+T|-20.45299|-49.89625|Simonsen
+T|-3.68822|-40.35796|Sobral
+T|-23.66326|-46.71096|Socorro
+T|-18.31543|-48.15954|Soldado Mendanha
+T|-7.05660|-36.36367|Soledade
+T|-22.06026|-45.04510|Soledade de Minas
+T|-5.17543|-41.98870|Sombra
+T|-6.76957|-38.23495|Sousa
+T|-18.73627|-48.22813|Stevenson
+T|-4.94340|-40.53801|Sucesso
+T|-20.54917|-49.13194|Suinana
+T|-22.66299|-43.12900|Suruí
+T|-23.53432|-46.30799|Suzano
+T|-8.81522|-35.93454|São Benedito do Sul
+T|-23.61006|-46.57006|São Caetano do Sul - Prefeito Walter Braido
+T|-22.90954|-43.22282|São Cristóvão
+T|-6.81564|-37.94264|São Domingos
+T|-22.90234|-43.24474|São Francisco Xavier
+T|-18.63522|-47.58032|São Félix
+T|-23.17383|-45.88567|São José dos Campos
+T|-8.87460|-36.36588|São João
+T|-21.13342|-44.25736|São João del Rei
+T|-22.11285|-45.04837|São Lourenço
+T|-23.58893|-46.54464|São Lucas
+T|-22.72837|-48.56749|São Manuel
+T|-23.61232|-46.47730|São Mateus
+T|-23.49056|-46.44367|São Miguel Paulista
+T|-6.62427|-38.16620|São Paulo
+T|-6.59413|-38.12065|São Pedro
+T|-5.15717|-48.44775|São Pedro da Água Branca
+T|-21.80843|-45.11660|São Tomé
+T|-19.01300|-41.54859|São Tomé do Rio Doce
+T|-8.31660|-36.28935|Tacaimbó
+T|-23.59261|-46.58945|Tamanduateí
+T|-5.10460|-41.11883|Tamanduá
+T|-22.91887|-43.64931|Tancredo Neves
+T|-22.80232|-47.00270|Tanquinho
+T|-29.53546|-54.57870|Taquarichim
+T|-20.44503|-54.86498|Terenos
+T|-23.79195|-48.58047|Terminal CCRG
+T|-17.30949|-54.22946|Terminal Cutrale Itiquira
+T|-22.74366|-50.38718|Terminal Ferroviário
+T|-19.99417|-43.97470|Terminal Ferroviário Olhos D'água - TOD - VALE
+T|-24.50335|-47.85935|Terminal Ferroviário de Registro
+T|-10.20340|-48.55993|Terminal Multimodal de Palmas / Porto Nacional
+T|-24.50413|-47.85945|Terminal de Carga de Registro
+T|-17.25665|-53.31541|Terminal de Cargas de Alto Araguaia
+T|-17.98627|-53.18957|Terminal de Cargas de Alto Taquari
+T|-3.62979|-40.14045|Teógenes Rocha
+T|-7.51432|-35.31326|Timbaúba
+T|-2.58653|-44.24649|Tirirical
+T|-22.86905|-43.30528|Tomás Coelho
+T|-7.79849|-35.24833|Tracunhaém
+T|-29.28395|-51.49232|Tramontina
+T|-25.43719|-49.25637|Trem Curitiba / Morretes
+T|-22.89672|-43.24410|Triagem
+T|-21.70085|-45.25999|Três Corações
+T|-22.11424|-43.20632|Três Rios
+T|-18.98043|-41.64797|Tumiritinga
+T|-23.48549|-46.50056|USP Leste
+T|-18.88863|-48.24556|Uberlândia
+T|-3.67443|-38.97981|Umarituba
+T|-14.53852|-49.10767|Uruaçu
+T|-3.31598|-40.55805|Uruoca
+T|-17.46266|-48.20020|Urutaí
+T|-23.62618|-46.54406|Utinga
+T|-25.08604|-50.10904|Uvaranas
+T|-22.96919|-46.99351|Valinhos
+T|-23.77020|-46.71195|Varginha
+T|-21.52290|-46.90678|Venerando
+T|-23.62206|-46.67888|Vereador José Diniz
+T|-17.97419|-48.17444|Veríssimo
+T|-20.38997|-40.49137|Viana
+T|-16.74211|-48.51439|Vianópolis
+T|-8.07829|-38.59375|Vidal de Negreiros
+T|-27.00401|-51.15538|Videira
+T|-22.80526|-43.30548|Vigário Geral
+T|-23.43791|-46.74727|Vila Aurora
+T|-23.46973|-46.74451|Vila Clarice
+T|-23.61558|-46.68860|Vila Cordeiro
+T|-22.57090|-43.18461|Vila Inhomirim
+T|-22.86253|-43.40203|Vila Militar
+T|-23.59337|-46.69273|Vila Olímpia
+T|-23.58459|-46.58344|Vila Prudente
+T|-22.30588|-43.38846|Vila Rica
+T|-22.79395|-43.37533|Vila Rosali
+T|-23.60083|-46.52722|Vila Tolstói
+T|-23.60296|-46.51556|Vila União
+T|-23.54599|-46.73285|Villa Lobos - Jaguaré
+T|-23.02965|-46.97124|Vinhedo
+T|-23.76203|-48.54669|Vitorino Carmilo
+T|-20.39450|-43.48694|Vitorino Dias
+T|-3.53280|-44.86180|Vitória do Mearim
+T|-7.11997|-34.95553|Várzea Nova
+T|-23.20892|-46.82928|Várzea Paulista
+T|-22.22026|-43.31556|Werneck
+T|-18.17477|-44.36298|estação ferroviária Marísia
+T|-22.72604|-44.13425|~Estação de Rio Claro
+T|-23.52126|-46.68852|Água Branca
+T|-8.87360|-36.08061|Água Branca
+T|-5.17460|-41.28380|Água Branca
+T|-7.30627|-35.77810|Álvaro Machado

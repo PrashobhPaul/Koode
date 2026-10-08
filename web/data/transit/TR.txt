@@ -1,0 +1,1341 @@
+# Transit for Koode, TR. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|36.98881|35.34411|Akıncılar|Adana Metrosu|M
+S|36.98099|35.33753|Cumhuriyet|Adana Metrosu|M
+S|37.01229|35.30443|Fatih|Adana Metrosu|M
+S|37.05061|35.26292|Hastane|Adana Metrosu|M
+S|36.97892|35.32593|Hürriyet|Adana Metrosu|M
+S|37.04086|35.28460|Huzurevi|Adana Metrosu|M
+S|36.99243|35.31825|İstiklal Gazileri|Adana Metrosu|M
+S|36.98457|35.31954|Kocavezir|Adana Metrosu|M
+S|37.04780|35.28010|Kurttepe - Anadolu Lisesi|Adana Metrosu|M
+S|37.03553|35.28790|Mavi Bulvar|Adana Metrosu|M
+S|37.00205|35.31339|Vilayet|Adana Metrosu|M
+S|37.02033|35.30259|Yeşilyurt|Adana Metrosu|M
+S|37.02704|35.29647|Yurt|Adana Metrosu|M
+S|39.92054|32.85395|15 Temmuz Kızılay Millî İrade|Ankara Metrosu|M
+S|39.93056|32.85039|Adliye|Ankara Metrosu|M
+S|39.95159|32.83417|Akköprü|Ankara Metrosu|M
+S|39.93473|32.83737|Anadolu/Anıtkabir|Ankara Metrosu|M
+S|39.94780|32.85048|ASKİ|Ankara Metrosu|M
+S|39.94357|32.84516|Atatürk Kültür Merkezi|Ankara Metrosu|M
+S|39.91825|32.81437|AŞTİ|Ankara Metrosu|M
+S|39.89783|32.69107|Çayyolu|Ankara Metrosu|M
+S|39.93113|32.81996|Bahçelievler|Ankara Metrosu|M
+S|39.96817|32.72674|Batıkent|Ankara Metrosu|M
+S|39.96771|32.71540|Batı Merkez|Ankara Metrosu|M
+S|39.93265|32.82888|Beşevler|Ankara Metrosu|M
+S|39.97800|32.86820|Belediye|Ankara Metrosu|M
+S|39.90622|32.73327|Beytepe|Ankara Metrosu|M
+S|39.90755|32.76540|Bilkent|Ankara Metrosu|M
+S|39.98076|32.69415|Botanik|Ankara Metrosu|M
+S|39.96553|32.79384|Demetevler|Ankara Metrosu|M
+S|39.92572|32.84769|Demirtepe|Ankara Metrosu|M
+S|39.98153|32.61325|Devlet Mahallesi/1910 Ankaragücü|Ankara Metrosu|M
+S|39.93259|32.87802|Dikimevi|Ankara Metrosu|M
+S|39.95546|32.85868|Dışkapı|Ankara Metrosu|M
+S|39.99973|32.87035|Dutluk|Ankara Metrosu|M
+S|39.99622|32.86100|Şehitler|Ankara Metrosu|M
+S|39.92320|32.81490|Emek|Ankara Metrosu|M
+S|39.98050|32.64781|Eryaman 1-2|Ankara Metrosu|M
+S|39.98111|32.62741|Eryaman 5|Ankara Metrosu|M
+S|39.98407|32.58530|Fatih|Ankara Metrosu|M
+S|39.93395|32.84258|Gar|Ankara Metrosu|M
+S|39.98555|32.57434|GOP|Ankara Metrosu|M
+S|39.98226|32.59841|Harikalar Diyarı|Ankara Metrosu|M
+S|39.96917|32.78345|Hastane|Ankara Metrosu|M
+S|39.97964|32.66277|İstanbul Yolu|Ankara Metrosu|M
+S|39.95724|32.81705|İvedik|Ankara Metrosu|M
+S|39.92342|32.86144|Kolej|Ankara Metrosu|M
+S|39.88684|32.68631|Koru|Ankara Metrosu|M
+S|39.92831|32.86844|Kurtuluş|Ankara Metrosu|M
+S|39.99036|32.87535|Kuyubaşı|Ankara Metrosu|M
+S|39.97187|32.76662|Macunköy|Ankara Metrosu|M
+S|39.93239|32.84267|Maltepe|Ankara Metrosu|M
+S|39.98375|32.87530|Mecidiye|Ankara Metrosu|M
+S|39.97169|32.70308|Mesa|Ankara Metrosu|M
+S|39.96640|32.86392|Meteoroloji|Ankara Metrosu|M
+S|39.91523|32.82723|Millî Kütüphane|Ankara Metrosu|M
+S|39.90535|32.70787|Ümitköy|Ankara Metrosu|M
+S|39.90890|32.79633|MTA|Ankara Metrosu|M
+S|39.91510|32.84439|Necatibey|Ankara Metrosu|M
+S|39.90836|32.78457|ODTÜ|Ankara Metrosu|M
+S|39.98767|32.55870|OSB-Törekent|Ankara Metrosu|M
+S|39.97023|32.74493|OSTİM|Ankara Metrosu|M
+S|39.92816|32.85508|Sıhhiye|Ankara Metrosu|M
+S|39.91064|32.80812|Söğütözü|Ankara Metrosu|M
+S|39.90694|32.75008|Tarım Bakanlığı-Danıştay|Ankara Metrosu|M
+S|39.93922|32.85067|Ulus|Ankara Metrosu|M
+S|39.96191|32.80454|Yenimahalle|Ankara Metrosu|M
+S|40.19154|29.10644|152 Evler|BursaRay|M
+S|40.21481|28.93408|Altınşehir|BursaRay|M
+S|40.19154|29.11691|Arabayatağı|BursaRay|M
+S|40.21256|28.94991|Ataevler|BursaRay|M
+S|40.22917|28.98652|Bağlarbaşı/Esentepe|BursaRay|M
+S|40.22047|28.89117|Batıkent / 19 Mayıs|BursaRay|M
+S|40.21301|28.96616|Beşevler|BursaRay|M
+S|40.21302|29.01513|Bursaspor/Acemler|BursaRay|M
+S|40.19788|29.17496|Cumalıkızık|BursaRay|M
+S|40.18734|29.06889|Demirtaşpaşa|BursaRay|M
+S|40.19156|29.09923|Duaçınarı|BursaRay|M
+S|40.18847|29.06297|Şehreküstü|BursaRay|M
+S|40.25704|28.95256|Emek|BursaRay|M
+S|40.21940|28.92193|Ertuğrul / Dörtçelik Çocuk Hastanesi|BursaRay|M
+S|40.21152|28.97550|Fatih Sultan Mehmet|BursaRay|M
+S|40.26738|28.94826|Geçit/Balat|BursaRay|M
+S|40.18860|29.07860|Gökdere|BursaRay|M
+S|40.19924|29.19042|Gürsu|BursaRay|M
+S|40.19219|29.14161|Hacivat|BursaRay|M
+S|40.23695|28.97554|Hamitler/Fethiye|BursaRay|M
+S|40.22308|28.99390|İhsaniye|BursaRay|M
+S|40.19457|29.15501|Şirinevler|BursaRay|M
+S|40.21657|29.00058|Karaman|BursaRay|M
+S|40.20263|29.20696|Kestel|BursaRay|M
+S|40.21202|28.94159|Küçük Sanayi|BursaRay|M
+S|40.20031|29.04065|Kültürpark|BursaRay|M
+S|40.25071|28.95720|Korupark|BursaRay|M
+S|40.19771|29.04937|Merinos|BursaRay|M
+S|40.19156|29.13229|Mimar Sinan - BTÜ|BursaRay|M
+S|40.21188|28.98813|Nilüfer|BursaRay|M
+S|40.21814|28.87005|Üniversite|BursaRay|M
+S|40.21209|28.99876|Odunluk|BursaRay|M
+S|40.24342|28.96700|Organize Sanayi|BursaRay|M
+S|40.19607|29.05651|Osmangazi|BursaRay|M
+S|40.19672|29.16741|Otosansit|BursaRay|M
+S|40.20951|29.02518|Paşa Çiftliği|BursaRay|M
+S|40.20530|29.02974|Sırameşeler|BursaRay|M
+S|40.19162|29.08746|Yıldırım/Davutdede|BursaRay|M
+S|40.22021|28.89987|Yüzüncüyıl|BursaRay|M
+S|40.21990|28.91128|Özlüce / 29 Ekim|BursaRay|M
+S|41.03689|28.81400|15 Temmuz|İstanbul Metrosu|M
+S|41.00617|28.81861|29 Ekim Cumhuriyet|İstanbul Metrosu|M
+S|41.08611|29.00717|4. Levent|İstanbul Metrosu|M
+S|41.00233|29.04440|Acıbadem|İstanbul Metrosu|M
+S|41.02160|29.11863|Çakmak|İstanbul Metrosu|M
+S|41.01200|28.94814|Aksaray|İstanbul Metrosu|M
+S|41.07071|28.98051|Çağlayan|İstanbul Metrosu|M
+S|41.07914|28.94958|Alibeyköy|İstanbul Metrosu|M
+S|41.01667|29.14003|Altınşehir|İstanbul Metrosu|M
+S|41.02191|29.04831|Altunizade|İstanbul Metrosu|M
+S|41.02594|29.09739|Çarşı|İstanbul Metrosu|M
+S|41.17910|28.74768|Arnavutköy Hastane|İstanbul Metrosu|M
+S|40.97993|28.85628|Ataköy|İstanbul Metrosu|M
+S|40.99138|28.84577|Ataköy-Şirinevler|İstanbul Metrosu|M
+S|40.97975|28.82113|Atatürk Havalimanı|İstanbul Metrosu|M
+S|41.05222|28.79873|Atatürk Mahallesi|İstanbul Metrosu|M
+S|41.11805|29.02418|Atatürk Oto Sanayi|İstanbul Metrosu|M
+S|40.96681|29.08678|Ayşekadın|İstanbul Metrosu|M
+S|41.00008|29.03034|Ayrılık Çeşmesi|İstanbul Metrosu|M
+S|41.09781|28.79135|Başak Konutları|İstanbul Metrosu|M
+S|41.03468|28.85664|Bağcılar Meydan|İstanbul Metrosu|M
+S|41.05847|28.79930|Bahariye|İstanbul Metrosu|M
+S|40.99548|28.86331|Bahçelievler|İstanbul Metrosu|M
+S|40.99662|28.87536|Bakırköy-İncirli|İstanbul Metrosu|M
+S|40.97365|28.86803|Bakırköy Sahil|İstanbul Metrosu|M
+S|41.02146|29.03687|Bağlarbaşı|İstanbul Metrosu|M
+S|41.03411|28.92026|Bayrampaşa-Maltepe|İstanbul Metrosu|M
+S|41.08513|29.04564|Boğaziçi Üniversitesi/Hisarüstü|İstanbul Metrosu|M
+S|40.95171|29.09672|Bostancı|İstanbul Metrosu|M
+S|40.96469|29.10538|Bostancı|İstanbul Metrosu|M
+S|41.01629|29.07626|Bulgurlu|İstanbul Metrosu|M
+S|41.12928|29.02508|Darüşşafaka|İstanbul Metrosu|M
+S|41.02022|28.90038|Davutpaşa - YTÜ|İstanbul Metrosu|M
+S|41.01494|28.81792|Doğu Sanayi|İstanbul Metrosu|M
+S|40.98660|28.82847|DTM-İstanbul Fuar Merkezi|İstanbul Metrosu|M
+S|41.01537|29.16319|Dudullu|İstanbul Metrosu|M
+S|41.10323|28.77723|Şehir Hastanesi|İstanbul Metrosu|M
+S|41.01453|29.18951|Çekmeköy|İstanbul Metrosu|M
+S|40.96069|29.09355|Emin Ali Paşa|İstanbul Metrosu|M
+S|41.01742|28.93960|Emniyet - Fatih|İstanbul Metrosu|M
+S|40.92084|29.16641|Esenkent|İstanbul Metrosu|M
+S|41.03757|28.88859|Esenler|İstanbul Metrosu|M
+S|41.08246|29.03760|Etiler|İstanbul Metrosu|M
+S|40.88880|29.26245|Fevzi Çakmak - Hastane|İstanbul Metrosu|M
+S|41.02815|29.02836|Fıstıkağacı|İstanbul Metrosu|M
+S|41.06231|29.00698|Fulya|İstanbul Metrosu|M
+S|41.06634|29.01148|Gayrettepe|İstanbul Metrosu|M
+S|41.06903|29.01112|Gayrettepe|İstanbul Metrosu|M
+S|41.07129|28.86678|Giyimkent-Tekstilkent|İstanbul Metrosu|M
+S|41.17701|28.88366|Göktürk|İstanbul Metrosu|M
+S|40.92387|29.15471|Gülsuyu|İstanbul Metrosu|M
+S|40.99409|29.07061|Göztepe|İstanbul Metrosu|M
+S|41.05683|28.84798|Göztepe|İstanbul Metrosu|M
+S|41.13976|29.03045|Hacıosman|İstanbul Metrosu|M
+S|41.02269|28.96668|Haliç|İstanbul Metrosu|M
+S|41.01990|28.76815|Halkalı|İstanbul Metrosu|M
+S|41.04501|28.80651|Halkalı Caddesi|İstanbul Metrosu|M
+S|41.05657|28.77471|Halkalı Stadı|İstanbul Metrosu|M
+S|40.96871|29.25515|Hasanpaşa|İstanbul Metrosu|M
+S|41.12122|28.94684|Hasdal|İstanbul Metrosu|M
+S|40.91639|29.17830|Hastane Adliye|İstanbul Metrosu|M
+S|41.00462|28.87168|Haznedar|İstanbul Metrosu|M
+S|41.02260|29.15959|Huzur|İstanbul Metrosu|M
+S|40.92995|29.14681|Huzurevi|İstanbul Metrosu|M
+S|41.13956|28.79380|İbn Haldun Üniversitesi|İstanbul Metrosu|M
+S|40.97896|29.12621|İçerenköy|İstanbul Metrosu|M
+S|41.02827|28.97272|Şişhane|İstanbul Metrosu|M
+S|41.01978|29.13063|Ihlamurkuyu|İstanbul Metrosu|M
+S|41.24290|28.80894|İhsaniye|İstanbul Metrosu|M
+S|41.07113|28.80390|İkitelli Sanayi|İstanbul Metrosu|M
+S|41.06451|28.99277|Şişli|İstanbul Metrosu|M
+S|41.01164|28.86556|İlkyuva|İstanbul Metrosu|M
+S|41.01605|29.15174|İmam Hatip Lisesi|İstanbul Metrosu|M
+S|41.00023|29.15599|İMES|İstanbul Metrosu|M
+S|40.99763|28.87506|İncirli|İstanbul Metrosu|M
+S|41.25593|28.74256|İstanbul Havalimanı|İstanbul Metrosu|M
+S|41.06499|28.82604|İSTOÇ|İstanbul Metrosu|M
+S|41.10807|29.02097|İTÜ-Ayazağa|İstanbul Metrosu|M
+S|40.99059|29.02204|Kadıköy|İstanbul Metrosu|M
+S|41.08125|28.87510|Karadeniz Mahallesi|İstanbul Metrosu|M
+S|41.25543|28.71270|Kargo Terminali|İstanbul Metrosu|M
+S|40.90659|29.21134|Kartal|İstanbul Metrosu|M
+S|41.07965|28.97312|Kağıthane|İstanbul Metrosu|M
+S|41.08009|28.97656|Kağıthane|İstanbul Metrosu|M
+S|41.11733|28.76571|Kayaşehir|İstanbul Metrosu|M
+S|41.11908|28.76634|Kayaşehir Merkez|İstanbul Metrosu|M
+S|40.98469|29.13774|Kayışdağı|İstanbul Metrosu|M
+S|41.15916|28.91024|Kemerburgaz|İstanbul Metrosu|M
+S|41.03182|28.84229|Kirazlı|İstanbul Metrosu|M
+S|40.97893|29.11187|Küçükbakkalköy|İstanbul Metrosu|M
+S|40.94893|29.12200|Küçükyalı|İstanbul Metrosu|M
+S|41.04844|28.89549|Kocatepe|İstanbul Metrosu|M
+S|40.97539|29.09968|Kozyatağı|İstanbul Metrosu|M
+S|40.97749|29.09989|Kozyatağı|İstanbul Metrosu|M
+S|41.02219|29.06208|Kısıklı|İstanbul Metrosu|M
+S|40.90989|29.29673|Kurtköy|İstanbul Metrosu|M
+S|41.08533|28.90853|Kâzım Karabekir|İstanbul Metrosu|M
+S|41.07689|29.01379|Levent|İstanbul Metrosu|M
+S|41.05511|28.83063|Mahmutbey|İstanbul Metrosu|M
+S|40.93587|29.13950|Maltepe|İstanbul Metrosu|M
+S|41.06411|28.80414|MASKO|İstanbul Metrosu|M
+S|41.06518|28.99552|Mecidiyeköy|İstanbul Metrosu|M
+S|41.00966|29.19888|Meclis|İstanbul Metrosu|M
+S|41.04274|28.87850|Menderes|İstanbul Metrosu|M
+S|41.00762|28.89618|Merter|İstanbul Metrosu|M
+S|41.10815|28.80149|Metrokent|İstanbul Metrosu|M
+S|40.99216|29.15338|Mevlana|İstanbul Metrosu|M
+S|41.02509|28.81658|Mimar Sinan|İstanbul Metrosu|M
+S|41.00730|29.16195|MODOKO|İstanbul Metrosu|M
+S|41.02594|28.84796|Molla Gürani|İstanbul Metrosu|M
+S|41.02461|29.08480|Ümraniye|İstanbul Metrosu|M
+S|40.99809|29.06003|Ünalan|İstanbul Metrosu|M
+S|41.01601|29.17943|Necip Fazıl|İstanbul Metrosu|M
+S|41.07739|29.02400|Nispetiye|İstanbul Metrosu|M
+S|41.07986|28.96348|Nurtepe|İstanbul Metrosu|M
+S|40.99974|28.82261|Çobançeşme|İstanbul Metrosu|M
+S|41.07957|28.76724|Olimpiyat|İstanbul Metrosu|M
+S|41.07801|28.76974|Olimpiyatköy|İstanbul Metrosu|M
+S|41.11340|28.79050|Onurkent|İstanbul Metrosu|M
+S|41.06283|28.85549|Oruç Reis - Yüzyıl|İstanbul Metrosu|M
+S|41.05278|28.98740|Osmanbey|İstanbul Metrosu|M
+S|41.04022|28.89460|Otogar|İstanbul Metrosu|M
+S|41.03120|29.15273|Parseller|İstanbul Metrosu|M
+S|40.88865|29.23858|Pendik|İstanbul Metrosu|M
+S|41.08012|28.93621|Çırçır Mahallesi|İstanbul Metrosu|M
+S|40.90657|29.31146|Sabiha Gökçen Havalimanı|İstanbul Metrosu|M
+S|41.04086|28.90722|Sağmalcılar|İstanbul Metrosu|M
+S|40.98368|29.23141|Samandıra Merkez|İstanbul Metrosu|M
+S|41.09421|29.00518|Sanayi|İstanbul Metrosu|M
+S|40.99206|29.22901|Sancaktepe|İstanbul Metrosu|M
+S|41.00097|29.21752|Sancaktepe Şehir Hastanesi|İstanbul Metrosu|M
+S|41.01003|29.21268|Sarıgazi|İstanbul Metrosu|M
+S|41.10119|28.99573|Seyrantepe|İstanbul Metrosu|M
+S|41.10317|28.99451|Seyrantepe|İstanbul Metrosu|M
+S|41.08823|28.79656|Siteler|İstanbul Metrosu|M
+S|41.02534|29.01276|Üsküdar|İstanbul Metrosu|M
+S|40.91322|29.19243|Soğanlık|İstanbul Metrosu|M
+S|40.96594|29.27256|Sultanbeyli|İstanbul Metrosu|M
+S|41.03805|28.98555|Taksim|İstanbul Metrosu|M
+S|41.20707|28.71589|Taşoluk|İstanbul Metrosu|M
+S|40.88216|29.24883|Tavşantepe|İstanbul Metrosu|M
+S|41.03046|28.89787|Terazidere|İstanbul Metrosu|M
+S|41.02391|28.93056|Topkapı Ulubatlı|İstanbul Metrosu|M
+S|41.10769|28.76786|Toplu Konutlar|İstanbul Metrosu|M
+S|41.08120|28.79754|Turgut Özal|İstanbul Metrosu|M
+S|41.10756|28.98824|Vadi İstanbul|İstanbul Metrosu|M
+S|40.96897|29.24000|Veysel Karani|İstanbul Metrosu|M
+S|41.07958|28.92813|Veysel Karani-Akşemsettin|İstanbul Metrosu|M
+S|41.01225|28.95971|Vezneciler|İstanbul Metrosu|M
+S|40.89663|29.22713|Yakacık—Adnan Kahveci|İstanbul Metrosu|M
+S|41.02420|29.10875|Yamanevler|İstanbul Metrosu|M
+S|40.90402|29.27571|Yayalar-Şeyhli|İstanbul Metrosu|M
+S|41.08229|28.91829|Yeşilpınar|İstanbul Metrosu|M
+S|40.98940|28.83682|Yenibosna|İstanbul Metrosu|M
+S|41.00565|28.95149|Yenikapı|İstanbul Metrosu|M
+S|41.04040|28.83599|Yeni Mahalle|İstanbul Metrosu|M
+S|41.08389|28.89276|Yenimahalle|İstanbul Metrosu|M
+S|40.98459|29.09043|Yenisahra|İstanbul Metrosu|M
+S|41.05407|29.00967|Yıldız|İstanbul Metrosu|M
+S|41.01942|28.85775|Yıldıztepe|İstanbul Metrosu|M
+S|41.03670|28.87070|Üçyüzlü|İstanbul Metrosu|M
+S|41.00172|28.88997|Zeytinburnu|İstanbul Metrosu|M
+S|40.98163|28.87405|Özgürlük Meydanı|İstanbul Metrosu|M
+S|41.07455|28.78645|Ziya Gökalp|İstanbul Metrosu|M
+S|38.39587|27.00054|100. Yıl Cumhuriyet Şehitlik|İzmir Metro|M
+S|38.39454|27.04543|Çağdaş|İzmir Metro|M
+S|38.42249|27.13600|Çankaya|İzmir Metro|M
+S|38.39572|27.05694|Balçova|İzmir Metro|M
+S|38.42282|27.14484|Basmane|İzmir Metro|M
+S|38.45496|27.20135|Bölge|İzmir Metro|M
+S|38.45839|27.21260|Bornova|İzmir Metro|M
+S|38.39417|27.03821|Dokuz Eylül Üniversitesi Hastanesi|İzmir Metro|M
+S|38.45969|27.22882|Ege Üniversitesi|İzmir Metro|M
+S|38.46514|27.22859|Evka 3|İzmir Metro|M
+S|38.39698|27.06994|Fahrettin Altay|İzmir Metro|M
+S|38.39250|27.02349|Güzel Sanatlar Fakültesi|İzmir Metro|M
+S|38.39599|27.09446|Göztepe|İzmir Metro|M
+S|38.43483|27.16887|Halkapınar|İzmir Metro|M
+S|38.40153|27.10282|Hatay|İzmir Metro|M
+S|38.42694|27.15511|Hilal|İzmir Metro|M
+S|38.40174|27.11043|İzmirspor|İzmir Metro|M
+S|38.41703|27.12806|Konak|İzmir Metro|M
+S|38.39373|27.01498|Narlıdere İtfaiye|İzmir Metro|M
+S|38.39498|26.99109|Narlıdere Kaymakamlık|İzmir Metro|M
+S|38.39326|27.08483|Poligon|İzmir Metro|M
+S|38.44830|27.19039|Sanayi|İzmir Metro|M
+S|38.44239|27.18068|Stadyum|İzmir Metro|M
+S|38.40552|27.12054|Üçyol|İzmir Metro|M
+S|41.03999|29.00571|Beşiktaş|Istanbul Büyükşehir Belediyesi|W
+S|41.03300|28.99401|Kabataş İskelesi|Istanbul Büyükşehir Belediyesi|W
+S|40.99182|29.02155|Kadiköy|Istanbul Büyükşehir Belediyesi|W
+S|40.87473|29.12556|Adalar|Şehir Hatları|W
+S|40.88108|29.07080|Burgazada|Şehir Hatları|W
+S|40.87801|29.10141|Heybeliada|Şehir Hatları|W
+S|40.91022|29.05584|Kınalıada|Şehir Hatları|W
+L|Adana Metrosu|M1 Akıncılar → Hastane|orange|0 1:1153 4:1084 7:935 6:867 10:1208 2:1399 11:905 12:944 9:1236 5:651 8:886 3:1582
+L|Adana Metrosu|M1 Hastane → Akıncılar|orange|3 8:1579 5:879 9:652 12:1239 11:938 2:907 10:1401 6:1205 7:869 4:938 1:1086 0:1156
+L|Ankara Metrosu|Ankaray AŞTİ→Dikimevi yol 1|#056D2E|19 36:592 21:1053 24:807 16:845 51:558 30:934 13:834 46:760 48:873 32:1020
+L|Ankara Metrosu|Ankaray Dikimevi→AŞTİ yol 2|#056D2E|32 48:1019 46:873 13:757 30:828 51:938 16:561 24:848 21:812 36:1052 19:594
+L|Ankara Metrosu|M1 Batıkent→Kızılay Metro yol 2|#BF0E1C|22 61:1669 50:1897 43:1475 29:985 66:985 45:1186 15:1666 18:1158 65:804 62:1300 13:891
+L|Ankara Metrosu|M1 Kızılay→Batıkent Metro yol 1|#BF0E1C|13 62:890 65:1307 18:805 15:1158 45:1668 66:1184 29:987 43:987 50:1478 61:1899 22:1665
+L|Ankara Metrosu|M2 Koru→Kızılay Metro yol 1|#BF0E1C|47 20:1329 56:1936 26:2176 64:1440 27:1314 59:1642 57:1007 63:1032 55:1709 58:1485 13:1098
+L|Ankara Metrosu|M2 Kızılay→Koru Metro yol 2|#BF0E1C|13 58:1420 55:1489 63:1712 57:1024 59:1006 27:1642 64:1311 26:1439 56:2174 20:1950 47:1322
+L|Ankara Metrosu|M3 Batıkent→OSB Törekent Metro yol 1|#BF0E1C|22 23:1041 53:1174 28:1267 44:2903 37:1270 38:1750 31:1208 42:1269 39:1133 41:949 60:1337
+L|Ankara Metrosu|M3 OSB Törekent→Batıkent Metro yol 2|#BF0E1C|60 41:1337 39:949 42:1134 31:1269 38:1209 37:1749 44:1270 28:2888 53:1279 23:1175 22:1035
+L|Ankara Metrosu|M4 Kızılay→Şehitler/Gazino Metro yol 1|#EDAF2E|13 14:1363 40:778 18:1231 17:756 33:1103 54:1308 25:1550 52:966 49:738 34:1512 35:926
+L|Ankara Metrosu|M4 Şehitler/Gazino→Kızılay Metro yol 2|#EDAF2E|35 34:918 49:1485 52:728 25:943 54:1575 33:1297 17:1104 18:755 40:1268 14:778 13:1342
+L|BursaRay|B1 Arabayatağı Geçit/Balat|red|69 67:890 104:1616 83:923 76:869 78:523 100:1200 94:635 92:797 103:1091 102:606 74:972 89:1493 87:917 71:922 86:1273 99:1018 93:1141 79:835 82:1198
+L|BursaRay|B1 Geçit/Balat Arabayatağı|red|82 79:1200 93:836 99:1141 86:1015 71:1276 87:920 89:915 74:1533 102:967 103:606 92:1093 94:799 100:640 78:1196 76:524 83:872 104:920 77:1001 67:614 69:890
+L|BursaRay|B2 Kestel - Üniversite|black|90 84:1568 75:1331 101:656 88:1079 85:1171 95:799 69:1307 67:890 104:1616 83:923 76:869 78:523 100:1200 94:635 92:797 103:1091 102:606 74:972 98:1403 96:911 81:1077 73:811 70:1394 91:708 68:819 80:1251 106:907 105:974 72:741 97:1881
+L|BursaRay|B2 Üniversite - Kestel|black|97 72:1881 105:740 106:972 80:908 68:1240 91:826 70:715 73:1384 81:812 96:1080 98:909 74:1404 102:967 103:606 92:1093 94:799 100:640 78:1196 76:524 83:872 104:920 77:1001 67:614 69:890 95:1310 85:798 88:1172 101:1079 75:655 84:1328 90:1574
+L|İstanbul Metrosu|F3|#7c7358|240 252:782
+L|İstanbul Metrosu|F3|#7c7358|252 240:782
+L|İstanbul Metrosu|M11|#ab548f|162 164:4132 224:2485 191:4429 171:3788 118:7381 246:4318 187:5768 182:2501 175:5995 156:9929 194:3116 166:5561 190:5499 153:3287
+L|İstanbul Metrosu|M11|#ab548f|153 190:3287 166:5472 194:5566 156:3130 175:9938 182:6011 187:2501 246:5796 118:4319 171:7367 191:3799 224:4441 164:2475 162:4134
+L|İstanbul Metrosu|M1A|#ee3124|261 112:786 146:1010 249:1122 133:2113 233:1435 198:1401 228:1006 248:1164 139:1116 211:1515 268:925 130:1352 129:1028 120:1588 260:856 141:776 121:1143
+L|İstanbul Metrosu|M1A|#ee3124|121 141:1138 260:778 120:851 129:1590 130:1026 268:1353 211:930 139:1516 248:1117 228:1156 198:991 233:1393 133:1428 249:1470 146:1039 112:933 261:750
+L|İstanbul Metrosu|M1B|#ee3124|261 112:758 146:936 249:1039 133:1466 233:1435 198:1401 228:1005 148:740 210:1245 267:942 127:1280 195:1635
+L|İstanbul Metrosu|M1B|#ee3124|195 127:1603 267:1294 210:943 148:1220 228:815 198:991 233:1393 133:1428 249:1470 146:1039 112:933 261:750
+L|İstanbul Metrosu|M2|#009944|160 138:1342 123:1249 184:1348 235:2246 109:938 204:1148 154:1096 177:1669 227:1534 245:1642 173:1561 161:817 255:1329 261:1167
+L|İstanbul Metrosu|M2|#009944|239 235:1452
+L|İstanbul Metrosu|M2|#009944|235 239:1452
+L|İstanbul Metrosu|M2|#009944|261 255:1203 161:1312 173:809 245:1584 227:1654 177:1507 154:1659 204:1124 109:1148 235:922 184:2210 123:1397 138:1245 160:1322
+L|İstanbul Metrosu|M3|#00a8e1|131 269:1138 181:1909 168:850 178:935 266:1124 216:1150 195:809 262:1136 205:1688 183:1241 176:2104 251:1258 241:810 126:1217 212:1591 225:1603 143:1802 250:1156 192:1259
+L|İstanbul Metrosu|M3|#00a8e1|192 250:1263 143:1202 225:1774 212:1515 126:1587 241:1233 251:795 176:1290 183:2093 205:1186 262:1733 195:1141 216:805 266:1165 178:1111 168:928 181:838 269:1922 131:1084
+L|İstanbul Metrosu|M4|#e91e76|185 125:1333 110:1401 218:1402 158:993 264:1974 199:1319 136:1284 197:2236 206:2065 170:891 157:981 147:1039 167:1116 243:1250 188:1749 256:1727 230:1305 247:1127 150:1746 258:2048 202:1970 232:1728
+L|İstanbul Metrosu|M4|#e91e76|232 202:1702 258:1999 150:2081 247:1611 230:1124 256:1307 188:1731 243:1751 167:1259 147:1108 157:1040 170:968 206:896 197:2062 136:2229 199:1282 264:1327 158:1983 218:989 110:1410 125:1451 185:1319
+L|İstanbul Metrosu|M5|#683064|242 151:1411 132:1126 116:1201 201:1227 137:1741 217:1306 117:1090 257:970 111:854 174:1090 115:950 179:943 142:933 219:1418 144:874 209:995 238:1241 237:1167 236:1438 234:1008 253:2051 165:1322 244:1687
+L|İstanbul Metrosu|M5|#683064|244 165:1720 253:1297 234:2008 236:1025 237:1444 238:1192 209:1233 144:1001 219:869 142:1424 179:931 115:944 174:932 111:1094 257:863 117:972 217:1099 137:1316 201:1750 116:1258 132:1162 151:1160 242:1420
+L|İstanbul Metrosu|M6|#caa977|134 149:775 220:1308 204:823
+L|İstanbul Metrosu|M6|#caa977|204 220:823 149:1308 134:773
+L|İstanbul Metrosu|M7|#f89aba|208 113:1425 189:1220 221:889 114:1180 231:1136 254:677 259:902 203:903 263:1467 186:1771 155:1314 226:1392 159:1010 205:1480
+L|İstanbul Metrosu|M7|#f89aba|205 159:1485 226:1051 155:1378 186:1308 263:1731 203:1473 259:904 254:910 231:684 114:1128 221:1205 189:864 113:1231 208:1441
+L|İstanbul Metrosu|M7|#f89aba|208 152:1092 265:979
+L|İstanbul Metrosu|M7|#f89aba|265 152:1009 208:1104
+L|İstanbul Metrosu|M8|#447abe|135 145:1126 124:879 200:1835 196:1013 172:1229 193:1212 213:1559 180:1027 215:926 142:954 169:883 229:1131
+L|İstanbul Metrosu|M8|#447abe|229 169:1131 142:880 215:929 180:933 213:1015 193:1561 172:1203 196:1215 200:1029 124:1889 145:885 135:1106
+L|İstanbul Metrosu|M9|#f0e514|119 260:2110 222:2186 108:801 140:971 214:1127 107:1328 163:1187 122:1061 128:705 207:790 176:987 270:1632 223:1751
+L|İstanbul Metrosu|M9|#f0e514|223 270:1751 176:1622 207:943 128:828 122:703 163:1096 107:1157 214:1327 140:1123 108:984 222:800 260:2172 119:2148
+L|İzmir Metro|Evka 3 → Kaymakamlık|blue|280 279:883 277:1443 276:1079 292:1201 293:1072 284:1335 286:1476 275:1032 273:776 288:1044 294:1499 287:984 285:669 283:1089 291:918 281:1380 274:1147 272:1014 278:643 282:1294 289:760 271:1272 290:855
+L|İzmir Metro|Kaymakamlık → Evka 3|blue|290 271:862 289:1265 282:756 278:1309 272:640 274:1018 281:1145 291:1381 283:919 285:1088 287:670 294:986 288:1500 273:1027 275:776 286:1036 284:1480 293:1335 292:1073 276:1205 277:1071 279:1446 280:894
+L|Istanbul Büyükşehir Belediyesi|Ferry 27 Kabataş → Kadıköy|#be7a29|296 297:5295
+L|Istanbul Büyükşehir Belediyesi|Ferry 27 Kadıköy → Kabataş|#be7a29|297 296:5296
+L|Istanbul Büyükşehir Belediyesi|Ferry 3 Beşiktaş → Kadıköy|#8e9e42|297 295:6044
+L|Istanbul Büyükşehir Belediyesi|Ferry 3 Kadıköy → Beşiktaş|#8e9e42|295 297:6043
+L|Şehir Hatları|Büyükada - Kadıköy - Kabataş|#272a22|298 299:5036 301:3688 297:9780
+L|Şehir Hatları|Kabataş - Kadıköy - Büyükada|#272a22|297 301:9778 299:3688 300:2807 298:2231
+T|40.75020|30.37653|32 Evler
+T|37.84452|27.88704|ASTİM OSB
+T|41.52001|26.73113|Abalar
+T|37.00404|35.31898|Adana
+T|40.77491|30.40031|Adapazarı
+T|39.40082|38.38253|Adatepe
+T|37.08784|37.35866|Adliye
+T|38.29130|27.14787|Adnan Menderes Havalimanı
+T|38.76709|30.53550|Afyonkarahisar Şehir
+T|41.40342|32.09478|Ahatlı
+T|38.39031|29.10330|Ahmetler
+T|38.51622|27.93594|Ahmetli
+T|38.73173|40.21964|Akbulut
+T|39.78215|35.89209|Akdağmadeni YHT
+T|39.04946|37.71737|Akgedik
+T|38.90806|27.79053|Akhisar
+T|38.37911|28.48432|Akkeçili
+T|40.14375|28.08894|Aksakal
+T|37.54047|37.35902|Aksu
+T|40.73985|43.62341|Akyaka
+T|41.46959|32.09411|Akyamaç
+T|37.99846|29.89880|Akyarma
+T|38.29090|38.04443|Akçadağ
+T|37.26684|37.28602|Akçagöze
+T|39.09984|37.73492|Akçamağara
+T|38.36992|31.44215|Akşehir
+T|38.46063|27.12146|Alaybey
+T|39.39544|30.10551|Alayunt
+T|39.39045|30.10159|Alayunt Müselles
+T|38.35774|28.51507|Alaşehir
+T|38.76421|30.55308|Ali Çetinkaya
+T|38.78879|26.96728|Aliağa
+T|38.82730|27.01903|Aliağa OSB
+T|40.19433|33.56780|Alibey
+T|40.53487|30.29325|Alifuatpaşa
+T|39.48695|29.67364|Aliköy
+T|39.61732|39.19292|Alp
+T|39.76802|30.95411|Alpu
+T|41.36620|27.14271|Alpullu
+T|38.43863|27.14812|Alsancak
+T|39.66875|40.19673|Altunkent
+T|39.66382|39.67764|Altınbaşak
+T|41.05583|28.74867|Altınşehir
+T|39.96263|41.57817|Alvar
+T|39.57896|29.00918|Alöve
+T|40.65463|35.81410|Amasya
+T|40.65264|35.83013|Amasyaşehir
+T|37.85835|40.52280|Ambar
+T|39.93596|32.84342|Ankara
+T|39.93493|32.84335|Ankara YHT
+T|38.24028|35.04719|Araplı
+T|37.82626|27.51161|Argavlı
+T|38.30967|31.71845|Argıthan
+T|40.71314|30.35584|Arifiye
+T|38.38982|28.90438|Armutlu
+T|40.11407|36.30079|Artova
+T|37.82913|40.43635|Arzuoğlu
+T|38.17788|27.49634|Arıkbaşı
+T|37.46070|32.92808|Arıkören
+T|38.73390|40.18825|Arındık
+T|38.77902|41.08686|Asmakaya
+T|40.98023|28.85623|Ataköy
+T|40.89879|29.16919|Atalar
+T|38.49904|27.05314|Atasanayi
+T|40.79809|33.08299|Atkaracalar
+T|39.49617|38.62666|Atma
+T|37.88337|28.21193|Atça
+T|39.33012|37.73175|Avşar
+T|40.82574|35.64025|Ayaz
+T|37.84829|27.84201|Aydın
+T|37.85584|27.98502|Aydın OSB
+T|40.85229|29.29320|Aydıntepe
+T|37.18340|36.61948|Ayran
+T|37.37106|33.66626|Ayrancı
+T|41.00015|29.03010|Ayrılık Çeşmesi
+T|38.63589|27.21192|Ayvacık
+T|39.93723|29.97989|Ayvalı
+T|39.43687|37.31052|Ayvaz
+T|40.77103|30.39107|Aziz Duran Parkı
+T|39.45324|30.02045|Azot
+T|39.80681|30.76722|Ağapınar
+T|39.38730|37.88282|Aşağı Güneş
+T|41.08138|29.05500|Aşiyan
+T|39.92185|40.68268|Aşkale
+T|41.39772|27.10334|Babaeski YHT Garı
+T|37.18707|36.55891|Bahçe
+T|37.20160|36.57791|Bahçe Şehir
+T|39.41300|37.95514|Bahçeli
+T|40.71782|30.36745|Bahçelievler
+T|38.63707|35.20186|Bahçesaray
+T|38.68243|42.01486|Bahçetepe
+T|41.08441|28.67882|Bahçeşehir
+T|41.41214|26.82256|Bahçıvanova
+T|41.33757|32.09377|Bakacakkadi
+T|39.04140|27.74742|Bakir
+T|40.98036|28.87243|Bakırköy
+T|41.14064|27.60618|Balabanlı
+T|41.27382|32.16473|Balastocağı
+T|41.21861|27.49726|Ballıhoca
+T|38.80947|30.34355|Balmahmut
+T|39.64691|27.88854|Balıkesir
+T|39.52407|29.09510|Balıköy
+T|41.19857|32.39118|Balıkısık
+T|39.90869|33.72056|Balışıh
+T|38.73561|29.75331|Banaz
+T|40.35077|27.95937|Bandırma
+T|40.35213|27.96548|Bandırma Şehir
+T|38.09186|29.97395|Baraklı
+T|38.56516|38.82623|Baskil
+T|38.42245|27.14390|Basmane railway station
+T|37.87858|41.12268|Batman
+T|38.43350|38.36989|Battalgazi
+T|38.46391|27.16440|Bayraklı
+T|38.21282|27.64956|Bayındır
+T|38.20312|27.67296|Bayındır MYO
+T|40.28014|30.02079|Bayırköy
+T|39.92600|32.92299|Bağderesi
+T|39.44048|38.46715|Bağıştaş
+T|40.89026|29.17750|Başak
+T|40.70587|43.42921|Başgedik
+T|38.48453|35.15044|Başköy
+T|37.16687|37.33452|Başpınar
+T|37.83363|29.54921|Başçeşme
+T|39.58062|36.61948|Bedirli
+T|39.93150|32.75013|Behiçbey
+T|40.99897|35.79759|Bekdiğin
+T|37.35531|34.91078|Belemedik
+T|38.03079|27.43316|Belevi
+T|40.46124|42.92074|Benliahmet
+T|37.75707|34.52921|Bereket
+T|39.10136|27.20243|Bergama
+T|39.08374|27.12299|Bergama Otogar
+T|39.28949|27.60767|Beyce
+T|38.83456|35.20410|Beydeğirmeni
+T|38.73299|40.11933|Beyhan
+T|37.85723|28.01399|Beyköy
+T|37.11988|37.38476|Beylerbeyi
+T|39.60023|31.95800|Beylikköprü
+T|39.70423|31.18925|Beylikova
+T|37.28867|36.79177|Beyoğlu
+T|41.02834|28.97399|Beyoğlu Station, Tünel Line
+T|38.20740|27.91769|Beytiköy
+T|37.90818|28.42102|Beşeylül Durağı
+T|37.96431|41.33144|Beşiri
+T|40.11539|30.00054|Bilecik
+T|40.13551|30.00927|Bilecik YHT
+T|37.85277|40.66199|Bismil
+T|39.69448|31.69651|Biçer
+T|38.74925|26.96053|Biçerova
+T|38.75226|35.31379|Bogazkopru Muselles (364+074)
+T|41.16035|32.51723|Bolkuş
+T|37.88761|34.56250|Bor
+T|40.83694|35.63901|Borsa
+T|40.95393|29.09490|Bostancı
+T|39.51204|37.00891|Bostankaya
+T|37.88345|30.54590|Bozanönü
+T|39.32601|37.39203|Bozarmut
+T|37.83630|40.30890|Bozdemir
+T|38.86655|40.88810|Bozkanat
+T|37.82738|29.61278|Bozkurt
+T|39.05100|27.10930|Bozköy
+T|39.90426|30.03728|Bozüyük
+T|39.88053|30.04266|Bozüyük YHT
+T|41.13648|36.17840|Boğaziçi
+T|41.08509|29.04587|Boğaziçi Üniversitesi/Hisarüstü
+T|38.75524|35.32218|Boğazköprü
+T|40.73317|35.77362|Boğazköy
+T|37.95266|28.73853|Buharkent
+T|37.72332|30.28189|Burdur
+T|39.36426|38.31247|Burmahan
+T|40.27367|28.92334|Bursa HYT
+T|37.80029|29.19678|Böceli
+T|37.45516|33.87762|Böğecik
+T|40.71023|30.11034|Büyük Derbent
+T|41.31065|27.56535|Büyükkarıştıran
+T|38.35781|28.67809|Caberkamara
+T|39.54955|34.69804|Caferli
+T|40.96718|43.30473|Canbaz
+T|41.13016|43.30117|Canbazlar
+T|39.32185|37.23892|Candoğan
+T|41.00554|28.98301|Cankurtaran
+T|39.93327|32.87597|Cebeci
+T|41.21730|32.30137|Cebeciler
+T|39.64524|39.34931|Cebesoy
+T|41.00281|28.94024|Cerrahpaşa
+T|40.86113|35.63316|Cevizdibi
+T|40.91008|29.15599|Cevizli
+T|37.01806|35.81728|Ceyhan
+T|41.07403|32.66536|Cildikısık
+T|38.26405|27.16299|Cumaovası
+T|39.44469|38.03558|Cürek
+T|39.56804|28.37104|Dada
+T|40.79140|29.39191|Darıca
+T|38.38384|28.81459|Davutlar Köyü
+T|37.90211|29.86239|Dazkırı
+T|39.34078|38.23329|Dazlak
+T|40.24172|28.21009|Dağkadı HYT
+T|37.44619|37.20497|Dehliz
+T|39.93249|34.03177|Delice
+T|41.23214|36.26426|Demirciköy
+T|39.46086|29.86276|Demirciören
+T|39.40802|38.10780|Demirdağ
+T|39.16015|37.69316|Demiriz
+T|39.57902|40.16282|Demirkapı
+T|38.46804|27.09643|Demirköprü
+T|41.35676|26.64789|Demirköprü
+T|39.50308|29.30147|Demirli
+T|39.94007|32.88319|Demirlibahçe
+T|37.96259|41.50639|Demirlikuyu
+T|37.96242|41.17676|Demirlipınar
+T|39.19601|30.33599|Demirözü
+T|36.64751|36.21299|Denizciler
+T|37.78698|29.09097|Denizli
+T|38.67067|29.64163|Derbent
+T|38.15566|27.78455|Derebaşı
+T|41.55029|32.07727|Derecikören
+T|40.75434|29.83433|Derince
+T|38.20331|27.16668|Develi
+T|37.88696|28.18168|Devran
+T|39.20641|30.29404|Değirmenözü
+T|39.48959|29.19764|Değirmisaz
+T|38.65791|43.81660|Dibekli
+T|38.44496|38.25821|Dilek
+T|40.76949|29.52350|Diliskelesi
+T|38.06559|30.15636|Dinar
+T|39.38403|38.11413|Divriği
+T|37.91365|40.21574|Diyarbakır
+T|38.16969|27.82323|Doyranlı
+T|40.62474|30.33231|Doğançay
+T|38.08929|37.87465|Doğanşehir
+T|40.72957|43.73367|Doğukapı
+T|39.66770|39.37706|Dumanlı
+T|38.84786|29.98526|Dumlupınar
+T|37.11986|35.00192|Durak
+T|40.72680|43.50628|Duraklı
+T|39.54729|28.65299|Dursunbey
+T|39.34821|38.26347|Dutluk
+T|36.82398|36.19561|Dörtyol
+T|39.13169|30.38048|Döğer
+T|37.14977|37.36370|Dülük
+T|40.28546|33.52941|Dümbelek
+T|38.33694|27.13647|ESBAŞ
+T|41.65521|26.58051|Edirne
+T|38.50734|27.04598|Egekent
+T|38.56060|27.04436|Egekent 2
+T|38.73649|40.28953|Ekerek
+T|38.30608|30.18713|Ekinova
+T|38.66484|39.22278|Elazığ
+T|38.19171|27.58308|Elifli
+T|36.94261|37.98530|Elifoğlu
+T|38.01918|37.73941|Elmacı Kadın
+T|39.92411|33.22771|Elmadağ
+T|39.94845|33.20422|Elmadağ YHT
+T|38.01730|37.73219|Elmali
+T|39.95856|32.61219|Elvankent
+T|38.62449|27.14819|Emiralem
+T|39.49256|29.36235|Emirler
+T|39.77352|30.48482|Enveriye
+T|39.91500|40.20382|Erbaş
+T|37.86351|27.67593|Erbeyli
+T|40.97167|29.07638|Erenköy
+T|37.50581|34.05700|Ereğli
+T|38.23278|39.75488|Ergani
+T|39.57209|38.86854|Eriç
+T|39.95576|32.63029|Eryaman high-speed railway station
+T|40.60731|35.79490|Eryatağı
+T|36.97460|36.13024|Erzin
+T|39.73367|39.49310|Erzincan
+T|39.91562|41.26853|Erzurum
+T|38.65933|43.65726|Erçek
+T|39.89258|32.46785|Esenkent
+T|39.42346|37.22670|Eski Karasar
+T|39.43462|37.28812|Eskiköy
+T|40.95676|32.53350|Eskipazar
+T|39.77962|30.50497|Eskişehir
+T|39.94925|32.66309|Etimesgut
+T|38.02705|29.92136|Evciler
+T|38.39838|28.96896|Eşme
+T|39.13209|35.02131|Fehimli
+T|38.09796|27.70987|Fen Lisesi Durağı
+T|40.97880|29.04883|Feneryolu
+T|37.09882|36.63872|Fevzipaşa
+T|41.55994|32.02117|Filyos
+T|40.97290|28.78761|Florya
+T|40.96782|28.79699|Florya Akvaryum
+T|38.19551|27.60478|Furunlu
+T|38.44089|38.51225|Fırat
+T|37.11212|37.38074|Fıstıklık
+T|40.80760|29.36402|GTÜ-Fatih
+T|39.54494|28.46928|Gazellidere
+T|39.94031|32.79631|Gazi
+T|39.94402|32.81254|Gazi Mahallesi
+T|37.07346|37.38284|Gaziantep
+T|38.32628|27.13997|Gaziemir
+T|38.93193|30.50070|Gazlıgöl
+T|40.78387|29.41078|Gebze
+T|38.85092|30.42633|Gecek
+T|38.45769|38.60075|Gemici
+T|38.75185|40.55764|Genç
+T|37.93621|28.67480|Gençeli Durağı
+T|40.43811|33.70058|Germece
+T|37.87302|27.59576|Germencik
+T|41.05805|36.10922|Germiyan
+T|38.14397|39.93622|Geyik
+T|38.49508|39.51971|Gezin
+T|39.57616|39.94941|Geçit
+T|37.84799|29.11664|Goncalı
+T|37.84259|29.11914|Goncalı Müselles
+T|41.53403|31.95683|Göbü
+T|39.64629|39.75290|Gökbayır
+T|39.59442|27.82605|Gökköy
+T|41.17554|28.45376|Gökçeali
+T|41.30675|32.13847|Gökçebey
+T|39.61193|28.97971|Gökçedağ
+T|39.65377|30.38712|Gökçekısık
+T|41.55618|32.06485|Gökçeler
+T|40.23846|33.53583|Gökçeören
+T|37.78860|37.63535|Gölbaşı
+T|38.46209|39.39128|Gölcük
+T|37.07430|37.40542|Göllüce
+T|40.80771|33.40950|Göllüce
+T|37.89948|30.49456|Göltaş
+T|38.83553|35.64716|Gömeç
+T|39.51775|36.66238|Gözmen
+T|40.97921|29.06263|Göztepe
+T|40.15301|36.07161|Göçenli
+T|39.40765|37.90839|Göçentaşı
+T|39.42882|36.56004|Gücük
+T|39.50764|38.74209|Güllübağ
+T|37.51479|34.62112|Gümüş
+T|37.76472|27.43654|Gümüşdağ
+T|40.69054|33.53235|Gümüşdüven
+T|37.89354|30.41236|Gümüşgün
+T|40.15367|36.17144|Gümüşyurt
+T|38.36469|28.64948|Gümüşçay
+T|38.47852|28.16321|Gümüşçayı
+T|39.64452|27.91323|Gündoğan
+T|41.07250|27.48043|Gündüzlü
+T|38.38411|28.86266|Güneyköy
+T|39.66114|28.73271|Güneyköy
+T|39.37391|37.86138|Güneş
+T|37.05741|35.95144|Günyazı
+T|38.17079|27.41769|Gürgür
+T|39.35377|37.15730|Gürpınar
+T|40.25636|29.20098|Gürsu
+T|40.82891|43.25462|Güvercin
+T|40.14903|36.00607|Güzelbeyli
+T|37.91472|28.38825|Güzelköy Durağı
+T|40.85683|29.28361|Güzelyalı
+T|39.48435|29.65197|Güzelyurt
+T|40.85229|35.63308|Hacıbayram
+T|37.25217|34.98084|Hacıkırı
+T|38.74772|27.60709|Hacırahmanlı
+T|41.01837|28.76653|Halkalı
+T|38.43522|27.16885|Halkapınar
+T|37.92926|37.69022|Hamzalar
+T|41.00418|32.62270|Hanköy
+T|39.45560|36.63054|Hanlı
+T|40.75367|35.73950|Harmanağılı
+T|39.79309|30.61125|Hasanbey
+T|39.97679|41.68127|Hasankale
+T|39.98217|33.16388|Hasanoğlan
+T|38.92790|37.88039|Hasançelebi
+T|41.42623|32.06908|Hastane Yeşildere
+T|38.69001|27.01756|Hatundere
+T|39.94209|32.68832|Hava
+T|37.97381|41.84555|Havaalanı/Üniversite
+T|41.50200|32.09037|Havalimanı
+T|40.96571|35.66710|Havza
+T|37.57952|37.45418|Haydarlı
+T|40.99655|29.01926|Haydarpaşa
+T|38.81072|37.92777|Hekimhan
+T|40.78408|29.61632|Hereke
+T|38.42605|27.15436|Hilal
+T|38.90859|35.08384|Himmetdede
+T|39.94500|32.82600|Hipodrom
+T|38.71690|40.38509|Hodan
+T|40.04080|42.16245|Horasan
+T|38.62669|27.40318|Horozköy
+T|37.91479|28.59135|Horsunlu
+T|36.88449|34.82000|Huzurkent
+T|38.15923|34.91332|Hüyük
+T|40.12584|42.24105|Hızırilyas
+T|41.21451|32.26688|Ibrıcak
+T|40.71376|33.45718|Ildızım
+T|38.29069|31.91023|Ilgın
+T|37.81172|27.48382|Ilıca
+T|39.95105|41.10333|Ilıca (Aziziye)
+T|39.93470|33.39329|Irmak
+T|37.77192|30.56305|Isparta
+T|41.06296|28.69939|Ispartakule
+T|41.51377|31.89446|Işikveren
+T|37.91639|37.68336|KM 155+800
+T|38.36487|28.73383|KM189+320
+T|38.35450|28.76598|KM199+510
+T|38.38355|28.83952|KM205+251
+T|38.12748|30.08701|Kabaklı
+T|41.21558|28.36468|Kabakça
+T|39.28662|37.66253|Kabakçevliği
+T|41.03394|28.99226|Kabataş
+T|38.47371|28.21333|Kabazlı
+T|38.02382|37.80620|Kadili
+T|38.31721|32.18314|Kadınhanı
+T|37.56400|36.93072|Kahramanmaraş
+T|37.82698|29.41485|Kaklık
+T|40.07640|33.44504|Kalecik
+T|38.88470|35.14171|Kalkancık
+T|39.20892|37.62998|Kalkım
+T|39.69140|36.75856|Kalın
+T|39.91070|40.84027|Kandilli
+T|39.27603|37.45086|Kangal
+T|39.28318|34.88254|Kanlıca
+T|38.87205|27.74412|Kapaklı
+T|41.47110|31.80361|Kapuz
+T|37.97112|37.67077|Kapıdere
+T|41.71937|26.36179|Kapıkule
+T|38.51013|44.29519|Kapıköy
+T|38.56427|38.93572|Karaali
+T|37.88010|28.13815|Karaali Durağı
+T|38.68465|27.52728|Karaağaçlı
+T|36.88030|36.14209|Karabasamak
+T|41.19544|32.61044|Karabük
+T|40.24574|28.36534|Karacabey
+T|36.84598|34.70881|Karacailyas
+T|39.42127|37.36289|Karagöl
+T|39.78241|30.40111|Karagözler
+T|37.19136|34.93928|Karaisalıbucağı
+T|38.44760|38.56499|Karakol
+T|38.07753|30.20888|Karakuyu
+T|40.00041|30.00792|Karaköy
+T|41.02286|28.97404|Karaköy Station, Tünel Line
+T|37.63397|34.48418|Karalar
+T|39.67523|36.64370|Karalıköy
+T|37.19366|33.21507|Karaman
+T|39.57570|34.57943|Karaosman
+T|39.61276|32.18334|Karapınar
+T|39.41268|37.19163|Karasar
+T|39.28792|34.84782|Karasenir
+T|39.93257|40.35013|Karasu
+T|40.25092|42.27835|Karaurgan
+T|40.02423|42.00449|Karaçuha
+T|39.18209|35.95411|Karaözü
+T|36.83108|37.99996|Karkamış
+T|38.18366|27.55660|Karpuzlu
+T|40.60494|43.10685|Kars
+T|40.88869|29.19108|Kartal
+T|38.45790|27.11513|Karşıyaka
+T|41.06854|36.02688|Kavak
+T|38.42865|28.35889|Kavaklıdere
+T|40.57244|35.75630|Kayabaşı
+T|41.29732|27.42968|Kayabeyli
+T|41.23524|32.20345|Kayadibi
+T|39.40238|37.16522|Kayapınar
+T|40.69967|33.46554|Kayaçivi
+T|39.91351|32.96568|Kayaş
+T|40.87137|29.25596|Kaynarca
+T|38.73068|35.47772|Kayseri
+T|38.78096|35.42934|Kayseri YHT
+T|39.50555|29.55530|Kayı
+T|41.37968|32.09400|Kayıkçılar
+T|38.85103|27.70286|Kayışlar
+T|38.19332|30.19637|Kazanpınar
+T|41.51745|31.91198|Kazköy
+T|40.99267|28.91689|Kazlıçeşme
+T|37.70320|32.56846|Kaşınhan
+T|37.15445|34.97615|Kelebek
+T|37.35475|37.29463|Kelleş
+T|39.60363|39.03369|Kemah
+T|39.36788|38.34705|Kemaliyeçaltı
+T|38.46946|27.40021|Kemalpaşa
+T|38.42180|27.15627|Kemer
+T|37.81907|34.54951|Kemerhisar
+T|37.82646|40.40377|Kervanpınar
+T|38.71160|38.01115|Kesikköprü
+T|38.75491|35.39574|Keykubat
+T|37.94787|30.30703|Keçiborlu
+T|41.32733|31.48105|Keşkek Durağı
+T|41.48942|31.84037|Kilimli
+T|38.36115|28.61461|Killik
+T|37.00071|35.36280|Kiremithane
+T|41.48163|32.09090|Kiremithane
+T|39.55314|28.36392|Kireç
+T|37.85559|28.09161|Kirkkahve
+T|37.94181|28.80970|Kizildere Durağı
+T|41.27856|36.35064|Km 1+164
+T|38.29359|35.03984|Km 110+920
+T|37.80367|29.32770|Kocabaş
+T|40.99993|28.93318|Kocamustafapaşa
+T|38.67214|30.32338|Kocatepe
+T|38.63427|39.56648|Konak
+T|38.35703|28.71105|Konaklar
+T|41.03823|28.76121|Konutbirlik
+T|37.86534|32.47590|Konya
+T|37.12943|36.66510|Kozdere
+T|38.60120|39.48426|Koçkale
+T|38.38335|27.14743|Koşu
+T|41.00337|28.96290|Kumkapı
+T|37.86441|37.69297|Kumlu
+T|40.04141|36.29426|Kunduz
+T|39.94191|33.29522|Kurbağalı
+T|41.21172|28.26355|Kurfallı
+T|40.77363|35.69793|Kurnaz
+T|38.83471|41.27040|Kurt
+T|37.92842|41.69736|Kurtalan
+T|37.93918|41.70266|Kurtalan YHT
+T|39.92882|32.86789|Kurtuluş
+T|40.84104|32.75948|Kurtçimeni
+T|40.73658|43.52408|Kurudere
+T|40.84600|33.25011|Kurşunlu
+T|37.90969|28.45948|Kuyucak
+T|40.33636|27.98019|Kuşcenneti
+T|38.45284|38.68107|Kuşsarayı
+T|38.20914|27.30934|Kuşçuburun
+T|41.21281|32.36250|Kölemen
+T|37.36137|37.00033|Köprüağzı
+T|39.96847|41.86819|Köprüköy
+T|39.49191|29.75651|Köprüören
+T|39.37313|37.39026|Köroğlu
+T|38.46038|28.29931|Köseali
+T|40.74890|30.00621|Köseköy
+T|39.91685|32.95006|Köstence
+T|37.85155|28.05148|Köşk
+T|38.46100|39.27428|Kürk
+T|39.42056|30.00101|Kütahya
+T|36.99520|35.20147|Küçükdikili
+T|38.00933|37.68365|Küçüklü
+T|40.94626|29.10717|Küçükyalı
+T|40.98854|28.77296|Küçükçekmece
+T|39.89922|33.32162|Kılıçlar
+T|41.42116|26.81440|Kırcasalih
+T|39.11550|27.68598|Kırkağaç
+T|40.76202|29.94552|Kırkikievler
+T|39.83715|33.50328|Kırıkkale
+T|39.86763|33.53591|Kırıkkale YHT
+T|40.49296|35.88314|Kızoğlu
+T|38.84846|30.04500|Kızılca
+T|40.51612|35.76043|Kızılca
+T|39.70411|30.41688|Kızılinler
+T|41.27319|27.96429|Kızılpınar
+T|41.01927|35.87199|Ladik
+T|39.95794|33.18742|Lalabel
+T|39.97063|33.11713|Lalahan
+T|39.96146|32.59870|Lale
+T|38.02190|40.08290|Leylek
+T|41.35542|27.33252|Lüleburgaz
+T|41.36633|27.34739|Lüleburgaz YHT
+T|38.40130|39.66905|Maden
+T|38.03649|37.83493|Madensuyu
+T|39.85922|33.60697|Mahmutlar
+T|38.35252|38.28325|Malatya
+T|40.92081|29.13329|Maltepe
+T|39.78432|32.38666|Malıköy
+T|39.93140|32.91161|Mamak
+T|37.13697|36.31797|Mamure
+T|41.35848|27.07977|Mandıra
+T|38.62136|27.43521|Manisa
+T|37.28452|40.70838|Mardin
+T|38.48222|27.08298|Mavişehir
+T|39.64595|28.77953|Mazlumlar
+T|37.50466|40.36603|Mazıdağı Çöp
+T|40.45069|30.05195|Mekece
+T|40.97523|28.77970|Menekşe Gar Binası
+T|38.60317|27.07672|Menemen
+T|39.78962|36.72449|Menteşe
+T|39.74895|40.25769|Mercan
+T|36.99831|35.26429|Merkez Otogar
+T|36.80316|34.63384|Mersin Garı
+T|37.94826|28.70589|Meryemoğlu Durağı
+T|38.19944|32.54662|Meydan
+T|39.54931|28.30847|Mezitler
+T|40.67763|43.23362|Mezra
+T|41.19338|36.21158|Meşelidüz
+T|40.75890|30.38008|Mithatpaşa
+T|37.83446|27.53201|Moralı
+T|39.93421|32.77847|Motor
+T|38.65117|27.32843|Muradiye
+T|38.65313|39.77890|Muratbağı
+T|41.16991|27.50025|Muratlı
+T|41.51957|31.92443|Muslu
+T|41.00617|28.77389|Mustafa Kemal
+T|37.07094|37.43080|Mustafa Yavuz
+T|38.76164|41.51105|Muş
+T|37.07441|37.37070|Mücahitler
+T|41.34278|27.37304|Müsellimköy
+T|38.46456|27.12845|Naldöken
+T|39.62164|28.89347|Nallıkaya
+T|37.39586|37.13953|Narlı
+T|37.91406|28.32709|Nazilli
+T|39.94243|33.03050|Nenek
+T|38.45959|27.10467|Nergiz
+T|37.88014|27.53639|Neşetiye
+T|37.00118|37.78903|Nizip
+T|37.96541|34.68500|Niğde
+T|37.17553|36.74999|Nurdağ
+T|37.07578|41.22820|Nusaybin
+T|39.61582|28.16260|Nusrat
+T|37.16406|37.34186|OSB-3
+T|37.16381|37.35224|OSB-4
+T|40.06248|28.16149|Okçugöl
+T|37.88636|27.50248|Ortaklar
+T|40.93587|32.56262|Ortaköy
+T|37.84956|27.77643|Osmanbük
+T|37.60693|34.36622|Osmancik
+T|40.36431|30.02744|Osmaneli
+T|40.37273|29.95941|Osmaneli high-speed railway station
+T|40.79924|29.38012|Osmangazi
+T|37.07940|36.23703|Osmaniye
+T|38.83987|29.90262|Oturak
+T|38.54576|29.34033|Ova Köy
+T|38.05571|34.76695|Ovacık
+T|41.32191|27.40076|Ovacık
+T|38.63510|29.39120|Ovakoy
+T|40.53603|35.74292|Ovasaray
+T|38.86347|40.96720|Oymapınar
+T|39.93189|41.17148|Palandöken
+T|38.69084|39.92701|Palu
+T|40.50258|30.17221|Pamukova
+T|40.49819|30.18689|Pamukova YHT
+T|37.90740|28.53669|Pamukören
+T|38.19750|27.23957|Pancar
+T|36.76693|36.20935|Payas
+T|36.75557|36.20926|Payas Şehi̇r
+T|37.49085|37.28997|Pazarcık
+T|39.06199|35.03662|Paşalı
+T|40.91601|35.64438|Paşapınar
+T|41.34602|26.91816|Pehlivanköy
+T|40.71519|43.46088|Peldirvan
+T|40.19449|30.01436|Pelitözü
+T|40.88024|29.23165|Pendik
+T|39.62746|28.79590|Piribeyler
+T|41.15434|32.54084|Pirinçlik
+T|38.40012|28.43296|Piyadeler
+T|39.58567|32.14173|Polatlı
+T|39.58016|32.18148|Polatlı YHT
+T|39.59867|30.27675|Porsuk
+T|40.77860|43.19824|Porsuklu
+T|39.71286|32.29080|Poyraz
+T|37.42291|34.87317|Pozantı
+T|38.03723|32.60492|Pınarbaşı
+T|38.15998|27.74268|Pınarlı
+T|38.47249|38.77508|Pınarlı
+T|38.50481|42.20877|Rahova
+T|39.56312|30.19087|Sabuncupınar
+T|39.93756|32.89479|Saimekadın
+T|37.84635|40.88994|Salat
+T|38.45069|27.17221|Salhane
+T|38.48301|28.13090|Salihli
+T|38.27548|39.67835|Sallar
+T|37.39787|37.26192|Salmanlı
+T|41.51903|32.09312|Saltukova
+T|40.78801|35.68843|Saluca
+T|41.28609|36.34326|Samsun
+T|40.46367|36.02237|Samurçay
+T|39.86713|36.43100|Sandal
+T|38.45847|30.26080|Sandıklı
+T|40.69306|30.27342|Sapanca
+T|40.69929|30.24451|Sapanca YHT
+T|39.95227|40.53341|Saptıran
+T|38.73600|35.29055|Saraycık
+T|37.91396|28.92597|Sarayköy
+T|38.25588|32.40401|Sarayönü
+T|39.57849|28.21816|Sarfaklar
+T|40.30840|30.07905|Sarmaşık
+T|38.31207|27.14462|Sarnıç
+T|38.66829|38.13481|Sarsap
+T|38.49715|28.04277|Sart
+T|38.73274|27.57739|Saruhanlı
+T|39.53064|36.82867|Sarıdemir
+T|40.33589|42.57694|Sarıkamış
+T|39.37772|34.77933|Sarıkent
+T|41.14806|27.65942|Sarılar
+T|38.89436|35.71591|Sarımsaklı
+T|39.08064|35.96423|Sarıoğlan
+T|36.66869|36.21366|Sarıseki
+T|39.38270|27.65019|Savaştepe
+T|39.74901|31.58930|Sazak
+T|37.82960|40.98699|Sazlık
+T|37.78307|27.46336|Sazlıköy
+T|41.35885|26.88113|Sazlımalkoç
+T|39.66594|31.88828|Sazılar
+T|38.08509|27.40049|Sağlık
+T|41.56868|32.03979|Sefercik
+T|39.73620|34.25464|Sekili
+T|40.43357|42.80411|Selim
+T|39.54477|28.53479|Selimağa
+T|37.09931|37.37246|Selimiye
+T|37.95094|27.37294|Selçuk
+T|37.89824|32.49815|Selçuklu YHT
+T|38.35700|27.13663|Semt Garajı
+T|37.10489|41.07109|Serçehan
+T|37.36830|36.96191|Sevindik
+T|37.86878|40.58799|Seyithasan
+T|41.27127|27.45228|Seyitler
+T|39.57845|29.87309|Seyitömer
+T|37.07620|37.42482|Seyrantepe
+T|41.10317|28.99451|Seyrantepe
+T|37.91412|41.89648|Siirt
+T|37.82918|40.97615|Sinan
+T|39.96454|32.58399|Sincan
+T|39.97620|32.55026|Sincan OSB
+T|39.61119|28.74745|Sindirler
+T|41.23106|28.19228|Sinekli
+T|41.01361|28.97714|Sirkeci
+T|41.01502|28.97796|Sirkeci
+T|37.00168|35.74308|Sirkeliköy
+T|39.73921|37.00700|Sivas
+T|38.44869|39.30686|Sivrice
+T|39.19872|27.62418|Soma
+T|39.82669|35.15859|Sorgun YHT
+T|40.27663|42.41019|Soğanlı
+T|39.51396|27.67267|Soğucak
+T|37.83402|41.02207|Soğuksu
+T|37.12685|37.38175|Stadyum
+T|40.96048|29.08441|Suadiye
+T|39.89236|36.42047|Subaşı
+T|37.27165|33.37510|Sudurağı
+T|38.54793|31.26824|Sultandağı
+T|37.88732|28.15573|Sultanhisar
+T|40.81500|35.65851|Suluova
+T|40.82818|33.32122|Sumucak
+T|40.14535|34.35290|Sungurlu
+T|39.92561|28.15289|Susurluk
+T|38.18699|37.97897|Suçatı
+T|37.75523|27.40981|Söke
+T|37.65799|37.45766|Söğütlü
+T|40.99065|29.03791|Söğütlüçeşme
+T|38.96296|27.77993|Süleymanlı
+T|38.71176|30.62773|Sülün
+T|40.21489|42.25054|Süngütaşı
+T|38.97245|27.75667|Sünnetçiler
+T|40.92678|29.12425|Süreyya Plajı
+T|38.12903|29.99104|Sütlaç
+T|38.65040|42.14362|Sıcaksu
+T|40.26995|28.05154|Sığırcı
+T|40.73494|43.54330|Tabur
+T|36.83191|36.67517|Tahtaköprü
+T|41.03678|28.98663|Taksim
+T|39.60982|39.82816|Tanyeri
+T|36.92071|34.88564|Tarsus
+T|39.68621|34.40178|Tatbekirli
+T|38.50874|42.27585|Tatvan
+T|38.51438|42.29704|Tatvan Pier
+T|40.76803|29.56995|Tavşancıl
+T|39.54022|29.48634|Tavşanlı
+T|41.59682|26.65358|Tayakadın
+T|36.86497|34.77383|Taşkent
+T|38.17100|27.44515|Taşkesik
+T|37.05835|37.44901|Taşlıca
+T|39.63121|37.01313|Taşlıdere
+T|37.17800|36.48098|Taşoluk
+T|39.40673|37.09239|Tecer
+T|38.18102|27.18567|Tekeli
+T|37.85293|27.52885|Tekin
+T|40.95842|27.48463|Tekirdağ
+T|40.96204|27.50353|Tekirdağ İskele
+T|40.26526|28.59845|Teknosab
+T|37.84655|27.85751|Tekstil Park
+T|39.73204|32.35255|Temelli
+T|39.27116|37.52559|Temürün
+T|38.14704|27.36153|Tepeköy
+T|38.75100|35.40467|Terminal
+T|40.72966|30.37624|Terminal
+T|40.86116|29.27329|Tersane
+T|38.09249|27.72780|Tire
+T|38.12676|27.71594|Tire Toki
+T|39.35820|36.30706|Topac
+T|41.42542|32.06906|Topbaşı
+T|40.31124|42.30237|Topdağı
+T|37.06661|36.14550|Toprakkale
+T|37.07621|37.36148|Topraklık
+T|39.95140|36.27215|Topulyurdu Durağı
+T|38.17012|27.34734|Torbalı
+T|39.63513|29.47249|Tunçbilek
+T|38.46689|27.14941|Turan
+T|38.51000|27.70717|Turgutlu
+T|40.38959|36.07804|Turhal
+T|38.94300|35.84662|Tuzhisar
+T|40.82995|29.32243|Tuzla
+T|39.00175|35.89884|Tuzla (Kayseri)
+T|40.35456|33.52849|Tüney
+T|41.54438|31.98680|Türkali
+T|37.07347|36.61766|Türkbahçe
+T|39.82916|32.41314|Türkobası
+T|37.37542|36.86197|Türkoğlu
+T|37.01201|37.64190|Türkyurdu
+T|38.35635|28.74983|Türmentepe
+T|40.74742|29.78738|Tütünçiftlik
+T|38.74510|30.38503|Tınaztepe
+T|36.83775|34.68838|Tırmıl
+T|37.83854|40.47224|Ulam
+T|39.44319|37.03539|Ulaş
+T|39.43667|37.04403|Ulaşşehir
+T|38.99033|37.83010|Ulugüney
+T|38.78818|41.18507|Ulukaya
+T|38.54785|27.03547|Ulukent
+T|39.48535|30.15648|Uluköy
+T|37.54571|34.48036|Ulukışla
+T|38.49245|39.20046|Uluova
+T|37.85277|27.95525|Umurlu
+T|38.51813|27.83831|Urganlı
+T|38.86914|40.86666|Uyanık
+T|39.96131|41.43338|Uzunahmet
+T|40.70201|30.30914|Uzunkum
+T|41.29604|26.68961|Uzunköprü
+T|40.75677|35.72872|Uzunoba
+T|37.83359|40.34802|Uğur
+T|38.66391|29.40742|Uşak
+T|38.52168|43.38317|Van
+T|38.51689|43.30842|Van Wharf
+T|41.24663|27.88567|Velimeşe
+T|40.24687|30.02763|Vezirhan
+T|40.71645|43.32965|Yahniler
+T|39.84557|33.44711|Yahşihan
+T|39.53723|38.75203|Yahşiler
+T|38.19857|27.69630|Yakaköy
+T|36.96767|35.61247|Yakapınar
+T|39.69529|31.34029|Yalınlı
+T|38.75572|41.13109|Yamanlar
+T|40.82175|33.35817|Yamukören
+T|38.52039|27.97954|Yaraşlı
+T|37.18960|36.42497|Yarbaşı
+T|40.77249|29.72953|Yarımca
+T|40.06937|30.01446|Yayla
+T|38.00834|41.23028|Yaylıca
+T|38.33073|38.17624|Yazlak
+T|38.59576|38.18169|Yazıhan
+T|39.90415|33.89224|Yağlı
+T|38.16694|27.37022|Yedi Eylül
+T|40.99353|28.92692|Yedikule
+T|38.71923|40.32701|Yeni Suveren
+T|36.97478|35.05541|Yenice
+T|40.15972|36.24863|Yenice
+T|39.69032|32.24975|Yenidoğan
+T|39.21277|35.00244|Yenifakılı
+T|39.24477|37.38951|Yenikangal
+T|41.00476|28.95240|Yenikapı
+T|41.00516|28.95156|Yenikapı
+T|39.34793|37.11282|Yenikarasar
+T|39.01036|27.07044|Yenikent
+T|40.00305|32.52691|Yenikent Merkez
+T|40.02101|32.51609|Yenikent Sanayi
+T|38.42335|28.37608|Yenikoy
+T|39.77841|28.00467|Yeniköy
+T|38.82160|41.21564|Yeniköşk
+T|40.98172|28.88104|Yenimahalle
+T|39.81743|34.09251|Yeniyapan
+T|39.20953|36.09286|Yeniçubuk
+T|38.88370|27.08521|Yenişakran
+T|39.92911|32.85785|Yenişehir
+T|40.26267|29.54962|Yenişehir HYT
+T|40.24932|29.66138|Yenişehir hight-speed railway station
+T|39.63841|34.47100|Yerköy
+T|39.68710|34.46574|Yerköy
+T|37.00706|37.95498|Yeşildağ
+T|38.36531|35.08437|Yeşilhisar
+T|38.46378|28.25776|Yeşilkavak
+T|40.96265|28.82487|Yeşilköy
+T|41.20549|32.31888|Yeşilyenice
+T|40.00736|36.21674|Yeşilyurt
+T|40.96545|28.83733|Yeşilyurt
+T|36.98927|37.84324|Yolçatı
+T|38.54212|39.03583|Yolçatı
+T|39.75820|34.84011|Yozgat YHT
+T|40.88456|29.21041|Yunus
+T|39.70067|31.47844|Yunusemre
+T|38.63628|39.35672|Yurt
+T|36.98466|37.68588|Yuva
+T|39.93235|32.70459|Yıldırım
+T|38.87761|30.12473|Yıldırım Kemal
+T|39.86719|36.59331|Yıldızeli
+T|39.85892|36.56232|Yıldızeli YHT
+T|40.18665|35.92117|Yıldıztepe
+T|40.98586|28.90546|Zeytinburnu-Fişekhane
+T|36.98927|35.14226|Zeytinli
+T|40.28146|35.93141|Zile
+T|38.73940|35.43378|Ziya Gökalp (Yeni Sanayi)
+T|37.84223|40.27202|Ziyaret
+T|41.44697|31.79416|Zonguldak
+T|39.83038|40.18453|Çadırkaya
+T|37.62379|34.28806|Çakmak
+T|37.89095|28.23457|Çakıralı Durağı
+T|39.54798|38.83580|Çakşur
+T|39.43938|27.63975|Çalıköy
+T|41.22175|32.22622|Çamlaralti
+T|39.94196|36.39436|Çamlıbel
+T|37.87999|27.37792|Çamlık
+T|39.60981|28.04861|Çandır
+T|40.59633|33.61409|Çankırı
+T|37.82154|29.67894|Çardak
+T|40.81212|33.12598|Çardak
+T|38.17242|27.72083|Çatal
+T|41.49914|31.87456|Çatalağzı
+T|41.15057|28.48020|Çatalca
+T|41.32389|31.46148|Çataldere Istasyon
+T|40.83061|33.17874|Çavundur
+T|38.37945|31.84645|Çavuşcugöl
+T|38.62834|31.03555|Çay
+T|38.51734|44.16830|Çaybağı
+T|41.42419|32.09534|Çaycuma
+T|41.26003|28.12190|Çayırdere
+T|40.81053|29.34737|Çayırova
+T|38.58796|39.36331|Çağlar
+T|38.56281|43.45629|Çeken
+T|37.70058|37.50895|Çelik
+T|41.15751|36.20424|Çelikalan
+T|40.90661|35.64136|Çeltek
+T|40.87232|35.63516|Çeltek Kömür İşl.
+T|39.89110|34.00011|Çerikli
+T|41.27956|28.01049|Çerkezköy
+T|40.81139|32.88444|Çerkeş
+T|39.24906|37.60785|Çetinkaya
+T|37.51167|34.77368|Çiftehan
+T|37.86268|28.10976|Çiftekahve
+T|41.10557|36.16100|Çiftlik
+T|38.58113|44.09082|Çimenova
+T|38.71895|41.62598|Çizmeburun
+T|39.95059|36.40003|Çizözü
+T|39.34940|38.18869|Çiğdem
+T|38.59758|30.26685|Çiğiltepe
+T|38.49166|27.06343|Çiğli
+T|36.63619|37.47628|Çobanbey
+T|38.56953|27.57516|Çobanisa
+T|38.68823|30.73887|Çobanlar
+T|41.17772|27.77843|Çorlu
+T|40.51686|34.90353|Çorum
+T|41.08392|36.16269|Çukurbük
+T|39.82363|30.30494|Çukurhisar
+T|39.57290|27.75860|Çukurhüseyin
+T|36.90386|35.06784|Çukurova Havalimanı
+T|37.57201|32.78460|Çumra
+T|37.84837|40.80267|Çöltepe
+T|39.26794|30.17852|Çöğürler
+T|38.12774|37.91340|Çığlık
+T|38.22205|27.96557|Ödemiş
+T|38.22721|27.97715|Ödemiş Şehir
+T|39.84184|28.07496|Ömerköy
+T|41.11728|28.64141|Ömerli
+T|36.77818|37.85218|Öncüler durağı
+T|38.69612|35.24866|Örenşehir
+T|38.65335|43.98973|Özalp
+T|38.70837|41.80566|Özden
+T|39.95614|36.30193|Özdere
+T|40.66517|35.83275|Özel İdare
+T|39.95175|32.64927|Özgüneş
+T|41.18120|32.63786|Ülkü
+T|39.92250|32.93217|Üreğil
+T|41.02564|29.01315|Üsküdar
+T|37.89509|29.03295|Üzerlik
+T|41.31117|32.10361|Üçburgu
+T|40.93784|29.11423|İdealtepe
+T|39.01349|30.40320|İhsaniye
+T|39.28609|36.23565|İhsanlı
+T|39.47217|38.55653|İliç
+T|38.17367|27.86593|İlkkurşun
+T|39.68682|31.78200|İlören
+T|37.84673|27.90780|İmamköy
+T|38.42103|29.22679|İnay
+T|41.47960|31.82251|İnağzı
+T|38.62881|35.19649|İncesu
+T|38.56455|35.18845|İncesu OSB
+T|36.98389|35.43516|İncirlik
+T|37.85384|27.72505|İncirliova
+T|38.36887|27.14152|İnkılap
+T|39.84380|30.14120|İnönü
+T|37.89514|28.26777|İsabeyli
+T|36.72392|36.21358|İsdemir
+T|38.75693|27.62756|İshakçelebi
+T|36.58727|36.18132|İskenderun
+T|37.03068|36.63687|İslahiye
+T|40.86887|32.62737|İsmetpaşa
+T|40.76139|29.91770|İzmit
+T|39.91036|33.83875|İzzettin
+T|40.84569|29.30004|İçmeler
+T|40.74897|43.55109|Şahnalar
+T|36.99617|35.28898|Şakirpaşa
+T|39.36409|36.40316|Şarkışla
+T|39.49854|34.74969|Şefaatli
+T|38.57352|38.89946|Şefkat
+T|37.84894|27.78720|Şehir Hastanesi
+T|36.99794|35.24404|Şehitlik
+T|37.21237|37.26139|Şehitrarif
+T|38.47489|27.08994|Şemikler
+T|37.07833|40.64543|Şenyurt
+T|41.47098|26.76315|Şerbettar
+T|38.39195|27.14725|Şirinyer
