@@ -64,7 +64,7 @@ fun legDistanceM(samples: List<LocationSampleEntity>, leg: TripLegEntity, transi
     legDistanceM(samples, leg.mode, GeoPoint(leg.fromLat, leg.fromLng), GeoPoint(leg.toLat, leg.toLng), leg.startedAtMs, leg.completedAtMs, transit)
 
 /**
- * A finished metro, water-metro or ferry ride, measured along the track (or
+ * A finished train, metro, water-metro or ferry ride, measured along the track (or
  * the boat's course) from the station nearest where it began to the one
  * nearest where it ended. Null for anything else,
  * a ride still going (its end is only where it is heading), or a ride whose

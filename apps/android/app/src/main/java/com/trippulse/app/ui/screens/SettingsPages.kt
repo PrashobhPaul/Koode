@@ -954,7 +954,7 @@ private fun LicensesPage() {
         "Map data © OpenStreetMap contributors" to "Open Database License (ODbL)",
         "Map tiles: OpenFreeMap, © OpenMapTiles" to "MIT License; OpenMapTiles schema CC-BY 4.0",
         "Toll plaza locations: OpenStreetMap contributors" to "Open Database License (ODbL)",
-        "Metro lines and railway stations: OpenStreetMap contributors" to "Open Database License (ODbL)"
+        "Metro, railway and ferry lines, railway and bus stations: OpenStreetMap contributors" to "Open Database License (ODbL)"
     )
     SettingsGroup {
         items.forEachIndexed { i, (what, license) ->
