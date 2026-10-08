@@ -340,7 +340,7 @@ def ferry_crossings(answer):
 
 
 # Platforms and tracks are where a train stops, not what the station is called.
-PLATFORM = re.compile(r"\s*[-–,]?\s*\b(voie|gleis|quai|platform|track|bahnsteig|binario|spoor|hall)\s*\d+[\w\s\-–]*$"
+PLATFORM = re.compile(r"\s*[-–,]?\s*\b(voie|gleis|quai|platform|track|bahnsteig|binario|spoor|hall)\s*\d+[\w\s\-–]*(,.*)?$"
                       r"|\s*\((tief|oben|unten|lower level|upper level|rer)\)\s*$", re.I)
 
 

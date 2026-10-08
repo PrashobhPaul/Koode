@@ -188,6 +188,7 @@ class BuildTest(unittest.TestCase):
         self.assertIn("Tokyo", [s[2] for s in stations])
         self.assertEqual(b.PLATFORM.sub("", "Paris Gare du Nord - Voie 10"), "Paris Gare du Nord")
         self.assertEqual(b.PLATFORM.sub("", "München Hbf Gleis 27-36"), "München Hbf")
+        self.assertEqual(b.PLATFORM.sub("", "München Hbf Gleis 27-36, Starnberger Bahnhof"), "München Hbf")
         self.assertEqual(b.PLATFORM.sub("", "Berlin Hauptbahnhof (Tief)"), "Berlin Hauptbahnhof")
         self.assertEqual(b.PLATFORM.sub("", "Via Roma"), "Via Roma")
 
