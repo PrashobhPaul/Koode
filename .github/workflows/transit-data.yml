@@ -22,6 +22,11 @@ on:
 permissions:
   contents: read
 
+# One rebuild at a time per branch: two at once only crowd Overpass.
+concurrency:
+  group: transit-data-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   plan:
     runs-on: ubuntu-latest
