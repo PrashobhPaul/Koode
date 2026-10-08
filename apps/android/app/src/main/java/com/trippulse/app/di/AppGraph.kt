@@ -20,6 +20,7 @@ import com.trippulse.app.notifications.Notifier
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 /**
  * Manual dependency graph (composition root). Hilt is intentionally avoided to
@@ -110,6 +111,11 @@ class AppGraph(context: Context) {
     /** Toll plazas for location-based toll counting (bundled, refreshed weekly). */
     val tollPlazas: com.trippulse.app.data.TollPlazaRepository =
         com.trippulse.app.data.TollPlazaRepository(appContext, cloud, appScope)
+
+    init {
+        // Metro lines and stations, so a ride is named and measured by its stations.
+        appScope.launch(Dispatchers.IO) { com.trippulse.app.data.TransitData.load(appContext) }
+    }
 
     val tripManager: TripManager = TripManager(
         appContext = appContext,

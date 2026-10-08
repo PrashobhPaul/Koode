@@ -429,6 +429,85 @@
     return m;
   }
 
+  // ---- metro lines (a port of TransitNetwork in the app) ----
+  // A metro ride is a few fixes far apart; drawn straight between them it
+  // cuts every bend. It is drawn along its line's stations instead, from
+  // data/metro_network.txt (OpenStreetMap, ODbL), fetched the first time a
+  // metro stretch is drawn.
+  var metro = { state: 'none', stations: [], adj: [] };
+  var METRO_STATION_M = 450, METRO_LINE_END_M = 1200, METRO_INTERCHANGE_M = 250;
+  function parseMetro(text) {
+    var stations = [], lines = [];
+    text.split('\n').forEach(function (raw) {
+      var f = raw.trim().split('|');
+      if (f[0] === 'S' && f.length >= 4) {
+        var lat = parseFloat(f[1]), lng = parseFloat(f[2]);
+        if (isFinite(lat) && isFinite(lng)) stations.push([lat, lng, f[3]]);
+      } else if (f[0] === 'L' && f.length >= 5) lines.push(f[4].trim().split(' '));
+    });
+    var adj = stations.map(function () { return {}; });
+    function link(a, b, m) {
+      if (a === b || !(a in adj) || !(b in adj)) return;
+      if (adj[a][b] === undefined || m < adj[a][b]) adj[a][b] = m;
+    }
+    lines.forEach(function (cells) {
+      var last = -1;
+      cells.forEach(function (c) {
+        var parts = c.split(':'), st = parseInt(parts[0], 10), m = parseFloat(parts[1]);
+        if (isNaN(st)) { last = -1; return; }
+        if (last >= 0 && isFinite(m)) { link(last, st, m); if (adj[st][last] === undefined) link(st, last, m); }
+        last = st;
+      });
+    });
+    for (var i = 0; i < stations.length; i++) for (var j = i + 1; j < stations.length; j++) {
+      if (Math.abs(stations[i][0] - stations[j][0]) > 0.003 || Math.abs(stations[i][1] - stations[j][1]) > 0.003) continue;
+      if (distM(stations[i], stations[j]) <= METRO_INTERCHANGE_M) { link(i, j, 0); link(j, i, 0); }
+    }
+    return { state: 'ready', stations: stations, adj: adj };
+  }
+  function loadMetro() {
+    if (metro.state !== 'none' || !window.fetch) return;
+    metro.state = 'loading';
+    fetch('data/metro_network.txt').then(function (r) { return r.ok ? r.text() : ''; })
+      .then(function (t) { metro = t ? parseMetro(t) : { state: 'none', stations: [], adj: [] }; })
+      .catch(function () { metro.state = 'none'; });
+  }
+  function nearestStation(p, maxM) {
+    var best = -1, bestM = maxM;
+    for (var i = 0; i < metro.stations.length; i++) {
+      var s = metro.stations[i];
+      if (Math.abs(s[0] - p[0]) > 0.02 || Math.abs(s[1] - p[1]) > 0.02) continue;
+      var m = distM(p, s);
+      if (m <= bestM) { best = i; bestM = m; }
+    }
+    return best;
+  }
+  /** The stations of the shortest ride from a to b along the lines, or null. */
+  function rideStations(a, b) {
+    var n = metro.stations.length, dist = new Array(n).fill(Infinity), prev = new Array(n).fill(-1), done = new Array(n).fill(false);
+    dist[a] = 0;
+    for (;;) {
+      var u = -1;
+      for (var i = 0; i < n; i++) if (!done[i] && dist[i] < Infinity && (u < 0 || dist[i] < dist[u])) u = i;
+      if (u < 0 || u === b) break;
+      done[u] = true;
+      for (var k in metro.adj[u]) { var v = +k, d = dist[u] + metro.adj[u][k]; if (d < dist[v]) { dist[v] = d; prev[v] = u; } }
+    }
+    if (dist[b] === Infinity) return null;
+    var path = [];
+    for (var at = b; at !== -1; at = prev[at]) path.unshift(at);
+    return path;
+  }
+  /** A metro stretch along its line's stations (TransitNetwork.followLine); [lat, lng] points. */
+  function followLine(points) {
+    if (points.length < 2 || metro.state !== 'ready') return points;
+    var s = nearestStation(points[0], METRO_STATION_M), e = nearestStation(points[points.length - 1], METRO_LINE_END_M);
+    if (s < 0 || e < 0 || s === e) return points;
+    var path = rideStations(s, e);
+    if (!path) return points;
+    return [points[0]].concat(path.map(function (i) { return [metro.stations[i][0], metro.stations[i][1]]; }), [points[points.length - 1]]);
+  }
+
   /** The trail cut into one line per stage, neighbours sharing their joining point. */
   function trailFeatures(trail, times, stages, fallback) {
     if (trail.length < 2) return EMPTY;
@@ -437,8 +516,10 @@
     var mode = useTimes ? modeAt(stages, times[0], fallback) : fallback;
     function push(a, b, m) {
       if (b - a < 1) return;
+      var stretch = trail.slice(a, b + 1);
+      if (m === 'METRO') { loadMetro(); stretch = followLine(stretch); }
       features.push({ type: 'Feature', properties: { look: lookOf(m) },
-        geometry: { type: 'LineString', coordinates: trail.slice(a, b + 1).map(function (p) { return [p[1], p[0]]; }) } });
+        geometry: { type: 'LineString', coordinates: stretch.map(function (p) { return [p[1], p[0]]; }) } });
     }
     if (useTimes) {
       for (var i = 1; i < trail.length; i++) {
@@ -595,6 +676,8 @@
     _place: place,
     /** Road geometry, for parity checks against MapStages. */
     _alongRoad: alongRoad, _pointAlong: pointAlong,
+    /** Metro geometry, for checks against TransitNetwork. */
+    _metro: { parse: function (t) { metro = parseMetro(t); return metro.stations.length; }, followLine: function (p) { return followLine(p); } },
     /** The trail's stretches as last drawn, for checks: [look, points] per stretch. */
     _trail: function () { return lastTrail.features.map(function (f) { return [f.properties.look, f.geometry.coordinates.length]; }); },
     MODES: {

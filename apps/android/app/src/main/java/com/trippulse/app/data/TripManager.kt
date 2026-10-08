@@ -176,6 +176,23 @@ class TripManager(
      */
     private data class GapCredit(val atMs: Long, val lineM: Double, val creditedM: Double, val remainingBeforeM: Double, val coveredAfterM: Double)
     private var gapCredit: GapCredit? = null
+    /**
+     * The metro ride under way: the station it began at, and what the
+     * journey had covered before it. Each fix near a station raises the count
+     * to at least the track ridden so far (see [metroFloor]).
+     */
+    private data class MetroAnchor(val legIndex: Int, val station: Int, val coveredBeforeM: Double)
+    private var metroAnchor: MetroAnchor? = null
+    /**
+     * A metro ride just ended on a stale fix (underground, or the phone kept
+     * quiet on the train): the station it was named after may be one short.
+     * The first good fix after it settles which station it really was.
+     */
+    private data class MetroExit(
+        val tripId: String, val endedIndex: Int, val startedIndex: Int,
+        val anchor: MetroAnchor, val station: Int, val label: String, val atMs: Long
+    )
+    private var metroExit: MetroExit? = null
     private var lastEtaCalcMs: Long = 0
     private var batteryLowFired = false
     private var arrivalPromptShown = false
@@ -235,7 +252,7 @@ class TripManager(
      */
     suspend fun repairStages(tripId: String): Boolean {
         val rows = db.legDao().forTrip(tripId)
-        if (rows.size < 2) return false
+        if (rows.size < 2) { runCatching { reconcileDistance(tripId) }; return false }
         var changed = false
         lock.withLock {
             val now = db.legDao().forTrip(tripId)
@@ -257,12 +274,54 @@ class TripManager(
                     ?.let { db.legDao().upsert(it.copy(toName = name)); changed = true }
             }
         }
+        if (nameMetroStations(tripId)) changed = true
         if (changed) lock.withLock {
             val t = trip
             if (t?.tripId == tripId) {
                 legs = db.legDao().forTrip(tripId)
                 if (t.cloudEnabled) appScope.launch { sync.writeMetaUpdate(t, metaMap(t)) }
             }
+        }
+        // A metro ride is measured by its track: a journey counted from its
+        // fixes alone is put right here (it only ever grows).
+        runCatching { reconcileDistance(tripId) }
+        return changed
+    }
+
+    /**
+     * Where a metro ride began or ended part-way through a journey, named
+     * after the station there -- for journeys recorded before Koode knew the
+     * stations, when the area name ("Tarnaka") stood in for the station
+     * ("Habsiguda Metro"). The journey's own start and end, and any name that
+     * is one of the traveller's saved places, are left as they are.
+     */
+    private suspend fun nameMetroStations(tripId: String): Boolean {
+        val net = TransitData.load(appContext)
+        if (net.isEmpty) return false
+        val savedNames = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty().map { it.name.trim() }.toSet()
+        var changed = false
+        lock.withLock {
+            val rows = db.legDao().forTrip(tripId).sortedBy { it.legIndex }.toMutableList()
+            fun rename(i: Int, p: GeoPoint, old: String, start: Boolean) {
+                if (old.trim() in savedNames) return
+                val label = net.stationLabel(p, listOf(TransportCatalog.METRO.key)) ?: return
+                if (label == old) return
+                rows[i] = if (start) rows[i].copy(fromName = label) else rows[i].copy(toName = label)
+                // The stage on the other side of the switch shares the point and its name.
+                val j = if (start) i - 1 else i + 1
+                rows.getOrNull(j)?.let { o ->
+                    if (start && o.toName == old) rows[j] = o.copy(toName = label)
+                    if (!start && o.fromName == old) rows[j] = o.copy(fromName = label)
+                }
+                changed = true
+            }
+            for (i in rows.indices) {
+                val r = rows[i]
+                if (!isMetro(r.mode) || r.startedAtMs == null) continue
+                if (i > 0) rename(i, GeoPoint(r.fromLat, r.fromLng), r.fromName, start = true)
+                if (r.completedAtMs != null && i < rows.lastIndex) rename(i, GeoPoint(rows[i].toLat, rows[i].toLng), rows[i].toName, start = false)
+            }
+            if (changed) db.legDao().upsertAll(rows)
         }
         return changed
     }
@@ -322,6 +381,14 @@ class TripManager(
     companion object {
         /** A saved place this close is a better name for a point than a road is. */
         private const val NEAR_PLACE_M = 500.0
+        /** A saved place this close is named over a station: "Home" is right by the metro. */
+        private const val SAVED_BEATS_STATION_M = 150.0
+        /** A fix rougher than this cannot say which station a train is at. */
+        private const val METRO_FIX_ACCURACY_M = 150f
+        /** A last fix older than this, when a ride ends, may be a station back. */
+        private const val METRO_STALE_FIX_MS = 60_000L
+        /** How long after a ride a good fix may still say where it ended. */
+        private const val METRO_EXIT_SETTLE_MS = 3 * 60_000L
 
         /** Auto-named ends we never keep as a reusable destination. */
         private val DEST_PLACEHOLDERS = setOf("Destination", "Pinned destination", "En route")
@@ -569,7 +636,25 @@ class TripManager(
         }
 
         val now = System.currentTimeMillis()
-        val hereName = nameForPoint(GeoPoint(lat, lng))
+        val here = GeoPoint(lat, lng)
+        val hereName = nameForPoint(here, listOfNotNull(current?.mode, newMode).filter { isMetro(it) || TransportCatalog.profile(it).key == TransportCatalog.TRAIN.key })
+
+        // A metro ride that ends here is counted to this station at least.
+        var coveredNow = s0.distanceCoveredM
+        if (current != null && isMetro(current.mode)) {
+            val net = TransitData.load(appContext)
+            val anchor = metroAnchorFor(t, current, net, s0.distanceCoveredM, now)
+            val end = net.nearestMetro(here)
+            if (anchor != null && end != null) {
+                net.ride(anchor.station, end)?.let { coveredNow = maxOf(coveredNow, anchor.coveredBeforeM + it.metres) }
+                // A stale last fix may have been taken a station or more back.
+                val stale = s0.lastLocationAtMs?.let { now - it > METRO_STALE_FIX_MS } ?: true
+                val named = hereName == com.trippulse.app.domain.TransitNetwork.metroLabel(net.stations[end].name)
+                metroExit = if (stale && named) MetroExit(t.tripId, current.legIndex, current.legIndex + 1, anchor, end, hereName, now) else null
+            }
+            if (coveredNow > s0.distanceCoveredM) lastDistancePoint = here
+        }
+        metroAnchor = null
 
         // The stage that ends here ends *here*: the cab that dropped you at the
         // metro went to the metro, not to the destination it was heading for.
@@ -636,7 +721,11 @@ class TripManager(
             }, false
         )
 
-        var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = false, updatedAtMs = now)
+        var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = false, updatedAtMs = now,
+            distanceCoveredM = coveredNow, progressPct = progress(coveredNow, s0.distanceRemainingM))
+        if (isMetro(newMode)) {
+            TransitData.load(appContext).nearestMetro(here)?.let { metroAnchor = MetroAnchor(nextIndex, it, coveredNow) }
+        }
         if (modeChanged) {
             // A new mode is a revision of the plan, and the coach re-reads it
             // at once: car → train ends driving-break guidance immediately.
@@ -685,10 +774,77 @@ class TripManager(
      * place nearby is free and often better anyway -- "Home" beats a road
      * name. Otherwise the honest answer is that they were between places.
      */
-    private suspend fun nameForPoint(p: GeoPoint): String {
+    private suspend fun nameForPoint(p: GeoPoint, modes: Collection<String> = emptyList()): String {
         val saved = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
             .map { PlaceResolver.SavedPlace(it.name, it.lat, it.lng) }
+        // Getting on or off a metro or a train happens at a station, and the
+        // station is what a rider calls it: "Habsiguda Metro", not the area
+        // the geocoder files it under. A saved place right there still wins.
+        if (modes.isNotEmpty()) {
+            PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, SAVED_BEATS_STATION_M)?.let { return it }
+            TransitData.load(appContext).stationLabel(p, modes)?.let { return it }
+        }
         return PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, NEAR_PLACE_M) ?: EN_ROUTE
+    }
+
+    private fun isMetro(mode: String?) = mode != null && TransportCatalog.profile(mode).key == TransportCatalog.METRO.key
+
+    /**
+     * Never less than the track: on a metro ride, a fix near a station
+     * raises what the journey has covered to at least what it had before the
+     * ride plus the track from the boarding station to this one. The fixes
+     * on a train are few and far apart, and the straight lines between them
+     * cut every bend; a count may run a little long, never short.
+     */
+    private suspend fun metroFloor(t: ActiveTripEntity, covered: Double, fix: Fix): Double {
+        val leg = activeLeg()
+        if (leg == null || !isMetro(leg.mode) || leg.startedAtMs == null) { metroAnchor = null; return covered }
+        if (fix.accuracyM > METRO_FIX_ACCURACY_M) return covered
+        val net = TransitData.current.takeIf { !it.isEmpty } ?: return covered
+        val anchor = metroAnchorFor(t, leg, net, covered, fix.timeMs)?.also { metroAnchor = it } ?: return covered
+        val here = net.nearestMetro(fix.point) ?: return covered
+        val ride = net.ride(anchor.station, here)?.metres ?: return covered
+        return maxOf(covered, anchor.coveredBeforeM + ride)
+    }
+
+    /**
+     * Where the metro ride [leg] began, and what the journey had covered
+     * before it. Known from the moment of boarding; when picked up mid-ride
+     * (after a restart) it is what is counted now less the ride's own fixes.
+     */
+    private suspend fun metroAnchorFor(
+        t: ActiveTripEntity, leg: TripLegEntity, net: com.trippulse.app.domain.TransitNetwork, coveredNowM: Double, nowMs: Long
+    ): MetroAnchor? {
+        metroAnchor?.takeIf { it.legIndex == leg.legIndex }?.let { return it }
+        val station = net.nearestMetro(GeoPoint(leg.fromLat, leg.fromLng)) ?: return null
+        val started = leg.startedAtMs ?: return null
+        val ridden = StageRepair.pathLengthM(db.locationDao().allForTrip(t.tripId), { it.tMs }, { it.lat }, { it.lng }, started, nowMs) ?: 0.0
+        return MetroAnchor(leg.legIndex, station, (coveredNowM - ridden).coerceAtLeast(0.0))
+    }
+
+    /**
+     * The first good fix after a metro ride that ended on a stale one: if it
+     * is at a station further down the line than the one the ride was named
+     * after, that is where the ride really ended -- both stages that meet
+     * there take its name, and the count its track.
+     */
+    private suspend fun settleMetroExit(covered: Double, fix: Fix, now: Long): Double {
+        val x = metroExit ?: return covered
+        if (now - x.atMs > METRO_EXIT_SETTLE_MS || trip?.tripId != x.tripId) { metroExit = null; return covered }
+        if (fix.accuracyM > METRO_FIX_ACCURACY_M) return covered
+        metroExit = null
+        val net = TransitData.current.takeIf { !it.isEmpty } ?: return covered
+        val station = net.nearestMetro(fix.point) ?: return covered
+        if (station == x.station) return covered
+        val was = net.ride(x.anchor.station, x.station)?.metres ?: return covered
+        val further = net.ride(x.anchor.station, station)?.metres ?: return covered
+        if (further <= was) return covered
+        val label = com.trippulse.app.domain.TransitNetwork.metroLabel(net.stations[station].name)
+        val rows = db.legDao().forTrip(x.tripId)
+        rows.firstOrNull { it.legIndex == x.endedIndex && it.toName == x.label }?.let { db.legDao().upsert(it.copy(toName = label)) }
+        rows.firstOrNull { it.legIndex == x.startedIndex && it.fromName == x.label }?.let { db.legDao().upsert(it.copy(fromName = label)) }
+        legs = db.legDao().forTrip(x.tripId)
+        return maxOf(covered, x.anchor.coveredBeforeM + further)
     }
 
     /** Why a mid-journey mode change did or did not happen. */
@@ -864,6 +1020,8 @@ class TripManager(
         val remainingM = remainingDistanceM(fix.point)
         val remainingS = remainingTravelSeconds(remainingM)
         covered = refineGapCredit(covered, remainingM, now)
+        covered = metroFloor(t, covered, fix)
+        covered = settleMetroExit(covered, fix, now)
 
         // ----- arrival detection -----
         s = maybeArrival(t, s, fix.point, now)
@@ -2212,7 +2370,7 @@ class TripManager(
     suspend fun reconcileDistance(tripId: String): Double = lock.withLock {
         val s = db.stateDao().byId(tripId) ?: return@withLock 0.0
         val samples = db.locationDao().allForTrip(tripId)
-        val m = coveredDistanceM(s.distanceCoveredM, samples, cfg)
+        val m = coveredDistanceM(s.distanceCoveredM, samples, cfg, db.legDao().forTrip(tripId), TransitData.load(appContext))
         if (m - s.distanceCoveredM < 50.0) return@withLock s.distanceCoveredM
         val fixed = s.copy(distanceCoveredM = m, progressPct = progress(m, s.distanceRemainingM))
         db.stateDao().upsert(fixed)
@@ -2236,7 +2394,7 @@ class TripManager(
         val prefs = appContext.getSharedPreferences("tp_distance_ledger", Context.MODE_PRIVATE)
         if (prefs.getBoolean(t.tripId, false)) return s
         prefs.edit().putBoolean(t.tripId, true).apply()
-        val m = coveredDistanceM(s.distanceCoveredM, samples, cfg)
+        val m = coveredDistanceM(s.distanceCoveredM, samples, cfg, db.legDao().forTrip(t.tripId), TransitData.load(appContext))
         if (m - s.distanceCoveredM < 50.0) return s
         val fixed = s.copy(distanceCoveredM = m, progressPct = progress(m, s.distanceRemainingM))
         db.stateDao().upsert(fixed)

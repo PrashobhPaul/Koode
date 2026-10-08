@@ -1052,14 +1052,15 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         val expense = graph.db.expenseDao().allForTrip(tripId).map {
             JourneyAnalytics.ExpenseInput(it.type, it.item, it.amount, it.quantity, it.unit, it.tMs)
         }
-        val legRows = graph.db.legDao().forTrip(tripId).map {
+        val legEntities = graph.db.legDao().forTrip(tripId)
+        val legRows = legEntities.map {
             JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat,
-                distanceM = com.trippulse.app.data.legDistanceM(samples, it.startedAtMs, it.completedAtMs))
+                distanceM = com.trippulse.app.data.legDistanceM(samples, it))
         }
         return JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
                 events = events,
-                distanceCoveredM = com.trippulse.app.data.coveredDistanceM(st?.distanceCoveredM ?: 0.0, samples),
+                distanceCoveredM = com.trippulse.app.data.coveredDistanceM(st?.distanceCoveredM ?: 0.0, samples, legs = legEntities),
                 startedAtMs = t.startedAtMs ?: t.createdAtMs,
                 endedAtMs = endAtMs ?: System.currentTimeMillis(),
                 expenses = expense,
@@ -1633,7 +1634,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         report.value = JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
                 events = ev.map { com.trippulse.app.data.EventCodec.toDomain(it) },
-                distanceCoveredM = com.trippulse.app.data.coveredDistanceM(state?.distanceCoveredM ?: 0.0, sp),
+                distanceCoveredM = com.trippulse.app.data.coveredDistanceM(state?.distanceCoveredM ?: 0.0, sp, legs = lg),
                 startedAtMs = t.startedAtMs ?: t.createdAtMs,
                 endedAtMs = t.completedAtMs ?: System.currentTimeMillis(),
                 expenses = expenseRows.map {
@@ -1642,7 +1643,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 legs = lg.map {
                     JourneyAnalytics.LegInput(
                         it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat,
-                        distanceM = com.trippulse.app.data.legDistanceM(sp, it.startedAtMs, it.completedAtMs)
+                        distanceM = com.trippulse.app.data.legDistanceM(sp, it)
                     )
                 },
                 transportMode = t.transportMode,

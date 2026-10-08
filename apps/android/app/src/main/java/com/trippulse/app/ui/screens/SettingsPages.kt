@@ -953,7 +953,8 @@ private fun LicensesPage() {
         "Sora, DM Sans typefaces" to "SIL Open Font License 1.1",
         "Map data © OpenStreetMap contributors" to "Open Database License (ODbL)",
         "Map tiles: OpenFreeMap, © OpenMapTiles" to "MIT License; OpenMapTiles schema CC-BY 4.0",
-        "Toll plaza locations: OpenStreetMap contributors" to "Open Database License (ODbL)"
+        "Toll plaza locations: OpenStreetMap contributors" to "Open Database License (ODbL)",
+        "Metro lines and railway stations: OpenStreetMap contributors" to "Open Database License (ODbL)"
     )
     SettingsGroup {
         items.forEachIndexed { i, (what, license) ->
