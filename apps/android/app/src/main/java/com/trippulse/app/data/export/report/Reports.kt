@@ -64,13 +64,14 @@ object Reports {
                 .mapNotNull { e -> (e.payload["mode"] as? String)?.let { e.eventTimeMs to it } }
         )
         val runs = com.trippulse.app.domain.MapStages.runs(pts.map { it.tMs }, stages, i.mode)
-        if (runs.none { TransportCatalog.profile(it.mode).key == TransportCatalog.METRO.key }) return pts
+        if (runs.none { com.trippulse.app.domain.TransitNetwork.kindOf(it.mode) != null }) return pts
         val out = ArrayList<RouteMap.Point>()
         for (r in runs) {
             val seg = pts.subList(r.from, r.to + 1)
-            val drawn = if (TransportCatalog.profile(r.mode).key != TransportCatalog.METRO.key) seg else {
+            val kind = com.trippulse.app.domain.TransitNetwork.kindOf(r.mode)
+            val drawn = if (kind == null) seg else {
                 val geo = seg.map { com.trippulse.app.domain.GeoPoint(it.lat, it.lng) }
-                val line = net.followLine(geo)
+                val line = net.followLine(geo, kind)
                 if (line === geo) seg else line.mapIndexed { k, g ->
                     RouteMap.Point(seg.first().tMs + (seg.last().tMs - seg.first().tMs) * k / (line.size - 1), g.lat, g.lng)
                 }
@@ -144,9 +145,9 @@ object Reports {
             )
             blocks += Footnote(
                 "The line is the path the phone recorded. A dashed line is a stretch with the phone out of contact." +
-                    if (i.events.any { it.type == com.trippulse.app.domain.EventTypes.LEG_STARTED && TransportCatalog.profile(it.payload["mode"] as? String ?: "").key == TransportCatalog.METRO.key } ||
-                        TransportCatalog.profile(i.mode).key == TransportCatalog.METRO.key)
-                        " A metro ride follows its line, station to station, and is measured along the track." else ""
+                    if (i.events.any { it.type == com.trippulse.app.domain.EventTypes.LEG_STARTED && com.trippulse.app.domain.TransitNetwork.kindOf(it.payload["mode"] as? String) != null } ||
+                        com.trippulse.app.domain.TransitNetwork.kindOf(i.mode) != null)
+                        " A metro or ferry ride follows its line, stop to stop, and is measured along it." else ""
             )
         }
 

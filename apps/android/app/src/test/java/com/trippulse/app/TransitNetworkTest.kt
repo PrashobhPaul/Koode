@@ -16,12 +16,14 @@ import java.io.File
  */
 class TransitNetworkTest {
 
-    private fun asset(name: String): String? = listOf(
-        "src/main/assets/$name", "app/src/main/assets/$name", "apps/android/app/src/main/assets/$name",
-        "/home/user/Koode/apps/android/app/src/main/assets/$name"
+    /** A country's file, from wherever the tests run (the module, or the repository). */
+    private fun country(cc: String): String? = listOf(
+        "src/main/assets/transit/$cc.txt", "../../../web/data/transit/$cc.txt",
+        "apps/android/app/src/main/assets/transit/$cc.txt", "web/data/transit/$cc.txt",
+        "/home/user/Koode/web/data/transit/$cc.txt"
     ).map(::File).firstOrNull { it.exists() }?.readText()
 
-    private val net: TransitNetwork by lazy { TransitNetwork.parse(asset("metro_network.txt"), asset("rail_stations.txt")) }
+    private val net: TransitNetwork by lazy { TransitNetwork.parse(country("IN")) }
 
     // Stations of Hyderabad Metro's Blue Line, as mapped.
     private val habsiguda = GeoPoint(17.42018, 78.54055)
@@ -99,15 +101,37 @@ class TransitNetworkTest {
         val n = TransitNetwork.parse(
             """
             # comment
-            S|17.0|78.0|One|Test
-            S|bad|78.0|Broken|Test
-            S|17.01|78.0|Two|Test
-            L|Test|Line|red|0 1:1200 x:5 9:100
+            S|17.0|78.0|One|Test Metro|M
+            S|bad|78.0|Broken|Test Metro|M
+            S|17.02|78.0|Two|Test Metro|M
+            L|Test Metro|Line|red|0 2:2400 x:5 9:100
+            T|17.5|78.5|Somewhere Junction
             """.trimIndent()
         )
         assertEquals(2, n.stations.size)
-        assertEquals(1200.0, n.ride(0, 1)!!.metres, 0.1)
-        assertEquals(1200.0, n.ride(1, 0)!!.metres, 0.1)  // one direction mapped serves both
+        assertEquals(1, n.rail.size)
+        // Station numbers are the file's own: the broken row still counts.
+        assertEquals(2400.0, n.ride(0, 1)!!.metres, 0.1)
+        assertEquals(2400.0, n.ride(1, 0)!!.metres, 0.1)  // one direction mapped serves both
         assertTrue(TransitNetwork.parse(null).isEmpty)
+    }
+
+    @Test fun two_countries_combine_without_mixing_their_lines() {
+        val a = "S|17.0|78.0|One|A Metro|M\nS|17.02|78.0|Two|A Metro|M\nL|A Metro|L|x|0 1:2400"
+        val b = "S|40.0|-73.0|Uno|B Subway|M\nS|40.02|-73.0|Dos|B Subway|M\nL|B Subway|L|x|0 1:2300"
+        val n = TransitNetwork.combine(listOf(a, b))
+        assertEquals(4, n.stations.size)
+        assertEquals(2300.0, n.ride(2, 3)!!.metres, 0.1)
+        assertNull(n.ride(0, 2))
+    }
+
+    @Test fun labels_say_what_riders_say() {
+        fun st(name: String, network: String, kind: TransitNetwork.Kind = TransitNetwork.Kind.METRO) =
+            TransitNetwork.Station(0.0, 0.0, name, network, kind)
+        assertEquals("Habsiguda Metro", TransitNetwork.label(st("Habsiguda", "Hyderabad Metro")))
+        assertEquals("Times Sq-42 St station", TransitNetwork.label(st("Times Sq-42 St", "NYC Subway")))
+        assertEquals("Oxford Circus station", TransitNetwork.label(st("Oxford Circus", "London Underground")))
+        assertEquals("Vyttila Water Metro", TransitNetwork.label(st("Vyttila", "Kochi Water Metro", TransitNetwork.Kind.WATER)))
+        assertEquals("Ernakulam Boat Jetty", TransitNetwork.label(st("Ernakulam Boat Jetty", "KSWTD", TransitNetwork.Kind.WATER)))
     }
 }

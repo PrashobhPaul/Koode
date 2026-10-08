@@ -181,7 +181,7 @@ class TripManager(
      * journey had covered before it. Each fix near a station raises the count
      * to at least the track ridden so far (see [metroFloor]).
      */
-    private data class MetroAnchor(val legIndex: Int, val station: Int, val coveredBeforeM: Double)
+    private data class MetroAnchor(val legIndex: Int, val station: Int, val coveredBeforeM: Double, val kind: com.trippulse.app.domain.TransitNetwork.Kind)
     private var metroAnchor: MetroAnchor? = null
     /**
      * A metro ride just ended on a stale fix (underground, or the phone kept
@@ -304,7 +304,7 @@ class TripManager(
             val rows = db.legDao().forTrip(tripId).sortedBy { it.legIndex }.toMutableList()
             fun rename(i: Int, p: GeoPoint, old: String, start: Boolean) {
                 if (old.trim() in savedNames) return
-                val label = net.stationLabel(p, listOf(TransportCatalog.METRO.key)) ?: return
+                val label = net.stationLabel(p, listOf(rows[i].mode)) ?: return
                 if (label == old) return
                 rows[i] = if (start) rows[i].copy(fromName = label) else rows[i].copy(toName = label)
                 // The stage on the other side of the switch shares the point and its name.
@@ -317,7 +317,7 @@ class TripManager(
             }
             for (i in rows.indices) {
                 val r = rows[i]
-                if (!isMetro(r.mode) || r.startedAtMs == null) continue
+                if (rideKind(r.mode) == null || r.startedAtMs == null) continue
                 if (i > 0) rename(i, GeoPoint(r.fromLat, r.fromLng), r.fromName, start = true)
                 if (r.completedAtMs != null && i < rows.lastIndex) rename(i, GeoPoint(rows[i].toLat, rows[i].toLng), rows[i].toName, start = false)
             }
@@ -637,19 +637,20 @@ class TripManager(
 
         val now = System.currentTimeMillis()
         val here = GeoPoint(lat, lng)
-        val hereName = nameForPoint(here, listOfNotNull(current?.mode, newMode).filter { isMetro(it) || TransportCatalog.profile(it).key == TransportCatalog.TRAIN.key })
+        val hereName = nameForPoint(here, listOfNotNull(current?.mode, newMode).filter { rideKind(it) != null || TransportCatalog.profile(it).key == TransportCatalog.TRAIN.key })
 
         // A metro ride that ends here is counted to this station at least.
         var coveredNow = s0.distanceCoveredM
-        if (current != null && isMetro(current.mode)) {
+        val endedKind = rideKind(current?.mode)
+        if (current != null && endedKind != null) {
             val net = TransitData.load(appContext)
             val anchor = metroAnchorFor(t, current, net, s0.distanceCoveredM, now)
-            val end = net.nearestMetro(here)
+            val end = net.nearestStation(here, endedKind)
             if (anchor != null && end != null) {
                 net.ride(anchor.station, end)?.let { coveredNow = maxOf(coveredNow, anchor.coveredBeforeM + it.metres) }
                 // A stale last fix may have been taken a station or more back.
                 val stale = s0.lastLocationAtMs?.let { now - it > METRO_STALE_FIX_MS } ?: true
-                val named = hereName == com.trippulse.app.domain.TransitNetwork.metroLabel(net.stations[end].name)
+                val named = hereName == com.trippulse.app.domain.TransitNetwork.label(net.stations[end])
                 metroExit = if (stale && named) MetroExit(t.tripId, current.legIndex, current.legIndex + 1, anchor, end, hereName, now) else null
             }
             if (coveredNow > s0.distanceCoveredM) lastDistancePoint = here
@@ -723,8 +724,8 @@ class TripManager(
 
         var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = false, updatedAtMs = now,
             distanceCoveredM = coveredNow, progressPct = progress(coveredNow, s0.distanceRemainingM))
-        if (isMetro(newMode)) {
-            TransitData.load(appContext).nearestMetro(here)?.let { metroAnchor = MetroAnchor(nextIndex, it, coveredNow) }
+        rideKind(newMode)?.let { kind ->
+            TransitData.load(appContext).nearestStation(here, kind)?.let { metroAnchor = MetroAnchor(nextIndex, it, coveredNow, kind) }
         }
         if (modeChanged) {
             // A new mode is a revision of the plan, and the coach re-reads it
@@ -787,7 +788,8 @@ class TripManager(
         return PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, NEAR_PLACE_M) ?: EN_ROUTE
     }
 
-    private fun isMetro(mode: String?) = mode != null && TransportCatalog.profile(mode).key == TransportCatalog.METRO.key
+    /** The network a mode rides on (the metro; a water metro or ferry), if any. */
+    private fun rideKind(mode: String?) = com.trippulse.app.domain.TransitNetwork.kindOf(mode)
 
     /**
      * Never less than the track: on a metro ride, a fix near a station
@@ -798,11 +800,12 @@ class TripManager(
      */
     private suspend fun metroFloor(t: ActiveTripEntity, covered: Double, fix: Fix): Double {
         val leg = activeLeg()
-        if (leg == null || !isMetro(leg.mode) || leg.startedAtMs == null) { metroAnchor = null; return covered }
+        val kind = rideKind(leg?.mode)
+        if (leg == null || kind == null || leg.startedAtMs == null) { metroAnchor = null; return covered }
         if (fix.accuracyM > METRO_FIX_ACCURACY_M) return covered
         val net = TransitData.current.takeIf { !it.isEmpty } ?: return covered
         val anchor = metroAnchorFor(t, leg, net, covered, fix.timeMs)?.also { metroAnchor = it } ?: return covered
-        val here = net.nearestMetro(fix.point) ?: return covered
+        val here = net.nearestStation(fix.point, kind) ?: return covered
         val ride = net.ride(anchor.station, here)?.metres ?: return covered
         return maxOf(covered, anchor.coveredBeforeM + ride)
     }
@@ -816,10 +819,11 @@ class TripManager(
         t: ActiveTripEntity, leg: TripLegEntity, net: com.trippulse.app.domain.TransitNetwork, coveredNowM: Double, nowMs: Long
     ): MetroAnchor? {
         metroAnchor?.takeIf { it.legIndex == leg.legIndex }?.let { return it }
-        val station = net.nearestMetro(GeoPoint(leg.fromLat, leg.fromLng)) ?: return null
+        val kind = rideKind(leg.mode) ?: return null
+        val station = net.nearestStation(GeoPoint(leg.fromLat, leg.fromLng), kind) ?: return null
         val started = leg.startedAtMs ?: return null
         val ridden = StageRepair.pathLengthM(db.locationDao().allForTrip(t.tripId), { it.tMs }, { it.lat }, { it.lng }, started, nowMs) ?: 0.0
-        return MetroAnchor(leg.legIndex, station, (coveredNowM - ridden).coerceAtLeast(0.0))
+        return MetroAnchor(leg.legIndex, station, (coveredNowM - ridden).coerceAtLeast(0.0), kind)
     }
 
     /**
@@ -834,12 +838,12 @@ class TripManager(
         if (fix.accuracyM > METRO_FIX_ACCURACY_M) return covered
         metroExit = null
         val net = TransitData.current.takeIf { !it.isEmpty } ?: return covered
-        val station = net.nearestMetro(fix.point) ?: return covered
+        val station = net.nearestStation(fix.point, x.anchor.kind) ?: return covered
         if (station == x.station) return covered
         val was = net.ride(x.anchor.station, x.station)?.metres ?: return covered
         val further = net.ride(x.anchor.station, station)?.metres ?: return covered
         if (further <= was) return covered
-        val label = com.trippulse.app.domain.TransitNetwork.metroLabel(net.stations[station].name)
+        val label = com.trippulse.app.domain.TransitNetwork.label(net.stations[station])
         val rows = db.legDao().forTrip(x.tripId)
         rows.firstOrNull { it.legIndex == x.endedIndex && it.toName == x.label }?.let { db.legDao().upsert(it.copy(toName = label)) }
         rows.firstOrNull { it.legIndex == x.startedIndex && it.fromName == x.label }?.let { db.legDao().upsert(it.copy(fromName = label)) }

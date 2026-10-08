@@ -64,13 +64,14 @@ fun legDistanceM(samples: List<LocationSampleEntity>, leg: TripLegEntity, transi
     legDistanceM(samples, leg.mode, GeoPoint(leg.fromLat, leg.fromLng), GeoPoint(leg.toLat, leg.toLng), leg.startedAtMs, leg.completedAtMs, transit)
 
 /**
- * A finished metro ride, measured along the track from the station nearest
- * where it began to the one nearest where it ended. Null for anything else,
+ * A finished metro, water-metro or ferry ride, measured along the track (or
+ * the boat's course) from the station nearest where it began to the one
+ * nearest where it ended. Null for anything else,
  * a ride still going (its end is only where it is heading), or a ride whose
  * ends are not at stations Koode knows.
  */
 fun metroRideM(mode: String, from: GeoPoint, to: GeoPoint, completedAtMs: Long?, transit: TransitNetwork = TransitData.current): Double? {
     if (completedAtMs == null || transit.isEmpty) return null
-    if (TransportCatalog.profile(mode).key != TransportCatalog.METRO.key) return null
-    return transit.rideM(from, to)?.takeIf { it > 0 }
+    val kind = TransitNetwork.kindOf(mode) ?: return null
+    return transit.rideM(from, to, kind)?.takeIf { it > 0 }
 }
