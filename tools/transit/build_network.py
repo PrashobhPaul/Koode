@@ -40,6 +40,17 @@ OVERPASS = [u for u in os.environ.get("OVERPASS_URL", "").split() if u] or [
     "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
 ]
 AREA = '["ISO3166-1"="{cc}"]'
+# Countries whose boundary is too costly for Overpass to search within (the
+# UK's takes in every island and its territorial sea) are searched by a box
+# instead: south, west, north, east.
+BOXES = {"GB": "49.8,-8.7,60.9,1.9"}
+
+
+def scoped(query, cc):
+    """A query template for one country: within its boundary, or its box."""
+    if cc in BOXES:
+        return query.replace("area{area}->.a;", "").replace("(area.a)", "(" + BOXES[cc] + ")")
+    return query.replace("{area}", AREA.format(cc=cc))
 ROUTES = "^(subway|light_rail|monorail|ferry)$"
 
 # Metro lines and ferries are asked for apart: a country's sea ferries carry
@@ -354,18 +365,18 @@ def main():
     ap.add_argument("--previous", help="the file it replaces; a much smaller result is refused")
     a = ap.parse_args()
 
-    area = AREA.format(cc=a.country)
     load = lambda p: json.load(open(p, encoding="utf-8"))
+    q = lambda t: scoped(t, a.country)
     if a.fetch:
-        routes = overpass(Q_ROUTES.format(area=area))
-        ferries = overpass(Q_FERRIES.format(area=area), attempts=3, required=False)
+        routes = overpass(q(Q_ROUTES))
+        ferries = overpass(q(Q_FERRIES), attempts=3, required=False)
         if not ferries["elements"]:
             print(f"{a.country}: no ferries this time", file=sys.stderr)
         routes = {"elements": routes.get("elements", []) + ferries.get("elements", [])}
     else:
         routes = load(a.routes)
-    stops = overpass(Q_STOPS.format(area=area)) if a.fetch else load(a.stops)
-    rail = overpass(Q_RAIL.format(area=area)) if a.fetch else (load(a.rail) if a.rail else {"elements": []})
+    stops = overpass(q(Q_STOPS)) if a.fetch else load(a.stops)
+    rail = overpass(q(Q_RAIL)) if a.fetch else (load(a.rail) if a.rail else {"elements": []})
 
     stations, lines = build_network(routes, stops)
     rows = build_rail(rail)

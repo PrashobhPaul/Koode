@@ -116,6 +116,13 @@ class BuildTest(unittest.TestCase):
         stations, _ = b.build_network(routes, stops)
         self.assertEqual(sum(1 for s in stations if s[2] == "86 St"), 2)
 
+    def test_a_boxed_country_is_searched_by_its_box(self):
+        q = b.scoped(b.Q_ROUTES, "GB")
+        self.assertNotIn("area", q)
+        self.assertIn("rel(49.8,-8.7,60.9,1.9)", q)
+        self.assertIn('area["ISO3166-1"="IN"]', b.scoped(b.Q_ROUTES, "IN"))
+        self.assertIn("(area.a)", b.scoped(b.Q_STOPS, "IN"))
+
     def test_rail_dedupes_node_and_way_of_one_station(self):
         rows = b.build_rail({"elements": [
             {"type": "node", "id": 1, "lat": 17.4337, "lon": 78.5016, "tags": {"name": "Secunderabad Junction"}},
