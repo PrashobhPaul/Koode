@@ -37,14 +37,14 @@ OVERPASS = os.environ.get("OVERPASS_URL", "https://overpass-api.de/api/interpret
 AREA = '["ISO3166-1"="{cc}"]'
 ROUTES = "^(subway|light_rail|monorail|ferry)$"
 
-Q_ROUTES = '[out:json][timeout:600][maxsize:1073741824];area{area}->.a;rel(area.a)["route"~"' + ROUTES + '"];out body geom;'
-Q_STOPS = ('[out:json][timeout:600];area{area}->.a;rel(area.a)["route"~"' + ROUTES + '"]->.r;'
+Q_ROUTES = '[out:json][timeout:300];area{area}->.a;rel(area.a)["route"~"' + ROUTES + '"];out body geom;'
+Q_STOPS = ('[out:json][timeout:300];area{area}->.a;rel(area.a)["route"~"' + ROUTES + '"]->.r;'
            '(node(r.r);way(r.r)["public_transport"];way(r.r)["amenity"="ferry_terminal"];)->.stops;'
            '(nw(area.a)["railway"="station"]["station"~"subway|light_rail|monorail"];'
            'nw(area.a)["public_transport"="station"]["subway"="yes"];'
            'nw(area.a)["public_transport"="station"]["light_rail"="yes"];'
            'nw(area.a)["amenity"="ferry_terminal"];)->.st;(.stops;.st;);out center tags;')
-Q_RAIL = ('[out:json][timeout:600];area{area}->.a;(nw(area.a)["railway"~"^(station|halt)$"]'
+Q_RAIL = ('[out:json][timeout:300];area{area}->.a;(nw(area.a)["railway"~"^(station|halt)$"]'
           '["station"!~"subway|light_rail|monorail"]["usage"!~"tourism"];);out center tags;')
 
 # A line under construction is drawn in OpenStreetMap long before anyone rides it.
@@ -72,16 +72,16 @@ SAME_NAME_M = 350.0
 SAME_SPOT_M = 40.0
 
 
-def overpass(query, attempts=5):
+def overpass(query, attempts=4):
     data = urllib.parse.urlencode({"data": query}).encode()
     for i in range(attempts):
         try:
             req = urllib.request.Request(OVERPASS, data=data, headers={"User-Agent": "Koode transit builder (github.com/PrashobhPaul/Koode)"})
-            with urllib.request.urlopen(req, timeout=660) as r:
+            with urllib.request.urlopen(req, timeout=360) as r:
                 return json.load(r)
         except Exception as e:  # Overpass answers 429/504 when busy; wait and ask again
             print(f"overpass attempt {i + 1} failed: {e}", file=sys.stderr)
-            time.sleep(45 * (i + 1))
+            time.sleep(60 * (i + 1))
     raise SystemExit("Overpass did not answer")
 
 

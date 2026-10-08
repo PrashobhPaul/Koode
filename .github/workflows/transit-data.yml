@@ -32,19 +32,24 @@ jobs:
         env:
           ASKED: ${{ inputs.countries }}
         run: |
-          # India first; then the markets Koode serves.
-          ALL="IN US GB CA MX IE FR DE ES IT NL BE AT CH PT SE DK NO FI CZ PL HU GR RO BG TR AE SA QA EG IL SG MY TH ID VN HK TW KR JP AU NZ BD PK LK BR AR CL CO PE ZA CN"
-          LIST="${ASKED:-$ALL}"
+          # India first; then where precision matters most; then every market
+          # Koode serves. A branch push builds the first two groups, a run by
+          # hand everything (or the countries asked for).
+          FIRST="IN US GB FR DE ES IT NL AE SG JP AU CA"
+          REST="MX IE BE AT CH PT SE DK NO FI CZ PL HU GR RO BG TR SA QA EG IL MY TH ID VN HK TW KR NZ BD PK LK BR AR CL CO PE ZA CN"
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then DEFAULT="$FIRST"; else DEFAULT="$FIRST $REST"; fi
+          LIST="${ASKED:-$DEFAULT}"
           for c in $LIST; do [[ "$c" =~ ^[A-Z]{2}$ ]] || { echo "Bad country code: $c"; exit 1; }; done
           echo "countries=$(printf '%s\n' $LIST | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
 
   build:
     needs: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 40
     strategy:
       fail-fast: false
-      max-parallel: 6
+      # Overpass serves a couple of queries at a time per address; more only queues.
+      max-parallel: 3
       matrix:
         country: ${{ fromJSON(needs.plan.outputs.countries) }}
     steps:
@@ -89,4 +94,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apps/android/app/src/main/assets web/data
           git commit -m "Transit data from OpenStreetMap"
-          git push
+          # The branch may have moved on while the countries were building.
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
