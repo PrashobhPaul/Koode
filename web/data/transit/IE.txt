@@ -1,0 +1,361 @@
+# Transit for Koode, IE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
+R|53.33600|-6.46923|Adamstown|Commuter
+R|53.39154|-6.13679|Bayside|Commuter
+R|53.30284|-6.17870|Blackrock|Commuter
+R|53.30999|-6.19520|Booterstown|Commuter
+R|51.86888|-8.32437|Carrigaloe|Commuter
+R|53.33335|-6.40640|Clondalkin & Fonthill|Commuter
+R|53.36307|-6.22686|Clontarf Road|Commuter
+R|51.84884|-8.30025|Cobh|Commuter
+R|53.27572|-6.10340|Dalkey|Commuter
+R|53.35067|-6.23933|Docklands|Commuter
+R|53.41727|-6.46480|Dunboyne|Commuter
+R|53.68876|-7.60311|Edgeworthstown|Commuter
+R|53.41618|-6.83417|Enfield|Commuter
+R|51.89627|-8.31807|Fota|Commuter
+R|53.28124|-6.12311|Glenageary|Commuter
+R|51.91129|-8.32511|Glounthaune|Commuter
+R|53.33982|-6.23819|Grand Canal Dock|Commuter
+R|53.38701|-6.44205|Hansfield|Commuter
+R|53.37836|-6.19240|Harmonstown|Commuter
+R|53.32241|-6.52416|Hazelhatch and Celbridge|Commuter
+R|53.32241|-6.52416|Hazelhatch and Celbridge|Commuter
+R|53.38911|-6.07437|Howth|Commuter
+R|53.38728|-6.16148|Kilbarrack|Commuter
+R|53.39904|-6.66886|Kilcock|Commuter
+R|53.37280|-6.20492|Killester|Commuter
+R|53.25538|-6.11304|Killiney|Commuter
+R|53.33377|-6.22871|Lansdowne Road|Commuter
+R|51.90759|-8.35520|Littleisland|Commuter
+R|53.72428|-7.79615|Longford|Commuter
+R|53.43453|-6.46889|M3 Parkway|Commuter
+R|53.14548|-7.06375|Monasterevin|Commuter
+R|53.52291|-7.34569|Mullingar|Commuter
+R|53.18526|-6.80874|Newbridge|Commuter
+R|53.33403|-6.37864|Park West and Cherry Orchard|Commuter
+R|53.03701|-7.30131|Portlaoise|Commuter
+R|53.38161|-6.17613|Raheny|Commuter
+R|51.84960|-8.32269|Rushbrooke|Commuter
+R|53.24679|-6.66487|Sallins and Naas|Commuter
+R|53.29539|-6.15242|Salthill and Monkstown|Commuter
+R|53.28800|-6.12716|Sandycove and Glasthule|Commuter
+R|53.32793|-6.22105|Sandymount|Commuter
+R|53.29916|-6.16521|Seapoint|Commuter
+R|53.23670|-6.11704|Shankill|Commuter
+R|53.39201|-6.11608|Sutton|Commuter
+R|53.32079|-6.21155|Sydney Parade|Commuter
+R|53.22176|-6.11084|Woodbrook|Commuter
+R|53.15725|-8.81466|Ardrahan|InterCity
+R|53.37541|-6.33181|Ashtown|Commuter
+R|53.30150|-8.74856|Athenry|InterCity
+R|53.42690|-7.93576|Athlone|InterCity
+R|52.99229|-6.97648|Athy|InterCity
+R|53.32128|-8.60627|Attymon|InterCity
+R|52.69893|-6.95260|Bagenalstown|InterCity
+R|53.61188|-6.18233|Balbriggan|Commuter
+R|54.10899|-9.16073|Ballina|InterCity
+R|53.33643|-8.23987|Ballinasloe|InterCity
+R|52.90016|-7.60253|Ballybrophy|InterCity
+R|53.76167|-8.75854|Ballyhaunis|InterCity
+R|54.08818|-8.52073|Ballymote|InterCity
+R|52.12894|-8.89909|Banteer|InterCity
+R|53.96763|-8.30471|Boyle|InterCity
+R|53.20441|-6.10056|Bray Daly|Commuter
+R|53.37262|-6.29882|Broombridge|Commuter
+R|52.84106|-6.92211|Carlow|InterCity
+R|53.93840|-8.10686|Carrick-on-Shannon|InterCity
+R|51.91627|-8.26337|Carrigtwohill|Commuter
+R|53.84739|-9.28814|Castlebar|InterCity
+R|53.38153|-6.37142|Castleknock|Commuter
+R|53.76157|-8.48580|Castlerea|InterCity
+R|53.33982|-7.61637|Clara|InterCity
+R|53.72068|-9.00222|Claremorris|InterCity
+R|53.40270|-6.14895|Clongriffin|Commuter
+R|53.38294|-6.42319|Clonsilla|Commuter
+R|54.18650|-8.49495|Collooney|InterCity
+R|53.37769|-6.39065|Coolmine|Commuter
+R|51.90163|-8.45822|Cork Kent|InterCity
+R|53.22513|-8.73583|Craughwell|InterCity
+R|53.29500|-6.13474|Dún Laoghaire Mallin|Commuter
+R|53.48575|-6.15129|Donabate|Commuter
+R|53.85910|-7.91637|Dromod|InterCity
+R|53.36309|-6.25875|Drumcondra|InterCity
+R|53.34633|-6.29773|Dublin Heuston|InterCity
+R|53.34650|-6.29297|Dublin Heuston|InterCity
+R|53.34333|-6.24846|Dublin Pearse|InterCity
+R|52.83916|-8.97530|Ennis|InterCity
+R|52.50461|-6.56629|Enniscorthy|InterCity
+R|52.17378|-9.55208|Farranfore|InterCity
+R|53.98286|-9.13644|Foxford|InterCity
+R|53.27344|-9.04676|Galway Ceannt|InterCity
+R|53.63783|-6.21705|Gormanston|Commuter
+R|53.06717|-8.81418|Gort|InterCity
+R|53.14403|-6.06100|Greystones|Commuter
+R|53.39131|-6.15582|Howth Junction and Donaghmede|Commuter
+R|53.16281|-6.90805|Kildare|Commuter
+R|52.65446|-7.24357|Kilkenny MacDonagh|InterCity
+R|52.05915|-9.50232|Killarney|InterCity
+R|53.67953|-6.24275|Laytown|Commuter
+R|53.37420|-6.48582|Leixlip Confey|InterCity
+R|53.37030|-6.50624|Leixlip Louisa Bridge|Commuter
+R|52.65888|-8.62468|Limerick Colbert|InterCity
+R|52.50199|-8.19887|Limerick Junction|InterCity
+R|53.45070|-6.15659|Malahide|Commuter
+R|52.13891|-8.65511|Mallow|InterCity
+R|53.82778|-9.19250|Manulla Junction|InterCity
+R|53.37806|-6.59064|Maynooth|InterCity
+R|51.92120|-8.17570|Midleton|InterCity
+R|52.07740|-9.07012|Millstreet|InterCity
+R|53.37755|-6.34543|Navan Road Parkway|Commuter
+R|52.86045|-8.19539|Nenagh|InterCity
+R|53.27549|-8.94727|Oranmore|InterCity
+R|53.37520|-6.31428|Pelletstown|Commuter
+R|53.14599|-7.18120|Portarlington|InterCity
+R|53.41766|-6.15132|Portmarnock|Commuter
+R|52.08525|-9.21797|Rathmore|InterCity
+R|53.62436|-8.19629|Roscommon|InterCity
+R|52.25119|-6.33754|Rosslare Europort|InterCity
+R|53.52094|-6.14311|Rush & Lusk|Commuter
+R|52.73810|-8.78577|Sixmilebridge|InterCity
+R|53.57399|-6.11917|Skerries|Commuter
+R|54.27204|-8.48199|Sligo Mac Diarmada|InterCity
+R|53.34713|-6.25431|Tara Street|InterCity
+R|52.52317|-7.14890|Thomastown|InterCity
+R|52.27102|-9.69916|Tralee Casement|InterCity
+R|53.27041|-7.49993|Tullamore|InterCity
+R|52.26638|-7.11780|Waterford Plunkett|InterCity
+R|53.79614|-9.51006|Westport|InterCity
+R|53.34315|-8.47167|Woodlawn|InterCity
+R|54.59515|-5.93973|Belfast Grand Central|Irish Rail;Translink
+R|53.71202|-6.33564|Drogheda MacBride|Commuter
+R|53.35272|-6.24714|Dublin Connolly|InterCity
+R|54.00113|-6.41251|Dundalk Clarke|Irish Rail;Translink
+R|54.18887|-6.36291|Newry|Irish Rail;Translink
+R|54.42508|-6.44544|Portadown|Irish Rail;Translink
+Q|Commuter|Cobh - Cork||L55|7 36:1711 4:2187 13:3102 15:2152 27:2102 75:7107
+Q|Commuter|Cork - Cobh||L55|75 27:7109 15:2100 13:2166 4:3008 36:2374 7:1604
+Q|Commuter|Cork - Mallow||L55|75 102:33407
+Q|Commuter|Cork - Midleton||L55|75 27:7109 15:2100 65:4344 105:6030
+Q|Commuter|Dublin Area Rapid Transit|#68C56B|L55|101 112:3675 71:1693 92:1342 22:579 35:1178 18:1150 24:1027 6:1873 129:1743 120:832 83:585 16:813 26:880 40:851 44:1005 3:1614 2:1354 41:986 38:947 77:1236 39:946 14:911 8:1464 25:2916 42:2110 45:1672 61:2092 91:7855
+Q|Commuter|Dublin Area Rapid Transit|#68C56B|L55|91 61:7885 45:2064 42:1673 25:2110 8:2911 14:1466 39:920 77:937 38:1236 41:948 2:986 3:1355 44:1615 40:1005 26:854 16:877 83:811 120:588 129:830 6:1748 24:1874 18:1028 35:1151 22:1174 92:580 71:1340 112:1691 101:3676
+Q|Commuter|Dublin Area Rapid Transit|#68C56B|L55|91 61:7885 45:2064 42:1673 25:2110 8:2911 14:1466 39:920 77:937 38:1236 41:948 2:986 3:1355 44:1615 40:1005 26:854 16:877 83:811 120:588 129:830 6:1748 24:1874 18:1028 35:1151 22:1174 92:574 1:1285 43:1383 21:2798
+Q|Commuter|Dublin Area Rapid Transit|#68C56B|L55|21 43:2797 1:1383 92:1285 22:572 35:1178 18:1150 24:1027 6:1873 129:1743 120:832 83:585 16:813 26:880 40:851 44:1005 3:1614 2:1354 41:986 38:947 77:1236 39:946 14:911 8:1464 25:2916 42:2110 45:1672 61:2092 91:7855
+Q|Commuter|Galway → Athenry||L55|88 109:6555 48:14216
+Q|Commuter|Mallow - Cork||L55|102 75:33350
+Q|Commuter|Northern Commuter||L55|130 128:35941 96:7379 89:4906 53:3715 118:6049 116:6562 78:3813 101:3957 112:3675 71:1693 92:1342 129:7547 120:832 83:585
+Q|Commuter|South Western Commuter||L55|82 33:5946 5:1836 0:4208 19:4160 37:12538 32:12207 93:7305 30:10591 111:7989 34:14965
+Q|Commuter|South Western Commuter||L55|34 111:14980 30:7988 93:10536 32:7470 37:12118 20:12909 0:3976 5:4203 33:1834 82:5787
+Q|Commuter|South Western Commuter||L55|32 37:12056 20:12909 0:3976 5:4203 33:1834 80:11558 129:1481 120:832 83:585 16:812
+Q|Commuter|South Western Commuter||L55|16 83:812 120:588 129:830 80:1525 33:11559 5:1836 0:4208 19:4160 37:12538 32:12041
+Q|Commuter|Western Commuter||L55|9 62:4830 47:2266 107:962 67:1898 74:1330 72:2375 17:1235 10:3835 29:1976
+Q|Commuter|Western Commuter||L55|28 11:13704 31:27945 12:38131 23:12532 104:5930 98:5953 72:6189 74:2566 107:3307 47:1031 62:2466 129:4393 110:5475
+Q|Commuter|Western Commuter||L55|29 10:1903 17:3939 72:1259 74:2268 67:1386 107:1852 47:1055 62:2172 9:4792
+Q|Commuter|Western Commuter||L55|29 10:1903 17:3939 72:1259 74:2268 67:1386 107:1852 47:1055 62:2172 9:4795
+Q|Commuter|Western Commuter||L55|29 10:1903 17:3939 72:1052
+Q|Commuter|Western Commuter||L55|9 62:4826 47:2266 107:962 67:1898 74:1330 72:2375 17:1235 10:3835 29:1976
+Q|Commuter|Western Commuter||L55|72 17:1160 10:3835 29:1976
+Q|InterCity|Ballina - Manulla Jctn||X110|54 87:14952 103:18080
+Q|InterCity|Cork - Dublin||X110|75 102:33407 100:60365 82:173160
+Q|InterCity|Cork - Dublin||X110|75 102:33403 100:60365 81:172915
+Q|InterCity|D. Connolly - Sligo||X110|129 80:2073 104:24153 23:5917 12:12536 31:38204 11:27993 28:13730 79:17658 64:16907 60:13777 58:21953 73:12184 119:10239
+Q|InterCity|Dublin - Cork||X110|82 100:170909 102:60274 75:33350
+Q|InterCity|Dublin - Galway||X110|81 111:66408 123:26199 69:10959 49:25264 55:22722 126:15638 51:9308 48:10037 109:14208 88:6609
+Q|InterCity|Dublin - Galway||X110|81 111:66411 123:26199 69:10959 49:25264 55:22722 126:15638 51:9308 48:10037 109:14208 88:6609
+Q|InterCity|Dublin - Rosslare||X110|129 120:837 83:585 77:9682 61:12108 91:7855 85:96539 115:39319
+Q|InterCity|Dublin - Waterford||X110|81 93:47909 50:23700 63:17607 52:16252 94:21868 121:17140 124:32066
+Q|InterCity|Dublin - Waterford||X110|81 93:47908 50:23700 63:17607 52:16252 94:21866 121:17141 124:32066
+Q|InterCity|Dublin - Westport||X110|82 111:66633 123:26155 69:11003 49:25264 114:30018 68:26387 57:18357 70:17462 103:17526 66:6725 125:17595
+Q|InterCity|Galway - Dublin||X110|88 109:6610 48:14216 51:10041 126:9313 55:15635 49:22760 69:25226 123:10951 111:26147 81:66665
+Q|InterCity|Galway - Dublin||X110|88 109:6610 48:14216 51:10041 126:9313 55:15635 49:22760 69:25226 123:10951 111:26147 81:66662
+Q|InterCity|Galway - Limerick||X110|88 109:6555 48:14677 76:9157 46:9991 90:10395 84:28280 117:18721 99:16848
+Q|InterCity|Limerick - Galway||X110|99 117:16865 84:18737 90:28316 46:10397 76:9997 48:9160 109:14666 88:6555
+Q|InterCity|Limerick - Limerick Junction||X110|99 100:35285
+Q|InterCity|Limerick Junction - Limerick||X110|100 99:35375
+Q|InterCity|Limerick – Ballybrophy||X110|99 108:44066 56:46371
+Q|InterCity|Mallow - Tralee||X110|102 59:18488 106:13270 113:10429 95:24968 86:17259 122:20521
+Q|InterCity|Manulla Jctn - Ballina||X110|103 87:18087 54:14957
+Q|InterCity|Midleton - Cork||X110|105 65:6029 15:4344 27:2102 75:7107
+Q|InterCity|Northern Commuter||X110|83 120:588 129:872 92:7557 71:1340 112:1691 101:3676 78:3957 116:3815 118:6559 53:6051 89:3718 96:4908 128:7379 130:35988
+Q|InterCity|Portarlington - Galway||X110|111 88:141373
+Q|InterCity|Rosslare - Dublin||X110|115 85:39443 91:97050 61:7885 77:12085 83:9689 120:588 129:842
+Q|InterCity|Sligo - D. Connolly||X110|119 73:10236 58:12178 60:21925 64:13767 79:16886 28:17672 11:13718 31:27940 12:38126 23:12532 104:5919 80:24145 129:1491
+Q|InterCity|Tralee - Mallow||X110|122 86:20486 95:17265 113:25023 106:10383 59:13282 102:18492
+Q|InterCity|Western Commuter||X110|104 98:5952 97:1667 72:4886 74:2268 67:1386 107:1852 47:1055 110:1076 62:1096 80:2893 129:1481 120:832 83:585
+Q|InterCity|Western Commuter||X110|83 120:588 129:830 80:1525 62:2863 110:1074 47:1192 107:962 67:1898 74:1330 72:2375 97:4823 98:1699 104:5849
+Q|InterCity|Westport - Dublin||X110|125 66:17610 103:6722 70:17503 57:17476 68:18357 114:26337 49:29964 69:25226 123:10994 111:26103 82:66890
+Q|Irish Rail;Translink|Enterprise Belfast - Dublin||X110|131 130:23842 128:35939 129:50721 132:139892 127:45867
+Q|Irish Rail;Translink|Enterprise Dublin - Belfast||X110|129 128:50858 130:35642 131:23679 132:28912
+T|53.33600|-6.46923|Adamstown
+T|53.15725|-8.81466|Ardrahan
+T|52.79392|-6.15971|Arklow
+T|53.37541|-6.33181|Ashtown
+T|53.30150|-8.74856|Athenry
+T|53.42690|-7.93576|Athlone
+T|52.99229|-6.97648|Athy
+T|53.32128|-8.60627|Attymon
+T|52.69893|-6.95260|Bagenalstown
+T|53.61188|-6.18233|Balbriggan
+T|54.10899|-9.16073|Ballina
+T|53.33643|-8.23987|Ballinasloe
+T|52.90016|-7.60253|Ballybrophy
+T|53.76167|-8.75854|Ballyhaunis
+T|54.08818|-8.52073|Ballymote
+T|52.12894|-8.89909|Banteer
+T|53.39154|-6.13679|Bayside
+T|52.76566|-8.44229|Birdhill
+T|53.30284|-6.17870|Blackrock
+T|53.30999|-6.19520|Booterstown
+T|53.96763|-8.30471|Boyle
+T|53.20441|-6.10056|Bray Daly
+T|53.37262|-6.29882|Broombridge
+T|52.37795|-7.92258|Cahir
+T|52.84106|-6.92211|Carlow
+T|53.93840|-8.10686|Carrick-on-Shannon
+T|52.34905|-7.40456|Carrick-on-Suir
+T|51.86888|-8.32437|Carrigaloe
+T|51.91627|-8.26337|Carrigtwohill
+T|53.84739|-9.28814|Castlebar
+T|52.71306|-8.49793|Castleconnell
+T|53.38153|-6.37142|Castleknock
+T|53.76157|-8.48580|Castlerea
+T|52.34723|-8.65358|Charleville
+T|53.33982|-7.61637|Clara
+T|53.72068|-9.00222|Claremorris
+T|53.33335|-6.40640|Clondalkin & Fonthill
+T|53.40270|-6.14895|Clongriffin
+T|52.36108|-7.69912|Clonmel
+T|53.38294|-6.42319|Clonsilla
+T|53.36307|-6.22686|Clontarf Road
+T|52.93642|-8.02449|Cloughjordan
+T|51.84884|-8.30025|Cobh
+T|54.18650|-8.49495|Collooney
+T|53.37769|-6.39065|Coolmine
+T|51.90163|-8.45822|Cork Kent
+T|53.22513|-8.73583|Craughwell
+T|53.27572|-6.10340|Dalkey
+T|53.35067|-6.23933|Docklands
+T|53.48575|-6.15129|Donabate
+T|53.71202|-6.33564|Drogheda MacBride
+T|53.85910|-7.91637|Dromod
+T|53.36309|-6.25875|Drumcondra
+T|53.35272|-6.24714|Dublin Connolly
+T|53.34650|-6.29297|Dublin Heuston
+T|53.34333|-6.24846|Dublin Pearse
+T|53.41727|-6.46480|Dunboyne
+T|54.00113|-6.41251|Dundalk Clarke
+T|53.29500|-6.13474|Dún Laoghaire Mallin
+T|53.68876|-7.60311|Edgeworthstown
+T|53.41618|-6.83417|Enfield
+T|52.83916|-8.97530|Ennis
+T|52.50461|-6.56629|Enniscorthy
+T|52.17378|-9.55208|Farranfore
+T|51.89627|-8.31807|Fota
+T|51.89519|-8.31765|Fota Wildlife Park Train pickup point
+T|53.98286|-9.13644|Foxford
+T|53.27344|-9.04676|Galway Ceannt
+T|53.28124|-6.12311|Glenageary
+T|51.91129|-8.32511|Glounthaune
+T|52.67122|-6.29201|Gorey
+T|53.63783|-6.21705|Gormanston
+T|53.06717|-8.81418|Gort
+T|53.33982|-6.23819|Grand Canal Dock
+T|53.14403|-6.06100|Greystones
+T|53.38701|-6.44205|Hansfield
+T|53.37836|-6.19240|Harmonstown
+T|53.32241|-6.52416|Hazelhatch and Celbridge
+T|53.38911|-6.07437|Howth
+T|53.39131|-6.15582|Howth Junction and Donaghmede
+T|52.31297|-6.93937|JFK Memorial Park Miniature Railway
+T|53.38728|-6.16148|Kilbarrack
+T|53.39904|-6.66886|Kilcock
+T|53.10687|-6.04101|Kilcoole
+T|53.16281|-6.90805|Kildare
+T|52.65446|-7.24357|Kilkenny MacDonagh
+T|52.05915|-9.50232|Killarney
+T|53.37280|-6.20492|Killester
+T|53.25538|-6.11304|Killiney
+T|53.33443|-6.43022|Kishoge
+T|53.33377|-6.22871|Lansdowne Road
+T|53.67953|-6.24275|Laytown
+T|53.37420|-6.48582|Leixlip Confey
+T|53.37030|-6.50624|Leixlip Louisa Bridge
+T|52.65888|-8.62468|Limerick Colbert
+T|52.50199|-8.19887|Limerick Junction
+T|51.90759|-8.35520|Littleisland
+T|53.72428|-7.79615|Longford
+T|53.43453|-6.46889|M3 Parkway
+T|53.45070|-6.15659|Malahide
+T|52.13891|-8.65511|Mallow
+T|53.82778|-9.19250|Manulla Junction
+T|53.27332|-6.27362|Marlay Station
+T|53.37806|-6.59064|Maynooth
+T|51.92120|-8.17570|Midleton
+T|52.07740|-9.07012|Millstreet
+T|53.14548|-7.06375|Monasterevin
+T|51.71986|-9.42748|Mulchheap
+T|53.52291|-7.34569|Mullingar
+T|53.37755|-6.34543|Navan Road Parkway
+T|52.86045|-8.19539|Nenagh
+T|53.18526|-6.80874|Newbridge
+T|53.27549|-8.94727|Oranmore
+T|53.33403|-6.37864|Park West and Cherry Orchard
+T|53.37520|-6.31428|Pelletstown
+T|53.14599|-7.18120|Portarlington
+T|53.03701|-7.30131|Portlaoise
+T|53.41766|-6.15132|Portmarnock
+T|53.38161|-6.17613|Raheny
+T|52.93048|-6.22610|Rathdrum
+T|52.08525|-9.21797|Rathmore
+T|53.62436|-8.19629|Roscommon
+T|52.96075|-7.79435|Roscrea
+T|52.25119|-6.33754|Rosslare Europort
+T|52.27184|-6.39152|Rosslare Strand
+T|53.52094|-6.14311|Rush & Lusk
+T|51.84960|-8.32269|Rushbrooke
+T|53.24679|-6.66487|Sallins and Naas
+T|53.29539|-6.15242|Salthill and Monkstown
+T|53.28800|-6.12716|Sandycove and Glasthule
+T|53.32793|-6.22105|Sandymount
+T|53.29916|-6.16521|Seapoint
+T|53.23670|-6.11704|Shankill
+T|52.73810|-8.78577|Sixmilebridge
+T|53.57399|-6.11917|Skerries
+T|54.27204|-8.48199|Sligo Mac Diarmada
+T|53.54440|-6.46201|Steam Train Express
+T|53.01730|-7.15468|Stradbally
+T|53.39201|-6.11608|Sutton
+T|53.32079|-6.21155|Sydney Parade
+T|53.34713|-6.25431|Tara Street
+T|52.78791|-7.82246|Templemore
+T|52.52317|-7.14890|Thomastown
+T|52.67669|-7.82191|Thurles
+T|52.47016|-8.16161|Tipperary
+T|52.27102|-9.69916|Tralee Casement
+T|53.27041|-7.49993|Tullamore
+T|52.26638|-7.11780|Waterford Plunkett
+T|53.79614|-9.51006|Westport
+T|52.34326|-6.46430|Wexford O'Hanrahan
+T|52.98815|-6.05259|Wicklow
+T|53.22176|-6.11084|Woodbrook
+T|53.34315|-8.47167|Woodlawn
+B|54.11100|-9.15990|Ballina Bus Station
+B|54.50092|-8.18931|Ballyshannon Bus Station
+B|51.87819|-8.46683|Black Ash Park & Ride
+B|54.65684|-8.10755|Bus Éireann Depot
+B|54.80133|-7.77446|Bus Éireann Depot
+B|51.65129|-9.91019|Castletownbere
+B|53.99033|-7.36373|Cavan Bus Station
+B|52.83927|-8.97581|Ennis
+B|53.27383|-9.04693|Galway Bus Station
+B|53.27494|-9.04554|Galway Coach Station
+B|52.15312|-10.04961|Kennedy's Coaches
+B|52.05968|-9.50175|Killarney Bus Station
+B|54.95373|-7.72848|Letterkenny Bus Station
+B|52.65872|-8.62466|Limerick Bus Station
+B|54.25218|-6.96895|Monaghan Bus Station
+B|51.89953|-8.46651|Parnell Place Cork Bus Station
+B|54.27172|-8.48253|Sligo Bus Station
+B|52.27040|-9.69802|Tralee Bus Station
+B|52.26334|-7.11602|Waterford Bus Station

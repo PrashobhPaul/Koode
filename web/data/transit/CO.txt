@@ -1,5 +1,6 @@
 # Transit for Koode, CO. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|6.29990|-75.55865|Acevedo|Metro de Medellín|M
 S|6.24293|-75.57142|Alpujarra|Metro de Medellín|M
 S|6.18605|-75.58620|Ayurá|Metro de Medellín|M
@@ -27,10 +28,44 @@ S|6.25808|-75.60375|Santa Lucía|Metro de Medellín|M
 S|6.25297|-75.58293|Suramericana|Metro de Medellín|M
 S|6.29031|-75.56471|Tricentenario|Metro de Medellín|M
 S|6.26941|-75.56580|Universidad|Metro de Medellín|M
+S|13.38084|-81.37049|Conocemos Navegandos Providencia - San Andres|Conocemos Navegando SAS|W
+S|12.57974|-81.69093|Conocemos Navegandos San Andrés - Providencia|Conocemos Navegando SAS|W
+S|2.44629|-78.09426|Aeropuerto|El Charco - Aeropuerto|W
+S|2.47683|-78.11158|El Charco|El Charco - Isla Gorgona|W
+S|2.96461|-78.17221|Isla Gorgona|El Charco - Isla Gorgona|W
+S|3.22306|-75.22385|Ferry|Ferry Aipe-Villavieja|W
+S|0.95882|-77.81545|Laguna de la Bolsa Canoe ferry|Laguna de la Bolsa ferry|W
+S|0.94175|-77.82455|Laguna de la Bolsa ferry|Laguna de la Bolsa ferry|W
+S|4.26268|-72.77781|Puerto cabuyaro|Paso en Ferri Cabuyaro|W
+S|4.26528|-72.77709|Puerto cabuyaro|Paso en Ferri Cabuyaro|W
+S|8.99159|-73.97008|Puerto de El Banco|Vía fluvial del Rio Magdalena|W
+S|8.99087|-73.94943|Puerto fluvial de El Peñón|Vía fluvial del Rio Magdalena|W
+S|8.98701|-73.97834|Ferry El Banco|Vía fluvial del Río Magdalena|W
+S|8.98622|-73.98367|Ferry San Miguel|Vía fluvial del Río Magdalena|W
+S|4.94520|-73.96261|Estacion Tronquitos|ferry|W
+S|4.95033|-73.96399|Estacion Tronquitos|ferry|W
+S|10.28241|-75.52180|Ferry Pasacaballo - Barú|ferry|W
+S|10.28566|-75.52194|Ferry Pasacaballo - Barú|ferry|W
+S|2.57199|-77.88318|Terminal fluvial|ferry|W
 L|Metro de Medellín|Metro Línea A||15 20:1292 14:1187 6:1795 2:1758 7:1033 8:2053 13:2016 10:983 1:526 21:488 18:424 19:739 12:841 26:816 4:1314 25:1478 0:1274 16:1878 3:1597 17:1389
 L|Metro de Medellín|Metro Línea A||17 3:1392 16:1600 0:1874 25:1270 4:1482 26:1318 12:812 19:840 18:740 21:423 1:489 10:526 13:983 8:2016 7:2052 2:1029 6:1761 14:1790 20:1176 15:1304
 L|Metro de Medellín|Metro Línea B||21 5:660 24:980 9:582 11:1314 23:724 22:1218
 L|Metro de Medellín|Metro Línea B||22 23:1225 11:719 9:1314 24:581 5:981 21:660
+L|Conocemos Navegando SAS|San Andrés - Providencia Catamarán||28 27:97156
+L|El Charco - Aeropuerto|El Charco - Aeropuerto||29 30:4156
+L|El Charco - Isla Gorgona|El Charco - Isla Gorgona||30 31:59697
+L|Laguna de la Bolsa ferry|Laguna de la Bolsa ferry||34 33:2178
+L|Paso en Ferri Cabuyaro|Puerto cabuyaro||36 35:323
+L|Vía fluvial del Rio Magdalena|Vía fluvial del Rio Magdalena||37 38:2547
+L|Vía fluvial del Rio Magdalena|Vía fluvial del Rio Magdalena||37 38:2754
+L|Vía fluvial del Rio Magdalena|Vía fluvial del Rio Magdalena||39 37:1123
+L|Vía fluvial del Río Magdalena|Vía fluvial del Río Magdalena||40 39:623
+L|ferry|ferry||44 43:543
+L|ferry|ferry||45 31:60998
+L|ferry|ferry||41 42:624
+R|5.47645|-74.67152|México|rail
+R|5.47645|-74.67152|México|rail
+Q|rail|rail||L55|1 0:230
 T|4.37316|-75.95231|Alvares Salas
 T|6.33079|-75.55359|Antigua Estación de Bello del Ferrocarril
 T|4.44297|-74.13338|Antigua Estación de Ferricarril de Usme
@@ -115,3 +150,744 @@ T|4.46907|-74.12022|Usme (La Requilina)
 T|5.36662|-73.53248|Ventaquemada
 T|5.21769|-73.59764|Villapinzón
 T|4.39553|-76.07427|Zarzal
+B|4.61672|-74.06911|239C00
+B|5.80221|-73.97115|Agencia Bus Reina
+B|5.80275|-73.97076|Agencia Bus Ricaurte
+B|5.85868|-73.96550|Agencia CotransRicaurte
+B|5.91783|-73.79181|Agencia CotransRicaurte
+B|3.56448|-73.79628|Agencia La Macarena
+B|4.50973|-73.35055|Agencia La Macarena
+B|5.33285|-74.02390|Agencia Rionegra
+B|3.56417|-73.79602|Agencia de Taxmeta
+B|4.08772|-73.66965|Agencia de flota la Macarena
+B|4.31272|-72.07832|Agencia de transportes Arimena
+B|4.80217|-75.69346|Alcala bus company, to Salento
+B|4.70369|-74.09542|Alimentador
+B|4.76354|-74.46289|Anolaima
+B|4.08496|-76.20205|Antigua Terminal
+B|6.23013|-75.56084|Antigua terminal de buses flota La Milagrosa
+B|4.64808|-74.13014|Auto boyaca
+B|5.87857|-73.57047|Autoboy
+B|5.92989|-73.61957|Autoboy
+B|11.41451|-72.40650|Autobus para Maicao
+B|4.67320|-75.65664|Autobuses para Armenia
+B|4.98695|-75.60640|Autolujo S.A.
+B|5.02045|-75.62217|Autolujo S.A.
+B|5.45535|-75.64999|Autolujo S.A.
+B|4.62584|-74.12372|Avenida Américas
+B|4.60279|-74.08048|Avenida Jiménez (Caracas)
+B|4.60936|-74.12909|Avenida Primero de Mayo
+B|10.40276|-75.55558|BUS.T103
+B|10.40498|-75.55373|BUS.T103
+B|10.41485|-75.55056|BUS.T103
+B|6.24061|-75.56984|Barrio Colón
+B|11.00584|-74.82618|Berlinas de la 93
+B|10.44313|-75.52039|Berlinas del Fonce
+B|10.49858|-74.16168|Berlinas del Fonce
+B|11.23615|-74.19701|Berlinas del Fonce
+B|10.43466|-75.53616|Berlinastur
+B|11.20238|-74.22588|Berlinastur
+B|11.22385|-74.16455|Berlinastur
+B|6.28288|-75.55291|Berlín
+B|4.62477|-74.17835|Betania
+B|11.24579|-74.20615|Blue Bus to Taganga
+B|11.22068|-74.18143|Blue Buses To El Centro $2500COP
+B|4.61891|-74.18468|Bosa Occidental
+B|4.60343|-74.14888|Br. La Alejandra
+B|4.70679|-74.09255|Br. La Serena (Tv 76 Dg 89) (B)
+B|4.70507|-74.09241|Br. París Gaitán (Tv 76 - Dg 83a)
+B|9.52139|-75.57645|Brasilia - RapidoOchoa
+B|6.15513|-75.37043|Bus Carmen de Viboral
+B|6.62140|-73.15992|Bus Chevrolet B60 Induandes
+B|10.63786|-74.92341|Bus Cootransa
+B|6.31338|-73.94801|Bus Cootransmagdalena
+B|6.70059|-72.73168|Bus Copetran
+B|5.93000|-73.61917|Bus CotransRicaurte
+B|6.17819|-73.59007|Bus CotransRicaurte
+B|6.01361|-73.67515|Bus Cotransricaurte
+B|6.31319|-73.94790|Bus Cotransricaurte
+B|10.63822|-74.92382|Bus Luruaco
+B|5.92961|-73.61786|Bus Moniquirá
+B|5.98949|-73.77027|Bus Omega
+B|6.17831|-73.58996|Bus Omega
+B|6.31372|-73.94787|Bus Omega
+B|5.92995|-73.61978|Bus Puente Nacional
+B|5.95642|-73.70005|Bus Reina
+B|6.01504|-73.67446|Bus Santa Helena del Opón
+B|5.59877|-75.82062|Bus Station
+B|5.53752|-73.63390|Bus Station & Taxi
+B|11.26864|-74.19193|Bus Station to Santa Marta
+B|10.45212|-75.51509|Bus Stop Para Llegar a Aeropuerto
+B|6.21644|-75.58725|Bus Terminal del Sur
+B|9.83498|-75.12040|Bus Torcoroma
+B|5.99031|-73.77036|Bus Transricaurte
+B|6.17850|-73.59001|Bus Transsander
+B|5.99034|-73.77071|Bus Trassander
+B|6.01453|-73.67487|Bus Trassander
+B|6.31334|-73.94803|Bus Trassander
+B|6.62109|-73.15987|Bus Yuejin NJG6600
+B|6.01416|-73.67494|Bus a Barbosa
+B|6.01341|-73.67183|Bus a Chipatá
+B|5.93126|-73.61640|Bus a Cite Cable
+B|5.93228|-73.61753|Bus a Güepsa
+B|4.08382|-72.96486|Bus a Villavicencio y Bogotá
+B|5.93026|-73.61954|Bus a Vélez
+B|1.88147|-76.27099|Bus stop
+B|4.64104|-75.57185|Bus terminal
+B|9.37263|-75.75189|Bus terminal
+B|11.24528|-74.20635|Bus to Minca
+B|8.42404|-76.78242|Bus to Montería
+B|2.44527|-76.60413|Bus to Puracé
+B|11.14349|-74.11738|Bus to Santa Marta
+B|11.24570|-74.20632|Bus to Tayrona and Palomino
+B|0.82434|-77.64006|Bus to the border / Ecuador
+B|4.71520|-74.14322|Buses Blancos
+B|3.00485|-76.48454|Buses a San Pedro
+B|6.15549|-75.37072|Buses al Santuario
+B|4.62958|-74.46355|Buses para Anapoima - Apulo
+B|4.62932|-74.46179|Buses para Bogota - Girardot
+B|4.63144|-74.46442|Buses para San Joaquin - San Javier
+B|4.62963|-74.46189|Buses para Soacha - Mesitas - Rurales
+B|4.02972|-74.96649|Busstop Guamo
+B|6.48477|-75.39543|CIT- (Centro Integrado de Transporte)
+B|6.48948|-74.40148|COONORTE
+B|6.55112|-74.78775|COONORTE
+B|6.26331|-75.54176|COOTRACOVI
+B|6.83266|-73.71194|COTRANSMAGDALENA
+B|4.60398|-74.13227|Calle 40 Sur
+B|4.59781|-74.13640|Calle 42 Sur
+B|7.02381|-73.06327|Campo Alegre
+B|4.68177|-74.07737|Carrera 53
+B|4.58157|-74.21378|Carrera 7 Soacha
+B|11.41465|-72.40621|Cars-Taxi to Uribia & Manaure
+B|6.25289|-75.56256|Catedral
+B|6.40613|-75.98187|Centro de Acopio de Transporte
+B|6.26073|-75.56915|Chagualo
+B|3.90110|-76.29720|Chiva bus station
+B|5.84922|-76.01844|Chivas Stop
+B|5.84965|-76.01845|Chivas Stop (regional bus)
+B|6.25086|-75.57506|Cisneros
+B|8.42512|-76.78245|Coach to cartagena
+B|11.41410|-72.40667|Colectivo para El Valle
+B|5.00076|-74.33947|Colectivos a Nagüy
+B|9.30379|-75.39909|Colectivos a Toluviejo
+B|1.28625|-77.47014|Collectivo for Pasto
+B|4.62394|-75.76193|Consorcio Quimbaya - Montenegro - Armenia (Nuevo Rápido Quindío - Cootranscien - Expreso Alcalá)
+B|4.08765|-76.21655|Control de Buses Urbanos - Tax Central S.A.
+B|4.88052|-75.63079|Control de Buses Urbanos - Trans Perla del Otún
+B|4.08777|-76.21498|Control de Buses Urbanos - Trans Tobar Ltda
+B|3.49066|-76.50862|Control y Despacho de Buses Urbanos del Municipio de Yumbo (Los Yumbeños y Cooperativa de Transportadores Ciudad de Yumbo)
+B|10.88496|-74.80471|Cooasoatlan - Nueva Sede
+B|12.54571|-81.73027|Coobusan
+B|7.06157|-73.86993|Coochoferes Ltda
+B|4.89694|-75.88143|Coochoferes Pereira
+B|4.74541|-75.90819|Coodetrans Palmira
+B|4.75430|-75.89947|Coodetrans Palmira - Transportes Unidos de Buga
+B|0.88365|-77.50331|Coointransoceanica Ltda.
+B|10.95766|-74.84262|Coolitoral - Nevada Pueblito
+B|10.99368|-74.77993|Coolitoral - Nevada Vía 40
+B|2.48664|-75.73102|Coomotor
+B|5.44751|-74.67260|Coomotor
+B|4.08334|-76.18645|Coomotor - Expreso Brasilia - Transportes Armenia
+B|2.95268|-75.29832|Coomotor Company
+B|2.11303|-74.77000|Coomotor company
+B|6.88547|-75.33515|Coonorte
+B|6.97884|-75.29649|Coonorte
+B|4.65573|-74.38923|Coop. Tequendama
+B|4.26632|-75.93244|Cooperativa de Transportadores Ciudad Señora
+B|3.76493|-76.33261|Cooperativa de Transportadores El Saman
+B|3.80197|-76.30808|Cooperativa de Transportadores El Samán
+B|5.45230|-74.66403|Cooperativa de Transportadores Omega
+B|5.20067|-75.86924|Cooperativa de Transportadores de Belén de Umbría Ltda COOTRANSBEL
+B|5.29655|-75.88113|Cooperativa de Transportadores de Belén de Umbría Ltda COOTRANSBEL
+B|4.98571|-75.60903|Cooperativa de Transportadores de Chinchiná
+B|4.16967|-76.16746|Cooperativa de Transportadores de Occidente
+B|4.75377|-75.89968|Cooperativa de Transportadores de Occidente
+B|3.72354|-75.48546|Cooperativa de Transportadores del Sur del Tolima - COINTRASUR
+B|9.29983|-75.38648|Cooperativa de Transporte Sincé
+B|4.41005|-76.15532|Cooperativa de Transportes de Occidente
+B|4.53129|-76.10158|Cooperativa de Transportes de Occidente - Cooperativa de Transportadores Andina - Cooperativa de Transportadores de La Victoria
+B|10.89963|-74.78498|Cooperativa de Transportes del Litoral - Coolitoral
+B|7.06115|-73.87102|Coopetran
+B|4.15654|-76.28784|Coopetrans Trujillo
+B|4.26632|-75.93259|Coopetrans Tuluá
+B|4.41053|-76.15548|Coopetrans Tuluá
+B|6.47107|-75.16417|Coopetransa
+B|5.45268|-74.66433|Coopuertos
+B|6.28776|-73.14643|CootraaSangil
+B|2.11552|-76.98516|Cootranar
+B|4.54894|-74.53451|Cootransanapoima - Buses para veredas
+B|3.12626|-73.75334|Cootransariari
+B|10.33123|-73.18208|Cootransdipaz
+B|4.26631|-75.93232|Cootranse
+B|4.33666|-74.46967|Cootransfusa
+B|3.12684|-73.75388|Cootransguejar
+B|6.23546|-75.52533|Cootransi
+B|6.69869|-73.51254|Cootransmagdalena
+B|7.06090|-73.87056|Cootransmagdalena
+B|5.40012|-75.48673|Cootransnorcaldas
+B|11.03199|-74.85939|Cootransnorte
+B|10.96135|-74.77901|Cootransporcar Ltda.
+B|3.53032|-75.64576|Cootransrio
+B|5.45669|-75.64933|Cootransrio
+B|5.45535|-75.65009|Cootransrío
+B|4.65509|-74.38857|Cootransvilla
+B|4.55122|-74.53654|Cootransvilla - Buses para La Mesa
+B|6.24730|-73.41801|Cootrasaravita
+B|4.52375|-76.03562|Coovictoria
+B|4.74711|-75.91172|Coovictoria Ltda.
+B|5.44751|-74.67259|Copetran
+B|5.45247|-74.66396|Copetran
+B|5.93072|-73.61924|Copetran
+B|6.01432|-73.67492|Copetran
+B|6.87944|-73.40989|Copetran
+B|7.91599|-72.50222|Copetran
+B|9.60663|-73.61063|Copetran
+B|8.31776|-73.59599|Copetran terminal bus
+B|7.06097|-73.87075|Cotaxi
+B|5.84954|-76.02135|Cotracibol
+B|6.95770|-71.87878|Cotranal
+B|6.52979|-72.69696|Cotrans
+B|6.87956|-73.40947|Cotrans Magdalena
+B|6.05395|-73.81684|Cotransricaurte
+B|6.95825|-71.87776|Cotranstame
+B|6.31636|-76.13448|Cotraur S.a
+B|4.95581|-74.91004|Cruce de Armero.
+B|4.54607|-74.12099|Danubio
+B|4.80222|-75.69334|De Occidente
+B|10.92209|-74.81636|Despacho - Trasalianco Ruta B19
+B|10.83769|-74.77155|Despacho - Trasalianco Ruta D12
+B|7.07061|-73.08340|Despacho Caracolí
+B|10.89062|-74.81811|Despacho Coochofal/Transmecar
+B|10.84701|-74.79723|Despacho Cootrasol - Ruta D3
+B|10.89792|-74.81517|Despacho Cootrasol - Ruta D4
+B|10.86424|-74.78778|Despacho Cootrasol - Ruta D5
+B|10.97686|-74.84448|Despacho Ruta B20
+B|10.84754|-74.78805|Despacho Transmecar C17 - D11
+B|10.86702|-74.78135|Despacho Trasalianco Ruta D12 y D18
+B|7.09535|-73.11048|Diamante
+B|4.57319|-74.22527|Ducales
+B|9.79988|-74.39390|El Laurel
+B|3.48619|-76.49421|El Terminalito
+B|4.07960|-76.18711|Empresa Arauca S.A.
+B|4.74539|-75.90907|Empresa Arauca S.A.
+B|4.75385|-75.89960|Empresa Arauca S.A.
+B|4.88559|-75.62534|Empresa Arauca S.A.
+B|4.89693|-75.88146|Empresa Arauca S.A.
+B|4.98484|-75.60716|Empresa Arauca S.A.
+B|5.15039|-75.03678|Empresa Arauca S.A.
+B|5.45078|-75.65011|Empresa Arauca S.A.
+B|5.45263|-74.66400|Empresa Arauca S.A.
+B|6.14287|-75.63200|Empresa Arauca S.A.
+B|5.45257|-74.66399|Empresa Autolegal S.A.
+B|3.53871|-73.70748|Empresa La Macarena
+B|4.15622|-76.28807|Empresa Primavera
+B|4.52389|-76.03771|Empresa de Transportes Patuma
+B|4.57504|-76.19992|Empresa de Transportes Patuma
+B|5.05585|-73.79636|Entrada a Sesquilé
+B|4.30929|-75.10216|Entrada bañadero salto
+B|5.14111|-74.59078|Entrada línea
+B|10.97690|-74.78269|Estacion de buses Sabanalarga
+B|6.90726|-75.07551|Estacion de llegada/Salida Coonorte
+B|4.72217|-74.05067|Estación Alcalá
+B|7.06083|-73.11430|Estación Anillo Vial -  Taller 1
+B|10.94189|-74.77817|Estación BERLINAS Simón Bolívar
+B|10.94499|-74.77611|Estación Brasilia
+B|9.37945|-75.26861|Estación Busetas
+B|7.07113|-73.10549|Estación Cañaveral
+B|10.97601|-74.78198|Estación Cootransguajaro
+B|4.59363|-74.08147|Estación Intermedia Bicentenario
+B|4.58654|-74.20575|Estación Intermedia San Mateo
+B|3.40197|-76.52302|Estación MIO - Cañaverales
+B|3.46361|-76.52528|Estación MIO - Las Américas
+B|3.40694|-76.52114|Estación MIO - Mariano Ramos
+B|3.47446|-76.51959|Estación MIO - Prados del Norte
+B|3.46121|-76.52703|Estación MIO - Versalles
+B|3.47861|-76.51700|Estación MIO - Vipasa
+B|3.48452|-76.51330|Estación MIO - Álamos
+B|7.07729|-73.10815|Estación Metrolínea Hormigueros
+B|7.07508|-73.10825|Estación Metrolínea Molinos
+B|4.61145|-74.07100|Estación San Diego
+B|1.28770|-77.47013|Estación de Buses
+B|6.34715|-75.50990|Estación de Buses Veredales
+B|9.30103|-75.39204|Estación de Busetas
+B|8.84946|-75.28040|Estación de Carros a Sahagún
+B|7.06937|-73.10384|Estación de Transferencia Cañaveral
+B|6.37845|-75.44657|Estación de buses Expreso Girardota s.a.
+B|10.99470|-74.80777|Estación retorno Joe Arroyo
+B|4.67448|-75.77903|Expreso Alcalá
+B|4.74575|-75.90817|Expreso Alcalá
+B|2.11590|-76.98483|Expreso Bolivariano
+B|4.80188|-75.69365|Expreso Bolivariano
+B|5.00772|-74.47405|Expreso Bolivariano
+B|4.05993|-76.19921|Expreso Bolivariano S.A.
+B|5.15039|-75.03676|Expreso Bolivariano S.A.
+B|5.45267|-74.66402|Expreso Bolivariano S.A.
+B|9.23598|-74.42619|Expreso Brasilia - Unitransco - Caribe Express
+B|5.44736|-74.67263|Expreso Brasilia S.A.
+B|5.45226|-74.66389|Expreso Brasilia S.A.
+B|9.40059|-75.67975|Expreso Brasilia S.A.
+B|10.49864|-74.16167|Expreso Brasilia S.A.
+B|3.52747|-76.30392|Expreso Palmira
+B|4.33513|-75.82940|Expreso Palmira
+B|4.75404|-75.89951|Expreso Palmira
+B|4.07921|-76.18732|Expreso Palmira S.A.
+B|4.26643|-75.93231|Expreso Palmira S.A.
+B|4.85726|-75.65461|Expreso Palmira S.A.
+B|5.45476|-75.65001|Expreso Supía
+B|3.48629|-76.49443|Expreso Trejos
+B|4.26634|-75.93277|Expreso Trejos
+B|4.75389|-75.89959|Expreso Trejos
+B|9.32632|-74.56716|Express Brasilia
+B|0.88220|-77.70078|Expresó San Juan de pasto  Aldana, ipiales
+B|4.55133|-74.53639|Expresó del Sol - Buses para Bogota
+B|4.69093|-74.08462|Ferias
+B|5.93013|-73.61966|Flota Boyacá
+B|6.01440|-73.67490|Flota Boyacá
+B|6.08413|-75.33431|Flota El Carmen
+B|6.08416|-75.33622|Flota El Carmen
+B|6.08181|-75.33648|Flota El Carmen (Guamito La Ceja)
+B|6.08340|-75.33404|Flota El Carmen (Medellin)
+B|6.08416|-75.33432|Flota El Carmen (Medellín)
+B|6.08254|-75.33667|Flota El Carmen (Universidad)
+B|6.08498|-75.33452|Flota El Carmen (Veredas)
+B|4.26719|-75.93138|Flota Magdalena S.A.
+B|4.75498|-75.89916|Flota Magdalena S.A.
+B|4.89690|-75.88143|Flota Magdalena S.A.
+B|5.45260|-74.66400|Flota Magdalena S.A.
+B|6.59896|-75.01210|Flota Nordeste
+B|6.90772|-75.07380|Flota Nordeste
+B|4.80176|-75.69364|Flota Occidental
+B|5.45382|-75.65147|Flota Occidental
+B|4.61676|-75.63436|Flota Occidental - Circasia
+B|4.80134|-75.84157|Flota Occidental S.A.
+B|4.89643|-75.88247|Flota Occidental S.A.
+B|4.95212|-75.95996|Flota Occidental S.A.
+B|4.96985|-76.03820|Flota Occidental S.A.
+B|4.98560|-75.60669|Flota Occidental S.A.
+B|4.99290|-75.81244|Flota Occidental S.A.
+B|5.00351|-76.00253|Flota Occidental S.A.
+B|5.07327|-75.96208|Flota Occidental S.A.
+B|5.11013|-75.83831|Flota Occidental S.A.
+B|5.20133|-75.86668|Flota Occidental S.A.
+B|5.29647|-75.88122|Flota Occidental S.A.
+B|5.36968|-75.75019|Flota Occidental S.A.
+B|5.45134|-75.65012|Flota Occidental S.A.
+B|5.45543|-75.65098|Flota Occidental S.A.
+B|6.15366|-75.63039|Flota Occidental S.A.
+B|5.12989|-74.15904|Flota Rionegro & Gomez Villa
+B|4.51833|-74.59401|Flota San Vicente - Buses para Bogota
+B|4.51848|-74.59414|Flota San Vicente - Buses para Girardot - Ibague
+B|5.01298|-74.47116|Flota Santafé
+B|4.99917|-74.34043|Flota Águila
+B|5.01310|-74.47043|Flota Águila
+B|5.56619|-73.18573|Futuro Terminal
+B|6.23168|-75.58656|Fátima
+B|6.26767|-75.55501|Gardel
+B|4.62781|-74.17219|Gran Britalia
+B|6.40319|-72.63357|HOSPITAL
+B|7.07881|-73.10818|Hormigueros (N/S)
+B|7.07880|-73.10801|Hormigueros (S/N)
+B|6.26391|-75.56317|Hospital
+B|4.60231|-74.14831|IED La Chucua
+B|6.23028|-75.57663|Industriales
+B|5.76325|-73.05780|Inicio / Fin Ruta 7 Cootraheroes
+B|4.74042|-74.08818|Java I Sector 548A03 (SITP)
+B|4.62452|-75.76113|Jeep Station (several destinations)
+B|4.70324|-75.73786|Jeep station
+B|6.25286|-75.56720|José María Córdova (MDE) Airport Bus
+B|4.72044|-73.96761|La Calera Terminal
+B|7.01711|-73.05756|La Españolita
+B|8.35563|-72.41375|La Estación
+B|7.04977|-73.08090|La Estancia
+B|7.10787|-73.11607|La Isla
+B|3.12607|-73.75328|La Macarena
+B|6.23114|-75.60102|La Palma
+B|5.74011|-75.60606|La Pintada - Medellín - Manizales - Pereira - Armenia - Cali
+B|6.24956|-75.56449|La Playa
+B|6.23539|-75.52552|La Sierra 103
+B|1.87072|-77.57654|La Vega
+B|11.27890|-73.93477|La carpintería
+B|6.27837|-75.55315|Las Esmeraldas
+B|5.44752|-74.67258|Libertadores
+B|6.95722|-71.87822|Libertadores
+B|6.40927|-72.44569|Libertadores Bus ticket shop to Bogota
+B|4.08644|-76.20149|Lidertrans Ltda.
+B|6.23106|-75.60516|Los Alpes
+B|3.76485|-76.33288|Líneas del Valle
+B|3.99453|-76.22942|Líneas del Valle
+B|6.18401|-75.65598|Mall Cootrasana
+B|6.27324|-75.55405|Manrique
+B|10.43357|-75.54105|MarSol Transportes
+B|6.17297|-75.33634|Marinilla - Medellin
+B|6.17293|-75.33637|Marinilla - Medellín
+B|6.17186|-75.33630|Marinilla - Rio Negro
+B|6.17673|-75.34138|Marinilla - Rionegro
+B|10.43433|-75.53973|Marsol
+B|11.20253|-74.22592|Marsol
+B|11.28045|-73.91549|Marsol
+B|7.04369|-73.07758|Menzulí
+B|7.14595|-73.13070|Metrolinea - Portal Norte
+B|10.90937|-74.79297|Metropolitana de Transportes La Carolina
+B|6.15515|-75.37033|Micro Marinilla
+B|6.25613|-75.57317|Minorista
+B|7.07528|-73.10830|Molinos (N/S)
+B|7.07526|-73.10813|Molinos (S/N)
+B|3.51604|-76.30528|Montebello, Palmirana de Transportes, Transgaviota, TUPAL
+B|6.29358|-75.55826|Moto champa
+B|4.60114|-74.07288|Museo del Oro
+B|10.90520|-74.77141|Nevada - Alianza Sodis
+B|10.91172|-74.88007|Nevada - Cootragal
+B|10.94657|-74.76823|Nevada - Cootransco Ltda.
+B|10.98267|-74.76801|Nevada - Cootrantico
+B|10.93596|-74.76699|Nevada - Transoledad
+B|10.92258|-74.79592|Nevada - Transportes Monterrey
+B|10.98252|-74.76905|Nevada - Transportes San Carlos
+B|10.91310|-74.80020|Nevada - Transurbar Ltda.
+B|10.87089|-74.77255|Nevada - Trasalianco S.A.
+B|10.95814|-74.86365|Nevada Alianza Sodis - Villa San Pablo
+B|10.92353|-74.81426|Nevada Coochofal - 7 de Abril
+B|10.89321|-74.80589|Nevada Coochofal - Granabastos
+B|10.89976|-74.78609|Nevada Cootrab
+B|10.91360|-74.82420|Nevada Cootracolsur
+B|10.86347|-74.77536|Nevada Cootrasol
+B|10.99463|-74.94955|Nevada Excolcar
+B|10.97849|-74.77157|Nevada Flota-Embusa
+B|10.88272|-74.76983|Nevada Transmecar
+B|10.83385|-74.77303|Nevada Transportes Trasalfa - Pimsa
+B|4.74546|-75.91343|Nueva Trans Nóvita
+B|5.31352|-72.42506|Nuevo Terminal de Transporte de Yopal
+B|4.67459|-75.77902|Nuevo Transportes Villa Rodas
+B|6.23181|-75.58206|Nutibara
+B|7.77395|-72.81313|Oficina Transportes Belencita
+B|6.37737|-75.14137|Oficina de Transporte
+B|9.23522|-74.42201|Oficina de transporte Cartagena ExpresoBrasilia
+B|9.23721|-74.42768|Ofina de Transporte Copetran
+B|5.93019|-73.61936|Omega
+B|6.01426|-73.67493|Omega
+B|6.24613|-73.41926|Omega
+B|6.28749|-73.14665|Omega
+B|6.51966|-74.10327|Omega
+B|7.06156|-73.87028|Omega
+B|4.53448|-75.67658|P. E. P. Centro
+B|4.54771|-75.66746|P. E. P. Coliseo
+B|4.55601|-75.65689|P. E. P. Hospital
+B|4.51436|-75.70172|P. E. P. Hospital del Sur
+B|4.52038|-75.69876|P. E. P. Los Naranjos
+B|4.52202|-75.68456|P. E. P. Mirador
+B|8.23369|-73.35301|PERALONSO
+B|7.03850|-73.07397|Palmichal
+B|6.26205|-75.55589|Palos Verdes
+B|4.68649|-74.04762|Parada Bus SITP - 277B01
+B|4.86689|-73.87530|Parada Gachetá
+B|4.68666|-74.06903|Parada Los Andes
+B|10.28215|-75.51424|Parada a cartagena
+B|7.07251|-73.17256|Parada de Cotrans Magdalena
+B|5.06539|-74.59675|Parada de bus
+B|4.34367|-74.36416|Paradero Colectivo Fusagasugá-Chinauta
+B|4.70881|-74.19571|Paradero Cootransfunza
+B|5.78931|-73.06488|Paradero La ciudadela
+B|4.73683|-74.07420|Paradero SITP - 543A03
+B|4.55855|-74.24341|Paradero San Nicolás
+B|4.68994|-74.03898|Paradero Santa Ana
+B|1.20345|-77.25962|Paradero buses E1 y C16
+B|4.14610|-73.63682|Paradero buses Unillanos
+B|4.80863|-74.35468|Paradero de Buses
+B|4.85882|-74.06356|Paradero de Interveredales
+B|4.30389|-75.19960|Paradero ruta 29
+B|1.17927|-77.25538|Paradero ruta C10
+B|1.90982|-75.15700|Paraderos de Puerto Rico
+B|6.23137|-75.59674|Parque Belén
+B|7.13717|-73.12222|Parque Estación UIS
+B|7.13706|-73.12205|Parque Estación UIS (plataforma oriental)
+B|6.28521|-75.55661|Parque de Aranjuez
+B|4.71747|-74.21210|Parqueadero
+B|6.23594|-75.61925|Parqueadero Circular Coonatra
+B|11.53251|-72.92643|Parqueadero EDS
+B|4.61651|-74.22130|Parqueadero buses Bosatama
+B|6.25350|-75.53872|Parqueadero de buses del faro
+B|4.70727|-74.13706|Patio Consorcio Express
+B|4.79749|-74.04523|Patio Sitp Calle 221
+B|7.08451|-73.10786|Payador
+B|6.23399|-75.57010|Perpetuo Socorro
+B|6.24367|-75.57535|Plaza Mayor
+B|8.36013|-77.10827|Port San Francisco
+B|4.55511|-74.23354|Portal El Vínculo
+B|10.98560|-74.77194|Portal de Barranquillita Nelson Pinedo
+B|7.06562|-73.16271|Portal de Girón
+B|7.13717|-73.12224|Portal de La UIS
+B|7.00217|-73.05554|Portal de Piedecuesta
+B|10.90745|-74.80090|Portal de Soledad
+B|6.17938|-75.36737|Puente Belén
+B|6.26889|-75.54478|Punto Parade de Buses
+B|7.12213|-73.12809|Quebradaseca
+B|4.70681|-74.10884|Quirigua
+B|8.76446|-75.87687|Rapi taxi
+B|5.59865|-75.82063|Rapido Ochoa
+B|11.41470|-72.40661|Riohacha Car
+B|5.42310|-75.70497|Riosucio
+B|5.82491|-73.04786|Ruta C1
+B|6.26372|-75.56768|Ruta N - Universidad de Antioquia
+B|5.84985|-76.02134|Rápido Ochoa (to Medellin & Quibdo)
+B|5.44751|-74.67258|Rápido Ochoa S.A.
+B|5.45245|-74.66396|Rápido Ochoa S.A.
+B|9.40061|-75.67983|Rápido Ochoa S.A.
+B|5.44751|-74.67260|Rápido Tolima
+B|5.45270|-74.66458|Rápido Tolima S.A.
+B|5.45261|-74.66452|Río Tax S.A.
+B|5.73135|-75.14241|SONAR
+B|6.67829|-75.81151|SOTRAURABA
+B|4.61162|-74.07079|San Diego
+B|6.55661|-73.13686|San Gil Terminalito - Local Bus Station
+B|6.24711|-75.56614|San José
+B|6.26344|-75.56017|San Pedro
+B|7.06107|-73.87352|San Silvestre S.A.
+B|2.18370|-73.78596|San Vicente-Macarena-San Vicente
+B|6.55889|-75.82619|Santa Fe de Antioquia
+B|11.22173|-74.18090|Santa Marta
+B|6.23395|-75.60766|Santra Belen
+B|10.88871|-74.80494|Sobusa S.A.
+B|1.19986|-77.27169|Sociedad de Transportadores Mixtos S.A.S.
+B|4.89341|-75.88301|Sociedad de Transportadores de La Virginia S.A.
+B|4.95163|-75.95895|Sociedad de Transportadores de La Virginia S.A.
+B|4.99323|-75.81279|Sociedad de Transportadores de La Virginia S.A.
+B|5.00471|-76.00235|Sociedad de Transportadores de La Virginia S.A.
+B|5.73119|-75.14244|Sotransoda
+B|10.95998|-74.74451|Sotranspa Ltda
+B|6.15613|-75.37043|Sotrapeñol
+B|6.31733|-76.13456|Sotraur S.a
+B|7.02187|-75.90975|Sotraurabá
+B|10.42589|-75.54051|T102 to the airport
+B|6.25560|-75.54168|Tanque del colegio
+B|4.21148|-76.15662|Tax Central
+B|4.75424|-75.89961|Tax Central
+B|5.45275|-74.66442|Tax La Feria
+B|6.16918|-75.60757|Taxiger itagui
+B|0.82371|-77.64057|Taxis colectivos a Rumichaca
+B|0.88131|-77.70075|Taxis la frontera Aldana Ipiales
+B|6.15286|-75.37203|Taxis y vans Carmen de viboral
+B|5.00738|-73.47435|Teminal Centarl
+B|4.62668|-74.06873|Temporal Avenida 39
+B|4.60033|-74.08225|Temporal Avenida Jiménez
+B|4.60969|-74.07574|Temporal Calle 22
+B|4.64533|-74.06542|Temporal Calle 57
+B|4.63641|-74.06698|Temporal Marly
+B|4.48649|-73.89372|Terminal
+B|5.21455|-73.59806|Terminal
+B|5.89802|-74.73722|Terminal
+B|6.27942|-75.44408|Terminal
+B|8.16942|-76.06452|Terminal
+B|3.41338|-76.48146|Terminal Aguablanca
+B|5.16888|-72.54993|Terminal Aguazul
+B|5.82636|-73.03121|Terminal Antiguo
+B|5.52845|-73.35946|Terminal Antiguo de Transportes de Tunja
+B|4.81442|-74.35985|Terminal Bogota Calle 80
+B|8.41244|-75.57985|Terminal Brasilia
+B|3.42720|-76.50005|Terminal Calipso
+B|9.45212|-75.44113|Terminal Carros Sincelejo
+B|4.62948|-74.46182|Terminal Cootransvilla
+B|6.23494|-75.16117|Terminal De Guatape
+B|1.87458|-76.25004|Terminal De Transporte De San Agustin
+B|11.17648|-74.23030|Terminal Intermedia de Gaira
+B|6.22770|-75.56001|Terminal Milagrosa Salvador
+B|5.19747|-73.14358|Terminal Municipal
+B|8.41241|-75.57937|Terminal Rápido Ochoa
+B|8.26737|-73.36341|Terminal Santa Clara
+B|4.77014|-74.04204|Terminal Satélite del Norte
+B|4.59783|-74.17634|Terminal Satélite del Sur
+B|1.08574|-77.61828|Terminal Terrestre
+B|5.42196|-71.73627|Terminal Terrestre
+B|5.87873|-71.89657|Terminal Terrestre - Paz de Ariporo
+B|6.15151|-75.37302|Terminal TransUnidos
+B|5.78335|-73.12003|Terminal Transporte Paipa
+B|1.01409|-76.61372|Terminal Transporte de Villagarzon
+B|1.08423|-77.60458|Terminal Túquerres
+B|4.81236|-74.09887|Terminal Urbano
+B|6.15905|-75.62334|Terminal Yarumito
+B|5.33558|-72.39054|Terminal Yopal
+B|6.05590|-73.48120|Terminal buses intermunicipal
+B|5.78286|-73.11793|Terminal busetas municipales
+B|4.73171|-74.33938|Terminal de Bojacá
+B|9.71013|-75.11214|Terminal de Buses Gambotico
+B|5.51791|-72.88317|Terminal de Buses Intermunicipl
+B|6.29459|-75.54141|Terminal de Buses Santo Domingo Savio
+B|5.71849|-72.93374|Terminal de Buses Sogamoso
+B|6.99214|-73.04676|Terminal de Buses de Piedecuesta
+B|9.29552|-75.38357|Terminal de La Sabana
+B|10.90946|-74.79426|Terminal de Metropolitana de Transportes
+B|5.42325|-75.70497|Terminal de Riosucio
+B|4.50709|-75.69598|Terminal de Ruta Cañas Gordas
+B|4.51741|-75.71540|Terminal de Ruta Puerto Espejo
+B|11.22134|-74.18048|Terminal de Santa Marta
+B|5.87478|-72.98299|Terminal de Santa Rosa de Viterbo de Boyacá
+B|5.51452|-73.24462|Terminal de Siachoque
+B|1.33578|-77.59361|Terminal de Transporte
+B|4.14414|-74.72371|Terminal de Transporte
+B|4.30273|-74.80547|Terminal de Transporte
+B|4.52643|-73.92232|Terminal de Transporte
+B|4.58009|-74.44386|Terminal de Transporte
+B|5.33525|-72.39068|Terminal de Transporte
+B|6.03134|-75.42798|Terminal de Transporte
+B|6.33510|-72.68095|Terminal de Transporte
+B|8.30601|-73.62205|Terminal de Transporte
+B|9.01003|-73.97400|Terminal de Transporte El Banco
+B|9.29516|-75.38332|Terminal de Transporte Expreso Brasilia
+B|6.26113|-73.30093|Terminal de Transporte Ivan Quiroga Camacho
+B|0.42714|-76.90746|Terminal de Transporte La Hormiga
+B|5.97220|-75.35906|Terminal de Transporte La Unión
+B|6.27865|-75.57078|Terminal de Transporte Norte
+B|9.23625|-74.42681|Terminal de Transporte Omega
+B|9.29380|-75.38404|Terminal de Transporte Rápido Ochoa
+B|9.29455|-75.38322|Terminal de Transporte Servicios Luz
+B|0.82699|-77.63147|Terminal de Transporte Terrestre
+B|9.26114|-74.77730|Terminal de Transporte Terrestre de Maganguè
+B|9.29508|-75.38255|Terminal de Transporte Torcoroma
+B|5.40494|-71.65991|Terminal de Transporte Trinidad
+B|8.10263|-76.73005|Terminal de Transporte Turbo
+B|4.65420|-74.11648|Terminal de Transporte de Bogotá - Terminal Salitre
+B|1.61986|-75.60959|Terminal de Transporte de Florencia S.A.
+B|4.34533|-74.37821|Terminal de Transporte de Fusagasugá
+B|4.20816|-75.78813|Terminal de Transporte de Génova
+B|9.23287|-75.81390|Terminal de Transporte de Lorica
+B|2.91681|-75.28191|Terminal de Transporte de Neiva
+B|8.94515|-75.44883|Terminal de Transporte de Sahagún
+B|9.35247|-75.95336|Terminal de Transporte de San Bernardo
+B|8.10268|-76.73009|Terminal de Transporte de Turbo
+B|10.44447|-73.24316|Terminal de Transporte de Valledupar
+B|5.02827|-74.00172|Terminal de Transportes
+B|5.61026|-73.82381|Terminal de Transportes
+B|6.47217|-73.26253|Terminal de Transportes
+B|7.87745|-76.63581|Terminal de Transportes
+B|7.97405|-75.20465|Terminal de Transportes
+B|8.74855|-75.86718|Terminal de Transportes
+B|9.29531|-75.38308|Terminal de Transportes
+B|5.16872|-72.54989|Terminal de Transportes Aguazul
+B|11.38187|-72.22974|Terminal de Transportes Centrama
+B|6.70177|-72.73242|Terminal de Transportes Cotrans
+B|0.34366|-76.91494|Terminal de Transportes La Dorada
+B|1.58833|-77.13220|Terminal de Transportes La Unión
+B|6.37852|-75.44664|Terminal de Transportes Metro - Girardota - Medellin
+B|11.22175|-74.18089|Terminal de Transportes Santa Marta
+B|4.67456|-75.77914|Terminal de Transportes de Alcalá
+B|5.24162|-75.78259|Terminal de Transportes de Anserma
+B|4.52775|-75.68400|Terminal de Transportes de Armenia
+B|7.08862|-73.12939|Terminal de Transportes de Bucaramanga
+B|3.46510|-76.52161|Terminal de Transportes de Cali
+B|8.88217|-75.79014|Terminal de Transportes de Cerete
+B|4.85979|-74.06429|Terminal de Transportes de Chia
+B|7.89562|-72.50803|Terminal de Transportes de Cúcuta
+B|5.80789|-73.03219|Terminal de Transportes de Duitama
+B|4.16450|-74.88337|Terminal de Transportes de Espinal
+B|2.19567|-75.64198|Terminal de Transportes de Garzón
+B|5.21371|-74.73743|Terminal de Transportes de Honda
+B|4.43679|-75.23429|Terminal de Transportes de Ibagué
+B|2.40240|-75.87776|Terminal de Transportes de La Plata
+B|5.04937|-75.50648|Terminal de Transportes de Manizales
+B|1.19840|-77.26927|Terminal de Transportes de Pasto
+B|1.86475|-76.03289|Terminal de Transportes de Pitalito
+B|5.65333|-76.64452|Terminal de Transportes de Quibdó
+B|11.54100|-72.91122|Terminal de Transportes de Riohacha
+B|6.55444|-73.14899|Terminal de Transportes de San Gíl
+B|5.26810|-76.55263|Terminal de Transportes de Tadó
+B|4.45684|-74.64084|Terminal de Transportes de Tocaima
+B|4.13225|-73.60359|Terminal de Transportes de Villavicencio
+B|4.40071|-76.06640|Terminal de Transportes de Zarzal S.A
+B|10.49202|-75.47768|Terminal de Transportes del Norte
+B|5.16026|-76.68375|Terminal de Trasporte
+B|5.53079|-73.34515|Terminal de Tunja Juana Velasco de Gallo
+B|3.89894|-76.31120|Terminal de autobuses de Guadalajara de Buga
+B|5.51751|-72.88647|Terminal de bus
+B|6.75631|-73.10265|Terminal de bus
+B|6.46323|-71.72690|Terminal de buses
+B|4.81634|-74.36204|Terminal de buses corredor Calle 13
+B|6.14983|-75.62406|Terminal de buses sabaneta
+B|6.25345|-75.53864|Terminal de cancha de tabos
+B|1.20087|-76.91307|Terminal de transporte
+B|3.00894|-76.48600|Terminal de transporte
+B|4.93835|-75.73579|Terminal de transporte
+B|5.07601|-73.87323|Terminal de transporte
+B|5.13077|-74.15705|Terminal de transporte
+B|8.63659|-72.73467|Terminal de transporte
+B|2.45059|-76.80797|Terminal de transporte Transtambo
+B|3.68700|-76.31839|Terminal de transporte de El Cerrito
+B|5.63064|-73.52574|Terminal de transporte público
+B|2.45012|-76.80818|Terminal de transporte transrural
+B|1.14862|-76.64554|Terminal de transportes
+B|4.22835|-74.62084|Terminal de transportes
+B|7.06380|-70.73395|Terminal de transportes de Arauca
+B|1.19987|-77.27169|Terminal de transportes salida sur
+B|2.63941|-76.53050|Terminal de trasporte intermunicipal
+B|1.23062|-77.29199|Terminal mixto Torobajo
+B|1.19905|-77.26943|Terminal mixto secundario
+B|5.87878|-71.89657|Terminal paz de ariporo
+B|1.85389|-76.04669|Terminalito a Bruselas
+B|1.84547|-76.06760|Terminalito a Palestina
+B|1.85256|-76.04206|Terminalito a Timaná
+B|6.70165|-72.73239|Termintal de Transportes Cotrans
+B|4.65858|-74.06034|To La Calera - Guatavita
+B|4.98651|-75.61749|Trans Armenia
+B|1.23043|-77.29181|Trans Sandoná Torobajo
+B|2.11556|-76.98509|TransIpiales
+B|2.11271|-76.98732|TransPatia
+B|2.11265|-76.98736|TransPatía
+B|2.44520|-76.61526|TransTambo
+B|11.01135|-74.80660|Transbordo Cootransco
+B|6.59898|-75.01193|Transegovia
+B|4.74377|-73.53470|Transguasca
+B|0.49434|-76.50395|Transipiales
+B|10.85956|-74.84241|Transmecar Ruta D10
+B|4.59792|-74.08546|Transoriente (Para Choachí)
+B|4.59779|-74.08554|Transoriente S.A.
+B|4.89667|-75.88191|Transportadores de Viterbo S.A.
+B|5.06157|-75.87304|Transportadores de Viterbo S.A.
+B|9.29989|-75.38654|Transporte
+B|9.30009|-75.38670|Transporte Chinú
+B|4.08393|-76.19980|Transporte Interveredal Tuluá
+B|9.30164|-75.38810|Transporte Los Palmitos
+B|4.86780|-75.61988|Transporte Metropolitano Perla del Otún S.A.
+B|9.30049|-75.38692|Transporte San Onofre, Tolú
+B|9.30083|-75.38711|Transporte a Magangué, Sampués, Corozal y Ovejas
+B|6.98267|-73.04957|Transporte la Culona
+B|4.89666|-75.88192|Transportes Apia S.A.
+B|5.10625|-75.94237|Transportes Apía S.A.
+B|5.02569|-73.98223|Transportes Brio
+B|6.55134|-74.78763|Transportes Cisneros Entrerrios
+B|10.98767|-74.94973|Transportes Costa Azul
+B|7.02166|-75.90983|Transportes Gomez Hernandez
+B|4.86899|-73.87519|Transportes Guasca
+B|6.98278|-73.05028|Transportes La Culona
+B|10.89768|-74.78629|Transportes Lolaya Ltda.
+B|11.23844|-74.21281|Transportes Marsol S.A.S
+B|5.93010|-73.61972|Transportes Reina
+B|4.89665|-75.88192|Transportes Tatama S.A.
+B|5.07321|-75.96209|Transportes Tatamá S.A.
+B|4.89668|-75.88190|Transportes Zapata S.A.
+B|5.06216|-75.87302|Transportes Zapata S.A.
+B|4.75380|-75.89973|Transportes de Occidente
+B|5.59873|-75.82071|Transportes suroeste
+B|5.93055|-73.61941|Transsander
+B|6.01344|-73.67181|Transsander Bucaramanga La Paz
+B|2.11589|-76.98503|Transtimbio
+B|2.17996|-73.78216|Transyarumal
+B|6.48951|-74.40157|Trassander
+B|6.62126|-73.15994|Trolebús ZiU-9
+B|4.70961|-74.13920|Tuyo
+B|4.71451|-74.13605|UcolBus
+B|9.23520|-74.42194|Unitransco
+B|6.23076|-75.60902|Universidad de Medellín
+B|1.87979|-76.27024|Vans and Jeeps to Pitalito
+B|6.15278|-75.37140|Vans to Peñol
+B|5.45231|-74.66391|Velotax S.A.
+B|4.47358|-75.25473|Vereda Cay
+B|4.35957|-75.73838|Willys
+B|6.23460|-75.16191|Willys to La piedra
+B|5.22160|-73.45728|agencia flota Valle de Tenza
+B|6.46183|-71.72980|cootranstame
+B|6.90120|-73.28316|cotransmagdalena
+B|1.33430|-74.84364|estación de autobus
+B|10.63533|-74.75890|estación sabanalarga ponedera
+B|0.90830|-77.79121|ipiales
+B|10.33916|-75.41569|la Granja
+B|4.86334|-75.62305|pereira
+B|5.92773|-75.67026|transport bus
+B|4.65241|-74.14384|uniagustiniana

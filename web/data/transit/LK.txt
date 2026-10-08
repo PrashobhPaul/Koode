@@ -1,0 +1,740 @@
+# Transit for Koode, LK. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
+R|6.89372|79.85296|Bambalapitiya|Sri Lanka Railway
+R|5.94341|80.49580|Kamburugamuwa|Sri Lanka Railway
+R|6.91125|79.84818|Kollupitiya|Sri Lanka Railway
+R|6.81529|79.86672|Ratmalana|Sri Lanka Railway
+R|5.94539|80.51419|Walgama|Sri Lanka Railway
+R|6.92636|79.87859|Baseline Road|Sri Lanka Railways
+R|6.93373|79.85008|Colombo Fort|Sri Lanka Railway
+R|6.91335|79.88452|Cotta Road|Sri Lanka Railways
+R|6.88305|79.88290|Kirulapona|Sri Lanka Railways
+R|6.84373|79.96827|Kottawa|Sri Lanka Railways
+R|6.84802|79.92718|Maharagama|Sri Lanka Railways
+R|6.84408|79.97508|Malapalla|Sri Lanka Railways
+R|6.92924|79.86580|Maradana Railway Station|Sri Lanka Railways
+R|6.89691|79.87806|Narahenpita|Sri Lanka Railways
+R|6.85289|79.91786|Nawinna|Sri Lanka Railways
+R|6.87208|79.89068|Nugegoda|Sri Lanka Railways
+R|6.84738|79.94888|Pannipitiya|Sri Lanka Railways
+R|6.86221|79.90873|Udahamulla|Sri Lanka Railways
+Q|Sri Lanka Railway|Coastal Line||L55|6 2:2694 0:2170 3:9506 4:167987 1:2075
+Q|Sri Lanka Railways|Kelani Valley Line||L55|9 11:917 16:3430 10:2622 14:1211 17:1785 15:2425 8:1720 13:1753 7:2109 5:1707 12:1537 6:1961 12:1995
+T|8.32673|80.97966|Agbopura
+T|5.97324|80.36388|Ahangama
+T|6.31277|80.03758|Ahungalla
+T|6.19207|80.06480|Akurala
+T|7.11595|79.88703|Alawathupitiya
+T|7.11595|79.88703|Alawathupitiya Railway Station
+T|7.29342|80.23864|Alawwa
+T|6.43216|80.00034|Aluthgama
+T|6.23538|80.05493|Ambalangoda
+T|7.91888|80.24611|Ambanpola
+T|7.25600|80.16930|Ambepussa Railway Station
+T|6.87733|80.81434|Ambewela
+T|6.26619|80.04694|Andadola
+T|6.85298|80.10940|Angampitya
+T|6.79883|79.87271|Angulana
+T|8.32133|80.39927|Anuradhapura New Town
+T|8.34443|80.41084|Anuradhapura Railway Station
+T|8.33032|80.40707|Anuradhapura School
+T|9.31875|80.40766|Ariviyal Nagar
+T|7.96302|81.29907|Aselapura
+T|7.29784|80.63525|Asgiriya
+T|8.38022|80.47836|Asokapura
+T|6.95455|80.20705|Avissawella
+T|6.98010|81.05972|Badulla
+T|7.26675|80.48935|Balana
+T|6.27646|80.04337|Balapitiya
+T|6.89398|79.85296|Bambalapitiya
+T|5.97060|80.66075|Bambaranda
+T|6.82896|80.98765|Bandarawela
+T|7.62727|79.82860|Bangadeniya
+T|6.92636|79.87859|Baseline Road
+T|7.72447|81.69872|Batticaloa
+T|7.72720|79.83169|Battulu Oya
+T|7.05510|79.93721|Batuwatta
+T|6.04217|80.73725|Beliatte
+T|7.12241|80.02049|Bemmulla
+T|6.42216|79.99671|Bentota
+T|6.47694|79.98363|Beruwala
+T|7.29716|79.86090|Bolawatta
+T|6.07393|80.16114|Boossa
+T|7.31989|79.86310|Boralessa
+T|7.25660|80.15318|Botale
+T|7.17472|80.57945|Bothalapitiya
+T|7.27318|80.21064|Bujjomuwa
+T|7.06558|79.94545|Bulugahagoda
+T|9.65713|80.15846|Chavakachcheri
+T|8.66898|80.30590|Chettikulam Station
+T|7.57579|79.79093|Chilaw
+T|8.55640|81.19046|China Bay
+T|9.74624|80.03338|Chunnakam
+T|6.93340|79.85034|Colombo Fort
+T|6.91335|79.88452|Cotta Road
+T|7.10705|80.01040|Daraluwa
+T|6.85091|79.86211|Dehiwala
+T|6.93755|79.87902|Dematagoda
+T|6.90294|81.06277|Demodera
+T|6.92969|79.86551|Diesel Electric Locomotive Shed
+T|6.80196|80.95927|Diyatalawa
+T|6.09818|80.13289|Dodanduwa
+T|6.74293|79.89166|Egoda Uyana
+T|9.50239|80.40586|Elephant Pass
+T|6.87615|81.04749|Ella Railway Station
+T|9.65219|80.28081|Eluthumadduval
+T|9.66109|80.26565|Eluthumadduval
+T|7.44167|80.63213|Elwala
+T|7.00044|79.90683|Enderamulla
+T|7.78560|81.60444|Eravur
+T|7.96158|79.83012|Erukkalampiddy-Nagavillu Railway station
+T|6.98603|80.53006|Galboda
+T|8.00216|80.27153|Galgamuwa
+T|6.03458|80.21411|Galle
+T|7.90530|81.06315|Gallella
+T|8.13778|80.86582|Galoya Junction Railway Station
+T|6.87715|80.12320|Gammana
+T|7.09210|79.99277|Gampaha
+T|7.09350|79.99360|Gampaha Railway Station
+T|7.16216|80.56704|Gampola
+T|7.21293|80.10525|Ganegoda
+T|7.06843|79.96068|Ganemulla railway station
+T|7.65502|80.34865|Ganewatte
+T|7.29831|80.45341|Gangoda
+T|8.41659|81.03677|Ganthalawa
+T|7.21391|80.59862|Gelioya Train Station
+T|6.06067|80.17939|Gintota
+T|7.36465|80.30253|Girambe
+T|6.77125|80.93661|Glenanore Railway Station
+T|6.84790|80.03286|Godagama
+T|6.95724|80.68910|Great Western
+T|5.99411|80.30728|Habaraduwa
+T|8.05731|80.76959|Habarana
+T|6.95396|81.03345|Hali-Ela
+T|6.76831|80.95756|Haputale
+T|8.14517|80.83912|Hatares Kotuwa
+T|8.01910|80.96929|Hathamuna
+T|6.89335|80.59804|Hatton
+T|6.84429|81.02572|Heel-Oya
+T|7.14112|80.04716|Heendeniya-Pattigoda
+T|6.45769|79.99076|Hettimulla
+T|7.03305|80.53085|Hightenford
+T|6.14211|80.10006|Hikkaduwa
+T|8.03954|80.95154|Hingurakgoda
+T|7.69758|80.33980|Hiriyala
+T|6.84560|80.00424|Homagama
+T|6.84576|79.99244|Homagama Hospital
+T|7.01659|79.91832|Horape
+T|8.06779|80.67851|Horiwiala
+T|6.98774|79.90049|Hunupitiya
+T|7.15792|79.87526|IPZ - Katunayake South
+T|6.77940|80.89688|Idalgashinna
+T|6.94811|80.54217|Ihala Watawala
+T|7.28870|80.46926|Ihalakotte
+T|6.38738|80.00864|Induruwa
+T|7.01822|80.54572|Inguru Oya
+T|9.72593|80.02954|Inuvil
+T|8.70956|80.48116|Iratperiya Kulam
+T|7.07779|79.89215|Ja ela
+T|9.66547|80.02071|Jaffna
+T|8.00497|80.98355|Jayanthipura
+T|9.66252|80.02873|Kachcheri
+T|7.31793|80.43333|Kadigamuwa
+T|7.25778|80.52075|Kadugannawa
+T|6.91805|80.13480|Kadugoda
+T|7.16781|80.57276|Kahatapitiya
+T|6.18318|80.07400|Kahawe
+T|7.53282|79.82270|Kakkapalliya
+T|8.02373|80.53117|Kalawewa
+T|7.89661|81.55385|Kalkudah
+T|6.60118|79.95439|Kalutara North
+T|6.58411|79.95901|Kalutara South
+T|5.94341|80.49580|Kamburugamuwa
+T|7.04929|79.90154|Kandana
+T|6.25019|80.05292|Kandegoda
+T|7.28947|80.63225|Kandy
+T|9.81443|80.04873|Kankesanturai
+T|8.35624|81.00621|Kantale
+T|7.06291|79.89600|Kapuwatta
+T|8.13538|79.86391|Karadipuwal
+T|5.98258|80.34042|Kathaluwa
+T|7.23994|79.84756|Kattuwa
+T|7.33047|80.63296|Katugastota
+T|6.03275|80.24017|Katugoda
+T|6.56013|79.96612|Katukurunda
+T|7.16744|79.87188|Katunayake
+T|7.15828|79.87516|Katunayake South - EPZ
+T|7.18549|80.07438|Keenawala
+T|5.96066|80.59905|Kekanadura
+T|8.05845|80.58145|Kekirawa
+T|6.96106|79.89447|Kelaniya
+T|9.38576|80.40621|Killinochchi
+T|6.82988|81.00589|Kinigama
+T|7.75717|79.82825|Kiriyankalli
+T|6.88305|79.88290|Kirulapona
+T|6.86127|81.04315|Kithalella
+T|7.26426|79.85715|Kochchikade
+T|9.68131|80.21933|Kodaikamam
+T|5.98595|80.33163|Koggala
+T|9.68809|80.02121|Kokkuvil
+T|6.91132|79.84819|Kollupitiya
+T|6.92304|79.84965|Kompannavidiya
+T|9.70397|80.02483|Kondavil
+T|7.85079|80.34911|Konwewa
+T|6.75845|79.88595|Koralawalla
+T|6.94060|80.13729|Kosgama
+T|6.33854|80.02945|Kosgoda
+T|7.23359|80.59504|Koshinna
+T|6.92831|80.60867|Kotagala
+T|6.84373|79.96827|Kottawa
+T|7.10389|79.88981|Kudahakapola
+T|7.46218|79.85301|Kudawewa
+T|6.11245|80.12429|Kumarakanda
+T|5.96366|80.40968|Kumbalgama
+T|7.19109|79.86216|Kurana Railway Station
+T|7.47703|80.37425|Kurunegala
+T|7.98828|80.99686|Laksha Uyana
+T|7.14718|79.87821|Liyanagemulla
+T|6.83836|80.07972|Liyanwala
+T|6.78665|79.87555|Lunawa
+T|7.34679|79.86305|Lunuwila
+T|6.21228|80.06124|Madampagama
+T|7.49687|79.84138|Madampe
+T|8.47500|80.43514|Madegama
+T|8.77384|80.15016|Madhu Road
+T|7.90207|79.82047|Madurankuli
+T|7.13386|80.03634|Magalegoda
+T|6.50489|79.98137|Maggona
+T|6.36439|80.01394|Maha Induruwa
+T|7.30373|80.63417|Mahaiyawa
+T|6.84802|79.92718|Maharagama
+T|7.82316|80.27509|Maho Junction
+T|6.84059|79.97640|Makubura Railway Station
+T|6.84408|79.97508|Malapalla
+T|9.76189|80.03271|Mallakam
+T|7.90956|81.11011|Manampitiya
+T|9.13021|80.44439|Mankulam
+T|7.60061|79.82747|Manuwangama
+T|6.92843|79.86491|Maradana
+T|6.92924|79.86580|Maradana Railway Station
+T|7.46797|80.62486|Matale
+T|5.95176|80.54340|Matara
+T|9.79839|80.03845|Maviddapuram
+T|7.31918|80.63102|Mawilmada
+T|8.55451|80.45817|Medawachchiya
+T|7.34045|80.66706|Meegammana
+T|6.84337|80.04625|Meegoda
+T|9.67360|80.18896|Meesalai
+T|7.13387|80.03624|Megalegoda
+T|5.96517|80.39149|Midigama
+T|8.35862|80.50169|Mihintale
+T|8.35938|80.41860|Mihintale Junction
+T|8.06538|80.89477|Minneriya
+T|7.24259|80.12656|Mirigama
+T|5.95669|80.47350|Mirissa
+T|9.67417|80.24327|Mirusuvil
+T|7.90576|80.42217|Moragollagama
+T|6.88322|80.12395|Morakele
+T|6.77435|79.88178|Moratuwa
+T|8.44503|81.06187|Mullipotana
+T|7.79755|79.82568|Mundalama
+T|9.26980|80.40180|Murikandy
+T|7.49567|80.37912|Muttetugala
+T|7.75381|80.31457|Nagollagama
+T|7.44989|80.35872|Nailiya
+T|6.94207|80.74365|Nanu Oya
+T|6.89691|79.87806|Narahenpita
+T|9.66166|80.08147|Navatkuli
+T|7.05762|80.53505|Nawalapitiya
+T|6.85289|79.91786|Nawinna
+T|7.97991|80.48352|Negama
+T|7.21031|79.84188|Negombo
+T|7.47541|79.84504|Nelumpokuna
+T|8.61658|80.35685|Neriyakulam
+T|8.03597|79.83982|Noor Nagar
+T|6.87208|79.89068|Nugegoda
+T|6.81771|80.84302|Ohiya
+T|8.86524|80.50125|Omanthai
+T|6.84275|80.09115|Padukka
+T|7.98167|79.83281|Palavi
+T|9.60788|80.32984|Pallai
+T|7.33797|80.64157|Palle Talawinna
+T|7.08374|80.55265|Pallegama
+T|7.19830|80.08993|Pallewala
+T|8.05902|80.71326|Palugaswewa
+T|6.71241|79.90458|Panadura
+T|6.84694|80.01901|Panagoda
+T|7.32860|80.32531|Panaliya
+T|6.86496|79.90225|Pangiriwatta
+T|6.84738|79.94888|Pannipitiya
+T|7.97360|81.01780|Parakum Uyana
+T|9.44012|80.40711|Paranthan
+T|8.44537|80.43152|Parasangaswewa Railway Station
+T|7.38409|80.66167|Patanpaha
+T|6.29711|80.04156|Pathegamgoda
+T|7.38073|80.66212|Pattam Paha
+T|6.85586|80.83060|Pattipola
+T|6.53155|79.97504|Payagala North
+T|6.52189|79.97893|Payagala South
+T|6.99431|80.53947|Penrose
+T|7.25730|80.59020|Peradeniya Jct.
+T|6.91982|80.75363|Perakumpura Sub Railway
+T|7.03813|79.91222|Peralanda
+T|8.22839|79.86661|Periyanagavillu
+T|9.08232|79.82279|Pesalai
+T|7.26692|80.55267|Pilimatalawa
+T|6.86930|80.11731|Pinnawala
+T|6.68599|79.91599|Pinwatta
+T|6.05365|80.19097|Piyadigama
+T|6.32904|80.03352|Piyagama
+T|7.19656|80.59831|Polgahanga
+T|7.33070|80.30116|Polgahawela Junction
+T|7.93017|81.03334|Polonnaruwa
+T|5.96453|80.45724|Polwathumodara
+T|7.41985|80.32748|Pothuhera
+T|8.96093|80.52300|Puliyankulam
+T|7.96364|81.38718|Punani
+T|8.61309|80.46286|Punewa
+T|9.65930|80.03828|Punkankulam
+T|8.02267|79.83785|Puttalam
+T|6.93371|80.18804|Puwakpitiya
+T|6.94480|80.71673|Radella
+T|7.02995|79.92143|Ragama
+T|5.99396|80.30838|Railway Station Habaraduwa
+T|5.95176|80.54338|Railway Station Matara
+T|8.97134|79.89374|Railway Station, Mannar
+T|7.80185|81.58358|Railway station -Vantharumoolai
+T|7.26760|80.60287|Rajawatta
+T|7.32105|80.39032|Rambukkana
+T|7.84854|80.25934|Randenigama
+T|7.27869|80.61808|Randles Hill
+T|6.09335|80.14011|Rathgama
+T|6.81524|79.86675|Ratmalana
+T|6.05393|80.20481|Richmond Hill
+T|7.96385|81.33937|Rideethenna
+T|6.93487|80.55872|Rozelle
+T|8.38992|80.42230|Saliyapura
+T|8.35778|80.44146|Samagipura
+T|9.66405|80.17238|Sangathanai Railway Station
+T|7.26001|80.59653|Sarasavi Uyana
+T|7.56150|79.80534|Sawarana
+T|6.93145|79.84602|Secretariat Halt
+T|7.12903|79.88254|Seeduwa
+T|6.15868|80.09476|Seenigama
+T|8.08588|80.27771|Senarathgama
+T|8.08587|80.27771|Senarathgama Railway Station
+T|7.92156|81.18431|Sevanapitiya
+T|8.46266|80.43318|Siyabalagawewa
+T|8.29880|80.37698|Srawasthipura
+T|9.10333|79.72988|Talaimannar
+T|8.23175|80.34827|Talawa
+T|6.94005|80.66099|Talawakele
+T|5.99848|80.28013|Talpe
+T|9.78498|80.03524|Tellippalai
+T|6.16907|80.08888|Telwatte
+T|7.13318|80.55926|Tembligala
+T|9.65718|80.11082|Thachanthoppu
+T|7.38788|80.30161|Thalawattegedara
+T|8.15432|80.30388|Thambuttegama
+T|8.49834|81.09535|Thampalakamam
+T|8.77826|80.48502|Thandikulam
+T|6.12231|80.11439|Thiranagama
+T|8.91542|79.94778|Thiruketheeswaram
+T|9.02527|79.86730|Thoddaweli
+T|7.78130|80.29767|Timbiriyagedara
+T|7.32171|80.34315|Tismalpola
+T|6.63255|79.94034|Train Halt No. 1
+T|7.27742|79.86021|Train Station Waikkala
+T|8.58441|81.22620|Trincomalee
+T|7.09295|79.89095|Tudella
+T|7.39051|79.85901|Tummodera
+T|7.33956|80.65131|Uda Talawinna
+T|6.86221|79.90873|Udahamulla
+T|6.93155|81.04213|Uduwara
+T|7.42038|80.63417|Ukuwela
+T|7.10828|80.55972|Ulapane
+T|6.02207|80.24922|Unawatuna
+T|7.91027|81.53186|Valaichchenai
+T|8.75387|80.49366|Vavuniya
+T|7.15307|80.05841|Veyangoda
+T|8.53081|80.44654|Viralmurippuwa
+T|6.66326|79.92869|Wadduwa
+T|7.16784|80.06606|Wadurawa Railway Station
+T|6.90135|80.12766|Waga
+T|7.43946|79.85919|Walahapitiya
+T|7.31386|80.26905|Walakumbura
+T|5.94539|80.51419|Walgama
+T|7.14545|80.56161|Wallahagoda
+T|7.04723|79.93119|Walpola
+T|6.97555|79.89936|Wanawasala
+T|7.11752|80.56148|Warakapitiya
+T|7.07407|80.54068|Warakawa
+T|6.96888|80.65284|Watagoda
+T|6.84317|80.05987|Watareka
+T|6.96209|80.52634|Watawala
+T|7.35065|80.68256|Wattegama
+T|5.95706|80.57792|Weherahena
+T|7.18934|80.59301|Weligalla
+T|5.97563|80.42957|Weligama
+T|7.94711|81.25036|Welikanda
+T|7.55963|80.36618|Wellawa
+T|5.97949|80.69739|Wewrukannala
+T|7.23093|80.11848|Wijayarajadahana
+T|7.25632|80.13543|Wilwatta
+T|7.07473|79.97390|Yagoda
+T|7.31869|80.36410|Yatagama
+T|7.27044|80.19431|Yaththalgoda
+T|6.84355|80.04620|meegoda train station
+B|6.92418|79.92704|166 Bus Station
+B|6.84785|79.92749|219 Bus Stand
+B|5.97129|80.36554|Ahangama
+B|7.21784|81.84994|Akkaraipattu
+B|6.09956|80.47771|Akuressa
+B|7.29607|80.23746|Alawwa Central Bus Stand
+B|7.29413|80.24100|Alawwa-Colombo
+B|6.43704|79.99732|Aluthgama Bus deport
+B|7.47133|80.62266|Ambagahamula Bus Station
+B|6.23670|80.05457|Ambalangoda Bus Station
+B|6.12286|81.02672|Ambalantota
+B|7.29036|81.67315|Ampara Bus Station
+B|7.87898|80.01193|Anamaduwa bus station
+B|6.92878|79.92746|Angoda
+B|7.43933|80.57155|Ankumbura
+B|8.32306|80.40243|Anuradhapura New Bus Station
+B|7.30731|80.64920|Aruppola Bus Stand
+B|6.36660|80.14669|Avittawa Bus Station
+B|6.63789|80.31242|Ayagama Bus Station
+B|6.17248|80.17811|Baddegama Bus Station
+B|6.98012|81.05972|Badulla Railway Station
+B|6.51647|80.23218|Baduraliya Main Bus Stop
+B|7.77643|80.81785|Bakamuna Bus Station
+B|6.65062|80.70156|Balangoda Main Bus Stand
+B|6.28019|80.04077|Balapitiya Bus Stand
+B|6.71418|79.99080|Bandaragama New Bus Station
+B|6.82977|80.98846|Bandarawela Central Bus Station
+B|7.16043|81.22566|Bibile Bus Station
+B|7.28979|80.63377|Bogamabara Bus Terminal - Long Distance
+B|6.79483|80.67951|Bogo Bus station
+B|7.39370|80.55352|Bokkawala
+B|7.10526|80.33564|Bulathkohupitiya
+B|6.64907|80.17870|Bulathsinhala Bus Station
+B|6.50382|80.64629|Bus Depot
+B|6.52150|80.39090|Bus Depot
+B|6.81437|80.95850|Bus Halt
+B|7.70464|80.65313|Bus Main station Naula
+B|9.26865|80.81312|Bus St
+B|6.58309|80.57350|Bus Stand
+B|6.71173|79.90796|Bus Stand
+B|7.51659|81.78687|Bus Stand
+B|7.78061|81.18399|Bus Stand
+B|7.91730|81.51922|Bus Stand
+B|7.92584|81.53809|Bus Stand
+B|8.03435|80.48047|Bus Stand - Galnewa
+B|6.08251|80.64370|Bus Stand - Hakmana
+B|6.96904|80.26516|Bus Stand Dehiowita
+B|6.92761|80.33978|Bus Stand Deraniyagala
+B|8.03513|80.48001|Bus Stand Galnewa
+B|7.06628|79.96113|Bus Stand Ganemulla
+B|7.16973|79.94734|Bus Stand Minuwangoda
+B|7.14478|80.78360|Bus Stand Rikillagaskda
+B|6.83571|80.98581|Bus Station
+B|6.42410|80.81715|Bus Station - Direction Monaragala / Ella
+B|7.35241|80.95278|Bus Station Hasalaka
+B|6.41942|80.01236|Bus Stop
+B|7.29920|80.73417|Bus Stop (613 Digana - Madawala - Kandy) & Teldeniya, Matale
+B|7.29897|80.73431|Bus Stop (654 Digana - Kandy) & Outstation
+B|7.08874|81.04698|Bus halt
+B|7.87048|80.65182|Bus to Sigiriya
+B|6.83494|80.57175|Buses to Dalhousie
+B|6.76017|81.24743|Buttala
+B|6.72194|80.07511|CTB  Depot - Horana
+B|8.34070|80.41465|CTB Bus Station
+B|6.05419|80.18197|CTB Depot
+B|6.82617|79.86870|CTB Depot
+B|6.84336|79.92392|CTB Depot
+B|7.42007|81.82224|CTB Depot, Kalmunai
+B|6.85565|81.34517|CTB Monaragala
+B|7.41314|81.82675|CTB Stand, Kalmunai
+B|7.07872|79.89005|CTB bus station
+B|6.43195|79.99832|Central Bus Station
+B|6.93502|79.85463|Central Bus Station
+B|6.98807|81.05769|Central Bus Station
+B|7.28959|80.63383|Central Bus Station
+B|7.71465|81.69473|Central Bus Station
+B|7.57675|79.79615|Chilaw CTB Bus Stand
+B|6.90382|80.91221|Clock Tower Bus Stop
+B|8.33922|80.41525|Colombo Bus Station
+B|7.87051|80.65151|Dambula Bus Station
+B|7.20441|80.17365|Danowita bus station
+B|7.17216|80.42013|Debathgama
+B|6.85091|79.86231|Dehiala railway station
+B|7.67201|81.04715|Dehiattakandiya Main Bus Stand
+B|7.17438|80.69725|Deltota Bus Stand
+B|6.34228|80.56035|Deniyaya Bus Station
+B|6.94478|80.33286|Deraniyagala Bus Depot
+B|5.96394|80.69404|Dickwella
+B|7.29527|80.73549|Digana
+B|7.29925|80.73711|Digana - Senarathwela
+B|6.80810|80.95696|Diyatalawa Bus Station
+B|6.28773|80.16500|Elpitiya Bus Depot
+B|6.29186|80.16297|Elpitiya Bus Station
+B|6.33211|80.85682|Embilipitiya
+B|6.31521|80.86578|Embilipitiya Bus Depot
+B|7.78399|81.60729|Eravur Bus Station
+B|6.93631|80.98837|Etampitiya Bus Stand
+B|7.13267|80.56812|Ethgala
+B|6.93317|79.85620|Express buses
+B|7.37256|80.52421|Galagedara
+B|7.37262|80.52444|Galagedara Main Bus Stop
+B|7.19778|80.66824|Galaha Bus Stand
+B|7.13963|80.23482|Galapitamada Bus
+B|8.28952|80.71560|Galenbindunuwewa Bus
+B|7.99617|80.27034|Galgamuwa Bus Stand
+B|6.03297|80.21574|Galle Public Bus Station
+B|7.09179|79.99257|Gampaha Bus Station
+B|7.08377|80.02310|Gampaha CTB Depot
+B|7.16176|80.56835|Gampola CTB Bus Stand
+B|7.16176|80.56766|Gampola Private Bus Station
+B|7.21510|80.59824|Gelioya Bus Stand
+B|6.99001|80.49328|Ginigathhena Bus Station
+B|7.47241|81.01789|Girandurukotte Bus Station
+B|7.32930|80.12184|Giriulla Bus Station
+B|6.92267|79.91328|Gothatuwa New Town
+B|5.99384|80.30794|Habaraduwa Bus Stand
+B|6.12553|81.12578|Hambantota Bus Stand
+B|7.17661|80.77793|Hanguranketha Bus Stand
+B|6.76915|80.96034|Haputale Bus Station
+B|7.33402|80.47055|Hatharaliyadda Bus Station
+B|6.88874|80.59920|Hatton CTB Bus Stand
+B|6.88931|80.59889|Hatton Private Bus Stand
+B|6.84386|81.02554|Heel-Oya
+B|7.53660|80.91353|Hettipola Bus Station
+B|6.14026|80.10005|Hikkaduwa
+B|8.04014|80.95205|Hingurakgoda CTB Stand
+B|8.04068|80.95132|Hingurakgoda Private Bus Stand
+B|6.84019|79.99989|Homagama Bus Stand
+B|6.83967|79.99972|Homagama Bus Station
+B|6.84127|80.00201|Homagama Central Bus Stand
+B|6.71689|80.06351|Horana Bus Stand
+B|6.72247|80.07473|Horana CTB depot
+B|8.54892|80.83176|Horowpotana
+B|6.92341|79.91343|IDH Junction
+B|6.03607|80.38703|Imaduwa Bus station
+B|6.74427|80.17546|Ingiriya
+B|7.07893|79.88960|Jaela Depot
+B|6.86550|79.85944|Jaffna / Batticaloa Private Bus
+B|9.66677|80.01182|Jaffna Central Bus Stand
+B|9.66157|80.02917|Kacheriyady Bus Station
+B|7.00522|79.95467|Kadawatha Bus Stand
+B|7.00521|79.95446|Kadawatha Highway Bus Stand
+B|7.25731|80.51997|Kadugannawa
+B|7.92998|81.03317|Kaduruwela
+B|6.93618|79.98327|Kaduwela Bus Stand
+B|6.93594|79.98281|Kaduwela Bus Terminal
+B|6.86446|79.85975|Kalmunai Private Bus
+B|8.24048|79.76358|Kalpitiya Bus Terminal
+B|6.58438|79.96037|Kalutara Bus Station
+B|6.60203|79.95546|Kalutara North
+B|6.08169|80.56682|Kamburupitiya Bus Stand
+B|6.08172|80.56669|Kamburupitiya Bus Station
+B|7.29161|80.63367|Kandy - Colombo Intercity Bus Stop
+B|7.29287|80.63416|Kandy Clocktower Bus Stop
+B|7.28561|80.62508|Kandy South Depot.
+B|6.85056|79.87190|Karagampitiya
+B|7.30864|80.76609|Karaliyadda Private Bus Stand
+B|6.06667|80.22468|Karapitiya
+B|7.02328|80.26143|Karawanella Bus Station
+B|6.79145|79.94767|Kasbawa Depot
+B|6.41301|81.33237|Kataragama Bus Station
+B|6.41609|81.34273|Kataragama Depot
+B|7.17513|79.88863|Katunayake Airport
+B|9.81322|80.01372|Keerimalai bus station
+B|7.25165|80.34395|Kegalle Bus Depot
+B|7.25327|80.34794|Kegalle Central Bus Stand
+B|7.25343|80.34471|Kegalle Main Bus Stand
+B|8.04117|80.59639|Kekirawa Bus Station
+B|6.95553|79.88522|Kelaniya Bus Depot
+B|6.95177|79.91737|Kelaniya Bus Stand
+B|6.95333|79.91954|Kelaniya Bus Stand Parking
+B|6.79510|79.94086|Kesbewa Bus Station
+B|9.38332|80.40670|Killinochchi
+B|8.50076|81.19198|Kinniya
+B|6.97973|79.93022|Kiribathgoda Bus Stand
+B|6.73750|80.27273|Kiriella Bus
+B|7.03454|79.99065|Kirillawala
+B|6.21542|81.33486|Kirinde
+B|7.04268|80.13003|Kirindiwela Bus Station
+B|7.77092|81.57519|Koduwamadu Bus Stand
+B|5.98651|80.32950|Koggala CTB Dippo
+B|7.60543|81.71187|Kokkaddicholai Bus Stand
+B|7.06487|80.68354|Kothmale
+B|7.01496|80.67223|Kothmale Depot
+B|6.93600|79.91655|Kotikawatta
+B|6.87884|79.89985|Kotte Rd/2nd Cross St
+B|7.46832|80.04144|Kuliyapitiya Bus Station
+B|7.48791|80.36450|Kurunegala Bus Terminal
+B|7.47934|80.37077|Kurunegala South Bus Depot
+B|6.77551|80.36726|Kuruwita Bus Stand
+B|9.66436|80.01122|Long Distance Bus Terminal
+B|6.81015|80.59400|Lower cruden division's bus stop
+B|7.04166|81.20258|Lunugala Bus Station
+B|9.80033|80.03430|Maaviddapuram
+B|7.49685|79.84098|Madampe
+B|8.53907|80.49256|Madawachchiya Bus Stand
+B|7.05393|80.92673|Madulla
+B|6.84819|79.92561|Maharagama Bus Stand
+B|6.84524|79.92609|Maharagama-Moratuwa
+B|6.84456|79.92587|Maharagama-Nugegoda
+B|6.84447|79.92601|Maharagama-Piliyandala
+B|7.82182|80.27364|Mahawa Bus station
+B|6.53228|80.39739|Main Bus Stand
+B|7.32277|79.97684|Makandura
+B|6.84063|79.97591|Makumbura Highway Bus Stand
+B|6.84072|79.97597|Makumbura Multimodal Center
+B|6.90392|79.95443|Malabe Bus Station
+B|6.90336|79.95521|Malabe Bus station
+B|8.97814|79.91380|Mannar CTB Bus Stop
+B|8.97876|79.91365|Mannar bus station(Private)
+B|6.83315|80.57241|Maskeliya bus station
+B|8.35403|80.44135|Matale Junction Bus Stop
+B|5.94308|80.54864|Matara Expressway Bus Stand
+B|6.52228|80.11484|Mathugama CTB Bus Stand
+B|6.52280|80.11653|Mathugama Private Bus Stand
+B|6.97948|79.87578|Mattakuliya Bus station
+B|6.51468|80.12094|Matugama Bus Depot
+B|7.25246|80.44710|Mawanella Bus Station
+B|6.98716|79.97581|Mawaramandiya Bus Stand
+B|7.43166|80.44897|Mawathagama
+B|8.14110|80.96301|Medirigiriya Main Bus Stand
+B|6.93588|79.88854|Meethotamulla
+B|7.64097|80.50795|Melsiripura Bus Stand
+B|7.31552|80.70202|Menikhinna
+B|6.25132|80.76464|Middeniya Bus Station
+B|7.24289|80.12716|Mirigama
+B|6.87185|81.35196|Monaragala Bus Stand
+B|6.77482|79.88205|Moratuwa Terminal
+B|6.83301|79.86727|Mount Lavinia Bus Stand
+B|8.83513|80.04902|Murukkan Train Station
+B|8.45320|81.26308|Muthu Bus Station
+B|6.59297|80.08808|Nabada Bus Station
+B|6.55915|79.97525|Nagoda Bus Depot
+B|7.41126|79.86449|Nattandiya
+B|7.70460|80.65316|Naula main bus station
+B|8.00401|80.10520|Nawagattegama Bus Station
+B|7.05582|80.53423|Nawalapitiya
+B|7.19338|79.98071|Nawaloka junction
+B|7.22160|79.85144|Negombo Bus Depot
+B|7.20521|79.84121|Negombo Bus Terminal
+B|9.79995|80.20078|Nelliady Junction
+B|6.37802|80.36140|Neluwa Bus Station
+B|6.89279|80.98578|Neluwa Bus Station
+B|6.26073|80.49122|New BusStand Morawaka
+B|6.86567|79.92777|New Hospital
+B|8.76321|80.49569|New Private Bus Stand
+B|7.82178|80.27349|New bus stand
+B|7.75063|80.11508|Nikaweratiya Bus Station
+B|7.08076|80.89350|Nildandahinna Bus Stop
+B|7.14174|80.09635|Nittambuwa New Bus Stand
+B|8.26381|80.21007|Nochchiyagama Bus Station
+B|6.97212|80.76747|Nuawara Eliya Main Bus Station
+B|6.87268|79.89197|Nugegoda Bus Stand
+B|6.87431|79.89161|Nugegoda Bus Station
+B|7.14140|80.09496|Old bus stand
+B|6.86826|80.61743|PWD Busstand
+B|7.09111|80.79852|Padiyapelella Bus Station
+B|7.40403|81.24399|Padiyatalawa Bus Station
+B|6.84179|80.09077|Padukka Bus Station
+B|9.60909|80.33032|Palai Bus Stand
+B|6.75578|81.81041|Panama Bus Station
+B|7.32861|80.02258|Pannala Bus Station
+B|7.32861|80.02258|Pannala bus stand
+B|7.36176|80.71516|Panwila
+B|9.43698|80.40730|Paranthan
+B|6.40479|80.21704|Pelawaththa Bus Station
+B|6.62456|80.54159|Pelmadulla Bus Station
+B|7.58050|81.44966|Periapullumalai Bus Station
+B|6.93361|79.85532|Pettah Private Bus Station
+B|6.80208|79.92506|Piliyandala New Bus Stand
+B|6.57594|80.15802|Pimbura Hospital Bus Stand
+B|6.71830|80.67829|Pinnawala Bus Stand
+B|6.34272|80.22290|Pitigala Bus Station
+B|7.33575|80.29970|Polgahawela bus station
+B|7.29133|80.49095|Poththapitiya
+B|6.87692|81.82946|Pottuvil Bus Stand
+B|6.71407|79.98900|Private Bus Stand
+B|7.41385|81.82684|Private Bus Stand, Kalmunai
+B|6.71194|79.90771|Private Bus Station
+B|7.33904|80.99224|Private Bus Station
+B|7.71483|81.69631|Private Bus Station
+B|6.97630|80.12066|Pugoda Bus Station‎
+B|6.05159|80.62952|Puhulwella Bus Stand
+B|7.01518|80.66517|Pundaluoya Bus
+B|7.10706|80.63632|Pussellawa
+B|9.32085|80.68512|Puthukudiyirupu Bus Station
+B|8.02788|79.83335|Puttalam Bus Station
+B|6.00241|80.67244|Radampola Bus Stand
+B|7.13869|79.90028|Raddolugama Bus stand
+B|7.01228|80.86071|Ragala Bus Station
+B|7.02830|79.92018|Ragama Bus Station
+B|7.32258|80.39107|Rambukkana Bus Station
+B|8.75616|80.48499|Rathna Tevels
+B|6.68486|80.41054|Ratnapura CTB Depot
+B|6.68358|80.40219|Ratnapura Central Bus Stand
+B|7.51999|80.67788|Rattota Bus Stand;Rattota Bus stand
+B|7.14607|80.78418|Rikillagaskada Bus Station
+B|7.02941|79.92168|Route 222 - Kadawatha
+B|7.04486|80.25345|Ruwanwella Bus Station
+B|6.85884|81.83218|SLTB Bus Depot - Pottuvil
+B|6.71449|79.90805|SLTB Bus Station
+B|7.33802|80.99190|SLTB Bus Station
+B|7.92968|81.03287|SLTB Depot
+B|8.15747|81.42430|SLTB Depot
+B|8.19475|80.09460|Saliya Wewa Bus Stand
+B|7.20369|79.84208|Taladuwa
+B|8.23688|80.35060|Talawa
+B|6.02837|80.79445|Tangalle Bus Station
+B|6.03148|80.79262|Tangalle CTB Depot
+B|7.30902|80.76556|Teldeniya CTB Bus Stand
+B|7.31482|80.75855|Teldeniya CTB Depot
+B|6.90678|79.92611|Thalangama Depot
+B|8.15615|80.29694|Thambuttegama Bus Station
+B|6.43329|81.13104|Thanamalwila
+B|9.66077|80.04608|Thapalkaddi Juction
+B|6.89566|79.85590|Thummulla Roundabout Bus Stop
+B|6.27625|81.28698|Tissa Bus Stand
+B|8.57669|81.23529|Trincomalee Bus Station
+B|6.51823|80.49700|Uda Delwala Bus Stop
+B|7.12255|80.56466|Udagama
+B|6.86479|79.91116|Udahamulla Bus Depot
+B|6.58322|80.15870|Udatiyawala
+B|6.30047|80.63528|Urubokka
+B|9.82356|80.16938|VVT Bus Station
+B|9.74005|79.88965|Valanthalai Junction
+B|8.73590|80.49093|Vavuniya Depo
+B|8.75354|80.49759|Vavuniya SLTB (CTB) Bus Stand
+B|7.15315|80.05774|Veyangoda Bus Station
+B|7.10353|81.84390|Vinayagapuram Bus Stand
+B|7.09501|80.86183|Walapane Old bus stand
+B|7.22406|80.19601|Warakapola Bus Stand
+B|7.62011|80.24520|Wariyapola Bus Station
+B|7.35021|80.68155|Wattegama Bus Station
+B|6.15411|80.76849|Weeraketiya
+B|7.18919|80.59240|Weligalla
+B|5.97349|80.42950|Weligama Main Bus Stand
+B|7.94742|81.24776|Welikanda
+B|6.90562|80.91141|Welimada Bus Station
+B|7.03244|80.02828|Weliweriya
+B|6.93706|79.89649|Wellampityia Bus station
+B|6.72970|81.10226|Wellawaya Bus Stand
+B|7.34237|79.84174|Wennappuwa Bus Stand
+B|7.32713|79.84512|Wennappuwa Depot
+B|6.85743|79.90900|Wijerama Bus Stop
+B|6.10621|80.34861|Yakkalamulla bus stand
+B|6.02481|80.60072|Yatiyana Bus Stand
+B|7.02855|80.29495|Yatiyanthota
+B|7.02861|80.29484|Yatiyanthota Bus Stand
+B|7.17551|80.50058|hemmathagama
+B|6.52268|80.11554|private bus stand
+B|6.47009|79.98529|tempal Road stand
+B|6.78701|80.61522|upcot bus station

@@ -1,0 +1,2434 @@
+# Transit for Koode, MX. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
+S|19.43565|-99.08360|Terminal 1|Aerotrén|M
+S|19.42104|-99.07892|Terminal 2|Aerotrén|M
+S|25.67700|-100.31817|Alameda|Metrorrey|M
+S|25.71578|-100.34247|Alfonso Reyes|Metrorrey|M
+S|25.73985|-100.30263|Anáhuac|Metrorrey|M
+S|25.68374|-100.28813|Arena Monterrey|Metrorrey|M
+S|25.73209|-100.34722|Aztlán|Metrorrey|M
+S|25.68699|-100.32424|Central|Metrorrey|M
+S|25.67835|-100.29760|Colonia Obrera|Metrorrey|M
+S|25.68613|-100.31690|Cuauhtémoc|Metrorrey|M
+S|25.68506|-100.30657|Del Golfo|Metrorrey|M
+S|25.68693|-100.33345|Edison|Metrorrey|M
+S|25.68007|-100.26414|Eloy Cavazos|Metrorrey|M
+S|25.67951|-100.24543|Exposición|Metrorrey|M
+S|25.68399|-100.29686|Félix U. Gomez|Metrorrey|M
+S|25.67228|-100.31879|Fundadores|Metrorrey|M
+S|25.69664|-100.31687|General Anaya|Metrorrey|M
+S|25.66775|-100.31021|General I. Zaragoza|Metrorrey|M
+S|25.69193|-100.34410|Hospital|Metrorrey|M
+S|25.71398|-100.27323|Hospital Metropolitano|Metrorrey|M
+S|25.67981|-100.25224|Lerdo de Tejada|Metrorrey|M
+S|25.70719|-100.28304|Los Ángeles|Metrorrey|M
+S|25.68996|-100.29598|Metalúrgicos|Metrorrey|M
+S|25.70583|-100.34239|Mitras|Metrorrey|M
+S|25.70033|-100.29277|Moderna|Metrorrey|M
+S|25.71704|-100.31081|Niños Heroes|Metrorrey|M
+S|25.66861|-100.31557|Padre Mier|Metrorrey|M
+S|25.72328|-100.34253|Penitenciaría|Metrorrey|M
+S|25.70808|-100.31405|Regina|Metrorrey|M
+S|25.70329|-100.28856|Ruiz Cortinez|Metrorrey|M
+S|25.74841|-100.36168|San Bernabé|Metrorrey|M
+S|25.75267|-100.29804|San Nicolás|Metrorrey|M
+S|25.67150|-100.29851|Santa Lucía|Metrorrey|M
+S|25.75937|-100.29565|Santiago Tapia|Metrorrey|M
+S|25.76881|-100.29287|Sendero|Metrorrey|M
+S|25.69875|-100.34318|Simón Bolívar|Metrorrey|M
+S|25.75922|-100.36844|Talleres|Metrorrey|M
+S|25.74189|-100.35494|Unidad Modelo|Metrorrey|M
+S|25.72438|-100.30821|Universidad|Metrorrey|M
+S|25.68328|-100.27945|Y Griega|Metrorrey|M
+S|20.63812|-103.37700|18 de Marzo|Mi Tren|M
+S|20.74126|-103.40748|Arcos de Zapopan|Mi Tren|M
+S|20.71623|-103.35438|Atemajac|Mi Tren|M
+S|20.73525|-103.35084|Auditorio|Mi Tren|M
+S|20.69844|-103.35497|Avila Camacho|Mi Tren|M
+S|20.67275|-103.33148|Belisario Dominguez|Mi Tren|M
+S|20.62318|-103.28506|Central de Autobuses|Mi Tren|M
+S|20.70642|-103.36601|Circunvalación Country|Mi Tren|M
+S|20.52880|-103.38395|Concepción del Valle|Mi Tren|M
+S|20.66754|-103.31340|Cristobal de Oñate|Mi Tren|M
+S|20.65957|-103.32400|CUCEI|Mi Tren|M
+S|20.46939|-103.41459|CUTLAJO|Mi Tren|M
+S|20.72087|-103.35337|Dermatológico|Mi Tren|M
+S|20.70797|-103.35562|Division del Norte|Mi Tren|M
+S|20.50690|-103.39372|El Cuervo|Mi Tren|M
+S|20.62161|-103.38925|España|Mi Tren|M
+S|20.67559|-103.34736|Guadalajara Centro|Mi Tren|M
+S|20.67097|-103.34470|Independencia|Mi Tren|M
+S|20.63268|-103.38070|Isla Raza|Mi Tren|M
+S|20.57500|-103.35594|Jalisco 200 Años|Mi Tren|M
+S|20.67494|-103.35475|Juárez|Mi Tren|M
+S|20.67489|-103.35550|Juárez II|Mi Tren|M
+S|20.66246|-103.28561|La Aurora|Mi Tren|M
+S|20.69309|-103.34838|La Normal (CETRAM)|Mi Tren|M
+S|20.60767|-103.34082|Las Juntas|Mi Tren|M
+S|20.48674|-103.40419|Lomas del Sur|Mi Tren|M
+S|20.63231|-103.29626|Lázaro Cárdenas|Mi Tren|M
+S|20.72896|-103.38926|Mercado del Mar|Mi Tren|M
+S|20.66691|-103.35538|Mexicaltzingo|Mi Tren|M
+S|20.69148|-103.35391|Mezquitán|Mi Tren|M
+S|20.67029|-103.32252|Oblatos|Mi Tren|M
+S|20.62670|-103.38511|Patria|Mi Tren|M
+S|20.73818|-103.40317|Periférico Belenes|Mi Tren|M
+S|20.73110|-103.35221|Periférico Norte|Mi Tren|M
+S|20.60732|-103.40093|Periférico Sur|Mi Tren|M
+S|20.66500|-103.33253|Plaza de la Bandera|Mi Tren|M
+S|20.71242|-103.37548|Plaza Patria|Mi Tren|M
+S|20.67513|-103.34814|Plaza Universidad|Mi Tren|M
+S|20.55945|-103.36554|Real del Valle|Mi Tren|M
+S|20.68238|-103.35408|Refugio|Mi Tren|M
+S|20.65097|-103.31033|Revolución|Mi Tren|M
+S|20.64484|-103.30408|Río Nilo|Mi Tren|M
+S|20.66528|-103.30607|San Andrés|Mi Tren|M
+S|20.66385|-103.29726|San Jacinto|Mi Tren|M
+S|20.67509|-103.34044|San Juan de Dios|Mi Tren|M
+S|20.65436|-103.36365|Santa Filomena|Mi Tren|M
+S|20.68405|-103.34785|Santuario|Mi Tren|M
+S|20.61385|-103.39559|Santuario Mártires de Cristo Rey|Mi Tren|M
+S|20.65980|-103.27597|Tetlán|Mi Tren|M
+S|20.46851|-103.43658|Tlajomulco Centro|Mi Tren|M
+S|20.63769|-103.30002|Tlaquepaque Centro|Mi Tren|M
+S|20.64723|-103.36930|Unidad Deportiva|Mi Tren|M
+S|20.64317|-103.37275|Urdaneta|Mi Tren|M
+S|20.69923|-103.35480|Ávila Camacho|Mi Tren|M
+S|20.66110|-103.35744|Washington|Mi Tren|M
+S|20.72059|-103.38689|Zapopan Centro|Mi Tren|M
+S|19.36467|-99.00564|Acatitla|STC Metro|M
+S|19.37331|-99.10766|Aculco|STC Metro|M
+S|19.40456|-99.06950|Agrícola Oriental|STC Metro|M
+S|19.43555|-99.13713|Allende|STC Metro|M
+S|19.37915|-99.10951|Apatlaco|STC Metro|M
+S|19.49068|-99.19532|Aquiles Serdán|STC Metro|M
+S|19.45126|-99.09624|Aragón|STC Metro|M
+S|19.35279|-99.10624|Atlalilco|STC Metro|M
+S|19.35551|-99.10130|Atlalilco|STC Metro|M
+S|19.42498|-99.19226|Auditorio|STC Metro|M
+S|19.47894|-99.14061|Autobuses del Norte|STC Metro|M
+S|19.42311|-99.10252|Balbuena|STC Metro|M
+S|19.42712|-99.14897|Balderas|STC Metro|M
+S|19.36155|-99.18926|Barranca del Muerto|STC Metro|M
+S|19.43616|-99.14064|Bellas Artes|STC Metro|M
+S|19.46464|-99.11198|Bondojito|STC Metro|M
+S|19.45807|-99.06934|Bosque de Aragón|STC Metro|M
+S|19.41987|-99.09632|Boulevard Puerto Aéreo|STC Metro|M
+S|19.44626|-99.15235|Buenavista|STC Metro|M
+S|19.32051|-99.08589|Calle 11|STC Metro|M
+S|19.47910|-99.19003|Camarones|STC Metro|M
+S|19.44881|-99.11614|Canal del Norte|STC Metro|M
+S|19.39876|-99.05943|Canal de San Juan|STC Metro|M
+S|19.42958|-99.12090|Candelaria L1|STC Metro|M
+S|19.42880|-99.11939|Candelaria L4|STC Metro|M
+S|19.40653|-99.15516|Centro Médico|STC Metro|M
+S|19.35599|-99.08569|Cerro de la Estrella|STC Metro|M
+S|19.40910|-99.13552|Chabacano|STC Metro|M
+S|19.40919|-99.13559|Chabacano L2|STC Metro|M
+S|19.42070|-99.17684|Chapultepec|STC Metro|M
+S|19.40590|-99.16853|Chilpancingo|STC Metro|M
+S|19.53452|-99.02755|Ciudad Azteca|STC Metro|M
+S|19.40847|-99.09135|Ciudad Deportiva|STC Metro|M
+S|19.44921|-99.17189|Colegio Militar|STC Metro|M
+S|19.34592|-99.06374|Constitución de 1917|STC Metro|M
+S|19.41175|-99.19138|Constituyentes|STC Metro|M
+S|19.45805|-99.11393|Consulado L4|STC Metro|M
+S|19.45515|-99.11356|Consulado L5|STC Metro|M
+S|19.33606|-99.17707|Copilco|STC Metro|M
+S|19.36138|-99.17086|Coyoacán|STC Metro|M
+S|19.39834|-99.11350|Coyuya|STC Metro|M
+S|19.45957|-99.21598|Cuatro Caminos|STC Metro|M
+S|19.42567|-99.15458|Cuauhtémoc|STC Metro|M
+S|19.45723|-99.18147|Cuitláhuac|STC Metro|M
+S|19.33691|-99.10894|Culhuacán|STC Metro|M
+S|19.48434|-99.12509|Deportivo 18 de Marzo|STC Metro|M
+S|19.45109|-99.07919|Deportivo Oceanía|STC Metro|M
+S|19.37909|-99.15936|División del Norte|STC Metro|M
+S|19.42144|-99.14322|Doctores|STC Metro|M
+S|19.51516|-99.03607|Ecatepec|STC Metro|M
+S|19.45138|-99.10530|Eduardo Molina|STC Metro|M
+S|19.36136|-99.15149|Eje Central|STC Metro|M
+S|19.50467|-99.19993|El Rosario|STC Metro|M
+S|19.36005|-99.14321|Ermita|STC Metro|M
+S|19.36005|-99.14321|Ermita|STC Metro|M
+S|19.36490|-99.10955|Escuadrón 201|STC Metro|M
+S|19.39603|-99.15603|Etiopía/Plaza de la Transparencia|STC Metro|M
+S|19.38613|-99.15719|Eugenia|STC Metro|M
+S|19.49068|-99.17391|Ferrería/Arena Ciudad de México|STC Metro|M
+S|19.42159|-99.12051|Fray Servando|STC Metro|M
+S|19.44392|-99.13880|Garibaldi/Lagunilla|STC Metro|M
+S|19.35334|-99.14496|General Anaya|STC Metro|M
+S|19.41641|-99.09027|Gómez Farías|STC Metro|M
+S|19.38512|-99.03562|Guelatao|STC Metro|M
+S|19.44491|-99.14517|Guerrero|STC Metro|M
+S|19.42428|-99.08800|Hangares|STC Metro|M
+S|19.43741|-99.14666|Hidalgo|STC Metro|M
+S|19.37195|-99.17076|Hospital 20 de Noviembre|STC Metro|M
+S|19.41366|-99.15328|Hospital General|STC Metro|M
+S|19.48569|-99.04900|Impulsora|STC Metro|M
+S|19.49528|-99.11951|Indios Verdes|STC Metro|M
+S|19.48941|-99.14473|Instituto del Petróleo|STC Metro|M
+S|19.49101|-99.14812|Instituto del Petróleo|STC Metro|M
+S|19.42360|-99.16332|Insurgentes|STC Metro|M
+S|19.37368|-99.17881|Insurgentes Sur|STC Metro|M
+S|19.42636|-99.13784|Isabel la Católica|STC Metro|M
+S|19.38809|-99.11204|Iztacalco|STC Metro|M
+S|19.35774|-99.09356|Iztapalapa|STC Metro|M
+S|19.40941|-99.12191|Jamaica|STC Metro|M
+S|19.41090|-99.12173|Jamaica|STC Metro|M
+S|19.41298|-99.18199|Juanacatlán|STC Metro|M
+S|19.43347|-99.14762|Juárez|STC Metro|M
+S|19.44328|-99.13184|Lagunilla|STC Metro|M
+S|19.35052|-98.96093|La Paz|STC Metro|M
+S|19.46874|-99.13952|La Raza|STC Metro|M
+S|19.46969|-99.13655|La Raza|STC Metro|M
+S|19.40666|-99.12626|La Viga|STC Metro|M
+S|19.48160|-99.11845|La Villa-Basílica|STC Metro|M
+S|19.48806|-99.13507|Lindavista|STC Metro|M
+S|19.32217|-99.09568|Lomas Estrella|STC Metro|M
+S|19.35902|-98.97687|Los Reyes|STC Metro|M
+S|19.40714|-99.14445|Lázaro Cárdenas|STC Metro|M
+S|19.48276|-99.10681|Martín Carrera|STC Metro|M
+S|19.48443|-99.10512|Martín Carrera|STC Metro|M
+S|19.42554|-99.12551|Merced|STC Metro|M
+S|19.35766|-99.12269|Mexicaltzingo|STC Metro|M
+S|19.34623|-99.18079|Miguel Ángel de Quevedo|STC Metro|M
+S|19.46320|-99.13045|Misterios|STC Metro|M
+S|19.37588|-99.18703|Mixcoac|STC Metro|M
+S|19.40835|-99.11264|Mixiuhca|STC Metro|M
+S|19.42647|-99.10983|Moctezuma|STC Metro|M
+S|19.43971|-99.11900|Morelos|STC Metro|M
+S|19.50149|-99.04208|Múzquiz|STC Metro|M
+S|19.37939|-99.14020|Nativitas|STC Metro|M
+S|19.47287|-99.05464|Nezahualcóyotl|STC Metro|M
+S|19.41942|-99.15030|Niños Héroes|STC Metro|M
+S|19.29993|-99.04596|Nopalera|STC Metro|M
+S|19.44457|-99.16735|Normal|STC Metro|M
+S|19.48865|-99.16299|Norte 45|STC Metro|M
+S|19.41320|-99.14405|Obrera|STC Metro|M
+S|19.39827|-99.20040|Observatorio|STC Metro|M
+S|19.44568|-99.08718|Oceanía|STC Metro|M
+S|19.30428|-99.05946|Olivos|STC Metro|M
+S|19.52131|-99.03337|Olímpica|STC Metro|M
+S|19.45869|-99.20304|Panteones|STC Metro|M
+S|19.41524|-99.07450|Pantitlán|STC Metro|M
+S|19.41528|-99.07194|Pantitlán|STC Metro|M
+S|19.37063|-99.15878|Parque de los Venados|STC Metro|M
+S|19.40603|-99.17875|Patriotismo|STC Metro|M
+S|19.37327|-99.01704|Peñón Viejo|STC Metro|M
+S|19.31773|-99.07463|Periférico Oriente|STC Metro|M
+S|19.42592|-99.13300|Pino Suárez|STC Metro|M
+S|19.52847|-99.03020|Plaza Aragón|STC Metro|M
+S|19.43353|-99.19092|Polanco|STC Metro|M
+S|19.50062|-99.14919|Politécnico|STC Metro|M
+S|19.45286|-99.17546|Popotla|STC Metro|M
+S|19.36977|-99.14159|Portales|STC Metro|M
+S|19.47710|-99.13208|Potrero|STC Metro|M
+S|19.40722|-99.08248|Puebla|STC Metro|M
+S|19.46960|-99.19046|Refinería|STC Metro|M
+S|19.43913|-99.15399|Revolución|STC Metro|M
+S|19.43662|-99.10369|Ricardo Flores Magón|STC Metro|M
+S|19.49060|-99.04685|Río de Remedios|STC Metro|M
+S|19.44079|-99.09438|Romero Rubio|STC Metro|M
+S|19.42675|-99.14205|Salto del Agua|STC Metro|M
+S|19.32811|-99.10444|San Andrés Tomatlán|STC Metro|M
+S|19.38451|-99.18663|San Antonio|STC Metro|M
+S|19.41604|-99.13455|San Antonio Abad|STC Metro|M
+S|19.44192|-99.16070|San Cosme|STC Metro|M
+S|19.44497|-99.19180|San Joaquín|STC Metro|M
+S|19.43129|-99.14133|San Juan de Letrán|STC Metro|M
+S|19.43004|-99.11413|San Lázaro|STC Metro|M
+S|19.43004|-99.11413|San Lázaro|STC Metro|M
+S|19.39151|-99.18553|San Pedro de los Pinos|STC Metro|M
+S|19.40367|-99.12155|Santa Anita|STC Metro|M
+S|19.36028|-98.99521|Santa Marta|STC Metro|M
+S|19.42195|-99.17063|Sevilla|STC Metro|M
+S|19.45890|-99.18713|Tacuba|STC Metro|M
+S|19.40255|-99.18778|Tacubaya (Línea 1)|STC Metro|M
+S|19.40217|-99.18675|Tacubaya (Línea 7)|STC Metro|M
+S|19.40146|-99.18776|Tacubaya (Línea 9)|STC Metro|M
+S|19.47435|-99.10797|Talismán|STC Metro|M
+S|19.34367|-99.14048|Tasqueña|STC Metro|M
+S|19.39128|-99.04635|Tepalcates|STC Metro|M
+S|19.44279|-99.12417|Tepito|STC Metro|M
+S|19.43399|-99.08826|Terminal Aérea|STC Metro|M
+S|19.30626|-99.06520|Tezonco|STC Metro|M
+S|19.49494|-99.19603|Tezozómoc|STC Metro|M
+S|19.29437|-99.02404|Tlaltenco|STC Metro|M
+S|19.45501|-99.14317|Tlatelolco|STC Metro|M
+S|19.28609|-99.01424|Tláhuac|STC Metro|M
+S|19.49090|-99.18629|UAM-Azcapotzalco|STC Metro|M
+S|19.35100|-99.07480|UAM-I|STC Metro|M
+S|19.32448|-99.17391|Universidad|STC Metro|M
+S|19.45904|-99.12010|Valle Gómez|STC Metro|M
+S|19.48978|-99.15612|Vallejo|STC Metro|M
+S|19.40856|-99.10308|Velódromo|STC Metro|M
+S|19.40079|-99.13691|Viaducto|STC Metro|M
+S|19.46168|-99.06135|Villa de Aragón|STC Metro|M
+S|19.38757|-99.13896|Villa de Cortés|STC Metro|M
+S|19.35432|-99.17511|Viveros-Derechos Humanos|STC Metro|M
+S|19.39519|-99.13781|Xola|STC Metro|M
+S|19.37067|-99.16481|Zapata|STC Metro|M
+S|19.29667|-99.03421|Zapotitlán|STC Metro|M
+S|19.41207|-99.08271|Zaragoza|STC Metro|M
+S|19.43250|-99.13225|Zócalo/Tenochtitlan|STC Metro|M
+S|19.33575|-99.14186|Ciudad Jardín|STE Tren Ligero|M
+S|19.30718|-99.14310|El Vergel|STE Tren Ligero|M
+S|19.30185|-99.14704|Estadio Azteca|STE Tren Ligero|M
+S|19.26073|-99.11128|Francisco Goitia|STE Tren Ligero|M
+S|19.26439|-99.11862|Huichapan|STE Tren Ligero|M
+S|19.29763|-99.15069|Huipulco|STE Tren Ligero|M
+S|19.26788|-99.12555|La Noria|STE Tren Ligero|M
+S|19.34080|-99.14342|Las Torres|STE Tren Ligero|M
+S|19.33167|-99.14060|La Virgen|STE Tren Ligero|M
+S|19.32380|-99.13816|Nezahualpilli|STE Tren Ligero|M
+S|19.28274|-99.13968|Periférico|STE Tren Ligero|M
+S|19.31788|-99.13881|Registro Federal|STE Tren Ligero|M
+S|19.27946|-99.13313|Tepepan|STE Tren Ligero|M
+S|19.31255|-99.14058|Textitlan|STE Tren Ligero|M
+S|19.25946|-99.10813|Xochimilco|STE Tren Ligero|M
+S|19.28878|-99.14683|Xomali|STE Tren Ligero|M
+S|19.32748|-99.13930|Xotepingo|STE Tren Ligero|M
+S|24.27509|-110.32715|Ferry La Paz|Baja Ferries|W
+S|25.59093|-109.05865|Ferry Topolobampo|Baja Ferries|W
+S|24.27708|-110.32909|Ferry La Paz|Bajaferries|W
+S|23.18509|-106.42032|Ferry Mazatlán|Bajaferries|W
+S|21.43469|-87.33701|Puerto de Chiquilá|Chiquilá - Holbox|W
+S|21.51880|-87.37473|Terminal Marítima de Holbox|Chiquilá - Holbox|W
+S|19.58686|-101.71579|Muelle Erongarícuaro|Erongarícuaro a Janitzio|W
+S|18.14538|-94.41059|Atracadero de Transbordador|H. Ayuntamiento Coatzacoalcos|W
+S|18.14948|-94.40729|Atracadero de Transbordador|H. Ayuntamiento Coatzacoalcos|W
+S|21.63441|-106.53640|Buque Islas Marías|Islas Marías|W
+S|23.18593|-106.42072|Buque Mazatlán|Islas Marías|W
+S|21.54082|-105.29138|Buque San Blas|Islas Marías|W
+S|19.58565|-101.65021|Muelle Tecuena|Janitzio a Tecuena|W
+S|23.18757|-106.41795|Embarcadero Isla de la Piedra|Mazatlán - Isla de la Piedra|W
+S|23.20486|-106.41022|Embarcadero Isla de la Piedra|Mazatlán - Isla de la Piedra|W
+S|23.18651|-106.41305|Embarcadero Mazatlán|Mazatlán - Isla de la Piedra|W
+S|23.19509|-106.40751|Embarcadero Mazatlán|Mazatlán - Isla de la Piedra|W
+S|19.54308|-101.61696|Muelle General|Pátzcuaro a Janitzio|W
+S|17.74356|-88.02256|Caye Caulker Water Taxi|San Pedro Belize Express|W
+S|17.91919|-87.96082|San Pedro Belize Express|San Pedro Belize Express|W
+S|21.25091|-86.74408|Terminal Isla Mujéres|Ultracarga|W
+S|21.23314|-86.80013|Terminal Punta Sam|Ultracarga|W
+S|21.25415|-86.74674|Terminal Maritima de Isla Mujeres|Ultramar|W
+S|21.18374|-86.80695|Terminal Marítima Ultramar|Ultramar|W
+S|21.14451|-86.78799|El Embarcadero|Xcaret|W
+S|20.75055|-105.37779|Ferries to Sunday Market|ferry|W
+S|27.92463|-110.86791|Guaymas - Santa Rosalia Ferry Terminal|ferry|W
+S|19.57414|-101.64912|Muelle Janitzio|ferry|W
+S|19.54762|-101.61216|Muelle No. 1|ferry|W
+S|27.33739|-112.26428|Santa Rosalia - Guaymas Ferry Terminal|ferry|W
+S|20.74833|-105.37689|Sunday Market|ferry|W
+L|Aerotrén|Aerotrén||0 1:1810
+L|Metrorrey|Línea 1|#FEC04F|13 20:685 12:1201 39:1591 5:888 14:877 10:981 9:1090 7:696 11:937 18:1387 35:759 23:787 3:1100 27:830 6:1097 37:1338 30:988 36:1392
+L|Metrorrey|Línea 1|#FEC04F|36 30:1391 37:988 6:1338 27:1097 3:830 23:1099 35:787 18:759 11:1381 7:937 9:696 10:1090 14:981 5:877 39:888 12:1591 20:1201 13:685
+L|Metrorrey|Línea 2|#6BC069|34 33:1167 31:778 4:1490 38:1866 25:920 28:1433 16:1340 9:1109 2:1041 15:526 26:657 17:546
+L|Metrorrey|Línea 2|#6BC069|17 26:590 15:658 2:526 9:982 16:1231 28:1276 25:1043 38:852 4:1799 31:1490 33:778 34:1084
+L|Metrorrey|Línea 3|#FF8000|17 32:1465 8:763 14:621 22:672 24:1237 29:534 21:702 19:1238
+L|Metrorrey|Línea 3|#FF8000|19 21:1238 29:702 24:534 22:1237 14:672 8:621 32:762 17:1516
+L|Mi Tren|Linea 4|orange|89 51:2529 65:2480 54:2503 48:2737 78:3899 59:1985 64:3991
+L|Mi Tren|Linea 4|orange|64 59:4236 78:2144 48:4212 54:2841 65:2671 51:2380 89:2473
+L|Mi Tren|Tren Ligero Linea 1|#c5112c|43 73:566 52:1197 42:558 53:999 44:1142 69:838 79:1087 60:887 68:965 94:730 85:1061 91:1067 92:621 40:771 58:770 71:875 55:763 87:1171 74:969
+L|Mi Tren|Tren Ligero Linea 1|#c5112c|74 87:969 55:1172 71:763 58:875 40:770 92:771 91:621 85:1068 94:1062 68:731 60:965 79:887 69:1087 44:838 53:1145 42:997 52:558 73:1196 43:567
+L|Mi Tren|Tren Ligero Linea 2|#27be31|61 77:846 84:864 45:1046 70:1047 49:1079 82:863 83:1004 62:1329
+L|Mi Tren|Tren Ligero Linea 2|#27be31|88 62:1127 83:1329 82:1003 49:863 70:1080 45:1047 84:1046 77:866 61:845
+L|Mi Tren|Tren Ligero Linea 3|#dd0e98|41 72:620 67:1908 95:1010 76:1666 47:1230 93:1532 63:1033 86:1082 56:1003 57:630 75:1538 50:1143 80:1862 81:1022 90:964 66:791 46:1629
+L|Mi Tren|Tren Ligero Linea 3|#dd0e98|46 66:1625 90:790 81:963 80:1024 50:1862 75:1143 57:1538 56:625 86:1003 63:1083 93:1039 47:1531 76:1231 95:1664 67:1014 72:1906 41:620
+L|STC Metro|Línea 1|#F04E98|211 270:1042 158:944 113:797 107:746 196:939 237:527 119:758 190:910 217:800 171:520 230:583 108:582 138:619 169:977 242:843 125:651 176:1085 244:1317 206:1433
+L|STC Metro|Línea 1|#F04E98|206 244:1435 176:1320 125:1080 242:651 169:844 138:977 108:619 230:581 171:585 217:520 190:800 119:910 237:758 196:527 107:939 113:746 158:738 270:944 211:1042
+L|STC Metro|Línea 12|#B0A32A|194 170:862 163:867 268:637 213:656 147:1436 149:1081 191:1973 103:2046 140:1783 231:1159 185:1205 115:1045 216:1252 252:1709 208:641 202:1509 269:1426 254:1256 256:1439
+L|STC Metro|Línea 12|#B0A32A|256 254:1439 269:1260 202:1424 208:1508 252:641 216:1709 115:1252 185:1045 231:1205 140:1159 103:1783 191:2046 149:1973 147:1081 213:1439 268:656 163:637 170:867 194:862
+L|STC Metro|Línea 2|#005EB8|137 210:1650 243:1588 139:759 221:795 129:568 203:713 234:765 226:781 162:731 110:648 99:451 271:732 217:871 233:1000 124:765 263:939 267:626 265:852 199:913 222:1074 150:876 157:976 248:1481
+L|STC Metro|Línea 2|#005EB8|248 157:1482 150:977 222:876 199:1074 265:913 267:852 263:626 124:939 233:765 217:1000 271:871 99:733 110:451 162:648 226:731 234:781 203:765 129:713 221:568 139:795 243:760 210:1588 137:1650
+L|STC Metro|Línea 3|#AF9800|166 141:1327 223:1107 180:1264 255:1594 160:1129 162:877 177:447 108:676 201:879 164:773 121:894 152:1187 153:1064 143:733 268:1156 135:1205 266:931 192:1119 134:1463 259:1487
+L|STC Metro|Línea 3|#AF9800|259 134:1487 192:1463 266:1119 135:931 268:1205 143:1156 153:733 152:1064 121:1187 164:894 201:773 108:879 177:676 162:447 160:877 255:1129 180:1594 223:1264 141:1107 166:1327
+L|STC Metro|Línea 4|#6BBBAE|189 247:1270 111:1182 132:786 117:994 197:1031 120:1210 155:806 175:1191 240:884
+L|STC Metro|Línea 4|#6BBBAE|240 175:884 155:1191 120:806 197:1210 117:1031 132:1333 111:794 247:1076 189:1270
+L|STC Metro|Línea 5|#FFD100|220 167:1338 106:1234 181:1118 193:975 260:1194 133:810 146:969 102:1016 207:1362 251:1271 161:1395 211:1741
+L|STC Metro|Línea 5|#FFD100|211 161:1833 251:1385 207:1301 102:1396 146:996 133:969 260:833 193:1182 181:965 106:1128 167:1202 220:1336
+L|STC Metro|Línea 6|#DA291C|188 183:1441 141:715 184:1205 168:1414 261:916 204:822 154:1190 257:1333 253:1131 148:1666
+L|STC Metro|Línea 6|#DA291C|148 253:1345 257:1131 154:1333 204:1190 261:822 168:916 184:1414 141:1205 183:715 188:1441
+L|STC Metro|Línea 7|#E87722|148 101:1809 116:1530 225:1051 243:1490 235:1584 219:1322 105:955 131:1485 245:1167 239:1230 232:782 194:920 109:1633
+L|STC Metro|Línea 7|#E87722|109 194:1633 232:920 239:782 245:1230 131:1167 105:1485 219:955 235:1322 243:1584 225:1490 116:1051 101:1530 148:1920
+L|STC Metro|Línea 8|#009A44|156 110:806 236:604 230:479 144:653 205:915 123:1294 182:978 240:773 136:1173 172:1171 100:1027 97:677 151:954 104:1904 173:841 122:925 258:1270 130:1291
+L|STC Metro|Línea 8|#009A44|130 258:1291 122:1270 173:925 104:841 151:1904 97:954 100:677 172:1027 136:1172 240:1163 182:773 123:978 205:1294 144:915 230:653 236:479 110:604 156:806
+L|STC Metro|Línea 9|#512F2E|246 214:1238 126:1083 121:1421 187:1112 123:1116 174:1223 195:1029 262:1060 128:1259 224:939 212:1542
+L|STC Metro|Línea 9|#512F2E|195 174:1109 123:1322 187:1116 121:1112 126:1421 214:1083 246:1238
+L|STC Metro|Línea A|#981D97|179 186:2100 241:1928 96:1244 215:1529 159:2354 249:1307 118:1608 98:1243 212:1561
+L|STC Metro|Línea A|#981D97|212 98:1581 118:1241 249:1600 159:1312 215:2358 96:1526 241:1254 186:1931 179:2108
+L|STC Metro|Línea B|#B1B3B3|114 160:710 156:845 178:656 250:763 197:642 238:1419 227:1063 229:1053 207:958 142:1016 112:1313 264:931 200:1489 165:1540 228:590 198:1300 145:1633 209:747 218:851 127:723
+L|STC Metro|Línea B|#B1B3B3|127 218:730 209:860 145:744 198:1636 228:1296 165:589 200:1538 264:1492 112:934 142:1318 207:1002 229:961 227:1059 238:1369 197:1423 250:616 178:829 156:722 160:830 114:657
+L|STE Tren Ligero|Tren Ligero|#0554ba|248 279:487 272:577 280:472 288:485 281:417 283:677 285:623 273:652 274:694 277:625 287:1177 282:998 284:796 278:1567 276:771 275:949 286:363
+L|STE Tren Ligero|Tren Ligero|#0554ba|286 275:362 276:805 278:881 284:1558 282:801 287:1006 277:1113 274:657 273:739 285:656 283:620 281:682 288:418 280:485 272:472 279:576 248:475
+L|Baja Ferries|La Paz - Topolobampo Ferry||290 289:194916
+L|Bajaferries|La Paz - Mazatlan Ferry||291 292:425233
+L|Chiquilá - Holbox|Chiquilá - Holbox||293 294:10092
+L|Erongarícuaro a Janitzio|Erongarícuaro a Janitzio||295 316:7472
+L|H. Ayuntamiento Coatzacoalcos|Atracadero de Transbordador||297 296:589
+L|Islas Marías|Mazatlan - Islas Marías Buque||299 298:172324
+L|Islas Marías|San Blas - Islas Marías Buque||298 300:129717
+L|Janitzio a Tecuena|Janitzio a Tecuena||316 301:1287
+L|Mazatlán - Isla de la Piedra|Mazatlán - Isla de la Piedra||303 305:1201
+L|Mazatlán - Isla de la Piedra|Mazatlán - Isla de la Piedra||304 302:556
+L|Pátzcuaro a Janitzio|Pátzcuaro a Janitzio||306 316:5198
+L|San Pedro Belize Express|Chetumal to San Pedro and Caye Caulker||307 308:22127
+L|Ultracarga|Ultracarga - Punta Sam - Isla Mujeres||309 310:6251
+L|Ultramar|Ultramar-Puerto Juárez-Isla Mujeres||311 312:10510
+L|Xcaret|Xcaret - Cancún - Isla Mujeres||311 313:12951
+L|ferry|ferry||296 297:589
+L|ferry|ferry||317 316:4892
+L|ferry|ferry||314 319:284
+L|ferry|ferry||315 318:157276
+R|19.44738|-99.15201|Buenavista|CAF Tren Suburbano
+R|19.66630|-99.17639|Cuautitlán|CAF Tren Suburbano
+R|19.49175|-99.17107|Fortuna|CAF Tren Suburbano
+R|19.59828|-99.18673|Lechería|CAF Tren Suburbano
+R|19.56526|-99.19496|San Rafael|CAF Tren Suburbano
+R|19.53574|-99.18413|Tlalnepantla|CAF Tren Suburbano
+R|19.63550|-99.18039|Tultitlán|CAF Tren Suburbano
+R|19.36378|-99.26861|Estacón Santa Fé|FONADIN
+R|19.27860|-99.51485|Lerma|FONADIN
+R|19.27749|-99.57441|Metepec|FONADIN
+R|19.39852|-99.20084|Observatorio|FONADIN
+R|19.36380|-99.26859|Santa Fe|FONADIN
+R|19.27035|-99.64123|Toluca Centro|FONADIN
+R|19.38494|-99.23639|Vasco de Quiroga|FONADIN
+R|19.28020|-99.69463|Zinacantepec|FONADIN
+R|16.71336|-95.00131|Estación Chivela|Ferroistmo
+R|14.67778|-92.15351|Estación Ciudad Hidalgo|Ferroistmo
+R|18.12676|-94.44003|Estación Coatzacoalcos|Ferroistmo
+R|17.56521|-92.94888|Estación de Ferrocarril Teapa|Ferroistmo
+R|17.22346|-95.04892|Estación Donají|Ferroistmo
+R|16.55453|-95.09432|Estación Ixtepec|Ferroistmo
+R|16.87897|-95.04284|Estación Matías Romero|Ferroistmo
+R|17.66753|-95.03024|Estación Medias Aguas|Ferroistmo
+R|16.99318|-95.03877|Estación Mogoñé|Ferroistmo
+R|16.18218|-95.19652|Estación Salina Cruz|Ferroistmo
+Q|CAF Tren Suburbano|Línea 1 de Tren Suburbano|#BF1600|L55|0 2:5196 5:5176 4:3419 3:4288 6:4035 1:3421
+Q|CAF Tren Suburbano|Línea 1 de Tren Suburbano|#BF1600|L55|1 6:3409 3:4036 4:4287 5:3420 2:5183 0:5181
+Q|FONADIN|El Insurgente||L55|10 13:4279 11:4216 8:30233 9:6303 12:7063 14:5886
+Q|FONADIN|El Insurgente||L55|14 12:5888 9:7062 8:6305 7:30041 13:4561 10:4153
+Q|Ferroistmo|Ferrocarril del Istmo de Tehuantepec|#0A9DBF|L55|17 18:183082 16:356578 20:408880 21:52930 15:23842 19:72630 23:31214 22:89685 24:213037
+T|19.73558|-99.02577|AIFA/FAIA
+T|22.49776|-105.36394|Acaponeta
+T|31.17243|-110.96471|Agua Zarca
+T|21.05723|-104.48661|Ahuacatlán
+T|31.22249|-113.10274|Almejas
+T|20.83839|-103.73364|Amatitlán
+T|25.98898|-98.09753|Antigua Estacion de Ferrocariles de Rio Bravo
+T|19.97908|-99.18427|Antigua Estación Apaxco
+T|19.33771|-101.92567|Antigua Estación Ferrocarril de Taretan
+T|18.86796|-98.97305|Antigua Estación de Ferrocarril Calderón
+T|18.95929|-98.90013|Antigua Estación de Ferrocarril Cascada (Atlatlahucan)
+T|18.83238|-98.95533|Antigua Estación de Ferrocarril Isabel Jauregui
+T|18.83966|-98.94553|Antigua Estación de Ferrocarril de Cuautlixco
+T|18.93096|-99.22764|Antigua Estación de Ferrocarril de Cuernavaca
+T|18.89671|-98.87967|Antigua Estación de Ferrocarril de Yecaplixtla
+T|18.44380|-95.22155|Antigua Estación de San Andrés Tuxtla
+T|18.13429|-97.12682|Antigua Estación de San Antonio Nanahuatípam
+T|19.54837|-101.35397|Antigua Estación de Tren
+T|20.09800|-99.47596|Antigua Estación del Tren
+T|20.23346|-103.57024|Antigua estación de Zacoalco
+T|20.17777|-98.27205|Antigua estación del ferrocarril San Antonio
+T|17.94936|-97.02798|Antigua estación del tren de Tecomavaca
+T|19.81677|-101.77949|Antigüa Estación de Tren
+T|29.04683|-110.71528|Apasco
+T|27.41194|-108.06801|Bahuichivo
+T|21.02087|-104.22682|Barrancas
+T|25.66583|-100.30333|Barrio Antiguo
+T|30.16940|-111.11270|Benjamín Hill
+T|25.69366|-100.24061|Bonifacio Salinas
+T|19.41987|-99.09632|Boulevard Puerto Aéreo
+T|19.44738|-99.15201|Buenavista
+T|19.66636|-99.17581|CETRAM Suburbano Cuautitlán
+T|28.62243|-106.07076|CHEPE Chihuahua Station
+T|30.71943|-112.15433|Caborca
+T|19.69811|-99.08668|Cajiga
+T|30.53664|-109.65058|Calabazas
+T|29.00894|-110.86472|Calera
+T|30.98806|-110.29462|Cananea
+T|29.68547|-110.95298|Carbó
+T|32.44918|-115.28570|Cerro Prieto
+T|25.68613|-100.26720|Churubusco
+T|29.03191|-110.91437|Ciudad Industrial
+T|21.24762|-104.88336|Compostela
+T|27.75461|-107.63473|Creel
+T|28.41095|-106.86635|Cuauhtémoc
+T|31.17481|-109.97173|Cuauhtémoc
+T|19.66630|-99.17639|Cuautitlán
+T|19.62827|-99.16695|Cueyamil
+T|31.09238|-110.18725|Del Rio
+T|32.35738|-115.19487|Delta
+T|19.37915|-99.15954|División del Norte
+T|28.94780|-110.85201|Dynatech
+T|26.93693|-108.40192|El Descanso
+T|26.36484|-108.59213|El Fuerte Station
+T|30.52372|-109.66028|El Tajo
+T|31.30413|-109.57038|Empalme Agua Prieta
+T|23.93174|-105.09075|Empalme Purísima
+T|21.51867|-102.22837|Encarnación de Díaz
+T|30.72329|-109.58827|Esqueda
+T|25.80019|-100.63097|Estacion 1 Tren Suburbano
+T|32.50460|-116.95821|Estacion A
+T|32.50314|-116.95631|Estacion B
+T|26.90043|-101.40365|Estacion Haroldito
+T|16.23332|-93.89757|Estación Arriaga
+T|18.70866|-88.39747|Estación Bacalar
+T|17.42978|-91.49575|Estación Boca del Cerro
+T|18.53145|-89.90329|Estación Calakmul
+T|20.37726|-90.06785|Estación Calkiní
+T|19.82344|-90.47644|Estación Campeche
+T|21.02836|-86.87503|Estación Cancún
+T|26.84218|-100.50517|Estación Candela
+T|18.18430|-91.04448|Estación Candelaria
+T|19.09272|-90.52311|Estación Carrillo Puerto
+T|23.68739|-100.98712|Estación Catorce
+T|18.65584|-90.28586|Estación Centenario
+T|16.28627|-94.19585|Estación Chahuites
+T|18.50816|-88.32424|Estación Chetumal Aeropuerto
+T|20.72061|-88.54876|Estación Chichen-Itzá
+T|27.46729|-107.93765|Estación Chihuahuicame
+T|16.71328|-95.00122|Estación Chivela
+T|14.67778|-92.15351|Estación Ciudad Hidalgo
+T|18.12676|-94.44003|Estación Coatzacoalcos
+T|16.49084|-95.14361|Estación Comitancillo
+T|17.97837|-94.26603|Estación Cuichapa
+T|27.43671|-108.01955|Estación Cuiteco
+T|27.53479|-107.82375|Estación Divisadero
+T|17.22352|-95.04884|Estación Donají
+T|19.58878|-90.36896|Estación Edzná
+T|16.49398|-95.02572|Estación El Espinal
+T|17.92384|-91.17099|Estación El Triunfo
+T|18.61271|-90.73133|Estación Escárcega
+T|27.66333|-107.70864|Estación Federico Lopez
+T|19.59315|-88.07448|Estación Felipe Carrillo Puerto
+T|19.43269|-100.34511|Estación Ferrocarril Zitácuaro
+T|20.17497|-90.15213|Estación Hecelchakán
+T|27.35727|-108.14928|Estación Irigoyen
+T|16.55453|-95.09432|Estación Ixtepec
+T|20.93627|-89.08540|Estación Izamal
+T|17.43558|-95.02375|Estación Jesús Carranza
+T|16.43639|-95.01419|Estación Juchitán
+T|17.60255|-93.19525|Estación Juárez
+T|17.98508|-94.71054|Estación Jáltipan
+T|20.44652|-103.19362|Estación La Capilla
+T|17.87801|-94.09518|Estación Las Choapas
+T|20.97947|-87.19670|Estación Leona Vicario
+T|19.02756|-88.11808|Estación Limones/Chacchoben
+T|16.87920|-95.04269|Estación Matías Romero
+T|20.60283|-89.97495|Estación Maxcanú
+T|17.66757|-95.03023|Estación Medias Aguas
+T|16.99318|-95.03877|Estación Mogoñé
+T|18.45329|-88.87924|Estación Nicolás Bravo / Kohunlich
+T|16.65972|-95.01375|Estación Nizanda
+T|20.87845|-87.60264|Estación Nuevo Xcán
+T|17.54302|-91.98948|Estación Pakal-Ná
+T|17.53369|-91.97960|Estación Palenque
+T|17.63041|-92.53832|Estación Pino Suárez
+T|27.63130|-107.76871|Estación Pitorreal
+T|20.67813|-87.11618|Estación Playa del Carmen
+T|20.85067|-86.95026|Estación Puerto Morelos
+T|19.88179|-100.94549|Estación Queréndaro
+T|16.40219|-94.45369|Estación Reforma de Pineda
+T|25.68717|-100.70997|Estación Rinconada
+T|17.66802|-93.47786|Estación Roberto Ayala
+T|19.44139|-99.25223|Estación Río Hondo
+T|16.18218|-95.19652|Estación Salina Cruz
+T|17.55707|-92.34575|Estación Salto de Agua
+T|23.19039|-102.78476|Estación San José
+T|16.28758|-95.24582|Estación Tehuantepec
+T|20.03973|-90.24465|Estación Tenabo
+T|17.46039|-91.43060|Estación Tenosique
+T|20.92931|-89.51434|Estación Teya-Mérida
+T|19.65524|-99.13595|Estación Teyahualco
+T|20.98719|-89.39848|Estación Tixkokob
+T|16.08620|-93.75804|Estación Tonalá
+T|20.24582|-87.45356|Estación Tulum
+T|20.15142|-87.63983|Estación Tulúm Aeropuerto
+T|20.84901|-89.75560|Estación Umán
+T|16.46922|-94.82936|Estación Unión Hidalgo
+T|20.73967|-88.19344|Estación Valladolid
+T|21.83012|-100.95336|Estación Villa Reyes
+T|18.52653|-89.39653|Estación Xpujil
+T|20.54423|-102.51592|Estación de Atotonilco el Alto
+T|19.80175|-100.13189|Estación de El Oro (abandoned)
+T|23.09653|-101.03594|Estación de Ferrocarril Charcas
+T|17.56521|-92.94888|Estación de Ferrocarril Teapa
+T|19.36378|-99.26861|Estacón Santa Fé
+T|19.49175|-99.17107|Fortuna
+T|25.66857|-100.33914|Fuerza Civil
+T|32.46415|-116.92783|García
+T|25.66938|-100.29663|Ginecología
+T|29.09597|-110.92452|Hermosillo
+T|26.83151|-109.63738|Huatabampo
+T|30.79167|-110.85137|Imuris
+T|21.03789|-104.38975|Ixtlán del Río
+T|27.01322|-108.40634|Jesús Cruz
+T|20.65629|-103.35216|José Cuervo Express
+T|27.17700|-108.29654|Julio Ornelas
+T|29.05102|-110.72203|La Campana
+T|25.72002|-100.21644|La Fe
+T|19.64342|-99.14955|La Loma
+T|25.71010|-100.22175|La Talaverna
+T|25.70407|-100.22480|La Victoria
+T|30.88357|-112.77712|Las Enchilayas
+T|19.59828|-99.18673|Lechería
+T|19.27860|-99.51485|Lerma
+T|25.69116|-100.24959|Libertad
+T|25.68858|-100.25863|Lindavista
+T|30.35724|-111.10395|Llano
+T|31.71363|-113.99110|Lopez Callada
+T|26.02232|-99.20301|Los Aldama
+T|25.90676|-99.38426|Los Herreras
+T|25.76117|-108.96725|Los Mochis
+T|31.79762|-114.52464|Los Pioneros
+T|26.91155|-108.42183|Los Pozos
+T|25.66320|-100.30911|Macroplaza
+T|30.63587|-110.96788|Magdalena
+T|19.27749|-99.57441|Metepec
+T|19.34623|-99.18079|Miguel Ángel de Quevedo
+T|31.28448|-110.93585|Nogales
+T|19.06554|-102.08771|Nueva Italia
+T|25.67070|-100.34711|Obispado / Torre Rise
+T|19.39852|-99.20084|Observatorio
+T|28.28633|-110.71078|Ortiz
+T|25.67450|-100.36659|Pablo G. Garza
+T|25.67422|-100.29013|Parque Fundidora
+T|32.58122|-115.38236|Pascualitos
+T|28.62108|-106.07102|Patio de ferrocarril de Chihuahua (pasajeros)
+T|25.66560|-100.32221|Pino Suárez
+T|30.68748|-112.01380|Pitiquito
+T|27.51417|-107.84003|Posada Barrancas
+T|19.68042|-99.10704|Prados Sur
+T|25.66436|-100.31542|Puente del Papa
+T|31.31928|-113.54105|Puerto Peñasco
+T|19.53774|-101.61443|Pátzcuaro
+T|32.16553|-114.95782|Rito
+T|27.97085|-107.59970|San Juanito
+T|19.56526|-99.19496|San Rafael
+T|25.69636|-100.23127|San Rafael
+T|27.48397|-107.88952|San Rafael
+T|31.22925|-110.59292|Santa Cruz
+T|19.36380|-99.26859|Santa Fe
+T|31.20999|-110.23107|Sauceda
+T|29.54161|-110.93255|Selva
+T|25.66697|-100.33028|Serafin Pena
+T|27.15271|-108.33434|Tacuina
+T|19.47438|-99.10803|Talismán
+T|32.57009|-116.63058|Tecate
+T|27.25432|-108.26031|Temoris
+T|25.34523|-105.71616|Tepehuanes
+T|19.64729|-99.88092|Tepetitlan
+T|20.87234|-103.84235|Tequila
+T|21.11876|-104.62065|Tetitlan
+T|19.65526|-99.13594|Teyahualco
+T|32.54242|-117.02651|Tijuana
+T|19.53574|-99.18413|Tlalnepantla
+T|19.27035|-99.64123|Toluca Centro
+T|19.63550|-99.18039|Tultitlán
+T|32.52087|-116.76155|Valle Redondo
+T|19.38494|-99.23639|Vasco de Quiroga
+T|28.87783|-110.82050|Vega
+T|32.28450|-115.10916|Victoria
+T|30.59815|-109.62628|Vigia
+T|28.96673|-110.85796|Willard
+T|19.72331|-99.05780|Xaltocan
+T|25.68278|-100.27992|Y Griega
+T|29.26129|-110.88786|Zamora
+T|19.28020|-99.69463|Zinacantepec
+B|19.51398|-98.88559|"Del Valle"
+B|25.66849|-100.23062|15 de Mayo
+B|19.58813|-99.02438|1° de Mayo
+B|25.70455|-100.33273|20 de Noviembre
+B|19.66163|-99.00148|24 Ojo de Agua
+B|16.23750|-92.13360|3ra. Zona Terminal
+B|20.71048|-103.43936|5 de Mayo
+B|20.96396|-89.62248|69 periférico. CTM
+B|20.58666|-103.38250|8 de Julio
+B|32.49729|-116.96857|ABC
+B|32.53900|-117.02964|ABC Tijuana Line Terminal
+B|32.56316|-116.62518|ACN
+B|23.23476|-106.38958|ACN Autobus
+B|32.51702|-116.96329|ACN Autobuses coordinados Station
+B|32.52909|-117.02999|ACN Bus tickets and terminal
+B|19.07490|-98.20209|ACN Terminal de Autobuses
+B|20.62450|-103.28801|ACN Terminal de Autobuses
+B|23.25238|-106.42003|AD (Autobuses Directos)
+B|16.74314|-93.10329|ADA
+B|15.74275|-96.46680|ADO
+B|17.12325|-96.76447|ADO
+B|17.46136|-91.43606|ADO
+B|17.99669|-92.92191|ADO
+B|18.09873|-94.04498|ADO
+B|18.50837|-89.39399|ADO
+B|19.17857|-96.13435|ADO
+B|19.31548|-98.24671|ADO
+B|20.17490|-98.05908|ADO
+B|20.44576|-97.09215|ADO
+B|21.14163|-98.41329|ADO
+B|22.22427|-97.84669|ADO
+B|22.24881|-97.85862|ADO
+B|24.85120|-98.15374|ADO
+B|25.87139|-97.49886|ADO
+B|18.07142|-96.53760|ADO AU
+B|18.13278|-97.07305|ADO AU
+B|18.89869|-96.99994|ADO AU Fortín
+B|20.45128|-97.31985|ADO AU Vía Papantla
+B|20.62956|-87.07454|ADO Alterna
+B|16.68874|-93.72145|ADO Bus Station
+B|18.65500|-91.78603|ADO Bus Station
+B|18.68990|-88.39045|ADO Bus Terminal
+B|18.08497|-96.12572|ADO Bus terminal
+B|19.82339|-90.53214|ADO Campeche
+B|18.80833|-97.17606|ADO Cd. Mendoza
+B|18.64496|-91.80818|ADO Cd. del Carmen
+B|19.35778|-90.72303|ADO Champotón
+B|18.50464|-88.29654|ADO Chetumal
+B|19.00946|-97.02806|ADO Chocamán
+B|19.16080|-96.11738|ADO Costa Verde
+B|18.81320|-96.72383|ADO Cuitláhuac
+B|19.34497|-99.13786|ADO Ejecutiva del sur
+B|19.50571|-96.85685|ADO El Juguete
+B|18.60934|-90.74496|ADO Escarcega
+B|20.98651|-89.61980|ADO Fiesta Americana
+B|18.53144|-92.63684|ADO Frontera
+B|19.30062|-98.88334|ADO Ixtapaluca
+B|19.74693|-88.70661|ADO José María Morelos
+B|18.15815|-95.18491|ADO Juan Diaz Covarrubias
+B|17.91433|-94.09276|ADO Las Choapas
+B|19.92764|-96.85705|ADO Misantla
+B|18.07530|-94.40828|ADO Nanchital
+B|21.35333|-97.68260|ADO Naranjos
+B|18.20050|-98.04878|ADO OCC SUR Acatlán
+B|20.52500|-97.46108|ADO Poza Rica
+B|20.54189|-97.46804|ADO Poza Rica
+B|22.05944|-98.17818|ADO Pánuco
+B|26.08482|-98.27200|ADO Reynosa
+B|19.36517|-99.00726|ADO Santa Martha Acatitla
+B|20.47886|-97.00899|ADO Tecolutla
+B|20.91152|-97.67557|ADO Terminal
+B|18.51862|-88.31341|ADO Terminal Chetumal
+B|20.62281|-87.07520|ADO Terminal Turística
+B|21.16436|-86.82664|ADO Terminal de Autobuses Cancún
+B|20.94579|-97.38410|ADO Tuxpan
+B|20.95127|-97.40221|ADO Tuxpan
+B|19.21608|-96.17212|ADO Veracruz Norte
+B|20.05569|-98.78743|ADO Villas de Pachuca
+B|17.74139|-91.77477|ADO bus
+B|18.71745|-87.70730|ADO bus station
+B|21.03978|-86.87338|ADO taquilla
+B|19.25699|-99.16078|ADO-Pullman de Morelos México-Cuernavaca
+B|32.42555|-116.96504|ALTISA Del Prado
+B|19.96521|-99.36750|AMMOSA
+B|19.70677|-99.14261|AMOSA
+B|19.83955|-98.03017|ATAH
+B|20.17475|-98.05880|ATAH
+B|19.23273|-97.80262|ATAH, Texcoco
+B|19.60174|-96.98959|ATB
+B|19.70939|-98.44771|ATHA
+B|20.22044|-98.91243|ATIAC
+B|27.93274|-101.22691|ATMR
+B|19.22917|-99.53109|ATR
+B|20.36989|-90.05264|ATS Calkini
+B|17.05735|-96.73080|ATSA
+B|18.12726|-96.83744|AU
+B|18.96600|-97.89870|AU
+B|19.04160|-98.14746|AU Amalucan
+B|19.17871|-96.13338|AU TRV
+B|17.79689|-96.95902|AU Terminal
+B|17.08217|-96.74446|AU Terminal de Santa Rosa
+B|18.24277|-96.13430|AU Tres Valles
+B|21.09478|-101.61979|AUSL
+B|18.04701|-92.92801|AUTOBUSES POMOCA RESGUARDO
+B|16.23275|-93.89928|AVC
+B|20.00801|-99.22009|AVM
+B|20.26955|-98.94914|AVM
+B|20.40918|-99.34968|AVM
+B|25.65913|-100.19188|Acacia
+B|25.70737|-100.20060|Aceros
+B|20.72270|-103.42116|Acueducto
+B|18.84006|-97.09706|Adelas
+B|17.05302|-96.71700|Ado
+B|20.57720|-103.36071|Adolf Horn
+B|25.70318|-100.25433|Adolfo Prieto
+B|31.63606|-106.43869|Aeropuerto -EXPRES-
+B|14.91309|-92.26876|Aexa
+B|15.14346|-92.46453|Aexa
+B|16.09953|-93.76272|Aexa
+B|16.68926|-93.72322|Aexa
+B|16.74227|-93.10131|Aexa Tuxtla Gutiérrez
+B|20.61711|-103.42921|Agrícola
+B|21.88905|-101.47018|Agua Gorda
+B|31.71011|-106.42453|Aguirre Laredo
+B|29.07736|-110.93096|Albatros Autobuses Hermosillo
+B|20.72108|-103.31740|Alimentadoras Macrobús
+B|19.27896|-98.88220|Amalinalco
+B|19.57634|-99.13080|Ampliación Malacates
+B|19.33239|-99.00335|Ampliación Santiago
+B|32.51559|-116.98736|Américas
+B|23.74483|-103.83191|Antigua Estación De Autobuses
+B|18.98330|-98.19855|Arboledas
+B|19.43717|-99.11441|Archivo General de la Nación
+B|19.43117|-99.06254|Arenal 4° Sección
+B|20.58253|-103.33627|Artesanos
+B|25.66525|-100.20955|Arturo B. de la Garza
+B|25.70412|-100.30941|Asarco
+B|31.71089|-106.45930|Aserraderos 1 (N-S)
+B|31.71082|-106.45938|Aserraderos 2 (S-N)
+B|18.84513|-97.09842|Astro Plus
+B|25.76339|-100.40758|Astros
+B|19.41556|-98.14522|Atah Ejecutivo
+B|20.28716|-98.67112|Atotonilco
+B|20.00776|-99.22120|Atotonilco de Tula
+B|20.00807|-99.22020|Atotonilco-Cañada
+B|20.00824|-99.22015|Atotonilco-Cruz Azul
+B|20.28677|-98.66638|Atotonilco-Montecillos
+B|20.28801|-98.66774|Atotonilco-Nogalera
+B|20.28667|-98.66659|Atotonilco-Potrero Los Reyes
+B|20.28550|-98.66849|Atotonilco-Santa Ana
+B|20.28567|-98.66809|Atotonilco-Tezahuapa
+B|14.91293|-92.26827|Aury
+B|19.44514|-99.29175|Auto Transportes El Capulin Ruta 58
+B|26.88906|-111.98731|Autobus Aguila y ABC
+B|18.80394|-99.29387|Autobus a Alpuyeca
+B|18.85365|-97.05774|Autobuses "Garitas"
+B|19.48108|-99.10353|Autobuses 107 B
+B|19.41275|-98.14503|Autobuses ADO Texcoco Verdes
+B|19.50636|-96.61750|Autobuses ATB
+B|19.28035|-98.43463|Autobuses AU
+B|31.31137|-109.55348|Autobuses Albatros
+B|19.17665|-96.13409|Autobuses Av Express de Veracruz/kolors
+B|20.06460|-97.05718|Autobuses Cabellal
+B|22.43211|-100.28646|Autobuses Cerritenses
+B|21.92360|-99.99545|Autobuses Chavez
+B|21.54182|-105.28439|Autobuses Coordinados de Nayarit
+B|17.05971|-96.73601|Autobuses Costa De Oro
+B|18.88784|-99.06297|Autobuses Cristobal Colón
+B|25.77491|-103.27387|Autobuses Cuauhtemoc
+B|16.18475|-95.19927|Autobuses De Oriente
+B|22.49032|-105.38289|Autobuses Directos
+B|20.44818|-97.32214|Autobuses EJE
+B|18.53647|-96.60438|Autobuses El Palmar de Veracruz
+B|31.31989|-109.54982|Autobuses Estrella Blanca
+B|18.90823|-99.23340|Autobuses Estrella de Oro
+B|25.75728|-100.29611|Autobuses Futura
+B|19.59113|-96.95927|Autobuses Golfo Pacífico
+B|17.05486|-96.72612|Autobuses Halcon De Huixtepec Zimatlan Oaxaca
+B|19.31387|-99.63852|Autobuses Herradura De Occidente
+B|18.94512|-97.02824|Autobuses JyC
+B|21.92310|-100.00154|Autobuses Lucano
+B|20.20312|-89.29059|Autobuses MAYAB
+B|31.31984|-109.54982|Autobuses Martinez
+B|18.92350|-97.01464|Autobuses Metro
+B|18.88942|-99.06186|Autobuses Mexico - Zacatepec
+B|28.85419|-111.99939|Autobuses Mixtos de Hermosillo
+B|21.09701|-89.28422|Autobuses Noreste
+B|21.14460|-88.14890|Autobuses Noreste
+B|24.87548|-99.57634|Autobuses Noreste
+B|31.31953|-109.54944|Autobuses Omnibus de México
+B|25.68375|-100.27656|Autobuses Pegasso
+B|25.52954|-103.22577|Autobuses Rojos de la Laguna
+B|18.60602|-90.73100|Autobuses SUR
+B|18.60154|-98.46609|Autobuses SUR Volcanes
+B|17.05778|-96.73028|Autobuses San Pedro El Alto
+B|31.31218|-109.55777|Autobuses TUFESA
+B|25.98579|-98.09342|Autobuses Transpais
+B|22.99542|-99.71387|Autobuses Transpaís
+B|18.85762|-97.06209|Autobuses Tuxpango
+B|14.99616|-92.16464|Autobuses Unión y Progreso
+B|20.39433|-101.18199|Autobuses Urbanos de Valle de Santiago.
+B|19.31516|-98.24695|Autobuses Verdes
+B|19.39452|-99.00692|Autobuses Yosondua
+B|21.92302|-99.98495|Autobuses Zima Real
+B|19.56144|-97.24570|Autobuses a Los Altos
+B|17.99763|-92.92030|Autobuses a Palenque
+B|19.67398|-101.22102|Autobuses a Pátzcuaro, Atacámbaro, Uruapan, Villa Madero
+B|16.74404|-93.11473|Autobuses avisa
+B|16.72801|-92.63626|Autobuses baratos a otros estados
+B|20.07011|-97.06319|Autobuses cerca de Chedraui
+B|21.14498|-88.14882|Autobuses de ADO
+B|18.53271|-92.65406|Autobuses de Centla
+B|21.01484|-89.58412|Autobuses de Oriente (ADO Altabrisa)
+B|21.43174|-87.33599|Autobuses de Oriente (ADO)
+B|19.14124|-96.10962|Autobuses de Oriente ADO
+B|21.03838|-105.24708|Autobuses de Pacifico
+B|18.42431|-95.11947|Autobuses de Segunda
+B|18.66670|-97.00041|Autobuses de la Sierra
+B|20.69203|-88.20405|Autobuses del Centro (Segunda clase)
+B|21.39301|-88.89149|Autobuses del Noreste
+B|25.98684|-98.09488|Autobuses del Noreste / Omnibus de Mexico
+B|20.30379|-89.42142|Autobuses del Oriente ADO
+B|25.46063|-108.07541|Autobuses del Évora
+B|25.53589|-103.45299|Autobuses economicos
+B|19.36347|-99.00516|Autobuses fletes y pasajes fipsa
+B|21.00609|-100.38479|Autobuses verdes de querétaro
+B|19.57503|-96.90281|Autobús Banderilla
+B|18.84884|-97.10095|Autocamiones de Orizaba Cordoba Veracruz
+B|21.28464|-89.66391|Autoprogreso
+B|17.06015|-96.73491|Autotransporte Costa De Oro
+B|17.06087|-96.72914|Autotransporte De La Mixteca
+B|16.24794|-92.14089|Autotransporte Frontera Carmen Xhan
+B|17.06112|-96.73115|Autotransporte Ramsa
+B|19.30214|-99.63045|Autotransporte Rapidos De Toluca
+B|20.06505|-97.05331|Autotransportes Atah
+B|19.30593|-99.63574|Autotransportes Azteca Toluca Ixtlahuaca
+B|16.18101|-95.19578|Autotransportes Costeños
+B|18.92908|-99.43525|Autotransportes Estrella del Noreste
+B|19.17842|-99.46562|Autotransportes Estrella del Noreste
+B|16.44468|-95.02466|Autotransportes Istmeños
+B|19.45460|-96.96255|Autotransportes La Azteca
+B|19.53810|-96.91441|Autotransportes La Azteca
+B|19.91912|-103.01868|Autotransportes Mazamitla
+B|19.59171|-96.95551|Autotransportes Miradores del Mar
+B|19.36018|-99.34912|Autotransportes Monte De Las Cruces
+B|27.75340|-107.63512|Autotransportes Noroeste
+B|19.15223|-99.48926|Autotransportes Primero de Mayo
+B|19.27590|-99.64505|Autotransportes Primero de Mayo
+B|19.17734|-99.46512|Autotransportes Primero de Mayo SA de CV
+B|17.05996|-96.73517|Autotransportes Rapidos De Lujo De Juquila
+B|17.05987|-96.72992|Autotransportes Rincon De Oro Teojomulco
+B|27.68671|-105.16656|Autotransportes Rápidos Delicias
+B|19.95299|-97.21749|Autotransportes Rápidos del Filobobos
+B|20.06404|-97.05817|Autotransportes Rápidos del Filobobos
+B|17.29149|-96.90458|Autotransportes Sfat
+B|22.76745|-102.57422|Autotransportes Sánchez
+B|19.31534|-98.24687|Autotransportes Tlaxcala Apizaco Huamantla
+B|28.60805|-106.09610|Autotransportes Turisticos del Noroeste
+B|28.41058|-106.86418|Autotransportes Turísticos del Noroeste
+B|17.06145|-96.73618|Autotransportes Turísticos y de Pasajeros Tierra Del Sol
+B|22.99908|-105.86091|Autotransportes UNIDOS de Sinaloa
+B|23.92104|-106.88768|Autotransportes Unidos de Sinaloa
+B|23.25264|-106.41997|Autotransportes de Guasave
+B|25.78642|-108.99233|Autotransportes de Guasave
+B|17.07010|-96.70010|Autotransportes de Pasajeros del Tule
+B|17.06098|-96.73020|Autotransportes de Tlaxiaco
+B|17.06143|-96.73101|Autotrasportes Cañada Huautla
+B|17.06142|-96.73097|Autotrasportes Turisticos Santa Catarina - Juquila
+B|21.99842|-99.01903|Avenida México
+B|25.78642|-108.99604|Azules del Noroeste
+B|31.74072|-106.48367|BRT1 - Balderas
+B|22.39371|-97.89318|BUSTRAIN GLOBAL SA DE CV
+B|31.64683|-106.38473|Babícora
+B|31.61352|-106.34776|Bahía de Kino 1 Norte
+B|31.61263|-106.34810|Bahía de Kino 2 Sur
+B|20.71318|-103.30092|Barranca de Huentitán
+B|19.45654|-99.28471|Base Bulgaria
+B|19.45700|-99.27795|Base Canteras
+B|19.45782|-99.26985|Base Cañada
+B|19.38458|-98.96073|Base Coahuila - Pantitlan
+B|19.68552|-101.23570|Base Colectivos Ruta Gris
+B|19.58248|-99.02204|Base Combis Las Américas
+B|19.45886|-99.27305|Base Corralito
+B|19.46741|-99.27778|Base Hornos Atoron
+B|19.46056|-99.29234|Base Huertas Chacona
+B|19.45940|-99.28415|Base Huertas Mercado
+B|19.54382|-99.17826|Base Izcalli Piramide
+B|19.66125|-99.07042|Base Jaltenco
+B|19.54865|-99.17208|Base Microbuses
+B|19.45995|-99.29136|Base Presa - Chacona
+B|19.45933|-99.27796|Base Puente
+B|19.06638|-98.12840|Base RUTA 8 y 9 Alimentadora
+B|19.54686|-98.91412|Base Rapidos de la Costa Chica de Texcoco
+B|18.80402|-99.19635|Base Ruta 20 Tezoyuca
+B|19.36464|-99.24894|Base Ruta 46
+B|18.87470|-99.21986|Base Ruta Guacamayas
+B|19.38068|-98.96296|Base Saltillo - Pantitlan
+B|19.57186|-99.07035|Base San Pedro Santa Clara La Presa
+B|16.99521|-96.74633|Base de autobuses de la ruta CRIT Teletón
+B|20.07867|-98.36826|Base de combis a Habitacional / Felipe Angeles / Paxtepec
+B|20.08295|-98.37015|Base de combis a Jaltepec
+B|20.08374|-98.36862|Base de combis a La Morena
+B|20.07917|-98.36824|Base de combis a Rojo Gómez
+B|20.07936|-98.36832|Base de combis a Romeros
+B|19.49263|-99.27304|Base ruta 08 Mirador
+B|18.49042|-88.29930|Belize Water Taxi to San Pedro y Caye Caulker
+B|25.70431|-100.31888|Bella Vista
+B|25.67882|-100.23774|Benito Juárez
+B|18.99589|-98.20304|Biblioteca Central
+B|21.86603|-101.59217|Boletos flecha amarilla
+B|19.01636|-98.21025|Bomberos
+B|19.07389|-98.19940|Boulevard norte
+B|32.51730|-116.98732|Buena Vista SITT
+B|18.60577|-90.73051|Bus Escárcega - Campeche
+B|29.08123|-110.95267|Bus Hermosillo a San Pedro
+B|18.92783|-99.23155|Bus Station
+B|20.21072|-87.46510|Bus Station - ADO, Mayab, OCC
+B|20.21939|-87.43613|Bus Station ADO Tulum Ruins
+B|21.41890|-87.33740|Bus Station Chiquilla
+B|16.24755|-92.14035|Bus Terminal
+B|20.75649|-88.92969|Bus orienté merida cancun
+B|18.68507|-88.39539|Bus station
+B|20.49593|-87.73476|Bus station ADO
+B|18.50470|-88.29440|Bus station Bacalar
+B|18.50482|-88.29745|Bus station Tulum and Playa del Carmen
+B|19.68871|-100.54807|Bus to Angangueo
+B|20.60231|-105.23473|Bus to Boca Bay Beach
+B|25.78637|-108.99625|Bus to El Fuerte
+B|20.69210|-88.20407|Bus to Izamal
+B|19.69405|-98.85031|Bus to Mexico Norte
+B|19.07337|-98.20234|Bus to Natívitas
+B|17.50804|-91.98693|Bus to Ocosingo - Agua Azul - Misol-ha
+B|15.77340|-96.14372|Bus to Pochutla
+B|20.96370|-89.61836|Bus to Tizimin
+B|17.03099|-96.51898|Bus to Tlacolula
+B|18.73756|-99.26126|Bus to Zona Arqueológica de Xochicalco
+B|18.77878|-99.30058|Bus to Zona Arqueológica de Xochicalco
+B|18.98683|-99.10135|Bus to different places
+B|18.82522|-99.66893|Buss Station Ixtapan de la Sal
+B|19.58178|-88.04519|Busstop to Valladolid
+B|25.59970|-109.05252|Busterminal
+B|15.66762|-96.55451|Bustickets to Oaxaca
+B|15.14310|-92.46351|Bᴜsᴇs OCC
+B|19.00031|-98.20459|C. U. BUAP
+B|21.97798|-98.99333|CBTis
+B|26.90243|-101.41911|CENTRAL DE AUTOBUSES
+B|20.94707|-101.42952|CENTRALITA LUPITA
+B|19.48458|-99.12510|CETRAM 18 de Marzo
+B|19.48543|-99.12610|CETRAM 18 de Marzo
+B|19.36158|-99.19008|CETRAM Barranca del Muerto
+B|19.41962|-99.09573|CETRAM Boulevard Puerto Aéreo
+B|19.44547|-99.15133|CETRAM Buenavista
+B|19.37216|-99.08311|CETRAM Central de Abasto
+B|19.37227|-99.09628|CETRAM Central de Abasto
+B|19.34539|-99.06386|CETRAM Constitución de 1917
+B|19.46074|-99.21544|CETRAM Cuatro Caminos
+B|19.34367|-99.19017|CETRAM Doctor Gálvez
+B|19.50508|-99.20064|CETRAM El Rosario
+B|19.30036|-99.14667|CETRAM Huipulco
+B|19.46843|-99.13982|CETRAM La Raza
+B|19.41649|-99.07364|CETRAM Pantitlán
+B|19.47693|-99.13133|CETRAM Potrero
+B|19.42962|-99.11443|CETRAM San Lázaro
+B|19.40127|-99.18814|CETRAM Tacubaya
+B|19.39067|-99.04706|CETRAM Tepalcates
+B|19.28637|-99.01492|CETRAM Tláhuac
+B|19.26037|-99.11169|CETRAM Xochimilco
+B|19.45635|-99.21443|COPATTSA Cuatro Caminos
+B|25.70301|-100.21741|Calle Nueva
+B|20.89794|-98.58322|Calnali-Huejutla
+B|31.65555|-106.42214|Camboya
+B|19.28708|-99.61178|Caminante
+B|19.55811|-99.60821|Camiones Jiquipilco Ixtlahuaca
+B|17.03667|-96.70893|Camiones Oaxaca
+B|31.29116|-110.93724|Camiones de La Mesa
+B|15.96811|-97.67781|Camioneta
+B|31.71510|-106.41221|Campestre
+B|19.39786|-99.05889|Canal de San Juan - Delegacion Iztacalco
+B|25.73892|-100.37814|Cardenal
+B|25.72985|-100.36999|Cardiología
+B|20.61299|-99.11727|Cardonal-Ixmiquilpan
+B|20.61407|-99.11747|Cardonal-Tolantongo
+B|20.59215|-103.31945|Carretera a Chapala
+B|21.93976|-99.39520|Cascadas
+B|25.70467|-100.33775|Celulosa
+B|25.70391|-100.29695|Cementos
+B|31.66578|-106.42703|Centeno
+B|19.19049|-102.84634|Centra de autobuses Galeana
+B|17.50840|-91.99017|Central ADO
+B|17.50622|-91.99052|Central AEXA
+B|20.45618|-101.53076|Central Abasolo
+B|20.54583|-100.69183|Central Autobuses Apaseo el Grande
+B|19.96378|-99.53127|Central Autobuses Jilotepec
+B|17.74139|-91.77490|Central Camionera
+B|17.76130|-92.59874|Central Camionera
+B|18.06812|-93.17461|Central Camionera
+B|18.25652|-93.23051|Central Camionera
+B|19.69977|-103.48455|Central Camionera
+B|20.45974|-100.61875|Central Camionera
+B|21.29583|-100.52527|Central Camionera
+B|21.84584|-102.71307|Central Camionera
+B|22.24905|-97.85857|Central Camionera
+B|23.22582|-106.42234|Central Camionera
+B|24.03452|-104.63896|Central Camionera
+B|30.54765|-111.12005|Central Camionera
+B|32.51645|-116.96225|Central Camionera
+B|20.45979|-100.61867|Central Camionera (Estacionamiento de Autobuses)
+B|21.12645|-101.68593|Central Camionera 2
+B|21.91038|-101.38493|Central Camionera Arriaga
+B|19.07479|-97.04372|Central Camionera Coscomatepec
+B|18.15926|-95.18367|Central Camionera Juan diaz Covarrubias
+B|22.27378|-101.98660|Central Camionera Loreto
+B|25.57012|-108.47301|Central Camionera Municipal
+B|19.71702|-101.18245|Central Camionera Norte
+B|22.04670|-98.19046|Central Camionera Panuco
+B|31.29593|-110.93775|Central Camionera TAP Nogales
+B|28.62771|-106.02593|Central Camionera de Chihuahua
+B|17.99002|-93.38472|Central Camionera de Cárdenas
+B|18.09040|-92.14031|Central Camionera de Jonuta
+B|19.50930|-101.61728|Central Camionera de Pátzcuaro
+B|20.28710|-100.75872|Central Camionera de Tarimoro
+B|19.42742|-102.04221|Central Camionera de Uruapan
+B|16.74230|-93.10287|Central Camionera del Sur
+B|18.98555|-98.24540|Central Camionera del Sur
+B|20.10840|-101.38627|Central Cerano
+B|18.35425|-100.66777|Central De Autobuses COSTA LINE
+B|31.85984|-112.85117|Central De Autobuses Sonoyta
+B|30.98546|-110.30060|Central Estrella Blanca Cananea
+B|19.05252|-98.20481|Central Flecha Azul
+B|25.98686|-98.09483|Central Rio Bravo
+B|22.82294|-98.42852|Central TRANSPAIS
+B|17.06141|-96.73101|Central Valerio Trujano 600
+B|20.66241|-103.34448|Central Vieja de Guadalajara
+B|20.70325|-103.46113|Central Zapopan
+B|17.82824|-95.81602|Central autobuses ADO, AU, Cuenca.
+B|19.28056|-98.42360|Central camionera
+B|19.29290|-98.88044|Central camionera Estrella Roja
+B|20.70493|-102.35605|Central camionera de Arandas Jalisco
+B|18.17808|-93.05659|Central camionera de Jalpa de Méndez
+B|21.35823|-101.92454|Central camionera de lagos
+B|19.70594|-98.45037|Central de Autobuces Teotihuacanos
+B|19.22955|-97.77977|Central de Autobus Ciudad Modelo
+B|20.70044|-99.81309|Central de Autobuses
+B|21.68115|-102.58390|Central de Autobuses
+B|21.86516|-102.29912|Central de Autobuses
+B|23.63004|-100.64119|Central de Autobuses
+B|25.39752|-101.00768|Central de Autobuses
+B|25.75919|-102.97854|Central de Autobuses
+B|26.98115|-102.06582|Central de Autobuses
+B|31.28911|-110.93697|Central de Autobuses
+B|21.02485|-101.85242|Central de Autobuses "nueva" - Azules y Triángulo
+B|17.96245|-94.71261|Central de Autobuses ADO
+B|18.87771|-97.72346|Central de Autobuses ADO AU Valles
+B|19.46438|-97.68489|Central de Autobuses ADO Vía
+B|14.91318|-92.25784|Central de Autobuses ADO/OCC [Tapachula]
+B|17.54796|-98.57507|Central de Autobuses AltaMar
+B|20.54494|-104.04243|Central de Autobuses Ameca
+B|19.46269|-97.68511|Central de Autobuses Atah
+B|21.01665|-101.85816|Central de Autobuses Azules y Triángulo
+B|30.71713|-112.14320|Central de Autobuses Caborca
+B|21.92404|-100.00017|Central de Autobuses Cerritenses
+B|31.69268|-106.43726|Central de Autobuses Ciudad Juárez
+B|19.31197|-96.49282|Central de Autobuses Conejos
+B|20.48439|-100.96829|Central de Autobuses Cortazar
+B|19.27708|-99.64380|Central de Autobuses ETN Turistar
+B|16.86239|-99.90834|Central de Autobuses Ejido
+B|21.51454|-104.89024|Central de Autobuses Estrella Blanca
+B|21.00182|-100.37993|Central de Autobuses Flecha Verde San Jose Irurbide
+B|23.17365|-102.85939|Central de Autobuses Fresnillo
+B|25.77128|-100.29141|Central de Autobuses Greyhound
+B|20.64204|-100.98859|Central de Autobuses Juventino Rosas
+B|20.28636|-102.55048|Central de Autobuses La Barca
+B|21.12101|-101.66153|Central de Autobuses León
+B|19.59337|-102.47322|Central de Autobuses Los Reyes
+B|24.79693|-107.43138|Central de Autobuses Millenium Culiacán
+B|20.12224|-101.17934|Central de Autobuses Moroleon
+B|17.07036|-96.71700|Central de Autobuses Oaxaca ADO OCC
+B|20.10732|-98.75220|Central de Autobuses Pachuca
+B|24.86408|-99.57358|Central de Autobuses Protasio Rodríguez Cuéllar
+B|19.07128|-98.20221|Central de Autobuses Puebla (CAP)
+B|19.07499|-98.20586|Central de Autobuses Puebla (CAPU)
+B|20.54277|-101.20615|Central de Autobuses Salamanca
+B|17.96218|-94.71283|Central de Autobuses Sotavento
+B|19.24383|-103.74157|Central de Autobuses Suburbanos "Los Rojos"
+B|19.69036|-103.23895|Central de Autobuses Tamazula de Gordiano
+B|21.49834|-104.88710|Central de Autobuses Tepic
+B|25.53886|-103.40054|Central de Autobuses Torreón
+B|20.96359|-97.41591|Central de Autobuses Tuxpan
+B|29.42648|-110.38667|Central de Autobuses Ures, Sonora.
+B|20.14998|-101.17323|Central de Autobuses Uriangato
+B|22.75568|-102.57649|Central de Autobuses Zacatecas
+B|20.27521|-98.95139|Central de Autobuses de Actopan
+B|20.02168|-100.72975|Central de Autobuses de Acámbaro
+B|20.43083|-103.30739|Central de Autobuses de Cajititlán
+B|20.51390|-100.80710|Central de Autobuses de Celaya
+B|23.73691|-99.13152|Central de Autobuses de Ciudad Victoria
+B|19.23266|-103.70422|Central de Autobuses de Colima
+B|20.19779|-100.36772|Central de Autobuses de Coroneo
+B|31.87227|-116.61964|Central de Autobuses de Ensenada
+B|20.98305|-101.28675|Central de Autobuses de Guanajuato
+B|29.07775|-110.92972|Central de Autobuses de Hermosillo
+B|20.67717|-101.34117|Central de Autobuses de Irapuato
+B|30.88859|-108.19284|Central de Autobuses de Janos
+B|20.50831|-103.17009|Central de Autobuses de Juanacatlán
+B|20.34761|-102.03192|Central de Autobuses de La Piedad
+B|20.73267|-101.95199|Central de Autobuses de Manuel Doblado
+B|19.88975|-100.43874|Central de Autobuses de Maravatío
+B|25.87138|-97.49831|Central de Autobuses de Matamoros
+B|32.63691|-115.46914|Central de Autobuses de Mexicali
+B|25.68721|-100.32002|Central de Autobuses de Monterrey
+B|18.07945|-94.40892|Central de Autobuses de Nanchital
+B|28.70247|-100.51886|Central de Autobuses de Piedras Negras
+B|20.54152|-97.46913|Central de Autobuses de Poza Rica
+B|26.08507|-98.27213|Central de Autobuses de Reynosa
+B|20.21895|-100.87985|Central de Autobuses de Salvatierra
+B|21.24383|-102.32513|Central de Autobuses de San Juan de los Lagos
+B|21.01184|-102.18620|Central de Autobuses de San Julian
+B|20.91434|-100.75885|Central de Autobuses de San Miguel de Allende
+B|20.18987|-96.86678|Central de Autobuses de San Rafael
+B|20.95329|-101.42596|Central de Autobuses de Silao
+B|17.99995|-92.91895|Central de Autobuses de Tabasco
+B|32.51798|-116.95932|Central de Autobuses de Tijuana
+B|20.13255|-99.23490|Central de Autobuses de Tlahuelilpan
+B|20.62500|-103.30788|Central de Autobuses de Tlaquepaque
+B|19.31513|-98.24650|Central de Autobuses de Tlaxcala
+B|21.96905|-98.99723|Central de Autobuses de Valles
+B|19.17866|-96.13382|Central de Autobuses de Veracruz (CAVE)
+B|19.52799|-96.90314|Central de Autobuses de Xalapa
+B|19.92197|-97.96926|Central de Autobuses de Zacatlán
+B|19.97423|-102.26838|Central de Autobuses de Zamora
+B|18.12079|-94.44670|Central de Autobuses del Puerto de Coatzacoalcos
+B|19.90427|-99.33664|Central de Autobúses del Valle del Mezquital
+B|20.05756|-99.34351|Central de Camiones Local
+B|25.70291|-100.23905|Central de Carga
+B|20.62157|-103.28751|Central de Guadalajara anden de flecha amarilla
+B|20.42254|-101.71528|Central de Pénjamo
+B|21.13237|-101.71620|Central de Transferensia San Juan Bosco
+B|19.27855|-99.64280|Central de autobuses
+B|20.47928|-99.23412|Central de autobuses
+B|23.83026|-103.04547|Central de autobuses
+B|19.95291|-99.84612|Central de autobuses Acambay
+B|31.31141|-109.55368|Central de autobuses Albatros
+B|28.42211|-100.76836|Central de autobuses Anahuac
+B|30.71576|-112.14570|Central de autobuses Estrella Blanca
+B|31.31942|-109.54943|Central de autobuses ODM
+B|20.34788|-102.77663|Central de autobuses Ocotlan
+B|31.31224|-109.55778|Central de autobuses TUFESA
+B|20.80180|-102.76414|Central de autobuses Tepatitán
+B|20.13277|-99.23488|Central de autobuses Tlahuelilpan
+B|19.95595|-104.26259|Central de autobuses Unión de TVLA
+B|19.41538|-98.14614|Central de autobuses Verdes
+B|31.32004|-109.54977|Central de autobuses de Agua Prieta
+B|21.97129|-102.28921|Central de autobuses de Aguascalientes norte
+B|25.56391|-103.47647|Central de autobuses de Gómez Palacio
+B|20.37610|-99.65489|Central de autobuses de Huichapan
+B|25.39760|-101.00759|Central de autobuses de Saltillo
+B|21.53259|-102.24381|Central de autobuses de encarnacion de diaz
+B|15.00061|-92.16236|Central de transportes
+B|19.71675|-101.18223|Central del Norte
+B|31.31301|-109.57852|Central regional de autobuses Agua Prieta (abandonado)
+B|19.36102|-99.27963|Centro Comercial Santa Fe
+B|19.57909|-99.02281|Centro Cultural
+B|20.73936|-103.38216|Centro Cultural Universitario
+B|20.97892|-89.60971|Centro de Transferencia Modal CETRAM La Plancha
+B|19.42080|-99.17581|Centro de Transferencia Modal Chapultepec
+B|20.95898|-89.56583|Centro de Transferencia Multimodal CETRAM Oriente
+B|20.92141|-89.68754|Centro de Transferencia Multimodal CETRAM UMAN
+B|20.98953|-89.67550|Centro de Transferencia Multimodal Canek
+B|32.50672|-116.96129|Centro de Transporte - Los Santos
+B|20.77525|-103.45583|Centro de Validación Vehicular Tesistán SyT
+B|18.87664|-97.10147|Cerritos, Urbano
+B|20.40753|-98.71808|Cerro Colorado
+B|31.66071|-106.42851|Cerro de la Plata
+B|19.40369|-99.12109|Cetram Santa Anita
+B|19.28623|-98.88358|Chalco
+B|17.50972|-91.98507|Chamoán colectivos
+B|20.65488|-103.44609|Chapalita Inn
+B|20.28530|-99.41165|Chapantongo
+B|21.25950|-98.78881|Chapulhuacanito-Tamazunchale
+B|21.15922|-98.90657|Chapulhuacán
+B|25.85354|-97.47498|Checador de la independencia
+B|28.58989|-106.11096|Chihuahuanses - Zootecnia
+B|20.33108|-99.23143|Chilcuautla
+B|17.56318|-99.50757|Chilpancingo - Chilapa
+B|19.42306|-98.93762|Chimalhuacán
+B|19.06908|-98.32438|Cholula - Puebla
+B|25.70346|-100.26941|Churubusco
+B|18.71487|-97.31976|Chyc
+B|18.75562|-97.23293|Chyc
+B|20.65270|-103.35344|Cipres
+B|19.53430|-99.02721|Ciudad Azteca
+B|19.53524|-99.02752|Ciudad Azteca
+B|20.67515|-103.45518|Ciudad Granja
+B|25.70369|-100.28401|Clínica 15
+B|25.53728|-100.94695|Coahuilenses
+B|20.89683|-98.58270|Coamitla-Papatlatla
+B|20.99434|-98.39511|Cochiscuatitla
+B|19.54922|-99.12436|Cocoyotes (La Brecha)
+B|16.08923|-93.74950|Colectivo Boca del cielo
+B|18.71696|-87.70822|Colectivo Chetumal
+B|17.71153|-92.01293|Colectivo Playas a Palenque
+B|20.62553|-87.07806|Colectivo Station
+B|20.96159|-89.62518|Colectivo Terminal Umán
+B|20.48551|-89.71338|Colectivo a Merida
+B|17.30660|-96.44918|Colectivo to Ixtlan
+B|15.87486|-97.09165|Colectivo/Public Transport Shuttle Vans
+B|23.65002|-100.64323|Colectivos
+B|20.96493|-89.61683|Colectivos Izamal
+B|20.96486|-89.61790|Colectivos a Tahmek
+B|17.26161|-90.99416|Colectivos a Tenosique
+B|20.69782|-88.58770|Colectivos para Valladolid
+B|17.06890|-96.69347|Colectivos to Ixtlan - Station Laa-Yetzi
+B|16.79480|-96.67580|Colectivos to San Martín Tilcajete
+B|21.14484|-88.15005|Colectivos y Taxi hasta Río Lagartos
+B|16.74472|-92.63596|Colectivos y taxis para Zinacantan
+B|31.86546|-116.62324|Collectiva Orange bus, el Sauzal, Centro,
+B|17.33034|-96.48815|Collective Taxi to Oaxaca
+B|16.90874|-92.09988|Collective Taxi to San Cristobal
+B|16.74442|-92.63934|Collectivo San Juan Chamula
+B|17.50892|-91.98462|Collectivo a Catazajá/Crucero de Playas 35 peso
+B|20.62610|-87.08348|Collectivo station Playa-Tulum
+B|16.72907|-92.63679|Collectivo station to Comitán
+B|19.57720|-88.04684|Collectivo to Bacalar & Chetumal
+B|16.73879|-92.62652|Collectivo to El Arcotete
+B|17.45976|-91.43621|Collectivo to Palenque
+B|17.05537|-96.72646|Collectivo-taxis to Mitla 25 pesos
+B|20.68966|-88.20286|Collectivos Taxistas cenotes Xkeken y Samula
+B|16.84254|-99.84876|Collectivos para Cumbres (Jardin Botanico, La Capilla de la Paz)
+B|19.32766|-99.02871|Colonia Buenavista
+B|20.69047|-103.26434|Colonia Jalisco
+B|19.24299|-99.57759|Colón Nacional.
+B|18.98721|-99.10141|Combi Bus Station
+B|16.76276|-93.37434|Combi a Aguacero
+B|17.46003|-97.22384|Combi a Santiago Apoala
+B|20.13561|-98.67212|Combie a Pachuca
+B|20.13027|-98.73014|Combie to Mineral Del Chico
+B|20.96698|-89.61997|Combis Altabrisa
+B|19.08151|-98.51636|Combis a Amecameca
+B|16.09158|-93.75352|Combis a Arriaga
+B|18.52153|-88.29177|Combis a Carrillo y Mahahual
+B|19.08347|-98.52198|Combis a Cholula
+B|16.23328|-93.89978|Combis a Tierra y Libertad
+B|16.69669|-93.72047|Combis a Tierra y Libertad
+B|16.23226|-93.89962|Combis a Tonalá
+B|16.54172|-92.47384|Combis for Comitán
+B|18.50499|-88.29766|Combis foraneas
+B|16.31738|-91.98295|Combis to Comitan
+B|21.51423|-104.89452|Combis to San Blas and Tuxpan
+B|19.88190|-98.97307|Combis unión 1
+B|20.70348|-103.28275|Comisaría de Guadalajara
+B|19.22258|-99.65937|Compañia Transportista De Toluca
+B|20.73779|-103.37636|Constitución
+B|19.31413|-99.18152|Coordinación de Humanidades
+B|21.38500|-98.99212|Coordinados - Primera Plus - Flecha Amarilla
+B|25.70359|-100.27869|Coyoacán
+B|19.02218|-98.21230|Cristal
+B|21.34080|-89.67170|Cruise Terminal Shuttle
+B|19.31365|-98.94656|Cuauhtémoc
+B|20.03402|-98.30966|Cuautepec-Almoloya
+B|20.03617|-98.31041|Cuautepec-Tepeyac
+B|20.03618|-98.31014|Cuautepec-Texcaltepec
+B|20.03616|-98.31143|Cuautepec-Tulancingo
+B|20.03610|-98.30914|Cuautepec-Tulantepec
+B|25.75970|-100.40247|Cumbres
+B|19.41738|-99.09065|Cupido Chalco
+B|31.60200|-106.35631|Custodio de la República
+B|14.91239|-92.26292|Cᴏᴍʙɪ ʀᴇʏ ᴅᴀʀʏ
+B|25.46064|-108.07579|D' Guamúchil
+B|25.77392|-100.31736|DIF Escobedo
+B|25.66029|-100.19490|Dalia
+B|15.86171|-97.06697|Delfines a Pochutla
+B|19.48567|-99.12580|Deportivo 18 de Marzo / Basilica
+B|31.59580|-106.36012|Desierto de Kavir
+B|31.59853|-106.35927|Desierto de Libia
+B|17.14070|-96.77698|Diez Camiones Internacionales
+B|31.64166|-106.36872|Durango
+B|19.00885|-98.24589|E-Bus
+B|23.22615|-106.42307|EL QUELITE
+B|25.69123|-100.44250|ESTACIÓN DE CAMIÓN
+B|17.95607|-102.19778|ESTRELLA DE ORO
+B|25.87124|-97.49867|ETN
+B|19.08905|-102.35119|ETN Turistar Lujo Apatzingán
+B|19.58115|-99.01822|ETN Turistar Lujo Terminal México-Ecatepec
+B|23.73586|-99.13074|ETN y ODM
+B|19.15675|-96.13158|ETP de Veracruz
+B|19.69758|-99.08652|ETRAM Cajiga
+B|19.67913|-99.10672|ETRAM Prados Sur
+B|19.72222|-99.05772|ETRAM Xaltocan
+B|19.77221|-97.33396|EXAL Autobuses del Altiplano
+B|19.43953|-99.20145|Ebus Antara
+B|19.47639|-99.13663|Ecobus
+B|21.98229|-99.01466|Ecocentral
+B|21.98412|-99.01621|Ecocentralita
+B|25.70467|-100.20832|Ecovía - De La Zanja
+B|25.70552|-100.16621|Ecovía - Valle Fértil
+B|25.70791|-100.31356|Ecovía Estación Regina
+B|19.26585|-98.89749|Ejidal
+B|19.36550|-99.02413|Ejército de Oriente
+B|18.96651|-97.90189|El Aljibe
+B|20.72823|-103.34456|El Batán
+B|20.62524|-103.43359|El Briseño
+B|20.36904|-86.99472|El Cedral bus station
+B|20.64914|-103.44370|El Colli
+B|22.02633|-99.02603|El Consuelo
+B|18.98132|-99.10462|El Corralón
+B|31.65014|-106.40903|El Granjero
+B|19.50730|-99.19958|El Rosario
+B|19.56133|-99.13958|El Tepetatal (El Charco)
+B|31.69037|-106.44471|El Vergel 2 (N-S)
+B|21.19788|-98.92642|El Zacatal
+B|19.61794|-99.06651|Elektra
+B|19.79819|-99.10434|Elite
+B|25.74893|-100.38759|Embotelladora
+B|18.83193|-99.18806|Emiliano Zapata
+B|31.65468|-106.41925|Eritrea
+B|32.51302|-116.96881|Ermita
+B|18.84815|-99.26049|Espacio Público Eterna Primavera
+B|23.75548|-103.84302|Estacion Autobuses
+B|23.75579|-103.84324|Estacion De Autobuses
+B|26.08051|-99.60963|Estacion De Autobuses Noreste
+B|21.09542|-101.61883|Estacion De Transferencia Delta
+B|21.09063|-101.67667|Estacion Timoteo Lozano
+B|18.36640|-99.86387|Estacion de Autobuses
+B|20.90909|-103.97674|Estacion de Autobuses
+B|24.52865|-104.77415|Estacion de Autobuses
+B|32.57357|-116.62480|Estacion de Autobuses de Tecate
+B|21.14007|-101.63177|Estacion de Transferencia Maravillas
+B|18.80394|-99.29401|Estacion xochicalco
+B|19.29316|-99.58998|Estacionamiento de el Piojo
+B|18.69710|-100.36847|Estación "Ruleteras"
+B|20.72874|-103.30684|Estación 2
+B|31.73858|-106.47337|Estación 5 de Mayo
+B|31.73824|-106.46801|Estación Casa de Juan Gabriel
+B|31.73859|-106.48576|Estación Catedral
+B|23.12817|-101.10850|Estación Del Golfo Charcas
+B|31.73784|-106.48449|Estación Ex Aduana - EXPRES-
+B|18.36132|-100.66471|Estación Guerrero-Michoacan
+B|20.98028|-89.60446|Estación IE-TRAM: Fénix Hospitales_2790
+B|19.19311|-96.14580|Estación Medher
+B|31.73789|-106.46264|Estación Parque Borunda
+B|31.73898|-106.47999|Estación Ramón Corona
+B|20.01899|-97.52462|Estación Ruta Tzinacapan
+B|32.53999|-117.02954|Estación SITT Amistad
+B|32.53538|-117.02210|Estación SITT Diana Cazadora
+B|32.52657|-117.00971|Estación SITT Hospital General
+B|32.52086|-117.00305|Estación SITT Juan Ojeda Robles
+B|32.53778|-117.02581|Estación SITT Pueblo Amigo
+B|19.70444|-98.83842|Estación San Martín de las Pirámides
+B|25.43035|-100.97020|Estación Senda El Indio
+B|22.55411|-99.07873|Estación Transpaís
+B|20.61225|-100.40741|Estación Tren Eléctrico
+B|19.27150|-99.46344|Estación autobuses dirección Ciudad de México
+B|18.98256|-99.10779|Estación de Autobuses
+B|18.12051|-94.44475|Estación de Autobuses ADO AU OCC SUR
+B|21.21589|-99.46300|Estación de Autobuses Jalpan de Serra
+B|25.67397|-97.81609|Estación de Autobuses NORESTE
+B|16.17549|-95.19163|Estación de Autobuses SUR
+B|24.84908|-98.15353|Estación de Autobuses Transpais
+B|20.18812|-100.14891|Estación de Autobuses de Amealco
+B|15.66593|-92.00231|Estación de Buses TAOSA
+B|17.50863|-91.98505|Estación de Colectivos
+B|18.50542|-88.29339|Estación de Combis
+B|18.50561|-88.29301|Estación de Combis a Bacalar
+B|16.88615|-99.82437|Estación de Maxitunel Ruta Renacimiento-Centro
+B|21.10235|-101.70457|Estación de Transferencia Metropolitana
+B|21.17223|-101.67070|Estación de Transferencia Portales
+B|21.14953|-101.67507|Estación de Transferencia San Jerónimo
+B|21.10385|-101.70607|Estación de Transferencia Santa Rita
+B|16.22979|-93.89932|Estación de autobuses
+B|19.65512|-96.87581|Estación de autobuses
+B|20.50907|-100.99365|Estación de autobuses
+B|22.57084|-102.24786|Estación de autobuses Ags-Zac
+B|21.13573|-99.62838|Estación de autobuses Pinal de Amoles
+B|19.50566|-99.13005|Estación de autobuses Politécnico-Universidad
+B|22.57074|-102.24905|Estación de autobuses Zac-Ags
+B|19.22409|-104.70704|Estación de autobuses de Melaque
+B|20.88169|-103.83245|Estación de autobuses de Tequila
+B|16.32616|-95.23668|Estación de bus colectivo
+B|19.77329|-104.35785|Estación de camiones Primera Plus
+B|20.68738|-103.45530|Estadio Chivas
+B|16.86204|-99.88876|Estrella Blanca
+B|18.55578|-99.60228|Estrella Blanca
+B|21.14606|-98.41882|Estrella Blanca
+B|21.51912|-98.39104|Estrella Blanca
+B|24.84713|-98.15173|Estrella Blanca
+B|29.68395|-108.27200|Estrella Blanca
+B|21.46445|-103.46298|Estrella Blanca-Teul de Gonzalez Ortega Zacatecas
+B|18.89585|-99.16784|Estrella Roja
+B|18.91553|-99.23480|Estrella Roja
+B|19.00870|-98.24578|Estrella Roja
+B|19.05413|-98.21303|Estrella Roja
+B|19.27876|-98.43342|Estrella Roja
+B|18.89159|-99.02542|Estrella Roja San Carlos
+B|17.56217|-99.51014|Estrella blanca o costa line
+B|16.80191|-99.82062|Estrella de Oro
+B|16.86354|-99.88333|Estrella de Oro
+B|21.04161|-86.87283|Europcar
+B|25.66383|-100.20465|Evolución
+B|19.42298|-97.01835|Excélsior
+B|21.04886|-86.85011|Experiencias Xcaret
+B|15.76883|-96.14016|Expressos Colombo Huatulco
+B|17.05742|-96.72337|Expressos Colombo Huatulco
+B|17.05999|-96.73153|Expressos Colombo Huatulco
+B|19.69025|-99.18752|FESC-Metro
+B|14.91188|-92.25818|FIPSA
+B|20.17468|-98.05909|FUTURA
+B|20.64297|-103.44111|Felipe Ruvalcaba
+B|25.66697|-100.22276|Fidel Velázquez
+B|20.57655|-100.35830|Flecha Amarilla
+B|20.91418|-99.56538|Flecha Amarilla
+B|21.15608|-100.93733|Flecha Amarilla
+B|20.81692|-101.31689|Flecha Amarilla Aldama
+B|20.52883|-101.36986|Flecha Amarilla Pueblo Nuevo
+B|21.00181|-100.38920|Flecha Amarilla San Jose Iturbide
+B|20.73350|-99.38109|Flecha Azul
+B|18.92915|-99.43726|Flecha Roja
+B|19.31709|-99.64515|Flecha Roja
+B|21.15896|-98.90630|Flecha Roja
+B|18.92917|-99.43719|Flecha Roja Chalma
+B|19.46451|-99.59236|Flecha Roja Temoaya
+B|19.16828|-99.46548|Flecha Roja Tianguistenco
+B|19.17874|-99.42924|Flecha Roja Xalatlaco
+B|19.07402|-98.27732|Flixbus Eaplanada Puebla
+B|19.44957|-99.15238|Flixbus Fórum Buenavista
+B|20.62632|-87.08339|Foraneo
+B|31.66224|-106.44622|Francisco I. Madero
+B|31.66226|-106.44617|Francisco I. Madero 1 (S-N)
+B|31.66226|-106.44628|Francisco I. Madero 2 (N-S)
+B|31.69175|-106.38253|Francisco Villarreal
+B|25.66225|-100.19994|Francisco Zertuche
+B|32.54088|-117.02675|GARITA PUERTA MEXICO
+B|18.92625|-99.23865|Grupo Estrella Blanca - Terminal de Autobuses Cuernavaca
+B|20.70271|-103.46054|Grupo Estrella Blanca Zapopan
+B|19.30542|-99.56851|Grupo Rocha Sa De CV
+B|25.67563|-100.44309|Grupo Senda
+B|25.71264|-100.37253|Grupo Transregio (Terminal Burócratas del Estado)
+B|25.70884|-100.19447|Guadalajara
+B|19.06813|-98.19197|Guadalupe Victoria
+B|32.51578|-116.96762|Guadalupe Victoria
+B|19.07316|-98.19615|Hidalgo
+B|25.70437|-100.32215|Hidalgo
+B|31.64877|-106.39397|Hiedra
+B|20.96309|-89.61852|Homun-Merida
+B|21.99638|-99.01123|Hospital General IMSS
+B|20.63062|-87.06990|Hotel Shuttle Bus Meeting area
+B|20.64661|-103.35276|Héroes De Nacozari
+B|20.61034|-103.41505|ITESO
+B|31.62639|-106.35561|Independencia
+B|20.72044|-103.31595|Independencia Norte
+B|31.49204|-106.41466|Indiobús
+B|19.41854|-99.16431|Insurgentes_1_7
+B|25.65296|-100.11127|Interenlace
+B|19.20736|-99.55014|Intermetropolitano
+B|19.31408|-99.18114|Investigaciones Filológicas
+B|19.31395|-99.18004|Investigaciones Filosóficas
+B|20.63349|-99.14467|Ixmiquilpan-Cerritos
+B|19.36135|-99.14201|Iztapalapa Progresista UAMI
+B|20.57651|-103.35605|Jalisco 200 Años
+B|31.69763|-106.44576|Jarudo
+B|31.69759|-106.44566|Jarudo 1 (S-N)
+B|31.69753|-106.44577|Jarudo 2 (N-S)
+B|31.64741|-106.43352|Jiménez
+B|19.27209|-98.88958|José María Martínez
+B|31.61061|-106.34828|Jumanos 1 Norte
+B|31.60995|-106.34839|Jumanos 2 Sur
+B|20.96383|-89.62244|Kanasin - Naranjos
+B|22.74228|-98.97742|LUMX
+B|23.73195|-103.98641|La Burra Villa Insurgentes
+B|20.73231|-103.35610|La Cantera
+B|19.27440|-98.90636|La Covadonga
+B|31.67809|-106.42457|La Cuesta - Exprés
+B|22.02065|-99.02820|La Estrella
+B|20.72577|-103.33768|La Experiencia
+B|19.56632|-99.12628|La Forestal
+B|18.97838|-98.19612|La Fragua
+B|19.99149|-98.70366|La Paloma
+B|31.65977|-106.44549|La Presa (O-E) Inactiva
+B|31.66042|-106.44627|La Presa 1(S-N)
+B|31.66042|-106.44638|La Presa 2 (N-S)
+B|19.46791|-99.13883|La Raza
+B|20.73364|-103.40913|La Tuzanía
+B|19.48903|-99.11781|La Villa
+B|19.33938|-98.97591|La Virgen
+B|20.06857|-98.41205|La preferida
+B|19.44024|-99.18341|Lago Alberto
+B|17.63655|-101.55842|Lanchas que llevan a Playa las Gatas e Isla de Ixtapa
+B|25.71227|-100.34675|Laredo
+B|19.58989|-99.02407|Las Américas
+B|25.70306|-100.24765|Las Américas
+B|22.73283|-101.33607|Las Cruces
+B|20.58779|-103.32662|Las Pintas
+B|18.99327|-98.20206|Las torres
+B|19.59849|-99.18459|Lechería (Exprés)
+B|31.62967|-106.35894|Leona Vicario
+B|19.50198|-99.07389|León de los Aldama
+B|19.58664|-99.02163|Libertadores de America
+B|21.99786|-99.02568|Lienzo Charro
+B|19.09632|-99.58683|Linea TEO
+B|19.29239|-99.72052|Linea Teo
+B|19.10307|-99.58864|Linea de Turismos Toluca-Tenango Estrella de Oro S.A. de C.V.
+B|19.26235|-99.67779|Linea de transporte publico Adolfo Lopez Mateos
+B|15.66621|-96.51828|Lineas Unidas
+B|15.74325|-96.46728|Lineas Unidas
+B|16.92911|-96.70368|Lineas Unidas
+B|17.05935|-96.73133|Lineas Unidas de Juquila
+B|15.74291|-96.46722|Lineas Unidos (to Oaxaca)
+B|19.56433|-97.24203|Loma de Oro
+B|19.57107|-99.13468|Lomas de Cuautepec
+B|20.72153|-103.32629|Lomas del Paraíso
+B|20.68297|-103.24507|Los Conejos
+B|31.63512|-106.36471|Los Ejidos
+B|25.66790|-100.22717|Los Reyes
+B|19.52541|-96.93212|Los Sauces
+B|21.09572|-89.28363|Línea Azul
+B|17.05353|-96.72540|Línea Eclipse 70
+B|21.09461|-89.28395|Línea Roja  Motul-Mérida
+B|19.28510|-99.49013|Línea TEO
+B|16.32979|-96.59689|Líneas Unidas
+B|17.05448|-96.72582|Líneas Unidas
+B|17.94860|-94.90510|Líneas Unidas del Sur (Segunda Clase)
+B|20.61284|-103.42376|López Mateos
+B|19.00969|-98.20790|Margaritas
+B|20.63246|-103.43677|Mariano Otero
+B|18.53374|-92.63799|Medher
+B|18.51480|-88.28878|Mercado Lazaro
+B|19.39942|-99.11346|Metro Coyuya
+B|19.50013|-99.14944|Metro Politécnico (Poniente)
+B|19.28716|-99.01421|Metrobus Tláhuac
+B|19.44483|-99.15231|Metrobús Linea 4
+B|18.86281|-97.06340|Metropolitano Escamela
+B|18.88459|-97.06333|Metropolitano Potrerillo
+B|18.85325|-97.06524|Metropolitano y Garitas
+B|18.85330|-97.06429|Metropolitano y Garitas
+B|18.85919|-97.06363|Metropolitano y Garitas
+B|19.61646|-99.00855|Mexibús - Central de Abastos
+B|32.54131|-117.02680|Mexicoach
+B|25.70258|-100.22357|Miguel Alemán
+B|31.69464|-106.44438|Minantitlán 1 (N-S)
+B|31.69462|-106.44450|Minantitlán 2 (S-N)
+B|20.96320|-89.62616|Mini bus to Muna (close to Uxmal)
+B|20.63588|-103.43820|Miramar
+B|25.70631|-100.34240|Mitras
+B|19.42573|-99.11141|Moctezuma
+B|25.65763|-100.18800|Monserrat
+B|25.87741|-100.03702|Monterrey, Marín-Higueras
+B|20.70452|-103.32596|Monumental
+B|31.73649|-106.48125|Monumento (Norte)
+B|19.60403|-99.01453|Monumento a la Familia
+B|31.67404|-106.42464|Morelia
+B|22.00543|-99.03094|Morelos
+B|31.64571|-106.37989|Morelos
+B|16.14395|-96.44822|Mototaxis San Mateo Río Hondo
+B|22.01527|-99.03696|Mujeres en Solidaridad
+B|27.93744|-101.21113|Muzquiz-Rosita
+B|20.96316|-89.62544|Mérida - Oxtuzcab
+B|25.65562|-100.18251|México
+B|19.48033|-99.13852|México Central Norte
+B|20.62150|-103.28778|Módulo 1 Primera Plus
+B|20.62072|-103.28708|Módulo 2 ETN - La Línea - Omnibus de México
+B|20.61975|-103.28643|Módulo 3: Elite - Pacífico - Transportes Norte de Sonora
+B|20.61896|-103.28553|Módulo 4
+B|20.61961|-103.28484|Módulo 5
+B|20.62071|-103.28462|Módulo 6: Ómnibus de México
+B|20.62193|-103.28436|Módulo 7: Grupo Senda
+B|18.69013|-88.39042|New ADO Bus Terminal
+B|32.63791|-115.27575|Nicoya
+B|31.72883|-106.47711|Niños Héroes
+B|25.66620|-100.21797|Noche Buena
+B|28.64157|-106.07531|Noroeste
+B|25.78503|-108.99698|Norte de Sinaloa
+B|19.47933|-99.13948|Northern Bus Station
+B|20.62041|-103.28614|Nueva Central Camionera de Guadalajara
+B|18.93575|-103.96417|Nuevo Horizonte / Sur de Jalisco
+B|25.67273|-100.23484|Nuevo León
+B|16.73747|-92.63660|OCC /ADO Venta de boletos
+B|16.23002|-93.89923|OCC Terminal
+B|20.17501|-98.05879|OMNIBUS DE MEXICO
+B|23.84799|-104.24530|OMNIBUS DE MEXICO
+B|18.81100|-98.95302|ORO Bus Station terminal
+B|31.65227|-106.41302|Oasis
+B|31.64456|-106.37493|Oaxaca
+B|18.52114|-88.29079|Old ADO Bus Station - Bus to Belize City
+B|21.15892|-98.90637|Omnibus
+B|28.58948|-106.11108|Omnibus De Mexico - Zootecnia
+B|25.67531|-100.44244|Omnibus México
+B|21.96782|-102.29041|Omnibus Terminal Paseos
+B|22.75055|-102.49618|Omnibus de Mexico
+B|24.85111|-98.15344|Omnibus de Mexico
+B|27.12957|-104.92070|Omnibus de Mexico
+B|27.69400|-105.17422|Omnibus de Mexico
+B|21.47236|-104.85531|Omnibus de México
+B|22.24921|-97.85858|Omnibus de México
+B|25.53578|-103.46256|Omnibus de México
+B|28.41021|-106.86474|Omnibus de México
+B|16.72935|-92.63727|Omnibus terminal
+B|16.74851|-93.10365|Omnibus terminal
+B|21.46442|-103.46300|Omnibus- Teul De Glez Ortega Zac
+B|17.06143|-96.73105|Operadora Turistica Tehuacan - Oaxaca
+B|21.51435|-104.88859|Optibus del Pacifico
+B|20.85998|-90.39916|Oriente Bus Office
+B|20.24580|-99.09177|Ovnibus
+B|20.05457|-98.78690|Ovnibus Station
+B|20.28578|-98.66617|Pachuca-Atotonilco
+B|21.15614|-100.93688|Pagaso
+B|18.69305|-100.36757|Palmar Chico
+B|19.33151|-99.02528|Palmitas
+B|25.74256|-100.38139|Panteón Municipal
+B|19.61434|-99.06942|Panteón de Guadalupe Victoria
+B|19.41687|-99.07228|Pantitlán
+B|20.90130|-98.45188|Papatlatla
+B|19.88878|-102.20968|Para Autobuses Tangancicuaro - Zamora
+B|19.67985|-103.47461|Para de Autobuses Los Monos
+B|19.13775|-97.64754|Parada AU
+B|21.28403|-89.66460|Parada Autobús el Costero
+B|19.81901|-97.36045|Parada Combis Ruta 2
+B|19.45362|-99.04847|Parada Cuchilla
+B|32.55169|-115.07513|Parada De Autobuses
+B|19.81775|-97.36171|Parada Micros "Rojos"
+B|19.81762|-97.36171|Parada Micros "Verdes"
+B|32.55198|-115.07462|Parada de Autobuses
+B|19.10741|-97.95362|Parada de Autobuses Vía Acajete
+B|20.91522|-100.75038|Parada de Camiones Urbados "San Juan de Dios"
+B|19.81896|-97.36130|Parada de Combis
+B|20.18514|-100.14109|Parada de Combis y Micros
+B|19.00441|-98.20362|Parada de Lobobus
+B|20.61491|-100.40325|Parada de Ruta Azul
+B|27.26284|-109.95135|Parada de autobús
+B|31.27983|-110.93995|Parada de camion
+B|20.91621|-100.74256|Parada de urbanos centro
+B|19.22568|-98.92785|Parada del Panteón
+B|19.37098|-99.03625|Parada del Pumabús
+B|19.27303|-99.15491|Paradero Camiones a La Joya / Tasqueña
+B|19.17873|-99.44893|Paradero Estrella del Noreste (Sólo Martes).
+B|20.17626|-90.13500|Paradero Hecelchakán ATS
+B|20.98178|-89.56524|Paradero IE-TRAM (Va y Ven): Héroes_2778
+B|20.98187|-89.56471|Paradero IE-TRAM (Va y Ven): Héroes_2786
+B|20.98162|-89.57157|Paradero IE-TRAM (Va y Ven): Metropolitano Oriente_2780
+B|20.98124|-89.57878|Paradero IE-TRAM (Va y Ven): Reyes_2784
+B|20.98135|-89.57805|Paradero IE-TRAM (Va y Ven): Reyes_2787
+B|19.35812|-99.09371|Paradero Metro Iztapalapa
+B|19.37523|-99.18825|Paradero Mixcoac
+B|21.16486|-86.82645|Paradero Playa Express
+B|19.42726|-99.14967|Paradero RTP Balderas
+B|19.63657|-99.04848|Paradero Universidad Mexiquense
+B|21.21240|-87.72597|Paradero de Autobuses Noreste y Mayab
+B|19.49596|-99.12018|Paradero de Indios Verdes
+B|20.64749|-87.06437|Paradero transportes hoteles "Colosio"
+B|18.35627|-102.29072|Parhikuni
+B|18.35619|-102.29092|Parhícuni
+B|31.68831|-106.42455|Parque Central
+B|20.66163|-103.44890|Parque Metropolitano
+B|19.28510|-98.91438|Parque Tejones
+B|19.32224|-98.95674|Parque de la Mujer
+B|31.65864|-106.43789|Parral
+B|25.43848|-102.18009|Parras-Torreon station
+B|19.55830|-99.60682|Paseo Bicentenario Bus Stop
+B|19.00869|-98.24551|Paseo Destino
+B|19.58285|-99.02076|Paseo Ventura
+B|31.70321|-106.40153|Paseo de la Victoria
+B|25.69204|-100.45934|Patio Ruta 400
+B|26.84487|-101.43525|Patios TMC
+B|31.66896|-106.44583|Pavo Real
+B|31.66895|-106.44579|Pavo Real 1 (S-N)
+B|31.66896|-106.44590|Pavo Real 2 (N-S)
+B|19.27720|-99.23426|Pedregal de San Nicolás
+B|31.68381|-106.42457|Pedro Meneses Hoyos
+B|31.71591|-106.42451|Pedro Rosales
+B|20.95223|-102.66747|Pegueros boletos flecha
+B|20.73917|-103.40297|Periférico Belenes
+B|20.73072|-103.35112|Periférico Norte
+B|20.60554|-103.40017|Periférico Sur
+B|21.90290|-102.29090|Permicionarios del Centro
+B|29.13028|-111.00856|Pernocta Femot
+B|20.96210|-89.62572|Peto collectivo station
+B|31.65021|-106.40056|Piña
+B|20.62513|-87.07770|Playa Express
+B|20.62775|-87.08474|Playa Express - ADO
+B|20.62785|-87.08474|Playa Express - Colectivos
+B|18.66254|-91.83141|Playa Norte Bus Station
+B|20.62703|-87.08418|Playa del Carmen - Tulum
+B|21.97993|-99.00479|Plaza Nobel
+B|15.92871|-96.41725|Pluma Hidalgo
+B|25.75605|-100.39740|Plumbago
+B|25.75228|-100.39227|Plutarco Elías Calles
+B|31.67589|-106.44544|Ponciano Arriaga
+B|31.67588|-106.44539|Ponciano Arriaga 1 (S-N)
+B|31.67588|-106.44550|Ponciano Arriaga 2 (N-S)
+B|19.49679|-99.11851|Poza Rica
+B|20.61576|-99.11816|Pozuelos-Sauz-Ixmiquilpan
+B|31.69945|-106.42453|Pradera Dorada - Exprés
+B|19.02937|-98.21486|Prados agua azul
+B|20.06838|-98.41199|Preferida Tulancingo
+B|19.27343|-99.12049|Preparatoria 1
+B|31.74668|-106.48534|Presidencia
+B|31.71137|-106.40910|Primavera
+B|19.22417|-104.70736|Primera Plus
+B|20.73041|-105.28278|Primera Plus
+B|23.24494|-106.42169|Primera Plus
+B|19.30616|-99.12868|Primera Plus Coapa
+B|19.58219|-99.02063|Primera Plus Ecatepec Plaza Las Américas
+B|20.54828|-102.50926|PrimeraPlus
+B|19.29874|-98.92890|Puente Blanco
+B|19.30682|-98.93845|Puente Rojo
+B|19.17936|-99.44291|Puente Xalatlaco
+B|18.62165|-99.32230|Puente de Ixtla
+B|19.77348|-104.35680|Puerta de la Costa
+B|31.61747|-106.34719|Puerto Obaldía 1 Norte
+B|31.61681|-106.34668|Puerto Obaldía 2 Sur
+B|31.59263|-106.35690|Puerto Tarento
+B|18.89723|-99.16862|Pullman Tejalpa
+B|18.61302|-99.17845|Pullman de Morelos
+B|18.92123|-99.20530|Pullman de Morelos
+B|18.88703|-99.17464|Pullman de Morelos - Terminal Jiutepec
+B|18.46095|-99.41295|Pullman de Morelos BVC
+B|18.84282|-99.22406|Pullman de Morelos Temixco
+B|18.91859|-99.23633|Pullman de Morelos, terminal centro de Cuernavaca
+B|18.73647|-99.26199|PullmanBus to Mexico Destino
+B|19.65020|-101.22334|Puma Bus
+B|21.02862|-101.87947|Purisa boletos
+B|19.53950|-99.02515|Quinto Sol
+B|19.70877|-98.45264|R0J0S
+B|17.06101|-96.73115|RAMSA
+B|19.45610|-99.21365|RTP Cuatro Caminos
+B|19.02526|-98.21335|RUTA
+B|25.69360|-100.45987|RUTA 400
+B|31.63282|-106.36362|Ramón Rayón
+B|31.63211|-106.36250|Ramón Rayón (inactiva)
+B|20.72305|-103.33035|Rancho Nuevo
+B|25.71921|-100.35736|Rangel Frías
+B|26.82349|-107.07122|Rapidos Cuauhtemoc
+B|28.41025|-106.86136|Rapidos Cuauhtemoc
+B|28.63502|-106.08350|Rapidos Cuauhtemoc
+B|27.12941|-104.92044|Rapidos delicias
+B|21.99133|-99.01199|Reforma
+B|32.49722|-116.96799|Reservaciones Nayarit
+B|25.65645|-100.18493|Rincón de Guadalupe
+B|21.59555|-88.15687|Rio Lagartos Bus Station
+B|31.69223|-106.42454|Rivera Lara
+B|25.71006|-100.34341|Rodrigo Gómez
+B|20.66555|-103.39454|Roll & Bits Autobús
+B|21.98257|-99.00775|Rotarios
+B|19.38708|-99.28202|Ruta 004 Ramal Tacubaya
+B|25.85345|-100.38560|Ruta 1 "San Nicolás/Alianza Real"
+B|23.74942|-103.83988|Ruta 1 - Ruat 2
+B|23.74937|-103.83999|Ruta 1 - Ruta 2
+B|25.78956|-100.03996|Ruta 111 Pesquería Directo
+B|25.69474|-100.51189|Ruta 118
+B|25.67045|-100.47126|Ruta 126 Aurora & Fama
+B|25.68352|-100.43522|Ruta 128
+B|25.39842|-100.94804|Ruta 18
+B|25.71263|-100.48811|Ruta 201
+B|25.68677|-100.49407|Ruta 203
+B|25.69881|-100.45972|Ruta 306
+B|25.80851|-100.61937|Ruta 307
+B|19.49428|-99.27548|Ruta 31
+B|25.81552|-100.57110|Ruta 310
+B|21.27970|-100.49630|Ruta 4 azul
+B|19.53961|-99.05028|Ruta 54 Campiña
+B|25.81101|-100.62105|Ruta 601
+B|20.68179|-103.34912|Ruta 636 via Coronilla Sor Juana Ines
+B|19.45862|-99.20275|Ruta 7
+B|21.85964|-102.23401|Ruta 7
+B|25.63504|-100.18700|Ruta 73 Tierra Propia
+B|20.00906|-102.29623|Ruta Cafe
+B|18.84723|-99.19868|Ruta de la Salud
+B|19.32266|-99.17576|Rutas de transporte interno UNAM
+B|25.70376|-100.28874|Ruíz Cortinez
+B|27.75290|-107.63519|Rápidos Cuauhtémoc
+B|28.63496|-106.08337|Rápidos Cuauhtémoc
+B|19.50642|-99.08591|Río de los Remedios
+B|18.90602|-97.08195|SCAFYS ORIZABA ATZACAN
+B|25.67450|-100.36746|SENDA San Gerónimo
+B|19.20643|-99.54426|STUT
+B|19.52983|-96.90944|SUX
+B|20.68936|-88.20334|Saak Muk Ha (Taxi a Cenote Dzitnup y Tekom)
+B|31.70743|-106.40550|San Antonio
+B|31.71631|-106.46562|San Antonio
+B|31.71636|-106.46559|San Antonio 1 (Norte)
+B|20.03507|-98.30842|San Aparicio
+B|19.01221|-98.20879|San Baltazar
+B|20.99479|-101.99215|San Diego de Alejandría boletos
+B|19.50152|-99.07348|San Felipe de Jesús (León de los Aldama)
+B|20.74042|-103.38821|San Isidro
+B|20.24324|-99.08896|San Juan Tepa
+B|20.70626|-103.44666|San Juan de Ocotán
+B|19.43125|-99.11521|San Lázaro
+B|25.70902|-100.18813|San Miguel
+B|20.63605|-99.15810|San Miguel Jigui-Ixmiquilpan
+B|19.33709|-98.98930|San Miguel Teotongo (Avisadero)
+B|19.34756|-98.99006|San Miguel Teotongo (Torres)
+B|20.59058|-103.38576|San Sebastianito
+B|31.72061|-106.47061|Sanders
+B|31.72065|-106.47052|Sanders 1 (S-N)
+B|31.72057|-106.47059|Sanders 2 (N-S)
+B|19.32148|-98.95909|Santa Catarina
+B|25.72611|-100.36665|Santa Cecilia
+B|20.73018|-103.41296|Santa Margarita
+B|21.26366|-98.79334|Santa María Picula - Tamazunchale
+B|20.03624|-98.30971|Santa María-Cuautepec
+B|19.32310|-99.29165|Santa Rosa Xochiac
+B|31.60501|-106.35300|Santiago Troncoso
+B|16.87686|-95.03960|Santo Domingo
+B|19.22627|-98.92470|Segunda Parada
+B|24.32278|-99.90652|Senda
+B|25.66551|-100.21320|Serafín Peña
+B|17.12101|-96.76825|Servicio De Transportes Goma
+B|17.05542|-96.72668|Servicio Express / Van Express Sola de Vega Puerto Escondido
+B|16.19497|-95.19300|Servicio Urbano y Suburb Tur e Ind De Salina Cruz
+B|19.50547|-99.19774|Servicio de Transportes Eléctricos de la CDMX. Depósito de trolebuses.
+B|21.97666|-98.97223|Servicios Coordinados de La Huasteca A En O
+B|17.06082|-96.72911|Servicios De Autotrasportes De La Mixteca
+B|19.24292|-99.75968|Servicios Urbanos Y Suburbanos Xinantecatl
+B|19.28727|-99.73887|Servicios Urbanos Y Suburbanos Xinantecatl
+B|20.62664|-87.07803|Shuttle bus colectivo
+B|19.81716|-97.35872|Sierra - Texcoco
+B|31.68377|-106.44500|Sierra Madre
+B|31.69037|-106.44461|Sierra Madre 1 (S-N)
+B|31.62145|-106.35093|Sierra Tarahumara 1 Norte
+B|31.62089|-106.35036|Sierra Tarahumara 2 Sur
+B|19.26090|-99.68334|Sistema De Transportes Tollocan
+B|19.53992|-96.92304|Sitio Camiones Coatepec
+B|20.02008|-97.52606|Sitio Cuetzalan-Rayon
+B|21.14587|-88.14959|Sitio Foreano Espita - Playa de Carmen - Panabá
+B|19.74580|-89.84334|Sitio de Taxis
+B|20.96431|-89.61821|Sitio de Taxis Dzemul y Telchac
+B|19.74586|-89.84343|Sitio de Taxis Hopelchen-Campeche
+B|16.74320|-98.28837|Sitio.1 Taxis
+B|19.59158|-96.95922|Sociedad Cooperativa Autotransportes Banderilla
+B|17.06120|-96.73575|Sociedad Cooperativa De Autotransportes Valle Del Norte
+B|19.45295|-96.97075|Sociedad Cooperativa de Autobuses Excelsior
+B|19.34255|-99.13921|South Central Terminal
+B|20.72510|-103.30759|Station 1
+B|20.73243|-103.30556|Station 3
+B|17.79801|-96.95951|Suburbans a Oaxaca
+B|19.31083|-97.92156|Surianos/Oro
+B|17.99005|-93.38609|TACAR
+B|20.71043|-105.27644|TAP
+B|20.73053|-105.28281|TAP
+B|25.45904|-108.07619|TAP
+B|25.57469|-108.46402|TAP
+B|25.78201|-108.98754|TAP
+B|32.50033|-116.93616|TAP Plus
+B|17.05882|-96.72938|TAY - Transportes Ayutla
+B|18.38795|-93.21846|TERMINAL ADO
+B|17.98698|-93.37927|TERMINAL DE BUS ATPC
+B|19.70889|-98.45216|TEXC0C0
+B|14.90990|-92.25928|TLA
+B|22.73107|-98.31431|TRANSPAIS
+B|22.74237|-98.97659|TRANSPAIS
+B|26.50921|-100.17567|TRANSPORTES FRONTERA
+B|26.50326|-100.18546|TRANSPORTES TAMAULIPAS
+B|19.37033|-96.37691|TRV / AU
+B|25.45884|-108.07743|TUFESA
+B|20.70201|-103.45977|TUFESA BUS COMPANY
+B|23.24382|-106.42142|TUFESA Mazatlán
+B|20.45214|-97.31620|TUSPA
+B|18.77905|-97.01106|TVT
+B|20.73423|-103.36308|Tabachines
+B|19.09617|-99.58719|Talleres Línea TEO
+B|21.22935|-98.87875|Tamán
+B|21.25937|-98.78895|Tamán-Tamazunchale
+B|30.71728|-112.14243|Tap autobuses
+B|20.69831|-88.58808|Taquilla Autobuses de Oriente
+B|20.27295|-102.47452|Taquilla de flecha vista hermosa
+B|19.34289|-99.13964|Tasqueña
+B|22.00855|-99.03650|Tauro
+B|25.70276|-100.23020|Tauro
+B|20.69189|-88.20316|Taxi Cenote Sac Aua, Arqueologica EkBalam, Hunuku
+B|20.69152|-88.20483|Taxi Valladolid-Chichen Itza
+B|18.50358|-88.29422|Taxi Xpujil Calakmul Campeche
+B|20.96487|-89.61796|Taxi terminal to Valladolid
+B|16.72958|-92.63679|Taxi to Ocosingo
+B|15.64431|-91.98611|Taxis "Las Champas-CD Cuauhtémoc"
+B|16.73017|-92.63809|Taxis Colectivos - Altamirano
+B|19.28482|-99.50971|Taxis Imperio
+B|20.39732|-89.53257|Taxis Ticul-Merida
+B|20.96326|-89.62622|Taxis Ticul-Merida
+B|20.96316|-89.62544|Taxis para Oxkutzcab
+B|31.72147|-106.42449|Tec de Juárez - Exprés
+B|22.02165|-99.03534|Tecnológico
+B|31.70381|-106.42453|Tecnológico
+B|31.65763|-106.43014|Tecnológico 1
+B|31.65698|-106.42963|Tecnológico 2 (Zaragoza - Exprés)
+B|19.02725|-96.24561|Teminal Servicio Jamapa
+B|19.47713|-99.13121|Teotihuacán bus (secondary)
+B|19.35187|-98.98747|Teotongo
+B|19.51402|-98.88691|Tepetitlan
+B|20.88170|-103.83576|Tequila Plus
+B|20.51742|-99.89816|Tequisquiapan
+B|19.22790|-98.92110|Tercer Parada
+B|20.05289|-99.33964|Termial de Autobuses de Tula
+B|17.99323|-94.57572|Termina de Autobuses de segunda
+B|20.48768|-99.21599|Terminal
+B|21.83138|-102.28600|Terminal
+B|21.84911|-102.31747|Terminal
+B|21.88122|-102.25700|Terminal
+B|21.95004|-102.29561|Terminal
+B|21.96331|-102.29117|Terminal
+B|20.63496|-105.22994|Terminal 1 ATM
+B|19.43690|-99.08138|Terminal 1 Autobuses
+B|20.54444|-103.27377|Terminal 176
+B|19.42101|-99.07847|Terminal 2 Autobuses
+B|21.97010|-102.28905|Terminal 2 Norte
+B|26.00361|-98.39985|Terminal 20 Esfuerzo
+B|19.05422|-98.21316|Terminal 4 Poniente
+B|23.65182|-100.63394|Terminal 57
+B|27.30129|-112.89839|Terminal ABC de San Ignacio
+B|21.49897|-104.88783|Terminal ACN Tepic
+B|17.99493|-95.39845|Terminal ADO
+B|18.46259|-97.39596|Terminal ADO
+B|18.59689|-95.44362|Terminal ADO
+B|19.43544|-99.08445|Terminal ADO
+B|18.63304|-95.52207|Terminal ADO AU
+B|19.76709|-97.24357|Terminal ADO AU
+B|20.31636|-96.86227|Terminal ADO AU
+B|19.06731|-97.04510|Terminal ADO AU Coscomatepec
+B|19.15122|-96.97033|Terminal ADO AU Huatusco
+B|17.46059|-97.23107|Terminal ADO AU OCC SUR
+B|16.44511|-95.02522|Terminal ADO AU OCC SUR Juchitán
+B|19.56252|-97.24353|Terminal ADO AU Perote
+B|16.87977|-95.03912|Terminal ADO AU SUR
+B|17.99069|-94.57012|Terminal ADO AU SUR
+B|18.13692|-94.15282|Terminal ADO AU SUR
+B|18.41705|-95.10648|Terminal ADO AU TRS TRV Catemaco
+B|18.02478|-95.52981|Terminal ADO AU TRV
+B|19.35452|-96.56522|Terminal ADO AU TRV
+B|19.77066|-96.43164|Terminal ADO AU TRV
+B|19.96875|-96.61081|Terminal ADO AU TRV
+B|20.20959|-96.77587|Terminal ADO AU TRV
+B|18.36430|-95.79236|Terminal ADO AU TRV Cosamaloapan
+B|18.88303|-96.91902|Terminal ADO AU TRV Córdoba
+B|18.76125|-96.46289|Terminal ADO AU TRV La Tinaja
+B|18.10931|-95.87789|Terminal ADO AU TRV Loma Bonita
+B|19.96327|-97.21368|Terminal ADO AU TRV Vía
+B|20.06449|-97.05232|Terminal ADO AU TRV Vía
+B|20.01612|-97.52087|Terminal ADO AU VIA
+B|19.84517|-97.49796|Terminal ADO AU Vía
+B|18.77472|-95.76254|Terminal ADO Alvarado
+B|17.79822|-91.53318|Terminal ADO Balancán
+B|17.81140|-97.77549|Terminal ADO Huajuapan
+B|19.31267|-97.92013|Terminal ADO Huamantla
+B|19.02365|-88.11045|Terminal ADO Limones
+B|17.98249|-94.54440|Terminal ADO Minatitlán
+B|20.96258|-89.63002|Terminal ADO Mérida Centro Histórico
+B|16.24370|-92.13937|Terminal ADO OCC
+B|16.76145|-93.13855|Terminal ADO OCC
+B|16.09332|-93.75794|Terminal ADO OCC RS
+B|15.76995|-96.14019|Terminal ADO OCC SUR
+B|18.84697|-97.09937|Terminal ADO Orizaba
+B|18.40271|-93.20505|Terminal ADO Paraíso
+B|18.45154|-95.21864|Terminal ADO San Andrés Tuxtla (SAV)
+B|18.16901|-96.09491|Terminal ADO Santa Cruz
+B|18.46621|-95.30008|Terminal ADO Santiago Tuxtla
+B|18.37380|-95.74643|Terminal ADO TRV Carlos A. Carrillo
+B|18.44881|-96.35833|Terminal ADO Tierra Blanca
+B|18.24207|-96.13412|Terminal ADO Tres Valles
+B|19.87840|-97.58869|Terminal ADO VIA
+B|19.82316|-90.53163|Terminal ADO de Primera Clase
+B|18.12480|-94.43248|Terminal ADO/AU/SUR Ex-caseta
+B|19.41213|-98.14307|Terminal ATAH
+B|19.76735|-97.24349|Terminal ATAH
+B|19.77012|-97.55623|Terminal ATAH
+B|19.81687|-97.35845|Terminal ATAH
+B|19.96196|-97.21550|Terminal ATAH
+B|19.31258|-97.91971|Terminal ATAH Huamantla
+B|19.53578|-96.92036|Terminal ATB
+B|19.92935|-96.85323|Terminal ATB
+B|18.85845|-97.37444|Terminal AU
+B|19.28475|-96.44024|Terminal AU Intermedios
+B|18.85151|-97.11009|Terminal AU Orizaba
+B|19.63742|-97.09761|Terminal AU TRS
+B|20.03027|-96.64447|Terminal AU TRV
+B|18.23812|-96.40705|Terminal AU TRV Temascal
+B|18.44903|-96.35567|Terminal AU TRV Tierra Blanca
+B|18.45907|-97.38844|Terminal AU Valles
+B|18.98721|-97.44874|Terminal AU Valles
+B|19.11432|-97.41925|Terminal AU Valles
+B|19.25315|-97.18226|Terminal AU Valles
+B|19.29318|-97.34445|Terminal AU Valles
+B|19.23259|-97.80244|Terminal AU Vía
+B|18.33596|-97.01512|Terminal AU Zoquitlán
+B|19.79719|-99.10462|Terminal AZZ
+B|19.76928|-97.55408|Terminal Autobuses ADO AU Vía Zaragoza
+B|18.63971|-96.23254|Terminal Autobuses Jarochos
+B|20.57753|-100.35904|Terminal Autobuses Queretaro
+B|19.81808|-97.36258|Terminal Autobuses Rojos
+B|20.99969|-89.68090|Terminal Autobuses de Oriente Caucel
+B|20.96431|-89.62469|Terminal Autoprogreso
+B|20.53282|-100.44958|Terminal Balvanera
+B|21.51420|-104.88921|Terminal Bellavista Puga TTT CTM
+B|26.01993|-98.40028|Terminal Bugambilias
+B|19.07489|-98.20375|Terminal CAPU
+B|19.41295|-99.08407|Terminal CETRAM Zaragoza
+B|19.51634|-98.88306|Terminal Camionera Mexico-Texcoco
+B|18.93000|-99.23103|Terminal Casino de la Selva
+B|19.39643|-99.20025|Terminal Central de Autobuses del Poniente
+B|19.05472|-98.11231|Terminal Chachapa
+B|17.03096|-97.57114|Terminal Chalcatongo
+B|19.51631|-98.88533|Terminal Chiconcuac
+B|19.56022|-98.89649|Terminal Chiconcuac
+B|19.55467|-98.89373|Terminal Chiconcuac - San Lázaro
+B|18.86067|-97.06525|Terminal ChyC
+B|18.80417|-97.28659|Terminal ChyC Maltrata
+B|18.79204|-97.19375|Terminal Chyc
+B|16.88807|-99.83673|Terminal Costa Line
+B|17.08140|-96.74404|Terminal De Au De Santa Rosa
+B|19.28394|-99.52674|Terminal De Autobuses San Mateo Atenco
+B|17.05968|-96.75352|Terminal De Autobuses Sertexa
+B|17.06447|-96.76110|Terminal De Autobuses Tusug
+B|17.01023|-96.74639|Terminal De Transporte Urbano Esquipulas Volcanes
+B|19.68460|-99.22528|Terminal De la Unidad Adolfo lopez mateos
+B|21.33780|-98.82811|Terminal Del Norte - Senda
+B|22.25202|-97.85746|Terminal ETN Turistar Tampico
+B|19.49513|-99.11891|Terminal ETT
+B|18.35395|-100.66737|Terminal Estrella Blanca
+B|17.56292|-99.50977|Terminal Estrella de Oro
+B|20.53789|-99.31441|Terminal Flecha Roja
+B|18.90793|-96.99791|Terminal Fortín Terranova y Astro Plus
+B|20.60242|-87.12279|Terminal Foránea
+B|21.33823|-98.82849|Terminal Frontera
+B|15.66331|-92.14031|Terminal Frontera Comalapa
+B|20.36939|-90.05058|Terminal Hecelchakan
+B|20.02117|-97.52374|Terminal Huantiknemi
+B|19.15570|-98.40635|Terminal Huejotzingo
+B|20.51425|-100.80354|Terminal Individual de Autobuses Zima Real
+B|20.51482|-100.80429|Terminal Individual de Transportes Regiomontanos Internacionales
+B|32.46451|-116.91310|Terminal Insurgentes - SITT
+B|21.96797|-102.35119|Terminal Jesus Maria
+B|18.04830|-96.11917|Terminal Las Limas
+B|25.76939|-100.42137|Terminal Lincoln
+B|21.85957|-102.24582|Terminal Lomas del Gachupin
+B|18.45255|-95.22147|Terminal Los Tuxtlas
+B|18.97018|-98.26477|Terminal Margaritas
+B|19.43937|-99.15530|Terminal Metro Revolucion
+B|21.11728|-101.68729|Terminal Metropolitana
+B|19.53992|-99.05876|Terminal Mexibús Mexicable
+B|20.60514|-100.41706|Terminal Norte
+B|28.70397|-106.12450|Terminal Norte
+B|15.68959|-93.20638|Terminal OCC
+B|17.54815|-98.57621|Terminal OCC SUR
+B|18.90143|-98.98032|Terminal Oaxtepec
+B|19.66227|-99.00146|Terminal Ojo de Agua
+B|21.33774|-98.82826|Terminal Omnibus de México - Flecha
+B|20.96329|-89.61722|Terminal Oriente (for Celestun) / 50
+B|18.71749|-98.79478|Terminal Oro
+B|17.06139|-96.73491|Terminal PERIFERICO AU SUR
+B|20.98355|-89.61988|Terminal Paseo 60
+B|19.00894|-98.24524|Terminal Paseo Destino
+B|15.68948|-93.20660|Terminal Pijijiapan
+B|18.80867|-96.71332|Terminal Plateados Cuitláhuac
+B|18.85678|-97.09185|Terminal Plateados Orizaba
+B|19.39853|-99.19569|Terminal Poniente
+B|18.79303|-97.19234|Terminal Poniente de Autobuses
+B|17.02454|-97.92898|Terminal Putla Centro
+B|14.91382|-92.26685|Terminal Rapidos del Sur
+B|18.42123|-95.10382|Terminal Rural de Autotransporte MixtoCatemaco
+B|25.82426|-100.10517|Terminal Ruta 111 Zacatecas
+B|19.33276|-99.27496|Terminal Ruta 117 San Bartolo Ameyalco
+B|19.81549|-97.36209|Terminal Ruta 3
+B|19.32541|-99.28293|Terminal Ruta 43 Santa Rosa
+B|19.18368|-96.15813|Terminal Ruta Comercial Mexicana
+B|18.99689|-98.19579|Terminal STU
+B|17.72363|-97.32462|Terminal SUR
+B|20.01835|-97.51939|Terminal San Andres
+B|19.32897|-99.27195|Terminal San Bartolo Ameyalco
+B|18.16898|-96.09497|Terminal Santa Cruz
+B|27.33645|-112.26392|Terminal Santa Rosalia ABC
+B|17.88160|-94.96184|Terminal Sayula de Alemán
+B|18.40076|-93.20804|Terminal Segunda Clase, Paraíso, Tabasco
+B|25.78598|-108.99230|Terminal Sinaloa - El Fuerte
+B|32.53530|-117.03574|Terminal Suburbaja-Tijuana Centro
+B|28.62458|-106.02798|Terminal Sur
+B|20.60853|-103.40752|Terminal Sur de Autobuses
+B|21.86290|-102.22820|Terminal Suroriente Valle de los Cactus
+B|18.89959|-97.00171|Terminal TVT Fortín
+B|20.01159|-98.80342|Terminal Tellez
+B|20.88501|-103.83860|Terminal Tequila
+B|22.14613|-100.95190|Terminal Terrestre Potosina
+B|19.58673|-98.56739|Terminal Texcoco
+B|19.54243|-99.20631|Terminal Tlanepantla
+B|19.03296|-98.26869|Terminal Tlaxcalancingo
+B|16.09928|-93.76225|Terminal Tonala
+B|23.76588|-98.20503|Terminal Transpais
+B|21.25921|-98.78856|Terminal Transpaís
+B|21.33550|-98.82695|Terminal Transpaís Matlapa
+B|24.11579|-110.31153|Terminal Turistica
+B|15.87355|-97.07576|Terminal Turistica Municipal
+B|24.16347|-110.31556|Terminal Turistica de Autobus
+B|20.01196|-98.80421|Terminal Téllez
+B|20.36942|-90.05126|Terminal UNTRAC Combis Calkiní a Mérida
+B|20.62647|-103.28868|Terminal Vallarta Plus
+B|25.70358|-100.15834|Terminal Valle Soleado
+B|18.97308|-98.19296|Terminal Valsequillo RUTA
+B|21.25953|-98.78917|Terminal Vencedor
+B|21.33740|-98.82793|Terminal Vencedor Matlapa
+B|19.41725|-99.99710|Terminal Villa Victoria, Estado de México
+B|27.65200|-113.38668|Terminal Vizcaíno
+B|19.03379|-98.79890|Terminal Volcanes
+B|19.62909|-90.62886|Terminal Xkeulil
+B|20.02022|-97.52640|Terminal Zacapoaxtla
+B|18.35701|-100.66768|Terminal Zinancatepec
+B|19.51363|-98.88629|Terminal camionera teotihuacanos/tepetitlan
+B|19.31373|-99.26733|Terminal capulin ruta 43
+B|20.96304|-89.61831|Terminal colectivo to Cuzama
+B|17.06034|-96.73607|Terminal de 2a clase Oaxaca Central de Abastos
+B|16.85698|-99.90169|Terminal de Autobuces Estrella Blanca
+B|22.89859|-109.92636|Terminal de Autobus Cabo San Lucas
+B|19.77149|-98.58140|Terminal de Autobus Texcoco
+B|17.64948|-101.54396|Terminal de Autobuses
+B|18.77059|-96.17281|Terminal de Autobuses
+B|18.80224|-96.05965|Terminal de Autobuses
+B|18.90189|-100.15156|Terminal de Autobuses
+B|18.90495|-98.43583|Terminal de Autobuses
+B|19.23623|-104.56011|Terminal de Autobuses
+B|20.17920|-98.05223|Terminal de Autobuses
+B|21.92024|-99.99538|Terminal de Autobuses
+B|27.47315|-99.51817|Terminal de Autobuses
+B|31.32393|-113.53421|Terminal de Autobuses
+B|32.48034|-114.77834|Terminal de Autobuses
+B|20.93154|-89.01907|Terminal de Autobuses "Del Centro"
+B|21.05817|-104.05005|Terminal de Autobuses "Quick"
+B|19.17773|-99.43159|Terminal de Autobuses (No operando)
+B|17.93906|-94.28137|Terminal de Autobuses 2da
+B|17.94849|-94.90442|Terminal de Autobuses ADO AU SUR
+B|19.37070|-96.37989|Terminal de Autobuses ADO AU TRV Ciudad Cardel
+B|19.81791|-97.35852|Terminal de Autobuses ADO AU TRV Vía
+B|15.86202|-97.06806|Terminal de Autobuses ADO OCC
+B|16.72980|-92.63665|Terminal de Autobuses ADO OCC
+B|16.33914|-95.22465|Terminal de Autobuses ADO OCC SUR
+B|19.38716|-96.65043|Terminal de Autobuses AU TRS TRV La Cumbre
+B|19.37033|-96.37690|Terminal de Autobuses AU TRV Ciudad Cardel
+B|19.20774|-96.95175|Terminal de Autobuses Astro Plus
+B|19.52500|-96.90156|Terminal de Autobuses Astro Plus Xalapa
+B|21.26098|-98.79057|Terminal de Autobuses Boulevard
+B|19.45845|-89.73129|Terminal de Autobuses Dzibalchén
+B|21.53238|-102.24398|Terminal de Autobuses Encarnación de Díaz
+B|18.35396|-100.66727|Terminal de Autobuses Estrella Blanca
+B|19.16847|-99.46591|Terminal de Autobuses Flecha Roja
+B|19.17878|-99.42960|Terminal de Autobuses Flecha Roja Xalatlaco
+B|19.80290|-100.17304|Terminal de Autobuses Foráneos Tlalpujahua
+B|19.15025|-96.97261|Terminal de Autobuses Huatusco
+B|19.56394|-99.76505|Terminal de Autobuses Ixtlahuaca
+B|19.38177|-96.97972|Terminal de Autobuses Líneas Unidas Teocelo
+B|19.08863|-104.29086|Terminal de Autobuses Manzanillo
+B|18.81115|-98.95189|Terminal de Autobuses OCC/SUR
+B|21.01756|-89.87692|Terminal de Autobuses Oriente Hunucmá
+B|18.91746|-99.18845|Terminal de Autobuses Oro
+B|19.00771|-98.26709|Terminal de Autobuses Oro
+B|19.05829|-98.22177|Terminal de Autobuses Oro Y Erco
+B|19.96290|-97.21040|Terminal de Autobuses Plan de Arroyos
+B|21.92057|-99.99532|Terminal de Autobuses Rioverde
+B|18.72865|-95.98695|Terminal de Autobuses Rápidos de la Mixtequilla
+B|18.97490|-91.17965|Terminal de Autobuses Sabancuy
+B|22.63054|-101.71582|Terminal de Autobuses Salinas
+B|22.25211|-97.85720|Terminal de Autobuses Tampico Madero
+B|18.91430|-103.87944|Terminal de Autobuses Tecomán
+B|20.60870|-103.40645|Terminal de Autobuses Tlaquepaque
+B|22.19111|-100.94665|Terminal de Autobuses Tornado
+B|19.19633|-100.13461|Terminal de Autobuses Valle de Bravo
+B|18.92117|-99.20793|Terminal de Autobuses Verdes de Morelos
+B|19.58036|-89.60121|Terminal de Autobuses Vicente Guerrero
+B|19.43582|-100.34502|Terminal de Autobuses Zitacuaro
+B|16.96023|-96.47733|Terminal de Autobuses de 2ª Clase Tlacolula
+B|20.29403|-103.19079|Terminal de Autobuses de Chapala
+B|19.68950|-100.56546|Terminal de Autobuses de Ciudad Hidalgo
+B|18.81193|-96.72456|Terminal de Autobuses de Cuitláhuac
+B|18.88389|-96.92014|Terminal de Autobuses de Córdoba (TAC)
+B|25.97600|-100.44590|Terminal de Autobuses de Hidalgo
+B|19.84314|-99.23857|Terminal de Autobuses de Huehuetoca
+B|20.70730|-88.80942|Terminal de Autobuses de Oriente
+B|20.96247|-89.61788|Terminal de Autobuses de Oriente (Segunda Clase)
+B|20.68673|-105.23118|Terminal de Autobuses de Puerto Vallarta
+B|25.39752|-101.00755|Terminal de Autobuses de Saltillo
+B|31.01696|-114.84443|Terminal de Autobuses de San Felipe
+B|20.53826|-99.63597|Terminal de Autobuses de Tecozautla
+B|20.09967|-98.35761|Terminal de Autobuses de Tulancingo
+B|18.44846|-96.35887|Terminal de Autobuses el Palmar de Veracruz
+B|18.60283|-96.68647|Terminal de Autobuses el Palmar de Veracruz
+B|30.37174|-109.68846|Terminal de Autobúses de Nacozari
+B|16.75079|-93.10293|Terminal de Autotransportes Tres Estrellas
+B|20.37071|-90.05219|Terminal de Bécal
+B|19.81905|-97.35888|Terminal de Combis
+B|21.90281|-102.29102|Terminal de Combis
+B|18.18445|-91.04594|Terminal de Combis a Comunidades
+B|21.16497|-90.03194|Terminal de Combis a Mérida
+B|19.20618|-104.68411|Terminal de ETN
+B|26.04861|-98.32027|Terminal de La Cañada
+B|20.95135|-97.40122|Terminal de Mexico
+B|16.92017|-96.35836|Terminal de Mitla
+B|20.24152|-99.19419|Terminal de Progreso de O
+B|14.91255|-92.26697|Terminal de Rutas Foraneas
+B|18.46525|-95.29995|Terminal de Segunda
+B|19.84285|-90.52695|Terminal de Segunda Clase SUR
+B|21.01714|-89.87606|Terminal de Taxis
+B|20.96273|-89.62503|Terminal de Taxis Tekax-Akil
+B|16.74289|-93.10620|Terminal de Transferencia de Tuxtla Gutiérrez
+B|16.71873|-92.63325|Terminal de Transporte San Cristobal de las Casas
+B|21.98531|-99.01866|Terminal de Vencedor
+B|17.05479|-96.72591|Terminal de Zaachila Yoo
+B|15.74273|-96.46682|Terminal de autobuses
+B|20.96342|-89.61545|Terminal de autobuses "Del Centro"
+B|16.44502|-95.02625|Terminal de autobuses "Fletes y Pasajes"
+B|18.18698|-91.04722|Terminal de autobuses ADO-SUR
+B|19.41000|-99.00935|Terminal de autobuses AMAO
+B|18.83798|-98.94186|Terminal de autobuses Cuautlixco
+B|18.81189|-98.95284|Terminal de autobuses Estrella Roja
+B|28.73110|-106.14923|Terminal de autobuses Pistolas Meneses
+B|20.69089|-88.20478|Terminal de autobuses Valladolid
+B|20.93267|-89.02024|Terminal de autobuses de Oriente
+B|20.44877|-97.08679|Terminal de autobuses de segunda
+B|32.54630|-116.97129|Terminal de autobuses del aeropuerto de Tijuana
+B|19.51475|-98.88555|Terminal de autotransportes Moctezuma
+B|17.08668|-96.69393|Terminal de camiones SERTEXA
+B|17.08188|-96.69638|Terminal de choferes del sur
+B|14.67821|-92.15074|Terminal de combis
+B|19.32089|-99.26294|Terminal la cruz ruta 111
+B|19.06881|-98.30907|Terminal super rapidos
+B|20.70301|-103.46066|Terminal zapopan
+B|16.24754|-92.14065|Terminus Collectivo
+B|19.42936|-99.16849|Terrapuerto El Ángel
+B|21.25986|-98.78950|Tezapotla-Tamazunchale
+B|32.57028|-115.33940|Thermo Kinuño
+B|20.05018|-98.66532|Tizahuapán
+B|16.24783|-92.14058|Tla & Titanium Bus Station
+B|19.35368|-99.24426|Tlacuitlapa (Puerta Grande)
+B|19.54036|-99.18921|Tlanepantla Centro
+B|25.67479|-100.23703|Tolteca Oriente
+B|25.67457|-100.23732|Tolteca Poniente
+B|20.57930|-103.36885|Toluquilla
+B|31.64947|-106.39704|Toronja Roja
+B|31.64792|-106.38938|Torres I
+B|31.64760|-106.38800|Torres II
+B|19.28281|-99.22858|Torres de Padierna
+B|17.05789|-96.72964|Tourist Bus to Monte Alban
+B|22.21330|-97.85761|Trabajo
+B|22.92176|-98.07509|Transpais
+B|26.05840|-98.29437|Transpais
+B|22.40491|-99.60080|Transpais Terminal Cd del Maiz
+B|21.98744|-99.01201|Transpaís
+B|24.86363|-99.57465|Transpaís
+B|23.64992|-100.64315|Transport to Real de Catorce
+B|17.02357|-97.92460|Transportadora túristica y de pasaja Mixteca Baja
+B|17.06416|-96.73309|Transportadora túristica y de pasaja Mixteca Baja
+B|17.06136|-96.73571|Transportadora y Ejecutivos Tierra Del Sol
+B|26.93058|-105.66480|Transporte Ballezanos
+B|27.12921|-104.91975|Transporte Ballezanos
+B|19.38069|-99.24463|Transporte Colectivo Urbano Y Suburbano De Pasajeros En Autobuses De Ruta Fija
+B|17.05835|-96.74114|Transporte De Servicios De Pasaje y Carga Union Chatina
+B|17.05388|-96.72618|Transporte Foraneo Agencia De Viajes Eco Enlaces Plus
+B|17.05890|-96.73115|Transporte de pasaje y turismo "Villa Escondida"
+B|16.59013|-97.22556|Transporte de pasaje y turismo Teojomulco
+B|15.86995|-97.07537|Transporte el delfin
+B|17.45985|-91.43599|Transportes "Jaguar"
+B|17.45986|-91.43589|Transportes "Palenque"
+B|18.79602|-97.30856|Transportes AMO
+B|18.85080|-97.10151|Transportes Adelas
+B|27.07943|-109.44546|Transportes Baldomero Corral
+B|21.92368|-99.99545|Transportes Chavez
+B|27.12954|-104.92013|Transportes Chihuahuenses
+B|28.19901|-105.46957|Transportes Chihuahuenses
+B|25.52863|-103.22600|Transportes Congregacion Hidalgo
+B|17.05336|-96.70743|Transportes Costeños
+B|19.27822|-99.64373|Transportes De Pasajeros De Segunda Clase Flecha De Oro
+B|17.08225|-96.71401|Transportes Flores Magon
+B|25.68313|-100.25592|Transportes Hispanos
+B|17.06203|-96.73028|Transportes Huatulco 2000
+B|16.24937|-92.13671|Transportes Montebello
+B|22.25071|-104.51794|Transportes Ramírez
+B|19.12343|-104.36466|Transportes Rojos Suburbanos el  Colombo
+B|19.23311|-99.54969|Transportes Silva
+B|14.99625|-92.16489|Transportes Tacana
+B|27.75085|-107.63439|Transportes Turisticos (batopillas)
+B|16.23744|-92.13231|Transportes Tzovol
+B|19.31813|-99.24398|Transportes Urbanos De Personas Ruta 112
+B|19.26251|-99.74648|Transportes Urbanos Y Suburbanos Xinantecatl
+B|25.75994|-102.97859|Transportes del Norte
+B|25.46091|-108.08284|Transportes del Pacífico
+B|17.11289|-96.71004|Transportes del sur
+B|17.06202|-96.73494|Transturs Cuicatecos
+B|17.06051|-96.72889|Trasportadora De Pasaje y Turismo Excelencia
+B|15.86259|-97.06879|Trasporte de Pasaje y Turismo Villa Escondida
+B|25.53066|-103.22594|Trasportes Matamoros-Coyote-Torreon
+B|16.72971|-92.63716|Tres Estrellas Doradas
+B|19.28689|-98.88295|Trolebús Terminal Chalco / CETRAM Chalco
+B|20.95989|-89.62594|Truckers Alliance of Yucatan
+B|25.71695|-100.35381|Tránsito
+B|27.08045|-109.44565|Tufesa
+B|29.07820|-110.93397|Tufesa
+B|32.62311|-115.40657|Tufesa
+B|25.81971|-108.98072|Tufesa Los Mochis
+B|21.47308|-104.85325|Tufesa bus terminal
+B|20.21208|-87.46060|Tulum-Bacalar-Chetumal-Combi
+B|16.72987|-92.63736|Turismo Maya. 2nd class
+B|19.28672|-99.59401|Turismo Y Autobuses Mexico Toluca Triangulo Flecha Sa De Cv
+B|19.19286|-96.14562|Turismo en Omnibus SA de CV
+B|21.17853|-86.83264|Turismo y Excursiones "Alianza"
+B|16.75173|-93.11472|Tuxtla Chiapas
+B|19.31438|-99.05913|UACM San Lorenzo Tezonco
+B|21.10012|-101.63330|UNEBUS
+B|19.55397|-99.01941|UNITEC
+B|22.43763|-97.96549|URBAN Amelia
+B|20.00696|-99.22003|UST
+B|18.50550|-88.52213|Ucum
+B|21.05926|-101.58252|Unebus Guanajuato
+B|32.51459|-116.97385|Unidad Deportiva Tijuana
+B|23.25059|-106.41940|Unidos de Sinaloa
+B|17.45985|-91.43597|Uniendo fronteras
+B|20.17559|-98.05085|Union Serrana
+B|31.49191|-106.41644|Univeritaria/1A express
+B|19.07164|-98.19323|Unión
+B|19.28021|-98.91071|Unión de Guadalupe
+B|25.62045|-100.27053|Unión de Permisionarios Ruta 301, S.C. (Ruta 301)
+B|22.21520|-97.85961|Urban
+B|22.41376|-97.94020|Urban
+B|20.17471|-98.05896|VERDES
+B|25.68377|-100.28134|VVJ enterprises
+B|20.69639|-103.45459|Vallarta
+B|20.70211|-103.45992|Vallarta Plus Zapopan
+B|20.71077|-105.27506|Vallarte Plus
+B|25.73343|-100.37321|Valle Verde
+B|18.97358|-98.19282|Valsequillo
+B|16.81320|-90.88398|Vans to Palenque
+B|22.52264|-99.32370|Vencedor Terminal
+B|19.27816|-99.64373|Venta De Boletos De Autotransportes de Pasajeros Mex Toluca Flecha Roja
+B|19.83990|-98.02973|Verdes
+B|18.61535|-99.17810|Verdes de Morelos
+B|19.14353|-96.11082|Viajes Turísticos de Veracruz
+B|25.70328|-100.26057|Vidriería
+B|21.24615|-102.33501|Vieja central de autobuses
+B|25.72357|-100.36373|Villa Mitras
+B|19.38851|-99.13990|Villa de Cortés
+B|17.05994|-96.73070|Villa del Pacifico
+B|15.86251|-97.06964|Villa del Pacífico
+B|17.05901|-96.73102|Villa escondida
+B|19.41715|-99.09069|Villas de San Martín
+B|25.38857|-100.94402|Vista
+B|20.63141|-87.07299|Viva Aerobus
+B|31.65233|-106.43127|Vía Láctea
+B|20.91734|-89.69683|Whereabouts
+B|19.32789|-98.96319|Xico
+B|18.98882|-98.20054|Xilotzingo
+B|20.06592|-98.63884|Xolostitla
+B|17.12638|-96.76819|Yuroo Viguera
+B|19.49537|-99.13616|Zacatenco
+B|19.51933|-99.12953|Zacatenco
+B|31.63894|-106.36581|Zapata
+B|31.63800|-106.36543|Zapata (inactiva)
+B|21.92312|-99.98497|Zima Real
+B|18.69318|-100.36763|Zinabus
+B|21.98608|-99.01226|Zona Centro
+B|32.54116|-117.02643|Zona Shuttle
+B|21.98015|-98.99970|Zona de Transferencia CFE
+B|20.71805|-103.31091|Zoológico Guadalajara
+B|19.74589|-89.84166|autobuses
+B|21.17948|-105.13693|autobús pacifico
+B|21.24361|-104.90193|autobús pacifico/coras
+B|21.80856|-105.20294|bus station taxi rank to island
+B|19.58104|-88.04378|bus to tulum
+B|20.86811|-105.43602|buses to Vallarta
+B|15.13852|-92.46418|busetas a Tapachula y Escuintla
+B|27.07483|-104.89652|camino a mlv 208 hotel
+B|17.83054|-93.39695|central de autobuses 2da  clase Huimanguillo
+B|16.72946|-92.63679|colectivos to Tuxtla (via Chiapa de Corzo)
+B|15.68953|-93.20468|combis a Tonalá
+B|23.97057|-104.04873|estaccion de autobuses villaunion
+B|19.98687|-102.24173|estacion lindavista
+B|15.66332|-92.14030|estación de autobuses frontera comalapa
+B|21.03896|-105.24695|estación de pacifico
+B|20.54446|-86.88046|ferry to isla de la pasion
+B|17.73877|-91.77395|jaguar
+B|19.60507|-99.06209|la Torre
+B|20.96721|-89.62133|la central
+B|19.60716|-99.06407|la curva
+B|19.60841|-99.06655|la iglesia
+B|19.60945|-99.07515|la joya
+B|19.60887|-99.06745|la papeleria azul
+B|19.60780|-99.06913|las pipas
+B|17.50777|-91.99013|para cruzero frontera corozal
+B|20.50150|-86.93746|ruta playas - collectivo to beaches: Chen Rio & San Martin
+B|14.91326|-92.26480|shared taxi to Talisman
+B|18.60568|-90.73267|terminal combis
+B|20.96489|-89.61683|terminal de autobuses
+B|19.51416|-98.88559|terminal de autotransportes del valle de mexico
+B|25.57453|-108.46622|tufesa
+B|19.60692|-99.06952|vista hermosa autobuses netzahualpilli
+B|19.60650|-99.07055|vista hermosa r44
+B|25.68197|-100.27561|viva aerobus
+B|23.36694|-110.17367|Águila Autotransportes
+B|32.51647|-116.97565|Álvaro Obregón
+B|20.95105|-97.39801|Ómnibus de México
+B|25.87109|-97.49848|Ómnibus de México
+B|20.72994|-103.39018|Ómnibus de México Guadalajara-Mercado del Mar
+B|28.19692|-105.46694|Ómnibus de México Plus
+B|31.65942|-106.44227|Óscar Flores

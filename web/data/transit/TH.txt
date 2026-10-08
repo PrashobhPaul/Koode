@@ -1,5 +1,6 @@
 # Transit for Koode, TH. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|13.72646|100.50907|Charoen Nakhon|BTS|M
 S|13.73033|100.50773|Khlong San|BTS|M
 S|13.72093|100.50272|Krung Thon Buri|รถไฟฟ้าบีทีเอส|M
@@ -159,6 +160,10 @@ S|13.87528|100.59673|Wat Phra Sri Mahathat|Metropolitan Rapid Transit|M
 S|13.72108|100.49516|Wongwian Yai|รถไฟฟ้าบีทีเอส|M
 S|13.71302|100.46890|Wutthakat|รถไฟฟ้าบีทีเอส|M
 S|13.92501|100.62584|Yaek Kor Por Aor|รถไฟฟ้าบีทีเอส|M
+S|11.70735|102.57075|Ao Salat Pier|Boonsiri Fantasea Catamaran|W
+S|11.80393|102.48832|fishing pier|Boonsiri Fantasea Catamaran|W
+S|14.55136|99.15582|ท่าแพขนานยนต์ อ.ศรีสวัสดิ์ ฝั่ง บ้านท่าสนุ่น|Car Ferry|W
+S|14.55663|99.15104|ท่าแพขนานยนต์ อ.ศรีสวัสดิ์ ฝั่ง บ้านโป่งหวาย|Car Ferry|W
 S|13.80636|100.51879|Bang Po|Chao Phraya Express Boat|W
 S|13.79869|100.51685|Kiak Kai|Chao Phraya Express Boat|W
 S|13.78155|100.50109|Krung Thon Bridge|Chao Phraya Express Boat|W
@@ -182,6 +187,15 @@ S|13.75551|100.50644|Phanfa Leelard|Golden Mount Line|W
 S|13.74982|100.52431|Sapan Charoenpol|Golden Mount Line|W
 S|13.74920|100.53088|Sapan Hua Chang|Golden Mount Line|W
 S|13.75342|100.51596|Talad Bobae|Golden Mount Line|W
+S|9.67389|100.06324|Haad Rin Queen|Haad Rin Queen|W
+S|9.55960|100.05548|Haad Rin Queen Big Buddha Pier|Haad Rin Queen|W
+S|6.48502|99.30566|Ko Lipe|Ko Tarutao - เกาะหลีเป๊ะ|W
+S|6.86044|99.72124|Pak Bara|Ko Tarutao - เกาะหลีเป๊ะ|W
+S|12.17536|102.38686|Laem Ngop Pier|Lelawadee|W
+S|11.81303|102.46221|Makathanee Pier|Lelawadee|W
+S|9.34009|99.67805|Lomprayah|Lomprayah|W
+S|9.58444|99.98517|Lomprayah Pralarn Pier|Lomprayah|W
+S|9.70848|99.98349|Lomprayah Thong Sala Pier|Lomprayah|W
 S|13.74785|100.56295|Asok Pier|NIDA Line|W
 S|13.74415|100.58146|Baan Don Mosque|NIDA Line|W
 S|13.76503|100.64739|Bangkapi|NIDA Line|W
@@ -204,15 +218,155 @@ S|13.74571|100.57437|Wat Mai Chonglom|NIDA Line|W
 S|13.76772|100.65211|Wat Sriboonrueng|NIDA Line|W
 S|13.75995|100.61378|Wat Thepleela|NIDA Line|W
 S|13.74827|100.54818|Wireless|NIDA Line|W
+S|9.14345|99.32279|ท่าเทียบเรือสุราษฎร์ธานี|Night Boat|W
+S|11.82550|102.46936|Ao Soun Yai Pier|Panan Express|W
+S|9.70816|99.98386|Ko Pha-ngan Pier|Raja|W
+S|9.32916|99.74496|Raja Ferry Donsak Pier|Raja Ferry|W
+S|13.70495|100.50169|Asiatique|Saphan Taksin-Asiatique the Riverfront|W
+S|13.72663|100.51185|Icon Siam Pier 2|Saphan Taksin-Asiatique the Riverfront|W
+S|6.53343|100.06899|Tammalang Pier|Satun - Langkawi|W
+S|12.62810|100.91473|Chuksamed Pier|Seahorse Ferries|W
+S|7.23033|100.57190|Songkhla|Seahorse Ferries|W
+S|12.62292|100.91364|Chuksamed Pier|Seahorse Ferry|W
+S|9.56520|100.06048|Bangrak Pier|Seatran|W
+S|9.32185|99.73423|Seatran Donsak Pier|Seatran|W
+S|10.08505|99.82390|Seatran Koh Tao Pier|Seatran|W
+S|9.53810|99.93048|Seatran Nathon Pier|Seatran|W
+S|10.44592|99.24823|Songserm Mattaphon Pier|Songserm|W
+S|9.53565|99.93094|Songserm Nathon Pier|Songserm|W
+S|13.72696|100.51347|ท่าเรือกสท. โทรคมนาคม|Thai Smile Boat Co., Ltd.|W
+S|13.72756|100.51179|Icon Siam Pier 4|Thai Smile Boat Co., Ltd.|W
+S|13.53439|100.27490|สุขาภิบาลท่าฉลอม|ferry|W
+S|13.54503|100.27760|วัดตึกมหาชยาราม|ferry|W
+S|13.91564|100.49540|ท่าเรือลพชัย ตลาดเก่าริมน้ำปากเกร็ด|ferry|W
+S|8.02585|98.86254|Ao Nam Mao pier|ferry|W
+S|8.02892|98.86320|Ao Nam Mao pier|ferry|W
+S|8.03071|98.82219|Ao Nang Beach Pier|ferry|W
+S|7.84911|98.97556|Ban Koh Pu pier|ferry|W
+S|12.04648|102.58736|Boonsiri ferry|ferry|W
+S|8.06276|98.91951|Chaofa Pier|ferry|W
+S|20.27495|100.08870|Chiang Saen port|ferry|W
+S|8.08160|98.58639|Chong Lard Pier|ferry|W
+S|8.12198|98.74894|Din Deng Noi FERRY|ferry|W
+S|20.35462|100.08622|Golden Triangle Port|ferry|W
+S|9.95200|98.54808|Grand Andaman Ranong Pier|ferry|W
+S|7.69304|99.09920|Hua Hin Pier|ferry|W
+S|12.62398|101.43863|Jadet Pier|ferry|W
+S|13.81210|100.73123|Khet Minburi Pier|ferry|W
+S|7.79682|98.99167|Koh Jum pier|ferry|W
+S|7.68237|99.09007|Koh Lanta|ferry|W
+S|7.89413|98.99583|Koh Sriboya|ferry|W
+S|8.08617|98.56457|KohYaoYai|ferry|W
+S|8.33553|98.50478|Ko Panyi Pier|ferry|W
+S|13.16611|100.80930|Ko Sichang|ferry|W
+S|13.16186|100.81078|Ko Sichang Tha Lang Pier|ferry|W
+S|7.11404|99.58319|Ko Sukon pier|ferry|W
+S|7.88998|99.02808|Laem Kruat longtail pier|ferry|W
+S|7.88835|99.02705|Laem Kruat Pier|ferry|W
+S|12.03629|102.58813|Laem Sok Pier|ferry|W
+S|7.14949|99.58883|Laem Tae ท่าเรือแหลมตะเสะ|ferry|W
+S|7.77710|98.76327|Laem Thong Beach|ferry|W
+S|8.09351|98.58715|Manoh Pier|ferry|W
+S|7.81003|98.98116|MuTu Pier|ferry|W
+S|8.04758|98.79849|Noppharat Thara Pier|ferry|W
+S|13.90466|100.49031|Pa Fai|ferry|W
+S|6.83021|99.54314|Pick-up/Drop-off Speedboat|ferry|W
+S|8.00922|98.84392|Railay East pier|ferry|W
+S|8.01129|98.83773|Railay pier West|ferry|W
+S|9.98312|98.59765|Ranong Customs Pier|ferry|W
+S|7.22106|100.57476|Singhannakhon Ferry|ferry|W
+S|7.21807|100.57980|Songkhla Ferry|ferry|W
+S|8.40098|98.51324|Tha Dan Pier|ferry|W
+S|8.05340|98.92002|Thara Park Pier|ferry|W
+S|8.01809|98.83066|Ton Sai Beach Pier|ferry|W
+S|13.79750|100.70478|Upper Bang Chan Dam Pier|ferry|W
+S|13.90466|100.49159|Wat Klang Kret Ferry|ferry|W
+S|13.53189|100.27526|Wat Krok Krak|ferry|W
+S|13.72911|100.51160|Khlong San Pier|กรมเจ้าท่า|W
+S|13.72943|100.51294|Si Phraya Pier (Gate 1)|กรมเจ้าท่า|W
+S|8.05573|98.92071|Marina Pier|กระบี่ - เกาะกลาง|W
+S|7.31105|99.40218|Haad Yao Pier|ตรัง - เกาะหลีเป๊ะ|W
 S|13.71862|100.45818|Bangwa Pier (Phasi Charoen Canal)|บริษัท กรุงเทพธนาคม จำกัด|W
+S|13.73869|100.51574|Hua Lamphong Station Pier|บริษัท กรุงเทพธนาคม จำกัด|W
+S|13.77116|100.50201|Thevaraj Market|บริษัท กรุงเทพธนาคม จำกัด|W
 S|13.72376|100.48214|Wat Intharam Pier|บริษัท กรุงเทพธนาคม จำกัด|W
+S|12.57537|101.46365|Nadan|บ้านเพ - เกาะกุฎี|W
+S|12.62660|101.44241|Nuanthip Pier|บ้านเพ - เกาะกุฎี|W
+S|12.92246|100.79016|Na Baan Pier|พัทยา - เกาะล้าน (ท่าเรือตาแหวน)|W
+S|12.92749|100.77501|Ta Waen Pier|พัทยา - เกาะล้าน (ท่าเรือตาแหวน)|W
+S|7.81939|98.35099|Chalong Pier|ภูเก็ต (ราไวย์) - เกาะราชาใหญ่|W
+S|7.77219|98.32865|Rawai Pier|ภูเก็ต (ราไวย์) - เกาะราชาใหญ่|W
+S|7.87287|98.41478|Rassada Pier|ภูเก็ต - เกาะพีพีดอน|W
+S|9.97770|98.55334|Myoma Jetty|ระนอง - ကော့သောင်း|W
+S|9.94749|98.59878|Ranong Pier - Speedboats|ระนอง - ကော့သောင်း|W
+S|18.05281|100.68276|North Sirkit Dam Ferry (Motorcycles)|ลุงสง่า|W
+S|18.05326|100.67977|North Sirkit Dam Ferry (poss closed)|ลุงสง่า|W
+S|9.53640|99.93163|Nightboat Nathon Pier|สุราษฎร์ธานี - เกาะสมุย (หน้าทอน)|W
+S|7.39054|99.35073|Kuangtungku Pier|เกาะมุก - ควนตุ้งกู|W
+S|7.53278|99.09790|Koh Lanta Pier|เกาะมุก-หาดปากเมง|W
+S|7.41019|99.21200|Arrêt / Départ Speedboat Bundhaya sur la plage.|เกาะลันตา - เกาะไหง|W
+S|7.64875|99.04116|Sala Dan Pier|เกาะลันตา - เกาะไหง|W
+S|6.48626|99.30429|Domestic boats|เกาะหลีเป๊ะ - Langkawi Telaga Harbour|W
+S|7.37819|99.31057|Ko Muk|เกาะไหง - เกาะมุก|W
+S|12.18713|102.30140|Ao Thammachat Car Ferry Pier|เฟอร์รี่เกาะช้าง|W
+S|12.14155|102.28044|Tha Sapparot Pier|เฟอร์รี่เกาะช้าง|W
+S|13.66787|100.53876|Khlong Lat Pho Pier|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3|W
+S|13.67037|100.53845|Rama III Pier|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3|W
+S|13.69090|100.55033|Chong Nonsi Pier|เรือข้ามฟากช่องนนทรี-วัดบางกะเจ้านอก|W
+S|13.68900|100.55422|Wat Bang Kachao Nok Pier|เรือข้ามฟากช่องนนทรี-วัดบางกะเจ้านอก|W
+S|14.35667|100.58135|Ayutthaya Train Station Pier|เรือข้ามฟากตลาดเจ้าพรหม-สถานีรถไฟ|W
+S|14.35802|100.58061|Chao Phrom Market Pier|เรือข้ามฟากตลาดเจ้าพรหม-สถานีรถไฟ|W
+S|13.75320|100.48832|Tha Chang|เรือข้ามฟากท่าช้าง-ท่าวังหลัง|W
+S|13.75251|100.48671|Wat Rakhang|เรือข้ามฟากท่าช้าง-วัดระฆังฯ|W
+S|13.75921|100.48780|Thonburi Railway|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ|W
+S|13.75665|100.48872|Tha Phra Chan|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ|W
+S|13.74497|100.48921|Wat Arun Pier|เรือข้ามฟากท่าเตียน-วัดอรุณฯ|W
+S|13.70429|100.56281|Bang Kachao Pier|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก|W
+S|13.70511|100.55924|Pae Jeab Pier|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก|W
+S|13.65845|100.53509|Phra Pradaeng Town Municipality Pier|เรือข้ามฟากพระประแดง-เภตรา|W
+S|13.76539|100.49340|Wat Daowaduengsaram|เรือข้ามฟากพระอาทิตย์-วัดดาวดึงษาราม|W
+S|13.78940|100.50698|Wat Awut Wikasitaram Pier|เรือข้ามฟากพายัพ-วัดอาวุธวิกสิตาราม|W
+S|13.73847|100.50436|Ratchawong N 5|เรือข้ามฟากราชวงศ์-ท่าดินแดง|W
+S|13.73698|100.50385|Tha Din Daeng|เรือข้ามฟากราชวงศ์-ท่าดินแดง|W
+S|14.34763|100.56995|Wat Khun Phrom Ferry Terminal|เรือข้ามฟากวัดขุนพรหม|W
+S|13.67317|100.58001|Ta Luean Pier|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก|W
+S|13.68248|100.58723|Wat Bang Namphueng Nok Pier|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก|W
+S|14.34483|100.57865|Wat Phananchoeng Ferry Terminal|เรือข้ามฟากวัดพนัญเชิง|W
+S|14.34583|100.57673|Phet Fort Ferry Terminal|เรือข้ามฟากวัดพนัญเชิง-วัดบางกะจะ|W
+S|13.74388|100.48994|Wat Arun Ratchawararam|เรือข้ามฟากวัดอรุณ-วัดโพธิ์|W
+S|13.74404|100.49152|Wat Pho|เรือข้ามฟากวัดอรุณ-วัดโพธิ์|W
+S|13.73620|100.50931|Sawatdi Pier|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ|W
+S|13.73522|100.50828|Wat Thong Thammachat Pier|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ|W
+S|13.71931|100.51290|Sathon Pier|เรือข้ามฟากสาทร-ตากสิน|W
+S|13.72002|100.51132|Taksin Pier|เรือข้ามฟากสาทร-ตากสิน|W
+S|13.66980|100.52774|Khlong Lat Luang Pier|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง|W
+S|13.67505|100.52360|Wat Bang Phueng Pier|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง|W
+S|13.73973|100.49415|Santa Cruz Church|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร|W
+S|13.74096|100.49220|Wat Kanlayanamit Pier|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร|W
+S|13.91269|100.49069|Wat Pora Mai Yi Ka Wat Ferry Pier|เรือข้ามฟากเกาะเกร็ด|W
+S|13.91283|100.49168|Wat Sanam Nuea Ferry Pier|เรือข้ามฟากเกาะเกร็ด|W
+S|13.77189|100.49717|Wat Kharuehabodi|เรือข้ามฟากเทเวศร์-วัดคฤหบดี|W
+S|13.77421|100.49808|Wat Bowon Mongkhon Pier|เรือข้ามฟากเทเวศร์-วัดบวรมงคล|W
+S|13.72409|100.51184|Wat Suwan Pier|เรือข้ามฟากโอเรียนเต็ล-วัดสุวรรณ|W
 S|13.75448|100.48843|Maharaj|เรือด่วนเจ้าพระยา|W
+S|13.72331|100.51352|Oriental Pier|เรือด่วนเจ้าพระยา|W
 S|13.76356|100.49404|Phra Arthit|เรือด่วนเจ้าพระยา|W
 S|13.73836|100.50474|Rachawong|เรือด่วนเจ้าพระยา|W
 S|13.71886|100.51271|Sathorn (Taksin)|เรือด่วนเจ้าพระยา|W
 S|13.72842|100.51311|Si Phraya|เรือด่วนเจ้าพระยา|W
-S|13.74598|100.49001|Tha Tien|เรือด่วนเจ้าพระยา|W
-S|13.75569|100.48683|Tha Wang Lang|เรือด่วนเจ้าพระยา|W
+S|13.74584|100.49010|Tha Tien|เรือข้ามฟากท่าเตียน-วัดอรุณฯ|W
+S|13.75591|100.48686|Tha Wang Lang|เรือข้ามฟากท่าช้าง-ท่าวังหลัง|W
+S|16.52799|104.73744|Mukdahan Pier|เรือบรรทุกรถข้ามฝาก(วันราชการเท่านั้น)|W
+S|17.38845|104.79373|Saeng Sing Kaeo Pier|เรือบรรทุกรถข้ามฝาก(วันราชการเท่านั้น)|W
+S|13.69176|100.38142|Phetchakasem 69|เรือโดยสารคลองภาษีเจริญ|W
+S|13.72215|100.46813|Pratunam Phasi Charoen|เรือโดยสารคลองภาษีเจริญ|W
+S|13.79720|100.70424|Lower Bang Chan Dam Pier|เรือโดยสารคลองแสนแสบ|W
+S|14.22391|100.57392|Bang Pa-In Ferry Pier|แพขนานยนต์ บางปะอิน - บ้านแป้ง|W
+S|14.22711|100.57234|Ban Pang Ferry Pier|แพขนานยนต์ บางปะอิน - บ้านแป้ง|W
+S|13.65773|100.53743|Phetra Pier|เรือข้ามฟากพระประแดง-เภตรา|W
+S|13.65703|100.53416|Phra Pradaeng Pier|แพขนานยนต์พระประแดง-เภตรา|W
+S|13.70193|100.49069|Siam Charoen Nakhon Pier|ไทย สมายล์ โบ้ท|W
+S|7.73741|98.77086|Koh Phi Phi|ไร่เลย์ - เกาะพีพี|W
 L|BTS|รถไฟฟ้าสายสีทอง|#A58704|2 0:1145 1:493
 L|BTS|รถไฟฟ้าสายสีทอง|#A58704|1 0:497 2:1153
 L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#E76589|53 32:573 78:1351 74:1787 72:1093 104:899 57:1165 21:1513 88:1227 51:1153 20:1344 25:827 52:972 37:850 66:849 155:1077 67:705 44:1874 68:1027 47:752 99:1315 69:911 35:1141 70:1224 56:1465 55:1266 4:2020 80:1049 49:1430 48:957
@@ -231,15 +385,237 @@ L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีที�
 L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสีลม|#02817D|18 149:10770 123:564
 L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|120 158:2477 139:898 113:927 146:1799 142:1041 127:766 155:905 106:996 109:1471 138:729 118:1022 147:754 137:848 126:717 117:950 145:2865 148:925 107:729 144:831 154:1279 128:728 136:621 149:978 115:973 129:649 122:766 108:657 133:1249 152:1173 116:883 132:819 124:1531 110:1086 135:917 153:1087 111:1402 112:829 143:1750 134:1098 114:1900 140:1538 125:740 150:1795 131:920 141:749 119:1206
 L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|119 141:1207 131:749 150:919 125:1794 140:740 114:1539 134:1902 143:1098 112:1750 111:828 153:1402 135:1083 110:917 124:1086 132:1528 116:820 152:883 133:1172 108:1249 122:658 129:763 115:648 149:973 136:986 128:621 154:729 144:1280 107:830 148:730 145:925 121:1070 117:1794 126:951 137:717 147:849 118:753 138:1021 109:730 106:1470 155:998 127:900 142:766 146:1041 113:1799 139:927 158:899 120:2481
-L|Chao Phraya Express Boat|เรือด่วนพิเศษธงส้ม|#ef5d28|165 171:1196 175:592 159:3652 160:943 172:1728 167:3090 161:1091 174:1141 207:1236 168:397 212:981 173:410 211:812 208:1947 162:1088 210:508 209:1141 177:1799 163:4018
-L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเขียว|#38b54d|166 176:1271 164:2714 165:4992 172:4354 161:4017 174:1141 168:1541 212:981 173:410 208:2564 210:1537 209:1141
-L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเหลือง|#ffdb1a|165 172:4354 159:972 174:4641 168:1541 212:981 208:2943 210:1537 209:1141
-L|Chao Phraya Express Boat|เรือประจำทาง||165 169:1225 172:3146 159:972 160:943 167:1675 161:1091 174:1141 207:1236 168:397 212:981 173:410 211:812 170:688 208:1330 162:1088 210:508 209:1141 177:1799 163:4018
-L|Golden Mount Line|Boat||178 181:1060 179:1001 180:737 191:1125
-L|Golden Mount Line|Boat||191 180:1124 179:737 181:1001 178:1060
-L|NIDA Line|Boat||191 186:344 203:397 189:634 188:552 182:420 190:309 187:854 200:100 183:791 196:495 185:287 199:627 194:514 198:1814 193:516 202:337 192:543 195:592 197:2162 184:438 201:607
-L|บริษัท กรุงเทพธนาคม จำกัด|เส้นทางเดินเรือโดยสารฯ คลองบางกอกใหญ่ → แม่น้ำเจ้าพระยา|#84a307|204 205:2709 163:4597 170:1020 173:1944
-L|เรือด่วนเจ้าพระยา|เรือท่องเที่ยวเจ้าพระยา||207 212:1261 206:236 211:1032 208:1947 210:1537 209:1141
+L|Boonsiri Fantasea Catamaran|Boonsiri Fantasea Catamaran||160 159:15068
+L|Boonsiri Fantasea Catamaran|Boonsiri Fantasea Catamaran||160 159:16211
+L|Car Ferry|Car Ferry||162 161:777
+L|Chao Phraya Express Boat|เรือด่วนพิเศษธงส้ม|#ef5d28|169 175:1196 179:592 163:3652 164:943 176:1728 171:3090 165:1091 178:1141 349:1236 172:397 354:981 177:410 353:812 350:1947 166:1088 352:508 351:1141 181:1799 167:4018
+L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเขียว|#38b54d|170 180:1271 168:2714 169:4992 176:4354 165:4017 178:1141 172:1541 354:981 177:410 350:2564 352:1537 351:1141
+L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเหลือง|#ffdb1a|169 176:4354 163:972 178:4641 172:1541 354:981 350:2943 352:1537 351:1141
+L|Chao Phraya Express Boat|เรือประจำทาง||169 173:1225 176:3146 163:972 164:943 171:1675 165:1091 178:1141 349:1236 172:397 354:981 177:410 353:812 174:688 350:1330 166:1088 352:508 351:1141 181:1799 167:4018
+L|Golden Mount Line|Boat||182 185:1060 183:1001 184:737 204:1125
+L|Golden Mount Line|Boat||204 184:1124 183:737 185:1001 182:1060
+L|Haad Rin Queen|Haad Rin Queen||186 187:12818
+L|Ko Tarutao - เกาะหลีเป๊ะ|Ko Tarutao - เกาะหลีเป๊ะ||189 188:66653
+L|Lelawadee|Lelawadee Speedboat||190 191:41961
+L|Lomprayah|Lomprayah||194 193:13803
+L|Lomprayah|Surat Thani||194 192:57650
+L|NIDA Line|Boat||204 199:344 216:397 202:634 201:552 195:420 203:309 200:854 213:100 196:791 209:495 198:287 212:627 207:514 211:1814 206:516 215:337 205:543 208:592 210:2162 197:438 214:607
+L|Night Boat|สุราษฎร์ธานี - เกาะพงัน||194 217:96450
+L|Panan Express|Panan Speedboat||190 218:40435
+L|Raja|Surat Thani||219 220:53820
+L|Raja Ferry|Raja Ferry||220 194:49568
+L|Saphan Taksin-Asiatique the Riverfront|Saphan Taksin-Asiatique the Riverfront||222 221:2835
+L|Satun - Langkawi|Satun - Langkawi||223 188:103991
+L|Seahorse Ferries|Sattahip - Songkhla||225 224:598542
+L|Seahorse Ferry|Pattaya||226 230:361085
+L|Seatran|Ko Samui||230 194:21437
+L|Seatran|Seatran||227 194:18176
+L|Seatran|Seatran||194 229:45484
+L|Seatran|Surat Thani||228 230:32274
+L|Siam Resorts Group|Ko Chang Speedboat||191 159:19908
+L|Songserm|Songserm||232 231:143109
+L|Thai Smile Boat Co., Ltd.|เรือรับส่งไอคอนสยาม||352 234:171
+L|Thai Smile Boat Co., Ltd.|เรือรับส่งไอคอนสยาม||234 233:192
+L|Wooden Boat|Wooden Boat||190 160:43427
+L|ferry|ferry||238 270:2880
+L|ferry|ferry||238 239:390
+L|ferry|ferry||240 271:3387
+L|ferry|ferry||240 277:1869
+L|ferry|ferry||249 253:1577
+L|ferry|ferry||273 274:647
+L|ferry|ferry||342 237:630
+L|ferry|ferry||243 270:11121
+L|ferry|ferry||365 264:6135
+L|ferry|ferry||241 261:9602
+L|ferry|ferry||261 252:12436
+L|ferry|ferry||267 271:6280
+L|ferry|ferry||267 295:51385
+L|ferry|ferry||242 262:1354
+L|ferry|ferry||292 291:1874
+L|ferry|ferry||269 189:20034
+L|ferry|ferry||247 244:9656
+L|ferry|ferry||258 257:536
+L|ferry|ferry||256 275:7533
+L|ferry|ferry||290 289:6410
+L|ferry|ferry||289 250:6503
+L|ferry|ferry||260 266:12246
+L|ferry|ferry||268 279:138
+L|ferry|ferry||235 280:279
+L|ferry|ferry||248 272:6948
+L|ferry|ferry||245 265:1319
+L|ferry|ferry||265 270:30046
+L|ferry|ferry||246 255:22039
+L|ferry|ferry||254 261:3547
+L|ferry|ferry||251 278:3289
+L|ferry|ferry||276 283:290
+L|ferry|ferry||263 259:4285
+L|กรมเจ้าท่า|เรือข้ามฟากสี่พระยา-คลองสาน||281 282:149
+L|กระบี่ - เกาะกลาง|กระบี่ - เกาะกลาง||243 283:852
+L|ตรัง - เกาะหลีเป๊ะ|ตรัง - เกาะหลีเป๊ะ||284 188:95207
+L|บริษัท กรุงเทพธนาคม จำกัด|เรือโดยสารคลองผดุงกรุงเกษม||287 286:4288
+L|บริษัท กรุงเทพธนาคม จำกัด|เส้นทางเดินเรือโดยสารฯ คลองบางกอกใหญ่ → แม่น้ำเจ้าพระยา|#84a307|285 288:2709 167:4597 174:1020 177:1944
+L|บ้านเพ - เกาะกุฎี|บ้านเพ - เกาะกุฎี||290 289:7028
+L|ปากบารา - เกาะหลีเป๊ะ|ปากบารา - เกาะหลีเป๊ะ||189 188:62551
+L|พัทยา - เกาะล้าน (ท่าเรือตาแหวน)|พัทยา - เกาะล้าน||291 292:1874
+L|ภูเก็ต (ราไวย์) - เกาะราชาใหญ่|ภูเก็ต||294 293:6231
+L|ภูเก็ต - เกาะพีพีดอน|ภูเก็ต - เกาะพีพีดอน||365 295:42328
+L|ระนอง - ကော့သောင်း|ระนอง - ကော့သောင်း||296 297:6110
+L|ลุงสง่า|Car ferry||299 298:361
+L|สุราษฎร์ธานี - เกาะสมุย (หน้าทอน)|สุราษฎร์ธานี - เกาะสมุย||300 217:80635
+L|อ่าวนาง - ไร่เลย์ - เกาะลันตา|อ่าวนาง - ไร่เลย์ - เกาะลันตา||271 304:47057
+L|เกาะมุก - ควนตุ้งกู|เกาะมุก - ควนตุ้งกู||306 301:5296
+L|เกาะมุก-หาดปากเมง|เกาะมุก-หาดปากเมง||302 306:48873
+L|เกาะลันตา - เกาะพีพี|เกาะลันตา - เกาะพีพี||304 365:32010
+L|เกาะลันตา - เกาะหลีเป๊ะ บันดาหยา สปีดโบ้ท|เกาะลันตา - เกาะหลีเป๊ะ บันดาหยา สปีดโบ้ท||304 188:156000
+L|เกาะลันตา - เกาะไหง|เกาะลันตา - เกาะไหง||304 303:38852
+L|เกาะหลีเป๊ะ - Langkawi Telaga Harbour|เกาะหลีเป๊ะ - Langkawi Telaga Harbour||305 188:221
+L|เกาะไหง - เกาะมุก|เกาะไหง - เกาะมุก||303 306:12050
+L|เฟอร์รี่เกาะช้าง|เฟอร์รี่เกาะช้าง||307 308:5608
+L|เมืองกระบี่ - เกาะพีพี|เมืองกระบี่ - เกาะพีพี||304 365:47533
+L|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3||309 310:279
+L|เรือข้ามฟากช่องนนทรี-วัดบางกะเจ้านอก|เรือข้ามฟากช่องนนทรี-วัดบางกะเจ้านอก||311 312:470
+L|เรือข้ามฟากตลาดเจ้าพรหม-สถานีรถไฟ|เรือข้ามฟากตลาดเจ้าพรหม-สถานีรถไฟ||314 313:170
+L|เรือข้ามฟากท่าช้าง-ท่าวังหลัง|เรือข้ามฟากท่าช้าง-ท่าวังหลัง||354 315:365
+L|เรือข้ามฟากท่าช้าง-วัดระฆังฯ|เรือข้ามฟากท่าช้าง-วัดระฆังฯ||316 315:188
+L|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ||317 318:323
+L|เรือข้ามฟากท่าพระจันทร์-ท่าวังหลัง|เรือข้ามฟากท่าพระจันทร์-ท่าวังหลัง||354 318:220
+L|เรือข้ามฟากท่าเตียน-วัดอรุณฯ|เรือข้ามฟากท่าเตียน-วัดอรุณฯ||353 319:147
+L|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก||320 321:428
+L|เรือข้ามฟากพระประแดง-เภตรา|เรือข้ามฟากพระประแดง-เภตรา||322 362:266
+L|เรือข้ามฟากพระอาทิตย์-วัดดาวดึงษาราม|เรือข้ามฟากพระอาทิตย์-วัดดาวดึงษาราม||323 349:214
+L|เรือข้ามฟากพายัพ-วัดอาวุธวิกสิตาราม|เรือข้ามฟากพายัพ-วัดอาวุธวิกสิตาราม||171 324:241
+L|เรือข้ามฟากราชวงศ์-ท่าดินแดง|เรือข้ามฟากราชวงศ์-ท่าดินแดง||326 325:173
+L|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก||329 328:1529
+L|เรือข้ามฟากวัดพนัญเชิง-วัดบางกะจะ|เรือข้ามฟากวัดพนัญเชิง-วัดบางกะจะ||331 330:378
+L|เรือข้ามฟากวัดอรุณ-วัดโพธิ์|เรือข้ามฟากวัดอรุณ-วัดโพธิ์||333 332:181
+L|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ||334 335:167
+L|เรือข้ามฟากสาทร-ตากสิน|เรือข้ามฟากสาทร-ตากสิน||337 336:187
+L|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง||338 339:792
+L|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร||341 340:397
+L|เรือข้ามฟากเกาะเกร็ด|เรือข้ามฟากเกาะเกร็ด||343 342:116
+L|เรือข้ามฟากเทเวศร์-วัดคฤหบดี|เรือข้ามฟากเทเวศร์-วัดคฤหบดี||344 178:317
+L|เรือข้ามฟากเทเวศร์-วัดบวรมงคล|เรือข้ามฟากเทเวศร์-วัดบวรมงคล||345 178:350
+L|เรือข้ามฟากโอเรียนเต็ล-วัดสุวรรณ|เรือข้ามฟากโอเรียนเต็ล-วัดสุวรรณ||348 346:200
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||349 172:371
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||349 354:1196
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 350:3094
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 353:1236
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 177:385
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 167:1269
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 350:1927
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 167:1200
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||350 352:1473
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||352 351:1059
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||352 348:657
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||351 181:1690
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||170 169:9609
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 176:4211
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 176:4239
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 173:1158
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||176 163:940
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||176 165:4187
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||165 178:1057
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||178 172:1437
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||178 349:1145
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||172 354:929
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||177 353:780
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||177 350:2722
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||163 165:3460
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||163 178:4385
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||167 352:2215
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||348 351:503
+L|เรือด่วนเจ้าพระยา|เรือท่องเที่ยวเจ้าพระยา||349 354:1261 347:236 353:1032 350:1947 352:1537 351:1141
+L|เรือบรรทุกรถข้ามฝาก(วันราชการเท่านั้น)|เรือบรรทุกรถข้ามฝาก||355 356:99152
+L|เรือโดยสารคลองภาษีเจริญ|เรือโดยสารคลองภาษีเจริญ||358 357:10018
+L|เรือโดยสารคลองแสนแสบ|เรือโดยสารคลองแสนแสบ||182 204:3872
+L|เรือโดยสารคลองแสนแสบ|เรือโดยสารคลองแสนแสบ||359 204:19858
+L|แพขนานยนต์ บางปะอิน - บ้านแป้ง|แพขนานยนต์ บางปะอิน - บ้านแป้ง||361 360:392
+L|แพขนานยนต์พระประแดง-เภตรา|แพขนานยนต์พระประแดง-เภตรา||363 362:358
+L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||176 178:5172
+L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||178 351:8131
+L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||364 172:9830
+L|ไร่เลย์ - เกาะพีพี|ไร่เลย์ - เกาะพีพี||270 365:31518
+R|13.73289|100.69082|Ban Thap Chang|ARL
+R|13.73802|100.64526|Hua Mak|ARL
+R|13.72768|100.74860|Lat Krabang|ARL
+R|13.75091|100.56114|Makkasan|ARL
+R|13.75091|100.56114|Makkasan|ARL
+R|13.75671|100.53491|Phaya Thai|ARL
+R|13.74299|100.60015|Ramkhamhaeng|ARL
+R|13.75511|100.54212|Ratchaprarop|ARL
+R|13.69430|100.75130|Suvarnabhumi|ARL
+R|14.35671|100.58320|Ayutthaya|Bangkok Connex
+R|14.23935|100.58459|Bang Pa-in|Bangkok Connex
+R|14.28215|100.58868|Ban Pho|Bangkok Connex
+R|14.05534|100.59238|Chiang Rak|Bangkok Connex
+R|14.13054|100.58210|Chiang Rak Noi|Bangkok Connex
+R|14.18588|100.57830|Khlong Phutsa|Bangkok Connex
+R|14.07938|100.58854|Thammasat University|Bangkok Connex
+R|17.38322|100.08280|Ban Dara Junction|การรถไฟแห่งประเทศไทย
+R|13.66651|100.42883|Bang Bon|การรถไฟแห่งประเทศไทย
+R|13.60512|100.36027|Bang Nam Chuet|การรถไฟแห่งประเทศไทย
+R|13.56303|100.31353|Ban Khom|การรถไฟแห่งประเทศไทย
+R|13.76318|100.47258|Charan Sanitwong|การรถไฟแห่งประเทศไทย
+R|13.65260|100.41323|Kan Kheha|การรถไฟแห่งประเทศไทย
+R|17.95765|102.67484|Khamsavath|การรถไฟแห่งประเทศไทย
+R|17.34736|99.98336|Khlong Maphlap|การรถไฟแห่งประเทศไทย
+R|13.58695|100.34011|Khok Khwai|การรถไฟแห่งประเทศไทย
+R|13.54625|100.27662|Maha Chai|การรถไฟแห่งประเทศไทย
+R|13.80619|100.17612|Nakhon Chai Si|การรถไฟแห่งประเทศไทย
+R|13.82450|100.05874|Nakhon Pathom|การรถไฟแห่งประเทศไทย
+R|13.54862|100.28210|Nikhom Rotfai Maha Chai|การรถไฟแห่งประเทศไทย
+R|17.86446|102.73097|Nong Khai|การรถไฟแห่งประเทศไทย
+R|13.62098|100.37801|Phrom Daen|การรถไฟแห่งประเทศไทย
+R|13.80004|100.39506|Phutthamonthon Sai 2|การรถไฟแห่งประเทศไทย
+R|13.63914|100.39823|Rang Pho|การรถไฟแห่งประเทศไทย
+R|13.80088|100.37122|Sala Thammasop|การรถไฟแห่งประเทศไทย
+R|13.80250|100.32433|Sala Ya|การรถไฟแห่งประเทศไทย
+R|13.63027|100.38837|Sam Yaek|การรถไฟแห่งประเทศไทย
+R|17.31467|99.83232|Sawankhalok|การรถไฟแห่งประเทศไทย
+R|17.63927|100.10104|Sila At|การรถไฟแห่งประเทศไทย
+R|13.72082|100.47802|Talat Phlu|การรถไฟแห่งประเทศไทย
+R|13.78927|100.44008|Taling Chan Junction|การรถไฟแห่งประเทศไทย
+R|17.41131|100.09747|Tha Sak|การรถไฟแห่งประเทศไทย
+R|13.76070|100.47877|Thonburi|การรถไฟแห่งประเทศไทย
+R|13.61264|100.36872|Thung Si Thong|การรถไฟแห่งประเทศไทย
+R|13.82560|100.09130|Ton Samrong|การรถไฟแห่งประเทศไทย
+R|17.48332|100.10934|Tron|การรถไฟแห่งประเทศไทย
+R|17.40417|102.80557|Udon Thani|การรถไฟแห่งประเทศไทย
+R|17.62036|100.09726|Uttaradit|การรถไฟแห่งประเทศไทย
+R|17.54446|100.10016|Wang Kaphi|การรถไฟแห่งประเทศไทย
+R|13.80799|100.21618|Wat Ngio Rai|การรถไฟแห่งประเทศไทย
+R|13.69156|100.45756|Wat Sai|การรถไฟแห่งประเทศไทย
+R|13.68325|100.44766|Wat Sing|การรถไฟแห่งประเทศไทย
+R|13.80567|100.28371|Wat Suwan|การรถไฟแห่งประเทศไทย
+R|13.72439|100.49123|Wongwian Yai|การรถไฟแห่งประเทศไทย
+R|13.71254|100.47264|Wutthakat|การรถไฟแห่งประเทศไทย
+R|13.84937|100.56167|Bang Khen|รถไฟฟ้าชานเมือง สายสีแดง
+R|13.82662|100.54947|Chatuchak|รถไฟฟ้าชานเมือง สายสีแดง
+R|13.91469|100.59787|Don Muang|Bangkok Connex
+R|13.89866|100.58887|Kan Kheha|รถไฟฟ้าชานเมือง สายสีแดง
+R|13.80403|100.54171|Krung Thep Aphiwat|Bangkok Connex
+R|13.96572|100.60538|Lak Hok (Rangsit U.)|รถไฟฟ้าชานเมือง สายสีแดง
+R|13.88631|100.58194|Lak Si|รถไฟฟ้าชานเมือง สายสีแดง
+R|13.99054|100.60215|Rangsit|Bangkok Connex
+R|13.86021|100.56753|Thung Song Hong|รถไฟฟ้าชานเมือง สายสีแดง
+R|13.84159|100.55750|Wat Samian Nari|รถไฟฟ้าชานเมือง สายสีแดง
+Q|ARL|Airport Rail Link|#59191f|L55|5 7:869 3:2202 6:4249 1:4925 0:4893 2:6360 8:4974
+Q|ARL|Airport Rail Link|#59191f|L55|8 2:5068 0:6201 1:5033 6:4879 4:4413 7:1972 5:706
+Q|Bangkok Connex|9001 กรุงเทพอภิวัฒน์ - อยุธยา|#1968ab|H220|56 61:8707 12:7251 15:2678 13:5703 14:6157 10:5869 11:4827 9:8574 58:63470
+Q|Bangkok Connex|9002 อยุธยา - กรุงเทพอภิวัฒน์|#1968ab|H220|9 11:8574 10:4827 14:5869 13:6157 15:5703 12:2678 61:7251 56:8709 58:13717
+Q|Bangkok Connex|9003 กรุงเทพอภิวัฒน์ - อยุธยา|#1968ab|H220|56 61:8707 12:7251 15:2678 13:5703 14:6157 10:5869 11:4827 9:8574 58:63470
+Q|Bangkok Connex|9004 อยุธยา - กรุงเทพอภิวัฒน์|#1968ab|H220|9 11:8574 10:4827 14:5869 13:6157 15:5703 12:2678 56:15960 61:8710 58:22425
+Q|Bangkok Connex|9005 กรุงเทพอภิวัฒน์ - อยุธยา|#1968ab|H220|56 61:8707 12:7251 15:2678 13:5703 14:6157 10:5869 11:4827 9:8574 58:63470
+Q|Bangkok Connex|9006 อยุธยา - กรุงเทพอภิวัฒน์|#1968ab|H220|9 11:8574 10:4827 14:5869 13:6157 15:5703 61:9929 56:8709 58:13717
+Q|การรถไฟแห่งประเทศไทย|147||L55|45 29:52251 22:12528
+Q|การรถไฟแห่งประเทศไทย|148||L55|22 29:12526 45:52244
+Q|การรถไฟแห่งประเทศไทย|405||L55|37 46:2177 47:8509 44:6939 40:8148 16:3487 23:12032 36:16877
+Q|การรถไฟแห่งประเทศไทย|406||L55|36 23:16880 16:12034 40:3487 44:8149 47:6939 46:8509 37:2177
+Q|การรถไฟแห่งประเทศไทย|Train 1123|#ffc233|L55|41 20:751 39:4549 31:5226 33:2546 34:5104 51:4408 48:7326 26:4341 43:9550 27:3522
+Q|การรถไฟแห่งประเทศไทย|Train 1124|#ffc233|L55|27 43:3522 26:9552 48:4339 51:7328 34:4407 33:5042 31:2609 39:5232 20:4548 41:751
+Q|การรถไฟแห่งประเทศไทย|Train 4302|#75147c|L55|25 28:647 19:3762 24:3907 18:2967 42:1236 30:1365 35:1518 32:1450 21:2209 17:2275 50:2751 49:1416 53:2922 38:1117 52:1482
+Q|รถไฟฟ้าชานเมือง สายสีแดง|SRT Dark Red Line|#B5191E|H220|58 55:2664 63:1869 54:970 62:1356 60:3279 57:1557 56:2022 61:8713
+Q|รถไฟฟ้าชานเมือง สายสีแดง|SRT Dark Red Line|#B5191E|H220|61 59:2766 56:5949 57:2022 60:1557 62:3279 54:1356 63:969 55:1870 58:2660
 T|6.16652|101.83161|Aisatia
 T|13.69271|102.50520|Aranyaprathet
 T|13.75003|100.56413|Asok
@@ -939,3 +1315,477 @@ T|13.16758|100.80603|ศาลเจ้าแม่กวนอิม
 T|18.07140|100.11021|สูงเม่น
 T|18.35760|100.18492|หนองเสี้ยว
 T|15.62418|102.45952|เนินสวัสดิ์
+B|14.74083|98.62774|2024 van station for Kanchanaburi and Sangkhlaburi
+B|8.91530|98.88734|?
+B|9.13645|99.34005|A&J tours
+B|12.93342|100.90020|AC Bus to North East
+B|12.94973|100.90340|Air-Conditioned Bus Terminal North Pattaya - Bangkok
+B|12.93557|100.88293|AirASIA(from pattaya to utapao)
+B|15.15693|98.45161|Aircon Minibus Terminal
+B|15.88665|104.62167|Amnatcharoen Bus Station
+B|14.59485|100.45167|Ang Thong Bus Station
+B|13.69426|102.50173|Aranyaprathet
+B|13.71716|100.53267|Arkan Songkhro
+B|14.35845|100.57367|Ayutthaya Van Terminal
+B|12.80410|100.94760|Baan Dusit
+B|12.92658|100.87565|Bahtbusses to Dolphin Circle/Naklua
+B|12.92603|100.87521|Bahtbusses to Jomtien
+B|16.52762|100.14540|Ban Na Bus Station
+B|16.05707|102.72692|Ban Phai Bus Station
+B|13.86951|100.59240|Bang Khen Bus Depot
+B|11.21174|99.50841|Bang Saphan Bus Station
+B|12.76375|100.89130|Bang Sare-Sattahip Minibus station
+B|13.72449|101.20549|Bangkhla Bus Station
+B|13.67140|100.62004|Bangkok - Pattaya Coach stop
+B|13.81238|100.54789|Bangkok Bus Terminal (Chatuchak)
+B|13.71922|100.58399|Bangkok Bus Terminal (Eastern)
+B|13.67134|100.62004|Bangkok Pattaya Bus Terminal
+B|13.73985|100.51628|Bangkok Station (Hua Lamphong)
+B|14.99007|102.09501|Bay 14, ticket counter and vans to Phimai center
+B|14.99008|102.09458|Bay 5, ticket counter and van to Nang Rong
+B|13.67187|100.62084|Bell Travel Service Office
+B|13.66197|100.43951|Big C Rama 2 Van Sub Station
+B|10.49618|99.17857|Big bus stations to ranong
+B|16.03688|103.12599|Borabue Bus Terminal
+B|13.78585|100.39017|Borommaratchachonnani Bus Depot
+B|18.35636|103.65071|Buengkan Bus Terminal
+B|14.99554|103.09624|Buriram Bus Terminal
+B|13.52832|99.96890|Bus 78 & minivan 996
+B|13.61368|100.83618|Bus Stand
+B|14.32663|100.40435|Bus Station
+B|14.97314|100.36243|Bus Station
+B|15.59154|102.42757|Bus Station
+B|15.64938|101.04175|Bus Station
+B|17.60958|100.08775|Bus Station
+B|19.34361|100.12126|Bus Station Chun
+B|12.09788|102.27590|Bus Station Ko Chang
+B|6.66858|100.31924|Bus Station Padang Besar (Thailand)
+B|12.37528|102.38209|Bus Station Sean Tung
+B|13.11076|100.91605|Bus Station to Ko Samui (Surathani)
+B|19.51588|98.25402|Bus Stop
+B|15.92466|99.46596|Bus Stop Wang Pla Ao
+B|6.02398|101.94933|Bus Terminal
+B|9.52138|99.94122|Bus Terminal
+B|10.49683|99.17874|Bus Terminal
+B|13.40568|99.99986|Bus Terminal
+B|14.35199|100.61232|Bus Terminal
+B|7.88408|98.39576|Bus Terminal 1
+B|14.97797|102.09292|Bus Terminal 1
+B|17.15911|104.14372|Bus Terminal 1
+B|12.61181|102.10587|Bus Terminal Chantaburi
+B|6.02120|101.94921|Bus Terminal Su-ngai Kolok
+B|13.16225|100.92865|Bus bangkok
+B|9.18026|99.36498|Bus change
+B|14.64577|104.63740|Bus station
+B|17.89166|101.65394|Bus station
+B|18.02390|101.88504|Bus station
+B|17.70020|103.25807|Bus station Bandung
+B|6.99824|100.44211|Bus station Hat Yai - Phuket
+B|19.85816|99.82103|Bus station Terminal 2
+B|6.66796|100.32135|Bus station to Hat Yai
+B|16.02011|98.86407|Bus stop and market
+B|18.19389|98.61176|Bus stop from Changmai to DoiTao&BoLuang
+B|18.19405|98.61156|Bus stop to Chiangmai
+B|8.66600|98.25328|Bus stop to Phuket
+B|14.63215|102.78059|Bus terminal Nang Rong
+B|18.78157|100.77031|Bus to Wiang Sa
+B|12.92004|100.89030|Bus to the Bangkok
+B|13.34122|100.97422|Bus/Minivan Station
+B|14.89863|105.06910|Busstation
+B|17.18021|104.10995|Busterminal 2
+B|13.66315|100.43944|Central Rama 2 Van-Minibus Terminal
+B|13.69229|101.05414|Chachoengsao Bus Terminal
+B|15.19737|100.12420|Chainat Bus Terminal
+B|15.81236|102.03546|Chaiyaphum Bus Terminal
+B|15.78953|102.04324|Chaiyaphum Bus Terminal No.2
+B|8.38574|99.54145|Chandi Bus Station
+B|18.80014|98.98676|Chang Phuak Bus Station
+B|14.35803|100.57745|Chao Phrom Bus Terminal
+B|13.69027|100.50420|Charoenrat
+B|12.62874|101.44182|Cherdchai Tour
+B|19.37612|98.96685|Chiang Dao Bus Station
+B|19.52229|100.30269|Chiang Kham Bus Station
+B|17.88651|101.65439|Chiang Khan Bus Terminal
+B|20.22751|100.40358|Chiang Khong New Bus Terminal
+B|20.21637|100.40431|Chiang Khong tuk tuk station
+B|18.80079|99.01724|Chiang Mai Arcade Bus Terminal 2
+B|18.79955|99.01784|Chiang Mai Arcade Bus Terminal 3
+B|19.91084|99.20386|Chiang Mai-Thaton Bus Line
+B|19.90466|99.83447|Chiang Rai Bus Terminal 1
+B|19.85813|99.82106|Chiang Rai Bus Terminal 2 (Green Bus Stop)
+B|10.49676|99.17872|Choke Anan Bus Station
+B|13.40045|100.99684|Chonburi Bus Terminal
+B|15.13335|105.46157|Chong Mek Bus Terminal
+B|16.54282|102.10055|Chum Phae Bus Terminal
+B|10.48721|99.12057|Chumphon Bus Terminal
+B|18.55156|99.04924|Doi Ti Bus Station
+B|18.55079|99.05069|Doi Ti busstaion
+B|13.90267|100.59339|Don Mueang Airport Terminal (Warehouse)
+B|9.14473|99.32876|Downtown Transportation Hub (Talad Kaset)
+B|19.91271|99.20579|Fang Bus Station
+B|13.57326|100.59517|Farm Chorakhe Bus Depot
+B|13.83968|100.55075|First Siam Tour Bus Station
+B|14.65698|104.65026|Golod transpot
+B|7.18553|100.59350|Government Bus Station
+B|16.70486|98.54620|Greenbus Thailand to Chiang Mai
+B|6.99470|100.48192|Hat Yai Bus Terminal
+B|7.01140|100.46999|Hatyai -Songkhla Public bus
+B|9.15351|99.33841|Holiday Busstation
+B|12.55042|99.96193|Hua Hin Busterminal
+B|14.36612|100.57362|Hua Ro Bus Terminal
+B|12.90534|100.86951|Jomtien Beach
+B|13.98593|101.76022|Kabinburi Bus Terminal
+B|13.71333|100.45983|Kalapapruek Bus Depot
+B|16.42969|103.50167|Kalasin Bus Terminal
+B|13.80019|100.54079|Kamphaeng Phet Bus Depot
+B|16.47472|99.51012|Kamphaeng Phet Bus Terminal
+B|14.00409|99.99079|Kamphaeng Saen Bus Terminal
+B|14.02090|99.53441|Kanchanaburi Bus Station
+B|18.83277|97.93679|Khan Yuam Bus Station
+B|9.19171|99.85836|Khanom to Nakhon Si Thammarat via Airport
+B|16.19626|99.33277|Khlong Lan Bus Terminal
+B|13.70976|100.56374|Khlong Toei Port
+B|16.43967|102.83286|Khon Kaen Bus Terminal
+B|16.39027|102.80474|Khon Kaen Bus Terminal 3 (to Ubon, Chiang Mai, Mae Sot)
+B|16.43336|102.83655|Khon Kaen Van Terminal
+B|16.43408|102.83690|Khon kaen bus terminal2
+B|9.19673|98.41085|Khuraburi bus station
+B|20.10327|99.61750|Kiwsatai mini bus station
+B|12.93482|102.47256|Klong Yai Bus Stop
+B|16.25051|103.06410|Kosumphisai Bus Terminal
+B|8.09953|98.90580|Krabi Bus Terminal
+B|9.14404|99.33068|Krabi bus
+B|16.70136|103.08045|Kranuan Bus Terminal Khon Kaen
+B|17.13466|102.94421|Kumphawapi Bus Terminal
+B|18.27745|99.48328|Lampang Bus Terminal
+B|18.56919|99.00718|Lamphun Bus Terminal
+B|13.66176|100.60403|Lasalle Songthaew Terminal
+B|17.47741|101.72522|Loei Bus Terminal
+B|16.75234|101.20775|Lom Sak Bus Terminal
+B|7.88563|98.36523|Lomprayah Bus Terminal
+B|8.07681|98.90405|Lomprayah Bus Terminal
+B|10.35835|99.26712|Lomprayah Pier
+B|9.17952|99.37113|Lomprayah Pier Koh Tao-Koh Samui-Surat
+B|10.44567|99.21594|Lomprayah Pier to Koh Tao
+B|14.79845|100.63307|Lopburi Bus Terminal
+B|14.79915|100.63243|Lopburi Minibus station
+B|14.33490|100.61108|Lotus Bus Terminal
+B|13.80613|100.57407|MRT Lat Phrao MRT
+B|19.29118|97.95956|Mae Hong Son Bus Station
+B|19.19558|99.51489|Mae Khachan
+B|20.40491|99.88222|Mae Sai Bus Station
+B|18.18409|97.93540|Mae Sariang to Mae Hong Som and Chiang Mai
+B|16.71877|98.56910|Mae Sot Bus Terminal - Local buses
+B|16.70457|98.54628|Mae Sot Bus Terminal South - main bus station to Bangkok
+B|19.09577|98.93608|Mae malai busstop to chiang dao fang
+B|16.18113|103.30132|Maha Sarakham Bus Station
+B|12.55822|99.95905|Market Village
+B|13.81386|100.72872|Min Buri Bus Terminal (TSB)
+B|7.49545|99.32767|Mini Bus
+B|7.55919|99.60281|Mini Bus
+B|11.81401|99.79302|Mini Bus Station Prachuap
+B|12.92031|100.88975|Mini Van to Hua Hin
+B|12.93281|100.89809|Mini-bus to Don Muang Airport
+B|6.87908|99.78304|Minibus Station
+B|6.99964|100.44549|Minibus Station
+B|13.81174|100.55008|Minibus Station (Chatuchak)
+B|9.20457|99.86248|Minibus Terminal Khanom to Surat Thani
+B|7.01200|100.47018|Minibus station
+B|12.89640|100.86919|Minibus to Bangkok
+B|13.10588|99.93518|Minibus to Bangkok and other destinations
+B|12.91683|100.89298|Minibus to Cambodian Border
+B|19.68398|98.62600|Minibus to ChiangMai(from ChiangMai)
+B|10.49928|99.17251|Minibus to Surat Thani
+B|11.65286|102.90880|Minibus to Trat (120B pp)
+B|17.89073|98.73103|Minibus to go to ChiangMai 140B
+B|15.13329|105.46184|Minibus to go to Udon Rachatani bus terminal, 100B
+B|11.81910|99.78053|Minivan Station
+B|13.66585|102.54106|Minivan Station
+B|13.82339|100.05906|Minivan station
+B|14.70440|101.41414|Minivan to Bangkok
+B|15.31845|105.49131|Minivans to Ubon Ratchathani
+B|13.81105|100.54785|Mochit 2 Bus Depot
+B|13.66296|102.54598|Mr. Sam-Ang
+B|13.91274|100.55235|Muang Thong Thani van station
+B|16.54630|104.71322|Mukdahan Bus Terminal
+B|14.99446|103.09625|Nakhon Chai Air Bus Terminal Buriram
+B|18.76259|100.76233|Nakhon Chai Air Nan
+B|14.89833|103.49886|Nakhon Chay Air Co.Ltd.
+B|17.39798|104.77666|Nakhon Phanom Bus Station
+B|14.98865|102.09467|Nakhon Ratchasima Bus Terminal 2
+B|15.70130|100.11872|Nakhon Sawan Bus Terminal
+B|8.43589|99.95263|Nakhon Si Thammarat Bus Station
+B|12.90796|100.89676|Nakhonchai Air
+B|17.37152|102.81203|Nakhonchai Air
+B|17.39517|102.81057|Nakhonchai Air
+B|18.80190|99.01728|Nakhonchai Air
+B|13.82804|100.55223|Nakhonchai Air Bus Station
+B|12.93077|100.89984|Nakhonchai Transport
+B|18.77447|100.76302|Nan Bus Terminal
+B|13.69635|100.54537|Nararam 3
+B|6.41092|101.82598|Narathiwat Bus Station
+B|13.16736|100.93101|Nex Express
+B|12.57099|99.95542|Night Market
+B|7.00493|100.47768|Nominatee Tour
+B|17.18866|102.43790|Nong Bua Lam Phu Bus Terminal
+B|17.36313|103.10679|Nong Han bus stop
+B|17.86527|102.72395|Nong Khai - Lao Border Bus Station
+B|17.88488|102.75491|Nongkhai Bus Terminal
+B|13.99091|100.61604|North Minivans
+B|13.89651|100.65976|Or Ngern Market Songthaew Terminal
+B|14.49443|100.44656|Pa Mok Bus Station
+B|19.36005|98.44191|Pai Bus Station
+B|14.69767|101.40728|Pak Chong
+B|13.37426|99.84433|Pak Tho
+B|14.70775|101.41747|Pakchong Bus Station
+B|6.86211|101.26985|Pattani Bus Station
+B|8.43214|98.52273|Phang Nga Bus Terminal
+B|9.14336|99.32771|Phangan tour
+B|19.17263|99.89825|Phayao Bus Terminal
+B|13.79813|100.54868|Phet Kamphaeng MRT
+B|16.77889|101.24087|Phetprasert
+B|16.72271|98.57201|Phetprasert Bus Station
+B|15.21366|102.48459|Phimai Bus Terminal
+B|16.81851|100.27900|Phitsanulok Bus Terminal 1
+B|16.81162|100.32999|Phitsanulok Bus Terminal 2
+B|19.36940|99.20408|Phrao Bus Terminal
+B|13.56218|100.62033|Phreak Sa Bodin Bus Depot
+B|16.36390|102.12868|Phu Khiao Bus Station
+B|13.92634|99.08267|Phu Nam Ron Bus Station
+B|16.64790|102.38078|Phu Wiang District Passenger Bus Terminal
+B|7.91762|98.39592|Phuket Bus Terminal 2
+B|12.94842|100.89696|Phuket VIP
+B|7.88384|98.39506|Phuket-Hatyai
+B|18.15884|97.92830|Pickup Trucks to Mae Sam Laep
+B|18.14852|100.15194|Prae
+B|14.61450|103.07784|Prakhon Chai Bus Station
+B|14.61442|103.07764|Prakhon Chai bus terminal
+B|12.39379|99.91880|Pran Buri Public Transportation Terminal
+B|14.63676|103.40781|Prasat Bus Station
+B|19.09422|98.93521|Prempracha
+B|19.17715|100.90489|Pua Bus Terminal
+B|13.75684|100.49543|Public Minivan Station (to Kanchanaburi / Koh Chang)
+B|6.87488|99.78242|Public Van Station
+B|16.81243|100.33030|Purple Songtaew to Bus Terminal 1 and Train station
+B|16.81868|100.27921|Purple Songthaew to bus terminal 2 and train station
+B|12.63111|99.95049|RRC Bus Station Hua Hin (Roong Reuang Coach)
+B|13.69394|100.50007|Rama III Bridge
+B|13.68820|100.51546|Rama IX Bridge
+B|13.98913|100.61474|Rangsit Minibus Station
+B|9.96103|98.62652|Ranong Bus Station Choke Anan
+B|9.95478|98.63879|Ranong Provincial Transport Station
+B|13.71589|100.47895|Ratchaphruek
+B|12.68387|101.27371|Rayong Bus Terminal
+B|12.70142|101.21583|Rayong Bus Terminal 2
+B|12.93372|100.90322|Rayong, Koh Chang, Trat, Minibus
+B|18.28981|99.49992|Regional bus station
+B|10.47112|99.21451|Rungkittour Bus Station
+B|13.82599|102.06737|Sa Kaeo Bus Terminal
+B|13.40889|99.99927|Sai Tai Mai
+B|13.78040|100.42254|Sai Tai Mai
+B|13.78003|100.42444|Sai Tai Taling Chan City Bus Terminal
+B|16.49551|100.47761|Sak Lek Bus Station
+B|16.20810|104.55125|Sam Yaek Municipality Bus Terminal
+B|13.62184|100.38585|Samae Dam Bus Depot
+B|13.54705|100.26089|Samut Sakhon Bus Terminal
+B|13.75786|100.49329|Sanam Luang Bus Terminal (World War I Volunteer Memorial)
+B|15.15566|98.45015|Sangkhla Buri Bus Station
+B|14.52382|100.91876|Saraburi Bus Terminal
+B|13.72128|100.53059|Sathorn
+B|12.66397|100.89966|Sattahip-Bang Sare Minibus station
+B|6.59701|100.06646|Satun Bus Station
+B|9.13971|99.32391|Seatran
+B|8.05825|98.91644|Shuttle Bus One Stop
+B|15.10720|104.32791|Si Sa Ket Bus Terminal
+B|14.89729|101.72275|Sikhio old bus terminal (municipal market 2)
+B|14.89300|100.39866|Singburi Bus Terminal
+B|12.93291|100.90124|Soi Neun Plub Whan
+B|13.72887|100.57210|Soi Sukhumvit 41
+B|13.82195|100.55705|Sombat Tour bus station
+B|19.91008|99.82991|Songtaew Station
+B|18.91429|98.94541|Songtaew Stop To ChiangMai
+B|15.15525|98.44977|Songtaew to 3 Pagoda
+B|17.89595|101.66538|Songtaew to Loei
+B|16.71832|98.56899|Songtaew to Mae Sariang
+B|13.40625|99.99860|Songthaew
+B|20.06244|99.36424|Songthaew Station
+B|6.93810|100.39337|Songthaew Station To Hat Yai
+B|18.91520|98.94386|Songthaew Stop to Samoeng
+B|20.44101|99.88218|Songthaew Stop to go to Goldentriangle(Chiangsean) at 1300 & 14900
+B|20.27430|100.08457|Songthaew Stop to go to MaesaI at 0800 & 0900
+B|19.19779|99.51636|Songthaew station to go to Chiang Mai
+B|18.87316|99.13730|Songthaew stop from ChangPhuak terminal to Wiang PaPao
+B|18.90744|98.90263|Songthaew stop from Chiangmai to Samoeng
+B|18.87317|99.13663|Songthaew stop from DoiSakhet to Waroros Market
+B|18.19339|98.61134|Songthaew stop to go to Bo Luang
+B|16.81397|100.26464|Songthaew to Bus Terminals 1 & 2
+B|20.43926|99.88276|Songthaew to Chiang Saen
+B|20.27421|100.08592|Songthaew to Mae Sai in 2025
+B|16.71232|98.56573|Songthraw To Myanmar Border
+B|13.98616|100.61648|Southbound minivans
+B|13.78040|100.42305|Southern Bus Terminal (Sai Tai Mai)
+B|13.78646|100.46763|Southern Van-MinibusTerminal Pinklao
+B|12.93588|100.89252|Srimongkol Tranport Co.,Ltd
+B|17.01457|99.81308|Sukhothai Bus Terminal
+B|6.02120|101.94923|Sungai Golok Bus Station
+B|14.47380|100.12553|Suphanburi Bus Station
+B|9.11164|99.29829|Surat Thani (new) Bus Terminal
+B|9.11997|99.15842|Surattani Regional Bus Station
+B|14.88914|103.49661|Surin Province Bus Station
+B|12.91634|100.89477|Suvarnabhumi Burapha Minivan Service U-Tapao
+B|13.71076|100.76901|Suvarnabhumi Bus Terminal
+B|10.49605|99.16916|Suwannatee Station
+B|16.88329|99.12842|Tak Bus Terminal
+B|12.51869|99.97635|Takiab
+B|8.87096|98.35078|Takua Pa Bus Terminal
+B|8.14225|98.74684|Talen Pier
+B|17.39255|102.83655|Taxi Ca Dech
+B|7.78654|98.31736|Taxi station
+B|13.71250|100.53496|Technic Krungthep
+B|13.57644|100.30964|Thai Smile Bus Ekkachai Bus Depot
+B|13.80600|100.26989|Thai Smile Bus Salaya Depot.
+B|13.70467|100.53899|Thanon Chan
+B|16.94708|104.72067|That Phanom Bus Station
+B|16.94690|104.72070|That Phanom bus terminal
+B|19.68854|100.19049|Thoeng Bus Station
+B|14.74785|98.63131|Thong Pha Phum AC Minibus
+B|14.73998|98.63236|Thong Pha Phum Bus Terminal
+B|8.16586|99.67863|Thungsong Busstation
+B|14.79986|100.61467|To Bangkok Mochit 2
+B|7.56682|99.62770|Trang Bus Station
+B|12.25311|102.51357|Trat Bus Terminal
+B|17.88998|101.65308|Tuk-tuk station
+B|15.27293|104.83711|Ubon Ratchathani Bus Terminal
+B|17.40315|102.80015|Udon Thani Bus Terminal 1
+B|17.41452|102.76413|Udon Thani Bus Terminal 2
+B|12.19314|102.37067|VIP Bus to Bangkok
+B|13.42568|99.95576|Van Station
+B|13.78076|100.42406|Van Station
+B|12.62808|101.43919|Van Station Bangkok-Ekkamai-Bangna
+B|13.40569|99.99892|Van to Bangkok
+B|13.40570|99.99892|Van to Bangkok - last bus Ban Wa Skytrain 18:30
+B|12.60685|102.10791|Van to Cambodia
+B|13.76703|100.53904|Victory Monument (beneath expressway) van station
+B|13.66279|102.54588|Virak Buntham
+B|17.30148|101.77804|Wangsaphun bus station
+B|13.67423|100.54316|Wat Dan
+B|13.68239|100.52538|Wat Dokmai
+B|13.73187|100.53012|Wat Hua Lamphong Bus Terminal
+B|13.67469|100.53426|Wat Priwat
+B|18.80436|98.91986|White or silver Songtaews to Doi Pui Tribal Village
+B|19.37442|99.50264|Wiang Kalong Bus Depot
+B|18.56852|100.74906|Wieangsa bus terminal
+B|20.11140|100.51239|Wieng Kaen Bus Station
+B|12.69458|101.19766|YB รถเหลือง
+B|15.80944|104.15686|Yasothon Bus Terminal
+B|18.49994|98.36530|Yellow Bus
+B|18.84742|98.73169|Yellow Songthaew stop to BoKaeo & Chiang Mai
+B|18.84758|98.73258|Yellow minibus to Chiang Mai
+B|8.03207|98.86218|bus to krabi town
+B|17.62741|101.41831|local busstation
+B|13.10233|99.93649|mini bus
+B|13.07885|99.94749|mini bus (pran Buri and other)
+B|12.92430|100.87742|minibus to Bangkok
+B|13.66403|102.54529|minibus to Rangsit where you change for Ayutthaya
+B|9.95452|98.63882|minivans to Surat Thani
+B|19.91497|99.20938|orange songthaew go to ChiangMai
+B|9.93741|98.59327|red Songthaew No 4 to center
+B|12.37188|102.38797|shared songtaew to Thammanchat pier
+B|19.91500|99.21004|songtaew for Chiang Mai or Thaton
+B|6.55302|101.29590|to Betong
+B|15.32167|103.67860|yellow bus
+B|19.91557|99.20986|yellow songthaew  go to thaton
+B|19.91556|99.20989|yellow songthaew to Tha Ton
+B|13.86979|100.59218|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 1 (อู่บางเขน)
+B|13.81441|100.72907|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 2 (อู่มีนบุรี)
+B|13.62863|100.59206|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 3 (อู่ช้างเอราวัณ)
+B|13.64610|100.54259|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 3 (อู่ปู่เจ้าสมิงพราย)
+B|13.63006|100.53043|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 5 (อู่ราชประชา)
+B|13.74559|100.26163|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 6 (อู่วัดไร่ขิง)
+B|13.93699|100.39767|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 7 (อู่บัวทองเคหะ)
+B|13.93788|100.39121|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 7 (อู่เทศบาลบางบัวทอง)
+B|13.79955|100.54043|กลุ่มปฏิบัติการเดินรถที่ 1 เขตการเดินรถที่ 8 (อู่กำแพงเพชร)
+B|14.08027|100.58961|กลุ่มปฏิบัติการเดินรถที่ 2 เขตการเดินรถที่ 1 (อู่ธรรมศาสตร์)
+B|13.71384|100.45978|กลุ่มปฏิบัติการเดินรถที่ 2 เขตการเดินรถที่ 5 (อู่กัลปพฤกษ์)
+B|13.84602|100.63759|กลุ่มปฏิบัติการเดินรถที่ 2 เขตการเดินรถที่ 8 (อู่ใต้ทางด่วนรามอินทรา)
+B|13.80120|100.69464|กลุ่มปฏิบัติการเดินรถที่ 2-3 เขตการเดินรถที่ 2 (อู่สวนสยาม)
+B|13.78597|100.39048|กลุ่มปฏิบัติการเดินรถที่ 2-3 เขตการเดินรถที่ 6 (อู่บรมราชชนนี)
+B|13.87756|100.45715|กลุ่มปฏิบัติการเดินรถที่ 2-3 เขตการเดินรถที่ 7 (อู่ท่าอิฐ)
+B|13.98512|100.60447|กลุ่มปฏิบัติการเดินรถที่ 3 เขตการเดินรถที่ 1 (อู่รังสิต)
+B|13.56249|100.62014|กลุ่มปฏิบัติการเดินรถที่ 3 เขตการเดินรถที่ 3
+B|13.64469|100.67589|กลุ่มปฏิบัติการเดินรถที่ 3 เขตการเดินรถที่ 3 (อู่เมกาบางนา)
+B|13.75972|100.57296|กลุ่มปฏิบัติการเดินรถที่ 3 เขตการเดินรถที่ 4 (อู่พระราม 9)
+B|13.80179|100.69384|กลุ่มปฏิบัติการเดินรถที่ 3 เขตการเดินรถที่ 8 (อู่สวนสยาม)
+B|14.47455|103.59144|กาบเชิง
+B|15.67814|100.13141|ขนส่ง PL
+B|18.27774|99.49066|ขนส่ง ลป นอกเมือง
+B|16.38608|102.82610|ขอนเเก่นขนส่ง
+B|6.99605|100.42941|คิว รถตู้ขนส่งประจำทาง ตลาดเกษตร
+B|6.86085|99.72284|คิวรถตู้ โดยสาร ปากบาราหาดใหญ่
+B|8.64640|99.89365|คิวรถตู้มหาวิทยาลัยวลัยลักษณ์
+B|12.97012|100.91057|คิวรถสองแถว นาเกลือ-สัตหีบ
+B|12.72408|101.05408|คิวรถสองแถว บ้านฉาง-สัตหีบ
+B|12.66317|100.89964|คิวรถสองแถว สัตหีบ-กม.10-เขาบายศรี
+B|12.66378|100.89956|คิวรถสองแถว สัตหีบ-นาเกลือ, สัตหีบ-บ้านฉาง
+B|12.73581|100.98843|คิวรถสองแถว เขาบายศรี-สัตหีบ
+B|12.60098|100.95851|คิวรถสองแถว แสมสาร-สัตหีบ
+B|12.67617|100.89455|คิวรอรถตู้สัตหีบ-พัทยา-ชลบุรี
+B|15.45943|100.13916|จุดจอดรถตู้พบุหะ-กรุงเทพ
+B|13.66211|100.44133|จุดจอดรถร่วม บขส. สถานีย่อย พระราม 2 (คิวรถตู้)
+B|13.70019|100.54173|ถนนจันทน์ใต้ (ขาเข้า)
+B|13.66027|100.40607|ทงเฮงฮวด
+B|13.70571|100.28663|ท่าปล่อยรถสาย 539
+B|13.67627|100.29555|ท่ารถ วปอ.11
+B|13.68795|100.42615|ท่ารถกัลปพฤกษ์ (สาย 9)
+B|13.98630|100.60731|ท่ารถกิตติสุนทร รังสิต
+B|13.50792|100.82228|ท่ารถคลองด่าน (สาย ต.1140)
+B|14.08154|100.63516|ท่ารถตลาดไท
+B|14.06711|100.60820|ท่ารถตู้ มธ.
+B|13.54885|100.27375|ท่ารถตู้มหาชัย
+B|13.82252|100.06145|ท่ารถบริษัทมิตรภาพนครปฐมขนส่ง จำกัด (รถเมล์ขาว)
+B|13.57376|100.53127|ท่ารถประจำทางวัดคู่สร้าง (สาย 21)
+B|13.88177|100.52977|ท่ารถประชานิเวศน์ 3
+B|14.10095|99.42196|ท่ารถลาดหญ้า (สาย 6273)
+B|13.95164|99.65084|ท่ารถวัดวังขนาย (สาย 6273)
+B|13.91760|100.49233|ท่ารถสะพานพระราม 4
+B|13.78703|100.27861|ท่ารถเซ็นทรัลศาลายา
+B|15.78490|101.00589|ท่ารถเพชรประเสริฐ (ซับสมอทอด)
+B|15.78542|101.00664|ท่ารถเพชรประเสริฐ (บึงสามพัน)
+B|13.91705|100.55189|ท่ารถเมืองทองธานี (สาย 166)
+B|13.83441|100.90741|ท่ารถเอื้ออาทรสันติสุข
+B|19.54544|99.74491|นครชัยแอร์
+B|16.18034|103.30162|บขส มหาสารคาม
+B|13.62867|100.37657|ปัตตานีปลาบ่น
+B|13.75917|100.61797|ม.รามคำแหง
+B|17.60977|100.08753|สถานีขนส่ง อุตรดิตถ์
+B|16.05452|103.63994|สถานีขนส่งจังหวัดร้อยเอ็ด
+B|17.30061|101.77737|สถานีขนส่งผู้โดยสาร วังสะพุง
+B|15.52039|103.19986|สถานีขนส่งพยัคฆภูมิพิสัย
+B|15.21525|101.12698|สถานีขนส่งลำนารายณ์
+B|16.18704|100.85728|สถานีขนส่งอำเภอชนแดน
+B|13.76315|100.53768|สถานีรถตู้
+B|13.76529|100.53930|สถานีรถตู้
+B|13.82196|100.55717|สมบัติทัวร์
+B|13.92511|100.86409|หมู่บ้านเธียรทอง 3
+B|13.36633|100.99021|อีสเทิร์น
+B|17.40961|102.79260|อุดรเดลิเวอรี่ : UDonDelivery
+B|13.71576|100.56542|อู่คลองเตย
+B|14.07975|100.58941|อู่ธรรมศาสตร์
+B|13.64369|100.47913|อู่ธารทิพย์
+B|13.93686|100.39781|อู่บางบัวทอง (บัวทองเคหะ)
+B|13.64589|100.54224|อู่ปู่เจ้าสมิงพราย
+B|13.75939|100.57288|อู่พระราม 9
+B|13.81427|100.72878|อู่มีนบุรี
+B|13.98463|100.60424|อู่รังสิต
+B|13.63036|100.53148|อู่ราชประชา
+B|13.67125|100.68718|อู่รามคำแหง 2 (สาย 139)
+B|13.67358|100.69032|อู่รามคำแหง 2 (สาย 46)
+B|13.74601|100.26226|อู่วัดไร่ขิง
+B|13.80102|100.69465|อู่สวนสยาม
+B|13.64483|100.67532|อู่เมกาบางนา
+B|13.84434|100.63672|อู่ใต้ทางด่วนรามอินทรา
+B|13.67313|100.69125|อู่ไทยสมายล์บัส รามคำแหง 2
+B|13.99604|100.60255|อู่ไทยสมายล์บัส สาขารังสิต
+B|13.65026|100.41914|อู่ไทยสมายล์บัส เคหะธนบุรี
+B|13.95441|100.35133|เขตการเดินรถที่ 7 (อู่ไทรน้อย / หนองเชียงโคต)
+B|13.66015|100.44162|โภควินท์ อนัญ

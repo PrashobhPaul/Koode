@@ -1,0 +1,242 @@
+# Transit for Koode, SA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
+S|24.70633|46.71630|Abu Dhabi Square|Riyadh Metro|M
+S|24.56009|46.77631|Ad Dar Al Baida|Riyadh Metro|M
+S|24.70970|46.70784|Ad Dhabab|Riyadh Metro|M
+S|24.58252|46.58849|Ad Douh|Riyadh Metro|M
+S|24.96106|46.69899|Airport T1-2|Riyadh Metro|M
+S|24.95579|46.70236|Airport T3-4|Riyadh Metro|M
+S|24.94051|46.71047|Airport T5|Riyadh Metro|M
+S|24.60059|46.64381|Aishah bint Abi Bakr Street|Riyadh Metro|M
+S|24.75673|46.79026|Al Andalus|Riyadh Metro|M
+S|24.58730|46.76089|Al Aziziah|Riyadh Metro|M
+S|24.63830|46.71485|Al Bat'ha|Riyadh Metro|M
+S|24.77635|46.77648|Al Hamra|Riyadh Metro|M
+S|24.63225|46.72179|Al Hilla|Riyadh Metro|M
+S|24.60064|46.73581|Al Iman Hospital|Riyadh Metro|M
+S|24.70344|46.68020|Al Inma Bank|Riyadh Metro|M
+S|24.61837|46.69779|Al Jarradiyah|Riyadh Metro|M
+S|24.78217|46.79441|Al Khaleej|Riyadh Metro|M
+S|24.66041|46.74455|Al Malaz|Riyadh Metro|M
+S|24.63450|46.72629|Al Margab|Riyadh Metro|M
+S|24.66516|46.70221|Al Muorabba|Riyadh Metro|M
+S|24.75426|46.65450|Al Murooj|Riyadh Metro|M
+S|24.62561|46.72135|Al Owd|Riyadh Metro|M
+S|24.68022|46.77948|Al Rajhi Grand Mosque|Riyadh Metro|M
+S|24.71348|46.67515|Al Urubah|Riyadh Metro|M
+S|24.67538|46.71835|Al Wizarat|Riyadh Metro|M
+S|24.73336|46.67723|Al Wurud|Riyadh Metro|M
+S|24.72119|46.67134|Al Wurud 2|Riyadh Metro|M
+S|24.79131|46.76632|Al Yarmuk|Riyadh Metro|M
+S|24.70048|46.82754|An Naseem|Riyadh Metro|M
+S|24.74821|46.71242|An Nuzhah|Riyadh Metro|M
+S|24.78634|46.66026|Ar Rabi|Riyadh Metro|M
+S|24.72275|46.81122|As Salam|Riyadh Metro|M
+S|24.63777|46.73284|As Salhiyah|Riyadh Metro|M
+S|24.71290|46.70029|As Sulimaniyah|Riyadh Metro|M
+S|24.72372|46.65437|At Takhassussi|Riyadh Metro|M
+S|24.69651|46.68370|Bank Al Bilad|Riyadh Metro|M
+S|24.79227|46.81081|City Centre Ishbiliyah|Riyadh Metro|M
+S|24.62675|46.71228|Courts Complex|Riyadh Metro|M
+S|24.60669|46.65385|Dhahrat Al Badiah|Riyadh Metro|M
+S|24.81157|46.62569|Dr. Sulaiman Al Habib Group|Riyadh Metro|M
+S|24.64471|46.73939|First Industrial City|Riyadh Metro|M
+S|24.68675|46.71815|GOSI|Riyadh Metro|M
+S|24.78647|46.72917|Granadia|Riyadh Metro|M
+S|24.68609|46.79596|Harun Ar Rasheed Road|Riyadh Metro|M
+S|24.71280|46.84758|Hassan Bin Thabit Street|Riyadh Metro|M
+S|24.67306|46.76041|Jarir District|Riyadh Metro|M
+S|24.59158|46.54360|Jeddah Road|Riyadh Metro|M
+S|24.76784|46.75937|Khalid Bin Al Waleed Road|Riyadh Metro|M
+S|24.72167|46.86070|Khashm Al An|Riyadh Metro|M
+S|24.74080|46.79860|Khurais Road|Riyadh Metro|M
+S|24.72047|46.64666|King Abdulaziz City for Science and Technology|Riyadh Metro|M
+S|24.73677|46.68531|King Abdulaziz Road|Riyadh Metro|M
+S|24.76754|46.64300|King Abdullah Financial District|Riyadh Metro|M
+S|24.74494|46.65930|King Fahad District|Riyadh Metro|M
+S|24.73632|46.66363|King Fahad District 2|Riyadh Metro|M
+S|24.69020|46.68697|King Fahad Library|Riyadh Metro|M
+S|24.79308|46.83643|King Fahad Stadium|Riyadh Metro|M
+S|24.71700|46.63860|King Salman Oasis|Riyadh Metro|M
+S|24.71023|46.62834|King Saud University|Riyadh Metro|M
+S|24.61043|46.72759|Manfouhah|Riyadh Metro|M
+S|24.65983|46.71772|MEW&A|Riyadh Metro|M
+S|24.66783|46.71828|Ministry of Defence|Riyadh Metro|M
+S|24.74058|46.69571|Ministry of Education|Riyadh Metro|M
+S|24.65260|46.71643|Ministry of Finance|Riyadh Metro|M
+S|24.67442|46.69489|Ministry of Interior|Riyadh Metro|M
+S|24.64536|46.71312|National Museum|Riyadh Metro|M
+S|24.69828|46.71793|Officers Club|Riyadh Metro|M
+S|24.65979|46.70427|Passport Department|Riyadh Metro|M
+S|24.84161|46.71740|PNU 1|Riyadh Metro|M
+S|24.85968|46.70442|PNU 2|Riyadh Metro|M
+S|24.62878|46.71618|Qasr Al Hokm|Riyadh Metro|M
+S|24.64951|46.74070|Railway|Riyadh Metro|M
+S|24.75455|46.72711|Riyadh Exhibition Center|Riyadh Metro|M
+S|24.82950|46.61664|SAB Bank|Riyadh Metro|M
+S|24.80712|46.70935|SABIC|Riyadh Metro|M
+S|24.72845|46.70061|Salahaddin|Riyadh Metro|M
+S|24.61786|46.72534|Skirinah|Riyadh Metro|M
+S|24.72720|46.66826|STC|Riyadh Metro|M
+S|24.61487|46.68631|Sultanah|Riyadh Metro|M
+S|24.59836|46.74527|Transportation Center|Riyadh Metro|M
+S|24.58550|46.55984|Tuwaiq|Riyadh Metro|M
+S|24.80144|46.69604|Uthman Bin Affan Road|Riyadh Metro|M
+S|24.58181|46.61458|Western|Riyadh Metro|M
+S|21.33690|39.97542|Arafat 1|قطارات مكة للنقل العام|M
+S|21.34148|39.96903|Arafat 2|قطارات مكة للنقل العام|M
+S|21.34583|39.96122|Arafat 3|قطارات مكة للنقل العام|M
+S|21.41840|39.87064|Jamarat|قطارات مكة للنقل العام|M
+S|21.39918|39.89789|Mina Station 1|قطارات مكة للنقل العام|M
+S|21.40447|39.89126|Mina Station 2|قطارات مكة للنقل العام|M
+S|21.37892|39.91797|Muzdalifah Station 1|قطارات مكة للنقل العام|M
+S|21.38303|39.90675|Muzdalifah Station 2|قطارات مكة للنقل العام|M
+S|21.39059|39.90049|Muzdalifah Station 3|قطارات مكة للنقل العام|M
+L|Riyadh Metro|Blue Line|#00AEE6|73 39:2184 52:5300 20:1991 53:1132 54:1051 77:1131 26:789 23:948 14:1220 35:846 55:769 64:1922 19:1338 67:580 65:1928 10:808 70:1086 21:652 76:944 59:866 13:1487 79:1430 9:2741 1:3400
+L|Riyadh Metro|Blue Line|#00AEE6|1 9:3400 79:2741 13:1430 59:1487 76:866 21:944 70:652 10:1086 65:808 67:1928 19:580 64:1338 55:1922 35:769 14:846 23:1220 26:948 77:789 54:1131 53:1051 20:1132 52:2093 39:5300 73:2184
+L|Riyadh Metro|Green Line|#008000|62 75:1656 33:2160 2:842 0:957 66:922 41:1275 24:1258 61:827 60:891 63:809 65:902
+L|Riyadh Metro|Green Line|#008000|65 63:902 60:809 61:891 24:827 41:1258 66:1275 0:922 2:957 33:842 75:2160 62:1656
+L|Riyadh Metro|Orange Line|#ED872D|46 80:1861 3:3131 82:3446 7:3634 38:1219 78:3554 15:1228 37:1744 70:455 12:687 18:519 32:754 40:1131 71:573 17:1359 45:2243 22:2090 43:1791 28:3569 44:2445 48:1655
+L|Riyadh Metro|Orange Line|#ED872D|48 44:1655 28:2444 43:3567 22:1791 45:2090 17:2250 71:1354 40:582 32:1122 18:755 12:519 70:688 37:454 15:1742 78:1227 38:3555 7:1219 82:3633 3:3438 80:3134 46:1853
+L|Riyadh Metro|Red Line|#EF3434|58 57:1355 50:900 34:860 77:1342 25:1321 51:900 62:1045 29:1974 72:1642 47:3579 11:1977 16:1948 36:1997 56:3353
+L|Riyadh Metro|Red Line|#EF3434|56 36:3347 16:1998 11:1947 47:1976 72:3578 29:1642 62:1974 51:1044 25:901 77:1320 34:1342 50:857 57:901 58:1356
+L|Riyadh Metro|المسار 4 - الخط الأصفر|#FFD009|52 30:3231 81:3987 74:1477 68:4359 69:2424 6:10913 5:1887 4:674
+L|Riyadh Metro|المسار 4 - الخط الأصفر|#FFD009|4 5:675 6:1886 69:10909 68:2422 74:4356 81:1477 30:3988 52:3241
+L|Riyadh Metro|المسار البنفسجي|#7F00FF|28 31:2968 49:2372 8:2064 11:2592 27:1951 42:4631 74:3753 81:1477 30:3988 52:3241
+L|Riyadh Metro|المسار البنفسجي|#7F00FF|52 30:3231 81:3987 74:1477 42:3749 27:4626 11:1952 8:2592 49:2065 31:2370 28:2968
+L|قطارات مكة للنقل العام|قطار المشاعر المقدسة الخط الجنوبي|#FFC0CB|83 84:811 85:965 89:6022 90:1268 91:1188 87:961 88:792 86:2749
+L|قطارات مكة للنقل العام|قطار المشاعر المقدسة الخط الجنوبي|#FFC0CB|86 88:2748 87:792 91:961 90:1188 89:1268 85:6021 84:965 83:811
+R|26.40974|50.12631|Dammam Railway Station|Saudi Arabia Railways
+R|24.65047|46.74066|Riyadh Railway Station|Saudi Arabia Railways
+R|29.64854|39.83768|Al-Jawf|rail
+R|26.49228|44.09156|Al Qassim|rail
+R|31.42033|37.28900|Al Qurayyat|rail
+R|27.68359|41.75542|Hail|rail
+R|25.92077|45.41973|Majmmah|rail
+R|24.85564|46.76308|Riyadh North railway station|rail
+Q|Saudi Arabia Railways|SAR Line 1||L55|1 0:449627
+Q|Saudi Arabia Railways|SAR Line 1||L55|0 1:420432
+Q|rail|Al Qurayyat → Riyadh||L55|4 2:315940 5:299395 3:268283 6:162225 7:186905
+Q|rail|Riyadh → Al Qurayyat||L55|7 6:187795 3:162782 5:270408 2:301828 4:319434
+T|27.14073|43.22393|AZ10 TSMG
+T|25.93193|49.66473|Abqaiq
+T|26.99227|37.84318|Abu Taqah
+T|25.22974|38.82434|Abu an Naam
+T|27.34559|37.79906|Ad Dar al Hamra
+T|24.85241|39.12755|Al Anqa Station
+T|27.88872|37.36880|Al Asad
+T|26.02617|38.55811|Al Bir al Jadid
+T|24.94714|38.98893|Al Buwayr Station
+T|28.65000|36.36667|Al Hazm
+T|25.38659|49.56857|Al Hufuf Railway Station
+T|26.89800|37.86029|Al Mazham
+T|25.68786|38.69576|Al Mudarraj
+T|28.49176|36.47230|Al Muhtatab
+T|27.15811|37.86996|Al Mutalla
+T|26.49228|44.09156|Al Qassim
+T|31.42033|37.28900|Al Qurayyat
+T|29.64854|39.83768|Al-Jawf
+T|24.70101|39.21858|Buwatah Station
+T|26.40974|50.12631|Dammam Railway Station
+T|29.04637|36.16680|Dhat al Hajj
+T|25.54118|38.73879|Hadiyah
+T|27.68359|41.75542|Hail
+T|21.51660|39.24526|Haramain High Speed Railway - Al-Sulimaniyah - Jeddah
+T|21.66050|39.17382|Haramain High Speed Railway - King Abdulaziz International Airport
+T|24.47230|39.69960|Haramain High Speed Railway - Madinah
+T|21.41766|39.78853|Haramain High Speed Railway - Makkah
+T|25.09869|38.88503|Istabl Antar Station
+T|25.37846|38.81481|Jadaah
+T|27.53626|37.62964|Khashm Sana
+T|22.42182|39.19175|King Abdullah Economic City
+T|26.80654|37.94765|Mada'in Saleh
+T|24.59097|39.35918|Mahattat Hafirah
+T|24.14691|49.06095|Mahattat Harad
+T|24.24562|47.35943|Mahattat al Kharj
+T|25.92077|45.41973|Majmmah
+T|24.49757|39.46953|Muhit Station
+T|24.84158|46.71741|PNU1
+T|24.85964|46.70445|PNU2
+T|26.17477|38.41961|Qalat Zumurrud
+T|27.73778|37.51419|Qalat al Muazzam
+T|24.85564|46.76308|Riyadh North railway station
+T|24.65047|46.74066|Riyadh Railway Station
+T|26.26480|38.31643|Sahl al Matran
+T|25.88576|38.61074|Tuwayrah
+T|25.79421|38.67869|Wayban
+B|24.46721|39.60591|Al Aliyah Bus Station
+B|24.46757|39.60363|Al Aliyah Bus Station
+B|24.47203|39.61129|Al Azhery Bus Station
+B|21.42655|39.85989|Al Jamarat Parking
+B|21.39941|39.86491|Azizyah 177
+B|29.24830|34.94354|Bus Company To Tabuk(5pm depart)
+B|21.41676|39.82591|Bus station
+B|21.48124|39.18340|City bus Jeddah central stop
+B|28.41694|48.50246|Different fittings, valves etc
+B|21.41069|39.87163|Jamarat Second Floor - Bus Station
+B|21.43041|39.81726|Jarwal Bus Station Makkah
+B|27.00949|49.66568|Kanoo Office
+B|28.41673|48.49874|Kanoo agent
+B|27.93422|48.66220|Kanoo office
+B|27.93753|48.66038|Kanoo office
+B|28.42633|48.47680|Khafji Mall
+B|24.76001|46.67336|King Abdulaziz 04
+B|24.74611|46.68040|King Abdulaziz 05
+B|24.49200|39.62439|Madinah Bus Station
+B|21.42200|39.84760|Mahbbas al Jinnu Bus Station
+B|26.45612|50.10638|Main Dammam Station
+B|21.40721|39.84324|Maskhoutah Parking
+B|21.42373|39.83055|Mina Transit Station
+B|24.64572|46.71087|National Museum
+B|21.51589|39.24360|Northwest Bus
+B|26.60307|37.92622|Northwest Bus Station
+B|28.40651|36.59510|Northwest Bus Station, Tabuk
+B|26.60773|37.92726|Northwest Bus Stop
+B|26.34680|43.95993|Other Bus Station
+B|22.31577|39.10558|Out-of-Campus bus station
+B|21.57993|39.75919|Pilgrims Grouping Center
+B|24.59567|46.74820|Public Transportation Center
+B|25.22488|45.25594|SAPTCO
+B|26.34102|43.96201|SAPTCO
+B|21.49772|39.79382|SAPTCO - Umrah Station
+B|17.53274|44.21258|SAPTCO Bus Station
+B|17.65604|43.52132|SAPTCO Bus Station
+B|18.31558|42.73339|SAPTCO Bus Station
+B|24.17226|47.29194|SAPTCO Bus Station
+B|25.38857|49.56278|SAPTCO Bus Station
+B|26.39377|50.03376|SAPTCO bus Station (District 91)
+B|26.45122|50.10683|SAPTCO bus station
+B|26.45233|50.06827|SAPTCO bus to Bahrein and the UAE (Abu Dhabi - Dubai)
+B|25.69876|39.29512|SAT
+B|26.96655|40.26599|SAT
+B|21.51678|39.24479|SAT (SAPTCO ALSA Transport) Bus Station
+B|16.88111|42.57915|Saptco
+B|17.14030|42.64627|Saptco
+B|17.74014|42.28174|Saptco
+B|18.23423|42.50106|Saptco
+B|18.73274|41.40309|Saptco
+B|26.27954|50.21857|Saptco
+B|21.29288|40.42521|Saptco Bus Station
+B|24.47598|39.54621|Saptco Bus Station
+B|24.67692|46.69112|Saptco VIP Bus Terminal
+B|24.46364|39.61006|Saptco Vip Express
+B|29.29682|34.94790|Saudi Public Transport(to jordan)
+B|24.46558|39.61332|Shazah Bus Station
+B|27.76796|48.87108|Tanajib Marine Port
+B|26.27956|50.21843|VIP Bus
+B|21.64133|39.18100|air port site
+B|28.42298|48.48637|apple shop
+B|28.03548|48.58813|coffee
+B|28.41266|48.46902|dates
+B|24.09001|38.06004|northwest bus
+B|27.47558|48.49158|saptco
+B|24.46722|39.65029|النقل الترددي (103) الخالدية
+B|24.59568|46.74809|النقل العام الرياض
+B|24.46596|39.60258|حافلات المدينة
+B|21.39923|39.86443|محطة 176 العزيزية الجنوبية
+B|21.41597|39.82720|محطة الحافلات
+B|20.46560|44.79817|محطة النقل الجماعي
+B|21.20318|40.41135|محطة النقل العام الشفا
+B|24.57180|46.63667|محطة حمزة بن عبدالمطلب 05B
+B|26.35232|44.88438|محطة قطار الزلفي سار

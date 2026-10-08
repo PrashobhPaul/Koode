@@ -1,0 +1,183 @@
+# Transit for Koode, PE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
+S|-12.07473|-77.01111|Arriola|Metro de Lima y Callao|M
+S|-12.05106|-76.95618|Colectora Industrial|Metro de Lima y Callao|M
+S|-12.11043|-77.00037|Estación Angamos|Metro de Lima y Callao|M
+S|-12.15090|-76.97940|Estación Atocongo|Metro de Lima y Callao|M
+S|-12.13480|-76.99690|Estación Ayacucho|Metro de Lima y Callao|M
+S|-11.95955|-76.98742|Estación Bayóvar|Metro de Lima y Callao|M
+S|-12.12726|-77.00044|Estación Cabitos|Metro de Lima y Callao|M
+S|-12.02763|-77.01116|Estación Caja de Agua|Metro de Lima y Callao|M
+S|-12.04606|-77.00978|Estación El Ángel|Metro de Lima y Callao|M
+S|-12.14258|-76.99102|Estación Jorge Chávez|Metro de Lima y Callao|M
+S|-12.08681|-77.00377|Estación La Cultura|Metro de Lima y Callao|M
+S|-12.00688|-77.00542|Estación Los Jardines|Metro de Lima y Callao|M
+S|-11.99614|-77.00998|Estación Los Postes|Metro de Lima y Callao|M
+S|-12.16121|-76.95625|Estación María Auxiliadora|Metro de Lima y Callao|M
+S|-12.05414|-77.01275|Estación Miguel Grau|Metro de Lima y Callao|M
+S|-12.19640|-76.93986|Estación Parque Industrial|Metro de Lima y Callao|M
+S|-12.01818|-77.00283|Estación Pirámide del Sol|Metro de Lima y Callao|M
+S|-12.04172|-77.01168|Estación Presbítero Maestro|Metro de Lima y Callao|M
+S|-12.18151|-76.94702|Estación Pumacahua|Metro de Lima y Callao|M
+S|-12.10037|-77.00180|Estación San Borja Sur|Metro de Lima y Callao|M
+S|-11.98504|-77.00680|Estación San Carlos|Metro de Lima y Callao|M
+S|-12.15656|-76.96556|Estación San Juan|Metro de Lima y Callao|M
+S|-11.97468|-77.00005|Estación San Martín|Metro de Lima y Callao|M
+S|-11.96800|-76.99345|Estación Santa Rosa|Metro de Lima y Callao|M
+S|-12.20734|-76.93329|Estación Villa El Salvador|Metro de Lima y Callao|M
+S|-12.16929|-76.95032|Estación Villa María|Metro de Lima y Callao|M
+S|-12.06532|-77.01238|Estacion Gamarra|Metro de Lima y Callao|M
+S|-12.05859|-76.97384|Evitamiento|Metro de Lima y Callao|M
+S|-12.04732|-76.94673|Hermilio Valdizán|Metro de Lima y Callao|M
+S|-12.04413|-76.93871|Mercado Santa Anita|Metro de Lima y Callao|M
+S|-12.05443|-76.96398|Óvalo Santa Anita|Metro de Lima y Callao|M
+S|-5.79526|-76.09436|Santa María|Iquitos - Yurimaguas|W
+S|-5.88403|-76.10691|Yurimaguas|Iquitos - Yurimaguas|W
+S|-4.36246|-70.19234|Atalaia do Norte|ferry|W
+S|-10.72564|-73.75285|Atalaya|ferry|W
+S|-12.59359|-69.17279|Barca de Puerto Maldonado|ferry|W
+S|-12.58967|-69.17139|Barca de Puerto Maldonado|ferry|W
+S|-4.37275|-70.02732|Benjamin Constant|ferry|W
+S|-12.46128|-72.96610|Ivochote|ferry|W
+S|-12.59312|-69.17350|Local Transportation (Small boat rent)|ferry|W
+S|-15.81671|-69.97168|Los Uros (Hanan Pacha)|ferry|W
+S|-7.20883|-76.73692|Puerto Cangrejo|ferry|W
+S|-3.72236|-73.24016|Puerto Henry|ferry|W
+S|-15.81928|-69.98879|Puerto Kalapajra|ferry|W
+S|-3.72368|-73.23961|Puerto Pesquero Artesanal|ferry|W
+S|-7.21121|-76.73496|Puerto Tarata|ferry|W
+L|Metro de Lima y Callao|Bayóvar → Villa El Salvador|#228B22|5 23:1142 22:1041 20:1406 12:1413 11:1300 16:1375 7:1394 17:1643 8:528 14:1015 26:1320 0:1049 10:1714 19:1514 2:1123 6:1927 4:957 9:1083 3:1606 21:1630 13:1149 25:1104 18:1438 15:1845 24:1405
+L|Metro de Lima y Callao|Evitamiento → Mercado Santa Anita|#FFC300|27 30:1092 1:1003 28:1110 29:941
+L|Metro de Lima y Callao|Mercado Santa Anita → Evitamiento|#FFC300|29 28:941 1:1110 30:1003 27:1092
+L|Metro de Lima y Callao|Villa El Salvador → Bayóvar|#228B22|24 15:1405 18:1842 25:1440 13:1104 21:1153 3:1631 9:1593 4:1063 6:983 2:1932 19:1123 10:1515 0:1714 26:1049 14:1318 8:1018 17:531 7:1639 16:1392 11:1381 12:1299 20:1409 22:1403 23:1043 5:1142
+L|Iquitos - Yurimaguas|Iquitos - Yurimaguas||32 31:19897
+L|ferry|ferry||35 36:462
+L|ferry|ferry||37 33:45450
+L|ferry|ferry||39 36:480
+L|ferry|ferry||42 44:171
+L|ferry|ferry||38 34:399424
+L|ferry|ferry||41 45:341
+L|ferry|ferry||40 43:2319
+R|-12.06751|-75.20572|Huancayo|Ferrocarril Central Andino
+R|-12.04403|-77.02866|Los Desamparados|Ferrocarril Central Andino
+R|-13.15585|-72.52397|Machu Picchu Pueblo|PeruRail
+R|-13.26307|-72.27050|Ollantaytambo|PeruRail
+R|-15.49611|-70.13112|Juliaca|Perurail
+R|-15.03305|-70.33667|Pucará|Perurail
+R|-15.83572|-70.02638|Puno|Perurail
+R|-14.61713|-70.78734|Santa Rosa|Perurail
+R|-13.52544|-71.97116|Wanchaq|Perurail
+Q|Ferrocarril Central Andino|Huancayo - Lima||L55|0 1:214339
+Q|PeruRail|Cusco - Machu Picchu||L55|3 2:43055
+Q|PeruRail|Urubamba - Machu Picchu||L55|3 2:43055
+Q|Perurail|Cusco-Puno||L55|8 7:206963 5:75507 4:56608 6:46329
+T|-12.64254|-74.86453|Acoria
+T|-14.45160|-71.07292|Aguas Calientes
+T|-12.45430|-75.02029|Aguas Calientes
+T|-16.09656|-71.63076|Ayrampal
+T|-16.93514|-72.03196|Blanca
+T|-16.02540|-71.44635|Canaguas
+T|-10.92442|-76.06177|Carhuamayo
+T|-11.37608|-75.78174|Cemento Andino
+T|-10.69056|-76.26745|Cerro de Pasco
+T|-12.22513|-75.21838|Chanca
+T|-13.22291|-72.33997|Chilca
+T|-11.61019|-76.23884|Chinchan
+T|-11.93519|-76.69155|Chosica
+T|-14.79050|-70.72560|Chuquibambilla
+T|-13.98626|-71.48990|Chuquicahuana
+T|-11.91467|-76.54623|Cocachacra
+T|-11.92042|-75.32494|Concepción
+T|-15.76907|-70.91170|Cruzero Alto
+T|-15.64195|-70.35090|Deustua
+T|-8.06781|-78.98043|Empresa de Transportes Luz Divina- Sede Valle sol
+T|-12.31320|-75.14716|Estación de Huarisca
+T|-12.28605|-75.15507|Estación de Ingahuasi
+T|-16.01434|-71.40227|Estación km 99
+T|-11.62178|-76.18547|Galera
+T|-16.86885|-72.01817|Guerreros
+T|-13.17471|-72.55958|Hidroeléctrica
+T|-13.58352|-71.71502|Huambutio
+T|-12.78700|-74.96784|Huancavelica
+T|-12.06751|-75.20572|Huancayo
+T|-13.41870|-72.20304|Huarocondo
+T|-15.83819|-71.09078|Imata
+T|-13.14799|-72.55275|Inkaraqay
+T|-13.46379|-72.14335|Izcuchaca
+T|-12.50098|-74.99661|Izcuchaca
+T|-11.78116|-75.49616|Jauja
+T|-15.49611|-70.13112|Juliaca
+T|-11.16162|-75.99412|Junin
+T|-13.18573|-72.50980|Km. 104.000
+T|-14.53215|-70.90093|Kunurama Alto
+T|-16.72550|-71.85975|La Joya
+T|-16.42555|-71.81719|La Joya
+T|-11.52296|-75.90897|La Oroya
+T|-14.48231|-70.98864|La Raya
+T|-15.16828|-70.27883|Laro
+T|-11.81460|-75.62574|Llocllapampa
+T|-12.04403|-77.02866|Los Desamparados
+T|-13.15585|-72.52397|Machu Picchu Pueblo
+T|-13.15433|-72.52634|Machu Picchu Pueblo (Avenida Imperio de los Incas)
+T|-11.63115|-76.05443|Mahr Tunel
+T|-13.14893|-72.53959|Mandor
+T|-12.37830|-75.12548|Manuel Tellería
+T|-14.35587|-71.16664|Maranganí
+T|-12.53428|-74.93390|Mariscal Cáceres
+T|-17.00445|-72.09485|Mataraní
+T|-11.84437|-76.38651|Matucana
+T|-17.03107|-72.01407|Mollendo
+T|-16.17208|-71.65318|Morro Verde
+T|-11.97910|-76.78549|Morón Chaclacayo
+T|-12.15543|-77.02290|Museo Pedro de Osma
+T|-12.15029|-77.02195|Museo de la Electricidad
+T|-12.08037|-75.20659|Nueva Estacion por Huancavelica
+T|-13.26307|-72.27050|Ollantaytambo
+T|-11.76945|-75.71466|Pachacayo
+T|-13.27226|-72.22013|Pachar
+T|-13.17086|-72.50187|Pampacahua
+T|-16.06648|-71.58927|Pampas de Arrieros
+T|-15.74220|-70.04574|Paucarcolla
+T|-15.98319|-71.21614|Pillones
+T|-13.21493|-72.38251|Piscacucho
+T|-13.33361|-72.23139|Pomatales
+T|-13.49463|-72.04234|Poroy
+T|-16.00170|-71.26564|Pucacancha
+T|-15.03305|-70.33667|Pucará
+T|-13.16082|-72.53667|Puente Ruinas
+T|-15.83572|-70.02638|Puno
+T|-13.22516|-72.43409|Qorihuayrachina
+T|-16.15130|-71.64964|Quiscos
+T|-16.41541|-71.74861|Quishuarani
+T|-13.18376|-72.53271|Represa
+T|-12.26508|-75.18864|Retama
+T|-11.73487|-76.25788|Río Blanco
+T|-11.90425|-76.51641|San Bartolome
+T|-13.16430|-72.55253|San Miguel
+T|-13.52161|-71.98370|San Pedro
+T|-12.01709|-76.89342|Santa Clara
+T|-15.70064|-70.60704|Santa Lucía
+T|-14.61713|-70.78734|Santa Rosa
+T|-10.81358|-76.22696|Shelby
+T|-14.27437|-71.22703|Sicuani
+T|-16.40976|-71.54132|South Peru Rail
+T|-15.98245|-71.36169|Sumbay
+T|-11.87049|-76.42426|Surco
+T|-18.01256|-70.25498|Tacna
+T|-11.79216|-75.48148|Tambo
+T|-11.80170|-76.33894|Tambo de Viso
+T|-11.77472|-76.30468|Tamboraque
+T|-13.22967|-72.30693|Tanccac
+T|-14.14540|-71.40409|Tinta
+T|-16.97759|-72.03663|Tintayani
+T|-13.19192|-72.45850|Torontoy
+T|-16.42303|-71.55508|Tres Cruces
+T|-16.42984|-71.66941|Uchumayo
+T|-13.68643|-71.61939|Urcos
+T|-13.30848|-72.11985|Urubamba
+T|-12.16494|-75.23138|Viques
+T|-13.52544|-71.97116|Wanchaq
+T|-12.77268|-74.85122|Yauli
+T|-11.66596|-76.08783|Yauli
+T|-16.25327|-71.68222|Yura
