@@ -42,6 +42,9 @@ class TransitNetworkTest {
             assertTrue("$it is missing", it in networks)
         }
         assertTrue(net.stations.size > 500)
+        // A rebuild whose ferry query failed once dropped these.
+        val water = net.stations.filter { it.kind == TransitNetwork.Kind.WATER && it.network.startsWith("Kochi Water Metro") }
+        assertTrue("Kochi Water Metro has ${water.size} terminals", water.size >= 10)
     }
 
     @Test fun getting_off_at_habsiguda_is_habsiguda_not_the_area_around_it() {
