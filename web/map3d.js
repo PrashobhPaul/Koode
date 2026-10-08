@@ -503,8 +503,15 @@
       return;
     }
     Object.keys(transit.index).forEach(function (cc) {
-      var b = transit.index[cc].bbox;
+      var c = transit.index[cc], b = c.bbox;
       if (!b || p[0] < b[0] || p[0] > b[2] || p[1] < b[1] || p[1] > b[3]) return;
+      // Within the box is not enough for a country with far-flung territories:
+      // the ride's 1-degree square, or one next to it, must hold its stations.
+      if (c.cells) {
+        var la = Math.floor(p[0]), lo = Math.floor(p[1]), near = false;
+        for (var i = -1; i <= 1 && !near; i++) for (var j = -1; j <= 1 && !near; j++) near = c.cells.indexOf((la + i) + ',' + (lo + j)) >= 0;
+        if (!near) return;
+      }
       if (transit.loading[cc]) return;
       transit.loading[cc] = true;
       fetch('data/transit/' + cc + '.txt').then(function (r) { return r.ok ? r.text() : ''; })

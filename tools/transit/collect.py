@@ -14,6 +14,7 @@ A country whose build failed keeps the file it had.
     python3 tools/transit/collect.py built/
 """
 import json
+import math
 import os
 import shutil
 import sys
@@ -42,8 +43,11 @@ def summary(path):
                 lats.append(lat); lngs.append(lng)
     if not lats:
         return None
+    # The 1-degree squares the stations fall in: a country with far-flung
+    # territories (France) has a box round the world, but only a few squares.
+    cells = sorted({f"{math.floor(a)},{math.floor(b)}" for a, b in zip(lats, lngs)})
     return {"bbox": [round(min(lats) - 0.2, 2), round(min(lngs) - 0.2, 2), round(max(lats) + 0.2, 2), round(max(lngs) + 0.2, 2)],
-            "stations": metro, "railway": rail, "bytes": os.path.getsize(path), "built": built}
+            "cells": cells, "stations": metro, "railway": rail, "bytes": os.path.getsize(path), "built": built}
 
 
 def main(built):
