@@ -1253,9 +1253,9 @@ L|Kattil Temple Ferry|Kattil Temple Ferry||872 931:87
 L|Kavalam - Thattasserry Junkar Ferry|Kavalam - Thattasserry Junkar Ferry||933 932:84
 L|Kavanad - Sambranikodi Ferry|Kavanad - Sambranikodi Ferry||934 994:1327
 L|Kavaratti–Kalpeni|Kavaratti–Kalpeni||975 928:124894
-L|Kerala State Water Transport Department|Kumarakom → Muhamma Ferry||935 936:7182
+L|Kerala State Water Transport Department|Kumarakom → Muhamma Ferry||935 936:7180
 L|Kerala State Water Transport Department|Muhamma - Kumarakom||935 936:7182
-L|Kerala State Water Transport Department|Muhamma → Kumarakom Ferry||936 935:7181
+L|Kerala State Water Transport Department|Muhamma → Kumarakom Ferry||936 935:7179
 L|Kiltan – Kochi|Kiltan – Kochi||897 973:395774
 L|Kiltan–Kadmat|Kiltan–Kadmat||926 897:39661
 L|Kochi Water Metro|Mattancherry Wellingdon Island Water Metro||1044 937:1665
@@ -1410,7 +1410,7 @@ R|13.06584|80.23284|Nungambakkam|Chennai Suburban Railway
 R|12.99064|80.18794|Palavanthangal|Chennai Suburban Railway
 R|12.96757|80.15205|Pallavaram|Chennai Suburban Railway
 R|13.02331|80.22372|Saidapet|Chennai Suburban Railway
-R|12.99477|80.19937|Saint Thomas Mount|Chennai MRTS
+R|12.99526|80.19893|St. Thomas Mount MRTS|Chennai MRTS
 R|12.92579|80.11792|Tambaram|Chennai Suburban Railway
 R|12.93696|80.13070|Tambaram Sanatorium|Chennai Suburban Railway
 R|12.98046|80.16579|Tirusulam|Chennai Suburban Railway
@@ -1425,7 +1425,7 @@ R|9.27770|76.46319|Haripad|Daily Express
 R|13.00339|76.11739|Hassan Junction|Daily Express
 R|12.76871|75.20472|Kabaka Puttur|Daily Express
 R|12.32048|75.08493|Kanhangad|Daily Express
-R|9.06525|76.54476|Karunagapalli|Daily Express
+R|9.06523|76.54464|Karunagapalli railway station|Daily Express
 R|9.18130|76.51210|Kayamkulam Junction|Daily Express
 R|13.01664|77.01108|Kunigal|Daily Express
 R|10.84562|76.03369|Kuttippuram|Daily Express
@@ -1443,34 +1443,35 @@ R|12.73150|75.55798|Subrahmanya Road|Daily Express
 R|11.75389|75.49231|Thalassery|Daily Express
 R|10.91782|75.92174|Tirur|Daily Express
 R|9.77493|76.31028|Turavur|Daily Express
-R|11.59335|75.58713|Vadakara|Daily Express
+R|11.59395|75.58703|Vadakara railway station|Daily Express
 R|8.74064|76.72313|Varkala Sivagiri|Daily Express
 R|13.02377|77.55077|Yesvantpur Junction|Daily Express
 R|28.59177|77.17152|Chanakyapuri|Delhi Suburban Railway
 R|28.66712|77.17119|Dayabasti|Delhi Suburban Railway
 R|28.66274|77.19791|Delhi Kishanganj|Delhi Suburban Railway
+R|28.58896|77.25352|Hazrat Nizamuddin Junction|Rajdhani Express
 R|28.64758|77.14564|Kirti Nagar|Delhi Suburban Railway
 R|28.57975|77.21687|Lodhi Colony|Delhi Suburban Railway
 R|28.63783|77.14124|Naraina Vihar|Delhi Suburban Railway
+R|28.64193|77.22175|New Delhi|Rajdhani Express
 R|28.65981|77.15696|Patel Nagar|Delhi Suburban Railway
 R|28.61604|77.24721|Pragati Maidan|Delhi Suburban Railway
 R|28.58121|77.19631|Sarojini Nagar|Delhi Suburban Railway
 R|28.63345|77.22667|Shivaji Bridge|Delhi Suburban Railway
 R|28.62812|77.23740|Tilak Bridge|Delhi Suburban Railway
 R|28.66447|77.18381|Vivekanand Puri|Delhi Suburban Railway
-R|27.56155|76.62175|Alwar Junction 1|Double Decker Express
+R|27.56049|76.62135|Alwar Junction|Double Decker Express
+R|28.64981|77.31450|Anand Vihar|Double Decker Express
 R|26.90013|76.33060|Dausa|Double Decker Express
 R|28.61171|77.11566|Delhi Cantonment|Double Decker Express
+R|28.66275|77.18526|Delhi Sarai Rohilla|Double Decker Express
 R|26.87280|75.79922|Gandhi Nagar Jaipur|Double Decker Express
 R|28.48909|77.01116|Gurgaon|Double Decker Express
 R|26.92079|75.78665|Jaipur Junction|Double Decker Express
-R|28.66326|77.18560|Sarai Rohilla|Double Decker Express
 R|26.86877|80.96135|Badshahnagar|ECR;NER
-R|25.78726|84.72506|Chhapra Junction|ECR;NER
 R|25.74415|85.00389|Dighwara|ECR;NER
 R|25.96627|84.53700|Ekma|ECR;NER
 R|25.62162|85.06887|Patliputra|ECR;NER
-R|26.21065|84.35856|Siwan Junction|ECR;NER
 R|23.31686|88.52359||ER
 R|23.48101|88.44282||ER
 R|23.55196|88.41343||ER
@@ -1482,7 +1483,6 @@ R|24.05306|88.24733||ER
 R|24.12367|88.26694||ER
 R|24.29184|88.29480||ER
 R|24.35114|88.28621||ER
-R|24.40346|88.25729||ER
 R|23.43883|88.46406|Bahadurpur|ER
 R|22.76034|88.37110|Barrackpore|ER
 R|23.93333|88.24307|Beldanga|ER
@@ -1497,10 +1497,11 @@ R|23.34715|88.51402|Jalal Khali|ER
 R|24.24426|88.27715|Jiaganj|ER
 R|23.20806|88.57319|Kalinarayanpur Junction|ER
 R|22.96916|88.46742|Kalyani Main|ER
-R|22.60125|88.38419|Kolkata Chitpur|ER
+R|22.60128|88.38415|Kolkata|ER
 R|23.38867|88.49353|Krishnanagar City Junction|ER
+R|24.40346|88.25729|Krishnapur|ER
 R|24.42136|88.25802|Lalgola|ER
-R|24.17687|88.28170|Murshidabad|ER
+R|24.17679|88.28148|Murshidabad Junction|ER
 R|22.88701|88.41765|Naihati Junction|ER
 R|23.73180|88.30545|Pagla Chandi|ER
 R|23.77804|88.28506|Plassey|ER
@@ -1515,12 +1516,8 @@ R|23.49486|87.31818|Durgapur|Eastern Railways
 R|26.78693|79.02094|Etawah Junction|Eastern Railways
 R|27.14788|78.38638|Firozabad|Eastern Railways
 R|24.80352|84.99943|Gaya Junction|Eastern Railways
-R|28.64193|77.22175|New Delhi|Rajdhani Express
+R|26.45386|80.35124|Kanpur Central|Eastern Railways
 R|26.45956|80.23907|Panki|Eastern Railways
-R|26.45426|80.35194|Platform 1|Eastern Railways
-R|25.27933|83.12035|Platform 1-2|Eastern Railways
-R|28.64109|77.22113|Platform 12-13|Eastern Railways
-R|28.64080|77.22143|Platform 14-15|Eastern Railways
 R|26.48529|79.90805|Rura|Eastern Railways
 R|22.56872|88.37410|Sealdah|Eastern Railways
 R|27.08629|78.57542|Shikohabad|Eastern Railways
@@ -1546,7 +1543,6 @@ R|29.67959|77.67089|Deoband|Express
 R|26.50797|83.78196|Deoria Sadar|Express
 R|25.80002|83.42329|Dullahapur|Express
 R|22.90037|78.79269|Gadarwara|Express
-R|28.65338|77.42784|Ghaziabad|Shatabdi Express
 R|26.75967|83.38197|Gorakhpur Junction|Express
 R|22.33904|77.10155|Harda|Express
 R|19.69444|73.56389|Igatpuri|Express
@@ -1572,7 +1568,7 @@ R|20.25018|74.43940|Manmad Junction|Express
 R|25.93807|83.56338|Mau Junction|Express
 R|29.01632|77.68710|Meerut Cantonment|Express
 R|28.97897|77.67570|Meerut City Junction|Express
-R|28.82870|77.57235|Modinagar|Express
+R|28.82870|77.57235|Modi Nagar|Express
 R|25.42692|82.48685|Mondh|Express
 R|29.47001|77.70818|Muzaffarnagar|Express
 R|25.39373|81.86020|Naini Junction|Express
@@ -1628,7 +1624,7 @@ R|17.45286|78.67830|Ghatkesar|Hyderabad MMTS
 R|17.61076|78.46837|Gowdavalli|Hyderabad MMTS
 R|17.56871|78.48824|Gundla Pochampally|Hyderabad MMTS
 R|17.48240|78.36301|Hafeezpet|Hyderabad MMTS
-R|17.46971|78.38520|Hitech City|Hyderabad MMTS
+R|17.46981|78.38538|HITEC City|Hyderabad MMTS
 R|17.34152|78.48250|Huppuguda|Hyderabad MMTS
 R|17.41162|78.51816|Jamai Osmania|Hyderabad MMTS
 R|17.43295|78.48732|James Street|Hyderabad MMTS
@@ -1649,7 +1645,7 @@ R|17.47637|78.52909|Ramakistapuram Gate|Hyderabad MMTS
 R|17.46162|78.53312|Safilguda|Hyderabad MMTS
 R|17.43570|78.47640|Sanjeevaiah Park|Hyderabad MMTS
 R|17.43386|78.50205|Secunderabad Junction|Duronto Express
-R|17.42800|78.51982|Sitafalmandi|Hyderabad MMTS
+R|17.42729|78.52072|Sitaphalmandi|Hyderabad MMTS
 R|17.48923|78.47291|Suchitra Centre|Hyderabad MMTS
 R|17.47496|78.28498|Telapur|Hyderabad MMTS
 R|17.26341|78.39317|Umdanagar|Hyderabad MMTS
@@ -1685,13 +1681,13 @@ R|26.72379|88.41371|Siliguri Junction|IR
 R|25.76864|85.03616|Sitalpur|IR
 R|18.95065|73.14548|Somatne|IR
 R|25.69726|85.16697|Sonpur Junction|IR
-R|19.07879|73.08821|Taloja Panchand|IR
+R|19.07915|73.08786|Taloje Panchanand|IR
 R|25.35371|85.03719|Taregna|IR
 R|23.81458|86.34323|Tetulmari|IR
+R|25.44599|81.83087|Allahabad Junction|Express
 R|26.76899|82.13580|Ayodhya Cantt|Indian Railway
 R|25.58351|83.56793|Ghazipur City|Indian Railway
 R|25.76132|82.69938|Jaunpur Junction|Indian Railway
-R|26.45386|80.35124|Kanpur Central|Rajdhani Express
 R|26.83116|80.92436|Lucknow Charbagh|Indian Railway
 R|26.26516|82.06704|Sultanpur Junction|Indian Railway
 R|25.32755|82.98678|Varanasi Junction Railway Station|Express
@@ -1727,7 +1723,7 @@ R|13.37710|77.71080|Nandi|MEMU
 R|13.39207|77.86415|Sidlagatta|MEMU
 R|13.32883|78.20671|Srinivasapura|MEMU
 R|13.32619|77.73125|Venkatagirikote|MEMU
-R|13.10501|77.59189|Yelahanka Junction|MEMU
+R|13.10501|77.59189|Yelahanka Junction|rail
 R|19.15852|72.99940|Airoli|Mumbai Suburban Railway
 R|19.21006|73.18469|Ambarnath|Mumbai Suburban Railway
 R|19.26829|73.17225|Ambivli|Mumbai Suburban Railway
@@ -1751,8 +1747,7 @@ R|19.05177|72.86910|Chuna Bhatti|Mumbai Suburban Railway
 R|18.93548|72.82717|Churchgate|Mumbai Suburban Railway
 R|18.98719|72.84390|Cotton Green|Mumbai Suburban Railway
 R|18.99375|72.83286|Currey Road|Mumbai Suburban Railway
-R|19.01923|72.84285|Dadar|Mumbai Suburban Railway
-R|19.01731|72.84300|Dadar (Central)|Mumbai Suburban Railway
+R|19.01738|72.84303|Dadar|Mumbai Suburban Railway
 R|19.24936|72.85963|Dahisar|Mumbai Suburban Railway
 R|19.18710|73.05918|Dativali|Mumbai Suburban Railway
 R|19.18078|72.99443|Digha Gaon|Mumbai Suburban Railway
@@ -1804,8 +1799,8 @@ R|19.02744|72.85015|Matunga|Mumbai Suburban Railway
 R|19.02781|72.84668|Matunga Road|Mumbai Suburban Railway
 R|19.28170|72.85607|Mira Road|Mumbai Suburban Railway
 R|19.17214|72.95670|Mulund|Mumbai Suburban Railway
-R|18.97070|72.81886|Mumbai Central (local)|Mumbai Suburban Railway
-R|18.94067|72.83549|Mumbai CSMT (Suburban)|Mumbai Suburban Railway
+R|18.96959|72.81932|Mumbai Central|Mumbai Suburban Railway
+R|18.94049|72.83579|Mumbai CSMT|Mumbai Suburban Railway
 R|19.18994|73.02308|Mumbra|Mumbai Suburban Railway
 R|19.15464|72.94665|Nahur|Mumbai Suburban Railway
 R|19.35109|72.84652|Naigaon|Mumbai Suburban Railway
@@ -1814,7 +1809,6 @@ R|19.02743|73.31844|Neral Junction|Mumbai Suburban Railway
 R|19.03358|73.01816|Nerul|Mumbai Suburban Railway
 R|18.89806|72.98780|Nhava Sheva|Mumbai Suburban Railway
 R|18.88435|73.32081|Palasdhari|Mumbai Suburban Railway
-R|18.98942|73.12269|Panvel|Mumbai Suburban Railway
 R|19.00948|72.83766|Parel|Mumbai Suburban Railway
 R|19.00747|72.83590|Prabhadevi|Mumbai Suburban Railway
 R|19.13664|73.00278|Rabale|Mumbai Suburban Railway
@@ -1823,8 +1817,8 @@ R|18.90926|73.01585|Ranjanpada|Mumbai Suburban Railway
 R|18.97755|72.84410|Reay Road|Mumbai Suburban Railway
 R|18.96092|72.83937|Sandhurst Road|Mumbai Suburban Railway
 R|19.06599|73.00953|Sanpada|Mumbai Suburban Railway
-R|19.08391|72.84181|Santa Cruz (CR)|Mumbai Suburban Railway
-R|19.08162|72.84161|Santa Cruz (WR)|Mumbai Suburban Railway
+R|19.08152|72.84176|Santa Cruz|Mumbai Suburban Railway
+R|19.08152|72.84176|Santa Cruz|Mumbai Suburban Railway
 R|19.02182|73.01916|Seawoods|Mumbai Suburban Railway
 R|18.99878|72.85442|Sewri|Mumbai Suburban Railway
 R|19.24358|73.15807|Shahad|Mumbai Suburban Railway
@@ -1838,7 +1832,7 @@ R|19.29638|73.20307|Titwala|Mumbai Suburban Railway
 R|19.07615|73.01770|Turbhe|Mumbai Suburban Railway
 R|19.21788|73.16308|Ulhasnagar|Mumbai Suburban Railway
 R|19.62837|73.42295|Umbermali|Mumbai Suburban Railway
-R|18.87832|72.95252|Uran|Mumbai Suburban Railway
+R|18.87842|72.95250|Uran City|Mumbai Suburban Railway
 R|19.01614|72.85891|Vadala Road|Mumbai Suburban Railway
 R|19.09433|73.30089|Vangani|Mumbai Suburban Railway
 R|19.38267|72.83202|Vasai Road|Mumbai Suburban Railway
@@ -1877,21 +1871,21 @@ R|25.99233|84.85005|Terha Halt|North Eastern Railway (NER)
 R|26.43887|84.39407|Thawe Junction|North Eastern Railway (NER)
 R|26.30243|84.70928|Trivikramdeo Nagar|North Eastern Railway (NER)
 R|25.46009|85.99119||Northern Railway
-R|26.09838|87.95079|2-3|Northern Railway
+R|25.78726|84.72506|Chhapra Junction|ECR;NER
 R|25.70192|85.21494|Hajipur Junction|Northern Railway
-R|27.11910|93.86046|Harmuti|Northern Railway
+R|27.11902|93.86061|Harmuti Junction|Northern Railway
 R|25.54797|87.56523|Katihar Junction|Northern Railway
+R|26.09833|87.95044|Kishanganj|Northern Railway
 R|27.13086|93.70971|Naharlagun|Northern Railway
-R|26.47574|90.53518|New Bongaigaon|Northern Railway
-R|26.35420|89.46822|New Cooch Behar Junction|Northern Railway
+R|26.47582|90.53724|New Bongaigaon Junction|Northern Railway
+R|26.35297|89.46907|New Cooch Behar|Northern Railway
 R|26.81090|92.57735|New Misamari|Northern Railway
-R|28.64971|77.31530|Platform 4-5|Northern Railway
-R|25.78744|84.72450|Platform no. 2 and 3|Northern Railway
-R|26.82126|92.68227|Rangapara North|Northern Railway
 R|26.44676|91.60698|Rangiya Junction|Northern Railway
+R|26.82169|92.68300|Rangpara North Junction|Northern Railway
+R|26.21065|84.35856|Siwan Junction|ECR;NER
 R|26.74460|92.09718|Udalguri|Northern Railway
 R|28.33810|79.41027|Bareilly Junction|Double Decker Express
-R|28.65286|77.42824|Ghaziabad Junction|Northern Railways
+R|28.65286|77.42824|Ghaziabad Junction|Shatabdi Express
 R|28.73954|77.77897|Hapur Junction|Northern Railways
 R|27.40008|80.14750|Hardoi|Northern Railways
 R|26.83151|80.92230|Lucknow Junction|Double Decker Express
@@ -1951,24 +1945,23 @@ R|23.49577|86.67465|Adra Junction|Rajdhani Express
 R|23.79292|91.27859|Agartala|Rajdhani Express
 R|26.45634|74.63735|Ajmer Junction|Rajdhani Express
 R|9.48465|76.32234|Alappuzha|Rajdhani Express
-R|25.44583|81.83059|Allahabad Junction|Express
-R|25.44550|81.82616|Allahabad Junction|Rajdhani Express
 R|23.93115|91.86115|Ambassa|Rajdhani Express
 R|28.64885|77.31550|Anand Vihar Terminal|Rajdhani Express
 R|23.48171|86.56056|Anara|Rajdhani Express
 R|20.86025|85.10210|Angul|Rajdhani Express
 R|24.86506|92.55623|Badarpur Junction|Rajdhani Express
-R|21.50111|86.92025|Baleshwar|Rajdhani Express
+R|21.50064|86.91988|Balasore|Rajdhani Express
 R|19.84991|79.34781|Balharshah|Rajdhani Express
-R|23.22405|87.07543|Bankura Junction|Rajdhani Express
+R|23.22415|87.07555|Bankura Jn.|Rajdhani Express
 R|23.24991|87.86984|Barddhaman Junction|Indian Railway
 R|26.50213|90.96457|Barpeta Road|Rajdhani Express
 R|21.09091|86.51654|Bhadrak Junction|Rajdhani Express
 R|25.24136|86.97280|Bhagalpur Junction|Rajdhani Express
 R|21.70352|72.99925|Bharuch Junction|Rajdhani Express
-R|20.26560|85.84328|Bhubaneshwar|Rajdhani Express
+R|20.26678|85.84356|Bhubaneswar|Rajdhani Express
 R|22.05610|82.17077|Bilaspur Junction|Rajdhani Express
 R|23.65796|86.08392|Bokaro Steel City|Rajdhani Express
+R|10.51614|76.20846|Canara Bank|Rajdhani Express
 R|22.67830|85.62706|Chakradharpur|Rajdhani Express
 R|24.51356|83.02639|Chopan|Rajdhani Express
 R|18.94518|72.83786|CSMT|Rajdhani Express
@@ -1978,12 +1971,12 @@ R|24.91427|84.18622|Dehri on Sone|Rajdhani Express
 R|24.36998|92.16993|Dharmanagar|Rajdhani Express
 R|14.42606|77.71523|Dharmavaram Junction|Rajdhani Express
 R|20.67672|85.59017|Dhenkanal|Rajdhani Express
-R|21.20026|81.29165|Durg|Rajdhani Express
+R|21.20009|81.29158|Durg Junction|Rajdhani Express
 R|9.96900|76.29095|Ernakulam Junction|Rajdhani Express
 R|25.23595|73.23515|Falna|Rajdhani Express
 R|24.21478|83.88533|Garhwa Road|Rajdhani Express
 R|21.46115|80.19319|Gondia Junction|Rajdhani Express
-R|15.17470|77.36719|Guntakal Junction|Rajdhani Express
+R|15.17482|77.36695|Guntakal Junction|Rajdhani Express
 R|26.18237|91.75012|Guwahati|Rajdhani Express
 R|22.31970|87.31933|Hijli|Rajdhani Express
 R|26.00187|92.85204|Hojai|Rajdhani Express
@@ -2004,16 +1997,15 @@ R|25.22398|75.88085|Kota Junction|Rajdhani Express
 R|11.24591|75.78039|Kozhikode|Rajdhani Express
 R|16.01723|73.67805|Kudal|Rajdhani Express
 R|23.44674|84.70679|Lohardaga|Rajdhani Express
-R|30.91311|75.84780|Ludhiana Junction|Rajdhani Express
+R|30.91225|75.84938|Ludhiana|Rajdhani Express
 R|15.26748|73.96811|Madgaon Junction|Rajdhani Express
 R|24.27096|86.64220|Madhupur Junction|Rajdhani Express
 R|23.60283|72.38896|Mahesana Junction|Rajdhani Express
 R|25.01596|88.13058|Malda Town|Rajdhani Express
-R|12.86642|74.87950|Mangalore Junction|Daily Express
-R|18.96959|72.81932|Mumbai Central|Rajdhani Express
+R|12.86663|74.87923|Mangaluru Junction|Daily Express
 R|23.37770|85.86695|Muri Junction|Rajdhani Express
 R|23.45608|75.41291|Nagda Junction|Rajdhani Express
-R|21.15228|79.08863|Nagpur Junction|Rajdhani Express
+R|21.15237|79.08824|Nagpur Junction railway station|Rajdhani Express
 R|19.94806|73.84208|Nashik Road|Rajdhani Express
 R|23.87189|86.15265|Netaji SC Bose Junction Gomoh|Rajdhani Express
 R|26.68286|88.44248|New Jalpaiguri Junction|Rajdhani Express
@@ -2022,6 +2014,8 @@ R|24.17454|72.43072|Palanpur Junction|Rajdhani Express
 R|23.98731|86.03797|Parasnath|Rajdhani Express
 R|32.25938|75.63654|Pathankot Cantonment|Rajdhani Express
 R|25.60321|85.13769|Patna Junction|Rajdhani Express
+R|25.44535|81.82975|Prayagraj Junction|Rajdhani Express
+R|25.44543|81.82596|Prayagraj Junction|Rajdhani Express
 R|16.19280|77.33900|Raichur|Rajdhani Express
 R|21.25780|81.63029|Raipur Junction|Rajdhani Express
 R|21.10146|81.03798|Rajnandgaon|Rajdhani Express
@@ -2029,18 +2023,17 @@ R|23.34932|85.33557|Ranchi|Rajdhani Express
 R|26.44676|91.60698|Rangiya Junction|Rajdhani Express
 R|23.34071|75.05099|Ratlam Junction|Rajdhani Express
 R|17.00285|73.35834|Ratnagiri|Rajdhani Express
-R|24.20322|83.03986|Renukut|Rajdhani Express
+R|24.20323|83.04003|Renukoot|Rajdhani Express
 R|22.22772|84.86316|Rourkela Junction|Rajdhani Express
-R|23.07781|72.58852|Sabarmati Junction|Rajdhani Express
+R|23.07707|72.58907|Sabarmati|Rajdhani Express
 R|21.47651|84.00767|Sambalpur City|Rajdhani Express
 R|26.01801|76.35647|Sawai Madhopur Junction|Rajdhani Express
 R|10.75955|76.27192|Shoranur Junction|Rajdhani Express
-R|14.16163|77.75899|Sri Satya Sai Prashanthi Nilayam|Rajdhani Express
+R|14.16103|77.75888|Sri Satya Sai Prashanthi Nilayam Railway Station|Rajdhani Express
 R|21.20503|72.84074|Surat|Rajdhani Express
 R|22.76828|86.20112|Tatanagar|Rajdhani Express
-R|8.48713|76.95104|Thiruvananthapuram Thampanoor Railway Station|Rajdhani Express
+R|8.48702|76.95264|Thiruvananthapuram Central|Rajdhani Express
 R|15.62988|73.87705|Thivim|Rajdhani Express
-R|10.51553|76.20808|Thrissur|Rajdhani Express
 R|13.33610|74.77076|Udupi|Rajdhani Express
 R|13.33610|74.77076|Udupi|Rajdhani Express
 R|22.31107|73.18080|Vadodara Junction|Rajdhani Express
@@ -2060,8 +2053,7 @@ R|26.63244|79.55452|Phaphund|Shatabdi Express
 R|23.22088|77.43937|Rani Kamlapati|Duronto Express
 R|25.44395|78.55344|Virangana Lakshmibai Jhansi Junction|Rajdhani Express
 R|12.97205|79.13780||Southern Railways
-R|12.97837|77.56815|Bangalore City Junction|MEMU
-R|12.86663|74.87923|Mangaluru Junction|Southern Railways
+R|12.97817|77.56956|Krantivira Sangolli Rayanna (Bengaluru)|MEMU
 R|12.31683|76.64553|Mysore Junction|Southern Railways
 R|13.63787|79.50625|Renigunta Junction|Southern Railways
 R|13.62829|79.41953|Tirupati|Southern Railways
@@ -2083,7 +2075,6 @@ R|17.66453|75.89349|Solapur|SuperFast Express
 R|17.25094|77.58413|Tandur|SuperFast Express
 R|17.33740|77.90969|Vikarabad Junction|SuperFast Express
 R|17.05229|76.99190|Wadi Junction|Duronto Express
-R|14.68629|77.59525|Anantapur|Vande Bharat Express
 R|12.99225|77.60227|Bangalore Cantonment|Vande Bharat Express
 R|15.84906|74.50894|Belagavi|Vande Bharat Express
 R|10.99757|76.96662|Coimbatore Junction|Vande Bharat Express
@@ -2091,7 +2082,7 @@ R|14.46798|75.91957|Davanagere|Vande Bharat Express
 R|12.12586|78.15422|Dharmapuri|Vande Bharat Express
 R|15.44244|75.00194|Dharwad|Vande Bharat Express
 R|10.35279|77.98343|Dindigul Junction|Vande Bharat Express
-R|11.32796|77.72605|Erode|Vande Bharat Express
+R|11.32863|77.72579|Erode Junction|Vande Bharat Express
 R|14.79475|75.41114|Haveri|Vande Bharat Express
 R|15.35006|75.14948|Hubballi|Vande Bharat Express
 R|10.96581|78.08496|Karur Junction|Vande Bharat Express
@@ -2101,8 +2092,9 @@ R|9.91955|78.11022|Madurai Junction|Vande Bharat Express
 R|16.75754|77.99968|Mahbubnagar|Vande Bharat Express
 R|15.94432|77.29844|Mantralayam Road|Vande Bharat Express
 R|11.22601|78.17906|Namakkal|Vande Bharat Express
-R|10.80045|76.63928|Palakkad|Vande Bharat Express
-R|11.67051|78.11347|Salem|Vande Bharat Express
+R|10.79930|76.63757|Palakkad Junction|Vande Bharat Express
+R|14.68653|77.59494|Platform 1|Vande Bharat Express
+R|11.67076|78.11354|Salem Junction|Vande Bharat Express
 R|12.99966|77.64115|Sir M Visvesvaraya Terminal|Vande Bharat Express
 R|10.79427|78.68529|Tiruchchirappalli Junction|Vande Bharat Express
 R|11.10822|77.33987|Tiruppur|Vande Bharat Express
@@ -2110,10 +2102,9 @@ R|13.33390|77.10196|Tumakuru|Vande Bharat Express
 R|16.74465|77.12970|Yadgir|Vande Bharat Express
 R|12.86616|74.88297|Mangaluru Junction|Western Railways
 R|13.06896|74.80527|Mulki|Western Railways
-R|18.99300|73.11914|Panvel|Western Railways
+R|18.99094|73.12060|Panvel (Suburban)|Western Railways
 R|17.40735|73.51390|Sawarda|Western Railways
 R|12.99420|74.80488|Surathkal|Western Railways
-R|15.17507|77.36649||rail
 R|26.42967|82.53932|Akbarpur Junction|rail
 R|30.33824|76.82870|Ambala Cantonment Junction|Express
 R|13.11409|80.15286|Ambattur|Southern Railways
@@ -2123,7 +2114,7 @@ R|21.62561|73.00112|Ankleshwar Junction|rail
 R|13.11636|80.12691|Annanur|rail
 R|11.35953|76.76961|Aruvankadu|rail
 R|13.11827|80.10154|Avadi|rail
-R|26.78822|82.20132|Ayodhya Junction|rail
+R|26.78794|82.20100|Ayodhya Dham Junction|rail
 R|23.09498|74.75854|Bamnia|rail
 R|23.39719|75.12176|Bangrod|rail
 R|13.47703|74.75987|Barkur|rail
@@ -2139,19 +2130,17 @@ R|9.44887|76.54867|Changanasseri|rail
 R|9.31828|76.60853|Chengannur|rail
 R|13.08660|80.27451|Chennai Central|rail
 R|23.94854|75.60115|Chowmahala|rail
-R|19.01863|72.84447|Dadar Terminus|rail
 R|18.46391|74.57930|Daund Junction|rail
 R|22.62999|73.46198|Derol|rail
 R|27.46474|94.93716|Dibrugarh|rail
 R|27.36736|95.30665|Duliajan|rail
 R|9.99166|76.28636|Ernakulam Town|rail
-R|26.81848|77.14090|Fatehsingh Pura|rail
+R|26.81848|77.14090|Fateh Singh Pura|rail
 R|26.46472|94.00183|Furkating Junction|rail
 R|26.46818|76.72668|Gangapur City|rail
 R|22.77632|73.60586|Godhra Junction|rail
 R|27.15457|81.97738|Gonda Junction|rail
 R|12.84523|80.05765|Guduvancheri|rail
-R|28.58896|77.25352|Hazrat Nizamuddin Junction|Rajdhani Express
 R|11.34201|76.83566|Hill Grove|rail
 R|26.75579|77.03148|Hindaun City|rail
 R|13.11848|80.07443|Hindu College|rail
@@ -2166,8 +2155,8 @@ R|13.11314|80.18415|Korattur|rail
 R|21.46480|72.95494|Kosamba Junction|rail
 R|27.79133|77.44499|Kosi Kalan|rail
 R|9.59448|76.53228|Kottayam|rail
-R|12.42320|75.02416|Kottikulam|rail
-R|12.97652|77.56859|KSR Bengaluru|rail
+R|12.42363|75.02390|Kottikkulam|rail
+R|12.97817|77.56956|Krantivira Sangolli Rayanna (Bengaluru)|rail
 R|12.59012|74.94361|Kumbala|rail
 R|13.61337|74.72869|Kundapura|rail
 R|29.96986|76.85171|Kurukshetra Junction|rail
@@ -2192,6 +2181,7 @@ R|20.94813|72.91310|Navsari|rail
 R|12.81676|75.12726|Neralakatte|rail
 R|27.47971|95.33406|New Tinsukia Junction|rail
 R|29.39033|76.96408|Panipat Junction|rail
+R|18.99094|73.12060|Panvel (Suburban)|Mumbai Suburban Railway
 R|12.73012|79.98396|Paranur|rail
 R|13.11866|80.06499|Pattabiram|rail
 R|13.11439|80.16640|Pattaravakkam|rail
@@ -2199,13 +2189,8 @@ R|13.10772|80.24441|Perambur|rail
 R|13.10728|80.23889|Perambur Carriage Works|rail
 R|13.10838|80.22584|Perambur Loco Works|rail
 R|9.82903|76.45559|Piravam Road|rail
-R|12.99328|77.59942|Platform 1|rail
-R|13.10447|77.59206|Platform 1|rail
-R|12.97568|77.56874|Platform 2|rail
-R|13.10253|77.59276|Platform 2 and 3|rail
 R|12.82076|80.03687|Potheri|rail
 R|13.12303|79.93736|Putlur|rail
-R|23.34074|75.05064|Ratlam|rail
 R|23.41440|75.18930|Runkhera|rail
 R|22.48446|73.30254|Samlaya Junction|rail
 R|22.79562|73.80144|Sant Road|rail
@@ -2228,210 +2213,210 @@ R|23.76471|75.53853|Vikramgarh Alot|rail
 R|13.11032|80.20915|Villivakkam|rail
 R|13.10920|80.25722|Vyasarpadi Jeeva|rail
 R|11.35608|76.78610|Wellington|rail
-Q|Chennai MRTS|Chennai MRTS|#FF9900|L|0 2:3392 1:1485 16:852 9:1199 11:950 15:685 10:1157 3:1306 8:889 6:937 5:975 17:796 14:1859 12:1069 18:1711 13:1904 32:2781
-Q|Chennai MRTS|Chennai MRTS|#FF9900|L|32 13:2768 18:1901 12:1707 14:1072 17:2041 5:785 7:1004 8:918 4:908 10:1279 15:1057 11:734 9:987 16:1203 1:679 2:1635 0:3434
-Q|Chennai Suburban Railway|Chennai Beach - Tambaram suburban line||L|0 21:1742 22:1246 20:1316 19:2147 28:1584 25:1575 26:1509 31:1666 24:2110 32:2162 29:1436 27:1417 35:1145 30:1997 23:2288 34:1750 33:1932
-Q|Chennai Suburban Railway|Chennai Beach - Tambaram suburban line||L|33 34:1933 23:1752 30:2286 35:2005 27:1145 29:1419 32:1437 24:2158 31:2112 26:1665 25:1511 28:1574 19:1594 20:2150 22:1318 21:1244 0:1743
-Q|Daily Express|Daily Express 16512||X|616 57:33390 54:19786 46:9406 618:23076 52:47372 631:4251 38:19381 45:24472 61:42298 59:36377 44:41998 40:33342 60:8466 39:34295 49:31604 67:66625
-Q|Daily Express|Daily Express 16604||X|660 66:40769 55:11182 621:17298 47:25701 48:13880 43:12723 37:18157 572:12139 53:12802 41:10889 64:9999 601:23538 36:19309 662:54564 656:32245 50:31121 63:15110 623:40857 58:24536 65:21834 51:12870 62:9332 616:20820 56:21761 57:11625 42:14722 54:5064 46:9406 618:23076 52:45646
-Q|Delhi Suburban Railway|Delhi Ring Railway||L|74 69:1739 79:1369 70:1633 137:4691 77:1220 78:1329 75:1642 773:3097 72:4055 76:2170 68:2866 73:6300 71:1269
-Q|Double Decker Express|Double Decker Express 12583||X|516 512:235268 517:90185 168:141060 576:12504
-Q|Double Decker Express|Double Decker Express 12584||X|576 168:12515 517:141269 512:89969 516:233782
-Q|Double Decker Express|Double Decker Express 12985||X|85 83:5484 81:56054 80:89289 84:125724 82:17050 86:9711
-Q|Double Decker Express|Double Decker Express 12986||X|86 82:9703 84:18405 80:125403 81:89141 83:55947 85:5571
-Q|Duronto Express|Train Duronto Express 12219||X|793 696:52441 561:27384 564:63392 701:263241 704:149679
-Q|Duronto Express|Train Duronto Express 12220||X|270 704:188515 701:145489 564:262941 561:64402 697:3830 793:95971
-Q|Duronto Express|Train Duronto Express 12285||X|581 635:208525 679:390853 680:290325 773:402877
-Q|Duronto Express|Train Duronto Express 12286||X|773 680:406075 679:296360 635:380334
-Q|ECR;NER|Train Patliputra Lucknow Junction Express 15033||X|516 87:8496 771:114778 169:152329 165:49082 92:69269 90:33330 88:27733 89:30773 91:16222
-Q|ER|Berhampore Court Kolkata Dhanya Dhaanya Express||X|108 107:18775 125:19107 109:22719 123:86540
-Q|ER|Bhagirathi Express||X|127 109:124560 114:12519 125:10968 107:19109 108:18776 122:10617 116:8064 121:21244
-Q|ER|Hazarduari Express||X|121 111:11390 116:11453 122:7703 108:10760 107:17868 125:18075 109:22307 120:27915 126:25750 106:50751 119:17718
-Q|ER|Hazarduari Express||X|119 106:18088 126:50785 120:26129 109:27926 125:22316 107:18078 108:17870 122:10761 116:7704 111:11446 121:11399
-Q|ER|Kolkata Berhampore Court Dhanya Dhaanya Express||X|123 109:86541 125:22726 107:19109 108:18776
-Q|ER|Ranaghat Jn-Lalgola Passenger||L|117 112:4113 128:2976 93:7140 115:3523 105:12256 94:5554 95:9069 109:7763 96:10705 114:2025 124:5169 125:5957 97:4727 98:7314 107:7136 110:6403 99:4233 100:3685 108:4709 101:4101 122:6552 116:8064 102:6003 111:5339 103:3024 104:7003 121:2139
-Q|ER|Sealdah - Lalgola MEMU Passenger||L|127 106:22965 123:15982 118:11250 113:14791 117:16169 105:30074 94:5554 95:9069 109:7763 96:10705 114:2025 124:5169 125:5957 98:12041 107:7136 110:6403 99:4233 108:8288 101:4101 122:6552 116:8064 111:11336 104:9850 121:2139
-Q|Eastern Railways|Agra Fort - Lucknow Junction InterCity Semifast Express||X|129 148:2487 146:20463 135:16581 145:19771 134:55284 143:95157 138:35794 313:11239 147:17500 516:54625
-Q|Eastern Railways|Duronto Express||X|127 132:260374 131:405083 313:332073 137:426266
-Q|Eastern Railways|Duronto Express||X|137 313:421035 131:329378 132:401230 127:258752
-Q|Eastern Railways|Lucknow Junction - Agra Fort InterCity Semifast Express||X|516 147:54344 313:17490 138:11242 143:33152 134:102046 145:55329 135:19829 146:16587 148:20524 129:2486
-Q|Eastern Railways|Train 12313||X|144 133:163291 130:42362 132:58735 136:199317 131:205561 139:347340 141:441121
-Q|Eastern Railways|Train 12314||X|142 313:436037 140:345050 136:205007 132:197983 130:58260 133:42346 144:162737
-Q|Express|Train Express 14521||X|162 163:6546 168:13767 194:27603 193:19324 192:4504 210:19744 183:9170 196:22000 164:23919 209:34191 225:30321 175:4733 151:21333 737:24753
-Q|Express|Train Express 14522||X|737 151:24722 175:21318 225:4732 209:30292 164:34181 196:23919 183:21997 210:9170 192:19743 193:4504 194:19317 168:27731 163:13821 162:6547
-Q|Express|Train Express 15017||X|793 453:16708 394:18019 171:81349 636:50566 186:48289 190:24752 198:25297 157:42019 201:44975 611:48068 155:25437 207:34273 156:20560 200:26034 182:42479 221:15661 160:29699 184:30617 170:31815 222:14085 150:28039 173:33411 219:49647 205:17812 167:49461 180:28553 199:15806 217:31139 187:49537 174:3526 218:38371 181:52163 188:62936 214:35201 176:20001 189:57549 161:22455 216:32581 197:37375 573:7028 206:4820 203:6417 212:12268 204:11331 223:8663 178:14519 213:5330 220:9982 195:7325 153:8045 202:8377 179:8262 215:5193 316:22481 224:3238 149:31815 208:18807 177:9625 166:8460 191:20942 172:7980 152:26975 185:13053 211:9393 154:10234 165:20698 159:24779 169:24356
-Q|Express|Train Express 15018||X|169 159:24344 165:24766 154:20687 211:10238 185:9393 152:13048 172:26956 191:7974 166:20931 177:8458 208:9624 149:18802 224:31782 316:3793 158:15664 215:6746 179:5193 202:8263 153:8380 195:8046 220:7325 213:9987 178:5330 223:14521 204:8661 212:11330 203:12266 206:6416 573:4831 197:7058 216:37347 161:32568 189:22448 176:57469 214:20001 188:35199 181:62844 218:52117 174:38355 217:53072 199:31130 180:15804 167:28529 205:49420 219:17806 173:49624 150:33385 222:28025 170:14080 184:31790 160:30599 221:29692 182:15656 200:42471 156:26022 207:20549 155:34247 611:23915 201:48036 157:44936 198:41987 190:25291 186:24737 636:48237 171:52172 394:81140 453:18013 793:16695
-Q|Hyderabad MMTS|Hyderabad MMTS|#007500|L|258 239:1897 249:3394 250:2978 236:2879 231:2259 244:2530 262:1253 230:1048 263:2072 255:1151 256:1082 689:1442
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|258 239:1897 249:3394 250:2978 236:2879 231:2259 244:2530 262:1253 230:1048 269:2077 271:4955 229:1080 252:809 275:1332 254:1720 259:1805 241:1231 276:760 251:2325 243:1263
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|258 239:1897 249:3394 250:2978 236:2879 231:2259 244:2530 262:1253 230:1048 269:2077 257:5595 260:982 242:869 268:654 267:1678 227:1102 238:1387 226:1198 235:1425 234:1784 248:5275 247:5102 261:3649
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|258 239:1897 249:3394 250:2978 236:2879 231:2259 244:2530 262:1253 230:1048 269:2077 271:4955 229:1080 252:809 275:1332 254:1720 259:1805 241:1231 276:760 251:2325 243:1263 265:4743 237:1944 274:6517
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|258 239:1897 249:3394 250:2978 236:2879 231:2259 244:2530 262:1253 230:1048 269:2077 270:2907
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|258 239:1897 249:3394 250:2978 236:2879 231:2259 245:3582 272:3201 233:4743 228:2367 264:1884 240:10682 246:7951
-Q|Hyderabad MMTS|Hyderabad MMTS|#007500|L|689 256:1442 255:1084 263:1153 230:2064 262:1054 244:1254 231:2523 236:2260 250:2910 249:2962 239:3391 258:1896
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|689 256:1442 255:1084 263:1153 269:2635 257:5595 260:982 242:869 268:654 267:1678 227:1102 238:1387 226:1198 235:1425 234:1784 248:5275 247:5102 261:3649
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|274 237:6518 265:1952 243:4740 251:1365 276:2321 241:758 259:1233 254:1807 275:1720 252:1329 229:809 271:1075 270:2054 253:1757 269:1152 230:2097 262:1054 244:1254 231:2523 236:2260 250:2910 249:2962 239:3391 258:1896
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|253 269:1152 230:2097 262:1054 244:1254 231:2523 236:2260 250:2910 249:2962 239:3391 258:1896
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|253 269:1152 263:2624 255:1151 256:1082 689:1439
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|243 251:1264 276:2321 241:758 259:1233 254:1807 275:1720 252:1329 229:809 271:1075
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|243 251:1264 276:2321 241:758 259:1233 254:1807 275:1720 252:1329 229:809 271:1075 253:3571 269:1152 230:2097 262:1054 244:1254 231:2523 236:2260 250:2910 249:2962 239:3391 258:1896 273:3831 232:4214 266:834
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|243 251:1264 276:2321 241:758 259:1233 254:1807 275:1720 252:1329 229:809 271:1075 270:2054 253:1757 269:1152 263:2624 255:1151 256:1082 689:1442
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|243 251:1264 276:2321 241:758 259:1233 254:1807 275:1720 252:1329 229:809 271:1075 270:2054 253:1757 269:1152 230:2097 262:1054 244:1254 231:2523 236:2260 250:2910 249:2962 239:3391 258:1896
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|271 229:1080 252:809 275:1332 254:1720 259:1805 241:1231 276:760 251:2325 243:1263
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|266 232:834 273:4031 258:3848 239:1897 249:3394 250:2978 236:2879 231:2259 244:2530 262:1253 230:1048 269:2077 271:4955 229:1080 252:809 275:1332 254:1720 259:1805 241:1231 276:760 251:2325 243:1263
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|257 260:982 242:869 268:654 267:1678 227:1102 238:1387 226:1198 235:1425 234:1784 248:5531 247:5168 261:3649
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|261 247:3645 248:5103 234:5279 235:1782 226:1424 238:1197 227:1385 267:1101 268:1681 242:657 260:869 257:987
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|261 247:3645 248:5103 234:5279 235:1782 226:1424 238:1197 227:1385 267:1101 268:1681 242:657 260:869 257:987 270:2543 253:1757 269:1152 263:2624 255:1151 256:1082 689:1442
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|261 247:3645 248:5103 234:5279 235:1782 226:1424 238:1197 227:1385 267:1101 268:1681 242:657 260:869 257:987 270:2543 253:1757 269:1152 230:2097 262:1054 244:1254 231:2523 236:2260 250:2910 249:2962 239:3391 258:1896
-Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L|246 240:7945 264:10700 228:1885 233:2361 272:4730 245:3203 231:3585 236:2260 250:2910 249:2962 239:3391 258:1896
-Q|IR|Diva -> Panvel MEMU||X|378 376:1895 296:4226 307:8620 293:3189 290:2492 436:5175
-Q|IR|Diva -> Roha MEMU||X|378 376:1895 296:4226 307:8620 293:3189 290:2492 436:5175 305:5110 301:6663 278:3394 289:9415 287:4797 300:5814 291:13513 292:13285 295:8489 302:4176
-Q|IR|Panvel -> Diva MEMU||X|436 290:5179 293:2489 307:3191 296:8620 376:4224 378:1890
-Q|IR|Train 33357||X|282 280:3762 283:3852
-Q|IR|Train 55749||X|638 286:56430
-Q|IR|Train 55750||X|286 638:56498
-Q|IR|Train 55751||X|638 286:56430
-Q|IR|Train 55752||X|286 638:56498
-Q|IR|Train 75721||X|303 286:63558
-Q|IR|Train 75722||X|286 303:63648
-Q|IR|Train Chhapra Junction Sonpur Junction DEMU 75270||X|88 476:2132 285:9119 284:4663 281:4193 297:2827 279:2073 89:5760 304:4455 294:7506 298:4649 306:6751
-Q|IR|Train Gangadamodar Express 13329||X|132 637:30467 641:17867 299:49097 136:103088 620:76608 288:124999 308:15312 309:253544 643:284356
-Q|IR|Train Gangadamodar Express 13330||X|643 308:29510 288:15307 136:53124 620:75523 641:75290 637:17862 309:20605 132:9204
-Q|IR|Train Sonpur Junction Chhapra Junction DEMU 75269||X|306 298:6750 294:4640 304:7488 277:8234 279:1988 297:2073 281:2827 284:4190 285:4663 476:9119 88:2133
-Q|Indian Railway|Shabd Bhedi Superfast Express||X|119 583:96264 133:63764 130:42319 132:58671 136:199351 131:243805 316:15652 224:3210 311:67079
-Q|Indian Railway|Varanasi - Kanpur line||L|316 573:137999 313:195164
-Q|Indian Railway|Varanasi-Allahabad line||L|316 573:138000
-Q|Indian Railway|Varanasi-Jaunpur-Ayodhya-Barabanki railway line||L|316 312:57209 310:154093
-Q|Indian Railway|Varanasi-Sultanpur-Lucknow Line||L|316 315:143425 314:139083
-Q|Indian Railways|12907 Maharashtra Sampark Kranti Superfast Express||X|363 658:232783 665:129060 649:262081 622:266786 773:458443
-Q|Indian Railways|12908 Maharashtra Sampark Kranti Superfast Express||X|773 622:454259 649:265016 665:259642 658:128960 363:236907 317:18686
-Q|Indian Railways|Train 12903 Golden Temple Mail||L|363 658:232719 665:129060 319:142634 649:113341 634:41512 622:226650 655:107430 318:183013 168:181597 193:46569 192:4863 210:21290 196:33036 209:61286 225:32477 737:54421
-Q|MEMU|Train MEMU 66585||L|67 344:2706 337:2822 323:6994 325:12985 327:3477 338:10457 320:10019 339:14285
-Q|MEMU|Train MEMU 66591||L|682 324:4337 322:6539 328:2812 349:19130 326:7777 333:4318 342:5950 332:5293 321:6291 348:3060 345:6408 329:6223 335:9895 346:6785 340:9250 330:12248 334:10617 347:13079 331:7930 336:5396 341:2462 343:10935
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|394 381:5064 453:12952 384:13867 412:3810 374:6535 364:4771 427:4311
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|394 452:3533 381:1534 409:1253 378:4448 428:2394 393:3079 453:2451 425:2559 429:2271 359:1588 397:1898 467:1865 384:3694 466:1322 412:2490 451:2541 422:2644 374:1354 437:1031 372:1857 368:718 364:1170 443:1855 421:1128 427:1332
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|427 364:4312 374:4774 412:6535 384:3813 453:13871 381:12953 394:5068
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|427 364:4312 374:4774 412:6535 384:3813 453:13871 381:15048 394:5242 449:3005 352:3074 456:4743 400:7640 465:7623 354:5960 355:9578 454:5990 403:6140 459:6503 398:6868
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|427 364:4312 374:4774 412:6535 384:3813 453:13871 381:15048 394:5065 470:2257 458:1972 351:2444 356:7580 462:10828 450:3955 432:4039 362:6735 696:6679 435:3190 399:4362 380:1217 414:3255 407:2521
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|427 421:1336 443:1125 364:1854 368:1200 372:689 437:1859 374:1031 422:1354 451:2645 412:2547 466:2485 384:1325 467:3689 397:1868 359:1900 429:1587 425:2271 453:2565 393:2448 428:3101 378:2350 409:4451 381:1251 452:1540 394:3533
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|398 459:6866 454:12644 403:6143 355:12121 354:9578 465:5962 400:7629 456:7623 352:4746 449:3073 394:3007 381:5240 453:15047 384:13867 412:3810 374:6535 364:4771 427:4311
-Q|Mumbai Suburban Railway|Central Line|#FF0000|L|407 414:2523 380:3256 399:1217 435:4362 696:3190 362:6679 432:6733 450:4039 462:3949 356:10829 351:7580 458:2445 470:1972 394:2249 381:5066 453:15047 384:13867 412:3810 374:6535 364:4771 427:4311
-Q|Mumbai Suburban Railway|Harbour Line|#303888|L|427 421:1347 443:1021 379:797 442:1235 371:1040 448:1839 461:2038 388:2603 369:1689 412:1876 367:2490 455:1199 386:2939 418:1910 464:7465 444:1156 392:1870 433:2476 447:1409 365:2370 404:2341 419:2891 401:1900 436:3421
-Q|Mumbai Suburban Railway|Harbour Line|#303888|L|427 421:1347 443:1021 379:797 442:1235 371:1040 448:1839 461:2038 408:1923 416:1545 358:1677 406:1611 445:1649 468:1807 353:2144 390:2431 440:1134 385:1494
-Q|Mumbai Suburban Railway|Harbour Line|#303888|L|436 401:3421 419:1905 404:2881 365:2339 447:2386 433:1420 392:2476 444:1861 464:1153 418:7463 386:1911 367:1744 455:1237 412:1247 369:1870 388:1692 461:2614 448:2035 371:1840 442:1038 379:1237 443:796 421:1019 427:1343
-Q|Mumbai Suburban Railway|Harbour Line|#303888|L|385 440:1492 390:1135 353:2431 468:2155 445:1792 406:1653 358:1608 416:1680 408:1541 461:1966 448:2035 371:1840 442:1038 379:1237 443:796 421:1019 427:1343
-Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L|460 382:1381 434:3115 441:3167 405:6270 357:2001 447:6176 433:1437
-Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L|460 382:1381 434:3115 441:3167 405:6270 357:2001 365:6792
-Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L|365 357:6797 405:1998 441:6274 434:3169 382:3113 460:1387
-Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L|433 447:1427 357:6191 405:1998 441:6274 434:3169 382:3113 460:1387
-Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L|453 377:2173 350:2622 439:2448 383:2330 411:1521 457:3170 444:2023 464:1161
-Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L|453 377:2173 350:2622 439:2448 383:2330 411:1521 457:3173 392:2252 433:2476 447:1413 365:2370 404:2341 419:2891 401:1900
-Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L|464 444:1163 457:2017 411:3175 383:1522 439:2331 350:2451 377:2627 453:2166
-Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L|436 401:3418 419:1905 404:2881 365:2339 447:2386 433:1423 392:2476 457:2252 411:3175 383:1522 439:2331 350:2451 377:2627 453:2166
-Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L|463 391:5243 395:5660 402:8242 361:8175 410:7865 378:6044
-Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L|378 410:6031 361:7859 402:8178 395:8246 391:5659 463:5604
-Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L|376 378:1890
-Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L|378 376:1896
-Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L|469 431:4065 463:4194 430:3689 360:4655 424:3312 375:3552 363:2356 353:12146 358:7212 373:4215 426:5924 387:950 366:1322 420:822 370:1448
-Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L|469 431:4065 463:4197 430:3691 360:4643 424:3313 375:3552 363:2352 396:2702 417:1953 385:2430 440:1491 389:1697 353:1873 468:2154 446:2044 406:1400 358:1616 416:1677 423:1428 373:1098 438:1485 413:1438 415:1613 426:1395 387:879 366:1399 420:818 370:1445
-Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L|370 420:1447 366:820 387:1347 426:927 373:5928 358:4210 353:7211 363:12146 375:2354 424:3551 360:3312 430:4653 463:3690 431:4194 469:4066
-Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L|370 420:1444 366:957 387:1265 426:874 415:1404 413:1609 438:1440 373:1488 423:1093 416:1423 358:1675 406:1623 446:1396 468:2048 353:2155 389:1871 440:1696 385:1491 417:2430 396:1955 363:2701 375:2350 424:3551 360:3314 430:4645 463:3692 431:4197 469:4066
-Q|North Eastern Railway (NER)|Train Passenger 55110 Chhapra Kacheri → Thawe Junction||L|476 481:9487 494:3665 474:7345 473:1283 486:2562 491:5117 493:1959 483:4416 495:2838 471:1888 489:3040 485:2206 479:1872 484:3602 487:9117 472:4069 480:2754 477:5025 497:5254 475:1926 492:3533 490:5694 488:4688 482:8471 478:8248 496:4762
-Q|Northern Railway|Train 22411||X|503 501:16180 509:142548 506:10653 511:50811 510:61293 504:109355 505:125434 638:125438 499:92780 502:95953 498:179593 500:88303 508:59625 92:61157 169:118590 314:269237 313:71965 507:428710
-Q|Northern Railway|Train 64415||L|168 137:24757
-Q|Northern Railway|Train 64423||L|168 137:24757
-Q|Northern Railway|Train 64425||L|168 137:24757
-Q|Northern Railway|Train 64429||L|168 137:24757
-Q|Northern Railway|Train 64431||L|168 137:24757
-Q|Northern Railway|Train 64432||L|137 168:24769
-Q|Northern Railway|Train 64433||L|168 137:24757
-Q|Northern Railway|Train 64441||L|168 137:24757
-Q|Northern Railway|Train 64534||L|137 168:24894
-Q|Northern Railways|Lucknow Mail||L|137 513:21827 514:38423 517:104562 518:27875 512:66544 519:74553 515:64289 516:106990
-Q|Northern Railways|Lucknow Mail||L|516 515:107316 519:64335 512:74705 518:66648 517:27889 514:104471 513:38393 137:21825
-Q|Passenger|Passenger 51973||L|676 527:2368 544:9077 546:7318 532:6891 550:8989 529:6235 525:12136 528:12316 537:6673 533:5388 535:11639 548:8442 545:10644 80:14695 542:11151 543:8024 530:7889 547:8859 549:6208 524:5927 534:5486 521:7070 520:5927 541:5388 526:6683 81:10647 536:11775 522:5027 538:5285 523:6837 539:9199 540:6580 531:5970 83:5293 85:5568
-Q|Passenger|Passenger 51974||L|85 83:5467 531:5385 540:5969 539:6587 523:9198 538:6837 522:5285 536:5028 81:11777 526:10653 541:6685 520:5385 521:5928 534:7070 524:5486 549:5928 547:6208 530:8859 543:7889 542:8024 80:11151 545:14701 548:10641 535:8440 533:11635 537:5388 528:6671 525:12317 529:12139 550:6235 532:8993 546:6891 544:7316 527:9076 676:2368
-Q|Pune Suburban Railway|Pune Suburban Railway||L|564 565:2433 560:3700 554:2090 559:3179 563:2606 553:2165 551:3270 555:4937 552:3567 556:2861 566:3221 567:3930 558:5081 557:4568 562:8144 561:7655
-Q|Pune Suburban Railway|Pune Suburban Railway||L|561 562:7653 557:8144 558:4570 567:5083 566:3935 556:3225 552:2858 555:3569 551:4935 553:3275 563:2167 559:2607 554:3180 560:2088 565:3698 564:2422
-Q|Rajdhani Express|Rajdhani Express||X|137 82:12362 84:18405 85:258078 571:143832 602:205269 568:98274 640:52398 629:64593 653:62427
-Q|Rajdhani Express|Rajdhani Express 12431||X|660 621:68867 572:81459 601:57233 662:73880 656:32245 623:85966 616:89426 618:85676 631:51660 664:69299 617:190005 627:60034 650:235504 436:278497 463:65385 658:215136 665:128488 649:262081 622:266786 773:458442
-Q|Rajdhani Express|Rajdhani Express 12432||X|773 622:454258 649:265111 665:259591 658:128922 463:214846 436:64959 650:274446 627:234922 617:59998 663:190192 631:68798 618:43693 616:85594 623:89360 656:85921 662:32267 601:73604 572:57224 621:81429 660:68799
-Q|Rajdhani Express|Train Rajdhani Express 12301||X|609 130:200851 132:58671 641:47692 136:151530 131:205567 574:152540 313:194586 137:441212
-Q|Rajdhani Express|Train Rajdhani Express 12302||X|137 313:436253 573:193902 131:152052 136:204832 641:151000 132:47636 130:58313 609:199938
-Q|Rajdhani Express|Train Rajdhani Express 12305||X|609 583:94318 628:187630 614:28948 643:221046 131:211537 574:152540 313:194586 137:441212
-Q|Rajdhani Express|Train Rajdhani Express 12306||X|137 313:436253 573:193903 131:152051 643:212058 614:219991 628:28939 583:186704 609:94253
-Q|Rajdhani Express|Train Rajdhani Express 12425||X|137 626:313535 642:164232 619:23002 613:76030
-Q|Rajdhani Express|Train Rajdhani Express 12426||X|613 619:75863 642:22984 626:163882 137:311297
-Q|Rajdhani Express|Train Rajdhani Express 12441||X|589 645:110179 600:37250 646:30504 604:104573 635:135907 670:420035 680:283913 673:97074 137:312651
-Q|Rajdhani Express|Train Rajdhani Express 12442||X|137 673:311177 680:102680 670:290104 635:401927 604:135994 646:104425 600:30516 645:37120 589:110361
-Q|Rajdhani Express|Train Rajdhani Express 12453||X|647 625:84599 595:144387 603:33237 651:137229 592:43155 574:223761 313:194586 137:441191
-Q|Rajdhani Express|Train Rajdhani Express 12454||X|137 313:436247 573:193903 592:222307 651:43148 603:137251 595:33240 625:143994 647:84519
-Q|Rajdhani Express|Train Rajdhani Express 12951||X|632 363:29550 658:232719 665:129060 649:262081 634:41512 622:226650 137:465787
-Q|Rajdhani Express|Train Rajdhani Express 12952||X|137 622:461460 634:225563 649:41469 665:259642 658:128960 363:232397 632:29553
-Q|Rajdhani Express|Train Rajdhani Express 12953||X|632 363:30773 667:138014 666:26179 658:68481 587:58900 665:70139 649:262081 622:266786 655:107430 676:216883 773:133144
-Q|Rajdhani Express|Train Rajdhani Express 12954||X|773 676:133169 655:215534 622:107205 649:265111 665:259642 587:70111 658:58879 666:68462 667:26179 363:137870 632:29557
-Q|Rajdhani Express|Train Rajdhani Express 12957||X|653 629:62510 640:64603 568:52467 602:98435 571:206367 85:144258 84:259651 82:17050 137:12369
-Q|Rajdhani Express|Train Rajdhani Express 20407||X|647 625:84599 595:144387 603:33237 131:152195 574:152540 313:194586 137:441191
-Q|Rajdhani Express|Train Rajdhani Express 20408||X|137 313:436247 573:193903 131:152052 603:151902 595:33240 625:143994 647:84519
-Q|Rajdhani Express|Train Rajdhani Express 20501||X|570 575:66983 597:72197 579:81493 606:180121 648:41816 584:65764 638:292685 630:201770 586:128998 612:53050 643:168514 131:211532 313:347292 576:428804
-Q|Rajdhani Express|Train Rajdhani Express 20502||X|576 313:423932 131:344973 643:212057 612:168220 586:53032 630:128750 638:201898 584:291328 648:65107 606:41828 608:135414 579:139344 639:17188 597:63457 575:72107 570:66924
-Q|Rajdhani Express|Train Rajdhani Express 20817||X|588 594:27804 599:62021 578:60279 654:150736 615:45006 652:101183 591:101278 577:196600 637:92949 620:93333 136:75952 131:205566 574:152540 313:194583 137:441197
-Q|Rajdhani Express|Train Rajdhani Express 20818||X|137 313:436251 573:193902 131:152051 136:204815 620:75829 637:93118 577:92662 591:196297 652:100960 615:101058 654:44913 578:150320 599:60225 594:61764 588:27765
-Q|Rajdhani Express|Train Rajdhani Express 20839||X|647 590:114876 620:128221 136:75954 596:85435 131:120003 313:347291 137:441190
-Q|Rajdhani Express|Train Rajdhani Express 20840||X|137 313:436247 131:344974 596:119715 136:85242 620:75829 590:125380 647:116897
-Q|Rajdhani Express|Train Rajdhani Express 22221||X|593 394:50762 636:131983 611:230017 670:430176 680:283913 673:100413 668:117831 773:187140
-Q|Rajdhani Express|Train Rajdhani Express 22222||X|773 668:186540 673:117710 680:117669 670:290011 611:419803 636:228953 394:133251 593:50713
-Q|Rajdhani Express|Train Rajdhani Express 22413||X|627 661:45871 624:50232 650:139227 436:278497 463:65387 658:215136 665:129060 649:262081 622:266786 773:458442
-Q|Rajdhani Express|Train Rajdhani Express 22414||X|773 622:454257 649:265111 665:259640 658:128959 463:214846 436:64956 650:277382 624:138996 661:50207 627:45848
-Q|Rajdhani Express|Train Rajdhani Express 22691||X|682 657:158516 605:143398 644:121236 699:142739 690:278451 581:234361 635:208525 173:297883 670:99121 680:283913 673:97074 668:117831 773:187140
-Q|Rajdhani Express|Train Rajdhani Express 22692||X|773 668:186540 673:117710 680:102680 670:290011 173:92054 635:295249 690:441198 270:131570 699:149032 644:142391 605:121157 598:99993 657:33232 682:158273
-Q|Rajdhani Express|Train Rajdhani Express 22811||X|588 594:27804 610:71890 585:43714 580:62340 607:120865 582:124258 569:53131 637:72587 620:93333 136:75952 131:205566 574:152540 313:194583 137:441197
-Q|Rajdhani Express|Train Rajdhani Express 22812||X|137 313:436251 573:193902 131:152051 136:204815 620:75829 637:93118 569:72474 582:53021 607:124150 580:119898 585:62256 610:43678 594:71757 588:27765
-Q|Rajdhani Express|Train Rajdhani Express 22823||X|588 594:27804 585:115721 580:62340 607:107458 659:134640 633:81707 590:54933 637:32333 620:93333 136:75952 131:205566 574:152540 313:194583 137:441195
-Q|Rajdhani Express|Train Rajdhani Express 22824||X|137 313:436251 573:193902 131:152051 136:204815 620:75829 637:93118 590:32312 633:52203 659:81627 607:134565 580:107377 585:62256 594:115407 588:27765
-Q|Shatabdi Express|Shatabdi Express 12001||X|679 670:6386 671:138416 674:62543 680:91937 673:97076 677:38614 672:26837 668:52350 676:53714 137:140670
-Q|Shatabdi Express|Shatabdi Express 12002||X|137 675:140753 668:53322 672:52346 677:26847 673:38620 680:117670 674:90090 671:62594 670:138043 679:6383
-Q|Shatabdi Express|Shatabdi Express 12003||X|516 313:71803 678:83289 134:56430 146:91836 669:77795 168:105948 137:24765
-Q|Shatabdi Express|Shatabdi Express 12004||X|137 168:24833 669:105678 146:77764 134:91589 678:56360 313:83166 516:71953
-Q|Southern Railways|Chennai - Mysuru Shatabdi Express||X|691 681:129520 682:234564 684:136660
-Q|Southern Railways|Mysuru - Chennai Shatabdi Express||X|684 682:137457 681:228765 691:131422
-Q|Southern Railways|Saptagiri Express||X|691 738:15714 687:67364 685:62238 686:10490
-Q|Southern Railways|Train 17378 Vijaypura Express||X|52 683:5116 38:18743 45:24578
-Q|SuperFast|Charminar Express||X|689 690:140877 692:312732 688:292265 691:137039
-Q|SuperFast|Charminar Express||X|691 688:137191 692:292814 690:301281 689:140519
-Q|SuperFast|Dakshin Superfast Express||X|773 675:133484 668:53322 689:1474318
-Q|SuperFast Express|Train SuperFast Express 12127||X|427 374:9052 453:24222 561:71689 565:60970 564:2421
-Q|SuperFast Express|Train SuperFast Express 12128||X|564 565:2432 453:181262 374:24210 427:9051 561:95219
-Q|SuperFast Express|Train SuperFast Express 12701||X|427 394:51311 696:47957 561:27381 564:63392 698:184790 701:78548 694:86260 695:26639 700:26504 704:10340 693:13904 699:22043 702:33247 703:41229 230:68754 689:5744
-Q|SuperFast Express|Train SuperFast Express 12702||X|689 230:5742 703:68929 702:43682 699:33233 693:22028 704:13905 700:10329 695:26489 694:27208 701:86385 698:78641 564:183871 561:64476 697:3830 394:92328 374:42221 427:9047
-Q|Vande Bharat Express|20705 Mumbai CSMT Vande Bharat Express||X|190 636:80985 394:133251 453:17962 374:24277 593:8497
-Q|Vande Bharat Express|Train Vande Bharat Express 20641||X|706 339:53314 710:92068 724:66225 713:77700 727:50207 708:46270
-Q|Vande Bharat Express|Train Vande Bharat Express 20661||X|682 67:5617 728:63581 709:256240 714:68577 715:74776 711:20361
-Q|Vande Bharat Express|Train Vande Bharat Express 20672||X|706 717:8994 724:246850 722:51415 716:32936 726:73720 712:98200 719:62199
-Q|Vande Bharat Express|Train Vande Bharat Express 20704||X|67 598:186234 705:33165 718:166079 720:145452 254:105760
-Q|Vande Bharat Express|Train Vande Bharat Express 22232||X|725 349:14013 705:207045 605:67601 721:92550 644:28702 729:68469 695:75600
-Q|Vande Bharat Express|Train Vande Bharat Express 26651||X|682 717:13704 724:246806 713:67434 727:50207 708:54656 723:49585 662:77920 601:73835
-Q|Vande Bharat Express|Train Vande Bharat Express 26752||X|682 67:5617 728:63581 709:256240 714:68577 715:74776 711:20361 707:74957
-Q|Western Railways|Train 19058 Mangaluru Junction Surat Express||X|730 734:19516 731:8778 664:32519 733:519481 732:194642 463:56829
-Q|rail|Chennai Central - Thiruvallur suburban line||L|759 749:2029 848:1838 817:1530 818:565 819:1430 847:1735 784:2842 816:1900 738:1542 838:1602 742:1126 744:2792 776:2936 815:1023 845:7259 831:3532 826:3115 841:2825
-Q|rail|Coromandel Express||X|691 692:430258 778:1244122
-Q|rail|Coromandel Express||X|778 692:1212384 691:428935
-Q|rail|Gonda - Varanasi Intercity Express||X|771 799:34603 745:36378 736:57379 316:131503
-Q|rail|Howrah-Mumbai Mail||L|778 659:238585 591:64587 615:203386 155:923461 611:25432 157:91521 190:68108 636:76328
-Q|rail|Kalka Shatabdi Express||X|137 813:93392 792:70180 737:44044 756:43452 779:19933
-Q|rail|Kalka Shatabdi Express||X|779 756:19924 737:43452 792:44044 813:70169 137:93335
-Q|rail|Kamrup Express||X|764 812:42386 807:22742 808:11176 752:34068 834:34344 739:27806 768:69780 765:176997
-Q|rail|Nilgiri Mountain Railway||L|803 774:17500 849:6056 781:8630 743:5881 780:13609 794:21648
-Q|rail|Tambaram - Chengelpet suburban line||L|814 835:4278 800:4712 825:3496 772:3804 843:3134
-Q|rail|Train 11013 Coimbatore Express||X|793 735:689025 822:248576 824:228 821:13066 789:4551
-Q|rail|Train 11021 Chalukya Express||X|761 394:44146 696:48151 564:90735
-Q|rail|Train 11302 Udyan Express||X|823 822:15616 695:510595 777:100446 698:90819 762:105647 561:137728 373:71857
-Q|rail|Train 12619 Matsyagandha Superfast Express||X|793 453:16703 436:32222 797:90428 624:270122 805:278781 791:32970 748:16500 806:49225
-Q|rail|Train 16630 Malabar Express||X|52 842:8503 798:9012 790:16578 618:12962 788:9413 750:4811 46:9428
-Q|rail|Train 17042 Charlapalli Amrit Bharat||L|840 621:57462 48:36659 801:7865 758:12008 757:17227 839:9720 787:24904 766:55672
-Q|rail|Train 19020||X|773 786:97317 676:44282 318:35290 767:62247 775:13880 833:10658 769:36420 809:21960 796:16685 655:31981 832:231202 836:13547 760:15385 846:22407 795:22809 634:16415 782:14221 828:11168 747:7182 827:10430 751:38185 746:5972 837:24636 802:8502 740:14001 754:7918 319:11028 830:50437 770:21903 783:10424 763:13381 755:13145 829:12034 665:24781 587:75078 741:9646 785:19904 804:72659 658:105554 810:32267 753:22383 667:47374 317:156730
-Q|rail|Train 20991||L|844 436:56995 561:43480 564:59076
-Q|rail|Train 56630 Subramanya Road - Mangaluru Central Passenger||L|45 811:10423 38:14161 683:18206
-Q|rail|Varanasi - Gonda Intercity Express||X|316 736:138422 745:57467 799:36406 771:34619
+Q|Chennai MRTS|Chennai MRTS|#FF9900|L45|0 2:3392 1:1485 16:852 9:1199 11:950 15:685 10:1157 3:1306 8:889 6:937 5:975 17:796 14:1859 12:1069 18:1711 13:1904 32:2781
+Q|Chennai MRTS|Chennai MRTS|#FF9900|L45|32 13:2768 18:1901 12:1707 14:1072 17:2041 5:785 7:1004 8:918 4:908 10:1279 15:1057 11:734 9:987 16:1203 1:679 2:1635 0:3434
+Q|Chennai Suburban Railway|Chennai Beach - Tambaram suburban line||L45|0 21:1742 22:1246 20:1316 19:2147 28:1584 25:1575 26:1509 31:1666 24:2110 32:2162 29:1436 27:1417 35:1145 30:1997 23:2288 34:1750 33:1932
+Q|Chennai Suburban Railway|Chennai Beach - Tambaram suburban line||L45|33 34:1933 23:1752 30:2286 35:2005 27:1145 29:1419 32:1437 24:2158 31:2112 26:1665 25:1511 28:1574 19:1594 20:2150 22:1318 21:1244 0:1743
+Q|Daily Express|Daily Express 16512||X75|609 57:33390 54:19786 46:9406 611:23076 52:47372 624:4251 38:19381 45:24472 61:42298 59:36377 44:41998 40:33342 60:8466 39:34295 49:31604 67:66625
+Q|Daily Express|Daily Express 16604||X75|654 66:40769 55:11182 614:17298 47:25701 48:13880 43:12723 37:18157 566:12139 53:12802 41:10889 64:9999 594:23538 36:19309 583:54564 650:32245 50:31121 63:15110 616:40857 58:24536 65:21834 51:12870 62:9332 609:20820 56:21761 57:11625 42:14722 54:5064 46:9406 611:23076 52:45646
+Q|Delhi Suburban Railway|Delhi Ring Railway||L45|76 69:1739 81:1369 70:1633 75:4691 79:1220 80:1329 77:1642 71:3097 73:4055 78:2170 68:2866 74:6300 72:1269
+Q|Double Decker Express|Double Decker Express 12583||X75|510 506:235268 511:90185 507:141060 83:12504
+Q|Double Decker Express|Double Decker Express 12584||X75|83 507:12515 511:141269 506:89969 510:233782
+Q|Double Decker Express|Double Decker Express 12985||X75|89 87:5484 84:56054 82:89289 88:125724 85:17050 86:9711
+Q|Double Decker Express|Double Decker Express 12986||X75|86 85:9703 88:18405 82:125403 84:89141 87:55947 89:5571
+Q|Duronto Express|Train Duronto Express 12219||X75|782 688:52441 555:27384 558:63392 693:263241 696:149679
+Q|Duronto Express|Train Duronto Express 12220||X75|266 696:188515 693:145489 558:262941 555:64402 689:3830 782:95971
+Q|Duronto Express|Train Duronto Express 12285||X75|573 627:208525 672:390853 673:290325 71:402877
+Q|Duronto Express|Train Duronto Express 12286||X75|71 673:406075 672:296360 627:380334
+Q|ECR;NER|Train Patliputra Lucknow Junction Express 15033||X75|510 90:8496 761:114778 165:152329 162:49082 504:69269 92:33330 493:27733 91:30773 93:16222
+Q|ER|Berhampore Court Kolkata Dhanya Dhaanya Express||X75|108 107:18775 126:19107 109:22719 124:86540
+Q|ER|Bhagirathi Express||X75|128 109:124560 114:12519 126:10968 107:19109 108:18776 123:10617 116:8064 122:21244
+Q|ER|Hazarduari Express||X75|122 111:11390 116:11453 123:7703 108:10760 107:17868 126:18075 109:22307 120:27915 127:25750 106:50751 119:17718
+Q|ER|Hazarduari Express||X75|119 106:18088 127:50785 120:26129 109:27926 126:22316 107:18078 108:17870 123:10761 116:7704 111:11446 122:11399
+Q|ER|Kolkata Berhampore Court Dhanya Dhaanya Express||X75|124 109:86541 126:22726 107:19109 108:18776
+Q|ER|Ranaghat Jn-Lalgola Passenger||L45|117 112:4113 129:2976 94:7140 115:3523 105:12256 95:5554 96:9069 109:7763 97:10705 114:2025 125:5169 126:5957 98:4727 99:7314 107:7136 110:6403 100:4233 101:3685 108:4709 102:4101 123:6552 116:8064 103:6003 111:5339 104:3024 121:7003 122:2139
+Q|ER|Sealdah - Lalgola MEMU Passenger||L45|128 106:22965 124:15982 118:11250 113:14791 117:16169 105:30074 95:5554 96:9069 109:7763 97:10705 114:2025 125:5169 126:5957 99:12041 107:7136 110:6403 100:4233 108:8288 102:4101 123:6552 116:8064 111:11336 121:9850 122:2139
+Q|Eastern Railways|Agra Fort - Lucknow Junction InterCity Semifast Express||X75|130 145:2487 143:20463 136:16581 142:19771 135:55284 140:95157 139:35794 138:11239 144:17500 510:54625
+Q|Eastern Railways|Duronto Express||X75|128 133:260374 132:405083 138:332073 75:426266
+Q|Eastern Railways|Duronto Express||X75|75 138:421035 132:329378 133:401230 128:258752
+Q|Eastern Railways|Lucknow Junction - Agra Fort InterCity Semifast Express||X75|510 144:54344 138:17490 139:11242 140:33152 135:102046 142:55329 136:19829 143:16587 145:20524 130:2486
+Q|Eastern Railways|Train 12313||X75|141 134:163291 131:42362 133:58735 137:199317 132:205561 138:347340 75:441121
+Q|Eastern Railways|Train 12314||X75|75 138:436037 132:345050 137:205007 133:197983 131:58260 134:42346 141:162737
+Q|Express|Train Express 14521||X75|159 160:6546 507:13767 190:27603 189:19324 188:4504 206:19744 179:9170 192:22000 161:23919 205:34191 221:30321 171:4733 148:21333 728:24753
+Q|Express|Train Express 14522||X75|728 148:24722 171:21318 221:4732 205:30292 161:34181 192:23919 179:21997 206:9170 188:19743 189:4504 190:19317 507:27731 160:13821 159:6547
+Q|Express|Train Express 15017||X75|782 447:16708 389:18019 167:81349 628:50566 182:48289 186:24752 194:25297 154:42019 197:44975 604:48068 152:25437 203:34273 153:20560 196:26034 178:42479 217:15661 157:29699 180:30617 166:31815 218:14085 147:28039 169:33411 215:49647 201:17812 164:49461 176:28553 195:15806 213:31139 183:49537 170:3526 214:38371 177:52163 184:62936 210:35201 172:20001 185:57549 158:22455 212:32581 193:37375 306:7028 202:4820 199:6417 208:12268 200:11331 219:8663 174:14519 209:5330 216:9982 191:7325 150:8045 198:8377 175:8262 211:5193 312:22481 220:3238 146:31815 204:18807 173:9625 163:8460 187:20942 168:7980 149:26975 181:13053 207:9393 151:10234 162:20698 156:24779 165:24356
+Q|Express|Train Express 15018||X75|165 156:24344 162:24766 151:20687 207:10238 181:9393 149:13048 168:26956 187:7974 163:20931 173:8458 204:9624 146:18802 220:31782 312:3793 155:15664 211:6746 175:5193 198:8263 150:8380 191:8046 216:7325 209:9987 174:5330 219:14521 200:8661 208:11330 199:12266 202:6416 306:4831 193:7058 212:37347 158:32568 185:22448 172:57469 210:20001 184:35199 177:62844 214:52117 170:38355 213:53072 195:31130 176:15804 164:28529 201:49420 215:17806 169:49624 147:33385 218:28025 166:14080 180:31790 157:30599 217:29692 178:15656 196:42471 153:26022 203:20549 152:34247 604:23915 197:48036 154:44936 194:41987 186:25291 182:24737 628:48237 167:52172 389:81140 447:18013 782:16695
+Q|Hyderabad MMTS|Hyderabad MMTS|#007500|L45|254 235:1897 245:3394 246:2978 232:2879 227:2259 240:2530 258:1253 226:1048 259:2072 251:1151 252:1082 681:1442
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|254 235:1897 245:3394 246:2978 232:2879 227:2259 240:2530 258:1253 226:1048 265:2077 267:4955 225:1080 248:809 271:1332 250:1720 255:1805 237:1231 272:760 247:2325 239:1263
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|254 235:1897 245:3394 246:2978 232:2879 227:2259 240:2530 258:1253 226:1048 265:2077 253:5595 256:982 238:869 264:654 263:1678 223:1102 234:1387 222:1198 231:1425 230:1784 244:5275 243:5102 257:3649
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|254 235:1897 245:3394 246:2978 232:2879 227:2259 240:2530 258:1253 226:1048 265:2077 267:4955 225:1080 248:809 271:1332 250:1720 255:1805 237:1231 272:760 247:2325 239:1263 261:4743 233:1944 270:6517
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|254 235:1897 245:3394 246:2978 232:2879 227:2259 240:2530 258:1253 226:1048 265:2077 266:2907
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|254 235:1897 245:3394 246:2978 232:2879 227:2259 241:3582 268:3201 229:4743 224:2367 260:1884 236:10682 242:7951
+Q|Hyderabad MMTS|Hyderabad MMTS|#007500|L45|681 252:1442 251:1084 259:1153 226:2064 258:1054 240:1254 227:2523 232:2260 246:2910 245:2962 235:3391 254:1896
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|681 252:1442 251:1084 259:1153 265:2635 253:5595 256:982 238:869 264:654 263:1678 223:1102 234:1387 222:1198 231:1425 230:1784 244:5275 243:5102 257:3649
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|270 233:6518 261:1952 239:4740 247:1365 272:2321 237:758 255:1233 250:1807 271:1720 248:1329 225:809 267:1075 266:2054 249:1757 265:1152 226:2097 258:1054 240:1254 227:2523 232:2260 246:2910 245:2962 235:3391 254:1896
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|249 265:1152 226:2097 258:1054 240:1254 227:2523 232:2260 246:2910 245:2962 235:3391 254:1896
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|249 265:1152 259:2624 251:1151 252:1082 681:1439
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|239 247:1264 272:2321 237:758 255:1233 250:1807 271:1720 248:1329 225:809 267:1075
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|239 247:1264 272:2321 237:758 255:1233 250:1807 271:1720 248:1329 225:809 267:1075 249:3571 265:1152 226:2097 258:1054 240:1254 227:2523 232:2260 246:2910 245:2962 235:3391 254:1896 269:3831 228:4214 262:834
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|239 247:1264 272:2321 237:758 255:1233 250:1807 271:1720 248:1329 225:809 267:1075 266:2054 249:1757 265:1152 259:2624 251:1151 252:1082 681:1442
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|239 247:1264 272:2321 237:758 255:1233 250:1807 271:1720 248:1329 225:809 267:1075 266:2054 249:1757 265:1152 226:2097 258:1054 240:1254 227:2523 232:2260 246:2910 245:2962 235:3391 254:1896
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|267 225:1080 248:809 271:1332 250:1720 255:1805 237:1231 272:760 247:2325 239:1263
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|262 228:834 269:4031 254:3848 235:1897 245:3394 246:2978 232:2879 227:2259 240:2530 258:1253 226:1048 265:2077 267:4955 225:1080 248:809 271:1332 250:1720 255:1805 237:1231 272:760 247:2325 239:1263
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|253 256:982 238:869 264:654 263:1678 223:1102 234:1387 222:1198 231:1425 230:1784 244:5531 243:5168 257:3649
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|257 243:3645 244:5103 230:5279 231:1782 222:1424 234:1197 223:1385 263:1101 264:1681 238:657 256:869 253:987
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|257 243:3645 244:5103 230:5279 231:1782 222:1424 234:1197 223:1385 263:1101 264:1681 238:657 256:869 253:987 266:2543 249:1757 265:1152 259:2624 251:1151 252:1082 681:1442
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|257 243:3645 244:5103 230:5279 231:1782 222:1424 234:1197 223:1385 263:1101 264:1681 238:657 256:869 253:987 266:2543 249:1757 265:1152 226:2097 258:1054 240:1254 227:2523 232:2260 246:2910 245:2962 235:3391 254:1896
+Q|Hyderabad MMTS|Hyderabad MMTS|#00A3E0|L45|242 236:7945 260:10700 224:1885 229:2361 268:4730 241:3203 227:3585 232:2260 246:2910 245:2962 235:3391 254:1896
+Q|IR|Diva -> Panvel MEMU||X75|373 371:1895 292:4226 303:8620 289:3189 286:2492 803:5175
+Q|IR|Diva -> Roha MEMU||X75|373 371:1895 292:4226 303:8620 289:3189 286:2492 803:5175 301:5110 297:6663 274:3394 285:9415 283:4797 296:5814 287:13513 288:13285 291:8489 298:4176
+Q|IR|Panvel -> Diva MEMU||X75|803 286:5179 289:2489 303:3191 292:8620 371:4224 373:1890
+Q|IR|Train 33357||X75|278 276:3762 279:3852
+Q|IR|Train 55749||X75|630 282:56430
+Q|IR|Train 55750||X75|282 630:56498
+Q|IR|Train 55751||X75|630 282:56430
+Q|IR|Train 55752||X75|282 630:56498
+Q|IR|Train 75721||X75|299 282:63558
+Q|IR|Train 75722||X75|282 299:63648
+Q|IR|Train Chhapra Junction Sonpur Junction DEMU 75270||X75|493 470:2132 281:9119 280:4663 277:4193 293:2827 275:2073 91:5760 300:4455 290:7506 294:4649 302:6751
+Q|IR|Train Gangadamodar Express 13329||X75|133 629:30467 633:17867 295:49097 137:103088 613:76608 284:124999 304:15312 305:253544 635:284356
+Q|IR|Train Gangadamodar Express 13330||X75|635 304:29510 284:15307 137:53124 613:75523 633:75290 629:17862 305:20605 133:9204
+Q|IR|Train Sonpur Junction Chhapra Junction DEMU 75269||X75|302 294:6750 290:4640 300:7488 273:8234 275:1988 293:2073 277:2827 280:4190 281:4663 470:9119 493:2133
+Q|Indian Railway|Shabd Bhedi Superfast Express||X75|119 575:96264 134:63764 131:42319 133:58671 137:199351 132:243805 312:15652 220:3210 308:67079
+Q|Indian Railway|Varanasi - Kanpur line||L45|312 306:137999 138:195164
+Q|Indian Railway|Varanasi-Allahabad line||L45|312 306:138000
+Q|Indian Railway|Varanasi-Jaunpur-Ayodhya-Barabanki railway line||L45|312 309:57209 307:154093
+Q|Indian Railway|Varanasi-Sultanpur-Lucknow Line||L45|312 311:143425 310:139083
+Q|Indian Railways|12907 Maharashtra Sampark Kranti Superfast Express||X75|359 652:232783 658:129060 643:262081 615:266786 71:458443
+Q|Indian Railways|12908 Maharashtra Sampark Kranti Superfast Express||X75|71 615:454259 643:265016 658:259642 652:128960 359:236907 313:18686
+Q|Indian Railways|Train 12903 Golden Temple Mail||L45|359 652:232719 658:129060 315:142634 643:113341 626:41512 615:226650 649:107430 314:183013 507:181597 189:46569 188:4863 206:21290 192:33036 205:61286 221:32477 728:54421
+Q|MEMU|Train MEMU 66585||L45|67 340:2706 333:2822 319:6994 321:12985 323:3477 334:10457 316:10019 335:14285
+Q|MEMU|Train MEMU 66591||L45|675 320:4337 318:6539 324:2812 345:19130 322:7777 329:4318 338:5950 328:5293 317:6291 344:3060 341:6408 325:6223 331:9895 342:6785 336:9250 326:12248 330:10617 343:13079 327:7930 332:5396 337:2462 339:10935
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|389 376:5064 447:12952 379:13867 407:3810 369:6535 360:4771 422:4311
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|389 446:3533 376:1534 404:1253 373:4448 423:2394 388:3079 447:2451 420:2559 424:2271 355:1588 392:1898 461:1865 379:3694 460:1322 407:2490 445:2541 417:2644 369:1354 431:1031 368:1857 364:718 360:1170 437:1855 416:1128 422:1332
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|422 360:4312 369:4774 407:6535 379:3813 447:13871 376:12953 389:5068
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|422 360:4312 369:4774 407:6535 379:3813 447:13871 376:15048 389:5242 443:3005 348:3074 450:4743 395:7640 459:7623 350:5960 351:9578 448:5990 398:6140 453:6503 393:6868
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|422 360:4312 369:4774 407:6535 379:3813 447:13871 376:15048 389:5065 464:2257 452:1972 347:2444 352:7580 456:10828 444:3955 427:4039 358:6735 688:6679 430:3190 394:4362 375:1217 409:3255 402:2521
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|422 416:1336 437:1125 360:1854 364:1200 368:689 431:1859 369:1031 417:1354 445:2645 407:2547 460:2485 379:1325 461:3689 392:1868 355:1900 424:1587 420:2271 447:2565 388:2448 423:3101 373:2350 404:4451 376:1251 446:1540 389:3533
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|393 453:6866 448:12644 398:6143 351:12121 350:9578 459:5962 395:7629 450:7623 348:4746 443:3073 389:3007 376:5240 447:15047 379:13867 407:3810 369:6535 360:4771 422:4311
+Q|Mumbai Suburban Railway|Central Line|#FF0000|L45|402 409:2523 375:3256 394:1217 430:4362 688:3190 358:6679 427:6733 444:4039 456:3949 352:10829 347:7580 452:2445 464:1972 389:2249 376:5066 447:15047 379:13867 407:3810 369:6535 360:4771 422:4311
+Q|Mumbai Suburban Railway|Harbour Line|#303888|L45|422 416:1347 437:1021 374:797 436:1235 367:1040 442:1839 455:2038 383:2603 365:1689 407:1876 363:2490 449:1199 381:2939 413:1910 458:7465 438:1156 387:1870 428:2476 441:1409 361:2370 399:2341 414:2891 396:1900 803:3421
+Q|Mumbai Suburban Railway|Harbour Line|#303888|L45|422 416:1347 437:1021 374:797 436:1235 367:1040 442:1839 455:2038 403:1923 411:1545 354:1677 401:1611 440:1649 462:1807 349:2144 385:2431 434:1134 380:1494
+Q|Mumbai Suburban Railway|Harbour Line|#303888|L45|803 396:3421 414:1905 399:2881 361:2339 441:2386 428:1420 387:2476 438:1861 458:1153 413:7463 381:1911 363:1744 449:1237 407:1247 365:1870 383:1692 455:2614 442:2035 367:1840 436:1038 374:1237 437:796 416:1019 422:1343
+Q|Mumbai Suburban Railway|Harbour Line|#303888|L45|380 434:1492 385:1135 349:2431 462:2155 440:1792 401:1653 354:1608 411:1680 403:1541 455:1966 442:2035 367:1840 436:1038 374:1237 437:796 416:1019 422:1343
+Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L45|454 377:1381 429:3115 435:3167 400:6270 353:2001 441:6176 428:1437
+Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L45|454 377:1381 429:3115 435:3167 400:6270 353:2001 361:6792
+Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L45|361 353:6797 400:1998 435:6274 429:3169 377:3113 454:1387
+Q|Mumbai Suburban Railway|Nerul–Uran line|#F0D808|L45|428 441:1427 353:6191 400:1998 435:6274 429:3169 377:3113 454:1387
+Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L45|447 372:2173 346:2622 433:2448 378:2330 406:1521 451:3170 438:2023 458:1161
+Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L45|447 372:2173 346:2622 433:2448 378:2330 406:1521 451:3173 387:2252 428:2476 441:1413 361:2370 399:2341 414:2891 396:1900
+Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L45|458 438:1163 451:2017 406:3175 378:1522 433:2331 346:2451 372:2627 447:2166
+Q|Mumbai Suburban Railway|Trans-Harbour Line|#4B0082|L45|803 396:3418 414:1905 399:2881 361:2339 441:2386 428:1423 387:2476 451:2252 406:3175 378:1522 433:2331 346:2451 372:2627 447:2166
+Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L45|457 386:5243 390:5660 397:8242 357:8175 405:7865 373:6044
+Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L45|373 405:6031 357:7859 397:8178 390:8246 386:5659 457:5604
+Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L45|371 373:1890
+Q|Mumbai Suburban Railway|Vasai Road-Diva Line|#B82880|L45|373 371:1896
+Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L45|463 426:4065 457:4194 425:3689 356:4655 419:3312 370:3552 359:2356 349:12146 354:7212 369:4215 421:5924 382:950 362:1322 415:822 366:1448
+Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L45|463 426:4065 457:4197 425:3691 356:4643 419:3313 370:3552 359:2352 391:2702 412:1953 380:2430 434:1491 384:1697 349:1873 462:2154 439:2044 401:1400 354:1616 411:1677 418:1428 369:1098 432:1485 408:1438 410:1613 421:1395 382:879 362:1399 415:818 366:1445
+Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L45|366 415:1447 362:820 382:1347 421:927 369:5928 354:4210 349:7211 359:12146 370:2354 419:3551 356:3312 425:4653 457:3690 426:4194 463:4066
+Q|Mumbai Suburban Railway|Western Line|#EBCF1F|L45|366 415:1444 362:957 382:1265 421:874 410:1404 408:1609 432:1440 369:1488 418:1093 411:1423 354:1675 401:1623 439:1396 462:2048 349:2155 384:1871 434:1696 380:1491 412:2430 391:1955 359:2701 370:2350 419:3551 356:3314 425:4645 457:3692 426:4197 463:4066
+Q|North Eastern Railway (NER)|Train Passenger 55110 Chhapra Kacheri → Thawe Junction||L45|470 475:9487 488:3665 468:7345 467:1283 480:2562 485:5117 487:1959 477:4416 489:2838 465:1888 483:3040 479:2206 473:1872 478:3602 481:9117 466:4069 474:2754 471:5025 491:5254 469:1926 486:3533 484:5694 482:4688 476:8471 472:8248 490:4762
+Q|Northern Railway|Train 22411||X75|498 495:16180 503:142548 501:10653 505:50811 502:61293 499:109355 500:125434 630:125438 497:92780 496:95953 492:179593 494:88303 493:59625 504:61157 165:118590 310:269237 138:71965 83:428710
+Q|Northern Railway|Train 64415||L45|507 75:24757
+Q|Northern Railway|Train 64423||L45|507 75:24757
+Q|Northern Railway|Train 64425||L45|507 75:24757
+Q|Northern Railway|Train 64429||L45|507 75:24757
+Q|Northern Railway|Train 64431||L45|507 75:24757
+Q|Northern Railway|Train 64432||L45|75 507:24769
+Q|Northern Railway|Train 64433||L45|507 75:24757
+Q|Northern Railway|Train 64441||L45|507 75:24757
+Q|Northern Railway|Train 64534||L45|75 507:24894
+Q|Northern Railways|Lucknow Mail||L45|75 507:21827 508:38423 511:104562 512:27875 506:66544 513:74553 509:64289 510:106990
+Q|Northern Railways|Lucknow Mail||L45|510 509:107316 513:64335 506:74705 512:66648 511:27889 508:104471 507:38393 75:21825
+Q|Passenger|Passenger 51973||L45|669 521:2368 538:9077 540:7318 526:6891 544:8989 523:6235 519:12136 522:12316 531:6673 527:5388 529:11639 542:8442 539:10644 82:14695 536:11151 537:8024 524:7889 541:8859 543:6208 518:5927 528:5486 515:7070 514:5927 535:5388 520:6683 84:10647 530:11775 516:5027 532:5285 517:6837 533:9199 534:6580 525:5970 87:5293 89:5568
+Q|Passenger|Passenger 51974||L45|89 87:5467 525:5385 534:5969 533:6587 517:9198 532:6837 516:5285 530:5028 84:11777 520:10653 535:6685 514:5385 515:5928 528:7070 518:5486 543:5928 541:6208 524:8859 537:7889 536:8024 82:11151 539:14701 542:10641 529:8440 527:11635 531:5388 522:6671 519:12317 523:12139 544:6235 526:8993 540:6891 538:7316 521:9076 669:2368
+Q|Pune Suburban Railway|Pune Suburban Railway||L45|558 559:2433 554:3700 548:2090 553:3179 557:2606 547:2165 545:3270 549:4937 546:3567 550:2861 560:3221 561:3930 552:5081 551:4568 556:8144 555:7655
+Q|Pune Suburban Railway|Pune Suburban Railway||L45|555 556:7653 551:8144 552:4570 561:5083 560:3935 550:3225 546:2858 549:3569 545:4935 547:3275 557:2167 553:2607 548:3180 554:2088 559:3698 558:2422
+Q|Rajdhani Express|Rajdhani Express||X75|75 85:12362 88:18405 89:258078 565:143832 595:205269 562:98274 632:52398 622:64593 647:62427
+Q|Rajdhani Express|Rajdhani Express 12431||X75|654 614:68867 566:81459 594:57233 583:73880 650:32245 616:85966 609:89426 611:85676 624:51660 657:69299 610:190005 620:60034 644:235504 803:278497 457:65385 652:215136 658:128488 643:262081 615:266786 71:458442
+Q|Rajdhani Express|Rajdhani Express 12432||X75|71 615:454258 643:265111 658:259591 652:128922 457:214846 803:64959 644:274446 620:234922 610:59998 656:190192 624:68798 611:43693 609:85594 616:89360 650:85921 583:32267 594:73604 566:57224 614:81429 654:68799
+Q|Rajdhani Express|Train Rajdhani Express 12301||X75|602 131:200851 133:58671 633:47692 137:151530 132:205567 637:152540 138:194586 75:441212
+Q|Rajdhani Express|Train Rajdhani Express 12302||X75|75 138:436253 636:193902 132:152052 137:204832 633:151000 133:47636 131:58313 602:199938
+Q|Rajdhani Express|Train Rajdhani Express 12305||X75|602 575:94318 621:187630 607:28948 635:221046 132:211537 637:152540 138:194586 75:441212
+Q|Rajdhani Express|Train Rajdhani Express 12306||X75|75 138:436253 636:193903 132:152051 635:212058 607:219991 621:28939 575:186704 602:94253
+Q|Rajdhani Express|Train Rajdhani Express 12425||X75|75 619:313535 634:164232 612:23002 606:76030
+Q|Rajdhani Express|Train Rajdhani Express 12426||X75|606 612:75863 634:22984 619:163882 75:311297
+Q|Rajdhani Express|Train Rajdhani Express 12441||X75|581 639:110179 593:37250 640:30504 597:104573 627:135907 663:420035 673:283913 666:97074 75:312651
+Q|Rajdhani Express|Train Rajdhani Express 12442||X75|75 666:311177 673:102680 663:290104 627:401927 597:135994 640:104425 593:30516 639:37120 581:110361
+Q|Rajdhani Express|Train Rajdhani Express 12453||X75|641 618:84599 588:144387 596:33237 645:137229 585:43155 637:223761 138:194586 75:441191
+Q|Rajdhani Express|Train Rajdhani Express 12454||X75|75 138:436247 636:193903 585:222307 645:43148 596:137251 588:33240 618:143994 641:84519
+Q|Rajdhani Express|Train Rajdhani Express 12951||X75|421 359:29550 652:232719 658:129060 643:262081 626:41512 615:226650 75:465787
+Q|Rajdhani Express|Train Rajdhani Express 12952||X75|75 615:461460 626:225563 643:41469 658:259642 652:128960 359:232397 421:29553
+Q|Rajdhani Express|Train Rajdhani Express 12953||X75|421 359:30773 660:138014 659:26179 652:68481 579:58900 658:70139 643:262081 615:266786 649:107430 669:216883 71:133144
+Q|Rajdhani Express|Train Rajdhani Express 12954||X75|71 669:133169 649:215534 615:107205 643:265111 658:259642 579:70111 652:58879 659:68462 660:26179 359:137870 421:29557
+Q|Rajdhani Express|Train Rajdhani Express 12957||X75|647 622:62510 632:64603 562:52467 595:98435 565:206367 89:144258 88:259651 85:17050 75:12369
+Q|Rajdhani Express|Train Rajdhani Express 20407||X75|641 618:84599 588:144387 596:33237 132:152195 637:152540 138:194586 75:441191
+Q|Rajdhani Express|Train Rajdhani Express 20408||X75|75 138:436247 636:193903 132:152052 596:151902 588:33240 618:143994 641:84519
+Q|Rajdhani Express|Train Rajdhani Express 20501||X75|564 567:66983 590:72197 571:81493 599:180121 642:41816 576:65764 630:292685 623:201770 578:128998 605:53050 635:168514 132:211532 138:347292 568:428804
+Q|Rajdhani Express|Train Rajdhani Express 20502||X75|568 138:423932 132:344973 635:212057 605:168220 578:53032 623:128750 630:201898 576:291328 642:65107 599:41828 601:135414 571:139344 631:17188 590:63457 567:72107 564:66924
+Q|Rajdhani Express|Train Rajdhani Express 20817||X75|580 587:27804 592:62021 570:60279 648:150736 608:45006 646:101183 584:101278 569:196600 629:92949 613:93333 137:75952 132:205566 637:152540 138:194583 75:441197
+Q|Rajdhani Express|Train Rajdhani Express 20818||X75|75 138:436251 636:193902 132:152051 137:204815 613:75829 629:93118 569:92662 584:196297 646:100960 608:101058 648:44913 570:150320 592:60225 587:61764 580:27765
+Q|Rajdhani Express|Train Rajdhani Express 20839||X75|641 582:114876 613:128221 137:75954 589:85435 132:120003 138:347291 75:441190
+Q|Rajdhani Express|Train Rajdhani Express 20840||X75|75 138:436247 132:344974 589:119715 137:85242 613:75829 582:125380 641:116897
+Q|Rajdhani Express|Train Rajdhani Express 22221||X75|586 389:50762 628:131983 604:230017 663:430176 673:283913 666:100413 661:117831 71:187140
+Q|Rajdhani Express|Train Rajdhani Express 22222||X75|71 661:186540 666:117710 673:117669 663:290011 604:419803 628:228953 389:133251 586:50713
+Q|Rajdhani Express|Train Rajdhani Express 22413||X75|620 655:45871 617:50232 644:139227 803:278497 457:65387 652:215136 658:129060 643:262081 615:266786 71:458442
+Q|Rajdhani Express|Train Rajdhani Express 22414||X75|71 615:454257 643:265111 658:259640 652:128959 457:214846 803:64956 644:277382 617:138996 655:50207 620:45848
+Q|Rajdhani Express|Train Rajdhani Express 22691||X75|675 651:158516 598:143398 638:121236 691:142739 682:278451 573:234361 627:208525 169:297883 663:99121 673:283913 666:97074 661:117831 71:187140
+Q|Rajdhani Express|Train Rajdhani Express 22692||X75|71 661:186540 666:117710 673:102680 663:290011 169:92054 627:295249 682:441198 266:131570 691:149032 638:142391 598:121157 591:99993 651:33232 675:158273
+Q|Rajdhani Express|Train Rajdhani Express 22811||X75|580 587:27804 603:71890 577:43714 572:62340 600:120865 574:124258 563:53131 629:72587 613:93333 137:75952 132:205566 637:152540 138:194583 75:441197
+Q|Rajdhani Express|Train Rajdhani Express 22812||X75|75 138:436251 636:193902 132:152051 137:204815 613:75829 629:93118 563:72474 574:53021 600:124150 572:119898 577:62256 603:43678 587:71757 580:27765
+Q|Rajdhani Express|Train Rajdhani Express 22823||X75|580 587:27804 577:115721 572:62340 600:107458 653:134640 625:81707 582:54933 629:32333 613:93333 137:75952 132:205566 637:152540 138:194583 75:441195
+Q|Rajdhani Express|Train Rajdhani Express 22824||X75|75 138:436251 636:193902 132:152051 137:204815 613:75829 629:93118 582:32312 625:52203 653:81627 600:134565 572:107377 577:62256 587:115407 580:27765
+Q|Shatabdi Express|Shatabdi Express 12001||X75|672 663:6386 664:138416 667:62543 673:91937 666:97076 670:38614 665:26837 661:52350 669:53714 75:140670
+Q|Shatabdi Express|Shatabdi Express 12002||X75|75 668:140753 661:53322 665:52346 670:26847 666:38620 673:117670 667:90090 664:62594 663:138043 672:6383
+Q|Shatabdi Express|Shatabdi Express 12003||X75|510 138:71803 671:83289 135:56430 143:91836 662:77795 507:105948 75:24765
+Q|Shatabdi Express|Shatabdi Express 12004||X75|75 507:24833 662:105678 143:77764 135:91589 671:56360 138:83166 510:71953
+Q|Southern Railways|Chennai - Mysuru Shatabdi Express||X75|683 674:129520 675:234564 676:136660
+Q|Southern Railways|Mysuru - Chennai Shatabdi Express||X75|676 675:137457 674:228765 683:131422
+Q|Southern Railways|Saptagiri Express||X75|683 729:15714 679:67364 677:62238 678:10490
+Q|Southern Railways|Train 17378 Vijaypura Express||X75|52 624:5116 38:18743 45:24578
+Q|SuperFast|Charminar Express||X75|681 682:140877 684:312732 680:292265 683:137039
+Q|SuperFast|Charminar Express||X75|683 680:137191 684:292814 682:301281 681:140519
+Q|SuperFast|Dakshin Superfast Express||X75|71 668:133484 661:53322 681:1474318
+Q|SuperFast Express|Train SuperFast Express 12127||X75|422 369:9052 447:24222 555:71689 559:60970 558:2421
+Q|SuperFast Express|Train SuperFast Express 12128||X75|558 559:2432 447:181262 369:24210 422:9051 555:95219
+Q|SuperFast Express|Train SuperFast Express 12701||X75|422 389:51311 688:47957 555:27381 558:63392 690:184790 693:78548 686:86260 687:26639 692:26504 696:10340 685:13904 691:22043 694:33247 695:41229 226:68754 681:5744
+Q|SuperFast Express|Train SuperFast Express 12702||X75|681 226:5742 695:68929 694:43682 691:33233 685:22028 696:13905 692:10329 687:26489 686:27208 693:86385 690:78641 558:183871 555:64476 689:3830 389:92328 369:42221 422:9047
+Q|Vande Bharat Express|20705 Mumbai CSMT Vande Bharat Express||X75|186 628:80985 389:133251 447:17962 369:24277 586:8497
+Q|Vande Bharat Express|Train Vande Bharat Express 20641||X75|697 335:53314 701:92068 716:66225 704:77700 719:50207 699:46270
+Q|Vande Bharat Express|Train Vande Bharat Express 20661||X75|675 67:5617 720:63581 700:256240 705:68577 706:74776 702:20361
+Q|Vande Bharat Express|Train Vande Bharat Express 20672||X75|697 708:8994 716:246850 713:51415 707:32936 718:73720 703:98200 710:62199
+Q|Vande Bharat Express|Train Vande Bharat Express 20704||X75|67 591:186234 715:33165 709:166079 711:145452 250:105760
+Q|Vande Bharat Express|Train Vande Bharat Express 22232||X75|717 345:14013 715:207045 598:67601 712:92550 638:28702 721:68469 687:75600
+Q|Vande Bharat Express|Train Vande Bharat Express 26651||X75|675 708:13704 716:246806 704:67434 719:50207 699:54656 714:49585 583:77920 594:73835
+Q|Vande Bharat Express|Train Vande Bharat Express 26752||X75|675 67:5617 720:63581 700:256240 705:68577 706:74776 702:20361 698:74957
+Q|Western Railways|Train 19058 Mangaluru Junction Surat Express||X75|722 726:19516 723:8778 657:32519 725:519481 724:194642 457:56829
+Q|rail|Chennai Central - Thiruvallur suburban line||L45|750 740:2029 833:1838 807:1530 808:565 809:1430 832:1735 773:2842 806:1900 729:1542 823:1602 733:1126 735:2792 765:2936 805:1023 830:7259 816:3532 812:3115 826:2825
+Q|rail|Coromandel Express||X75|683 684:430258 767:1244122
+Q|rail|Coromandel Express||X75|767 684:1212384 683:428935
+Q|rail|Gonda - Varanasi Intercity Express||X75|761 788:34603 736:36378 727:57379 312:131503
+Q|rail|Howrah-Mumbai Mail||L45|767 653:238585 584:64587 608:203386 152:923461 604:25432 154:91521 186:68108 628:76328
+Q|rail|Kalka Shatabdi Express||X75|75 802:93392 781:70180 728:44044 747:43452 768:19933
+Q|rail|Kalka Shatabdi Express||X75|768 747:19924 728:43452 781:44044 802:70169 75:93335
+Q|rail|Kamrup Express||X75|754 801:42386 796:22742 797:11176 743:34068 819:34344 730:27806 758:69780 755:176997
+Q|rail|Nilgiri Mountain Railway||L45|792 763:17500 834:6056 770:8630 734:5881 769:13609 783:21648
+Q|rail|Tambaram - Chengelpet suburban line||L45|804 820:4278 789:4712 811:3496 762:3804 828:3134
+Q|rail|Train 11013 Coimbatore Express||X75|782 598:689025 345:248576 320:13294 778:4551
+Q|rail|Train 11021 Chalukya Express||X75|369 389:44146 688:48151 558:90735
+Q|rail|Train 11302 Udyan Express||X75|778 345:15616 687:510595 766:100446 690:90819 752:105647 555:137728 369:71857
+Q|rail|Train 12619 Matsyagandha Superfast Express||X75|782 447:16703 803:32222 786:90428 617:270122 794:278781 780:32970 739:16500 795:49225
+Q|rail|Train 16630 Malabar Express||X75|52 827:8503 787:9012 779:16578 611:12962 777:9413 741:4811 46:9428
+Q|rail|Train 17042 Charlapalli Amrit Bharat||L45|825 614:57462 48:36659 790:7865 749:12008 748:17227 824:9720 776:24904 756:55672
+Q|rail|Train 19020||X75|71 775:97317 669:44282 314:35290 757:62247 764:13880 818:10658 759:36420 798:21960 785:16685 649:31981 817:231202 821:13547 751:15385 831:22407 784:22809 626:16415 771:14221 813:11168 738:7182 643:10430 742:38185 737:5972 822:24636 791:8502 731:14001 745:7918 315:11028 815:50437 760:21903 772:10424 753:13381 746:13145 814:12034 658:24781 579:75078 732:9646 774:19904 793:72659 652:105554 799:32267 744:22383 660:47374 313:156730
+Q|rail|Train 20991||L45|829 803:56995 555:43480 558:59076
+Q|rail|Train 56630 Subramanya Road - Mangaluru Central Passenger||L45|45 800:10423 38:14161 624:18206
+Q|rail|Varanasi - Gonda Intercity Express||X75|312 727:138422 736:57467 788:36406 761:34619
 T|23.44971|72.42238|Aambliyasan Junction
 T|22.54787|88.19952|Abada
 T|25.21574|86.32288|Abhaipur
@@ -12291,7 +12276,6 @@ B|18.39803|83.89534|Amdalavalasa Bridge Junction Bus Stop
 B|18.97401|83.61206|Amiti Colony Bus Stop
 B|18.95640|83.62661|Amiti Juncton Bus Stop
 B|23.19590|81.57606|Amlai Burhar bus stand
-B|13.36328|79.36321|Ammapalli  Bus Stop
 B|18.01983|82.71100|Ammavari Padalu Bus Stop
 B|31.63013|74.88393|Amritsar Bus Station
 B|13.78021|79.59101|Amuduru X Roads Bus Stop
