@@ -45,12 +45,12 @@ def stops():
 
 class BuildTest(unittest.TestCase):
     def test_stations_merge_directions_and_take_clean_names(self):
-        stations, lines = b.build_metro(routes(), stops())
+        stations, lines = b.build_network(routes(), stops())
         self.assertEqual(sorted(s[2] for s in stations), ["Alpha", "Bravo", "Charlie"])
         self.assertEqual(len(lines), 2)  # the line under construction is left out
 
     def test_distance_follows_the_track_not_the_straight_line(self):
-        stations, lines = b.build_metro(routes(), stops())
+        stations, lines = b.build_network(routes(), stops())
         cells = lines[0].split("|")[4].split()
         hops = [int(c.split(":")[1]) for c in cells[1:]]
         names = [stations[int(c.split(":")[0])][2] for c in cells]
@@ -75,6 +75,46 @@ class BuildTest(unittest.TestCase):
         self.assertEqual(b.base_name("Sir M. Visvesvaraya Stn., Central College"), "Central College")
         self.assertEqual(b.base_name("Dahisar (East) [Line 2]"), "Dahisar (East)")
         self.assertEqual(b.base_name("Kochi Metro"), "Kochi")
+
+    def test_a_water_metro_is_its_own_kind_and_keeps_its_terminal_names(self):
+        routes = {"elements": [
+            {"type": "relation", "id": 7, "tags": {"route": "ferry", "network": "Kochi Water Metro", "name": "High Court - Vypin"},
+             "members": [{"type": "node", "ref": 71, "role": "stop", "lat": 9.9840, "lon": 76.2770},
+                         {"type": "node", "ref": 72, "role": "stop", "lat": 9.9790, "lon": 76.2440},
+                         {"type": "way", "ref": 5, "role": "", "geometry": [{"lat": 9.9840, "lon": 76.2770}, {"lat": 9.9860, "lon": 76.2600}, {"lat": 9.9790, "lon": 76.2440}]}]},
+            {"type": "relation", "id": 8, "tags": {"route": "subway", "network": "Kochi Metro", "name": "Line 1"},
+             "members": [stop(81, 9.9845, 76.2775), stop(82, 9.9900, 76.2900)]},
+        ]}
+        stops = {"elements": [
+            {"type": "node", "id": 71, "lat": 9.9840, "lon": 76.2770, "tags": {"name": "High Court Water Metro Terminal"}},
+            {"type": "node", "id": 72, "lat": 9.9790, "lon": 76.2440, "tags": {"name": "Vypin"}},
+            {"type": "node", "id": 81, "lat": 9.9845, "lon": 76.2775, "tags": {"name": "High Court"}},
+            {"type": "node", "id": 82, "lat": 9.9900, "lon": 76.2900, "tags": {"name": "Somewhere"}},
+        ]}
+        stations, lines = b.build_network(routes, stops)
+        kinds = sorted((s[2], s[4]) for s in stations)
+        self.assertIn(("High Court", "W"), kinds)
+        self.assertIn(("High Court", "M"), kinds)  # same name, still two places
+        ferry = [l for l in lines if "Water Metro" in l][0]
+        hop = int(ferry.split("|")[4].split()[1].split(":")[1])
+        self.assertGreater(hop, b.metres(9.9840, 76.2770, 9.9790, 76.2440))  # the boat's course, not the chord
+
+    def test_same_name_stations_blocks_apart_stay_apart(self):
+        # New York has an "86 St" on Lexington and another on Second Avenue.
+        routes = {"elements": [
+            {"type": "relation", "id": 1, "tags": {"route": "subway", "network": "NYC Subway", "name": "4"},
+             "members": [stop(1, 40.7795, -73.9556), stop(2, 40.7850, -73.9510)]},
+            {"type": "relation", "id": 2, "tags": {"route": "subway", "network": "NYC Subway", "name": "Q"},
+             "members": [stop(3, 40.7777, -73.9516), stop(4, 40.7840, -73.9470)]},
+        ]}
+        stops = {"elements": [
+            {"type": "node", "id": 1, "lat": 40.7795, "lon": -73.9556, "tags": {"name": "86 St"}},
+            {"type": "node", "id": 2, "lat": 40.7850, "lon": -73.9510, "tags": {"name": "96 St"}},
+            {"type": "node", "id": 3, "lat": 40.7777, "lon": -73.9516, "tags": {"name": "86 St"}},
+            {"type": "node", "id": 4, "lat": 40.7840, "lon": -73.9470, "tags": {"name": "96 St"}},
+        ]}
+        stations, _ = b.build_network(routes, stops)
+        self.assertEqual(sum(1 for s in stations if s[2] == "86 St"), 2)
 
     def test_rail_dedupes_node_and_way_of_one_station(self):
         rows = b.build_rail({"elements": [

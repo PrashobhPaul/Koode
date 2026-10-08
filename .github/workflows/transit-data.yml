@@ -1,51 +1,92 @@
 name: Transit data
 
-# Rebuilds the metro network and railway station lists the app and web
-# viewer read offline (apps/android/app/src/main/assets, web/data) from
-# OpenStreetMap (© OpenStreetMap contributors, ODbL), and commits them to the
-# branch it was run on when anything changed. Run it by hand when a city opens
-# a line or new stations.
+# Rebuilds, from OpenStreetMap (© OpenStreetMap contributors, ODbL), the
+# metro, water-metro/ferry and railway station data Koode names and measures
+# rides by: one file per country in web/data/transit (served with the web
+# viewer; the app downloads a country's file when it is there) and India
+# bundled in the app. Commits to the branch it ran on when anything changed.
+# A country whose build fails keeps the file it had. Run it by hand when a
+# city opens a line or new stations.
 on:
   # A change to the builder on a working branch rebuilds the data there, so
   # it is reviewed with the change.
   push:
     branches-ignore: [main]
-    paths: ['tools/transit/**']
+    paths: ['tools/transit/**', '.github/workflows/transit-data.yml']
   workflow_dispatch:
     inputs:
-      country:
-        description: ISO 3166-1 country code
-        default: IN
+      countries:
+        description: Space-separated ISO 3166-1 codes (blank for all)
+        default: ''
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  build:
+  plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
-    env:
-      COUNTRY: ${{ inputs.country || 'IN' }}
+    outputs:
+      countries: ${{ steps.list.outputs.countries }}
+    steps:
+      - id: list
+        env:
+          ASKED: ${{ inputs.countries }}
+        run: |
+          # India first; then the markets Koode serves.
+          ALL="IN US GB CA MX IE FR DE ES IT NL BE AT CH PT SE DK NO FI CZ PL HU GR RO BG TR AE SA QA EG IL SG MY TH ID VN HK TW KR JP AU NZ BD PK LK BR AR CL CO PE ZA CN"
+          LIST="${ASKED:-$ALL}"
+          for c in $LIST; do [[ "$c" =~ ^[A-Z]{2}$ ]] || { echo "Bad country code: $c"; exit 1; }; done
+          echo "countries=$(printf '%s\n' $LIST | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        country: ${{ fromJSON(needs.plan.outputs.countries) }}
     steps:
       - uses: actions/checkout@v4
-
       - name: Test the builder
         run: python3 -m unittest tools/transit/test_build_network.py
+      - name: Build ${{ matrix.country }}
+        env:
+          CC: ${{ matrix.country }}
+        run: python3 tools/transit/build_network.py --fetch --country "$CC" --out "built/$CC.txt" --previous "web/data/transit/$CC.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: transit-${{ matrix.country }}
+          path: built/
+          retention-days: 3
 
-      - name: Build from OpenStreetMap
+  commit:
+    needs: build
+    if: always() && needs.build.result != 'cancelled'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: transit-*
+          path: built
+          merge-multiple: true
+      - name: Put the files in place
         run: |
-          [[ "$COUNTRY" =~ ^[A-Z]{2}$ ]] || { echo "Country must be two capital letters"; exit 1; }
-          python3 tools/transit/build_network.py --fetch --country "$COUNTRY"
-
+          mkdir -p built
+          python3 tools/transit/collect.py built
       - name: Commit if changed
         run: |
-          # The build date in the header changes every run; only commit real data changes.
-          if [ -z "$(git ls-files --others --exclude-standard)" ] && git diff --quiet -I '^# .*Built '; then
+          # The build date in each header changes every run; only commit real data changes.
+          if [ -z "$(git ls-files --others --exclude-standard)" ] && git diff --quiet -I '^# Transit for Koode' -I '"built"'; then
             echo "No change."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add apps/android/app/src/main/assets web/data
-          git commit -m "Transit data from OpenStreetMap ($COUNTRY)"
+          git commit -m "Transit data from OpenStreetMap"
           git push
