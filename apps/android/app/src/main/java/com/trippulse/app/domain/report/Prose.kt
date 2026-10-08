@@ -50,7 +50,8 @@ object Prose {
     // What kind of journey this is
     // ------------------------------------------------------------------------
 
-    enum class ModeClass { DRIVE, RIDE, TRANSIT, FLY, SAIL, WALK }
+    /** How a journey was made, for its verbs. MIXED: more than one way, told as a journey, not as any one of them. */
+    enum class ModeClass { DRIVE, RIDE, TRANSIT, FLY, SAIL, WALK, MIXED }
 
     enum class Daypart(val label: String, val at: String) {
         SMALL_HOURS("the small hours", "in the small hours"),
@@ -92,9 +93,11 @@ object Prose {
         val z: ZoneId = input.zone
         /** The journey's own mode: the one it spent longest on (a walk to the metro does not make it a walk). */
         val modeKey: String = TransportCatalog.profile(JourneyStory.primaryMode(story, input.mode)).key
-        val modeClass: ModeClass = when (modeKey) {
+        /** Ridden more than one way (bike taxi, then metro, then bike taxi): no one mode speaks for it. */
+        val mixed: Boolean = JourneyStory.isMixed(story)
+        val modeClass: ModeClass = if (mixed) ModeClass.MIXED else when (modeKey) {
             "CAR", "BIKE" -> ModeClass.DRIVE
-            "CAB", "AUTO", "CYCLE" -> ModeClass.RIDE
+            "CAB", "BIKE_TAXI", "AUTO", "CYCLE" -> ModeClass.RIDE
             "BUS", "METRO", "TRAIN" -> ModeClass.TRANSIT
             "FLIGHT" -> ModeClass.FLY
             "SHIP", "FERRY" -> ModeClass.SAIL
@@ -136,9 +139,9 @@ object Prose {
         val name: String = JourneyStory.name(input.who)
 
         // The verbs of the mode.
-        val went: String = when (modeClass) { ModeClass.DRIVE -> "drove"; ModeClass.RIDE -> "rode"; ModeClass.TRANSIT -> "travelled"; ModeClass.FLY -> "flew"; ModeClass.SAIL -> "sailed"; ModeClass.WALK -> "walked" }
-        val going: String = when (modeClass) { ModeClass.DRIVE -> "driving"; ModeClass.RIDE -> "riding"; ModeClass.TRANSIT -> "travelling"; ModeClass.FLY -> "flying"; ModeClass.SAIL -> "sailing"; ModeClass.WALK -> "walking" }
-        val theRoad: String = when (modeClass) { ModeClass.DRIVE, ModeClass.RIDE -> "the road"; ModeClass.TRANSIT -> "the line"; ModeClass.FLY -> "the air"; ModeClass.SAIL -> "the water"; ModeClass.WALK -> "the way" }
+        val went: String = when (modeClass) { ModeClass.DRIVE -> "drove"; ModeClass.RIDE -> "rode"; ModeClass.TRANSIT -> "travelled"; ModeClass.FLY -> "flew"; ModeClass.SAIL -> "sailed"; ModeClass.WALK -> "walked"; ModeClass.MIXED -> "travelled" }
+        val going: String = when (modeClass) { ModeClass.DRIVE -> "driving"; ModeClass.RIDE -> "riding"; ModeClass.TRANSIT -> "travelling"; ModeClass.FLY -> "flying"; ModeClass.SAIL -> "sailing"; ModeClass.WALK -> "walking"; ModeClass.MIXED -> "travelling" }
+        val theRoad: String = when (modeClass) { ModeClass.DRIVE, ModeClass.RIDE -> "the road"; ModeClass.TRANSIT -> "the line"; ModeClass.FLY -> "the air"; ModeClass.SAIL -> "the water"; ModeClass.WALK, ModeClass.MIXED -> "the way" }
         val vehicle: String = when (modeKey) { "CAR" -> "the car"; "BIKE" -> "the motorbike"; "CAB" -> "the cab"; "BIKE_TAXI" -> "the bike taxi"; "AUTO" -> "the auto"; "BUS" -> "the bus"; "METRO" -> "the metro"; "TRAIN" -> "the train"; "FLIGHT" -> "the plane"; "SHIP" -> "the ship"; "FERRY" -> "the ferry"; "CYCLE" -> "the bicycle"; else -> "foot" }
         val refuelled: String = if (electric) "charged up" else "refuelled"
 
@@ -221,12 +224,15 @@ object Prose {
             ModeClass.FLY -> "by air"
             ModeClass.SAIL -> "by ${c.modeLabel}"
             ModeClass.WALK -> "on foot"
+            // The ways it was made are told next, in order; here it is a journey.
+            ModeClass.MIXED -> ""
         }
+        val by = if (how.isEmpty()) "" else " $how"
         val sb = StringBuilder()
         sb.append(d.pick(
-            "${c.name} $setOff from ${i.origin} at $start on $day, heading for ${i.destination} $how.",
-            "On $day, ${c.name} $setOff from ${i.origin} at $start, bound for ${i.destination} $how.",
-            "${c.name} left ${i.origin} for ${i.destination} $how, setting off at $start on $day."
+            "${c.name} $setOff from ${i.origin} at $start on $day, heading for ${i.destination}$by.",
+            "On $day, ${c.name} $setOff from ${i.origin} at $start, bound for ${i.destination}$by.",
+            "${c.name} left ${i.origin} for ${i.destination}$by, setting off at $start on $day."
         ))
         sb.append(' ')
         if (c.completed) {
@@ -353,7 +359,7 @@ object Prose {
     private fun road(c: Character, d: Dice): String? {
         val tolls = c.story.tolls
         val longest = c.longestDrive
-        if (tolls == 0 && (longest == null || longest.seconds < 30 * 60)) return null
+        if (tolls == 0 && !c.mixed && (longest == null || longest.seconds < 30 * 60)) return null
         val sb = StringBuilder()
         if (tolls > 0 && c.modeClass == ModeClass.DRIVE) {
             val named = c.story.drives.flatMap { it.tollNames }.distinct()
@@ -366,7 +372,18 @@ object Prose {
             if (named.isNotEmpty()) sb.append(d.pick(", including ${JourneyStory.listJoin(named.take(3))}", ", among them ${JourneyStory.listJoin(named.take(3))}"))
             sb.append(". ")
         }
-        if (longest != null && longest.movingSeconds >= 30 * 60) {
+        if (c.mixed) {
+            // Told by its parts: the longest is the one worth naming.
+            JourneyStory.longestStage(c.story)?.takeIf { it.seconds >= 10 * 60 }?.let { st ->
+                val how = JourneyStory.vehicleWord(st.mode)
+                val dur = JourneyStory.duration(st.seconds)
+                sb.append(d.pick(
+                    "The longest part was ${how}, $dur.",
+                    "Most of the time went on ${how}: $dur.",
+                    "${how.replaceFirstChar { it.uppercase() }} was the longest part, at $dur."
+                ))
+            }
+        } else if (longest != null && longest.movingSeconds >= 30 * 60) {
             val a = longest.fromPlace?.let(JourneyStory::short); val b = longest.toPlace?.let(JourneyStory::short)
             val span = if (a != null && b != null && a != b) " from $a to $b" else ""
             val night = Daypart.of(longest.atMs, c.z).let { it == Daypart.NIGHT || it == Daypart.LATE_NIGHT || it == Daypart.SMALL_HOURS }

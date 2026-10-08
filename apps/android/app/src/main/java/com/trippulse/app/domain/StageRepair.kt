@@ -108,6 +108,14 @@ object StageRepair {
         return d
     }
 
+    /**
+     * A walk from a place to the same place ("Qualizeal Office → Qualizeal
+     * Office") is the last steps of arriving, not a way the journey was made.
+     */
+    fun goesNowhere(mode: String, fromName: String, toName: String): Boolean =
+        TransportCatalog.profile(mode).key == TransportCatalog.WALK.key &&
+            fromName.isNotBlank() && fromName != EN_ROUTE && fromName.trim().equals(toName.trim(), ignoreCase = true)
+
     /** What a switch point away from any saved place is called until it is named. */
     const val EN_ROUTE = "En route"
 }

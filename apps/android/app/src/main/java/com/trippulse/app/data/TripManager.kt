@@ -252,7 +252,7 @@ class TripManager(
      */
     suspend fun repairStages(tripId: String): Boolean {
         val rows = db.legDao().forTrip(tripId)
-        if (rows.size < 2) { runCatching { reconcileDistance(tripId) }; return false }
+        if (rows.size < 2) { runCatching { reconcileDistance(tripId) }; runCatching { relabelFares(tripId) }; return false }
         var changed = false
         lock.withLock {
             val now = db.legDao().forTrip(tripId)
@@ -285,7 +285,27 @@ class TripManager(
         // A metro ride is measured by its track: a journey counted from its
         // fixes alone is put right here (it only ever grows).
         runCatching { reconcileDistance(tripId) }
+        runCatching { relabelFares(tripId) }
         return changed
+    }
+
+    /**
+     * Each fare's label made to read as its stage does now: a fare written
+     * as "Metro · Tarnaka → En route" the moment the ride ended becomes
+     * "Metro · Habsiguda Metro → HITEC City Metro" once both ends are named.
+     */
+    private suspend fun relabelFares(tripId: String) {
+        val stages = db.legDao().forTrip(tripId).map { Expenses.FareStage(it.mode, it.fromName, it.toName, it.completedAtMs) }
+        if (stages.none { it.endedAtMs != null }) return
+        val opportunities = expenseStore.all(tripId)
+        var changed = false
+        val renamed = opportunities.map { o ->
+            Expenses.relabelled(o.label, o.category, o.atMs, stages)?.let { changed = true; o.copy(label = it) } ?: o
+        }
+        if (changed) expenseStore.save(tripId, renamed)
+        db.expenseDao().allForTrip(tripId).forEach { e ->
+            Expenses.relabelled(e.item, Expenses.Category.fromType(e.type), e.tMs, stages)?.let { db.expenseDao().updateItem(e.id, it) }
+        }
     }
 
     /**
@@ -383,6 +403,8 @@ class TripManager(
         private const val NEAR_PLACE_M = 500.0
         /** A saved place this close is named over a station: "Home" is right by the metro. */
         private const val SAVED_BEATS_STATION_M = 150.0
+        /** Moving about within this many arrival radii of the destination is still being there. */
+        private const val STILL_THERE_FACTOR = 1.5
         /** A fix rougher than this cannot say which station a train is at. */
         private const val METRO_FIX_ACCURACY_M = 150f
         /** A last fix older than this, when a ride ends, may be a station back. */
@@ -695,13 +717,16 @@ class TripManager(
         legs = db.legDao().forTrip(t.tripId)
 
         val nextIndex = insertAt
+        // A change made at the destination does not undo having arrived:
+        // the walk from the cab to the office door is not a new journey.
+        val arrived = atDestination(t, s0) && legs.none { it.legIndex > nextIndex }
         val updated = t.copy(
             activeLegIndex = nextIndex,
             transportMode = newMode,
-            arrivedAtMs = null
+            arrivedAtMs = if (arrived) t.arrivedAtMs else null
         )
         db.tripDao().update(updated); trip = updated
-        arrivalPromptShown = false
+        if (!arrived) arrivalPromptShown = false
 
         val profile = TransportCatalog.profile(newMode)
         val vehicle = TravelDetails.summary(newMode, details)
@@ -722,7 +747,7 @@ class TripManager(
             }, false
         )
 
-        var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = false, updatedAtMs = now,
+        var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = arrived && s0.arrivalPromptDue, updatedAtMs = now,
             distanceCoveredM = coveredNow, progressPct = progress(coveredNow, s0.distanceRemainingM))
         rideKind(newMode)?.let { kind ->
             TransitData.load(appContext).nearestStation(here, kind)?.let { metroAnchor = MetroAnchor(nextIndex, it, coveredNow, kind) }
@@ -762,6 +787,7 @@ class TripManager(
                 }
                 legs = db.legDao().forTrip(tripId)
             }
+            runCatching { relabelFares(tripId) }
         }
     }
 
@@ -786,6 +812,14 @@ class TripManager(
             TransitData.load(appContext).stationLabel(p, modes)?.let { return it }
         }
         return PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, NEAR_PLACE_M) ?: EN_ROUTE
+    }
+
+    /** At the journey's destination: arrived, or standing within its radius. */
+    private fun atDestination(t: ActiveTripEntity, s: TripStateEntity): Boolean {
+        if (t.arrivedAtMs != null || s.journey == JourneyStatus.ARRIVED.name) return true
+        val lat = s.lat ?: return false
+        val lng = s.lng ?: return false
+        return Geo.haversineM(GeoPoint(lat, lng), GeoPoint(t.destLat, t.destLng)) <= cfg.arrivalRadiusM
     }
 
     /** The network a mode rides on (the metro; a water metro or ferry), if any. */
@@ -848,6 +882,7 @@ class TripManager(
         rows.firstOrNull { it.legIndex == x.endedIndex && it.toName == x.label }?.let { db.legDao().upsert(it.copy(toName = label)) }
         rows.firstOrNull { it.legIndex == x.startedIndex && it.fromName == x.label }?.let { db.legDao().upsert(it.copy(fromName = label)) }
         legs = db.legDao().forTrip(x.tripId)
+        runCatching { relabelFares(x.tripId) }
         return maxOf(covered, x.anchor.coveredBeforeM + further)
     }
 
@@ -1691,8 +1726,10 @@ class TripManager(
         insertEvent(t.tripId, type, EventSource.DRIVER_MANUAL, now, s.lat, s.lng, payload, sensitive)
         // Out of a vehicle someone else drives means on foot until the next
         // one: the stage changes by itself, so nobody plans a commute ahead.
+        // At the destination there is no "until the next one": getting out
+        // there is arriving, and the journey is not reopened as a walk.
         if (type == EventTypes.DEBOARDED && !TransportCatalog.isPrivate(mode) &&
-            TransportCatalog.profile(mode).key != TransportCatalog.WALK.key) {
+            TransportCatalog.profile(mode).key != TransportCatalog.WALK.key && !atDestination(t, s)) {
             switchModeLocked(TransportCatalog.WALK.key, emptyMap(), false)
         }
         Unit
@@ -2107,6 +2144,14 @@ class TripManager(
         now: Long, profile: TransportProfile
     ): TripStateEntity {
         var s = s0
+        // Walking about at the destination (the office lobby, the car park,
+        // the gate) is not leaving it: an arrived journey reopens only when
+        // the traveller has actually gone from there.
+        if (s0.journey == JourneyStatus.ARRIVED.name && fix != null &&
+            (move is StopDetector.Movement.DrivingStarted || move is StopDetector.Movement.StopEnded) &&
+            Geo.haversineM(fix.point, GeoPoint(t.destLat, t.destLng)) <= cfg.arrivalRadiusM * STILL_THERE_FACTOR) {
+            return s
+        }
         when (move) {
             is StopDetector.Movement.DrivingStarted -> {
                 transition(s, JourneyInput.MOVING)?.let { s = s.copy(journey = it.name) }
