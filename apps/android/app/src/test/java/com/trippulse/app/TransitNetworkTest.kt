@@ -135,8 +135,9 @@ class TransitNetworkTest {
         R|34.73348|135.50022|Shin-Osaka|JR Central
         R|35.68300|139.76600|Tokyo|JR East
         R|35.46580|139.62270|Yokohama|JR East
-        Q|JR Central|Tokaido Shinkansen|blue|H|0 1:28800 2:486400
+        Q|JR Central|Tokaido Shinkansen|blue|H270|0 1:28800 2:486400
         Q|JR East|Tokaido Line|orange|L|3 4:28800
+        Q|JR Central|Tokaido Main Line|orange|L55|0 2:510000
         B|35.68900|139.70200|Busta Shinjuku
         B|51.49270|-0.14930|Victoria Coach Station
         T|35.68124|139.76712|Tokyo
@@ -148,16 +149,20 @@ class TransitNetworkTest {
         assertTrue(n.stations.all { it.kind == TransitNetwork.Kind.RAIL })
         val tokyo = n.nearestStation(GeoPoint(35.6815, 139.7670), TransitNetwork.Kind.RAIL)!!
         val osaka = n.nearestStation(GeoPoint(34.7336, 135.5003), TransitNetwork.Kind.RAIL)!!
-        val ride = n.ride(tokyo, osaka)!!
-        assertEquals(515_200.0, ride.metres, 1.0)
-        // About two and a half hours: the road would say six.
-        assertEquals(200.0, ride.kmh, 5.0)
+        // Counted, never short: the shortest track between the two (the old main line).
+        assertEquals(510_000.0, n.ride(tokyo, osaka)!!.metres, 1.0)
+        // Timed as a traveller would go: the Shinkansen, about two and a
+        // half hours (the road would say six, the main line nine).
+        val fastest = n.fastest(tokyo, osaka)!!
+        assertEquals(515_200.0, fastest.metres, 1.0)
+        assertTrue("${fastest.seconds / 3600} h", fastest.seconds / 3600 in 1.8..2.6)
         val local = n.ride(n.nearestStation(GeoPoint(35.6830, 139.7660), TransitNetwork.Kind.RAIL)!!,
             n.nearestStation(GeoPoint(35.4658, 139.6227), TransitNetwork.Kind.RAIL)!!)!!
-        assertTrue("local ${local.kmh} km/h", local.kmh in 35.0..41.0)
+        assertTrue("local ${local.kmh} km/h", local.kmh in 45.0..60.0)
         // The ride still ahead, from a train near Shin-Yokohama to Osaka.
         val ahead = n.ahead(GeoPoint(35.52, 139.60), GeoPoint(34.7400, 135.5100), TransitNetwork.Kind.RAIL)!!
         assertEquals(486_400.0, ahead.metres, 1.0)
+        assertTrue(ahead.kmh > 200)
         assertEquals("Shin-Osaka station", n.stationLabel(GeoPoint(34.7340, 135.5000), listOf("TRAIN")))
         assertEquals(TransitNetwork.Kind.RAIL, TransitNetwork.kindOf("TRAIN"))
         assertEquals(TransitNetwork.Kind.WATER, TransitNetwork.kindOf("SHIP"))

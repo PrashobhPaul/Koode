@@ -26,7 +26,9 @@ class TransitNetwork(
     private val edges: List<List<Edge>>,
     val rail: List<Station> = emptyList(),
     /** Bus and coach stations, for naming where a bus stage began or ended. */
-    val bus: List<Station> = emptyList()
+    val bus: List<Station> = emptyList(),
+    /** Between two stations, the quickest way (a Shinkansen beside a local line); [edges] keep the shortest. */
+    private val fastEdges: List<List<Edge>> = edges
 ) {
 
     /**
@@ -41,10 +43,16 @@ class TransitNetwork(
 
     /**
      * Travelling from one station to the next, [metres] along the track, on
-     * a line of [speed] class (see [SPEED_KMH]): high-speed, express or local
-     * rail, metro, water, or the walk between two stations of an interchange.
+     * a line of [speed] class: high-speed ('H'), express ('X') or local ('L')
+     * rail, metro ('M'), water ('W'), or the walk between two stations of an
+     * interchange ('I'), at [cruiseKmh] between stops (0: the class's usual,
+     * [CRUISE_KMH]).
      */
-    data class Edge(val to: Int, val metres: Double, val speed: Char = 'M')
+    data class Edge(val to: Int, val metres: Double, val speed: Char = 'M', val cruiseKmh: Double = 0.0) {
+        /** The time it takes: the run at cruising speed, and the stop (or the change of trains) at its end. */
+        val seconds: Double get() =
+            metres / (cruiseKmh.takeIf { it > 0 } ?: CRUISE_KMH[speed] ?: 35.0) * 3.6 + (DWELL_S[speed] ?: 30.0)
+    }
 
     /**
      * A ride between two stations: the track length, the stations passed, in
@@ -82,7 +90,16 @@ class TransitNetwork(
      * changing lines where two stations are one (same place, or a short walk
      * apart). Null when they are not connected.
      */
-    fun ride(from: Int, to: Int): Ride? {
+    fun ride(from: Int, to: Int): Ride? = search(from, to, edges) { it.metres }
+
+    /**
+     * The quickest ride between stations [from] and [to]: what a timetable
+     * would offer (the Shinkansen, not the local line beside it), for the
+     * time a ride still has to go.
+     */
+    fun fastest(from: Int, to: Int): Ride? = search(from, to, fastEdges) { it.seconds }
+
+    private fun search(from: Int, to: Int, edges: List<List<Edge>>, cost: (Edge) -> Double): Ride? {
         if (from !in stations.indices || to !in stations.indices) return null
         if (from == to) return Ride(0.0, listOf(from))
         val dist = DoubleArray(stations.size) { Double.MAX_VALUE }
@@ -96,20 +113,21 @@ class TransitNetwork(
             if (d > dist[at]) continue
             if (at == to) break
             for (e in edges[at]) {
-                val nd = d + e.metres
+                val nd = d + cost(e)
                 if (nd < dist[e.to]) { dist[e.to] = nd; prev[e.to] = at; via[e.to] = e; queue += nd to e.to }
             }
         }
         if (dist[to] == Double.MAX_VALUE) return null
         val path = ArrayList<Int>()
+        var metres = 0.0
         var seconds = 0.0
         var at = to
         while (at != -1) {
             path += at
-            via[at]?.let { seconds += it.metres / (SPEED_KMH[it.speed] ?: SPEED_KMH.getValue('M')) * 3.6 }
+            via[at]?.let { metres += it.metres; seconds += it.seconds }
             at = prev[at]
         }
-        return Ride(dist[to], path.reversed(), seconds)
+        return Ride(metres, path.reversed(), seconds)
     }
 
     /**
@@ -133,7 +151,7 @@ class TransitNetwork(
     fun ahead(here: GeoPoint, dest: GeoPoint, kind: Kind): Ride? {
         val s = nearestStation(here, kind, AHEAD_SEARCH_M) ?: return null
         val e = nearestStation(dest, kind, DEST_STATION_M) ?: return null
-        return ride(s, e)
+        return fastest(s, e)
     }
 
     /**
@@ -208,12 +226,15 @@ class TransitNetwork(
         const val DEST_STATION_M = 3_000.0
 
         /**
-         * Usual speeds, stops included, km/h: high-speed rail (Tokyo to
-         * Shin-Osaka, 515 km in about 2h30; Paris to Lyon, 430 km in 2h),
-         * long-distance and limited express, local and commuter rail, metro,
-         * water, and walking between the stations of an interchange.
+         * Speeds between stops, km/h, when a line does not give its own:
+         * high-speed, express and local rail, metro, water, and walking
+         * between the stations of an interchange. A line's own (the file's
+         * "H270") is its country's: a Shinkansen holds 270, an Acela 120.
          */
-        val SPEED_KMH = mapOf('H' to 200.0, 'X' to 90.0, 'L' to 40.0, 'M' to 32.0, 'W' to 25.0, 'I' to 4.5)
+        val CRUISE_KMH = mapOf('H' to 220.0, 'X' to 110.0, 'L' to 55.0, 'M' to 35.0, 'W' to 25.0, 'I' to 4.5)
+
+        /** Seconds at each stop; for an interchange, the change of trains. */
+        val DWELL_S = mapOf('H' to 90.0, 'X' to 60.0, 'L' to 40.0, 'M' to 30.0, 'W' to 120.0, 'I' to 180.0)
 
         fun radiusOf(kind: Kind): Double = if (kind == Kind.RAIL) RAIL_RADIUS_M else STATION_RADIUS_M
 
@@ -278,7 +299,8 @@ class TransitNetwork(
             val stations = ArrayList<Station>()
             // Each line: its stations with the metres from the one before, and
             // its speed class (null: the metro's or the water's, by its stations).
-            val lines = ArrayList<Pair<List<Pair<Int, Double?>>, Char?>>()
+            // (and, for a railway line, the speed its trains keep between stops)
+            val lines = ArrayList<Triple<List<Pair<Int, Double?>>, Char?, Double>>()
             val rail = ArrayList<Station>()
             val bus = ArrayList<Station>()
             fun cells(field: String, local: Map<Int, Int>) = field.trim().split(' ').filter { it.isNotBlank() }.map { cell ->
@@ -310,7 +332,7 @@ class TransitNetwork(
                             local[n] = stations.size
                             stations += Station(lat, lng, f[3].trim(), f.getOrNull(4)?.trim().orEmpty(), kind)
                         }
-                        "L" -> if (f.size >= 5) lines += cells(f[4], local) to null
+                        "L" -> if (f.size >= 5) lines += Triple(cells(f[4], local), null, 0.0)
                         "R" -> {
                             val n = railCount++
                             val at = place(f) ?: return@forEach
@@ -318,7 +340,10 @@ class TransitNetwork(
                             localRail[n] = stations.size
                             stations += Station(at.first, at.second, f[3].trim(), f.getOrNull(4)?.trim().orEmpty(), Kind.RAIL)
                         }
-                        "Q" -> if (f.size >= 6) lines += cells(f[5], localRail) to (f[4].trim().firstOrNull()?.takeIf { it in "HXL" } ?: 'L')
+                        "Q" -> if (f.size >= 6) {
+                            val klass = f[4].trim()
+                            lines += Triple(cells(f[5], localRail), klass.firstOrNull()?.takeIf { it in "HXL" } ?: 'L', klass.drop(1).toDoubleOrNull() ?: 0.0)
+                        }
                         "T" -> if (f.size >= 4) {
                             val at = place(f)
                             if (at != null && f[3].isNotBlank()) rail += Station(at.first, at.second, f[3].trim())
@@ -331,14 +356,15 @@ class TransitNetwork(
                 }
             }
             val adj = List(stations.size) { HashMap<Int, Edge>() }
-            fun link(a: Int, b: Int, m: Double, speed: Char) {
+            val fast = List(stations.size) { HashMap<Int, Edge>() }
+            fun link(a: Int, b: Int, m: Double, speed: Char, cruise: Double = 0.0) {
                 if (a == b || a !in stations.indices || b !in stations.indices) return
-                val old = adj[a][b]
-                // The shortest track between two stations; of equal ones, the faster line.
-                if (old == null || m < old.metres - 1 || (m <= old.metres + 1 && (SPEED_KMH[speed] ?: 0.0) > (SPEED_KMH[old.speed] ?: 0.0)))
-                    adj[a][b] = Edge(b, minOf(m, old?.metres ?: m), speed)
+                val e = Edge(b, m, speed, cruise)
+                // The shortest track between two stations, and the quickest line along it.
+                if (adj[a][b].let { it == null || m < it.metres }) adj[a][b] = e
+                if (fast[a][b].let { it == null || e.seconds < it.seconds }) fast[a][b] = e
             }
-            for ((cells, klass) in lines) {
+            for ((cells, klass, cruise) in lines) {
                 var last = -1
                 for ((s, m) in cells) {
                     if (s < 0) { last = -1; continue }
@@ -347,10 +373,11 @@ class TransitNetwork(
                         // stations: a ride cannot be shorter than that.
                         val hop = maxOf(m, Geo.haversineM(stations[last].point, stations[s].point))
                         val speed = klass ?: if (stations[s].kind == Kind.WATER) 'W' else 'M'
-                        link(last, s, hop, speed)
+                        val back = fast[s][last] == null
+                        link(last, s, hop, speed, cruise)
                         // The other direction is usually its own line; if it
                         // is missing, the same track serves both ways.
-                        if (adj[s][last] == null) link(s, last, hop, speed)
+                        if (back) link(s, last, hop, speed, cruise)
                     }
                     last = s
                 }
@@ -373,7 +400,7 @@ class TransitNetwork(
                     }
                 }
             }
-            return TransitNetwork(stations, adj.map { it.values.toList() }, rail, bus)
+            return TransitNetwork(stations, adj.map { it.values.toList() }, rail, bus, fast.map { it.values.toList() })
         }
     }
 }

@@ -170,10 +170,26 @@ class BuildTest(unittest.TestCase):
         stations, lines = b.build_network(routes, stops, station_kind="R")
         self.assertEqual(sorted(s[2] for s in stations), ["Nagoya", "Tokyo"])
         self.assertTrue(all(s[4] == "R" for s in stations))
-        self.assertTrue(all(l.startswith("Q|JR Central|") and "|H|" in l for l in lines))
+        # High-speed, at a Shinkansen's pace in Japan; the default elsewhere.
+        self.assertTrue(all(l.startswith("Q|JR Central|") and "|H220|" in l for l in lines))
+        self.assertTrue(all("|H270|" in l for l in b.build_network(routes, stops, station_kind="R", cc="JP")[1]))
         metres = int(lines[0].split()[-1].split(":")[1])
         straight = b.metres(35.681, 139.767, 35.171, 136.882)
         self.assertGreater(metres, straight)
+
+    def test_a_train_stop_at_a_platform_is_named_after_its_station(self):
+        answer = self.train_answer()
+        for e in answer["elements"]:
+            if e.get("id") == 11 and e["type"] == "node":
+                e["tags"] = {"name": "Tokyo - Track 14"}
+        routes, stops = b.inflate(answer)
+        rail = {"elements": [{"type": "node", "id": 900, "lat": 35.6812, "lon": 139.7671, "tags": {"name": "Tokyo"}}]}
+        stations, _ = b.build_network(routes, stops, station_kind="R", rail=rail)
+        self.assertIn("Tokyo", [s[2] for s in stations])
+        self.assertEqual(b.PLATFORM.sub("", "Paris Gare du Nord - Voie 10"), "Paris Gare du Nord")
+        self.assertEqual(b.PLATFORM.sub("", "München Hbf Gleis 27-36"), "München Hbf")
+        self.assertEqual(b.PLATFORM.sub("", "Berlin Hauptbahnhof (Tief)"), "Berlin Hauptbahnhof")
+        self.assertEqual(b.PLATFORM.sub("", "Via Roma"), "Via Roma")
 
     def test_a_ferry_mapped_as_ways_runs_terminal_to_terminal_across_a_border(self):
         answer = {"elements": [

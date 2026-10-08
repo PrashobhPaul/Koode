@@ -22,7 +22,9 @@ downloaded when the phone is there) and by the web viewer:
                                 rows, with its speed class: H high-speed
                                 (Shinkansen, TGV, ICE, AVE, Eurostar,
                                 Acela), X long-distance and limited express,
-                                L everything else
+                                L everything else; followed by the speed,
+                                km/h, its trains keep between stops in that
+                                country ("H270" in Japan, "H190" in Germany)
   B|lat|lng|name                a bus or coach station, for naming where a
                                 bus stage began or ended
 
@@ -223,6 +225,22 @@ def clean(s):
     return re.sub(r"[|\r\n]+", " ", s).strip()
 
 
+# How fast each class of train runs between stops, km/h, where it differs
+# from the usual: a Shinkansen or a TGV holds 270 for hours, an ICE shares
+# much of its way with slower trains, the Acela most of its.
+CRUISE = {"H": 220, "X": 110, "L": 55}
+CRUISE_BY_COUNTRY = {
+    "JP": {"H": 270, "X": 100}, "FR": {"H": 270, "X": 130}, "ES": {"H": 260}, "IT": {"H": 250},
+    "CN": {"H": 280}, "KR": {"H": 250}, "TW": {"H": 260}, "DE": {"H": 190, "X": 130}, "AT": {"H": 170},
+    "CH": {"H": 150, "X": 100}, "BE": {"H": 230}, "NL": {"H": 200}, "GB": {"H": 200, "X": 140},
+    "SE": {"H": 160}, "US": {"H": 120, "X": 90, "L": 60}, "CA": {"X": 90}, "IN": {"H": 130, "X": 75, "L": 45},
+}
+
+
+def cruise(cc, klass):
+    return CRUISE_BY_COUNTRY.get(cc, {}).get(klass, CRUISE[klass])
+
+
 def rail_class(t):
     """H, X or L: see the Q rows."""
     service = t.get("service", "")
@@ -321,7 +339,12 @@ def ferry_crossings(answer):
     return routes, terminals
 
 
-def build_network(routes, stops, station_kind="M", rail=None):
+# Platforms and tracks are where a train stops, not what the station is called.
+PLATFORM = re.compile(r"\s*[-–,]?\s*\b(voie|gleis|quai|platform|track|bahnsteig|binario|spoor|hall)\s*\d+[\w\s\-–]*$"
+                      r"|\s*\((tief|oben|unten|lower level|upper level|rer)\)\s*$", re.I)
+
+
+def build_network(routes, stops, station_kind="M", rail=None, cc=""):
     """
     Stations (lat, lon, name, network, kind) and lines ("L|…" rows; "Q|…"
     rows for railway lines, [station_kind] R, whose named stations [rail]
@@ -345,11 +368,23 @@ def build_network(routes, stops, station_kind="M", rail=None):
         if c and n:
             features.append((c[0], c[1], n, station_kind))
 
+    # Stations by 0.01-degree square, so each stop looks only at its neighbours.
+    grid = {}
+    for f in features:
+        grid.setdefault((int(f[0] * 100), int(f[1] * 100)), []).append(f)
+
+    def near_features(lat, lon, kind):
+        y, x = int(lat * 100), int(lon * 100)
+        return (f for dy in (-1, 0, 1) for dx in (-1, 0, 1) for f in grid.get((y + dy, x + dx), ()) if f[3] == kind)
+
     def stop_name(ref, lat, lon, kind):
         n = name_of(tags.get(ref, {}))
+        best = min(((metres(lat, lon, f[0], f[1]), f[2]) for f in near_features(lat, lon, kind)), default=None)
+        # A train stops at a platform ("Gleis 27-36"); riders name the station.
+        if kind == "R" and best and best[0] <= 400:
+            return PLATFORM.sub("", best[1]).strip() or best[1]
         if n:
-            return n
-        best = min(((metres(lat, lon, f[0], f[1]), f[2]) for f in features if f[3] == kind), default=None)
+            return PLATFORM.sub("", n).strip() or n
         return best[1] if best and best[0] <= 350 else ""
 
     lines = []  # (network, name, colour, kind, [(stop_index, metres_from_previous)])
@@ -391,7 +426,8 @@ def build_network(routes, stops, station_kind="M", rail=None):
             prev = here
         if len(seq) >= 2:
             line = re.sub(r"\s*[(:].*$", "", title).strip() or t.get("ref", "") or network
-            lines.append((network, clean(line), clean(t.get("colour", "")), kind, seq, rail_class(t) if kind == "R" else ""))
+            klass = rail_class(t) if kind == "R" else ""
+            lines.append((network, clean(line), clean(t.get("colour", "")), kind, seq, f"{klass}{cruise(cc, klass)}" if klass else ""))
 
     # Stops become stations: the stop positions of both directions, and of
     # every line through an interchange, share the station's name. A metro
@@ -602,7 +638,7 @@ def main():
         rail_net = (carry_rows(previous, "R"), carry_rows(previous, "Q"))
     else:
         train_routes, train_stops = inflate(trains)
-        rail_net = build_network(train_routes, train_stops, station_kind="R", rail=rail)
+        rail_net = build_network(train_routes, train_stops, station_kind="R", rail=rail, cc=a.country)
         rail_net = ([(la, lo, n, net) for la, lo, n, net, _ in rail_net[0]], rail_net[1])
     if buses is None:
         print(f"{a.country}: the bus station query failed; keeping the ones already known", file=sys.stderr)
