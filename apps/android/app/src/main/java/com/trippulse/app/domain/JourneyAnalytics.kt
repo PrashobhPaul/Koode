@@ -64,6 +64,8 @@ object JourneyAnalytics {
         val endedAtMs: Long,
         val expenses: List<ExpenseInput> = emptyList(),
         val legs: List<LegInput> = emptyList(),
+        /** The journey has ended at [endedAtMs]; false while it is under way (then [endedAtMs] is now). */
+        val completed: Boolean = true,
         val transportMode: String = "CAR",
         /** Top speed seen during the journey, km/h, when the log kept one. */
         val topSpeedKmh: Double? = null,
@@ -253,9 +255,10 @@ object JourneyAnalytics {
         val litres = i.expenses.filter { it.type == "FUEL" && it.unit == "L" }.sumOf { it.quantity ?: 0.0 }
         val kwh = i.expenses.filter { it.type == "FUEL" && it.unit == "kWh" }.sumOf { it.quantity ?: 0.0 }
 
-        // A change tapped twice is one stage, not two.
+        // No stage ran past the journey's end; a change tapped twice is one stage, not two.
+        val within = StageRepair.withinJourney(i.legs, i.endedAtMs, { it.startedAtMs }, { it.completedAtMs }, i.completed) { l, e -> l.copy(completedAtMs = e) }
         val legReports = StageRepair.told(
-            StageRepair.folded(i.legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
+            StageRepair.folded(within, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
                 a.copy(toName = b.toName, completedAtMs = b.completedAtMs, distanceM = listOfNotNull(a.distanceM, b.distanceM).takeIf { it.isNotEmpty() }?.sum())
             }, { it.mode }, { it.distanceM }, { it.fromName }, { it.toName }, { leg, from -> leg.copy(fromName = from) }
         ).mapIndexed { n, leg ->

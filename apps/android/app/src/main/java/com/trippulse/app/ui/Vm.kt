@@ -1063,6 +1063,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 distanceCoveredM = com.trippulse.app.data.coveredDistanceM(st?.distanceCoveredM ?: 0.0, samples, legs = legEntities),
                 startedAtMs = t.startedAtMs ?: t.createdAtMs,
                 endedAtMs = endAtMs ?: System.currentTimeMillis(),
+                completed = endAtMs != null,
                 expenses = expense,
                 legs = legRows,
                 transportMode = t.transportMode,

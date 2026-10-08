@@ -280,6 +280,16 @@ class TripManager(
             }
         }
         if (nameMetroStations(tripId)) changed = true
+        // A journey that has ended ended its stages too: "got off" at the
+        // destination is often tapped a while after the arrival the journey
+        // closed at, and the stage then reads as longer than the journey.
+        db.tripDao().byId(tripId)?.completedAtMs?.let { end ->
+            lock.withLock {
+                db.legDao().forTrip(tripId)
+                    .filter { (it.startedAtMs ?: Long.MAX_VALUE) < end && (it.completedAtMs == null || it.completedAtMs > end) }
+                    .forEach { db.legDao().upsert(it.copy(completedAtMs = end)); changed = true }
+            }
+        }
         if (changed) lock.withLock {
             val t = trip
             if (t?.tripId == tripId) {
