@@ -120,6 +120,27 @@ class MultiModeJourneyTest {
         assertNull(Expenses.relabelled("Metro · A → B", cat, min(30), stages))
     }
 
+    @Test fun the_stages_read_as_the_8_october_journey_was_made() {
+        // As recorded: the metro to Durgam Cheruvu, 250 m on foot to the bike
+        // taxi, the bike taxi to the office, and "got off" there.
+        data class S(val mode: String, val from: String, val to: String, val m: Double?)
+        val recorded = listOf(
+            S("BIKE_TAXI", "Raheja Vistas, Nacharam", "Habsiguda Metro", 2_100.0),
+            S("METRO", "Habsiguda Metro", "Durgam Cheruvu Metro", 17_800.0),
+            S("WALK", "Durgam Cheruvu Metro", "Madhapur, Hyderabad", 250.0),
+            S("BIKE_TAXI", "Madhapur, Hyderabad", "Qualizeal Office", 1_400.0),
+            S("WALK", "Qualizeal Office", "Qualizeal Office", 0.0)
+        )
+        val told = StageRepair.told(recorded, { it.mode }, { it.m }, { it.from }, { it.to }) { st, from -> st.copy(from = from) }
+        assertEquals(
+            listOf("Raheja Vistas, Nacharam → Habsiguda Metro", "Habsiguda Metro → Durgam Cheruvu Metro", "Durgam Cheruvu Metro → Qualizeal Office"),
+            told.map { "${it.from} → ${it.to}" }
+        )
+        // A journey only walked is still told.
+        val walked = listOf(S("WALK", "Home", "Home", 40.0))
+        assertEquals(walked, StageRepair.told(walked, { it.mode }, { it.m }, { it.from }, { it.to }) { st, from -> st.copy(from = from) })
+    }
+
     @Test fun a_walk_from_the_office_to_the_office_is_not_a_stage() {
         assertTrue(StageRepair.goesNowhere("WALK", "Qualizeal Office", "Qualizeal Office"))
         assertFalse(StageRepair.goesNowhere("BIKE_TAXI", "Qualizeal Office", "Qualizeal Office"))

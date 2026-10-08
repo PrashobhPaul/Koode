@@ -218,6 +218,10 @@ class BuildTest(unittest.TestCase):
         with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8") as f:
             f.write(text)
         self.assertEqual(b.count_rows(f.name), {"M": 1, "W": 0, "R": 1, "T": 1, "B": 1})
+        # A station that came back without its name does not count.
+        with tempfile.NamedTemporaryFile("w", suffix=".txt", delete=False, encoding="utf-8") as g:
+            g.write("S|1|2||Hyderabad Metro|M\nS|1|2|Habsiguda|Hyderabad Metro|M\n")
+        self.assertEqual(b.count_rows(g.name)["M"], 1)
         self.assertEqual(b.carry_rows(text, "R", "Q"), ["R|35.68000|139.77000|Tokyo|JR", "Q|JR|Yamanote|green|L|0 0:0"])
         # Apps that know only S, L and T rows skip the others wherever they are.
         kinds = [l[0] for l in text.splitlines() if not l.startswith("#")]

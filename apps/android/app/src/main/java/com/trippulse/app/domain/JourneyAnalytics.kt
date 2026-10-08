@@ -254,10 +254,10 @@ object JourneyAnalytics {
         val kwh = i.expenses.filter { it.type == "FUEL" && it.unit == "kWh" }.sumOf { it.quantity ?: 0.0 }
 
         // A change tapped twice is one stage, not two.
-        val legReports = StageRepair.ridden(
+        val legReports = StageRepair.told(
             StageRepair.folded(i.legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
                 a.copy(toName = b.toName, completedAtMs = b.completedAtMs, distanceM = listOfNotNull(a.distanceM, b.distanceM).takeIf { it.isNotEmpty() }?.sum())
-            }, { it.mode }, { it.distanceM }
+            }, { it.mode }, { it.distanceM }, { it.fromName }, { it.toName }, { leg, from -> leg.copy(fromName = from) }
         ).mapIndexed { n, leg ->
             LegReport(
                 index = n, mode = leg.mode,

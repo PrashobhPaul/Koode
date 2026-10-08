@@ -516,13 +516,13 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
             // them, not a stage.
             val stages = remember(legs, breadcrumb.size) {
                 val repair = com.trippulse.app.domain.StageRepair
-                repair.ridden(
+                repair.told(
                     repair.folded(legs, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
                         b.copy(fromName = a.fromName, fromLat = a.fromLat, fromLng = a.fromLng, startedAtMs = a.startedAtMs)
                     },
-                    { it.mode }
-                ) { leg -> com.trippulse.app.data.legDistanceM(breadcrumb, leg) }
-                    .let { kept -> kept.filterNot { repair.goesNowhere(it.mode, it.fromName, it.toName) }.ifEmpty { kept } }
+                    { it.mode }, { leg -> com.trippulse.app.data.legDistanceM(breadcrumb, leg) },
+                    { it.fromName }, { it.toName }, { leg, from -> leg.copy(fromName = from) }
+                )
             }
             if (stages.size > 1) {
                 KoodeCard(title = stringResource(R.string.t_stages_c1d33)) {
