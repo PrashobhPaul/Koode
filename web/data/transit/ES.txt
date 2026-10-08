@@ -1,0 +1,2597 @@
+# Transit for Koode, ES. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|36.42538|-6.14449|Alameda Solano|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.45625|-6.21599|Ardila|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.52778|-6.28688|Cádiz|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.46048|-6.20103|Compañía de María|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.49432|-6.26809|Cortadura|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.50294|-6.27206|Estadio|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.41124|-6.13908|La Hoya|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.42861|-6.14334|Marquesado|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.42054|-6.14472|Nuestra Señora de los Remedios|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.40870|-6.13430|Pelagatos|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.44051|-6.14451|Pinar de los Franceses|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.46625|-6.19554|Plaza de la Iglesia|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.45817|-6.20352|Plaza del Carmen|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.46393|-6.19839|Plaza del Rey|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.41439|-6.14317|Reyes Católicos|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.45753|-6.22469|Río Arillo|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.52141|-6.28063|San Severiano|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.45594|-6.20962|Santo Entierro|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.51354|-6.27698|Segunda Aguada|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.46653|-6.17568|Tres Caminos|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.46774|-6.19108|Venta de Vargas|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|M
+S|36.71880|-4.49442|Andalucía Tech|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71760|-4.42351|Atarazanas|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71169|-4.44611|Barbarela|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71862|-4.44910|Carranque|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71802|-4.46338|Ciudad de la Justicia|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71655|-4.47858|Clínico|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71733|-4.48401|El Cónsul|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71280|-4.43243|El Perchel|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.69953|-4.44609|El Torcal|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71599|-4.42970|Guadalmedina|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.70789|-4.43549|La Isla|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.69541|-4.45131|La Luz|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71070|-4.44011|La Unión|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.68456|-4.45831|Palacio de los Deportes|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71799|-4.48870|Paraninfo|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71935|-4.45303|Portada Alta|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.70407|-4.44031|Princesa - Huelin|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.69180|-4.45592|Puerta Blanca|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|36.71704|-4.47220|Universidad|Consorcio de Transporte Metropolitano del Área de Málaga|M
+S|43.26136|-2.92744|Abando|Metro Bilbao|M
+S|43.31432|-3.01359|Abatxolo|Metro Bilbao|M
+S|43.34406|-3.00269|Aiboa|Metro Bilbao|M
+S|43.35033|-3.00929|Algorta|Metro Bilbao|M
+S|43.28970|-2.98689|Ansio|Metro Bilbao|M
+S|43.32600|-3.00964|Areeta|Metro Bilbao|M
+S|43.23801|-2.88203|Ariz|Metro Bilbao|M
+S|43.31462|-2.98680|Astrabudua|Metro Bilbao|M
+S|43.29881|-2.99263|Bagatza|Metro Bilbao|M
+S|43.29571|-2.98944|Barakaldo|Metro Bilbao|M
+S|43.25115|-2.91074|Basarrate|Metro Bilbao|M
+S|43.23623|-2.89348|Basauri|Metro Bilbao|M
+S|43.36697|-2.99952|Berango|Metro Bilbao|M
+S|43.35644|-3.01127|Bidezabal|Metro Bilbao|M
+S|43.24695|-2.90564|Bolueta|Metro Bilbao|M
+S|43.27155|-2.94960|Deustu|Metro Bilbao|M
+S|43.26258|-2.93304|Eliptikoa|Metro Bilbao|M
+S|43.30388|-2.97446|Erandio|Metro Bilbao|M
+S|43.24387|-2.89774|Etxebarri|Metro Bilbao|M
+S|43.33303|-3.00738|Gobela|Metro Bilbao|M
+S|43.28304|-2.98248|Gurutzeta / Cruces|Metro Bilbao|M
+S|43.36328|-3.00698|Ibarbengoa|Metro Bilbao|M
+S|43.26129|-2.94186|Indautxu|Metro Bilbao|M
+S|43.32236|-3.03782|Kabiezes|Metro Bilbao|M
+S|43.25114|-2.88973|Kukullaga|Metro Bilbao|M
+S|43.32136|-3.00110|Lamiako|Metro Bilbao|M
+S|43.37567|-2.99150|Larrabasterra|Metro Bilbao|M
+S|43.31790|-2.99171|Leioa|Metro Bilbao|M
+S|43.29101|-2.96982|Lutxana|Metro Bilbao|M
+S|43.26903|-2.92546|Matiko|Metro Bilbao|M
+S|43.34023|-3.00555|Neguri|Metro Bilbao|M
+S|43.25869|-2.89869|Otxarkoaga|Metro Bilbao|M
+S|43.32197|-3.02537|Peñota|Metro Bilbao|M
+S|43.40122|-2.94635|Plentzia|Metro Bilbao|M
+S|43.31767|-3.02074|Portugalete|Metro Bilbao|M
+S|43.28078|-2.96247|San Ignazio|Metro Bilbao|M
+S|43.26255|-2.94760|San Mamés|Metro Bilbao|M
+S|43.32885|-3.03429|Santurtzi|Metro Bilbao|M
+S|43.25430|-2.91329|Santutxu|Metro Bilbao|M
+S|43.27478|-2.95849|Sarriko|Metro Bilbao|M
+S|43.30917|-3.00569|Sestao|Metro Bilbao|M
+S|43.38022|-2.97897|Sopela|Metro Bilbao|M
+S|43.25916|-2.90643|Txurdinaga|Metro Bilbao|M
+S|43.30573|-2.99261|Urbinaga|Metro Bilbao|M
+S|43.37900|-2.95814|Urduliz|Metro Bilbao|M
+S|43.26684|-2.91995|Uribarri|Metro Bilbao|M
+S|43.26017|-2.92182|Zazpikaleak / Casco Viejo|Metro Bilbao|M
+S|43.26373|-2.91372|Zurbaranbarri|Metro Bilbao|M
+S|40.48536|-3.65373|Antonio Saura|Metro Ligero de Madrid|M
+S|40.44834|-3.78631|Aravaca|Metro Ligero de Madrid|M
+S|40.43909|-3.79304|Avenida de Europa|Metro Ligero de Madrid|M
+S|40.44482|-3.79117|Berna|Metro Ligero de Madrid|M
+S|40.49367|-3.65584|Blasco Ibáñez|Metro Ligero de Madrid|M
+S|40.43059|-3.80753|Bélgica|Metro Ligero de Madrid|M
+S|40.40717|-3.88008|Boadilla Centro|Metro Ligero de Madrid|M
+S|40.43344|-3.79514|Campus de Somosaguas|Metro Ligero de Madrid|M
+S|40.39529|-3.86433|Cantabria|Metro Ligero de Madrid|M
+S|40.39709|-3.78399|Ciudad de la Imagen|Metro Ligero de Madrid|M
+S|40.39454|-3.79568|Ciudad del Cine|Metro Ligero de Madrid|M
+S|40.39688|-3.80385|Cocheras|Metro Ligero de Madrid|M
+S|40.40722|-3.78450|Colonia de los Ángeles|Metro Ligero de Madrid|M
+S|40.39686|-3.77480|Colonia Jardín|Metro Ligero de Madrid|M
+S|40.43254|-3.80161|Dos Castillas|Metro Ligero de Madrid|M
+S|40.40197|-3.87938|Ferial de Boadilla|Metro Ligero de Madrid|M
+S|40.48468|-3.66306|Fuente de la Mora|Metro Ligero de Madrid|M
+S|40.40594|-3.89741|Infante Don Luis|Metro Ligero de Madrid|M
+S|40.39526|-3.78992|José Isbert|Metro Ligero de Madrid|M
+S|40.48917|-3.65138|Álvarez de Villaamil|Metro Ligero de Madrid|M
+S|40.49760|-3.65844|María Tudor|Metro Ligero de Madrid|M
+S|40.39794|-3.83579|Montepríncipe|Metro Ligero de Madrid|M
+S|40.40564|-3.88569|Nuevo Mundo|Metro Ligero de Madrid|M
+S|40.50546|-3.66510|Palas de Rey|Metro Ligero de Madrid|M
+S|40.42307|-3.80459|Pozuelo Oeste|Metro Ligero de Madrid|M
+S|40.40228|-3.78130|Prado de la Vega|Metro Ligero de Madrid|M
+S|40.39502|-3.84769|Prado del Espino|Metro Ligero de Madrid|M
+S|40.41043|-3.78755|Prado del Rey|Metro Ligero de Madrid|M
+S|40.40785|-3.90401|Puerta de Boadilla|Metro Ligero de Madrid|M
+S|40.39872|-3.81674|Retamares|Metro Ligero de Madrid|M
+S|40.40513|-3.89264|Siglo XXI|Metro Ligero de Madrid|M
+S|40.41929|-3.79875|Somosaguas Centro|Metro Ligero de Madrid|M
+S|40.41574|-3.79259|Somosaguas Sur|Metro Ligero de Madrid|M
+S|40.39420|-3.83807|Ventorro del Cano|Metro Ligero de Madrid|M
+S|40.48724|-3.66122|Virgen del Cortijo|Metro Ligero de Madrid|M
+S|41.28826|2.07104|Aeroport T1|Metro de Barcelona|M
+S|41.30383|2.07312|Aeroport T2|Metro de Barcelona|M
+S|41.41210|2.16551|Alfons X|Metro de Barcelona|M
+S|41.35304|2.08451|Almeda|Metro de Barcelona|M
+S|41.39211|2.18091|Arc de Triomf|Metro de Barcelona|M
+S|41.43372|2.21757|Artigues   Sant Adrià|Metro de Barcelona|M
+S|41.35793|2.10291|Avinguda Carrilet|Metro de Barcelona|M
+S|41.40966|2.13716|Avinguda Tibidabo|Metro de Barcelona|M
+S|41.41488|2.19511|Bac de Roda|Metro de Barcelona|M
+S|41.37555|2.12893|Badal|Metro de Barcelona|M
+S|41.44896|2.24422|Badalona Pompeu Fabra|Metro de Barcelona|M
+S|41.38577|2.16833|Barcelona-Plaça Catalunya|Metro de Barcelona|M
+S|41.37458|2.14862|Barcelona-Plaça Espanya|Metro de Barcelona|M
+S|41.38209|2.18552|Barceloneta|Metro de Barcelona|M
+S|41.44995|2.19954|Baró de Viver|Metro de Barcelona|M
+S|41.35096|2.11094|Bellvitge Rambla Marina|Metro de Barcelona|M
+S|41.42037|2.20971|Besòs|Metro de Barcelona|M
+S|41.41509|2.21609|Besòs Mar|Metro de Barcelona|M
+S|41.39510|2.19204|Bogatell|Metro de Barcelona|M
+S|41.43613|2.20481|Bon Pastor|Metro de Barcelona|M
+S|41.41469|2.18101|Camp de l'Arpa|Metro de Barcelona|M
+S|41.36658|2.09152|Can Boixeres|Metro de Barcelona|M
+S|41.46234|2.17311|Can Cuiàs|Metro de Barcelona|M
+S|41.44447|2.21029|Can Peixauet|Metro de Barcelona|M
+S|41.36768|2.10274|Can Serra|Metro de Barcelona|M
+S|41.36072|2.11820|Can Tries - Gornal|Metro de Barcelona|M
+S|41.37174|2.09976|Can Vidalet|Metro de Barcelona|M
+S|41.44177|2.16644|Canyelles|Metro de Barcelona|M
+S|41.45768|2.19849|Can Zam|Metro de Barcelona|M
+S|41.45124|2.18495|Casa de l'Aigua|Metro de Barcelona|M
+S|41.38655|2.17008|Catalunya|Metro de Barcelona|M
+S|41.38782|2.19358|Ciutadella   Vila Olímpica|Metro de Barcelona|M
+S|41.36324|2.13301|Ciutat de la Justícia|Metro de Barcelona|M
+S|41.46078|2.17460|Ciutat Meridiana|Metro de Barcelona|M
+S|41.32184|2.09357|Cèntric|Metro de Barcelona|M
+S|41.37587|2.11840|Collblanc|Metro de Barcelona|M
+S|41.42342|2.18129|Congrés   Indians|Metro de Barcelona|M
+S|41.35730|2.07055|Cornellà Centre|Metro de Barcelona|M
+S|41.35147|2.07066|Cornellà-Riera|Metro de Barcelona|M
+S|41.39447|2.15886|Diagonal|Metro de Barcelona|M
+S|41.33018|2.13709|Ecoparc|Metro de Barcelona|M
+S|41.42440|2.15511|el Carmel|Metro de Barcelona|M
+S|41.41028|2.18673|El Clot|Metro de Barcelona|M
+S|41.42166|2.14936|El Coll   La Teixonera|Metro de Barcelona|M
+S|41.41178|2.21668|El Maresme   Fòrum|Metro de Barcelona|M
+S|41.37498|2.16057|El Poble-sec|Metro de Barcelona|M
+S|41.33167|2.09013|el Prat Estació|Metro de Barcelona|M
+S|41.40581|2.13914|El Putxet|Metro de Barcelona|M
+S|41.40707|2.18252|Encants|Metro de Barcelona|M
+S|41.38398|2.14496|Entença|Metro de Barcelona|M
+S|41.37590|2.11204|Ernest Lluch|Metro de Barcelona|M
+S|41.45476|2.21240|Església Major|Metro de Barcelona|M
+S|41.37501|2.15152|Espanya|Metro de Barcelona|M
+S|41.35725|2.12569|Europa   Fira|Metro de Barcelona|M
+S|41.42978|2.18364|Fabra i Puig|Metro de Barcelona|M
+S|41.35192|2.13068|Fira|Metro de Barcelona|M
+S|41.36832|2.10983|Florida|Metro de Barcelona|M
+S|41.35585|2.14216|Foc|Metro de Barcelona|M
+S|41.45167|2.21841|Fondo|Metro de Barcelona|M
+S|41.36049|2.13874|Foneria|Metro de Barcelona|M
+S|41.40206|2.15298|Fontana|Metro de Barcelona|M
+S|41.35799|2.07922|Gavarra|Metro de Barcelona|M
+S|41.39502|2.17096|Girona|Metro de Barcelona|M
+S|41.40221|2.18752|Glòries|Metro de Barcelona|M
+S|41.44044|2.23369|Gorg|Metro de Barcelona|M
+S|41.35478|2.11707|Gornal|Metro de Barcelona|M
+S|41.39976|2.15215|Gràcia|Metro de Barcelona|M
+S|41.41608|2.17407|Guinardó   Hospital de Sant Pau|Metro de Barcelona|M
+S|41.42969|2.16032|Horta|Metro de Barcelona|M
+S|41.38816|2.15054|Hospital Clínic|Metro de Barcelona|M
+S|41.34465|2.10720|Hospital de Bellvitge|Metro de Barcelona|M
+S|41.37524|2.14342|Hostafrancs|Metro de Barcelona|M
+S|41.36116|2.13017|Ildefons Cerdà|Metro de Barcelona|M
+S|41.38400|2.17871|Jaume I|Metro de Barcelona|M
+S|41.40627|2.16319|Joanic|Metro de Barcelona|M
+S|41.39779|2.13615|La Bonanova|Metro de Barcelona|M
+S|41.42404|2.20562|La Pau|Metro de Barcelona|M
+S|41.37667|2.17577|La Rambla   Drassanes|Metro de Barcelona|M
+S|41.42128|2.18657|La Sagrera|Metro de Barcelona|M
+S|41.44273|2.22458|la Salut|Metro de Barcelona|M
+S|41.38413|2.13088|les Corts|Metro de Barcelona|M
+S|41.32898|2.10307|Les Moreres|Metro de Barcelona|M
+S|41.40616|2.15002|Lesseps|Metro de Barcelona|M
+S|41.39778|2.13087|Les Tres Torres|Metro de Barcelona|M
+S|41.38140|2.17307|Liceu|Metro de Barcelona|M
+S|41.39938|2.19765|Llacuna|Metro de Barcelona|M
+S|41.44130|2.21755|Llefià|Metro de Barcelona|M
+S|41.43701|2.17336|Llucmajor   República|Metro de Barcelona|M
+S|41.36786|2.13937|Magòria-La Campana|Metro de Barcelona|M
+S|41.42311|2.17740|Maragall|Metro de Barcelona|M
+S|41.38794|2.12622|Maria Cristina|Metro de Barcelona|M
+S|41.39500|2.18627|Marina|Metro de Barcelona|M
+S|41.31132|2.07342|Mas Blau|Metro de Barcelona|M
+S|41.33357|2.11123|Mercabarna|Metro de Barcelona|M
+S|41.37279|2.13333|Mercat Nou|Metro de Barcelona|M
+S|41.35752|2.03528|Molí Nou   Ciutat Cooperativa|Metro de Barcelona|M
+S|41.43063|2.14506|Montbau|Metro de Barcelona|M
+S|41.40052|2.17945|Monumental|Metro de Barcelona|M
+S|41.43554|2.14838|Mundet|Metro de Barcelona|M
+S|41.39867|2.14281|Muntaner|Metro de Barcelona|M
+S|41.41604|2.18694|Navas|Metro de Barcelona|M
+S|41.42976|2.19344|Onze de Setembre|Metro de Barcelona|M
+S|41.38581|2.11786|Palau Reial|Metro de Barcelona|M
+S|41.37494|2.16926|Paral·lel|Metro de Barcelona|M
+S|41.34181|2.12798|Parc Logístic|Metro de Barcelona|M
+S|41.31671|2.08735|Parc Nou|Metro de Barcelona|M
+S|41.38996|2.16794|Passeig de Gràcia|Metro de Barcelona|M
+S|41.40331|2.14304|Pàdua|Metro de Barcelona|M
+S|41.41754|2.14113|Penitents|Metro de Barcelona|M
+S|41.44394|2.23805|Pep Ventura|Metro de Barcelona|M
+S|41.38182|2.13563|Plaça del Centre|Metro de Barcelona|M
+S|41.37563|2.13532|Plaça de Sants|Metro de Barcelona|M
+S|41.40364|2.20328|Poblenou|Metro de Barcelona|M
+S|41.33595|2.14065|Port Comercial   la Factoria|Metro de Barcelona|M
+S|41.39287|2.15798|Provença|Metro de Barcelona|M
+S|41.36139|2.12429|Provençana|Metro de Barcelona|M
+S|41.37381|2.10712|Pubilla Cases|Metro de Barcelona|M
+S|41.36397|2.09987|Rambla Just Oliveras|Metro de Barcelona|M
+S|41.39879|2.11903|Reina Elisenda|Metro de Barcelona|M
+S|41.37924|2.15457|Rocafort|Metro de Barcelona|M
+S|41.44736|2.17578|Roquetes|Metro de Barcelona|M
+S|41.40403|2.17388|Sagrada Família|Metro de Barcelona|M
+S|41.45108|2.20805|Santa Coloma|Metro de Barcelona|M
+S|41.36880|2.12861|Santa Eulàlia|Metro de Barcelona|M
+S|41.43663|2.19114|Sant Andreu|Metro de Barcelona|M
+S|41.37979|2.16327|Sant Antoni|Metro de Barcelona|M
+S|41.44684|2.21581|Santa Rosa|Metro de Barcelona|M
+S|41.34849|2.04295|Sant Boi|Metro de Barcelona|M
+S|41.40130|2.14752|Plaça Molina|Metro de Barcelona|M
+S|41.36334|2.08433|Sant Ildefons|Metro de Barcelona|M
+S|41.36095|2.11036|Sant Josep|Metro de Barcelona|M
+S|41.41906|2.20073|Sant Martí|Metro de Barcelona|M
+S|41.41073|2.17598|Sant Pau   Dos de Maig|Metro de Barcelona|M
+S|41.43532|2.22786|Sant Roc|Metro de Barcelona|M
+S|41.38147|2.14111|Sants Estació|Metro de Barcelona|M
+S|41.39890|2.12550|Sarrià|Metro de Barcelona|M
+S|41.40801|2.20911|Selva de Mar|Metro de Barcelona|M
+S|41.45946|2.20559|Singuerlín|Metro de Barcelona|M
+S|41.37844|2.14537|Tarragona|Metro de Barcelona|M
+S|41.39482|2.17552|Tetuan|Metro de Barcelona|M
+S|41.44313|2.19071|Torras i Bages|Metro de Barcelona|M
+S|41.36802|2.11563|Torrassa|Metro de Barcelona|M
+S|41.45922|2.17994|Torre Baró   Vallbona|Metro de Barcelona|M
+S|41.44948|2.18416|Trinitat Nova|Metro de Barcelona|M
+S|41.44877|2.19374|Trinitat Vella|Metro de Barcelona|M
+S|41.38473|2.16391|Universitat|Metro de Barcelona|M
+S|41.38249|2.15889|Urgell|Metro de Barcelona|M
+S|41.38809|2.17331|Urquinaona|Metro de Barcelona|M
+S|41.41191|2.14452|Vallcarca|Metro de Barcelona|M
+S|41.43800|2.15688|Valldaura|Metro de Barcelona|M
+S|41.42491|2.14240|Vall d’Hebron   Sant Genís|Metro de Barcelona|M
+S|41.40009|2.16843|Verdaguer|Metro de Barcelona|M
+S|41.42989|2.20977|Verneda|Metro de Barcelona|M
+S|41.44385|2.17860|Via Júlia|Metro de Barcelona|M
+S|41.43046|2.16817|Vilapicina|Metro de Barcelona|M
+S|41.42959|2.17500|Virrei Amat|Metro de Barcelona|M
+S|41.32374|2.13312|ZAL   Riu Vell|Metro de Barcelona|M
+S|41.34300|2.14498|Zona Franca|Metro de Barcelona|M
+S|41.38406|2.11154|Zona Universitària|Metro de Barcelona|M
+S|37.22811|-3.65338|Albolote|Metro de Granada|M
+S|37.16449|-3.60244|Alcázar Genil|Metro de Granada|M
+S|37.15817|-3.59544|Andrés Segovia|Metro de Granada|M
+S|37.21101|-3.63416|Anfiteatro|Metro de Granada|M
+S|37.19586|-3.61549|Argentinita|Metro de Granada|M
+S|37.14372|-3.62715|Armilla|Metro de Granada|M
+S|37.18641|-3.60903|Caleta|Metro de Granada|M
+S|37.20152|-3.62441|Cerrillo Maracena|Metro de Granada|M
+S|37.14922|-3.60093|Dílar|Metro de Granada|M
+S|37.19999|-3.61322|Estación Autobuses|Metro de Granada|M
+S|37.18325|-3.60832|Estación Ferrocarril|Metro de Granada|M
+S|37.14750|-3.62085|Fernando de los Ríos|Metro de Granada|M
+S|37.16073|-3.59654|Hípica|Metro de Granada|M
+S|37.20412|-3.61725|Jaén|Metro de Granada|M
+S|37.22240|-3.64573|Juncaril|Metro de Granada|M
+S|37.19201|-3.61504|Luis Amador|Metro de Granada|M
+S|37.20713|-3.63039|Maracena|Metro de Granada|M
+S|37.17659|-3.60978|Méndez Núñez|Metro de Granada|M
+S|37.15114|-3.59616|Nuevo Los Cármenes|Metro de Granada|M
+S|37.15420|-3.59280|Palacio Deportes|Metro de Granada|M
+S|37.14901|-3.60690|Parque Tecnológico|Metro de Granada|M
+S|37.17015|-3.60587|Recogidas|Metro de Granada|M
+S|37.14399|-3.61404|Sierra Nevada|Metro de Granada|M
+S|37.18085|-3.60858|Universidad|Metro de Granada|M
+S|37.21428|-3.63714|Vicuña|Metro de Granada|M
+S|37.18878|-3.61469|Villarejo|Metro de Granada|M
+S|40.38100|-3.72798|Abrantes|Metro de Madrid|M
+S|40.40407|-3.70596|Acacias|Metro de Madrid|M
+S|40.46791|-3.57176|Aeropuerto T1-T2-T3|Metro de Madrid|M
+S|40.49243|-3.59284|Aeropuerto T4|Metro de Madrid|M
+S|40.45758|-3.58797|Alameda de Osuna|Metro de Madrid|M
+S|40.34994|-3.83199|Alcorcón Central|Metro de Madrid|M
+S|40.44822|-3.66789|Alfonso XIII|Metro de Madrid|M
+S|40.38395|-3.69801|Almendrales|Metro de Madrid|M
+S|40.43845|-3.69926|Alonso Cano|Metro de Madrid|M
+S|40.30013|-3.73705|Alonso de Mendoza|Metro de Madrid|M
+S|40.42741|-3.69598|Alonso Martínez|Metro de Madrid|M
+S|40.41824|-3.62379|Alsacia|Metro de Madrid|M
+S|40.40999|-3.73841|Alto de Extremadura|Metro de Madrid|M
+S|40.39005|-3.64581|Alto del Arenal|Metro de Madrid|M
+S|40.38567|-3.76076|Aluche|Metro de Madrid|M
+S|40.45009|-3.70351|Alvarado|Metro de Madrid|M
+S|40.41229|-3.69909|Antón Martín|Metro de Madrid|M
+S|40.47019|-3.71788|Antonio Machado|Metro de Madrid|M
+S|40.30368|-3.44752|Arganda del Rey|Metro de Madrid|M
+S|40.39323|-3.68841|Arganzuela-Planetario|Metro de Madrid|M
+S|40.43073|-3.71617|Argüelles|Metro de Madrid|M
+S|40.28862|-3.75677|Arroyo Culebro|Metro de Madrid|M
+S|40.49068|-3.72600|Arroyofresno|Metro de Madrid|M
+S|40.40526|-3.64185|Artilleros|Metro de Madrid|M
+S|40.45594|-3.65618|Arturo Soria|Metro de Madrid|M
+S|40.43031|-3.64045|Ascao|Metro de Madrid|M
+S|40.40697|-3.68860|Atocha|Metro de Madrid|M
+S|40.43765|-3.67730|Avenida de América|Metro de Madrid|M
+S|40.42245|-3.61222|Avenida de Guadalajara|Metro de Madrid|M
+S|40.48004|-3.71831|Avenida de la Ilustración|Metro de Madrid|M
+S|40.45322|-3.66219|Avenida de la Paz|Metro de Madrid|M
+S|40.38371|-3.78402|Aviación Española|Metro de Madrid|M
+S|40.47698|-3.67661|Bambú|Metro de Madrid|M
+S|40.41905|-3.69493|Banco de España|Metro de Madrid|M
+S|40.47581|-3.58262|Barajas|Metro de Madrid|M
+S|40.43937|-3.65210|Barrio de la Concepción|Metro de Madrid|M
+S|40.47705|-3.70354|Barrio del Pilar|Metro de Madrid|M
+S|40.42247|-3.56911|Barrio del Puerto|Metro de Madrid|M
+S|40.40784|-3.75312|Batán|Metro de Madrid|M
+S|40.55438|-3.63504|Baunatal|Metro de Madrid|M
+S|40.48345|-3.68690|Begoña|Metro de Madrid|M
+S|40.42927|-3.70193|Bilbao|Metro de Madrid|M
+S|40.39162|-3.65388|Buenos Aires|Metro de Madrid|M
+S|40.42029|-3.70591|Callao|Metro de Madrid|M
+S|40.39468|-3.76828|Campamento|Metro de Madrid|M
+S|40.43863|-3.70426|Canal|Metro de Madrid|M
+S|40.46377|-3.63544|Canillas|Metro de Madrid|M
+S|40.44911|-3.60859|Canillejas|Metro de Madrid|M
+S|40.38782|-3.74498|Carabanchel|Metro de Madrid|M
+S|40.37188|-3.75175|Carabanchel Alto|Metro de Madrid|M
+S|40.39292|-3.74098|Carpetana|Metro de Madrid|M
+S|40.43939|-3.67180|Cartagena|Metro de Madrid|M
+S|40.40349|-3.76093|Casa de Campo|Metro de Madrid|M
+S|40.32667|-3.75945|Casa del Reloj|Metro de Madrid|M
+S|40.47395|-3.68271|Chamartín|Metro de Madrid|M
+S|40.42267|-3.69767|Chueca|Metro de Madrid|M
+S|40.36017|-3.69343|Ciudad de los Ángeles|Metro de Madrid|M
+S|40.43793|-3.63774|Ciudad Lineal|Metro de Madrid|M
+S|40.44380|-3.72642|Ciudad Universitaria|Metro de Madrid|M
+S|40.42580|-3.69204|Colón|Metro de Madrid|M
+S|40.45712|-3.67696|Colombia|Metro de Madrid|M
+S|40.45133|-3.67761|Concha Espina|Metro de Madrid|M
+S|40.40781|-3.67012|Conde de Casal|Metro de Madrid|M
+S|40.37220|-3.61873|Congosto|Metro de Madrid|M
+S|40.29325|-3.74577|Conservatorio|Metro de Madrid|M
+S|40.42386|-3.56196|Coslada Central|Metro de Madrid|M
+S|40.44448|-3.67846|Cruz del Rayo|Metro de Madrid|M
+S|40.44678|-3.70396|Cuatro Caminos|Metro de Madrid|M
+S|40.37790|-3.79197|Cuatro Vientos|Metro de Madrid|M
+S|40.45948|-3.69002|Cuzco|Metro de Madrid|M
+S|40.39933|-3.69412|Delicias|Metro de Madrid|M
+S|40.43447|-3.67472|Diego de León|Metro de Madrid|M
+S|40.46748|-3.68059|Duque de Pastrana|Metro de Madrid|M
+S|40.32939|-3.72999|El Bercial|Metro de Madrid|M
+S|40.45338|-3.59420|El Capricho|Metro de Madrid|M
+S|40.43197|-3.65619|El Carmen|Metro de Madrid|M
+S|40.33645|-3.74059|El Carrascal|Metro de Madrid|M
+S|40.31839|-3.71023|El Casar|Metro de Madrid|M
+S|40.40481|-3.70227|Embajadores|Metro de Madrid|M
+S|40.39073|-3.76549|Empalme|Metro de Madrid|M
+S|40.45924|-3.64556|Esperanza|Metro de Madrid|M
+S|40.40884|-3.69147|Estación del Arte|Metro de Madrid|M
+S|40.43380|-3.60096|Estadio Metropolitano|Metro de Madrid|M
+S|40.45451|-3.70276|Estrecho|Metro de Madrid|M
+S|40.41128|-3.66135|Estrella|Metro de Madrid|M
+S|40.38442|-3.75106|Eugenia de Montijo|Metro de Madrid|M
+S|40.46400|-3.61631|Feria de Madrid|Metro de Madrid|M
+S|40.45661|-3.71211|Francos Rodríguez|Metro de Madrid|M
+S|40.49473|-3.69307|Fuencarral|Metro de Madrid|M
+S|40.28229|-3.79828|Fuenlabrada Central|Metro de Madrid|M
+S|40.42865|-3.63286|García Noblejas|Metro de Madrid|M
+S|40.31000|-3.73403|Getafe Central|Metro de Madrid|M
+S|40.42470|-3.67620|Goya|Metro de Madrid|M
+S|40.41991|-3.70162|Gran Vía|Metro de Madrid|M
+S|40.43799|-3.69121|Gregorio Marañón|Metro de Madrid|M
+S|40.44627|-3.71317|Guzmán el Bueno|Metro de Madrid|M
+S|40.41779|-3.52709|Henares|Metro de Madrid|M
+S|40.48460|-3.70801|Herrera Oria|Metro de Madrid|M
+S|40.47473|-3.65212|Hortaleza|Metro de Madrid|M
+S|40.37546|-3.69591|Hospital 12 de Octubre|Metro de Madrid|M
+S|40.28585|-3.81582|Hospital de Fuenlabrada|Metro de Madrid|M
+S|40.41761|-3.53452|Hospital de Henares|Metro de Madrid|M
+S|40.31631|-3.87442|Hospital de Móstoles|Metro de Madrid|M
+S|40.55984|-3.61155|Hospital Infanta Sofía|Metro de Madrid|M
+S|40.32178|-3.76783|Hospital Severo Ochoa|Metro de Madrid|M
+S|40.41837|-3.67814|Ibiza|Metro de Madrid|M
+S|40.43526|-3.69901|Iglesia|Metro de Madrid|M
+S|40.43904|-3.71398|Islas Filipinas|Metro de Madrid|M
+S|40.42337|-3.52536|Jarama|Metro de Madrid|M
+S|40.34977|-3.80732|Joaquín Vilumbrales|Metro de Madrid|M
+S|40.31180|-3.72247|Juan de la Cierva|Metro de Madrid|M
+S|40.33462|-3.75238|Julián Besteiro|Metro de Madrid|M
+S|40.42317|-3.63826|La Almudena|Metro de Madrid|M
+S|40.48511|-3.72310|Lacoma|Metro de Madrid|M
+S|40.42700|-3.64947|La Elipa|Metro de Madrid|M
+S|40.35820|-3.77766|La Fortuna|Metro de Madrid|M
+S|40.36924|-3.61258|La Gavia|Metro de Madrid|M
+S|40.41651|-3.73488|Lago|Metro de Madrid|M
+S|40.52743|-3.65852|La Granja|Metro de Madrid|M
+S|40.39930|-3.74464|Laguna|Metro de Madrid|M
+S|40.41129|-3.70831|La Latina|Metro de Madrid|M
+S|40.53203|-3.63549|La Moraleja|Metro de Madrid|M
+S|40.36302|-3.75741|La Peseta|Metro de Madrid|M
+S|40.31903|-3.47779|La Poveda|Metro de Madrid|M
+S|40.42514|-3.54792|La Rambla|Metro de Madrid|M
+S|40.43257|-3.60785|Las Musas|Metro de Madrid|M
+S|40.42356|-3.60284|Las Rosas|Metro de Madrid|M
+S|40.36350|-3.59916|Las Suertes|Metro de Madrid|M
+S|40.50834|-3.66943|Las Tablas|Metro de Madrid|M
+S|40.40845|-3.70066|Lavapiés|Metro de Madrid|M
+S|40.32809|-3.77236|Leganés Central|Metro de Madrid|M
+S|40.39144|-3.69496|Legazpi|Metro de Madrid|M
+S|40.42940|-3.67540|Lista|Metro de Madrid|M
+S|40.29674|-3.83677|Loranca|Metro de Madrid|M
+S|40.32418|-3.71832|Los Espartales|Metro de Madrid|M
+S|40.40480|-3.74527|Lucero|Metro de Madrid|M
+S|40.47670|-3.66268|Manoteras|Metro de Madrid|M
+S|40.30911|-3.86477|Manuela Malasaña|Metro de Madrid|M
+S|40.42814|-3.66871|Manuel Becerra|Metro de Madrid|M
+S|40.55022|-3.64697|Manuel de Falla|Metro de Madrid|M
+S|40.46982|-3.63858|Mar de Cristal|Metro de Madrid|M
+S|40.54046|-3.63805|Marqués de la Valdavia|Metro de Madrid|M
+S|40.39745|-3.71640|Marqués de Vadillo|Metro de Madrid|M
+S|40.40430|-3.68110|Menéndez Pelayo|Metro de Madrid|M
+S|40.38755|-3.64001|Miguel Hernández|Metro de Madrid|M
+S|40.49123|-3.71686|Mirasierra|Metro de Madrid|M
+S|40.39572|-3.68011|Méndez Álvaro|Metro de Madrid|M
+S|40.43502|-3.71924|Moncloa|Metro de Madrid|M
+S|40.50534|-3.69599|Montecarmelo|Metro de Madrid|M
+S|40.32900|-3.86350|Móstoles Central|Metro de Madrid|M
+S|40.43264|-3.67956|Núñez de Balboa|Metro de Madrid|M
+S|40.42477|-3.70739|Noviciado|Metro de Madrid|M
+S|40.39596|-3.66476|Nueva Numancia|Metro de Madrid|M
+S|40.44584|-3.69170|Nuevos Ministerios|Metro de Madrid|M
+S|40.42220|-3.66906|O'Donnell|Metro de Madrid|M
+S|40.38693|-3.72318|Opañel|Metro de Madrid|M
+S|40.38864|-3.73172|Oporto|Metro de Madrid|M
+S|40.40140|-3.67488|Pacífico|Metro de Madrid|M
+S|40.49962|-3.70916|Paco de Lucía|Metro de Madrid|M
+S|40.40308|-3.69478|Palos de la Frontera|Metro de Madrid|M
+S|40.37618|-3.73419|Pan Bendito|Metro de Madrid|M
+S|40.43931|-3.66290|Parque de las Avenidas|Metro de Madrid|M
+S|40.28666|-3.78717|Parque de los Estados|Metro de Madrid|M
+S|40.47713|-3.64570|Parque de Santa María|Metro de Madrid|M
+S|40.28522|-3.80745|Parque Europa|Metro de Madrid|M
+S|40.34950|-3.82078|Parque Lisboa|Metro de Madrid|M
+S|40.34582|-3.84905|Parque Oeste|Metro de Madrid|M
+S|40.40054|-3.63521|Pavones|Metro de Madrid|M
+S|40.47595|-3.71605|Peñagrande|Metro de Madrid|M
+S|40.41798|-3.70941|Ópera|Metro de Madrid|M
+S|40.48005|-3.66705|Pinar de Chamartín|Metro de Madrid|M
+S|40.46783|-3.64868|Pinar del Rey|Metro de Madrid|M
+S|40.40204|-3.71194|Pirámides|Metro de Madrid|M
+S|40.49530|-3.72559|Pitis|Metro de Madrid|M
+S|40.46628|-3.68966|Plaza de Castilla|Metro de Madrid|M
+S|40.42345|-3.71088|Plaza de España|Metro de Madrid|M
+S|40.38536|-3.71787|Plaza Elíptica|Metro de Madrid|M
+S|40.39301|-3.65919|Portazgo|Metro de Madrid|M
+S|40.46180|-3.67653|Pío XII|Metro de Madrid|M
+S|40.32171|-3.86483|Pradillo|Metro de Madrid|M
+S|40.42265|-3.68037|Príncipe de Vergara|Metro de Madrid|M
+S|40.42096|-3.71933|Príncipe Pío|Metro de Madrid|M
+S|40.44421|-3.67485|Prosperidad|Metro de Madrid|M
+S|40.43503|-3.64417|Pueblo Nuevo|Metro de Madrid|M
+S|40.39809|-3.66897|Puente de Vallecas|Metro de Madrid|M
+S|40.40124|-3.59573|Puerta de Arganda|Metro de Madrid|M
+S|40.41383|-3.72713|Puerta del Ángel|Metro de Madrid|M
+S|40.34521|-3.81202|Puerta del Sur|Metro de Madrid|M
+S|40.40705|-3.71107|Puerta de Toledo|Metro de Madrid|M
+S|40.43318|-3.70449|Quevedo|Metro de Madrid|M
+S|40.43311|-3.64815|Quintana|Metro de Madrid|M
+S|40.44432|-3.68464|República Argentina|Metro de Madrid|M
+S|40.42046|-3.68643|Retiro|Metro de Madrid|M
+S|40.55091|-3.62406|Reyes Católicos|Metro de Madrid|M
+S|40.34185|-3.52517|Rivas Futura|Metro de Madrid|M
+S|40.36715|-3.54770|Rivas Urbanizaciones|Metro de Madrid|M
+S|40.32828|-3.52050|Rivas Vaciamadrid|Metro de Madrid|M
+S|40.51516|-3.66232|Ronda de la Comunicación|Metro de Madrid|M
+S|40.44159|-3.70159|Ríos Rosas|Metro de Madrid|M
+S|40.43304|-3.68969|Rubén Darío|Metro de Madrid|M
+S|40.41440|-3.66967|Sainz de Baranda|Metro de Madrid|M
+S|40.42977|-3.70576|San Bernardo|Metro de Madrid|M
+S|40.42750|-3.61595|San Blas|Metro de Madrid|M
+S|40.40399|-3.60355|San Cipriano|Metro de Madrid|M
+S|40.34161|-3.69341|San Cristóbal|Metro de Madrid|M
+S|40.36999|-3.69439|San Fermín-Orcasur|Metro de Madrid|M
+S|40.42449|-3.53597|San Fernando|Metro de Madrid|M
+S|40.37364|-3.73995|San Francisco|Metro de Madrid|M
+S|40.47456|-3.63961|San Lorenzo|Metro de Madrid|M
+S|40.33670|-3.77677|San Nicasio|Metro de Madrid|M
+S|40.45237|-3.69073|Santiago Bernabéu|Metro de Madrid|M
+S|40.42043|-3.70857|Santo Domingo|Metro de Madrid|M
+S|40.42539|-3.68690|Serrano|Metro de Madrid|M
+S|40.41777|-3.69995|Sevilla|Metro de Madrid|M
+S|40.38258|-3.62492|Sierra de Guadalupe|Metro de Madrid|M
+S|40.42755|-3.62299|Simancas|Metro de Madrid|M
+S|40.41694|-3.70339|Sol|Metro de Madrid|M
+S|40.44088|-3.62702|Suanzes|Metro de Madrid|M
+S|40.46086|-3.69823|Tetuán|Metro de Madrid|M
+S|40.41236|-3.70458|Tirso de Molina|Metro de Madrid|M
+S|40.44362|-3.61712|Torre Arias|Metro de Madrid|M
+S|40.50087|-3.69456|Tres Olivos|Metro de Madrid|M
+S|40.42624|-3.70109|Tribunal|Metro de Madrid|M
+S|40.33486|-3.87217|Universidad Rey Juan Carlos|Metro de Madrid|M
+S|40.39253|-3.72536|Urgel|Metro de Madrid|M
+S|40.38803|-3.70560|Usera|Metro de Madrid|M
+S|40.46453|-3.69500|Valdeacederas|Metro de Madrid|M
+S|40.39991|-3.62152|Valdebernardo|Metro de Madrid|M
+S|40.35999|-3.59212|Valdecarros|Metro de Madrid|M
+S|40.46492|-3.71652|Valdezarza|Metro de Madrid|M
+S|40.42518|-3.68254|Velázquez|Metro de Madrid|M
+S|40.43106|-3.66354|Ventas|Metro de Madrid|M
+S|40.46982|-3.69629|Ventilla|Metro de Madrid|M
+S|40.42676|-3.71330|Ventura Rodríguez|Metro de Madrid|M
+S|40.44651|-3.71904|Vicente Aleixandre|Metro de Madrid|M
+S|40.40420|-3.60889|Vicálvaro|Metro de Madrid|M
+S|40.37943|-3.62133|Villa de Vallecas|Metro de Madrid|M
+S|40.34103|-3.71177|Villaverde Alto|Metro de Madrid|M
+S|40.35103|-3.69263|Villaverde Bajo - Cruce|Metro de Madrid|M
+S|40.41033|-3.65253|Vinateros|Metro de Madrid|M
+S|40.38879|-3.74004|Vista Alegre|Metro de Madrid|M
+S|39.61051|2.66518|Camí dels Reis|Metro de Palma|M
+S|39.59812|2.69173|es Pont d'Inca|Metro de Palma|M
+S|39.60450|2.70156|Es Pont d'Inca Nou|Metro de Palma|M
+S|39.60639|2.66875|Gran via Asima|Metro de Palma|M
+S|39.57659|2.65442|Intermodal|Metro de Palma|M
+S|39.58005|2.65997|Jacint Verdaguer|Metro de Palma|M
+S|39.62539|2.72547|Marratxí|Metro de Palma|M
+S|39.63441|2.63648|ParcBit|Metro de Palma|M
+S|39.61549|2.71677|Polígon de Marratxí|Metro de Palma|M
+S|39.60235|2.67225|Son Castelló|Metro de Palma|M
+S|39.59349|2.67934|Son Cladera - Es Vivero|Metro de Palma|M
+S|39.58417|2.66579|Son Costa - Son Fortesa|Metro de Palma|M
+S|39.59020|2.67461|Son Fuster|Metro de Palma|M
+S|39.59547|2.67149|Son Fuster Vell|Metro de Palma|M
+S|39.62066|2.66122|Son Sardina|Metro de Palma|M
+S|39.63461|2.64800|UIB|Metro de Palma|M
+S|39.59677|2.68639|Verge de Lluc|Metro de Palma|M
+S|37.38074|-5.95569|1º de Mayo|Metro de Sevilla|M
+S|37.37582|-5.95266|Amate|Metro de Sevilla|M
+S|37.37322|-6.01046|Blas Infante|Metro de Sevilla|M
+S|37.35303|-6.04678|Cavaleri|Metro de Sevilla|M
+S|37.36777|-5.95041|Cocheras|Metro de Sevilla|M
+S|37.34650|-5.93631|Condequinto|Metro de Sevilla|M
+S|37.38166|-5.96674|Gran Plaza|Metro de Sevilla|M
+S|37.37155|-5.95180|La Plata|Metro de Sevilla|M
+S|37.38299|-5.97399|Nervión|Metro de Sevilla|M
+S|37.32941|-5.93834|Olivar de Quintos|Metro de Sevilla|M
+S|37.35400|-5.94367|Pablo de Olavide|Metro de Sevilla|M
+S|37.37649|-6.00476|Parque de los Príncipes|Metro de Sevilla|M
+S|37.37925|-5.99937|Plaza de Cuba|Metro de Sevilla|M
+S|37.38077|-5.98719|Prado San Sebastián|Metro de Sevilla|M
+S|37.38178|-5.99436|Puerta de Jerez|Metro de Sevilla|M
+S|37.37821|-5.97911|San Bernardo|Metro de Sevilla|M
+S|37.36170|-6.03857|San Juan Alto|Metro de Sevilla|M
+S|37.36702|-6.02515|San Juan Bajo|Metro de Sevilla|M
+S|39.49219|-0.47437|Aeroport|Metrovalencia|M
+S|39.47311|-0.36602|Alameda|Metrovalencia|M
+S|39.54534|-0.34798|Albalat dels Sorells|Metrovalencia|M
+S|39.11701|-0.52366|Alberic|Metrovalencia|M
+S|39.49582|-0.35556|Alboraia Palmaret|Metrovalencia|M
+S|39.50089|-0.35236|Alboraia Peris Aragó|Metrovalencia|M
+S|39.26293|-0.47486|Alginet|Metrovalencia|M
+S|39.51222|-0.35420|Almàssera|Metrovalencia|M
+S|39.47033|-0.35049|Amistat|Metrovalencia|M
+S|39.47241|-0.35754|Aragó|Metrovalencia|M
+S|39.24937|-0.49221|Ausiàs March|Metrovalencia|M
+S|39.46855|-0.39793|Avinguda del Cid|Metrovalencia|M
+S|39.46777|-0.34313|Ayora|Metrovalencia|M
+S|39.46360|-0.37928|Bailén|Metrovalencia|M
+S|39.59899|-0.58420|Benaguasil|Metrovalencia|M
+S|39.49087|-0.39939|Beniferri|Metrovalencia|M
+S|39.48481|-0.36235|Benimaclet|Metrovalencia|M
+S|39.50185|-0.41872|Benimàmet|Metrovalencia|M
+S|39.21647|-0.51959|Benimodo|Metrovalencia|M
+S|39.59073|-0.45750|Bétera|Metrovalencia|M
+S|39.50829|-0.40679|Burjassot|Metrovalencia|M
+S|39.51313|-0.41167|Burjassot-Godella|Metrovalencia|M
+S|39.49582|-0.43527|Campament|Metrovalencia|M
+S|39.48355|-0.39411|Campanar|Metrovalencia|M
+S|39.50254|-0.41194|Cantereria|Metrovalencia|M
+S|39.22739|-0.52513|Carlet|Metrovalencia|M
+S|39.08071|-0.51338|Castelló|Metrovalencia|M
+S|39.41127|-0.46025|Col·legi El Vedat|Metrovalencia|M
+S|39.47019|-0.37084|Colón|Metrovalencia|M
+S|39.54990|-0.52798|El Clot|Metrovalencia|M
+S|39.49955|-0.40217|Empalme|Metrovalencia|M
+S|39.54326|-0.51402|Entrepins|Metrovalencia|M
+S|39.32642|-0.46868|Espioca|Metrovalencia|M
+S|39.47810|-0.36188|Facultats Manuel Broseta|Metrovalencia|M
+S|39.47768|-0.43341|Faitanar|Metrovalencia|M
+S|39.53727|-0.35382|Foios|Metrovalencia|M
+S|39.59269|-0.57831|Fondo de Benaguasil|Metrovalencia|M
+S|39.28933|-0.46454|Font Almaguer|Metrovalencia|M
+S|39.51755|-0.46975|Font del Barranc|Metrovalencia|M
+S|39.51116|-0.46408|Fuente del Jarro|Metrovalencia|M
+S|39.56887|-0.54210|Gallipont - Torre del Virrei|Metrovalencia|M
+S|39.51919|-0.41410|Godella|Metrovalencia|M
+S|39.58202|-0.44282|Horta Vella|Metrovalencia|M
+S|39.45936|-0.38465|Jesús|Metrovalencia|M
+S|39.52696|-0.48710|La Canyada|Metrovalencia|M
+S|39.49891|-0.48470|La Cova|Metrovalencia|M
+S|39.19325|-0.51010|L'Alcúdia|Metrovalencia|M
+S|39.57891|-0.33005|La Pobla de Farnals|Metrovalencia|M
+S|39.58233|-0.56173|La Pobla de Vallbona|Metrovalencia|M
+S|39.51708|-0.51599|la Presa|Metrovalencia|M
+S|39.53599|-0.49540|la Vallesa|Metrovalencia|M
+S|39.56162|-0.53595|L'Eliana|Metrovalencia|M
+S|39.49901|-0.42492|Les Carolines-Fira|Metrovalencia|M
+S|39.62259|-0.59072|Llíria|Metrovalencia|M
+S|39.49209|-0.35871|Machado|Metrovalencia|M
+S|39.48958|-0.45943|Manises|Metrovalencia|M
+S|39.46486|-0.33863|Marítim|Metrovalencia|M
+S|39.53826|-0.54663|Masia de Traver|Metrovalencia|M
+S|39.56651|-0.40526|Masies|Metrovalencia|M
+S|39.14416|-0.51841|Massalavés|Metrovalencia|M
+S|39.57050|-0.33261|Massamagrell|Metrovalencia|M
+S|39.53650|-0.40304|Massarrojos|Metrovalencia|M
+S|39.52802|-0.35163|Meliana|Metrovalencia|M
+S|39.47365|-0.41712|Mislata|Metrovalencia|M
+S|39.47549|-0.42278|Mislata Almassil|Metrovalencia|M
+S|39.54350|-0.38857|Moncada-Alfara|Metrovalencia|M
+S|39.55544|-0.53180|Montesol|Metrovalencia|M
+S|39.17415|-0.51571|Montortal|Metrovalencia|M
+S|39.56175|-0.34070|Museros|Metrovalencia|M
+S|39.47012|-0.38563|Àngel Guimerà|Metrovalencia|M
+S|39.47076|-0.40687|Nou d'Octubre|Metrovalencia|M
+S|39.35315|-0.47375|Omet|Metrovalencia|M
+S|39.43222|-0.41788|Paiporta|Metrovalencia|M
+S|39.49889|-0.44194|Paterna|Metrovalencia|M
+S|39.45653|-0.39037|Patraix|Metrovalencia|M
+S|39.43322|-0.43709|Picanya|Metrovalencia|M
+S|39.36306|-0.46467|Picassent|Metrovalencia|M
+S|39.46622|-0.38209|Plaça Espanya|Metrovalencia|M
+S|39.48083|-0.44178|Quart de Poblet|Metrovalencia|M
+S|39.58797|-0.33087|Rafelbunyol|Metrovalencia|M
+S|39.39399|-0.46405|Realón|Metrovalencia|M
+S|39.54331|-0.55943|Riba-roja de Túria|Metrovalencia|M
+S|39.52919|-0.40730|Rocafort|Metrovalencia|M
+S|39.49267|-0.46716|Roses|Metrovalencia|M
+S|39.45509|-0.39777|Safranar|Metrovalencia|M
+S|39.48531|-0.45044|Salt de l'Aigua|Metrovalencia|M
+S|39.50590|-0.45532|Santa Rita|Metrovalencia|M
+S|39.45107|-0.40262|Sant Isidre|Metrovalencia|M
+S|39.38438|-0.46713|Sant Ramon|Metrovalencia|M
+S|39.54975|-0.38961|Seminari-CEU|Metrovalencia|M
+S|39.43610|-0.46093|Torrent|Metrovalencia|M
+S|39.43168|-0.47263|Torrent Avinguda|Metrovalencia|M
+S|39.47825|-0.39028|Túria|Metrovalencia|M
+S|39.53048|-0.53423|València la Vella|Metrovalencia|M
+S|39.43959|-0.41146|València Sud|Metrovalencia|M
+S|39.46756|-0.37702|Xàtiva|Metrovalencia|M
+S|38.59590|-0.05218|Altea|TRAM Metropolità d'Alacant|M
+S|38.54828|-0.13558|Benidorm|TRAM Metropolità d'Alacant|M
+S|38.54832|-0.12339|Benidorm Intermodal|TRAM Metropolità d'Alacant|M
+S|38.71501|0.07646|Benissa|TRAM Metropolità d'Alacant|M
+S|38.83468|0.10721|Bosc de Diana|TRAM Metropolità d'Alacant|M
+S|38.64993|0.03291|Calp|TRAM Metropolità d'Alacant|M
+S|38.55941|-0.10415|Camí Coves|TRAM Metropolità d'Alacant|M
+S|38.61057|-0.04097|Cap Negret|TRAM Metropolità d'Alacant|M
+S|38.83940|0.11271|Dénia|TRAM Metropolità d'Alacant|M
+S|38.57644|-0.07958|El Albir|TRAM Metropolità d'Alacant|M
+S|38.60222|-0.04791|Garganes|TRAM Metropolità d'Alacant|M
+S|38.77522|0.08739|Gata|TRAM Metropolità d'Alacant|M
+S|38.56765|-0.09296|l'Alfàs del Pi|TRAM Metropolità d'Alacant|M
+S|38.82298|0.06380|La Xara|TRAM Metropolità d'Alacant|M
+S|38.62151|-0.03278|Olla Altea|TRAM Metropolità d'Alacant|M
+S|38.83181|0.10083|Pedrera-Vessanes|TRAM Metropolità d'Alacant|M
+S|38.72925|0.09797|Teulada|TRAM Metropolità d'Alacant|M
+S|41.37494|2.17863|Moll de Drassanes|Alsa|W
+S|41.36817|2.18695|Moll de Llevant|Alsa|W
+S|35.79033|-5.80394|Tanger Ville|Balearia|W
+S|37.18640|-7.33993|Marina Isla Canela|El Pelón|W
+S|37.19592|-7.32869|Puerto Deportivo de Isla Cristina|El Pelón|W
+S|28.74018|-13.86337|Fred. Olsen Express Terminal Corralejo|Fred. Olsen Express|W
+S|28.85821|-13.83373|Fred. Olsen Express Terminal Playa Blanca|Fred. Olsen Express|W
+S|43.44891|-3.76883|Embarcadero de Pedreña|Los Reginas|W
+S|43.46151|-3.80164|Embarcadero de Santander|Los Reginas|W
+S|43.45184|-3.74643|Embarcadero de Somo|Los Reginas|W
+S|35.24636|-3.92343|Al Hoceima|Naviera Armas|W
+S|35.29142|-2.93121|Melilla|Naviera Armas|W
+S|36.72293|-3.52293|Motril|Naviera Armas|W
+S|35.27196|-2.92708|Nador CF4|Naviera Armas|W
+S|43.31226|5.36417|Gare Maritime d'Arenc|النقل البحري الجزائري|W
+S|43.29931|5.36232|Gare Maritime de La Major|النقل البحري الجزائري|W
+S|43.30297|5.36332|Gare Maritime de La Major|النقل البحري الجزائري|W
+L|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|Trambahía T1|#7bb932|2 16:922 18:929 5:1251 4:1018 15:6305 1:800 17:584 12:600 3:348 13:449 11:368 20:436 19:1599 10:4377 7:1340 0:373 8:538 14:700 6:527 9:522
+L|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|Trambahía T1|#7bb932|15 1:800 17:584 12:600 3:348 13:449 11:368 20:436 19:1599 10:4377 7:1340 0:373 8:538 14:700 6:527 9:522
+L|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|Trambahía T1|#7bb932|9 6:522 14:524 8:700 0:539 7:372 10:1343 19:4382 20:1601 11:438 13:369 3:451 12:345 17:599 1:582 15:808 4:6301 5:1018 18:1251 16:929 2:921
+L|Consorcio Metropolitano de Transportes de la Bahía de Cádiz|Trambahía T1|#7bb932|9 6:522 14:524 8:700 0:539 7:372 10:1343 19:4382 20:1601 11:438 13:369 3:451 12:345 17:599 1:582 15:808
+L|Consorcio de Transporte Metropolitano del Área de Málaga|Línea 1|#E60000|21 35:517 27:426 26:481 39:589 25:797 36:945 24:384 23:832 33:756 28:851 30:525 22:618
+L|Consorcio de Transporte Metropolitano del Área de Málaga|Línea 1|#E60000|22 30:618 28:525 33:851 23:756 24:832 36:384 25:945 39:797 26:589 27:481 35:426 21:517
+L|Consorcio de Transporte Metropolitano del Área de Málaga|Línea 2|#173BA0|34 38:866 32:573 29:653 37:718 31:604 28:824 30:517
+L|Consorcio de Transporte Metropolitano del Área de Málaga|Línea 2|#173BA0|30 28:517 31:824 37:604 29:718 32:653 38:619 34:866
+L|Metro Bilbao|L1 Etxebarri → Ibarbengoa|red|58 54:756 50:613 78:419 86:895 40:588 56:470 62:753 76:492 55:1123 79:995 75:731 68:1340 57:1557 47:1679 67:607 65:857 45:855 59:876 70:975 42:539 43:995 53:698 61:1129
+L|Metro Bilbao|L1 Etxebarri → Larrabasterra|red|58 54:756 50:613 78:419 86:895 40:588 56:470 62:753 76:492 55:1123 79:995 75:731 68:1340 57:1557 47:1679 67:607 65:857 45:855 59:876 70:975 42:539 43:995 53:698 61:1135 52:829 66:1434
+L|Metro Bilbao|L1 Etxebarri → Plentzia|red|58 54:756 50:613 78:419 86:895 40:588 56:470 62:753 76:492 55:1123 79:995 75:731 68:1340 57:1557 47:1679 67:607 65:857 45:855 59:876 70:975 42:539 43:995 53:698 61:1135 52:829 66:1434 81:1321 84:1793 73:3415
+L|Metro Bilbao|L1 Ibarbengoa → Etxebarri|red|61 53:1127 43:699 42:993 70:544 59:974 45:879 65:855 67:865 47:483 57:1783 68:1558 75:1339 79:730 55:987 76:1128 62:493 56:682 40:541 86:588 78:898 50:419 54:611 58:754
+L|Metro Bilbao|L1 Larrabasterra → Etxebarri|red|66 52:1436 61:835 53:1125 43:699 42:993 70:544 59:974 45:879 65:855 67:865 47:483 57:1783 68:1558 75:1339 79:730 55:987 76:1128 62:493 56:682 40:541 86:588 78:898 50:419 54:611 58:754
+L|Metro Bilbao|L1 Plentzia → Etxebarri|red|73 84:3413 81:1799 66:1322 52:1436 61:835 53:1125 43:699 42:993 70:544 59:974 45:879 65:855 67:865 47:483 57:1783 68:1558 75:1339 79:730 55:987 76:1128 62:493 56:682 40:541 86:588 78:898 50:419 54:611 58:754
+L|Metro Bilbao|L2 Basauri → Kabiezes|black|51 46:1075 58:1543 54:756 50:613 78:419 86:895 40:588 56:470 62:753 76:492 55:1123 79:995 75:731 60:1762 44:1013 49:799 48:460 83:802 80:1134 41:885 74:740 72:613 77:1069 63:1078
+L|Metro Bilbao|L2 Kabiezes → Basauri|black|63 77:1078 72:1078 74:609 41:742 80:883 83:1136 48:802 49:459 44:803 60:1008 75:1774 79:730 55:987 76:1128 62:493 56:682 40:541 86:588 78:898 50:419 54:611 58:754 46:1547 51:1240
+L|Metro Bilbao|L3|#E3007D|69 85:515 86:810 87:824 82:1030 71:684 64:1386
+L|Metro Bilbao|L3|#E3007D|64 71:1387 82:680 87:1018 86:833 85:806 69:509
+L|Metro Ligero de Madrid|Línea ML-1|#4682b4|478 104:634 122:468 88:761 107:498 92:649 108:573 111:1210 436:434
+L|Metro Ligero de Madrid|Línea ML-1|#4682b4|436 111:433 108:1204 92:575 107:650 88:495 122:758 104:474 478:633
+L|Metro Ligero de Madrid|Línea ML-2|#660066|89 91:661 90:666 95:679 102:589 93:546 112:1306 119:658 120:695 115:803 100:456 113:615 101:862
+L|Metro Ligero de Madrid|Línea ML-2|#660066|101 113:862 100:614 115:456 120:801 119:698 112:658 93:933 102:545 95:590 90:682 91:667 89:653
+L|Metro Ligero de Madrid|Línea ML-3|#FF0000|116 105:609 118:429 110:599 94:593 103:772 96:1810 114:1532 121:827 109:505 117:1740 99:1249 98:940 106:495 97:566 101:919
+L|Metro Ligero de Madrid|Línea ML-3|#FF0000|101 97:924 106:564 98:495 99:935 117:1255 109:1745 121:502 114:827 96:1531 103:1810 94:784 110:591 118:602 105:423 116:608
+L|Metro de Barcelona|L1|#C8102E|193 138:883 129:1173 240:607 147:575 179:600 264:568 246:1021 217:695 234:447 194:456 175:493 242:589 269:554 268:565 153:497 270:482 127:598 214:545 186:839 165:890 223:648 201:785 177:845 247:1146 263:719 267:699 137:558 245:735 181:898
+L|Metro de Barcelona|L1|#C8102E|181 245:899 137:735 267:565 263:704 247:721 177:1146 201:845 223:727 165:648 186:889 214:820 127:564 270:606 153:482 268:483 269:567 242:512 175:576 194:543 234:456 217:500 246:603 264:1020 179:568 147:601 240:581 129:608 138:1174 193:880
+L|Metro de Barcelona|L10N|#02AEEC|201 224:1433 142:1400 209:1268 202:626 187:842
+L|Metro de Barcelona|L10N|#02AEEC|187 202:849 209:630 142:1266 224:1411 201:1424
+L|Metro de Barcelona|L10S|#02AEEC|158 264:905 148:1073 238:530 155:788 182:603 180:588 280:1574 236:859 163:704 279:785
+L|Metro de Barcelona|L10S|#02AEEC|279 163:785 236:704 280:859 180:1576 182:589 155:610 238:789 148:527 264:1064 158:905
+L|Metro de Barcelona|L11|#97D700|266 152:288 265:1185 156:527 145:212
+L|Metro de Barcelona|L11|#97D700|145 156:212 265:527 152:1184 266:288
+L|Metro de Barcelona|L12|#B2AED3|241 258:647
+L|Metro de Barcelona|L12|#B2AED3|258 241:647
+L|Metro de Barcelona|L2|#93328E|226 248:796 268:548 229:665 262:858 220:815 244:551 171:766 165:494 131:896 254:659 199:724 275:776 128:809 256:939 187:754 232:524 133:760
+L|Metro de Barcelona|L2|#93328E|133 232:761 187:565 256:755 128:936 275:813 199:779 254:717 131:659 165:892 171:498 244:767 220:556 262:805 229:854 268:652 248:548 226:786
+L|Metro de Barcelona|L3|#43B02A|266 243:872 150:1025 272:916 221:816 219:627 273:680 231:790 271:765 205:889 183:440 162:891 229:660 153:746 207:590 200:601 226:629 168:725 175:757 261:665 257:478 233:523 203:629 213:653 225:738 281:570
+L|Metro de Barcelona|L3|#43B02A|281 225:570 213:738 203:645 233:637 257:518 261:479 175:668 168:757 226:724 200:634 207:605 153:673 229:664 162:660 183:891 205:523 271:807 231:761 273:790 219:680 221:626 272:810 150:916 243:1030 266:860
+L|Metro de Barcelona|L4|#F2A900|199 139:506 140:803 167:497 259:763 235:682 208:677 141:655 154:1166 136:831 196:719 270:632 229:554 185:689 274:771 197:803 125:679 190:865 212:846 210:1666 276:871 266:698
+L|Metro de Barcelona|L4|#F2A900|266 276:700 210:870 212:1667 190:844 125:862 197:683 274:806 185:765 229:695 270:554 196:631 136:724 154:834 141:1164 208:655 235:677 259:683 167:763 140:504 139:802 199:506
+L|Metro de Barcelona|L5|#0072CE|160 184:764 252:784 144:696 149:915 239:719 173:495 158:570 132:709 234:663 257:644 172:611 192:717 162:918 274:843 244:818 255:804 143:608 201:1017 159:589 212:464 278:534 277:594 191:702 164:887 166:725 273:695
+L|Metro de Barcelona|L5|#0072CE|273 166:692 164:744 191:871 277:706 278:591 212:534 159:468 201:580 143:1009 255:608 244:804 274:818 162:843 192:918 172:717 257:611 234:643 132:662 158:709 173:570 239:497 149:721 144:913 252:695 184:784 160:762
+L|Metro de Barcelona|L6|#797FBC|134 237:1189 189:847 251:536 222:451 198:572 206:442 258:459
+L|Metro de Barcelona|L6|#797FBC|258 206:466 198:442 222:576 251:448 189:532 237:847 134:1190
+L|Metro de Barcelona|L7|#B2600B|134 237:1183 189:862 251:499 230:429 170:436 130:426
+L|Metro de Barcelona|L7|#B2600B|130 170:426 230:441 251:427 189:505 237:848 134:1183
+L|Metro de Barcelona|L8|#E274AA|135 211:1107 195:1066 176:601 188:810 253:981 129:704 126:1651 161:1175 250:2407 218:1279
+L|Metro de Barcelona|L8|#E274AA|218 250:1281 161:2409 126:1176 129:1652 253:705 188:975 176:817 195:557 211:1065 135:1106
+L|Metro de Barcelona|L9N|#FE5000|201 224:1433 142:1400 146:1235 249:545 181:847 174:631 260:780 151:893
+L|Metro de Barcelona|L9N|#FE5000|151 260:884 174:779 181:629 249:833 146:553 142:1227 224:1411 201:1424
+L|Metro de Barcelona|L9S|#FE5000|123 124:1859 215:994 228:1626 157:1005 169:1132 204:1214 216:915 227:1762 178:1483 176:736 148:780 264:1064 158:905 281:1190
+L|Metro de Barcelona|L9S|#FE5000|281 158:1188 264:905 148:1073 176:776 178:735 227:1474 216:1767 204:907 169:1220 157:1131 228:997 215:1635 124:988 123:1885
+L|Metro de Granada|Línea 1 - Metro de Granada|#c00b31|282 296:943 306:1198 285:453 298:549 289:837 295:825 291:580 286:562 297:431 307:363 288:601 292:385 305:287 299:596 303:792 283:696 294:746 284:384 301:506 300:517 290:512 302:571 304:934 293:863 287:726
+L|Metro de Granada|Línea 1 - Metro de Granada|#c00b31|287 293:725 304:859 302:940 290:566 300:514 301:524 284:503 294:391 283:737 303:694 299:794 305:590 292:283 288:391 307:596 297:363 286:431 291:565 295:580 289:798 298:838 285:549 306:452 296:1198 282:945
+L|Metro de Madrid|Línea 1|#67C0DD|478 340:1170 362:672 482:1319 534:516 526:502 391:810 323:493 375:480 506:538 414:794 349:728 530:464 401:696 524:353 527:665 324:528 389:759 334:313 451:700 465:585 492:659 460:427 485:574 350:485 321:718 452:546 522:1492 544:473 371:836 424:674 435:1310 536:713
+L|Metro de Madrid|Línea 1|#67C0DD|536 435:711 424:1308 371:680 544:837 522:472 452:1490 321:545 350:715 485:491 460:574 492:427 465:752 451:491 334:699 389:314 324:757 527:523 524:669 401:351 530:697 349:465 414:727 506:735 375:498 323:481 391:493 526:811 534:506 482:512 362:1326 340:663 478:1181
+L|Metro de Madrid|Línea 10|#015396|411 501:1552 347:1083 447:1080 449:1816 429:1013 426:2041 505:1506 436:943 456:3036 529:618
+L|Metro de Madrid|Línea 10|#015396|529 456:614 436:3032 505:944 426:1394 429:2066 449:975 447:1810 347:1080 501:1092 411:1536
+L|Metro de Madrid|Línea 10|#015396|529 396:669 348:1447 362:1061 482:872 377:911 518:857 461:787 402:851 318:1196 530:389 483:840 489:894 425:1639 346:1952 360:818 101:1410 339:1828 376:1015 417:3475 495:635
+L|Metro de Madrid|Línea 10|#015396|495 417:636 376:3473 339:1017 101:1825 360:1411 346:814 425:1953 489:1472 483:912 530:838 318:388 402:1193 461:852 518:799 377:793 482:905 362:876 348:1048 396:1447 529:670
+L|Metro de Madrid|Línea 11|#006400|484 308:942 468:749 515:658 357:1143 430:1092 423:2153
+L|Metro de Madrid|Línea 11|#006400|423 430:2136 357:1090 515:1155 468:646 308:749 484:944
+L|Metro de Madrid|Línea 12. Metrosur|#a49a00|495 517:3364 438:1164 412:1089 361:948 419:1349 384:1039 381:1423 442:1151 385:967 418:1339 399:1173 317:1390 372:1216 329:1051 470:2708 397:1211 472:877 408:716 441:2274 445:2957 410:1773 487:1114 457:805 531:1116 474:2495 313:1754 473:1114 495:889
+L|Metro de Madrid|Línea 12. Metrosur|#a49a00|495 473:889 313:1101 474:1758 531:2487 457:1109 487:817 410:1117 445:1260 441:2957 408:2276 472:715 397:878 470:1202 329:2714 372:1046 317:1212 399:1408 418:1162 385:1335 442:956 381:1154 384:1408 419:1032 361:1351 412:950 438:1095 517:1160 495:3363
+L|Metro de Madrid|Línea 2|#fb0f0c|375 353:737 497:690 509:302 459:659 519:402 477:409 524:627 521:296 341:450 500:740 488:547 400:410 446:775 539:483 422:1401 420:1110 319:1421 336:1092 434:860
+L|Metro de Madrid|Línea 2|#fb0f0c|434 336:857 319:1092 420:1423 422:1110 539:1401 446:484 400:774 488:409 500:548 341:740 521:450 524:296 477:607 519:410 459:402 509:660 497:303 353:689 375:738
+L|Metro de Madrid|Línea 3|#FFDF00|455 328:435 541:558 483:356 351:602 524:430 437:989 386:432 467:741 378:509 439:739 315:1055 407:977 513:620 364:1086 546:1018 512:1097 545:1663 385:2670
+L|Metro de Madrid|Línea 3|#FFDF00|385 545:2677 512:1660 546:1092 364:1018 513:1088 407:619 315:975 439:1064 378:738 467:511 386:737 437:431 524:989 351:429 483:602 541:357 328:557 455:435
+L|Metro de Madrid|Línea 4|#824100|478 444:520 406:979 471:607 516:640 448:531 354:738 388:1117 332:986 338:650 314:682 490:770 335:822 379:516 440:532 400:601 538:496 520:339 367:495 318:385 349:410 509:495 328:783
+L|Metro de Madrid|Línea 4|#824100|328 509:783 349:496 318:410 367:388 520:491 538:339 400:496 440:578 379:532 335:513 490:829 314:770 338:683 332:648 388:992 354:1104 448:737 516:531 471:627 406:605 444:994 478:520
+L|Metro de Madrid|Línea 5|#96bf0d|360 352:1229 387:501 322:687 393:928 356:639 548:467 464:707 532:689 450:903 480:682 309:714 496:818 428:683 477:744 351:487 401:361 363:493 318:563 507:841 458:861 379:453 539:921 383:655 498:693 491:473 365:558 525:965 528:891 355:945 382:1369 312:683
+L|Metro de Madrid|Línea 5|#96bf0d|312 382:683 355:1369 528:945 525:892 365:1042 491:558 498:473 383:694 539:656 379:920 458:453 507:860 318:837 363:562 401:497 351:360 477:483 428:746 496:679 309:590 480:710 450:682 532:902 464:693 548:704 356:432 393:639 322:937 387:687 352:502 360:1238
+L|Metro de Madrid|Línea 6|#939393|427 443:654 320:924 494:1045 489:1168 328:1408 455:520 366:1393 542:690 403:645 375:696 461:806 499:933 335:898 379:703 446:780 462:561 508:763 370:887 465:739 454:820 327:774 439:643 533:970 484:959 463:662 464:754 358:988 427:800
+L|Metro de Madrid|Línea 6|#939393|427 358:799 464:914 463:753 484:661 533:959 439:969 327:644 454:773 465:927 370:744 508:768 462:763 446:560 379:777 335:703 499:899 461:929 375:806 403:695 542:645 366:685 455:1393 328:521 489:1413 494:1171 320:1042 443:921 427:650
+L|Metro de Madrid|Línea 7|#ed7b24|481 330:577 421:639 337:707 476:506 325:701 537:769 395:1206 403:1133 415:909 353:803 316:446 402:684 335:1025 359:663 469:793 343:937 491:972 333:693 398:802 523:886 510:596 433:1006 390:651 345:3030 373:639 432:1233 514:1022 416:1196 404:763 409:675
+L|Metro de Madrid|Línea 7|#ed7b24|409 404:672 416:755 514:1184 432:1022 373:1233 345:639 390:3032 433:643 510:1014 523:596 398:884 333:809 491:692 343:967 469:941 359:790 335:668 402:1025 316:684 353:446 415:803 403:1249 395:1134 537:1197 325:784 476:720 337:480 421:707 330:638 481:584
+L|Metro de Madrid|Línea 8|#eba6c9|461 368:1868 479:2877 448:911 394:2182 310:4030 342:1440 311:2064
+L|Metro de Madrid|Línea 8|#eba6c9|311 342:2039 310:1453 394:4032 448:2189 479:903 368:2879 461:1865
+L|Metro de Madrid|Línea 9|#9C3293|466 453:1201 405:1046 344:943 540:1046 482:865 380:621 486:968 368:488 369:676 374:746 335:715 458:609 488:1103 413:485 508:1083 392:818 547:768 331:1075 475:794 535:1447 543:1532 511:460 493:764 503:5593 502:3608 504:1583 431:4301 326:3819
+L|Metro de Madrid|Línea 9|#9C3293|326 431:3815 504:4305 502:1583 503:3608 493:5595 511:751 543:456 535:1530 475:1455 331:797 547:1072 392:767 508:816 413:1094 488:477 458:1112 335:609 374:703 369:759 368:676 486:488 380:938 482:619 540:883 344:1047 405:943 453:1042 466:1218
+L|Metro de Madrid|Línea Ramal|white|477 489:960
+L|Metro de Madrid|Línea Ramal|white|489 477:959
+L|Metro de Palma|Metro M1|#f1b03e|553 554:616 560:680 562:1399 558:817 552:538 549:549 563:1236 564:2641 556:1173
+L|Metro de Palma|Metro M1|#f1b03e|556 564:1171 563:2700 549:1174 552:550 558:581 562:814 560:1398 554:733 553:616
+L|Metro de Palma|Metro M2|#e93324|553 554:616 560:678 561:1009 559:526 565:716 550:482 551:1109 557:1801 555:1332
+L|Metro de Palma|Metro M2|#e93324|555 557:1331 551:1786 550:1103 565:479 559:689 561:577 560:1009 554:678 553:615
+L|Metro de Sevilla|Línea 1||569 582:1617 583:1428 568:1668 577:623 578:565 580:552 579:673 581:819 574:778 572:658 566:983 567:759 573:508 570:489 576:1897 571:1092 575:2144
+L|Metro de Sevilla|Línea 1||575 571:2150 576:1092 570:1893 573:490 567:506 566:766 572:983 574:657 581:779 579:818 580:677 578:551 577:565 568:623 583:1667 582:1427 569:1624
+L|Metrovalencia|Línia 1|#FDC600|610 587:4398 643:3195 651:3356 630:2156 602:2771 609:1342 594:4004 590:2113 621:3140 616:4192 655:3119 660:1424 672:2549 664:1115 611:1961 674:3650 659:2221 656:1705 678:1018 671:1422 668:659 658:645 627:682 661:880 653:484 676:1020 607:719 599:928 614:1077 604:1147 605:693 625:691 666:1291 645:883 649:1611 673:706 642:2500 626:3834 603:1521
+L|Metrovalencia|Línia 1|#FDC600|603 626:1516 642:3833 673:2499 649:704 645:1609 666:886 625:1293 605:691 604:694 614:1147 599:1076 607:929 676:662 653:1023 661:484 627:874 658:682 668:646 671:660 678:1423 656:1016 659:1703 674:2225 611:3493 664:1961 672:1115 660:2547 655:1425 616:3119 621:4192 590:3140 594:2114 609:4004 602:1341 630:2771 651:2156 643:3356 587:3195 610:4398
+L|Metrovalencia|Línia 2|#E70095|675 674:1440 659:2221 656:1705 678:1018 671:1422 668:659 658:645 627:682 661:880 653:484 676:1020 607:719 599:928 614:1077 608:942 601:687 636:578 606:1109 657:648 670:1411 623:950 622:861 628:1848 634:1253 615:1930 613:1628 650:689 635:787 624:966 632:2254 620:1827 598:867 637:3085
+L|Metrovalencia|Línia 2|#E70095|637 598:3085 620:868 632:1827 624:2254 635:965 650:783 613:693 615:1633 634:1930 628:1253 622:1845 623:862 670:949 657:1411 606:650 636:1108 601:576 608:687 614:940 599:1076 607:929 676:662 653:1023 661:484 627:874 658:682 668:646 671:660 678:1423 656:1016 659:1703 674:2225 675:1372
+L|Metrovalencia|Línia 3|#DD052B|584 667:726 639:753 669:904 662:878 618:843 648:926 647:554 654:868 595:896 653:1024 679:844 612:738 585:524 617:682 600:928 638:916 588:519 589:608 591:1262 646:1836 619:1133 586:992 652:1962 644:1164 631:986 663:1022
+L|Metrovalencia|Línia 3|#DD052B|663 631:1022 644:986 652:1163 586:1962 619:992 646:1132 591:1837 589:1255 588:606 638:524 600:916 617:928 585:680 612:525 679:743 653:846 595:1018 654:895 647:869 648:552 618:929 662:840 669:879 639:905 667:753 584:732
+L|Metrovalencia|Línia 5||640 596:490 592:824 593:623 585:798 612:526 679:743 653:846 595:1018 654:895 647:869 648:552 618:929 662:840 669:879 639:905 667:753 584:732
+L|Metrovalencia|Línia 5|#009870|584 667:726 639:753 669:904 662:878 618:843 648:926 647:554 654:868 595:896 653:1024 679:844 612:738 585:526 593:795 592:623 596:818 640:496
+L|Metrovalencia|Línia 7|#f28c00|640 596:490 592:824 593:623 585:798 612:526 597:1117 627:698 658:682 668:646 671:660 678:1423 656:1016 659:1703 674:2225 675:1372
+L|Metrovalencia|Línia 7|#f28c00|675 674:1440 659:2221 656:1705 678:1018 671:1422 668:659 658:645 627:682 597:700 612:1115 585:526 593:795 592:623 596:818 640:496
+L|Metrovalencia|Línia 9|#B7814F|589 588:606 638:524 600:916 617:928 585:680 612:525 679:743 653:846 595:1018 654:895 647:869 648:552 618:929 662:840 669:879 639:905 667:753 629:1634 633:3412 677:2182 641:1402 665:1224
+L|Metrovalencia|Línia 9|#B7814F|665 641:1224 677:1402 633:2182 629:3412 667:1633 639:753 669:904 662:878 618:843 648:926 647:554 654:868 595:896 653:1024 679:844 612:738 585:524 617:682 600:928 638:916 588:519 589:608
+L|TRAM Metropolità d'Alacant|L9|#706e6d|681 682:1034 686:2113 692:1345 689:1545 680:3236 690:794 687:1122 694:1491 685:7444 683:10359 696:2602 691:6761 693:6112 695:3436 684:645 688:775
+L|TRAM Metropolità d'Alacant|L9|#706e6d|688 684:775 695:645 693:3436 691:6112 696:6759 683:2602 685:10355 694:7442 687:1491 690:1122 680:794 689:3235 692:1545 686:1345 682:2113 681:1034
+L|Alsa|Bus Nàutic|#3fc8eb|697 698:2502
+L|Balearia|Motril - Tánger-Medina / طنجة المدينة||709 699:230586
+L|El Pelón|Ferry Isla Canela -> Isla Cristina||700 701:1579
+L|El Pelón|Ferry Isla Cristina -> Isla Canela||701 700:1579
+L|Fred. Olsen Express|Fast Ferry Playa Blanca||703 702:13748
+L|Fred. Olsen Express|Mini Ferry Playa Blanca||703 702:13748
+L|Los Reginas|1|#B00000|705 704:3223 706:1972
+L|Naviera Armas|Motril - Alhucemas||709 707:169066
+L|Naviera Armas|Motril - Melilla / موتريل - مليلية||709 708:173896
+L|Naviera Armas|Motril - Nador||709 710:176417
+L|النقل البحري الجزائري|الجزائر - Marseille||711 713:1064 712:456
+T|43.54708|-6.82753|A Caridá
+T|43.35044|-8.41206|A Coruña
+T|42.41142|-8.02896|A Friela-Maside
+T|42.06376|-7.13437|A Gudiña-Porta de Galicia
+T|43.55045|-8.01871|A Palla
+T|42.87015|-7.45509|A Pobra de San Xiao
+T|42.53364|-7.40027|A Pobra do Brollón
+T|43.66606|-7.90256|A Ponte de Mera
+T|42.51770|-8.65435|A Portela
+T|42.13669|-8.23489|A Pousa-Crecente
+T|42.39261|-7.11325|A Rúa-Petín
+T|43.25998|-2.92846|Abando Indalecio Prieto
+T|43.22559|-2.88689|Abaroa-San Miguel
+T|41.80942|-6.14182|Abejera
+T|37.16745|-2.78398|Abla y Abrucena
+T|43.26766|-5.80578|Ablaña
+T|43.55524|-5.71772|Aboño/Musel
+T|41.52259|1.90683|Abrera
+T|37.60970|-0.93183|Abrevadero
+T|43.43991|-6.06579|Aces
+T|43.45346|-3.85580|Adarzo
+T|41.59121|1.85339|Aeri de Montserrat
+T|41.30427|2.07347|Aeroport
+T|41.28803|2.07112|Aeroport T1
+T|41.30345|2.07432|Aeroport T2
+T|36.67775|-4.49016|Aeropuerto
+T|40.49233|-3.59359|Aeropuerto T4
+T|36.75123|-6.06645|Aeropuerto de Jerez
+T|42.44355|-2.29167|Agoncillo
+T|38.79686|-0.52183|Agres
+T|42.78527|-4.23375|Aguilar de Campoo
+T|41.73875|1.62373|Aguilar de Segarra
+T|38.83056|-0.55120|Agullent
+T|42.84631|-2.38889|Agurain-Salvatierra de Álava
+T|43.27421|-2.12646|Aia-Orio
+T|38.34498|-0.49606|Alacant Terminal
+T|41.77163|-1.11261|Alagón
+T|36.42538|-6.14449|Alameda Solano
+T|42.65682|-4.31123|Alar del Rey
+T|39.00011|-1.84735|Albacete Los Llanos
+T|38.84467|-0.52241|Albaida
+T|39.39150|-0.40277|Albal
+T|39.54533|-0.34798|Albalat dels Sorells
+T|39.11702|-0.52350|Alberic
+T|39.54310|-0.32053|Albuixech
+T|40.30465|0.22868|Alcalà de Xivert
+T|40.48906|-3.36619|Alcalá de Henares
+T|40.50544|-3.33530|Alcalá de Henares Universidad
+T|42.40759|-2.12197|Alcanadre
+T|37.96650|-1.20816|Alcantarilla
+T|40.54675|-3.63460|Alcobendas - San Sebastián de los Reyes
+T|38.70948|-0.47065|Alcoi
+T|37.93298|-4.67481|Alcolea de Córdoba
+T|37.63547|-5.73101|Alcolea del Río
+T|41.65425|0.68571|Alcoletge
+T|40.35028|-3.83178|Alcorcón Central
+T|41.26160|1.17417|Alcover
+T|39.39566|-3.20537|Alcázar de San Juan
+T|39.46096|-0.46374|Aldaia
+T|40.97971|-5.55317|Aldealengua
+T|43.10188|-2.09722|Alegia
+T|42.84904|-2.51463|Alegría-Dulantzi
+T|39.42233|-0.39259|Alfafar - Benetússer
+T|42.18661|-1.74814|Alfaro
+T|39.71512|2.69137|Alfàbia
+T|36.12664|-5.45018|Algeciras
+T|39.19315|-0.44093|Algemesí
+T|39.75296|-0.36577|Algimia-Ciudad
+T|43.34696|-3.01079|Algorta
+T|38.05176|-1.24539|Alguazas-Molina
+T|41.29451|-1.90429|Alhama de Aragón
+T|37.84936|-1.41450|Alhama de Murcia
+T|36.73290|-4.66477|Aljaima
+T|38.93625|-6.40788|Aljucén
+T|38.74044|-4.73031|Almadenejos - Almadén
+T|38.89551|-3.70965|Almagro
+T|38.86765|-1.10557|Almansa
+T|37.00094|-5.01989|Almargen - Cañete la Real
+T|39.95488|-0.07692|Almassora
+T|41.48919|-2.52534|Almazán - Villa
+T|39.74867|-0.21822|Almenara
+T|38.68468|-6.39953|Almendralejo
+T|37.47475|-1.77958|Almendricos
+T|37.90102|-6.79735|Almonaster - Cortegana
+T|36.27665|-5.42997|Almoraima
+T|38.69646|-5.29036|Almorchón
+T|41.99613|-0.64270|Almudévar
+T|38.51436|-3.50194|Almuradiel-Viso del Marques
+T|40.65827|-4.03580|Alpedrete
+T|41.13661|1.37330|Altafulla - Tamarit
+T|43.35191|-4.05700|Altamira
+T|38.59590|-0.05218|Altea
+T|42.89541|-2.18131|Altsasu
+T|42.89333|-2.16745|Altsasu–Herria
+T|43.31636|-1.93108|Altza
+T|43.23587|-2.39952|Altzola
+T|40.38571|-3.76144|Aluche
+T|37.60994|-0.91509|Alumbres
+T|39.15320|-0.45068|Alzira
+T|43.31268|-1.98153|Amara-Donostia
+T|43.18456|-2.48026|Amaña
+T|43.25454|-2.94313|Ametzola
+T|43.21676|-2.73646|Amorebieta
+T|43.22177|-2.73499|Amorebieta Geralekua
+T|43.04886|-3.00184|Amurrio
+T|43.05767|-2.99619|Amurrio Iparralde
+T|42.17823|-4.48058|Amusco
+T|43.22214|-2.01562|Andoain
+T|43.21553|-2.02031|Andoain-Centro
+T|38.02797|-4.06603|Andújar
+T|41.64640|1.07898|Anglesola
+T|43.16274|-2.07060|Anoeta
+T|43.30226|-1.97481|Anoeta
+T|37.02948|-4.56137|Antequera Alta Velocidad
+T|37.07017|-4.71971|Antequera-Santa Ana
+T|40.25833|0.25507|Antiga estació d'Alcossebre
+T|37.71910|-3.97930|Antigua Estacion Tren de Martos
+T|38.09617|-3.62279|Antigua Estación de Almería-San José
+T|37.97496|-3.51848|Antigua Estación de Begíjar
+T|38.10053|-3.63135|Antigua Estación de Madrid
+T|37.77437|-3.90305|Antigua Estación de Tren de Torredelcampo
+T|37.39054|-3.00261|Antigua Estación de tren de Gor
+T|37.39514|-2.98251|Antigua Estación de tren de Gorafe
+T|37.99877|-3.37334|Antigua Estación de Úbeda
+T|38.01993|-3.63742|Antigua estación de Las Madrigueras
+T|37.34642|-2.13889|Antigua estación de Renfe
+T|42.40320|-0.64308|Anzánigo
+T|37.26822|-5.54846|Arahal
+T|42.86923|-2.30674|Araia
+T|43.15307|-2.93843|Arakaldo
+T|43.27422|-2.95041|Araneko
+T|43.27312|-2.95162|Arangoiti
+T|43.21050|-3.10896|Aranguren
+T|43.21033|-3.11376|Aranguren Apeadero
+T|40.03483|-3.61825|Aranjuez
+T|40.44858|-3.78549|Aravaca
+T|41.46913|-1.08621|Arañales de Muel
+T|43.16323|-2.92766|Arbide
+T|42.10694|-8.30008|Arbo
+T|42.34041|-8.61067|Arcade
+T|38.13138|-1.23588|Archena-Fortuna
+T|41.21565|-2.27769|Arcos de Jalón
+T|43.18462|-2.47426|Ardantza
+T|42.45715|-7.62935|Areas
+T|43.18477|-4.04995|Arenas de Iguña
+T|41.57741|2.54942|Arenys de Mar
+T|43.14502|-2.94354|Areta
+T|42.99121|-3.94463|Arija
+T|43.23980|-2.87897|Ariz
+T|41.30943|-2.05996|Ariza
+T|43.16671|-3.22762|Arla Berrón
+T|43.16992|-2.91815|Arrankudiaga
+T|36.79095|-5.14057|Arriate
+T|43.21008|-2.88877|Arrigorriaga
+T|43.38756|-5.18827|Arriondas
+T|43.27838|-2.27069|Arroa
+T|39.46807|-6.53447|Arroyo de Malpartida
+T|42.43086|-2.25608|Arrúbal
+T|43.27399|-2.92022|Artxanda
+T|43.20102|-3.07164|Artxube
+T|43.23572|-3.21328|Artzentales
+T|41.04707|-4.70193|Arévalo
+T|43.52039|-6.97710|As Campas
+T|43.52794|-8.15043|As Ferrerías
+T|42.07542|-8.42010|As Neves
+T|40.38163|-3.66802|Asamblea de Madrid-Entrevías
+T|41.18232|0.56905|Ascó
+T|43.25131|-2.92572|Askatasuna
+T|43.40396|-3.82090|Astillero
+T|42.45940|-6.04706|Astorga
+T|42.61595|-5.56624|Asunción-Universidad
+T|41.32438|-1.78529|Ateca
+T|43.32033|-1.95892|Ategorrieta
+T|40.40597|-3.68877|Atocha-Cercanías
+T|43.25860|-2.94611|Autonomía
+T|42.85473|-5.44283|Aviados
+T|43.56148|-5.92296|Avilés
+T|43.55461|-5.91748|Avilés Apeadero
+T|42.27552|-0.68243|Ayerbe
+T|43.19039|-2.45502|Azitain
+T|43.18583|-2.26127|Azpeitia
+T|40.56101|-3.26534|Azuqueca
+T|43.29182|-1.99463|Añorga
+T|43.17340|-7.75634|Baamonde
+T|40.97228|-5.43053|Babilafuente
+T|38.89073|-6.98162|Badajoz
+T|41.44571|2.24910|Badalona
+T|41.13980|-1.25156|Badules
+T|41.00489|-2.78602|Baides
+T|41.42008|2.09692|Baixador de Vallvidrera
+T|43.27449|-5.82827|Baiña
+T|43.17691|-2.90914|Bakiola
+T|41.78922|0.81469|Balaguer
+T|41.81482|2.23336|Balenyà - Els Hostalets
+T|41.84189|2.24726|Balenyà - Tona - Seva
+T|43.19654|-3.18981|Balmaseda
+T|37.81880|-0.95094|Balsicas Mar Menor
+T|43.46288|-8.18860|Barallobre
+T|42.03162|-3.35469|Barbadillo del Mercado
+T|42.33851|-8.01146|Barbantes
+T|41.51357|2.11825|Barberà del Vallès
+T|41.37901|2.14000|Barcelona - Sants
+T|41.39228|2.18103|Barcelona-Arc de Triomf
+T|41.40907|2.18741|Barcelona-El Clot
+T|41.38439|2.18556|Barcelona-Estació de França
+T|41.43098|2.18311|Barcelona-Fabra i Puig
+T|41.42299|2.18682|Barcelona-La Sagrera-Meridiana
+T|41.39254|2.16538|Barcelona-Passeig de Gràcia
+T|41.38758|2.16920|Barcelona-Plaça de Catalunya
+T|41.43627|2.19386|Barcelona-Sant Andreu
+T|41.46162|2.18037|Barcelona-Torre Baró   Vallbona
+T|43.54675|-6.50825|Barcia
+T|42.40104|-7.80252|Barra de Miño
+T|40.01156|-0.69642|Barracas
+T|43.37402|-4.04207|Barreda
+T|43.54742|-7.22531|Barreiros
+T|42.41444|-5.96406|Barrientos
+T|42.86463|-5.33450|Barrio de las Ollas
+T|43.22350|-2.88221|Basauri
+T|43.25965|-2.95322|Basurto-Ospitalea/Hospital
+T|43.04610|-2.20234|Beasain
+T|42.10469|-4.64726|Becerril de Campos
+T|43.20612|-2.79761|Bedia
+T|43.14908|-7.68624|Begonte
+T|43.47012|-6.09893|Beifar
+T|43.33653|-1.80334|Belaskoenea
+T|41.63175|0.78160|Bell-lloc d'Urgell
+T|41.50084|2.09058|Bellaterra
+T|37.32152|-5.96423|Bellavista
+T|41.63260|1.01297|Bellpuig
+T|41.35401|2.11541|Bellvitge-Gornal
+T|37.46184|-6.94763|Belmonte
+T|43.43986|-4.98232|Belmonte
+T|42.60954|-6.42221|Bembibre
+T|37.35711|-6.20799|Benacazón
+T|36.59906|-4.53662|Benalmadena - Arroyo de la Miel
+T|37.34526|-3.16321|Benalúa
+T|36.71371|-5.24614|Benaojan-Montejaque
+T|43.36346|-5.68060|Bendicion
+T|40.42767|0.41516|Benicarló - Peníscola
+T|40.05805|0.05776|Benicàssim
+T|38.04717|-0.99547|Beniel
+T|39.28425|-0.42999|Benifaió - Almussafes
+T|38.93833|-0.45323|Benigànim
+T|38.71501|0.07646|Benissa
+T|43.33036|-1.81706|Bentak
+T|43.41363|-3.57707|Beranga
+T|43.08840|-3.45763|Bercedo-Montija
+T|43.41787|-2.72334|Bermeo
+T|43.16846|-2.57443|Berriz
+T|43.27072|-8.22583|Betanzos-A Infesta
+T|43.28418|-8.21593|Betanzos-Cidade
+T|43.44073|-3.89957|Bezana
+T|43.23679|-2.88969|Bidebieta-Basauri
+T|43.34472|-3.06072|Bilbao - Mercancías / Merkantziak
+T|43.25992|-2.92644|Bilbao La Concordia
+T|41.84974|0.29141|Binefar
+T|39.69249|2.84122|Binissalem
+T|42.68988|-1.65240|Biurrun Campanas
+T|38.22303|-1.32516|Blanca - Abaran
+T|41.67334|2.76901|Blanes
+T|43.27088|-5.59039|Blimea
+T|37.03764|-4.72798|Bobadilla
+T|43.41041|-3.84145|Boo
+T|43.43169|-3.94632|Boo de Piélagos
+T|42.03698|2.91530|Bordils - Juià
+T|42.06467|2.24193|Borgonyà
+T|39.89650|-0.10405|Borriana - Les Alqueries
+T|42.86278|-5.32871|Boñar
+T|38.66886|-4.31665|Brazatortas - Veredas
+T|42.63278|-6.20097|Brañuelas
+T|37.54610|-5.86677|Brenes
+T|43.01880|-2.33447|Brinkola
+T|42.54273|-3.31908|Briviesca
+T|41.31717|-1.85549|Bubierca
+T|38.86736|-0.51048|Bufali
+T|43.23822|-4.82333|Bulnes
+T|39.69745|2.69415|Bunyola
+T|42.37117|-3.66632|Burgos - Rosa Manzano
+T|42.98437|-5.70530|Busdongo
+T|43.38017|-2.69302|Busturia Axpe
+T|43.39087|-2.69367|Busturia Itsasbegi
+T|39.42710|-0.78740|Buñol
+T|43.12858|-4.05381|Bárcena
+T|41.67625|-0.94160|C.I.M. Zaragoza
+T|43.41572|-8.16885|Cabanas-O Areal
+T|43.16077|-5.62491|Cabañaquinta
+T|41.85457|-6.24638|Cabañas de Aliste
+T|41.78831|-1.16840|Cabañas de Ebro
+T|42.99637|-3.85841|Cabañas de Virtus
+T|38.72394|-5.22708|Cabeza Del Buey
+T|41.73725|-4.65127|Cabezón de Pisuerga
+T|43.30784|-4.23176|Cabezón de la Sal
+T|43.17610|-5.75491|Caborana
+T|37.65659|-3.26237|Cabra del Santo Cristo-Alicún
+T|41.50673|2.40177|Cabrera de Mar - Vilassar de Mar
+T|43.33137|-5.93294|Caces
+T|43.06801|-3.34748|Cadagua
+T|43.54289|-6.39182|Cadavedo
+T|38.54066|-0.17504|Cala Finestrat
+T|41.73015|1.51519|Calaf
+T|41.18956|1.57502|Calafell
+T|42.31070|-1.95782|Calahorra
+T|40.90345|-1.30041|Calamocha-Nueva
+T|38.88687|-6.38281|Calamonte
+T|41.34636|-1.63842|Calatayud
+T|41.52870|-1.36081|Calatorao
+T|37.65178|-6.87629|Calañas
+T|42.39785|-0.49928|Caldearenas-Aquilué
+T|42.05570|-8.56641|Caldelas de Tui
+T|41.56844|2.52602|Caldes d'Estrac
+T|41.84116|2.80057|Caldes de Malavella
+T|41.61471|2.66657|Calella
+T|38.12267|-0.87441|Callosa de Segura
+T|38.13652|-0.87585|Callosa de Segura-Cox
+T|38.64993|0.03291|Calp
+T|43.53536|-5.69716|Calzada de Asturias
+T|42.12222|2.96561|Camallera
+T|43.44835|-5.01901|Camangu
+T|40.77512|0.67110|Camarles - Deltebre
+T|37.41795|-6.04078|Camas
+T|43.29044|-8.35217|Cambre
+T|41.08111|1.04528|Cambrils
+T|40.85045|-1.33858|Caminreal-Fuentes Claras
+T|41.19217|1.27357|Camp de Tarragona
+T|38.85330|-5.64149|Campanario
+T|36.70509|-4.54554|Campanillas
+T|42.22165|2.16577|Campdevànol
+T|41.25959|-5.01792|Campillo
+T|37.03203|-4.86350|Campillos
+T|39.39438|-3.11770|Campo de Criptana
+T|42.85591|-5.42873|Campohermoso
+T|43.11012|-5.81640|Campomanes
+T|40.75908|0.55586|Campredó
+T|41.54244|2.10027|Can Feu   Gràcia
+T|41.35673|2.08436|Can Mercader
+T|41.50219|1.83080|Can Parellada
+T|41.39934|2.00494|Can Ros
+T|39.76299|2.70879|Can Tambor
+T|42.48277|-7.58769|Canaval
+T|43.50720|-5.86938|Cancienes
+T|43.58458|-5.77268|Candás
+T|43.58647|-5.76801|Candás Apeaderu
+T|43.54188|-6.44601|Caneiru
+T|41.58645|2.58115|Canet de Mar
+T|42.75112|-0.51311|Canfranc
+T|43.62604|-7.33331|Cangas de Foz
+T|37.27849|-5.91066|Cantaelgallo
+T|41.13362|-5.18312|Cantalapiedra
+T|37.57474|-5.80325|Cantillana
+T|42.38095|-1.64529|Caparroso
+T|41.52156|1.69535|Capellades
+T|41.10208|0.78039|Capçanes
+T|43.35537|-5.43457|Carancos
+T|41.68163|-5.97197|Carbajales de Alba
+T|43.35077|-5.63434|Carbayin Bajo
+T|39.12044|-0.45457|Carcaixent
+T|41.63642|2.35618|Cardedeu
+T|40.73918|-4.75089|Cardeñosa de Ávila
+T|41.33580|-1.22909|Cariñena
+T|41.21556|-5.11453|Carpio
+T|42.65279|-1.64559|Carrascal
+T|40.90586|-3.01438|Carrascosa de Henares
+T|41.41231|2.10797|Carretera de les Aigües
+T|37.36889|-6.33517|Carrión de los Céspedes
+T|43.28770|-5.62637|Carrocera
+T|37.60359|-0.97727|Cartagena
+T|37.60503|-0.97497|Cartagena
+T|43.55075|-6.78961|Cartavio
+T|37.40724|-6.01012|Cartuja
+T|36.57037|-4.59388|Carvajal
+T|43.33881|-4.17491|Casar de Periedo
+T|37.29458|-4.76421|Casariche
+T|39.81206|-6.32569|Casas de Millán
+T|39.89199|-5.67764|Casatejada
+T|42.05563|-3.38700|Cascajares de la Sierra
+T|41.72273|-1.02049|Casetas
+T|41.38596|-0.89271|Casilla de la Princesa
+T|41.23991|-0.04274|Caspe
+T|43.26872|-2.92596|Castaños
+T|42.17287|-1.69244|Castejón de Ebro
+T|41.64054|1.85477|Castellbell i el Vilar
+T|41.62884|1.86895|Castellbell i el Vilar - Monistrol de Montserrat
+T|41.47326|1.96782|Castellbisbal
+T|41.27871|1.97940|Castelldefels
+T|41.63738|0.96797|Castellnou de Seana
+T|39.98817|-0.05189|Castelló
+T|42.64995|-0.55516|Castiello
+T|42.62560|-0.54382|Castiello-Pueblo
+T|39.94957|-3.73859|Castillejo-Añover
+T|42.81211|-4.60194|Castrejón de la Peña
+T|43.50889|-7.01385|Castropol
+T|38.73511|-5.54169|Castuera
+T|39.40007|-0.39919|Catarroja
+T|42.67227|-8.72536|Catoira
+T|39.67413|2.68519|Caubet
+T|38.71627|-0.95956|Caudete
+T|39.94728|-0.57220|Caudiel
+T|37.93270|-5.70425|Cazalla - Constantina
+T|43.45431|-3.84043|Cazoña
+T|39.78881|-6.37452|Cañaveral
+T|43.28785|-8.30777|Cecebre
+T|43.35617|-5.45111|Ceceda
+T|43.37651|-3.71809|Ceceñas
+T|40.45529|-1.24479|Cella
+T|42.05859|0.88287|Cellers - Llimiana
+T|43.42478|-4.81134|Celoriu
+T|42.02732|2.87485|Celrà
+T|41.79941|2.22281|Centelles
+T|43.53110|-5.70673|Centro de Transportes
+T|43.20766|-8.44664|Cerceda-Meirama
+T|40.73766|-4.06603|Cercedilla
+T|41.49263|2.14762|Cerdanyola del Vallès
+T|41.49709|2.11512|Cerdanyola-Universitat
+T|43.58717|-7.93462|Cerdido
+T|42.77981|-5.00559|Cerezal de la Guzpeña
+T|41.67370|1.27472|Cervera
+T|42.31021|-8.61644|Cesantes
+T|43.17302|-8.20054|Cesuras
+T|41.29604|-1.95994|Cetina
+T|42.26886|-8.67176|Chapela
+T|39.49078|-0.68627|Cheste
+T|39.47106|-0.72292|Chiva
+T|43.28939|-5.66882|Ciañu
+T|43.41708|-3.49051|Cicero
+T|40.15906|-3.61013|Ciempozuelos
+T|38.24669|-1.42167|Cieza
+T|42.85770|-4.27909|Cillamayor
+T|39.16888|-3.23305|Cinco Casas
+T|39.49550|-0.62556|Circuit Ricardo Tormo
+T|42.19099|-4.85038|Cisneros
+T|42.80318|-5.13091|Cistierna
+T|38.98487|-3.91314|Ciudad Real
+T|38.74078|-0.44705|Cocentaina
+T|43.21095|-3.13853|Colegio
+T|42.40700|3.15418|Colera
+T|40.69260|-4.03531|Collado Mediano
+T|43.37949|-5.79207|Colloto / Cualloto
+T|40.64520|-3.77656|Colmenar Viejo
+T|43.38287|-4.55687|Colombres
+T|41.36410|2.03161|Colònia Güell
+T|39.67767|2.80865|Consell/Alaró
+T|39.71481|2.91473|Constància / Hospital d’Inca
+T|41.76635|-4.62337|Corcos-Aguilarejo
+T|43.16426|-5.67661|Corigos
+T|41.35752|2.07056|Cornellà
+T|36.49436|-6.26811|Cortadura
+T|41.91536|-1.42087|Cortes de Navarra
+T|36.59738|-5.33263|Cortes de la Frontera
+T|40.42373|-3.56101|Coslada
+T|42.47525|-6.83082|Covas
+T|43.67026|-7.61458|Covas
+T|40.87000|-4.96805|Crespos
+T|43.57558|-5.92948|Cristalería
+T|41.59190|-0.94792|Cuarte de Huerva
+T|41.20421|1.67610|Cubelles
+T|41.80898|-4.57957|Cubillas de Santa Marta
+T|43.55091|-6.15216|Cudillero
+T|40.03396|-2.14369|Cuenca-Fernando Zóbel
+T|41.00931|-1.25479|Cuencabuena
+T|43.43123|-5.07331|Cueves
+T|39.17794|-0.26349|Cullera
+T|38.05308|-6.63090|Cumbres Mayores
+T|41.19476|1.63154|Cunit
+T|43.12730|-8.14324|Curtis
+T|43.33946|-5.63068|Curuxona
+T|39.46118|-6.38572|Cáceres
+T|36.52794|-6.28688|Cádiz
+T|36.73386|-4.60857|Cártama
+T|37.88851|-4.78952|Córdoba Julio Anguita
+T|39.06141|-3.60408|Daimiel
+T|43.29364|-2.35555|Deba
+T|40.39989|-3.69175|Delicias
+T|43.29089|-2.88744|Derio
+T|43.30053|-2.98467|Desertu-Barakaldo
+T|40.37902|-3.69874|Doce de Octubre
+T|38.96706|-5.86293|Don Benito
+T|43.31915|-2.00642|Donostia
+T|43.31774|-1.97693|Donostia / San Sebastián
+T|37.28722|-5.92332|Dos Hermanas
+T|43.01130|-3.75586|Dosante-Cidad
+T|41.14362|0.92079|Duesaigües - l'Argentera
+T|41.87124|-4.54073|Dueñas
+T|43.16940|-2.63455|Durango
+T|38.83940|0.11271|Dénia
+T|43.18711|-2.46567|Eibar
+T|43.34100|-4.38378|El Barcenal
+T|40.46533|-3.80785|El Barrial-Centro Comercial Pozuelo
+T|43.38248|-5.70247|El Berrón
+T|42.42577|-5.20845|El Burgo Ranero
+T|43.32913|-5.87287|El Caleyo
+T|42.11675|-4.49586|El Carrión
+T|40.31853|-3.70969|El Casar
+T|36.90707|-4.75913|El Chorro-Caminito del Rey
+T|37.51648|-6.95324|El Cobujon
+T|37.48631|-5.93290|El Cáñamo
+T|43.28968|-5.64086|El Entrego - La Oscura
+T|40.58526|-4.13232|El Escorial
+T|40.74083|-4.18952|El Espinar
+T|37.62755|-0.82959|El Estrecho
+T|40.55847|-3.71383|El Goloso
+T|37.86703|-4.85047|El Higuerón
+T|43.53517|-6.07061|El Parador
+T|41.07987|-5.40664|El Pedroso de la Armuña
+T|40.56768|-4.28277|El Pimpollar
+T|36.60989|-4.51544|El Pinillo
+T|43.54686|-6.14334|El Pito - Piñera
+T|40.37617|-3.65609|El Pozo
+T|36.60420|-6.21700|El Puerto de Santa María
+T|39.58819|-0.31190|El Puig
+T|39.47736|-1.01170|El Rebollar
+T|43.37504|-5.54626|El Remediu
+T|39.69397|-3.43010|El Romeral
+T|37.72034|-6.90045|El Tamujoso
+T|38.24538|-0.76676|Elche / Elx AV
+T|38.48493|-0.80107|Elda-Petrer
+T|43.21360|-2.41583|Elgoibar
+T|43.27367|-2.95103|Elorriaga
+T|43.29444|-2.90599|Elotxelerri
+T|43.33525|-8.41301|Elviña-Universidade
+T|38.26904|-0.70630|Elx Carrús
+T|40.40522|-3.70289|Embajadores
+T|41.42133|-1.59316|Embid de Jalón
+T|41.28902|-1.27871|Encinacorba
+T|39.69067|2.95126|Enllaç
+T|40.80800|-0.84366|Entronque
+T|43.34671|-3.01145|Ereaga
+T|43.18483|-2.50117|Ermua
+T|43.27876|-2.00743|Errekalde
+T|43.31101|-1.89869|Errenteria
+T|43.18310|-2.49878|Errotabarri
+T|39.94935|-4.48756|Erustes
+T|39.63204|2.73649|Es Caülls
+T|39.60449|2.70155|Es Pont d'Inca Nou
+T|37.39772|-6.39208|Escacena
+T|38.01026|-3.83216|Espelúy
+T|40.90971|-3.07316|Espinosa de Henares
+T|42.47895|-4.37452|Espinosa de Villagonzalo
+T|43.07429|-3.53727|Espinosa de los Monteros
+T|39.32243|-1.49077|Estacion de Casas Ibañez
+T|38.89746|-1.72610|Estacion de Chinchilla Nueva
+T|38.27179|-0.69510|Estació Elx-Parc
+T|41.14477|1.09927|Estació de Misericòrdia
+T|40.35845|0.29370|Estació de Santa Madalena de Pulpis
+T|42.16733|0.89113|Estació de Tremp
+T|41.08517|1.15698|Estació del Nord
+T|42.43045|1.92607|Estació inferior
+T|42.43091|1.92672|Estació superior
+T|43.20602|-5.79263|Estación d'Uxo
+T|38.93992|-1.25301|Estación de Alpera
+T|38.27337|-2.92789|Estación de Beas de Segura
+T|37.95565|-3.53558|Estación de Begíjar
+T|42.64906|-3.01354|Estación de Bujedo
+T|40.37796|-3.79100|Estación de Cuatro Vientos
+T|43.38243|-5.70238|Estación de El Berrón;El Berrón
+T|37.35855|-2.28292|Estación de Fines-Olula
+T|43.53772|-5.67562|Estación de Gijón/Xixón Sanz Crespo
+T|39.99717|-3.68947|Estación de Las Infantas
+T|43.10651|-5.79570|Estación de Malvedo
+T|40.38893|-3.67772|Estación de Mercancías Madrid - Abroñigal
+T|40.91023|-4.09476|Estación de Segovia-Guiomar
+T|39.81256|-0.43178|Estación de Soneja
+T|40.00650|-3.00978|Estación de Tarancón
+T|38.02748|-3.26521|Estación de Torreperogil
+T|43.35252|-8.40995|Estación de tren A Coruña
+T|36.50292|-6.27205|Estadio
+T|37.41728|-6.00751|Estadio Olímpico
+T|39.70629|-0.34822|Estivella - Albalat dels Tarongers
+T|42.91096|-2.07173|Etxarri-Aranatz
+T|43.24506|-2.89031|Etxebarri
+T|43.19475|-2.69688|Euba
+T|43.25166|-2.88790|Euskal Herria
+T|41.22498|0.35078|Faió - la Pobla de Massaluca
+T|43.30826|-1.88885|Fanderia
+T|41.23438|0.14281|Favara
+T|43.60094|-7.29985|Fazouro
+T|41.06384|-1.23859|Ferreruela
+T|41.76409|-6.07392|Ferreruela de Tábara
+T|43.48805|-8.23100|Ferrol
+T|41.72089|2.27156|Figaró
+T|42.26500|2.96897|Figueres
+T|42.26470|2.94268|Figueres Vilafant
+T|37.18472|-2.83948|Fiñana
+T|42.04749|2.95717|Flaçà
+T|41.22942|0.54015|Flix
+T|43.38174|-5.72969|Fonciello
+T|41.93497|2.80948|Fornells de la Selva
+T|43.33203|-2.67367|Forua
+T|43.56092|-7.27218|Foz
+T|38.16771|-6.63754|Fregenal de la Sierra
+T|41.19126|-5.13795|Fresno el Viejo
+T|42.26487|-4.40239|Frómista
+T|40.50154|-3.68216|Fuencarral
+T|36.54181|-4.62398|Fuengirola
+T|40.28331|-3.79925|Fuenlabrada
+T|37.13526|-4.73814|Fuente de Piedra
+T|40.48496|-3.66311|Fuente de la Mora
+T|38.16367|-5.90041|Fuente del Arco
+T|41.51524|-0.61838|Fuentes de Ebro
+T|43.35562|-5.47853|Fuentesanta / Ḥuentesanta
+T|43.25495|-2.95578|Funicular de Masustegi
+T|43.25552|-2.95511|Funicular de Masustegi
+T|43.31861|-5.92561|Fuso de la Reina
+T|42.41116|-2.09801|Féculas-Navarra
+T|38.27865|-0.65554|Gabinete de Circulación Elx Mercaderíes
+T|43.05879|-2.27866|Gabiria
+T|43.32676|-1.85760|Gaintxurizketa
+T|40.60059|-3.98225|Galapagar - La Navata
+T|43.30410|-3.01018|Galindo
+T|43.31937|-3.06744|Gallarta
+T|41.86709|-1.32133|Gallur
+T|43.31239|-1.90644|Galtzaraborda
+T|43.42303|-3.52496|Gama
+T|38.97035|-0.18006|Gandia
+T|43.35649|-4.07015|Ganzo
+T|42.59888|-1.65008|Garinoain
+T|41.25430|1.90260|Garraf
+T|43.27403|-2.95065|Garro
+T|38.91537|-6.47721|Garrovilla - Las Vegas
+T|38.77522|0.08739|Gata
+T|36.54024|-5.38682|Gaucin
+T|41.30305|2.01035|Gavà
+T|41.44862|1.86538|Gelida
+T|41.44176|1.86461|Gelida Baixador
+T|41.44816|1.86474|Gelida Inferior
+T|41.44059|1.86459|Gelida Superior
+T|41.82329|0.81205|Gerb
+T|43.31396|-2.67622|Gernika
+T|40.30971|-3.73407|Getafe Centro
+T|40.30551|-3.70758|Getafe Industrial
+T|40.28824|-3.73751|Getafe Sector 3
+T|43.28203|-3.43828|Gibaja
+T|37.36789|-6.96215|Gibraleón
+T|39.67941|-0.32066|Gilet
+T|41.97917|2.81629|Girona
+T|43.34077|-4.15565|Golbardo
+T|41.63592|0.93086|Golmés
+T|41.04231|-5.54116|Gomecello
+T|43.40980|-3.98848|Gornazo
+T|43.39443|-6.06373|Grado
+T|42.32323|-5.01331|Grajal de Campos
+T|37.18369|-3.60863|Granada
+T|41.61124|2.27658|Granollers - Canovelles
+T|41.59965|2.29161|Granollers Centre
+T|41.93795|-0.36931|Grañén
+T|42.04984|-4.58491|Grijota
+T|41.74526|-1.16585|Grisén
+T|43.32194|-1.97330|Gros
+T|37.58156|-5.66983|Guadajoz
+T|40.64408|-3.18225|Guadalajara
+T|40.58637|-3.12643|Guadalajara - Yebes
+T|38.09037|-5.80333|Guadalcanal
+T|36.69258|-4.48311|Guadalhorce
+T|38.69930|-4.92948|Guadalmez - Los Pedroches
+T|38.92177|-6.69002|Guadiana
+T|37.31688|-3.12702|Guadix
+T|41.71796|2.53893|Gualba
+T|42.79097|-4.85188|Guardo
+T|42.78770|-4.84510|Guardo Apeadero
+T|38.89692|-6.12902|Guareña
+T|43.39154|-3.85953|Guarnizo
+T|40.71689|-4.15774|Gudillos
+T|43.55233|-5.86526|Gudín Laminación
+T|42.06567|-8.62253|Guillarei
+T|40.64894|-4.61499|Guimorcondo
+T|43.17905|-7.89510|Guitiriz
+T|42.10138|0.88808|Guàrdia de Tremp
+T|36.95150|-2.48751|Gádor
+T|37.10861|-2.59158|Gérgal
+T|43.20896|-3.09533|Güeñes
+T|42.58371|-2.84913|Haro
+T|38.50900|-1.68864|Hellin
+T|43.40105|-3.76655|Heras
+T|43.27240|-1.96379|Hernani
+T|43.26646|-1.97275|Hernani-Centro
+T|40.59935|-4.49501|Herradón-La Cañada
+T|43.31962|-1.93671|Herrera
+T|42.59868|-4.31647|Herrera de Pisuerga
+T|37.60508|-0.96100|Hospital
+T|41.47625|2.04644|Hospital General
+T|41.74790|2.63167|Hostalric
+T|43.40502|-3.66666|Hoz de Anero
+T|37.25262|-6.94485|Huelva
+T|42.13275|-0.40985|Huesca
+T|40.25563|-3.82844|Humanes
+T|40.83117|-3.13892|Humanes de Mohernando
+T|37.22145|-2.94912|Huéneja-Dólar
+T|36.88346|-2.43628|Huércal-Viator
+T|43.20392|-3.14487|Ibarra
+T|43.32129|-2.00877|Igeldo
+T|41.57807|1.62980|Igualada
+T|43.09396|-2.12550|Ikaztegieta
+T|40.12085|-3.84226|Illescas
+T|39.71810|2.90584|Inca
+T|42.99268|-2.91555|Inoso-Oiardo
+T|43.31991|-2.67683|Institutoa
+T|43.31423|-1.95487|Intxaurrondo
+T|43.32015|-1.95277|Intxaurrondo
+T|43.24843|-2.98991|Irauregi Alonsotegi
+T|43.33921|-1.80058|Irun
+T|43.34094|-1.79606|Irun Colon
+T|43.34949|-1.78614|Irun Ficoba
+T|43.06837|-2.16253|Itsasondo
+T|37.39582|-3.52776|Iznalloz
+T|43.03583|-3.00396|Iñarratxu
+T|37.92738|-6.77299|Jabugo-Galaroza
+T|42.57773|-0.53846|Jaca
+T|40.93000|-2.93585|Jadraque
+T|37.39243|-1.69304|Jaravía
+T|37.33292|-5.96400|Jardines de Hércules
+T|42.25330|1.97598|Jardins Artigas
+T|37.77998|-3.79079|Jaén
+T|36.67981|-6.12610|Jerez de la Frontera
+T|36.42426|-5.43417|Jimena de la Frontera
+T|36.66064|-5.28134|Jimera de Líbar
+T|43.25095|-2.92596|Juan Carlos de Gortazar
+T|41.54392|0.82553|Juneda
+T|39.91496|-0.56939|Jérica - Viver
+T|37.91348|-3.35018|Jódar - Úbeda
+T|43.23893|-3.35775|Karrantza
+T|43.25544|-2.97199|Kastrexana
+T|43.25131|-2.88936|Kukullaga
+T|43.27659|-2.84635|Kurtzea
+T|40.75359|0.61455|L'Aldea - Amposta - Tortosa
+T|40.81192|0.70818|L'Ampolla - Perelló - Deltebre
+T|43.28714|-5.64519|L'Entregu / El Entrego
+T|43.35191|-5.36916|L'Infiestu
+T|43.34401|-5.36066|L'Infiestu Apeaderu
+T|43.16654|-5.72217|L'Oyanco
+T|39.05020|-0.47733|L'Ènova - Manuel
+T|40.96676|-5.65626|La Alamedilla
+T|43.19006|-3.19746|La Calzada
+T|43.39727|-3.81489|La Cantábrica
+T|43.39750|-3.81504|La Cantábrica
+T|43.38699|-5.67540|La Carrera
+T|43.35061|-3.70719|La Cavada
+T|43.13007|-5.81605|La Cobertoria
+T|36.64216|-4.49237|La Colina
+T|43.38817|-5.82714|La Corredoria
+T|41.55505|2.10028|La Creu Alta
+T|42.82012|-5.30221|La Devesa
+T|38.76545|-0.95385|La Encina
+T|42.80889|-5.21402|La Ercina
+T|43.30123|-3.04196|La Escontrilla
+T|37.61381|-0.89137|La Esperanza
+T|42.78668|-4.90536|La Espina
+T|42.12971|2.20359|La Farga de Bebié
+T|43.30485|-5.69279|La Felguera
+T|43.31050|-5.68564|La Felguera
+T|43.30565|-5.68883|La Felguera - Nuevu Llangréu
+T|41.44486|2.07320|La Floresta
+T|43.43478|-5.71001|La Florida
+T|43.09614|-5.79855|La Frecha
+T|40.48035|-3.39299|La Garena
+T|41.68449|2.28866|La Garriga
+T|39.11161|-2.00045|La Gineta
+T|42.60683|-6.29500|La Granja de San Vicente
+T|43.20317|-3.17052|La Herrera
+T|37.70393|-1.59549|La Hoya
+T|43.31281|-3.00479|La Iberia
+T|42.77030|-5.04132|La Llama de la Guzpeña
+T|39.76777|-0.20296|La Llosa
+T|42.83857|-5.31818|La Losilla
+T|43.55920|-6.18497|La Magdalena
+T|42.85855|-5.33952|La Mata de la Riba
+T|37.69975|-0.97787|La Palma - Pozo Estrecho
+T|37.39079|-6.55436|La Palma del Condado
+T|43.27667|-5.81284|La Perea
+T|43.24012|-2.92411|La Peña
+T|39.08329|-0.46963|La Pobla Llarga
+T|42.85390|-5.67470|La Pola de Gordón
+T|42.76522|-2.83023|La Puebla de Arganzón
+T|41.22451|-0.43819|La Puebla de Híjar
+T|43.22282|-3.02489|La Quadra
+T|42.63807|-5.55699|La Raya
+T|37.47994|-5.93990|La Rinconada
+T|42.80399|-5.62648|La Robla
+T|43.54713|-5.90467|La Rocica
+T|39.19932|-2.16292|La Roda de Albacete
+T|37.20785|-4.77491|La Roda de Andalucía
+T|40.29672|-3.79249|La Serna
+T|40.25786|-3.70422|La Tenería (2027)
+T|37.61558|-0.87514|La Unión
+T|37.61545|-0.88162|La Unión Vieja
+T|42.84966|-5.48701|La Valcueva
+T|42.85511|-5.41207|La Vecilla
+T|41.32049|-0.42702|La Zaida-Sástago
+T|40.39923|-3.74472|Laguna
+T|42.63244|-8.14286|Lalín
+T|43.32143|-3.00013|Lamiako
+T|43.05820|-4.08423|Lantueno
+T|43.31357|-1.93789|Larratxo
+T|43.31371|-1.93673|Larraundi
+T|43.29260|-3.04881|Larreineta
+T|43.29434|-2.91581|Larrondo
+T|36.54413|-6.19845|Las Aletas
+T|37.01852|-5.94569|Las Cabezas de San Juan
+T|43.29859|-4.07311|Las Caldas de Besaya
+T|40.80757|-0.84471|Las Escuelas
+T|43.19323|-4.05416|Las Fraguas
+T|40.32296|-3.72731|Las Margaritas Universidad
+T|40.55201|-3.89667|Las Matas
+T|36.87322|-4.71920|Las Mellizas
+T|40.58916|-4.36162|Las Navas del Marqués
+T|40.34145|-3.84296|Las Retamas
+T|40.49429|-3.86794|Las Rozas
+T|42.97362|-4.02985|Las Rozas de Valdearroyo
+T|38.03142|-1.23762|Las Torres de Cotillas
+T|40.60945|-4.04595|Las Zorreras-Navalquejigo
+T|40.38146|-3.78038|Las Águilas
+T|43.21861|-2.25705|Lasao
+T|43.27095|-2.02026|Lasarte-Oria
+T|43.14225|-2.96050|Laudio/Llodio
+T|41.39578|1.76807|Lavern-Subirats
+T|43.30792|-1.98941|Lazkano
+T|36.91154|-6.09520|Lebrija
+T|40.95765|-1.26904|Lechago
+T|40.32909|-3.77120|Leganés
+T|43.05101|-2.33048|Legazpi
+T|43.08580|-2.14096|Legorreta
+T|43.28673|-2.87469|Lekunbiz
+T|43.20714|-2.77541|Lemoa
+T|43.36384|-5.88339|Les Campes
+T|41.52871|2.03346|Les Fonts
+T|43.35864|-5.89759|Les Maces
+T|40.02337|-0.00161|Les Palmes
+T|41.42749|2.09167|Les Planes
+T|43.31324|-5.86928|Les Segaes
+T|39.71926|-0.23965|Les Valls
+T|43.27345|-2.83578|Lezama
+T|43.31596|-1.89931|Lezo-Rentería
+T|42.59510|-5.58194|León
+T|37.88654|-1.34713|Librilla
+T|43.38052|-5.58266|Lieres
+T|43.35883|-3.43336|Limpias
+T|41.94696|-6.48471|Linarejos-Pedroso
+T|38.06908|-3.58914|Linares-Baeza
+T|43.34499|-3.74180|Liérganes
+T|43.35881|-5.85734|Llamaquique
+T|43.36878|-5.52522|Llames
+T|43.42091|-4.75912|Llanes
+T|42.98795|-3.98261|Llano
+T|37.62603|-0.83620|Llano del Beal
+T|42.36680|3.14916|Llançà
+T|43.55430|-5.89657|Llaranes
+T|41.62073|0.63304|Lleida-Pirineus
+T|38.23775|-6.00962|Llerena
+T|41.63791|2.40460|Llinars del Vallès
+T|39.71634|2.86918|Lloseta
+T|43.44056|-5.05591|Lloviu
+T|39.71155|2.99425|Llubí
+T|42.38065|-2.07128|Lodosa
+T|42.45757|-2.44082|Logroño
+T|43.30462|-1.96362|Loiola
+T|43.31049|-1.96796|Loiola
+T|37.17511|-4.13567|Loja
+T|43.26581|-4.06759|Lombera
+T|41.40616|-1.15850|Longares
+T|37.66129|-5.53108|Lora del Río
+T|37.68070|-1.68561|Lorca San Diego
+T|37.67193|-1.69631|Lorca Sutullena
+T|39.48567|-0.56738|Loriguilla - Reva
+T|43.25986|-5.57500|Los Barreros / Barredos
+T|36.17377|-5.46063|Los Barrios
+T|36.55462|-4.61459|Los Boliches
+T|43.51236|-6.09740|Los Cabos
+T|42.91032|-4.07531|Los Carabeos
+T|43.25513|-4.06388|Los Corrales de Buelna
+T|43.37685|-5.60146|Los Corros
+T|40.82232|-3.96456|Los Cotos
+T|37.62836|-6.53691|Los Frailes
+T|37.58618|-6.91977|Los Milanos
+T|40.70669|-4.06691|Los Molinos
+T|40.63906|-4.02207|Los Negrales
+T|37.65186|-0.79707|Los Nietos
+T|37.64695|-0.79151|Los Nietos Viejos
+T|37.64934|-0.78789|Los Nietos-Pescadería
+T|36.69851|-4.47831|Los Prados
+T|37.59012|-5.72700|Los Rosales
+T|38.44975|-6.36151|Los Santos de Maimona
+T|37.18353|-1.96892|Los Tres Amigos
+T|36.64475|-4.48550|Los Álamos
+T|40.77852|-4.20740|Los Ángeles de San Rafael
+T|42.23436|-8.59691|Louredo-Valos
+T|43.55123|-6.77166|Loza
+T|43.53758|-6.53667|Luarca
+T|41.82616|-1.24401|Luceni
+T|38.34603|-0.49062|Luceros
+T|43.30243|-2.00070|Lugaritz
+T|43.01510|-7.55216|Lugo
+T|43.40437|-5.81212|Lugones
+T|43.09354|-2.99953|Luiaondo
+T|43.30673|-2.68023|Lurgorri
+T|43.28770|-2.97530|Lutxana
+T|43.20599|-3.08246|Lámbarri
+T|38.35209|-0.47567|MARQ-Castillo
+T|40.47206|-3.68226|Madrid-Chamartín-Clara Campoamor
+T|40.42160|-3.71903|Madrid-Príncipe Pío
+T|40.40568|-3.69002|Madrid-Puerta de Atocha-Almudena Grandes
+T|40.38355|-3.76863|Maestra Justa Freire-Polideportivo Aluche
+T|41.97650|-4.43198|Magaz
+T|40.47434|-3.84597|Majadahonda
+T|41.64153|2.74140|Malgrat de Mar
+T|43.41741|-3.84206|Maliaño
+T|43.41612|-3.84096|Maliaño - La Vidriera
+T|39.57056|3.20284|Manacor
+T|41.99986|2.26911|Manlleu
+T|41.72026|1.82663|Manresa
+T|41.73222|1.83302|Manresa Alta
+T|41.73145|1.82796|Manresa Baixador
+T|41.72467|1.83409|Manresa-Viladordis
+T|40.81111|-0.84395|Manuel Beltrán (antiguo Hospital)
+T|39.00590|-3.37060|Manzanares
+T|42.75472|-5.51642|Manzaneda
+T|42.74274|-2.86734|Manzanos
+T|43.39830|-4.01003|Mar
+T|37.33434|-5.42550|Marchena
+T|42.33471|-1.71722|Marcilla de Navarra
+T|41.88277|-0.28476|Marcén-Poleñino
+T|41.88191|-0.28332|Marcén-Poliñino
+T|39.62539|2.72547|Marratxí
+T|43.34653|-3.42105|Marrón
+T|41.47935|1.92572|Martorell - Central
+T|41.47645|1.93916|Martorell - Vila   Castellbisbal
+T|41.48403|1.91860|Martorell Enllaç
+T|43.29908|-1.95628|Martutene
+T|43.57478|-7.26946|Marzán
+T|41.13093|0.81051|Marçà - Falset
+T|41.54009|-0.99748|María de Huerva
+T|41.50296|1.81250|Masquefa
+T|39.55568|-0.31812|Massalfassar
+T|39.40917|-0.39532|Massanassa
+T|42.84114|-5.52217|Matallana
+T|42.87121|-4.16506|Mataporquera
+T|41.42190|-4.80147|Matapozuelos
+T|41.53305|2.44552|Mataró
+T|40.95385|-2.84328|Matillas
+T|42.77153|-5.51191|Matueca
+T|42.72337|-4.27566|Mave
+T|41.77217|2.67338|Maçanet Massanes
+T|40.53463|-3.29857|Meco
+T|43.54568|-6.75299|Medal
+T|37.60786|-0.95368|Media Legua
+T|41.31726|-4.90968|Medina del Campo
+T|41.29133|-4.92299|Medina del Campo Alta Velocidad
+T|41.16522|-2.42117|Medinaceli
+T|43.25220|-2.38790|Mendaro
+T|37.97788|-3.80155|Mengíbar-Artichuela
+T|43.10554|-3.26295|Mercadillo-Villasana
+T|38.34816|-0.48483|Mercado
+T|43.38091|-5.74855|Meres
+T|43.25004|-5.78239|Mieres del Camín
+T|43.21575|-3.13114|Mimetiz
+T|39.24065|-2.34850|Minaya
+T|41.46922|2.06191|Mira-sol
+T|39.86621|-6.22895|Mirabel
+T|40.80948|-0.84245|Mirador de Buenos Aires
+T|39.76059|2.70636|Mirador des Pujol d’en Banya
+T|42.69080|-2.94114|Miranda de Ebro
+T|40.49988|-3.70930|Mirasierra - Paco de Lucía
+T|43.25009|-2.93052|Miribilla
+T|43.34968|-8.20724|Miño
+T|43.34232|-8.20542|Miño-Castro
+T|43.42500|-3.96043|Mogro
+T|38.87813|-0.75309|Moixent
+T|41.40994|2.02099|Molins de Rei
+T|43.14548|-4.03906|Molledo Portolín
+T|41.63195|0.89688|Mollerussa
+T|41.53334|2.21767|Mollet-Sant Fost
+T|41.53646|2.20597|Mollet-Santa Rosa
+T|43.43522|-3.91820|Mompía-Mortera
+T|39.82088|-0.16236|Moncofa
+T|42.52952|-7.50314|Monforte de Lemos
+T|39.93762|-6.10125|Monfragüe
+T|41.61036|1.84922|Monistrol Enllaç (Cremallera)
+T|41.60912|1.85031|Monistrol de Montserrat
+T|41.61549|1.84331|Monistrol-Vila
+T|41.29870|-2.10982|Monreal de Ariza
+T|40.78229|-1.36085|Monreal del Campo
+T|38.88406|-0.49150|Montaverner
+T|41.37652|1.16571|Montblanc
+T|41.46993|2.18003|Montcada Bifurcació
+T|41.48405|2.18825|Montcada i Reixac
+T|41.48125|2.16713|Montcada i Reixac - Santa Maria
+T|41.48390|2.18538|Montcada i Reixac-Manresa
+T|41.49674|2.18210|Montcada-Ripollet
+T|39.96077|-4.64656|Montearagón
+T|42.39370|-7.19455|Montefurado
+T|36.61370|-4.50935|Montemar Alto
+T|42.93210|-4.04268|Montes Claros
+T|38.94257|-0.64164|Montesa
+T|41.46291|2.27221|Montgat
+T|41.46874|2.28686|Montgat Nord
+T|43.52101|-5.74596|Montiana
+T|38.91358|-6.59867|Montijo
+T|38.91402|-6.61824|Montijo - El Molino
+T|37.57900|-4.63370|Montilla
+T|41.54972|2.24538|Montmeló
+T|41.59197|1.83634|Montserrat
+T|42.10556|-4.50173|Monzón de Campos
+T|41.91372|0.19690|Monzón-Río Cinca
+T|38.44130|-0.81663|Monòver
+T|40.11784|-0.77347|Mora de Rubielos
+T|41.47550|-1.47857|Morata de Jalón
+T|37.43113|-3.31075|Moreda
+T|41.01184|-5.58454|Moriscos
+T|43.30805|-1.98789|Morlans
+T|41.47855|-1.56625|Morés
+T|43.70609|-7.63618|Mosende
+T|43.40889|-2.70104|Mundaka
+T|37.97451|-1.13059|Murcia del Carmen
+T|43.42174|-3.84413|Muriedas-Bahía
+T|39.73415|3.03208|Muro
+T|43.54309|-6.11101|Muros de Nalon
+T|42.25927|1.97715|Museu del Ciment
+T|43.32121|-3.11219|Muskiz
+T|43.28679|-2.68942|Muxika
+T|36.71540|-4.42656|Málaga Centro Alameda
+T|36.71162|-4.43236|Málaga María Zambrano
+T|40.39560|-3.67859|Méndez Álvaro
+T|38.92159|-6.34305|Mérida
+T|41.10642|0.65342|Móra la Nova
+T|40.32857|-3.86393|Móstoles
+T|40.33094|-3.88220|Móstoles-El Soto
+T|42.81603|-2.80485|Nanclares-Langraiz
+T|42.83346|-5.52299|Naredo
+T|40.86667|-5.05291|Narros del Castillo
+T|43.36119|-5.50899|Nava
+T|41.33480|-5.07673|Nava del Rey
+T|39.87440|-0.50593|Navajas
+T|39.89496|-5.54565|Navalmoral de la Mata
+T|40.59093|-4.40863|Navalperal
+T|40.93708|-1.26171|Navarrete
+T|40.85665|-4.14115|Navas de Riofrío-La Losa
+T|43.53657|-6.71994|Navia
+T|43.49530|-8.16108|Neda
+T|37.35843|-6.68136|Niebla-Puerta del Buey
+T|42.42439|-6.00803|Nistal
+T|42.75469|-1.63621|Noain-Aeropuerto / Aireportua
+T|43.61031|-7.31226|Nois
+T|41.21373|0.24239|Nonaspe
+T|43.39399|-5.70361|Noreña
+T|38.40726|-0.77755|Novelda-Aspe
+T|43.44051|-4.93543|Nueva
+T|43.44440|-3.84724|Nueva Montaña
+T|40.44501|-3.69197|Nuevos Ministerios
+T|39.85297|-0.15224|Nules - La Vilavella
+T|41.25034|1.29740|Nulles - Bràfim
+T|42.39727|2.15487|Núria
+T|43.50316|-8.19561|O Alto do Castaño
+T|42.41826|-6.98505|O Barco de Valdeorras
+T|43.31798|-8.36862|O Burgo-Santiago
+T|42.43152|-8.06866|O Carballiño
+T|43.69279|-7.63503|O Folgueiro
+T|42.51962|-8.10484|O Irixo
+T|42.51965|-8.10504|O Irixo
+T|43.68622|-7.41268|O Madeiro
+T|43.51476|-8.17776|O Ponto
+T|42.16414|-8.62217|O Porriño
+T|41.47902|2.31981|Ocata
+T|43.55437|-5.88271|Oficinas
+T|43.30862|-1.87916|Oiartzun
+T|43.29188|-2.92524|Ola
+T|43.26419|-2.95527|Olabeaga
+T|41.54147|1.88791|Olesa de Montserrat
+T|42.48513|-1.64976|Olite
+T|38.62151|-0.03278|Olla Altea
+T|43.24237|-2.91641|Ollargan
+T|43.29610|-5.81885|Olloniego
+T|38.80941|-0.60247|Ontinyent
+T|43.31529|-4.21540|Ontoria
+T|40.36599|-3.70457|Orcasitas
+T|43.03786|-8.44821|Ordes
+T|43.05261|-2.17922|Ordizia
+T|42.99466|-3.01598|Orduña
+T|43.39942|-3.73816|Orejo
+T|38.07784|-0.94454|Orihuela Miguel Hernández
+T|43.04047|-2.25698|Ormaiztegi
+T|39.92185|-5.18621|Oropesa de Toledo
+T|40.09229|0.14000|Orpesa
+T|40.83270|-4.16816|Ortigosa del Monte
+T|43.68625|-7.84952|Ortigueira
+T|43.31149|-3.06041|Ortuella
+T|43.55154|-7.13087|Os Castros
+T|42.45115|-7.73559|Os Peares
+T|42.82523|-8.61568|Osebe
+T|42.41418|-4.35728|Osorno
+T|37.23371|-5.11497|Osuna
+T|42.85959|-5.38997|Otero
+T|40.80092|-4.20356|Otero-Herreros
+T|42.35069|-7.87255|Ourense-Empalme
+T|42.33259|-7.86071|Ourense-San Francisco
+T|43.54063|-6.59351|Outur
+T|43.36636|-5.85487|Oviedo / Uviéu
+T|43.21871|-8.18702|Oza dos Ríos
+T|43.36832|-5.18536|Ozanes
+T|37.37082|-5.93933|Padre Pío-Palmete
+T|42.73898|-8.65241|Padrón
+T|37.40368|-5.93640|Palacio de Congresos
+T|42.46073|-5.49593|Palanquinos
+T|42.14692|0.89243|Palau de Noguera
+T|41.67182|2.45423|Palautordera
+T|42.70714|-5.53382|Palazuelo
+T|42.01573|-4.53386|Palencia
+T|41.42078|1.99557|Pallejà
+T|39.57680|2.65387|Palma
+T|37.71814|-5.29295|Palma del Río
+T|43.30991|-5.91240|Palombar
+T|42.82505|-1.66149|Pamplona / Iruña
+T|42.63021|-3.11282|Pancorbo
+T|41.42887|-1.56756|Paracuellos-Sabiñán
+T|41.37441|2.16943|Paral·lel
+T|43.37677|-3.89423|Parbayón
+T|41.36877|2.16304|Parc de Montjuïc
+T|42.80634|-5.50822|Pardavé
+T|42.15068|-4.69763|Paredes de Nava
+T|41.55604|2.22591|Parets del Vallès
+T|43.16360|-7.83736|Parga
+T|40.24105|-3.76936|Parla
+T|40.24335|-3.75213|Parla Norte (2027)
+T|40.31212|-3.78357|Parque Polvoranca
+T|43.38621|-5.80874|Parque Principado
+T|43.28328|-5.87527|Parteayer
+T|43.31898|-1.91707|Pasaia
+T|42.83289|-7.39342|Pedrelo-Celtigos
+T|37.22227|-4.89364|Pedrera
+T|41.80510|-1.20194|Pedrola
+T|43.01234|-3.73781|Pedrosa
+T|37.83731|-5.76242|Pedroso
+T|43.53665|-8.10927|Pedroso
+T|42.79091|-5.50703|Pedrún
+T|43.39275|-4.63011|Pendueles
+T|41.08893|1.15629|Penitence Station
+T|43.37819|-8.20110|Perbes
+T|43.47234|-8.17486|Perlío-Fene
+T|43.08224|-4.07374|Pesquera
+T|43.37028|-4.48016|Pesués
+T|39.61817|3.11091|Petra
+T|41.40905|2.11141|Peu del Funicular
+T|43.32126|-5.72100|Peña Rubia
+T|37.70737|-5.34080|Peñaflor
+T|43.40293|-6.04518|Peñaflor
+T|43.28244|-5.85886|Peñamiel
+T|40.89793|-5.20648|Peñaranda de Bracamonte
+T|43.32625|-3.02363|Peñota
+T|43.55646|-5.97549|Piedras Blancas
+T|41.52588|1.75441|Piera
+T|40.52307|-3.88232|Pinar de Las Rozas
+T|41.62236|2.69361|Pineda de Mar
+T|40.24299|-3.70384|Pinto
+T|43.35988|-5.38416|Pintueles
+T|40.40296|-3.71198|Pirámides
+T|41.06379|-5.47414|Pitiegua
+T|40.49530|-3.72649|Pitis
+T|36.76431|-4.71200|Pizarra
+T|42.21169|-4.43453|Piña
+T|43.50953|-8.18390|Piñeiros
+T|43.53557|-6.68535|Piñera-Villaoril
+T|43.16588|-5.68434|Piñeres
+T|43.14526|-8.19130|Piñoi
+T|42.31431|2.09979|Planoles
+T|40.02226|-6.09963|Plasencia
+T|41.68962|-1.23436|Plasencia de Jalón
+T|42.20504|-0.56099|Plasencia del Monte
+T|41.26708|1.95728|Platja de Castelldefels
+T|38.99022|-0.16242|Platja i Grau de Gandia
+T|36.65621|-4.48033|Plaza Mayor
+T|36.46625|-6.19554|Plaza de la Iglesia
+T|39.57646|2.65436|Plaça d'Espanya
+T|41.41647|2.13106|Plaça del Funicular
+T|43.42413|-4.78240|Po
+T|43.15865|-5.83113|Pola de Lena
+T|43.38814|-5.66478|Pola de Siero / La Pola Siero
+T|43.37876|-5.18613|Policlínico de Arriondas
+T|41.62288|0.65294|Polígon industrial del Segre
+T|43.25770|-4.83032|Poncebos
+T|42.54566|-6.60249|Ponferrada
+T|42.72295|-8.65215|Pontecesures
+T|43.41185|-8.18034|Pontedeume
+T|42.42168|-8.63540|Pontevedra
+T|42.43898|-8.63033|Pontevedra-Universidade
+T|42.59878|-6.10840|Porqueros
+T|42.42480|3.15801|Portbou
+T|43.31848|-3.01502|Portugalete
+T|43.42512|-4.86521|Posada
+T|37.80415|-5.10592|Posadas
+T|41.36766|-4.83566|Pozaldez
+T|38.80419|-1.72433|Pozo Cañada
+T|40.80697|-0.84481|Pozo de Santa Bárbara
+T|40.44741|-3.80006|Pozuelo
+T|41.13316|0.85864|Pradell
+T|42.78328|-5.02714|Prado de la Guzpeña
+T|43.49114|-6.11062|Pravia
+T|41.48761|2.35492|Premià de Mar
+T|42.04552|-6.62699|Puebla de Sanabria
+T|40.21239|-0.94395|Puebla de Valverde
+T|43.40642|-3.71949|Puente Agüero
+T|40.35034|-3.70502|Puente Alcocer
+T|42.78760|-4.97248|Puente Almuhey
+T|43.44805|-5.71730|Puente Buracos
+T|37.39592|-4.75278|Puente Genil
+T|37.35892|-4.82223|Puente Genil-Herrera
+T|43.35877|-4.08772|Puente San Miguel
+T|43.07168|-5.76944|Puente de los Fierros
+T|43.34420|-3.06035|Puerto (CLH)
+T|37.58099|-1.73190|Puerto Lumbreras
+T|36.53083|-6.18530|Puerto Real
+T|40.78438|-4.00474|Puerto de Navacerrada
+T|40.27321|-0.98520|Puerto del Escandón
+T|38.69129|-4.11194|Puertollano
+T|42.42937|1.92456|Puigcerdà
+T|41.55369|0.73340|Puigverd de Lleida - Artesa de Lleida
+T|43.12277|-4.08250|Pujayo
+T|37.39920|-1.74950|Pulpí
+T|41.47718|-1.54028|Purroy
+T|43.31559|-3.09114|Putxeta
+T|39.62049|-0.30310|Puçol
+T|41.40664|2.00157|Quatre Camins
+T|42.35138|2.16559|Queralbs
+T|42.42067|-6.82957|Quereño
+T|39.50422|-3.26637|Quero
+T|41.63962|-2.60959|Quintana Redonda
+T|43.07993|-3.51150|Quintana de los Prados
+T|42.07996|-4.19855|Quintana del Puente
+T|42.55009|-5.63794|Quintana-Raneros
+T|42.81893|-4.20280|Quintanilla de las Torres
+T|41.41959|-0.49053|Quinto
+T|37.91260|-4.72063|Rabanales
+T|41.68697|0.47476|Raimat
+T|41.73236|1.69858|Rajadell
+T|40.48814|-3.69452|Ramón y Cajal
+T|43.57636|-5.93993|Raíces
+T|43.37915|-5.56265|Reanes
+T|42.44985|-2.33699|Recajo
+T|40.42250|-3.69170|Recoletos
+T|42.28602|-8.61942|Redondela
+T|42.28456|-8.60363|Redondela AV
+T|42.28676|-8.60729|Redondela-A Picota
+T|43.06058|-3.61968|Redondo
+T|43.58049|-5.79767|Regueral
+T|43.54984|-7.17437|Reinante
+T|42.99477|-4.14045|Reinosa
+T|43.35305|-3.94951|Renedo
+T|43.35301|-3.94955|Renedo de Piélagos
+T|43.39133|-4.02854|Requejada
+T|39.49115|-1.10466|Requena
+T|39.52175|-1.13473|Requena - Utiel
+T|41.16060|1.09994|Reus
+T|41.24851|0.48079|Riba-roja d'Ebre
+T|42.29304|-8.13902|Ribadavia
+T|43.45938|-5.05466|Ribadesella
+T|41.99707|-1.51548|Ribaforada
+T|43.50272|-6.07429|Riberas
+T|42.29919|2.16546|Ribes de Freser
+T|42.29973|2.16606|Ribes-Enllaç
+T|42.30862|2.17168|Ribes-Vila
+T|41.50128|-1.40279|Ricla-La Almunia
+T|41.72649|2.56869|Riells i Viabrea - Breda
+T|42.34424|-0.73147|Riglos
+T|42.31632|-0.72733|Riglos-Concilio
+T|42.23005|-1.84786|Rincón de Soto
+T|42.19551|2.19616|Ripoll
+T|37.89577|-0.97340|Riquelme - Sucina
+T|41.14005|0.97578|Riudecanyes - Botarell
+T|41.89616|2.81174|Riudellots de la Selva
+T|40.52122|-4.24714|Robledo de Chavela
+T|42.84072|-5.50736|Robles de la Valcueva
+T|43.01904|-3.80931|Robredo-Ahedo
+T|39.52648|-0.32371|Roca-Cúper
+T|41.18643|1.45519|Roda de Mar
+T|43.32834|-4.34917|Roiz
+T|36.74859|-5.16196|Ronda
+T|40.11063|-0.74095|Rubielos de Mora
+T|41.47536|2.03715|Rubí Can Vallhonrat
+T|41.48616|2.03161|Rubí Centre
+T|41.63922|-1.28168|Rueda de Jalón-Lumpiaque
+T|43.12136|-7.62477|Rábade
+T|36.45753|-6.22469|Río Arillo
+T|43.00076|-4.13438|Río Ebro
+T|39.66734|2.68357|Sa Coma / Santa Maria
+T|39.76447|3.02926|Sa Pobla
+T|41.54641|2.11589|Sabadell Centre
+T|41.56169|2.09655|Sabadell Nord
+T|41.57123|2.08991|Sabadell Parc del Nord
+T|41.54746|2.10875|Sabadell Plaça Major
+T|41.52866|2.10517|Sabadell Sud
+T|41.44406|-1.57115|Sabiñán
+T|42.52022|-0.37335|Sabiñánigo
+T|43.30858|-3.05369|Sagrada Familia
+T|39.67567|-0.27141|Sagunt
+T|42.36940|-5.02260|Sahagún
+T|40.97138|-5.64863|Salamanca
+T|43.07440|-2.99945|Salbio
+T|41.56835|-1.32546|Salillas de Jalón
+T|43.57040|-5.95657|Salinas
+T|42.85131|-4.38611|Salinas de Pisuerga
+T|41.22339|1.37659|Salomó
+T|41.08792|1.14560|Salou-Port Aventura
+T|37.41029|-6.09897|Salteras
+T|42.08171|-8.49522|Salvaterra de Miño
+T|42.20684|0.94046|Salàs de Pallars
+T|43.29185|-5.67945|Sama
+T|43.29873|-5.68335|Sama-Los Llerones
+T|41.18208|-0.36874|Samper
+T|43.16884|-5.69677|San Antonio
+T|43.25186|-2.88702|San Antonio
+T|39.52221|-1.15038|San Antonio de Requena
+T|37.37766|-5.97954|San Bernardo
+T|43.69220|-7.44181|San Cibrao
+T|43.35532|-5.91779|San Claudio
+T|42.46517|-7.28721|San Clodio-Quiroga
+T|43.54402|-6.24820|San Cosme
+T|43.54720|-6.41526|San Cristuébanu
+T|40.33163|-3.69938|San Cristóbal Industrial
+T|40.34220|-3.68375|San Cristóbal de los Ángeles
+T|43.55210|-6.08722|San Esteban de Pravia
+T|42.68227|-5.53796|San Feliz
+T|40.44263|-3.53411|San Fernando de Henares
+T|36.46792|-6.20688|San Fernando-Bahía Sur
+T|36.47588|-6.19402|San Fernando-Centro
+T|38.16725|-0.83835|San Isidro-Albatera-Catral
+T|37.43377|-5.98145|San Jerónimo
+T|40.35653|-3.81586|San José de Valderas
+T|43.58788|-5.93132|San Juan de Nieva
+T|37.31186|-6.84096|San Juan del Puerto
+T|43.36796|-2.69036|San Kristobal-Busturia
+T|43.17948|-2.49561|San Lorentzo
+T|43.26211|-2.94928|San Mamés
+T|43.54452|-6.22865|San Martín de Luiña
+T|42.58650|-6.52393|San Miguel de las Dueñas
+T|40.98411|-5.49276|San Morales
+T|36.46793|-5.41923|San Pablo
+T|43.36115|-4.14940|San Pedro de Rudagüera
+T|40.80385|-4.87146|San Pedro del Arroyo
+T|42.45293|-7.71268|San Pedro do Sil
+T|43.36874|-5.95853|San Pedru Nora
+T|43.28349|-2.16031|San Pelaio
+T|40.71494|-4.18140|San Rafael
+T|43.51647|-6.08203|San Ranón
+T|43.44886|-6.07716|San Román
+T|36.21377|-5.43229|San Roque - La Línea
+T|43.39473|-4.73000|San Roque l'Acebal
+T|43.54611|-8.07807|San Sadurniño
+T|43.39373|-3.80377|San Salvador
+T|36.52139|-6.28062|San Severiano
+T|43.28910|-5.65292|San Vicente
+T|39.38155|-7.11698|San Vicente de Alcántara
+T|43.36775|-4.40456|San Vicente de la Barquera
+T|43.49451|-8.21420|San Xoán
+T|40.61783|-4.03108|San Yago
+T|43.56895|-5.82532|San Zabornín
+T|42.04477|-6.56291|Sanabria Alta Velocidad
+T|43.42559|-6.05990|Sandiche
+T|37.38147|-6.19374|Sanlúcar la Mayor
+T|41.42436|2.23057|Sant Adrià de Besòs
+T|41.55540|2.49837|Sant Andreu de Llavaneres
+T|41.44684|1.97309|Sant Andreu de la Barca
+T|41.68565|2.49097|Sant Celoni
+T|41.46797|2.07824|Sant Cugat Centre
+T|41.48116|2.07970|Sant Cugat Coll Favà
+T|41.49773|1.87254|Sant Esteve Sesrovires
+T|41.38408|2.04673|Sant Feliu de Llobregat
+T|38.32906|-0.50862|Sant Gabriel
+T|41.65585|1.42063|Sant Guim de Freixenet
+T|41.49019|2.07648|Sant Joan
+T|41.58876|1.83336|Sant Joan
+T|41.36856|2.06020|Sant Joan Despí
+T|42.06828|2.96476|Sant Jordi Desvalls
+T|41.86641|0.83263|Sant Llorenç de Montgai
+T|41.76072|2.24919|Sant Martí de Centelles
+T|41.70132|1.48627|Sant Martí de Sesgueioles
+T|42.17229|2.98933|Sant Miquel de Fluvià
+T|41.56912|1.97399|Sant Miquel de Gonteres
+T|41.60163|2.62465|Sant Pol de Mar
+T|41.52999|2.08876|Sant Quirze
+T|42.10483|2.21765|Sant Quirze de Besora
+T|41.42033|1.79468|Sant Sadurní d'Anoia
+T|38.39456|-0.52877|Sant Vicent - Centre
+T|41.66794|1.85957|Sant Vicenç   Castellgalí
+T|41.18608|1.52579|Sant Vicenç de Calders
+T|41.66886|1.86232|Sant Vicenç de Castellet
+T|41.38810|2.01238|Sant Vicenç dels Horts
+T|41.37020|2.02390|Santa Coloma de Cervelló
+T|41.59244|1.83942|Santa Cova
+T|43.19595|-5.77757|Santa Cruz
+T|43.17011|-4.04509|Santa Cruz de Iguña
+T|38.64459|-3.45135|Santa Cruz de Mudela
+T|40.38713|-3.60909|Santa Eugenia
+T|40.57306|-1.31292|Santa Eulalia del Campo
+T|43.49980|-8.19991|Santa Icía
+T|43.35904|-4.11185|Santa Isabel
+T|43.13292|-2.96961|Santa Kurutz Laudio/Santa Cruz de Llodio
+T|41.93186|0.85252|Santa Linya
+T|42.87495|-5.63958|Santa Lucía
+T|40.35859|0.29359|Santa Magdalena de Pulpis
+T|39.65317|2.77409|Santa Maria
+T|43.55265|-6.30515|Santa Marina
+T|43.38396|-5.98255|Santa María Grau
+T|41.26407|-2.17796|Santa María de Huerta
+T|43.64096|-7.91618|Santa María de Mera
+T|40.56882|-4.26932|Santa María de la Alameda
+T|42.38025|-0.69581|Santa María y La Peña
+T|41.52172|2.19426|Santa Perpètua de Mogoda La Florida
+T|41.52602|2.18599|Santa Perpètua de Mogoda Riera de Caldes
+T|41.63015|2.71646|Santa Susanna
+T|43.26171|-2.97268|Santa Águeda
+T|43.16476|-5.64610|Santana
+T|43.45865|-3.81123|Santander
+T|42.45988|-5.38673|Santas Martas
+T|42.87044|-8.54520|Santiago de Compostela - Daniel Castelao
+T|43.54088|-6.02799|Santiagu'l Monte
+T|43.50375|-6.09180|Santianes
+T|42.80196|-4.74178|Santibáñez de la Peña
+T|42.42746|-7.66281|Santo Estevo do Sil
+T|43.31726|-5.81261|Santolaya
+T|43.32863|-3.02960|Santurtzi
+T|43.22089|-5.78549|Santuyano
+T|41.81717|-0.17361|Sariñena
+T|41.84834|-6.20503|Sarracín de Aliste
+T|42.78418|-7.41900|Sarria
+T|40.14615|-0.82358|Sarrión
+T|38.54472|-0.81419|Sax
+T|43.36246|-5.25719|Sebares
+T|43.54263|-8.14020|Sedes
+T|39.85453|-0.49385|Segorbe - Arrabal
+T|39.84706|-0.48235|Segorbe - Ciudad
+T|40.93353|-4.11348|Segovia
+T|41.74791|1.57410|Seguers - Sant Pere Sallavinera
+T|36.51350|-6.27696|Segunda Aguada
+T|41.19246|1.60645|Segur de Calafell
+T|42.09214|-8.35596|Sela
+T|41.90596|0.14847|Selgua
+T|43.50482|-5.78191|Serín
+T|43.30856|-2.99396|Sestao
+T|36.86260|-5.12135|Setenil
+T|37.39209|-5.97521|Sevilla - Santa Justa
+T|37.61983|-0.86484|Sierra Minera
+T|43.34179|-4.02645|Sierrapando
+T|39.45739|-0.90201|Siete Aguas
+T|41.07145|-2.64622|Sigüenza
+T|39.36175|-0.41494|Silla
+T|41.80748|2.74502|Sils
+T|39.64370|3.01437|Sineu
+T|41.23920|1.80973|Sitges
+T|42.41477|-6.91194|Sobradelo
+T|39.27854|-2.77539|Socuéllamos
+T|43.20173|-3.05073|Sodupe
+T|40.41783|-3.70221|Sol
+T|43.38723|-3.73145|Solares
+T|39.27928|-0.37906|Sollana
+T|39.63790|2.66830|Son Reus
+T|39.62030|2.66095|Son Sardina
+T|43.00579|-3.84486|Soncillo
+T|43.29831|-2.92823|Sondika
+T|41.75535|-2.47561|Soria
+T|42.78615|-5.12748|Sorriba
+T|43.30640|-5.85579|Soto Rei/Soto de Rey
+T|43.30856|-5.87524|Soto Ribera
+T|43.35647|-5.96504|Soto Udrión/Sotu-Udrión
+T|43.52907|-6.07131|Soto del Barco/Sotu'l Barcu
+T|40.46386|-3.44142|Soto del Henares
+T|43.04527|-3.68835|Sotoscueva
+T|43.27602|-5.60484|Sotrondio
+T|43.35813|-5.22683|Sotu
+T|39.20580|-0.30799|Sueca
+T|41.08677|1.16016|SésamoAventura Station
+T|39.76468|2.71512|Sóller
+T|40.49133|-3.59147|T4
+T|40.49447|-3.56721|T4S
+T|40.70563|-4.12539|Tablada
+T|43.54814|-6.35153|Tablizu
+T|42.52575|-1.67121|Tafalla
+T|39.97063|-4.82654|Talavera de la Reina
+T|37.68874|-6.55988|Talleres Mina
+T|41.77899|0.37499|Tamarite - Altorricón
+T|43.53504|-6.90938|Tapia de Casariego
+T|41.59354|-2.63926|Tardelcuende
+T|41.97557|-0.53843|Tardienta
+T|41.11122|1.25354|Tarragona
+T|39.07899|-0.22614|Tavernes de la Valldigna
+T|43.14139|-8.03767|Teixeiro
+T|39.72251|-3.49698|Tembleque
+T|41.56745|2.03974|Terrassa Est
+T|41.56987|2.01426|Terrassa Estació del Nord
+T|41.57040|2.01608|Terrassa Estació del Nord
+T|41.58040|2.01335|Terrassa Nacions Unides
+T|41.56030|2.00758|Terrassa Rambla
+T|41.32219|-1.70847|Terrer
+T|40.34099|-1.11042|Teruel
+T|38.72925|0.09797|Teulada
+T|41.42144|2.11946|Tibidabo
+T|37.60913|-5.73153|Tocina
+T|43.52718|-6.95203|Tol
+T|39.86256|-4.01083|Toledo
+T|43.21768|-2.40869|Toletxegain
+T|43.13564|-2.07914|Tolosa
+T|43.13947|-2.07416|Tolosa-Centro
+T|42.54097|-6.77679|Toral de los Vados
+T|43.41218|-5.11800|Torañu
+T|41.70705|2.71948|Tordera
+T|42.05214|2.25998|Torelló
+T|41.84902|-0.03763|Tormillo-Lastanosa
+T|41.51178|-5.38333|Toro
+T|41.13631|-2.49305|Torralba
+T|37.74694|-0.96706|Torre Pacheco
+T|42.59556|-6.32860|Torre del Bierzo
+T|36.56497|-4.60657|Torreblanca
+T|40.21219|0.19901|Torreblanca
+T|41.14279|1.40571|Torredembarra
+T|40.45473|-3.47973|Torrejón de Ardoz
+T|43.32744|-4.04246|Torrelavega
+T|43.35104|-4.05127|Torrelavega-Centro
+T|38.28965|-0.58276|Torrellano
+T|40.57458|-3.95687|Torrelodones
+T|36.62272|-4.49929|Torremolinos
+T|36.58230|-4.56708|Torremuelle
+T|40.82625|-1.34052|Torrijo del Campo
+T|39.97881|-4.28316|Torrijos
+T|40.80712|0.52288|Tortosa
+T|42.32075|2.01513|Toses
+T|43.23335|-3.19827|Traslaviña
+T|43.16527|-2.61256|Traña
+T|43.31839|-4.30900|Treceño
+T|43.52856|-5.69475|Tremañes - Carreño
+T|41.40058|2.10827|Tren de l'Oreneta
+T|40.59891|-3.71565|Tres Cantos
+T|43.55187|-5.87422|Tresona
+T|43.39418|-3.46936|Treto
+T|43.34856|-5.96758|Trubia
+T|43.30298|-3.01691|Trápaga
+T|42.05950|-1.59767|Tudela de Navarra
+T|42.05660|-8.64326|Tui
+T|43.32235|-2.99932|Txorierri
+T|41.65030|1.13883|Tàrrega
+T|41.71650|0.76300|Térmens
+T|43.31366|-3.44564|Udalla
+T|43.17920|-2.90285|Ugao-Miraballes
+T|42.92039|-1.97483|Uharte-Arakil
+T|40.59593|0.44930|Ulldecona-Alcanar-la Sénia
+T|43.15206|-3.26599|Ungo - Nava
+T|43.18069|-2.48727|Unibertsitatea
+T|36.52948|-6.20598|Universidad
+T|40.55406|-3.68349|Universidad Pontificia de Comillas
+T|38.38410|-0.52842|Universidad de Alicante
+T|40.54380|-3.70019|Universidad-Cantoblanco
+T|41.50300|2.10242|Universitat Autònoma
+T|43.37492|-4.51436|Unquera
+T|43.30752|-3.04094|Urioste
+T|43.24786|-1.98813|Urnieta
+T|42.37650|1.89683|Urtx-Alp
+T|43.21774|-2.82176|Usansolo
+T|43.26843|-2.05155|Usurbil
+T|41.71092|-0.99849|Utebo
+T|37.18334|-5.79024|Utrera
+T|43.29751|-8.44418|Uxes
+T|43.20068|-5.78805|Uxo - Taruelo
+T|41.60189|1.89392|Vacarisses
+T|41.58692|1.91695|Vacarisses - Torreblanca
+T|42.83933|-4.49440|Vado-Cervera
+T|41.22955|0.07606|Val de Pilas
+T|42.76528|-4.92968|Valcuende
+T|40.48181|-3.61642|Valdebebas
+T|43.45398|-3.82780|Valdecilla
+T|43.45269|-3.82857|Valdecilla-La Marga
+T|36.58471|-6.21605|Valdelagrana
+T|37.78718|-6.87388|Valdelamusa
+T|40.54740|-3.65439|Valdelasfuentes
+T|40.19603|-3.66470|Valdemoro
+T|38.76328|-3.39614|Valdepeñas
+T|42.86494|-5.40324|Valdepiélago
+T|42.71871|-5.52995|Valderilla
+T|43.35845|-5.65858|Valdesoto
+T|41.48874|-4.77295|Valdestillas
+T|38.91330|-6.06941|Valdetorres
+T|43.56641|-6.26323|Valdredo
+T|39.46691|-0.37719|Valencia - North Station
+T|39.42694|-7.23072|Valencia de Alcántara
+T|37.42666|-6.05688|Valencina-Santiponce
+T|38.91136|-0.68513|Vallada
+T|41.64213|-4.72695|Valladolid - Campo Grande
+T|41.66016|-4.70422|Valladolid-Universidad
+T|41.52034|1.70851|Vallbona d'Anoia
+T|41.45784|2.06835|Valldoreix
+T|43.42746|-3.84041|Valle Real
+T|43.30146|-3.02846|Valle de Trápaga-Trapagaran
+T|42.76789|-5.07096|Valle de las Casas
+T|40.38206|-3.62479|Vallecas
+T|41.75575|0.80557|Vallfogona de Balaguer
+T|41.56336|2.01905|Vallparadís Universitat
+T|41.28958|1.25870|Valls
+T|41.40926|2.11131|Vallvidrera Inferior
+T|41.41417|2.10574|Vallvidrera Superior
+T|43.42144|-4.83594|Valmori
+T|39.44153|-0.37146|València - La Font de Sant Lluís
+T|39.45098|-0.40478|València - Sant Isidre
+T|39.47012|-0.33459|València Cabanyal
+T|39.46005|-0.38121|València Joaquín Sorolla
+T|39.44085|-0.41106|València Sud
+T|42.77648|-8.42821|Vedra-Ribadulla
+T|42.55352|-6.06821|Vega-Magaz
+T|43.47301|-7.05052|Vegadeo-Pueblo
+T|43.55114|-5.99550|Vegarrozadas
+T|42.43347|-5.88750|Veguellina
+T|43.38929|-6.00571|Veiga d’Anzu
+T|39.45427|-0.87021|Venta Mina-Siete Aguas
+T|41.91740|-4.49627|Venta de Baños
+T|36.46774|-6.19108|Venta de Vargas
+T|43.32975|-1.81840|Ventas de Irún
+T|43.54176|-5.72261|Veriña
+T|41.52407|-4.75456|Viana
+T|41.93099|2.24859|Vic
+T|36.70090|-4.45505|Victoria Kent
+T|40.40126|-3.59593|Vicálvaro
+T|43.39661|-4.67277|Vidiago
+T|42.23926|-8.71207|Vigo-Guixar
+T|42.23496|-8.71190|Vigo-Urzáiz
+T|39.93296|-0.09654|Vila-real
+T|41.11288|1.15044|Vila-seca
+T|41.23950|1.31748|Vilabella
+T|41.30929|2.02743|Viladecans
+T|41.56389|1.95707|Viladecavalls
+T|41.34462|1.70339|Vilafranca del Penedès
+T|42.60197|-8.76228|Vilagarcía de Arousa
+T|42.32515|3.08630|Vilajuïga
+T|42.21637|2.97803|Vilamalla
+T|42.41152|-7.06142|Vilamartín de Valdeorras
+T|41.68736|0.72791|Vilanova de la Barca
+T|41.91208|0.83029|Vilanova de la Sal
+T|41.57369|1.64138|Vilanova del Camí
+T|41.22018|1.73082|Vilanova i la Geltrú
+T|41.50049|2.38983|Vilassar de Mar
+T|43.49130|-7.03586|Vilavedeye
+T|41.33763|1.17649|Vilaverd
+T|38.21573|-3.51770|Vilches
+T|42.62910|-5.56132|Villa Romana
+T|37.98129|-4.28369|Villa del Rio
+T|43.46151|-5.82634|Villabona de Asturias
+T|43.18900|-2.05547|Villabona-Zizurkil
+T|43.47420|-5.80007|Villabona–Tabladiello
+T|39.62197|-3.33025|Villacañas
+T|42.24513|-4.97068|Villada
+T|43.55712|-6.15540|Villademar
+T|42.53685|-6.75104|Villadepalos
+T|41.16547|-1.27874|Villadoz
+T|42.28074|-1.74544|Villafranca de Navarra
+T|38.56447|-6.35223|Villafranca de los Barros
+T|40.68377|-1.35823|Villafranca del Campo
+T|41.10852|-1.23985|Villahermosa
+T|40.62638|-4.00815|Villalba de Guadarrama
+T|43.54003|-5.90224|Villalegre
+T|42.93664|-5.65784|Villamanín
+T|43.36306|-5.30250|Villamayor
+T|38.25524|-4.57142|Villanueva de Córdoba-Los Pedroches
+T|41.76540|-0.82216|Villanueva de Gállego
+T|38.96868|-5.79650|Villanueva de la Serena
+T|37.40722|-6.14829|Villanueva del Ariscal y Olivares
+T|37.66167|-5.71195|Villanueva del Río y Minas
+T|42.68857|-0.52349|Villanúa-Letranz
+T|42.64692|-5.55398|Villaquilambre
+T|42.21566|-3.99962|Villaquirán
+T|38.90609|-1.48970|Villar de Chinchilla
+T|40.95194|-5.29607|Villar de Gallimazo
+T|37.38687|-6.59881|Villarrasa
+T|41.19631|-1.28710|Villarreal de Huerva
+T|39.26072|-2.59851|Villarrobledo
+T|37.84797|-4.91377|Villarrubia de Córdoba
+T|39.87952|-3.72849|Villasequilla
+T|42.65767|-5.54921|Villasinta
+T|42.46459|-5.83896|Villavante
+T|40.34152|-3.71159|Villaverde Alto
+T|40.35259|-3.68398|Villaverde Bajo
+T|43.41124|-3.70366|Villaverde de Pontones
+T|43.24123|-3.25055|Villaverde de Trucios
+T|42.81855|-4.68605|Villaverde-Tarilonte
+T|43.44195|-4.90375|Villaḥormes
+T|38.63227|-0.86795|Villena
+T|38.58431|-0.87389|Villena Alta Velocidad
+T|41.40269|1.04603|Vimbodí
+T|41.42510|0.97035|Vinaixa
+T|40.47175|0.45545|Vinaròs
+T|43.36066|-3.96487|Vioño
+T|43.32301|-4.19355|Virgen de la Peña
+T|37.36281|-5.97582|Virgen del Rocío
+T|43.49652|-8.20490|Virxe do Mar
+T|37.60927|-0.94411|Vista Alegre
+T|42.84130|-2.67270|Vitoria-Gasteiz
+T|43.65689|-7.60019|Viveiro
+T|43.66306|-7.59212|Viveiro-Apeadoiro
+T|43.32439|-4.05404|Viérnoles
+T|43.18394|-5.81464|Viḷḷayana
+T|41.48129|2.07286|Volpelleres
+T|39.02621|-0.21498|Xeraco
+T|39.78278|-0.19031|Xilxes
+T|39.46260|-0.43222|Xirivella - Alqueries
+T|43.37128|-5.69367|Xixún
+T|43.68351|-7.51095|Xove-Pobo
+T|43.68810|-7.55386|Xuances
+T|43.51723|-8.16128|Xuvia
+T|38.99225|-0.52468|Xàtiva
+T|42.80978|-5.18003|Yugueros
+T|40.74699|-3.16307|Yunquera de Henares
+T|43.25647|-2.93250|Zabalburu
+T|38.41395|-6.40518|Zafra
+T|38.42447|-6.40973|Zafra Feria
+T|43.17163|-2.54802|Zaldibar
+T|43.21283|-3.13333|Zalla
+T|41.51600|-5.73978|Zamora
+T|43.28426|-2.86520|Zamudio
+T|43.30029|-2.94099|Zangroiz
+T|41.65857|-0.91139|Zaragoza-Delicias
+T|41.64392|-0.89134|Zaragoza-Goya
+T|41.63319|-0.86832|Zaragoza-Miraflores
+T|41.65274|-0.89590|Zaragoza-Portillo
+T|43.23336|-3.01643|Zaramillo
+T|37.67151|-6.55769|Zarandas-Naya
+T|43.28421|-2.17106|Zarautz
+T|40.53863|-4.15797|Zarzalejo
+T|40.34084|-3.74825|Zarzaquemada
+T|42.93943|-2.26358|Zegama-Otzaurte
+T|43.27771|-2.97203|Zorrotza
+T|43.27399|-2.97414|Zorrotza Zorrotzgoiti
+T|41.87719|-0.76381|Zuera
+T|43.25212|-2.69283|Zugastieta
+T|43.22878|-2.85419|Zuhatzu
+T|43.29154|-2.25180|Zumaia
+T|43.08701|-2.31988|Zumarraga
+T|43.34768|-3.99100|Zurita
+T|38.97458|-0.48516|el Genovés
+T|41.47691|2.31042|el Masnou
+T|41.45564|1.96256|el Palau
+T|41.43550|2.00256|el Papiol
+T|41.33089|2.08926|el Prat de Llobregat
+T|39.30296|-0.39407|el Romaní
+T|41.22090|1.53813|el Vendrell
+T|41.09591|0.74778|els Guiamets
+T|41.31459|1.66009|els Monjos
+T|38.96917|-0.58595|l'Alcúdia de Crespins
+T|40.88620|0.80045|l'Ametlla de Mar
+T|41.27367|1.60041|l'Arboç
+T|41.40047|1.10327|l'Espluga de Francolí
+T|41.36424|2.10094|l'Hospitalet de Llobregat
+T|40.99965|0.91240|l'Hospitalet de l'Infant
+T|41.50169|1.83875|la Beguda
+T|41.50417|0.92442|la Floresta
+T|41.37090|1.72523|la Granada
+T|41.51043|2.19986|la Llagosta
+T|42.34452|1.95581|la Molina
+T|41.30608|1.19495|la Plana - Picamoixons
+T|42.24548|1.97433|la Pobla Centre
+T|41.55456|1.67797|la Pobla de Claramunt
+T|42.24131|1.96495|la Pobla de Lillet
+T|42.24000|0.96616|la Pobla de Segur
+T|38.91529|-0.44584|la Pobla del Duc
+T|41.31843|1.18136|la Riba
+T|41.21127|1.14396|la Selva del Camp
+T|41.52141|0.87791|les Borges Blanques
+T|41.16641|1.02207|les Borges del Camp
+T|41.61723|2.29444|les Franqueses - Granollers Nord
+T|41.62985|2.29497|les Franqueses del Vallès
+T|42.00676|0.85155|Àger
+T|37.40980|-1.57254|Águilas
+T|37.41183|-1.58588|Águilas-El Labradorcico
+T|36.81971|-4.69940|Álora
+T|40.65709|-4.68300|Ávila
+T|41.60972|-1.30117|Épila
+T|43.40140|-5.14308|Ḥuentes
+T|43.15106|-5.60032|Ḷḷevinco
+T|43.10170|-5.77202|Ḷḷinares-Congostinas

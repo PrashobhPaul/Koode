@@ -1,0 +1,4271 @@
+# Transit for Koode, FR. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|49.00897|2.54479|Parc PR|CDGVAL|M
+S|49.01006|2.57064|Parking PX|CDGVAL|M
+S|49.01329|2.54198|Terminal 1|CDGVAL|M
+S|49.00285|2.57829|Terminal 2E - Gates K|CDGVAL|M
+S|49.00435|2.58493|Terminal 2E - Gates L|CDGVAL|M
+S|49.00462|2.58996|Terminal 2E - Gates M|CDGVAL|M
+S|49.00471|2.57164|Terminal 2 Gare|CDGVAL|M
+S|49.01003|2.56131|Terminal 3 - Roissypole|CDGVAL|M
+S|48.11813|-1.68756|Anatole France|FR:STAR|M
+S|48.12714|-1.62804|Atalante|FR:STAR|M
+S|48.12213|-1.63911|Beaulieu - Université|FR:STAR|M
+S|48.13150|-1.62004|Cesson - Viasilva|FR:STAR|M
+S|48.10547|-1.67689|Charles de Gaulle|FR:STAR|M
+S|48.09350|-1.67442|Clemenceau|FR:STAR|M
+S|48.10094|-1.70641|Cleunay|FR:STAR|M
+S|48.10592|-1.68207|Colombier|FR:STAR|M
+S|48.10402|-1.67222|Gares|FR:STAR|M
+S|48.12518|-1.66443|Gros-Chêne|FR:STAR|M
+S|48.08768|-1.67482|Henri Fréville|FR:STAR|M
+S|48.08656|-1.66791|Italie|FR:STAR|M
+S|48.09755|-1.67545|Jacques Cartier|FR:STAR|M
+S|48.12131|-1.71125|J.F. Kennedy|FR:STAR|M
+S|48.12406|-1.65142|Joliot-Curie - Chateaubriand|FR:STAR|M
+S|48.11867|-1.67093|Jules Ferry|FR:STAR|M
+S|48.09658|-1.69848|La Courrouze|FR:STAR|M
+S|48.08749|-1.64457|La Poterie|FR:STAR|M
+S|48.08773|-1.65428|Le Blosne|FR:STAR|M
+S|48.12942|-1.65716|Les Gayeulles|FR:STAR|M
+S|48.10507|-1.69281|Mabilais|FR:STAR|M
+S|48.12156|-1.69340|Pontchaillou|FR:STAR|M
+S|48.10974|-1.67920|République|FR:STAR|M
+S|48.11457|-1.68017|Sainte-Anne|FR:STAR|M
+S|48.11056|-1.67617|Saint-Germain|FR:STAR|M
+S|48.09200|-1.70367|Saint-Jacques - Gaîté|FR:STAR|M
+S|48.08644|-1.66036|Triangle|FR:STAR|M
+S|48.12124|-1.70392|Villejean - Université|FR:STAR|M
+S|50.70069|3.16100|Alsace – Plaine Images|Ilévia|M
+S|50.63433|3.03054|Bois Blancs|Ilévia|M
+S|50.64556|2.98523|Bourg|Ilévia|M
+S|50.73944|3.17955|Bourgogne|Ilévia|M
+S|50.63711|3.02469|Canteleu – Euratechnologies|Ilévia|M
+S|50.71096|3.16013|Carliers|Ilévia|M
+S|50.74348|3.18100|C.H. Dron|Ilévia|M
+S|50.61309|3.03645|CHU – Centre Oscar Lambret|Ilévia|M
+S|50.60805|3.03897|CHU – Eurasanté|Ilévia|M
+S|50.61160|3.14241|Cité Scientifique – Professeur Gabillard|Ilévia|M
+S|50.72572|3.15669|Colbert|Ilévia|M
+S|50.62623|3.04029|Cormontaigne|Ilévia|M
+S|50.67469|3.14617|Croix Centre|Ilévia|M
+S|50.69088|3.17928|Eurotéléport|Ilévia|M
+S|50.63302|3.09055|Fives|Ilévia|M
+S|50.64205|3.11943|Fort de Mons|Ilévia|M
+S|50.62694|3.05275|Gambetta|Ilévia|M
+S|50.71706|3.16282|Gare de Tourcoing|Ilévia|M
+S|50.69540|3.16400|Gare Jean Lebas Roubaix|Ilévia|M
+S|50.63939|3.07629|Gare Lille Europe|Ilévia|M
+S|50.63738|3.07108|Gare Lille Flandres|Ilévia|M
+S|50.65851|3.13471|Jean Jaurès|Ilévia|M
+S|50.65013|3.12647|Les Prés – Edgard Pisani|Ilévia|M
+S|50.62961|3.07497|Lille Grand Palais|Ilévia|M
+S|50.64083|3.01860|Lomme – Lambersart – Arthur Notebart|Ilévia|M
+S|50.63668|3.08685|Madeleine Caulier|Ilévia|M
+S|50.67932|3.15601|Mairie de Croix|Ilévia|M
+S|50.63275|3.07066|Mairie de Lille|Ilévia|M
+S|50.64229|3.10977|Mairie de Mons|Ilévia|M
+S|50.62707|3.10905|Mairie d'Hellemmes|Ilévia|M
+S|50.64627|2.99493|Maison des Enfants|Ilévia|M
+S|50.63013|3.09792|Marbrerie|Ilévia|M
+S|50.70484|3.16043|Mercure|Ilévia|M
+S|50.64674|3.00746|Mitterie|Ilévia|M
+S|50.64208|3.09902|Mons Sarts|Ilévia|M
+S|50.62205|3.04545|Montebello|Ilévia|M
+S|50.68419|3.16342|Épeule – Montesquieu|Ilévia|M
+S|50.73249|3.15794|Phalempins|Ilévia|M
+S|50.62427|3.12801|Pont de Bois|Ilévia|M
+S|50.73684|3.17086|Pont de Neuville|Ilévia|M
+S|50.64441|3.01380|Pont Supérieur|Ilévia|M
+S|50.62993|3.03574|Port de Lille|Ilévia|M
+S|50.61761|3.06231|Porte d'Arras|Ilévia|M
+S|50.61806|3.07210|Porte de Douai – Jardin des Plantes|Ilévia|M
+S|50.61844|3.05024|Porte des Postes|Ilévia|M
+S|50.62106|3.07888|Porte de Valenciennes|Ilévia|M
+S|50.60536|3.13904|Quatre Cantons – Stade Pierre Mauroy|Ilévia|M
+S|50.63569|3.06303|Rihour|Ilévia|M
+S|50.68691|3.16973|Roubaix – Charles de Gaulle|Ilévia|M
+S|50.69183|3.17482|Roubaix – Grand Place|Ilévia|M
+S|50.63164|3.06090|République – Beaux-Arts|Ilévia|M
+S|50.64233|3.08872|Saint-Maurice Pellevoisin|Ilévia|M
+S|50.65212|2.97430|Saint-Philibert|Ilévia|M
+S|50.62516|3.11609|Square Flandres|Ilévia|M
+S|50.72101|3.16004|Tourcoing Centre|Ilévia|M
+S|50.61687|3.14067|Triolo|Ilévia|M
+S|50.61911|3.13085|Villeneuve d'Ascq – Hôtel de Ville|Ilévia|M
+S|50.66982|3.13138|Wasquehal – Hôtel de Ville|Ilévia|M
+S|50.66394|3.12992|Wasquehal – Pavé de Lille|Ilévia|M
+S|50.62349|3.05162|Wazemmes|Ilévia|M
+S|48.88480|2.33864|Abbesses|Métro de Paris|M
+S|48.90823|2.37785|Aimé Césaire|Métro de Paris|M
+S|48.85634|2.39444|Alexandre Dumas|Métro de Paris|M
+S|48.86487|2.30029|Alma-Marceau|Métro de Paris|M
+S|48.82803|2.32704|Alésia|Métro de Paris|M
+S|48.89222|2.28490|Anatole France|Métro de Paris|M
+S|48.75493|2.30097|Antony|Métro de Paris|M
+S|48.88288|2.34426|Anvers|Métro de Paris|M
+S|48.87534|2.29013|Argentine|Métro de Paris|M
+S|48.72844|2.36256|Aéroport d'Orly|Métro de Paris|M
+S|48.86547|2.35611|Arts et Métiers|Métro de Paris|M
+S|48.93076|2.28416|Asnières-Gennevilliers–Les Courtilles|Métro de Paris|M
+S|48.86058|2.32117|Assemblée Nationale|Métro de Paris|M
+S|48.90363|2.39225|Aubervilliers - Pantin - Quatre Chemins|Métro de Paris|M
+S|48.84698|2.29532|Avenue Émile Zola|Métro de Paris|M
+S|48.85150|2.39822|Avron|Métro de Paris|M
+S|48.80335|2.31773|Bagneux-Lucie Aubrac|Métro de Paris|M
+S|48.83640|2.27838|Balard|Métro de Paris|M
+S|48.80920|2.31771|Barbara|Métro de Paris|M
+S|48.88375|2.34970|Barbès - Rochechouart|Métro de Paris|M
+S|48.93663|2.35928|Basilique de Saint-Denis|Métro de Paris|M
+S|48.85299|2.36886|Bastille|Métro de Paris|M
+S|48.84134|2.40091|Bel-Air|Métro de Paris|M
+S|48.87203|2.37688|Belleville|Métro de Paris|M
+S|48.84014|2.37993|Bercy|Métro de Paris|M
+S|48.83001|2.37685|Bibliothèque François Mitterrand|Métro de Paris|M
+S|48.83170|2.23724|Billancourt|Métro de Paris|M
+S|48.85389|2.28938|Bir-Hakeim|Métro de Paris|M
+S|48.88353|2.33359|Blanche|Métro de Paris|M
+S|48.90637|2.44922|Bobigny - Pablo Picasso|Métro de Paris|M
+S|48.89541|2.42519|Bobigny - Pantin - Raymond Queneau|Métro de Paris|M
+S|48.86704|2.29009|Boissière|Métro de Paris|M
+S|48.88093|2.37391|Bolivar|Métro de Paris|M
+S|48.87053|2.34875|Bonne Nouvelle|Métro de Paris|M
+S|48.87951|2.38859|Botzaris|Métro de Paris|M
+S|48.84108|2.28792|Boucicaut|Métro de Paris|M
+S|48.84211|2.23937|Boulogne - Jean Jaurès|Métro de Paris|M
+S|48.84084|2.22833|Boulogne - Pont de Saint-Cloud|Métro de Paris|M
+S|48.86865|2.34144|Bourse|Métro de Paris|M
+S|48.84543|2.42930|Bérault|Métro de Paris|M
+S|48.85664|2.37042|Bréguet-Sabin|Métro de Paris|M
+S|48.89058|2.32020|Brochant|Métro de Paris|M
+S|48.87840|2.38120|Buttes Chaumont|Métro de Paris|M
+S|48.85182|2.40133|Buzenval|Métro de Paris|M
+S|48.87601|2.34448|Cadet|Métro de Paris|M
+S|48.84752|2.30295|Cambronne|Métro de Paris|M
+S|48.83512|2.35820|Campo-Formio|Métro de Paris|M
+S|48.84653|2.35184|Cardinal Lemoine|Métro de Paris|M
+S|48.91958|2.34326|Carrefour Pleyel|Métro de Paris|M
+S|48.84065|2.35193|Censier - Daubenton|Métro de Paris|M
+S|48.86749|2.31407|Champs-Élysées - Clemenceau|Métro de Paris|M
+S|48.84543|2.26713|Chardon-Lagache|Métro de Paris|M
+S|48.82156|2.41378|Charenton - Écoles|Métro de Paris|M
+S|48.87441|2.29551|Charles de Gaulle - Étoile|Métro de Paris|M
+S|48.84647|2.28588|Charles Michels|Métro de Paris|M
+S|48.85474|2.38530|Charonne|Métro de Paris|M
+S|48.87304|2.33321|Chaussée d'Antin - La Fayette|Métro de Paris|M
+S|48.85744|2.36814|Chemin Vert|Métro de Paris|M
+S|48.83495|2.36810|Chevaleret|Métro de Paris|M
+S|48.75843|2.36708|Chevilly-Larue|Métro de Paris|M
+S|48.87289|2.35635|Château d'Eau|Métro de Paris|M
+S|48.84458|2.43891|Château de Vincennes|Métro de Paris|M
+S|48.87891|2.36243|Château Landon|Métro de Paris|M
+S|48.88729|2.34955|Château Rouge|Métro de Paris|M
+S|48.85878|2.34741|Châtelet|Métro de Paris|M
+S|48.81082|2.30160|Châtillon-Montrouge|Métro de Paris|M
+S|48.85532|2.34754|Cité|Métro de Paris|M
+S|48.85109|2.34416|Cluny-La Sorbonne|Métro de Paris|M
+S|48.85466|2.30607|École Militaire|Métro de Paris|M
+S|48.81502|2.42173|École Vétérinaire de Maisons-Alfort|Métro de Paris|M
+S|48.87741|2.37100|Colonel Fabien|Métro de Paris|M
+S|48.84471|2.29386|Commerce|Métro de Paris|M
+S|48.86621|2.32238|Concorde|Métro de Paris|M
+S|48.83729|2.29665|Convention|Métro de Paris|M
+S|48.89473|2.38230|Corentin Cariou|Métro de Paris|M
+S|48.82706|2.27936|Corentin Celton|Métro de Paris|M
+S|48.82980|2.35048|Corvisart|Métro de Paris|M
+S|48.88227|2.46746|Coteaux Beauclair|Métro de Paris|M
+S|48.87941|2.30436|Courcelles|Métro de Paris|M
+S|48.86905|2.38045|Couronnes|Métro de Paris|M
+S|48.83354|2.38597|Cour Saint-Émilion|Métro de Paris|M
+S|48.89085|2.37737|Crimée|Métro de Paris|M
+S|48.85798|2.43575|Croix de Chavaux|Métro de Paris|M
+S|48.79668|2.44942|Créteil-L'Échat (Hopital Henri Mondor)|Métro de Paris|M
+S|48.77988|2.45937|Créteil-Préfecture|Métro de Paris|M
+S|48.78990|2.45057|Créteil-Université|Métro de Paris|M
+S|48.88182|2.39422|Danube|Métro de Paris|M
+S|48.83959|2.39623|Daumesnil|Métro de Paris|M
+S|48.83426|2.33264|Denfert-Rochereau|Métro de Paris|M
+S|48.83904|2.38972|Dugommier|Métro de Paris|M
+S|48.85041|2.29366|Dupleix|Métro de Paris|M
+S|48.84684|2.31663|Duroc|Métro de Paris|M
+S|48.84111|2.32507|Edgar Quinet|Métro de Paris|M
+S|48.88805|2.25008|Esplanade de La Défense|Métro de Paris|M
+S|48.87877|2.32228|Europe|Métro de Paris|M
+S|48.84300|2.26005|Exelmans|Métro de Paris|M
+S|48.85016|2.38422|Faidherbe — Chaligny|Métro de Paris|M
+S|48.84449|2.31797|Falguière|Métro de Paris|M
+S|48.86332|2.36663|Filles du Calvaire|Métro de Paris|M
+S|48.84268|2.29178|Félix Faure|Métro de Paris|M
+S|48.91426|2.40381|Fort d'Aubervilliers|Métro de Paris|M
+S|48.86903|2.30993|Franklin D. Roosevelt|Métro de Paris|M
+S|48.90645|2.36594|Front Populaire|Métro de Paris|M
+S|48.91639|2.29466|Gabriel Péri|Métro de Paris|M
+S|48.86495|2.41548|Gallieni|Métro de Paris|M
+S|48.86493|2.39805|Gambetta|Métro de Paris|M
+S|48.84240|2.36499|Gare d'Austerlitz|Métro de Paris|M
+S|48.87620|2.35791|Gare de L'Est|Métro de Paris|M
+S|48.84517|2.37256|Gare de Lyon|Métro de Paris|M
+S|48.87999|2.35669|Gare du Nord|Métro de Paris|M
+S|48.90579|2.33173|Garibaldi|Métro de Paris|M
+S|48.83864|2.32251|Gaîté|Métro de Paris|M
+S|48.87208|2.30042|George V|Métro de Paris|M
+S|48.83115|2.34349|Glacière|Métro de Paris|M
+S|48.84731|2.26864|Église d'Auteuil|Métro de Paris|M
+S|48.89325|2.41331|Église de Pantin|Métro de Paris|M
+S|48.86999|2.37107|Goncourt|Métro de Paris|M
+S|48.87144|2.34350|Grands Boulevards|Métro de Paris|M
+S|48.89274|2.32734|Guy Môquet|Métro de Paris|M
+S|48.87375|2.32743|Havre - Caumartin|Métro de Paris|M
+S|48.89128|2.40251|Hoche|Métro de Paris|M
+S|48.80988|2.34982|Hôpital Bicêtre|Métro de Paris|M
+S|48.85754|2.35154|Hôtel de Ville|Métro de Paris|M
+S|48.86461|2.29373|Iéna|Métro de Paris|M
+S|48.86017|2.31450|Invalides|Métro de Paris|M
+S|48.87112|2.36075|Jacques Bonsergent|Métro de Paris|M
+S|48.85256|2.26818|Jasmin|Métro de Paris|M
+S|48.88259|2.37033|Jaurès|Métro de Paris|M
+S|48.84618|2.27828|Javel - André Citroën|Métro de Paris|M
+S|48.87509|2.38933|Jourdain|Métro de Paris|M
+S|48.89253|2.34465|Jules Joffrin|Métro de Paris|M
+S|48.84596|2.35480|Jussieu|Métro de Paris|M
+S|48.87168|2.29352|Kléber|Métro de Paris|M
+S|48.88441|2.36031|La Chapelle|Métro de Paris|M
+S|48.92076|2.41077|La Courneuve - 8 mai 1945|Métro de Paris|M
+S|48.89225|2.23692|La Défense - Grande Arche|Métro de Paris|M
+S|48.87792|2.46529|La Dhuys|Métro de Paris|M
+S|48.88697|2.32582|La Fourche|Métro de Paris|M
+S|48.88976|2.33877|Lamarck - Caulaincourt|Métro de Paris|M
+S|48.84910|2.29817|La Motte-Picquet - Grenelle|Métro de Paris|M
+S|48.85798|2.27406|La Muette|Métro de Paris|M
+S|48.85756|2.31032|La Tour Maubourg|Métro de Paris|M
+S|48.88516|2.37944|Laumière|Métro de Paris|M
+S|48.85129|2.37603|Ledru-Rollin|Métro de Paris|M
+S|48.81033|2.36224|Le Kremlin-Bicêtre|Métro de Paris|M
+S|48.87490|2.34023|Le Peletier|Métro de Paris|M
+S|48.92316|2.28583|Les Agnettes|Métro de Paris|M
+S|48.83563|2.35267|Les Gobelins|Métro de Paris|M
+S|48.86245|2.34606|Les Halles|Métro de Paris|M
+S|48.88094|2.27223|Les Sablons|Métro de Paris|M
+S|48.77548|2.35419|L'Haÿ-les-Roses|Métro de Paris|M
+S|48.82641|2.40620|Liberté|Métro de Paris|M
+S|48.87960|2.32704|Liège|Métro de Paris|M
+S|48.88133|2.36536|Louis Blanc|Métro de Paris|M
+S|48.88836|2.28840|Louise Michel|Métro de Paris|M
+S|48.83874|2.28215|Lourmel|Métro de Paris|M
+S|48.86081|2.34113|Louvre - Rivoli|Métro de Paris|M
+S|48.85289|2.33494|Mabillon|Métro de Paris|M
+S|48.87040|2.32658|Madeleine|Métro de Paris|M
+S|48.91428|2.38091|Mairie d'Aubervilliers|Métro de Paris|M
+S|48.90323|2.30599|Mairie de Clichy|Métro de Paris|M
+S|48.86260|2.44157|Mairie de Montreuil|Métro de Paris|M
+S|48.81796|2.31925|Mairie de Montrouge|Métro de Paris|M
+S|48.91316|2.33466|Mairie de Saint-Ouen|Métro de Paris|M
+S|48.87974|2.41605|Mairie des Lilas|Métro de Paris|M
+S|48.82416|2.27317|Mairie d'Issy|Métro de Paris|M
+S|48.81053|2.38459|Mairie d'Ivry|Métro de Paris|M
+S|48.82148|2.35889|Maison Blanche|Métro de Paris|M
+S|48.80333|2.44561|Maisons-Alfort — Les Juilliottes|Métro de Paris|M
+S|48.80904|2.43472|Maisons-Alfort — Stade|Métro de Paris|M
+S|48.82250|2.29850|Malakoff - Plateau de Vanves|Métro de Paris|M
+S|48.81519|2.29734|Malakoff - Rue Étienne Dolet|Métro de Paris|M
+S|48.88298|2.30900|Malesherbes|Métro de Paris|M
+S|48.85273|2.40613|Maraîchers|Métro de Paris|M
+S|48.89129|2.35076|Marcadet - Poissonniers|Métro de Paris|M
+S|48.83365|2.24359|Marcel Sembat|Métro de Paris|M
+S|48.89051|2.36000|Marx Dormoy|Métro de Paris|M
+S|48.85006|2.34843|Maubert - Mutualité|Métro de Paris|M
+S|48.84800|2.26417|Michel-Ange - Auteuil|Métro de Paris|M
+S|48.84501|2.26111|Michel-Ange - Molitor|Métro de Paris|M
+S|48.83707|2.40246|Michel Bizot|Métro de Paris|M
+S|48.84681|2.27170|Mirabeau|Métro de Paris|M
+S|48.87372|2.31450|Miromesnil|Métro de Paris|M
+S|48.86670|2.38335|Ménilmontant|Métro de Paris|M
+S|48.88032|2.30864|Monceau|Métro de Paris|M
+S|48.84430|2.39020|Montgallet|Métro de Paris|M
+S|48.84393|2.32410|Montparnasse-Bienvenüe|Métro de Paris|M
+S|48.87830|2.45462|Montreuil - Hôpital|Métro de Paris|M
+S|48.83128|2.32987|Mouton-Duvernet|Métro de Paris|M
+S|48.84768|2.39552|Nation|Métro de Paris|M
+S|48.83320|2.36283|Nationale|Métro de Paris|M
+S|48.87604|2.33742|Notre-Dame de Lorette|Métro de Paris|M
+S|48.84468|2.32880|Notre-Dame des Champs|Métro de Paris|M
+S|48.86411|2.36942|Oberkampf|Métro de Paris|M
+S|48.85230|2.33937|Odéon|Métro de Paris|M
+S|48.82704|2.36642|Olympiades|Métro de Paris|M
+S|48.87064|2.33233|Opéra|Métro de Paris|M
+S|48.72968|2.36018|Orly 1, 2, 3|Métro de Paris|M
+S|48.72901|2.36993|Orly 4|Métro de Paris|M
+S|48.88708|2.38664|Ourcq|Métro de Paris|M
+S|48.86249|2.33604|Palais Royal - Musée du Louvre|Métro de Paris|M
+S|48.86536|2.37390|Parmentier|Métro de Paris|M
+S|48.85750|2.28578|Passy|Métro de Paris|M
+S|48.84293|2.31259|Pasteur|Métro de Paris|M
+S|48.86810|2.40132|Pelleport|Métro de Paris|M
+S|48.88479|2.29831|Pereire|Métro de Paris|M
+S|48.83400|2.31818|Pernety|Métro de Paris|M
+S|48.85824|2.39016|Philippe Auguste|Métro de Paris|M
+S|48.84518|2.40052|Picpus|Métro de Paris|M
+S|48.81590|2.37735|Pierre et Marie Curie|Métro de Paris|M
+S|48.88230|2.33809|Pigalle|Métro de Paris|M
+S|48.88348|2.32729|Place de Clichy|Métro de Paris|M
+S|48.87687|2.39321|Place des Fêtes|Métro de Paris|M
+S|48.83094|2.35589|Place d'Italie|Métro de Paris|M
+S|48.84291|2.35228|Place Monge|Métro de Paris|M
+S|48.83177|2.31404|Plaisance|Métro de Paris|M
+S|48.76875|2.46438|Pointe du Lac|Métro de Paris|M
+S|48.87712|2.34874|Poissonnière|Métro de Paris|M
+S|48.88951|2.31534|Pont Cardinet|Métro de Paris|M
+S|48.89715|2.28041|Pont de Levallois - Bécon|Métro de Paris|M
+S|48.88465|2.26043|Pont de Neuilly|Métro de Paris|M
+S|48.82967|2.23084|Pont de Sèvres|Métro de Paris|M
+S|48.85379|2.35659|Pont Marie|Métro de Paris|M
+S|48.85867|2.34184|Pont Neuf|Métro de Paris|M
+S|48.87155|2.27746|Porte Dauphine|Métro de Paris|M
+S|48.84809|2.25875|Porte d'Auteuil|Métro de Paris|M
+S|48.86460|2.40718|Porte de Bagnolet|Métro de Paris|M
+S|48.88583|2.29310|Porte de Champerret|Métro de Paris|M
+S|48.83306|2.40119|Porte de Charenton|Métro de Paris|M
+S|48.82012|2.36479|Porte de Choisy|Métro de Paris|M
+S|48.89482|2.31327|Porte de Clichy|Métro de Paris|M
+S|48.89740|2.34485|Porte de Clignancourt|Métro de Paris|M
+S|48.89769|2.35926|Porte de la Chapelle|Métro de Paris|M
+S|48.89740|2.38559|Porte de la Villette|Métro de Paris|M
+S|48.85354|2.41066|Porte de Montreuil|Métro de Paris|M
+S|48.88865|2.39267|Porte de Pantin (Parc de la Villette)|Métro de Paris|M
+S|48.83779|2.25656|Porte de Saint-Cloud|Métro de Paris|M
+S|48.89716|2.32884|Porte de Saint-Ouen|Métro de Paris|M
+S|48.87669|2.40659|Porte des Lilas|Métro de Paris|M
+S|48.82768|2.30548|Porte de Vanves|Métro de Paris|M
+S|48.83243|2.28795|Porte de Versailles|Métro de Paris|M
+S|48.84734|2.40809|Porte de Vincennes|Métro de Paris|M
+S|48.81905|2.35941|Porte d'Italie|Métro de Paris|M
+S|48.82160|2.36934|Porte d'Ivry|Métro de Paris|M
+S|48.83528|2.40618|Porte Dorée|Métro de Paris|M
+S|48.82363|2.32561|Porte d'Orléans|Métro de Paris|M
+S|48.87788|2.28191|Porte Maillot|Métro de Paris|M
+S|48.86292|2.38741|Père Lachaise|Métro de Paris|M
+S|48.88028|2.39888|Pré Saint-Gervais|Métro de Paris|M
+S|48.86575|2.33447|Pyramides|Métro de Paris|M
+S|48.87386|2.38526|Pyrénées|Métro de Paris|M
+S|48.83704|2.37286|Quai de la Gare|Métro de Paris|M
+S|48.84648|2.36590|Quai de la Rapée|Métro de Paris|M
+S|48.86959|2.33587|Quatre Septembre|Métro de Paris|M
+S|48.86176|2.35379|Rambuteau|Métro de Paris|M
+S|48.85558|2.27022|Ranelagh|Métro de Paris|M
+S|48.83892|2.33074|Raspail|Métro de Paris|M
+S|48.86625|2.35261|Réaumur - Sébastopol|Métro de Paris|M
+S|48.84820|2.32778|Rennes|Métro de Paris|M
+S|48.84736|2.38680|Reuilly - Diderot|Métro de Paris|M
+S|48.86022|2.37205|Richard Lenoir|Métro de Paris|M
+S|48.87197|2.33925|Richelieu - Drouot|Métro de Paris|M
+S|48.88848|2.37422|Riquet|Métro de Paris|M
+S|48.85581|2.42371|Robespierre|Métro de Paris|M
+S|48.88316|2.44056|Romainville - Carnot|Métro de Paris|M
+S|48.88230|2.32133|Rome|Métro de Paris|M
+S|48.88295|2.48034|Rosny - Bois-Perrier|Métro de Paris|M
+S|48.86762|2.36370|République|Métro de Paris|M
+S|48.86407|2.27815|Rue de la Pompe|Métro de Paris|M
+S|48.85258|2.38879|Rue des Boulets|Métro de Paris|M
+S|48.85518|2.32577|Rue du Bac|Métro de Paris|M
+S|48.86433|2.37948|Rue Saint-Maur|Métro de Paris|M
+S|48.86104|2.37473|Saint-Ambroise|Métro de Paris|M
+S|48.87447|2.32179|Saint-Augustin|Métro de Paris|M
+S|48.91763|2.34655|Saint-Denis Pleyel|Métro de Paris|M
+S|48.92991|2.35621|Saint-Denis - Porte de Paris|Métro de Paris|M
+S|48.94587|2.36465|Saint-Denis - Université|Métro de Paris|M
+S|48.87152|2.40431|Saint-Fargeau|Métro de Paris|M
+S|48.85145|2.31442|Saint-François-Xavier|Métro de Paris|M
+S|48.87845|2.33747|Saint-Georges|Métro de Paris|M
+S|48.85363|2.33447|Saint-Germain-des-Prés|Métro de Paris|M
+S|48.83298|2.33682|Saint-Jacques|Métro de Paris|M
+S|48.87542|2.32535|Saint-Lazare|Métro de Paris|M
+S|48.84637|2.41871|Saint-Mandé|Métro de Paris|M
+S|48.83828|2.36083|Saint-Marcel|Métro de Paris|M
+S|48.85329|2.34351|Saint-Michel|Métro de Paris|M
+S|48.90475|2.32221|Saint-Ouen|Métro de Paris|M
+S|48.85538|2.36041|Saint-Paul|Métro de Paris|M
+S|48.87224|2.31005|Saint-Philippe du Roule|Métro de Paris|M
+S|48.84710|2.32702|Saint-Placide|Métro de Paris|M
+S|48.86118|2.36723|Saint-Sébastien - Froissart|Métro de Paris|M
+S|48.85110|2.33070|Saint-Sulpice|Métro de Paris|M
+S|48.86772|2.34576|Sentier|Métro de Paris|M
+S|48.88136|2.42744|Serge Gainsbourg|Métro de Paris|M
+S|48.84698|2.30745|Ségur|Métro de Paris|M
+S|48.89385|2.34784|Simplon|Métro de Paris|M
+S|48.85866|2.32299|Solférino|Métro de Paris|M
+S|48.88424|2.36707|Stalingrad|Métro de Paris|M
+S|48.86930|2.35429|Strasbourg - Saint-Denis|Métro de Paris|M
+S|48.85140|2.36182|Sully - Morland|Métro de Paris|M
+S|48.85125|2.32699|Sèvres-Babylone|Métro de Paris|M
+S|48.84562|2.30958|Sèvres-Lecourbe|Métro de Paris|M
+S|48.86649|2.36071|Temple|Métro de Paris|M
+S|48.87831|2.29907|Ternes|Métro de Paris|M
+S|48.74720|2.37284|Thiais - Orly|Métro de Paris|M
+S|48.86387|2.34903|Étienne Marcel|Métro de Paris|M
+S|48.87550|2.39897|Télégraphe|Métro de Paris|M
+S|48.82609|2.35735|Tolbiac|Métro de Paris|M
+S|48.87631|2.33264|Trinité d'Estienne d'Orves|Métro de Paris|M
+S|48.86304|2.28719|Trocadéro|Métro de Paris|M
+S|48.86452|2.32963|Tuileries|Métro de Paris|M
+S|48.84915|2.32185|Vaneau|Métro de Paris|M
+S|48.85623|2.31496|Varenne|Métro de Paris|M
+S|48.83959|2.30128|Vaugirard|Métro de Paris|M
+S|48.84222|2.32901|Vavin|Métro de Paris|M
+S|48.86994|2.28607|Victor Hugo|Métro de Paris|M
+S|48.79304|2.34937|Villejuif - Gustave Roussy|Métro de Paris|M
+S|48.80513|2.36379|Villejuif - Léo Lagrange|Métro de Paris|M
+S|48.78694|2.36739|Villejuif - Louis Aragon|Métro de Paris|M
+S|48.79616|2.36836|Villejuif - Paul Vaillant-Couturier|Métro de Paris|M
+S|48.88112|2.31491|Villiers|Métro de Paris|M
+S|48.84153|2.30801|Volontaires|Métro de Paris|M
+S|48.85818|2.37982|Voltaire|Métro de Paris|M
+S|48.88405|2.30374|Wagram|Métro de Paris|M
+S|45.60375|6.78334|Les Granges|Paradiski|M
+S|45.60562|6.77634|Montrigon|Paradiski|M
+S|43.28815|5.39208|Baille|RTM|M
+S|43.32051|5.37145|Bougainville|RTM|M
+S|43.32794|5.36726|Capitaine Gèze|RTM|M
+S|43.28586|5.38398|Castellane|RTM|M
+S|43.30945|5.40166|Chartreux|RTM|M
+S|43.30416|5.39654|Cinq Avenues Longchamp|RTM|M
+S|43.30040|5.37440|Colbert|RTM|M
+S|43.30951|5.37271|Désirée Clary|RTM|M
+S|43.29016|5.37800|Estrangin - Préfecture|RTM|M
+S|43.32549|5.42321|Frais Vallon|RTM|M
+S|43.30400|5.36788|Joliette|RTM|M
+S|43.30198|5.37399|Jules Guesde|RTM|M
+S|43.29552|5.40625|La Blancarde|RTM|M
+S|43.30382|5.42410|La Fourragère|RTM|M
+S|43.33365|5.43003|La Rose|RTM|M
+S|43.29119|5.40045|La Timone|RTM|M
+S|43.30003|5.41364|Louis Armand|RTM|M
+S|43.32062|5.41604|Malpassé|RTM|M
+S|43.31519|5.37306|National|RTM|M
+S|43.29685|5.38120|Noailles|RTM|M
+S|43.29268|5.38371|Notre-Dame-du-Mont - Cours Julien|RTM|M
+S|43.27922|5.38776|Périer|RTM|M
+S|43.30024|5.38586|Réformés - Canebière|RTM|M
+S|43.27144|5.39260|Rond-Point du Prado|RTM|M
+S|43.30337|5.41894|Saint-Barnabé|RTM|M
+S|43.30243|5.38011|Saint-Charles|RTM|M
+S|43.27089|5.40281|Sainte-Marguerite Dromel|RTM|M
+S|43.31542|5.40610|Saint-Just|RTM|M
+S|43.29554|5.37432|Vieux Port|RTM|M
+S|45.72105|5.07546|Aéroport Lyon Saint-Éxupéry|Rhônexpress|M
+S|45.76028|4.86203|Gare Part-Dieu - Villette|Rhônexpress|M
+S|45.76771|5.03168|Meyzieu - Z.I.|Rhônexpress|M
+S|45.75309|4.82919|Ampère - Victor Hugo|TCL|M
+S|45.75736|4.83301|Bellecour|TCL|M
+S|45.76717|4.85944|Brotteaux|TCL|M
+S|45.77055|4.86420|Charpennes - Charles Hernu|TCL|M
+S|45.76339|4.83582|Cordeliers|TCL|M
+S|45.77102|4.83618|Croix-Paquet|TCL|M
+S|45.77448|4.83181|Croix-Rousse|TCL|M
+S|45.78528|4.83256|Cuire|TCL|M
+S|45.76569|4.90077|Cusset|TCL|M
+S|45.73107|4.83346|Debourg|TCL|M
+S|45.76778|4.88938|Flachet - Alain Gilles|TCL|M
+S|45.76879|4.84430|Foch|TCL|M
+S|45.78060|4.80455|Gare de Vaise - Gérard Collomb|TCL|M
+S|45.70546|4.88800|Gare de Vénissieux|TCL|M
+S|45.71669|4.81449|Gare d'Oullins|TCL|M
+S|45.76155|4.85722|Gare Part-Dieu - Vivier Merle|TCL|M
+S|45.75172|4.85345|Garibaldi|TCL|M
+S|45.76638|4.80541|Gorge de Loup|TCL|M
+S|45.74297|4.87872|Grange Blanche|TCL|M
+S|45.76911|4.88221|Gratte-Ciel|TCL|M
+S|45.75535|4.84280|Guillotière - Gabriel Péri|TCL|M
+S|45.77945|4.82751|Hénon|TCL|M
+S|45.76786|4.83602|Hôtel de Ville - Louis Pradel|TCL|M
+S|45.74593|4.84235|Jean Macé|TCL|M
+S|45.73843|4.88660|Laennec|TCL|M
+S|45.76417|4.90888|Laurent Bonnevay - Astroballe|TCL|M
+S|45.76962|4.85331|Masséna|TCL|M
+S|45.73061|4.88733|Mermoz - Pinel|TCL|M
+S|45.74554|4.87144|Monplaisir - Lumière|TCL|M
+S|45.71433|4.80523|Oullins Centre|TCL|M
+S|45.71949|4.88745|Parilly|TCL|M
+S|45.74969|4.82679|Perrache|TCL|M
+S|45.75928|4.84746|Place Guichard - Bourse du Travail|TCL|M
+S|45.73758|4.83733|Place Jean Jaurès|TCL|M
+S|45.77053|4.87403|République - Villeurbanne|TCL|M
+S|45.70176|4.80433|Saint-Genis-Laval Hôpital Lyon Sud|TCL|M
+S|45.74756|4.86510|Sans Souci|TCL|M
+S|45.75394|4.84703|Saxe - Gambetta|TCL|M
+S|45.72672|4.83096|Stade de Gerland—Le LOU|TCL|M
+S|45.77466|4.80543|Valmy|TCL|M
+S|45.76118|4.92190|Vaulx-en-Velin - La Soie|TCL|M
+S|45.76017|4.82596|Vieux Lyon - Cathédrale Saint-Jean|TCL|M
+S|45.75189|4.77182|Alaï|TER Auvergne-Rhône-Alpes|M
+S|45.67372|4.76360|Brignais|TER Auvergne-Rhône-Alpes|M
+S|45.69818|4.76423|Chaponost|TER Auvergne-Rhône-Alpes|M
+S|45.78209|4.73591|Charbonnières-les-Bains|TER Auvergne-Rhône-Alpes|M
+S|45.85926|4.71838|Civrieux d'Azergues|TER Auvergne-Rhône-Alpes|M
+S|45.76580|4.77926|Écully la Demi-Lune|TER Auvergne-Rhône-Alpes|M
+S|45.81514|4.76135|Dardilly-le-Jubin|TER Auvergne-Rhône-Alpes|M
+S|45.79688|4.75995|Dardilly-les-Mouilles|TER Auvergne-Rhône-Alpes|M
+S|45.83978|4.73449|Dommartin-Lissieu|TER Auvergne-Rhône-Alpes|M
+S|45.84500|4.66041|Fleurieux-sur-l'Arbresle|TER Auvergne-Rhône-Alpes|M
+S|45.76850|4.74844|Le Méridien|TER Auvergne-Rhône-Alpes|M
+S|45.82167|4.66703|Lentilly|TER Auvergne-Rhône-Alpes|M
+S|45.81652|4.68240|Lentilly-Charpenay|TER Auvergne-Rhône-Alpes|M
+S|45.77740|4.75412|Les Flachères|TER Auvergne-Rhône-Alpes|M
+S|45.76599|4.80458|Lyon-Gorge-de-Loup|TER Auvergne-Rhône-Alpes|M
+S|45.81153|4.60181|Sain-Bel|TER Auvergne-Rhône-Alpes|M
+S|45.76164|4.75856|Tassin|TER Auvergne-Rhône-Alpes|M
+S|47.80176|7.17366|Cernay (Haut-Rhin)|TER Grand Est;Soléa|M
+S|47.74254|7.32435|Daguerre|TER Grand Est;Soléa|M
+S|47.74638|7.30907|Dornach Gare|TER Grand Est;Soléa|M
+S|47.74283|7.34317|Gare Centrale|TER Grand Est;Soléa|M
+S|47.78067|7.22515|Graffenwald|TER Grand Est;Soléa|M
+S|47.75805|7.27645|Lutterbach Gare|TER Grand Est;Soléa|M
+S|47.74929|7.33552|Mairie|TER Grand Est;Soléa|M
+S|47.75013|7.29848|Musées|TER Grand Est;Soléa|M
+S|47.74661|7.33185|Porte Haute|TER Grand Est;Soléa|M
+S|47.74954|7.34018|Porte Jeune|TER Grand Est;Soléa|M
+S|47.74603|7.34136|République|TER Grand Est;Soléa|M
+S|47.80910|7.10706|Thann|TER Grand Est;Soléa|M
+S|47.80999|7.10105|Thann Centre|TER Grand Est;Soléa|M
+S|47.81330|7.09347|Thann Saint-Jacques|TER Grand Est;Soléa|M
+S|47.74505|7.32863|Tour Nessel|TER Grand Est;Soléa|M
+S|47.80578|7.11947|Vieux-Thann|TER Grand Est;Soléa|M
+S|47.80208|7.13261|Vieux-Thann Zone Industrielle|TER Grand Est;Soléa|M
+S|47.74356|7.31701|Zu Rhein|TER Grand Est;Soléa|M
+S|47.55513|-1.52436|Abbaretz|TER Pays de la Loire|M
+S|47.25884|-1.54497|Babinière|TER Pays de la Loire|M
+S|47.71712|-1.37141|Châteaubriant Tram-Train|TER Pays de la Loire|M
+S|47.08594|-1.28655|Clisson|TER Pays de la Loire|M
+S|47.28303|-1.54468|Erdre Active|TER Pays de la Loire|M
+S|47.10033|-1.30611|Gorges|TER Pays de la Loire|M
+S|47.24903|-1.52257|Haluchère-Batignolles|TER Pays de la Loire|M
+S|47.62687|-1.45074|Issé|TER Pays de la Loire|M
+S|47.30860|-1.54153|La Chapelle - Aulnay|TER Pays de la Loire|M
+S|47.29759|-1.54804|La Chapelle-sur-Erdre Centre|TER Pays de la Loire|M
+S|47.16154|-1.39221|La Haie-Fouassière|TER Pays de la Loire|M
+S|47.14382|-1.34687|Le Pallet|TER Pays de la Loire|M
+S|47.21710|-1.54142|Nantes|TER Pays de la Loire|M
+S|47.44190|-1.50338|Nort-sur-Erdre|TER Pays de la Loire|M
+S|47.19045|-1.49568|Saint-Sébastien Frêne Rond|TER Pays de la Loire|M
+S|47.20690|-1.51098|Saint-Sébastien Pas Enchantés|TER Pays de la Loire|M
+S|47.34297|-1.53028|Sucé-sur-Erdre|TER Pays de la Loire|M
+S|47.18614|-1.47801|Vertou|TER Pays de la Loire|M
+S|43.62432|1.47674|Argoulets|Tisséo|M
+S|43.59345|1.41855|Arènes|Tisséo|M
+S|43.58000|1.41225|Bagatelle|Tisséo|M
+S|43.62904|1.48278|Balma-Gramont|Tisséo|M
+S|43.62633|1.43406|Barrière de Paris|Tisséo|M
+S|43.56998|1.39227|Basso Cambo|Tisséo|M
+S|43.56607|1.39819|Bellefontaine|Tisséo|M
+S|43.64040|1.45253|Borderouge|Tisséo|M
+S|43.61549|1.43456|Canal du Midi|Tisséo|M
+S|43.60435|1.44525|Capitole|Tisséo|M
+S|43.59751|1.44541|Carmes|Tisséo|M
+S|43.61051|1.43514|Compans-Caffarelli|Tisséo|M
+S|43.57975|1.44206|Empalot|Tisséo|M
+S|43.60007|1.44390|Esquirol|Tisséo|M
+S|43.56811|1.46450|Faculté de Pharmacie|Tisséo|M
+S|43.58750|1.41840|Fontaine Lestang|Tisséo|M
+S|43.60047|1.45217|François Verdier|Tisséo|M
+S|43.60562|1.44848|Jean Jaurès|Tisséo|M
+S|43.60911|1.44513|Jeanne d'Arc|Tisséo|M
+S|43.61530|1.46339|Jolimont|Tisséo|M
+S|43.63410|1.43603|La Vache|Tisséo|M
+S|43.61086|1.45519|Marengo – SNCF|Tisséo|M
+S|43.58352|1.41515|Mermoz|Tisséo|M
+S|43.62051|1.43581|Minimes - Claude Nougaro|Tisséo|M
+S|43.57469|1.40202|Mirail-Université|Tisséo|M
+S|43.59247|1.44461|Palais de Justice|Tisséo|M
+S|43.59639|1.42301|Patte d'Oie|Tisséo|M
+S|43.55577|1.47640|Ramonville|Tisséo|M
+S|43.57472|1.46188|Rangueil|Tisséo|M
+S|43.57088|1.40180|Reynerie|Tisséo|M
+S|43.61999|1.46968|Roseraie|Tisséo|M
+S|43.58046|1.45014|Saint-Agne SNCF|Tisséo|M
+S|43.59793|1.43145|Saint-Cyprien - République|Tisséo|M
+S|43.58633|1.44708|Saint-Michel - Marcel Langer|Tisséo|M
+S|43.57971|1.45907|Saouzelong|Tisséo|M
+S|43.63799|1.44491|Trois Cocus|Tisséo|M
+S|43.56086|1.46329|Université Paul Sabatier|Tisséo|M
+S|48.81477|2.07858|Allée Royale|Tramway d'Île de France|M
+S|48.83684|2.07474|Bailly|Tramway d'Île de France|M
+S|48.91393|2.08169|Camp des Loges|Tramway d'Île de France|M
+S|48.89475|2.06999|Fourqueux - Bel Air|Tramway d'Île de France|M
+S|48.80637|2.07720|Les Portes de Saint-Cyr|Tramway d'Île de France|M
+S|48.90309|2.07298|Lisière Pereire|Tramway d'Île de France|M
+S|48.87248|2.06914|L'Étang - Les Sablons|Tramway d'Île de France|M
+S|48.88137|2.07929|Mareil-Marly|Tramway d'Île de France|M
+S|48.84110|2.06204|Noisy-le-Roi|Tramway d'Île de France|M
+S|48.79902|2.07458|Saint-Cyr|Tramway d'Île de France|M
+S|48.90155|2.09529|Saint-Germain-en-Laye|Tramway d'Île de France|M
+S|48.86750|2.05067|Saint-Nom-la-Bretèche|Tramway d'Île de France|M
+S|44.65672|-1.23959||Tramway du Cap Ferret|M
+S|44.65497|-1.25725|Plage de l'Horizon|Tramway du Cap Ferret|M
+S|49.14326|7.04480|Auersmacher|saarVV;TER Grand Est|M
+S|49.24287|6.97230|Cottbuser Platz|saarVV;TER Grand Est|M
+S|49.35650|6.93484|Eiweiler|saarVV;TER Grand Est|M
+S|49.36234|6.93336|Eiweiler Nord|saarVV;TER Grand Est|M
+S|49.31111|6.93811|Güchenbach|saarVV;TER Grand Est|M
+S|49.31441|6.93263|Gisorsstraße|saarVV;TER Grand Est|M
+S|49.11876|7.05007|Hanweiler - Bad Rilchingen|saarVV;TER Grand Est|M
+S|49.24012|6.99020|Hauptbahnhof|saarVV;TER Grand Est|M
+S|49.27458|6.96125|Heinrichshaus|saarVV;TER Grand Est|M
+S|49.22919|7.01153|Hellwigstraße|saarVV;TER Grand Est|M
+S|49.33706|6.93017|Heusweiler Markt|saarVV;TER Grand Est|M
+S|49.33298|6.92485|Heusweiler Schulzentrum|saarVV;TER Grand Est|M
+S|49.34490|6.93724|In der Hommersbach|saarVV;TER Grand Est|M
+S|49.23571|6.99656|Johanneskirche|saarVV;TER Grand Est|M
+S|49.23765|6.99410|Kaiserstraße|saarVV;TER Grand Est|M
+S|49.22813|7.01737|Kieselhumes|saarVV;TER Grand Est|M
+S|49.34975|6.93641|Kirschhof|saarVV;TER Grand Est|M
+S|49.15788|7.03351|Kleinblittersdorf Bf|saarVV;TER Grand Est|M
+S|49.39150|6.92658|Landsweiler Nord|saarVV;TER Grand Est|M
+S|49.38716|6.92893|Landsweiler Süd|saarVV;TER Grand Est|M
+S|49.23336|7.00092|Landwehrplatz|saarVV;TER Grand Est|M
+S|49.40833|6.90688|Lebach|saarVV;TER Grand Est|M
+S|49.40729|6.89182|Lebach-Jabach|saarVV;TER Grand Est|M
+S|49.40253|6.91913|Lebach Süd|saarVV;TER Grand Est|M
+S|49.24122|6.97829|Ludwigstraße|saarVV;TER Grand Est|M
+S|49.24706|6.96739|Pariser Platz|saarVV;TER Grand Est|M
+S|49.25063|6.96329|Rastpfuhl|saarVV;TER Grand Est|M
+S|49.30842|6.94014|Riegelsberghalle|saarVV;TER Grand Est|M
+S|49.30772|6.94440|Riegelsberg Kirchstraße|saarVV;TER Grand Est|M
+S|49.30105|6.94535|Riegelsberg Rathaus|saarVV;TER Grand Est|M
+S|49.29432|6.95335|Riegelsberg Süd|saarVV;TER Grand Est|M
+S|49.22696|7.02143|Römerkastell|saarVV;TER Grand Est|M
+S|49.17961|7.03483|Saarbrücken - Bübingen|saarVV;TER Grand Est|M
+S|49.21660|7.02879|Saarbrücken-Brebach|saarVV;TER Grand Est|M
+S|49.19774|7.03079|Saarbrücken-Güdingen|saarVV;TER Grand Est|M
+S|49.10720|7.06833|Sarreguemines|saarVV;TER Grand Est|M
+S|49.25581|6.96033|Siedlerheim|saarVV;TER Grand Est|M
+S|49.24042|6.98512|Trierer Straße|saarVV;TER Grand Est|M
+S|49.23125|7.00695|Uhlandstraße|saarVV;TER Grand Est|M
+S|49.31789|6.91445|Walpershofen/Etzenhofen|saarVV;TER Grand Est|M
+S|49.32657|6.92221|Walpershofen Mühlenstraße|saarVV;TER Grand Est|M
+S|49.32171|6.91791|Walpershofen Mitte|saarVV;TER Grand Est|M
+S|49.29683|6.94885|Wolfskaulstraße|saarVV;TER Grand Est|M
+S|49.44133|1.07301|Ponton 107 RG|Astuce|W
+S|49.44238|1.07524|Ponton Pasteur|Astuce|W
+S|47.62713|-2.77736|Embarcadère pour l'Île d'Arz|Bateaux-Bus du Golf|W
+S|48.84945|2.28062|Beaugrenelle|Batobus|W
+S|48.85457|2.35346|Hôtel-de-Ville|Batobus|W
+S|48.86327|2.31422|Invalides|Batobus|W
+S|48.84659|2.36258|Jardin des Plantes|Batobus|W
+S|48.86010|2.33162|Louvre|Batobus|W
+S|48.86084|2.32641|Musée d'Orsay|Batobus|W
+S|48.85183|2.35006|Notre-Dame|Batobus|W
+S|48.86420|2.31538|Place de la Concorde|Batobus|W
+S|48.85834|2.33479|Saint-Germain-des-Prés|Batobus|W
+S|48.85990|2.29303|Tour-Eiffel|Batobus|W
+S|48.38115|-4.48582|Brest|BreizhGo|W
+S|48.46905|-5.05445|Embarcadère/Débarcadère du Stiff|BreizhGo|W
+S|48.35942|-4.78023|Le Conquet|BreizhGo|W
+S|48.40230|-4.95650|Molène|BreizhGo|W
+S|51.83143|-8.32308|Port of Cork|Brittany Ferries|W
+S|48.72154|-3.96376|Roscoff|Brittany Ferries|W
+S|46.27851|6.22076|Anières|CGN|W
+S|46.34795|6.20961|Céligny|CGN|W
+S|46.31473|6.19323|Coppet|CGN|W
+S|46.26690|6.21026|Corsier|CGN|W
+S|46.20964|6.16225|Genève-Eaux-Vives|CGN|W
+S|46.20521|6.15026|Genève-Jardin-Anglais|CGN|W
+S|46.20725|6.14871|Genève-Mt-Blanc|CGN|W
+S|46.20861|6.15120|Genève-Pâquis|CGN|W
+S|46.30152|6.24115|Hermance|CGN|W
+S|46.50511|6.62658|Lausanne-Ouchy|CGN|W
+S|46.50821|6.50074|Morges|CGN|W
+S|46.36584|6.30175|Nernier|CGN|W
+S|46.38204|6.24394|Nyon|CGN|W
+S|46.45488|6.33761|Rolle|CGN|W
+S|46.39339|6.80619|Saint-Gingolph|CGN|W
+S|46.47866|6.46219|Saint-Prex|CGN|W
+S|46.50802|6.56211|Saint-Sulpice|CGN|W
+S|46.37609|6.47516|Thonon-les-Bains|CGN|W
+S|46.27769|6.17025|Versoix|CGN|W
+S|46.40171|6.59474|Évian-les-Bains|CGN|W
+S|46.37162|6.32362|Yvoire|CGN|W
+S|48.87113|2.77638||Euro Disney Associés S.A.S.|W
+S|15.94214|-61.33866||Express de îles|W
+S|47.70057|-3.35122|Gâvres Embarcadère|IZILO|W
+S|47.73498|-3.34747|Locmiquélic Pen Mané|IZILO|W
+S|47.72537|-3.35193|Locmiquélic Sainte-Catherine|IZILO|W
+S|47.72944|-3.35945|Lorient Port de Pêche|IZILO|W
+S|47.74400|-3.35653|Lorient Quai des Indes|IZILO|W
+S|47.71165|-3.35605|Port-Louis La Pointe|IZILO|W
+S|47.70503|-3.34625|Port-Louis Locmalo|IZILO|W
+S|50.95079|1.85995|Cité de la Dentelle|Imag'in|W
+S|50.95455|1.84915|George V|Imag'in|W
+S|50.95463|1.85581|Meuse|Imag'in|W
+S|50.94417|1.86703|Nation|Imag'in|W
+S|50.92699|1.86912|Pont de Coulogne|Imag'in|W
+S|16.30529|-61.79595||Jeans|W
+S|16.80329|-62.20602||Jeans|W
+S|16.22430|-61.53171||Karu'lis|W
+S|49.11334|6.14134|Longeville Centre|LE MET'|W
+S|49.10283|6.11618|Moulins-lès-Metz|LE MET'|W
+S|49.11858|6.16961|Moyen Pont|LE MET'|W
+S|49.11878|6.16106|Saulcy|LE MET'|W
+S|49.10597|6.13480|Scy-Chazelles|LE MET'|W
+S|49.11814|6.14764|St-Symphorien|LE MET'|W
+S|-25.06868|-130.09614|Pitcairn|MV Silver Supporter|W
+S|43.10313|5.89200|Espace marine 8M|Mistral|W
+S|43.10232|5.88189|La Seyne Ponton|Mistral|W
+S|43.08231|5.93015|P.E.M. Pôle Ecoles Méditerranée|Mistral|W
+S|43.07919|5.92518|Ponton Président|Mistral|W
+S|43.08074|5.89691|Ponton Sablettes|Mistral|W
+S|43.07817|5.92774|Ponton St-Mandrier|Mistral|W
+S|43.09075|5.90131|Ponton Tamaris|Mistral|W
+S|43.12006|5.93075|Ponton Toulon|Mistral|W
+S|43.11600|5.92658|Quai d'Honneur|Mistral|W
+S|-49.33929|69.82000|Ponton Raymond|Morbihan|W
+S|47.19541|-1.58920|Bas-Chantenay|Naolib|W
+S|47.29411|-1.52896|Gachet|Naolib|W
+S|47.20559|-1.57307|Gare Maritime|Naolib|W
+S|47.29205|-1.53581|Grimaudière|Naolib|W
+S|47.19906|-1.57275|Hangar à Bananes|Naolib|W
+S|47.19368|-1.58822|Trentemoult Sablières|Naolib|W
+S|46.50181|-1.79567|Port Olona|Oléane|W
+S|46.49692|-1.79629|Quai George V|Oléane|W
+S|46.49633|-1.79498|Quai Guiné 1|Oléane|W
+S|46.49641|-1.79443|Quai Guiné 2|Oléane|W
+S|46.50292|-1.78865|Vendée Globe|Oléane|W
+S|50.96675|1.84969|Calais, Poste 5|P&O Ferries|W
+S|50.96721|1.85407|Calais, Poste 7|P&O Ferries|W
+S|51.12588|1.33577|Dover 6|P&O Ferries|W
+S|51.12407|1.33296|Dover 8|P&O Ferries|W
+S|51.12374|1.33239|Dover 9|P&O Ferries|W
+S|-23.11790|-134.96866|Mangareva|Pitcairn Government’s|W
+S|-37.67175|176.17187|Matakana|Pitcairn Government’s|W
+S|43.28046|5.32655|Château d'If|RTM|W
+S|43.27888|5.30675|Frioul|RTM|W
+S|43.29586|5.37047|Hôtel de Ville|RTM|W
+S|43.21639|5.34485|Les Goudes|RTM|W
+S|43.36079|5.31028|L'Estaque|RTM|W
+S|43.29349|5.37108|Place aux Huiles|RTM|W
+S|43.24308|5.36716|Pointe-Rouge|RTM|W
+S|43.29470|5.37368|Vieux Port|RTM|W
+S|47.07371|-55.83008|Fortune|SPM Ferries|W
+S|47.10187|-56.37519|Miquelon|SPM Ferries|W
+S|46.77897|-56.17114|Saint-Pierre|SPM Ferries|W
+S|48.86470|2.57103|Passeurs de Marne - Gournay-sur-Marne|Seine-Saint-Denis Tourisme|W
+S|48.85146|2.51516|Passeurs de Marne - Neuilly-Plaisance|Seine-Saint-Denis Tourisme|W
+S|48.85409|2.54507|Passeurs de Marne - Noisy-le-Grand|Seine-Saint-Denis Tourisme|W
+S|-49.63292|70.13367|Halage des Naufragés|TAAF|W
+S|47.24307|-1.54743|Petit Port Facultés|TAN|W
+S|47.24201|-1.54602|Port Boyer|TAN|W
+S|44.85204|-0.56151|Bastide Darwin|TBM|W
+S|44.85539|-0.56257|Les Hangars|TBM|W
+S|44.84296|-0.56900|Quinconces|TBM|W
+S|44.84183|-0.56376|Stalingrad|TBM|W
+S|15.86872|-61.58353|Débarcadère de Terre-de-Haut|Val Ferry|W
+S|16.24093|-61.54210|Gare Maritime de Pointe à Pitre|Val Ferry|W
+S|15.96810|-61.64510|Port départemental de Trois-Rivières|Val Ferry|W
+S|45.74238|4.81411|Confluence|Yachts de Lyon|W
+S|45.76824|4.82466|Saint-Vincent|Yachts de Lyon|W
+S|45.76201|4.83114|Terrasses Presquîle|Yachts de Lyon|W
+S|45.78465|4.81307|Vaise Industrie|Yachts de Lyon|W
+S|15.88120|-61.31625|gare maritime de grand-bourg|val ferry|W
+S|43.31226|5.36417|Gare Maritime d'Arenc|النقل البحري الجزائري|W
+S|43.29931|5.36232|Gare Maritime de La Major|النقل البحري الجزائري|W
+S|43.30297|5.36332|Gare Maritime de La Major|النقل البحري الجزائري|W
+L|CDGVAL|CDGVAL|#142B4A|2 0:625 7:1239 1:799 6:593
+L|CDGVAL|CDGVAL|#142B4A|6 1:593 7:841 0:1204 2:617
+L|CDGVAL|LISA|#142B4A|5 4:413 3:502
+L|CDGVAL|LISA|#142B4A|3 4:500 5:412
+L|FR:STAR|Métro Rennes Ligne a Direction Rennes|#ED1C24|21 35:547 29:798 8:627 31:676 30:554 12:578 16:396 20:894 13:456 18:645 19:597 34:562 26:486 25:722
+L|FR:STAR|Métro Rennes Ligne a Direction Rennes|#ED1C24|25 26:722 34:486 19:563 18:593 13:645 20:456 16:896 12:397 30:574 31:557 8:677 29:629 35:798 21:547
+L|FR:STAR|Métro Rennes Ligne b Direction Cesson-Sévigné|#00893E|33 24:819 14:845 28:1196 15:818 16:892 32:823 31:564 23:1011 17:956 27:788 22:870 10:1060 9:1002 11:951
+L|FR:STAR|Métro Rennes Ligne b Direction Saint-Jacques-de-la-Lande|#00893E|11 9:948 10:1002 22:1054 27:875 17:793 23:952 31:1018 32:566 16:817 15:919 28:817 14:1201 24:847 33:929
+L|Ilévia|Métro Ligne 1|#FFD400|82 45:765 91:620 92:882 74:686 89:872 65:550 67:864 50:613 61:503 56:1204 83:668 86:472 52:789 95:433 80:596 43:1394 44:590
+L|Ilévia|Métro Ligne 1|#FFD400|44 43:591 80:1391 95:598 52:430 86:792 83:472 56:671 61:1192 50:500 67:617 65:865 89:550 74:873 92:687 91:886 45:620 82:766
+L|Ilévia|Métro Ligne 2|#ED1D24|88 38:1146 66:688 69:905 76:512 60:532 40:602 37:536 77:623 47:524 71:591 80:528 78:862 79:699 81:626 59:1007 63:485 56:672 55:431 87:956 70:779 64:762 51:683 58:1068 57:1163 94:742 93:750 48:1256 62:897 72:759 84:545 49:867 85:406 54:899 36:654 68:464 41:701 53:753 90:460 46:652 73:750 75:1072 39:707 42:487
+L|Ilévia|Métro Ligne 2|#ED1D24|42 39:486 75:707 73:1074 46:751 90:654 53:460 41:751 68:703 36:463 54:657 85:902 49:402 84:863 72:547 62:760 48:896 93:1256 94:754 57:741 58:1163 51:1060 64:683 70:763 87:778 55:957 56:432 63:676 59:485 81:1005 79:622 78:698 80:861 71:527 47:590 77:524 37:623 40:537 60:601 76:534 69:513 66:906 38:688 88:1142
+L|Métro de Paris|Ligne 1|#ffbe00|157 135:710 379:783 337:843 285:835 355:828 204:834 117:869 383:780 218:648 160:486 252:402 296:390 406:545 168:427 146:794 197:501 208:620 149:523 104:427 342:666 245:786 316:948 189:850 231:941
+L|Métro de Paris|Ligne 1|#ffbe00|231 189:936 316:848 245:950 342:786 104:664 149:424 208:437 197:574 146:546 168:794 406:427 296:509 252:425 160:403 218:485 383:649 117:780 204:870 355:834 285:827 337:929 379:748 135:783 157:710
+L|Métro de Paris|Ligne 10|#dc9600|133 132:831 275:1643 147:453 277:367 224:526 150:557 110:694 235:451 390:817 187:715 407:515 396:486 253:579 290:338 163:378 273:350 143:481 227:342 202:1036
+L|Métro de Paris|Ligne 10|#dc9600|202 227:1037 143:342 273:481 163:324 290:378 253:338 396:579 407:486 187:515 390:715 235:817 110:451 150:694 224:557 210:779 274:369 321:378 132:1674 133:825
+L|Métro de Paris|Ligne 11|#6e491e|160 218:346 350:461 106:481 363:795 212:498 119:445 346:677 225:328 308:342 402:518 334:655 260:682 389:851 360:988 283:1194 232:1113 173:513 362:1252
+L|Métro de Paris|Ligne 11|#6e491e|362 173:1259 232:514 283:1108 360:1194 389:989 260:851 334:683 402:654 308:518 225:344 346:328 119:677 212:445 363:499 106:793 350:486 218:461 160:342
+L|Métro de Paris|Ligne 12|#00643c|255 97:706 198:1096 328:1349 272:904 270:736 226:466 234:603 96:559 306:307 375:447 287:313 404:371 378:360 254:682 168:553 108:666 392:251 366:442 396:401 354:383 288:397 282:514 193:452 299:410 417:389 409:537 169:425 336:834 171:867 261:562
+L|Métro de Paris|Ligne 12|#00643c|261 171:562 336:867 169:834 409:425 417:537 299:389 193:451 282:456 288:472 354:397 396:383 366:401 392:443 108:271 168:657 254:553 378:682 404:360 287:358 375:316 306:445 96:307 234:559 226:603 270:466 272:736 328:904 198:1349 97:1096 255:706
+L|Métro de Paris|Ligne 13|#82c8e6|372 116:1286 371:773 144:1590 259:958 206:714 333:972 214:506 233:650 307:403 248:430 378:564 278:970 146:742 220:842 408:422 374:498 187:465 282:659 207:453 302:686 311:391 335:784 266:761 267:934 161:566
+L|Métro de Paris|Ligne 13|#82c8e6|161 267:637 266:863 335:759 311:784 302:391 207:690 282:537 187:626 374:424 408:562 220:425 146:767 278:790 378:916 248:568 307:430 233:406 214:646 333:506 206:972 259:785 144:964 371:1586 116:781 372:1283
+L|Métro de Paris|Ligne 13|#82c8e6|161 267:637 266:863 335:759 311:784 302:391 207:690 282:537 187:626 374:424 408:562 220:425 146:767 278:790 378:916 248:568 307:430 233:406 137:578 326:654 256:1171 199:1709 242:928 107:868
+L|Métro de Paris|Ligne 13|#82c8e6|107 242:868 199:999 256:1718 326:1119 137:661 233:572 307:405 248:430 378:564 278:970 146:742 220:842 408:422 374:498 187:465 282:659 207:453 302:686 311:391 335:784 266:761 267:934 161:566
+L|Métro de Paris|Ligne 14|#640082|370 259:1056 382:1307 326:1707 314:618 378:2020 254:735 345:786 160:1083 204:2780 120:560 176:1058 121:809 291:833 263:908 217:1592 412:1921 246:2055 155:2185 400:1349 105:2308
+L|Métro de Paris|Ligne 14|#640082|105 400:2308 155:1349 246:2187 412:2052 217:1919 263:1596 291:902 121:834 176:810 120:1059 204:560 160:2780 345:1084 254:786 378:731 314:2022 326:619 382:1706 259:1308 370:1054
+L|Métro de Paris|Ligne 2|#0055c8|285 111:554 98:598 303:391 343:493 279:583 175:338 119:471 166:685 223:490 393:466 229:468 115:723 103:414 306:451 124:397 307:426 361:550 416:487 280:472 174:324 399:407 149:502 411:860 320:669
+L|Métro de Paris|Ligne 2|#0055c8|320 411:745 149:860 399:450 174:400 280:324 416:480 361:488 307:552 124:405 306:435 103:428 115:458 229:722 393:421 223:446 166:492 119:685 175:471 279:336 343:583 303:498 98:387 111:597 285:585
+L|Métro de Paris|Ligne 3|#6e6e00|315 101:657 250:490 323:577 301:405 419:415 268:400 416:528 190:610 378:435 215:342 292:360 349:357 134:413 388:402 353:402 106:336 398:362 363:279 297:725 367:424 343:526 201:879 322:686 200:617
+L|Métro de Paris|Ligne 3|#6e6e00|200 322:617 201:686 343:879 367:526 297:424 363:725 398:281 106:361 353:400 388:338 134:402 349:413 292:357 215:360 378:342 190:435 416:634 268:560 419:376 301:409 323:471 250:503 101:507 315:613
+L|Métro de Paris|Ligne 3bis|#82c8e6|334 373:549 300:437 201:348
+L|Métro de Paris|Ligne 3bis|#82c8e6|201 300:348 373:437 334:548
+L|Métro de Paris|Ligne 4|#a0006e|327 391:449 270:335 159:473 115:341 205:731 203:520 156:367 394:414 353:315 401:432 244:353 160:290 162:512 381:430 290:298 376:387 387:434 385:518 282:543 410:255 352:405 184:525 284:380 100:416 341:498 258:863 114:1056 112:623
+L|Métro de Paris|Ligne 4|#a0006e|112 114:704 258:1062 341:778 100:497 284:415 184:383 352:525 410:407 282:324 385:469 387:519 376:428 290:387 381:377 162:355 160:553 244:312 401:320 353:402 394:315 156:414 203:458 205:524 115:639 159:341 270:473 391:335 327:449
+L|Métro de Paris|Ligne 5|#FF7F32|125 126:2351 211:902 216:819 331:778 295:473 238:568 223:556 393:513 205:916 203:455 221:642 363:427 289:588 356:500 136:414 117:401 348:796 202:664 380:597 142:400 309:546
+L|Métro de Paris|Ligne 5|#FF7F32|309 142:552 380:400 202:595 348:670 117:790 136:402 356:414 289:504 363:587 221:426 203:700 205:680 393:844 223:513 238:556 295:568 331:473 216:778 211:819 126:903 125:2426
+L|Métro de Paris|Ligne 6|#82dc73|149 228:490 127:482 405:450 298:738 123:487 186:507 235:398 141:356 397:525 299:415 282:644 188:411 352:486 184:531 377:398 209:506 172:518 309:522 286:502 154:442 347:411 120:667 185:687 183:508 118:485 304:488 285:506
+L|Métro de Paris|Ligne 6|#82dc73|285 304:504 118:549 183:413 185:507 120:686 347:731 154:415 286:431 309:447 172:522 209:580 377:514 184:323 352:529 188:489 282:412 299:638 397:488 141:525 235:284 186:469 123:514 298:451 405:749 127:391 228:556 149:484
+L|Métro de Paris|Ligne 7|#ff82b4|230 196:881 109:1448 329:843 170:381 177:561 358:377 393:469 249:623 158:349 203:453 313:734 140:313 241:368 152:492 292:408 345:496 296:344 319:718 160:517 318:693 395:470 227:854 310:419 145:251 243:591 309:502 403:615 263:522 338:268 325:406 339:432 305:819 262:797
+L|Métro de Paris|Ligne 7|#ff82b4|230 196:881 109:1448 329:843 170:381 177:561 358:377 393:469 249:623 158:349 203:453 313:734 140:313 241:368 152:492 292:408 345:496 296:344 319:718 160:517 318:693 395:470 227:854 310:419 145:251 243:591 309:502 403:615 263:522 240:1257 413:586 415:1069 414:1055
+L|Métro de Paris|Ligne 7|#ff82b4|262 305:797 339:819 325:432 338:406 263:268 403:522 309:615 243:501 145:591 310:251 227:419 395:854 318:470 160:693 319:517 296:718 345:399 292:485 152:412 241:486 140:357 313:387 203:736 158:376 249:290 393:608 358:469 177:349 170:561 329:412 109:843 196:1448 230:881
+L|Métro de Paris|Ligne 7|#ff82b4|414 415:1055 413:1069 240:586 263:1257 403:522 309:615 243:501 145:591 310:251 227:419 395:854 318:470 160:693 319:517 296:718 345:399 292:485 152:412 241:486 140:357 313:387 203:736 158:376 249:290 393:608 358:469 177:349 170:561 329:412 109:843 196:1448 230:881
+L|Métro de Paris|Ligne 7 bis|#82dc73|249 223:507 128:251 138:633 130:563 308:475 344:600
+L|Métro de Paris|Ligne 7 bis|#82dc73|344 182:386 130:521 138:563 128:633 223:251 249:507
+L|Métro de Paris|Ligne 8|#d282be|312 180:1343 181:1376 179:790 264:812 265:1017 165:1166 148:944 247:772 324:1063 340:620 276:364 183:587 281:637 355:386 192:403 239:616 117:571 153:425 386:419 194:241 363:570 394:699 129:369 213:407 357:379 292:550 254:386 168:508 220:968 237:534 164:447 235:716 167:712 195:273 131:333 251:496 113:385
+L|Métro de Paris|Ligne 8|#d282be|113 251:385 131:496 195:333 167:273 235:712 164:716 237:447 220:534 168:968 254:509 292:386 357:550 213:378 129:407 394:370 363:696 194:569 386:241 153:452 117:425 239:571 192:616 355:403 281:386 183:637 276:587 340:364 324:620 247:1063 148:772 165:945 265:1166 264:1017 179:889 181:792 180:1374 312:1265
+L|Métro de Paris|Ligne 9|#b6bd00|317 122:551 271:503 332:1057 191:634 275:220 274:419 222:595 351:368 236:387 364:801 405:601 219:580 99:495 197:765 384:502 278:438 369:497 215:487 152:416 357:369 213:360 129:407 394:370 363:691 289:640 368:512 418:487 151:555 365:347 285:684 139:509 269:361 330:344 359:990 178:914 257:685
+L|Métro de Paris|Ligne 9|#b6bd00|257 178:685 359:914 330:989 269:344 139:361 285:509 365:684 151:347 418:555 368:487 289:512 363:634 394:704 129:369 213:407 357:360 152:369 215:416 369:487 278:497 384:438 197:502 99:765 219:495 405:580 364:601 236:801 351:387 222:368 274:595 275:419 191:220 332:634 271:1057 122:503 317:551
+L|Métro de Paris|Orlyval|#FFCF00|102 293:5810 294:552
+L|Métro de Paris|Orlyval|#FFCF00|294 293:778 102:5814
+L|Paradiski|FUN ARC BGSM||420 421:547 420:630
+L|RTM|M1|#0075be|435 446:434 438:603 434:771 437:681 422:778 425:629 430:840 450:722 428:522 447:685 444:647 427:916 426:753 449:844 439:1043 431:741 436:1059
+L|RTM|M1|#0075be|436 431:1058 439:743 449:1040 426:847 427:743 444:920 447:634 428:704 450:526 430:721 425:857 422:629 437:780 434:680 438:771 446:602 435:434
+L|RTM|M2|#e30513|424 423:868 440:658 429:713 432:839 433:590 447:570 441:646 442:528 425:850 443:659 445:987 448:988
+L|RTM|M2|#e30513|448 445:983 443:987 425:659 442:850 441:528 447:656 433:590 432:578 429:833 440:717 423:659 424:868
+L|Rhônexpress|Rhônexpress|#e33530|452 494:4869 453:9150 451:6974
+L|Rhônexpress|Rhônexpress|#e33530|451 453:6984 494:9150 452:4870
+L|TCL|Ligne A|#e03f89|485 454:423 455:609 458:704 476:438 465:751 480:707 457:913 488:702 473:668 464:560 462:928 479:642 494:1098
+L|TCL|Ligne A|#e03f89|494 479:1099 462:642 464:928 473:560 488:668 457:770 480:843 465:707 476:746 458:438 455:708 454:606 485:423
+L|TCL|Ligne B|#2575bc|457 456:524 469:710 486:860 491:692 477:868 487:1016 463:778 492:519 468:1776 483:797 489:1505
+L|TCL|Ligne B|#2575bc|489 483:1508 468:798 492:1773 463:518 487:778 477:1003 491:881 486:693 469:862 456:705 457:527
+L|TCL|Ligne C|#eb6736|476 459:328 460:539 475:705 461:793
+L|TCL|Ligne C|#eb6736|461 475:794 460:694 459:547 476:329
+L|TCL|Ligne D|#489e43|466 493:747 471:904 495:1791 455:697 474:810 491:362 470:562 490:1017 482:528 472:647 478:835 481:969 484:1245 467:1571
+L|TCL|Ligne D|#489e43|467 484:1570 481:1247 478:965 472:833 482:649 490:527 470:1017 491:562 474:362 455:819 495:687 471:1794 493:906 466:751
+L|TER Auvergne-Rhône-Alpes|TER 21|#008be0|497 498:2917 496:8499 501:2379 510:2148
+L|TER Auvergne-Rhône-Alpes|TER 22|#008be0|511 505:6317 507:2876 508:1750 499:7770 506:2498 512:1469 501:1792 510:2148
+L|TER Auvergne-Rhône-Alpes|TER 23|#008be0|509 503:2344 502:2700 500:6319 504:2633
+L|TER Grand Est;Soléa|Tram-train T14|#FAFF07|516 523:410 522:546 519:346 521:434 527:299 514:431 530:603 515:671 520:895 518:1865 517:4583 513:4516 529:3129 528:1070 524:1022 525:469 526:677
+L|TER Grand Est;Soléa|Tram-train T14|#FAFF07|526 525:675 524:467 528:1022 529:1070 513:3129 517:4514 518:4580 520:1869 515:896 530:671 514:609 527:427 521:299 519:438 522:366 523:512 516:453
+L|TER Pays de la Loire|TER Aléop T1|#a3429b|533 538:12274 531:9972 544:12914 547:11416 539:4087 540:1339 535:1688 532:2798 537:2073 543:4669
+L|TER Pays de la Loire|TER Aléop T1|#a3429b|543 537:4723 532:2020 535:2799 540:1685 539:1338 547:4088 544:11417 531:12916 538:9976 533:12282
+L|TER Pays de la Loire|TER Aléop T2|#a3429b|534 536:2203 542:5801 541:4010 548:7302 545:1592 546:2147 543:3120
+L|TER Pays de la Loire|TER Aléop T2|#a3429b|543 546:3124 545:2147 548:1587 541:7300 542:4011 536:5851 534:2152
+L|Tisséo|Métro A|#DB001B|552 549:800 579:742 568:728 570:833 566:697 558:403 562:547 581:1213 575:703 550:546 564:668 571:514 551:450 573:1143 578:434 555:682 554:744
+L|Tisséo|Métro A|#DB001B|554 555:749 578:686 573:434 551:1141 571:450 564:514 550:670 575:541 581:703 562:1249 558:535 566:406 570:701 568:831 579:727 549:742 552:803
+L|Tisséo|Métro Ligne B|#FFD900|556 584:733 569:890 553:922 572:672 557:645 560:597 567:921 566:433 565:708 559:743 574:602 582:706 561:1169 580:708 583:770 577:627 563:776 585:835 576:1288
+L|Tisséo|Métro Ligne B|#FFD900|576 585:1286 563:833 577:775 583:629 580:772 561:706 582:900 574:712 559:595 565:747 566:709 567:433 560:928 557:593 572:650 553:671 569:919 584:888 556:736
+L|Tramway d'Île de France|Tram T13 Express|#8a5f20|595 590:897 586:934 587:2698 594:1056 597:3328 592:1639 593:1243 589:1690 591:971 588:1742 596:1826
+L|Tramway du Cap Ferret|Le Petit Train||598 599:1708
+L|saarVV;TER Grand Est|Saarbahn S 1|#EF7C00|622 621:1136 623:1183 618:1380 619:522 603:3105 602:661 616:795 612:567 610:1037 611:593 640:765 641:656 639:533 605:2040 604:586 627:404 628:340 629:858 642:558 630:442 608:2392 636:2249 626:628 625:467 601:587 624:540 637:537 607:384 614:398 613:299 620:411 638:513 609:422 615:508 631:251 633:1251 634:2120 632:2278 617:2470 600:1901 606:2787 635:1964
+L|saarVV;TER Grand Est|Saarbahn S 1|#EF7C00|635 606:1964 600:2893 617:1793 632:2617 634:2174 633:2068 631:1321 615:393 609:377 638:425 620:490 613:431 614:267 607:421 637:369 624:515 601:517 625:588 626:524 636:599 608:2269 630:2344 642:446 629:577 628:836 627:348 604:470 605:521 639:2049 641:527 640:657 611:766 610:593 612:1037 616:567 602:795 603:662 619:3105 618:522 623:1380 621:1199 622:1121
+L|Astuce|Navette fluviale Calypso|#0bbbef|644 643:203
+L|Astuce|Navette fluviale Calypso|#0bbbef|643 644:203
+L|Batobus|Batobus||655 651:5260 652:4117 649:2346 647:2422 650:3547 653:2638 646:3841 648:3512 654:3344
+L|Batobus|Batobus||655 648:3334 651:1967 654:1380 652:2747 649:2346 647:2422 650:3547 653:2638
+L|BreizhGo|BreizhGo||656 658:23369 659:19997 657:14362
+L|BreizhGo|BreizhGo||658 657:25279
+L|BreizhGo|BreizhGo||657 659:14356 658:19984 656:23378
+L|BreizhGo|BreizhGo||657 658:25243
+L|Brittany Ferries|Cork||660 661:460530
+L|Brittany Ferries|Roscoff||661 660:473914
+L|CGN|CGN 3100||671 676:18709
+L|CGN|CGN 3150||674 682:6236 675:14718 677:11521 672:4630 678:5110 671:5002
+L|CGN|CGN 3150||682 669:23754 667:625
+L|CGN|CGN 3150||682 674:6821 670:9075 662:3094 665:1669 667:8884
+L|CGN|CGN 3150||682 664:12798 680:5014 669:8443 667:614
+L|CGN|CGN 3150||682 674:7154 664:8754 680:5014 669:8443 667:614
+L|CGN|CGN 3150||682 668:23964
+L|CGN|CGN 3150||682 675:14377 677:11521 672:4630 678:5110 671:5002
+L|CGN|CGN 3150||668 666:1138 680:8150 664:5016 674:8757 682:7153 675:14718 677:11521 672:4630 678:5110 671:5002
+L|CGN|CGN 3150||668 666:1138 680:8150 664:5016 663:4406 674:4862 682:6892 675:14718 677:11521 672:4630 678:5110 671:5002
+L|CGN|CGN 3150||668 666:1138 680:8150 664:5016 674:8757 673:7240 682:2008 675:15963 677:11521 672:4630 678:5110 671:5002
+L|CGN|CGN 3150||668 666:1138 680:8150 664:5016 674:8757 673:7240 682:2008
+L|CGN|CGN 3150||671 678:5003 672:5110 677:4629 675:11516 682:14710 674:6893 663:4861 664:4405 680:5014 666:8149 668:1138
+L|CGN|CGN 3150||671 678:5003 672:5110 677:4629 675:11516 682:15653 664:12798 680:5014 668:8905
+L|CGN|CGN 3150||671 678:5003 672:5110 677:4629 675:11516 682:15960 673:2008 674:7240 664:8754 680:5014 666:8149 668:1138
+L|CGN|CGN 3150||671 678:5003 672:5110 677:4629 682:16268
+L|CGN|CGN 3150||671 678:5003 672:5110 677:4629 675:11516 682:15960 673:2008 674:4964
+L|CGN|CGN 3150||667 669:625 682:23778
+L|CGN|CGN 3150||667 665:8888 662:1669 670:3094 682:11092
+L|CGN|CGN 3150||667 669:632 670:12837 682:11092
+L|CGN|CGN 3150||667 669:614 680:8445 664:5016 682:12807
+L|CGN|CGN 3150||667 680:8924 664:5016 682:12807
+L|CGN|Navibus N1|#e04a5e|671 681:11789
+L|CGN|Navibus N1|#e04a5e|671 681:16766 679:12108
+L|CGN|Navibus N1|#e04a5e|681 671:11893
+L|CGN|Navibus N2|#25b155|671 679:19042
+L|CGN|Navibus N2|#25b155|679 671:19061
+L|CGN|Navibus N2|#25b155|681 679:18495 671:31267
+L|CGN|Navibus N3|#ffc700|674 682:6236
+L|CGN|Navibus N3|#ffc700|674 673:4963 682:2008
+L|CGN|Navibus N3|#ffc700|682 674:6237
+L|CGN|Navibus N3|#ffc700|682 673:2008 674:4964
+L|Express de îles|Pointe-à-Pitre Folle Anse||757 684:41138
+L|IZILO|Navette fluviale Ligne B1|#E84927|686 689:1494
+L|IZILO|Navette fluviale Ligne B1|#E84927|689 686:1494
+L|IZILO|Navette fluviale Ligne B2||688 690:2163
+L|IZILO|Navette fluviale Ligne B2||690 688:2163
+L|IZILO|Navette fluviale Ligne B3|#21B0E6|688 687:785
+L|IZILO|Navette fluviale Ligne B3|#21B0E6|687 688:785
+L|IZILO|Navette fluviale Ligne B8||690 687:1703 686:1183 689:1790
+L|IZILO|Navette fluviale ligne B4||691 685:678
+L|Imag'in|Majest'in|#000080|693 694:479 692:560 695:890 696:2038
+L|Imag'in|Majest'in|#000080|696 695:2038 692:890 694:560 693:479
+L|Jeans|Montsérrat - Guadeloupe||698 697:75730
+L|Karu'lis|Carénage - Bergevin||699 757:2323
+L|LE MET'|METZ'O 1 Moulins-lès-Metz → Moyen Pont|#59cbb8|701 704:1450 700:1234 705:846 703:1058 702:698
+L|LE MET'|METZ'O 1 Moyen Pont → Moulins-lès-Metz|#59cbb8|702 703:698 705:1058 700:846 704:1234 701:1450
+L|LE MET'|METZ'O 2 Longeville Centre → Moyen Pont|#59cbb8|700 705:780 703:1058 702:698
+L|LE MET'|METZ'O 2 Moyen Pont → Longeville Centre|#59cbb8|702 703:698 705:1058 700:779
+L|MV Silver Supporter|Mangareva - Pitcairn||733 706:548152
+L|Mistral|Bateau bus 18M|#3a75c4|714 713:4335 711:1294
+L|Mistral|Bateau bus 18M|#3a75c4|711 713:1294 714:4336
+L|Mistral|Bateau bus 18M nocturne|#3a75c4|711 714:5229
+L|Mistral|Bateau bus 28M|#003893|714 710:4836 712:263
+L|Mistral|Bateau bus 28M|#003893|714 709:4843
+L|Mistral|Bateau bus 28M|#003893|714 709:5609 710:573 712:314
+L|Mistral|Bateau bus 28M|#003893|712 710:263 714:4836
+L|Mistral|Bateau bus 28M|#003893|712 710:314 709:573 714:5610
+L|Mistral|Bateau bus 28M|#003893|709 714:4844
+L|Mistral|Bateau bus 38M|#06a7dc|711 707:2708 708:1017
+L|Mistral|Bateau bus 38M|#06a7dc|711 707:2708 708:1017
+L|Mistral|Bateau bus 8M|#ab9ecb|714 707:4129 708:1017
+L|Mistral|Bateau bus 8M|#ab9ecb|714 715:596 707:3466 708:1017
+L|Mistral|Bateau bus 8M|#ab9ecb|708 707:1017 714:4129
+L|Mistral|Bateau bus 8M|#ab9ecb|708 707:1017 715:3467 714:596
+L|Naolib|N1 Gare Maritime → Trentemoult Sablières|#2AAAB6|719 722:1879
+L|Naolib|N1 Trentemoult Sablières → Gare Maritime|#2AAAB6|722 719:1879
+L|Naolib|N2 Hangar à Bananes → Trentemoult Sablières|#2AAAB6|721 717:1536 722:397
+L|Naolib|N2 Trentemoult Sablières → Hangar à Bananes|#2AAAB6|722 717:397 721:1536
+L|Naolib|N3 Petit Port - Facultés → Port Boyer|#2AAAB6|750 751:159
+L|Naolib|N3 Port Boyer → Petit Port - Facultés|#2AAAB6|751 750:159
+L|Naolib|NGG Gachet → Grimaudière|#2581C4|718 720:582
+L|Naolib|NGG Grimaudière → Gachet|#2581C4|720 718:582
+L|Oléane|Passeur Ligne Belle-Olonnaise|#935293|726 723:700
+L|Oléane|Passeur Ligne Belle-Olonnaise|#935293|723 726:700
+L|Oléane|Passeur Ligne Florelle|#ec008c|725 724:122
+L|Oléane|Passeur Ligne Florelle|#ec008c|724 725:122
+L|Oléane|Passeur Ligne Vendée Globe|#e35205|726 727:975
+L|Oléane|Passeur Ligne Vendée Globe|#e35205|727 726:975
+L|P&O Ferries|Dover - Calais||730 732:521 731:58 729:83580 728:376
+L|P&O Ferries/DFDS|Dover/Douvres - Calais||732 731:58 730:302 729:43455
+L|P&O Ferries/DFDS|Dover/Douvres - Calais||729 732:43446 731:58
+L|Pitcairn Government’s|Tauranga - Mangareva||734 733:29659555
+L|RTM|Ferry-Boat|#00a1c4|737 740:267
+L|RTM|Ferry-Boat|#00a1c4|740 737:267
+L|RTM|Navette 1|#00a1c4|742 741:8215
+L|RTM|Navette 1|#00a1c4|741 742:8218
+L|RTM|Navette 2|#00a1c4|742 739:10032
+L|RTM|Navette 2|#00a1c4|739 742:10028
+L|RTM|Navette 3|#00a1c4|741 738:4265
+L|RTM|Navette 3|#00a1c4|738 741:4266
+L|RTM|lebateau Frioul If||742 735:9098 736:3372 742:12716
+L|SPM Ferries|Fortune -> Saint-Pierre||743 745:44039
+L|SPM Ferries|Miquelon -> Saint-Pierre||744 745:42819
+L|SPM Ferries|Saint-Pierre -> Fortune||745 743:44144
+L|SPM Ferries|Saint-Pierre -> Miquelon||745 744:43045
+L|Seine-Saint-Denis Tourisme|Passeurs de Marne||746 748:2417 747:2386
+L|TAN|Port Boyer - Petit Port Facultés||750 751:172
+L|TBM|Le Bato 2 Les Hangars => Stalingrad||753 752:602 754:1848 755:674
+L|TBM|Le Bato 2 Stalingrad => Les Hangars||755 754:674 752:1848 753:602
+L|Val Ferry|Grand-Bourg < Pointe-à-Pitre||763 757:47613
+L|Val Ferry|Terre-de-Haut < Pointe-à-Pitre||756 757:45635
+L|Val Ferry|Trois Rivière < Terre de Haut||758 756:12911
+L|Yachts de Lyon|Navigône|#44a3a6|759 761:3009 760:1097 762:2742
+L|Yachts de Lyon|Navigône|#44a3a6|759 761:3009 760:1097 762:2742
+L|val ferry|Pointe-à-Pitre < Grand-Bourg||757 763:47589
+L|val ferry|Terre de Haut < Trois rivière||756 758:12913
+L|النقل البحري الجزائري|الجزائر - Marseille||764 766:1064 765:456
+T|42.59797|8.82604|A Marina di Sant’Ambrosgiu
+T|49.68529|1.77395|Abancourt
+T|47.55513|-1.52436|Abbaretz
+T|50.10215|1.82438|Abbeville
+T|48.72545|2.41945|Ablon
+T|48.63650|7.09227|Abreschviller
+T|50.13164|2.78048|Achiet
+T|48.97020|2.07772|Achères - Ville
+T|48.95524|2.09247|Achères Grand Cormier
+T|43.43136|6.85653|Agay
+T|43.31745|3.46610|Agde
+T|44.20835|0.62098|Agen
+T|45.28661|0.74873|Agonac
+T|49.40837|3.97293|Aguilcourt - Variscourt
+T|44.05082|6.14762|Aiglun
+T|46.09389|-0.95200|Aigrefeuille-le-Thou
+T|45.53625|5.81318|Aiguebelette-le-Lac
+T|45.54371|6.30696|Aiguebelle
+T|46.01487|3.19811|Aigueperse
+T|43.57092|4.19103|Aigues-Mortes
+T|44.29874|0.33522|Aiguillon
+T|47.91390|6.33731|Aillevillers
+T|49.75452|2.36400|Ailly-sur-Noye
+T|49.92843|2.20064|Ailly-sur-Somme
+T|43.67875|4.20874|Aimargues
+T|45.55426|6.64889|Aime - La Plagne
+T|47.17053|5.15824|Aiserey
+T|43.52273|5.44512|Aix-en-Provence
+T|43.45515|5.31729|Aix-en-Provence TGV
+T|45.68814|5.90893|Aix-les-Bains - Le Revard
+T|45.79648|1.14568|Aixe-sur-Vienne
+T|41.92739|8.73913|Ajaccio
+T|45.75232|4.77186|Alaï
+T|45.78600|5.94848|Albens
+T|50.00573|2.64435|Albert
+T|45.67319|6.38324|Albertville
+T|43.93820|2.14115|Albi Madeleine
+T|43.92240|2.13795|Albi-Ville
+T|44.09199|1.44469|Albias
+T|48.43398|0.09863|Alençon
+T|42.99738|2.25190|Alet-les-Bains
+T|42.60838|8.86037|Algajola
+T|45.22893|2.93162|Allanche
+T|45.25893|1.47314|Allassac
+T|44.54135|3.66388|Allenc
+T|44.91900|3.67331|Alleyras
+T|44.00878|6.56117|Allons Argens
+T|47.62708|7.23907|Altkirch
+T|44.12786|4.08493|Alès
+T|49.52385|4.47397|Amagne - Lucquy
+T|45.95280|1.40655|Ambazac
+T|45.54918|3.73482|Ambert
+T|47.42143|0.98085|Amboise
+T|46.01159|5.33826|Ambronay-Priay
+T|45.95398|5.34234|Ambérieu-en-Bugey
+T|49.89056|2.30820|Amiens
+T|49.48469|3.91058|Amifontaine
+T|48.43826|1.38933|Amilly Ouerray
+T|45.97092|4.32663|Amplepuis
+T|48.65881|2.37362|Amédée Gordini
+T|47.36938|-1.17778|Ancenis
+T|49.93075|4.67095|Anchamps
+T|46.34960|0.25020|Anché-Voulon
+T|46.88904|-1.83933|Ancienne Gare (Maison Associations)
+T|47.96112|2.00254|Ancienne gare Marigny les Usages
+T|47.11110|3.72928|Ancienne gare d'Aunay
+T|49.05749|6.06284|Ancy-sur-Moselle
+T|46.85940|5.92366|Andelot
+T|42.58995|1.80085|Andorre - L'Hospitalet
+T|48.97482|2.04908|Andrésy
+T|45.52170|4.25483|Andrézieux
+T|47.46691|-0.53241|Angers - Maître-École
+T|47.46436|-0.55621|Angers Saint-Laud
+T|48.31155|2.00372|Angerville
+T|46.10786|-1.11562|Angoulins sur Mer
+T|45.65373|0.16433|Angoulême
+T|49.49608|3.44870|Anizy - Pinon
+T|50.62283|3.14706|Annappes
+T|45.90202|6.12071|Annecy
+T|46.19959|6.23711|Annemasse
+T|43.96398|6.67239|Annot
+T|49.98496|4.09309|Anor
+T|45.93936|4.71986|Anse
+T|45.95088|4.72731|Anse Plage
+T|45.93582|4.72255|Anse Pont
+T|43.43500|6.89210|Anthéor-Cap-Roux
+T|43.58577|7.11927|Antibes
+T|48.75493|2.30097|Antony
+T|50.44695|2.25499|Anvin
+T|49.45891|6.37237|Apach
+T|49.58084|3.12087|Appilly
+T|44.67463|-0.39589|Arbanats
+T|46.91242|5.76488|Arbois
+T|47.03035|5.77678|Arc-et-Senans
+T|44.65897|-1.16557|Arcachon
+T|48.11993|6.52825|Arches
+T|48.79861|2.32808|Arcueil - Cachan
+T|47.60088|3.76679|Arcy sur Cure
+T|42.61065|8.87368|Aregnu
+T|43.31323|5.36761|Arenc-Euroméditerranée
+T|44.00700|-0.80930|Arengosse
+T|42.54378|3.02212|Argelès-sur-Mer
+T|48.73840|-0.02571|Argentan
+T|48.94694|2.25786|Argenteuil
+T|45.98194|6.92648|Argentière
+T|46.59231|1.51853|Argenton-sur-Creuse
+T|46.93883|1.44117|Argy
+T|45.41214|3.72846|Arlanc
+T|45.02643|4.64772|Arlebosc
+T|43.68490|4.63223|Arles
+T|50.28634|3.12066|Arleux
+T|50.68079|2.87761|Armentières
+T|47.92858|0.19001|Arnage
+T|50.83151|2.40829|Arnèke
+T|48.58600|2.24115|Arpajon
+T|50.28664|2.78170|Arras
+T|48.41657|2.14773|Arrivée du vélorail (gare d'Etampes)
+T|48.09989|1.12839|Arrou
+T|49.91925|2.76980|Arrêt du Plateau
+T|49.07476|6.07868|Ars-sur-Moselle
+T|48.08088|1.88337|Artenay
+T|43.39320|-0.57011|Artix
+T|45.36543|3.31043|Arvant
+T|45.89737|6.70886|Ascenseur des Thermes
+T|50.62198|3.15974|Ascq
+T|48.90590|2.28348|Asnières-sur-Seine
+T|47.76940|7.14237|Aspach
+T|44.51941|5.75456|Aspres-sur-Buëch
+T|43.25443|-0.29502|Assat
+T|44.67462|1.86977|Assier
+T|48.71262|2.40361|Athis-Mons
+T|43.29621|5.56640|Aubagne
+T|45.18177|1.64141|Aubazine-Saint-Hilaire
+T|48.87264|2.33115|Auber
+T|48.97209|1.84819|Aubergenville Élisabethville
+T|45.98401|3.16065|Aubiat
+T|45.01529|-0.41976|Aubie - Saint-Antoine
+T|43.65001|0.78912|Aubiet
+T|50.26852|3.15844|Aubigny-au-Bac
+T|50.35297|2.59280|Aubigny-en-Artois
+T|47.68695|0.26576|Aubigné-Racan
+T|44.52729|2.23932|Aubin
+T|50.39459|1.97048|Aubin-Saint-Vaast
+T|49.21619|5.97149|Auboué
+T|50.10436|4.76171|Aubrives
+T|43.64729|0.59693|Auch
+T|50.39633|2.10224|Auchy-lès-Hesdin
+T|49.21627|-0.59608|Audrieu
+T|50.87557|2.07633|Audruicq
+T|49.36673|5.89136|Audun-le-Roman
+T|49.47863|5.95874|Audun-le-Tiche
+T|49.71593|1.09826|Auffay
+T|45.79205|3.16143|Aulnat Aéroport
+T|48.93213|2.49520|Aulnay-sous-Bois
+T|50.19741|3.84339|Aulnoye-Aymeries
+T|49.76504|1.75604|Aumale
+T|44.71825|3.28356|Aumont-Aubrac
+T|48.44588|1.78007|Auneau
+T|47.68043|-3.00124|Auray
+T|45.37114|4.19837|Aurec
+T|44.92105|2.43573|Aurillac
+T|43.34897|1.46879|Auterive
+T|46.95497|4.29281|Autun
+T|49.07047|2.17536|Auvers-sur-Oise
+T|47.79761|3.58556|Auxerre Saint-Gervais
+T|47.19268|5.37726|Auxonne
+T|47.49576|3.91245|Avallon
+T|44.22090|3.35709|Aven Armand
+T|49.06483|4.04355|Avenay-Val-d'Or
+T|48.87056|2.27526|Avenue Foch
+T|48.86455|2.27215|Avenue Henri Martin
+T|48.85323|2.28017|Avenue du Président Kennedy - Maison de Radio-France
+T|50.11976|3.94606|Avesnelles
+T|50.12696|3.93302|Avesnes-sur-Helpe
+T|43.92178|4.78607|Avignon TGV
+T|43.94169|4.80528|Avignon-Centre
+T|43.36388|1.78777|Avignonet
+T|50.40716|2.83399|Avion
+T|47.03491|2.65258|Avord
+T|47.12990|6.43457|Avoudrey
+T|48.69027|-1.37004|Avranches
+T|49.44465|2.41798|Avrechy
+T|42.72493|1.83348|Ax-les-Thermes
+T|42.80344|2.22846|Axat
+T|46.12758|-1.12836|Aytré Plage
+T|47.26635|0.44751|Azay-le-Rideau
+T|47.36519|0.85985|Azay-sur-Cher
+T|48.49116|6.69616|Azerailles
+T|49.00980|2.56135|Aéroport Charles de Gaulle 1 (Terminal 3)
+T|49.00402|2.57111|Aéroport Charles de Gaulle 2 TGV
+T|49.00397|2.57067|Aéroport Charles de Gaulle 2 TGV (RER)
+T|49.04877|4.00176|Aÿ-Champagne
+T|47.25884|-1.54497|Babinière
+T|48.45217|6.74415|Baccarat
+T|44.66517|2.16015|Bagnac
+T|48.23039|2.70349|Bagneaux-sur-Loing
+T|48.79326|2.32111|Bagneux
+T|44.52852|3.62825|Bagnols - Chadenet
+T|44.16166|4.62697|Bagnols-sur-Cèze
+T|43.65376|4.00836|Baillargues
+T|48.36680|1.32489|Bailleau-le-Pin
+T|50.72897|2.73489|Bailleul
+T|50.33512|2.84100|Bailleul-Sir-Berthoult
+T|46.40097|6.59177|Bains d'Évian
+T|47.98121|6.29518|Bains-les-Bains
+T|50.61859|3.23467|Baisieux
+T|49.29422|2.34405|Balagny - Saint-Épin
+T|45.81781|4.18765|Balbigny
+T|47.33678|0.61799|Ballan
+T|48.53216|2.37110|Ballancourt
+T|44.48202|3.45620|Balsièges Bourg
+T|44.44755|3.19588|Banassac - La Canourgue
+T|43.14037|5.75015|Bandol
+T|47.92662|-3.70633|Bannalec
+T|47.81105|7.50395|Bantzenheim
+T|42.55753|2.86961|Banyuls-dels-Aspres
+T|42.48302|3.12488|Banyuls-sur-Mer
+T|48.77366|5.16726|Bar-le-Duc
+T|48.23862|4.70686|Bar-sur-Aube
+T|45.30605|2.69436|Barajol
+T|44.27048|2.42745|Baraqueville-Carcenac-Peyralès
+T|42.50714|9.36790|Barchetta
+T|49.54927|0.95375|Barentin
+T|49.63079|3.65589|Barenton-Bugny
+T|44.49953|3.41059|Barjac
+T|49.37626|-1.75684|Barneville
+T|49.28457|5.69966|Baroncourt
+T|48.40331|7.45695|Barr
+T|43.95114|6.37066|Barrême
+T|44.60545|-0.32159|Barsac
+T|47.63495|7.48753|Bartenheim
+T|47.68102|6.80676|Bas-Evette
+T|45.29762|4.13949|Bas-Monistrol
+T|47.32020|1.68198|Base Aérienne
+T|48.19273|2.20718|Base de loisirs Bellébat
+T|42.68102|9.44536|Bassanese
+T|49.38056|6.23488|Basse-Ham
+T|44.90129|-0.52231|Bassens Ville
+T|42.70202|9.44756|Bastia
+T|47.28087|-2.47902|Batz-sur-Mer
+T|47.81185|1.66830|Baule
+T|47.35394|6.35947|Baume-les-Dames
+T|43.84679|7.19738|Baus Roux
+T|50.51174|2.90519|Bauvin – Provin
+T|49.26960|-0.69793|Bayeux
+T|48.46797|6.32292|Bayon
+T|43.49700|-1.47036|Bayonne
+T|49.36104|4.17415|Bazancourt
+T|43.45347|1.62066|Baziège
+T|50.94546|1.89882|Beau Marais
+T|43.80221|4.64715|Beaucaire
+T|45.34378|5.47488|Beaucroissant
+T|47.77845|1.62578|Beaugency
+T|43.70664|7.33171|Beaulieu-sur-Mer
+T|49.07418|0.77277|Beaumont-le-Roger
+T|47.02294|4.84854|Beaune
+T|50.42287|1.89541|Beaurainville
+T|44.70117|-0.45020|Beautiran
+T|49.42620|2.08868|Beauvais
+T|46.17672|-0.46886|Beauvoir-sur-Niort
+T|43.72455|4.32138|Beauvoisin
+T|42.99522|-0.60374|Bedous
+T|45.70078|-0.52651|Beillant
+T|48.85129|8.06245|Beinheim-Roppenheim
+T|47.63353|6.85378|Belfort
+T|47.58587|6.89755|Belfort-Montbéliard TGV
+T|42.58239|9.00510|Belgodère
+T|42.59905|9.02074|Belgudè U Pozzatellu
+T|46.12520|1.04612|Bellac
+T|48.59359|-3.32287|Belle-Isle-Bégard
+T|46.11091|5.82596|Bellegarde
+T|46.19929|3.06654|Bellenaves
+T|43.74446|7.18586|Bellet
+T|48.81968|6.10135|Belleville (Meurthe-et-Moselle)
+T|46.11195|4.72901|Belleville-sur-Saône
+T|46.78831|-1.43464|Belleville-sur-Vie
+T|45.41716|4.39252|Bellevue
+T|48.81922|2.22908|Bellevue
+T|46.23876|5.63026|Bellignat
+T|49.09812|2.36111|Belloy - Saint-Martin
+T|44.56180|3.75189|Belvezet
+T|44.77731|1.01184|Belvès
+T|47.65245|-3.07216|Belz - Ploemel
+T|48.37370|7.58393|Benfeld
+T|47.00008|2.74987|Bengy
+T|44.85731|0.48922|Bergerac
+T|50.96897|2.42564|Bergues
+T|50.61401|2.46302|Berguette - Isbergues
+T|50.19780|3.81084|Berlaimont
+T|49.08709|0.59568|Bernay
+T|43.50106|5.17892|Berre
+T|46.08376|1.43217|Bersac
+T|48.80974|7.00896|Berthelming
+T|48.42830|6.79126|Bertrichamps
+T|50.09118|3.44899|Bertry
+T|47.30727|5.95333|Besançon Franche-Comté TGV
+T|47.24040|6.03389|Besançon-Mouillère
+T|47.24702|6.02187|Besançon-Viotte
+T|47.69952|-1.86961|Beslé
+T|49.03575|2.20983|Bessancourt
+T|46.44362|3.36051|Bessay-sur-Allier
+T|48.18143|-1.63431|Betton
+T|50.38942|3.50661|Beuvrages
+T|50.53552|2.69276|Beuvry lès Béthune
+T|48.85940|1.87578|Beynes
+T|45.83397|5.00762|Beynost
+T|50.31631|2.94102|Biache-Saint-Vaast
+T|43.45915|-1.54585|Biarritz
+T|48.82972|2.37705|Bibliothèque François Mitterrand
+T|43.26830|-1.34530|Bidarray-Pont-Noblia
+T|43.17898|-0.60690|Bidos
+T|46.80159|2.36858|Bigny
+T|42.61494|9.43768|Biguglia
+T|50.41524|2.91014|Billy-Montigny
+T|43.61088|7.12626|Biot
+T|48.61190|7.74184|Bischheim
+T|48.48701|7.49782|Bischoffsheim
+T|48.76557|7.85137|Bischwiller
+T|47.82749|7.07836|Bitschwiller-lès-Thann
+T|48.75119|2.21549|Bièvres
+T|48.56479|6.38694|Blainville - Damelevières
+T|47.37401|4.74052|Blaisy-Bas
+T|49.93243|1.62575|Blangy-sur-Bresle
+T|50.42468|2.17216|Blangy-sur-Ternoise
+T|44.91759|-0.62375|Blanquefort
+T|46.69409|4.39135|Blanzy
+T|48.72134|4.75299|Blesme - Haussignémont
+T|47.10904|4.66032|Bligny-sur-Ouche
+T|47.58546|1.32346|Blois - Chambord
+T|49.33146|0.03554|Blonville-sur-Mer - Benerville
+T|47.33772|0.98778|Bléré - La Croix
+T|42.07997|9.05288|Bocognano
+T|42.62760|8.91310|Bodri
+T|49.85835|4.76339|Bogny-sur-Meuse
+T|49.98835|3.44280|Bohain
+T|48.34208|2.37898|Boigneville
+T|48.62198|2.41579|Bois Briard
+T|48.63418|2.39561|Bois de Saint-Eutrope
+T|48.91434|2.27146|Bois-Colombes
+T|45.90652|4.57556|Bois-d'Oingt-Légny
+T|48.47559|2.69192|Bois-le-Roi
+T|50.21062|2.77157|Boisleux
+T|48.25654|1.97301|Boisseaux
+T|44.78569|2.24939|Boisset
+T|48.52938|2.57293|Boissise-le-Roi
+T|48.75252|2.50476|Boissy-Saint-Léger
+T|49.07580|2.02513|Boissy-l'Aillerie
+T|49.59147|0.48482|Bolbec-Nointot
+T|47.85698|7.26732|Bollwiller
+T|44.27157|4.70813|Bollène - La Croisière
+T|48.19868|5.13429|Bologne
+T|42.49788|2.08752|Bolquère-Eyne
+T|48.21495|-3.13104|Bon Repos
+T|48.89403|2.47913|Bondy
+T|48.47640|-1.76541|Bonnemain
+T|48.18628|1.38629|Bonneval
+T|45.29457|3.76029|Bonneval - Félines
+T|46.07769|6.41680|Bonneville
+T|49.03877|1.58157|Bonnières
+T|48.17310|0.42039|Bonnétable
+T|46.27002|6.36620|Bons-en-Chablais
+T|45.52219|4.21631|Bonson
+T|49.16707|2.36250|Boran-sur-Oise
+T|44.82552|-0.55565|Bordeaux-Saint-Jean
+T|45.89448|-0.79860|Bords
+T|42.56272|9.44668|Borgo
+T|49.19469|2.20710|Bornel - Belle-Église
+T|45.40643|2.50269|Bort-les-Orgues
+T|47.13811|-1.68110|Bouaye
+T|43.52343|-1.49063|Boucau
+T|50.27811|3.33190|Bouchain
+T|43.99267|4.18752|Boucoiran
+T|49.04518|2.32291|Bouffémont - Moisselles
+T|48.85419|2.13211|Bougival
+T|48.85657|2.27517|Boulainvilliers
+T|45.17184|0.77297|Boulazac Isle Manoire
+T|50.72734|1.60929|Boulogne - Tintelleries
+T|50.71554|1.61014|Boulogne Ville
+T|43.41634|6.80828|Boulouris sur Mer
+T|48.53316|2.29038|Bouray
+T|50.95240|2.19436|Bourbourg
+T|48.36010|7.13739|Bourg-Bruche
+T|42.43249|1.94863|Bourg-Madame
+T|45.61880|6.77162|Bourg-Saint-Maurice
+T|46.20009|5.21499|Bourg-en-Bresse
+T|48.78025|2.31223|Bourg-la-Reine
+T|47.09433|2.39430|Bourges
+T|47.04715|-1.95235|Bourgneuf-en-Retz
+T|45.58374|5.27334|Bourgoin-Jallieu
+T|49.31763|0.83823|Bourgtheroulde - Thuit-Hébert
+T|46.65153|-1.17818|Bournezeau
+T|48.33268|2.69246|Bourron-Marlotte - Grez
+T|48.76584|0.80475|Bourth
+T|47.05053|-1.18281|Boussay - La Bruffière
+T|43.17972|0.97237|Boussens
+T|48.68094|2.53295|Boussy Saint-Antoine
+T|45.52463|4.27771|Bouthéon
+T|48.43488|2.37620|Boutigny
+T|49.84619|2.39800|Boves
+T|45.74136|4.00514|Boën
+T|43.24400|2.11943|Bram
+T|47.78221|-3.19418|Brandérion
+T|45.41407|3.33016|Brassac-les-Mines - Sainte-Florine
+T|43.61493|1.23653|Brax-Léguevin
+T|47.13146|5.21215|Brazey en Plaine
+T|50.33624|3.01414|Brebières Sud
+T|43.94405|7.51632|Breil sur Roya
+T|48.02845|7.10396|Breitenbach
+T|46.83835|-0.49637|Bressuire
+T|48.38769|-4.48009|Brest
+T|48.14057|-1.89721|Breteil
+T|44.92755|1.84424|Bretenoux - Biars
+T|49.62643|2.38450|Breteuil-Embranchement
+T|47.38980|5.11013|Bretigny - Norges
+T|48.43263|0.89233|Bretoncelles
+T|49.20340|-0.51275|Bretteville-Norrey
+T|49.30838|3.76669|Breuil - Romain
+T|48.57743|2.19188|Breuillet - Bruyères-le-Châtel
+T|48.56475|2.17131|Breuillet - Village
+T|48.96054|1.42535|Breuilpont
+T|44.88996|6.63309|Briançon
+T|47.64645|2.73371|Briare
+T|48.08705|4.97895|Bricon
+T|45.86425|1.44004|Brignac
+T|45.67372|4.76360|Brignais
+T|43.40586|6.05655|Brignoles
+T|45.26253|5.90134|Brignoud
+T|50.44709|1.83147|Brimeux
+T|46.17575|5.55852|Brion - Montréal-la-Cluse
+T|46.90858|4.20699|Brion-Laizy
+T|47.04854|-0.18506|Brion-près-Thouet
+T|49.19643|0.71171|Brionne
+T|45.30070|3.37874|Brioude
+T|48.70202|-0.36826|Briouze
+T|45.15232|1.52838|Brive-la-Gaillarde
+T|48.33341|-2.23576|Broons
+T|48.21582|1.16053|Brou
+T|46.86200|4.29618|Broye
+T|44.88700|-0.60948|Bruges
+T|48.73278|7.70024|Brumath
+T|48.69926|2.50663|Brunoy
+T|50.27806|3.14627|Brunémont
+T|48.20488|6.71876|Bruyères
+T|49.15521|2.32601|Bruyères-sur-Oise
+T|48.02861|-1.75181|Bruz
+T|48.84462|2.52619|Bry-sur-Marne
+T|49.60355|0.41742|Bréauté - Beuzeville
+T|48.66957|-3.19651|Brélidy - Plouëc
+T|48.60681|2.30200|Brétigny-sur-Orge
+T|48.94345|1.54175|Bréval
+T|48.92536|1.44354|Bueil
+T|45.60060|1.92483|Bugeat
+T|49.96487|2.59857|Buire-sur-l'Ancre
+T|50.44855|2.73334|Bully - Grenay
+T|48.37074|2.38707|Buno - Gironville
+T|48.69586|2.16342|Bures-sur-Yvette
+T|47.74205|7.13347|Burnhaupt
+T|50.03977|3.44613|Busigny
+T|45.21190|-0.36825|Bussac
+T|46.12280|2.02312|Busseau-sur-Creuse
+T|45.60765|1.02615|Bussière-Galant
+T|48.83664|2.70984|Bussy-Saint-Georges
+T|46.39953|6.59138|Buvette Cachat
+T|43.14817|-0.45598|Buzy-en-Béarn
+T|47.11856|5.85209|Byans
+T|44.79937|-0.55517|Bègles
+T|46.86520|3.31804|Béard
+T|48.90556|2.26878|Bécon-les-Bruyères
+T|43.60862|3.14974|Bédarieux
+T|44.04081|4.89300|Bédarrides
+T|44.65669|-1.24008|Bélisaire
+T|42.45808|1.91672|Béna-Fanès
+T|43.62780|-1.36967|Bénesse-Maremne
+T|48.90669|6.75342|Bénestroff
+T|49.13829|6.82847|Béning
+T|44.94243|1.73443|Bétaille
+T|50.52133|2.64031|Béthune
+T|43.33610|3.21878|Béziers
+T|44.75208|-0.53767|Cadaujac
+T|49.17676|-0.34747|Caen
+T|50.84969|1.81216|Caffiers
+T|43.65773|7.14843|Cagnes-sur-Mer
+T|44.44922|1.43310|Cahors
+T|45.93212|6.90279|Caillet
+T|50.90191|1.81144|Calais - Fréthun
+T|50.95338|1.85037|Calais-Ville
+T|41.94934|8.81149|Caldaniccia
+T|48.40619|-3.41973|Callac
+T|50.48277|2.48110|Calonne-Ricouart
+T|42.56463|8.75598|Calvi
+T|42.55619|8.76504|Calvi E Padule
+T|42.55344|8.77623|Calvi L'Alzeta Suprana
+T|42.56000|8.75781|Calvi Talle
+T|42.55537|8.77185|Calvi U Pinetu
+T|43.36553|-1.39647|Cambo-les-Bains
+T|50.17669|3.24131|Cambrai station
+T|44.42200|3.06640|Campagnac - Saint-Geniez
+T|42.91694|2.20566|Campagne
+T|42.63160|8.95736|Camping Monticello
+T|42.16078|9.15720|Camping Savaggio
+T|43.55416|7.01995|Cannes
+T|43.54867|6.98655|Cannes-la-Bocca
+T|50.31255|3.12207|Cantin
+T|43.72053|7.39434|Cap d'Ail
+T|44.57825|2.07796|Capdenac
+T|43.10335|0.32964|Capvern
+T|49.06787|-1.24456|Carantilly
+T|43.29815|1.21218|Carbonne
+T|42.02396|8.90933|Carbuccia
+T|43.21821|2.35178|Carcassonne
+T|49.30239|-1.24493|Carentan
+T|48.27800|-3.56220|Carhaix
+T|49.62858|5.16849|Carignan
+T|44.04863|2.15200|Carmaux
+T|43.76196|7.48153|Carnolès
+T|43.29747|6.18640|Carnoules
+T|43.31028|6.18823|Carnoules Les Platanes ( A.T.T.C.V. ).
+T|48.34048|-3.49071|Carnoët - Locarn
+T|44.04824|5.04458|Carpentras
+T|43.33668|5.15360|Carry-le-Rouet
+T|49.38011|-1.78424|Carteret
+T|42.52183|9.44109|Casamozza
+T|42.62028|9.43765|Casatorra
+T|42.77641|2.78573|Cases-de-Pène
+T|45.78781|4.73092|Casino-Lacroix-Laval
+T|50.78762|2.45989|Cassel
+T|43.23413|5.55317|Cassis
+T|43.78924|7.21519|Castagniers
+T|43.78610|1.34162|Castelnau-d'Estrétefonds
+T|43.31207|1.95028|Castelnaudary
+T|44.04037|1.11435|Castelsarrasin
+T|44.85702|-0.04066|Castillon-la-Bataille
+T|43.59923|2.23107|Castres
+T|50.12814|3.33375|Cattenières
+T|42.81070|2.37256|Caudiès-de-Fenouillèdes
+T|44.58016|-0.14515|Caudrot
+T|50.11130|3.40984|Caudry
+T|44.84280|-0.62747|Caudéran-Mérignac
+T|48.28441|-2.15546|Caulnes
+T|44.16227|1.53365|Caussade
+T|43.83463|5.04397|Cavaillon
+T|45.10522|-0.38210|Cavignac
+T|41.92808|8.79581|Cavone
+T|50.17982|1.50111|Cayeux-sur-Mer-Brighton-Plage
+T|43.21295|1.08305|Cazères
+T|43.81236|3.15520|Ceilhes - Roqueredonde
+T|44.85632|-0.53365|Cenon
+T|42.62879|9.44077|Ceppe
+T|42.44156|3.16351|Cerbère
+T|47.98618|1.88475|Cercottes
+T|46.85788|3.64520|Cercy-la-Tour
+T|49.04960|2.03469|Cergy - Saint-Christophe
+T|49.03655|2.07941|Cergy Préfecture
+T|49.04857|2.01204|Cergy-le-Haut
+T|46.81755|-0.66773|Cerizay
+T|47.80178|7.17338|Cernay
+T|48.98512|2.25713|Cernay
+T|47.79104|7.15516|Cernay St André
+T|45.56103|5.37609|Cessieu
+T|48.56551|2.59432|Cesson
+T|48.11258|-1.60255|Cesson-Sévigné
+T|46.18344|5.32581|Ceyzériat
+T|45.87264|0.71689|Chabanais
+T|46.62650|1.50764|Chabenet
+T|47.25507|1.64599|Chabris
+T|44.00981|6.26513|Chabrières
+T|46.90745|4.74956|Chagny
+T|47.87708|1.78240|Chaingy-Fourneaux-Plage
+T|45.27086|0.04358|Chalais
+T|46.84396|-1.87181|Challans
+T|46.78158|4.84343|Chalon-sur-Saône
+T|47.34302|-0.74380|Chalonnes
+T|45.20550|3.99176|Chamalières-sur-Loire
+T|48.51434|2.21564|Chamarande
+T|49.16357|2.24046|Chambly
+T|44.30025|3.97918|Chamborigaud
+T|47.18239|0.96476|Chambourg
+T|49.07425|1.29809|Chambray
+T|46.91428|-0.95024|Chambretaud
+T|45.57147|5.91987|Chambéry - Challes-les-Eaux
+T|45.98163|4.50699|Chamelet
+T|45.91993|6.86672|Chamonix - Aiguille du Midi
+T|45.92278|6.87384|Chamonix Mont-Blanc
+T|45.92263|6.87533|Chamonix-Montenvers
+T|45.55757|6.20700|Chamousset
+T|48.97961|2.29192|Champ de Courses d'Enghien
+T|48.85671|2.28976|Champ de Mars - Tour Eiffel
+T|49.21427|3.99434|Champagne-Ardenne TGV
+T|49.13572|2.24188|Champagne-sur-Oise
+T|48.40668|2.79930|Champagne-sur-Seine
+T|47.70304|6.70117|Champagney
+T|46.74929|5.91004|Champagnole
+T|46.74254|5.91946|Champagnole Paul-Émile Victor
+T|48.01970|0.33520|Champagné
+T|48.54544|3.28707|Champbenoist - Poigny
+T|46.46537|-0.36931|Champdeniers
+T|48.73520|6.16905|Champigneulles
+T|48.32391|3.13068|Champigny-sur-Yonne
+T|48.70801|2.28079|Champlan
+T|47.73857|3.60359|Champs - Saint-Bris
+T|44.07272|6.17925|Champtercier
+T|44.47398|3.34552|Chanac
+T|48.95917|3.02535|Changis - Saint-Jean
+T|48.97037|2.02767|Chanteloup-les-Vignes
+T|47.19711|-1.59436|Chantenay
+T|46.72840|3.17174|Chantenay-Saint-Imbert
+T|49.18724|2.45953|Chantilly – Gouvieux
+T|46.69012|-1.05439|Chantonnay
+T|44.83798|3.74191|Chapeauroux
+T|45.69846|4.76430|Chaponost
+T|49.06944|2.14223|Chaponval
+T|45.78209|4.73591|Charbonnières-les-Bains
+T|48.87427|2.29487|Charles de Gaulle-Étoile
+T|49.76787|4.72495|Charleville-Mézières
+T|48.37850|6.30160|Charmes (Vosges)
+T|49.16265|1.93692|Chars
+T|48.44844|1.48086|Chartres
+T|48.48706|2.69505|Chartrettes
+T|45.58253|4.79519|Chasse-sur-Rhône
+T|46.65177|0.37303|Chasseneuil-du-Poitou
+T|45.82441|0.45355|Chasseneuil-sur-Bonnieure
+T|44.55404|3.83994|Chasseradès
+T|48.88520|2.15621|Chatou - Croissy
+T|43.98251|6.30290|Chaudon Norante
+T|46.20746|4.34543|Chauffailles
+T|47.08722|5.25517|Chaugey
+T|49.80743|2.80088|Chaulnes
+T|48.10953|5.13397|Chaumont
+T|49.26122|1.87269|Chaumont-en-Vexin
+T|48.81234|2.18806|Chaville Rive Droite
+T|48.80481|2.18891|Chaville Rive Gauche
+T|48.79957|2.18407|Chaville-Vélizy
+T|45.87290|4.72478|Chazay-Marcilly
+T|45.92635|6.71977|Chedde
+T|46.89248|4.67584|Cheilly-Lès-Maranges
+T|48.87420|2.58277|Chelles Gournay
+T|47.89744|3.55428|Chemilly - Appoigny
+T|47.21767|-0.73208|Chemillé
+T|48.74795|2.31273|Chemin d'Antony
+T|48.51950|6.63255|Chenevières
+T|47.33074|1.06497|Chenonceaux
+T|49.63335|-1.62107|Cherbourg-en-Cotentin
+T|46.42939|-0.37871|Cherveux
+T|45.88550|4.62246|Chessy
+T|48.20893|-1.63078|Chevaigné
+T|48.52445|5.11160|Chevillon
+T|48.02667|1.87931|Chevilly
+T|49.33731|2.68282|Chevrières
+T|45.80344|5.84689|Chindrieux
+T|47.16303|0.25174|Chinon
+T|44.52447|3.26375|Chirac
+T|47.33478|1.13341|Chissay-en-Touraine
+T|50.53823|2.56462|Chocques
+T|48.76437|2.41121|Choisy-le-Roi
+T|47.06577|-0.86981|Cholet
+T|44.54584|6.27189|Chorges
+T|47.52034|1.24781|Chouzy
+T|45.43832|5.42798|Châbons
+T|48.95520|4.34875|Châlons-en-Champagne
+T|45.24457|0.68822|Château l'Évêque
+T|44.06148|5.99750|Château-Arnoux-Saint-Auban
+T|48.14172|1.91289|Château-Gaillard
+T|47.58780|0.90152|Château-Renault
+T|49.03791|3.40934|Château-Thierry
+T|47.68323|0.41499|Château-du-Loir
+T|48.10619|-1.40512|Châteaubourg
+T|47.71724|-1.37138|Châteaubriant
+T|48.07342|1.33839|Châteaudun
+T|48.20183|-4.09418|Châteaulin
+T|45.59992|-0.05009|Châteauneuf-sur-Charente
+T|46.85681|2.31038|Châteauneuf-sur-Cher
+T|46.80945|1.69943|Châteauroux
+T|48.30713|6.38780|Châtel - Nomexy
+T|47.53779|3.63517|Châtel-Censoir
+T|46.07836|-1.09094|Châtelaillon-Plage
+T|48.53325|-2.97461|Châtelaudren - Plouagat
+T|48.86164|2.34704|Châtelet - Les Halles
+T|46.81870|0.54929|Châtellerault
+T|45.87522|4.64520|Châtillon d'Azergues
+T|48.99190|3.36448|Chézy-sur-Marne
+T|47.34523|0.46049|Cinq-Mars-la-Pile
+T|43.30531|1.52063|Cintegabelle
+T|49.27170|2.36017|Cires-lès-Mello
+T|46.60411|4.29973|Ciry-le-Noble
+T|48.82059|2.33901|Cité Universitaire
+T|45.85926|4.71838|Civrieux d'Azergues
+T|46.21344|5.45399|Cize - Bolozon
+T|49.54392|3.57675|Clacy - Mons
+T|48.81422|2.27442|Clamart
+T|47.46670|3.52077|Clamecy
+T|44.82725|5.60502|Clelles-Mens
+T|45.76703|3.13421|Clermont - La Pardieu
+T|49.38549|2.41775|Clermont de l'Oise
+T|45.77859|3.10093|Clermont-Ferrand
+T|45.76810|3.09097|Clermont-La Rotonde
+T|47.39668|6.49227|Clerval
+T|48.89759|2.29735|Clichy - Levallois
+T|47.08594|-1.28655|Clisson
+T|47.99213|1.24343|Cloyes-sur-le-Loir
+T|16.41785|-61.51663|Cluny
+T|46.06123|6.58300|Cluses
+T|49.59908|1.10625|Clères
+T|43.18184|-0.24162|Coarraze - Nay
+T|48.48033|-3.27380|Coat-Guegan
+T|45.68456|-0.32607|Cognac
+T|48.74359|1.92119|Coignières
+T|45.87685|6.76097|Col de Voza
+T|42.52688|3.07810|Collioure
+T|47.22099|5.26611|Collonges
+T|45.82909|4.84636|Collonges Fontaines
+T|48.07265|7.34652|Colmar
+T|48.08597|7.33367|Colmar Mésanges
+T|48.08169|7.34530|Colmar Saint-Joseph
+T|43.76357|7.20446|Colomars - La Manda
+T|48.92403|2.25930|Colombes
+T|47.45542|6.68913|Colombier-Fontaine
+T|45.05799|4.72625|Colombier-le-Vieux/Saint-Barthélémy-le-Plain
+T|43.60356|1.33389|Colomiers
+T|43.61635|1.31409|Colomiers-Lycée International
+T|48.41618|-1.72772|Combourg
+T|48.66758|2.54782|Combs-la-Ville - Quincy
+T|46.29517|2.73994|Commentry
+T|48.76591|5.58875|Commercy
+T|48.99150|2.66522|Compans
+T|49.42203|2.82351|Compiègne
+T|48.96225|0.93791|Conches
+T|45.12668|1.22651|Condat - Le Lardin
+T|45.32657|2.70440|Condat - Saint-Amandin
+T|48.38353|0.84878|Condé-sur-Huisne
+T|49.16659|5.86823|Conflans - Jarny
+T|48.99195|2.07498|Conflans-Fin-d'Oise
+T|48.99693|2.09839|Conflans-Sainte-Honorine
+T|46.77645|6.37167|Coni'fer
+T|48.12727|-0.01135|Conlie
+T|48.07376|0.48695|Connerré Beillé
+T|48.17963|5.89061|Contrexéville
+T|50.34285|3.04049|Corbehem
+T|48.61400|2.47361|Corbeil-Essonnes
+T|49.91166|2.49967|Corbie
+T|47.25481|3.67732|Corbigny
+T|49.25515|3.21581|Corcy
+T|47.30227|-1.84655|Cordemais
+T|44.06713|1.90007|Cordes-Vindrac
+T|47.08424|4.91699|Corgoloin
+T|48.96851|2.19342|Cormeilles-en-Parisis
+T|47.26246|0.83395|Cormery
+T|45.21520|1.69818|Cornil
+T|50.41500|2.88544|Corons de Méricourt
+T|47.98517|-1.57530|Corps-Nuds
+T|45.32962|1.88132|Corrèze
+T|48.49606|-2.14143|Corseul - Languenan
+T|42.30383|9.15837|Corte
+T|47.41396|2.93194|Cosne-sur-Loire
+T|49.55618|3.77522|Coucy-lès-Eppes
+T|51.01752|2.37513|Coudekerque-Branche
+T|43.15567|2.31626|Couffoulens-Leuc
+T|48.88269|2.85423|Couilly - Saint-Germain - Quincy
+T|42.94245|2.24813|Couiza-Montazels
+T|47.52713|3.54721|Coulanges-sur-Yonne
+T|48.92375|-0.09846|Coulibœuf
+T|48.80771|3.08198|Coulommiers
+T|48.89827|2.24832|Courbevoie
+T|47.23776|0.86782|Courcay-Tauxigny
+T|48.70088|2.09921|Courcelle-sur-Yvette
+T|50.16943|2.78790|Courcelles-le-Comte
+T|49.06342|6.31100|Courcelles-sur-Nied
+T|49.32955|4.01366|Courcy - Brimont
+T|45.75772|3.54433|Courpière
+T|43.23374|3.05091|Coursan
+T|48.07359|1.12700|Courtalain Saint-Pellerin
+T|44.08998|4.88832|Courthézon
+T|48.45143|1.23483|Courville-sur-Eure
+T|46.53521|5.38694|Cousance
+T|49.04283|-1.44138|Coutances
+T|45.03656|-0.13129|Coutras
+T|45.84870|4.82928|Couzon-au-Mont-d'Or
+T|47.22195|-1.72362|Couëron
+T|49.25662|2.40484|Cramoisy
+T|44.52282|2.27199|Cransac
+T|47.67851|3.68117|Cravant - Bazarnes
+T|49.26396|2.46868|Creil
+T|44.73011|5.01593|Crest
+T|48.16831|-0.06613|Crissé
+T|50.67866|3.13794|Croix - Wasquehal
+T|43.40890|5.01967|Croix Sainte
+T|50.68689|3.15124|Croix l'Allumette
+T|43.28554|-0.37924|Croix-du-Prince
+T|49.40367|3.35703|Crouy
+T|49.09169|3.06287|Crouy-sur-Ourcq
+T|48.85949|2.90591|Crécy-la-Chapelle
+T|43.71008|7.20728|Crémat - Le P.A.L.
+T|45.80383|4.89229|Crépieux-La Pape
+T|49.62334|3.51672|Crépy - Couvron
+T|49.23109|2.88655|Crépy-en-Valois
+T|48.77149|2.43530|Créteil Pompadour
+T|46.24618|4.78402|Crêches-sur-Saône
+T|44.97297|-0.45909|Cubzac-les-Ponts
+T|43.23643|6.08570|Cuers - Pierrefeu
+T|47.05832|-1.25327|Cugand
+T|50.52202|2.74694|Cuinchy
+T|47.81009|5.44322|Culmont - Chalindrey
+T|45.84293|5.77879|Culoz
+T|44.63224|-0.34076|Cérons
+T|48.66535|2.36259|Côteaux de l'Orge
+T|48.54285|7.53308|Dachstein
+T|48.32160|7.43569|Dambach-la-Ville
+T|43.65639|1.97401|Damiatte - Saint-Paul
+T|49.03212|2.69910|Dammartin - Juilly - Saint-Mard
+T|46.93789|0.60881|Dangé-Saint-Romain
+T|47.61875|6.86886|Danjoutin
+T|47.62773|7.12487|Dannemarie
+T|47.20375|5.87381|Dannemarie - Velesmes
+T|50.57592|1.61464|Dannes - Camiers
+T|49.89927|2.45905|Daours
+T|45.79690|4.75998|Dardilly Les Mouilles
+T|45.81514|4.76135|Dardilly-le-Jubin
+T|45.14214|3.73652|Darsac
+T|43.72060|-1.05031|Dax
+T|46.83750|3.46729|Decize
+T|47.50552|7.00999|Delle
+T|47.29261|6.19958|Deluz
+T|50.33468|3.38865|Denain
+T|48.83299|2.33322|Denfert-Rochereau
+T|49.70261|3.69200|Dercy - Froidmont
+T|48.75188|7.46476|Dettwiller
+T|48.97593|2.33829|Deuil - Montmagny
+T|43.37003|-1.76449|Deux-Jumeaux
+T|49.87960|4.70723|Deville
+T|44.75826|5.36321|Die
+T|48.94068|7.18499|Diemeringen
+T|49.92142|1.08114|Dieppe
+T|48.84391|6.07156|Dieulouard
+T|43.86544|1.27599|Dieupentale
+T|44.08864|6.22244|Digne Station
+T|46.48516|3.98765|Digoin
+T|47.46127|0.22029|Digue de Pincemaille
+T|47.32305|5.02725|Dijon-Ville
+T|48.45690|-2.05354|Dinan
+T|48.35077|-1.68598|Dingé
+T|48.39262|-4.28552|Dirinon-Loperhet
+T|48.87472|2.77941|Disneyland Railroad Discoveryland Station
+T|48.87462|2.77357|Disneyland Railroad Fantasyland Station
+T|48.87019|2.77214|Disneyland Railroad Frontierland Depot
+T|48.87080|2.77912|Disneyland Railroad Main Street Station
+T|46.70346|0.42107|Dissay
+T|49.28651|-0.10759|Dives - Cabourg
+T|49.29114|-0.10086|Dives-sur-Mer Port-Guillaume
+T|48.54396|-1.75017|Dol-de-Bretagne
+T|47.09621|5.48803|Dole
+T|48.62336|6.34339|Dombasle-sur-Meurthe
+T|46.76282|5.59790|Domblans - Voiteur
+T|48.10771|0.02624|Domfront
+T|49.79973|2.39256|Dommartin - Remiencourt
+T|45.83978|4.73449|Dommartin-Lissieu
+T|49.03277|2.33775|Domont
+T|50.14611|3.87119|Dompierre
+T|46.52632|3.67493|Dompierre-Sept-Fons
+T|50.55169|2.91379|Don - Sainghin
+T|49.69834|4.87477|Donchery
+T|47.31480|-2.07383|Donges
+T|48.36565|5.14831|Donjeux
+T|44.44334|4.70448|Donzère
+T|48.14726|2.76272|Dordives
+T|48.52500|7.49314|Dorlisheim
+T|49.07911|3.64182|Dormans
+T|47.74688|7.30835|Dornach
+T|50.37188|3.09075|Douai
+T|49.72008|0.77511|Doudeville
+T|48.53359|2.00972|Dourdan
+T|48.53542|1.99573|Dourdan - La Forêt
+T|50.43219|2.98696|Dourges
+T|48.93270|2.45443|Drancy
+T|43.75999|7.31691|Drap - Cantaron
+T|47.48237|-2.05006|Drefféac
+T|49.91473|2.23013|Dreuil-lès-Amiens
+T|48.73121|1.37039|Dreux
+T|48.76610|7.94778|Drusenheim
+T|47.30681|0.53532|Druye
+T|45.21150|4.34993|Dunières
+T|51.03042|2.36855|Dunkirk
+T|48.54397|7.58681|Duppigheim
+T|45.79477|3.04871|Durtol-Nohanent
+T|48.54546|7.56617|Duttlenheim
+T|44.65343|1.34012|Dégagnac
+T|48.36691|2.14366|Départ du vélorail de la Juine
+T|48.03427|7.56352|Dépôt CFT
+T|44.99700|6.20238|Dôme Express
+T|44.99711|6.22357|Dôme Express
+T|50.73067|2.40923|Ebblinghem
+T|48.30999|7.49432|Ebersheim
+T|41.96392|8.81470|Effrico
+T|48.38243|7.44944|Eichhoffen
+T|48.50356|6.39332|Einvaux
+T|49.30268|1.01018|Elbeuf - Saint-Aubin
+T|42.59712|2.96344|Elne
+T|44.56701|6.49678|Embrun
+T|48.04236|5.20960|Emplacement de l'ancienne gare ferroviaire de Foulain
+T|48.97285|2.30697|Enghien-les-Bains
+T|50.54935|3.15865|Ennevelin
+T|44.00529|4.92211|Entraigues-sur-la-Sorgue
+T|43.94899|6.81305|Entrevaux
+T|48.54697|7.62794|Entzheim Aéroport
+T|46.22723|0.23593|Epanvilliers
+T|48.36380|7.45041|Epfig
+T|42.66351|9.44330|Erbajolo
+T|47.28303|-1.54468|Erdre Active
+T|48.98069|2.27140|Ermont - Eaubonne
+T|48.98993|2.26340|Ermont Halte
+T|42.44278|2.02900|Err
+T|48.42311|7.63832|Erstein
+T|48.90318|2.81066|Esbly
+T|43.51708|1.54228|Escalquens
+T|50.19172|3.27532|Escaudœuvres
+T|49.21251|2.17082|Esches
+T|42.77228|2.83340|Espira-de-l'Agly
+T|42.93585|2.21826|Espéraza
+T|50.88981|2.41214|Esquelbecq
+T|48.60562|2.46263|Essonnes Robinson
+T|42.77674|2.69886|Estagel
+T|42.46324|2.01791|Estavar
+T|45.41494|4.01036|Estivareilles
+T|49.43820|2.64225|Estrées-Saint-Denis
+T|47.28414|0.78168|Esvres-sur-Indre
+T|50.05432|1.41685|Eu
+T|45.64531|2.46100|Eygurande - Merlines
+T|45.73981|1.74118|Eymoutiers
+T|44.63724|-0.96618|Facture-Biganos
+T|50.35758|2.83112|Farbus
+T|48.80857|2.99324|Faremoutiers - Pommeuse
+T|49.08802|6.90798|Farschviller
+T|47.36703|1.74019|Faubourg d'Orléans
+T|49.04549|6.60376|Faulquemont
+T|50.21716|1.65927|Favières
+T|48.49093|7.67212|Fegersheim - Lipsheim
+T|47.89759|6.98712|Fellering
+T|48.65219|2.38340|Ferme Neuve
+T|48.09651|2.77231|Ferrières - Fontenay
+T|49.65443|1.83086|Feuquières - Broquiers
+T|45.74406|4.23061|Feurs
+T|45.66592|4.85286|Feyzin
+T|44.60326|2.03711|Figeac
+T|45.39180|4.28638|Firminy
+T|49.31075|3.68213|Fismes
+T|49.71874|3.19039|Flavy-le-Martel
+T|47.69877|7.30464|Flaxlanden
+T|48.74464|-0.57357|Flers
+T|45.84500|4.66041|Fleurieux-sur-l'Arbresle
+T|46.45091|4.88404|Fleurville - Pont-de-Vaux
+T|47.36306|3.61499|Flez Cuzy Tannay
+T|42.96975|1.60691|Foix
+T|48.82986|-1.40738|Folligny
+T|47.39868|0.64613|Fondettes - Saint-Cyr-sur-Loire
+T|43.90732|4.20666|Fons-St-Mamert
+T|42.49119|2.03843|Font-Romeu-Odeillo-Via
+T|46.82119|6.36950|Fontaine Ronde
+T|48.74334|2.29634|Fontaine-Michalon
+T|48.48718|2.75120|Fontaine-le-Port
+T|48.41631|2.72663|Fontainebleau - Avon
+T|48.44815|2.72904|Fontainebleau-Forêt
+T|46.85126|4.77504|Fontaines - Mercurey
+T|43.99670|7.55161|Fontan - Saorge
+T|48.78762|2.29223|Fontenay-aux-Roses
+T|48.80729|2.04068|Fontenay-le-Fleury
+T|48.84371|2.46374|Fontenay-sous-Bois
+T|48.71150|5.98006|Fontenoy-sur-Moselle
+T|42.51380|2.18851|Fontpédrouse Saint-Thomas les Bains
+T|43.72848|4.70660|Fontvieille
+T|49.18949|6.90110|Forbach
+T|49.65422|1.72291|Formerie
+T|46.23452|-0.40694|Fors
+T|43.42803|4.97458|Fos-sur-Mer
+T|49.60833|0.59714|Foucart - Alvimare
+T|48.42511|7.18751|Fouday
+T|48.67925|5.79128|Foug
+T|47.72980|-1.85111|Fougeray - Langon
+T|46.66533|-1.23207|Fougeré
+T|49.73654|1.82609|Fouilloy
+T|50.52552|2.60738|Fouquereuil
+T|47.01897|3.08720|Fourchambault
+T|50.01541|4.05392|Fourmies
+T|45.76238|4.82145|Fourvière
+T|47.17573|2.16244|Foëcy
+T|45.39480|4.26119|Fraisses - Unieux
+T|42.40409|9.19307|Francardo
+T|49.24257|4.01382|Franchet d'Esperey
+T|45.73371|4.76963|Francheville
+T|48.99343|2.23503|Franconville – Le Plessis-Bouchard
+T|47.22746|5.93750|Franois
+T|46.85769|6.15755|Frasne
+T|49.95029|3.43257|Fresnoy-le-Grand
+T|50.56016|3.14935|Fretin
+T|46.17149|1.43243|Fromental
+T|48.29634|5.14179|Froncles
+T|45.63054|6.31405|Frontenex
+T|43.44493|3.75894|Frontignan
+T|48.75531|6.14434|Frouard
+T|48.72761|-3.12847|Frynaudour
+T|43.43192|6.73290|Fréjus
+T|49.14125|-0.26038|Frénouville - Cagny
+T|49.04618|2.19702|Frépillon
+T|47.89193|1.21182|Fréteval
+T|50.34732|2.63380|Frévin-Capelle
+T|49.98608|4.69253|Fumay
+T|45.59735|6.79501|Funiculaire 1 - Arcs 1600
+T|45.61418|6.77427|Funiculaire 1 - Bourg-Saint-Maurice
+T|48.88566|2.34255|Funiculaire Montmarte Station Haute
+T|48.88469|2.34266|Funiculaire Montmartre - Station inférieure
+T|45.44320|6.95013|Funival
+T|45.45914|6.96425|Funival
+T|42.65153|9.44120|Furiani
+T|46.66965|0.37816|Futuroscope
+T|49.75944|0.37528|Fécamp
+T|50.02342|4.72644|Fépin
+T|43.92975|4.95691|Gadagne
+T|48.88373|2.52540|Gagny
+T|43.90605|1.89475|Gaillac
+T|49.17466|1.35251|Gaillon - Aubevoye
+T|43.71622|4.17150|Gallargues
+T|43.57294|1.41965|Galliéni-Cancéropôle
+T|46.64211|4.33006|Galuzot
+T|43.71029|7.25561|Gambetta
+T|48.69519|7.87930|Gambsheim
+T|43.23445|-0.39143|Gan
+T|49.26081|6.13603|Gandrange - Amnéville
+T|46.09759|3.20485|Gannat
+T|49.57234|2.43703|Gannes
+T|44.56385|6.08566|Gap
+T|48.81042|1.76491|Garancières - La Queue
+T|48.83830|2.18713|Garches - Marnes-la-Coquette
+T|47.04306|3.08586|Garchizy
+T|43.45627|5.46277|Gardanne
+T|44.83475|0.33194|Gardonne
+T|45.87491|4.83257|Gare Albigny - Neuville
+T|50.06046|1.36738|Gare Basse
+T|45.75932|1.64518|Gare Chateauneuf-Bujaleuf
+T|47.32278|5.05492|Gare Dijon Porte Neuve
+T|50.05922|1.36724|Gare Haute
+T|48.84006|2.31911|Gare Montparnasse
+T|48.26511|4.61572|Gare Nigloland
+T|49.89322|2.28344|Gare Saint-Roch
+T|43.51540|4.98026|Gare d'Istres
+T|45.87365|6.77438|Gare de Bellevue Hiver
+T|48.37771|2.14538|Gare de Boissy-la-Rivière
+T|47.09419|2.39429|Gare de Bourges
+T|47.41026|-0.86858|Gare de Champtocé-sur-Loire
+T|49.61114|3.22364|Gare de Chauny
+T|49.60702|2.09100|Gare de Crèvecoeur-le-Grand
+T|49.92319|2.72888|Gare de Froissy Musée
+T|49.92224|2.72625|Gare de Froissy Pont
+T|44.98080|2.03043|Gare de Lamativie
+T|48.84468|2.37377|Gare de Lyon
+T|42.69624|2.87969|Gare de Perpignan
+T|46.57483|5.95133|Gare de Saint-Laurent-en-Grandvaux
+T|48.29348|2.20768|Gare de Sermaises
+T|47.86009|7.29438|Gare de la Citadelle
+T|42.89777|-0.39566|Gare de la Sagette
+T|50.22004|1.63184|Gare du Crotoy
+T|44.91215|5.78355|Gare du Petit Train de la Mure
+T|49.18184|0.31201|Gare du Safari Train
+T|47.86017|7.29895|Gare du Volcan
+T|45.89138|0.58265|Gare du chemin de Fer de Charente-Limousine
+T|42.51381|2.78452|Gare ferroviaire Saint-Jean-Pla-de-Corts (FRET)
+T|43.53448|6.46419|Gare routière de Draguignan
+T|48.98299|1.80904|Gargenville
+T|48.97653|2.39026|Garges - Sarcelles
+T|45.81196|-1.22340|Gatseau
+T|44.05887|6.17760|Gaubert - Le Chaffaut
+T|45.05438|-0.39922|Gauriaguet
+T|48.62600|1.77198|Gazeran
+T|44.77204|-0.69936|Gazinet-Cestas
+T|48.51918|7.68420|Geispolsheim
+T|47.47854|5.12927|Gemeaux
+T|47.24429|5.22397|Genlis
+T|48.93365|2.30759|Gennevilliers
+T|48.81537|2.34086|Gentilly
+T|49.12812|4.02278|Germaine
+T|48.41340|7.46629|Gertwiller
+T|45.83335|3.14307|Gerzat
+T|47.80296|-3.44316|Gestel
+T|47.22754|4.99895|Gevrey-Chambertin
+T|42.59003|8.81355|Ghjorghju
+T|47.69916|2.63650|Gien
+T|48.69821|2.13674|Gif-sur-Yvette
+T|45.01465|1.48313|Gignac-Cressensac (Lot)
+T|47.05036|6.49238|Gilley
+T|46.53701|3.78216|Gilly-sur-Loire
+T|43.63305|0.86761|Gimont-Cahuzac
+T|44.58312|-0.09206|Gironde sur Dropt
+T|43.75691|1.77762|Giroussens
+T|45.69402|3.59052|Giroux
+T|49.28517|1.78462|Gisors
+T|50.14030|4.81780|Givet
+T|45.59611|4.77228|Givors Canal
+T|45.58514|4.76570|Givors-Ville
+T|47.27891|1.66781|Giévres
+T|44.04952|6.17780|Golf de Digne
+T|43.56641|7.07367|Golfe-Juan Vallauris
+T|45.34223|5.97413|Goncelin
+T|43.31716|6.28178|Gonfaron
+T|47.10033|-1.30611|Gorges
+T|48.22665|-3.17591|Gouarec
+T|44.74198|1.38949|Gourdon
+T|48.56098|-3.16685|Gourland
+T|49.48169|1.73787|Gournay - Ferrières
+T|49.02385|2.46324|Goussainville
+T|48.43272|7.47876|Goxwiller
+T|48.53240|7.68974|Graffenstaden
+T|47.78082|7.22479|Graffenwald
+T|43.69600|1.56771|Gragnague
+T|44.77351|1.72235|Gramat
+T|44.95401|5.70026|Grand Balcon
+T|48.64807|2.43596|Grand Bourg
+T|48.61849|7.14416|Grand Soldat
+T|44.20995|4.03295|Grand-Combe-la-Pise
+T|45.42390|6.89185|Grande Motte (Perce-Neige)
+T|45.45196|6.89890|Grande Motte (Perce-Neige)
+T|51.00236|2.31206|Grande-Synthe
+T|47.53811|6.97751|Grandvillars
+T|49.65927|1.93859|Grandvilliers
+T|48.83843|-1.58735|Granville
+T|43.65386|6.92642|Grasse
+T|50.97875|2.12340|Gravelines
+T|45.19131|5.71410|Grenoble
+T|45.18506|5.78493|Grenoble Universités - Gières
+T|48.53314|7.42425|Gresswiller
+T|48.74628|2.72736|Gretz-Armainvilliers
+T|45.60720|4.79620|Grigny Le Sablon
+T|48.65424|2.39638|Grigny-Centre
+T|43.82694|1.30232|Grisolles
+T|46.01112|6.17568|Groisy - Thorens - La Caille
+T|48.99629|2.25952|Gros Noyer - Saint-Prix
+T|48.98436|2.35349|Groslay
+T|45.72452|5.92218|Grésy-sur-Aix
+T|45.59444|6.25889|Grésy-sur-Isère
+T|47.74867|7.09155|Guewenheim
+T|47.93508|-1.76005|Guichen - Bourg-des-Comptes
+T|49.43486|3.96112|Guignicourt
+T|48.37454|2.05996|Guillerval
+T|48.48525|-3.99960|Guimiliau
+T|48.55549|-3.14334|Guingamp
+T|44.64061|-1.06908|Gujan-Mestras
+T|48.90527|7.65351|Gundershoffen
+T|48.04152|7.17484|Gunsbach - Griesbach
+T|48.81057|2.95475|Guérard - La Celle-sur-Morin
+T|46.17409|1.87924|Guéret
+T|43.42547|-1.60919|Guéthary
+T|45.03815|-0.19520|Guîtres
+T|46.58122|4.23800|Génelard
+T|44.34715|3.95164|Génolhac
+T|43.73234|4.34335|Générac
+T|43.95931|6.43255|Gévaudan
+T|47.73770|7.41824|Habsheim
+T|50.15825|3.74333|Hachette
+T|49.25368|6.16431|Hagondange
+T|48.81336|7.78222|Haguenau
+T|43.37797|-1.42773|Halsou-Larressore
+T|49.11331|-0.08990|Halte de Bissières
+T|43.76422|7.33887|Halte de Fontanil - Lycée de Drap
+T|44.92248|1.63810|Halte de Mirandol
+T|43.96028|6.72525|Halte de Saint-Benoit
+T|44.92858|1.64437|Halte des courtils
+T|49.38021|-1.76365|Halte du Tôt
+T|16.40871|-61.50364|Halte ferroviaire
+T|47.24903|-1.52257|Haluchère-Batignolles
+T|49.73965|3.07025|Ham
+T|50.58988|2.46596|Ham-en-Artois
+T|49.98220|2.06614|Hangest-sur-Somme
+T|49.51363|0.19901|Harfleur
+T|49.71408|2.53155|Hargicourt - Pierrepont
+T|49.19354|5.90716|Hatrize
+T|50.60697|2.99004|Haubourdin
+T|48.87500|2.32870|Haussmann - Saint-Lazare
+T|48.87516|2.32863|Haussmann - Saint-Lazare
+T|50.25396|3.91527|Hautmont
+T|49.33051|6.07320|Hayange
+T|50.01183|4.70513|Haybes
+T|50.72507|2.54232|Hazebrouck
+T|48.52738|7.38131|Heiligenberg - Mollkirch
+T|49.34032|2.27318|Heilles - Mouchy
+T|49.94358|2.53975|Heilly
+T|50.62275|3.11534|Hellemmes
+T|43.35223|-1.78250|Hendaia
+T|43.35308|-1.78195|Hendaye
+T|47.79916|-3.28580|Hennebont
+T|48.99029|2.16190|Herblay-sur-Seine
+T|49.48790|2.01107|Herchies
+T|49.35445|2.24173|Hermes - Berthecourt
+T|49.00372|6.47688|Herny
+T|48.72767|7.91025|Herrlisheim
+T|48.01674|7.32067|Herrlisheim-près-Colmar
+T|50.66103|1.66711|Hesdigneul
+T|50.37819|2.03521|Hesdin
+T|49.40776|6.15678|Hettange-Grande
+T|47.01472|1.41403|Heugnes
+T|49.91452|4.08438|Hirson
+T|49.92903|4.08614|Hirson Écoles
+T|48.75520|7.57211|Hochfelden
+T|48.91633|7.83149|Hoelschloch - Surbourg
+T|48.70305|7.77958|Hoerdt
+T|49.12616|6.77440|Hombourg-Haut
+T|49.21841|5.99963|Homécourt
+T|48.79603|1.60274|Houdan
+T|48.64547|6.17975|Houdemont
+T|48.92032|2.18539|Houilles Carrières-sur-Seine
+T|49.30014|-0.07716|Houlgate
+T|49.10656|6.97772|Hundling
+T|46.37156|2.47618|Huriel
+T|50.17242|1.53712|Hurt
+T|43.10876|6.12411|Hyères
+T|48.97682|1.42161|Hécourt
+T|50.41700|2.95222|Hénin-Beaumont
+T|47.57297|6.76941|Héricourt
+T|48.44274|2.76077|Héricy
+T|48.62867|7.75788|Hœnheim Tram
+T|48.27082|6.39954|Igney
+T|48.64673|6.80557|Igney - Avricourt
+T|48.74004|2.23099|Igny
+T|42.63708|8.93526|Ile-Rousse
+T|42.66823|2.62434|Ille-sur-Têt
+T|47.67639|7.26851|Illfurth
+T|48.30414|1.24481|Illiers-Combray
+T|46.93337|3.25956|Imphy
+T|48.08895|7.29800|Ingersheim Cité Scolaire
+T|46.87463|0.56912|Ingrandes sur Vienne
+T|47.40567|-0.92101|Ingrandes-sur-Loire
+T|48.87235|7.47687|Ingwiller
+T|48.86283|2.31384|Invalides
+T|45.68951|4.83225|Irigny - Yvours
+T|47.52030|5.12970|Is-sur-Tille
+T|48.99811|3.00730|Isles - Armentières - Congis
+T|45.54403|3.25400|Issoire
+T|48.97930|1.78397|Issou - Porcheville
+T|46.94860|1.98547|Issoudun
+T|48.81988|2.25924|Issy
+T|48.82967|2.26334|Issy Val de Seine
+T|47.62687|-1.45074|Issé
+T|49.80434|3.34113|Itancourt
+T|46.48406|0.31684|Iteuil
+T|43.32406|-1.39568|Itxassou
+T|48.81447|2.39124|Ivry-sur-Seine
+T|50.22550|3.32986|Iwuy
+T|47.95543|-1.49767|Janzé
+T|45.67088|-0.17697|Jarnac-Charente
+T|45.08543|5.74230|Jarrie-Vizille
+T|48.67000|6.20255|Jarville-la-Malgrange
+T|45.54348|2.13968|Jassonneix
+T|46.68203|0.38179|Jaunay-Clan
+T|49.38682|2.77733|Jaux
+T|48.84651|2.27717|Javel
+T|50.29623|4.08629|Jeumont
+T|47.97362|3.39296|Joigny
+T|49.83342|4.76740|Joigny-sur-Meuse
+T|48.44432|5.14332|Joinville
+T|48.82100|2.46386|Joinville-le-Pont
+T|42.56155|2.31112|Joncet
+T|47.52640|6.99861|Joncherey
+T|49.29009|3.81938|Jonchery-sur-Vesle
+T|45.43865|-0.44178|Jonzac
+T|48.51008|1.55765|Jouy
+T|48.76478|2.16354|Jouy-en-Josas
+T|47.35427|0.66765|Joué-les-Tours
+T|43.57102|7.11141|Juan-les-Pins
+T|45.31086|3.79097|Jullianges
+T|48.69020|2.38382|Juvisy
+T|48.99223|1.84573|Juziers
+T|49.22502|6.01774|Jœuf
+T|49.03519|7.12522|Kalhausen
+T|48.04319|-1.73945|Ker Lann
+T|47.53657|-3.13644|Kerhostin
+T|48.40961|-4.38817|Kerhuon
+T|48.67948|7.85504|Kilstett
+T|48.33896|7.53509|Kogenheim
+T|48.56358|7.75263|Krimmeri Meinau
+T|47.92344|6.96923|Kruth
+T|48.74190|7.81328|Kurtzenhouse
+T|49.39657|6.27353|Kœnigsmacker
+T|48.76630|0.62007|L'Aigle
+T|45.77826|1.20464|L'Aiguille
+T|45.83326|4.61823|L'Arbresle
+T|44.79097|6.55640|L'Argentière-les-Écrins
+T|43.73442|7.30262|L'Ariane - La Trinité
+T|42.67307|9.44458|L'Arinella
+T|43.36374|5.32138|L'Estaque
+T|46.90698|-1.37135|L'Herbergement - Les Brouzils
+T|48.12319|-1.81977|L'Hermitage-Mordelles
+T|47.16917|6.21321|L'Hôpital-du-Grosbois
+T|49.11479|2.21003|L'Isle-Adam - Parmain
+T|43.61736|1.09014|L'Isle-Jourdain
+T|45.60751|5.21948|L'Isle-d'Abeau
+T|43.91720|5.04751|L'Isle-sur-la-Sorgue - Fontaine-de-Vaucluse
+T|47.44742|6.58135|L'Isle-sur-le-Doubs
+T|47.54652|-3.13377|L'Isthme
+T|48.86814|2.07684|L'Étang-la-Ville
+T|43.28606|5.48365|La Barasse
+T|48.96623|2.31672|La Barre - Ormesson
+T|47.20409|-1.66031|La Basse-Indre - Saint-Herblain
+T|50.52785|2.80539|La Bassée
+T|44.59350|3.90414|La Bastide - Saint-Laurent-les-Bains
+T|47.28853|-2.38911|La Baule-Escoublac
+T|47.28365|-2.36481|La Baule-Les-Pins
+T|47.08316|-2.03386|La Bernerie-en-Retz
+T|47.43435|-0.40053|La Bohalle
+T|48.98846|1.03501|La Bonneville-sur-Iton
+T|49.12681|2.50607|La Borne Blanche
+T|45.59063|2.74626|La Bourboule
+T|49.85963|3.98170|La Bouteille
+T|44.06257|7.60562|La Brigue
+T|43.92477|5.89244|La Brillanne-Oraison
+T|48.21347|-2.11034|La Brohinière
+T|43.77163|7.21316|La Bédoule
+T|48.84269|2.13816|La Celle-Saint-Cloud
+T|45.31637|3.69719|La Chaise-Dieu
+T|46.67688|-1.28331|La Chaize-le-Vicomte
+T|47.30860|-1.54153|La Chapelle - Aulnay
+T|45.33685|3.66813|La Chapelle Geneste
+T|47.89308|1.82717|La Chapelle Saint-Mesmin
+T|47.29759|-1.54804|La Chapelle-sur-Erdre Centre
+T|47.25127|0.21862|La Chapelle-sur-Loire
+T|47.17996|3.02392|La Charité-sur-Loire
+T|46.60486|5.96136|La Chaumusse - Fort-du-Plasne
+T|47.61318|1.35440|La Chaussée-Saint-Victor
+T|46.65457|5.94391|La Chaux-des-Crotenay
+T|43.19961|5.63282|La Ciotat-Ceyreste
+T|46.28815|4.29842|La Clayette - Baudemont
+T|45.54077|0.97433|La Coquille
+T|48.92410|2.38496|La Courneuve - Aubervilliers
+T|43.33994|5.05172|La Couronne Carro
+T|45.60508|0.10141|La Couronne Charente
+T|43.14500|6.06863|La Crau
+T|48.76231|2.30462|La Croix de Berny
+T|47.30033|-2.19343|La Croix-de-Méan
+T|46.36042|-0.29621|La Crèche
+T|47.33860|0.65310|La Douzillère
+T|49.69652|2.34860|La Faloise
+T|47.72093|1.93217|La Ferté Saint-Aubin
+T|48.48476|2.35177|La Ferté-Alais
+T|48.18655|0.63933|La Ferté-Bernard
+T|47.38357|1.95808|La Ferté-Imbault
+T|49.17967|3.12088|La Ferté-Milon
+T|48.95091|3.12544|La Ferté-sous-Jouarre
+T|50.56618|2.92615|La Fontaine
+T|48.42638|-4.30726|La Forest-Landerneau
+T|45.49774|4.31696|La Fouillouse
+T|47.11028|1.40479|La Foulquetière
+T|43.55810|6.97203|La Frayère
+T|48.59368|-1.84328|La Fresnais
+T|48.98025|2.18002|La Frette - Montigny
+T|49.65798|3.36982|La Fère
+T|43.11870|6.01008|La Garde
+T|48.90969|2.23987|La Garenne-Colombes
+T|47.13982|1.49154|La Gauterie
+T|44.92893|-0.49641|La Gorp
+T|48.61453|-1.90588|La Gouesnière - Cancale - Saint-Méloir-des-Ondes
+T|48.37879|2.89714|La Grande-Paroisse
+T|44.93566|-0.47691|La Grave-d'Ambarès
+T|46.94761|2.94861|La Guerche-sur-l'Aubois
+T|48.11388|0.19310|La Guierche
+T|48.69497|2.15272|La Hacquinière
+T|47.16154|-1.39221|La Haie-Fouassière
+T|48.49610|-2.00421|La Hisse
+T|44.63990|-1.11603|La Hume
+T|48.30347|0.10563|La Hutte - Coulombiers
+T|46.12085|-1.02433|La Jarrie
+T|45.99424|1.47997|La Jonchère
+T|45.96571|6.91018|La Joux
+T|44.22863|4.01030|La Levade
+T|48.47389|1.01086|La Loupe
+T|43.70844|7.23194|La Madeleine
+T|50.66077|3.07267|La Madeleine
+T|47.13969|3.03953|La Marche
+T|47.43125|0.64091|La Membrolle-sur-Choisille
+T|45.62131|1.21231|La Meyze
+T|45.76365|2.82769|La Miouze - Rochefort
+T|46.60696|-1.65964|La Mothe Achard
+T|46.38076|-0.12983|La Mothe-Saint-Héray
+T|44.96202|5.73538|La Motte-d'Aveillans
+T|43.98019|6.52816|La Mure
+T|44.91212|5.78369|La Mure
+T|48.49937|-2.84357|La Méaugon
+T|47.39737|-0.27589|La Ménitré
+T|48.59164|2.26726|La Norville - Saint-Germain-lès-Arpajon
+T|43.13632|6.03499|La Pauline
+T|43.28465|5.51557|La Penne sur Huveaune
+T|48.91793|2.36229|La Plaine - Stade de France
+T|43.29054|5.44114|La Pomme
+T|45.57404|1.53840|La Porcherie
+T|47.37132|-0.69166|La Possonnière
+T|44.29143|2.55452|La Primaube
+T|43.33436|5.19756|La Redonne Ensuès
+T|43.30924|-1.63515|La Rhune
+T|45.40409|4.36041|La Ricamarie
+T|46.87013|6.21342|La Rivière-Drugeon
+T|45.13962|1.36545|La Rivière-de-Mansac
+T|48.47408|-4.20509|La Roche-Maurice
+T|46.06753|6.30386|La Roche-sur-Foron
+T|46.67215|-1.43597|La Roche-sur-Yon
+T|45.74025|0.38976|La Rochefoucauld
+T|46.15258|-1.14531|La Rochelle
+T|46.16756|-1.15187|La Rochelle - Porte Dauphine
+T|44.57991|-0.03091|La Réole
+T|43.11699|5.87676|La Seyne Six Fours
+T|45.28227|3.74473|La Souchère les Bains
+T|45.83994|5.41637|La Source
+T|46.23981|1.49237|La Souterraine
+T|47.89222|0.02658|La Suze
+T|48.40774|1.37350|La Taye
+T|44.63697|-1.14293|La Teste
+T|43.88789|7.18922|La Tinée
+T|45.79988|4.71649|La Tour-de-Salvagny
+T|45.56018|5.44954|La Tour-du-Pin
+T|46.72881|0.44124|La Tricherie
+T|43.74277|7.31150|La Trinité-Victor
+T|45.84915|5.12508|La Valbonne
+T|48.79440|2.51306|La Varenne - Chennevières
+T|45.62751|5.15068|La Verpillière
+T|48.75534|1.94365|La Verrière
+T|44.03552|1.21484|La Ville-Dieu
+T|46.34982|2.59180|La Ville-Gozet
+T|48.48271|1.52309|La Villette - Saint-Prest
+T|48.66535|7.82496|La Wantzenau
+T|49.92260|2.73708|La sapinière
+T|43.10504|0.85309|Labarthe-Inard
+T|43.58717|-1.42873|Labenne - Capbreton
+T|46.77659|6.28026|Labergement-Sainte-Marie
+T|49.28857|2.13613|Laboissière – Le Déluge
+T|44.21061|-0.92095|Labouheyre
+T|43.54256|2.25946|Labruguière
+T|43.54750|1.51281|Labège-Innopole
+T|43.53057|1.53282|Labège-Village
+T|42.86455|-0.33565|Lac d'Artouste
+T|44.92033|2.26552|Lacapelle-Viescamp
+T|45.64126|1.82632|Lacelle
+T|45.12284|3.61042|Lachaud-Curmilhac
+T|43.66388|1.41384|Lacourtensourt
+T|45.63384|1.13081|Lafarge
+T|48.88211|2.70479|Lagny - Thorigny
+T|44.14556|1.96868|Laguépie
+T|49.91116|4.69229|Laifour
+T|49.29264|2.44929|Laigneville
+T|47.87408|0.21695|Laigné - Saint-Gervais
+T|47.97177|-1.74960|Laillé
+T|47.29882|6.23335|Laissey
+T|44.33365|1.51181|Lalbenque - Fontanes
+T|44.83963|0.74277|Lalinde
+T|44.12681|0.82557|Lamagistère
+T|43.69996|5.09146|Lamanon
+T|44.98717|4.58159|Lamastre
+T|48.46588|-2.51122|Lamballe
+T|47.83282|-3.03357|Lambel-Camors
+T|44.84346|0.38028|Lamonzie-Saint-Martin
+T|44.56283|0.04513|Lamothe-Landerron
+T|44.85374|0.02157|Lamothe-Montravel
+T|47.59384|2.02233|Lamotte-Beuvron
+T|46.06108|4.49212|Lamure-sur-Azergues
+T|48.76187|-3.11814|Lancerf
+T|45.23454|5.88087|Lancey
+T|50.16664|1.56433|Lanchères - Pendé
+T|50.46872|3.29040|Landas
+T|47.73573|-3.08574|Landaul - Mendon
+T|48.45383|-4.25648|Landerneau
+T|45.26295|2.86543|Landeyrat - Marcenat
+T|48.49580|-4.08220|Landivisiau
+T|50.12838|3.68214|Landrecies
+T|45.57424|6.73359|Landry
+T|48.50743|-2.33137|Landébia
+T|47.75958|-3.12513|Landévant
+T|48.65552|6.22798|Laneuveville-devant-Nancy
+T|45.10121|3.49050|Langeac
+T|47.32411|0.41057|Langeais
+T|44.73272|3.85723|Langogne
+T|44.55555|-0.25575|Langon
+T|47.87696|5.34442|Langres
+T|43.11425|0.38727|Lannemezan
+T|48.72743|-3.46026|Lannion
+T|47.33512|4.86104|Lantenay
+T|49.57089|3.62567|Laon
+T|46.22676|2.89366|Lapeyrouse
+T|48.80771|2.33312|Laplace
+T|42.81050|2.31239|Lapradelle
+T|42.81064|2.31225|Lapradelle Puilaurens
+T|45.64683|2.70465|Laqueuille
+T|44.31661|5.81889|Laragne
+T|43.59662|1.38405|Lardenne
+T|48.52074|2.25552|Lardy
+T|47.96103|3.51304|Laroche - Migennes
+T|44.28748|0.74975|Laroque
+T|44.96417|2.19289|Laroquebrou
+T|43.75186|1.78172|Lascazes
+T|46.33819|0.96487|Lathus
+T|42.45904|1.90449|Latour-de-Carol - Enveitg
+T|48.96759|8.18309|Lauterbourg
+T|48.07637|-0.76089|Laval
+T|44.95119|1.93155|Laval-de-Cère
+T|46.32129|2.27010|Lavaufranche
+T|43.70368|1.81291|Lavaur
+T|49.20253|1.92066|Lavilletertre
+T|45.12140|3.90550|Lavoûte-sur-Loire
+T|48.93229|2.47690|Le Blanc-Mesnil
+T|43.55107|6.98197|Le Bosquet
+T|42.52488|2.82762|Le Boulou-Le Perthus
+T|48.93080|2.42575|Le Bourget
+T|44.87092|-0.61402|Le Bouscat Sainte-Germaine
+T|43.69127|3.16908|Le Bousquet d'Orb
+T|48.62328|2.45040|Le Bras de Fer
+T|45.46712|3.26215|Le Breuil-sur-Couze
+T|44.48132|3.35838|Le Bruel
+T|46.01917|6.92041|Le Buet
+T|44.90571|0.94282|Le Bugue
+T|44.84707|0.90808|Le Buisson
+T|43.68328|4.23475|Le Cailar
+T|50.09141|3.54047|Le Cateau
+T|47.31352|-1.35067|Le Cellier
+T|45.72390|3.18874|Le Cendre - Orcet
+T|45.39476|4.32246|Le Chambon-Feugerolles
+T|45.06130|4.30371|Le Chambon-sur-Lignon
+T|43.87082|7.19736|Le Chaudan
+T|48.87713|2.55314|Le Chénay Gagny
+T|46.02394|4.08625|Le Coteau
+T|48.56618|2.49247|Le Coudray - Montceaux
+T|46.76531|4.49950|Le Creusot TGV (Montceau - Montchanin)
+T|46.80784|4.43045|Le Creusot-Ville
+T|47.28981|-2.50695|Le Croisic
+T|43.66056|7.16713|Le Cros-de-Cagnes
+T|46.21104|1.07917|Le Dorat
+T|43.41781|6.84421|Le Dramont
+T|43.40434|1.28266|Le Fauga
+T|45.90631|6.70200|Le Fayet - Gare
+T|44.00096|6.64550|Le Fugeret
+T|48.09674|-0.88580|Le Genest
+T|49.15068|0.22701|Le Grand Jardin
+T|45.39646|5.42315|Le Grand-Lemps
+T|43.53701|4.14035|Le Grau-du-Roi
+T|48.70514|2.19206|Le Guichet
+T|50.81634|1.77220|Le Haut Banc
+T|49.49270|0.12561|Le Havre
+T|45.09067|2.75332|Le Lioran
+T|43.39023|6.34310|Le Luc - Le Cannet
+T|47.99525|0.19214|Le Mans
+T|48.01348|0.17472|Le Mans-Hôpital
+T|48.70250|0.28321|Le Merlerault
+T|49.35943|2.75328|Le Meux - Lacroix-Saint-Ouen
+T|49.24920|-0.88156|Le Molay-Littry
+T|44.50899|3.25211|Le Monastier
+T|48.53909|2.62503|Le Mée
+T|45.76850|4.74844|Le Méridien
+T|47.14382|-1.34687|Le Pallet
+T|48.80527|2.48559|Le Parc de Saint-Maur
+T|48.69325|1.85655|Le Perray
+T|45.61090|3.71822|Le Perrier
+T|49.09597|2.74467|Le Plessis-Belleville
+T|48.57354|2.47961|Le Plessis-Chenet
+T|50.33009|3.50253|Le Poirier Université
+T|45.52447|5.68059|Le Pont-de-Beauvoisin
+T|47.28254|-2.43314|Le Pouliguen
+T|45.04273|3.89257|Le Puy-en-Velay
+T|48.36462|-3.47639|Le Pénity
+T|50.25039|3.64573|Le Quesnoy
+T|48.88926|2.51203|Le Raincy Villemomble Montfermeil
+T|42.59995|8.96614|Le Regino
+T|44.85651|2.23528|Le Rouget
+T|42.67902|2.79519|Le Soler
+T|48.93139|2.26075|Le Stade
+T|43.59551|1.40171|Le TOEC
+T|44.63238|-1.02573|Le Teich
+T|44.55245|4.68618|Le Teil
+T|48.26730|0.69439|Le Theil - La Rouge
+T|47.91875|-1.43196|Le Theil-de-Bretagne
+T|43.92641|4.99630|Le Thor
+T|43.94357|7.03924|Le Tournel
+T|45.73062|-1.07144|Le Train des Mouettes - Chaillevette
+T|45.76528|-1.14000|Le Train des Mouettes - La Tremblade
+T|45.70705|-1.02937|Le Train des Mouettes - Mornac sur seudre
+T|45.67091|-0.93829|Le Train des Mouettes - Saujon
+T|14.77498|-61.00966|Le Train des Plantations
+T|14.78371|-60.99805|Le Train des Plantations
+T|43.47466|6.92434|Le Trayas
+T|50.06284|1.37613|Le Tréport – Mers-les-Bains
+T|48.85639|2.21657|Le Val d'Or
+T|47.14986|6.34234|Le Valdahon
+T|47.15116|6.31411|Le Valdahon Camp Militaire
+T|45.54944|-1.06528|Le Verdon
+T|43.18942|1.61144|Le Vernet d'Ariège
+T|48.78903|2.43203|Le Vert de Maisons
+T|47.57397|-0.48294|Le Vieux Briollay
+T|48.89823|2.12194|Le Vésinet - Le Pecq
+T|48.89009|2.13460|Le Vésinet Centre
+T|44.62279|-1.10657|Le petit train
+T|50.42762|3.05957|Leforest
+T|50.42654|2.82790|Lens
+T|45.82167|4.66703|Lentilly
+T|45.81652|4.68240|Lentilly-Charpenay
+T|45.54216|5.57553|Les Abrets - Fitilieu
+T|43.45566|6.48251|Les Arcs - Draguignan
+T|48.78300|2.40945|Les Ardoines
+T|47.92668|1.90631|Les Aubrais
+T|48.73960|2.28740|Les Baconnets
+T|45.90466|1.37745|Les Bardys
+T|50.27987|4.01099|Les Bons Pères
+T|45.90675|6.83920|Les Bossons
+T|48.82484|2.51188|Les Boullereaux - Champigny
+T|42.78645|1.68616|Les Cabannes
+T|43.77999|3.18602|Les Cabrils
+T|43.73399|1.75469|Les Cauquillous
+T|48.99255|1.95544|Les Clairières de Verneuil
+T|43.95368|6.93098|Les Clos
+T|44.94121|1.00813|Les Eyzies
+T|45.77740|4.75412|Les Flachères
+T|50.94076|1.84971|Les Fontinettes
+T|45.82157|-1.21812|Les Genets
+T|45.60375|6.78334|Les Granges
+T|48.92094|2.31380|Les Grésillons
+T|46.86358|-1.00976|Les Herbiers
+T|45.89359|6.79697|Les Houches
+T|48.10942|-1.32089|Les Lacs
+T|47.54327|4.46262|Les Laumes Alésia
+T|43.98619|6.64834|Les Lunières
+T|43.74940|1.78673|Les Martels
+T|45.68826|3.19332|Les Martres-de-Veyre
+T|46.39569|6.59264|Les Mateirons
+T|45.91664|6.85899|Les Moussoux
+T|47.06188|-2.00096|Les Moutiers-en-Retz
+T|48.99251|1.91330|Les Mureaux
+T|49.03250|2.47684|Les Noues
+T|46.97242|0.60779|Les Ormes
+T|45.92682|6.88992|Les Planards
+T|45.93946|6.88874|Les Praz-de-Chamonix
+T|45.91258|6.84724|Les Pélerins
+T|47.33255|1.70253|Les Quatre Roues
+T|44.99751|1.64391|Les Quatre-Routes
+T|43.60254|1.35297|Les Ramassiers
+T|47.36232|-0.22021|Les Rosiers-sur-Loire
+T|46.49990|-1.78113|Les Sables d'Olonne
+T|47.57562|-3.13249|Les Sables-Blancs
+T|44.48325|3.28028|Les Salelles
+T|41.93369|8.75126|Les Salines
+T|48.74548|2.41757|Les Saules
+T|45.87383|6.73567|Les Sellières
+T|45.89807|6.70659|Les Thermes
+T|45.95061|6.89918|Les Tines
+T|46.41475|2.60006|Les Trillers
+T|45.87270|6.75116|Les Tuffes
+T|48.91356|2.25800|Les Vallées
+T|45.08877|0.85748|Les Versannes
+T|48.82317|2.57979|Les Yvris Noisy-le-Grand
+T|45.87467|4.91082|Les Échets
+T|45.09424|-0.04379|Les Églisottes
+T|46.87334|-0.95936|Les Épesses
+T|48.72184|1.89005|Les-Essarts-le-Roi
+T|48.42629|-3.38287|Lesmaes
+T|45.30362|-0.94536|Lesparre
+T|50.59052|3.11821|Lesquin
+T|43.11904|0.91349|Lestelle
+T|42.93277|3.01287|Leucate-La Franqui
+T|50.18455|3.83662|Leval
+T|44.14225|1.88508|Lexos
+T|50.62051|3.09896|Lezennes
+T|45.82107|3.38588|Lezoux
+T|49.32481|2.44552|Liancourt - Rantigny
+T|49.22070|1.90548|Liancourt-Saint-Pierre
+T|49.76986|4.33539|Liart
+T|50.48019|3.00891|Libercourt
+T|44.91587|-0.23634|Libourne
+T|47.05877|5.82081|Liesle
+T|48.62834|2.56957|Lieusaint - Moissy
+T|46.52031|0.33332|Ligugé
+T|50.61455|3.03428|Lille Centre Hospitalier Régional
+T|50.61192|3.07585|Lille – Porte de Douai
+T|50.63898|3.07571|Lille-Europe station
+T|50.63638|3.07053|Lille-Flandres station
+T|50.56162|2.47878|Lillers
+T|48.98425|1.74734|Limay
+T|47.45022|1.04996|Limeray
+T|48.46174|7.66017|Limersheim
+T|45.83614|1.26744|Limoges-Bénédictins
+T|45.83841|1.25151|Limoges-Montjovis
+T|43.05638|2.22283|Limoux
+T|43.06849|2.21818|Limoux-Flassian
+T|48.55945|7.67825|Lingolsheim
+T|43.72053|7.18823|Lingostière
+T|49.13820|0.23123|Lisieux
+T|43.85639|1.80823|Lisle-sur-Tarn
+T|49.22690|-1.05038|Lison
+T|48.74933|6.06168|Liverdun
+T|44.77971|4.83027|Livron
+T|48.51035|2.67894|Livry-sur-Seine
+T|49.02178|3.03180|Lizy-sur-Ourcq
+T|50.43413|2.77180|Liévin
+T|47.13045|1.00071|Loches
+T|48.08727|7.32122|Logelbach
+T|48.83912|2.63372|Lognes
+T|50.44034|2.85925|Loison-sous-Lens
+T|49.34666|3.99067|Loivre
+T|43.35645|1.25201|Longages - Noé
+T|47.19365|5.13488|Longecourt
+T|48.70228|2.29443|Longjumeau
+T|49.27259|3.22999|Longpont
+T|50.01160|2.00265|Longpré-les-Corps-Saints
+T|49.98194|1.55274|Longroy - Gamaches
+T|49.86351|2.35233|Longueau
+T|49.46710|2.86315|Longueil-Annel
+T|49.34256|2.71764|Longueil-Sainte-Marie
+T|49.55668|1.27623|Longuerue - Vieux-Manoir
+T|48.51362|3.25029|Longueville
+T|49.79148|1.11063|Longueville-sur-Scie
+T|49.44431|5.60469|Longuyon
+T|49.51283|5.76912|Longwy
+T|46.66850|5.55134|Lons-le-Saunier
+T|50.43788|2.79306|Loos-en-Gohelle
+T|50.61279|3.01691|Loos-lez-Lille
+T|47.39034|1.83434|Loreux
+T|47.75511|-3.36695|Lorient
+T|44.75453|4.81704|Loriol
+T|48.94774|6.16979|Lorraine TGV
+T|46.69478|1.56301|Lothiers
+T|48.18032|-2.76317|Loudéac
+T|46.63087|5.21738|Louhans
+T|46.04348|-0.50168|Loulay
+T|50.31035|3.34354|Lourches
+T|43.10045|-0.04217|Lourdes
+T|43.02103|0.61040|Loures - Barbazan
+T|46.22414|2.98493|Louroux-de-Bouble
+T|48.86122|2.12308|Louveciennes
+T|48.10878|-0.71440|Louverné
+T|49.04956|2.50208|Louvres
+T|50.26846|3.95347|Louvroil
+T|45.85398|4.68225|Lozanne
+T|48.70601|2.21183|Lozère
+T|46.73576|1.59012|Luant
+T|44.65408|3.89154|Luc (Lozère)
+T|44.61367|5.45464|Luc-en-Diois
+T|42.54488|9.44865|Lucciana Olivella
+T|42.53284|9.44741|Lucciana Pôle Sportif
+T|42.79734|0.59657|Luchon
+T|48.43671|1.45305|Lucé
+T|44.97448|-0.61175|Ludon
+T|48.62194|6.17093|Ludres
+T|45.28732|2.76011|Lugarde - Marchastel
+T|50.70083|2.11994|Lumbres
+T|49.73307|4.78320|Lumes
+T|42.57686|8.80757|Lumiu-L'Arinella
+T|43.70957|3.19492|Lunas
+T|43.67960|4.13098|Lunel
+T|43.68115|4.09358|Lunel-Viel
+T|46.93518|2.27502|Lunery
+T|48.58778|6.49711|Lunéville
+T|42.68774|9.44461|Lupino
+T|43.12051|-0.60523|Lurbe Saint-Christau
+T|47.68315|6.49258|Lure
+T|44.67098|5.69722|Lus-la-Croix-Haute
+T|46.43564|0.11657|Lusignan
+T|46.40515|0.71850|Lussac-les-Châteaux
+T|48.03527|7.11861|Luttenbach-près-Munster
+T|47.75821|7.27699|Lutterbach
+T|48.72993|7.25173|Lutzelbourg
+T|48.51809|7.29417|Lutzelhouse
+T|48.84547|2.33981|Luxembourg
+T|47.81475|6.37261|Luxeuil-les-Bains
+T|45.88771|0.10959|Luxé
+T|49.11723|2.42040|Luzarches
+T|42.76442|1.75309|Luzenac-Garanou
+T|46.79408|3.96932|Luzy
+T|47.13300|1.43582|Luçay-le-Mâle
+T|46.46382|-1.16747|Luçon
+T|49.50086|0.11039|Lycée Claude Monet
+T|45.74496|4.84183|Lyon Jean Macé
+T|45.76057|4.86016|Lyon Part-Dieu
+T|45.74832|4.82533|Lyon Perrache
+T|45.78028|4.80353|Lyon Vaise
+T|45.76599|4.80458|Lyon-Gorge-de-Loup
+T|45.72103|5.07581|Lyon-Saint-Exupéry TGV
+T|45.76612|4.82667|Lyon-Saint-Paul
+T|43.83977|7.35192|L´Escarène
+T|45.54162|5.76500|Lépin le Lac - La Bauche
+T|48.79720|5.53869|Lérouville
+T|43.19990|2.76944|Lézignan-Corbières
+T|45.00419|-0.62008|Macau
+T|46.99063|-1.82266|Machecoul
+T|46.25128|6.32818|Machilly
+T|43.46758|3.22951|Magalas
+T|48.88080|2.35871|Magenta
+T|46.01685|6.62139|Magland
+T|45.62880|1.44381|Magnac-Vicq
+T|46.46412|2.60287|Magnette
+T|49.30996|3.73350|Magneux - Courlandon
+T|48.33437|1.28110|Magny - Blandainville
+T|48.87737|2.27755|Maillot
+T|47.60417|3.67515|Mailly-la-Ville
+T|47.05358|0.58313|Maillé
+T|48.58557|1.59253|Maintenon
+T|42.57645|9.44439|Maison d'Arrêt Borgo
+T|48.80233|2.42645|Maisons-Alfort - Alfortville
+T|48.94584|2.14448|Maisons-Laffitte
+T|48.39367|2.39345|Maisse
+T|49.21522|6.15831|Maizières-lès-Metz
+T|47.67572|-2.29553|Malansac
+T|49.51333|1.03962|Malaunay - Le Houlme
+T|43.93099|7.11714|Malaussène - Massoins
+T|48.29342|2.40120|Malesherbes
+T|49.42151|6.30222|Malling
+T|47.19994|6.16174|Mamirolle
+T|43.52418|6.94149|Mandelieu-la-Napoule
+T|43.82314|5.79344|Manosque-Gréoux
+T|48.98360|1.71539|Mantes Station
+T|48.98940|1.70310|Mantes-la-Jolie
+T|48.80111|6.10939|Marbache
+T|49.85315|2.58252|Marcelcave
+T|45.06648|-0.32815|Marcenais
+T|44.69042|-0.85370|Marcheprime
+T|48.76834|1.51358|Marchezais - Broué
+T|48.89368|1.87152|Mareil-sur-Mauldre
+T|50.40809|1.93067|Maresquel
+T|49.13554|3.07565|Mareuil-sur-Ourcq
+T|45.03585|-0.68547|Margaux
+T|49.43938|3.40279|Margival
+T|48.78186|7.82319|Marienthal
+T|42.91535|0.65173|Marignac - Saint-Béat
+T|46.08868|6.50777|Marignier
+T|46.19912|-0.42841|Marigny
+T|42.62379|8.88562|Marine de Davia
+T|49.74727|3.76966|Marle sur Serre
+T|48.73449|2.86827|Marles-en-Brie
+T|46.06388|5.07311|Marlieux Châtillon
+T|48.87147|2.09668|Marly-le-Roi
+T|47.09995|2.28268|Marmagne
+T|46.83346|4.36019|Marmagne-sous-Creusot
+T|44.50320|0.16822|Marmande
+T|48.86991|2.78217|Marne-la-Vallée - Chessy
+T|48.56513|2.29096|Marolles-en-Hurepoix
+T|49.47994|1.05076|Maromme
+T|50.54783|2.86673|Marquillies
+T|50.80563|1.72987|Marquise - Rinxent
+T|42.64277|2.48583|Marquixanes
+T|44.16723|-0.78016|Marquèze
+T|46.09425|1.58559|Marsac
+T|45.18627|0.66345|Marsac (Dordogne)
+T|45.48197|3.72494|Marsac en Livradois
+T|43.31818|3.53553|Marseillan-Plage
+T|43.30326|5.38119|Marseille Saint-Charles
+T|43.29650|5.40675|Marseille-Blancarde
+T|49.57095|1.95475|Marseille-en-Beauvaisis
+T|43.91516|2.02689|Marssac-sur-Tarn
+T|47.83207|-1.31383|Martigné-Ferchaud
+T|43.39294|5.02563|Martigues
+T|43.19618|1.01663|Martres-Tolosane
+T|44.54466|3.28110|Marvejols
+T|50.32253|2.69833|Marœuil
+T|47.61916|3.97349|Massangis
+T|45.53616|1.54145|Masseret
+T|45.25376|3.19634|Massiac - Blesle
+T|48.72357|2.27263|Massy-Europe
+T|48.72577|2.25805|Massy-Palaiseau
+T|48.72584|2.26134|Massy-TGV
+T|48.73478|2.27349|Massy-Verrières
+T|47.67453|-1.91401|Massérac
+T|48.39880|7.61934|Matzenheim
+T|50.27289|3.96663|Maubeuge
+T|48.90928|1.85729|Maule
+T|45.80748|-1.23681|Maumusson
+T|48.98706|2.05980|Maurecourt
+T|50.06753|3.45620|Maurois
+T|44.70600|2.19979|Maurs
+T|42.80935|2.58738|Maury
+T|47.29302|-1.38930|Mauves-sur-Loire
+T|44.85586|0.78992|Mauzac
+T|46.19959|-0.67373|Mauzé
+T|47.76026|0.26593|Mayet
+T|45.37803|3.70873|Mayres
+T|43.49792|2.37483|Mazamet
+T|50.46065|2.70119|Mazingarbe
+T|48.95733|2.87349|Meaux
+T|47.13949|2.20730|Mehun-sur-Yèvre
+T|48.52748|2.65519|Melun
+T|47.64505|1.40564|Menars
+T|44.52224|3.50203|Mende
+T|48.57106|2.43309|Mennecy
+T|49.69125|3.27147|Mennessis
+T|47.26896|1.87663|Mennetou-sur-Cher
+T|43.77470|7.49312|Menton
+T|43.78528|7.51724|Menton - Garavan
+T|47.70597|1.50626|Mer
+T|47.58605|6.89803|Meroux
+T|48.87213|7.67833|Mertzwiller
+T|46.79887|5.17939|Mervans
+T|47.91329|7.30262|Merxheim
+T|47.82244|-1.81826|Messac - Guipry
+T|48.61287|6.13781|Messein
+T|47.24202|3.00642|Mesves - Bulcy
+T|46.86295|4.24497|Mesvres
+T|49.10899|6.17734|Metz
+T|49.13696|6.16716|Metz Nord
+T|48.01377|7.07343|Metzeral
+T|48.81496|2.24066|Meudon
+T|48.80790|2.24121|Meudon Val Fleury
+T|49.00577|1.90187|Meulan - Hardricourt
+T|47.82993|1.69191|Meung-sur-Loire
+T|50.49772|2.89341|Meurchin
+T|46.96873|4.79514|Meursault
+T|48.97872|5.27091|Meuse TGV
+T|45.90176|5.19334|Meximieux-Pérouges
+T|45.53026|2.16381|Meymac
+T|43.64411|5.53958|Meyrargues
+T|41.97926|8.83362|Mezzana
+T|46.52619|0.41176|Mignaloux-Nouaillé
+T|43.78857|4.30324|Milhaud
+T|42.68895|2.69377|Millas
+T|44.10239|3.07441|Millau
+T|49.50379|1.98839|Milly-sur-Thérain
+T|48.53146|-1.91490|Miniac
+T|45.75864|4.82133|Minimes - Théâtres romains
+T|45.89668|4.91975|Mionnay
+T|43.58105|4.99937|Miramas
+T|50.09570|2.73467|Miraumont
+T|45.82206|4.95388|Miribel
+T|48.97589|2.64231|Mitry Claye
+T|45.19333|6.65904|Modane
+T|49.75258|4.73313|Mohon
+T|45.32208|5.58173|Moirans
+T|45.32393|5.56376|Moirans-Galifette
+T|44.10242|1.07735|Moissac
+T|48.53735|7.50011|Molsheim
+T|48.75573|7.64212|Mommenheim
+T|44.91199|5.63397|Monestier-de-Clermont
+T|44.96965|3.64995|Monistrol d'Allier
+T|47.49877|0.79324|Monnaie
+T|48.34840|2.03224|Monnerville
+T|44.48653|0.94129|Monsempron-Libos
+T|42.50206|2.11322|Mont-Louis - La Cabanasse
+T|43.88489|-0.50457|Mont-de-Marsan
+T|50.61775|3.09647|Mont-de-Terre
+T|48.56000|6.44976|Mont-sur-Meurthe
+T|45.35471|1.97970|Montaignac - Saint-Hippolyte
+T|46.98370|-1.31628|Montaigu Vendée
+T|46.13671|1.73397|Montaigut (Creuse)
+T|45.82603|5.41780|Montalieu - Vallée Bleue
+T|48.00695|2.74322|Montargis
+T|43.71598|1.59822|Montastruc-la-Conseillère
+T|49.25112|2.43611|Montataire
+T|44.01431|1.34118|Montauban Ville Bourbon
+T|48.19003|-2.05274|Montauban-de-Bretagne
+T|43.12698|-0.19826|Montaut-Bétharram
+T|47.61868|4.33622|Montbard
+T|47.03605|5.63668|Montbarrey
+T|43.92414|1.26448|Montbartier
+T|47.29176|0.72140|Montbazon
+T|48.15151|0.19086|Montbizot
+T|45.60449|4.07830|Montbrison
+T|47.51060|6.80145|Montbéliard
+T|46.67066|4.36103|Montceau-les-Mines
+T|46.75937|4.48149|Montchanin
+T|44.67463|6.61564|Montdauphin-Guillestre
+T|49.64141|2.56292|Montdidier
+T|43.75457|7.44857|Monte-Carlo Country Club
+T|45.28057|-0.39601|Montendre
+T|45.93173|6.91742|Montenvers - Mer de Glace
+T|48.37942|2.94267|Montereau
+T|49.73805|3.25219|Montescourt
+T|42.67121|9.44408|Montesoro
+T|44.03737|4.99419|Monteux
+T|43.93253|4.87394|Montfavet
+T|47.18474|5.90748|Montferrand - Thoraise
+T|48.80275|1.81543|Montfort l'Amaury-Méré
+T|48.04054|0.40640|Montfort-le-Gesnois
+T|48.13895|-1.94883|Montfort-sur-Meu
+T|48.70842|2.46198|Montgeron - Crosne
+T|49.08058|2.00350|Montgeroult - Courcelles
+T|49.86563|4.74070|Monthermé
+T|46.85009|1.79391|Montierchaume
+T|49.00744|2.19754|Montigny - Beauchamp
+T|50.36138|3.18875|Montigny-en-Ostrevent
+T|48.33647|2.73854|Montigny-sur-Loing
+T|43.47516|1.57779|Montlaur
+T|47.39156|0.81727|Montlouis
+T|45.84772|5.05791|Montluel
+T|46.33548|2.61126|Montluçon-Rimard
+T|46.33788|2.59600|Montluçon-Ville
+T|45.39853|0.13807|Montmoreau
+T|46.41750|0.87375|Montmorillon
+T|49.52288|5.37167|Montmédy
+T|45.50308|6.04382|Montmélian
+T|47.32095|-2.16161|Montoir-de-Bretagne
+T|43.86853|3.10971|Montpaon
+T|43.60425|3.88032|Montpellier Saint-Roch
+T|43.59511|3.92396|Montpellier-Sud-de-France
+T|45.00620|0.15933|Montpon-Ménestérol
+T|43.64503|1.52400|Montrabé
+T|48.80652|2.15111|Montreuil
+T|47.12542|-0.14828|Montreuil-Bellay
+T|48.30733|-1.67455|Montreuil-sur-Ille
+T|50.46637|1.76900|Montreuil-sur-Mer
+T|49.38153|2.20033|Montreuil-sur-Thérain
+T|47.61786|7.02545|Montreux-Vieux
+T|47.34366|1.17182|Montrichard
+T|45.60562|6.77634|Montrigon
+T|45.99643|6.93454|Montroc - Le Planet
+T|45.64437|4.24898|Montrond-les-Bains
+T|48.89083|2.82623|Montry - Condé
+T|43.07807|0.57350|Montréjeau - Gourdan-Polignan
+T|47.28187|0.65466|Monts
+T|49.06602|2.32260|Montsoult - Maffliers
+T|48.14116|-0.55161|Montsûrs
+T|49.55114|1.06984|Montville
+T|44.55901|4.74472|Montélimar
+T|49.60309|1.33440|Montérolier - Buchy
+T|47.85080|3.57980|Monéteau-Gurgy
+T|47.86069|7.05087|Moosch
+T|47.73908|-0.41797|Morannes
+T|46.53924|6.01767|Morbier
+T|44.03354|-0.90851|Morcenx
+T|48.37840|2.79929|Moret-sur-Loing - Veneux-les-Sablons
+T|49.77695|2.47580|Moreuil
+T|46.52622|6.02358|Morez
+T|49.52291|1.24752|Morgny
+T|48.93677|6.65931|Morhange
+T|43.96133|6.46881|Moriez
+T|43.94143|4.90834|Morières-lès-Avignon
+T|48.57807|-3.83285|Morlaix
+T|50.20943|1.67982|Morlay
+T|48.61367|2.88895|Mormant
+T|47.22597|6.06733|Morre
+T|46.99458|-0.94442|Mortagne-sur-Sèvre
+T|48.78923|2.90749|Mortcerf
+T|47.05370|6.60474|Morteau
+T|47.54973|6.93541|Morvillars
+T|48.93487|8.16184|Mothern
+T|45.87789|6.73030|Motivon
+T|49.63677|0.84987|Motteville
+T|43.62045|6.97425|Mouans-Sartoux
+T|46.97686|5.79978|Mouchard
+T|48.58636|2.47349|Moulin Galant
+T|45.70025|3.56111|Moulin des Graves
+T|46.56159|3.33937|Moulins-sur-Allier
+T|45.08418|-0.74486|Moulis - Listrac
+T|49.11121|-0.18642|Moult - Argences
+T|49.13128|4.31782|Mourmelon-le-Petit
+T|48.81399|3.04234|Mouroux
+T|48.50748|-3.24339|Moustéru
+T|49.32052|2.32657|Mouy - Bury
+T|49.24671|6.04334|Moyeuvre-Grande
+T|45.48671|6.53143|Moûtiers-Salins-Brides-les-Bains
+T|48.02448|7.08744|Muhlbach-sur-Munster
+T|49.27812|3.89124|Muizon
+T|47.75013|7.29847|Mulhouse Musées
+T|47.74356|7.31700|Mulhouse Zu Rhein
+T|47.74215|7.34313|Mulhouse-Ville
+T|48.52456|7.31186|Mullerhof
+T|48.92401|8.14130|Munchhausen
+T|48.64473|7.72120|Mundolsheim
+T|48.03809|7.13493|Munster
+T|48.03911|7.15288|Munster Badischhof
+T|45.10902|2.86969|Murat
+T|43.46484|1.32441|Muret
+T|45.03449|0.35379|Mussidan
+T|48.86059|2.32591|Musée d'Orsay
+T|48.53366|7.46234|Mutzig
+T|46.28291|4.77885|Mâcon-Loché-TGV
+T|46.30280|4.82501|Mâcon-Ville
+T|47.32700|4.81015|Mâlain
+T|48.50494|6.65952|Ménil Flin
+T|49.03176|1.36627|Ménilles
+T|42.65949|1.83713|Mérens-les-Vals
+T|43.63669|1.15060|Mérenvielle
+T|49.95569|2.57261|Méricourt - Ribemont
+T|49.07771|2.20545|Mériel
+T|44.82678|-0.62617|Mérignac Arlac
+T|49.23205|2.13240|Méru
+T|49.05771|2.19103|Méry-sur-Oise
+T|44.00976|6.20074|Mézel - Châteauredon
+T|49.07095|-0.07495|Mézidon - Canon
+T|46.23502|5.04658|Mézériat
+T|46.75952|0.49627|Naintré-les-Barres
+T|44.22194|1.97611|Najac
+T|49.80815|2.10541|Namps - Quevauvillers
+T|48.68973|6.17378|Nancy
+T|48.56147|3.01265|Nangis
+T|48.90105|2.21336|Nanterre - Université
+T|48.89769|2.22633|Nanterre La Folie
+T|48.89573|2.22316|Nanterre-Préfecture
+T|48.89545|2.19636|Nanterre-Ville
+T|47.21710|-1.54142|Nantes
+T|48.97395|3.22006|Nanteuil - Saâcy
+T|49.14281|2.79437|Nanteuil-le-Haudouin
+T|46.00550|1.15663|Nantiat
+T|48.71817|5.29112|Nançois-Tronville
+T|43.19063|3.00562|Narbonne
+T|48.84827|2.39583|Nation
+T|44.18549|2.36329|Naucelle
+T|48.15744|-0.47678|Neau
+T|48.26784|2.68556|Nemours - Saint-Pierre
+T|46.78334|0.52577|Nerpuy
+T|49.76399|2.90952|Nesle (Somme)
+T|48.01869|7.54616|Neuf-Brisach
+T|48.35822|5.69038|Neufchâteau
+T|50.62359|1.64325|Neufchâtel-Hardelot
+T|48.87871|2.28566|Neuilly - Porte Maillot
+T|48.85338|2.51389|Neuilly-Plaisance
+T|47.55805|0.56482|Neuillé-Pont-Pierre
+T|45.12533|2.97917|Neussargues
+T|46.39429|6.59258|Neuvecelle
+T|48.61476|6.10791|Neuves-Maisons
+T|45.09989|0.44513|Neuvic
+T|49.01427|2.07829|Neuville Université
+T|48.07056|0.19972|Neuville-sur-Sarthe
+T|46.88266|1.86268|Neuvy-Pailloux
+T|46.98730|3.15072|Nevers
+T|47.00694|3.16353|Nevers-le-Banlay
+T|47.00552|3.14669|Nevers-les-Perrières
+T|45.69153|1.17827|Nexon
+T|43.70895|7.25961|Nice - CP
+T|43.72227|7.29142|Nice Pont Michel
+T|43.70582|7.29050|Nice Riquier
+T|43.66850|7.21061|Nice Saint-Augustin
+T|43.70475|7.26160|Nice-Ville
+T|48.95233|7.63407|Niederbronn-les-Bains
+T|50.69668|2.82901|Nieppe
+T|45.92737|1.17235|Nieul
+T|43.34014|5.25702|Niolon
+T|46.31936|-0.45428|Niort
+T|45.13822|0.80811|Niversac
+T|48.83861|2.49427|Nogent - Le Perreux
+T|48.96874|3.32233|Nogent-l'Artaud - Charly
+T|48.32578|0.81027|Nogent-le-Rotrou
+T|48.83517|2.47182|Nogent-sur-Marne
+T|48.49791|3.49397|Nogent-sur-Seine
+T|47.85278|2.73760|Nogent-sur-Vernisson
+T|49.13258|2.28051|Nointel - Mours
+T|48.84348|2.61639|Noisiel
+T|48.84080|2.54776|Noisy-le-Grand - Mont d’Est
+T|48.89654|2.45974|Noisy-le-Sec
+T|48.84297|2.58098|Noisy–Champs
+T|47.40974|0.89627|Noizay
+T|50.50211|3.20682|Nomain
+T|48.77573|1.19292|Nonancourt
+T|48.70378|0.21947|Nonant-le-Pin
+T|47.44190|-1.50338|Nort-sur-Erdre
+T|50.88297|2.02315|Nortkerque
+T|47.45966|0.70700|Notre-Dame-d'Oé
+T|45.53932|6.46878|Notre-Dame-de Briançon
+T|47.53380|2.03310|Nouan-le-Fuzelier
+T|49.69733|4.79496|Nouvion-sur-Meuse
+T|49.81200|4.74266|Nouzonville
+T|42.58075|9.11056|Novella
+T|47.28395|6.13269|Novillars
+T|49.02830|6.05237|Novéant-sur-Moselle
+T|48.11877|-1.52799|Noyal - Acigné
+T|50.18743|1.70459|Noyelles-sur-Mer
+T|47.87446|-0.09819|Noyen
+T|49.57710|3.00645|Noyon
+T|43.97594|4.20720|Nozières - Brignon
+T|47.72933|4.21169|Nuits sous Ravières
+T|47.13062|4.95619|Nuits-Saint-Georges
+T|46.18422|5.53275|Nurieux
+T|42.54167|2.26304|Nyer
+T|45.34603|0.86117|Négrondes
+T|45.79888|3.52348|Néronde-sur-Dore
+T|46.99964|2.82251|Nérondes
+T|48.93881|1.84048|Nézel - Aulnay
+T|43.83237|4.36625|Nîmes Centre
+T|43.81682|4.50765|Nîmes Pont du Gard
+T|50.48311|2.67442|Nœux-les-Mines
+T|48.84233|7.54746|Obermodern
+T|48.46205|7.48901|Obernai
+T|45.26473|1.40679|Objat
+T|47.91093|6.97358|Oderen
+T|49.00045|7.13197|Oermingen
+T|43.15392|-0.50765|Ogeu-les-Bains
+T|49.34307|1.10181|Oissel
+T|42.55469|2.27194|Olette - Canaveilles-les-Bains
+T|45.67297|3.63678|Olliergues
+T|43.12247|5.82499|Ollioules-Sanary
+T|46.54867|-1.76741|Olonne-sur-Mer
+T|43.19478|-0.61235|Oloron-Sainte-Marie
+T|43.56857|-1.45720|Ondres
+T|49.01347|5.97901|Onville
+T|47.49188|1.18608|Onzain - Chaumont-sur-Loire
+T|44.13754|4.81951|Orange
+T|48.63635|2.40773|Orangis - Bois de l'Épine
+T|47.15010|5.65915|Orchamps
+T|50.47710|3.24898|Orchies
+T|48.82666|1.70278|Orgerus - Béhoust
+T|43.78585|5.04554|Orgon
+T|49.89072|4.02409|Origny-en-Thiérache
+T|48.74181|2.40295|Orly Ville
+T|47.90780|1.90466|Orléans
+T|49.20019|2.83743|Ormoy-Villers
+T|49.13851|2.48997|Orry-la-Ville - Coye-la-Forêt
+T|50.10320|3.62678|Ors
+T|48.69765|2.18191|Orsay-Ville
+T|43.48422|-0.76765|Orthez
+T|49.06301|2.05776|Osny
+T|43.18334|-0.02145|Ossun
+T|43.23518|-1.30482|Ossès-St Martin d'Arrossa
+T|42.41997|1.97712|Osséja
+T|50.44506|3.03244|Ostricourt
+T|47.34337|-1.29199|Oudon
+T|47.25573|5.07297|Ouges
+T|45.71668|4.81338|Oullins
+T|49.53406|2.95427|Ourscamps
+T|46.25961|5.65328|Oyonnax
+T|48.77077|2.69026|Ozoir-la-Ferrière
+T|45.56603|-1.06694|PGVS - Pointe de Grave
+T|45.52499|-1.11382|PGVS - Soulac Les Arros
+T|49.01412|1.38778|Pacy-sur-Eure
+T|47.04626|5.20104|Pagny (Côte-d'Or)
+T|48.69652|5.73372|Pagny-sur-Meuse
+T|48.98524|6.02524|Pagny-sur-Moselle
+T|48.77691|-3.04608|Paimpol
+T|48.71747|2.24609|Palaiseau
+T|48.70772|2.23714|Palaiseau - Villebon
+T|42.59343|9.04848|Palasca
+T|43.11621|1.61949|Pamiers
+T|46.39965|-0.05192|Pamproux
+T|45.77274|2.98766|Panoramique des Dômes - Station Basse
+T|45.77090|2.96264|Panoramique des Dômes - Station Haute
+T|48.89795|2.40049|Pantin
+T|46.44727|4.11374|Paray-le-Monial
+T|43.70604|7.25082|Parc Impérial
+T|48.77050|2.31019|Parc de Sceaux
+T|48.97342|2.51437|Parc des Expositions
+T|48.66791|2.35480|Parc du Château
+T|44.94470|-0.61931|Parempuyre
+T|45.61429|3.21667|Parent - Coudes - Champeix
+T|48.84124|2.36646|Paris Austerlitz
+T|48.84063|2.36700|Paris Austerlitz RER
+T|48.87710|2.35949|Paris Gare de l'Est
+T|48.88040|2.35497|Paris Gare du Nord
+T|48.88099|2.35698|Paris Gare du Nord
+T|48.88139|2.35744|Paris Gare du Nord (RER)
+T|48.83838|2.31583|Paris Montparnasse 3 - Vaugirard
+T|48.83920|2.38285|Paris-Bercy - Bourgogne-Pays d'Auvergne
+T|48.87653|2.32524|Paris-Saint-Lazare
+T|46.19844|2.17459|Parsac-Gouzon
+T|46.64825|-0.24055|Parthenay
+T|43.40966|5.25399|Pas-des-Lanciers
+T|43.29147|-0.36975|Pau
+T|45.20382|-0.75518|Pauillac
+T|45.21018|3.50058|Paulhaguet
+T|49.56403|0.95051|Pavilly-Station
+T|43.79199|7.38007|Peille
+T|43.76792|7.36687|Peillon Sainte-Thècle
+T|49.07383|6.22225|Peltre
+T|47.29049|-2.20085|Penhoët
+T|44.37993|0.80298|Penne
+T|47.55803|-3.13314|Penthièvre
+T|48.88550|2.29819|Pereire - Levallois
+T|50.48031|2.43110|Pernes - Camblain
+T|45.58487|1.97767|Perols
+T|46.30327|6.42493|Perrignier
+T|44.88702|2.24035|Pers
+T|49.14785|2.27823|Persan - Beaumont
+T|43.68437|5.50360|Pertuis
+T|44.80453|-0.63136|Pessac
+T|44.79345|-0.65958|Pessac-Alouette
+T|48.77184|2.14704|Petit Jouy - Les Loges
+T|48.67685|2.33206|Petit Vaux
+T|47.61018|6.99512|Petit-Croix
+T|43.54684|-1.11572|Peyrehorade
+T|44.04238|6.61340|Peyresq
+T|45.95949|1.16995|Peyrilhac-Saint-Jouvent
+T|47.86728|1.14093|Pezou
+T|50.51542|3.02018|Phalempin
+T|43.62151|1.28945|Pibrac
+T|43.33108|5.39306|Picon Busserine
+T|49.94613|2.14326|Picquigny
+T|45.69953|1.34724|Pierre-Buffière
+T|45.70668|4.82452|Pierre-Bénite
+T|48.96190|2.36917|Pierrefitte - Stains
+T|48.96013|2.36739|Pierrefitte - Stains T11
+T|44.37470|4.70406|Pierrelatte
+T|49.01943|2.15357|Pierrelaye
+T|42.50823|9.18121|Pietralba
+T|43.29847|6.22485|Pignans
+T|50.87301|1.78526|Pihen
+T|43.47919|1.39959|Pins-Justaret
+T|48.17475|2.24352|Pithiviers - Musée
+T|49.49797|0.11159|Place Thiers
+T|44.65497|-1.25725|Plage de l'Horizon
+T|48.83197|1.94348|Plaisir - Grignon
+T|48.83096|1.96004|Plaisir - Les Clayes
+T|44.07734|6.20577|Plan d'eau des Ferréols
+T|43.96251|6.78680|Plan-d'Entrevaux
+T|43.85741|7.19652|Plan-du-Var
+T|48.52176|-2.22899|Plancoët
+T|42.50091|2.13692|Planès
+T|48.53146|-1.85059|Plerguer
+T|48.42566|-2.44255|Plestan
+T|48.49951|-1.96173|Pleudihen
+T|48.50781|-3.88255|Pleyber-Christ
+T|48.60621|-3.46675|Plouaret - Trégor
+T|48.45841|-3.37046|Plougonver
+T|47.60456|-3.11802|Plouharnel - Carnac
+T|48.56471|-3.71023|Plouigneau
+T|48.58167|-3.56806|Plounérin
+T|48.50847|-2.89202|Plouvara-Pleurneuf
+T|47.76519|-3.02176|Pluvigner
+T|47.87194|-1.77656|Pléchâtel
+T|48.37670|-2.35459|Plénée-Jugon
+T|44.64891|-0.35884|Podensac
+T|42.25303|9.18939|Poggio-Riventosa
+T|45.56706|-1.06581|Pointe de Grave
+T|48.93330|2.04106|Poissy
+T|46.58252|0.33271|Poitiers
+T|49.65006|4.63636|Poix-Terron
+T|49.77786|1.98978|Poix-de-Picardie
+T|46.84430|5.70023|Poligny
+T|45.25615|5.47388|Poliénas
+T|46.24463|5.12383|Polliat
+T|42.65972|9.44444|Polyclinique
+T|43.11214|2.28831|Pomas
+T|48.77312|6.13078|Pompey
+T|45.57811|-0.53911|Pons
+T|48.88801|2.31378|Pont Cardinet
+T|43.83762|7.19398|Pont Charles Albert
+T|49.06038|2.13066|Pont Petit
+T|50.89203|1.97141|Pont d'Ardres
+T|47.16208|4.69650|Pont d'Ouche
+T|50.62400|3.12968|Pont de Bois
+T|50.68275|1.62688|Pont de Briques
+T|45.13752|5.70281|Pont de Claix L'Étoile
+T|43.96780|6.75711|Pont de Gueydan
+T|45.25981|4.13731|Pont de Lignon
+T|48.74818|2.37288|Pont de Rungis Aéroport d'Orly
+T|50.41586|2.86320|Pont de Sallaumines
+T|48.86255|2.29999|Pont de l'Alma
+T|45.78855|3.23778|Pont du Château
+T|48.83930|2.27066|Pont du Garigliano
+T|49.16237|-1.12685|Pont-Hébert
+T|48.47020|-3.31138|Pont-Melvez
+T|50.04725|1.89884|Pont-Remy
+T|44.25351|4.64313|Pont-Saint-Esprit
+T|48.60240|6.10326|Pont-Saint-Vincent
+T|49.30979|2.60286|Pont-Sainte-Maxence
+T|46.05391|5.33418|Pont-d'Ain
+T|48.25428|-4.08634|Pont-de-Buis
+T|45.64445|3.66977|Pont-de-David
+T|45.84278|3.49034|Pont-de-Dore
+T|46.26790|4.89302|Pont-de-Veyle
+T|49.31709|1.15965|Pont-de-l'Arche
+T|50.39790|3.08482|Pont-de-la-Deûle
+T|49.28686|0.19220|Pont-l'Évêque
+T|48.28630|3.20160|Pont-sur-Yonne
+T|48.90026|6.05063|Pont-à-Mousson
+T|50.47141|2.87521|Pont-à-Vendin
+T|46.21308|4.77269|Pontanevaux-La-Chapelle
+T|46.90089|6.35338|Pontarlier
+T|48.11894|-1.69092|Pontchaillou
+T|45.87147|4.49279|Pontcharra - Saint-Forgeux
+T|45.43413|6.00770|Pontcharra-sur-Bréda - Allevard
+T|47.43533|-2.08851|Pontchâteau
+T|42.46545|9.20393|Ponte Leccia
+T|42.48068|9.28034|Ponte Novu
+T|45.35076|3.89725|Pontempeyrat
+T|45.82100|2.84580|Pontgibaud
+T|48.47797|1.14150|Pontgouin
+T|48.53502|2.54489|Ponthierry Pringy
+T|48.06186|-2.96560|Pontivy
+T|45.93969|3.16008|Pontmort
+T|49.04673|2.09520|Pontoise
+T|48.55273|-1.50493|Pontorson-Mont-Saint-Michel
+T|48.70566|-3.15717|Pontrieux
+T|48.69807|-3.16450|Pontrieux Halte
+T|48.79667|2.15311|Porchefontaine
+T|45.85155|5.40630|Porcieu - Pont de Sault-Brénaz
+T|47.11450|-2.09771|Pornic
+T|47.27052|-2.34476|Pornichet
+T|48.84001|2.33708|Port Royal
+T|46.37571|6.47908|Port de Rives
+T|47.24878|0.15559|Port-Boulet
+T|48.11072|-0.97393|Port-Brillet
+T|47.11595|-1.74002|Port-Saint-Père - Saint-Mars
+T|44.25049|0.39056|Port-Sainte-Marie
+T|42.51346|3.10261|Port-Vendres
+T|43.40731|4.98462|Port-de-Bouc
+T|47.01017|0.59872|Port-de-Piles
+T|43.01995|3.03878|Port-la-Nouvelle
+T|49.33745|-1.69240|Portbail
+T|48.87813|2.28238|Porte Maillot
+T|48.88583|2.29310|Porte de Champerret
+T|48.89408|2.31511|Porte de Clichy
+T|45.93967|4.72603|Porte du Beaujolais
+T|43.52800|1.38910|Portet Saint-Simon
+T|44.69287|-0.42539|Portets
+T|42.53914|1.82489|Porté-Puymorens
+T|46.14467|5.96136|Pougny-Chancy
+T|47.07679|3.09401|Pougues-les-Eaux
+T|47.28279|2.96407|Pouilly-sur-Loire
+T|48.10878|6.56948|Pouxeux
+T|46.75243|-0.81459|Pouzauges
+T|16.40092|-61.49248|Poyen
+T|42.61715|2.42927|Prades - Molitg-les-Bains
+T|44.57838|-0.30224|Preignac
+T|49.11351|2.28783|Presles - Courcelles
+T|46.21902|-0.63650|Prin-Deyrançon
+T|45.93957|6.12342|Pringy
+T|46.15283|-0.49354|Prissé-la-Charrière
+T|50.31676|3.46103|Prouvy - Thiant
+T|48.30468|7.08548|Provenchères-sur-Fave
+T|48.55557|3.30272|Provins
+T|49.19873|4.18376|Prunay
+T|47.31318|1.67215|Pruniers-en-Sologne
+T|49.20337|2.37652|Précy-sur-Oise
+T|47.17099|3.33256|Prémery
+T|48.15194|0.48487|Prévelles
+T|43.95458|6.89213|Puget-Théniers
+T|43.28307|6.13847|Puget-Ville
+T|42.58472|9.44159|Purettone
+T|48.88342|2.23372|Puteaux
+T|45.95767|3.47390|Puy-Guillaume
+T|44.92162|1.78411|Puybrun
+T|43.52465|-0.91082|Puyoô
+T|45.37164|4.79528|Péage-de-Roussillon
+T|50.66716|2.97751|Pérenchies
+T|45.18727|0.70755|Périgueux
+T|47.45576|0.22928|Quai du dépôt
+T|47.68307|-2.44963|Questembert
+T|47.48548|-3.11824|Quiberon
+T|47.99470|-4.09221|Quimper
+T|47.86947|-3.55301|Quimperlé
+T|45.90696|4.77840|Quincieux
+T|48.24859|-2.14533|Quédillac
+T|43.81965|1.73052|Rabastens-Coufouleux
+T|47.88687|7.28398|Raedersheim
+T|48.74369|0.55315|Rai-Aube
+T|50.39006|3.47875|Raismes
+T|48.64375|1.83210|Rambouillet
+T|47.15251|5.72466|Ranchot
+T|50.41575|1.64816|Rang-du-Fliers - Verton - Berck
+T|43.56934|6.96912|Ranguin
+T|47.88164|7.01234|Ranspach
+T|48.40379|6.83694|Raon-l'Étape
+T|43.49666|4.97312|Rassuen
+T|45.16688|4.29238|Raucoules - Brossette
+T|45.16593|0.59924|Razac-sur-l'Isle
+T|50.28407|4.04453|Recquignies
+T|47.65181|-2.08840|Redon
+T|48.93092|7.65784|Reichshoffen
+T|47.21793|0.90140|Reignac
+T|46.12558|6.26750|Reignier
+T|49.25899|4.02438|Reims
+T|49.23372|4.02243|Reims Maison Blanche
+T|48.01636|6.59888|Remiremont
+T|50.73203|2.37142|Renescure
+T|48.10319|-1.67238|Rennes
+T|48.09234|-1.63079|Rennes-La Poterie
+T|49.50425|4.36966|Rethel
+T|47.91336|-1.38975|Retiers
+T|45.20125|4.03611|Retournac
+T|47.08583|2.04743|Reuilly
+T|48.82408|4.98552|Revigny
+T|49.93880|4.64286|Revin
+T|47.19323|-1.54938|Rezé - Pont-Rousseau
+T|42.60353|2.39062|Ria-Sirach
+T|49.50628|2.92720|Ribécourt
+T|41.92887|8.77601|Ricanto
+T|48.99108|7.96300|Riedseltz
+T|49.29839|2.52109|Rieux - Angicourt
+T|43.94964|6.98768|Rigaud - Le Cians
+T|49.16645|4.04084|Rilly-la-Montagne
+T|47.45762|0.22289|Rillé-Plage
+T|45.88999|3.12073|Riom - Châtel-Guyon
+T|45.28489|2.65818|Riom-ès-Montagnes
+T|48.65930|2.41437|Ris-Orangis
+T|47.26774|0.36187|Rivarennes
+T|45.52437|4.60659|Rive-de-Gier
+T|45.35758|5.49187|Rives
+T|42.76639|2.86774|Rivesaltes
+T|47.74880|7.40631|Rixheim
+T|46.03930|4.06297|Roanne
+T|48.78010|2.28121|Robinson
+T|44.81831|1.65718|Rocamadour - Padirac
+T|47.27627|6.11098|Roche-lez-Beaupré
+T|45.94727|-0.96371|Rochefort
+T|49.39840|2.17295|Rochy-Condé
+T|44.36275|2.58060|Rodez
+T|43.48664|5.23085|Rognac
+T|48.79566|2.65037|Roissy-en-Brie
+T|45.04885|5.04961|Romans - Bourg-de-Péage
+T|46.17639|4.74210|Romanèche-Thorins
+T|49.25602|6.09996|Rombas - Clouange
+T|49.00394|0.85485|Romilly-la-Puthenaye
+T|48.51432|3.72882|Romilly-sur-Seine
+T|47.35540|1.73887|Romorantin-Lanthenay
+T|47.69902|6.62325|Ronchamp
+T|50.60457|3.07839|Ronchin
+T|43.76061|7.45735|Roquebrune-Cap-Martin
+T|43.75124|1.61993|Roqueserière - Buzet
+T|48.89649|2.37406|Rosa Parks
+T|48.50527|7.49127|Rosheim
+T|49.82260|2.71128|Rosières
+T|48.60531|6.35051|Rosières-aux-Salines
+T|48.88256|2.48119|Rosny Bois Perrier
+T|48.87066|2.48590|Rosny-sous-Bois
+T|48.99740|1.63015|Rosny-sur-Seine
+T|47.96045|-3.83269|Rosporden
+T|50.45627|3.34944|Rosult
+T|48.45932|7.20750|Rothau
+T|50.69568|3.16301|Roubaix
+T|49.44924|1.09422|Rouen Rive-Droite
+T|48.16026|-0.19960|Rouessé-Vassé
+T|47.96018|7.31270|Rouffach
+T|46.41888|0.04186|Rouillé
+T|48.82036|8.01175|Rountzenheim
+T|50.17283|1.58834|Routhiauville
+T|46.39638|6.59266|Royal-Hôtel
+T|45.62591|-1.01650|Royan
+T|45.76774|3.06162|Royat - Chamalières
+T|49.70497|2.78686|Roye
+T|50.27312|1.67579|Rue
+T|48.88729|2.17152|Rueil-Malmaison
+T|46.03062|0.19015|Ruffec (Charente)
+T|47.37051|5.07917|Ruffey
+T|46.88042|4.76093|Rully
+T|45.86302|5.94818|Rumilly
+T|50.86207|2.15770|Ruminghem
+T|48.74048|2.35292|Rungis - La Fraternelle
+T|48.49824|7.25178|Russ - Hersbach
+T|45.36882|5.53472|Réaumont-Saint-Cassien
+T|48.74245|7.09674|Réding
+T|45.98773|4.21511|Régny
+T|49.01430|6.39512|Rémilly
+T|49.43326|2.70593|Rémy
+T|48.83417|8.03081|Rœschwoog
+T|50.30358|2.89498|Rœux
+T|47.84183|-0.34208|Sablé-sur-Sarthe
+T|44.14925|-0.74731|Sabres
+T|42.45699|2.03216|Saillagouse
+T|44.69444|5.19405|Saillans
+T|45.86965|0.81170|Saillat-sur-Vienne
+T|45.81154|4.60171|Sain-Bel
+T|46.93142|3.07171|Saincaize
+T|50.08900|4.00147|Sains-du-Nord
+T|46.50209|3.87887|Saint-Agnan
+T|45.01503|4.38848|Saint-Agrève
+T|47.28681|1.38368|Saint-Aignan - Noyers
+T|45.15726|-0.01910|Saint-Aigulin-la-Roche-Chalais
+T|45.37247|3.63732|Saint-Alyre d'Arlanc
+T|47.69308|1.01208|Saint-Amand de Vendôme
+T|46.72651|2.48570|Saint-Amand-Montrond - Orval
+T|50.44320|3.41878|Saint-Amand-les-Eaux
+T|47.87293|7.02871|Saint-Amarin
+T|46.43382|5.33412|Saint-Amour
+T|47.79106|7.15509|Saint-André
+T|50.65448|3.04754|Saint-André
+T|43.96982|6.50670|Saint-André les Alpes
+T|45.92593|4.94879|Saint-André-de-Corcy
+T|44.99099|-0.44048|Saint-André-de-Cubzac
+T|45.54457|5.52452|Saint-André-le-Gaz
+T|43.36903|5.35865|Saint-Antoine
+T|44.84665|0.15200|Saint-Antoine-de-Breuilh
+T|47.50368|0.61659|Saint-Antoine-du-Rocher
+T|48.01468|-1.59485|Saint-Armel
+T|45.13891|0.52290|Saint-Astier
+T|48.44764|1.33185|Saint-Aubin - Saint-Luperce
+T|49.87083|1.06673|Saint-Aubin-sur-Scie
+T|45.24873|1.39866|Saint-Aulaire
+T|43.63545|3.96293|Saint-Aunès
+T|49.08587|6.72086|Saint-Avold
+T|45.35356|6.30174|Saint-Avre - La Chambre
+T|47.86309|1.74981|Saint-Ay
+T|43.95987|6.72842|Saint-Benoît
+T|48.40755|7.16531|Saint-Blaise-la-Roche
+T|46.14838|3.13939|Saint-Bonnet-de-Rochefort
+T|45.87823|0.95233|Saint-Brice-sur-Vienne
+T|48.50732|-2.76490|Saint-Brieuc
+T|45.50397|5.73175|Saint-Béron - La Bridoire
+T|43.55111|5.04010|Saint-Chamas
+T|45.47237|4.51702|Saint-Chamond
+T|44.46458|2.40770|Saint-Christophe
+T|44.80171|3.27068|Saint-Chély-d'Apcher
+T|48.55111|2.12573|Saint-Chéron
+T|45.45027|4.76983|Saint-Clair - Les Roches
+T|46.39004|5.86040|Saint-Claude
+T|48.84613|2.21762|Saint-Cloud
+T|48.53116|6.60836|Saint-Clément - Laronxe
+T|44.86330|1.04343|Saint-Cyprien
+T|48.79883|2.07345|Saint-Cyr
+T|43.18539|5.70377|Saint-Cyr - Les Lecques - La Cadière
+T|47.81920|1.94745|Saint-Cyr-en-Val La-Source
+T|43.81339|4.32764|Saint-Césaire
+T|44.05587|7.58401|Saint-Dalmas-de-Tende
+T|48.93505|2.34538|Saint-Denis - L'Île-Saint-Denis
+T|44.97764|-0.19885|Saint-Denis de Pile
+T|45.78903|1.55131|Saint-Denis-des-Murs
+T|44.94597|1.66619|Saint-Denis-près-Martel
+T|48.64266|4.94795|Saint-Dizier
+T|48.28182|6.94812|Saint-Dié-des-Vosges
+T|49.52699|3.85761|Saint-Erme
+T|48.56449|2.54266|Saint-Fargeau
+T|46.99210|2.25259|Saint-Florent-sur-Cher
+T|47.98061|3.73115|Saint-Florentin - Vergigny
+T|45.03502|3.10622|Saint-Flour - Chaudes-Aigues
+T|45.70564|4.85237|Saint-Fons
+T|42.67732|2.73783|Saint-Féliu-d'Avall
+T|43.10488|0.72918|Saint-Gaudens
+T|43.95018|4.21480|Saint-Geniès-de-Malgoirès
+T|47.37092|0.59696|Saint-Genouph
+T|45.16060|3.49481|Saint-Georges d'Aurac
+T|45.04405|5.70170|Saint-Georges-de-Commiers
+T|44.06655|2.98378|Saint-Georges-de-Luzençon
+T|46.06220|4.71889|Saint-Georges-de-Reneins
+T|49.36233|-1.73287|Saint-Georges-de-la-Rivière
+T|43.67130|-1.24109|Saint-Geours-de-Maremne
+T|48.75861|1.25697|Saint-Germain - Saint-Rémy
+T|45.88838|4.80457|Saint-Germain-au-Mont-d'Or
+T|46.20905|3.43043|Saint-Germain-des-Fossés
+T|47.09638|2.48470|Saint-Germain-du-Puy
+T|48.89881|2.09503|Saint-Germain-en-Laye
+T|45.60988|1.47997|Saint-Germain-les-Belles
+T|48.23948|-1.65418|Saint-Germain-sur-Ille
+T|45.90657|6.70146|Saint-Gervais-les-Bains - Le Fayet
+T|45.68957|3.60973|Saint-Gervais-sous-Meymont
+T|47.51664|-2.04398|Saint-Gildas-des-Bois
+T|48.07591|7.26107|Saint-Gilles Lycée Haut-Rhin
+T|46.69660|-1.94195|Saint-Gilles-Croix-de-Vie
+T|48.96382|2.28520|Saint-Gratien
+T|48.11561|-2.88640|Saint-Gérand
+T|50.13200|3.91391|Saint-Hilaire
+T|45.07145|5.24382|Saint-Hilaire - Saint-Nazaire
+T|45.85009|-0.53482|Saint-Hilaire-Brizambourg
+T|47.10578|-1.86519|Saint-Hilaire-de-Chaléons
+T|46.71665|-1.94956|Saint-Hilaire-de-Riez
+T|45.30784|5.88718|Saint-Hilaire-du-Touvet
+T|43.32502|-1.60074|Saint-Ignace
+T|43.71181|7.19725|Saint-Isidore
+T|48.06755|-1.71377|Saint-Jacques-de-la-Lande
+T|47.09972|5.24406|Saint-Jean de Losne
+T|43.16790|-1.23804|Saint-Jean-Pied-de-Port
+T|45.94076|-0.50996|Saint-Jean-d'Angély
+T|43.38580|-1.66112|Saint-Jean-de-Luz - Ciboure
+T|45.27793|6.35404|Saint-Jean-de-Maurienne - Vallée de l'Arvan
+T|43.01276|1.60798|Saint-Jean-de-Verges
+T|45.88572|4.12526|Saint-Jodard
+T|43.73833|1.37146|Saint-Jory
+T|43.35201|5.37711|Saint-Joseph-le-Castellas
+T|47.40603|5.12816|Saint-Julien - Clénay
+T|44.25303|3.97081|Saint-Julien-des-Points
+T|48.02685|3.30293|Saint-Julien-du-Sault
+T|46.14196|6.08562|Saint-Julien-en-Genevois
+T|45.88137|0.90045|Saint-Junien
+T|44.03973|6.17781|Saint-Jurson
+T|45.75715|4.81629|Saint-Just
+T|49.50366|2.42923|Saint-Just-en-Chaussée
+T|49.52856|0.25230|Saint-Laurent - Gainneville
+T|43.63927|4.19312|Saint-Laurent-d'Aigouze
+T|45.99259|-1.02688|Saint-Laurent-de-la-Prée - Fouras
+T|43.66239|7.19459|Saint-Laurent-du-Var
+T|46.57468|5.95131|Saint-Laurent-en-Grandvaux
+T|46.95217|-0.90879|Saint-Laurent-sur-Sèvre
+T|49.21408|2.41777|Saint-Leu-d'Esserent
+T|49.01556|2.24240|Saint-Leu-la-Forêt
+T|43.76405|1.76305|Saint-Lieux-lès-Lavaur
+T|46.82341|5.64448|Saint-Lothain
+T|44.92239|-0.43322|Saint-Loubès
+T|47.59014|7.55537|Saint-Louis (Haut-Rhin)
+T|47.60955|7.53104|Saint-Louis La Chaussée
+T|46.78052|-0.16886|Saint-Loup
+T|46.84845|4.62861|Saint-Léger-sur-Dheune
+T|45.12330|0.49225|Saint-Léon-sur-l’Isle
+T|45.83208|1.48183|Saint-Léonard de Noblat
+T|49.11676|-1.09997|Saint-Lô
+T|44.56862|-0.22697|Saint-Macaire
+T|46.40644|-0.20112|Saint-Maixent-l'École
+T|48.64660|-2.00398|Saint-Malo
+T|48.38227|2.81578|Saint-Mammès
+T|43.28842|5.46658|Saint-Marcel
+T|45.95010|4.97734|Saint-Marcel-en-Dombes
+T|45.15047|5.32316|Saint-Marcellin
+T|45.13916|-0.39147|Saint-Mariens - Saint-Yzan
+T|48.02856|0.36566|Saint-Mars-la-Brière
+T|48.42747|2.14527|Saint-Martin d'Étampes
+T|43.82080|7.18819|Saint-Martin du Var
+T|42.81791|2.22928|Saint-Martin-Lys
+T|43.93006|-0.65153|Saint-Martin-d'Oney
+T|43.62216|4.80049|Saint-Martin-de-Crau
+T|46.09575|5.30321|Saint-Martin-du-Mont
+T|43.59978|1.37187|Saint-Martin-du-Touch
+T|47.35521|0.90584|Saint-Martin-le-Beau
+T|43.13842|0.93400|Saint-Martory
+T|47.41213|-0.31814|Saint-Mathurin
+T|48.80640|2.47222|Saint-Maur Créteil
+T|48.80722|2.50975|Saint-Maur – Champigny
+T|45.82742|4.97700|Saint-Maurice-de-Beynost
+T|45.21690|6.47162|Saint-Michel - Valloire
+T|48.85335|2.34578|Saint-Michel Notre-Dame
+T|48.63575|2.30679|Saint-Michel-sur-Orge
+T|44.71686|-0.50574|Saint-Médard-d'Eyrans
+T|45.01549|-0.04889|Saint-Médard-de-Guizières
+T|48.27436|-1.66779|Saint-Médard-sur-Ille
+T|48.04581|6.58156|Saint-Nabord
+T|47.28664|-2.21116|Saint-Nazaire
+T|47.98263|-3.04111|Saint-Nicolas-des-Eaux
+T|48.86781|2.05094|Saint-Nom-la-Bretèche - Forêt de Marly
+T|50.75388|2.26701|Saint-Omer
+T|49.53029|1.99694|Saint-Omer-en-Chaussée
+T|48.90534|2.32250|Saint-Ouen
+T|49.04536|2.10634|Saint-Ouen-l'Aumône
+T|49.03397|2.12831|Saint-Ouen-l'Aumône Liesse
+T|49.03968|2.10374|Saint-Ouen-l'Aumône Quartier de l'Église
+T|47.60394|0.47831|Saint-Paterne
+T|47.28557|0.30981|Saint-Patrice
+T|42.81193|2.50720|Saint-Paul-de-Fenouillet
+T|46.10003|5.12820|Saint-Paul-de-Varax
+T|43.70299|7.24513|Saint-Philippe
+T|48.54288|1.59020|Saint-Piat
+T|47.52089|-3.13869|Saint-Pierre-Quiberon
+T|45.55717|6.15641|Saint-Pierre-d'Albigny
+T|44.57525|-0.18762|Saint-Pierre-d'Aurillac
+T|45.12351|0.85609|Saint-Pierre-de-Chignac
+T|47.38567|0.72379|Saint-Pierre-des-Corps
+T|49.23386|1.22473|Saint-Pierre-du-Vauvray
+T|46.05913|6.37556|Saint-Pierre-en-Faucigny
+T|48.11361|-1.02531|Saint-Pierre-la-Cour
+T|46.79321|3.11169|Saint-Pierre-le-Moûtier
+T|49.02314|-0.04062|Saint-Pierre-sur-Dives
+T|48.67685|-3.98729|Saint-Pol de Léon
+T|50.37910|2.33931|Saint-Pol-sur-Ternoise
+T|45.68637|4.93450|Saint-Priest
+T|45.88722|1.40009|Saint-Priest-Taurion
+T|43.10158|-0.16203|Saint-Pé-de-Bigorre
+T|49.83998|3.29704|Saint-Quentin
+T|45.63823|5.09990|Saint-Quentin-Fallavier
+T|48.78745|2.04453|Saint-Quentin-en-Yvelines
+T|45.29777|4.81039|Saint-Rambert-d'Albon
+T|45.94734|5.43863|Saint-Rambert-en-Bugey
+T|43.42278|6.77023|Saint-Raphaël-Valescure
+T|49.46815|2.42588|Saint-Remy-en-l'Eau
+T|47.94695|-3.06573|Saint-Rivalain
+T|45.86162|4.54236|Saint-Romain-de-Popey
+T|45.55454|4.12086|Saint-Romain-le-Puy
+T|44.01399|2.96736|Saint-Rome-de-Cernon
+T|48.70273|2.07091|Saint-Rémy-lès-Chevreuse
+T|45.26634|2.79159|Saint-Saturnin - Saint-Bonnet
+T|43.95313|4.93517|Saint-Saturnin-lès-Avignon
+T|43.73096|7.18462|Saint-Sauveur Centre Commercial
+T|45.39800|3.66864|Saint-Sauveur-la-Sagne
+T|45.87593|-0.67781|Saint-Savinien
+T|46.14698|0.21796|Saint-Saviol
+T|47.89773|-1.76633|Saint-Senoux - Pléchâtel
+T|45.01142|-0.00267|Saint-Seurin-sur-l'Isle
+T|48.84372|-1.05173|Saint-Sever
+T|43.77528|1.68037|Saint-Sulpice
+T|49.34738|2.11641|Saint-Sulpice - Auteuil
+T|44.91428|-0.39213|Saint-Sulpice - Izon
+T|46.04679|1.47607|Saint-Sulpice-Laurière
+T|46.84420|4.33778|Saint-Symphorien-de-Marmagne
+T|46.38591|1.54660|Saint-Sébastien
+T|47.19045|-1.49568|Saint-Sébastien Frêne Rond
+T|47.20690|-1.51098|Saint-Sébastien Pas Enchantés
+T|48.49449|-3.94785|Saint-Thégonnec
+T|45.83789|-1.20861|Saint-Trojan
+T|50.17680|1.65121|Saint-Valery Canal
+T|50.17886|1.64431|Saint-Valery-sur-Somme Ville
+T|45.18572|4.81453|Saint-Vallier-sur-Rhône
+T|50.18239|1.64388|Saint-Valéry Port
+T|46.00234|4.28122|Saint-Victor - Thizy
+T|49.67703|1.10972|Saint-Victor l'Abbaye
+T|45.87664|1.00957|Saint-Victurnien
+T|43.65771|-1.30640|Saint-Vincent-de-Tyrosse
+T|45.14897|3.91858|Saint-Vincent-le-Château
+T|47.18353|5.80891|Saint-Vit
+T|45.51930|1.20558|Saint-Yrieix la Perche
+T|45.23572|5.67112|Saint-Égrève - Saint-Robert
+T|44.88117|-0.15933|Saint-Émilion
+T|45.44690|4.38538|Saint-Étienne Carnot
+T|45.44361|4.39961|Saint-Étienne Châteaucreux
+T|45.46472|4.37956|Saint-Étienne-La Terrasse
+T|47.27482|-1.78569|Saint-Étienne-de-Montluc
+T|49.37717|1.10954|Saint-Étienne-du-Rouvray
+T|45.43711|4.37824|Saint-Étienne-le-Clapier
+T|43.34221|6.13055|Sainte-Anastasie
+T|47.67849|-2.96044|Sainte-Anne
+T|44.53266|0.09310|Sainte-Bazeille
+T|46.87924|6.26605|Sainte-Colombe
+T|48.52939|3.25571|Sainte-Colombe Septveilles
+T|44.25497|3.97580|Sainte-Cécile-d'Andorge
+T|44.89780|-0.49398|Sainte-Eulalie - Carbon-Blanc
+T|44.83676|0.22135|Sainte-Foy la Grande
+T|48.71727|0.42908|Sainte-Gauburge
+T|48.65312|2.31330|Sainte-Geneviève-des-Bois
+T|47.00284|2.03015|Sainte-Lizaigne
+T|42.44108|2.01033|Sainte-Léocadie
+T|43.33930|5.39066|Sainte-Marthe-en-Provence
+T|47.11115|0.57713|Sainte-Maure-Noyant
+T|47.10544|-1.81396|Sainte-Pazanne
+T|45.74891|-0.61738|Saintes
+T|47.42518|2.04757|Salbris
+T|45.93585|6.63651|Sallanches - Combloux - Megeve
+T|50.42231|2.85562|Sallaumines
+T|44.47520|2.07885|Salles-Courbatiès
+T|50.54149|2.83676|Salomé
+T|43.63907|5.08844|Salon
+T|42.83560|2.91746|Salses
+T|42.64540|9.44194|Saltatojo
+T|42.95861|0.63352|Saléchan - Siradan
+T|48.97019|2.26398|Sannois
+T|49.04466|6.33957|Sanry-sur-Nied
+T|48.10586|7.57307|Sans-Souci
+T|42.60155|8.83883|Sant'Ambroggio
+T|42.56986|8.80514|Santa Restituda
+T|46.91058|4.70177|Santenay-les-Bains
+T|50.59185|2.96236|Santes
+T|49.12417|1.94901|Santeuil - Le Perchay
+T|48.99615|2.36873|Sarcelles - Saint-Brice
+T|44.87701|1.22028|Sarlat
+T|45.73877|3.16812|Sarliève - Cournon
+T|43.04968|-0.59961|Sarrance
+T|48.73809|7.05283|Sarrebourg
+T|49.10718|7.06820|Sarreguemines
+T|48.93781|2.15727|Sartrouville
+T|45.82008|4.87552|Sathonay-Rillieux
+T|43.66031|-1.19010|Saubusse Les Bains
+T|45.66649|-0.93005|Saujon
+T|47.22411|5.10453|Saulon
+T|47.26900|-0.07148|Saumur
+T|43.33298|5.11007|Sausset-Les-Pins
+T|42.50637|2.16004|Sauto
+T|44.58942|1.01164|Sauveterre-La-Lémance
+T|45.71355|3.53117|Sauviat
+T|47.35844|-1.95078|Savenay
+T|47.38140|-0.65484|Savennières - Béhuard
+T|43.23951|1.57056|Saverdun
+T|48.74480|7.36210|Saverne
+T|48.59557|2.58395|Savigny-le-Temple - Nandy
+T|48.67609|2.35207|Savigny-sur-Orge
+T|47.36061|0.54384|Savonnières
+T|50.35387|2.55807|Savy-Berlette
+T|48.34705|7.11077|Saâles
+T|47.20962|6.10148|Saône
+T|43.95680|6.68673|Scaffarels
+T|48.78145|2.29743|Sceaux
+T|48.12215|0.57241|Sceaux - Boëssé
+T|48.28693|7.43043|Scherwiller
+T|48.48005|7.21587|Schirmeck - La Broque
+T|48.82863|7.74349|Schweighouse-sur-Moder
+T|48.75365|7.60055|Schwindratzheim
+T|50.54829|3.03523|Seclin
+T|49.69487|4.93017|Sedan
+T|47.38839|1.92220|Selles-Saint-Denis
+T|47.28170|1.54620|Selles-sur-Cher
+T|48.89671|8.09846|Seltz
+T|46.64068|4.87449|Sennecey-le-Grand
+T|46.39147|4.87055|Senozan
+T|48.19790|3.26752|Sens
+T|47.75251|7.05751|Sentheim
+T|49.15124|4.25687|Sept-Saulx
+T|43.40368|5.37031|Septèmes
+T|42.56699|2.32298|Serdinya
+T|48.53551|2.06880|Sermaise
+T|47.52887|3.79288|Sermizelles - Vézelay
+T|49.63159|1.53929|Serqueux
+T|49.10752|0.71890|Serquigny
+T|44.42466|5.71830|Serres
+T|46.13074|5.16795|Servas - Lent
+T|48.11222|-1.46674|Servon
+T|45.92446|6.76344|Servoz
+T|48.79638|7.98940|Sessenheim
+T|49.11899|2.39891|Seugy
+T|46.99638|5.15128|Seurre
+T|48.94756|2.52473|Sevran - Beaudottes
+T|48.93626|2.53472|Sevran Livry
+T|45.96306|5.83137|Seyssel - Corbonod
+T|49.44402|6.35009|Sierck-les-Bains
+T|47.65607|7.45950|Sierentz
+T|49.20321|4.14417|Sillery
+T|48.18166|-0.12884|Sillé-le-Guillaume
+T|46.22030|5.42112|Simandre-sur-Suran
+T|43.43494|5.42614|Simiane
+T|50.35652|3.11271|Sin-le-Noble
+T|44.81972|0.98446|Siorac-en-Périgord
+T|44.19022|5.94673|Sisteron
+T|49.36915|3.33817|Soissons
+T|45.75616|1.28567|Solignac - Le-Vigen
+T|43.19080|6.04643|Solliès-Pont
+T|50.35547|3.27769|Somain
+T|49.62949|1.43574|Sommery
+T|44.00538|4.87577|Sorgues - Châteauneuf-du-Pape
+T|43.87642|7.45362|Sospel
+T|49.41285|1.10239|Sotteville
+T|44.90223|1.46665|Souillac
+T|45.50816|-1.11772|Soulac-sur-Mer
+T|48.93456|7.88246|Soultz-sous-Forêts
+T|48.18176|2.73496|Souppes - Château-Landon
+T|50.26569|3.93951|Sous le Bois
+T|42.35836|9.17263|Soveria
+T|48.32698|6.88824|St-Michel-sur-Meurthe
+T|48.91770|2.35048|Stade de France - Saint-Denis
+T|47.82800|7.26515|Staffelfelden
+T|42.89778|-0.39614|Station d'Artouste
+T|50.59988|3.14510|Station d'essais techniques des 4 Cantons
+T|45.77062|2.96300|Station du Panoramique des Dômes
+T|50.68131|2.51075|Steenbecque
+T|50.71302|2.78669|Steenwerck
+T|48.76358|7.41613|Steinbourg
+T|48.71759|7.70459|Stephansfeld
+T|48.58529|7.73392|Strasbourg
+T|48.56327|7.69507|Strasbourg Roethig
+T|50.71350|2.63106|Strazeele
+T|48.77107|2.50754|Sucy - Bonneuil
+T|47.34297|-1.53028|Sucé-sur-Erdre
+T|48.66535|0.13340|Surdon
+T|48.87173|2.22103|Suresnes Mont-Valérien
+T|46.11334|-0.76209|Surgères
+T|49.09958|2.52554|Survilliers - Fosses
+T|45.52912|4.18249|Sury-le-Comtal
+T|47.68087|1.45494|Suèvres
+T|43.41284|3.69653|Sète
+T|48.82741|2.20076|Sèvres Ville-d'Avray
+T|48.82122|2.21490|Sèvres-Rive-Gauche
+T|48.59994|0.16620|Sées
+T|48.26023|7.44306|Sélestat
+T|43.74088|5.07324|Sénas
+T|49.35670|1.76443|Sérifontaine
+T|45.62730|4.81788|Sérézin
+T|47.54993|-2.07277|Sévérac
+T|44.32463|3.05699|Sévérac-le-Château
+T|49.85924|2.83185|TGV Haute-Picardie
+T|48.82942|1.66899|Tacoignières - Richebourg
+T|45.89921|6.82587|Taconnaz
+T|47.65488|7.26410|Tagolsheim
+T|45.07231|4.83980|Tain l'Hermitage - Tournon
+T|44.81576|-0.60230|Talence-Médoquine
+T|44.10052|2.31542|Tanus
+T|45.88975|4.43902|Tarare
+T|43.80106|4.65706|Tarascon
+T|42.84954|1.60007|Tarascon-sur-Ariège
+T|43.24022|0.06936|Tarbes
+T|45.76170|4.75862|Tassin
+T|42.15269|9.15261|Tattone
+T|42.06888|9.00730|Tavera
+T|49.02521|2.22177|Taverny
+T|48.18110|0.19134|Teillé
+T|50.52865|3.17605|Templeuve
+T|45.92219|5.50145|Tenay/Hauteville
+T|45.11385|4.29624|Tence
+T|44.09000|7.59408|Tende
+T|49.65915|3.29679|Tergnier
+T|49.90785|2.79046|Terminus de Dompierre
+T|45.13579|1.30040|Terrasson - Lavilledieu
+T|43.92844|1.93695|Tessonières
+T|47.80905|7.10726|Thann
+T|47.81002|7.10106|Thann Centre
+T|47.81331|7.09342|Thann Saint-Jacques
+T|48.24412|6.41653|Thaon
+T|47.31441|2.04439|Theillay
+T|47.49476|4.62231|Thenissey
+T|45.16018|1.06867|Thenon
+T|48.41396|6.81026|Thiaville
+T|50.65245|2.47304|Thiennes
+T|45.86105|3.54318|Thiers
+T|49.00851|2.68057|Thieux - Nantouillet
+T|49.35400|6.16997|Thionville
+T|45.41898|0.92137|Thiviers
+T|44.07118|3.94399|Thoiras-Lasalle
+T|48.39431|2.76399|Thomery
+T|46.36896|6.48157|Thonon-les-Bains
+T|44.04156|6.56485|Thorame-Haute Gare
+T|47.77489|0.96217|Thoré la Rochette
+T|46.98510|-0.20990|Thouars
+T|47.26511|-1.44096|Thouaré
+T|49.47544|2.88198|Thourotte
+T|49.00670|1.91924|Thun-le-Paradis
+T|42.52295|2.22273|Thuès-Carança
+T|42.52880|2.24909|Thuès-les-Bains
+T|43.51349|6.93683|Théoule-sur-Mer
+T|47.32237|1.31212|Thésée
+T|49.81172|2.43595|Thézy-Glimont
+T|48.90643|7.25536|Tieffenbach - Struth
+T|47.61759|-0.46958|Tiercé
+T|48.76085|1.05456|Tillières
+T|50.35702|2.49814|Tincques
+T|45.94338|-0.89805|Tonnay-Charente
+T|44.39280|0.31410|Tonneins
+T|47.85940|3.97419|Tonnerre
+T|48.83955|2.65439|Torcy
+T|47.03284|-1.09373|Torfou - Le Longeron - Tiffauges
+T|47.16375|5.88878|Torpes - Boussières
+T|47.70093|3.30889|Toucy-Moulins
+T|47.73115|3.29219|Toucy-Ville
+T|48.67903|5.88060|Toul
+T|43.12864|5.92952|Toulon
+T|43.12503|5.97189|Toulon Sainte-Musse
+T|43.61143|1.45421|Toulouse-Matabiau
+T|43.57364|1.48009|Toulouse-Montaudran
+T|43.57963|1.45031|Toulouse-Saint-Agne
+T|43.59390|1.41752|Toulouse-Saint-Cyprien-Arènes
+T|50.71649|3.16822|Tourcoing
+T|48.73952|2.75871|Tournan
+T|43.18362|0.23892|Tournay
+T|43.97002|3.01664|Tournemire - Roquefort
+T|45.06779|4.78765|Tournon - Saint-Jean
+T|46.56666|4.90641|Tournus
+T|47.38943|0.69393|Tours
+T|49.32457|1.09848|Tourville-la-Rivière
+T|48.19307|1.93976|Toury
+T|43.84700|7.36427|Touët-de-l'Escarène
+T|43.94646|7.00480|Touët-sur-Var
+T|47.33741|2.88036|Tracy - Sancerre
+T|42.59650|9.43932|Tragone
+T|44.05062|3.98403|Train des Cevennes - Anduze
+T|44.07189|3.98057|Train des Cevennes - La Bambouseraie
+T|44.10188|3.88300|Train des Cevennes - Saint Jean du Gard
+T|48.62518|2.40725|Traité de Rome
+T|48.74860|-3.13503|Traou Nez
+T|48.77483|2.00666|Trappes
+T|49.56209|2.58182|Tricot
+T|49.28271|1.81805|Trie-Château
+T|48.98107|2.00602|Triel-sur-Seine
+T|45.14516|4.29240|Trifoulou
+T|48.96022|2.94941|Trilport
+T|50.33176|3.48926|Trith-Saint-Léger
+T|47.64813|6.84619|Trois-Chênes
+T|47.11311|3.05396|Tronsanges
+T|49.35938|0.08472|Trouville - Deauville
+T|48.29601|4.06521|Troyes
+T|48.62474|-3.17420|Trégonneau - Squiffiec
+T|47.45271|-0.46914|Trélazé
+T|47.13474|-0.80883|Trémentines
+T|44.86251|0.83033|Trémolat
+T|47.77643|0.80349|Trôo
+T|48.11831|0.51105|Tuffé Plan d'eau
+T|48.11351|0.51282|Tuffé Ville
+T|45.25872|1.75639|Tulle
+T|45.30087|5.49232|Tullins-Fures
+T|48.08560|7.27938|Turckheim
+T|45.03792|1.60060|Turenne
+T|49.05171|6.66455|Téting-sur-Nied
+T|45.87049|6.74194|Tête du Chêne
+T|42.55942|8.79811|U Fiumeseccu  Alzeta GR20
+T|42.05120|8.97860|Ucciani
+T|43.75797|4.26727|Uchaud
+T|49.30346|6.15627|Uckange
+T|42.45748|1.94047|Ur-les-Escaldes
+T|48.52571|7.33893|Urmatt
+T|43.49935|-1.30054|Urt
+T|46.62955|2.58667|Urçay
+T|49.09956|1.97056|Us
+T|45.55735|2.31434|Ussel
+T|45.39020|3.94743|Usson-en-Forez
+T|43.40480|-1.44902|Ustaritz
+T|45.44071|1.57040|Uzerche
+T|47.67079|0.31650|Vaas
+T|48.87523|2.63867|Vaires - Torcy
+T|48.95046|2.23183|Val d'Argenteuil
+T|48.85490|2.77256|Val d'Europe
+T|48.85436|2.48914|Val de Fontenay
+T|49.27551|1.22491|Val de Reuil
+T|48.85421|2.48888|Val-de-Fontenay (RER A)
+T|49.17807|4.22222|Val-de-Vesle
+T|44.99193|4.97843|Valence TGV Sud Rhône-Alpes
+T|44.11179|0.89165|Valence d'Agen
+T|44.92783|4.89347|Valence-Ville
+T|50.36346|3.51670|Valenciennes
+T|47.16316|1.55844|Valençay
+T|43.67270|4.06016|Valergues - Lansargues
+T|46.10940|5.96731|Valleiry
+T|49.20579|5.93593|Valleroy - Moineville
+T|46.53636|2.61068|Vallon-en-Sully
+T|46.03248|6.93267|Vallorcine
+T|49.09172|2.20215|Valmondois
+T|49.50523|-1.48003|Valognes
+T|48.95212|6.03940|Vandières
+T|47.66530|-2.75259|Vannes
+T|48.81822|2.29176|Vanves Malakoff
+T|47.37453|-1.01984|Varades-Saint-Florent-le-Vieil
+T|48.63524|6.31311|Varangéville-Saint-Nicolas
+T|46.31549|3.39418|Varennes-sur-Allier
+T|47.21441|1.61452|Varennes-sur-Fouzon
+T|45.19114|1.44729|Varetz
+T|43.04160|1.62831|Varilhes
+T|48.75916|2.19220|Vauboyen
+T|49.02183|2.22927|Vaucelles
+T|48.83674|2.15242|Vaucresson
+T|45.90885|6.77267|Vaudagne
+T|46.02471|1.10912|Vaulry
+T|49.23394|2.98857|Vaumoise
+T|43.69511|4.27004|Vauvert
+T|49.00710|1.96358|Vaux-sur-Seine
+T|49.47416|3.40963|Vauxaillon
+T|47.00140|3.13426|Vauzelles
+T|44.95018|1.70636|Vayrac
+T|44.89716|-0.31686|Vayres
+T|45.56590|4.29340|Veauche-Saint-Galmier
+T|47.29150|0.73494|Veigné
+T|47.32670|4.92765|Velars
+T|42.23320|9.17510|Venaco
+T|48.66574|7.71817|Vendenheim
+T|48.24009|4.46721|Vendeuvre-sur-Barse
+T|47.80205|1.06774|Vendôme
+T|47.82200|1.02101|Vendôme-Villiers TGV
+T|43.43334|1.42589|Venerque-Le-Vernet
+T|49.16546|5.37948|Verdun
+T|47.37152|0.81984|Veretz - Montlouis
+T|43.73987|4.21888|Vergèze - Codognan
+T|47.66059|3.73202|Vermenton
+T|48.04712|-1.59666|Vern
+T|45.64560|4.81342|Vernaison
+T|48.64455|2.82478|Verneuil-l'Étang
+T|48.74274|0.92918|Verneuil-sur-Avre
+T|49.64874|3.66783|Verneuil-sur-Serre
+T|49.09136|1.47812|Vernon - Giverny
+T|48.38643|2.84255|Vernou-sur-Seine
+T|48.98136|1.98312|Vernouillet Verneuil
+T|47.43877|4.66958|Verrey
+T|48.80030|2.12904|Versailles Château Rive Gauche
+T|48.80958|2.13571|Versailles Rive Droite
+T|48.79547|2.13552|Versailles-Chantiers
+T|49.65747|3.43336|Versigny
+T|48.94437|2.56693|Vert Galant
+T|45.78455|3.28828|Vertaizon
+T|45.64295|3.70560|Vertolaye
+T|47.18614|-1.47801|Vertou
+T|49.83001|3.89353|Vervins
+T|43.13048|2.32142|Verzeille
+T|47.61770|6.15191|Vesoul
+T|47.47568|1.12380|Veuves - Monteaux
+T|44.53191|5.81591|Veynes-Dévoluy
+T|45.89712|6.78504|Viaduc Sainte-Marie
+T|49.11685|2.36850|Viarmes
+T|43.31576|3.42536|Vias
+T|43.50071|3.79938|Vic - Mireval
+T|45.66494|3.20694|Vic-le-Comte
+T|44.97597|2.63160|Vic-sur-Cère
+T|46.12690|3.43082|Vichy
+T|43.43092|6.43386|Vidauban
+T|46.09118|1.67351|Vieilleville
+T|43.62399|2.08953|Vielmur-sur-Agoût
+T|45.51956|4.87277|Vienne
+T|45.54018|4.86822|Vienne-Estressin
+T|47.22695|2.05992|Vierzon
+T|47.20988|2.09961|Vierzon-Forges
+T|49.29106|3.27756|Vierzy
+T|47.80580|7.11951|Vieux-Thann
+T|47.80202|7.13286|Vieux-Thann-Z.I.
+T|44.11252|7.56288|Vievola
+T|45.04759|5.68536|Vif
+T|45.38289|1.51512|Vigeois
+T|48.70835|2.41430|Vigneux-sur-Seine
+T|48.27014|5.12416|Vignory
+T|48.59277|2.46158|Villabé
+T|49.07988|2.35151|Villaines
+T|46.00423|5.02838|Villars-les-Dombes
+T|43.93617|7.08670|Villars-sur-Var
+T|46.37383|6.47914|Ville Haute
+T|48.83423|-1.22548|Villedieu-les-Poêles
+T|44.43952|3.92402|Villefort
+T|42.59173|2.37032|Villefranche - Vernet-les-Bains
+T|43.39834|1.71462|Villefranche-de-Lauragais
+T|44.34750|2.03646|Villefranche-de-Rouergue
+T|44.62707|1.04914|Villefranche-du-Périgord
+T|47.29480|1.76809|Villefranche-sur-Cher
+T|43.70694|7.31419|Villefranche-sur-Mer
+T|45.98453|4.72110|Villefranche-sur-Saône
+T|43.43135|-1.45642|Villefranque
+T|47.36940|1.79726|Villeherviers
+T|44.76834|-0.54726|Villenave d'Ornon
+T|48.74517|2.43837|Villeneuve Triage
+T|43.62924|7.13406|Villeneuve-Loubet
+T|48.73015|2.44622|Villeneuve-Saint-Georges
+T|46.09866|-0.51303|Villeneuve-la-Comtesse
+T|48.34256|3.07188|Villeneuve-la-Guyard
+T|48.73985|2.42638|Villeneuve-le-Roi
+T|43.95678|4.79221|Villeneuve-lès-Avignon
+T|43.54374|3.84989|Villeneuve-lès-Maguelone
+T|46.65914|3.24685|Villeneuve-sur-Allier
+T|48.08510|3.28663|Villeneuve-sur-Yonne
+T|48.93952|1.99961|Villennes-sur-Seine
+T|43.43305|1.66097|Villenouvelle
+T|48.95302|2.60257|Villeparisis - Mitry le Neuf
+T|47.20189|0.63353|Villeperdue
+T|48.96289|2.51254|Villepinte - Parc du Sausset
+T|48.82378|1.99270|Villepreux - Les Clayes
+T|46.19421|5.39739|Villereversure
+T|49.86278|2.52132|Villers-Bretonneux
+T|49.25012|3.09385|Villers-Cotterêts
+T|49.28260|2.48994|Villers-Saint-Paul
+T|49.36816|2.22023|Villers-Saint-Sépulcre
+T|49.31609|0.01002|Villers-sur-Mer
+T|48.96001|2.34237|Villetaneuse - Université
+T|48.86329|2.88307|Villiers - Montbarbin
+T|48.81533|1.87750|Villiers - Neauphle - Pontchartrain
+T|47.77867|3.20362|Villiers - Saint-Benoît
+T|48.99398|2.41635|Villiers-le-Bel - Gonesse - Arnouville
+T|48.82323|2.54254|Villiers-sur-Marne - Le Plessis-Trévise
+T|50.37324|2.82298|Vimy
+T|45.20809|5.41041|Vinay
+T|47.70408|3.62861|Vincelles
+T|48.84732|2.43349|Vincennes
+T|48.34370|6.33546|Vincey
+T|42.64815|2.52761|Vinça
+T|45.82430|5.80728|Vions - Chanaz
+T|48.84646|-0.88290|Vire
+T|50.08283|4.72321|Vireux-Molhain
+T|45.84822|5.65371|Virieu-le-Grand - Belley
+T|45.49188|5.47226|Virieu-sur-Bourbre
+T|48.80549|2.16831|Viroflay Rive Droite
+T|48.80066|2.17159|Viroflay Rive Gauche
+T|49.58358|0.35414|Virville-Manneville
+T|48.67622|2.38662|Viry-Châtillon
+T|49.62755|3.25025|Viry-Noureuil
+T|50.50494|2.51713|Vis à Marles
+T|43.44123|5.23711|Vitrolles Aéroport Marseille Provence
+T|50.32727|2.98082|Vitry-en-Artois
+T|48.71791|4.58761|Vitry-le-François
+T|48.80061|2.40248|Vitry-sur-Seine
+T|48.12250|-1.21208|Vitré
+T|48.20262|5.94225|Vittel
+T|42.17738|9.16810|Vivario
+T|45.64850|5.90334|Viviers-du-Lac
+T|44.55567|2.21841|Viviez - Decazeville
+T|48.22998|0.14506|Vivoin - Beaumont
+T|46.42679|0.26524|Vivonne
+T|42.12858|9.13376|Vizzavona
+T|45.36394|5.59474|Voiron
+T|47.93042|0.08539|Voivres
+T|49.45633|6.07904|Volmerange-les-Mines
+T|45.86471|3.00315|Volvic
+T|46.22727|4.99173|Vonnas
+T|45.29038|5.63197|Voreppe
+T|45.18291|3.91142|Vorey
+T|48.51516|2.59915|Vosves
+T|47.17541|4.97156|Vougeot – Gilly-lès-Cîteaux
+T|47.47902|6.76983|Voujeaucourt
+T|48.13399|-0.29212|Voutré
+T|48.27499|1.62225|Voves
+T|46.50824|3.63206|Voyage over the World
+T|49.72618|3.72068|Voyenne
+T|48.23682|5.12387|Vraincourt
+T|49.70097|4.84393|Vrigne-Meuse
+T|48.43067|2.75306|Vulaines-sur-Seine - Samoreau
+T|44.85201|0.10366|Vélines
+T|49.70174|0.28435|Vélo-Rails Étretat Pays de Caux
+T|49.70853|0.21726|Vélo-Rails Étretat Pays de Caux
+T|46.57049|0.63553|VéloRail de Chauvigny
+T|45.70506|4.88830|Vénissieux
+T|49.50333|2.61175|Wacquemoulin
+T|48.05801|7.23340|Walbach - La Forge
+T|48.88626|7.80929|Walbourg
+T|47.64161|7.26331|Walheim
+T|50.38461|3.39375|Wallers
+T|49.22391|6.15964|Walygator Parc
+T|50.13391|3.31133|Wambaix
+T|50.82574|2.20777|Watten – Éperlecques
+T|50.57940|3.05173|Wattignies - Templemars
+T|50.57454|2.93638|Wavrin
+T|47.88994|6.99762|Wesserling
+T|48.71779|7.79710|Weyersheim
+T|48.04613|7.20957|Wihr-au-Val - Soultzbach
+T|47.84239|7.06942|Willer-sur-Thur
+T|48.74595|7.50740|Wilwisheim
+T|50.76438|1.61364|Wimille – Wimereux
+T|48.92019|7.38149|Wingen-sur-Moder
+T|48.50745|7.26999|Wisches
+T|49.03157|7.95017|Wissembourg
+T|49.14880|6.15562|Woippy
+T|48.05302|6.37686|Xertigny
+T|44.32922|-0.94627|Ychoux
+T|48.70655|2.48347|Yerres
+T|48.47023|-2.65247|Yffiniac
+T|43.97825|-0.73619|Ygos
+T|44.91068|2.36447|Ytrac
+T|49.62212|0.75015|Yvetot
+T|47.69445|7.29445|Zillisheim
+T|43.72220|7.35688|Èze-sur-Mer
+T|45.15279|5.71988|Échirolles
+T|46.38749|-0.40489|Échiré - Saint-Gelais
+T|47.27471|5.99477|École-Valentin
+T|47.82447|0.26900|Écommoy
+T|48.71489|-0.12056|Écouché
+T|49.02295|2.36264|Écouen - Ézanville
+T|47.08000|1.35757|Écueillé
+T|45.76580|4.77926|Écully la Demi-Lune
+T|45.40246|2.06517|Égletons
+T|48.58254|2.22268|Égly
+T|46.44049|1.55219|Éguzon
+T|48.08707|6.60013|Éloyes
+T|48.80610|2.61846|Émerainville Pontault-Combault
+T|49.04637|3.95976|Épernay
+T|48.60517|1.68156|Épernon
+T|45.45687|6.29232|Épierre - Saint-Léger
+T|48.17783|6.44151|Épinal
+T|48.95815|2.32840|Épinay - Villetaneuse
+T|48.66933|2.33188|Épinay-sur-Orge
+T|48.67092|2.33507|Épinay-sur-Orge
+T|48.95423|2.30231|Épinay-sur-Seine
+T|49.05471|2.12238|Épluches
+T|48.96338|1.80883|Épône - Mézières
+T|49.01809|2.09063|Éragny - Neuville
+T|49.20754|5.63967|Étain
+T|49.56071|0.33045|Étainhus-Saint-Romain
+T|47.15589|6.27054|Étalans
+T|48.43695|2.15950|Étampes
+T|46.86791|4.18377|Étang
+T|50.51688|1.64237|Étaples - Le Touquet
+T|48.13755|3.29029|Étigny - Véron
+T|48.36722|6.87693|Étival-Clairefontaine
+T|47.65675|-0.46070|Étriché - Châteauneuf
+T|48.49366|2.19458|Étréchy
+T|46.39791|6.57778|Évian-les-Bains
+T|49.01842|1.14970|Évreux - Normandie
+T|48.15559|-0.39699|Évron
+T|48.62599|2.42891|Évry - Courcouronnes
+T|48.63453|2.45220|Évry Val de Seine
+T|48.62493|2.42550|Évry-Courcouronnes T12
