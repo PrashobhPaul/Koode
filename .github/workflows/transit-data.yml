@@ -44,16 +44,20 @@ jobs:
           FIRST="IN US GB FR DE ES IT NL AE SG JP AU CA"
           REST="MX IE BE AT CH PT SE DK NO FI CZ PL HU GR RO BG TR SA QA EG IL MY TH ID VN HK TW KR NZ BD PK LK BR AR CL CO PE ZA CN"
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then DEFAULT="$FIRST"; else DEFAULT="$FIRST $REST"; fi
-          # A push can name just the countries it needs rebuilt.
-          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ -s tools/transit/push-countries.txt ]; then
-            DEFAULT="$(tr -s ' \n' ' ' < tools/transit/push-countries.txt)"
+          # A push can name just the countries it needs rebuilt, or none
+          # (a file of only comments: the change needs no data).
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ -f tools/transit/push-countries.txt ]; then
+            DEFAULT="$(grep -v '^#' tools/transit/push-countries.txt | tr -s ' \n' ' ')"
           fi
           LIST="${ASKED:-$DEFAULT}"
+          LIST="$(echo $LIST)"
           for c in $LIST; do [[ "$c" =~ ^[A-Z]{2}$ ]] || { echo "Bad country code: $c"; exit 1; }; done
+          if [ -z "$LIST" ]; then echo "countries=[]" >> "$GITHUB_OUTPUT"; exit 0; fi
           echo "countries=$(printf '%s\n' $LIST | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
 
   build:
     needs: plan
+    if: needs.plan.outputs.countries != '[]'
     runs-on: ubuntu-latest
     timeout-minutes: 60
     strategy:
@@ -78,7 +82,7 @@ jobs:
 
   commit:
     needs: build
-    if: always() && needs.build.result != 'cancelled'
+    if: always() && needs.build.result != 'cancelled' && needs.build.result != 'skipped'
     runs-on: ubuntu-latest
     permissions:
       contents: write

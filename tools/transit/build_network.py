@@ -565,12 +565,19 @@ def carry_rows(text, *kinds):
 
 
 def count_rows(path):
-    """How many of each thing a country's file has: M, W, R, T and B."""
+    """
+    How many of each thing a country's file has: M, W, R, T and B. Only
+    named ones count: a station with no name is no use to anyone, and a
+    busy server can answer the lines in full and the station names in part
+    (India's metros came back nameless once).
+    """
     n = dict.fromkeys("MWRTB", 0)
     try:
         with open(path, encoding="utf-8") as f:
             for l in f:
                 r = l.rstrip("\n").split("|")
+                if len(r) < 4 or not r[3].strip():
+                    continue
                 if r[0] == "S":
                     n["W" if r[-1] == "W" else "M"] += 1
                 elif r[0] in "RTB" and len(r[0]) == 1:
