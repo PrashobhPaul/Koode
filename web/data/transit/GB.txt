@@ -1,0 +1,3685 @@
+# Transit for Koode, GB. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|51.53232|0.00385|Abbey Road Platform 1|Docklands Light Railway|M
+S|51.53280|0.00338|Abbey Road Platform 2|Docklands Light Railway|M
+S|51.51093|-0.01310|All Saints Platform 1|Docklands Light Railway|M
+S|51.51019|-0.01287|All Saints Platform 2|Docklands Light Railway|M
+S|51.50877|0.05498|Beckton Park Platform 1|Docklands Light Railway|M
+S|51.51429|0.06119|Beckton Platform 1|Docklands Light Railway|M
+S|51.51451|0.06259|Beckton Platform 2|Docklands Light Railway|M
+S|51.50804|-0.00666|Blackwall Platform 1|Docklands Light Railway|M
+S|51.50786|-0.00755|Blackwall Platform 2|Docklands Light Railway|M
+S|51.52768|-0.02084|Bow Church Platform 1|Docklands Light Railway|M
+S|51.52721|-0.02046|Bow Church Platform 2|Docklands Light Railway|M
+S|51.50511|-0.02098|Canary Wharf|Docklands Light Railway|M
+S|51.50482|-0.02090|Canary Wharf Platforms 1 & 2|Docklands Light Railway|M
+S|51.51395|0.00827|Canning Town Platform 1|Docklands Light Railway|M
+S|51.49566|-0.01444|Crossharbour Platform 1|Docklands Light Railway|M
+S|51.49618|-0.01443|Crossharbour Platform 2|Docklands Light Railway|M
+S|51.50969|0.02675|Custom House for Excel Platform 3|Docklands Light Railway|M
+S|51.50960|0.02539|Custom House for Excel Platform 4|Docklands Light Railway|M
+S|51.48176|-0.01077|Cutty Sark for Maritime Greenwich Platform 1|Docklands Light Railway|M
+S|51.50848|0.06401|Cyprus Platform 1|Docklands Light Railway|M
+S|51.47390|-0.02222|Deptford Bridge Platform 1|Docklands Light Railway|M
+S|51.47449|-0.02255|Deptford Bridge Platform 2|Docklands Light Railway|M
+S|51.52248|-0.01747|Devons Road Platform 1|Docklands Light Railway|M
+S|51.52185|-0.01702|Devons Road Platform 2|Docklands Light Railway|M
+S|51.50950|-0.00163|East India Platform 1|Docklands Light Railway|M
+S|51.50928|-0.00264|East India Platform 2|Docklands Light Railway|M
+S|51.46836|-0.01603|Elverson Road Platform 1|Docklands Light Railway|M
+S|51.46877|-0.01643|Elverson Road Platform 2|Docklands Light Railway|M
+S|51.50893|0.07180|Gallions Reach Platform 1|Docklands Light Railway|M
+S|51.47806|-0.01526|Greenwich Platform 3|Docklands Light Railway|M
+S|51.47801|-0.01599|Greenwich Platform 4|Docklands Light Railway|M
+S|51.50270|-0.02153|Heron Quays Platform 1|Docklands Light Railway|M
+S|51.50311|-0.02149|Heron Quays Platform 2|Docklands Light Railway|M
+S|51.48808|-0.01051|Island Gardens Platform 1|Docklands Light Railway|M
+S|51.50204|0.06286|King George V Platform 1|Docklands Light Railway|M
+S|51.50197|0.06179|King George V Platform 2|Docklands Light Railway|M
+S|51.51562|-0.01426|Langdon Park Platform 1|Docklands Light Railway|M
+S|51.51488|-0.01399|Langdon Park Platform 2|Docklands Light Railway|M
+S|51.46496|-0.01298|Lewisham Platform 5|Docklands Light Railway|M
+S|51.51233|-0.03882|Limehouse Platform 3|Docklands Light Railway|M
+S|51.51235|-0.03985|Limehouse Platform 4|Docklands Light Railway|M
+S|51.50372|0.04805|London City Airport Platform 1|Docklands Light Railway|M
+S|51.49120|-0.01487|Mudchute Platform 1|Docklands Light Railway|M
+S|51.49175|-0.01495|Mudchute Platform 2|Docklands Light Railway|M
+S|51.50231|0.03375|Pontoon Dock Platform 1|Docklands Light Railway|M
+S|51.50223|0.03271|Pontoon Dock Platform 2|Docklands Light Railway|M
+S|51.50767|-0.01631|Poplar Platform 1|Docklands Light Railway|M
+S|51.50768|-0.01741|Poplar Platform 3|Docklands Light Railway|M
+S|51.50949|0.03366|Prince Regent Platform 1|Docklands Light Railway|M
+S|51.50949|0.03257|Prince Regent Platform 2|Docklands Light Railway|M
+S|51.53401|-0.01323|Pudding Mill Lane Platform 1|Docklands Light Railway|M
+S|51.53352|-0.01409|Pudding Mill Lane Platform 2|Docklands Light Railway|M
+S|51.50840|0.04587|Royal Albert Platform 1|Docklands Light Railway|M
+S|51.50921|0.01814|Royal Victoria Platform 1|Docklands Light Railway|M
+S|51.50910|0.01758|Royal Victoria Platform 2|Docklands Light Railway|M
+S|51.51181|-0.05499|Shadwell Platform 1|Docklands Light Railway|M
+S|51.51167|-0.05599|Shadwell Platform 2|Docklands Light Railway|M
+S|51.50002|-0.01595|South Quay Platform 1|Docklands Light Railway|M
+S|51.50007|-0.01676|South Quay Platform 2|Docklands Light Railway|M
+S|51.52018|0.00446|Star Lane Platform 1|Docklands Light Railway|M
+S|51.52082|0.00421|Star Lane Platform 2|Docklands Light Railway|M
+S|51.53727|0.00033|Stratford High Street Platform 1|Docklands Light Railway|M
+S|51.53788|-0.00040|Stratford High Street Platform 2|Docklands Light Railway|M
+S|51.54572|-0.00885|Stratford International Platform 1|Docklands Light Railway|M
+S|51.51062|-0.07418|Tower Gateway Platform 1|Docklands Light Railway|M
+S|51.51063|-0.07326|Tower Gateway Platform 2|Docklands Light Railway|M
+S|51.50927|-0.02623|Westferry Platform 1|Docklands Light Railway|M
+S|51.50965|-0.02731|Westferry Platform 2|Docklands Light Railway|M
+S|51.52702|0.00470|West Ham Platform 3|Docklands Light Railway|M
+S|51.50643|-0.02053|West India Quay Platform 2|Docklands Light Railway|M
+S|51.50695|-0.02052|West India Quay Platform 3|Docklands Light Railway|M
+S|51.50279|0.02272|West Silvertown Platform 1|Docklands Light Railway|M
+S|51.50304|0.02182|West Silvertown Platform 2|Docklands Light Railway|M
+S|54.20229|-4.41239|Baldrine|Isle of Man Public Transport|M
+S|54.21348|-4.40577|Ballabeg|Isle of Man Public Transport|M
+S|54.27986|-4.33948|Ballacannell Halt|Isle of Man Public Transport|M
+S|54.19397|-4.42401|Balladromma Beg Halt|Isle of Man Public Transport|M
+S|54.20743|-4.40697|Ballagawne Halt|Isle of Man Public Transport|M
+S|54.28046|-4.36497|Ballaglass Glen|Isle of Man Public Transport|M
+S|54.27417|-4.37514|Ballagorry|Isle of Man Public Transport|M
+S|54.28876|-4.33606|Ballajora Halt|Isle of Man Public Transport|M
+S|54.19761|-4.41745|Ballamenagh Halt|Isle of Man Public Transport|M
+S|54.23281|-4.37745|Ballamoar Bottom Halt|Isle of Man Public Transport|M
+S|54.23383|-4.37683|Ballamoar Top Halt|Isle of Man Public Transport|M
+S|54.24167|-4.37327|Ballaragh Halt|Isle of Man Public Transport|M
+S|54.26694|-4.37746|Ballasholague Halt|Isle of Man Public Transport|M
+S|54.27834|-4.34576|Ballaskeig Halt|Isle of Man Public Transport|M
+S|54.31950|-4.37958|Ballastowell Halt|Isle of Man Public Transport|M
+S|54.26258|-4.37585|Ballellin Halt|Isle of Man Public Transport|M
+S|54.26447|-4.37842|Ballig Halt|Isle of Man Public Transport|M
+S|54.31356|-4.37334|Ballure Halt|Isle of Man Public Transport|M
+S|54.30966|-4.36106|Belle Vue Halt|Isle of Man Public Transport|M
+S|54.17069|-4.44524|Boncompte's|Isle of Man Public Transport|M
+S|54.17030|-4.43732|Braeside|Isle of Man Public Transport|M
+S|54.25954|-4.37190|Brown's Crossing|Isle of Man Public Transport|M
+S|54.25144|-4.46375|Bungalow|Isle of Man Public Transport|M
+S|54.25169|-4.37534|Burn's Crossing|Isle of Man Public Transport|M
+S|54.26886|-4.37660|Corkhill's Crossing Halt|Isle of Man Public Transport|M
+S|54.28321|-4.35729|Cornaa Halt|Isle of Man Public Transport|M
+S|54.16711|-4.46063|Derby Castle MER|Isle of Man Public Transport|M
+S|54.25444|-4.37213|Dhoon Farm Halt|Isle of Man Public Transport|M
+S|54.24984|-4.37706|Dhoon Glen Halt|Isle of Man Public Transport|M
+S|54.25592|-4.37164|Dhoon Quarry Halt|Isle of Man Public Transport|M
+S|54.27931|-4.36951|Dolland Halt|Isle of Man Public Transport|M
+S|54.29323|-4.34080|Dreemskerry|Isle of Man Public Transport|M
+S|54.18459|-4.42791|Eskadale Halt|Isle of Man Public Transport|M
+S|54.22112|-4.39915|Fairy Cottage|Isle of Man Public Transport|M
+S|54.17005|-4.43417|Far End Halt|Isle of Man Public Transport|M
+S|54.20706|-4.41031|Garwick Glen|Isle of Man Public Transport|M
+S|54.27016|-4.37598|Glen Mona Halt|Isle of Man Public Transport|M
+S|54.17804|-4.43035|Groudle Glen|Isle of Man Public Transport|M
+S|54.17738|-4.42649|Groudle Old Road Halt|Isle of Man Public Transport|M
+S|54.17168|-4.42553|Howstrake Camp Halt|Isle of Man Public Transport|M
+S|54.23205|-4.40524|Laxey|Isle of Man Public Transport|M
+S|54.23033|-4.40379|Laxey Car Sheds|Isle of Man Public Transport|M
+S|54.30224|-4.35235|Lewaigue|Isle of Man Public Transport|M
+S|54.17102|-4.44223|Majestic Halt|Isle of Man Public Transport|M
+S|54.22959|-4.39521|Minorca Halt|Isle of Man Public Transport|M
+S|54.28085|-4.35282|Murray's Road Halt|Isle of Man Public Transport|M
+S|54.16833|-4.44849|Onchan Head|Isle of Man Public Transport|M
+S|54.16717|-4.45276|Port Jack|Isle of Man Public Transport|M
+S|54.31789|-4.37762|Queen's Drive Halt|Isle of Man Public Transport|M
+S|54.32013|-4.38095|Ramsey, Plaza|Isle of Man Public Transport|M
+S|54.28520|-4.33541|Rome's Crossing|Isle of Man Public Transport|M
+S|54.19675|-4.41976|Scarffe's Crossing|Isle of Man Public Transport|M
+S|54.23154|-4.37823|Skinscoe Halt|Isle of Man Public Transport|M
+S|54.26212|-4.46301|Snaefell Summit|Isle of Man Public Transport|M
+S|54.22470|-4.39484|Southcape Halt|Isle of Man Public Transport|M
+S|54.20354|-4.41224|Sunnycott Halt|Isle of Man Public Transport|M
+S|54.25800|-4.37165|Thalloo Mitchell|Isle of Man Public Transport|M
+S|54.27164|-4.37525|The Garey|Isle of Man Public Transport|M
+S|54.31668|-4.37632|Walpole Drive Halt|Isle of Man Public Transport|M
+S|54.27762|-4.37343|Watson's Crossing|Isle of Man Public Transport|M
+S|51.50271|-0.27996|Acton Town|London Underground|M
+S|51.51425|-0.07572|Aldgate|London Underground|M
+S|51.51562|-0.07084|Aldgate East|London Underground|M
+S|51.54080|-0.30010|Alperton|London Underground|M
+S|51.67409|-0.60736|Amersham|London Underground|M
+S|51.53249|-0.10604|Angel|London Underground|M
+S|51.56531|-0.13482|Archway|London Underground|M
+S|51.61643|-0.13310|Arnos Grove|London Underground|M
+S|51.55838|-0.10749|Arsenal|London Underground|M
+S|51.52259|-0.15674|Baker Street|London Underground|M
+S|51.44339|-0.15290|Balham|London Underground|M
+S|51.51310|-0.08937|Bank|London Underground|M
+S|51.52018|-0.09863|Barbican|London Underground|M
+S|51.54027|0.07932|Barking|London Underground|M
+S|51.58582|0.08862|Barkingside|London Underground|M
+S|51.49035|-0.21441|Barons Court|London Underground|M
+S|51.47962|-0.14297|Battersea Power|London Underground|M
+S|51.51228|-0.18839|Bayswater|London Underground|M
+S|51.54031|0.12652|Becontree|London Underground|M
+S|51.55031|-0.16461|Belsize Park|London Underground|M
+S|51.49770|-0.06435|Bermondsey|London Underground|M
+S|51.52724|-0.05475|Bethnal Green|London Underground|M
+S|51.51159|-0.10377|Blackfriars|London Underground|M
+S|51.58672|-0.04165|Blackhorse Road|London Underground|M
+S|51.51398|-0.14942|Bond Street|London Underground|M
+S|51.50114|-0.09329|Borough|London Underground|M
+S|51.49534|-0.32544|Boston Manor|London Underground|M
+S|51.60738|-0.12490|Bounds Green|London Underground|M
+S|51.52685|-0.02479|Bow Road|London Underground|M
+S|51.57682|-0.21397|Brent Cross|London Underground|M
+S|51.46261|-0.11471|Brixton|London Underground|M
+S|51.52463|-0.01232|Bromley-By-Bow|London Underground|M
+S|51.62594|0.04682|Buckhurst Hill|London Underground|M
+S|51.60281|-0.26401|Burnt Oak|London Underground|M
+S|51.54848|-0.11836|Caledonian Road|London Underground|M
+S|51.53944|-0.14270|Camden Town|London Underground|M
+S|51.49793|-0.04984|Canada Water|London Underground|M
+S|51.50350|-0.01863|Canary Wharf|London Underground|M
+S|51.51138|-0.09036|Cannon Street|London Underground|M
+S|51.60801|-0.29475|Canons Park|London Underground|M
+S|51.66810|-0.56117|Chalfont & Latimer|London Underground|M
+S|51.54411|-0.15348|Chalk Farm|London Underground|M
+S|51.51817|-0.11176|Chancery Lane|London Underground|M
+S|51.50797|-0.12639|Charing Cross|London Underground|M
+S|51.50797|-0.12639|Charing Cross|London Underground|M
+S|51.70501|-0.61108|Chesham|London Underground|M
+S|51.61764|0.07572|Chigwell|London Underground|M
+S|51.49456|-0.26787|Chiswick Park|London Underground|M
+S|51.65422|-0.51839|Chorleywood|London Underground|M
+S|51.46207|-0.13736|Clapham Common|London Underground|M
+S|51.46530|-0.12964|Clapham North|London Underground|M
+S|51.45284|-0.14755|Clapham South|London Underground|M
+S|51.65137|-0.14851|Cockfosters|London Underground|M
+S|51.59541|-0.24993|Colindale|London Underground|M
+S|51.41827|-0.17786|Colliers Wood|London Underground|M
+S|51.51309|-0.12427|Covent Garden|London Underground|M
+S|51.64758|-0.44108|Croxley|London Underground|M
+S|51.54402|0.16495|Dagenham East|London Underground|M
+S|51.54155|0.14564|Dagenham Heathway|London Underground|M
+S|51.64528|0.08358|Debden|London Underground|M
+S|51.55193|-0.23900|Dollis Hill|London Underground|M
+S|51.51498|-0.30041|Ealing Broadway|London Underground|M
+S|51.50971|-0.28817|Ealing Common|London Underground|M
+S|51.49161|-0.19390|Earl's Court|London Underground|M
+S|51.51735|-0.24814|East Acton|London Underground|M
+S|51.57666|-0.39651|Eastcote|London Underground|M
+S|51.58719|-0.16481|East Finchley|London Underground|M
+S|51.53940|0.05260|East Ham|London Underground|M
+S|51.45861|-0.21124|East Putney|London Underground|M
+S|51.61366|-0.27496|Edgware|London Underground|M
+S|51.52019|-0.16676|Edgware Road|London Underground|M
+S|51.52046|-0.17030|Edgware Road|London Underground|M
+S|51.49489|-0.10057|Elephant & Castle|London Underground|M
+S|51.54958|0.19743|Elm Park|London Underground|M
+S|51.50721|-0.12224|Embankment|London Underground|M
+S|51.69363|0.11399|Epping|London Underground|M
+S|51.52829|-0.13387|Euston|London Underground|M
+S|51.52569|-0.13557|Euston Square|London Underground|M
+S|51.59595|0.09113|Fairlop|London Underground|M
+S|51.51996|-0.10455|Farringdon|London Underground|M
+S|51.60084|-0.19232|Finchley Central|London Underground|M
+S|51.54723|-0.18070|Finchley Road|London Underground|M
+S|51.56483|-0.10641|Finsbury Park|London Underground|M
+S|51.48083|-0.19450|Fulham Broadway|London Underground|M
+S|51.57652|0.06488|Gants Hill|London Underground|M
+S|51.49453|-0.18377|Gloucester Road|London Underground|M
+S|51.57230|-0.19403|Golders Green|London Underground|M
+S|51.50176|-0.22657|Goldhawk Road|London Underground|M
+S|51.52060|-0.13436|Goodge Street|London Underground|M
+S|51.61313|0.09250|Grange Hill|London Underground|M
+S|51.52381|-0.14370|Great Portland Street|London Underground|M
+S|51.54212|-0.34480|Greenford|London Underground|M
+S|51.50662|-0.14294|Green Park|London Underground|M
+S|51.49138|-0.27552|Gunnersbury|London Underground|M
+S|51.60331|0.09338|Hainault|London Underground|M
+S|51.49271|-0.22386|Hammersmith|London Underground|M
+S|51.55660|-0.17843|Hampstead|London Underground|M
+S|51.53031|-0.29365|Hanger Lane|London Underground|M
+S|51.53636|-0.25783|Harlesden|London Underground|M
+S|51.57914|-0.33609|Harrow-on-the-Hill|London Underground|M
+S|51.59222|-0.33487|Harrow & Wealdstone|London Underground|M
+S|51.46654|-0.42399|Hatton Cross|London Underground|M
+S|51.45881|-0.44547|Heathrow Terminal 4|London Underground|M
+S|51.47252|-0.48773|Heathrow Terminal 5|London Underground|M
+S|51.47134|-0.45248|Heathrow Terminals 2 & 3|London Underground|M
+S|51.58340|-0.22655|Hendon Central|London Underground|M
+S|51.65040|-0.19388|High Barnet|London Underground|M
+S|51.54637|-0.10365|Highbury & Islington|London Underground|M
+S|51.57768|-0.14583|Highgate|London Underground|M
+S|51.50030|-0.19211|High Street Kensington|London Underground|M
+S|51.55360|-0.45046|Hillingdon|London Underground|M
+S|51.51711|-0.12007|Holborn|London Underground|M
+S|51.50719|-0.20546|Holland Park|London Underground|M
+S|51.55287|-0.11301|Holloway Road|London Underground|M
+S|51.55387|0.21811|Hornchurch|London Underground|M
+S|51.47131|-0.36623|Hounslow Central|London Underground|M
+S|51.47347|-0.35589|Hounslow East|London Underground|M
+S|51.47358|-0.38582|Hounslow West|London Underground|M
+S|51.50273|-0.15432|Hyde Park Corner|London Underground|M
+S|51.56157|-0.44235|Ickenham|London Underground|M
+S|51.48829|-0.10588|Kennington|London Underground|M
+S|51.53061|-0.22444|Kensal Green|London Underground|M
+S|51.49744|-0.20950|Kensington (Olympia)|London Underground|M
+S|51.55017|-0.13887|Kentish Town|London Underground|M
+S|51.58153|-0.31664|Kenton|London Underground|M
+S|51.47713|-0.28496|Kew Gardens|London Underground|M
+S|51.54699|-0.20534|Kilburn|London Underground|M
+S|51.53502|-0.19383|Kilburn Park|London Underground|M
+S|51.58432|-0.27871|Kingsbury|London Underground|M
+S|51.53061|-0.12395|King's Cross St Pancras|London Underground|M
+S|51.50160|-0.16094|Knightsbridge|London Underground|M
+S|51.51726|-0.21110|Ladbroke Grove|London Underground|M
+S|51.49893|-0.11201|Lambeth North|London Underground|M
+S|51.51184|-0.17538|Lancaster Gate|London Underground|M
+S|51.51347|-0.21779|Latimer Road|London Underground|M
+S|51.51146|-0.12826|Leicester Square|London Underground|M
+S|51.55682|-0.00513|Leyton|London Underground|M
+S|51.56880|0.00862|Leytonstone|London Underground|M
+S|51.51768|-0.08252|Liverpool Street|London Underground|M
+S|51.50541|-0.08870|London Bridge|London Underground|M
+S|51.64123|0.05532|Loughton|London Underground|M
+S|51.52987|-0.18574|Maida Vale|London Underground|M
+S|51.57032|-0.09640|Manor House|London Underground|M
+S|51.51189|-0.09522|Mansion House|London Underground|M
+S|51.51344|-0.15825|Marble Arch|London Underground|M
+S|51.52224|-0.16350|Marylebone|London Underground|M
+S|51.52534|-0.03343|Mile End|London Underground|M
+S|51.60827|-0.21015|Mill Hill East|London Underground|M
+S|51.51063|-0.08613|Monument|London Underground|M
+S|51.51825|-0.08906|Moorgate|London Underground|M
+S|51.62978|-0.43216|Moor Park|London Underground|M
+S|51.40276|-0.19476|Morden|London Underground|M
+S|51.53406|-0.13809|Mornington Crescent|London Underground|M
+S|51.55434|-0.25075|Neasden|London Underground|M
+S|51.57550|0.08997|Newbury Park|London Underground|M
+S|51.48018|-0.12969|Nine Elms|London Underground|M
+S|51.52358|-0.25978|North Acton|London Underground|M
+S|51.49966|-0.31298|Northfields|London Underground|M
+S|51.50057|0.00432|North Greenwich|London Underground|M
+S|51.58516|-0.36318|North Harrow|London Underground|M
+S|51.54846|-0.36952|Northolt|London Underground|M
+S|51.56240|-0.30387|North Wembley|London Underground|M
+S|51.57849|-0.31770|Northwick Park|London Underground|M
+S|51.61080|-0.42371|Northwood|London Underground|M
+S|51.60015|-0.40846|Northwood Hills|London Underground|M
+S|51.50893|-0.19620|Notting Hill Gate|London Underground|M
+S|51.64733|-0.13125|Oakwood|London Underground|M
+S|51.52563|-0.08761|Old Street|London Underground|M
+S|51.48155|-0.35183|Osterley|London Underground|M
+S|51.48183|-0.11240|Oval|London Underground|M
+S|51.51544|-0.14196|Oxford Circus|London Underground|M
+S|51.51548|-0.17536|Paddington|London Underground|M
+S|51.51846|-0.17862|Paddington|London Underground|M
+S|51.52643|-0.28393|Park Royal|London Underground|M
+S|51.47508|-0.20155|Parsons Green|London Underground|M
+S|51.53650|-0.32259|Perivale|London Underground|M
+S|51.50982|-0.13455|Piccadilly Circus|London Underground|M
+S|51.48916|-0.13533|Pimlico|London Underground|M
+S|51.59266|-0.38064|Pinner|London Underground|M
+S|51.53115|0.01668|Plaistow|London Underground|M
+S|51.57227|-0.29581|Preston Road|London Underground|M
+S|51.46830|-0.20879|Putney Bridge|London Underground|M
+S|51.59419|-0.28618|Queensbury|London Underground|M
+S|51.53387|-0.20550|Queen's Park|London Underground|M
+S|51.51047|-0.18723|Queensway|London Underground|M
+S|51.49413|-0.23579|Ravenscourt Park|London Underground|M
+S|51.57521|-0.37147|Rayners Lane|London Underground|M
+S|51.57632|0.04541|Redbridge|London Underground|M
+S|51.52363|-0.14664|Regent's Park|London Underground|M
+S|51.46321|-0.30041|Richmond|London Underground|M
+S|51.64023|-0.47363|Rickmansworth|London Underground|M
+S|51.61708|0.04376|Roding Valley|London Underground|M
+S|51.51902|-0.18744|Royal Oak|London Underground|M
+S|51.57140|-0.42134|Ruislip|London Underground|M
+S|51.56066|-0.41046|Ruislip Gardens|London Underground|M
+S|51.57340|-0.41180|Ruislip Manor|London Underground|M
+S|51.52305|-0.12425|Russell Square|London Underground|M
+S|51.58247|-0.07493|Seven Sisters|London Underground|M
+S|51.50436|-0.21833|Shepherd's Bush|London Underground|M
+S|51.50607|-0.22631|Shepherd's Bush Market|London Underground|M
+S|51.49223|-0.15588|Sloane Square|London Underground|M
+S|51.58080|0.02159|Snaresbrook|London Underground|M
+S|51.50086|-0.30768|South Ealing|London Underground|M
+S|51.44578|-0.20661|Southfields|London Underground|M
+S|51.63232|-0.12779|Southgate|London Underground|M
+S|51.49408|-0.17291|South Kensington|London Underground|M
+S|51.57008|-0.30837|South Kenton|London Underground|M
+S|51.55699|-0.39906|South Ruislip|London Underground|M
+S|51.50393|-0.10497|Southwark|London Underground|M
+S|51.41538|-0.19225|South Wimbledon|London Underground|M
+S|51.59178|0.02743|South Woodford|London Underground|M
+S|51.49497|-0.24589|Stamford Brook|London Underground|M
+S|51.61885|-0.30263|Stanmore|London Underground|M
+S|51.52170|-0.04671|Stepney Green|London Underground|M
+S|51.49928|-0.13459|St. James's Park|London Underground|M
+S|51.53535|-0.17421|St. John's Wood|London Underground|M
+S|51.47221|-0.12250|Stockwell|London Underground|M
+S|51.54411|-0.27623|Stonebridge Park|London Underground|M
+S|51.51491|-0.09759|St. Paul's|London Underground|M
+S|51.54129|-0.00355|Stratford|London Underground|M
+S|51.55688|-0.33625|Sudbury Hill|London Underground|M
+S|51.55075|-0.31562|Sudbury Town|London Underground|M
+S|51.54372|-0.17498|Swiss Cottage|London Underground|M
+S|51.51097|-0.11433|Temple|London Underground|M
+S|51.67178|0.10332|Theydon Bois|London Underground|M
+S|51.43562|-0.15972|Tooting Bec|London Underground|M
+S|51.42774|-0.16829|Tooting Broadway|London Underground|M
+S|51.51597|-0.13051|Tottenham Court Road|London Underground|M
+S|51.58812|-0.05994|Tottenham Hale|London Underground|M
+S|51.63072|-0.17918|Totteridge & Whetstone|London Underground|M
+S|51.50985|-0.07670|Tower Hill|London Underground|M
+S|51.55680|-0.13846|Tufnell Park|London Underground|M
+S|51.49513|-0.25469|Turnham Green|London Underground|M
+S|51.59015|-0.10274|Turnpike Lane|London Underground|M
+S|51.55897|0.25168|Upminster|London Underground|M
+S|51.55827|0.23477|Upminster Bridge|London Underground|M
+S|51.53827|0.09963|Upney|London Underground|M
+S|51.53511|0.03398|Upton Park|London Underground|M
+S|51.54666|-0.47751|Uxbridge|London Underground|M
+S|51.48601|-0.12486|Vauxhall|London Underground|M
+S|51.49637|-0.14315|Victoria|London Underground|M
+S|51.58289|-0.01999|Walthamstow Central|London Underground|M
+S|51.57565|0.02864|Wanstead|London Underground|M
+S|51.52472|-0.13853|Warren Street|London Underground|M
+S|51.52298|-0.18331|Warwick Avenue|London Underground|M
+S|51.50300|-0.11398|Waterloo|London Underground|M
+S|51.65700|-0.41837|Watford|London Underground|M
+S|51.55233|-0.29668|Wembley Central|London Underground|M
+S|51.56363|-0.28005|Wembley Park|London Underground|M
+S|51.51835|-0.28041|West Acton|London Underground|M
+S|51.52093|-0.20141|Westbourne Park|London Underground|M
+S|51.48698|-0.19519|West Brompton|London Underground|M
+S|51.60943|-0.18833|West Finchley|London Underground|M
+S|51.52810|0.00457|West Ham|London Underground|M
+S|51.54682|-0.18996|West Hampstead|London Underground|M
+S|51.57960|-0.35314|West Harrow|London Underground|M
+S|51.49070|-0.20594|West Kensington|London Underground|M
+S|51.50136|-0.12493|Westminster|London Underground|M
+S|51.56950|-0.43704|West Ruislip|London Underground|M
+S|51.51976|-0.06009|Whitechapel|London Underground|M
+S|51.51193|-0.22424|White City|London Underground|M
+S|51.54935|-0.22222|Willesden Green|London Underground|M
+S|51.53220|-0.24350|Willesden Junction|London Underground|M
+S|51.42203|-0.20521|Wimbledon|London Underground|M
+S|51.43406|-0.19904|Wimbledon Park|London Underground|M
+S|51.60681|0.03402|Woodford|London Underground|M
+S|51.59742|-0.10978|Wood Green|London Underground|M
+S|51.51011|-0.22376|Wood Lane|London Underground|M
+S|51.61794|-0.18552|Woodside Park|London Underground|M
+S|55.85198|-4.25822|Bridge Street|Strathclyde Partnership for Transport|M
+S|55.86241|-4.25340|Buchanan Street|Strathclyde Partnership for Transport|M
+S|55.85237|-4.29496|Cessnock|Strathclyde Partnership for Transport|M
+S|55.86808|-4.25986|Cowcaddens|Strathclyde Partnership for Transport|M
+S|55.86225|-4.31060|Govan|Strathclyde Partnership for Transport|M
+S|55.87525|-4.29339|Hillhead|Strathclyde Partnership for Transport|M
+S|55.85471|-4.30488|Ibrox|Strathclyde Partnership for Transport|M
+S|55.87428|-4.27973|Kelvinbridge|Strathclyde Partnership for Transport|M
+S|55.87107|-4.29978|Kelvinhall|Strathclyde Partnership for Transport|M
+S|55.85038|-4.28788|Kinning Park|Strathclyde Partnership for Transport|M
+S|55.87000|-4.30826|Partick|Strathclyde Partnership for Transport|M
+S|55.84998|-4.27537|Shields Road|Strathclyde Partnership for Transport|M
+S|55.85754|-4.25519|St Enoch|Strathclyde Partnership for Transport|M
+S|55.87122|-4.26918|St Georges Cross|Strathclyde Partnership for Transport|M
+S|55.84954|-4.26584|West Street|Strathclyde Partnership for Transport|M
+S|55.03564|-1.71110|Airport|Tyne and Wear Metro|M
+S|55.01392|-1.67807|Bank Foot|Tyne and Wear Metro|M
+S|54.97428|-1.46568|Bede|Tyne and Wear Metro|M
+S|55.01390|-1.56763|Benton|Tyne and Wear Metro|M
+S|54.95952|-1.46068|Brockley Whins|Tyne and Wear Metro|M
+S|54.97604|-1.58034|Byker|Tyne and Wear Metro|M
+S|55.02771|-1.70341|Callerton Parkway|Tyne and Wear Metro|M
+S|54.96937|-1.61672|Central|Tyne and Wear Metro|M
+S|54.98668|-1.43205|Chichester|Tyne and Wear Metro|M
+S|54.98291|-1.57206|Chillingham Road|Tyne and Wear Metro|M
+S|55.03500|-1.43637|Cullercoats|Tyne and Wear Metro|M
+S|54.94635|-1.42015|East Boldon|Tyne and Wear Metro|M
+S|55.01360|-1.64430|Fawdon|Tyne and Wear Metro|M
+S|54.95750|-1.48523|Fellgate|Tyne and Wear Metro|M
+S|54.95315|-1.57177|Felling|Tyne and Wear Metro|M
+S|55.01016|-1.57850|Four Lane Ends|Tyne and Wear Metro|M
+S|54.96172|-1.60441|Gateshead|Tyne and Wear Metro|M
+S|54.95767|-1.58816|Gateshead Stadium|Tyne and Wear Metro|M
+S|54.99227|-1.51597|Hadrian Road|Tyne and Wear Metro|M
+S|54.97750|-1.61393|Haymarket|Tyne and Wear Metro|M
+S|54.97529|-1.52122|Hebburn|Tyne and Wear Metro|M
+S|54.95151|-1.55629|Heworth|Tyne and Wear Metro|M
+S|54.99591|-1.49416|Howdon|Tyne and Wear Metro|M
+S|55.00001|-1.61086|Ilford Road|Tyne and Wear Metro|M
+S|54.97959|-1.49359|Jarrow|Tyne and Wear Metro|M
+S|54.98306|-1.60558|Jesmond|Tyne and Wear Metro|M
+S|55.01442|-1.66592|Kingston Park|Tyne and Wear Metro|M
+S|55.00892|-1.59160|Longbenton|Tyne and Wear Metro|M
+S|54.97391|-1.60438|Manors|Tyne and Wear Metro|M
+S|55.00156|-1.46568|Meadow Well|Tyne and Wear Metro|M
+S|54.90647|-1.40101|Millfield|Tyne and Wear Metro|M
+S|55.04230|-1.45847|Monkseaton|Tyne and Wear Metro|M
+S|54.97401|-1.61317|Monument|Tyne and Wear Metro|M
+S|55.00814|-1.44896|North Shields|Tyne and Wear Metro|M
+S|55.03321|-1.51956|Northumberland Park|Tyne and Wear Metro|M
+S|54.91274|-1.41785|Pallion|Tyne and Wear Metro|M
+S|55.02369|-1.54119|Palmersville|Tyne and Wear Metro|M
+S|54.90230|-1.38462|Park Lane|Tyne and Wear Metro|M
+S|54.95266|-1.54205|Pelaw|Tyne and Wear Metro|M
+S|54.99957|-1.47463|Percy Main|Tyne and Wear Metro|M
+S|55.01195|-1.62163|Regent Centre|Tyne and Wear Metro|M
+S|54.92956|-1.38650|Seaburn|Tyne and Wear Metro|M
+S|55.03696|-1.50542|Shiremoor|Tyne and Wear Metro|M
+S|54.97171|-1.45548|Simonside|Tyne and Wear Metro|M
+S|55.00578|-1.60830|South Gosforth|Tyne and Wear Metro|M
+S|54.90428|-1.44769|South Hylton|Tyne and Wear Metro|M
+S|54.99737|-1.43299|South Shields|Tyne and Wear Metro|M
+S|54.91814|-1.38295|Stadium of Light|Tyne and Wear Metro|M
+S|54.97435|-1.62109|St James|Tyne and Wear Metro|M
+S|54.91107|-1.38376|St Peter's|Tyne and Wear Metro|M
+S|54.90611|-1.38244|Sunderland|Tyne and Wear Metro|M
+S|54.97614|-1.44162|Tyne Dock|Tyne and Wear Metro|M
+S|55.01705|-1.42887|Tynemouth|Tyne and Wear Metro|M
+S|54.90279|-1.39210|University|Tyne and Wear Metro|M
+S|54.98535|-1.55947|Walkergate|Tyne and Wear Metro|M
+S|54.98960|-1.53274|Wallsend|Tyne and Wear Metro|M
+S|55.01429|-1.63569|Wansbeck Road|Tyne and Wear Metro|M
+S|54.99343|-1.60980|West Jesmond|Tyne and Wear Metro|M
+S|55.04055|-1.47598|West Monkseaton|Tyne and Wear Metro|M
+S|55.03973|-1.44227|Whitley Bay|Tyne and Wear Metro|M
+S|57.19758|-6.16307||Bella Jane Boat Trips|W
+S|57.14542|-6.10799|Elgol Boat Trips|Bella Jane Boat Trips|W
+S|52.47832|-1.91186|Brindleyplace Water Bus Stop|Birmingham Water Bus|W
+S|52.47748|-1.90903|Gas Street Basin Water Bus Stop|Birmingham Water Bus|W
+S|52.47881|-1.91837|Sherborne Wharf Water Bus Stop|Birmingham Water Bus|W
+S|52.47532|-1.90656|The Mailbox Water Bus Stop|Birmingham Water Bus|W
+S|51.45499|-2.58870|Castle Park|Bristol|W
+S|51.45203|-2.59775|City Centre|Bristol|W
+S|51.44927|-2.60601|Harbour Inlet|Bristol|W
+S|51.44914|-2.61309|Mardyke|Bristol|W
+S|51.45201|-2.55492|Netham Lock|Bristol|W
+S|51.44902|-2.60703|SS Great Britain|Bristol|W
+S|51.45151|-2.58122|Temple Quay|Bristol|W
+S|51.44715|-2.61583|The Cottage|Bristol|W
+S|51.44730|-2.60203|Wapping Wharf|Bristol|W
+S|51.83143|-8.32308|Port of Cork|Brittany Ferries|W
+S|48.72154|-3.96376|Roscoff|Brittany Ferries|W
+S|56.83198|-6.22454||Caledonian MacBrayne|W
+S|57.01079|-6.26515||Caledonian MacBrayne|W
+S|57.06451|-5.89533|Armadale Ferry Terminal|Caledonian MacBrayne|W
+S|57.05618|-6.49147|Canna Pier|Caledonian MacBrayne|W
+S|55.78674|-4.89772|Cumbrae Slip|Caledonian MacBrayne|W
+S|56.87975|-6.12679|Eigg|Caledonian MacBrayne|W
+S|57.15239|-7.30489|Ionad Aiseig' Loch Baghasdail|Caledonian MacBrayne|W
+S|55.79514|-4.87120|Largs Slip|Caledonian MacBrayne|W
+S|57.00726|-5.82681|Mallaig Ferry Terminal|Caledonian MacBrayne|W
+S|57.89735|-6.79993|Tarbert Ferry Terminal|Caledonian MacBrayne|W
+S|57.58608|-6.37443|Uig Ferry Terminal|Caledonian MacBrayne|W
+S|55.42386|-5.59918|Campbeltown|Craig of Campbeltown Ltd|W
+S|55.62727|-6.18959|Port Ellen|Craig of Campbeltown Ltd|W
+S|52.46263|4.58439|IJmuiden|DFDS|W
+S|54.99195|-1.44989|Newcastle|DFDS|W
+S|54.38042|-5.55034|Portaferry|Dept for Infrastructure NI|W
+S|54.37154|-5.55449|Strangford|Dept for Infrastructure NI|W
+S|55.20819|-6.23862|Ballycastle Pier 1|Dunaverty Limited|W
+S|55.20789|-6.24014|Ballycastle Pier 2|Dunaverty Limited|W
+S|55.29218|-6.19494|Rathlin Island|Dunaverty Limited|W
+S|55.20314|-6.98378|Greencastle|Frazer Foyle Holdings Ltd|W
+S|55.19123|-6.96691|Magilligan Point|Frazer Foyle Holdings Ltd|W
+S|50.73274|-1.15848|Ryde Hoverport|Hovertravel|W
+S|50.78495|-1.09991|Southsea Hoverport|Hovertravel|W
+S|50.95079|1.85995|Cité de la Dentelle|Imag'in|W
+S|50.95455|1.84915|George V|Imag'in|W
+S|50.95463|1.85581|Meuse|Imag'in|W
+S|50.94417|1.86703|Nation|Imag'in|W
+S|50.92699|1.86912|Pont de Coulogne|Imag'in|W
+S|53.31827|-4.62086||Irish Ferries|W
+S|52.25355|-6.33710|Berth 1|Irish Ferries|W
+S|53.34500|-6.19610|Dublin Port Terminal 1|Irish Ferries|W
+S|51.69828|-4.95306|Pembroke Dock|Irish Ferries|W
+S|54.60989|-5.91244|Belfast (Isle of Man Steam Packet Company Terminal)|Isle of Man Steam Packet Company|W
+S|54.14714|-4.47278|Douglas|Isle of Man Steam Packet Company|W
+S|51.50877|-0.09680|Bankside Pier|London River Services|W
+S|51.51546|0.11733|Barking Riverside|London River Services|W
+S|51.48392|-0.14595|Battersea Power Station Pier|London River Services|W
+S|51.51064|-0.10094|Blackfriars Pier|London River Services|W
+S|51.48286|-0.16636|Cadogan Pier|London River Services|W
+S|51.50520|-0.02876|Canary Wharf|London River Services|W
+S|51.47406|-0.17974|Chelsea Harbour Pier|London River Services|W
+S|51.50699|-0.12133|Embankment|London River Services|W
+S|51.50701|-0.11779|Festival Pier|London River Services|W
+S|51.49474|-0.03174|Greenland Pier|London River Services|W
+S|51.48406|-0.00941|Greenwich Pier|London River Services|W
+S|51.50695|-0.08464|London Bridge City Pier|London River Services|W
+S|51.50345|-0.12047|London Eye - Waterloo Pier|London River Services|W
+S|51.48751|-0.02247|Masthouse Terrace Pier|London River Services|W
+S|51.49178|-0.12470|Millbank Millennium Pier|London River Services|W
+S|51.50217|0.00928|North Greenwich (QE2) Pier|London River Services|W
+S|51.46734|-0.21541|Putney Pier|London River Services|W
+S|51.50464|-0.03135|Rotherhithe Pier|London River Services|W
+S|51.49755|0.02490|Royal Wharf|London River Services|W
+S|51.50597|-0.07352|Saint Katharine's Pier|London River Services|W
+S|51.48631|-0.12726|St. George Wharf|London River Services|W
+S|51.46705|-0.18247|St Mary’s Wandsworth Pier|London River Services|W
+S|51.50727|-0.07889|Tower Millennium Pier|London River Services|W
+S|51.46362|-0.19904|Wandsworth Riverside Quarter Pier|London River Services|W
+S|51.50174|-0.12314|Westminster Pier|London River Services|W
+S|51.49589|0.07105|Woolwich Arsenal Pier|London River Services|W
+S|51.49778|0.06118|Woolwich Ferry North Pier|London River Services|W
+S|51.49518|0.06245|Woolwich Ferry South Pier|London River Services|W
+S|54.58369|-1.22883|Middlesbrough|Middlesbrough Council|W
+S|54.58519|-1.22720|Port Clarence|Middlesbrough Council|W
+S|55.00379|-1.44425|North Shields Ferry Terminal|Nexus|W
+S|54.99723|-1.44080|South Shields Ferry Terminal|Nexus|W
+S|57.14529|-2.09175|Aberdeen|NorthLink Ferries|W
+S|58.99969|-2.97408|Kirkwall|NorthLink Ferries|W
+S|60.16292|-1.15766|Lerwick|NorthLink Ferries|W
+S|51.94333|4.12780|Rotterdam|P & O Frieght|W
+S|54.96156|-5.01406|Cairnryan|P&O European Ferries (Irish Sea) Limited,|W
+S|54.84645|-5.79753|McKean|P&O European Ferries (Irish Sea) Limited,|W
+S|50.96675|1.84969|Calais, Poste 5|P&O Ferries|W
+S|50.96721|1.85407|Calais, Poste 7|P&O Ferries|W
+S|51.12588|1.33577|Dover 6|P&O Ferries|W
+S|51.12407|1.33296|Dover 8|P&O Ferries|W
+S|51.12374|1.33239|Dover 9|P&O Ferries|W
+S|54.59896|-1.14874|Teesport|P&O Ferries|W
+S|51.34097|3.18966|Zeebrugge|P&O Ferries|W
+S|54.03795|-6.09934|Greencastle Terminal|Rooskey Frazer & Co Ltd|W
+S|54.03436|-6.13124|Greenore Terminal|Rooskey Frazer & Co Ltd|W
+S|54.03462|-2.91340|Heysham Ramp 2 - Seatruck|Seatruck Ferries Ltd|W
+S|54.10193|-6.26520|Warrenpoint|Seatruck Ferries Ltd|W
+S|51.94754|1.25662|Harwich Cruise Terminal|Stena Line B.V.|W
+S|51.97344|4.13134|Nieuwe Waterweg Stena Line 2|Stena Line B.V.|W
+S|54.98505|-5.03481|Stena Line Loch Ryan Port|Stena Line Ferries|W
+S|54.63560|-5.88158|Stena Line Victoria Terminal 4|Stena Line Ferries|W
+S|53.31787|-4.61984||Stena Line Ltd|W
+S|53.34765|-6.19885|Dublin Port Terminal 2|Stena Line Ltd|W
+S|52.00992|-4.98596|Fishguard Harbour|Stena Line Ltd|W
+S|53.40013|-3.00994|Liverpool (Birkenhead)|Stena Line Ltd|W
+S|54.62898|-5.88894|Victoria Terminal 2|Stena Line Ltd|W
+S|56.97013|-5.63553||Western Isle Cruises|W
+S|57.03811|-5.68585||Western Isle Cruises|W
+S|57.00576|-5.82827|Western Isles Cruises|Western Isle Cruises|W
+S|50.73947|-1.15957|Ryde Pier Head Ferry Terminal|Wightlink|W
+S|50.79610|-1.10893|Wightlink Passenger Ferry Terminal.|Wightlink|W
+S|50.75684|-1.52891|Yarmouth Car Ferry|Wightlink|W
+S|50.70651|-1.50064|Yarmouth Quay|Wightlink|W
+S|54.41947|-2.96316|Ambleside Pier 1|Windermere Lake Cruises|W
+S|54.36303|-2.92369|Bowness Pier 1|Windermere Lake Cruises|W
+S|54.39910|-2.94624|Brockhole|Windermere Lake Cruises|W
+S|54.27593|-2.95271|Fell Foot|Windermere Lake Cruises|W
+S|54.27833|-2.95542|Lakeside|Windermere Lake Cruises|W
+S|54.37102|-2.92334|Windermere Jetty (Museum)|Windermere Lake Cruises|W
+S|50.79498|-1.11607|Gosport Ferry Terminal|regional|W
+S|50.79701|-1.10931|Gosport Ferry Terminal|regional|W
+S|50.79289|-1.10621|Portsmouth Car Ferry terminal|regional|W
+S|50.73435|-1.21341|Wightlink Fishbourne Car Ferry terminal|regional|W
+L|Docklands Light Railway|DLR|#00afad|11 70:176 46:339 2:460 36:526 22:793 9:620 50:1041 352:963
+L|Docklands Light Railway|DLR|#00afad|352 51:962 10:1017 23:639 37:802 3:524 47:607 69:316 12:180
+L|Docklands Light Railway|DLR|#00afad|352 51:962 10:1017 23:639 37:802 3:524 47:607 69:316 12:181 31:240 57:590 14:598 42:495 33:484 18:721 30:680 20:762 26:790 38:452
+L|Docklands Light Railway|DLR|#00afad|35 41:997 45:1134 72:773 13:1655 60:806 386:755 1:587 62:623 352:434 63:674
+L|Docklands Light Railway|DLR|#00afad|35 41:997 45:1134 72:773 13:2150 25:975 8:380 47:690 67:739 40:932 56:1123 144:2371
+L|Docklands Light Railway|DLR|#00afad|63 352:820 61:434 0:602 68:593 59:758 13:760 71:1695 44:775 41:1066 34:1072
+L|Docklands Light Railway|DLR|#00afad|38 27:469 21:806 29:750 18:625 33:737 43:519 15:491 58:591 32:586 11:255 70:177 46:339 2:460 36:526 22:793 9:620 50:1041 352:963
+L|Docklands Light Railway|DLR|#00afad|38 27:469 21:806 29:750 18:625 33:737 43:519 15:491 58:591 32:586 11:255 70:176 67:602 40:932 56:1123 144:2371
+L|Docklands Light Railway|DLR|#00afad|144 55:2376 39:1124 66:948 12:789 31:240 57:590 14:598 42:495 33:484 18:721 30:680 20:762 26:790 38:452
+L|Docklands Light Railway|DLR|#00afad|144 55:2376 39:1124 66:948 46:724 7:676 24:389 13:912 71:1658 44:775 41:1066 34:1072
+L|Docklands Light Railway|DLR|#00afad|6 28:960 19:746 4:630 52:645 49:954 17:500 54:546 13:1002 25:975 8:380 47:690 67:739 40:932 56:1123 64:1267
+L|Docklands Light Railway|DLR|#00afad|65 55:1274 39:1124 66:948 46:724 7:676 24:389 13:912 53:973 16:601 48:481 52:913 4:648 19:623 28:712 5:1019
+L|Isle of Man Public Transport|Manx Electric Railway||122 87:115 121:222 131:159 90:432 91:938 115:1036 104:1247 80:599 123:397 75:731 86:457 118:586 98:444 78:655 103:322 132:316 79:417 130:278 109:170 97:152 85:217 89:295 94:716 129:174 102:236 100:164 96:373 101:246 84:1218 83:917 82:120 125:146 117:1509 113:773 114:215 127:921 106:498 74:987 77:713 108:299 128:440 73:141 81:618 124:180 76:436 105:1131 110:1059 111:349 112:711 107:623 93:216 116:334 92:200 119:354 120:411 99:524
+L|Isle of Man Public Transport|Manx Electric Railway||99 120:523 119:408 92:355 116:201 93:336 107:214 112:622 111:704 110:332 105:1057 76:1133 124:437 81:179 73:616 128:141 108:444 77:291 74:714 106:989 127:495 114:920 113:217 117:776 125:1498 82:152 83:129 84:916 101:1219 96:246 100:372 102:170 129:227 94:168 88:441 89:282 85:296 97:223 109:147 130:170 79:283 132:416 103:316 78:322 98:658 118:473 86:580 75:455 123:733 80:393 104:595 115:1248 91:1035 90:916 131:455 121:160 87:222
+L|Isle of Man Public Transport|Snaefell Mountain Railway||113 95:4961 126:1276
+L|Isle of Man Public Transport|Snaefell Mountain Railway||126 95:1713 113:4970
+L|London Underground|Bakerloo line|#ae6017|233 257:1684 339:1376 294:920 380:1226 350:1819 231:1529 395:1047 254:1494 316:1328 260:761 274:834 377:830 304:1189 204:621 278:516 142:430 321:857 303:956 309:923 176:568 207:385 378:685 265:697 205:819
+L|London Underground|Bakerloo line|#ae6017|233 257:1684 339:1376 294:920 380:1226 350:1819 231:1529 395:1047 254:1494 316:1328
+L|London Underground|Bakerloo line|#ae6017|205 265:896 378:619 207:685 176:378 309:571 303:928 321:953 142:856 278:431 204:512 304:641 377:1104 274:837 260:833 316:859 254:1332 395:1503 231:1047 350:1495 380:1737 294:1221 339:927 257:1372 233:1689
+L|London Underground|Bakerloo line|#ae6017|316 254:1332 395:1503 231:1047 350:1495 380:1737 294:1221 339:927 257:1372 233:1689
+L|London Underground|Central line|#e42313|208 357:2510 192:3300 273:2093 165:1755 398:2322 343:1692 334:1449 270:1507 269:1657 352:2089 279:2794 154:1601 271:2263 144:776 351:756 175:1086 244:377 360:950 303:559 277:1223 266:1187 317:860 298:659 245:647 331:986 393:1068 197:2050 289:1131 230:2420 308:2175 224:1694 293:1854 340:2289 327:870 391:2005
+L|London Underground|Central line|#e42313|208 357:2510 192:3300 273:2093 165:1755 398:2322 343:1692 334:1449 270:1507 269:1657
+L|London Underground|Central line|#e42313|273 165:1755 398:2322 343:1692 334:1449 270:1507 269:1657 352:2089 279:2794 154:1601 271:2263 144:776 351:756 175:1086 244:377 360:950 303:559 277:1223 266:1187 317:860 298:659 245:647 331:986 393:1068 197:2050 289:1131 382:1805 194:1514
+L|London Underground|Central line|#e42313|393 197:2050 289:1131 382:1805 194:1514
+L|London Underground|Central line|#e42313|393 197:2050 289:1131 230:2420 308:2175 224:1694 293:1854 340:2289 327:870 391:2005
+L|London Underground|Central line|#e42313|393 331:1247 245:839 298:632 317:692 266:860 277:1174 157:651 303:586 360:689 244:820 175:503 351:960 144:749 271:769 154:2272 279:1596 352:2783 269:2203 270:1528 375:1663 320:1175 217:1347 287:1879 147:1155 211:1134 227:829
+L|London Underground|Central line|#e42313|269 270:1528 334:1646 343:1309 398:1693 165:2322 273:1905 192:1955 357:3296 208:2534
+L|London Underground|Central line|#e42313|287 147:1155 211:1134 227:829
+L|London Underground|Central line|#e42313|227 222:1142 179:1284 324:2240 398:1379
+L|London Underground|Central line|#e42313|227 211:829 147:1134 287:1156 217:1887 320:1337 375:1179 270:1649 269:1658 352:2089 279:2794 154:1601 271:2263 144:776 351:756 175:1086 244:377 360:950 303:559 277:1223 266:1187 317:860 298:659 245:647 331:986 393:1068 197:2050 289:1131 382:1805 194:1514
+L|London Underground|Central line|#e42313|227 211:829 147:1134 287:1156 217:1887 320:1337 375:1179 270:1649 269:1658 352:2089 279:2794 154:1601 271:2263 144:776 351:756 175:1086 244:377 360:950 303:559 277:1223 266:1187 317:860 298:659 245:647 331:986 393:1068
+L|London Underground|Central line|#e42313|227 211:829 147:1134 287:1156
+L|London Underground|Central line|#e42313|398 324:1384 179:2240 222:1287 227:1146
+L|London Underground|Central line|#e42313|194 382:1614 289:1723 197:1130 393:2029 331:1247 245:839 298:632 317:692 266:860 277:1174 157:651 303:586 360:689 244:820 175:503 351:960 144:749 271:769 154:2272 279:1596 352:2783 269:2203 270:1528 375:1663 320:1175 217:1347 287:1879 147:1155 211:1134 227:829
+L|London Underground|Central line|#e42313|194 382:1614 289:1723 197:1130 393:2029 331:1247 245:839 298:632 317:692 266:860 277:1174 157:651 303:586 360:689 244:820 175:503 351:960 144:749 271:769 154:2272 279:1596 352:2783 269:2203 270:1528 334:1646 343:1309 398:1693 165:2322 273:1905
+L|London Underground|Central line|#e42313|194 382:1614 289:1723 197:1130 393:2029
+L|London Underground|Central line|#e42313|391 327:2143 340:878 293:2282 224:1713 308:1696 230:2171 289:2423 197:1130 393:2029 331:1247 245:839 298:632 317:692 266:860 277:1174 157:651 303:586 360:689 244:820 175:503 351:960 144:749 271:769 154:2272 279:1596 352:2783 269:2203 270:1528 334:1646 343:1309 398:1693 165:2322 273:1905 192:1955 357:3296 208:2534
+L|London Underground|Central line|#e42313|391 327:2143 340:878 293:2282 224:1713 308:1696 230:2171 289:2423 197:1130 393:2029
+L|London Underground|Circle line|#FFD329|228 220:921 332:546 400:379 267:617 264:618 383:849 325:1006 305:564 203:905 142:782 223:908 210:643 262:852 212:1843 145:514 282:700 271:476 134:598 363:536 281:684 171:308 276:346 155:624 356:721 207:715 390:725 347:738 373:711 333:1014 338:1247 218:803 242:829 298:990 150:773 304:1028 203:909
+L|London Underground|Circle line|#FFD329|203 304:912 150:1028 298:765 242:990 218:912 338:785 333:1175 373:1013 347:781 390:750 207:641 356:717 155:755 276:589 171:347 281:311 363:683 134:522 271:594 282:599 145:576 212:519 262:1840 210:844 223:649 142:907 203:779 305:919 325:682 383:997 264:766 267:707 400:506 332:487 220:514 228:831
+L|London Underground|District line|#00a166|194 195:1485 133:1084 180:1296 365:880 344:621 318:743 228:887 148:689 389:607 196:957 218:925 338:785 333:1175 373:1013 347:781 390:750 207:641 356:717 155:755 276:589 171:347 281:311 363:683 135:845 392:864 346:981 279:1021 161:628 164:1005 386:1294 312:804 370:1337 200:1331 146:2298 369:1414 151:1851 191:1367 190:1337 206:2341 247:1501 368:1259 367:1141
+L|London Underground|District line|#00a166|146 200:2265 370:1372 312:1187 386:804 164:1418 161:882 279:626 346:1022 392:1080 135:753 363:851 281:684 171:308 276:346 155:624 356:721 207:715 390:725 347:738 373:711 333:1014 338:1247 218:803 196:829 384:652 216:761 307:808 314:969 201:1150 336:1553 397:1465 396:1466
+L|London Underground|District line|#00a166|203 304:774 150:981 298:765 242:990 196:1194 384:652 216:761 307:808 314:969 201:1150 336:1553 397:1465 396:1466
+L|London Underground|District line|#00a166|242 196:1197 255:1639
+L|London Underground|District line|#00a166|255 196:1546 242:1186
+L|London Underground|District line|#00a166|396 397:1561 336:1477 201:1551 314:1040 307:954 216:824 384:861 196:587 242:1182 298:990 150:773 304:982 203:773
+L|London Underground|District line|#00a166|396 397:1561 336:1477 201:1551 314:1040 307:954 216:824 384:861 196:587 218:925 338:785 333:1175 373:1013 347:781 390:750 207:641 356:717 276:1345 171:347 281:311 363:683 135:845 392:864 346:981 279:1021 161:628 164:1005 386:1294 312:804 370:1337 200:1331 146:2298
+L|London Underground|District line|#00a166|367 368:1277 247:1238 206:1521 190:2325 191:1354 151:1350 369:1849 146:1444 200:2265 370:1372 312:1187 386:804 164:1418 161:882 279:626 346:1022 392:1080 135:753 363:851 281:684 171:308 276:346 155:624 356:721 207:715 390:725 347:738 373:711 333:1014 338:1247 218:803 196:827 389:1002 148:608 228:724 318:958 344:731 365:542 226:1603 258:1739 322:2098
+L|London Underground|District line|#00a166|367 368:1277 247:1238 206:1521 190:2325 191:1354 151:1350 369:1849 146:1444 200:2265 370:1372 312:1187 386:804 164:1418 161:882 279:626 346:1022 392:1080 135:753 363:851 281:684 171:308 276:346 155:624 356:721 207:715 390:725 347:738 373:711 333:1014 338:1247 218:803 196:827 389:1002 148:608 228:724 318:958 344:731 365:542 180:1018 133:1220 195:1032 194:1480
+L|London Underground|District line|#00a166|322 258:2199 226:1722 365:1546 344:621 318:743 228:887 148:689 389:607 196:957 218:925 338:785 333:1175 373:1013 347:781 390:750 207:641 356:717 155:755 276:589 171:347 281:311 363:683 135:845 392:864 346:981 279:1021 161:628 164:1005 386:1294 312:804 370:1337 200:1331 146:2298 369:1414 151:1851 191:1367 190:1337 206:2341 247:1501 368:1259 367:1141
+L|London Underground|Hammersmith & City line|#F4A9BE|228 220:921 332:546 400:379 267:617 264:618 383:849 325:1006 305:564 203:943 142:738 223:908 210:643 262:852 212:1843 145:514 282:700 271:476 135:927 392:864 346:981 279:1021 161:628 164:1005 386:1294 312:804 370:1337 200:1331 146:2160
+L|London Underground|Hammersmith & City line|#F4A9BE|146 200:2265 370:1372 312:1187 386:804 164:1418 161:882 279:626 346:1022 392:1080 135:753 271:929 282:599 145:576 212:519 262:1840 210:844 223:649 142:907 203:739 305:946 325:682 383:997 264:766 267:707 400:506 332:487 220:514 228:831
+L|London Underground|Jubilee line|#949699|352 386:1624 13:1592 291:1685 170:1798 169:2389 153:970 272:1942 341:1258 378:472 390:1026 225:1237 157:1373 142:1131 348:2038 355:925 214:572 387:681 259:997 394:1230 193:1266 286:846 381:2287 261:2828 315:1265 172:1790 345:1253
+L|London Underground|Jubilee line|#949699|352 386:1624 13:1592
+L|London Underground|Jubilee line|#949699|214 387:681 259:997 394:1230 193:1266 286:846 381:2287 261:2828 315:1265 172:1790 345:1252
+L|London Underground|Jubilee line|#949699|214 387:681 259:997 394:1230 193:1266 286:846 381:2287 261:2828 315:1265 172:1790 345:1253
+L|London Underground|Jubilee line|#949699|345 172:1375 315:1679 261:1333 381:2852 286:2256 193:897 394:1134 259:1234 387:993 214:683 355:587 348:927 142:2104 157:1224 225:1329 390:1367 378:928 341:437 272:1266 153:1922 169:1100 170:2428 291:1625 13:1718 386:1531 352:1618
+L|London Underground|Jubilee line|#949699|345 172:1375 315:1679 261:1333 381:2852 286:2256 193:897 394:1134 259:1234 387:993 214:683
+L|London Underground|Jubilee line|#949699|13 386:1531 352:1618
+L|London Underground|Jubilee line|#949699|352 386:1632 13:1592 291:1685 170:1798 169:2389 153:970 272:1942 341:1258 378:472 390:1026 225:1237 157:1373 142:1131 348:2038 355:925 214:572 387:681 259:997 394:1230 193:1266 286:846 381:2287 261:2828 315:1265 172:1790 345:1252
+L|London Underground|Jubilee line|#949699|352 386:1632 13:1592
+L|London Underground|Metropolitan line|#91005a|134 271:594 282:599 145:576 212:519 262:1840 210:844 223:649 142:994 214:3325 381:7325 313:1459 295:1656 232:1315 292:1987 311:1449 297:2151 296:1600 283:2158 323:3384 181:3535 173:3530 137:3269
+L|London Underground|Metropolitan line|#91005a|134 271:594 282:599 145:576 212:519 262:1840 210:844 223:649 142:994 214:3325 381:7325 313:1459 295:1656 232:1315 292:1987 311:1449 297:2151 296:1600 283:2158 323:3384 181:3535 173:3530 178:6258
+L|London Underground|Metropolitan line|#91005a|134 271:594 282:599 145:576 212:519 262:1840 210:844 223:649 142:994 214:3325 381:7324 313:1460 295:1657 232:1309 388:1126 319:1415 198:1811 328:1139 326:636 252:1901 243:1095 371:2004
+L|London Underground|Metropolitan line|#91005a|142 214:3325 381:7325 313:1459 295:1656 232:1315 292:1987 311:1449 297:2151 296:1600 283:2158 189:3009 379:1910
+L|London Underground|Metropolitan line|#91005a|137 173:3313 181:3487 323:3532 283:3389 296:2242 297:1629 311:2035 292:1555 232:2018 295:1312 313:1655 381:1441 214:7211 142:3384 223:940 210:643 262:852 212:1843 145:514 282:700 271:476 134:597
+L|London Underground|Metropolitan line|#91005a|178 173:6299 181:3487 323:3532 283:3389 296:2242 297:1629 311:2035 292:1555 232:2018 295:1312 313:1655 381:1441 214:7211 142:3384 223:940 210:643 262:852 212:1843 145:514 282:700 271:476 134:597
+L|London Underground|Metropolitan line|#91005a|379 189:2019 283:2892 296:2242 297:1629 311:2035 292:1555 232:2018 295:1312 313:1655 381:1441 214:7211 142:3384
+L|London Underground|Metropolitan line|#91005a|371 243:2136 252:1072 326:1790 328:767 198:1009 319:1813 388:1416 232:1264 295:1307 313:1658 381:1451 214:7197 142:3384 223:940 210:643 262:852 212:1843 145:514 282:700 271:476 134:597
+L|London Underground|Northern line|#000000|202 166:1406 186:1295 238:2196 162:1100 219:1496 229:2245 152:1268 174:1032 168:914 285:657 209:778 376:566 221:511 360:658 268:392 177:491 207:240 378:705 253:2033 288:2134 149:1015
+L|London Underground|Northern line|#000000|202 166:1406 186:1295 238:2196 162:1100 219:1496 229:2245 152:1268 174:1032 168:914 209:1768 262:617 138:1378 300:1446 282:763 144:802 272:668 158:653 205:864 253:925 302:758 349:1377 183:810 182:664 184:1223 143:1155 358:1017 359:1103 187:1212 342:1146 284:1474
+L|London Underground|Northern line|#000000|202 166:1406 186:1295 238:2196 162:1100 219:1496 229:2245 152:1268 174:1032 168:914 285:656 209:778 376:566 221:511 360:658 268:392 177:491 207:240 378:705 253:2033 302:760 349:1377 183:810 182:664 184:1223 143:1155 358:1017 359:1103 187:1212 342:1146 284:1474
+L|London Underground|Northern line|#000000|202 166:1406 186:1295
+L|London Underground|Northern line|#000000|238 162:1100 219:1496
+L|London Underground|Northern line|#000000|284 342:1536 187:1138 359:1241 358:1099 143:985 184:1112 182:1257 183:700 349:827 302:1279 253:901 205:794 158:865 272:645 144:743 282:765 300:755 138:1436 262:1373 209:604 168:2038 174:929 152:1030 229:1202 219:2332 162:1601 238:1126 186:2110 166:1267 202:1445
+L|London Underground|Northern line|#000000|284 342:1536 187:1138 359:1241 358:1099 143:985 184:1112 182:1257 183:700 349:827 302:1279 253:901 205:794 158:865 272:645 144:743 282:765 300:755 138:1436 262:1373 209:604 168:2129 256:1195 364:781 139:930 241:1654 199:1681 213:2420 385:1190 401:978 362:1489 239:2395
+L|London Underground|Northern line|#000000|284 342:1536 187:1138 359:1241 358:1099 143:985 184:1112 182:1257 183:700 349:827 302:1279 253:901 378:1779 207:700 177:327 268:417 360:473 221:573 376:510 209:589 285:747 168:643 174:929 152:1030 229:1202 219:2332 162:1601 238:1126 186:2110 166:1267 202:1445
+L|London Underground|Northern line|#000000|284 342:1536 187:1138 359:1241 358:1099 143:985 184:1112 182:1257 183:700 349:827 302:1279 253:901 378:1779 207:700 177:327 268:417 360:473 221:573 376:510 209:589 285:747 168:666 256:1195 364:781 139:930 241:1654 199:1681 213:2420 385:1190 401:978 362:1489 239:2395
+L|London Underground|Northern line|#000000|284 342:1536 187:1138 359:1241 358:1099 143:985 184:1112 182:1257 183:700 349:827 302:1279 253:901 205:794 158:865 272:645 144:743 282:765 300:755 138:1436 262:1373 209:604 168:2129 256:1195 364:781 139:930 241:1654 199:1681 213:2421 280:1461
+L|London Underground|Northern line|#000000|284 342:1536 187:1138 359:1241 358:1099 143:985 184:1112 182:1257 183:700 349:827 302:1279 253:901 378:1779 207:700 177:327 268:417 360:473 221:573 376:510 209:589 285:747 168:666 256:1195 364:781 139:930 241:1654 199:1681 213:2421 280:1461
+L|London Underground|Northern line|#000000|219 162:1601 238:1126
+L|London Underground|Northern line|#000000|186 166:1267 202:1445
+L|London Underground|Northern line|#000000|149 288:1023 253:2020 378:1779 207:700 177:327 268:417 360:473 221:573 376:510 209:589 285:747 168:641 174:929 152:1030 229:1202 219:2332 162:1601 238:1126 186:2110 166:1267 202:1445
+L|London Underground|Northern line|#000000|149 288:1023 253:2020 378:1779 207:700 177:327 268:417 360:473 221:573 376:510 209:589 285:747 168:666 256:1195 364:781 139:930 241:1654 199:1681 213:2420 385:1190 401:978 362:1489 239:2395
+L|London Underground|Northern line|#000000|149 288:1023 253:2020 378:1779 207:700 177:327 268:417 360:473 221:573 376:510 209:589 285:747 168:666 256:1195 364:781 139:930 241:1654 199:1681 213:2421 280:1461
+L|London Underground|Northern line|#000000|213 280:1461
+L|London Underground|Northern line|#000000|280 213:1461
+L|London Underground|Northern line|#000000|280 213:1462 199:2487 241:1610 139:1670 364:932 256:765 168:1214 209:1874 262:617 138:1378 300:1446 282:763 144:802 272:668 158:653 205:864 253:925 302:758 349:1377 183:810 182:664 184:1223 143:1155 358:1017 359:1103 187:1212 342:1146 284:1474
+L|London Underground|Northern line|#000000|280 213:1462 199:2487 241:1610 139:1670 364:932 256:765 168:1214 285:631 209:778 376:566 221:511 360:658 268:392 177:491 207:240 378:705 253:2033 302:760 349:1377 183:810 182:664 184:1223 143:1155 358:1017 359:1103 187:1212 342:1146 284:1474
+L|London Underground|Northern line|#000000|280 213:1462 199:2487 241:1610 139:1670 364:932 256:765 168:1214 285:631 209:778 376:566 221:511 360:658 268:392 177:491 207:240 378:705 253:2033 288:2134 149:1015
+L|London Underground|Northern line|#000000|199 213:2420 385:1190 401:978 362:1489 239:2395
+L|London Underground|Northern line|#000000|239 362:2500 401:1513 385:971 213:1093 199:2487 241:1610 139:1670 364:932 256:765 168:1214 209:1874 262:617 138:1378 300:1446 282:763 144:802 272:668 158:653 205:864 253:925 302:758 349:1377 183:810 182:664 184:1223 143:1155 358:1017 359:1103 187:1212 342:1146 284:1474
+L|London Underground|Northern line|#000000|239 362:2500 401:1513 385:971 213:1093 199:2487 241:1610 139:1670 364:932 256:765 168:1214 285:631 209:778 376:566 221:511 360:658 268:392 177:491 207:240 378:705 253:2033 288:2134 149:1015
+L|London Underground|Northern line|#000000|239 362:2500 401:1513 385:971 213:1093 199:2487 241:1610 139:1670 364:932 256:765 168:1214 285:631 209:778 376:566 221:511 360:658 268:392 177:491 207:240 378:705 253:2033 302:760 349:1377 183:810 182:664 184:1223 143:1155 358:1017 359:1103 187:1212 342:1146 284:1474
+L|London Underground|Northern line|#000000|239 362:2500 401:1513 385:971 213:1093 199:2487
+L|London Underground|Piccadilly line|#094fa3|185 299:1281 337:1998 160:3141 399:1557 366:1027 275:2236 215:1053 141:664 246:740 167:604 262:1970 329:921 244:704 188:588 268:300 309:484 225:624 251:1002 263:529 338:1274 218:711 196:823 148:1553 228:701 365:2253 133:2227 335:2211 290:395 159:878 301:2545 249:951 248:703 250:1455 234:2903 237:2171 236:2470
+L|London Underground|Piccadilly line|#094fa3|185 299:1281 337:1998 160:3141 399:1557 366:1027 275:2236 215:1053 141:664 246:740 167:604 262:1970 329:921 244:704 188:588 268:300 309:484 225:624 251:1002 263:529 338:1274 218:711 196:823 148:1553 228:701 365:2253 133:2227 335:2211 290:395 159:878 301:2545 249:951 248:703 250:1455 234:2903 235:1807
+L|London Underground|Piccadilly line|#094fa3|185 299:1281 337:1998 140:1893 160:1248 399:1557 366:1027 275:2236 215:1053 141:664 246:740 167:604 262:1970 329:921 244:704 188:588 268:300 309:484 225:624 251:1002 263:529 338:1274 218:711 196:823 148:1553 228:701 365:2253 133:2227 195:1044 306:1996 136:1994 354:1559 353:1581 319:3275 198:1811 328:1139 326:636 252:1901 243:1095 371:2005
+L|London Underground|Piccadilly line|#094fa3|185 299:1281
+L|London Underground|Piccadilly line|#094fa3|148 228:701 365:2253 133:2227 195:1044 306:1996 136:1994 354:1559 353:1581 319:3275 198:1811 328:1139 326:636 252:1901 243:1095 371:2005
+L|London Underground|Piccadilly line|#094fa3|148 228:701 365:2253 133:2227 335:2211 290:395 159:878 301:2545 249:951 248:703 250:1455
+L|London Underground|Piccadilly line|#094fa3|235 237:1613 234:2127 250:2932 248:1454 249:703 301:949 159:2546 290:993 335:388 133:2167 365:2181 228:2229 148:710 196:1550 218:922 338:626 263:1274 251:526 225:1092 309:492 268:537 188:274 244:550 329:751 262:924 167:1966 246:606 141:733 215:622 275:1154 366:2283 399:969 160:1549 140:1252 337:1986 299:1892 185:1281
+L|London Underground|Piccadilly line|#094fa3|250 248:1454 249:703 301:949 159:2546 290:993 335:388 133:2167 365:2181 228:2229 148:710
+L|London Underground|Piccadilly line|#094fa3|299 185:1281
+L|London Underground|Piccadilly line|#094fa3|371 243:2138 252:1072 326:1790 328:767 198:1009 319:1813 353:3274 354:1675 136:1578 306:1882 195:1995 133:1080 365:2179 228:2229 148:710 196:1550 218:922 338:626 263:1274 251:526 225:1092 309:492 268:537 188:274 244:550 329:751 262:924 167:1966 246:606 141:733 215:622 275:1154 366:2283 399:969 160:1549 140:1252 337:1986 299:1892 185:1281
+L|London Underground|Piccadilly line|#094fa3|371 243:2138 252:1072 326:1790 328:767 198:1009 319:1813 353:3274 354:1675 136:1578 306:1882 195:1995 133:1080 365:2179 228:2229 148:710
+L|London Underground|Piccadilly line|#094fa3|236 237:2501 234:2127 250:2932 248:1454 249:703 301:949 159:2546 290:993 335:388 133:2167 365:2181 228:2229 148:710 196:1550 218:922 338:626 263:1274 251:526 225:1092 309:492 268:537 188:274 244:550 329:751 262:924 167:1966 246:606 141:733 215:622 275:1154 366:2283 399:969 160:1549 140:1252 337:1986 299:1892 185:1281
+L|London Underground|Victoria line|#0a9cda|163 349:1541 372:1748 310:836 373:1214 225:1107 303:1023 376:1057 209:647 262:785 240:2420 215:1970 330:3270 361:1023 156:1364 374:1537
+L|London Underground|Victoria line|#0a9cda|163 349:1541 372:1748 310:836 373:1214 225:1107 303:1023 376:1057 209:647 262:785 240:2420 215:1970 330:3270
+L|London Underground|Victoria line|#0a9cda|374 156:1659 361:1319 330:1073 215:3216 240:1934 262:2374 209:823 376:621 303:1039 225:1151 373:1112 310:1165 372:790 349:1787 163:1390
+L|London Underground|Victoria line|#0a9cda|330 215:3216 240:1934 262:2374 209:823 376:621 303:1039 225:1151 373:1112 310:1165 372:790 349:1787 163:1390
+L|London Underground|Waterloo & City line|#93CEBA|378 144:2209
+L|London Underground|Waterloo & City line|#93CEBA|144 378:2209
+L|Strathclyde Partnership for Transport|Subway Inner Circle|#3D3D3C|406 408:921 404:676 411:452 413:812 416:600 402:532 414:649 403:545 405:814 415:697 409:757 407:918 410:588 412:574 406:935
+L|Strathclyde Partnership for Transport|Subway Outer Circle|#FF6600|406 412:959 410:538 407:621 409:888 415:808 405:693 403:781 414:545 402:652 416:537 413:601 411:814 404:500 408:679 406:904
+L|Tyne and Wear Metro|Green Line|#009933|417 423:1051 418:2297 443:682 429:1439 473:592 457:952 461:1320 440:658 474:749 442:1190 436:785 449:540 424:528 433:1336 434:1101 431:1170 438:1011 455:896 430:3712 421:1588 428:3052 458:2870 464:1297 466:804 467:482 454:565 470:505 447:729 452:1316 462:2140
+L|Tyne and Wear Metro|Green Line|#009933|462 452:2202 447:1322 470:725 454:474 467:403 466:669 464:789 458:1286 428:2900 421:3037 430:1585 455:3734 438:840 431:1052 434:1158 433:1187 424:1306 449:502 436:532 442:768 474:1196 440:732 461:679 457:1308 473:916 429:489 443:1412 418:818 423:2306 417:1022
+L|Tyne and Wear Metro|Yellow Line|#d39f06|465 449:498 445:878 422:1537 426:1185 471:790 472:1827 435:1112 439:1380 456:1365 446:620 450:1321 469:1718 427:1996 476:757 448:1034 475:1243 459:1893 451:1099 453:1746 420:2034 432:779 444:868 461:1331 440:658 474:749 442:1190 436:785 449:568 424:528 433:1336 434:1101 431:1170 438:1011 455:896 437:3077 441:2114 419:1843 460:752 468:1264 425:1378 463:1155
+L|Tyne and Wear Metro|Yellow Line|#d39f06|463 425:1217 468:1316 460:1325 419:655 441:1945 437:1936 455:3297 438:840 431:1052 434:1158 433:1187 424:1306 449:531 436:558 442:768 474:1196 440:732 461:679 444:1343 432:863 420:792 453:2025 451:1744 459:1024 475:1962 448:1257 476:1030 427:732 469:2034 450:1717 446:1296 456:615 439:1244 435:1518 472:1116 471:1721 426:892 422:1056 445:1865 449:692 465:422
+L|Bella Jane Boat Trips|Bella Jane Boat Trips||478 477:14522 478:14517
+L|Birmingham Water Bus|Water Bus 1|#00a0e2|482 480:297 479:372 481:480
+L|Bristol|Cross Harbour Ferry||488 485:79
+L|Bristol|Waterbus||489 483:691 484:764 491:1379 488:447 486:469 490:326
+L|Bristol|Waterbus||484 483:764 489:691 487:2029
+L|Bristol|Waterbus||490 486:326 488:469 491:447 484:1378 483:764 489:691
+L|Bristol|Waterbus||487 489:2029 483:691 484:764
+L|Brittany Ferries|Cork||492 493:460530
+L|Brittany Ferries|Roscoff||493 492:473914
+L|Caledonian MacBrayne|Caledonian MacBrayne||502 500:92732
+L|Caledonian MacBrayne|Caledonian MacBrayne||502 496:7866
+L|Caledonian MacBrayne|Largs - Cumbrae Slip||501 498:2024
+L|Caledonian MacBrayne|Mallaig - Eigg - Muck - Rum - Canna||502 495:28612 499:18077 494:13928 497:68380
+L|Caledonian MacBrayne|Uig - Harris Ferry / Aiseag Ùige - Na Hearadh||504 503:43528
+L|Craig of Campbeltown Ltd|Kintyre Express||511 505:53328
+L|Craig of Campbeltown Ltd|Kintyre Express||511 506:49605
+L|DFDS|Newcastle - IJmuiden||507 508:500923
+L|Dept for Infrastructure NI|Strangford Ferry||510 509:1109
+L|Dept for Infrastructure NI|Strangford Ferry||509 510:1109
+L|Dunaverty Limited|Rathlin Island Ferry||512 511:160 513:10064
+L|Frazer Foyle Holdings Ltd|Scenic Lough Foyle Ferry||514 515:1912
+L|Frazer Foyle Holdings Ltd|Scenic Lough Foyle Ferry||515 514:1912
+L|Hovertravel|Hovertravel Ryde to Southsea||516 517:7120
+L|Hovertravel|Southsea to Hovertravel Ryde||517 516:7117
+L|Imag'in|Majest'in|#000080|519 520:479 518:560 521:890 522:2038
+L|Imag'in|Majest'in|#000080|522 521:2038 518:890 520:560 519:479
+L|Irish Ferries|Ferry|#00a25b|523 525:105845
+L|Irish Ferries|Ferry|#00a25b|525 523:105780
+L|Irish Ferries|Pembroke Dock => Rosslare||526 524:121829
+L|Irish Ferries|Rosslare => Pembroke Dock||524 526:120900
+L|Isle of Man Steam Packet Company|Belfast - Isle of Man Steam Packet||527 528:109791
+L|London River Services|River Bus 1|green|531 553:3089 541:265 536:396 529:2219 540:876 551:401 534:5450 538:1174 539:2343 542:1015 544:4242
+L|London River Services|River Bus 1|green|553 541:265 536:396 529:2219 540:876 551:401 534:5450 538:1174 539:2343 542:1015 544:4242
+L|London River Services|River Bus 1|green|553 541:265 536:396 529:2219 540:876 551:401 534:5450 538:1174 539:2343 542:1015 544:4242 547:1272 554:3231 530:4186
+L|London River Services|River Bus 1|green|544 542:4241 539:1015 538:2343 534:1268 551:5451 540:401 529:876 536:2219 541:396 553:265 531:3089
+L|London River Services|River Bus 1|green|544 542:4241 539:1015 538:2343 534:1268 551:5451 540:401 529:876 536:2219 541:396 553:265
+L|London River Services|River Bus 1|green|530 554:4185 547:3231 544:1272 542:4241 539:1015 538:2343 534:1268 551:5451 540:401 529:876 536:2219 541:396 553:265
+L|London River Services|River Bus 1X||553 541:265 536:396 529:2219 540:876 551:401 534:5450 539:5778 544:2893
+L|London River Services|River Bus 1X||544 539:2892 551:9392 540:401 529:876 536:2219 541:396 553:265
+L|London River Services|River Bus 2||531 549:1357 543:633 553:1133 541:265 536:396 529:2219 540:876 551:401
+L|London River Services|River Bus 2||551 540:401 529:876 536:2219 541:396 553:265 543:1133 549:633 531:1357
+L|London River Services|River Bus 4|lime|534 546:190
+L|London River Services|River Bus 4|lime|546 534:190
+L|London River Services|River Bus 5||544 547:1272 554:3231
+L|London River Services|River Bus 5||554 547:3231 544:1272
+L|London River Services|River Bus 6|#00a0e2|534 540:4387 532:1217
+L|London River Services|River Bus 6|#00a0e2|545 552:1215 550:1244 535:810 533:1434 531:1433 536:3908 532:1498
+L|London River Services|River Bus 6|#00a0e2|532 540:1216 534:4387
+L|London River Services|River Bus 6|#00a0e2|532 536:1498 531:3907 533:1433 535:1434 550:810 552:1244 545:1215
+L|London River Services|River Tours|red|553 541:265 551:3309 539:7147
+L|London River Services|River Tours|blue|553 548:3954 539:6780
+L|London River Services|River Tours|green|553 536:594 537:265 529:1590 548:1653
+L|London River Services|River Tours|blue|539 548:6782 553:3953
+L|London River Services|River Tours|red|539 551:7149 541:3309 553:265
+L|London River Services|Woolwich Free Ferry||555 556:394
+L|London River Services|Woolwich Free Ferry||556 555:394
+L|Middlesbrough Council|Transporter Bridge northbound||557 558:196
+L|Middlesbrough Council|Transporter Bridge southbound||558 557:196
+L|Nexus|Tyne Ferry||560 559:793
+L|Nexus|Tyne Ferry||559 560:792
+L|NorthLink Ferries|NorthLink Ferries||563 562:284698 561:293046
+L|NorthLink Ferries|NorthLink Ferries||561 562:302059 563:293776
+L|P & O Frieght|Ferry||572 564:454543
+L|P & O Frieght|Ferry||564 572:471371
+L|P&O|P&O Larne - Cairnryan||566 565:60840
+L|P&O European Ferries (Irish Sea) Limited,|P&O Cairnryan - Larne||565 566:60715
+L|P&O Ferries|Dover - Calais||569 571:521 570:58 568:83580 567:376
+L|P&O Ferries|Ferry||573 572:524137
+L|P&O Ferries/DFDS|Dover/Douvres - Calais||571 570:58 569:302 568:43455
+L|P&O Ferries/DFDS|Dover/Douvres - Calais||568 571:43446 570:58
+L|P&O Freight|Ferry||572 573:506105
+L|Rooskey Frazer & Co Ltd|Carlingford Lough Ferry||575 574:2896
+L|Rooskey Frazer & Co Ltd|Carlingford Lough Ferry||574 575:2896
+L|Seatruck Ferries Ltd|Seatruck Heysham - Warrenpoint||576 577:226301
+L|Stena Line B.V.|Harwich - Hoek van Holland||578 579:212569
+L|Stena Line B.V.|Hoek van Holland - Harwich||579 578:212462
+L|Stena Line Ferries|Stena Line Ferry, Belfast => Cairnryan||581 580:74135
+L|Stena Line Ferries|Stena Line Ferry, Cairnryan => Belfast||580 581:73517
+L|Stena Line Ltd|Belfast - Liverpool||586 585:262927
+L|Stena Line Ltd|Ferry||582 583:106194
+L|Stena Line Ltd|Ferry||583 582:106122
+L|Stena Line Ltd|Stena Belfast - Heysham||581 576:225072
+L|Stena Line Ltd|Stena Line||524 584:96030
+L|Stena Line Ltd|Stena Line||584 524:96514
+L|Western Isle Cruises|Mallaig-Inverie-Tarbert||589 588:10093 587:8758
+L|Wightlink|Portsmouth Harbour - Ryde Pier Head||590 591:7809
+L|Wightlink|Wightlink Lymington Pier-Yarmouth Quay||592 593:6268
+L|Windermere Lake Cruises|Windermere Lake Cruises Fell Foot Ferry Fell Foot => Lakeside|brown|597 598:302
+L|Windermere Lake Cruises|Windermere Lake Cruises Fell Foot Ferry Lakeside => Fell Foot|brown|598 597:302
+L|Windermere Lake Cruises|Windermere Lake Cruises Red Route Ambleside => Bowness|red|594 595:7522
+L|Windermere Lake Cruises|Windermere Lake Cruises Red Route Bowness => Ambleside|red|595 599:1371 596:4400 594:2784
+L|Windermere Lake Cruises|Windermere Lake Cruises Yellow Route Bowness => Lakeside|yellow|595 598:9968
+L|Windermere Lake Cruises|Windermere Lake Cruises Yellow Route Lakeside => Bowness|yellow|598 595:9970
+L|regional|Gosport Ferry||601 600:566
+L|regional|Wightlink Portsmouth - Fishbourne||603 602:10933
+T|50.10215|1.82438|Abbeville
+T|51.49108|0.12041|Abbey Wood
+T|51.57487|-3.22981|Aber
+T|51.64304|-3.32954|Abercynon
+T|51.71375|-3.43950|Aberdare
+T|57.14265|-2.09763|Aberdeen
+T|56.05476|-3.30098|Aberdour
+T|52.54435|-4.05632|Aberdovey
+T|52.89839|-4.37491|Abererch
+T|51.81744|-3.00901|Abergavenny
+T|53.29459|-3.58265|Abergele and Pensarn
+T|52.41389|-4.08155|Aberystwyth
+T|53.75280|-2.37012|Accrington
+T|57.60960|-4.91384|Achanalt
+T|57.57932|-5.07220|Achnasheen
+T|57.48203|-5.33332|Achnashellach
+T|55.30722|-1.65177|Acklington
+T|52.63468|1.54398|Acle
+T|52.44955|-1.81922|Acocks Green
+T|53.26631|-2.60275|Acton Bridge
+T|51.50872|-0.26281|Acton Central
+T|51.51698|-0.26798|Acton Main Line
+T|53.33600|-6.46923|Adamstown
+T|52.48306|-1.85542|Adderley Park
+T|55.84345|-3.60630|Addiewell
+T|51.37311|-0.48451|Addlestone
+T|54.57841|-5.95502|Adelaide
+T|51.24134|1.19873|Adisham
+T|53.61307|-2.60286|Adlington
+T|53.31972|-2.13364|Adlington (Cheshire)
+T|53.57193|-1.17989|Adwick
+T|53.36451|-2.92661|Aigburth
+T|53.60186|-3.04264|Ainsdale
+T|53.47381|-2.95633|Aintree
+T|55.78207|-3.99470|Airbles
+T|55.86408|-3.98225|Airdrie
+T|51.43538|0.12597|Albany Park
+T|52.63823|-2.26921|Albrighton
+T|53.30386|-2.23662|Alderley Edge
+T|51.40221|-1.13670|Aldermaston
+T|51.24628|-0.75991|Aldershot
+T|50.83636|-0.18174|Aldrington
+T|51.59820|-0.12066|Alexandra Palace
+T|55.86362|-4.21067|Alexandra Parade
+T|55.98527|-4.57732|Alexandria
+T|53.10106|-1.36984|Alfreton
+T|54.52456|-1.36165|Allens West
+T|56.11794|-3.78832|Alloa
+T|57.69443|-4.24995|Alness
+T|55.39279|-1.63677|Alnmouth
+T|51.85400|0.99704|Alresford
+T|53.09303|-2.29884|Alsager
+T|51.64778|0.75180|Althorne
+T|53.58555|-0.73296|Althorpe
+T|58.38813|-3.70615|Altnabreac
+T|51.15190|-0.96713|Alton
+T|53.38766|-2.34708|Altrincham
+T|52.34683|-1.96797|Alvechurch
+T|53.06042|-1.48087|Ambergate
+T|50.89642|-0.54203|Amberley
+T|51.79555|-3.99683|Ammanford
+T|52.98771|-0.53535|Ancaster
+T|55.85977|-4.27026|Anderston
+T|51.21156|-1.49278|Andover
+T|51.41258|-0.06549|Anerley
+T|50.81652|-0.48813|Angmering
+T|54.98351|-3.26281|Annan
+T|55.88995|-4.32157|Anniesland
+T|53.74164|-2.99351|Ansdell and Fairhaven
+T|54.71810|-6.21148|Antrim
+T|53.84204|-1.70707|Apperley Bridge
+T|54.58041|-2.48654|Appleby
+T|51.03329|0.81658|Appledore
+T|51.63949|-1.24247|Appleford
+T|53.57871|-2.71958|Appley Bridge
+T|51.73237|-0.46299|Apsley
+T|56.55934|-2.58927|Arbroath
+T|57.88157|-4.36222|Ardgay
+T|56.30184|-4.72161|Ardlui
+T|55.63951|-4.82025|Ardrossan Harbour
+T|55.64111|-4.80053|Ardrossan South Beach
+T|55.64021|-4.81208|Ardrossan Town
+T|53.47116|-2.21321|Ardwick
+T|55.85762|-4.25058|Argyle Street
+T|56.91296|-5.83963|Arisaig
+T|52.79392|-6.15971|Arklow
+T|52.02582|-0.26643|Arlesey
+T|55.88653|-3.69296|Armadale
+T|54.80944|-2.77208|Armathwaite
+T|54.20260|-2.82807|Arnside
+T|53.88433|-0.42655|Arram
+T|56.20330|-4.72312|Arrochar and Tarbet
+T|50.84801|-0.54627|Arundel
+T|51.40625|-0.67678|Ascot
+T|51.86746|-1.56397|Ascott-under-Wychwood
+T|51.24973|-0.71291|Ash
+T|51.27253|-0.72146|Ash Vale
+T|53.47184|-2.19523|Ashburys
+T|51.99903|-2.10873|Ashchurch for Tewkesbury
+T|55.88884|-4.24846|Ashfield
+T|51.43650|-0.46831|Ashford
+T|51.14338|0.87523|Ashford International
+T|55.18212|-1.57260|Ashington
+T|53.35572|-2.34144|Ashley
+T|51.47813|-2.57665|Ashley Down
+T|51.31792|-0.30739|Ashtead
+T|53.49122|-2.09370|Ashton-under-Lyne
+T|53.37541|-6.33181|Ashtown
+T|51.12842|0.15260|Ashurst
+T|50.88985|-1.52646|Ashurst New Forest
+T|52.03063|-0.10992|Ashwell & Morden
+T|54.18913|-3.20456|Askam
+T|52.95155|-0.89842|Aslockton
+T|54.75895|-3.33188|Aspatria
+T|52.02120|-0.63269|Aspley Guise
+T|52.50442|-1.87204|Aston
+T|52.57852|-1.55237|Atherstone
+T|53.52908|-2.47783|Atherton
+T|53.42690|-7.93576|Athlone
+T|52.99229|-6.97648|Athy
+T|57.39448|-5.45540|Attadale
+T|52.90641|-1.23115|Attenborough
+T|52.51443|1.02221|Attleborough
+T|53.32128|-8.60627|Attymon
+T|55.46987|-4.29596|Auchinleck
+T|52.00446|0.20715|Audley End
+T|53.55416|-2.89530|Aughton Park
+T|57.18828|-3.82888|Aviemore
+T|51.33956|-2.28184|Avoncliff
+T|51.49972|-2.69886|Avonmouth
+T|50.77901|-3.00495|Axminster
+T|51.81343|-0.81431|Aylesbury
+T|51.83128|-0.85983|Aylesbury Vale Parkway
+T|51.30153|0.46577|Aylesford
+T|51.22742|1.20959|Aylesham
+T|55.45827|-4.62583|Ayr
+T|53.20826|-2.89139|Bache
+T|52.69893|-6.95260|Bagenalstown
+T|51.61432|-3.80936|Baglan
+T|51.36433|-0.68850|Bagshot
+T|53.85020|-1.75370|Baildon
+T|55.84451|-4.11372|Baillieston
+T|53.61188|-6.18233|Balbriggan
+T|51.05560|-0.13703|Balcombe
+T|51.99297|-0.18756|Baldock
+T|54.20229|-4.41242|Baldrine Station
+T|55.78720|-4.38122|Balgray
+T|51.44283|-0.15144|Balham
+T|54.09132|-4.67376|Ballabeg
+T|54.27987|-4.33950|Ballacannell Halt
+T|54.19398|-4.42403|Balladromma Beg Halt
+T|54.28252|-4.33509|Ballafayle Kerruish
+T|54.20743|-4.40700|Ballagawne Halt
+T|54.28047|-4.36500|Ballaglass Halt
+T|54.27419|-4.37516|Ballagorry Halt
+T|54.28876|-4.33603|Ballajora Halt
+T|54.19760|-4.41743|Ballamenagh Halt
+T|54.23282|-4.37747|Ballamoar Bottom Halt
+T|54.23383|-4.37686|Ballamoar Top Halt
+T|54.24167|-4.37330|Ballaragh Halt
+T|54.09624|-4.62868|Ballasalla
+T|54.26694|-4.37750|Ballasholague Halt
+T|54.27832|-4.34575|Ballaskeig Halt
+T|54.31949|-4.37961|Ballastowell Halt
+T|54.26258|-4.37585|Ballellin Halt
+T|54.26447|-4.37845|Ballig Halt
+T|53.33643|-8.23987|Ballinasloe
+T|56.00236|-4.58328|Balloch
+T|54.31351|-4.37319|Ballure Halt
+T|52.90016|-7.60253|Ballybrophy
+T|54.77722|-5.72564|Ballycarry
+T|54.86407|-6.28464|Ballymena
+T|55.06650|-6.51388|Ballymoney
+T|54.08818|-8.52073|Ballymote
+T|54.56863|-5.96859|Balmoral
+T|56.47473|-2.83835|Balmossie
+T|53.72691|-2.66142|Bamber Bridge
+T|53.33913|-1.68940|Bamford
+T|56.84384|-5.09590|Banavie
+T|52.06057|-1.32776|Banbury
+T|53.22264|-4.13552|Bangor
+T|54.65865|-5.67184|Bangor
+T|54.65955|-5.69293|Bangor West
+T|53.43790|-2.98780|Bank Hall
+T|51.32943|-0.21372|Banstead
+T|55.56160|-4.65146|Barassie
+T|54.97454|-2.34507|Bardon Mill
+T|54.07466|-2.83497|Bare Lane
+T|55.85130|-4.07375|Bargeddie
+T|51.69275|-3.22982|Bargoed
+T|51.51956|0.11601|Barking Riverside
+T|51.28485|0.47929|Barming
+T|52.72244|-4.05679|Barmouth
+T|51.46502|0.15965|Barnehurst
+T|51.46678|-0.24118|Barnes
+T|51.47201|-0.25263|Barnes Bridge
+T|53.57501|-0.40976|Barnetby
+T|50.83074|-0.64020|Barnham
+T|55.87774|-4.22333|Barnhill
+T|53.55443|-1.47726|Barnsley Interchange
+T|51.07361|-4.06302|Barnstaple
+T|52.36097|-1.99250|Barnt Green
+T|55.80399|-4.39711|Barrhead
+T|55.09753|-4.78214|Barrhill
+T|53.69745|-0.39289|Barrow Haven
+T|54.11912|-3.22603|Barrow-in-Furness
+T|52.74943|-1.14549|Barrow-upon-Soar
+T|51.39690|-3.28487|Barry
+T|51.40260|-3.26116|Barry Docks
+T|51.39231|-3.27421|Barry Island
+T|56.49311|-2.74615|Barry Links
+T|53.68900|-0.44305|Barton-on-Humber
+T|51.56814|0.45680|Basildon
+T|51.26842|-1.08856|Basingstoke
+T|51.29011|0.19418|Bat & Ball
+T|51.37760|-2.35672|Bath Spa
+T|55.89711|-3.63627|Bathgate
+T|53.71021|-1.62301|Batley
+T|54.45756|-1.09336|Battersby
+T|51.47761|-0.14758|Battersea Park
+T|50.91289|0.49492|Battle
+T|51.62493|0.56563|Battlesbridge
+T|51.75790|-0.09573|Bayford
+T|53.39154|-6.13679|Bayside
+T|51.61136|-0.64360|Beaconsfield
+T|52.24497|-1.74976|Bearley
+T|55.91694|-4.33260|Bearsden
+T|51.27592|0.57767|Bearsted
+T|56.90007|-5.76392|Beasdale
+T|50.94546|1.89882|Beau Marais
+T|51.75769|0.51950|Beaulieu Park
+T|50.85505|-1.50497|Beaulieu Road
+T|57.47830|-4.46994|Beauly
+T|50.42287|1.89541|Beaurainville
+T|53.35766|-3.00307|Bebington
+T|52.45883|1.56963|Beccles
+T|51.42452|-0.01591|Beckenham Hill
+T|51.41106|-0.02599|Beckenham Junction
+T|52.13618|-0.47973|Bedford
+T|52.12937|-0.46763|Bedford St Johns
+T|50.85398|-0.99627|Bedhampton
+T|55.14076|-1.56942|Bedlington
+T|51.44061|-2.59363|Bedminster
+T|52.47948|-1.46752|Bedworth
+T|51.37955|-1.59886|Bedwyn
+T|52.92079|-1.20751|Beeston
+T|51.26140|1.13723|Bekesbourne
+T|54.59515|-5.93973|Belfast Grand Central
+T|54.59515|-5.91729|Belfast Lanyon Place
+T|55.12703|-6.95107|Bellarena
+T|53.46147|-2.18007|Belle Vue
+T|54.30965|-4.36108|Belle Vue Halt
+T|55.85670|-4.22434|Bellgrove
+T|51.43283|-0.01952|Bellingham
+T|55.81706|-4.02433|Bellshill
+T|51.34390|-0.19879|Belmont
+T|53.02427|-1.48256|Belper
+T|51.20449|0.40334|Beltring
+T|51.49223|0.15337|Belvedere
+T|54.12779|-0.18071|Bempton
+T|53.92574|-1.79747|Ben Rhydding
+T|51.54410|0.56162|Benfleet
+T|54.11549|-2.51062|Bentham
+T|51.18123|-0.86820|Bentley
+T|53.54371|-1.15072|Bentley (South Yorkshire)
+T|50.48561|-4.20032|Bere Alston
+T|50.45109|-4.18145|Bere Ferrers
+T|51.76365|-0.56308|Berkhamsted
+T|52.39608|-1.64179|Berkswell
+T|52.50334|-1.47260|Bermuda Park
+T|52.59026|1.63107|Berney Arms
+T|53.62106|-1.79357|Berry Brow
+T|51.39901|-0.28091|Berrylands
+T|50.84049|0.16572|Berwick
+T|55.77456|-2.01054|Berwick-upon-Tweed
+T|53.62385|-2.91455|Bescar Lane
+T|52.56303|-1.99108|Bescot Stadium
+T|51.24794|-0.26747|Betchworth
+T|51.52389|-0.05959|Bethnal Green
+T|53.09269|-3.80054|Betws-y-Coed
+T|53.84216|-0.42290|Beverley
+T|50.84094|0.47573|Bexhill
+T|51.44024|0.14795|Bexley
+T|51.46356|0.13294|Bexleyheath
+T|51.90329|-1.14978|Bicester North
+T|51.89241|-1.14938|Bicester Village
+T|51.40006|0.04434|Bickley
+T|53.40936|-3.07878|Bidston
+T|52.08503|-0.26082|Biggleswade
+T|52.62396|-2.18731|Bilbrook
+T|51.62884|0.41813|Billericay
+T|54.60571|-1.27954|Billingham
+T|51.01513|-0.44951|Billingshurst
+T|52.95422|-0.95129|Bingham
+T|53.84872|-1.83716|Bingley
+T|51.52153|-3.20246|Birchgrove
+T|51.37750|1.30090|Birchington-on-Sea
+T|53.41278|-2.52514|Birchwood
+T|52.76566|-8.44229|Birdhill
+T|51.40346|-0.05654|Birkbeck
+T|53.63389|-3.01462|Birkdale
+T|53.38820|-3.02088|Birkenhead Central
+T|53.40471|-3.05793|Birkenhead North
+T|53.39760|-3.03982|Birkenhead Park
+T|52.45078|-1.72532|Birmingham International
+T|52.47894|-1.89195|Birmingham Moor Street
+T|52.47765|-1.89869|Birmingham New Street
+T|52.48380|-1.89966|Birmingham Snow Hill
+T|54.65722|-1.67795|Bishop Auckland
+T|51.86643|0.16540|Bishop's Stortford
+T|55.90397|-4.22452|Bishopbriggs
+T|50.77999|0.08262|Bishopstone
+T|55.90236|-4.50080|Bishopton
+T|50.91815|-1.37694|Bitterne
+T|53.74653|-2.47886|Blackburn
+T|51.46580|0.00892|Blackheath
+T|53.82294|-3.04837|Blackpool North
+T|53.78788|-3.05388|Blackpool Pleasure Beach
+T|53.79844|-3.04882|Blackpool South
+T|55.88438|-3.75028|Blackridge
+T|53.30284|-6.17870|Blackrock
+T|53.59121|-2.56987|Blackrod
+T|51.33157|-0.77678|Blackwater
+T|52.99469|-3.93846|Blaenau Ffestiniog
+T|56.76527|-3.84971|Blair Atholl
+T|55.86652|-4.04272|Blairhill
+T|52.60438|-1.84466|Blake Street
+T|52.40679|-2.17639|Blakedown
+T|49.93243|1.62575|Blangy-sur-Bresle
+T|55.79730|-4.08688|Blantyre
+T|54.96596|-1.71288|Blaydon
+T|53.04148|-0.94356|Bleasby
+T|51.99545|-0.73630|Bletchley
+T|52.61842|-2.01168|Bloxwich
+T|52.62532|-2.01754|Bloxwich North
+T|53.48773|-3.04043|Blundellsands & Crosby
+T|55.12510|-1.55711|Blyth Bebside
+T|52.96783|-2.06692|Blythe Bridge
+T|50.44601|-4.66276|Bodmin Parkway
+T|53.20419|-4.41629|Bodorgan
+T|50.78769|-0.67575|Bognor Regis
+T|55.93718|-4.71228|Bogston
+T|53.57352|-2.42513|Bolton
+T|53.51881|-1.31149|Bolton-upon-Dearne
+T|54.17070|-4.44525|Boncompte's
+T|51.51353|-0.14709|Bond Street
+T|51.28884|-0.38388|Bookham
+T|53.30999|-6.19520|Booterstown
+T|54.29118|-3.39384|Bootle
+T|53.45279|-2.99462|Bootle New Strand
+T|53.44670|-2.99567|Bootle Oriel Road
+T|52.47221|-1.87766|Bordesley
+T|51.29314|0.30619|Borough Green & Wrotham
+T|52.49098|-4.04967|Borth
+T|50.84286|-0.84717|Bosham
+T|52.97811|-0.03132|Boston
+T|54.58838|-5.93265|Botanic
+T|50.91636|-1.25905|Botley
+T|52.94469|-0.79497|Bottesford
+T|50.72734|1.60929|Boulogne - Tintelleries
+T|50.71554|1.61014|Boulogne Ville
+T|51.57691|-0.71080|Bourne End
+T|50.72721|-1.86419|Bournemouth
+T|52.42739|-1.92667|Bournville
+T|52.00422|-0.69622|Bow Brickhill
+T|52.43991|-4.03036|Bow Street
+T|51.60719|-0.12048|Bowes Park
+T|55.93105|-4.49292|Bowling
+T|51.25399|-0.32867|Box Hill & Westhumble
+T|53.96763|-8.30471|Boyle
+T|51.41301|-0.75226|Bracknell
+T|53.79747|-1.75321|Bradford Forster Square
+T|53.79049|-1.74913|Bradford Interchange
+T|51.34479|-2.25275|Bradford-on-Avon
+T|50.67830|-1.13860|Brading
+T|54.17031|-4.43731|Braeside Halt
+T|51.87531|0.55673|Braintree
+T|51.86929|0.56820|Braintree Freeport
+T|53.36017|-2.16231|Bramhall
+T|51.32998|-1.06084|Bramley
+T|53.80535|-1.63722|Bramley
+T|52.39551|1.54382|Brampton
+T|54.93215|-2.70385|Brampton
+T|55.94055|-4.80364|Branchton
+T|52.45388|0.62444|Brandon
+T|50.72703|-1.91937|Branksome
+T|53.20441|-6.10056|Bray Daly
+T|54.43951|-3.54197|Braystones
+T|53.42304|-2.11049|Bredbury
+T|55.82755|-3.66726|Breich
+T|51.56882|-0.22654|Brent Cross West
+T|51.48765|-0.30968|Brentford
+T|51.61352|0.30061|Brentwood
+T|51.70557|-0.35912|Bricket Wood
+T|56.15675|-3.95729|Bridge of Allan
+T|56.51639|-4.76432|Bridge of Orchy
+T|51.50711|-3.57526|Bridgend
+T|55.84833|-4.22482|Bridgeton
+T|51.12784|-2.99025|Bridgwater
+T|54.08407|-0.20037|Bridlington
+T|53.82437|-2.23624|Brierfield
+T|53.54905|-0.48576|Brigg
+T|53.69816|-1.77934|Brighouse
+T|50.82886|-0.14074|Brighton
+T|50.44709|1.83147|Brimeux
+T|51.65557|-0.03079|Brimsdown
+T|53.43196|-2.13412|Brinnington
+T|51.51388|-2.54298|Bristol Parkway
+T|51.44910|-2.58040|Bristol Temple Meads
+T|51.70980|-3.22813|Brithdir
+T|51.63812|-3.81998|Briton Ferry
+T|51.46290|-0.11335|Brixton
+T|53.40651|-2.89339|Broad Green
+T|53.44079|-2.01600|Broadbottom
+T|51.36074|1.43341|Broadstairs
+T|50.81675|-1.57341|Brockenhurst
+T|53.59703|-1.76983|Brockholes
+T|51.46423|-0.03761|Brockley
+T|53.32186|-2.98689|Bromborough
+T|53.33028|-2.99022|Bromborough Rake
+T|53.61395|-2.41084|Bromley Cross
+T|51.40920|0.01780|Bromley North
+T|51.40004|0.01828|Bromley South
+T|52.32016|-2.04998|Bromsgrove
+T|51.54505|-0.20260|Brondesbury
+T|51.54051|-0.21034|Brondesbury Park
+T|51.72116|-0.20484|Brookmans Park
+T|51.30358|-0.63599|Brookwood
+T|53.37262|-6.29882|Broombridge
+T|52.42315|-2.88448|Broome
+T|53.74037|-0.67301|Broomfleet
+T|58.01314|-3.85234|Brora
+T|53.72693|-0.57815|Brough
+T|56.46764|-2.87399|Broughty Ferry
+T|54.25951|-4.37191|Brown's Crossing
+T|51.74683|-0.01063|Broxbourne
+T|51.59371|-0.07001|Bruce Grove
+T|52.61954|1.43896|Brundall
+T|52.62340|1.41852|Brundall Gardens
+T|55.94200|-3.10087|Brunstane
+T|53.38322|-2.97602|Brunswick
+T|51.11169|-2.44715|Bruton
+T|53.49972|-2.64762|Bryn
+T|52.59770|1.47021|Buckenham
+T|53.16254|-3.05519|Buckley
+T|52.35728|-2.94769|Bucknell
+T|53.67296|-2.65898|Buckshaw Parkway
+T|50.40024|-4.79191|Bugle
+T|52.16911|-3.42714|Builth Road
+T|52.99934|-1.19540|Bulwell
+T|54.25132|-4.46370|Bungalow Station
+T|51.97120|0.76916|Bures
+T|50.95361|-0.12743|Burgess Hill
+T|53.81206|-1.57785|Burley Park
+T|53.90798|-1.75319|Burley-in-Wharfedale
+T|54.25170|-4.37536|Burn's Crossing Halt
+T|53.42213|-2.21516|Burnage
+T|54.35552|-2.76735|Burneside
+T|51.52339|-0.64708|Burnham
+T|51.63360|0.81366|Burnham-on-Crouch
+T|53.79093|-2.25795|Burnley Barracks
+T|53.79355|-2.24479|Burnley Central
+T|53.78517|-2.24932|Burnley Manchester Road
+T|55.81694|-4.20312|Burnside
+T|56.05735|-3.23383|Burntisland
+T|53.60542|-2.84165|Burscough Bridge
+T|53.59755|-2.84053|Burscough Junction
+T|50.88357|-1.30511|Bursledon
+T|52.98329|-1.04121|Burton Joyce
+T|52.80587|-1.64250|Burton-on-Trent
+T|52.25364|0.71259|Bury St Edmunds
+T|55.78039|-4.26223|Busby
+T|51.64171|-0.06939|Bush Hill Park
+T|51.64553|-0.38501|Bushey
+T|52.59262|-1.83839|Butlers Lane
+T|50.99012|0.13138|Buxted
+T|53.26079|-1.91310|Buxton
+T|51.34968|-0.48122|Byfleet and New Haw
+T|51.67228|-4.09872|Bynea
+T|51.41218|-3.24877|Cadoxton
+T|53.10808|-3.03321|Caergwrle
+T|51.57154|-3.21882|Caerphilly
+T|52.51614|-3.43260|Caersws
+T|50.84969|1.81216|Caffiers
+T|52.37795|-7.92258|Cahir
+T|50.90191|1.81144|Calais - Fréthun
+T|50.95338|1.85037|Calais-Ville
+T|55.88805|-3.88872|Caldercruix
+T|51.58451|-2.75977|Caldicot
+T|51.54355|-0.11489|Caledonian Road & Barnsbury
+T|50.49799|-4.20858|Calstock
+T|51.71764|-2.35917|Cam and Dursley
+T|51.33634|-0.74389|Camberley
+T|50.21024|-5.29772|Camborne
+T|52.19411|0.13772|Cambridge
+T|51.53195|-0.05742|Cambridge Heath
+T|52.22465|0.15877|Cambridge North
+T|52.17403|0.13127|Cambridge South
+T|55.81945|-4.17302|Cambuslang
+T|51.54195|-0.13953|Camden Road
+T|56.00623|-3.81839|Camelon
+T|56.19003|-3.04572|Cameron Bridge
+T|51.50611|-0.01762|Canary Wharf
+T|52.39938|-1.54753|Canley
+T|52.68610|-2.02235|Cannock
+T|51.54856|-0.09302|Canonbury
+T|51.27419|1.07582|Canterbury East
+T|51.28422|1.07531|Canterbury West
+T|52.57872|1.51363|Cantley
+T|53.26023|-2.94260|Capenhurst
+T|50.19708|-5.46370|Carbis Bay
+T|56.14106|-3.26098|Cardenden
+T|51.46764|-3.16678|Cardiff Bay
+T|51.47555|-3.17971|Cardiff Central
+T|51.48200|-3.17029|Cardiff Queen Street
+T|55.85276|-4.34037|Cardonald
+T|55.96024|-4.65297|Cardross
+T|55.80768|-3.95604|Carfin
+T|54.17797|-2.97400|Cark and Cartmel
+T|54.89026|-2.93305|Carlisle
+T|52.84106|-6.92211|Carlow
+T|52.96505|-1.07877|Carlton
+T|55.73112|-3.84893|Carluke
+T|51.85331|-4.30576|Carmarthen
+T|55.83426|-4.15807|Carmyle
+T|54.66607|-5.70563|Carnalea
+T|54.12962|-2.77149|Carnforth
+T|56.50068|-2.70535|Carnoustie
+T|55.85490|-4.17918|Carntyne
+T|51.62791|-0.38551|Carpenders Park
+T|57.27949|-3.82822|Carrbridge
+T|53.93840|-8.10686|Carrick-on-Shannon
+T|52.34905|-7.40456|Carrick-on-Suir
+T|54.71754|-5.80959|Carrickfergus
+T|51.86888|-8.32437|Carrigaloe
+T|51.91627|-8.26337|Carrigtwohill
+T|51.36858|-0.16638|Carshalton
+T|51.35720|-0.16935|Carshalton Beeches
+T|55.69137|-3.66937|Carstairs
+T|55.94221|-4.73236|Cartsdyke
+T|51.52287|-0.33150|Castle Bar Park
+T|51.09986|-2.52242|Castle Cary
+T|52.71306|-8.49793|Castleconnell
+T|53.72408|-1.35510|Castleford
+T|53.38153|-6.37142|Castleknock
+T|53.76157|-8.48580|Castlerea
+T|55.16530|-6.78735|Castlerock
+T|53.59274|-2.17772|Castleton
+T|54.46715|-0.94673|Castleton Moor
+T|54.07866|-4.64877|Castletown
+T|51.28221|-0.07839|Caterham
+T|51.44447|-0.02615|Catford
+T|51.44459|-0.02492|Catford Bridge
+T|51.48890|-3.17893|Cathays
+T|55.81780|-4.26039|Cathcart
+T|53.99742|-1.32020|Cattal
+T|50.40569|-4.46642|Causeland
+T|50.17982|1.50111|Cayeux-sur-Mer-Brighton-Plage
+T|53.09884|-3.03085|Cefn-y-Bedd
+T|51.56799|0.12799|Chadwell Heath
+T|51.48560|0.28747|Chafford Hundred Lakeside
+T|51.53861|0.66984|Chalkwell
+T|50.98345|-1.38489|Chandler's Ford
+T|53.31206|-1.91837|Chapel-en-le-Frith
+T|51.01623|-4.02455|Chapelton
+T|53.46250|-1.46644|Chapeltown
+T|51.92568|0.75850|Chappel and Wakes Colne
+T|51.20820|0.78987|Charing
+T|51.50750|-0.12369|Charing Cross
+T|55.86464|-4.26958|Charing Cross (Glasgow)
+T|51.87233|-1.48977|Charlbury
+T|52.34723|-8.65358|Charleville
+T|51.48676|0.03081|Charlton
+T|51.25717|1.01791|Chartham
+T|53.44616|-2.36783|Chassen Road
+T|55.76512|-4.00444|Chatelherault
+T|51.38031|0.52121|Chatham
+T|55.53673|-1.70665|Chathill
+T|53.37603|-2.18835|Cheadle Hulme
+T|51.35566|-0.21451|Cheam
+T|51.85829|-0.66198|Cheddington
+T|53.27042|-2.28044|Chelford
+T|51.73651|0.46865|Chelmsford
+T|51.35661|0.10833|Chelsfield
+T|51.89699|-2.10012|Cheltenham Spa
+T|51.63997|-2.67108|Chepstow
+T|53.73318|-2.51864|Cherry Tree
+T|51.38713|-0.50946|Chertsey
+T|51.70286|-0.02378|Cheshunt
+T|51.36398|-0.30073|Chessington North
+T|51.35675|-0.30810|Chessington South
+T|53.19675|-2.87953|Chester
+T|52.53595|-1.83241|Chester Road
+T|54.85454|-1.57825|Chester-le-Street
+T|53.23822|-1.41973|Chesterfield
+T|51.36028|1.06744|Chestfield & Swalecliffe
+T|50.86634|-2.57296|Chetnole
+T|50.83188|-0.78185|Chichester
+T|51.24442|0.97606|Chilham
+T|51.21512|-0.52501|Chilworth
+T|51.63253|0.00947|Chingford
+T|53.34012|-1.94452|Chinley
+T|51.46237|-2.11588|Chippenham
+T|51.30934|-0.16933|Chipstead
+T|52.93325|-3.06615|Chirk
+T|51.40516|0.05787|Chislehurst
+T|51.48115|-0.26818|Chiswick
+T|51.57041|-1.15870|Cholsey
+T|53.65298|-2.62693|Chorley
+T|51.05081|-0.36386|Christ's Hospital
+T|50.73837|-1.78473|Christchurch
+T|53.82701|-1.22721|Church Fenton
+T|52.53730|-2.80368|Church Stretton
+T|53.75054|-2.39089|Church and Oswaldtwistle
+T|52.15042|-3.45673|Cilmeri
+T|54.58864|-5.93984|City Hospital
+T|51.51513|-0.10356|City Thameslink
+T|51.79453|1.15433|Clacton-on-Sea
+T|51.26403|-0.50286|Clandon
+T|54.10542|-2.41045|Clapham
+T|51.46549|-0.13231|Clapham High Street
+T|51.46446|-0.17052|Clapham Junction
+T|51.56165|-0.05686|Clapton
+T|53.33982|-7.61637|Clara
+T|51.85174|-4.88216|Clarbeston Road
+T|55.78949|-4.27566|Clarkston
+T|52.27719|-1.69640|Claverdon
+T|51.36106|-0.34841|Claygate
+T|53.56282|-0.03010|Cleethorpes
+T|55.80443|-3.91073|Cleland
+T|53.52232|-2.31412|Clifton
+T|51.46443|-2.61144|Clifton Down
+T|54.71754|-5.81839|Clipperstown
+T|53.87356|-2.39443|Clitheroe
+T|51.40834|-0.04082|Clock House
+T|53.33335|-6.40640|Clondalkin & Fonthill
+T|53.40270|-6.14895|Clongriffin
+T|52.36108|-7.69912|Clonmel
+T|53.38294|-6.42319|Clonsilla
+T|53.36307|-6.22686|Clontarf Road
+T|52.93642|-8.02449|Cloughjordan
+T|51.84011|-4.73102|Clunderwen
+T|55.90057|-4.40416|Clydebank
+T|55.86267|-4.03208|Coatbridge Central
+T|55.86691|-4.02796|Coatbridge Sunnyside
+T|55.86440|-4.00500|Coatdyke
+T|51.84884|-8.30025|Cobh
+T|51.31792|-0.38941|Cobham & Stoke d'Abernon
+T|52.62744|-2.20182|Codsall
+T|51.44616|-3.18905|Cogan
+T|54.09468|-4.70342|Colby
+T|51.90058|0.89246|Colchester
+T|51.88651|0.90543|Colchester Town
+T|55.13396|-6.66267|Coleraine
+T|52.51652|-1.70777|Coleshill Parkway
+T|53.14398|-0.75027|Collingham
+T|50.83929|0.45718|Collington
+T|54.18650|-8.49495|Collooney
+T|53.85491|-2.18189|Colne
+T|52.07984|-2.35680|Colwall
+T|53.29682|-3.72589|Colwyn Bay
+T|51.83263|-1.39400|Combe
+T|54.48123|-0.97492|Commondale
+T|53.15780|-2.19246|Congleton
+T|53.48953|-1.23461|Conisbrough
+T|56.45247|-5.38329|Connel Ferry
+T|57.56163|-4.44038|Conon Bridge
+T|53.91716|-2.01180|Cononley
+T|53.39353|-3.02309|Conway Park
+T|53.28009|-3.83070|Conwy
+T|50.83337|0.42670|Cooden Beach
+T|51.55737|-0.72225|Cookham
+T|50.90371|-0.00931|Cooksbridge
+T|53.37769|-6.39065|Coolmine
+T|50.44516|-4.48135|Coombe Junction Halt
+T|50.81427|-3.75130|Copplestone
+T|54.96626|-2.01903|Corbridge
+T|52.48885|-0.68838|Corby
+T|51.90163|-8.45822|Cork Kent
+T|55.83747|-4.33433|Corkerhill
+T|54.26889|-4.37661|Corkhill's Crossing Halt
+T|54.54167|-3.58213|Corkickle
+T|54.28319|-4.35729|Cornaa Halt
+T|56.84277|-5.12212|Corpach
+T|56.76028|-4.69077|Corrour
+T|51.52044|-3.23148|Coryton
+T|52.54532|-2.08581|Coseley
+T|52.64485|-2.30069|Cosford
+T|50.84188|-1.06739|Cosham
+T|53.78131|-0.40622|Cottingham
+T|53.76803|-1.58777|Cottingley
+T|51.31554|-0.13797|Coulsdon South
+T|51.32206|-0.13425|Coulsdon Town
+T|52.40074|-1.51355|Coventry
+T|52.44696|-1.49480|Coventry Arena
+T|51.15563|0.10990|Cowden
+T|56.11165|-3.34329|Cowdenbeath
+T|52.46944|-2.09070|Cradley Heath
+T|55.99484|-4.71192|Craigendoran
+T|55.08776|-1.59868|Cramlington
+T|50.75002|-3.42098|Cranbrook
+T|52.44242|-2.83763|Craven Arms
+T|51.11203|-0.18652|Crawley
+T|51.44818|0.17839|Crayford
+T|50.78332|-3.64674|Crediton
+T|51.85195|0.57832|Cressing
+T|53.35869|-2.91209|Cressington
+T|53.26392|-1.21641|Creswell
+T|53.08896|-2.43264|Crewe
+T|50.87361|-2.77849|Crewkerne
+T|51.68475|-0.10722|Crews Hill
+T|56.39033|-4.61844|Crianlarich
+T|52.91838|-4.23730|Criccieth
+T|51.55876|-0.21297|Cricklewood
+T|55.81825|-4.22824|Croftfoot
+T|51.45521|-0.03663|Crofton Park
+T|52.93005|1.29165|Cromer
+T|53.11291|-1.54907|Cromford
+T|55.84223|-4.36510|Crookston
+T|53.80506|-1.45035|Cross Gates
+T|53.85830|-1.84448|Crossflatts
+T|55.83326|-4.25666|Crosshill
+T|51.62076|-3.12584|Crosskeys
+T|55.83372|-4.28479|Crossmyloof
+T|53.66746|-2.77799|Croston
+T|51.57143|-0.11687|Crouch Hill
+T|51.04624|0.18804|Crowborough
+T|50.88866|0.50148|Crowhurst
+T|53.58982|-0.81735|Crowle
+T|51.36649|-0.81926|Crowthorne
+T|55.95563|-4.03626|Croy
+T|51.41766|-0.07127|Crystal Palace
+T|53.23992|-2.59954|Cuddington
+T|51.70915|-0.10980|Cuffley
+T|51.65389|-1.23658|Culham
+T|54.88813|-6.34453|Cullybackey
+T|57.91959|-4.40453|Culrain
+T|54.65231|-5.80498|Cultra
+T|55.94190|-3.98030|Cumbernauld
+T|56.31720|-3.00896|Cupar
+T|55.90063|-3.31842|Curriehill
+T|51.50980|0.02723|Custom House
+T|51.37391|0.46198|Cuxton
+T|51.70148|-3.41477|Cwmbach
+T|51.65709|-3.01601|Cwmbran
+T|52.05148|-3.74841|Cynghordy
+T|51.52619|0.14543|Dagenham Dock
+T|53.53936|-2.51518|Daisy Hill
+T|56.04227|-3.36725|Dalgety Bay
+T|53.27572|-6.10340|Dalkey
+T|56.40098|-4.98256|Dalmally
+T|55.84218|-4.21747|Dalmarnock
+T|55.98625|-3.38150|Dalmeny
+T|55.91201|-4.42685|Dalmuir
+T|55.94728|-4.57725|Dalreoch
+T|55.70599|-4.71114|Dalry
+T|54.84616|-2.98858|Dalston
+T|51.54528|-0.07497|Dalston Junction
+T|51.54819|-0.07605|Dalston Kingsland
+T|54.15424|-3.17884|Dalton
+T|56.93515|-4.24623|Dalwhinnie
+T|54.46617|-0.91100|Danby
+T|51.50040|-3.23395|Danescourt
+T|50.57592|1.61464|Dannes - Camiers
+T|52.32475|-1.82084|Danzey
+T|52.57576|-2.02042|Darlaston
+T|54.52066|-1.54669|Darlington
+T|53.38455|-1.41236|Darnall
+T|52.27321|1.52360|Darsham
+T|51.44742|0.21912|Dartford
+T|53.58800|-1.53079|Darton
+T|53.69794|-2.46427|Darwen
+T|51.48290|-0.57939|Datchet
+T|53.39073|-2.15216|Davenport
+T|50.58061|-3.46445|Dawlish
+T|50.59865|-3.44372|Dawlish Warren
+T|51.22311|1.39865|Deal
+T|51.04237|-1.63392|Dean
+T|53.47410|-2.25106|Deansgate
+T|53.29457|-3.83325|Deganwy
+T|53.66846|-1.75239|Deighton
+T|53.22883|-2.66653|Delamere
+T|54.38266|-5.67685|Delamont
+T|53.57287|-1.66320|Denby Dale
+T|51.57872|-0.49752|Denham
+T|51.58062|-0.51819|Denham Golf Club
+T|51.46804|-0.08960|Denmark Hill
+T|54.28257|-2.36363|Dent
+T|53.45740|-2.13094|Denton
+T|51.47898|-0.02664|Deptford
+T|52.91652|-1.46261|Derby
+T|52.05052|1.18270|Derby Road
+T|54.54239|-6.01769|Derriaghy
+T|54.99309|-7.31282|Derry~Londonderry
+T|50.37852|-4.17010|Devonport
+T|53.69202|-1.63327|Dewsbury
+T|54.25445|-4.37216|Dhoon Farm Halt
+T|54.24985|-4.37709|Dhoon Glen Halt
+T|54.25595|-4.37165|Dhoon Quarry Halt
+T|55.19622|-6.66119|Dhu Varren
+T|51.61122|-1.24252|Didcot Parkway
+T|49.92142|1.08114|Dieppe
+T|50.71418|-3.47360|Digby and Sowton
+T|51.24888|-2.20782|Dilton Marsh
+T|51.43127|-3.21907|Dinas Powys
+T|51.61737|-3.43710|Dinas Rhondda
+T|51.43992|-3.17982|Dingle Road
+T|57.59420|-4.42220|Dingwall
+T|54.51500|-1.46712|Dinsdale
+T|53.44932|-1.97060|Dinting
+T|53.35824|-2.04262|Disley
+T|52.37362|1.12354|Diss
+T|53.35067|-6.23933|Docklands
+T|50.38237|-4.17603|Dockyard
+T|53.54421|-1.53203|Dodworth
+T|52.29500|-3.26333|Dolau
+T|50.91863|0.61001|Doleham
+T|53.18594|-3.82314|Dolgarrog
+T|54.27932|-4.36952|Dolland Halt
+T|53.05157|-3.88455|Dolwyddelan
+T|53.48575|-6.15129|Donabate
+T|53.52195|-1.13991|Doncaster
+T|50.70914|-2.43745|Dorchester South
+T|50.71093|-2.44265|Dorchester West
+T|53.32757|-1.51532|Dore and Totley
+T|51.24117|-0.32414|Dorking
+T|51.23882|-0.32398|Dorking Deepdene
+T|51.23635|-0.33985|Dorking West
+T|51.15587|-0.00423|Dormans
+T|52.37185|-1.75286|Dorridge
+T|54.14789|-4.48529|Douglas Railway Station
+T|53.30014|-1.88971|Dove Holes
+T|51.12594|1.30487|Dover Priory
+T|51.93881|1.28051|Dovercourt
+T|52.56476|-3.92379|Dovey Junction
+T|52.60416|0.36561|Downham Market
+T|54.72100|-5.79039|Downshire
+T|51.51639|-0.33019|Drayton Green
+T|51.55311|-0.10577|Drayton Park
+T|54.29322|-4.34081|Dreemskerry
+T|54.29765|-4.34652|Dreemskerry Farm
+T|56.00513|-2.78530|Drem
+T|54.00145|-0.43456|Driffield
+T|54.37686|-3.44358|Drigg
+T|53.71202|-6.33564|Drogheda MacBride
+T|52.26838|-2.15834|Droitwich Spa
+T|53.85910|-7.91637|Dromod
+T|53.30140|-1.46925|Dronfield
+T|55.90473|-4.36303|Drumchapel
+T|53.36309|-6.25875|Drumcondra
+T|55.94129|-4.77151|Drumfrochar
+T|55.86768|-3.94831|Drumgelloch
+T|55.90460|-4.38548|Drumry
+T|53.35272|-6.24714|Dublin Connolly
+T|53.34650|-6.29297|Dublin Heuston
+T|53.34333|-6.24846|Dublin Pearse
+T|52.48849|-1.87128|Duddeston
+T|52.52446|-2.04925|Dudley Port
+T|52.98823|-1.48586|Duffield
+T|57.31983|-5.69162|Duirinish
+T|55.85866|-4.21260|Duke Street
+T|52.20151|0.36588|Dullingham
+T|55.94652|-4.56761|Dumbarton Central
+T|55.94235|-4.55404|Dumbarton East
+T|55.84495|-4.30080|Dumbreck
+T|55.07270|-3.60445|Dumfries
+T|51.34585|1.42528|Dumpton Park
+T|55.99821|-2.51368|Dunbar
+T|56.18584|-3.96571|Dunblane
+T|53.41727|-6.46480|Dunboyne
+T|57.33694|-5.63711|Duncraig
+T|54.00113|-6.41251|Dundalk Clarke
+T|56.45661|-2.97090|Dundee
+T|56.06811|-3.45236|Dunfermline City
+T|56.08017|-3.42177|Dunfermline Queen Margaret
+T|56.55658|-3.57751|Dunkeld and Birnam
+T|55.71191|-4.53240|Dunlop
+T|54.55313|-6.00321|Dunmurry
+T|57.98578|-3.94737|Dunrobin Castle
+T|54.95000|-1.64144|Dunston
+T|51.29662|0.17132|Dunton Green
+T|54.77975|-1.58151|Durham
+T|50.81744|-0.41148|Durrington-on-Sea
+T|57.20571|-2.19269|Dyce
+T|52.78843|-4.10473|Dyffryn Ardudwy
+T|53.29500|-6.13474|Dún Laoghaire Mallin
+T|54.53009|-1.34972|Eaglescliffe
+T|53.45122|-2.63762|Earlestown
+T|51.44103|-0.91771|Earley
+T|51.44240|-0.18769|Earlsfield
+T|51.22748|-0.17091|Earlswood
+T|52.36660|-1.86140|Earlswood
+T|51.37584|-0.09273|East Croydon
+T|53.40932|-2.22200|East Didsbury
+T|51.46104|-0.08080|East Dulwich
+T|51.25525|0.48448|East Farleigh
+T|53.79224|-1.37159|East Garforth
+T|51.12640|-0.01786|East Grinstead
+T|55.76610|-4.17972|East Kilbride
+T|55.98715|-2.66282|East Linton
+T|51.28567|0.44036|East Malling
+T|52.86227|-1.26288|East Midlands Parkway
+T|51.48449|0.41273|East Tilbury
+T|50.82159|-0.35511|East Worthing
+T|50.76944|0.28120|Eastbourne
+T|51.43784|-3.20626|Eastbrook
+T|55.85985|-4.10688|Easterhouse
+T|53.30757|-2.98127|Eastham Rake
+T|50.96879|-1.34996|Eastleigh
+T|53.75523|-0.78708|Eastrington
+T|51.44353|0.32137|Ebbsfleet International
+T|51.75651|-3.19605|Ebbw Vale Parkway
+T|51.77663|-3.20242|Ebbw Vale Town
+T|53.48553|-2.33405|Eccles
+T|52.47130|0.96999|Eccles Road
+T|53.43074|-2.78033|Eccleston Park
+T|53.36482|-1.81725|Edale
+T|51.39018|-0.02637|Eden Park
+T|51.20837|0.05986|Edenbridge
+T|51.20014|0.06721|Edenbridge Town
+T|53.40249|-2.94665|Edge Hill
+T|53.68876|-7.60311|Edgeworthstown
+T|55.94094|-3.32013|Edinburgh Gateway
+T|55.92758|-3.30757|Edinburgh Park
+T|55.95190|-3.19042|Edinburgh Waverley
+T|51.62450|-0.06140|Edmonton Green
+T|51.29130|-0.42006|Effingham Junction
+T|50.88769|-3.87511|Eggesford
+T|51.42941|-0.54658|Egham
+T|54.43753|-0.76175|Egton
+T|51.49404|-0.09872|Elephant & Castle
+T|57.64279|-3.31114|Elgin
+T|53.28211|-2.89605|Ellesmere Port
+T|51.39801|-0.04970|Elmers End
+T|51.41680|0.04466|Elmstead Woods
+T|52.23815|0.91253|Elmswell
+T|53.49868|-1.42750|Elsecar
+T|51.92069|0.22780|Elsenham
+T|51.65282|-0.27988|Elstree & Borehamwood
+T|51.45559|0.05227|Eltham
+T|52.95215|-0.85541|Elton and Orston
+T|52.39069|0.26650|Ely
+T|51.56860|0.22024|Emerson Park
+T|50.85165|-0.93851|Emsworth
+T|51.58455|-3.22908|Energlyn & Churchill Park
+T|53.41618|-6.83417|Enfield
+T|51.65264|-0.09086|Enfield Chase
+T|51.67061|-0.02857|Enfield Lock
+T|51.65172|-0.07867|Enfield Town
+T|52.50461|-6.56629|Enniscorthy
+T|53.65598|-2.41405|Entwistle
+T|51.33435|-0.26955|Epsom
+T|51.32425|-0.23844|Epsom Downs
+T|52.52838|-1.83944|Erdington
+T|51.08924|0.20096|Eridge
+T|51.48158|0.17519|Erith
+T|51.38005|-0.35320|Esher
+T|54.18459|-4.42793|Eskadale Halt
+T|55.88121|-3.08279|Eskbank
+T|51.54073|-0.09619|Essex Road
+T|51.01066|0.44238|Etchingham
+T|50.05432|1.41685|Eu
+T|53.65982|-2.67168|Euxton Balshaw Lane
+T|52.09850|-1.94729|Evesham
+T|51.34529|-0.24129|Ewell East
+T|51.35011|-0.25713|Ewell West
+T|50.72691|-3.53228|Exeter Central
+T|50.72922|-3.54357|Exeter St Davids
+T|50.71720|-3.53882|Exeter St Thomas
+T|55.86139|-4.28320|Exhibition Centre
+T|50.62159|-3.41497|Exmouth
+T|50.66803|-3.44407|Exton
+T|51.36233|0.20421|Eynsford
+T|52.69598|-4.04903|Fairbourne
+T|53.47132|-2.14492|Fairfield
+T|55.75189|-4.85319|Fairlie
+T|51.49389|-3.23380|Fairwater
+T|54.22114|-4.39916|Fairy Cottage
+T|51.45923|0.07930|Falconwood
+T|56.00237|-3.78547|Falkirk Grahamston
+T|55.99173|-3.79253|Falkirk High
+T|56.39402|-5.11273|Falls of Cruachan
+T|50.86194|-0.08729|Falmer
+T|50.15083|-5.05561|Falmouth Docks
+T|50.14835|-5.06485|Falmouth Town
+T|54.17006|-4.43417|Far End Halt
+T|50.85341|-1.19234|Fareham
+T|51.29682|-0.75552|Farnborough (Main)
+T|51.30240|-0.74305|Farnborough North
+T|51.19714|-0.60437|Farncombe
+T|51.21181|-0.79242|Farnham
+T|51.40168|0.23534|Farningham Road
+T|53.55046|-2.38853|Farnworth
+T|55.82244|-3.71925|Fauldhouse
+T|51.31165|0.89066|Faversham
+T|50.21716|1.65927|Favières
+T|51.09595|-0.26301|Faygate
+T|53.46898|-2.93697|Fazakerley
+T|57.77809|-3.99393|Fearn
+T|53.67910|-1.35828|Featherstone
+T|51.96702|1.34981|Felixstowe
+T|51.44784|-0.41028|Feltham
+T|50.78662|-3.28546|Feniton
+T|51.99998|-0.71798|Fenny Stratford
+T|51.68661|-3.39589|Fernhill
+T|53.71705|-0.50773|Ferriby
+T|51.76825|-4.36960|Ferryside
+T|51.87301|-3.99278|Ffairfach
+T|54.20981|-0.29386|Filey
+T|51.50339|-2.56383|Filton Abbey Wood
+T|54.56404|-5.98582|Finaghy
+T|51.55011|-0.18358|Finchley Road & Frognal
+T|51.85282|-1.46960|Finstock
+T|50.83910|-0.81551|Fishbourne
+T|50.83428|-0.21957|Fishersgate
+T|52.01069|-4.98617|Fishguard Harbour
+T|52.00397|-4.99507|Fishguard and Goodwick
+T|53.06060|-0.91184|Fiskerton
+T|53.63261|-1.37464|Fitzwilliam
+T|52.47109|-1.91307|Five Ways
+T|51.29062|-0.83138|Fleet
+T|54.68999|-3.52053|Flimby
+T|53.24968|-3.13249|Flint
+T|52.00379|-0.49498|Flitwick
+T|53.44371|-2.38396|Flixton
+T|53.46139|-2.08011|Flowery Field
+T|51.08281|1.16839|Folkestone Central
+T|51.08472|1.15378|Folkestone West
+T|50.82936|-0.57830|Ford
+T|51.54925|0.02328|Forest Gate
+T|51.43924|-0.05309|Forest Hill
+T|53.55432|-3.07092|Formby
+T|57.61111|-3.62432|Forres
+T|58.35686|-3.89696|Forsinard
+T|55.95892|-4.79521|Fort Matilda
+T|56.82056|-5.10531|Fort William
+T|51.89627|-8.31807|Fota
+T|51.89519|-8.31765|Fota Wildlife Park Train pickup point
+T|52.57955|-1.82803|Four Oaks
+T|54.25860|-3.21594|Foxfield
+T|52.11936|0.05698|Foxton
+T|51.10409|0.29434|Frant
+T|50.79645|-1.07326|Fratton
+T|53.56621|-3.07189|Freshfield
+T|51.34177|-2.30059|Freshford
+T|51.31178|-0.74709|Frimley
+T|51.83776|1.24332|Frinton-on-Sea
+T|53.82038|-1.76885|Frizinghall
+T|53.29578|-2.72373|Frodsham
+T|51.22723|-2.31003|Frome
+T|51.43391|-0.34906|Fulwell
+T|53.34881|-1.98887|Furness Vale
+T|51.53315|-0.72841|Furze Platt
+T|53.39899|-0.76951|Gainsborough Central
+T|53.38609|-0.76938|Gainsborough Lea Road
+T|55.61785|-2.80572|Galashiels
+T|50.06046|1.36738|Gare Basse
+T|50.05922|1.36724|Gare Haute
+T|50.22004|1.63184|Gare du Crotoy
+T|56.08023|-4.82536|Garelochhead
+T|53.79657|-1.38228|Garforth
+T|53.97825|-2.10507|Gargrave
+T|55.85505|-4.12984|Garrowhill
+T|55.88752|-4.36440|Garscadden
+T|54.32146|-2.32637|Garsdale
+T|51.68652|-0.38181|Garston
+T|53.48805|-2.67199|Garswood
+T|55.88562|-4.07938|Gartcosh
+T|52.13339|-3.53019|Garth
+T|51.59671|-3.64281|Garth (Bridgend)
+T|57.61311|-4.68838|Garve
+T|54.20708|-4.41029|Garwick Glen Halt
+T|53.55938|-2.69381|Gathurst
+T|53.39324|-2.23066|Gatley
+T|51.15673|-0.16092|Gatwick Airport
+T|58.51355|-3.45140|Georgemas Junction
+T|51.58879|-0.55493|Gerrards Cross
+T|51.58179|0.20573|Gidea Park
+T|55.80394|-4.29296|Giffnock
+T|54.06177|-2.30285|Giggleswick
+T|53.74802|-0.73161|Gilberdyke
+T|51.68415|-3.22739|Gilfach Fargoed
+T|51.03409|-2.27208|Gillingham
+T|51.38685|0.55145|Gillingham
+T|55.89729|-4.28246|Gilshochill
+T|51.42453|-0.08404|Gipsy Hill
+T|55.24628|-4.84808|Girvan
+T|54.43951|-0.79393|Glaisdale
+T|53.26862|-3.79759|Glan Conwy
+T|55.85831|-4.25844|Glasgow Central
+T|55.86256|-4.25112|Glasgow Queen Street
+T|53.70906|-1.34205|Glasshoughton
+T|53.42829|-2.45999|Glazebrook
+T|54.27017|-4.37601|Glen Mona Halt
+T|53.28124|-6.12311|Glenageary
+T|56.27491|-3.73096|Gleneagles
+T|56.87244|-5.44931|Glenfinnan
+T|55.73898|-4.67490|Glengarnock
+T|56.16229|-3.14293|Glenrothes with Thornton
+T|53.44481|-1.95002|Glossop
+T|51.86550|-2.23829|Gloucester
+T|51.91129|-8.32511|Glounthaune
+T|50.85912|0.07035|Glynde
+T|54.82714|-5.80709|Glynn
+T|52.89332|-3.03688|Gobowen
+T|51.18652|-0.61896|Godalming
+T|53.45225|-2.05564|Godley
+T|51.21819|-0.05144|Godstone
+T|53.53383|-1.31290|Goldthorpe
+T|56.49795|-2.72012|Golf Street
+T|57.97128|-3.98726|Golspie
+T|51.21924|-0.44225|Gomshall
+T|51.56580|0.11193|Goodmayes
+T|53.70497|-0.87426|Goole
+T|53.22257|-2.32634|Goostrey
+T|51.66295|-0.09422|Gordon Hill
+T|55.83996|-3.04611|Gorebridge
+T|52.67122|-6.29201|Gorey
+T|51.52119|-1.13312|Goring & Streatley
+T|50.81769|-0.43318|Goring-by-Sea
+T|53.63783|-6.21705|Gormanston
+T|53.46893|-2.16775|Gorton
+T|51.55549|-0.15158|Gospel Oak
+T|55.96162|-4.81567|Gourock
+T|51.64893|-4.03567|Gowerton
+T|53.67667|-0.33741|Goxhill
+T|53.33982|-6.23819|Grand Canal Dock
+T|51.64333|-0.09694|Grange Park
+T|54.19569|-2.90280|Grange-over-Sands
+T|51.46725|-3.18956|Grangetown
+T|52.90652|-0.64301|Grantham
+T|51.17020|-1.62044|Grateley
+T|52.51539|-1.85274|Gravelly Hill
+T|51.44136|0.36683|Gravesend
+T|51.47637|0.32189|Grays
+T|54.48950|-1.11524|Great Ayton
+T|51.85180|1.06546|Great Bentley
+T|52.05993|0.19323|Great Chesterford
+T|53.57572|-0.12983|Great Coates
+T|52.10930|-2.31813|Great Malvern
+T|51.70339|-0.70925|Great Missenden
+T|52.61192|1.72069|Great Yarmouth
+T|53.38330|-3.01628|Green Lane
+T|54.24442|-3.24541|Green Road
+T|53.25142|-2.53446|Greenbank
+T|55.93496|-3.99351|Greenfaulds
+T|53.53875|-2.01424|Greenfield
+T|51.45048|0.27987|Greenhithe
+T|54.70028|-5.87291|Greenisland
+T|55.94521|-4.75188|Greenock Central
+T|55.94720|-4.76776|Greenock West
+T|55.00074|-3.06670|Gretna Green
+T|53.14403|-6.06100|Greystones
+T|53.57414|-0.07583|Grimsby Docks
+T|53.56346|-0.08685|Grimsby Town
+T|53.30556|-1.62603|Grindleford
+T|54.43646|-0.72536|Grosmont
+T|54.17803|-4.43035|Groudle Glen
+T|54.17737|-4.42651|Groudle Old Road Halt
+T|51.43076|0.02202|Grove Park
+T|53.47456|-2.11324|Guide Bridge
+T|51.23720|-0.58114|Guildford
+T|53.87607|-1.71512|Guiseley
+T|50.51663|-4.21952|Gunnislake
+T|52.86608|1.34937|Gunton
+T|53.07279|-3.01762|Gwersyllt
+T|54.53333|-1.18031|Gypsy Lane
+T|53.60610|-0.26935|Habrough
+T|51.37803|-0.15372|Hackbridge
+T|51.54706|-0.05687|Hackney Central
+T|51.54865|-0.06069|Hackney Downs
+T|51.54344|-0.02415|Hackney Wick
+T|51.77093|-0.94207|Haddenham and Thame Parkway
+T|52.52902|1.62299|Haddiscoe
+T|53.46085|-1.96538|Hadfield
+T|51.66863|-0.17614|Hadley Wood
+T|53.53353|-2.49383|Hag Fold
+T|51.53866|-0.07558|Haggerston
+T|52.42243|-2.14654|Hagley
+T|55.76182|-4.22989|Hairmyres
+T|53.37852|-2.34750|Hale
+T|52.34696|1.50575|Halesworth
+T|53.36449|-2.83011|Halewood
+T|53.72084|-1.85363|Halifax
+T|52.43698|-1.84557|Hall Green
+T|53.49762|-3.04974|Hall Road
+T|53.59745|-2.41308|Hall i' th' Wood
+T|51.35237|0.44512|Halling
+T|54.96799|-2.46276|Haltwhistle
+T|51.06820|0.85459|Ham Street
+T|50.87124|-1.32899|Hamble
+T|55.77315|-4.03882|Hamilton Central
+T|53.39432|-3.01408|Hamilton Square
+T|55.77936|-4.05549|Hamilton West
+T|53.99633|-1.28407|Hammerton
+T|50.79593|0.27968|Hampden Park
+T|51.55524|-0.16539|Hampstead Heath
+T|51.41591|-0.37215|Hampton
+T|51.40202|-0.34252|Hampton Court
+T|51.41456|-0.31235|Hampton Wick
+T|52.42864|-1.69972|Hampton-in-Arden
+T|52.53099|-1.92887|Hamstead
+T|50.72537|-2.01905|Hamworthy
+T|51.82471|-1.37263|Hanborough
+T|53.34645|-2.21367|Handforth
+T|53.38701|-6.44205|Hansfield
+T|51.51183|-0.33815|Hanwell
+T|53.78157|-2.31732|Hapton
+T|52.86176|-4.10927|Harlech
+T|52.45386|0.90931|Harling Road
+T|51.96141|-0.49534|Harlington
+T|51.79048|0.13232|Harlow Mill
+T|51.78129|0.09506|Harlow Town
+T|53.37836|-6.19240|Harmonstown
+T|51.59322|0.23420|Harold Wood
+T|51.81482|-0.35156|Harpenden
+T|51.24494|0.67266|Harrietsham
+T|51.57756|-0.10527|Harringay
+T|51.57724|-0.09789|Harringay Green Lanes
+T|54.61352|-3.56555|Harrington
+T|53.99340|-1.53743|Harrogate
+T|53.24157|-2.55352|Hartford
+T|52.33444|-2.22109|Hartlebury
+T|54.68683|-1.20783|Hartlepool
+T|55.81118|-3.83902|Hartwood
+T|51.94722|1.25604|Harwich International
+T|51.94416|1.28663|Harwich Town
+T|51.08878|-0.71949|Haslemere
+T|50.92472|-0.14572|Hassocks
+T|50.85830|0.57683|Hastings
+T|51.60958|-0.36878|Hatch End
+T|51.76516|-0.21580|Hatfield
+T|53.58887|-1.02326|Hatfield & Stainforth
+T|51.78031|0.59277|Hatfield Peverel
+T|53.32592|-1.65214|Hathersage
+T|53.44494|-2.03944|Hattersley
+T|52.29520|-1.67290|Hatton
+T|50.85444|-0.98156|Havant
+T|53.11462|0.27299|Havenhouse
+T|51.80268|-4.96023|Haverfordwest
+T|53.18485|-3.03207|Hawarden
+T|53.21819|-3.03229|Hawarden Bridge
+T|55.84210|-4.39954|Hawkhead
+T|54.97529|-2.24721|Haydon Bridge
+T|51.42536|-0.18834|Haydons Road
+T|51.37660|0.00951|Hayes
+T|51.50292|-0.41916|Hayes and Harlington
+T|50.18554|-5.41993|Hayle
+T|55.94518|-3.21937|Haymarket
+T|51.00490|-0.10540|Haywards Heath
+T|53.37747|-2.12215|Hazel Grove
+T|53.32241|-6.52416|Hazelhatch and Celbridge
+T|53.49158|-2.88371|Headbolt Lane
+T|51.16563|0.62737|Headcorn
+T|53.81804|-1.59448|Headingley
+T|51.60255|-0.35695|Headstone Lane
+T|53.36941|-2.23668|Heald Green
+T|53.58184|-0.16062|Healing
+T|51.51682|-3.18157|Heath High Level
+T|51.51577|-3.18221|Heath Low Level
+T|51.45909|-0.44600|Heathrow Terminal 4
+T|51.47222|-0.48773|Heathrow Terminal 5
+T|51.47193|-0.45431|Heathrow Terminals 2 & 3
+T|53.42599|-2.17929|Heaton Chapel
+T|53.73764|-2.00888|Hebden Bridge
+T|52.97721|-0.29381|Heckington
+T|50.93240|-1.29449|Hedge End
+T|52.70994|-2.00198|Hednesford
+T|54.59713|-1.58177|Heighington
+T|54.66619|-5.74031|Helen's Bay
+T|56.00385|-4.73157|Helensburgh Central
+T|56.01244|-4.73077|Helensburgh Upper
+T|54.01048|-2.22695|Hellifield
+T|58.11773|-3.65915|Helmsdale
+T|53.27529|-2.77115|Helsby
+T|51.74227|-0.49112|Hemel Hempstead
+T|51.58022|-0.23888|Hendon
+T|51.64700|-3.22556|Hengoed
+T|52.29145|-1.78400|Henley-in-Arden
+T|51.53385|-0.89942|Henley-on-Thames
+T|53.69849|-1.11466|Hensall
+T|52.06120|-2.70812|Hereford
+T|51.36444|1.11831|Herne Bay
+T|51.45347|-0.10228|Herne Hill
+T|51.37691|-0.38958|Hersham
+T|51.79940|-0.07175|Hertford East
+T|51.79868|-0.09224|Hertford North
+T|50.66103|1.66711|Hesdigneul
+T|53.71737|-0.44210|Hessle
+T|53.32967|-3.07335|Heswall
+T|51.18138|0.09481|Hever
+T|54.95159|-1.55758|Heworth
+T|54.97353|-2.09479|Hexham
+T|51.91858|-1.29945|Heyford
+T|54.03333|-2.91300|Heysham Port
+T|51.14978|0.27796|High Brooms
+T|55.85935|-4.23993|High Street
+T|51.62937|-0.74458|High Wycombe
+T|51.42695|0.46602|Higham
+T|51.60889|-0.00013|Highams Park
+T|51.21831|-2.97200|Highbridge and Burnham
+T|53.52539|-3.05718|Hightown
+T|54.52230|-6.02938|Hilden
+T|51.21458|0.22788|Hildenborough
+T|55.92033|-4.31972|Hillfoot
+T|55.85423|-4.35490|Hillington East
+T|55.85586|-4.37109|Hillington West
+T|53.62154|-3.02543|Hillside
+T|50.82839|-1.05864|Hilsea
+T|51.37504|-0.34062|Hinchley Wood
+T|52.53517|-1.37111|Hinckley
+T|53.54245|-2.57457|Hindley
+T|50.75260|-1.71363|Hinton Admiral
+T|51.95318|-0.26301|Hitchin
+T|51.45159|-0.00065|Hither Green
+T|51.60365|0.65910|Hockley
+T|51.26538|0.62782|Hollingbourne
+T|53.19928|-2.35110|Holmes Chapel
+T|51.18113|-0.32087|Holmwood
+T|50.71157|-2.07762|Holton Heath
+T|53.30737|-4.63121|Holyhead
+T|55.81256|-3.97349|Holytown
+T|54.64099|-5.83981|Holywood
+T|51.54708|-0.04312|Homerton
+T|52.10164|-1.83368|Honeybourne
+T|50.79673|-3.18692|Honiton
+T|53.60824|-1.78085|Honley
+T|51.45046|-0.04502|Honor Oak Park
+T|51.27988|-0.96142|Hook
+T|53.29699|-2.97732|Hooton
+T|53.34598|-1.72963|Hope
+T|53.11686|-3.03725|Hope (Flintshire)
+T|52.39136|-2.91203|Hopton Heath
+T|54.76379|-1.30720|Horden
+T|51.16879|-0.16095|Horley
+T|53.98036|-1.52768|Hornbeam Park
+T|51.58632|-0.11168|Hornsey
+T|53.84775|-1.63022|Horsforth
+T|51.06598|-0.31892|Horsham
+T|51.27952|-0.43530|Horsley
+T|54.14922|-2.30210|Horton-in-Ribblesdale
+T|53.57798|-2.53973|Horwich Parkway
+T|53.59777|-2.80461|Hoscar
+T|53.37258|-2.77527|Hough Green
+T|51.46228|-0.36149|Hounslow
+T|50.83521|-0.17018|Hove
+T|52.71554|1.40808|Hoveton and Wroxham
+T|51.71737|-0.34494|How Wood
+T|53.76476|-0.86064|Howden
+T|54.17170|-4.42553|Howstrake Camp Halt
+T|53.38911|-6.07437|Howth
+T|53.39131|-6.15582|Howth Junction and Donaghmede
+T|55.81057|-4.56251|Howwood
+T|51.53159|-0.07565|Hoxton
+T|53.38990|-3.17882|Hoylake
+T|52.97532|-0.10986|Hubberts Bridge
+T|53.03850|-1.19595|Hucknall
+T|53.64849|-1.78475|Huddersfield
+T|53.74384|-0.34760|Hull Paragon Interchange
+T|53.45233|-2.32726|Humphrey Park
+T|53.77224|-2.34705|Huncoat
+T|51.41471|-1.51143|Hungerford
+T|54.17399|-0.31457|Hunmanby
+T|52.32881|-0.19247|Huntingdon
+T|57.44451|-2.77573|Huntly
+T|53.36073|-2.85541|Hunts Cross
+T|51.24428|0.00423|Hurst Green
+T|50.17242|1.53712|Hurt
+T|53.95618|-0.43384|Hutton Cranswick
+T|53.40963|-2.84322|Huyton
+T|53.45134|-2.08508|Hyde Central
+T|53.46446|-2.08503|Hyde North
+T|53.19507|-0.60008|Hykeham
+T|55.87961|-4.31449|Hyndland
+T|51.88581|0.92753|Hythe (Colchester)
+T|51.11554|-0.21446|Ifield
+T|51.55894|0.06891|Ilford
+T|52.97910|-1.29504|Ilkeston
+T|53.92479|-1.82129|Ilkley
+T|51.47510|-0.18293|Imperial Wharf
+T|53.53910|-2.61274|Ince
+T|53.27660|-2.81668|Ince and Elton
+T|51.66700|0.38426|Ingatestone
+T|57.33737|-2.61692|Insch
+T|57.68908|-4.17426|Invergordon
+T|56.45625|-3.05783|Invergowrie
+T|56.03524|-3.39542|Inverkeithing
+T|55.90607|-4.87237|Inverkip
+T|57.48023|-4.22271|Inverness
+T|57.53336|-4.05548|Inverness Airport
+T|57.92485|-4.39958|Invershin
+T|57.28641|-2.37348|Inverurie
+T|52.05042|1.14479|Ipswich
+T|53.43420|-2.43285|Irlam
+T|55.61119|-4.67478|Irvine
+T|51.47471|-0.33720|Isleworth
+T|51.82616|-1.23765|Islip
+T|51.50861|-0.50681|Iver
+T|50.39351|-3.90518|Ivybridge
+T|52.31297|-6.93937|JFK Memorial Park Miniature Railway
+T|54.55200|-1.20853|James Cook
+T|52.48967|-1.91368|Jewellery Quarter
+T|51.75628|-4.99672|Johnston
+T|55.83428|-4.50309|Johnstone
+T|55.88265|-4.32464|Jordanhill
+T|54.68697|-5.89530|Jordanstown
+T|53.54452|-2.37549|Kearsley
+T|51.14931|1.27191|Kearsney
+T|53.86793|-1.90136|Keighley
+T|57.55138|-2.95401|Keith
+T|51.84099|0.70269|Kelvedon
+T|55.89348|-4.31008|Kelvindale
+T|51.67680|-2.02307|Kemble
+T|52.09196|-0.50399|Kempston Hardwick
+T|51.42100|-0.40949|Kempton Park
+T|51.29725|0.24742|Kemsing
+T|51.36174|0.73496|Kemsley
+T|54.33225|-2.74014|Kendal
+T|52.34284|-1.57246|Kenilworth
+T|51.32478|-0.10084|Kenley
+T|52.27725|0.49009|Kennett
+T|55.81346|-4.32461|Kennishead
+T|51.53445|-0.22022|Kensal Rise
+T|51.41227|-0.04521|Kent House
+T|51.54699|-0.14676|Kentish Town West
+T|54.17288|-2.92521|Kents Bank
+T|52.39349|-0.73205|Kettering
+T|51.48972|-0.28834|Kew Bridge
+T|50.38997|-4.17989|Keyham
+T|51.41807|-2.49588|Keynsham
+T|51.46203|0.02790|Kidbrooke
+T|52.38436|-2.23848|Kidderminster
+T|53.08642|-2.24492|Kidsgrove
+T|51.73440|-4.31765|Kidwelly
+T|53.38728|-6.16148|Kilbarrack
+T|51.53775|-0.19135|Kilburn High Road
+T|53.39904|-6.66886|Kilcock
+T|53.10687|-6.04101|Kilcoole
+T|54.47775|-1.06833|Kildale
+T|53.16281|-6.90805|Kildare
+T|58.17078|-3.86909|Kildonan
+T|51.73220|-4.71439|Kilgetty
+T|52.65446|-7.24357|Kilkenny MacDonagh
+T|53.37280|-6.20492|Killester
+T|53.25538|-6.11304|Killiney
+T|55.61256|-4.49941|Kilmarnock
+T|55.63710|-4.53055|Kilmaurs
+T|55.92411|-4.45284|Kilpatrick
+T|55.65618|-4.70954|Kilwinning
+T|58.25858|-3.94115|Kinbrace
+T|52.75381|0.40402|King's Lynn
+T|52.02109|-1.28097|King's Sutton
+T|51.90241|-1.62853|Kingham
+T|56.06909|-3.17449|Kinghorn
+T|52.43886|-1.89367|Kings Heath
+T|51.70630|-0.43792|Kings Langley
+T|52.41424|-1.93261|Kings Norton
+T|50.93630|-3.90547|Kings Nympton
+T|55.81951|-4.24628|Kings Park
+T|55.91891|-3.26486|Kingsknowe
+T|51.41293|-0.30182|Kingston
+T|51.29473|-0.21105|Kingswood
+T|57.07779|-4.05318|Kingussie
+T|51.40261|-1.44571|Kintbury
+T|57.24336|-2.35021|Kintore
+T|51.84151|1.21380|Kirby Cross
+T|53.56361|-1.07454|Kirk Sandall
+T|53.48639|-2.90281|Kirkby
+T|54.45491|-2.36870|Kirkby Stephen
+T|53.10002|-1.25327|Kirkby-in-Ashfield
+T|54.23290|-3.18722|Kirkby-in-Furness
+T|56.11204|-3.16702|Kirkcaldy
+T|55.38751|-3.99881|Kirkconnel
+T|53.44079|-2.98117|Kirkdale
+T|53.78690|-2.88338|Kirkham and Wesham
+T|55.81415|-4.16797|Kirkhill
+T|55.88893|-3.43352|Kirknewton
+T|53.82530|-1.62708|Kirkstall Forge
+T|55.85417|-4.04830|Kirkwood
+T|53.48526|-0.59355|Kirton Lindsey
+T|53.33443|-6.43022|Kishoge
+T|53.34094|-1.26708|Kiveton Bridge
+T|53.33676|-1.23957|Kiveton Park
+T|54.00903|-1.47032|Knaresborough
+T|51.86704|-0.18705|Knebworth
+T|52.34502|-3.04234|Knighton
+T|51.34577|0.13083|Knockholt
+T|53.70645|-1.25925|Knottingley
+T|52.35976|-3.09652|Knucklas
+T|53.30160|-2.37218|Knutsford
+T|57.28021|-5.71387|Kyle of Lochalsh
+T|56.27425|-3.12159|Ladybank
+T|51.45603|-0.01919|Ladywell
+T|51.56760|0.42372|Laindon
+T|58.00189|-4.39987|Lairg
+T|50.64618|-1.16647|Lake
+T|52.44743|0.53444|Lakenheath
+T|54.52966|-6.02963|Lambeg
+T|51.66712|-4.87288|Lamphey
+T|55.67350|-3.77242|Lanark
+T|54.04884|-2.80780|Lancaster
+T|50.16664|1.56433|Lanchères - Pendé
+T|50.82702|-0.32320|Lancing
+T|52.65672|-2.02072|Landywood
+T|55.92457|-4.58613|Langbank
+T|53.80481|-2.44882|Langho
+T|51.50782|-0.54090|Langley
+T|52.49349|-2.00543|Langley Green
+T|53.01847|-1.33120|Langley Mill
+T|55.82096|-4.27630|Langside
+T|54.69436|-2.66356|Langwathby
+T|53.23274|-1.20928|Langwith-Whaley Thorns
+T|53.33377|-6.22871|Lansdowne Road
+T|50.85707|-3.81075|Lapford
+T|52.34180|-1.72581|Lapworth
+T|56.02214|-3.82979|Larbert
+T|55.79250|-4.86703|Largs
+T|55.73861|-3.97501|Larkhall
+T|54.84784|-5.79866|Larne Harbour
+T|54.84999|-5.81380|Larne Town
+T|56.83710|-2.46478|Laurencekirk
+T|51.45858|-2.56417|Lawrence Hill
+T|54.23032|-4.40382|Laxey Car Sheds
+T|54.22825|-4.38881|Laxey Old Road
+T|53.83535|-3.02992|Layton
+T|53.67953|-6.24275|Laytown
+T|54.75082|-2.70369|Lazonby and Kirkoswald
+T|50.81634|1.77220|Le Haut Banc
+T|50.06284|1.37613|Le Tréport – Mers-les-Bains
+T|51.56675|-0.03712|Lea Bridge
+T|53.42671|-2.72512|Lea Green
+T|52.48052|-1.78603|Lea Hall
+T|51.90547|-0.45860|Leagrave
+T|54.46046|-0.82551|Lealholm
+T|52.28461|-1.53580|Leamington Spa
+T|53.40807|-3.09998|Leasowe
+T|51.29911|-0.33304|Leatherhead
+T|52.04525|-2.42561|Ledbury
+T|51.44969|0.01437|Lee
+T|53.79441|-1.54862|Leeds
+T|52.63211|-1.12361|Leicester
+T|51.19399|0.21126|Leigh
+T|51.54121|0.63946|Leigh-on-Sea
+T|51.91620|-0.67734|Leighton Buzzard
+T|53.37420|-6.48582|Leixlip Confey
+T|53.37030|-6.50624|Leixlip Louisa Bridge
+T|50.18399|-5.43656|Lelant
+T|50.17859|-5.44116|Lelant Saltings
+T|51.23446|0.70724|Lenham
+T|55.92134|-4.15393|Lenzie
+T|52.22581|-2.73044|Leominster
+T|50.94076|1.84971|Les Fontinettes
+T|51.98035|-0.22891|Letchworth Garden City
+T|56.37480|-2.89385|Leuchars
+T|56.19246|-3.00225|Leven
+T|53.44490|-2.19296|Levenshulme
+T|54.30223|-4.35237|Lewaigue Halt
+T|50.87064|0.01230|Lewes
+T|51.46564|-0.01396|Lewisham
+T|53.69856|-2.68655|Leyland
+T|51.56945|-0.00709|Leyton Midland Road
+T|51.56368|0.00820|Leytonstone High Road
+T|54.17875|-4.42686|Lhen Coan
+T|52.68022|-1.82512|Lichfield City
+T|52.68683|-1.79983|Lichfield Trent Valley
+T|52.04158|-0.55900|Lidlington
+T|54.17637|-4.42141|Lime Kiln Halt
+T|51.51287|-0.03905|Limehouse
+T|52.65888|-8.62468|Limerick Colbert
+T|52.50199|-8.19887|Limerick Junction
+T|53.22611|-0.53984|Lincoln
+T|51.17610|-0.00680|Lingfield
+T|52.62205|1.48969|Lingwood
+T|55.97639|-3.59579|Linlithgow
+T|51.07122|-0.80013|Liphook
+T|54.51391|-6.04532|Lisburn
+T|50.44682|-4.46953|Liskeard
+T|51.04393|-0.89262|Liss
+T|51.54442|-3.18557|Lisvane and Thornhill
+T|51.75224|-0.80851|Little Kimble
+T|53.28535|-2.94313|Little Sutton
+T|53.64275|-2.09501|Littleborough
+T|50.81017|-0.54626|Littlehampton
+T|51.07934|-0.30860|Littlehaven
+T|51.90759|-8.35520|Littleisland
+T|52.46233|0.31638|Littleport
+T|53.40422|-2.97951|Liverpool Central
+T|53.40500|-2.99221|Liverpool James Street
+T|53.40761|-2.97759|Liverpool Lime Street
+T|53.35762|-2.88920|Liverpool South Parkway
+T|51.51765|-0.08644|Liverpool Street
+T|55.90151|-3.54361|Livingston North
+T|55.87160|-3.50149|Livingston South
+T|52.74140|-4.07717|Llanaber
+T|52.82036|-4.10960|Llanbedr
+T|52.33632|-3.21319|Llanbister Road
+T|51.60411|-3.23305|Llanbradach
+T|51.50850|-3.22925|Llandaf
+T|52.83623|-4.12362|Llandanwg
+T|52.92102|-4.05656|Llandecwyn
+T|51.88517|-3.98684|Llandeilo
+T|51.99536|-3.80292|Llandovery
+T|52.24226|-3.37944|Llandrindod
+T|53.32028|-3.82782|Llandudno
+T|53.28386|-3.80863|Llandudno Junction
+T|51.82093|-4.00374|Llandybie
+T|51.67378|-4.16107|Llanelli
+T|53.25698|-3.98312|Llanfairfechan
+T|53.22087|-4.20936|Llanfairpwll
+T|51.94027|-3.89320|Llangadog
+T|52.11421|-3.55512|Llangammarch
+T|51.69135|-4.07874|Llangennech
+T|52.35015|-3.16154|Llangynllo
+T|51.53763|-3.44165|Llanharan
+T|51.70004|-3.13421|Llanhilleth
+T|51.53300|-3.18184|Llanishen
+T|53.13905|-3.79466|Llanrwst
+T|51.66151|-3.88546|Llansamlet
+T|51.40965|-3.48143|Llantwit Major
+T|51.96265|-3.87212|Llanwrda
+T|52.10461|-3.63222|Llanwrtyd
+T|52.66677|-4.08780|Llwyngwril
+T|51.63342|-3.45331|Llwynypia
+T|56.40182|-5.04169|Loch Awe
+T|56.85540|-5.19292|Loch Eil Outward Bound
+T|56.88144|-5.66330|Lochailort
+T|56.85598|-5.29035|Locheilside
+T|56.13490|-3.31348|Lochgelly
+T|57.62180|-4.80899|Lochluichart
+T|55.78717|-4.61572|Lochwinnoch
+T|55.12241|-3.35379|Lockerbie
+T|53.63480|-1.80079|Lockwood
+T|51.51049|-0.10324|London Blackfriars
+T|51.50488|-0.08515|London Bridge
+T|51.51067|-0.09060|London Cannon Street
+T|51.52885|-0.13419|London Euston
+T|51.51133|-0.07742|London Fenchurch Street
+T|51.54105|-0.05777|London Fields
+T|51.53240|-0.12302|London King's Cross
+T|51.51821|-0.08143|London Liverpool Street
+T|51.52437|-0.16359|London Marylebone
+T|51.51710|-0.17732|London Paddington
+T|50.83681|-0.13626|London Road (Brighton)
+T|51.24074|-0.56516|London Road (Guildford)
+T|51.53272|-0.12700|London St. Pancras International
+T|51.49473|-0.14458|London Victoria
+T|51.50284|-0.11280|London Waterloo
+T|52.29441|-1.08606|Long Buckby
+T|52.88497|-1.28728|Long Eaton
+T|54.01673|-2.25530|Long Preston
+T|54.58934|-1.03099|Longbeck
+T|52.39701|-1.98076|Longbridge
+T|51.38528|-0.59508|Longcross
+T|51.39621|0.30010|Longfield
+T|53.72428|-7.79615|Longford
+T|55.97624|-2.88865|Longniddry
+T|53.04209|-2.21671|Longport
+T|49.98194|1.55274|Longroy - Gamaches
+T|52.99004|-2.13730|Longton
+T|50.35956|-4.45639|Looe
+T|53.57279|-2.49476|Lostock
+T|53.26775|-2.46478|Lostock Gralam
+T|53.72435|-2.68700|Lostock Hall
+T|50.40713|-4.66606|Lostwithiel
+T|52.77958|-1.19651|Loughborough
+T|51.46626|-0.10216|Loughborough Junction
+T|53.75014|-1.75238|Low Moor
+T|53.00643|-0.99822|Lowdham
+T|51.42474|-0.03330|Lower Sydenham
+T|52.47424|1.74999|Lowestoft
+T|52.37110|-2.71598|Ludlow
+T|54.46722|-6.33812|Lurgan
+T|51.88253|-0.41408|Luton
+T|51.87284|-0.39612|Luton Airport Parkway
+T|50.39037|-4.74833|Luxulyan
+T|51.71428|-2.53048|Lydney
+T|52.45994|-2.11605|Lye
+T|50.75769|-1.52932|Lymington Pier
+T|50.76108|-1.53709|Lymington Town
+T|50.66259|-3.44098|Lympstone Commando
+T|50.64842|-3.43110|Lympstone Village
+T|53.73932|-2.96419|Lytham
+T|53.43453|-6.46889|M3 Parkway
+T|53.25937|-2.12194|Macclesfield
+T|52.59518|-3.85481|Machynlleth
+T|51.60968|-3.65497|Maesteg
+T|51.60527|-3.64825|Maesteg Ewenny Road
+T|54.81537|-5.76679|Magheramorne
+T|53.50647|-2.93103|Maghull
+T|53.51674|-2.92123|Maghull North
+T|50.78023|-2.56966|Maiden Newton
+T|51.51835|-0.72285|Maidenhead
+T|51.27704|0.51417|Maidstone Barracks
+T|51.27763|0.51990|Maidstone East
+T|51.27031|0.51576|Maidstone West
+T|54.17103|-4.44223|Majestic Halt
+T|53.45070|-6.15659|Malahide
+T|51.38472|-0.26125|Malden Manor
+T|57.00554|-5.83023|Mallaig
+T|52.13891|-8.65511|Mallow
+T|54.13186|-0.79773|Malton
+T|52.12581|-2.31957|Malvern Link
+T|53.36518|-2.27204|Manchester Airport
+T|53.47378|-2.24228|Manchester Oxford Road
+T|53.47722|-2.23014|Manchester Piccadilly
+T|53.48797|-2.24248|Manchester Victoria
+T|52.49781|0.17781|Manea
+T|51.94914|1.04493|Manningtree
+T|51.55220|0.04504|Manor Park
+T|53.39496|-3.17005|Manor Road
+T|51.66025|-4.79276|Manorbier
+T|54.97267|-1.60563|Manors
+T|53.14208|-1.19850|Mansfield
+T|53.16346|-1.20175|Mansfield Woodhouse
+T|52.56008|0.09132|March
+T|51.17544|0.49299|Marden
+T|51.38516|1.37195|Margate
+T|54.64697|-5.81735|Marino
+T|52.48024|-0.90913|Market Harborough
+T|53.38401|-0.33684|Market Rasen
+T|56.20041|-3.13080|Markinch
+T|51.88081|0.78255|Marks Tey
+T|53.27332|-6.27362|Marlay Station
+T|51.57109|-0.76640|Marlow
+T|53.40065|-2.05720|Marple
+T|50.80563|1.72987|Marquise - Rinxent
+T|53.60324|-1.93021|Marsden
+T|50.70439|-3.52149|Marsh Barton
+T|54.58738|-1.01952|Marske
+T|52.46688|-1.75509|Marston Green
+T|51.17064|1.34799|Martin Mill
+T|51.40765|-0.72542|Martins Heron
+T|54.54422|-1.19836|Marton
+T|55.89750|-4.30115|Maryhill
+T|51.54612|0.00638|Maryland
+T|54.71130|-3.49409|Maryport
+T|53.13811|-1.55855|Matlock
+T|53.12255|-1.55687|Matlock Bath
+T|53.43366|-2.20895|Mauldeth Road
+T|55.83766|-4.28852|Maxwell Park
+T|55.35465|-4.68538|Maybole
+T|53.37806|-6.59064|Maynooth
+T|51.48265|0.00375|Maze Hill
+T|53.41711|-1.41413|Meadowhall Interchange
+T|52.09083|0.00914|Meldreth
+T|51.38017|-2.14461|Melksham
+T|52.10435|1.33815|Melton
+T|52.76102|-0.88579|Melton Mowbray
+T|50.42660|-4.40953|Menheniot
+T|53.89236|-1.73545|Menston
+T|53.39944|-3.15392|Meols
+T|53.64607|-2.97538|Meols Cop
+T|51.38645|0.35662|Meopham
+T|51.61000|-0.05009|Meridian Water
+T|55.74901|-3.97752|Merryton
+T|51.26417|-0.15007|Merstham
+T|51.74448|-3.37736|Merthyr Tydfil
+T|51.68691|-3.33710|Merthyr Vale
+T|53.13893|-0.39106|Metheringham
+T|54.95889|-1.66493|MetroCentre
+T|53.49083|-1.28852|Mexborough
+T|51.18251|-1.26039|Micheldever
+T|53.78879|-1.32612|Micklefield
+T|54.57915|-1.23451|Middlesbrough
+T|53.36006|-2.08353|Middlewood
+T|51.39607|-1.17829|Midgham
+T|51.92120|-8.17570|Midleton
+T|51.16318|-0.63689|Milford
+T|51.71577|-5.04145|Milford Haven
+T|53.73534|-2.50194|Mill Hill
+T|51.61267|-0.24880|Mill Hill Broadway
+T|50.91143|-1.43370|Millbrook
+T|52.05424|-0.53236|Millbrook
+T|55.82483|-4.53421|Milliken Park
+T|54.21102|-3.27061|Millom
+T|53.55086|-2.17147|Mills Hill
+T|55.94087|-4.31428|Milngavie
+T|52.03420|-0.77483|Milton Keynes Central
+T|54.23639|-4.40709|Mines Yard
+T|52.92603|-4.08490|Minffordd
+T|54.22960|-4.39521|Minorca Halt
+T|51.32917|1.31711|Minster
+T|53.67139|-1.69225|Mirfield
+T|51.94359|1.08165|Mistley
+T|51.40740|-0.15487|Mitcham Eastfields
+T|51.39294|-0.15778|Mitcham Junction
+T|53.32957|-2.33360|Mobberley
+T|54.49211|-6.21415|Moira
+T|53.14548|-7.06375|Monasterevin
+T|56.47974|-2.81836|Monifieth
+T|51.73582|-0.82932|Monks Risborough
+T|51.46834|-2.58812|Montpelier
+T|50.46637|1.76900|Montreuil-sur-Mer
+T|56.71283|-2.47222|Montrose
+T|53.40855|-2.98924|Moorfields
+T|53.51636|-2.35275|Moorside
+T|53.59489|-1.30481|Moorthorpe
+T|56.96896|-5.82209|Morar
+T|50.83169|-3.77614|Morchard Road
+T|51.39568|-0.19924|Morden South
+T|54.07033|-2.86855|Morecambe
+T|50.70118|-2.31414|Moreton
+T|53.40728|-3.11321|Moreton
+T|51.99218|-1.70027|Moreton-in-Marsh
+T|52.70772|-4.03159|Morfa Mawddach
+T|50.20943|1.67982|Morlay
+T|53.75059|-1.58916|Morley
+T|55.16236|-1.68315|Morpeth
+T|51.37206|-1.03564|Mortimer
+T|51.46806|-0.26737|Mortlake
+T|52.44765|-1.88484|Moseley Village
+T|53.55627|-2.40156|Moses Gate
+T|53.76475|-2.94296|Moss Side
+T|53.51504|-2.04154|Mossley
+T|53.37856|-2.91483|Mossley Hill
+T|54.69682|-5.95108|Mossley West
+T|55.84067|-4.34719|Mosspark
+T|53.52325|-2.17103|Moston
+T|55.79189|-3.99467|Motherwell
+T|51.39487|-0.23961|Motspur Park
+T|51.44025|0.04996|Mottingham
+T|51.03382|-1.54668|Mottisfont & Dunbridge
+T|53.23182|-2.73221|Mouldsworth
+T|50.84654|-0.11907|Moulsecoomb
+T|55.82680|-4.26110|Mount Florida
+T|55.84047|-4.13268|Mount Vernon
+T|51.68176|-3.37667|Mountain Ash
+T|57.51767|-4.46022|Muir of Ord
+T|55.81011|-4.27381|Muirend
+T|53.52291|-7.34569|Mullingar
+T|54.28086|-4.35278|Murray's Road Halt
+T|55.93346|-3.07249|Musselburgh
+T|53.72908|-1.98182|Mytholmroyd
+T|54.01134|-0.38562|Nafferton
+T|51.41967|-2.74969|Nailsea and Backwell
+T|57.58025|-3.87183|Nairn
+T|53.06355|-2.51873|Nantwich
+T|51.79948|-4.72707|Narberth
+T|52.57138|-1.20281|Narborough
+T|53.37755|-6.34543|Navan Road Parkway
+T|53.39574|-2.34327|Navigation Road
+T|51.66203|-3.80740|Neath
+T|52.15263|1.05555|Needham Market
+T|55.78282|-4.42720|Neilston
+T|53.83472|-2.21426|Nelson
+T|52.86045|-8.19539|Nenagh
+T|53.29175|-3.06300|Neston
+T|52.96141|-1.07936|Netherfield
+T|54.45623|-3.56562|Nethertown
+T|50.87500|-1.34179|Netley
+T|50.62359|1.64325|Neufchâtel-Hardelot
+T|51.64828|-0.17262|New Barnet
+T|51.41694|-0.03521|New Beckenham
+T|53.43739|-3.04805|New Brighton
+T|53.57431|-0.06046|New Clee
+T|51.47637|-0.03262|New Cross
+T|51.47530|-0.04043|New Cross Gate
+T|55.40224|-4.18335|New Cumnock
+T|51.43801|0.07095|New Eltham
+T|53.70199|-0.36015|New Holland
+T|51.31284|0.45514|New Hythe
+T|53.61169|-2.86774|New Lane
+T|51.40396|-0.25576|New Malden
+T|53.36486|-2.00557|New Mills Central
+T|53.35946|-2.00820|New Mills Newtown
+T|50.75576|-1.65767|New Milton
+T|53.80467|-1.68054|New Pudsey
+T|51.61380|-0.14281|New Southgate
+T|53.08025|-0.81318|Newark Castle
+T|53.08137|-0.79949|Newark Northgate
+T|51.66539|-3.14319|Newbridge
+T|53.18526|-6.80874|Newbridge
+T|51.39753|-1.32275|Newbury
+T|51.39865|-1.30697|Newbury Racecourse
+T|54.96834|-1.61605|Newcastle
+T|50.70265|-3.47257|Newcourt
+T|55.93297|-3.09067|Newcraighall
+T|50.78980|0.05516|Newhaven Harbour
+T|50.79492|0.05512|Newhaven Town
+T|51.35357|0.66679|Newington
+T|52.23834|0.40735|Newmarket
+T|51.58877|-3.00042|Newport
+T|51.97986|0.21533|Newport
+T|50.41444|-5.07513|Newquay
+T|54.18874|-6.36284|Newry
+T|55.10275|-1.52398|Newsham
+T|53.06998|-1.22182|Newstead
+T|55.81884|-4.13358|Newton
+T|50.53015|-3.59923|Newton Abbot
+T|54.61374|-1.58971|Newton Aycliffe
+T|50.77877|-3.58882|Newton St Cyres
+T|53.45670|-2.06753|Newton for Hyde
+T|53.45315|-2.61289|Newton-le-Willows
+T|55.47397|-4.62598|Newton-on-Ayr
+T|55.86467|-3.06888|Newtongrange
+T|57.05913|-4.11895|Newtonmore
+T|52.51224|-3.31148|Newtown
+T|51.47652|-3.20139|Ninian Park
+T|55.81189|-4.36044|Nitshill
+T|51.41231|-0.28408|Norbiton
+T|51.41137|-0.12180|Norbury
+T|50.82605|0.38958|Normans Bay
+T|53.70040|-1.42351|Normanton
+T|56.05664|-2.73097|North Berwick
+T|51.27540|-0.73073|North Camp
+T|51.45418|-0.08833|North Dulwich
+T|51.64864|0.68187|North Fambridge
+T|53.14412|-3.80282|North Llanrwst
+T|56.01245|-3.39466|North Queensferry
+T|54.53573|-1.55393|North Road
+T|51.46532|-0.28658|North Sheen
+T|52.81686|1.38457|North Walsham
+T|54.33247|-1.44138|Northallerton
+T|52.23737|-0.90697|Northampton
+T|52.40830|-1.96512|Northfield
+T|51.44595|0.32397|Northfleet
+T|51.55748|-0.35942|Northolt Park
+T|51.60191|-0.05387|Northumberland Park
+T|55.03291|-1.52060|Northumberland Park
+T|53.26136|-2.49685|Northwich
+T|52.62631|1.30769|Norwich
+T|51.39717|-0.07470|Norwood Junction
+T|52.94730|-1.14496|Nottingham
+T|50.18743|1.70459|Noyelles-sur-Mer
+T|52.52676|-1.46418|Nuneaton
+T|51.46683|-0.05238|Nunhead
+T|54.52804|-1.16979|Nunthorpe
+T|50.84615|-0.88392|Nutbourne
+T|51.22674|-0.13226|Nutfield
+T|52.69309|-2.45019|Oakengates
+T|52.67229|-0.73434|Oakham
+T|51.63767|-0.16623|Oakleigh Park
+T|56.41221|-5.47458|Oban
+T|51.52145|0.29024|Ockendon
+T|51.15157|-0.33617|Ockley
+T|50.73233|-3.99642|Okehampton
+T|50.74331|-3.97622|Okehampton Interchange
+T|52.47079|-2.05618|Old Hill
+T|53.48692|-2.95068|Old Roan
+T|51.37921|-2.38015|Oldfield Park
+T|52.43842|-1.80438|Olton
+T|54.16834|-4.44851|Onchan Head
+T|50.86686|0.59163|Ore
+T|53.56958|-2.88091|Ormskirk
+T|51.37360|0.08872|Orpington
+T|53.53016|-2.70911|Orrell
+T|53.46171|-2.96288|Orrell Park
+T|51.31293|0.19718|Otford
+T|52.47773|1.71618|Oulton Broad North
+T|52.46959|1.70749|Oulton Broad South
+T|53.71530|-1.51043|Outwood
+T|53.28409|-2.92493|Overpool
+T|51.25414|-1.25998|Overton
+T|54.30506|-2.72178|Oxenholme Lake District
+T|51.75345|-1.26995|Oxford
+T|51.80375|-1.27509|Oxford Parkway
+T|51.33610|-0.36254|Oxshott
+T|51.25784|-0.00456|Oxted
+T|51.51637|-0.17801|Paddington
+T|51.18236|0.38949|Paddock Wood
+T|53.40562|-2.55693|Padgate
+T|50.43460|-3.56491|Paignton
+T|55.84018|-4.42276|Paisley Canal
+T|55.84739|-4.42428|Paisley Gilmour Street
+T|55.85212|-4.44246|Paisley St James
+T|51.61866|-0.11017|Palmers Green
+T|51.48536|-1.09043|Pangbourne
+T|53.95851|-1.53279|Pannal
+T|51.77866|-3.99754|Pantyffynnon
+T|50.35572|-4.70461|Par
+T|53.59086|-2.77114|Parbold
+T|51.72566|-0.34007|Park Street
+T|53.33403|-6.37864|Park West and Cherry Orchard
+T|50.72296|-1.94785|Parkstone
+T|51.43299|-2.60854|Parson Street
+T|55.86992|-4.30944|Partick (Rail)
+T|54.57042|-3.58078|Parton
+T|51.52583|-2.56234|Patchway
+T|53.48482|-2.35734|Patricroft
+T|55.79058|-4.33528|Patterton
+T|52.89760|-1.47229|Peartree
+T|51.47001|-0.06941|Peckham Rye
+T|55.17832|-1.64372|Pegswood
+T|53.37520|-6.31428|Pelletstown
+T|53.53053|-2.66952|Pemberton
+T|51.68406|-4.24896|Pembrey and Burry Port
+T|51.67306|-4.90644|Pembroke
+T|51.69388|-4.93760|Pembroke Dock
+T|52.27434|-3.32158|Pen-y-bont
+T|51.65894|-4.72200|Penally
+T|51.43585|-3.17468|Penarth
+T|51.52390|-3.50137|Pencoed
+T|51.67021|-3.22997|Pengam
+T|51.41932|-0.05414|Penge East
+T|51.41750|-0.06066|Penge West
+T|52.54569|-4.03520|Penhelig
+T|53.52563|-1.62268|Penistone
+T|52.72370|-2.11942|Penkridge
+T|53.27055|-3.92351|Penmaenmawr
+T|50.15038|-5.08326|Penmere
+T|51.67019|-3.36014|Penrhiwceiber
+T|52.92878|-4.06451|Penrhyndeudraeth
+T|54.66200|-2.75880|Penrith (North Lakes)
+T|50.17058|-5.11151|Penryn
+T|52.83046|-4.11127|Pensarn
+T|51.19727|0.17318|Penshurst
+T|51.72486|-3.36234|Pentre-bach
+T|52.90292|-4.33844|Penychain
+T|53.14260|-3.05484|Penyffordd
+T|50.12244|-5.53203|Penzance
+T|50.21661|-5.11200|Perranwell
+T|52.51641|-1.90235|Perry Barr
+T|52.13074|-2.07240|Pershore
+T|56.39148|-3.43840|Perth
+T|52.57460|-0.25032|Peterborough
+T|51.00652|-0.94172|Petersfield
+T|51.38863|0.07456|Petts Wood
+T|50.81767|0.34320|Pevensey Bay
+T|50.81577|0.32538|Pevensey and Westham
+T|51.34223|-1.77069|Pewsey
+T|50.87301|1.78526|Pihen
+T|51.55638|-2.62673|Pilning
+T|52.43031|-1.90779|Pineapple Road
+T|50.73779|-3.47008|Pinhoe
+T|56.70236|-3.73564|Pitlochry
+T|51.56024|0.50798|Pitsea
+T|53.73105|-2.54401|Pleasington
+T|57.33359|-5.66589|Plockton
+T|51.15648|0.74658|Pluckley
+T|53.27488|-2.41967|Plumley
+T|50.92846|-0.05981|Plumpton
+T|51.48977|0.08402|Plumstead
+T|50.37810|-4.14339|Plymouth
+T|50.73119|-1.82673|Pokesdown
+T|50.82113|0.24675|Polegate
+T|52.62583|-1.61070|Polesworth
+T|55.82480|-4.28715|Pollokshaws East
+T|55.82385|-4.30141|Pollokshaws West
+T|55.84073|-4.26898|Pollokshields East
+T|55.83764|-4.27615|Pollokshields West
+T|55.98448|-3.71447|Polmont
+T|50.73130|-3.50216|Polsloe Bridge
+T|51.64285|-0.03479|Ponders End
+T|50.68275|1.62688|Pont de Briques
+T|50.04725|1.89884|Pont-Remy
+T|53.06511|-3.86271|Pont-y-Pant
+T|51.71704|-4.04544|Pontarddulais
+T|53.69174|-1.30340|Pontefract Baghill
+T|53.69880|-1.30414|Pontefract Monkhill
+T|53.69400|-1.31890|Pontefract Tanshelf
+T|51.74653|-3.27936|Pontlottyn
+T|51.52384|-3.39206|Pontyclun
+T|51.69733|-3.01355|Pontypool and New Inn
+T|51.59930|-3.34184|Pontypridd
+T|50.71932|-1.98364|Poole
+T|53.97596|-1.14841|Poppleton
+T|54.08518|-4.75706|Port Erin Railway Station
+T|55.93353|-4.69048|Port Glasgow
+T|54.16718|-4.45277|Port Jack
+T|54.12621|-4.53879|Port Soderick
+T|54.08065|-4.74305|Port St Mary Railway Station
+T|53.34848|-2.99825|Port Sunlight
+T|51.59244|-3.78172|Port Talbot Parkway
+T|54.42508|-6.44544|Portadown
+T|53.14599|-7.18120|Portarlington
+T|50.84885|-1.12502|Portchester
+T|51.61247|-3.40763|Porth
+T|52.93099|-4.13531|Porthmadog
+T|53.03701|-7.30131|Portlaoise
+T|57.06133|-2.12808|Portlethen
+T|53.41766|-6.15132|Portmarnock
+T|55.20312|-6.65339|Portrush
+T|50.83575|-0.20530|Portslade
+T|50.95698|-3.95128|Portsmouth Arms
+T|50.79670|-1.10878|Portsmouth Harbour
+T|50.79820|-1.09068|Portsmouth and Southsea
+T|51.48811|-2.68756|Portway Park and Ride
+T|55.89014|-4.25835|Possilpark and Parkhouse
+T|51.69755|-0.19312|Potters Bar
+T|53.84829|-2.98968|Poulton-le-Fylde
+T|53.35055|-2.13479|Poynton
+T|54.29305|-6.37197|Poyntzpass
+T|52.89946|-2.68956|Prees
+T|53.42353|-2.79899|Prescot
+T|53.33617|-3.40735|Prestatyn
+T|53.29311|-2.14532|Prestbury
+T|53.75529|-2.70716|Preston
+T|50.84601|-0.15534|Preston Park
+T|55.95278|-2.97545|Prestonpans
+T|55.50902|-4.61414|Prestwick International Airport
+T|55.50177|-4.61432|Prestwick Town
+T|55.81203|-4.34296|Priesthill & Darnley
+T|51.71805|-0.84409|Princes Risborough
+T|51.55059|0.71065|Prittlewell
+T|54.96587|-1.86474|Prudhoe
+T|50.95759|-0.51647|Pulborough
+T|51.48109|0.23699|Purfleet
+T|51.33748|-0.11391|Purley
+T|51.34703|-0.09871|Purley Oaks
+T|51.46093|-0.21535|Putney
+T|52.88819|-4.41616|Pwllheli
+T|51.58130|-3.04122|Pye Corner
+T|51.52536|-3.69766|Pyle
+T|51.66036|-3.32293|Quakers Yard
+T|54.31790|-4.37760|Queen's Drive Halt
+T|51.41595|0.74977|Queenborough
+T|55.83535|-4.26696|Queens Park
+T|51.47411|-0.05705|Queens Road Peckham
+T|54.31552|-4.37623|Queens Valley Towards Douglas
+T|54.31552|-4.37627|Queens Valley Towards Ramsey
+T|51.47522|-0.14629|Queenstown Road
+T|50.40412|-5.02885|Quintrell Downs
+T|52.94879|-1.03697|Radcliffe
+T|51.68533|-0.31709|Radlett
+T|51.68562|-1.24026|Radley
+T|51.51659|-3.24903|Radyr
+T|53.38161|-6.17613|Raheny
+T|53.51711|-2.78858|Rainford
+T|51.36667|0.61104|Rainham
+T|51.51672|0.19062|Rainham
+T|53.41721|-2.76629|Rainhill
+T|51.34108|1.40523|Ramsgate
+T|53.77999|-2.47806|Ramsgreave and Wilpshire
+T|50.41575|1.64816|Rang-du-Fliers - Verton - Berck
+T|56.68615|-4.57695|Rannoch
+T|52.93048|-6.22610|Rathdrum
+T|52.98528|-0.45597|Rauceby
+T|54.35566|-3.40888|Ravenglass
+T|51.41431|-0.00763|Ravensbourne
+T|53.67556|-1.65575|Ravensthorpe
+T|53.68894|-0.96127|Rawcliffe
+T|51.58949|0.60025|Rayleigh
+T|51.40897|-0.23054|Raynes Park
+T|51.45922|-0.97232|Reading
+T|51.42659|-1.00136|Reading Green Park
+T|51.45465|-0.99072|Reading West
+T|51.55911|-0.06862|Rectory Road
+T|50.91954|-1.46960|Redbridge
+T|54.61599|-1.07032|Redcar Central
+T|54.60905|-1.05192|Redcar East
+T|53.44974|-2.15676|Reddish North
+T|53.43596|-2.15868|Reddish South
+T|52.30632|-1.94557|Redditch
+T|51.24005|-0.16558|Redhill
+T|51.46838|-2.59891|Redland
+T|50.23313|-5.22590|Redruth
+T|51.33113|-0.12342|Reedham
+T|52.56445|1.55952|Reedham
+T|51.24188|-0.20384|Reigate
+T|55.97031|-4.58635|Renton
+T|55.84991|-2.19260|Reston
+T|53.31399|-0.94598|Retford
+T|51.52108|-3.21448|Rhiwbina
+T|51.38715|-3.34945|Rhoose Cardiff International Airport
+T|53.23468|-4.50584|Rhosneigr
+T|53.31820|-3.48879|Rhyl
+T|51.75883|-3.28952|Rhymney
+T|54.20564|-2.36073|Ribblehead
+T|53.45751|-2.96309|Rice Lane
+T|51.33294|-0.09970|Riddlesdown
+T|52.02639|-0.59485|Ridgmont
+T|54.94893|-1.97195|Riding Mill
+T|51.60580|-3.09204|Risca and Pontymister
+T|53.76383|-2.42019|Rishton
+T|50.98553|0.46873|Robertsbridge
+T|55.88688|-4.17439|Robroyston
+T|53.41006|-2.85550|Roby
+T|53.61057|-2.15284|Rochdale
+T|50.41865|-4.83077|Roche
+T|51.38921|0.50729|Rochester
+T|51.58167|0.70214|Rochford
+T|53.37280|-3.01082|Rock Ferry
+T|57.98863|-4.15829|Rogart
+T|51.59544|-3.06624|Rogerstone
+T|53.06514|-0.90012|Rolleston
+T|53.04440|-3.92152|Roman Bridge
+T|54.28518|-4.33538|Rome's Crossing
+T|51.57473|0.18261|Romford
+T|53.41401|-2.08932|Romiley
+T|50.99270|-1.49325|Romsey
+T|54.08809|-4.64256|Ronaldsway Halt
+T|54.11506|-3.19438|Roose
+T|53.62436|-8.19629|Roscommon
+T|52.96075|-7.79435|Roscrea
+T|53.78627|-2.28232|Rose Grove
+T|53.39604|-2.07651|Rose Hill Marple
+T|52.25119|-6.33754|Rosslare Europort
+T|52.27184|-6.39152|Rosslare Strand
+T|56.04538|-3.42633|Rosyth
+T|53.43170|-1.36105|Rotherham Central
+T|51.50082|-0.05197|Rotherhithe
+T|52.91792|1.29979|Roughton Road
+T|50.17283|1.58834|Routhiauville
+T|50.89247|-0.95727|Rowlands Castle
+T|52.47742|-2.03082|Rowley Regis
+T|56.88834|-4.83711|Roy Bridge
+T|51.77544|0.03651|Roydon
+T|52.05321|-0.02697|Royston
+T|52.98724|-3.04334|Ruabon
+T|50.27312|1.67579|Rue
+T|53.63437|-2.80795|Rufford
+T|52.37904|-1.25027|Rugby
+T|52.75466|-1.93691|Rugeley Town
+T|52.76968|-1.92993|Rugeley Trent Valley
+T|53.33856|-2.73939|Runcorn
+T|53.32794|-2.66550|Runcorn East
+T|53.52094|-6.14311|Rush & Lusk
+T|51.84960|-8.32269|Rushbrooke
+T|53.04139|-0.38047|Ruskington
+T|54.46994|-0.62778|Ruswarp
+T|55.83075|-4.21304|Rutherglen
+T|50.73305|-1.15960|Ryde Esplanade
+T|50.73899|-1.16041|Ryde Pier Head
+T|50.72418|-1.15662|Ryde St John's Road
+T|53.45695|-2.17396|Ryder Brow
+T|50.95263|0.73102|Rye
+T|51.76936|0.00552|Rye House
+T|49.87083|1.06673|Saint-Aubin-sur-Scie
+T|50.17680|1.65121|Saint-Valery Canal
+T|50.17886|1.64431|Saint-Valery-sur-Somme Ville
+T|50.18239|1.64388|Saint-Valéry Port
+T|53.48288|-2.25552|Salford Central
+T|53.48623|-2.27571|Salford Crescent
+T|51.20179|-0.16228|Salfords
+T|52.67558|1.39137|Salhouse
+T|51.07057|-1.80641|Salisbury
+T|53.24679|-6.66487|Sallins and Naas
+T|53.83856|-1.79080|Saltaire
+T|50.40720|-4.20915|Saltash
+T|54.58342|-0.97522|Saltburn
+T|55.63391|-4.78457|Saltcoats
+T|53.29539|-6.15242|Salthill and Monkstown
+T|53.72207|-0.80917|Saltmarshe
+T|53.78175|-2.81824|Salwick
+T|53.66281|-1.48062|Sandal and Agbrigg
+T|53.15024|-2.39371|Sandbach
+T|51.34839|-0.09346|Sanderstead
+T|53.42954|-2.99200|Sandhills
+T|51.34654|-0.80381|Sandhurst
+T|51.09050|1.06600|Sandling
+T|50.65703|-1.16225|Sandown
+T|50.38760|-4.46480|Sandplace
+T|52.50863|-2.01177|Sandwell and Dudley
+T|51.26997|1.34223|Sandwich
+T|52.12491|-0.28095|Sandy
+T|53.28800|-6.12716|Sandycove and Glasthule
+T|53.32793|-6.22105|Sandymount
+T|53.39234|-2.65059|Sankey for Penketh
+T|55.37096|-3.92470|Sanquhar
+T|54.11837|-4.58462|Santon
+T|51.53851|-3.58953|Sarn
+T|51.72200|-4.71805|Saundersfoot
+T|51.67590|-0.82537|Saunderton
+T|51.81462|0.16054|Sawbridgeworth
+T|53.26731|-0.66458|Saxilby
+T|52.21522|1.49027|Saxmundham
+T|54.27915|-0.40624|Scarborough
+T|54.19676|-4.41977|Scarffe's Crossing Halt
+T|54.33163|-6.36656|Scarva
+T|58.48285|-3.55207|Scotscalder
+T|55.88501|-4.35295|Scotstounhill
+T|53.58610|-0.65157|Scunthorpe
+T|54.17726|-4.41759|Sea Lion Rocks
+T|51.47950|-2.64965|Sea Mills
+T|50.77292|0.09995|Seaford
+T|53.46558|-3.00480|Seaforth & Litherland
+T|54.83909|-1.34638|Seaham
+T|54.66081|-5.76823|Seahill
+T|54.24066|-0.41699|Seamer
+T|53.29916|-6.16521|Seapoint
+T|54.39629|-3.48517|Seascale
+T|54.65821|-1.20048|Seaton Carew
+T|55.07473|-1.53838|Seaton Delaval
+T|51.60984|-0.60770|Seer Green and Jordans
+T|53.78291|-1.06342|Selby
+T|51.39221|-0.08865|Selhurst
+T|54.41665|-3.51045|Sellafield
+T|51.27728|0.94115|Selling
+T|52.44186|-1.93559|Selly Oak
+T|54.06696|-2.28083|Settle
+T|51.56394|0.09687|Seven Kings
+T|51.27641|0.18194|Sevenoaks
+T|51.55968|-2.66454|Severn Beach
+T|51.58425|-2.77730|Severn Tunnel Junction
+T|51.51129|-0.05692|Shadwell
+T|51.21436|-0.56688|Shalford
+T|53.23670|-6.11704|Shankill
+T|50.63388|-1.17992|Shanklin
+T|55.91770|-3.09022|Shawfair
+T|51.02216|-1.32772|Shawford
+T|55.82930|-4.29232|Shawlands
+T|51.44071|0.75832|Sheerness-on-Sea
+T|53.37837|-1.46214|Sheffield
+T|52.14943|0.13984|Shelford
+T|51.63064|0.33002|Shenfield
+T|52.63923|-1.84434|Shenstone
+T|51.50578|-0.21792|Shepherd's Bush
+T|51.18804|1.22979|Shepherdswell
+T|53.58875|-1.70483|Shepley
+T|51.39690|-0.44691|Shepperton
+T|52.11446|0.03165|Shepreth
+T|50.94398|-2.51297|Sherborne
+T|53.79751|-1.23290|Sherburn-in-Elmet
+T|52.94137|1.21079|Sheringham
+T|55.85364|-4.15959|Shettleston
+T|55.77743|-3.95785|Shieldmuir
+T|52.66601|-2.37169|Shifnal
+T|54.62619|-1.63671|Shildon
+T|51.51117|-0.88241|Shiplake
+T|53.83351|-1.77361|Shipley
+T|52.43025|0.41276|Shippea Hill
+T|51.86598|-1.59265|Shipton
+T|53.20412|-1.20259|Shirebrook
+T|51.48428|-2.67893|Shirehampton
+T|53.32486|-1.16832|Shireoaks
+T|52.40357|-1.84520|Shirley
+T|51.53145|0.79457|Shoeburyness
+T|50.89645|-1.36419|Sholing
+T|51.52325|-0.07447|Shoreditch High Street
+T|51.33212|0.18878|Shoreham
+T|50.83438|-0.27144|Shoreham-by-Sea
+T|51.40591|0.00217|Shortlands
+T|53.21369|-3.03718|Shotton
+T|55.81857|-3.79908|Shotts
+T|52.71185|-2.74940|Shrewsbury
+T|51.43402|0.10343|Sidcup
+T|52.73113|-1.10944|Sileby
+T|54.22609|-3.33468|Silecroft
+T|53.53535|-1.56303|Silkstone Common
+T|51.61528|-0.06690|Silver Street
+T|54.16934|-2.80380|Silverdale
+T|55.90748|-4.40550|Singer
+T|51.34208|0.73515|Sittingbourne
+T|53.14319|0.33452|Skegness
+T|53.57399|-6.11917|Skerries
+T|51.66147|-3.84677|Skewen
+T|54.23152|-4.37827|Skinscoe Halt
+T|53.95843|-2.02603|Skipton
+T|51.46767|0.19031|Slade Green
+T|53.62416|-1.88060|Slaithwaite
+T|55.92662|-3.24375|Slateford
+T|52.99552|-0.41016|Sleaford
+T|54.46111|-0.66276|Sleights
+T|54.27204|-8.48199|Sligo Mac Diarmada
+T|51.51210|-0.59128|Slough
+T|52.46368|-1.85932|Small Heath
+T|50.71147|-1.15500|Smallbrook Junction
+T|52.50212|-1.98044|Smethwick Galton Bridge
+T|52.49627|-1.96937|Smethwick Rolfe Street
+T|53.63285|-2.11406|Smithy Bridge
+T|53.69317|-1.02794|Snaith
+T|51.33022|0.44844|Snodland
+T|51.21515|1.21374|Snowdown
+T|52.33495|0.32810|Soham
+T|51.38325|0.37817|Sole Street
+T|52.41463|-1.78887|Solihull
+T|52.51015|1.65225|Somerleyton
+T|51.49972|-0.26990|South Acton
+T|54.58401|-1.17627|South Bank
+T|51.48795|-0.05446|South Bermondsey
+T|51.36292|-0.09336|South Croydon
+T|53.59485|-1.28535|South Elmsall
+T|51.53320|-0.33644|South Greenford
+T|55.93651|-3.29937|South Gyle
+T|51.54143|-0.17880|South Hampstead
+T|51.40333|-0.20552|South Merton
+T|53.78238|-1.25113|South Milford
+T|51.58044|-0.07172|South Tottenham
+T|52.58239|-1.13403|South Wigston
+T|51.64941|0.60605|South Woodham Ferrers
+T|51.50602|-0.37750|Southall
+T|50.95070|-1.36295|Southampton Airport Parkway
+T|50.90750|-1.41423|Southampton Central
+T|50.84820|-0.90718|Southbourne
+T|51.64803|-0.05263|Southbury
+T|54.22471|-4.39481|Southcape Halt
+T|50.83111|0.03067|Southease
+T|51.56995|0.70535|Southend Airport
+T|51.53736|0.71165|Southend Central
+T|51.53891|0.73149|Southend East
+T|51.54294|0.71148|Southend Victoria
+T|51.66064|0.83537|Southminster
+T|53.64687|-3.00283|Southport
+T|50.83247|-0.23714|Southwick
+T|53.70785|-1.90723|Sowerby Bridge
+T|52.78876|-0.15717|Spalding
+T|56.88987|-4.92162|Spean Bridge
+T|53.34005|-2.99409|Spital
+T|52.91209|-1.41082|Spondon
+T|52.53492|1.08600|Spooner Row
+T|52.44426|-1.83626|Spring Road
+T|55.88185|-4.23017|Springburn
+T|56.29494|-3.05289|Springfield
+T|53.77699|-3.05017|Squires Gate
+T|51.74466|-0.34253|St Albans Abbey
+T|51.75050|-0.32767|St Albans City
+T|51.51245|-2.69644|St Andrews Road
+T|53.75318|-3.02895|St Annes-on-the-Sea
+T|50.33960|-4.78933|St Austell
+T|54.49235|-3.59124|St Bees
+T|50.40158|-4.18710|St Budeaux Ferry Road
+T|50.40220|-4.18775|St Budeaux Victoria Road
+T|50.92227|-1.38786|St Denys
+T|50.17057|-5.44392|St Erth
+T|50.39420|-4.30847|St Germans
+T|53.45266|-2.72998|St Helens Central
+T|53.43378|-2.70009|St Helens Junction
+T|50.20885|-5.47777|St Ives
+T|51.58117|-0.03220|St James Street
+T|50.73097|-3.52257|St James' Park
+T|51.46909|-0.02218|St Johns
+T|50.42282|-4.46335|St Keyne Wishing Well Halt
+T|50.85576|0.56060|St Leonards Warrior Square
+T|51.45515|-0.32022|St Margarets
+T|51.78820|0.00093|St Margarets
+T|51.39474|0.10572|St Mary Cray
+T|53.37594|-2.95353|St Michaels
+T|52.23163|-0.24706|St Neots
+T|51.53221|-0.12762|St Pancras International
+T|50.39875|-4.94133|St. Columb Road
+T|51.38945|-0.19886|St. Helier
+T|52.80358|-2.12263|Stafford
+T|51.43233|-0.50291|Staines
+T|53.58717|-0.18344|Stallingborough
+T|53.48414|-2.06422|Stalybridge
+T|52.64783|-0.48009|Stamford
+T|51.57488|-0.07628|Stamford Hill
+T|51.51419|0.42291|Stanford-le-Hope
+T|53.27831|-2.84114|Stanlow and Thornton
+T|51.88926|0.26215|Stansted Airport
+T|51.90126|0.19925|Stansted Mountfitchet
+T|51.17153|0.55050|Staplehurst
+T|51.46745|-2.56632|Stapleton Road
+T|53.99888|-1.50048|Starbeck
+T|50.62759|-3.44764|Starcross
+T|54.37562|-2.81907|Staveley
+T|53.54440|-6.46201|Steam Train Express
+T|52.48516|-1.81103|Stechford
+T|53.90005|-1.94481|Steeton and Silsden
+T|55.89013|-4.14044|Stepps
+T|51.90184|-0.20714|Stevenage
+T|55.63425|-4.75011|Stevenston
+T|52.06904|-0.52076|Stewartby
+T|55.68208|-4.51817|Stewarton
+T|56.11965|-3.93430|Stirling
+T|53.40545|-2.16304|Stockport
+T|54.94681|-1.91719|Stocksfield
+T|53.59415|-1.72327|Stocksmoor
+T|54.56988|-1.31822|Stockton
+T|51.78788|-0.78434|Stoke Mandeville
+T|51.56504|-0.07255|Stoke Newington
+T|53.00799|-2.18108|Stoke-on-Trent
+T|52.90847|-2.15547|Stone
+T|51.45142|0.26344|Stone Crossing
+T|51.02014|0.36339|Stonegate
+T|56.96686|-2.22528|Stonehaven
+T|51.74593|-2.27942|Stonehouse
+T|51.36390|-0.24796|Stoneleigh
+T|52.44762|-2.13403|Stourbridge Junction
+T|52.45559|-2.14189|Stourbridge Town
+T|55.69186|-2.86682|Stow
+T|52.18980|1.00026|Stowmarket
+T|53.01730|-7.15468|Stradbally
+T|54.90928|-5.02469|Stranraer
+T|51.54480|-0.00875|Stratford International
+T|52.19494|-1.71630|Stratford-upon-Avon
+T|52.20655|-1.73045|Stratford-upon-Avon Parkway
+T|57.42275|-5.42856|Strathcarron
+T|51.43919|-0.33933|Strawberry Hill
+T|51.42596|-0.13131|Streatham
+T|51.41857|-0.13593|Streatham Common
+T|51.43833|-0.12779|Streatham Hill
+T|53.67619|-1.39947|Streethouse
+T|53.37457|-2.03331|Strines
+T|57.35220|-5.55077|Stromeferry
+T|51.39660|0.50027|Strood
+T|51.74447|-2.21918|Stroud
+T|51.30099|1.12226|Sturry
+T|53.34825|-2.24021|Styal
+T|52.03626|0.73557|Sudbury
+T|51.55434|-0.31606|Sudbury & Harrow Road
+T|51.55855|-0.33618|Sudbury Hill Harrow
+T|52.08207|-3.68578|Sugar Loaf
+T|55.89884|-4.29219|Summerston
+T|51.41832|-0.41735|Sunbury
+T|51.41396|0.02148|Sundridge Park
+T|51.39215|-0.63324|Sunningdale
+T|54.20355|-4.41226|Sunnycott Halt
+T|51.46995|-0.55886|Sunnymeads
+T|51.39241|-0.30400|Surbiton
+T|51.49342|-0.04783|Surrey Quays
+T|51.35968|-0.19089|Sutton
+T|53.39201|-6.11608|Sutton
+T|52.56480|-1.82518|Sutton Coldfield
+T|51.37543|-0.19610|Sutton Common
+T|53.11414|-1.24555|Sutton Parkway
+T|51.38897|0.74685|Swale
+T|51.39310|0.16787|Swanley
+T|51.44898|0.31158|Swanscombe
+T|51.62568|-3.94037|Swansea
+T|50.87572|-1.26578|Swanwick
+T|50.78471|-1.60995|Sway
+T|50.94112|-1.37647|Swaythling
+T|53.16935|-0.70266|Swinderby
+T|51.56570|-1.78528|Swindon
+T|52.96973|-0.18671|Swineshead
+T|53.51481|-2.33700|Swinton (Manchester)
+T|53.48560|-1.30562|Swinton (South Yorkshire)
+T|51.42774|-0.05422|Sydenham
+T|54.60932|-5.87731|Sydenham
+T|51.43261|-0.08015|Sydenham Hill
+T|53.32079|-6.21155|Sydney Parade
+T|51.48164|-0.32508|Syon Lane
+T|52.69409|-1.08252|Syston
+T|51.88146|-1.29751|Tackley
+T|51.29142|-0.23586|Tadworth
+T|51.54125|-3.26388|Taffs Well
+T|57.81449|-4.05213|Tain
+T|53.22851|-3.81821|Tal-y-Cafn
+T|52.90440|-4.06827|Talsarnau
+T|52.77290|-4.09709|Talybont
+T|52.55229|-1.97602|Tame Bridge Parkway
+T|52.63747|-1.68659|Tamworth
+T|51.52344|-0.68173|Taplow
+T|53.34713|-6.25431|Tara Street
+T|51.30862|-0.24219|Tattenham Corner
+T|51.02329|-3.10267|Taunton
+T|56.43085|-5.23982|Taynuilt
+T|51.42447|-0.33257|Teddington
+T|50.54816|-3.49468|Teignmouth
+T|52.68111|-2.44118|Telford Central
+T|51.00159|-2.41729|Templecombe
+T|52.78791|-7.82246|Templemore
+T|51.67297|-4.70674|Tenby
+T|51.33360|0.80705|Teynham
+T|54.25800|-4.37168|Thalloo Mitchell
+T|51.38906|-0.33915|Thames Ditton
+T|51.33078|1.36146|Thanet Parkway
+T|51.39386|-1.24274|Thatcham
+T|53.43669|-2.75947|Thatto Heath
+T|54.27164|-4.37526|The Garey
+T|52.50567|-1.96504|The Hawthorns
+T|52.35910|-1.84465|The Lakes
+T|54.09163|-4.72113|The Level
+T|51.43336|-1.07436|Theale
+T|51.69223|-0.03501|Theobalds Grove
+T|52.41916|0.74528|Thetford
+T|54.22865|-1.37326|Thirsk
+T|52.52317|-7.14890|Thomastown
+T|54.55919|-1.30170|Thornaby
+T|53.61619|-0.97245|Thorne North
+T|53.60334|-0.95526|Thorne South
+T|50.91068|-2.57914|Thornford
+T|55.81109|-4.31171|Thornliebank
+T|53.65432|-0.32302|Thornton Abbey
+T|51.39894|-0.10052|Thornton Heath
+T|55.76831|-4.25059|Thorntonhall
+T|51.53766|0.76194|Thorpe Bay
+T|53.12303|0.19952|Thorpe Culvert
+T|51.84786|1.16040|Thorpe-le-Soken
+T|51.11747|-0.16107|Three Bridges
+T|50.90096|0.61322|Three Oaks
+T|53.02897|-0.96226|Thurgarton
+T|52.67669|-7.82191|Thurles
+T|53.54554|-1.30839|Thurnscoe
+T|58.58974|-3.52787|Thurso
+T|52.24991|0.80869|Thurston
+T|51.46246|0.35383|Tilbury Town
+T|52.39519|-1.59728|Tile Hill
+T|51.47165|-1.02966|Tilehurst
+T|52.47016|-8.16161|Tipperary
+T|52.53053|-2.06573|Tipton
+T|51.72102|-3.24595|Tir-Phil
+T|51.06101|-2.07879|Tisbury
+T|54.60189|-5.90650|Titanic Quarter
+T|50.91708|-3.35974|Tiverton Parkway
+T|53.71386|-2.09976|Todmorden
+T|51.37687|-0.27944|Tolworth
+T|51.64771|-3.48615|Ton Pentre
+T|51.19151|0.27000|Tonbridge
+T|51.54747|-3.59518|Tondu
+T|52.61363|-4.12354|Tonfanau
+T|51.61983|-3.44904|Tonypandy
+T|51.41985|-0.16132|Tooting
+T|50.68565|-3.46379|Topsham
+T|50.46105|-3.54303|Torquay
+T|50.47275|-3.54622|Torre
+T|50.43591|-3.68875|Totnes
+T|51.51534|-0.13252|Tottenham Court Road
+T|50.91767|-1.48307|Totton
+T|53.54302|-2.90443|Town Green
+T|53.45478|-2.31170|Trafford Park
+T|51.59190|-3.32496|Treforest
+T|51.56816|-3.29024|Treforest Estate
+T|51.61010|-3.38070|Trehafod
+T|51.67162|-3.53509|Treherbert
+T|51.65744|-3.50604|Treorchy
+T|51.97665|1.31942|Trimley
+T|51.80067|-0.62246|Tring
+T|51.71204|-3.34640|Troed-y-rhiw
+T|55.54274|-4.65552|Troon
+T|54.71028|-5.84907|Trooperslane
+T|51.32001|-2.21433|Trowbridge
+T|50.26399|-5.06420|Truro
+T|53.27041|-7.49993|Tullamore
+T|56.88410|-4.70113|Tulloch
+T|51.43993|-0.10485|Tulse Hill
+T|51.13010|0.26303|Tunbridge Wells
+T|51.67323|-0.04697|Turkey Street
+T|52.86412|-1.68212|Tutbury and Hatton
+T|55.60586|-2.75900|Tweedbank
+T|51.45058|-0.32884|Twickenham
+T|51.47539|-0.86314|Twyford
+T|52.89375|-4.07860|Tygwyn
+T|56.43360|-4.71344|Tyndrum Lower
+T|52.45392|-1.83856|Tyseley
+T|52.58538|-4.09336|Tywyn
+T|53.22254|-4.47396|Tŷ Croes
+T|51.52174|-3.19710|Tŷ Glas
+T|50.96874|0.09663|Uckfield
+T|55.82356|-4.08702|Uddingston
+T|53.61934|-0.30081|Ulceby
+T|53.85333|-1.21438|Ulleskelf
+T|54.19172|-3.09793|Ulverston
+T|50.99655|-3.98279|Umberleigh
+T|52.45159|-1.93623|University
+T|55.15039|-6.66841|University
+T|55.91904|-3.50190|Uphall
+T|53.52841|-2.74105|Upholland
+T|51.41321|-0.43080|Upper Halliford
+T|51.56347|-0.12965|Upper Holloway
+T|56.43481|-4.70394|Upper Tyndrum
+T|51.30855|-0.07783|Upper Warlingham
+T|53.38644|-3.08413|Upton
+T|50.64845|-2.46608|Upwey
+T|53.44832|-2.35366|Urmston
+T|52.89681|-1.85651|Uttoxeter
+T|53.28154|-4.56343|Valley
+T|54.23379|-4.40529|Valley Gardens
+T|51.48585|-0.12275|Vauxhall
+T|51.40152|-0.56208|Virginia Water
+T|51.36733|-0.11744|Waddon
+T|51.07339|0.31304|Wadhurst
+T|53.10516|0.23458|Wainfleet
+T|53.67858|-1.48899|Wakefield Kirkgate
+T|53.68221|-1.50558|Wakefield Westgate
+T|53.51979|-2.39575|Walkden
+T|53.42844|-3.06973|Wallasey Grove Road
+T|53.42298|-3.06916|Wallasey Village
+T|51.36023|-0.15059|Wallington
+T|55.94046|-3.01479|Wallyford
+T|51.20322|1.38255|Walmer
+T|54.31668|-4.37630|Walpole Drive Halt
+T|52.58414|-1.98527|Walsall
+T|53.69653|-2.10477|Walsden
+T|51.68476|-0.02648|Waltham Cross
+T|51.58152|-0.02376|Walthamstow Queen's Road
+T|53.45639|-2.96606|Walton
+T|51.37288|-0.41431|Walton-on-Thames
+T|51.84622|1.26786|Walton-on-the-Naze
+T|51.24462|-0.66761|Wanborough
+T|51.44612|-0.16352|Wandsworth Common
+T|51.46996|-0.13844|Wandsworth Road
+T|51.46096|-0.18825|Wandsworth Town
+T|51.55176|0.02607|Wanstead Park
+T|51.50443|-0.05602|Wapping
+T|50.85350|-0.96712|Warblington
+T|51.80798|-0.02876|Ware
+T|50.69288|-2.11533|Wareham
+T|51.49855|-0.87666|Wargrave
+T|51.20697|-2.17690|Warminster
+T|51.09304|-0.32961|Warnham
+T|53.38594|-2.60318|Warrington Bank Quay
+T|53.39194|-2.59242|Warrington Central
+T|53.39374|-2.63693|Warrington West
+T|52.28662|-1.58171|Warwick
+T|52.28601|-1.61227|Warwick Parkway
+T|52.51853|-1.74365|Water Orton
+T|52.26228|0.19677|Waterbeach
+T|52.26638|-7.11780|Waterford Plunkett
+T|51.24966|0.42230|Wateringbury
+T|53.47466|-3.02519|Waterloo
+T|51.50422|-0.10820|Waterloo East
+T|51.65223|-0.39250|Watford High Street
+T|51.66394|-0.39611|Watford Junction
+T|51.67504|-0.39029|Watford North
+T|52.67287|0.38313|Watlington
+T|54.27763|-4.37344|Watson's Crossing
+T|51.85647|-0.11939|Watton-at-Stone
+T|51.48830|-3.22969|Waun-gron Park
+T|53.40522|-2.92282|Wavertree Technology Park
+T|51.85298|1.11519|Weeley
+T|53.92328|-1.58130|Weeton
+T|51.73642|-0.21055|Welham Green
+T|51.46482|0.10163|Welling
+T|52.30378|-0.67628|Wellingborough
+T|52.70144|-2.51672|Wellington
+T|52.65803|-3.13944|Welshpool
+T|51.80085|-0.20384|Welwyn Garden City
+T|51.82377|-0.19213|Welwyn North
+T|52.85611|-2.71827|Wem
+T|51.55425|-0.28477|Wembley Stadium
+T|55.87626|-4.88931|Wemyss Bay
+T|51.76182|-0.74769|Wendover
+T|54.12369|-2.58742|Wennington
+T|53.36933|-2.90719|West Allerton
+T|51.33962|-0.50522|West Byfleet
+T|55.85377|-3.56682|West Calder
+T|51.37881|-0.10204|West Croydon
+T|51.50974|-0.47183|West Drayton
+T|51.44028|-0.09089|West Dulwich
+T|51.51354|-0.32069|West Ealing
+T|51.54730|-0.19201|West Hampstead
+T|51.54842|-0.19232|West Hampstead Thameslink
+T|51.56785|0.34068|West Horndon
+T|55.69643|-4.85138|West Kilbride
+T|53.37342|-3.18379|West Kirby
+T|51.29210|0.41869|West Malling
+T|51.43163|-0.10349|West Norwood
+T|52.93555|1.24579|West Runton
+T|50.85321|0.53996|West St Leonards
+T|51.36626|-0.20448|West Sutton
+T|51.38151|-0.01473|West Wickham
+T|50.81837|-0.39335|West Worthing
+T|51.26633|-2.19973|Westbury
+T|51.53744|0.69152|Westcliff
+T|51.48424|0.01862|Westcombe Park
+T|51.09492|1.03820|Westenhanger
+T|55.91437|-3.28382|Wester Hailes
+T|52.08110|1.16624|Westerfield
+T|55.90483|-4.33513|Westerton
+T|51.38128|1.33823|Westgate-on-Sea
+T|53.55588|-2.52322|Westhoughton
+T|51.34840|-2.94289|Weston Milton
+T|51.34450|-2.97183|Weston-super-Mare
+T|54.88374|-2.83199|Wetheral
+T|52.34326|-6.46430|Wexford O'Hanrahan
+T|51.36144|-0.45808|Weybridge
+T|50.61593|-2.45491|Weymouth
+T|53.33026|-1.98474|Whaley Bridge
+T|53.82449|-2.41189|Whalley
+T|53.08347|-1.50429|Whatstandwell
+T|55.85383|-4.01860|Whifflet
+T|50.76793|-3.35428|Whimple
+T|55.93838|-4.74669|Whinhill
+T|53.41391|-2.79652|Whiston
+T|54.48432|-0.61453|Whitby
+T|51.23765|-1.33874|Whitchurch
+T|51.52083|-3.22217|Whitchurch
+T|52.96822|-2.67166|Whitchurch
+T|51.60453|-0.07092|White Hart Lane
+T|51.83927|0.59527|White Notley
+T|54.67215|-5.90452|Whiteabbey
+T|55.79028|-4.31031|Whitecraigs
+T|54.55322|-3.58718|Whitehaven
+T|54.75218|-5.70947|Whitehead
+T|54.75602|-5.71092|Whitehead Excursion
+T|51.81802|-4.61499|Whitland
+T|53.69913|-1.15889|Whitley Bridge
+T|52.39191|-1.85144|Whitlocks End
+T|51.35769|1.03436|Whitstable
+T|52.54958|-0.11809|Whittlesea
+T|52.10357|0.16574|Whittlesford Parkway
+T|51.44950|-0.35778|Whitton
+T|53.27997|-1.20024|Whitwell
+T|51.30992|-0.08102|Whyteleafe
+T|51.30375|-0.07723|Whyteleafe South
+T|58.44174|-3.09853|Wick
+T|51.61483|0.51941|Wickford
+T|52.15103|1.39863|Wickham Market
+T|52.98815|-6.05259|Wicklow
+T|55.24114|-1.61622|Widdrington
+T|53.37861|-2.73420|Widnes
+T|52.39603|-1.77424|Widney Manor
+T|53.54340|-2.63300|Wigan North Western
+T|53.54506|-2.63424|Wigan Wallgate
+T|54.82912|-3.16429|Wigton
+T|51.51981|-3.58027|Wildmill
+T|52.58194|-2.05518|Willenhall
+T|55.79401|-4.28992|Williamwood
+T|52.85338|-1.56410|Willington
+T|52.22256|-1.75579|Wilmcote
+T|53.32710|-2.22601|Wilmslow
+T|52.61062|-1.67970|Wilnecote
+T|51.41025|-0.21479|Wimbledon Chase
+T|50.76438|1.61364|Wimille – Wimereux
+T|50.93391|0.70252|Winchelsea
+T|51.06725|-1.32001|Winchester
+T|51.28473|-0.90702|Winchfield
+T|51.63407|-0.10094|Winchmore Hill
+T|54.37949|-2.90331|Windermere
+T|51.48327|-0.61056|Windsor and Eton Central
+T|51.48663|-0.60539|Windsor and Eton Riverside
+T|51.43075|-0.87792|Winnersh
+T|51.43677|-0.89183|Winnersh Triangle
+T|53.19042|-2.49431|Winsford
+T|55.77220|-3.92631|Wishaw
+T|51.80592|0.63943|Witham
+T|51.13310|-0.64598|Witley
+T|52.51219|-1.88393|Witton
+T|50.96436|-0.12072|Wivelsfield
+T|51.85660|0.95624|Wivenhoe
+T|52.01811|-0.65456|Woburn Sands
+T|51.31845|-0.55731|Woking
+T|51.41190|-0.84298|Wokingham
+T|51.28970|-0.05167|Woldingham
+T|52.58799|-2.12024|Wolverhampton
+T|52.06598|-0.80476|Wolverton
+T|53.51745|-1.41630|Wombwell
+T|52.34428|-1.84442|Wood End
+T|51.58704|-0.00168|Wood Street
+T|52.09030|1.31789|Woodbridge
+T|53.22176|-6.11084|Woodbrook
+T|51.54917|0.04473|Woodgrange Park
+T|55.93144|-4.65664|Woodhall
+T|53.36380|-1.35737|Woodhouse
+T|53.34315|-8.47167|Woodlawn
+T|53.75706|-1.44357|Woodlesford
+T|53.42920|-2.09287|Woodley
+T|51.31905|-0.15388|Woodmansterne
+T|53.38614|-2.14124|Woodsmoor
+T|50.68166|-2.22131|Wool
+T|50.89904|-1.37665|Woolston
+T|51.49195|0.07061|Woolwich
+T|51.48962|0.07038|Woolwich Arsenal
+T|51.49109|0.05488|Woolwich Dockyard
+T|52.26584|-1.78460|Wootton Wawen
+T|52.19531|-2.22078|Worcester Foregate Street
+T|51.38143|-0.24496|Worcester Park
+T|52.19503|-2.20933|Worcester Shrub Hill
+T|52.15618|-2.16003|Worcestershire Parkway
+T|54.64496|-3.55890|Workington
+T|53.31160|-1.12286|Worksop
+T|51.35785|-2.90932|Worle
+T|51.28788|-0.58242|Worplesdon
+T|52.77735|1.40407|Worstead
+T|50.81864|-0.37618|Worthing
+T|51.93953|1.17169|Wrabness
+T|51.45793|-0.54199|Wraysbury
+T|53.01959|-2.59561|Wrenbury
+T|53.77283|-0.92367|Wressle
+T|53.04634|-2.99963|Wrexham Central
+T|53.05057|-3.00152|Wrexham General
+T|51.18559|0.92967|Wye
+T|54.97487|-1.81437|Wylam
+T|52.54564|-1.83145|Wylde Green
+T|52.56535|1.11814|Wymondham
+T|52.38012|-1.86546|Wythall
+T|51.22667|0.41216|Yalding
+T|52.42102|-1.85456|Yardley Wood
+T|54.49376|-1.35147|Yarm
+T|51.54140|-2.43217|Yate
+T|51.39088|-2.82770|Yatton
+T|50.77678|-3.72669|Yeoford
+T|50.92481|-2.61224|Yeovil Junction
+T|50.94469|-2.61304|Yeovil Pen Mill
+T|50.89570|-2.57380|Yetminster
+T|51.66495|-3.52149|Ynyswen
+T|55.89276|-4.38685|Yoker
+T|53.95770|-1.09373|York
+T|54.61023|-5.92222|York Street
+T|52.80909|-2.73637|Yorton
+T|51.64049|-3.24184|Ystrad Mynach
+T|51.64362|-3.46694|Ystrad Rhondda
+T|50.51688|1.64237|Étaples - Le Touquet

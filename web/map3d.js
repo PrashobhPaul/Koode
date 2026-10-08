@@ -429,6 +429,139 @@
     return m;
   }
 
+  // ---- metro and ferry lines (a port of TransitNetwork in the app) ----
+  // A ride on a metro or a boat is a few fixes far apart; drawn straight
+  // between them it cuts every bend. It is drawn along its line's stations
+  // instead, from data/transit/<country>.txt (OpenStreetMap, ODbL). Only the
+  // country the ride is in is fetched, found from data/transit/index.json.
+  var transit = { index: null, loading: {}, texts: {}, stations: [], adj: [] };
+  var STATION_M = 450, LINE_END_M = 1200, INTERCHANGE_M = 250, SAME_NAME_M = 800;
+  function parseTransit(texts) {
+    var stations = [], lines = [];
+    texts.forEach(function (text) {
+      var local = {}, count = 0;
+      text.split('\n').forEach(function (raw) {
+        var f = raw.trim().split('|');
+        if (f[0] === 'S') {
+          var n = count++;
+          if (f.length < 4) return;
+          var lat = parseFloat(f[1]), lng = parseFloat(f[2]);
+          if (!isFinite(lat) || !isFinite(lng)) return;
+          local[n] = stations.length;
+          stations.push([lat, lng, f[3], (f[5] || 'M').trim()]);
+        } else if (f[0] === 'L' && f.length >= 5) {
+          lines.push(f[4].trim().split(' ').map(function (c) {
+            var parts = c.split(':'), i = parseInt(parts[0], 10);
+            return [i in local ? local[i] : -1, parseFloat(parts[1])];
+          }));
+        }
+      });
+    });
+    var adj = stations.map(function () { return {}; });
+    function link(a, b, m) {
+      if (a === b || a < 0 || b < 0) return;
+      if (adj[a][b] === undefined || m < adj[a][b]) adj[a][b] = m;
+    }
+    lines.forEach(function (cells) {
+      var last = -1;
+      cells.forEach(function (c) {
+        var st = c[0], m = c[1];
+        if (st < 0) { last = -1; return; }
+        if (last >= 0 && isFinite(m)) {
+          // Never less than the straight line between the two stations.
+          var hop = Math.max(m, distM(stations[last], stations[st]));
+          link(last, st, hop); if (adj[st][last] === undefined) link(st, last, hop);
+        }
+        last = st;
+      });
+    });
+    var order = stations.map(function (_, i) { return i; }).sort(function (a, b) { return stations[a][0] - stations[b][0]; });
+    for (var x = 0; x < order.length; x++) {
+      var a = stations[order[x]];
+      for (var y = x + 1; y < order.length; y++) {
+        var b = stations[order[y]];
+        if (b[0] - a[0] > 0.008) break;
+        if (a[3] !== b[3] || Math.abs(a[1] - b[1]) > 0.01) continue;
+        var m = distM(a, b), same = a[2] && a[2].toLowerCase() === b[2].toLowerCase();
+        // A change of line costs the walk between the stations.
+        if (m <= INTERCHANGE_M || (same && m <= SAME_NAME_M)) { link(order[x], order[y], m); link(order[y], order[x], m); }
+      }
+    }
+    transit.stations = stations;
+    transit.adj = adj;
+    return stations.length;
+  }
+  /** Fetches, once, the country file covering point p (and the index that says which). */
+  function loadTransitFor(p) {
+    if (!window.fetch) return;
+    if (!transit.index) {
+      if (transit.loading.index) return;
+      transit.loading.index = true;
+      fetch('data/transit/index.json').then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) { transit.index = (j && j.countries) || {}; loadTransitFor(p); })
+        .catch(function () { transit.index = {}; });
+      return;
+    }
+    Object.keys(transit.index).forEach(function (cc) {
+      var c = transit.index[cc], b = c.bbox;
+      if (!b || p[0] < b[0] || p[0] > b[2] || p[1] < b[1] || p[1] > b[3]) return;
+      // Within the box is not enough for a country with far-flung territories:
+      // the ride's 1-degree square, or one next to it, must hold its stations.
+      if (c.cells) {
+        var la = Math.floor(p[0]), lo = Math.floor(p[1]), near = false;
+        for (var i = -1; i <= 1 && !near; i++) for (var j = -1; j <= 1 && !near; j++) near = c.cells.indexOf((la + i) + ',' + (lo + j)) >= 0;
+        if (!near) return;
+      }
+      if (transit.loading[cc]) return;
+      transit.loading[cc] = true;
+      fetch('data/transit/' + cc + '.txt').then(function (r) { return r.ok ? r.text() : ''; })
+        .then(function (t) { if (t) { transit.texts[cc] = t; parseTransit(Object.keys(transit.texts).map(function (k) { return transit.texts[k]; })); } })
+        .catch(function () { transit.loading[cc] = false; });
+    });
+  }
+  function nearestStation(p, kind, maxM) {
+    var best = -1, bestM = maxM;
+    for (var i = 0; i < transit.stations.length; i++) {
+      var s = transit.stations[i];
+      if (s[3] !== kind || !s[2]) continue;
+      if (Math.abs(s[0] - p[0]) > 0.02 || Math.abs(s[1] - p[1]) > 0.02) continue;
+      var m = distM(p, s);
+      if (m <= bestM) { best = i; bestM = m; }
+    }
+    return best;
+  }
+  /** The stations of the shortest ride from a to b along the lines, or null. */
+  function rideStations(a, b) {
+    var dist = {}, prev = {}, done = {}, frontier = [a];
+    dist[a] = 0;
+    while (frontier.length) {
+      var k = 0;
+      for (var i = 1; i < frontier.length; i++) if (dist[frontier[i]] < dist[frontier[k]]) k = i;
+      var u = frontier.splice(k, 1)[0];
+      if (done[u]) continue;
+      done[u] = true;
+      if (u === b) break;
+      for (var key in transit.adj[u]) {
+        var v = +key, d = dist[u] + transit.adj[u][key];
+        if (dist[v] === undefined || d < dist[v]) { dist[v] = d; prev[v] = u; frontier.push(v); }
+      }
+    }
+    if (dist[b] === undefined) return null;
+    var path = [];
+    for (var at = b; at !== undefined; at = prev[at]) path.unshift(at);
+    return path;
+  }
+  /** A metro or ferry stretch along its line's stations (TransitNetwork.followLine); [lat, lng] points. */
+  function followLine(points, kind) {
+    if (points.length < 2 || !transit.stations.length) return points;
+    var s = nearestStation(points[0], kind, STATION_M), e = nearestStation(points[points.length - 1], kind, LINE_END_M);
+    if (s < 0 || e < 0 || s === e) return points;
+    var path = rideStations(s, e);
+    if (!path) return points;
+    return [points[0]].concat(path.map(function (i) { return [transit.stations[i][0], transit.stations[i][1]]; }), [points[points.length - 1]]);
+  }
+  var RIDE_KIND = { METRO: 'M', FERRY: 'W' };
+
   /** The trail cut into one line per stage, neighbours sharing their joining point. */
   function trailFeatures(trail, times, stages, fallback) {
     if (trail.length < 2) return EMPTY;
@@ -437,8 +570,10 @@
     var mode = useTimes ? modeAt(stages, times[0], fallback) : fallback;
     function push(a, b, m) {
       if (b - a < 1) return;
+      var stretch = trail.slice(a, b + 1);
+      if (RIDE_KIND[m]) { loadTransitFor(stretch[0]); stretch = followLine(stretch, RIDE_KIND[m]); }
       features.push({ type: 'Feature', properties: { look: lookOf(m) },
-        geometry: { type: 'LineString', coordinates: trail.slice(a, b + 1).map(function (p) { return [p[1], p[0]]; }) } });
+        geometry: { type: 'LineString', coordinates: stretch.map(function (p) { return [p[1], p[0]]; }) } });
     }
     if (useTimes) {
       for (var i = 1; i < trail.length; i++) {
@@ -595,6 +730,8 @@
     _place: place,
     /** Road geometry, for parity checks against MapStages. */
     _alongRoad: alongRoad, _pointAlong: pointAlong,
+    /** Metro geometry, for checks against TransitNetwork. */
+    _transit: { parse: function (texts) { return parseTransit(texts); }, followLine: function (p, kind) { return followLine(p, kind || 'M'); } },
     /** The trail's stretches as last drawn, for checks: [look, points] per stretch. */
     _trail: function () { return lastTrail.features.map(function (f) { return [f.properties.look, f.geometry.coordinates.length]; }); },
     MODES: {

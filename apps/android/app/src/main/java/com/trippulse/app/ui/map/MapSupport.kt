@@ -97,7 +97,11 @@ internal fun trailCollection(
     val runs = com.trippulse.app.domain.MapStages.runs(timesMs, stages, fallback, points.size)
     if (runs.isEmpty()) return EMPTY_COLLECTION
     return FeatureCollection.fromFeatures(runs.map { r ->
-        Feature.fromGeometry(LineString.fromLngLats(points.subList(r.from, r.to + 1).map { it.toPoint() })).apply {
+        // A metro or ferry ride follows its line's stations, not the chords between its few fixes.
+        val stretch = points.subList(r.from, r.to + 1).let { p ->
+            com.trippulse.app.domain.TransitNetwork.kindOf(r.mode)?.let { com.trippulse.app.data.TransitData.current.followLine(p, it) } ?: p
+        }
+        Feature.fromGeometry(LineString.fromLngLats(stretch.map { it.toPoint() })).apply {
             addStringProperty("look", com.trippulse.app.domain.MapStages.look(r.mode))
         }
     })

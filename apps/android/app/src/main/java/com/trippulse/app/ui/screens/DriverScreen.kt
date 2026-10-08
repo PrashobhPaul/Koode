@@ -521,7 +521,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         b.copy(fromName = a.fromName, fromLat = a.fromLat, fromLng = a.fromLng, startedAtMs = a.startedAtMs)
                     },
                     { it.mode }
-                ) { leg -> com.trippulse.app.data.legDistanceM(breadcrumb, leg.startedAtMs, leg.completedAtMs) }
+                ) { leg -> com.trippulse.app.data.legDistanceM(breadcrumb, leg) }
+                    .let { kept -> kept.filterNot { repair.goesNowhere(it.mode, it.fromName, it.toName) }.ifEmpty { kept } }
             }
             if (stages.size > 1) {
                 KoodeCard(title = stringResource(R.string.t_stages_c1d33)) {

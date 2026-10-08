@@ -1,0 +1,122 @@
+name: Transit data
+
+# Rebuilds, from OpenStreetMap (© OpenStreetMap contributors, ODbL), the
+# metro, water-metro/ferry and railway station data Koode names and measures
+# rides by: one file per country in web/data/transit (served with the web
+# viewer; the app downloads a country's file when it is there) and India
+# bundled in the app. Commits to the branch it ran on when anything changed.
+# A country whose build fails keeps the file it had. Run it by hand when a
+# city opens a line or new stations.
+on:
+  # A change to the builder on a working branch rebuilds the data there, so
+  # it is reviewed with the change.
+  push:
+    branches-ignore: [main]
+    paths: ['tools/transit/**', '.github/workflows/transit-data.yml']
+  workflow_dispatch:
+    inputs:
+      countries:
+        description: Space-separated ISO 3166-1 codes (blank for all)
+        default: ''
+
+permissions:
+  contents: read
+
+# One rebuild at a time per branch: two at once only crowd Overpass.
+concurrency:
+  group: transit-data-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      countries: ${{ steps.list.outputs.countries }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: list
+        env:
+          ASKED: ${{ inputs.countries }}
+        run: |
+          # India first; then where precision matters most; then every market
+          # Koode serves. A branch push builds the first two groups, a run by
+          # hand everything (or the countries asked for).
+          FIRST="IN US GB FR DE ES IT NL AE SG JP AU CA"
+          REST="MX IE BE AT CH PT SE DK NO FI CZ PL HU GR RO BG TR SA QA EG IL MY TH ID VN HK TW KR NZ BD PK LK BR AR CL CO PE ZA CN"
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then DEFAULT="$FIRST"; else DEFAULT="$FIRST $REST"; fi
+          # A push can name just the countries it needs rebuilt.
+          if [ "$GITHUB_EVENT_NAME" = "push" ] && [ -s tools/transit/push-countries.txt ]; then
+            DEFAULT="$(tr -s ' \n' ' ' < tools/transit/push-countries.txt)"
+          fi
+          LIST="${ASKED:-$DEFAULT}"
+          for c in $LIST; do [[ "$c" =~ ^[A-Z]{2}$ ]] || { echo "Bad country code: $c"; exit 1; }; done
+          echo "countries=$(printf '%s\n' $LIST | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      # Overpass serves a couple of queries at a time per address; more only queues.
+      max-parallel: 3
+      matrix:
+        country: ${{ fromJSON(needs.plan.outputs.countries) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test the builder
+        run: python3 -m unittest tools/transit/test_build_network.py
+      - name: Build ${{ matrix.country }}
+        env:
+          CC: ${{ matrix.country }}
+        run: python3 tools/transit/build_network.py --fetch --country "$CC" --out "built/$CC.txt" --previous "web/data/transit/$CC.txt"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: transit-${{ matrix.country }}
+          path: built/
+          retention-days: 3
+
+  commit:
+    needs: build
+    if: always() && needs.build.result != 'cancelled'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # The branch as it is now, not as it was when the run began: the data
+      # is laid over the latest, so nothing committed meanwhile is fought.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: transit-*
+          path: built
+          merge-multiple: true
+      - name: Put the files in place
+        run: |
+          mkdir -p built
+          python3 tools/transit/collect.py built
+      - name: Commit if changed
+        run: |
+          # The build date in each header changes every run; only commit real data changes.
+          if [ -z "$(git ls-files --others --exclude-standard)" ] && git diff --quiet -I '^# Transit for Koode' -I '"built"'; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/android/app/src/main/assets web/data
+          git commit -m "Transit data from OpenStreetMap"
+          # If the branch moved on in the minute since, rebuild on top of it:
+          # the files just built are the newest, so they win.
+          for i in 1 2 3; do
+            git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            ours=$(git rev-parse HEAD)
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard "origin/$GITHUB_REF_NAME"
+            git checkout "$ours" -- apps/android/app/src/main/assets web/data
+            git add apps/android/app/src/main/assets web/data
+            git commit -m "Transit data from OpenStreetMap" || exit 0
+          done
+          exit 1

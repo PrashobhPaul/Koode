@@ -239,7 +239,14 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                         editLabel = if (arrived != null && end != null && kotlin.math.abs(end - arrived) > 5 * 60_000L) "Use arrival time" else null,
                         onEdit = { arrived?.let { vm.correctEndTime(it) } }
                     )
-                    ReviewRow("Travelling by", com.trippulse.app.ui.Names.mode(trip?.transportMode), onEdit = null)
+                    // Every way it was made, in order (a short walk between rides is not one):
+                    // "Bike taxi · Metro", never only the last stage's mode.
+                    val ways = mapLegs.filter { it.startedAtMs != null }.map { it.mode }
+                        .let { all -> all.filter { TransportCatalog.profile(it).key != TransportCatalog.WALK.key }.ifEmpty { all } }
+                        .distinctBy { TransportCatalog.profile(it).key }
+                    val wayNames = ways.map { com.trippulse.app.ui.Names.mode(it) }
+                    val onlyMode = com.trippulse.app.ui.Names.mode(trip?.transportMode)
+                    ReviewRow("Travelling by", wayNames.joinToString(" · ").ifBlank { onlyMode }, onEdit = null)
                     report?.let { ReviewRow("Tolls recorded", it.tollsCrossed.toString(), onEdit = null) }
                     Spacer(Modifier.height(Spacing.sm))
                     Row(verticalAlignment = Alignment.CenterVertically) {

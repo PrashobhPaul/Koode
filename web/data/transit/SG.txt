@@ -1,0 +1,257 @@
+# Transit for Koode, SG. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|1.44064|103.80096|Admiralty|Mass Rapid Transit|M
+S|1.31645|103.88291|Aljunied|Mass Rapid Transit|M
+S|1.37008|103.84952|Ang Mo Kio|Mass Rapid Transit|M
+S|1.34581|103.70236|Bahar Junction|Mass Rapid Transit|M
+S|1.34291|103.87970|Bartley|Mass Rapid Transit|M
+S|1.28260|103.85968|Bayfront|Mass Rapid Transit|M
+S|1.31283|103.94231|Bayshore|Mass Rapid Transit|M
+S|1.34109|103.77588|Beauty World|Mass Rapid Transit|M
+S|1.32397|103.93022|Bedok|Mass Rapid Transit|M
+S|1.33460|103.91831|Bedok North|Mass Rapid Transit|M
+S|1.33660|103.93247|Bedok Reservoir|Mass Rapid Transit|M
+S|1.29852|103.85028|Bencoolen|Mass Rapid Transit|M
+S|1.31364|103.86272|Bendemeer|Mass Rapid Transit|M
+S|1.35099|103.84904|Bishan|Mass Rapid Transit|M
+S|1.31913|103.86155|Boon Keng|Mass Rapid Transit|M
+S|1.33855|103.70581|Boon Lay|Mass Rapid Transit|M
+S|1.32210|103.81565|Botanic Gardens|Mass Rapid Transit|M
+S|1.34030|103.84692|Braddell|Mass Rapid Transit|M
+S|1.29688|103.85089|Bras Basah|Mass Rapid Transit|M
+S|1.36306|103.83482|Bright Hill|Mass Rapid Transit|M
+S|1.38297|103.89313|Buangkok|Mass Rapid Transit|M
+S|1.29995|103.85628|Bugis|Mass Rapid Transit|M
+S|1.29995|103.85628|Bugis|Mass Rapid Transit|M
+S|1.34906|103.74959|Bukit Batok|Mass Rapid Transit|M
+S|1.34564|103.73955|Bukit Batok West|Mass Rapid Transit|M
+S|1.35889|103.75182|Bukit Gombak|Mass Rapid Transit|M
+S|1.30663|103.79035|Buona Vista|Mass Rapid Transit|M
+S|1.33737|103.83981|Caldecott|Mass Rapid Transit|M
+S|1.44321|103.82963|Canberra|Mass Rapid Transit|M
+S|1.27311|103.83706|Cantonment|Mass Rapid Transit|M
+S|1.36936|103.76473|Cashew|Mass Rapid Transit|M
+S|1.35757|103.98853|Changi Airport|Mass Rapid Transit|M
+S|1.28469|103.84414|Chinatown|Mass Rapid Transit|M
+S|1.34241|103.73255|Chinese Garden|Mass Rapid Transit|M
+S|1.38532|103.74433|Choa Chu Kang|Mass Rapid Transit|M
+S|1.37922|103.74000|Choa Chu Kang West|Mass Rapid Transit|M
+S|1.29305|103.85262|City Hall|Mass Rapid Transit|M
+S|1.28826|103.84660|Clarke Quay|Mass Rapid Transit|M
+S|1.31613|103.76590|Clementi|Mass Rapid Transit|M
+S|1.30244|103.79831|Commonwealth|Mass Rapid Transit|M
+S|1.35300|103.71385|Corporation|Mass Rapid Transit|M
+S|1.30843|103.88862|Dakota|Mass Rapid Transit|M
+S|1.29960|103.84555|Dhoby Ghaut|Mass Rapid Transit|M
+S|1.31142|103.77861|Dover|Mass Rapid Transit|M
+S|1.27951|103.85279|Downtown|Mass Rapid Transit|M
+S|1.33273|103.70859|Enterprise|Mass Rapid Transit|M
+S|1.29344|103.85553|Esplanade|Mass Rapid Transit|M
+S|1.31980|103.90289|Eunos|Mass Rapid Transit|M
+S|1.33508|103.96266|Expo|Mass Rapid Transit|M
+S|1.31249|103.85434|Farrer Park|Mass Rapid Transit|M
+S|1.31746|103.80749|Farrer Road|Mass Rapid Transit|M
+S|1.29249|103.84435|Fort Canning|Mass Rapid Transit|M
+S|1.27923|103.86795|Gardens by the Bay|Mass Rapid Transit|M
+S|1.34835|103.69811|Gek Poh|Mass Rapid Transit|M
+S|1.32151|103.87196|Geylang Bahru|Mass Rapid Transit|M
+S|1.29462|103.83334|Great World|Mass Rapid Transit|M
+S|1.31964|103.66066|Gul Circle|Mass Rapid Transit|M
+S|1.26536|103.82155|HarbourFront|Mass Rapid Transit|M
+S|1.28855|103.83367|Havelock|Mass Rapid Transit|M
+S|1.28247|103.78177|Haw Par Villa|Mass Rapid Transit|M
+S|1.36235|103.76746|Hillview|Mass Rapid Transit|M
+S|1.31173|103.79641|Holland Village|Mass Rapid Transit|M
+S|1.35807|103.72612|Hong Kah|Mass Rapid Transit|M
+S|1.37166|103.89238|Hougang|Mass Rapid Transit|M
+S|1.35447|103.76912|Hume|Mass Rapid Transit|M
+S|1.30537|103.85556|Jalan Besar|Mass Rapid Transit|M
+S|1.32774|103.67822|Joo Koon|Mass Rapid Transit|M
+S|1.33311|103.74229|Jurong East|Mass Rapid Transit|M
+S|1.31859|103.71022|Jurong Hill|Mass Rapid Transit|M
+S|1.31315|103.71033|Jurong Pier|Mass Rapid Transit|M
+S|1.32635|103.74519|Jurong Town Hall|Mass Rapid Transit|M
+S|1.34919|103.70829|Jurong West|Mass Rapid Transit|M
+S|1.33507|103.90837|Kaki Bukit|Mass Rapid Transit|M
+S|1.31147|103.87134|Kallang|Mass Rapid Transit|M
+S|1.29796|103.88622|Katong Park|Mass Rapid Transit|M
+S|1.32103|103.91293|Kembangan|Mass Rapid Transit|M
+S|1.29328|103.78468|Kent Ridge|Mass Rapid Transit|M
+S|1.27046|103.83071|Keppel|Mass Rapid Transit|M
+S|1.41736|103.83302|Khatib|Mass Rapid Transit|M
+S|1.33566|103.78383|King Albert Park|Mass Rapid Transit|M
+S|1.36021|103.88500|Kovan|Mass Rapid Transit|M
+S|1.42522|103.76199|Kranji|Mass Rapid Transit|M
+S|1.27225|103.80299|Labrador Park|Mass Rapid Transit|M
+S|1.34425|103.72069|Lakeside|Mass Rapid Transit|M
+S|1.30736|103.86277|Lavender|Mass Rapid Transit|M
+S|1.38475|103.83637|Lentor|Mass Rapid Transit|M
+S|1.30688|103.84917|Little India|Mass Rapid Transit|M
+S|1.35160|103.86396|Lorong Chuan|Mass Rapid Transit|M
+S|1.32623|103.88956|MacPherson|Mass Rapid Transit|M
+S|1.27547|103.85531|Marina Bay|Mass Rapid Transit|M
+S|1.27145|103.86282|Marina South Pier|Mass Rapid Transit|M
+S|1.30371|103.90707|Marine Parade|Mass Rapid Transit|M
+S|1.30660|103.91506|Marine Terrace|Mass Rapid Transit|M
+S|1.43257|103.77412|Marsiling|Mass Rapid Transit|M
+S|1.34863|103.83954|Marymount|Mass Rapid Transit|M
+S|1.32685|103.88334|Mattar|Mass Rapid Transit|M
+S|1.28062|103.84388|Maxwell|Mass Rapid Transit|M
+S|1.37223|103.83689|Mayflower|Mass Rapid Transit|M
+S|1.30639|103.88244|Mountbatten|Mass Rapid Transit|M
+S|1.34853|103.68098|Nanyang Crescent|Mass Rapid Transit|M
+S|1.35370|103.68660|Nanyang Gateway|Mass Rapid Transit|M
+S|1.30672|103.81915|Napier|Mass Rapid Transit|M
+S|1.31306|103.83784|Newton|Mass Rapid Transit|M
+S|1.29984|103.86387|Nicoll Highway|Mass Rapid Transit|M
+S|1.32052|103.84387|Novena|Mass Rapid Transit|M
+S|1.29965|103.78739|one-north|Mass Rapid Transit|M
+S|1.30313|103.83142|Orchard|Mass Rapid Transit|M
+S|1.30319|103.82387|Orchard Boulevard|Mass Rapid Transit|M
+S|1.28090|103.83949|Outram Park|Mass Rapid Transit|M
+S|1.32053|103.74484|Pandan Reservoir|Mass Rapid Transit|M
+S|1.27620|103.79135|Pasir Panjang|Mass Rapid Transit|M
+S|1.37129|103.94947|Pasir Ris|Mass Rapid Transit|M
+S|1.31750|103.89266|Paya Lebar|Mass Rapid Transit|M
+S|1.34302|103.67863|Peng Kang Hill|Mass Rapid Transit|M
+S|1.33759|103.69741|Pioneer|Mass Rapid Transit|M
+S|1.33143|103.86904|Potong Pasir|Mass Rapid Transit|M
+S|1.27329|103.84710|Prince Edward Road|Mass Rapid Transit|M
+S|1.29311|103.86056|Promenade|Mass Rapid Transit|M
+S|1.41497|103.91012|Punggol Coast|Mass Rapid Transit|M
+S|1.29462|103.80604|Queenstown|Mass Rapid Transit|M
+S|1.28348|103.85176|Raffles Place|Mass Rapid Transit|M
+S|1.28964|103.81677|Redhill|Mass Rapid Transit|M
+S|1.30394|103.85247|Rochor|Mass Rapid Transit|M
+S|1.44909|103.82006|Sembawang|Mass Rapid Transit|M
+S|1.39157|103.89540|Sengkang - East Loop Anticlockwise|Singapore Rail|M
+S|1.34981|103.87268|Serangoon|Mass Rapid Transit|M
+S|1.27753|103.85092|Shenton Way|Mass Rapid Transit|M
+S|1.30959|103.93002|Siglap|Mass Rapid Transit|M
+S|1.34319|103.95337|Simei|Mass Rapid Transit|M
+S|1.33109|103.79725|Sixth Avenue|Mass Rapid Transit|M
+S|1.30033|103.83913|Somerset|Mass Rapid Transit|M
+S|1.39817|103.81786|Springleaf|Mass Rapid Transit|M
+S|1.30287|103.87535|Stadium|Mass Rapid Transit|M
+S|1.31998|103.82576|Stevens|Mass Rapid Transit|M
+S|1.33540|103.88821|Tai Seng|Mass Rapid Transit|M
+S|1.35423|103.94408|Tampines|Mass Rapid Transit|M
+S|1.35423|103.94408|Tampines|Mass Rapid Transit|M
+S|1.35599|103.95473|Tampines East|Mass Rapid Transit|M
+S|1.34570|103.93853|Tampines West|Mass Rapid Transit|M
+S|1.32720|103.94659|Tanah Merah|Mass Rapid Transit|M
+S|1.29959|103.89738|Tanjong Katong|Mass Rapid Transit|M
+S|1.27661|103.84571|Tanjong Pagar|Mass Rapid Transit|M
+S|1.29734|103.87346|Tanjong Rhu|Mass Rapid Transit|M
+S|1.32590|103.80726|Tan Kah Kee|Mass Rapid Transit|M
+S|1.35066|103.69189|Tawas|Mass Rapid Transit|M
+S|1.28235|103.84827|Telok Ayer|Mass Rapid Transit|M
+S|1.27089|103.80987|Telok Blangah|Mass Rapid Transit|M
+S|1.36640|103.73008|Tengah|Mass Rapid Transit|M
+S|1.35229|103.73681|Tengah Park|Mass Rapid Transit|M
+S|1.35734|103.73345|Tengah Plantation|Mass Rapid Transit|M
+S|1.28613|103.82696|Tiong Bahru|Mass Rapid Transit|M
+S|1.33262|103.84714|Toa Payoh|Mass Rapid Transit|M
+S|1.33995|103.74253|Toh Guan|Mass Rapid Transit|M
+S|1.32116|103.64891|Tuas Crescent|Mass Rapid Transit|M
+S|1.34029|103.63677|Tuas Link|Mass Rapid Transit|M
+S|1.33005|103.63957|Tuas West Road|Mass Rapid Transit|M
+S|1.32541|103.70925|Tukang|Mass Rapid Transit|M
+S|1.32994|103.89925|Ubi|Mass Rapid Transit|M
+S|1.34190|103.96147|Upper Changi|Mass Rapid Transit|M
+S|1.35457|103.83283|Upper Thomson|Mass Rapid Transit|M
+S|1.43591|103.78746|Woodlands|Mass Rapid Transit|M
+S|1.44829|103.78571|Woodlands North|Mass Rapid Transit|M
+S|1.42673|103.79378|Woodlands South|Mass Rapid Transit|M
+S|1.33920|103.87075|Woodleigh|Mass Rapid Transit|M
+S|1.39746|103.74740|Yew Tee|Mass Rapid Transit|M
+S|1.38179|103.84494|Yio Chu Kang|Mass Rapid Transit|M
+S|1.42938|103.83503|Yishun|Mass Rapid Transit|M
+S|1.25129|103.81777|Beach|Sentosa|M
+S|1.25392|103.81945|Imbiah|Sentosa|M
+S|1.25554|103.82096|Resorts World|Sentosa|M
+S|1.26510|103.82233|VivoCity|Sentosa|M
+S|1.38801|103.90542|Bakau|Singapore Rail|M
+S|1.38004|103.77265|Bangkit|Singapore Rail|M
+S|1.37792|103.76309|Bukit Panjang|Mass Rapid Transit|M
+S|1.39629|103.89379|Cheng Lim|Singapore Rail|M
+S|1.39452|103.90043|Compassvale|Singapore Rail|M
+S|1.39385|103.91267|Coral Edge|Singapore Rail|M
+S|1.39946|103.90580|Cove|Singapore Rail|M
+S|1.40524|103.90862|Damai|Singapore Rail|M
+S|1.38460|103.77087|Fajar|Singapore Rail|M
+S|1.39719|103.88922|Farmway|Singapore Rail|M
+S|1.39190|103.87628|Fernvale|Singapore Rail|M
+S|1.38669|103.76451|Jelapang|Singapore Rail|M
+S|1.39955|103.91651|Kadaloor|Singapore Rail|M
+S|1.38393|103.90221|Kangkar|Singapore Rail|M
+S|1.37860|103.74902|Keat Hong|Singapore Rail|M
+S|1.39820|103.88125|Kupang|Singapore Rail|M
+S|1.39208|103.88003|Layar|Singapore Rail|M
+S|1.39694|103.90888|Meridian|Singapore Rail|M
+S|1.41186|103.90035|Nibong|Singapore Rail|M
+S|1.40229|103.91273|Oasis|Singapore Rail|M
+S|1.37615|103.77127|Pending|Singapore Rail|M
+S|1.37777|103.76663|Petir|Singapore Rail|M
+S|1.37862|103.75801|Phoenix|Singapore Rail|M
+S|1.40538|103.90264|Punggol|Mass Rapid Transit|M
+S|1.41685|103.90665|Punggol Point|Singapore Rail|M
+S|1.38405|103.89736|Ranggung|Singapore Rail|M
+S|1.38673|103.89053|Renjong|Singapore Rail|M
+S|1.39455|103.91615|Riviera|Singapore Rail|M
+S|1.39147|103.90597|Rumbia|Singapore Rail|M
+S|1.40972|103.90488|Sam Kee|Singapore Rail|M
+S|1.41589|103.90214|Samudera|Singapore Rail|M
+S|1.38779|103.76958|Segar|Singapore Rail|M
+S|1.38268|103.76238|Senja|Singapore Rail|M
+S|1.40533|103.89727|Soo Teck|Singapore Rail|M
+S|1.38028|103.74528|South View|Singapore Rail|M
+S|1.40846|103.89856|Sumang|Singapore Rail|M
+S|1.41278|103.90659|Teck Lee|Singapore Rail|M
+S|1.37667|103.75365|Teck Whye|Singapore Rail|M
+S|1.39733|103.87563|Thanggam|Singapore Rail|M
+S|1.38941|103.88583|Tongkang|Singapore Rail|M
+L|Mass Rapid Transit|MRT Circle Line|#fa9e0d|5 89:858 116:954 29:1181 77:798 57:1185 146:1466 82:826 110:1345 59:1322 76:1360 105:744 26:840 61:938 50:1413 16:1065 27:3833 94:1229 13:1439 87:1724 125:940 4:1302 134:1301 88:1060 112:995 41:1227 98:729 132:868 103:1355 117:943
+L|Mass Rapid Transit|MRT Circle Line|#fa9e0d|116 29:1183 77:785 57:1219 146:1473 82:825 110:1350 59:1349 76:1365 105:761 26:827 61:947 50:1420 16:1061 27:3814 94:1237 13:1538 87:1721 125:944 4:1308 134:1332 88:1063 112:997 41:1260 98:727 132:866 103:1355 117:923 46:688 18:669 42:549
+L|Mass Rapid Transit|MRT Circle Line|#fa9e0d|117 5:1267 89:857 116:965 29:1183 77:785 57:1219 146:1473 82:825 110:1350 59:1349 76:1365 105:761 26:827 61:947 50:1420 16:1061 27:3814 94:1237 13:1538 87:1721 125:944 4:1308 134:1332 88:1063 112:997 41:1260 98:727 132:866 103:1355
+L|Mass Rapid Transit|MRT Circle Line|#fa9e0d|42 18:555 46:668 117:678 103:943 132:1355 98:868 41:729 112:1227 88:995 134:1060 4:1301 125:1302 87:940 13:1724 94:1439 27:1229 16:3833 50:1065 61:1413 26:938 105:840 76:744 59:1360 110:1322 82:1345 146:826 57:1466 77:1185 29:798 116:1181
+L|Mass Rapid Transit|MRT Downtown Line|#0354a6|173 30:1098 60:878 64:923 7:1734 79:1130 129:1589 143:1213 16:1107 133:1116 102:1585 86:1418 122:562 21:783 117:871 5:1265 44:916 145:594 32:417 51:1107 11:989 65:980 12:1247 54:1398 95:1515 88:736 157:1150 72:1197 9:1108 10:1642 138:1682 136:1323 137:1403 158:2612 48:751
+L|Mass Rapid Transit|MRT Downtown Line|#0354a6|48 158:771 137:2589 136:1386 138:1312 10:1706 9:1659 72:1101 157:1196 88:1151 95:766 54:1495 12:1408 65:1243 11:983 51:987 32:1101 145:416 44:595 5:905 117:1264 21:871 122:776 86:562 102:1422 133:1581 16:1119 143:1122 129:1210 79:1588 7:1145 64:1734 60:935 30:860 173:1100
+L|Mass Rapid Transit|MRT East-West Line|#009645|154 155:1353 153:1432 56:1667 66:2356 114:2648 15:950 83:1776 33:1389 67:1521 38:3490 43:1690 26:1358 39:1123 119:1230 121:1371 150:1243 108:1535 141:978 120:1138 36:1026 22:1059 84:1048 73:1073 1:1426 112:1140 47:1116 75:1134 8:1969 139:1858 128:2478 135:1494 111:2312
+L|Mass Rapid Transit|MRT East-West Line|#009645|111 135:2422 128:1380 139:2515 8:1859 75:1968 47:1133 112:1114 1:1141 73:1424 84:1073 22:1045 36:1061 120:1029 141:1153 108:987 150:1523 121:1252 119:1378 39:1225 26:1118 43:1363 38:1696 67:3497 33:1517 83:1378 15:1774 114:953 66:2648 56:2348 153:1675 155:1431 154:1364
+L|Mass Rapid Transit|MRT East-West Line|#009645|139 48:1993 31:4467
+L|Mass Rapid Transit|MRT East-West Line|#009645|31 48:4449 139:1991
+L|Mass Rapid Transit|MRT Jurong Region Line||113 99:817 100:924 144:743 53:755 3:730 71:584 40:749 62:1528 147:1037 35:1870 34:913
+L|Mass Rapid Transit|MRT Jurong Region Line||69 68:612 156:767 45:832 15:905 3:905 53:590 144:758 100:723 99:923 113:809
+L|Mass Rapid Transit|MRT Jurong Region Line||109 70:659 67:842 152:911 24:753 148:883 149:675 147:1232
+L|Mass Rapid Transit|MRT Jurong Region Line||147 149:1223 148:678 24:868 152:782 67:904 70:848 109:673
+L|Mass Rapid Transit|MRT North East Line|#9016b2|57 108:2650 32:661 37:593 42:1349 86:857 49:838 14:1149 115:1569 163:903 125:1256 80:1680 63:1611 20:1264 124:968 194:1714 118:1529
+L|Mass Rapid Transit|MRT North East Line|#9016b2|118 194:1512 124:1714 20:963 63:1265 80:1623 125:1678 163:1244 115:904 14:1576 49:1152 86:836 42:857 37:1336 32:598 108:666 57:2663
+L|Mass Rapid Transit|MRT North-South Line|#dc241f|90 89:1250 120:1043 36:1005 42:1001 130:801 106:1012 102:1323 104:1135 151:1424 17:953 13:1219 2:2292 165:1439 78:4894 166:1372 28:1682 123:1376 0:2371 160:1684 93:1517 81:1666 164:4138 34:1431 25:3256 23:1167 67:2123
+L|Mass Rapid Transit|MRT North-South Line|#dc241f|67 23:2126 25:1166 34:3253 164:1430 81:4141 93:1670 160:1520 0:1683 123:2372 28:1384 166:1687 78:1371 165:4886 2:1440 13:2301 17:1218 151:953 104:1438 102:1135 106:1321 130:986 42:803 36:1008 120:1009 89:1047 90:1228
+L|Mass Rapid Transit|MRT Thomson–East Coast Line|#9D5B25|161 160:1472 162:1369 131:4417 85:2600 97:1591 19:1082 159:1440 27:2152 133:3003 101:1887 107:897 106:969 55:1031 58:728 108:1052 96:519 126:854 89:670 52:1767 142:2672 74:1449 140:1275 91:1033 92:1235 127:1535 6:1442
+L|Mass Rapid Transit|MRT Thomson–East Coast Line|#9D5B25|6 127:1439 92:1536 91:1229 140:1036 74:1276 142:1449 52:2658 89:1790 126:670 96:852 108:524 58:1075 55:728 106:1030 107:945 101:913 133:1842 27:3002 159:2136 19:1460 97:1080 85:1578 131:2603 162:4400 160:1388 161:1472
+L|Sentosa|Sentosa Express||170 169:1228 168:245 167:346
+L|Sentosa|Sentosa Express||167 168:350 169:244 170:1225
+L|Singapore Rail|LRT Bukit Panjang Line A|#748477|34 205:535 185:494 208:598 193:573 173:617 203:572 182:555 202:695 179:494 172:584 191:469 192:630 173:424 193:619 208:574 185:599 205:494 34:539
+L|Singapore Rail|LRT Bukit Panjang Line B|#748477|34 205:535 185:494 208:598 193:573 173:617 192:429 191:624 172:466 179:586 202:487 182:690 203:550 173:578 193:619 208:574 185:599 205:494 34:539
+L|Singapore Rail|LRT Punggol Line|#748477|194 178:973 190:563 183:517 198:719 176:524 188:541 177:445 194:994
+L|Singapore Rail|LRT Punggol Line|#748477|194 200:571 207:385 195:537 201:563 189:495 206:425 204:380 194:601
+L|Singapore Rail|LRT Punggol Line|#748477|194 204:637 206:381 189:426 201:497 195:571 207:546 200:384 194:578
+L|Singapore Rail|LRT Punggol Line|#748477|194 177:979 188:445 176:541 198:517 183:713 190:517 178:563 194:905
+L|Singapore Rail|LRT Sengkang Line|#748477|124 197:947 210:606 187:726 181:466 209:623 186:739 180:896 174:520 124:779
+L|Singapore Rail|LRT Sengkang Line|#748477|124 175:848 199:715 171:471 184:583 196:591 124:1029
+L|Singapore Rail|LRT Sengkang Line|#748477|124 196:1023 184:573 171:584 199:468 175:710 124:840
+L|Singapore Rail|LRT Sengkang Line|#748477|124 174:749 180:520 186:895 209:725 181:622 187:464 210:727 197:603 124:936
+L|Singapore Rail|MRT Jurong Region Line||34 35:917 147:1864 62:1043 40:1523 71:749 3:585 15:1021 45:918 156:829 68:769 69:611
+T|1.38004|103.77265|Bangkit
+T|1.38475|103.74453|Choa Chu Kang
+T|1.38459|103.77088|Fajar
+T|1.31721|103.66143|Gul Circle
+T|1.32708|103.73963|Jurong Lake District
+T|1.37618|103.77126|Pending
+T|1.37777|103.76663|Petir
+T|1.25554|103.82096|Resorts World
+T|1.38779|103.76958|Segar
+T|1.38027|103.74528|South View
+T|1.44503|103.76999|Woodlands Train Checkpoint

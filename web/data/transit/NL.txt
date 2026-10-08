@@ -1,0 +1,1021 @@
+# Transit for Koode, NL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|51.95143|4.55191|Alexander|Rail Rotterdam|M
+S|51.96577|4.57027|Ambachtsland|Rail Rotterdam|M
+S|51.99008|4.45436|Berkel Westpolder|Rail Rotterdam|M
+S|51.91800|4.48086|Beurs|Rail Rotterdam|M
+S|51.96033|4.53565|Binnenhof|Rail Rotterdam|M
+S|51.91991|4.48898|Blaak|Rail Rotterdam|M
+S|51.93062|4.45818|Blijdorp|Rail Rotterdam|M
+S|51.93138|4.58956|Capelle Centrum|Rail Rotterdam|M
+S|51.92145|4.55796|Capelsebrug|Rail Rotterdam|M
+S|51.90947|4.45829|Coolhaven|Rail Rotterdam|M
+S|51.83332|4.31990|De Akkers|Rail Rotterdam|M
+S|51.90999|4.44570|Delfshaven|Rail Rotterdam|M
+S|52.08076|4.32553|Den Haag Centraal|Rail Rotterdam|M
+S|52.07897|4.34326|Den Haag Laan van NOI|Rail Rotterdam|M
+S|51.93595|4.60038|De Terp|Rail Rotterdam|M
+S|51.96887|4.57847|De Tochten|Rail Rotterdam|M
+S|51.91224|4.46612|Dijkzigt|Rail Rotterdam|M
+S|51.91633|4.47374|Eendrachtsplein|Rail Rotterdam|M
+S|52.06988|4.39299|Forepark|Rail Rotterdam|M
+S|51.92590|4.50585|Gerdesiaweg|Rail Rotterdam|M
+S|51.95722|4.54945|Graskruid|Rail Rotterdam|M
+S|51.83775|4.33164|Heemraadlaan|Rail Rotterdam|M
+S|51.96321|4.55316|Hesseplaats|Rail Rotterdam|M
+S|51.97667|4.12751|Hoek van Holland Haven|Rail Rotterdam|M
+S|51.98699|4.10545|Hoek van Holland Strand|Rail Rotterdam|M
+S|51.86062|4.36678|Hoogvliet|Rail Rotterdam|M
+S|51.92141|4.53385|Kralingse Zoom|Rail Rotterdam|M
+S|52.07758|4.38206|Leidschendam-Voorburg|Rail Rotterdam|M
+S|52.06473|4.40039|Leidschenveen|Rail Rotterdam|M
+S|51.91403|4.48199|Leuvehaven|Rail Rotterdam|M
+S|51.89719|4.49476|Maashaven|Rail Rotterdam|M
+S|51.91643|4.25373|Maassluis Centrum|Rail Rotterdam|M
+S|51.92607|4.23540|Maassluis West|Rail Rotterdam|M
+S|51.91302|4.43359|Marconiplein|Rail Rotterdam|M
+S|51.95592|4.46222|Meijersplein / Airport|Rail Rotterdam|M
+S|51.94847|4.46463|Melanchthonweg|Rail Rotterdam|M
+S|51.97969|4.58654|Nesselande|Rail Rotterdam|M
+S|51.96482|4.56145|Nieuw Verlaat|Rail Rotterdam|M
+S|52.04755|4.41470|Nootdorp|Rail Rotterdam|M
+S|51.94523|4.55463|Oosterflank|Rail Rotterdam|M
+S|51.92336|4.49699|Oostplein|Rail Rotterdam|M
+S|51.92127|4.39396|Parkweg|Rail Rotterdam|M
+S|51.88494|4.38179|Pernis|Rail Rotterdam|M
+S|52.02057|4.43697|Pijnacker Centrum|Rail Rotterdam|M
+S|52.00500|4.44581|Pijnacker Zuid|Rail Rotterdam|M
+S|51.86172|4.39579|Poortugaal|Rail Rotterdam|M
+S|51.94077|4.55654|Prinsenlaan|Rail Rotterdam|M
+S|51.85914|4.41949|Rhoon|Rail Rotterdam|M
+S|51.90358|4.49680|Rijnhaven|Rail Rotterdam|M
+S|51.97540|4.46084|Rodenrijs|Rail Rotterdam|M
+S|51.96151|4.54287|Romeynshof|Rail Rotterdam|M
+S|51.92397|4.46980|Rotterdam Centraal|Rail Rotterdam|M
+S|51.93194|4.56347|Schenkel|Rail Rotterdam|M
+S|51.92203|4.40874|Schiedam Centrum|Rail Rotterdam|M
+S|51.92277|4.38344|Schiedam Nieuwland|Rail Rotterdam|M
+S|51.87459|4.47773|Slinge|Rail Rotterdam|M
+S|51.92848|4.57832|Slotlaan|Rail Rotterdam|M
+S|51.84655|4.33446|Spijkenisse Centrum|Rail Rotterdam|M
+S|51.92324|4.47851|Stadhuis|Rail Rotterdam|M
+S|51.93260|4.22485|Steendijkpolder|Rail Rotterdam|M
+S|51.91555|4.38463|Troelstralaan|Rail Rotterdam|M
+S|51.86263|4.37677|Tussenwater|Rail Rotterdam|M
+S|51.90915|4.37199|Vijfsluizen|Rail Rotterdam|M
+S|51.90314|4.34381|Vlaardingen Centrum|Rail Rotterdam|M
+S|51.91016|4.36165|Vlaardingen Oost|Rail Rotterdam|M
+S|51.90377|4.31512|Vlaardingen West|Rail Rotterdam|M
+S|52.08233|4.36531|Voorburg 't Loo|Rail Rotterdam|M
+S|51.92500|4.51306|Voorschoterlaan|Rail Rotterdam|M
+S|51.90781|4.49238|Wilhelminaplein|Rail Rotterdam|M
+S|51.85494|4.36252|Zalmplaat|Rail Rotterdam|M
+S|51.88689|4.48833|Zuidplein|Rail Rotterdam|M
+S|52.34664|4.91744|Amstelstation|Stadsvervoer Amsterdam|M
+S|52.33840|4.85758|Amstelveenseweg|Stadsvervoer Amsterdam|M
+S|52.31177|4.94751|Bijlmer ArenA|Stadsvervoer Amsterdam|M
+S|52.30661|4.95224|Bullewijk|Stadsvervoer Amsterdam|M
+S|52.37920|4.90091|Centraal|Stadsvervoer Amsterdam|M
+S|52.35398|4.89069|De Pijp|Stadsvervoer Amsterdam|M
+S|52.37961|4.83822|De Vlugtlaan|Stadsvervoer Amsterdam|M
+S|52.32358|4.93653|Duivendrecht|Stadsvervoer Amsterdam|M
+S|52.34161|4.89147|Europaplein|Stadsvervoer Amsterdam|M
+S|52.31132|4.98432|Gaasperplas|Stadsvervoer Amsterdam|M
+S|52.32308|4.97355|Ganzenhoef|Stadsvervoer Amsterdam|M
+S|52.29634|4.98901|Gein|Stadsvervoer Amsterdam|M
+S|52.35247|4.83430|Heemstedestraat|Stadsvervoer Amsterdam|M
+S|52.34640|4.83450|Henk Sneevlietweg|Stadsvervoer Amsterdam|M
+S|52.29811|4.96004|Holendrecht|Stadsvervoer Amsterdam|M
+S|52.39517|4.85079|Isolatorweg|Stadsvervoer Amsterdam|M
+S|52.37266|4.83529|Jan van Galenstraat|Stadsvervoer Amsterdam|M
+S|52.31703|4.97912|Kraaiennest|Stadsvervoer Amsterdam|M
+S|52.35783|4.83437|Lelylaan|Stadsvervoer Amsterdam|M
+S|52.37132|4.90088|Nieuwmarkt|Stadsvervoer Amsterdam|M
+S|52.40199|4.93236|Noord|Stadsvervoer Amsterdam|M
+S|52.38893|4.91870|Noorderpark|Stadsvervoer Amsterdam|M
+S|52.33173|4.91763|Overamstel|Stadsvervoer Amsterdam|M
+S|52.36429|4.83396|Postjesweg|Stadsvervoer Amsterdam|M
+S|52.29565|4.97442|Reigersbos|Stadsvervoer Amsterdam|M
+S|52.37060|4.89258|Rokin|Stadsvervoer Amsterdam|M
+S|52.33996|4.92101|Spaklerweg|Stadsvervoer Amsterdam|M
+S|52.33011|4.95597|Station Diemen Zuid|Stadsvervoer Amsterdam|M
+S|52.33771|4.88933|Station RAI|Stadsvervoer Amsterdam|M
+S|52.38902|4.83888|Station Sloterdijk|Stadsvervoer Amsterdam|M
+S|52.31854|4.94136|Strandvliet|Stadsvervoer Amsterdam|M
+S|52.32945|4.93052|Van der Madeweg|Stadsvervoer Amsterdam|M
+S|52.32677|4.94634|Venserpolder|Stadsvervoer Amsterdam|M
+S|52.32894|4.96625|Verrijn Stuartweg|Stadsvervoer Amsterdam|M
+S|52.36082|4.89116|Vijzelgracht|Stadsvervoer Amsterdam|M
+S|52.36739|4.90246|Waterlooplein|Stadsvervoer Amsterdam|M
+S|52.36118|4.90797|Weesperplein|Stadsvervoer Amsterdam|M
+S|52.35446|4.91203|Wibautstraat|Stadsvervoer Amsterdam|M
+S|52.33920|4.87461|Zuid|Stadsvervoer Amsterdam|M
+S|52.07920|5.09241|24 Oktoberplein-Zuid|Utrecht Binnen|M
+S|52.02233|5.02857|Achterveld|Utrecht Binnen|M
+S|52.04110|5.08004|Batau Noord|Utrecht Binnen|M
+S|52.01668|5.03957|Binnenstad|Utrecht Binnen|M
+S|52.02664|5.04768|Clinckhoeff|Utrecht Binnen|M
+S|52.08929|5.11181|CS Centrumzijde|Utrecht Binnen|M
+S|52.08959|5.10580|CS Jaarbeursplein|Utrecht Binnen|M
+S|52.08310|5.15685|De Kromme Rijn|Utrecht Binnen|M
+S|52.02059|5.07401|Doorslag|Utrecht Binnen|M
+S|52.02533|5.03579|Eiteren|Utrecht Binnen|M
+S|52.01885|5.08874|Fokkesteeg|Utrecht Binnen|M
+S|52.08783|5.10067|Graadt van Roggenweg|Utrecht Binnen|M
+S|52.08485|5.17420|Heidelberglaan|Utrecht Binnen|M
+S|52.02517|5.05214|Hooghe Waerd|Utrecht Binnen|M
+S|52.00942|5.03875|IJsselstein-Zuid|Utrecht Binnen|M
+S|52.06326|5.10708|Kanaleneiland-Zuid|Utrecht Binnen|M
+S|52.02583|5.08559|Merwestein|Utrecht Binnen|M
+S|52.02831|5.07970|Nieuwegein City|Utrecht Binnen|M
+S|52.00627|5.08656|Nieuwegein-Zuid|Utrecht Binnen|M
+S|52.08484|5.16757|Padualaan|Utrecht Binnen|M
+S|52.09150|5.17752|P+R Science Park|Utrecht Binnen|M
+S|52.05651|5.10655|P+R Westraven|Utrecht Binnen|M
+S|52.02518|5.07922|Sint Antonius Ziekenhuis|Utrecht Binnen|M
+S|52.07962|5.15042|Stadion Galgenwaard|Utrecht Binnen|M
+S|52.07882|5.12258|Station Vaartsche Rijn|Utrecht Binnen|M
+S|52.08509|5.17921|UMC Utrecht|Utrecht Binnen|M
+S|52.06870|5.10216|Vasco da Gamalaan|Utrecht Binnen|M
+S|52.01190|5.08869|Wiersdijk|Utrecht Binnen|M
+S|52.03591|5.07804|Wijkersloot|Utrecht Binnen|M
+S|52.07475|5.09654|Winkelcentrum Kanaleneiland|Utrecht Binnen|M
+S|52.08929|5.18316|WKZ/PMC|Utrecht Binnen|M
+S|52.04582|5.09004|Zuilenstein|Utrecht Binnen|M
+S|52.47956|6.07614|Hattem, veersteiger|'t Kleine Veer|W
+S|52.48024|6.07918|Oldeneel, veersteiger|'t Kleine Veer|W
+S|53.56378|6.75619|Borkum|AG Ems|W
+S|53.45602|6.83245|Eemshaven|AG Ems|W
+S|51.47389|6.17859|Arcen, veerstoep|Arcen-Lottum|W
+S|51.47299|6.17683|Lottum, veerstoep|Arcen-Lottum|W
+S|51.74387|5.16320|Bern veer|Bergsche Maasveren|W
+S|51.71761|4.98100|Capelle veer|Bergsche Maasveren|W
+S|51.71258|5.04919|Drongelen veer|Bergsche Maasveren|W
+S|51.71985|4.98282|Dussen veer|Bergsche Maasveren|W
+S|51.74183|5.16372|Herpt veer|Bergsche Maasveren|W
+S|51.71015|5.04948|Waalwijk veer|Bergsche Maasveren|W
+S|51.53139|6.11890|Blitterswijck, veer|Blitterswijck-Wellerlooi|W
+S|51.53336|6.11966|Wellerlooi, veer|Blitterswijck-Wellerlooi|W
+S|51.96130|5.21694|Culemborg, veerstoep|Culemborg - Schalkwijk|W
+S|51.96231|5.21528|Schalkwijk, veerstoep|Culemborg - Schalkwijk|W
+S|52.46263|4.58439|IJmuiden|DFDS|W
+S|54.99195|-1.44989|Newcastle|DFDS|W
+S|53.10039|5.85072||De Burd|W
+S|53.10075|5.84933||De Burd|W
+S|52.25177|6.15259|Deventer, veersteiger|Deventer-Worp|W
+S|52.25028|6.15232|Steenenkamer, veersteiger|Deventer-Worp|W
+S|52.04175|6.11005|Dieren veer|Dieren-Olburgen|W
+S|52.04174|6.11143|Olburgen veer|Dieren-Olburgen|W
+S|53.33099|6.93256|Delfzijl ferry terminal|Dollard Route|W
+S|53.33957|7.18489|Emden Ostmole ferry terminal|Dollard Route|W
+S|51.98427|5.45671|Amerongen veer|Eck en Wiel-Amerongen|W
+S|51.98295|5.45627|Eck en Wiel, Veerweg|Eck en Wiel-Amerongen|W
+S|51.40171|3.54867|Westerschelde Ferry Breskens|Fast Ferry Vlissingen - Breskens|W
+S|51.44413|3.59797|Westerschelde Ferry Vlissingen|Fast Ferry Vlissingen - Breskens|W
+S|52.16071|5.38272|Fietsboot (Amersfoort)|Fietsboot Eemlijn|W
+S|52.21544|5.30660|Fietsboot (Baarn)|Fietsboot Eemlijn|W
+S|52.25540|5.32900|Fietsboot (Eemdijk)|Fietsboot Eemlijn|W
+S|52.30580|5.24177|Fietsboot (Huizen)|Fietsboot Eemlijn|W
+S|52.18158|5.32653|Fietsboot (Soest)|Fietsboot Eemlijn|W
+S|52.25946|5.38209|Fietsboot (Spakenburg)|Fietsboot Eemlijn|W
+S|53.17677|5.41287|Harlingen|Friese Waddenveren West|W
+S|53.35627|5.21576|Terschelling Snelboot|Friese Waddenveren West|W
+S|53.35677|5.21708|Terschelling Veerboot|Friese Waddenveren West|W
+S|53.29614|5.07632|Vlieland Snelboot|Friese Waddenveren West|W
+S|52.08208|6.17268|Bronkhorst, veerstoep|Gemeente Brummen|W
+S|52.08246|6.17103|Brummen, veerstoep|Gemeente Brummen|W
+S|52.62937|6.03868|Genemuiden|Genemuiden-Zwartsluis|W
+S|52.63084|6.04024|Zwartsluis|Genemuiden-Zwartsluis|W
+S|52.20952|6.19135|Voet & fietsveer Gorssel|Gorssel-Wilp|W
+S|52.20818|6.18901|Voet & fietsveer Wilp|Gorssel-Wilp|W
+S|51.81751|5.39747|Veersteiger Heerewaarden|Heerewaarden - Lithse Ham|W
+S|51.81088|5.40997|Veersteiger Lithse Ham|Heerewaarden - Lithse Ham|W
+S|52.43467|4.72518|Assendelft|IJ- en Noordzeekanaalveren|W
+S|52.37811|4.93715|Azartplein|IJ- en Noordzeekanaalveren|W
+S|52.38215|4.90317|Buiksloterweg|IJ- en Noordzeekanaalveren|W
+S|52.37862|4.90585|Centraal|IJ- en Noordzeekanaalveren|W
+S|52.38068|4.89938|Centraal|IJ- en Noordzeekanaalveren|W
+S|52.39566|4.89645|Distelweg|IJ- en Noordzeekanaalveren|W
+S|52.41807|4.82689|Hempontplein|IJ- en Noordzeekanaalveren|W
+S|52.38172|4.90842|IJplein|IJ- en Noordzeekanaalveren|W
+S|52.40112|4.89099|NDSM|IJ- en Noordzeekanaalveren|W
+S|52.39219|4.88602|Pontsteiger|IJ- en Noordzeekanaalveren|W
+S|52.37574|4.95596|Sluisbuurt|IJ- en Noordzeekanaalveren|W
+S|52.43150|4.72461|Spaarndam|IJ- en Noordzeekanaalveren|W
+S|52.37446|4.94981|Sporenburg|IJ- en Noordzeekanaalveren|W
+S|52.46584|4.63270|Velsen-Noord|IJ- en Noordzeekanaalveren|W
+S|52.46266|4.63231|Velsen-Zuid|IJ- en Noordzeekanaalveren|W
+S|52.42125|4.82657|Zaandam|IJ- en Noordzeekanaalveren|W
+S|52.38478|4.93089|Zamenhofstraat|IJ- en Noordzeekanaalveren|W
+S|51.98069|5.49718|Elst, Ingeseveer|Ingen-Elst|W
+S|51.97940|5.49623|Ingen, Veerweg|Ingen-Elst|W
+S|51.55054|3.81125|Kortgene, veersteiger|Kortgene - Wolphaartsdijk|W
+S|51.54809|3.81413|Wolphaartsdijk, veersteiger|Kortgene - Wolphaartsdijk|W
+S|52.37259|6.08985|Fortmond, veersteiger|Kozakkenveer|W
+S|52.37468|6.09414|Veessen, veersteiger|Kozakkenveer|W
+S|51.88842|4.62824|Kinderdijk (autoveer)|Krimpen aan de Lek - Kinderdijk|W
+S|51.89076|4.62784|Krimpen aan de Lek (autoveer)|Krimpen aan de Lek - Kinderdijk|W
+S|51.95957|5.68954|Lexkesveer - Randwijk|Lexkesveer|W
+S|51.96109|5.68937|Lexkesveer - Wageningen|Lexkesveer|W
+S|51.78500|5.36433|Alem, Veer Alem|Maasveren|W
+S|51.82851|5.56674|Appeltern, veerstoep|Maasveren|W
+S|51.80894|5.43961|Lith, Veer|Maasveren|W
+S|51.78453|5.36626|Maren, Veerweg|Maasveren|W
+S|51.82707|5.56670|Megen, veerstoep|Maasveren|W
+S|51.81053|5.43994|Moordhuizen, Veer|Maasveren|W
+S|51.83118|5.49737|Nieuwe Schans, veerstoep|Maasveren|W
+S|51.82972|5.49680|Oijen, Veer Oijen|Maasveren|W
+S|51.81862|5.54582|Veer Maasbommel|Maasveren|W
+S|51.81772|5.54756|Veer Megen West|Maasveren|W
+S|51.86787|6.06199|Bijlandse Waard, veerstoep|Millingen aan de Rijn - Pannerden|W
+S|51.86633|6.05489|Millingen aan de Rijn, veerstoep|Millingen aan de Rijn - Pannerden|W
+S|51.88315|6.00584|Doornenburg, veerstoep|Millingerwaard - Doornenburg|W
+S|51.87991|6.00486|Millingerwaard, veerstoep|Millingerwaard - Doornenburg|W
+S|51.75898|5.15925|Nederhemert-Noord|Nederhemert-Noord-Zuid|W
+S|51.75741|5.15988|Nederhemert-Zuid|Nederhemert-Noord-Zuid|W
+S|51.81724|4.33809|Hekelingen, Veer Hekelingen|Nieuw Beijerland - Hekelingen|W
+S|51.81629|4.33854|Nieuw Beijerland, Veerstoep|Nieuw Beijerland - Hekelingen|W
+S|52.31458|5.56013|Strand Horst, veersteiger|ODV Maritiem B.V.|W
+S|52.33251|5.54898|Zeewolde, Aanloophaven/Noordereiland|ODV Maritiem B.V.|W
+S|52.32126|5.55207|Zeewolde, Veerhaven Strandweg|ODV Maritiem B.V.|W
+S|52.34066|6.10359|Olst, veerstoep|Olsterveer|W
+S|52.34128|6.10157|Welsum, veerstoep|Olsterveer|W
+S|51.94223|5.61534|Blaauwe Kamer, Veerstoep|Opheusden-Wageningen|W
+S|51.94080|5.61512|Opheusden, Veerstoep|Opheusden-Wageningen|W
+S|51.94333|4.12780|Rotterdam|P & O Frieght|W
+S|54.59896|-1.14874|Teesport|P & O Frieght|W
+S|51.89311|6.02309|Doornenburg, veer|Pannerden - Doornenburg|W
+S|51.89341|6.02526|Pannerden, Veerdam|Pannerden - Doornenburg|W
+S|51.86236|4.65022|Alblasserdam, Kade|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.90678|4.54805|Capelle aan den IJssel, Rivium|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.81494|4.65825|Dordrecht, Hooikade|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.81941|4.67537|Dordrecht, Merwekade|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.85004|4.65783|Hendrik-Ido-Ambacht, Noordeinde|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.88976|4.63551|Kinderdijk, Molenkade|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.90453|4.57476|Krimpen aan den IJssel, Stormpolder|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.83394|4.67314|Papendrecht, Noordhoek|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.82209|4.68216|Papendrecht, Veerdam|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.88691|4.61941|Ridderkerk, De Schans|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.90865|4.48224|Rotterdam, Erasmusbrug|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|51.81818|4.65863|Zwijndrecht, Veerplein|Personenvervoer over water Rotterdam-Drechtsteden|W
+S|52.97821|5.70802|Pont Langweer noord|Pont Langweer|W
+S|52.97766|5.70697|Pont Langweer zuid|Pont Langweer|W
+S|51.93490|4.30769|Bommeer|Recreatieschap Midden Delfland|W
+S|51.93896|4.30029|Kwakelweg|Recreatieschap Midden Delfland|W
+S|51.93753|4.30079|'t Jachthuis|Recreatieschap Midden Delfland|W
+S|52.25827|5.39195|Eemhof, terminal|Rederij De Zuidwal|W
+S|52.25639|5.38118|Spakenburg, terminal|Rederij De Zuidwal|W
+S|53.41060|6.19762|Lauwersoog, Veer|Rederij Wagenborg|W
+S|53.46863|6.20320|Schiermonnikoog, Veerdam|Rederij Wagenborg|W
+S|51.78128|5.11429|Aalst veer|Riveer|W
+S|51.82475|5.09288|Brakel veer|Riveer|W
+S|51.82038|5.02844|Fort Vuren|Riveer|W
+S|51.82607|4.97488|Gorinchem|Riveer|W
+S|51.82113|4.88881|Hardinxveld|Riveer|W
+S|51.82843|5.09301|Herwijnen veer|Riveer|W
+S|51.81975|4.96037|Sleeuwijk|Riveer|W
+S|51.81827|5.01995|Slot Loevestein|Riveer|W
+S|51.78019|5.11219|Veen veer|Riveer|W
+S|51.81470|4.88673|Werkendam|Riveer|W
+S|51.81868|5.00440|Woudrichem|Riveer|W
+S|51.91476|4.24874|Maassluis Veer|River Operations South Holland B.V.|W
+S|51.91244|4.24241|Rozenburg Veer|River Operations South Holland B.V.|W
+S|51.94838|1.25267||Stena Line B.V.|W
+S|51.97344|4.13134|Nieuwe Waterweg Stena Line 2|Stena Line B.V.|W
+S|51.97160|5.82510|Driel|Stichting Drielse Veer|W
+S|51.97359|5.82352|Heveadorp|Stichting Drielse Veer|W
+S|51.97717|5.90632|Stadsblokkenwerf Noord|Stichting Stadsblokkenwerf|W
+S|51.97747|5.90274|Stadsblokkenwerf Zuid|Stichting Stadsblokkenwerf|W
+S|52.96282|4.77805|Veerhaven Den Helder|TESO|W
+S|53.00362|4.78133|Veerhaven Texel|TESO|W
+S|53.04245|5.77347|Terherne veer|Terhernsterveer Terherne|W
+S|53.04908|5.77125|Tersoalstersyl veer|Terhernsterveer Terherne|W
+S|51.88439|5.44085|Tiel, veersteiger|Tiel - Wamel|W
+S|51.88209|5.44438|Wamel, veersteiger|Tiel - Wamel|W
+S|51.48673|6.16797|Arcen veer|Ton Paulus Veerbedrijf|W
+S|51.33371|6.11644|Baarlo veer|Ton Paulus Veerbedrijf|W
+S|51.28649|6.04985|Beesel veer|Ton Paulus Veerbedrijf|W
+S|51.96269|5.28091|Beusichem veer|Ton Paulus Veerbedrijf|W
+S|51.48653|6.16582|Broekhuizen veer|Ton Paulus Veerbedrijf|W
+S|51.73152|5.88350|Cuijk, Veer|Ton Paulus Veerbedrijf|W
+S|51.93703|5.96069|Huissen veer|Ton Paulus Veerbedrijf|W
+S|51.28765|6.04844|Kessel veer|Ton Paulus Veerbedrijf|W
+S|51.45845|6.17440|Lomm veer|Ton Paulus Veerbedrijf|W
+S|51.93727|5.96290|Loo veer|Ton Paulus Veerbedrijf|W
+S|51.45923|6.17235|Lottum veer|Ton Paulus Veerbedrijf|W
+S|51.73169|5.88545|Middelaar, Veer|Ton Paulus Veerbedrijf|W
+S|51.96459|5.34563|Rijswijk - Wijkse Veer|Ton Paulus Veerbedrijf|W
+S|51.33393|6.11816|Steyl veer|Ton Paulus Veerbedrijf|W
+S|51.96409|5.28123|Wijk bij Duurstede veer|Ton Paulus Veerbedrijf|W
+S|51.96537|5.34353|Wijk bij Duurstede - Wijkse Veer|Ton Paulus Veerbedrijf|W
+S|51.82115|5.63145|Batenburg Veer|Uit®waarde|W
+S|51.87703|5.77581|Beuningen, veersteiger|Uit®waarde|W
+S|51.82131|5.54658|De Gouden Ham|Uit®waarde|W
+S|51.81895|5.63251|Demen Veer|Uit®waarde|W
+S|51.90046|5.60496|Dodewaard, veersteiger|Uit®waarde|W
+S|51.89767|5.60307|Druten, veersteiger|Uit®waarde|W
+S|51.96720|5.17855|Fort Everdingen, Voetveer Liniepont|Uit®waarde|W
+S|51.82684|5.38656|Heerewaarden, veersteiger|Uit®waarde|W
+S|51.96739|5.73164|Heteren|Uit®waarde|W
+S|51.95389|5.56083|Lienden, veer|Uit®waarde|W
+S|51.82041|5.54489|Maasbommel, Loswal|Uit®waarde|W
+S|51.79725|5.66113|Niftrik, Veer|Uit®waarde|W
+S|51.79599|5.65896|Ravenstein, Veer|Uit®waarde|W
+S|51.96957|5.73475|Renkum|Uit®waarde|W
+S|51.95524|5.56123|Rhenen, veer|Uit®waarde|W
+S|51.87921|5.78320|Slijk-Ewijk, veersteiger|Uit®waarde|W
+S|51.82583|5.38006|Varik, veersteiger|Uit®waarde|W
+S|51.96418|5.18928|Werk aan de Groeneweg, Voetveer Liniepont|Uit®waarde|W
+S|51.96062|5.19315|Werk aan het Spoel, Voetveer Liniepont (NHW)|Uit®waarde|W
+S|52.69908|5.28986|Enkhuizen (-Stavoren)|V&O|W
+S|52.88680|5.35822|Stavoren, terminal V&O|V&O|W
+S|51.59800|6.02618|Bergen, Veer|Van den Boogaard Veerdienst|W
+S|51.59729|6.02428|Vierlingsbeek, Veer|Van den Boogaard Veerdienst|W
+S|51.78782|4.75783|Dordrecht, Kop van 't Land|Veer Kop van 't Land|W
+S|51.78558|4.76528|Werkendam, Brabantse Oever|Veer Kop van 't Land|W
+S|51.63338|6.00326|Afferden, Veer|Veerdienst Afferden VOF|W
+S|51.63250|6.00149|Sambeek, Veer|Veerdienst Afferden VOF|W
+S|52.35320|5.00370|Haven IJburg|Veerdienst Amsterdam|W
+S|52.36388|5.06865|Pampus steiger|Veerdienst Amsterdam|W
+S|51.91977|4.78456|Bergambacht, Veer Bergstoep|Veerdienst Bergstoep|W
+S|51.91776|4.78711|Streefkerk, Bergstoepseveer|Veerdienst Bergstoep|W
+S|51.99911|6.03557|Rheden veer|Veerdienst Rheden|W
+S|51.99849|6.03644|Rheden veer2|Veerdienst Rheden|W
+S|51.94047|4.85389|Gelkenes veer|Veerdienst Schoonhoven|W
+S|51.94258|4.85408|Schoonhoven veer|Veerdienst Schoonhoven|W
+S|52.69944|5.29023|Enkhuizen (-Urk)|Veerdienst Urk - Enkhuizen|W
+S|52.65934|5.59692|Terminal Veerdienst Urk - Enkhuizen|Veerdienst Urk - Enkhuizen|W
+S|51.89450|4.68407|Lekkerkerk, Veersteiger|Veerdienst-Schoonhoven|W
+S|51.89297|4.68663|Nieuw-Lekkerland, Veersteiger|Veerdienst-Schoonhoven|W
+S|51.55730|3.68325|Kamperland, fiets- voetveer|Veere - Kamperland|W
+S|51.55010|3.66993|Veere, fiets- voetveer|Veere - Kamperland|W
+S|52.00176|5.08805|Nieuwegein, Veer|Vianen - Niewegein|W
+S|52.00047|5.08880|Vianen, Veer|Vianen - Niewegein|W
+S|51.81702|5.01104|Loevestein, Voet-fietsveer|Voet-fietsveer Woudrichem|W
+S|51.81693|5.00890|Woudrichem, Voet-fietsveer|Voet-fietsveer Woudrichem|W
+S|52.45777|5.10062|Marken|Volendam Marken Express|W
+S|52.49410|5.07644|Volendam|Volendam Marken Express|W
+S|53.39532|5.87908|Holwert, Veerdam|Wagenborg|W
+S|53.43341|5.77465|Nes, Veerweg|Wagenborg|W
+S|52.39269|6.12419|Vorchten, veerstoep|Wijheseveer|W
+S|52.39204|6.12628|Wijhe, veerstoep|Wijheseveer|W
+S|51.52546|4.07719|Gorishoek|Yerseke–Gorishoek–Wemeldinge|W
+S|51.51581|4.00562|Wemeldinge|Yerseke–Gorishoek–Wemeldinge|W
+S|51.49787|4.05532|Yerseke|Yerseke–Gorishoek–Wemeldinge|W
+S|52.53272|6.01535|Veecaten, veersteiger|Zalkerveer|W
+S|52.53152|6.01546|Zalkerveer|Zalkerveer|W
+L|Rail Rotterdam|Metro A|#00AA50|53 33:2010 11:961 9:908 16:623 17:696 3:487 5:621 40:692 19:747 67:505 26:1493 8:1730 52:1570 46:1080 39:541 0:600 20:663 50:783 4:513
+L|Rail Rotterdam|Metro A|#00AA50|26 8:1730 52:1570 46:1080 39:541 0:600 20:663 50:783 4:513
+L|Rail Rotterdam|Metro A|#00AA50|4 50:511 20:777 0:721 39:655 46:595 52:1165 8:1310 26:1774 67:1445 19:506 40:752 5:659 3:648 17:488 16:697 9:620 11:907 33:960 53:2070
+L|Rail Rotterdam|Metro A|#00AA50|4 50:511 20:777 0:721 39:655 46:595 52:1165 8:1310 26:1774
+L|Rail Rotterdam|Metro B|#FFD301|36 15:1401 1:678 37:657 22:554 20:884 0:721 39:655 46:595 52:1165 8:1310 26:1774 67:1445 19:506 40:752 5:659 3:648 17:488 16:697 9:620 11:907 33:960 53:2070 54:2039 64:2042 63:1488 65:2030 31:4439 32:1677 59:1022 23:8336 24:1863
+L|Rail Rotterdam|Metro B|#FFD301|36 15:1401 1:678 37:657 22:554 20:884 0:721 39:655 46:595 52:1165 8:1310 26:1774 67:1445 19:506 40:752 5:659 3:648 17:488 16:697 9:620 11:907 33:960 53:2070 54:2039 64:2042 63:1488 65:2030 31:4439 32:1677 59:1022
+L|Rail Rotterdam|Metro B|#FFD301|24 23:1931 59:8261 32:1025 31:1670 65:4449 63:2036 64:1518 54:2053 53:2058 33:2010 11:961 9:908 16:623 17:696 3:487 5:621 40:692 19:747 67:505 26:1493 8:1730 52:1570 46:1080 39:541 0:600 20:663 22:878 37:631 1:580 15:680 36:1405
+L|Rail Rotterdam|Metro B|#FFD301|59 32:1023 31:1670 65:4449 63:2036 64:1518 54:2053 53:2058 33:2010 11:961 9:908 16:623 17:696 3:487 5:621 40:692 19:747 67:505 26:1493 8:1730 52:1570 46:1080 39:541 0:600 20:663 22:878 37:631 1:580 15:680 36:1405
+L|Rail Rotterdam|Metro C|#EF1F1F|10 21:1085 57:1035 69:2330 25:682 61:865 42:3498 62:2840 60:1169 41:915 53:1209 33:1952 11:961 9:908 16:623 17:696 3:487 5:621 40:692 19:747 67:505 26:1493 8:1730 56:1625 7:838 14:920
+L|Rail Rotterdam|Metro C|#EF1F1F|14 7:919 56:837 8:1695 26:1699 67:1445 19:506 40:752 5:659 3:648 17:488 16:697 9:620 11:907 33:960 53:2070 41:1096 60:917 62:1174 42:2844 61:3280 25:860 69:681 57:2331 21:1037 10:1077
+L|Rail Rotterdam|Metro D|#1BC5E9|10 21:1085 57:1035 69:2330 25:682 61:853 45:1335 47:1685 55:5238 70:1627 30:1259 48:722 68:611 29:1061 3:571 58:484 51:671
+L|Rail Rotterdam|Metro D|#1BC5E9|51 58:666 3:483 29:570 68:1064 48:606 30:722 70:1260 55:1628 47:5225 45:1684 61:1335 25:863 69:681 57:2331 21:1037 10:1077
+L|Rail Rotterdam|Metro E|#1A389A|12 13:1483 66:1859 27:1261 18:1199 28:752 38:2118 43:3355 44:1859 2:1725 49:1688 34:2165 35:874 6:2375 51:1254 58:666 3:483 29:570 68:1064 48:606 30:722 70:1260 55:1628
+L|Rail Rotterdam|Metro E|#1A389A|55 70:1627 30:1259 48:722 68:611 29:1061 3:571 58:484 51:676 6:1232 35:2421 34:820 49:2166 2:1689 44:1794 43:1790 38:3387 28:2089 18:826 27:1126 66:1263 13:1864 12:1470
+L|Stadsvervoer Amsterdam|Metro 50|#29AB4D|82 95:1041 85:1181 74:1109 73:626 101:863 78:643 102:800 93:1144 99:2241 109:1086 72:1143 84:2257 83:658 89:634 94:723 87:891 77:784 100:1076 86:1264
+L|Stadsvervoer Amsterdam|Metro 50|#29AB4D|86 100:1271 77:1077 87:785 94:889 89:723 83:634 84:657 72:2276 109:1117 99:1095 93:2246 102:1103 78:803 101:667 73:838 74:630 85:1104 95:1212 82:1025
+L|Stadsvervoer Amsterdam|Metro 51|#F69931|75 90:773 106:617 107:667 108:794 71:956 97:746 93:1201 99:2727 109:1086 72:1143 84:2257 83:658 89:634 94:723 87:891 77:784 100:1076 86:1264
+L|Stadsvervoer Amsterdam|Metro 51|#F69931|86 100:1271 77:1077 87:785 94:889 89:723 83:634 84:657 72:2276 109:1117 99:1095 93:2700 97:1207 71:745 108:957 107:795 106:666 90:607 75:783
+L|Stadsvervoer Amsterdam|Metro 52|#00ADEF|91 92:1792 75:1580 96:1149 105:1119 76:754 79:1425 109:1429
+L|Stadsvervoer Amsterdam|Metro 52|#00ADEF|109 79:1518 76:1341 105:747 96:1110 75:1154 92:1579 91:1793
+L|Stadsvervoer Amsterdam|Metro 53|#FF0000|75 90:773 106:617 107:667 108:794 71:956 97:746 102:1333 103:1516 98:810 104:841 81:642 88:855 80:738
+L|Stadsvervoer Amsterdam|Metro 53|#FF0000|80 88:702 81:855 104:643 98:870 103:811 102:1506 97:1326 71:745 108:957 107:795 106:666 90:607 75:783
+L|Stadsvervoer Amsterdam|Metro 54|#FCFB05|75 90:773 106:617 107:667 108:794 71:956 97:746 102:1332 78:803 101:667 73:838 74:630 85:1104 95:1212 82:1025
+L|Stadsvervoer Amsterdam|Metro 54|#FCFB05|82 95:1041 85:1181 74:1109 73:626 101:863 78:643 102:800 97:1326 71:745 108:957 107:795 106:666 90:607 75:783
+L|Utrecht Binnen|Tram 20|#ff0010|130 140:582 135:639 122:362 129:434 117:804 133:552 134:2056 115:1426 116:616 121:450 110:1289 139:474 136:787 125:822 131:750 141:2152 112:1025 138:586 127:990 126:523 120:966 137:739 128:639
+L|Utrecht Binnen|Tram 20|#ff0010|128 137:639 120:821 126:951 127:530 138:983 112:614 141:1008 131:2144 125:756 136:796 139:741 110:669 121:1132 116:406 115:556 134:1411 133:2062 117:622 129:790 122:484 135:318 140:650 130:522
+L|Utrecht Binnen|Tram 21|#ff0010|130 140:582 135:639 122:362 129:434 117:804 133:552 134:2056 115:1426 116:616 121:450 110:1289 139:474 136:787 125:822 131:750 141:2152 112:1025 138:586 127:990 132:383 118:577 123:1876 114:350 119:997 111:613 113:1088 124:856
+L|Utrecht Binnen|Tram 21|#ff0010|124 113:881 111:1029 119:612 114:991 123:354 118:1818 132:667 127:367 138:983 112:614 141:1008 131:2144 125:756 136:796 139:741 110:669 121:1132 116:406 115:556 134:1411 133:2062 117:622 129:790 122:484 135:318 140:650 130:522
+L|Utrecht Binnen|Tram 22|#ff0010|130 140:582 135:639 122:362 129:434 117:804 133:552 134:2056 115:1418
+L|Utrecht Binnen|Tram 22|#ff0010|115 134:1419 133:2062 117:622 129:790 122:484 135:318 140:650 130:524
+L|'t Kleine Veer|'t Kleine Veer Hatten - Oldeneel||142 143:219
+L|'t Kleine Veer|'t Kleine Veer Oldeneel - Hatten||143 142:236
+L|AG Ems|Veer Borkum - Eemshaven||144 145:17978
+L|AG Ems|Veer Eemshaven - Borkum||145 144:18001
+L|Arcen-Lottum|Fiets- en Voetveer Arcen-Lottum||146 147:157
+L|Arcen-Lottum|Fiets- en Voetveer Lottum-Arcen||147 146:157
+L|Bergsche Maasveren|Veer Bern - Herpt||148 152:229
+L|Bergsche Maasveren|Veer Capelle - Dussen||149 151:277
+L|Bergsche Maasveren|Veer Drongelen - Waalwijk||150 153:269
+L|Bergsche Maasveren|Veer Dussen - Capelle||151 149:299
+L|Bergsche Maasveren|Veer Herpt - Bern||152 148:229
+L|Bergsche Maasveren|Veer Waalwijk - Drongelen||153 150:269
+L|Blitterswijck-Wellerlooi|Fiets- en voetveer Blitterswijck - Wellerlooi||154 155:233
+L|Blitterswijck-Wellerlooi|Fiets- en voetveer Wellerlooi - Blitterswijck||155 154:233
+L|Culemborg - Schalkwijk|Veerdienst Culemborg - Schalkwijk||156 157:170
+L|Culemborg - Schalkwijk|Veerdienst Schalkwijk - Culemborg||157 156:170
+L|DFDS|Newcastle - IJmuiden||158 159:500923
+L|De Burd|Grou, Burd - Grou, Yn'e Lijte||160 161:101
+L|De Burd|Grou, Yn'e Lijte - Grou, Burd||161 160:101
+L|Deventer-Worp|Voetveer Deventer - Worp||162 163:165
+L|Deventer-Worp|Voetveer Worp - Deventer||163 162:165
+L|Dieren-Olburgen|Veerdienst Dieren - Olburgen||164 165:105
+L|Dieren-Olburgen|Veerdienst Olburgen - Dieren||165 164:105
+L|Dollard Route|Fähre Delfzijl - Emden||166 167:18065
+L|Dollard Route|Fähre Emden - Delfzijl||167 166:18062
+L|Eck en Wiel-Amerongen|Veerdienst Amerongen - Eck en Wiel||168 169:152
+L|Eck en Wiel-Amerongen|Veerdienst Eck en Wiel - Amerongen||169 168:152
+L|Fast Ferry Vlissingen - Breskens|Veer Breskens - Vlissingen||170 171:6095
+L|Fast Ferry Vlissingen - Breskens|Veer Vlissingen - Breskens||171 170:6133
+L|Fietsboot Eemlijn|Fietsboot Amersfoort - Huizen||172 176:4878 173:4751 174:5780 175:12486
+L|Fietsboot Eemlijn|Fietsboot Amersfoort - Spakenburg||172 176:4878 173:4751 174:5780 177:3937
+L|Fietsboot Eemlijn|Fietsboot Huizen - Amersfoort||175 174:12471 173:5778 176:4750 172:4876
+L|Fietsboot Eemlijn|Fietsboot Spakenburg - Amersfoort||177 174:3937 173:5778 176:4750 172:4876
+L|Friese Waddenveren West|Veer Harlingen - Terschelling||178 180:34396
+L|Friese Waddenveren West|Veer Harlingen - Vlieland||178 181:36313
+L|Friese Waddenveren West|Veer Terschelling - Harlingen||180 178:34320
+L|Friese Waddenveren West|Veer Terschelling - Vlieland||179 181:13919
+L|Friese Waddenveren West|Veer Vlieland - Harlingen||181 178:36254
+L|Friese Waddenveren West|Veer Vlieland - Terschelling||179 181:13919
+L|Gemeente Brummen|Veerdienst Bronkhorst - Brummen||182 183:126
+L|Gemeente Brummen|Veerdienst Brummen - Bronkhorst||183 182:126
+L|Genemuiden-Zwartsluis|Veerdienst Genemuiden - Zwartsluis||184 185:194
+L|Genemuiden-Zwartsluis|Veerdienst Zwartsluis - Genemuiden||185 184:209
+L|Gorssel-Wilp|Fietsvoetveer Gorssel - Wilp||186 187:220
+L|Gorssel-Wilp|Fietsvoetveer Wilp - Gorssel||187 186:220
+L|Heerewaarden - Lithse Ham|Fiets en voetveer Heerewaarden - Lithse Ham||188 189:1223
+L|Heerewaarden - Lithse Ham|Fiets en voetveer Lithse Ham - Heerewaarden||189 188:1224
+L|IJ- en Noordzeekanaalveren|Veer F1|#3068AD|206 191:892
+L|IJ- en Noordzeekanaalveren|Veer F1|#3068AD|191 206:892
+L|IJ- en Noordzeekanaalveren|Veer F2|#4F9AD3|193 197:380
+L|IJ- en Noordzeekanaalveren|Veer F2|#4F9AD3|197 193:381
+L|IJ- en Noordzeekanaalveren|Veer F20|#56AF58|196 205:352
+L|IJ- en Noordzeekanaalveren|Veer F20|#56AF58|205 196:352
+L|IJ- en Noordzeekanaalveren|Veer F21|#4DABE9|201 190:359
+L|IJ- en Noordzeekanaalveren|Veer F21|#4DABE9|190 201:359
+L|IJ- en Noordzeekanaalveren|Veer F22|#86559D|204 203:353
+L|IJ- en Noordzeekanaalveren|Veer F22|#86559D|203 204:353
+L|IJ- en Noordzeekanaalveren|Veer F3|#4D9C46|192 194:295
+L|IJ- en Noordzeekanaalveren|Veer F3|#4D9C46|194 192:295
+L|IJ- en Noordzeekanaalveren|Veer F4|#90498C|194 198:2398
+L|IJ- en Noordzeekanaalveren|Veer F4|#90498C|198 194:2397
+L|IJ- en Noordzeekanaalveren|Veer F6|#CA2E26|195 199:807
+L|IJ- en Noordzeekanaalveren|Veer F6|#CA2E26|199 195:807
+L|IJ- en Noordzeekanaalveren|Veer F7|#E39635|198 199:1136
+L|IJ- en Noordzeekanaalveren|Veer F7|#E39635|199 198:1137
+L|IJ- en Noordzeekanaalveren|Veer F9|#D32D7C|200 202:442
+L|IJ- en Noordzeekanaalveren|Veer F9|#D32D7C|202 200:442
+L|Ingen-Elst|Veerdienst Elst - Ingen||207 208:170
+L|Ingen-Elst|Veerdienst Ingen - Elst||208 207:170
+L|Kortgene - Wolphaartsdijk|Veerpont Kortgene – Wolphaartsdijk||209 210:337
+L|Kortgene - Wolphaartsdijk|Veerpont Wolphaartsdijk – Kortgene||210 209:337
+L|Kozakkenveer|Voetveer Fortmond - Veessen||211 212:402
+L|Kozakkenveer|Voetveer Veessen - Fortmond||212 211:402
+L|Krimpen aan de Lek - Kinderdijk|Autoveer Kinderdijk - Krimpen aan de Lek||213 214:261
+L|Krimpen aan de Lek - Kinderdijk|Autoveer Krimpen aan de Lek - Kinderdijk||214 213:261
+L|Lexkesveer|Veer Randwijk - Wageningen||215 216:177
+L|Lexkesveer|Veer Wageningen - Randwijk||216 215:177
+L|Maasveren|Veer Alem - Maren-Kessel||217 220:148
+L|Maasveren|Veer Alphen - Lith||222 219:185
+L|Maasveren|Veer Alphen - Oijen||223 224:165
+L|Maasveren|Veer Appeltern - Megen||218 221:159
+L|Maasveren|Veer Lith - Alphen||219 222:185
+L|Maasveren|Veer Maasbommel - Megen||225 226:165
+L|Maasveren|Veer Maren-Kessel - Alem||220 217:148
+L|Maasveren|Veer Megen - Appeltern||221 218:172
+L|Maasveren|Veer Megen - Maasbommel||226 225:165
+L|Maasveren|Veer Oijen - Alphen||224 223:165
+L|Millingen aan de Rijn - Pannerden|Veerdienst Millingen aan de Rijn - Pannerden||228 227:543
+L|Millingen aan de Rijn - Pannerden|Veerdienst Pannerden - Millingen aan de Rijn||227 228:543
+L|Millingerwaard - Doornenburg|Veerdienst Doornenburg - Millingerwaard||229 230:409
+L|Millingerwaard - Doornenburg|Veerdienst Millingerwaard - Doornenburg||230 229:409
+L|Nederhemert-Noord-Zuid|Veer Nederhemert-Noord-Zuid||231 232:179
+L|Nederhemert-Noord-Zuid|Veer Nederhemert-Zuid-Noord||232 231:179
+L|Nieuw Beijerland - Hekelingen|Veer Hekelingen - Nieuw Beijerland||233 234:111
+L|Nieuw Beijerland - Hekelingen|Veer Nieuw Beijerland - Hekelingen||234 233:111
+L|ODV Maritiem B.V.|Horsterveer||236 235:2754
+L|ODV Maritiem B.V.|Horsterveer||235 236:2754
+L|ODV Maritiem B.V.|Horsterveer||235 237:1130
+L|ODV Maritiem B.V.|Horsterveer||237 235:1130
+L|Olsterveer|Veerdienst Olst - Welsum||238 239:154
+L|Olsterveer|Veerdienst Welsum - Olst||239 238:154
+L|Opheusden-Wageningen|Veer Opheusden - Wageningen||241 240:164
+L|Opheusden-Wageningen|Veer Wageningen - Opheusden||240 241:164
+L|P & O Frieght|Ferry||242 243:471371
+L|P & O Frieght|Ferry||243 242:454543
+L|Pannerden - Doornenburg|Veerdienst Doornenburg - Pannerden||244 245:158
+L|Pannerden - Doornenburg|Veerdienst Pannerden - Doornenburg||245 244:158
+L|Personenvervoer over water Rotterdam-Drechtsteden|WaterShuttle||256 251:12659
+L|Personenvervoer over water Rotterdam-Drechtsteden|WaterShuttle||251 256:12663
+L|Personenvervoer over water Rotterdam-Drechtsteden|Waterbus 20|#474E9A|249 253:1819 250:2348 246:1477 255:3557 252:3761 247:1876 256:6277
+L|Personenvervoer over water Rotterdam-Drechtsteden|Waterbus 20|#474E9A|256 247:6277 252:1876 255:3760 246:3556 250:1477 253:2347 249:1819
+L|Personenvervoer over water Rotterdam-Drechtsteden|Waterbus 22|#F0A500|248 257:363 249:1241 254:592
+L|Personenvervoer over water Rotterdam-Drechtsteden|Waterbus 22|#F0A500|254 249:592 257:1241 248:363
+L|Pont Langweer|Pont Langweer||259 258:93
+L|Pont Langweer|Pont Langweer||258 259:93
+L|Recreatieschap Midden Delfland|Veerpont De Kwakel||261 262:170 260:587
+L|Recreatieschap Midden Delfland|Veerpont De Kwakel||260 262:587 261:170
+L|Rederij De Zuidwal|Fiets- en voetveer Eemhof - Spakenburg||263 264:1385
+L|Rederij De Zuidwal|Fiets- en voetveer Spakenburg - Eemhof||264 263:1385
+L|Rederij Wagenborg|Veer Lauwersoog - Schiermonnikoog||265 266:9656
+L|Rederij Wagenborg|Veer Schiermonnikoog - Lauwersoog||266 265:9647
+L|Riveer|Veerdienst Aalst => Veen||267 275:188
+L|Riveer|Veerdienst Brakel => Herwijnen||268 272:473
+L|Riveer|Veerdienst Fort Vuren => Gorinchem||269 277:1866 270:2861
+L|Riveer|Veerdienst Gorinchem => Fort Vuren||270 277:2638 274:1143 269:738
+L|Riveer|Veerdienst Gorinchem => Sleeuwijk||270 273:1564
+L|Riveer|Veerdienst Gorinchem => Slot Loevestein||270 277:2638 274:1143
+L|Riveer|Veerdienst Gorinchem => Werkendam||270 271:6329 276:1187
+L|Riveer|Veerdienst Gorinchem => Woudrichem||270 277:2451
+L|Riveer|Veerdienst Herwijnen => Brakel||272 268:473
+L|Riveer|Veerdienst Sleeuwijk => Gorinchem||273 270:1565
+L|Riveer|Veerdienst Slot Loevestein => Gorinchem||274 277:1143 270:2639
+L|Riveer|Veerdienst Veen => Aalst||275 267:188
+L|Riveer|Veerdienst Werkendam => Gorinchem||276 271:1187 270:6329
+L|Riveer|Veerdienst Woudrichem => Gorinchem||277 270:2452
+L|River Operations South Holland B.V.|Lijn 2||278 279:636
+L|River Operations South Holland B.V.|Lijn 2||279 278:636
+L|River Operations South Holland B.V.|Maassluis => Rozenburg||278 279:477
+L|River Operations South Holland B.V.|Rozenburg => Maassluis||279 278:477
+L|Stena Line B.V.|Harwich - Hoek van Holland||280 281:212569
+L|Stena Line B.V.|Hoek van Holland - Harwich||281 280:212462
+L|Stichting Drielse Veer|Fiets- en voetveer Driel - Heveadorp||282 283:289
+L|Stichting Drielse Veer|Fiets- en voetveer Heveadorp - Driel||283 282:289
+L|Stichting Stadsblokkenwerf|Fiets- en voetveer Stadsblokkenwerf||285 284:304
+L|Stichting Stadsblokkenwerf|Fiets- en voetveer Stadsblokkenwerf||284 285:304
+L|TESO|Veerdienst Den Helder - Texel||286 287:4638
+L|TESO|Veerdienst Texel - Den Helder||287 286:4638
+L|Terhernsterveer Terherne|Terhernster Veer||289 288:843
+L|Terhernsterveer Terherne|Terhernster Veer||288 289:844
+L|Tiel - Wamel|Fiets/voetveer Tiel - Wamel||290 291:355
+L|Tiel - Wamel|Fiets/voetveer Wamel - Tiel||291 290:355
+L|Ton Paulus Veerbedrijf|Veer Arcen - Broekhuizen||292 296:151
+L|Ton Paulus Veerbedrijf|Veer Broekhuizen - Arcen||296 292:151
+L|Ton Paulus Veerbedrijf|Veer Lomm - Lottum||300 302:166
+L|Ton Paulus Veerbedrijf|Veer Lottum - Lomm||302 300:166
+L|Ton Paulus Veerbedrijf|Veer Rijswijk - Wijk bij Duurstede||304 307:168
+L|Ton Paulus Veerbedrijf|Veer Wijk bij Duurstede - Rijswijk||307 304:168
+L|Ton Paulus Veerbedrijf|Veerdienst Baarlo - Steyl||293 305:124
+L|Ton Paulus Veerbedrijf|Veerdienst Beesel - Kessel||294 299:167
+L|Ton Paulus Veerbedrijf|Veerdienst Beusichem - Wijk bij Duurstede||295 306:164
+L|Ton Paulus Veerbedrijf|Veerdienst Cuijk - Middelaar||297 303:138
+L|Ton Paulus Veerbedrijf|Veerdienst Huissen - Loo||298 301:162
+L|Ton Paulus Veerbedrijf|Veerdienst Kessel - Beesel||299 294:167
+L|Ton Paulus Veerbedrijf|Veerdienst Loo - Huissen||301 298:162
+L|Ton Paulus Veerbedrijf|Veerdienst Middelaar - Cuijk||303 297:138
+L|Ton Paulus Veerbedrijf|Veerdienst Steyl - Baarlo||305 293:124
+L|Ton Paulus Veerbedrijf|Veerdienst Wijk bij Duurstede - Beusichem||306 295:164
+L|Uit®waarde|Fiets- en Voetveer Lienden - Rhenen||317 322:154
+L|Uit®waarde|Fiets- en Voetveer Rhenen - Lienden||322 317:154
+L|Uit®waarde|Fiets- en voetveer Beuningen - Slijk-Ewijk||309 323:649
+L|Uit®waarde|Fiets- en voetveer De Gouden Ham - Maasbommel||310 318:158
+L|Uit®waarde|Fiets- en voetveer Heteren - Renkum||316 321:356
+L|Uit®waarde|Fiets- en voetveer Maasbommel - De Gouden Ham||318 310:158
+L|Uit®waarde|Fiets- en voetveer Niftrik - Ravenstein||319 320:230
+L|Uit®waarde|Fiets- en voetveer Ravenstein - Niftrik||320 319:230
+L|Uit®waarde|Fiets- en voetveer Renkum - Heteren||321 316:356
+L|Uit®waarde|Fiets- en voetveer Slijk-Ewijk - Beuningen||323 309:649
+L|Uit®waarde|Fiets/voetveer Batenburg - Demen||308 311:305
+L|Uit®waarde|Fiets/voetveer Demen - Batenburg||311 308:305
+L|Uit®waarde|Fiets/voetveer Dodewaard - Druten||312 313:346
+L|Uit®waarde|Fiets/voetveer Druten-Dodewaard||313 312:346
+L|Uit®waarde|Fiets/voetveer Heerewaarden - Varik||315 324:461
+L|Uit®waarde|Fiets/voetveer Varik - Heerewaarden||324 315:461
+L|Uit®waarde|Voetveer Liniepont||326 325:1071 314:1817
+L|V&O|Veerboot Enkhuizen - Stavoren||327 328:22261
+L|V&O|Veerboot Stavoren - Enkhuizen||328 327:22251
+L|Van den Boogaard Veerdienst|Veerdienst Bergen - Vierlingsbeek||329 330:153
+L|Van den Boogaard Veerdienst|Veerdienst Vierlingsbeek - Bergen||330 329:165
+L|Veer Kop van 't Land|Lijn 20||331 332:608
+L|Veer Kop van 't Land|Lijn 20||332 331:608
+L|Veerdienst Afferden VOF|Veer Afferden - Sambeek||333 334:157
+L|Veerdienst Afferden VOF|Veer Sambeek - Afferden||334 333:157
+L|Veerdienst Amsterdam|Veerdienst IJburg - Pampus||335 336:6257
+L|Veerdienst Amsterdam|Veerdienst Pampus - IJburg||335 336:6257
+L|Veerdienst Bergstoep|Veer Bergstoep - Streefkerk||337 338:286
+L|Veerdienst Bergstoep|Veer Streefkerk - Bergstoep||338 337:286
+L|Veerdienst Rheden|Veerdienst Rheden||340 339:92
+L|Veerdienst Rheden|Veerdienst Rheden||339 340:92
+L|Veerdienst Schoonhoven|Veerdienst Gelkenes - Schoonhoven||341 342:233
+L|Veerdienst Schoonhoven|Veerdienst Schoonhoven - Gelkenes||342 341:233
+L|Veerdienst Urk - Enkhuizen|Veerdienst Enkhuizen - Urk||343 344:22380
+L|Veerdienst Urk - Enkhuizen|Veerdienst Urk - Enkhuizen||344 343:22398
+L|Veerdienst-Schoonhoven|Voet- en fietsveer Lekkerkerk - Nieuw Lekkerland||345 346:244
+L|Veerdienst-Schoonhoven|Voet- en fietsveer Nieuw Lekkerland - Lekkerkerk||346 345:244
+L|Veere - Kamperland|fiets- voetveer Kamperland - Veere||347 348:1674
+L|Veere - Kamperland|fiets- voetveer Veere - Kamperland||348 347:1674
+L|Vianen - Niewegein|Lijn 17 Nieuwegein - Vianen||349 350:173
+L|Vianen - Niewegein|Lijn 17 Vianen - Nieuwegein||350 349:173
+L|Voet-fietsveer Woudrichem|Voet-fietsveer Loevestein - Woudrichem||351 352:147
+L|Voet-fietsveer Woudrichem|Voet-fietsveer Woudrichem - Loevestein||352 351:147
+L|Volendam Marken Express|Veer Marken - Volendam||353 354:4980
+L|Volendam Marken Express|Veer Volendam - Marken||354 353:4979
+L|Wagenborg|Veer Ameland - Holwert||356 355:11084
+L|Wagenborg|Veer Holwert - Ameland||355 356:11088
+L|Wijheseveer|Wijhese Veer Vorchten - Wijhe||357 358:159
+L|Wijheseveer|Wijhese Veer Wijhe - Vorchten||358 357:172
+L|Yerseke–Gorishoek–Wemeldinge|fiets- en voetveer Wemeldinge - Gorishoek||360 359:5959
+L|Yerseke–Gorishoek–Wemeldinge|fiets- voetveer Gorishoek - Yerseke||359 361:3678
+L|Yerseke–Gorishoek–Wemeldinge|fiets- voetveer Yerseke - Gorishoek||361 359:3679
+L|Yerseke–Gorishoek–Wemeldinge|fiets- voetveer Yerseke - Wemeldinge||361 360:4434
+L|Zalkerveer|Fiets- en voetveer Veecaten - Zalkerveer||362 363:132
+L|Zalkerveer|Fiets- en voetveer Zalkerveer - Veecaten||363 362:132
+T|51.69052|5.29371|'s-Hertogenbosch
+T|51.70055|5.31912|'s-Hertogenbosch Oost
+T|52.40915|5.89302|'t Harde
+T|51.92134|6.57871|Aalten
+T|52.27856|4.97738|Abcoude
+T|53.04736|5.84337|Akkrum
+T|52.63813|4.74070|Alkmaar
+T|52.64377|4.76396|Alkmaar Noord
+T|52.35771|6.65441|Almelo
+T|52.34210|6.66665|Almelo de Riet
+T|52.39419|5.27796|Almere Buiten
+T|52.37527|5.21933|Almere Centrum
+T|52.36756|5.19034|Almere Muziekwijk
+T|52.40328|5.30060|Almere Oostvaarders
+T|52.37674|5.24472|Almere Parkwijk
+T|52.34295|5.15225|Almere Poort
+T|52.12481|4.65711|Alphen aan den Rijn
+T|52.15390|5.37410|Amersfoort Centraal
+T|52.17486|5.40386|Amersfoort Schothorst
+T|52.19255|5.43361|Amersfoort Vathorst
+T|52.33243|4.89214|Amsteltrein
+T|52.31599|4.94293|Amsterdam ArenA
+T|52.31224|4.94709|Amsterdam Bijlmer ArenA
+T|52.37890|4.90058|Amsterdam Central Station
+T|52.35784|4.83403|Amsterdam Lelylaan
+T|52.36073|4.93125|Amsterdam Muiderpoort
+T|52.33703|4.89023|Amsterdam RAI
+T|52.35293|4.94832|Amsterdam Science Park
+T|52.38903|4.83811|Amsterdam Sloterdijk
+T|52.33881|4.87319|Amsterdam Zuid
+T|52.86772|4.81152|Anna Paulowna
+T|52.20928|5.96897|Apeldoorn
+T|52.20522|6.00066|Apeldoorn De Maten
+T|52.21573|6.00611|Apeldoorn Osseveld
+T|53.32577|6.86201|Appingedam
+T|51.87212|4.99277|Arkel
+T|51.50153|3.66954|Arnemuiden
+T|51.98507|5.89998|Arnhem Centraal
+T|51.98760|5.94292|Arnhem Presikhaaf
+T|51.98512|5.91990|Arnhem Velperpoort
+T|51.95449|5.85195|Arnhem Zuid
+T|52.99227|6.57125|Assen
+T|52.20809|5.28172|Baarn
+T|53.18477|7.20052|Bad Nieuweschans
+T|53.36105|6.51885|Baflo
+T|51.85529|4.55265|Barendrecht
+T|52.14046|5.58977|Barneveld Centrum
+T|52.16116|5.59838|Barneveld Noord
+T|52.12808|5.60309|Barneveld Zuid
+T|53.30693|6.59273|Bedum
+T|50.94739|5.78649|Beek-Elsloo
+T|51.89941|5.19587|Beesd
+T|52.85506|6.52131|Beilen
+T|51.49479|4.29619|Bergen op Zoom
+T|51.50982|5.38922|Best
+T|52.47854|4.65662|Beverwijk
+T|52.13019|5.20468|Bilthoven
+T|51.37242|6.15530|Blerick
+T|52.40435|4.62766|Bloemendaal
+T|52.08145|4.74625|Bodegraven
+T|52.29861|6.74845|Borne
+T|52.07706|4.64663|Boskoop
+T|52.06734|4.64627|Boskoop Snijdelwijk
+T|51.83235|4.87853|Boven Hardinxveld
+T|52.69611|5.25334|Bovenkarspel Flora
+T|52.69507|5.23632|Bovenkarspel-Grootebroek
+T|51.64445|5.93949|Boxmeer
+T|51.58444|5.31903|Boxtel
+T|51.59514|4.78002|Breda
+T|51.60572|4.72142|Breda-Prinsenbeek
+T|52.17083|4.99062|Breukelen
+T|52.09075|6.14706|Brummen
+T|53.25625|6.14559|Buitenpost
+T|50.89678|5.73664|Bunde
+T|52.06321|5.19580|Bunnik
+T|52.26590|5.16287|Bussum Zuid
+T|51.95412|4.58410|Capelle Schollevaar
+T|52.54534|4.65911|Castricum
+T|50.87623|6.05956|Chevremont
+T|52.66303|6.73603|Coevorden
+T|51.72662|5.87420|Cuijk
+T|51.94704|5.22678|Culemborg
+T|52.44126|6.57605|Daarlerveen
+T|52.69469|6.75852|Dalen
+T|52.49823|6.25949|Dalfsen
+T|51.78254|3.88251|De Punt (RTM)
+T|52.14718|4.45630|De Vink
+T|53.24829|6.03548|De Westereen
+T|53.18876|5.72806|Deinum
+T|52.26008|6.71515|Delden
+T|52.00755|4.35658|Delft
+T|51.99110|4.36469|Delft Campus
+T|53.33373|6.92374|Delfzijl
+T|53.33201|6.90702|Delfzijl West
+T|52.14023|5.24210|Den Dolder
+T|52.08084|4.32455|Den Haag Centraal
+T|52.07014|4.32228|Den Haag HS
+T|52.09100|4.37007|Den Haag Mariahoeve
+T|52.05452|4.30854|Den Haag Moerwijk
+T|52.05582|4.39085|Den Haag Ypenburg
+T|52.95685|4.76067|Den Helder
+T|52.93262|4.76415|Den Helder Zuid
+T|52.16629|4.44371|Depot
+T|51.45623|5.78790|Deurne
+T|52.25729|6.16110|Deventer
+T|52.25035|6.21568|Deventer Colmschate
+T|51.93349|6.13307|Didam
+T|52.34521|4.96746|Diemen
+T|52.33033|4.95574|Diemen Zuid
+T|52.04467|6.10292|Dieren
+T|51.95845|6.29576|Doetinchem
+T|51.95918|6.26003|Doetinchem De Huet
+T|51.80753|4.66775|Dordrecht
+T|51.80197|4.71621|Dordrecht Stadspolders
+T|51.79017|4.67157|Dordrecht Zuid
+T|52.06525|5.26024|Driebergen-Zeist
+T|52.44274|4.63871|Driehuis
+T|53.17772|5.63477|Dronryp
+T|52.53433|5.72157|Dronten
+T|51.94345|6.01445|Duiven
+T|51.10016|5.87882|Echt
+T|52.04325|5.66819|Ede Centrum
+T|52.02741|5.67411|Ede-Wageningen
+T|53.45861|6.83080|Eemshaven
+T|50.77205|5.71008|Eijsden
+T|51.44296|5.47953|Eindhoven Centraal
+T|51.44296|5.46738|Eindhoven Stadion
+T|51.45037|5.45702|Eindhoven Strijp-S
+T|51.91725|5.85494|Elst
+T|52.79063|6.89972|Emmen
+T|52.74862|6.87431|Emmen Zuid
+T|52.69956|5.28799|Enkhuizen
+T|52.22236|6.88978|Enschede
+T|52.22127|6.95147|Enschede De Eschmarke
+T|52.23742|6.83879|Enschede Kennispark
+T|52.30110|5.61441|Ermelo
+T|51.57521|4.63648|Etten-Leur
+T|50.89011|6.04560|Eygelshoven
+T|50.89610|6.05780|Eygelshoven Markt
+T|53.23505|5.98973|Feanwâlden
+T|53.18240|5.54985|Franeker
+T|51.93085|6.34837|Gaanderen
+T|51.88256|5.27148|Geldermalsen
+T|51.42029|5.55020|Geldrop
+T|50.96706|5.84316|Geleen Oost
+T|50.97535|5.82446|Geleen-Lutterade
+T|51.58402|4.92423|Gilze-Rijen
+T|52.21870|6.97412|Glanerbrug
+T|51.49819|3.88940|Goes
+T|52.23028|6.58509|Goor
+T|51.83357|4.96746|Gorinchem
+T|52.01742|4.70616|Gouda
+T|52.01501|4.74210|Gouda Goverwelle
+T|52.60987|6.67636|Gramsbergen
+T|53.25579|6.30989|Grijpskerk
+T|53.21046|6.56412|Groningen
+T|53.20471|6.58582|Groningen Europapark
+T|53.23013|6.55658|Groningen Noord
+T|53.08988|5.82229|Grou-Jirnsum
+T|52.38808|4.63858|Haarlem
+T|52.38285|4.67135|Haarlem Spaarnwoude
+T|52.38598|4.74687|Halfweg-Zwanenburg
+T|52.57234|6.62760|Hardenberg
+T|52.33780|5.62000|Harderwijk
+T|51.82958|4.81575|Hardinxveld Blauwe Zoom
+T|51.83035|4.83560|Hardinxveld-Giessendam
+T|53.17486|6.61809|Haren
+T|53.17039|5.42521|Harlingen
+T|53.17462|5.41150|Harlingen Haven
+T|52.49463|4.68613|Heemskerk
+T|52.35951|4.60679|Heemstede-Aerdenhout
+T|52.96070|5.91535|Heerenveen
+T|52.93568|5.94373|Heerenveen IJsstadion
+T|52.67024|4.82368|Heerhugowaard
+T|50.89088|5.97510|Heerlen
+T|50.89614|5.95280|Heerlen Woonboulevard
+T|51.38533|5.56942|Heeze
+T|52.60002|4.70113|Heiloo
+T|52.42695|6.22202|Heino
+T|51.47557|5.66167|Helmond
+T|51.46811|5.63120|Helmond 't Hout
+T|51.46246|5.60884|Helmond Brandevoort
+T|51.47062|5.70137|Helmond Brouwhuis
+T|51.92241|5.67362|Hemmen-Dodewaard
+T|52.26178|6.79491|Hengelo
+T|52.26169|6.76795|Hengelo Gezondheidspark
+T|52.26891|6.81949|Hengelo Oost
+T|52.30314|4.56608|Hillegom
+T|52.22653|5.18130|Hilversum
+T|52.23787|5.17401|Hilversum Media Park
+T|52.21643|5.18732|Hilversum Sportpark
+T|52.94645|5.42313|Hindeloopen
+T|50.90557|5.93026|Hoensbroek
+T|52.16643|5.45796|Hoevelaken
+T|52.17808|5.17932|Hollandsche Rading
+T|52.28408|6.42117|Holten
+T|52.29287|4.69887|Hoofddorp
+T|52.73350|6.47297|Hoogeveen
+T|53.15980|6.77092|Hoogezand-Sappemeer
+T|52.69047|5.18251|Hoogkarspel
+T|52.64509|5.05465|Hoorn
+T|52.65334|5.08491|Hoorn Kersenboogerd
+T|51.42709|6.04132|Horst-Sevenum
+T|52.03401|5.16813|Houten
+T|52.01686|5.17947|Houten Castellum
+T|50.87339|5.79663|Houthem-Sint Gerlach
+T|53.21888|5.93442|Hurdegaryp
+T|53.01474|5.61613|IJlst
+T|52.55979|5.92163|Kampen
+T|52.53298|5.91327|Kampen Zuid
+T|51.48051|3.95661|Kapelle-Biezelinge
+T|50.86139|6.05722|Kerkrade Centrum
+T|51.93159|5.58320|Kesteren
+T|52.17804|6.08420|Klarenbeek
+T|50.86626|5.89017|Klimmen-Ransdaal
+T|52.45783|4.80568|Koog aan de Zaan
+T|52.90248|5.41077|Koudum-Molkwerum
+T|51.43332|4.11711|Krabbendijke
+T|52.49505|4.75524|Krommenie-Assendelft
+T|53.16159|6.72293|Kropswolde
+T|51.46505|4.03763|Kruiningen-Yerseke
+T|51.69016|4.66371|Lage Zwaluwe
+T|50.89649|6.01969|Landgraaf
+T|52.04096|4.51892|Lansingerland-Zoetermeer
+T|51.89462|5.09279|Leerdam
+T|53.19648|5.79298|Leeuwarden
+T|53.20214|5.84256|Leeuwarden Camminghaburen
+T|52.16632|4.48229|Leiden Centraal
+T|52.14675|4.49293|Leiden Lammenschans
+T|52.50793|5.47272|Lelystad Centrum
+T|52.01203|6.59609|Lichtenvoorde-Groenlo
+T|52.16680|6.42638|Lochem
+T|53.33479|6.74745|Loppersum
+T|52.08512|5.62430|Lunteren
+T|51.30423|5.63038|Maarheeze
+T|52.06410|5.37066|Maarn
+T|52.13595|5.03303|Maarssen
+T|50.85018|5.70525|Maastricht
+T|50.87052|5.71755|Maastricht Noord
+T|50.83763|5.71762|Maastricht Randwyck
+T|53.12974|5.71327|Mantgum
+T|51.65210|5.04678|Marerijk
+T|52.50903|6.57423|Mariënberg
+T|53.16081|6.74051|Martenshoek
+T|50.88261|5.75013|Meerssen
+T|52.69190|6.19794|Meppel
+T|51.49525|3.61812|Middelburg
+T|51.76654|5.87898|Mook-Molenhoek
+T|52.28065|5.15716|Naarden-Bussum
+T|52.71837|6.84880|Nieuw Amsterdam
+T|52.25886|4.64536|Nieuw Vennep
+T|51.96530|4.61688|Nieuwerkerk aan den IJssel
+T|52.22203|5.49352|Nijkerk
+T|51.84314|5.85309|Nijmegen
+T|51.82394|5.79424|Nijmegen Dukenburg
+T|51.82730|5.82248|Nijmegen Goffert
+T|51.82678|5.86795|Nijmegen Heyendaal
+T|51.86247|5.85969|Nijmegen Lent
+T|52.36638|6.46242|Nijverdal
+T|52.37082|5.78442|Nunspeet
+T|50.91981|5.89267|Nuth
+T|52.67804|4.90922|Obdam
+T|51.58214|5.19390|Oisterwijk
+T|52.30624|6.93403|Oldenzaal
+T|52.33544|6.11342|Olst
+T|52.50970|6.41722|Ommen
+T|51.99478|5.84049|Oosterbeek
+T|51.92604|5.63741|Opheusden
+T|51.76529|5.53127|Oss
+T|51.75844|5.50694|Oss West
+T|51.58790|4.53346|Oudenbosch
+T|52.39108|4.60683|Overveen
+T|51.42168|3.91346|Pluimweide
+T|51.75790|3.85442|Port Zélande (RTM)
+T|52.50395|4.95441|Purmerend
+T|52.51122|4.96709|Purmerend Overwhere
+T|52.49638|4.93503|Purmerend Weidevenne
+T|52.26550|5.57588|Putten
+T|52.39178|6.27762|Raalte
+T|51.79479|5.63770|Ravenstein
+T|51.28298|6.07941|Reuver
+T|52.01000|6.03074|Rheden
+T|51.95791|5.57831|Rhenen
+T|52.31175|6.51922|Rijssen
+T|52.03755|4.32204|Rijswijk
+T|51.42262|4.16079|Rilland-Bath
+T|51.19257|5.99385|Roermond
+T|53.42102|6.75838|Roodeschool
+T|51.54033|4.45847|Roosendaal
+T|51.71515|5.36958|Rosmalen
+T|51.95172|4.55248|Rotterdam Alexander
+T|51.92506|4.46923|Rotterdam Centraal
+T|51.88036|4.53105|Rotterdam Lombardijen
+T|51.94226|4.48158|Rotterdam Noord
+T|51.89387|4.51967|Rotterdam Stadion
+T|51.90490|4.50985|Rotterdam Zuid
+T|52.08076|6.44992|Ruurlo
+T|52.43384|4.63282|Santpoort Noord
+T|52.41935|4.63142|Santpoort Zuid
+T|52.21496|4.51624|Sassenheim
+T|53.29157|6.54041|Sauwerd
+T|52.78527|4.80538|Schagen
+T|51.74206|3.82597|Scharendijke (RTM)
+T|53.16543|6.97796|Scheemda
+T|50.85628|5.87206|Schin op Geul
+T|50.93903|5.87458|Schinnen
+T|52.30960|4.76207|Schiphol Airport
+T|51.00200|5.85889|Sittard
+T|51.82961|4.77824|Sliedrecht
+T|51.82935|4.74300|Sliedrecht Baanhoek
+T|53.03262|5.65189|Sneek
+T|53.04013|5.66273|Sneek Noord
+T|52.17275|5.31041|Soest
+T|52.16520|5.30289|Soest Zuid
+T|52.18386|5.29991|Soestdijk
+T|50.94342|5.84959|Spaubeek
+T|51.64806|5.05438|Station De Oost
+T|52.88665|5.35984|Stavoren
+T|53.32636|6.68739|Stedum
+T|52.79117|6.11645|Steenwijk
+T|51.06097|5.86293|Susteren
+T|51.23541|6.03157|Swalmen
+T|51.33929|6.14338|Tegelen
+T|51.92263|6.36428|Terborg
+T|51.88968|5.42321|Tiel
+T|51.87367|5.39189|Tiel Passewaaij
+T|51.56065|5.08380|Tilburg
+T|51.57366|4.99349|Tilburg Reeshof
+T|51.56523|5.05168|Tilburg Universiteit
+T|51.78409|3.87343|Trammuseum (RTM)
+T|52.23832|6.10070|Twello
+T|52.52143|4.70259|Uitgeest
+T|53.40963|6.67468|Uithuizen
+T|53.41395|6.72025|Uithuizermeeden
+T|53.40096|6.60952|Usquert
+T|52.08939|5.10982|Utrecht Centraal
+T|52.09897|5.06524|Utrecht Leidsche Rijn
+T|52.06641|5.14326|Utrecht Lunetten
+T|52.08794|5.13117|Utrecht Maliebaan
+T|52.11012|5.12576|Utrecht Overvecht
+T|52.10022|5.04355|Utrecht Terwijde
+T|52.07876|5.12188|Utrecht Vaartsche Rijn
+T|52.10323|5.08935|Utrecht Zuilen
+T|50.86929|5.83288|Valkenburg
+T|51.93721|6.45850|Varsseveld
+T|53.10500|6.88627|Veendam
+T|52.02000|5.54910|Veenendaal Centrum
+T|52.02810|5.53157|Veenendaal West
+T|52.04595|5.57393|Veenendaal-De Klomp
+T|51.99501|5.98099|Velp
+T|51.36505|6.17143|Venlo
+T|51.52645|6.01425|Venray
+T|51.59202|5.99710|Vierlingsbeek
+T|52.10297|5.00762|Vleuten
+T|51.44405|3.59572|Vlissingen
+T|51.46471|3.59509|Vlissingen Souburg
+T|50.88684|5.92942|Voerendaal
+T|52.06659|4.35956|Voorburg
+T|52.22536|4.48405|Voorhout
+T|52.12623|4.43368|Voorschoten
+T|52.15752|6.14392|Voorst-Empe
+T|52.10731|6.31715|Vorden
+T|52.40209|6.60045|Vriezenveen
+T|52.45731|6.56963|Vroomshoop
+T|51.64993|5.29272|Vught
+T|52.04406|4.64990|Waddinxveen
+T|52.05526|4.64837|Waddinxveen Noord
+T|52.02721|4.64904|Waddinxveen Triangel
+T|53.39015|6.56686|Warffum
+T|52.16236|4.43202|Wassenaarse Wetering/Zandwinning
+T|51.24870|5.70413|Weert
+T|52.31221|5.04405|Weesp
+T|51.95718|6.21372|Wehl
+T|51.96299|5.96925|Westervoort
+T|52.45416|6.00276|Wezep
+T|52.36154|6.59215|Wierden
+T|51.81122|5.72975|Wijchen
+T|52.39100|6.14105|Wijhe
+T|53.13915|7.03561|Winschoten
+T|53.33009|6.52031|Winsum
+T|51.96801|6.71478|Winterswijk
+T|51.97459|6.70403|Winterswijk West
+T|52.08509|4.89249|Woerden
+T|52.00567|5.79239|Wolfheze
+T|52.88024|6.00477|Wolvega
+T|52.97205|5.45651|Workum
+T|52.48928|4.79363|Wormerveer
+T|52.43825|4.81374|Zaandam
+T|52.45675|4.81919|Zaandam Kogerveld
+T|52.46928|4.80516|Zaandijk Zaanse Schans
+T|51.80780|5.26338|Zaltbommel
+T|52.37573|4.53146|Zandvoort aan Zee
+T|51.91978|5.72336|Zetten-Andelst
+T|51.92320|6.07198|Zevenaar
+T|51.64134|4.61009|Zevenbergen
+T|52.04756|4.47692|Zoetermeer
+T|52.04635|4.49343|Zoetermeer Oost
+T|53.15934|6.86676|Zuidbroek
+T|53.24815|6.40675|Zuidhorn
+T|52.14463|6.19427|Zutphen
+T|51.81527|4.64118|Zwijndrecht
+T|52.50501|6.09124|Zwolle
+T|52.52786|6.05129|Zwolle Stadshagen

@@ -328,7 +328,7 @@ object JourneyStory {
             else -> "On the way"
         }
 
-        val highlights = highlights(input, stops, halts, drives, tollEvents, meals, water, restroom, refuels)
+        val highlights = highlights(input, stops, halts, drives, tollEvents, meals, water, restroom, refuels, stages)
         val segments = segments(input, standing, halts, gaps, endMs)
         val stood = stops.filter { it.loggedLater }.map { it.atMs to (it.endMs ?: it.atMs + NOMINAL_STOP_MS) } +
             halts.map { it.atMs to (it.endMs ?: endMs) }
@@ -338,11 +338,13 @@ object JourneyStory {
         // Told by the mode it spent longest on: a walk to the metro does not make it a walk.
         val mainMode = (stages.filter { TransportCatalog.profile(it.mode).key != TransportCatalog.WALK.key }.ifEmpty { stages })
             .maxByOrNull { it.seconds }?.mode ?: input.mode
-        val mode = byMode(mainMode)
+        // More than one way of riding: the journey is a journey, not "by bike taxi".
+        val mixed = stages.map { TransportCatalog.profile(it.mode).key }.filter { it != TransportCatalog.WALK.key }.distinct().size >= 2
+        val mode = if (mixed) "" else " " + byMode(mainMode)
         val headline = if (completed)
-            "${name(input.who)} travelled ${km(input.distanceM, input.measures, mainMode)} from ${input.origin} to ${input.destination} $mode."
+            "${name(input.who)} travelled ${km(input.distanceM, input.measures, mainMode)} from ${input.origin} to ${input.destination}$mode."
         else
-            "${name(input.who)} is travelling from ${input.origin} to ${input.destination} $mode."
+            "${name(input.who)} is travelling from ${input.origin} to ${input.destination}$mode."
 
         val draft = Story(
             headline = headline,
@@ -500,6 +502,17 @@ object JourneyStory {
         val ridden = byMode.filterKeys { it != TransportCatalog.WALK.key }
         return (ridden.ifEmpty { byMode }).maxByOrNull { it.value }?.key ?: fallback
     }
+
+    /**
+     * A journey ridden more than one way (bike taxi, metro, bike taxi): told
+     * as a journey, not by any one of its modes. Walking between rides does
+     * not make it mixed; two different rides do.
+     */
+    fun isMixed(story: Story): Boolean =
+        story.stages.map { TransportCatalog.profile(it.mode).key }.filter { it != TransportCatalog.WALK.key }.distinct().size >= 2
+
+    /** The longest of a journey's parts. */
+    fun longestStage(story: Story): StageSpan? = story.stages.maxByOrNull { it.seconds }
 
     /** A change of vehicle within this of a walk's start or end belongs to that walk. */
     private const val TRANSFER_SLACK_MS = 3 * 60_000L
@@ -820,7 +833,8 @@ object JourneyStory {
 
     private fun highlights(
         input: Input, stops: List<Entry.Stop>, halts: List<Entry.Halt>, drives: List<Entry.Drive>,
-        tolls: List<TripEvent>, meals: Map<Nourishment, Int>, water: Int, restroom: Int, refuels: Int
+        tolls: List<TripEvent>, meals: Map<Nourishment, Int>, water: Int, restroom: Int, refuels: Int,
+        stages: List<StageSpan> = emptyList()
     ): List<Highlight> {
         val z = input.zone
         val out = ArrayList<Highlight>()
@@ -843,8 +857,16 @@ object JourneyStory {
             out += Highlight(null, "toll", "${tolls.size} toll plaza${if (tolls.size == 1) "" else "s"}",
                 if (covered == tolls.size) "All on the ${input.tollPassName ?: "pass"}" else tolls.mapNotNull { tollName(it.payload) }.distinct().take(2).joinToString(" · ").ifBlank { "Crossed on the way" })
         }
-        drives.maxByOrNull { it.movingSeconds }?.takeIf { it.movingSeconds >= 30 * 60 }?.let {
-            out += Highlight(Pictures.mode(input.mode), null, "${duration(it.movingSeconds)} longest stretch",
+        val ridden = stages.filter { TransportCatalog.profile(it.mode).key != TransportCatalog.WALK.key }
+        if (ridden.map { TransportCatalog.profile(it.mode).key }.distinct().size >= 2) {
+            // Ridden more than one way: the longest part, with its own picture.
+            stages.maxByOrNull { it.seconds }?.takeIf { it.seconds >= 10 * 60 }?.let { st ->
+                out += Highlight(Pictures.mode(st.mode), null, "${duration(st.seconds)} ${byMode(st.mode)}", "The longest part")
+            }
+        } else drives.maxByOrNull { it.movingSeconds }?.takeIf { it.movingSeconds >= 30 * 60 }?.let {
+            // The picture of the way it was mostly made, not of the last few steps.
+            val main = ridden.maxByOrNull { it.seconds }?.mode ?: input.mode
+            out += Highlight(Pictures.mode(main), null, "${duration(it.movingSeconds)} longest stretch",
                 listOfNotNull(it.fromPlace?.let(::short), it.toPlace?.let(::short)).distinct().joinToString(" → ").ifBlank { km(it.distanceM, input.measures, it.mode) })
         }
         halts.lastOrNull()?.let { h ->

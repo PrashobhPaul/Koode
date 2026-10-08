@@ -469,6 +469,10 @@ interface ExpenseDao {
     @Query("UPDATE expenses SET amount = :amount WHERE id = :id")
     suspend fun updateAmount(id: Long, amount: Double)
 
+    /** A fare's description, renamed when the place it ended at is named later. */
+    @Query("UPDATE expenses SET item = :item WHERE id = :id")
+    suspend fun updateItem(id: Long, item: String)
+
     @Query("DELETE FROM expenses WHERE tripId = :tripId")
     suspend fun deleteForTrip(tripId: String)
 }

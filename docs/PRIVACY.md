@@ -15,6 +15,7 @@ Privacy is a design constraint, not a setting.
 | Emergency contacts | Your phone only | Nobody but you |
 | Live location, ETA, journey events | Koode's backend **only while a journey you started is live** | Only people who hold the Journey ID **and** were approved by you by name (or hold the password you shared) |
 | The next 2 km of your planned road | Koode's backend, with your live location, **only while a journey you started is live** | The same people as your live location; it lets their map draw your vehicle along the road between updates |
+| Nothing (a download only) | Koode downloads the public list of metro, ferry and railway stations for the country you are in (India's comes with the app) from its own web host (GitHub Pages), at most monthly | Nobody: the request names only the country's file, and carries no account, journey or location |
 | Journey history, replays, expenses | Your phone only | Nobody but you |
 
 ## What Koode does NOT do

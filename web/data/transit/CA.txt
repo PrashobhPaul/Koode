@@ -1,0 +1,1443 @@
+# Transit for Koode, CA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|51.04658|-114.06424|1 Street Southwest|CTrain|M
+S|51.01757|-114.06139|39 Avenue|CTrain|M
+S|51.04660|-114.06916|3 Street Southwest|CTrain|M
+S|51.03799|-114.15431|45 Street|CTrain|M
+S|51.04684|-114.07256|4 Street Southwest|CTrain|M
+S|51.03764|-114.18762|69 Street|CTrain|M
+S|51.04679|-114.07502|6 Street Southwest|CTrain|M
+S|51.04698|-114.07751|7 Street Southwest|CTrain|M
+S|51.04691|-114.07994|8 Street Southwest|CTrain|M
+S|50.95512|-114.07469|Anderson|CTrain|M
+S|51.07093|-114.11552|Banff Trail|CTrain|M
+S|51.04564|-114.00735|Barlow/Max Bell|CTrain|M
+S|51.08684|-114.13148|Brentwood|CTrain|M
+S|51.04913|-114.04103|Bridgeland/Memorial|CTrain|M
+S|50.93563|-114.06987|Canyon Meadows|CTrain|M
+S|51.04640|-114.06178|Centre Street|CTrain|M
+S|50.99709|-114.06576|Chinook|CTrain|M
+S|51.04632|-114.05679|City Hall/Bow Valley College|CTrain|M
+S|51.12264|-114.20698|Crowfoot|CTrain|M
+S|51.10338|-114.16073|Dalhousie|CTrain|M
+S|51.04719|-114.08735|Downtown West–Kerby|CTrain|M
+S|51.03167|-114.05897|Erlton/Stampede|CTrain|M
+S|50.92301|-114.07307|Fish Creek–Lacombe|CTrain|M
+S|51.04759|-113.99382|Franklin|CTrain|M
+S|50.97812|-114.07425|Heritage|CTrain|M
+S|51.06504|-114.10335|Lions Park|CTrain|M
+S|51.05820|-113.98171|Marlborough|CTrain|M
+S|51.11772|-113.96789|Martindale|CTrain|M
+S|51.10921|-113.97567|McKnight-Westwinds|CTrain|M
+S|51.07591|-113.98173|Rundle|CTrain|M
+S|51.12569|-113.94819|Saddletowne|CTrain|M
+S|51.06310|-114.09126|SAIT/AUArts/Jubilee|CTrain|M
+S|51.04169|-114.12518|Shaganappi Point|CTrain|M
+S|50.91062|-114.07060|Shawnessy|CTrain|M
+S|51.03846|-114.16889|Sirocco|CTrain|M
+S|50.89918|-114.06905|Somerset–Bridlewood|CTrain|M
+S|50.96348|-114.07657|Southland|CTrain|M
+S|51.04478|-114.10000|Sunalta|CTrain|M
+S|51.05596|-114.08441|Sunnyside|CTrain|M
+S|51.13452|-114.23568|Tuscany|CTrain|M
+S|51.08001|-114.12296|University|CTrain|M
+S|51.03867|-114.05823|Victoria Park/Stampede|CTrain|M
+S|51.03995|-114.13653|Westbrook|CTrain|M
+S|51.08657|-113.98174|Whitehorn|CTrain|M
+S|51.04736|-114.02498|Zoo|CTrain|M
+S|53.54318|-113.49472|102 Street|Edmonton Transit Service|M
+S|53.50934|-113.45510|Avonmore|Edmonton Transit Service|M
+S|53.50934|-113.45510|Avonmore|Edmonton Transit Service|M
+S|53.54089|-113.49880|Bay/Enterprise Square|Edmonton Transit Service|M
+S|53.58829|-113.43296|Belvedere|Edmonton Transit Service|M
+S|53.51945|-113.45542|Bonnie Doon|Edmonton Transit Service|M
+S|53.54100|-113.49230|Central|Edmonton Transit Service|M
+S|53.45731|-113.51637|Century Park|Edmonton Transit Service|M
+S|53.54396|-113.48901|Churchill|Edmonton Transit Service|M
+S|53.60177|-113.41142|Clareview|Edmonton Transit Service|M
+S|53.57068|-113.45838|Coliseum|Edmonton Transit Service|M
+S|53.54094|-113.50471|Corona|Edmonton Transit Service|M
+S|53.49988|-113.44415|Davies|Edmonton Transit Service|M
+S|53.53624|-113.51027|Government Centre|Edmonton Transit Service|M
+S|53.46276|-113.43459|Grey Nuns|Edmonton Transit Service|M
+S|53.52006|-113.52589|Health Sciences/Jubilee|Edmonton Transit Service|M
+S|53.52772|-113.45744|Holyrood|Edmonton Transit Service|M
+S|53.55778|-113.50113|Kingsway/Royal Alex|Edmonton Transit Service|M
+S|53.54773|-113.49877|MacEwan|Edmonton Transit Service|M
+S|53.51308|-113.52619|McKernan/Belgravia|Edmonton Transit Service|M
+S|53.47494|-113.43895|Millbourne/Woodvale|Edmonton Transit Service|M
+S|53.45844|-113.43023|Mill Woods|Edmonton Transit Service|M
+S|53.53644|-113.47950|Muttart|Edmonton Transit Service|M
+S|53.56702|-113.50922|NAIT/Blatchford Market|Edmonton Transit Service|M
+S|53.54447|-113.48350|Quarters|Edmonton Transit Service|M
+S|53.50287|-113.52842|South Campus/Fort Edmonton Park|Edmonton Transit Service|M
+S|53.48576|-113.51678|Southgate|Edmonton Transit Service|M
+S|53.55995|-113.47071|Stadium|Edmonton Transit Service|M
+S|53.53173|-113.46293|Strathearn|Edmonton Transit Service|M
+S|53.52485|-113.52225|University|Edmonton Transit Service|M
+S|43.45993|-80.51852|Allen|Ion|M
+S|43.42273|-80.46298|Block Line|Ion|M
+S|43.44234|-80.47507|Borden|Ion|M
+S|43.45314|-80.49896|Central|Ion|M
+S|43.49834|-80.52954|Conestoga|Ion|M
+S|43.42231|-80.44186|Fairway|Ion|M
+S|43.44956|-80.48742|Frederick|Ion|M
+S|43.45723|-80.51185|Grand River Hospital|Ion|M
+S|43.45203|-80.49108|Kitchener City Hall|Ion|M
+S|43.44636|-80.48374|Kitchener Market|Ion|M
+S|43.46901|-80.53467|Laurier - Waterloo Park|Ion|M
+S|43.43374|-80.47805|Mill|Ion|M
+S|43.49722|-80.54321|Northfield|Ion|M
+S|43.44868|-80.48954|Queen|Ion|M
+S|43.48144|-80.54514|Research and Technology|Ion|M
+S|43.47336|-80.54128|University of Waterloo|Ion|M
+S|43.45014|-80.49350|Victoria Park|Ion|M
+S|43.46419|-80.52280|Waterloo Public Square|Ion|M
+S|43.46224|-80.52347|Willis Way|Ion|M
+S|45.52322|-73.62375|Acadie|Métro de Montréal|M
+S|45.53517|-73.60496|Beaubien|Métro de Montréal|M
+S|45.51511|-73.56108|Berri-UQAM|Métro de Montréal|M
+S|45.49819|-73.56696|Bonaventure|Métro de Montréal|M
+S|45.56023|-73.68180|Cartier|Métro de Montréal|M
+S|45.51014|-73.55649|Champ-de-Mars|Métro de Montréal|M
+S|45.54614|-73.63884|Crémazie|Métro de Montréal|M
+S|45.49665|-73.62349|Côte-des-Neiges|Métro de Montréal|M
+S|45.49237|-73.63286|Côte-Sainte-Catherine|Métro de Montréal|M
+S|45.51429|-73.68328|Côte-Vertu|Métro de Montréal|M
+S|45.53526|-73.62011|De Castelnau|Métro de Montréal|M
+S|45.56085|-73.70974|De la Concorde|Métro de Montréal|M
+S|45.50038|-73.66160|De La Savane|Métro de Montréal|M
+S|45.55260|-73.60270|D’Iberville|Métro de Montréal|M
+S|45.51013|-73.61253|Édouard-Montpetit|Métro de Montréal|M
+S|45.50846|-73.67283|Du Collège|Métro de Montréal|M
+S|45.54675|-73.60780|Fabre|Métro de Montréal|M
+S|45.48895|-73.57646|Georges-Vanier|Métro de Montréal|M
+S|45.55451|-73.66825|Henri-Bourassa|Métro de Montréal|M
+S|45.54322|-73.62860|Jarry|Métro de Montréal|M
+S|45.53918|-73.61342|Jean-Talon|Métro de Montréal|M
+S|45.52808|-73.58838|Laurier|Métro de Montréal|M
+S|45.48231|-73.58047|Lionel-Groulx|Métro de Montréal|M
+S|45.49501|-73.57095|Lucien-L'Allier|Métro de Montréal|M
+S|45.55835|-73.72152|Montmorency|Métro de Montréal|M
+S|45.52460|-73.58165|Mont-Royal|Métro de Montréal|M
+S|45.49493|-73.65291|Namur|Métro de Montréal|M
+S|45.52011|-73.61489|Outremont|Métro de Montréal|M
+S|45.53042|-73.62452|Parc|Métro de Montréal|M
+S|45.50609|-73.55961|Place d’Armes|Métro de Montréal|M
+S|45.47739|-73.58638|Place Saint-Henri|Métro de Montréal|M
+S|45.49437|-73.63793|Plamondon|Métro de Montréal|M
+S|45.53150|-73.59734|Rosemont|Métro de Montréal|M
+S|45.55975|-73.59996|Saint-Michel|Métro de Montréal|M
+S|45.55110|-73.65651|Sauvé|Métro de Montréal|M
+S|45.51872|-73.56805|Sherbrooke|Métro de Montréal|M
+S|45.48567|-73.62835|Snowdon|Métro de Montréal|M
+S|45.50209|-73.56311|Square-Victoria-OACI|Métro de Montréal|M
+S|45.50344|-73.61758|Université-de-Montréal|Métro de Montréal|M
+S|45.47389|-73.60383|Vendôme|Métro de Montréal|M
+S|45.47976|-73.61976|Villa-Maria|Métro de Montréal|M
+S|45.32359|-75.66878|Airport|O-Train|M
+S|45.40930|-75.72199|Bayview|O-Train|M
+S|45.43108|-75.60836|Blair O-Train|O-Train|M
+S|45.29339|-75.63266|Bowesville|O-Train|M
+S|45.38559|-75.69592|Carleton|O-Train|M
+S|45.40402|-75.71434|Corso Italia|O-Train|M
+S|45.42268|-75.62636|Cyrville O-Train East/Est|O-Train|M
+S|45.39738|-75.70943|Dow's Lake|O-Train|M
+S|45.35955|-75.65911|Greenboro|O-Train|M
+S|45.41236|-75.66424|Hurdman O-Train East/Est|O-Train|M
+S|45.41653|-75.67091|Lees O-Train East/Est|O-Train|M
+S|45.31415|-75.63208|Leitrim|O-Train|M
+S|45.27752|-75.66652|Limebank|O-Train|M
+S|45.41885|-75.70475|Lyon A|O-Train|M
+S|45.37690|-75.68521|Mooney's Bay|O-Train|M
+S|45.42128|-75.69909|Parliament|O-Train|M
+S|45.41367|-75.71344|Pimisi O-Train East/Est|O-Train|M
+S|45.42630|-75.69149|Rideau O-Train East/Est|O-Train|M
+S|45.35343|-75.65550|South Keys|O-Train|M
+S|45.42066|-75.63739|St-Laurent O-Train East/Est|O-Train|M
+S|45.41677|-75.65365|Tremblay O-Train East/Est|O-Train|M
+S|45.40373|-75.73522|Tunney's Pasture O-Train|O-Train|M
+S|45.42057|-75.68236|UOttawa O-Train East/Est|O-Train|M
+S|45.33304|-75.65573|Uplands|O-Train|M
+S|45.36866|-75.66573|Walkley|O-Train|M
+S|45.43159|-73.90991|Anse-à-l'Orme|REM|M
+S|45.52203|-73.71250|Bois-Franc|REM|M
+S|45.43806|-73.43058|Brossard|REM|M
+S|45.51375|-73.63388|Canora|REM|M
+S|45.52182|-73.66187|Côte-de-Liesse|REM|M
+S|45.47711|-73.79111|Des Sources|REM|M
+S|45.54568|-73.91241|Deux-Montagnes|REM|M
+S|45.44669|-73.43331|Du Quartier|REM|M
+S|45.52892|-73.69038|Du Ruisseau|REM|M
+S|45.45995|-73.83533|Fairview–Pointe-Claire|REM|M
+S|45.49993|-73.56669|Gare Centrale|REM|M
+S|45.53725|-73.88788|Grand-Moulin|REM|M
+S|45.44031|-73.88561|Kirkland|REM|M
+S|45.51991|-73.85295|Île-Bigras|REM|M
+S|45.47033|-73.53888|Île-des-Soeurs|REM|M
+S|45.50249|-73.57213|McGill|REM|M
+S|45.52480|-73.67222|Montpellier|REM|M
+S|45.46496|-73.47036|Panama|REM|M
+S|45.51020|-73.81163|Pierrefonds-Roxboro|REM|M
+S|45.52346|-73.86247|Sainte-Dorothée|REM|M
+S|45.50384|-73.78570|Sunnybrooke|REM|M
+S|45.51651|-73.64345|Ville-de-Mont-Royal|REM|M
+S|43.72239|-79.33275|Aga Khan Park & Museum|TTC|M
+S|43.74114|-79.58921|Albion|TTC|M
+S|43.70460|-79.40879|Avenue|TTC|M
+S|43.66593|-79.41124|Bathurst|TTC|M
+S|43.67019|-79.39027|Bay|TTC|M
+S|43.76680|-79.38738|Bayview|TTC|M
+S|43.76913|-79.37658|Bessarion|TTC|M
+S|43.73020|-79.27695|Birchmount|TTC|M
+S|43.67079|-79.38569|Bloor-Yonge|TTC|M
+S|43.67699|-79.35822|Broadview|TTC|M
+S|43.69232|-79.46534|Caledonia|TTC|M
+S|43.67350|-79.36905|Castle Frank|TTC|M
+S|43.69924|-79.43611|Cedarvale|TTC|M
+S|43.70279|-79.41729|Chaplin|TTC|M
+S|43.67823|-79.35251|Chester|TTC|M
+S|43.66411|-79.41840|Christie|TTC|M
+S|43.66066|-79.38280|College|TTC|M
+S|43.68415|-79.32304|Coxwell|TTC|M
+S|43.69794|-79.39729|Davisville|TTC|M
+S|43.68103|-79.33779|Donlands|TTC|M
+S|43.77535|-79.34594|Don Mills|TTC|M
+S|43.72049|-79.33888|Don Valley|TTC|M
+S|43.75360|-79.47841|Downsview Park|TTC|M
+S|43.75806|-79.51338|Driftwood|TTC|M
+S|43.66026|-79.43539|Dufferin|TTC|M
+S|43.74897|-79.55689|Duncanwoods|TTC|M
+S|43.65694|-79.45304|Dundas West|TTC|M
+S|43.67470|-79.40698|Dupont|TTC|M
+S|43.70676|-79.39857|Eglinton|TTC|M
+S|43.75204|-79.54238|Emery|TTC|M
+S|43.69574|-79.45006|Fairbank|TTC|M
+S|43.78130|-79.41590|Finch|TTC|M
+S|43.76397|-79.49154|Finch West|TTC|M
+S|43.70105|-79.42554|Forest Hill|TTC|M
+S|43.70865|-79.44069|Glencairn|TTC|M
+S|43.70865|-79.44069|Glencairn|TTC|M
+S|43.72785|-79.28765|Golden Mile|TTC|M
+S|43.72785|-79.28765|Golden Mile|TTC|M
+S|43.68256|-79.33027|Greenwood|TTC|M
+S|43.72698|-79.29156|Hakimi Lebovic|TTC|M
+S|43.72698|-79.29156|Hakimi Lebovic|TTC|M
+S|43.65387|-79.46686|High Park|TTC|M
+S|43.78331|-79.52309|Highway 407|TTC|M
+S|43.72990|-79.60153|Humber College|TTC|M
+S|43.73128|-79.27223|Ionview|TTC|M
+S|43.64534|-79.52482|Islington|TTC|M
+S|43.64992|-79.48385|Jane|TTC|M
+S|43.75725|-79.51775|Jane and Finch|TTC|M
+S|43.65557|-79.45958|Keele|TTC|M
+S|43.69047|-79.47475|Keelesdale|TTC|M
+S|43.73243|-79.26375|Kennedy|TTC|M
+S|43.64895|-79.37775|King|TTC|M
+S|43.63762|-79.53551|Kipling|TTC|M
+S|43.71359|-79.36488|Laird|TTC|M
+S|43.65911|-79.44279|Lansdowne|TTC|M
+S|43.72635|-79.40247|Lawrence|TTC|M
+S|43.71522|-79.44391|Lawrence West|TTC|M
+S|43.71110|-79.37712|Leaside|TTC|M
+S|43.77107|-79.36563|Leslie|TTC|M
+S|43.68905|-79.30160|Main Street|TTC|M
+S|43.73663|-79.59234|Martin Grove|TTC|M
+S|43.74996|-79.55234|Milvan Rumike|TTC|M
+S|43.68793|-79.48619|Mount Dennis|TTC|M
+S|43.74337|-79.58136|Mount Olive|TTC|M
+S|43.70846|-79.39014|Mount Pleasant|TTC|M
+S|43.66685|-79.39335|Museum|TTC|M
+S|43.75593|-79.52425|Norfinch Oakdale|TTC|M
+S|43.76868|-79.41263|North York Centre|TTC|M
+S|43.69731|-79.44274|Oakwood|TTC|M
+S|43.72483|-79.30168|O'Connor|TTC|M
+S|43.64983|-79.49433|Old Mill|TTC|M
+S|43.65080|-79.38654|Osgoode|TTC|M
+S|43.66238|-79.42633|Ossington|TTC|M
+S|43.67992|-79.34490|Pape|TTC|M
+S|43.74769|-79.56296|Pearldale|TTC|M
+S|43.74774|-79.56264|Perldale|TTC|M
+S|43.72584|-79.29663|Pharmacy|TTC|M
+S|43.77686|-79.50928|Pioneer Village|TTC|M
+S|43.65291|-79.37946|Queen|TTC|M
+S|43.65968|-79.39019|Queen's Park|TTC|M
+S|43.67645|-79.38845|Rosedale|TTC|M
+S|43.74622|-79.56856|Rowntree Mills|TTC|M
+S|43.74622|-79.56856|Rowntree Mills|TTC|M
+S|43.64818|-79.51130|Royal York|TTC|M
+S|43.65170|-79.47600|Runnymede|TTC|M
+S|43.76105|-79.50001|Sentinel|TTC|M
+S|43.74930|-79.46225|Sheppard West|TTC|M
+S|43.76145|-79.41091|Sheppard-Yonge|TTC|M
+S|43.67228|-79.37639|Sherbourne|TTC|M
+S|43.75330|-79.53619|Signet Arrow|TTC|M
+S|43.72589|-79.31260|Sloane|TTC|M
+S|43.66854|-79.40470|Spadina|TTC|M
+S|43.66854|-79.40470|Spadina|TTC|M
+S|43.64779|-79.38487|St. Andrew|TTC|M
+S|43.68795|-79.39369|St. Clair|TTC|M
+S|43.68500|-79.41531|St. Clair West|TTC|M
+S|43.74326|-79.58657|Stevenson|TTC|M
+S|43.66844|-79.39884|St. George|TTC|M
+S|43.65482|-79.38827|St. Patrick|TTC|M
+S|43.68168|-79.39050|Summerhill|TTC|M
+S|43.71733|-79.34903|Sunnybrook Park|TTC|M
+S|43.65654|-79.38102|TMU|TTC|M
+S|43.75928|-79.50791|Tobermory|TTC|M
+S|43.64564|-79.38021|Union|TTC|M
+S|43.79424|-79.52746|Vaughan Metropolitan Centre|TTC|M
+S|43.69488|-79.28880|Victoria Park|TTC|M
+S|43.71112|-79.27904|Warden|TTC|M
+S|43.66552|-79.38380|Wellesley|TTC|M
+S|43.73481|-79.60037|Westmore|TTC|M
+S|43.73448|-79.45006|Wilson|TTC|M
+S|43.68641|-79.31262|Woodbine|TTC|M
+S|43.72405|-79.32673|Wynford|TTC|M
+S|43.72464|-79.44750|Yorkdale|TTC|M
+S|43.74404|-79.40607|York Mills|TTC|M
+S|43.77412|-79.49963|York University|TTC|M
+S|49.20005|-122.94904|22nd Street|TransLink|M
+S|49.24421|-123.04592|29th Avenue|TransLink|M
+S|49.18398|-123.13632|Aberdeen|TransLink|M
+S|49.23311|-122.88277|Braid|TransLink|M
+S|49.26640|-123.00167|Brentwood Town Centre|TransLink|M
+S|49.19561|-123.12594|Bridgeport|TransLink|M
+S|49.26284|-123.11451|Broadway-City Hall|TransLink|M
+S|49.26136|-122.88989|Burquitlam|TransLink|M
+S|49.28564|-123.11982|Burrard|TransLink|M
+S|49.18953|-123.13148|Capstan|TransLink|M
+S|49.20482|-122.90613|Columbia|TransLink|M
+S|49.26295|-123.06849|Commercial–Broadway|TransLink|M
+S|49.27490|-122.80086|Coquitlam Central|TransLink|M
+S|49.21213|-122.95923|Edmonds|TransLink|M
+S|49.19911|-122.85061|Gateway|TransLink|M
+S|49.26500|-123.01342|Gilmore|TransLink|M
+S|49.28323|-123.11604|Granville|TransLink|M
+S|49.26474|-122.98211|Holdom|TransLink|M
+S|49.27716|-122.82774|Inlet Centre|TransLink|M
+S|49.23838|-123.03175|Joyce–Collingwood|TransLink|M
+S|49.24917|-123.11586|King Edward|TransLink|M
+S|49.18278|-122.84473|King George|TransLink|M
+S|49.28546|-122.79171|Lafarge Lake–Douglas|TransLink|M
+S|49.25462|-122.93901|Lake City Way|TransLink|M
+S|49.22627|-123.11609|Langara-49th Avenue|TransLink|M
+S|49.17457|-123.13647|Lansdowne|TransLink|M
+S|49.28036|-122.79405|Lincoln|TransLink|M
+S|49.24846|-122.89685|Lougheed Town Centre|TransLink|M
+S|49.27315|-123.10044|Main Street–Science World|TransLink|M
+S|49.20968|-123.11698|Marine Drive|TransLink|M
+S|49.22583|-123.00389|Metrotown|TransLink|M
+S|49.27795|-122.84549|Moody Centre|TransLink|M
+S|49.24846|-123.05602|Nanaimo|TransLink|M
+S|49.20137|-122.91274|New Westminster|TransLink|M
+S|49.23316|-123.11662|Oakridge-41st Avenue|TransLink|M
+S|49.26656|-123.11570|Olympic Village|TransLink|M
+S|49.22982|-123.01273|Patterson|TransLink|M
+S|49.25342|-122.91815|Production Way–University|TransLink|M
+S|49.25895|-123.04525|Renfrew|TransLink|M
+S|49.16811|-123.13627|Richmond–Brighouse|TransLink|M
+S|49.22007|-122.98842|Royal Oak|TransLink|M
+S|49.26071|-123.03310|Rupert|TransLink|M
+S|49.22458|-122.88949|Sapperton|TransLink|M
+S|49.20443|-122.87413|Scott Road|TransLink|M
+S|49.19302|-123.15801|Sea Island Centre|TransLink|M
+S|49.25918|-122.96394|Sperling–Burnaby Lake|TransLink|M
+S|49.27940|-123.10931|Stadium–Chinatown|TransLink|M
+S|49.18951|-122.84788|Surrey Central|TransLink|M
+S|49.19667|-123.14647|Templeton|TransLink|M
+S|49.28199|-123.11892|Vancouver City Centre|TransLink|M
+S|49.26583|-123.07914|VCC–Clark|TransLink|M
+S|49.28618|-123.11222|Waterfront|TransLink|M
+S|49.27454|-123.12190|Yaletown-Roundhouse|TransLink|M
+S|49.19427|-123.17834|YVR–Airport|TransLink|M
+S|48.72182|-122.51225|Bellingham|Alaska Marine Highway|W
+S|55.35368|-131.69461|Ketchikan|Alaska Marine Highway|W
+S|56.09322|-117.56585||Alberta Transportation|W
+S|56.09538|-117.57020||Alberta Transportation|W
+S|57.97315|-117.14644||Alberta Transportation|W
+S|57.97402|-117.13556||Alberta Transportation|W
+S|49.27249|-123.13394|Granville Island Terminal (Aquabus)|Aquabus|W
+S|49.27424|-123.13437|Hornby Terminal (Aquabus)|Aquabus|W
+S|49.27101|-123.11551|Spyglass Dock|Aquabus|W
+S|49.37949|-123.33135|Bowen Island (Snug Cove)|BC Ferries|W
+S|48.57725|-123.46734|Brentwood Bay|BC Ferries|W
+S|49.52639|-124.84655|Buckley Bay|BC Ferries|W
+S|50.02832|-125.24241|Campbell River Ferry Terminal|BC Ferries|W
+S|48.92553|-123.71420|Chemainus|BC Ferries|W
+S|49.74096|-124.92389|Comox (Little River)|BC Ferries|W
+S|50.58800|-126.93144|Cormorant Island (Alert Bay)|BC Ferries|W
+S|50.10974|-125.05386|Cortes Island (Whaletown)|BC Ferries|W
+S|48.86570|-123.63764|Crofton|BC Ferries|W
+S|49.49407|-124.70896|Denman Island East (Gravelly Bay)|BC Ferries|W
+S|49.53445|-124.82374|Denman Island West|BC Ferries|W
+S|54.31302|-130.40305|Digby|BC Ferries|W
+S|54.29410|-130.35390|Fairview|BC Ferries|W
+S|49.34895|-124.35662|French Creek|BC Ferries|W
+S|49.17782|-123.85872|Gabriola Island (Descanso Bay)|BC Ferries|W
+S|48.87657|-123.31487|Galiano Island (Sturdies Bay)|BC Ferries|W
+S|49.44999|-123.43958|Gambier Island (New Brighton)|BC Ferries|W
+S|53.24627|-132.00959|Graham Island 1 (Skidegate)|BC Ferries|W
+S|53.24627|-132.00895|Graham Island 2 (Skidegate)|BC Ferries|W
+S|49.51125|-124.70454|Hornby Island (Shingle Spit)|BC Ferries|W
+S|49.39556|-123.43320|Keats Island (Eastbourne)|BC Ferries|W
+S|49.39447|-123.48366|Keats Island (Keats Landing)|BC Ferries|W
+S|49.49144|-124.35159|Lasqueti Island (False Bay)|BC Ferries|W
+S|50.62678|-127.01816|Malcolm Island (Sointula)|BC Ferries|W
+S|48.84470|-123.32483|Mayne Island (Village Bay) Berth 2|BC Ferries|W
+S|48.61399|-123.51777|Mill Bay|BC Ferries|W
+S|53.21149|-131.98876|Moresby Island (Alliford Bay)|BC Ferries|W
+S|49.19351|-123.95540|Nanaimo (Departure Bay) Berth 2|BC Ferries|W
+S|49.16252|-123.89097|Nanaimo (Duke Point)|BC Ferries|W
+S|49.16676|-123.93096|Nanaimo (Nanaimo Harbour)|BC Ferries|W
+S|48.80052|-123.31561|Pender Island (Otter Bay)|BC Ferries|W
+S|48.97073|-123.66127|Penelakut Island (Telegraph Harbour)|BC Ferries|W
+S|50.59261|-127.08525|Port McNeill|BC Ferries|W
+S|49.78142|-124.17710|Powell River (Saltery Bay)|BC Ferries|W
+S|49.83524|-124.53074|Powell River (Westview)|BC Ferries|W
+S|54.29781|-130.35409|Prince Rupert|BC Ferries|W
+S|50.10352|-125.21075|Quadra Island (Heriot Bay)|BC Ferries|W
+S|50.04219|-125.21768|Quadra Island (Quathiaski Cove) Ferry Terminal|BC Ferries|W
+S|48.76939|-123.45113|Salt Spring Island (Fulford Harbour)|BC Ferries|W
+S|48.88125|-123.57339|Salt Spring Island (Vesuvius Bay)|BC Ferries|W
+S|48.79809|-123.20138|Saturna Island (Lyall Harbour)|BC Ferries|W
+S|53.24640|-132.01045|Skidegate|BC Ferries|W
+S|49.75315|-124.00884|Sunshine Coast (Earls Cove)|BC Ferries|W
+S|49.43394|-123.47234|Sunshine Coast (Langdale)|BC Ferries|W
+S|49.79482|-124.62007|Texada Island (Blubber Bay)|BC Ferries|W
+S|48.98042|-123.67870|Thetis Island (Preedy Harbour)|BC Ferries|W
+S|49.00620|-123.12941|Vancouver (Tsawwassen) Berth 2|BC Ferries|W
+S|49.00606|-123.13168|Vancouver (Tsawwassen) Berth 3|BC Ferries|W
+S|49.00651|-123.13242|Vancouver (Tsawwassen) Berth 4|BC Ferries|W
+S|49.00693|-123.13321|Vancouver (Tsawwassen) Berth 5|BC Ferries|W
+S|48.68952|-123.41175|Victoria (Swartz Bay) Berth 1|BC Ferries|W
+S|48.68959|-123.41023|Victoria (Swartz Bay) Berth 2|BC Ferries|W
+S|48.68915|-123.41022|Victoria (Swartz Bay) Berth 3|BC Ferries|W
+S|49.37596|-123.27161|West Vancouver (Horseshoe Bay) Berth 2|BC Ferries|W
+S|49.37627|-123.27102|West Vancouver (Horseshoe Bay) Berth 3|BC Ferries|W
+S|44.66071|-65.75714|Digby|Bay Ferries|W
+S|45.25483|-66.06212|Saint John|Bay Ferries|W
+S|43.63387|-79.39772|Bathurst Street Terminal|Billy Bishop Airport|W
+S|43.63244|-79.39625|Billy Bishop Terminal|Billy Bishop Airport|W
+S|48.12184|-123.43073|Port Angeles|Black Ball Ferry Line|W
+S|48.42167|-123.37071|Victoria|Black Ball Ferry Line|W
+S|49.39488|-117.54261||British Columbia Ministry of Transportation|W
+S|49.39547|-117.54594||British Columbia Ministry of Transportation|W
+S|49.60763|-117.05390||British Columbia Ministry of Transportation|W
+S|49.61115|-117.05427||British Columbia Ministry of Transportation|W
+S|50.10520|-117.90243||British Columbia Ministry of Transportation|W
+S|50.24695|-121.59276||British Columbia Ministry of Transportation|W
+S|50.24784|-121.59082||British Columbia Ministry of Transportation|W
+S|50.95289|-119.67464||British Columbia Ministry of Transportation|W
+S|50.95971|-119.66955||British Columbia Ministry of Transportation|W
+S|51.04110|-120.24049||British Columbia Ministry of Transportation|W
+S|51.04134|-120.24222||British Columbia Ministry of Transportation|W
+S|51.18280|-122.13440||British Columbia Ministry of Transportation|W
+S|51.18365|-122.13221||British Columbia Ministry of Transportation|W
+S|50.10979|-117.90064|Arrow Park Ferry|British Columbia Ministry of Transportation|W
+S|49.62349|-116.95997|Balfour|British Columbia Ministry of Transportation|W
+S|49.19228|-122.72334|Barnston Island|British Columbia Ministry of Transportation|W
+S|49.87194|-118.08335|Fauquier|British Columbia Ministry of Transportation|W
+S|50.62695|-117.86727|Galena Bay|British Columbia Ministry of Transportation|W
+S|49.67480|-116.87334|Kootenay Bay|British Columbia Ministry of Transportation|W
+S|49.87397|-118.09624|Needles|British Columbia Ministry of Transportation|W
+S|54.05105|-125.75689|Northside|British Columbia Ministry of Transportation|W
+S|54.63632|-128.41040|North Usk|British Columbia Ministry of Transportation|W
+S|49.19191|-122.72615|Port Kells|British Columbia Ministry of Transportation|W
+S|50.63477|-117.92889|Shelter Bay|British Columbia Ministry of Transportation|W
+S|54.02647|-125.77068|Southside|British Columbia Ministry of Transportation|W
+S|54.63443|-128.40905|South Usk|British Columbia Ministry of Transportation|W
+S|44.53746|-64.23820|Chester|CA:NS:R|W
+S|44.39611|-66.20421|East Ferry|CA:NS:R|W
+S|44.30296|-64.35928|East LaHave|CA:NS:R|W
+S|46.28896|-60.53995|Englishtown|CA:NS:R|W
+S|44.27390|-66.33529|Freeport|CA:NS:R|W
+S|46.28985|-60.54163|Jersey Cove|CA:NS:R|W
+S|44.29602|-64.36160|LaHave|CA:NS:R|W
+S|45.99230|-60.98386|Little Narrows (east)|CA:NS:R|W
+S|45.99285|-60.98606|Little Narrows (west)|CA:NS:R|W
+S|44.46461|-64.17142|Tancook|CA:NS:R|W
+S|44.39604|-66.21369|Tiverton|CA:NS:R|W
+S|44.26566|-66.34792|Westport|CA:NS:R|W
+S|43.62247|-79.37841|Centre Island|City of Toronto|W
+S|43.62789|-79.38907|Hanlan's Point Ferry Dock|City of Toronto|W
+S|49.27663|-123.13690|Aquatic Centre Dock (False Creek Ferries)|False Creek Ferries|W
+S|49.27048|-123.12519|David Lam Park Terminal|False Creek Ferries|W
+S|49.27323|-123.13603|Granville Island Dock (False Creek Ferries)|False Creek Ferries|W
+S|49.27871|-123.14701|Maritime Museum Dock (False Creek Ferries)|False Creek Ferries|W
+S|49.27420|-123.10982|Plaza of Nations Dock|False Creek Ferries|W
+S|49.26942|-123.11876|Stamps Landing Dock|False Creek Ferries|W
+S|49.27249|-123.10565|Village Dock|False Creek Ferries|W
+S|49.27171|-123.11795|Yaletown Dock|False Creek Ferries|W
+S|49.71108|-126.50635|Critter Cove|Get West Adventure Cruises|W
+S|49.67872|-126.11709|Gold River|Get West Adventure Cruises|W
+S|49.59334|-126.61652|Nootka Island|Get West Adventure Cruises|W
+S|45.61080|-65.90222||Government of New Brunswick|W
+S|45.61387|-65.91242||Government of New Brunswick|W
+S|45.04690|-66.80916|Blacks Harbour|Government of New Brunswick|W
+S|45.02423|-66.93836|Deer Island|Government of New Brunswick|W
+S|45.45273|-65.98041|Gondola Point|Government of New Brunswick|W
+S|44.76133|-66.74691|Grand Manan Island|Government of New Brunswick|W
+S|44.66113|-66.75734|Grand Manan Island (Ingall's Head)|Government of New Brunswick|W
+S|45.35157|-66.21813|Hardings Point|Government of New Brunswick|W
+S|45.45767|-65.98407|Kingston Peninsula|Government of New Brunswick|W
+S|45.05153|-66.89487|Letete|Government of New Brunswick|W
+S|45.34849|-66.22364|Westfield|Government of New Brunswick|W
+S|44.62786|-66.72352|Whitehead Island|Government of New Brunswick|W
+S|47.54724|-54.88038|Bay L'Argent|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.63036|-52.92408|Bell Island|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.60881|-57.60936|Burgeo|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|48.71574|-53.78640|Burnside|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|49.57090|-54.40364|Change Islands|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|49.55620|-54.47628|Farewell|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|49.57161|-54.30102|Fogo Island|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.57742|-56.74393|Francois|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.60662|-55.90263|Gaultois|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|53.34411|-60.40073|Goose Bay|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.58898|-57.10144|Grey River|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.56035|-55.92786|Hermitage|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|55.45494|-60.22168|Hopedale|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|49.56740|-55.73605|Long Island|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|55.08473|-59.17118|Makkovik|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.63128|-56.22676|McCallum|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|56.54321|-61.68660|Nain|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|55.94438|-61.09072|Natuashish|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|49.56159|-55.73910|Pilley's Island|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.68065|-55.42961|Pool's Cove|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.62662|-52.85766|Portugal Cove|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|54.90816|-59.76637|Postville|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.52180|-57.38496|Ramea|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.63598|-55.21172|Rencontre East|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|54.18138|-58.42624|Rigolet|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|48.83567|-53.69839|St. Brendan's|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|51.41545|-57.15118|Blanc Sablon|Labrador Marine Inc.|W
+S|51.20422|-56.77379|St. Barbe|Labrador Marine Inc.|W
+S|48.83580|-125.13916|Bamfield|Lady Rose Marine Services|W
+S|49.00510|-125.00756|Kildonan|Lady Rose Marine Services|W
+S|49.23538|-124.81485|Port Alberni|Lady Rose Marine Services|W
+S|54.33343|-130.28293|Arrow Point|Lax Kw’alaams Band|W
+S|54.43370|-130.31471|Lax Kw'alaams Ferry - Spirit of Lax Kw'alaams|Lax Kw’alaams Band|W
+S|47.29022|-53.99177|Argentia|Marine Atlantic|W
+S|46.20907|-60.24562|Marine Atlantic - North Sydney Terminal|Marine Atlantic|W
+S|47.57933|-59.14125|Port aux Basques|Marine Atlantic|W
+S|45.73901|-62.68899|Caribou|Northumberland Ferries Limited|W
+S|45.95414|-62.74907|Wood Islands|Northumberland Ferries Limited|W
+S|45.17437|-61.69726|Issacs’s Harbour|Nova Scotia Department of Public Works|W
+S|45.16917|-61.70300|Port Bickerton|Nova Scotia Department of Public Works|W
+S|44.04792|-77.05065|Adolphustown|Ontario Ministry of Transportation|W
+S|44.04161|-77.05919|Glenora|Ontario Ministry of Transportation|W
+S|49.19946|-122.91181|Quayside|Q to Q Ferry|W
+S|49.19360|-122.92196|Queensborough|Q to Q Ferry|W
+S|48.47942|-68.51415||Relais Nordik|W
+S|49.81269|-64.36425||Relais Nordik|W
+S|50.18456|-61.26345||Relais Nordik|W
+S|50.18926|-61.84099||Relais Nordik|W
+S|50.21217|-60.68928||Relais Nordik|W
+S|50.23680|-63.60885||Relais Nordik|W
+S|50.49629|-59.47556||Relais Nordik|W
+S|50.67970|-59.23939||Relais Nordik|W
+S|50.83792|-58.97293||Relais Nordik|W
+S|51.18149|-58.56952|Pointe-à-la-Truite|Relais Nordik|W
+S|50.19730|-66.38285|Traversier Rimouski/Sept-îles/Basse-Côte-Nord|Relais Nordik|W
+S|47.07371|-55.83008|Fortune|SPM Ferries|W
+S|46.77897|-56.17114|Saint-Pierre|SPM Ferries|W
+S|49.23274|-68.13409|Baie-Comeau|Société des traversiers du Québec|W
+S|48.12647|-69.72965|Baie-Sainte-Catherine|Société des traversiers du Québec|W
+S|49.32213|-67.59283|Godbout|Société des traversiers du Québec|W
+S|47.42089|-70.39260|L'Isle-aux-Coudres|Société des traversiers du Québec|W
+S|46.81061|-71.18834|Lévis|Société des traversiers du Québec|W
+S|48.84445|-67.57320|Matane|Société des traversiers du Québec|W
+S|46.81182|-71.20160|Québec|Société des traversiers du Québec|W
+S|46.05956|-73.12603|Saint-Ignace-de-Loyola|Société des traversiers du Québec|W
+S|47.44832|-70.36451|Saint-Joseph-de-la-Rive|Société des traversiers du Québec|W
+S|46.04803|-73.11374|Sorel-Tracy|Société des traversiers du Québec|W
+S|48.13937|-69.72659|Tadoussac|Société des traversiers du Québec|W
+S|43.64016|-79.37514|Jack Layton Ferry Terminal|City of Toronto|W
+S|43.63142|-79.35782|Ward's Island Ferry Dock|Toronto Island Ferries|W
+S|49.30954|-123.08392|Lonsdale Quay|Translink|W
+S|49.28702|-123.10903|Waterfront|Translink|W
+S|47.61349|-122.35349|Seattle|Victoria Clipper|W
+L|CTrain|CTrain Blue Line|blue|5 34:1386 3:1144 42:1353 32:910 37:1858 20:970 8:513 6:342 2:413 15:514 17:352 13:1332 44:1146 11:1327 23:1029 26:1629 29:1961 43:1110 28:2674 27:1014 30:1675
+L|CTrain|CTrain Blue Line|blue|30 27:1573 28:1202 43:2688 29:1107 26:1957 23:1634 11:1003 44:1320 13:1170 17:1344 0:521 4:586 7:343 20:683 37:976 32:1851 42:910 3:1354 34:1144 5:1285
+L|CTrain|CTrain Red Line|red|35 33:1216 22:1461 14:1436 9:2168 36:958 24:1625 16:2189 1:2318 21:1610 41:791 17:865 0:521 4:586 7:343 38:1426 31:1011 25:922 10:1191 40:1151 12:1069 19:2707 18:3808 39:2342
+L|CTrain|CTrain Red Line|red|39 18:2436 19:3807 12:2726 40:1052 10:1140 25:1204 31:918 38:1007 8:1265 6:342 2:413 15:514 17:352 41:978 21:784 1:1613 16:2274 24:2245 36:1618 9:960 14:2163 22:1440 33:1322 35:1255
+L|Edmonton Transit Service|Capital Line|#3a59a9|54 49:2158 55:2597 72:1445 53:2162 51:475 48:402 56:475 58:724 74:1603 60:701 64:772 70:1211 71:2469 52:3125
+L|Edmonton Transit Service|Capital Line|#3a59a9|52 71:3246 70:2461 64:1205 60:775 74:582 58:1607 56:821 48:361 51:403 53:551 72:2216 55:1369 49:2671 54:2040
+L|Edmonton Transit Service|Metro Line|#fc6357|60 74:582 58:1607 56:821 48:361 51:403 53:551 63:1063 62:1280 68:1305
+L|Edmonton Transit Service|Metro Line|#fc6357|68 62:1403 63:1327 53:988 51:475 48:402 56:475 58:724 74:1603 60:701
+L|Edmonton Transit Service|Valley Line|#009158|66 59:712 65:1397 57:2852 47:1547 50:1036 61:882 73:878 67:1527 69:1338 53:440 45:316
+L|Edmonton Transit Service|Valley Line|#009158|45 53:324 69:446 67:1020 73:1899 61:730 50:1016 46:1198 57:1383 65:2837 59:1392 66:752
+L|Ion|301 ION to Conestoga|#244895|80 76:1910 86:1822 77:1265 84:832 81:549 83:466 78:711 82:1191 75:575 92:645 85:1145 90:729 89:959 87:1835 79:1226
+L|Ion|301 ION to Fairway|#244895|79 87:1224 89:1837 90:956 85:774 93:1173 75:566 82:616 78:1125 91:636 88:356 84:544 77:811 86:1318 76:1811 80:1850
+L|Métro de Montréal|Ligne bleue vers Saint-Michel|#3465B4|130 101:1219 132:884 108:838 121:1171 94:774 122:917 104:642 114:635 110:985 107:829 127:800
+L|Métro de Montréal|Ligne bleue vers Snowdon|#3465B4|127 107:800 110:829 114:985 104:635 122:642 94:917 121:774 108:1171 132:838 101:884 130:1219
+L|Métro de Montréal|Ligne orange vers Côte-Vertu|#D06D07|118 105:1033 98:2186 112:1262 128:993 100:1457 113:853 114:1228 95:841 126:703 115:783 119:683 129:1337 96:532 99:890 123:515 131:517 97:519 117:472 111:801 116:856 124:731 133:1609 134:1438 130:1100 102:929 125:449 120:1383 106:905 109:1283 103:1003
+L|O-Train|O-Train Line 1||137 141:1735 154:922 155:1395 144:1056 145:799 157:1006 152:1248 150:843 148:518 151:917 136:849 156:1198
+L|O-Train|O-Train Line 1||156 136:1199 151:847 148:919 150:519 152:843 157:1256 145:1006 144:801 155:1058 154:1393 141:933 137:1730
+L|O-Train|O-Train Line 2||147 138:3212 146:2526 153:4699 143:747 159:1143 149:1757 139:1405 142:1791 140:833 136:836
+L|O-Train|O-Train Line 2||136 140:836 142:833 139:1789 149:1407 159:1757 143:1143 153:748 146:4698 138:2528 147:3212
+L|O-Train|O-Train Line 4||135 158:1546 153:2500
+L|O-Train|O-Train Line 4||153 158:2497 135:1546
+L|REM|REM A1|#84BD00|166 171:2147 179:2694 173:879 178:3487 180:2147 161:6218 168:1910 176:1488 164:875 181:1539 163:772 108:1755 175:3278 170:511 174:5498 177:5390 167:3658 162:1472
+L|REM|REM A1|#84BD00|160 172:2137 169:4530 165:4050 161:8595 168:1910 176:1488 164:875 181:1539 163:772 108:1755 175:3278 170:511 174:5498 177:5390 167:3658 162:1472
+L|REM|REM A3|#84BD00|162 167:1479 177:3665 174:5391 170:5496 175:510 108:3279 163:1754 181:772 164:1538 176:877 168:1490 161:1912 165:8591 169:4051 172:4528 160:2137
+L|REM|REM A4|#84BD00|162 167:1479 177:3665 174:5391 170:5496 175:510 108:3279 163:1754 181:772 164:1538 176:877 168:1490 161:1912 180:6212 178:2148 173:3485 179:884 171:2692 166:2149
+L|TTC|Line 1 Yonge-University|#F8C300|286 224:1259 259:1378 296:833 214:1379 204:2083 268:1496 291:1929 294:1186 238:1116 216:751 194:925 277:2689 209:1293 274:655 279:623 247:574 261:825 280:584 253:472 275:348 285:555 233:533 260:465 283:417 198:476 289:524 190:607 262:757 281:529 276:779 200:1099 210:936 237:2259 295:1983 269:1950 249:825 213:1420
+L|TTC|Line 1 Yonge-University|#F8C300|213 249:1419 269:827 295:1947 237:1982 210:2259 200:922 276:1114 281:780 262:649 190:635 289:607 198:524 283:477 260:418 233:464 285:526 275:538 253:349 280:469 261:584 247:826 279:591 274:610 209:653 277:1436 194:2548 217:1132 238:720 294:1088 291:1037 268:1930 204:1653 214:1926 296:1389 259:831 224:1372 286:1257
+L|TTC|Line 2 Bloor-Danforth|#00923F|234 227:1310 265:1240 252:1346 228:918 266:690 223:721 230:622 208:713 236:766 206:540 254:717 197:726 185:578 273:557 279:504 186:715 190:338 270:854 193:585 191:903 196:542 255:652 201:576 220:627 199:606 292:856 241:953 287:1229 288:2157 232:2735
+L|TTC|Line 2 Bloor-Danforth|#00923F|232 288:2740 287:2165 241:1216 292:952 199:857 220:607 201:626 255:577 196:651 191:544 193:903 270:582 190:854 186:343 279:714 273:503 185:556 197:579 254:792 206:651 236:540 208:921 230:559 223:622 266:721 228:691 252:914 265:1349 227:1240 234:1315
+L|TTC|Line 4 Sheppard|#A21A68|202 240:1631 188:896 187:896 269:1981
+L|TTC|Line 4 Sheppard|#A21A68|269 187:1986 188:896 240:895 202:1632
+L|TTC|Line 5 Eglinton|#FF7D24|244 231:952 192:797 212:1265 250:632 194:578 215:865 195:686 184:742 210:855 246:684 239:1088 235:1028 282:1389 203:838 182:584 293:519 272:1180 251:894 258:423 222:505 219:333 189:816 226:400 232:644
+L|TTC|Line 5 Eglinton|#FF7D24|232 226:741 189:401 218:975 221:331 258:348 251:423 272:892 293:1181 182:519 203:488 282:934 235:1290 239:1028 246:1089 210:685 184:858 195:804 215:680 194:866 250:577 212:630 192:1267 231:798 244:951
+L|TTC|Line 6 Finch West|#8A999A|225 290:735 242:677 183:680 278:284 245:426 264:1162 257:395 207:507 243:438 211:845 271:509 248:1003 229:549 205:352 284:458 267:678 214:735
+L|TTC|Line 6 Finch West|#8A999A|214 267:850 284:665 205:458 229:358 248:552 271:1002 211:517 243:827 207:330 256:507 263:563 245:993 278:427 183:407 242:558 290:676 225:723
+L|TransLink|Canada Line|#009ac8|348 346:566 349:1101 332:972 303:418 317:1528 331:1894 321:726 326:1867 302:1839 345:1566 341:963 350:1499
+L|TransLink|Canada Line|#009ac8|348 346:566 349:1101 332:972 303:418 317:1528 331:1894 321:726 326:1867 302:1839 306:833 299:727 322:1016 336:729
+L|TransLink|Canada Line|#009ac8|350 341:1501 345:963 302:1575 326:1844 321:1867 331:727 317:1916 303:1505 332:421 349:1011 346:1056 348:567
+L|TransLink|Canada Line|#009ac8|336 322:729 299:1017 306:722 302:832 326:1844 321:1867 331:727 317:1916 303:1505 332:421 349:1011 346:1056 348:567
+L|TransLink|Expo Line|#0060a9|318 344:837 311:1095 340:2324 307:2474 330:595 297:2882 310:2028 337:2430 327:1295 333:782 316:1682 298:1205 329:862 308:1955 325:2746 343:1066 313:667 305:373 348:604
+L|TransLink|Expo Line|#0060a9|334 324:1664 300:2073 339:1148 307:2596 330:595 297:2882 310:2028 337:2430 327:1295 333:782 316:1682 298:1205 329:862 308:1955 325:2746 343:1066 313:667 305:373 348:604
+L|TransLink|Expo Line|#0060a9|348 305:558 313:413 343:577 325:1075 308:2731 329:1960 298:864 316:1202 333:1685 327:778 337:1297 310:2424 297:2031 330:2881 307:594 340:2471 311:2315 344:1094 318:843
+L|TransLink|Expo Line|#0060a9|348 305:558 313:413 343:577 325:1075 308:2731 329:1960 298:864 316:1202 333:1685 327:778 337:1297 310:2424 297:2031 330:2881 307:594 339:2596 300:1154 324:2077 334:1666
+L|TransLink|Millennium Line|#ffd520|319 323:582 309:905 315:1946 328:1342 304:4252 324:1604 334:1791 320:1528 342:1907 314:1473 301:1451 312:913 338:1600 335:946 308:1828 347:829
+L|TransLink|Millennium Line|#ffd520|347 308:827 335:1832 338:947 312:1602 301:909 314:1450 342:1471 320:1907 334:1526 324:1803 304:1616 328:4327 315:1263 309:2025 323:831 319:584
+L|Alaska Marine Highway|Bellingham - Ketchikan||351 352:1139020
+L|Alberta Transportation|La Crete Ferry||356 355:701
+L|Alberta Transportation|La Crete Ferry||355 356:649
+L|Alberta Transportation|Shaftesbury Ferry||354 353:360
+L|Alberta Transportation|Shaftesbury Ferry||353 354:389
+L|Aquabus|Aquabus to Hornby Terminal||467 465:488 468:1103 359:209 466:721 462:532 357:725 358:253
+L|Aquabus|Aquabus to The Village||358 357:253 462:725 466:532 359:721 468:209 465:1103 467:488
+L|BC Ferries|Bowen Island||360 413:5296
+L|BC Ferries|Brentwood Bay to Mill Bay||361 385:5731
+L|BC Ferries|Buckley Bay to Denman Island West||362 370:1873
+L|BC Ferries|Campbell River to Quadra Island||363 397:2683
+L|BC Ferries|Chemainus --> Penelakut Island||364 391:6825 405:1818 364:7126
+L|BC Ferries|Chemainus --> Thetis Island||364 405:7127 391:1817 364:6823
+L|BC Ferries|Comox||365 394:30905
+L|BC Ferries|Cormorant Island||392 366:11237
+L|BC Ferries|Cortes Island||367 396:11857
+L|BC Ferries|Crofton to Salt Spring Island||368 399:5051
+L|BC Ferries|Denman Island East||369 379:1953
+L|BC Ferries|Denman Island West to Buckley Bay||370 362:1873
+L|BC Ferries|Digby||371 372:4020
+L|BC Ferries|French Creek to Lasqueti||373 382:16589
+L|BC Ferries|Gabriola Island||374 389:5488
+L|BC Ferries|Gambier||376 403:3037
+L|BC Ferries|Graham Island||401 395:174413
+L|BC Ferries|Graham Island||386 377:4433
+L|BC Ferries|Graham Island||378 386:4422
+L|BC Ferries|Hornby Island||379 369:1953
+L|BC Ferries|Keats||380 403:5360
+L|BC Ferries|Keats||381 403:4546
+L|BC Ferries|Langdale||403 380:5359
+L|BC Ferries|Langdale||403 381:4546
+L|BC Ferries|Langdale||403 376:3037
+L|BC Ferries|Lasqueti||382 373:16585
+L|BC Ferries|Malcolm Island||383 392:7007
+L|BC Ferries|Mayne Island||384 375:8527 406:21173
+L|BC Ferries|Mayne Island||384 412:22584
+L|BC Ferries|Mayne Island||384 390:5378
+L|BC Ferries|Mill Bay to Brentwood Bay||385 361:5729
+L|BC Ferries|Moresby Island||386 377:4433
+L|BC Ferries|Moresby Island||386 378:4423
+L|BC Ferries|Nanaimo||387 414:56023
+L|BC Ferries|Nanaimo||388 407:60823
+L|BC Ferries|Nanaimo||389 374:5489
+L|BC Ferries|Pender Island||390 412:17310
+L|BC Ferries|Pender Island||390 384:5378
+L|BC Ferries|Port McNeill to Cormorant Island||392 366:11237
+L|BC Ferries|Port McNeill to Malcolm Island||392 383:7010
+L|BC Ferries|Powell River||394 404:8341
+L|BC Ferries|Powell River||394 365:30854
+L|BC Ferries|Powell River||393 402:14641
+L|BC Ferries|Prince Rupert||372 371:4022
+L|BC Ferries|Prince Rupert to Graham Island||395 401:172320
+L|BC Ferries|Quadra Island||397 363:2683
+L|BC Ferries|Quadra Island||396 367:11858
+L|BC Ferries|Salt Spring Island||398 412:10227
+L|BC Ferries|Salt Spring Island||399 368:5050
+L|BC Ferries|Saturna Island||400 384:10638
+L|BC Ferries|Sunshine Coast||403 414:17842
+L|BC Ferries|Sunshine Coast||402 393:14647
+L|BC Ferries|Texada Island||404 394:8345
+L|BC Ferries|Vancouver||407 388:60987
+L|BC Ferries|Vancouver||410 411:121
+L|BC Ferries|Vancouver||375 384:8524
+L|BC Ferries|Victoria||410 411:121 407:48622 408:94 409:80
+L|BC Ferries|Victoria||412 400:29270
+L|BC Ferries|Victoria||412 375:28538
+L|BC Ferries|Victoria||412 390:17385
+L|BC Ferries|Victoria||412 398:10231
+L|BC Ferries|West Vancouver||413 360:5296
+L|BC Ferries|West Vancouver||414 403:17858
+L|BC Ferries|West Vancouver||414 387:55852
+L|Bay Ferries|Digby to Saint John||415 416:70455
+L|Bay Ferries|Saint John to Digby||416 415:70366
+L|Billy Bishop Airport|Billy Bishop Airport Ferry||418 417:198
+L|Billy Bishop Airport|Billy Bishop Airport Ferry||417 418:198
+L|Black Ball Ferry Line|Port Angeles to Victoria||419 420:35527
+L|Black Ball Ferry Line|Victoria to Port Angeles||420 419:35506
+L|British Columbia Ministry of Transportation|Adams Lake Cable Ferry||428 429:834
+L|British Columbia Ministry of Transportation|Adams Lake Cable Ferry||429 428:834
+L|British Columbia Ministry of Transportation|Arrow Park Cable Ferry||425 434:523
+L|British Columbia Ministry of Transportation|Arrow Park Cable Ferry||434 425:523
+L|British Columbia Ministry of Transportation|Barnston Island to Port Kells||436 443:224
+L|British Columbia Ministry of Transportation|Big Bar Reaction Ferry||433 432:179
+L|British Columbia Ministry of Transportation|Big Bar Reaction Ferry||432 433:193
+L|British Columbia Ministry of Transportation|Francois Lake||441 445:2863
+L|British Columbia Ministry of Transportation|Francoise Lake||445 441:2863
+L|British Columbia Ministry of Transportation|Glade Cable Ferry||421 422:250
+L|British Columbia Ministry of Transportation|Glade Cable Ferry||422 421:250
+L|British Columbia Ministry of Transportation|Harrop Cable Ferry||424 423:390
+L|British Columbia Ministry of Transportation|Harrop Cable Ferry||423 424:421
+L|British Columbia Ministry of Transportation|Kootenay Lake||435 439:8667
+L|British Columbia Ministry of Transportation|Kootenay Lake||439 435:8663
+L|British Columbia Ministry of Transportation|Lytton Reaction Ferry||427 426:183
+L|British Columbia Ministry of Transportation|Lytton Reaction Ferry||426 427:169
+L|British Columbia Ministry of Transportation|McLure Reaction Ferry||430 431:133
+L|British Columbia Ministry of Transportation|McLure Reaction Ferry||431 430:123
+L|British Columbia Ministry of Transportation|Needles Cable Ferry||440 437:952
+L|British Columbia Ministry of Transportation|Needles Cable Ferry||437 440:952
+L|British Columbia Ministry of Transportation|Port Kells to Barnston Island||443 436:224
+L|British Columbia Ministry of Transportation|Upper Arrow Lake||438 444:5074
+L|British Columbia Ministry of Transportation|Upper Arrow Lake||444 438:5073
+L|British Columbia Ministry of Transportation|Usk Reaction Ferry||446 442:227
+L|British Columbia Ministry of Transportation|Usk Reaction Ferry||442 446:227
+L|CA:NS:R|Chester -> Tancook||447 456:9929
+L|CA:NS:R|East Ferry -> Tiverton||448 457:805
+L|CA:NS:R|East LaHave -> LaHave||453 449:789
+L|CA:NS:R|Englishtown -> Jersey Cove||450 452:162
+L|CA:NS:R|Freeport -> Westport||451 458:1449
+L|CA:NS:R|Jersey Cove -> Englishtown||452 450:162
+L|CA:NS:R|LaHave -> East LaHave||449 453:789
+L|CA:NS:R|Little Narrows||455 454:196
+L|CA:NS:R|Little Narrows||455 454:196
+L|CA:NS:R|Tancook -> Tancook||456 447:9933
+L|CA:NS:R|Tiverton -> East Ferry||457 448:805
+L|CA:NS:R|Westport -> Freeport||458 451:1449
+L|City of Toronto|Toronto Island Ferry||552 553:1780
+L|City of Toronto|Toronto Island Ferry||459 552:2027
+L|City of Toronto|Toronto Island Ferry||552 459:2027
+L|City of Toronto|Toronto Island Ferry||460 552:1887
+L|City of Toronto|Toronto Island Ferry||552 460:1887
+L|Clipper Vacations|Seattle to Victoria||556 420:133581
+L|False Creek Ferries|1 Aquatic Centre||463 461:398
+L|False Creek Ferries|1 Granville Island||461 463:398
+L|False Creek Ferries|2 Granville Island||464 461:824
+L|False Creek Ferries|2 Maritime Museum||463 461:398 464:824
+L|False Creek Ferries|3 Granville Island||467 465:489 468:1107 466:281 462:533 463:924
+L|False Creek Ferries|3 Village||463 462:924 466:533 468:281 465:1107 467:489
+L|Get West Adventure Cruises|Gold River -> Critter Cove -> Nootka Island||470 469:35433 471:29211
+L|Get West Adventure Cruises|Nootka Island -> Critter Cove -> Gold River||471 469:29242 470:35415
+L|Government of New Brunswick|Belleisle Bay||473 472:933
+L|Government of New Brunswick|Belleisle Bay||472 473:864
+L|Government of New Brunswick|Blacks Harbour -> Grand Manan Island||474 477:32067
+L|Government of New Brunswick|Deer Island -> Letete||475 481:5189
+L|Government of New Brunswick|Gondola Point -> Kingston Peninsula||476 480:666
+L|Government of New Brunswick|Grand Manan Island -> Blacks Harbour||477 474:32072
+L|Government of New Brunswick|Grand Manan Island -> White Head Island||478 483:5560
+L|Government of New Brunswick|Hardings Point - Westfield||479 482:549
+L|Government of New Brunswick|Kingston Peninsula -> Gondola Point||480 476:617
+L|Government of New Brunswick|Letete -> Deer Island||481 475:5188
+L|Government of New Brunswick|Westfield -> Harding Points||482 479:593
+L|Government of New Brunswick|White Head Island -> Grand Manan Island||483 478:5561
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Bay L'Argent -> Rencontre East||484 507:30649
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Bell Island -> Portugal Cove||485 504:5070
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burgeo -> Grey River -> Francois||486 494:43189
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burgeo -> Ramea||486 506:20921
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burnside -> St. Brendan's||487 509:15563
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Farewell -> Change Islands -> Fogo Island||489 488:5775 490:8575
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Fogo Island -> Change Islands -> Farewell||490 488:8575 489:5774
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Francois -> Grey River -> Burgeo||494 486:43204 491:71845
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Gaultois -> Hermitage||492 495:5681
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Gaultois -> McCallum||492 499:26066
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Goose Bay -> Rigolet -> Ports North to Nain||493 508:168574 498:113185 505:96335 496:152030 501:122477 500:100415
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Hermitage -> Gaultois||495 492:5682
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Long Island -> Pilley's Island||497 502:733
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|McCallum -> Gaultois||499 492:26054
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Nain -> Ports South to Rigolet --> Goose Bay||500 501:100335 496:121297 505:150891 498:96570 508:120004 493:166411
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Pilley's Island -> Long Island||502 497:733
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Pool's Cove -> Rencontre East||503 507:19340
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Portugal Cove -> Bell Island||504 485:5070
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Ramea -> Burgeo||506 486:20945
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Rencontre East -> Bay L'Argent||507 484:30609
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Rencontre East -> Pool's Cove||507 503:19353
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|St. Brendan's -> Burnside||509 487:15554
+L|Labrador Marine Inc.|Blanc Sablon to St. Barbe||510 511:35384
+L|Labrador Marine Inc.|St. Barbe to Blanc Sablon||511 510:35472
+L|Lady Rose Marine Services|Bamfield -> Port Alberni||512 514:56077
+L|Lady Rose Marine Services|Port Alberni -> Kildonan ->Bamfield||514 513:32642 512:30664
+L|Lax Kw’alaams Band|Arrow Point to Tuck Landing||515 516:13116
+L|Lax Kw’alaams Band|Tuck Landing to Arrow Point||516 515:13108
+L|Marine Atlantic|Marine Atlantic||518 517:520636
+L|Marine Atlantic|Marine Atlantic||517 518:511618
+L|Marine Atlantic|North Sydney to Port aux Basques||518 519:176402
+L|Marine Atlantic|Port aux Basques - North Sydney||519 518:175642
+L|Northumberland Ferries Limited|Caribou -> Woods Island||520 521:26220
+L|Northumberland Ferries Limited|Woods Island -> Caribou||521 520:26204
+L|Nova Scotia Department of Public Works|Issac's Harbour -> Port Bickerton||522 523:735
+L|Nova Scotia Department of Public Works|Port Bickerton -> Issac's Harbour||523 522:735
+L|Ontario Ministry of Transportation|Adolphustown -> Glenora||524 525:981
+L|Ontario Ministry of Transportation|Glenora -> Adolphustown||525 524:981
+L|Q to Q Ferry|Quayside to Queensborough||526 527:1069
+L|Q to Q Ferry|Queensborough to Quayside||527 526:1069
+L|Relais Nordik|Rimouski - Blanc Sablon||510 537:143013 536:60708 535:54106 534:34658 532:102270 530:53274 531:47334 533:140675 529:85633 538:294822 528:292337
+L|SPM Ferries|Fortune -> Saint-Pierre||539 540:44039
+L|SPM Ferries|Saint-Pierre -> Fortune||540 539:44144
+L|Société des traversiers du Québec|Baie-Comeau -> Matane||541 546:60816
+L|Société des traversiers du Québec|Baie-Sainte-Catherine -> Tadoussac||542 551:1565
+L|Société des traversiers du Québec|Godbout -> Matane||543 546:52935
+L|Société des traversiers du Québec|L'Isle-aux-Coudres -> Saint-Joseph-de-la-Rive||544 549:3798
+L|Société des traversiers du Québec|Lévis -> Québec||545 547:1020
+L|Société des traversiers du Québec|Matane -> Baie-Comeau||546 541:61049
+L|Société des traversiers du Québec|Matane -> Godbout||546 543:52938
+L|Société des traversiers du Québec|Québec -> Lévis||547 545:1020
+L|Société des traversiers du Québec|Saint-Ignace-de-Loyola -> Sorel-Tracy||550 548:1715
+L|Société des traversiers du Québec|Saint-Joseph-de-la-Rive -> L'Isle-aux-Coudres||549 544:3797
+L|Société des traversiers du Québec|Sorel-Tracy -> Saint-Ignace-de-Loyola||550 548:1715
+L|Société des traversiers du Québec|Tadoussac -> Baie-Sainte-Catherine||551 542:1565
+L|Toronto Island Ferries|Toronto Island Ferry||553 552:1780
+L|Translink|SeaBus|brown|555 554:3150
+L|Translink|SeaBus|brown|554 555:3150
+L|Victoria Clipper|Victoria to Seattle||420 556:132602
+T|49.11688|-122.27647|Abbotsford
+T|43.63407|-80.03511|Acton
+T|49.23938|-121.76505|Agassiz
+T|43.78605|-79.28436|Agincourt
+T|45.53484|-73.66264|Ahuntsic
+T|43.84799|-79.04279|Ajax
+T|49.23505|-124.81243|Alberni Pacific Railway, E&N Train Station
+T|52.32170|-112.70016|Alberta Prairie Steam Tours
+T|48.80171|-123.71535|Alderlea Station
+T|43.31330|-79.85559|Aldershot
+T|45.31794|-74.63976|Alexandria
+T|54.11514|-122.05381|Aleza Lake
+T|44.37337|-79.68680|Allandale Waterfront
+T|50.24049|-90.16765|Allanwater Bridge
+T|56.55900|-94.07214|Amery
+T|45.83049|-64.21259|Amherst
+T|48.46642|-67.43609|Amqui
+T|48.48298|-84.95403|Amyot
+T|45.61828|-73.59617|Anjou
+T|43.37915|-79.76135|Appleby
+T|50.30169|-89.03823|Armstrong
+T|50.25172|-66.24337|Arnaud Junction
+T|55.76643|-96.68784|Arnot
+T|50.72977|-121.27572|Ashcroft
+T|52.76538|-66.08844|Ashuanipi
+T|54.56923|-66.66618|Astray
+T|54.29213|-101.39851|Atik
+T|53.98729|-100.93475|Atikameg Lake
+T|50.22898|-87.89016|Auden
+T|44.00076|-79.45977|Aurora
+T|46.55164|-81.10472|Azilda
+T|57.71550|-94.23160|Back
+T|47.43556|-70.50557|Baie-Saint-Paul
+T|45.41987|-73.91561|Baie-d'Urfé
+T|51.18175|-115.57615|Banff
+T|44.35114|-79.62744|Barrie South
+T|45.37365|-73.56271|Barrington
+T|47.62020|-65.67070|Bathurst
+T|45.43480|-73.84813|Beaconsfield
+T|45.42741|-73.88707|Beaurepaire
+T|57.93667|-94.17207|Belcher
+T|44.17953|-77.37418|Belleville
+T|53.76769|-121.06502|Bend
+T|59.84516|-134.99536|Bennett
+T|46.78162|-81.62959|Benny
+T|52.05349|-107.98683|Biggar
+T|47.38150|-72.22135|Bima
+T|52.98587|-105.43341|Birch Hills
+T|56.49548|-94.23475|Bird
+T|47.30014|-82.10296|Biscotasing
+T|45.67218|-73.86583|Blainville
+T|53.50320|-113.57737|Blatchford Field Air Hangar
+T|43.97625|-79.39725|Bloomington
+T|43.65777|-79.45074|Bloor
+T|52.10494|-119.30079|Blue River
+T|45.54007|-73.67585|Bois-de-Boulogne
+T|48.25252|-76.32012|Bolger
+T|48.10858|-83.90941|Bolkow
+T|49.86950|-121.44448|Boston Bar
+T|48.20045|-75.83172|Bourmont
+T|55.88254|-96.45730|Boyd
+T|44.11713|-79.55601|Bradford
+T|43.70139|-79.69198|Bramalea
+T|43.68689|-79.76468|Brampton Innovation District
+T|43.14651|-80.26545|Brantford
+T|49.88044|-95.53057|Brereton Lake
+T|55.63667|-97.06129|Bridgar
+T|44.59221|-75.69284|Brockville
+T|43.41716|-79.72235|Bronte
+T|47.85377|-72.15587|Brooks
+T|49.67533|-81.52151|Brownrigg
+T|54.04879|-100.80510|Budd
+T|43.34085|-79.80970|Burlington
+T|54.22863|-125.76367|Burns Lake
+T|54.68125|-98.98562|Button
+T|51.08152|-65.79006|Bybee
+T|58.42279|-94.13646|Bylot
+T|51.04411|-114.06587|Calgary
+T|50.28822|-126.87463|Camp A Reload
+T|48.00412|-66.68063|Campbellton
+T|51.29378|-65.64658|Canatiche
+T|45.36061|-73.51481|Candiac
+T|47.90201|-73.88123|Cann
+T|51.63741|-102.43554|Canora
+T|49.97953|-93.60260|Canyon
+T|49.97971|-93.74064|Canyon
+T|49.56726|-119.65779|Canyon View Terminus
+T|46.71090|-80.92916|Capreol
+T|49.61520|-86.12790|Caramat
+T|60.16469|-134.70620|Carcross
+T|47.73318|-72.21638|Caribou
+T|46.70607|-81.55745|Cartier
+T|47.88777|-74.18026|Casey
+T|45.31224|-75.08734|Casselman
+T|54.17819|-130.17700|Cassiar Cannery
+T|48.34968|-67.22705|Causapscal
+T|45.44240|-73.81991|Cedar Park
+T|55.02100|-128.32291|Cedarvale
+T|43.87383|-79.28886|Centennial
+T|45.53687|-73.65725|Chabanel
+T|48.42154|-72.05839|Chambord
+T|47.84167|-83.40361|Chapleau
+T|46.44188|-72.92225|Charette
+T|56.69427|-94.07130|Charlebois
+T|55.53747|-101.01243|Charles
+T|47.99449|-66.30560|Charlo
+T|46.71351|-71.27045|Charny
+T|42.39707|-82.17961|Chatham
+T|46.58562|-81.19651|Chelmsford
+T|47.72436|-72.22979|Cherokee
+T|58.19585|-94.14680|Chesnaye
+T|51.57728|-65.69007|Chico
+T|49.16453|-121.94912|Chilliwack
+T|58.76777|-94.17440|Churchill
+T|43.51222|-79.63424|Clarkson
+T|51.63797|-120.03310|Clearwater
+T|48.10957|-75.35967|Clova
+T|49.10359|-122.73384|Cloverdale (FVHRS)
+T|48.21099|-75.89668|Club Beaudin
+T|47.92401|-73.93352|Club Bélanger
+T|47.76991|-72.18250|Club Grégoire
+T|47.57556|-72.24041|Club Nicol
+T|48.00659|-74.84796|Club Rita
+T|47.66221|-72.98386|Club Vermillon
+T|49.18876|-81.00971|Clute
+T|43.96789|-78.17062|Cobourg
+T|49.06015|-81.02329|Cochrane
+T|50.29558|-89.45008|Collins
+T|49.05798|-117.59551|Columbia Gardens
+T|43.24181|-79.75978|Confederation
+T|48.19439|-75.74919|Consolidated Bathurst
+T|43.58305|-79.62404|Cooksville
+T|49.91902|-94.99907|Copeland's Landing
+T|48.11870|-75.47855|Coquar
+T|49.27388|-122.79999|Coquitlam Central
+T|50.21802|-81.68320|Coral
+T|54.22345|-100.60263|Cormorant
+T|45.04209|-74.74335|Cornwall
+T|45.27481|-74.23300|Coteau
+T|54.58430|-101.37985|Cranberry Portage
+T|47.61998|-72.91781|Cressman
+T|58.05789|-94.15089|Cromarty
+T|52.48968|-105.73045|Cudworth
+T|48.22970|-75.99842|Da-Rou-Lac Lodge
+T|48.15306|-84.03309|Dalton
+T|43.68643|-79.30036|Danforth
+T|51.15034|-100.05227|Dauphin
+T|45.56015|-73.70982|De la Concorde
+T|45.36681|-73.54082|Delson
+T|54.25296|-100.53725|Dering
+T|47.88562|-73.63999|Dessane
+T|47.76032|-83.36743|Devon
+T|58.54029|-94.13014|Digges
+T|48.25335|-76.14691|Dix
+T|43.60802|-79.57774|Dixie
+T|52.30122|-65.67777|Dolliver
+T|53.74830|-121.03007|Dome Creek
+T|50.93665|-65.91654|Doree
+T|45.38639|-74.00848|Dorion
+T|54.84080|-128.34373|Dorreen
+T|45.44920|-73.74352|Dorval
+T|43.75348|-79.47828|Downsview Park
+T|48.80321|-123.71121|Drinkwater Station
+T|45.88211|-72.48839|Drummondville
+T|52.63012|-65.98973|Dry Lake
+T|45.43763|-73.65595|Du Canal
+T|51.70306|-65.68579|Dufresne Lake
+T|54.74246|-98.86369|Dunlop
+T|53.12356|-119.83748|Dunster
+T|47.70042|-73.20800|Duplessis
+T|54.36453|-100.17007|Dyce
+T|55.15857|-98.10542|Earchman
+T|44.07801|-79.45582|East Gwillimbury
+T|53.57890|-113.53072|Edmonton
+T|53.57973|-116.43040|Edson
+T|43.73946|-79.23210|Eglinton
+T|49.87415|-95.91055|Elma
+T|43.58939|-80.55074|Elmira
+T|48.52107|-82.90320|Elsas
+T|53.07181|-66.20309|Emeril
+T|54.08542|-125.02112|Endako
+T|52.15839|-102.65256|Endeavour
+T|43.56707|-79.66876|Erindale
+T|47.85228|-83.56267|Esher
+T|53.87412|-66.42257|Esker
+T|43.70642|-79.56315|Etobicoke North
+T|53.59449|-115.00875|Evansburg
+T|43.63601|-79.41885|Exhibition
+T|54.18063|-66.50804|Faden
+T|45.29926|-75.73658|Fallowfield
+T|47.33746|-72.20244|Falrie
+T|50.00858|-94.20489|Farlane
+T|43.50968|-80.55093|Farmer's Market
+T|47.20467|-81.40797|Felix
+T|47.81406|-73.41787|Ferguson
+T|50.31449|-88.42324|Ferland
+T|54.00692|-100.87390|Finger
+T|47.48471|-72.77336|Fitzpatrick
+T|50.24525|-90.44450|Flindt Landing
+T|48.24620|-82.43953|Foleyet
+T|47.05267|-81.86657|Forks
+T|48.23526|-76.42872|Forsythe
+T|53.49880|-113.58596|Fort Edmonton
+T|54.05843|-124.55473|Fort Fraser
+T|48.46559|-84.41286|Franz
+T|59.71473|-135.04589|Fraser
+T|49.84626|-81.61779|Fraserdale
+T|48.24958|-76.11323|Gagnon
+T|51.13390|-80.91340|Galeton
+T|44.36871|-76.15376|Gananoque
+T|49.30756|-81.02778|Gardiner
+T|48.34688|-64.67558|Gare de Chandler
+T|48.59339|-68.20563|Gare de Rivière-Blanche
+T|46.64018|-72.63835|Garneau
+T|43.65538|-79.91904|Georgetown
+T|51.14810|-100.48975|Gilbert Plains
+T|56.34730|-94.69955|Gillam
+T|48.45997|-84.76535|Girdwood
+T|50.22531|-98.94836|Gladstone
+T|42.74598|-81.71160|Glencoe
+T|50.55609|-99.19504|Glenella
+T|53.53782|-120.59246|Goat River
+T|47.67621|-81.72392|Gogama
+T|43.94127|-79.39893|Gormley
+T|46.60611|-72.68664|Grand-Mère
+T|51.17319|-100.70091|Grandview
+T|48.11708|-74.96735|Greening
+T|53.46276|-113.43459|Grey Nuns
+T|43.19594|-79.55805|Grimsby
+T|43.54436|-80.24693|Guelph Central Station
+T|43.75523|-79.19823|Guildwood
+T|54.17558|-100.63063|Halcrow
+T|44.63968|-63.56796|Halifax
+T|43.25311|-79.86918|Hamilton GO Centre
+T|52.95833|-119.44704|Harvey
+T|45.37408|-73.56600|Hays
+T|54.87572|-101.13994|Heming Lake
+T|57.38753|-94.19099|Herchmer
+T|46.85345|-72.46781|Hervey
+T|47.86610|-74.04388|Hibbard
+T|49.45123|-85.54853|Hillsport
+T|53.40096|-117.58756|Hinton
+T|47.53650|-72.24316|Hirondelle
+T|55.27593|-97.83260|Hockin
+T|49.37920|-121.43634|Hope
+T|49.21850|-84.77441|Hornepayne
+T|54.40017|-126.65049|Houston
+T|45.45969|-74.14104|Hudson
+T|52.86305|-102.39673|Hudson Bay
+T|50.65255|-120.08155|Hundac Junction
+T|53.98860|-121.62169|Hutton
+T|48.44343|-71.66240|Hébertville
+T|56.06536|-95.60466|Ilford
+T|43.04050|-80.88797|Ingersoll
+T|49.95175|-97.26995|Inkster Junction
+T|47.41961|-72.23208|Iroquois Club
+T|49.54458|-81.35566|Island Falls
+T|47.31867|-72.21253|Jacques Cartier Club
+T|47.92042|-66.00119|Jacquet River
+T|52.87618|-118.07962|Jasper
+T|46.02939|-73.44400|Joliette
+T|48.41177|-71.25322|Jonquière
+T|50.67884|-120.32540|Kamloops
+T|50.73155|-120.34203|Kamloops
+T|50.71821|-120.34831|Kamloops North
+T|51.56212|-101.90391|Kamsack
+T|48.19657|-75.80862|Kapitachuan
+T|49.36836|-121.55166|Katz
+T|57.44683|-94.19832|Kellett
+T|43.73262|-79.26267|Kennedy
+T|56.40976|-94.52973|Kettle Rapids
+T|49.68823|-115.98870|Kimberley’s Underground Mining Railway
+T|43.92011|-79.52704|King City
+T|44.25723|-76.53679|Kingston
+T|47.64520|-83.01488|Kinogama
+T|43.63553|-79.53751|Kipling
+T|47.93158|-72.14629|Kiskisink
+T|43.45562|-80.49313|Kitchener
+T|55.09946|-128.05202|Kitwanga
+T|48.01645|-72.18135|Kondiaronk
+T|47.63226|-82.97424|Kormak
+T|54.22612|-129.55150|Kwinitsa
+T|47.62451|-70.14136|La Malbaie
+T|47.36115|-70.02530|La Pocatière
+T|55.22601|-97.96791|La Pérouse
+T|47.43942|-72.78257|La Tuque
+T|45.42570|-73.65679|LaSalle
+T|48.26911|-72.17287|Lac Bouchette
+T|47.67086|-73.14009|Lac Darey
+T|47.39449|-72.22421|Lac Malouin
+T|47.99981|-72.18350|Lac des Roches
+T|47.65873|-72.27423|Lac-Édouard
+T|45.44867|-73.71119|Lachine
+T|47.03209|-81.21132|Laforest
+T|50.98579|-114.10461|Laggan
+T|51.42945|-116.18821|Lake Louise
+T|58.31640|-94.15796|Lamprey
+T|48.23034|-75.98736|Langlade
+T|43.83854|-79.42312|Langstaff
+T|46.57095|-81.29596|Larchwood
+T|50.88713|-99.56099|Laurier
+T|56.95497|-94.11833|Lawledge
+T|47.27866|-70.57070|Le Massif de Charlevoix
+T|47.45742|-70.36342|Les Éboulements
+T|46.60172|-81.40688|Levack
+T|55.38125|-97.54143|Leven
+T|50.68476|-121.93603|Lillooet
+T|43.59058|-79.78836|Lisgar
+T|52.08554|-65.70503|Little
+T|48.10031|-72.17880|Lizotte Club
+T|48.35172|-84.26461|Lochalsh
+T|59.75986|-134.96277|Log Cabin
+T|42.98142|-81.24659|London
+T|43.59205|-79.54529|Long Branch
+T|49.77209|-86.53486|Longlac
+T|45.50801|-73.43517|Longueuil–Saint-Hubert
+T|53.92212|-121.46348|Longworth
+T|53.60794|-120.72408|Loos
+T|45.49422|-73.57129|Lucien-L'Allier
+T|56.29116|-94.86541|Luke
+T|55.02946|-98.41448|Lyddal
+T|57.80109|-94.21446|M'Clintock
+T|55.76135|-101.19881|MCCN Station
+T|51.81779|-65.70538|Mai
+T|49.93147|-94.98357|Malachi
+T|43.70517|-79.63823|Malton
+T|48.06743|-74.89532|Maniwawa Club
+T|47.87262|-74.47021|Manjobagues
+T|43.85950|-79.50690|Maple
+T|49.21652|-122.66612|Maple Meadows
+T|50.07783|-126.42358|Maquilla Reload
+T|43.88266|-79.26247|Markham
+T|45.72960|-73.59832|Mascouche
+T|47.97487|-66.93927|Matapédia
+T|53.30089|-120.17027|McBride
+T|47.86132|-74.34907|McCarthy
+T|50.77360|-99.48958|McCreary
+T|54.07700|-121.84418|McGregor
+T|47.10648|-81.25898|McKee's Camp
+T|49.30897|-124.82894|McLean Mill National Historic Site
+T|45.54579|-73.23059|McMasterville
+T|47.76165|-73.32017|McTavish Club
+T|43.59753|-79.75430|Meadowvale
+T|50.92587|-102.80679|Melville
+T|54.45735|-66.59728|Menihek
+T|47.09208|-81.94343|Metagama
+T|50.98320|-114.10605|Midnapore
+T|51.60982|-102.27040|Mikado
+T|43.82317|-79.30176|Milliken
+T|43.52356|-79.86693|Milton
+T|43.61668|-79.49680|Mimico
+T|49.98579|-94.66918|Minaki
+T|44.93712|-75.09075|Miniature Train Station
+T|44.94579|-75.06949|Miniature Train Station
+T|47.21995|-72.25147|Miquick
+T|45.71215|-73.91916|Mirabel
+T|47.00472|-65.57337|Miramichi
+T|48.31103|-84.08482|Missanabie
+T|49.13377|-122.30373|Mission City
+T|49.12817|-122.30314|Mission Harbour
+T|46.08334|-64.78608|Moncton
+T|48.16827|-75.64170|Monet
+T|48.58904|-68.18958|Mont-Joli
+T|45.57717|-73.17849|Mont-Saint-Hilaire
+T|46.97330|-70.55969|Montmagny
+T|45.50028|-73.56716|Montreal Central Station
+T|45.45360|-73.64188|Montreal West
+T|49.27808|-122.84688|Moody Centre
+T|50.81247|-81.29161|Moose River
+T|51.27542|-80.64720|Moosonee
+T|43.68777|-79.48789|Mount Dennis
+T|43.90051|-79.26307|Mount Joy
+T|43.67508|-79.82259|Mount Pleasant
+T|50.31688|-88.52147|Mud River
+T|55.97948|-95.99048|Munk
+T|49.72489|-123.15962|Museum Shops
+T|47.94932|-83.70863|Musk
+T|58.74410|-122.69101|Muskwa
+T|48.33305|-77.08436|Mégiscane
+T|50.17803|-86.71389|Nakina
+T|44.25349|-76.95427|Napanee
+T|47.72502|-83.20237|Nemegos
+T|55.25025|-127.57945|New Hazelton
+T|44.06051|-79.46008|Newmarket
+T|43.10883|-79.06344|Niagara Falls VIA station;Niagara Falls, Ontario
+T|47.95740|-83.76590|Nicholson
+T|50.59229|-66.02286|Nicman
+T|50.72188|-65.98376|Nipisso
+T|56.12536|-95.37986|Nonsuch
+T|46.31386|-79.43851|North Bay
+T|49.87687|-121.44985|North Bend
+T|48.80213|-123.70971|North Cowichan Station
+T|49.69087|-123.16396|North Pole Express - WCRA
+T|49.31555|-123.11406|North Vancouver
+T|48.51820|-85.13972|O'Brien
+T|57.59766|-94.21020|O'Day
+T|43.45521|-79.68209|Oakville
+T|49.05781|-84.10448|Oba
+T|51.06140|-99.78155|Ochre River
+T|55.10857|-98.22335|Odhill
+T|50.72596|-122.19635|Ohin
+T|43.79365|-79.37139|Old Cummer
+T|43.99023|-79.23734|Old Elm
+T|50.60338|-81.42404|Onakawana
+T|49.87101|-95.25796|Ophir
+T|54.75971|-101.24020|Optic Lake
+T|52.56759|-65.87738|Oreway
+T|43.76550|-79.36427|Oriole
+T|53.95767|-101.05908|Orok
+T|43.87121|-78.88490|Oshawa
+T|48.11112|-75.05655|Oskelaneo Lodge
+T|48.10819|-75.20513|Oskelaneo River
+T|45.41647|-75.65173|Ottawa
+T|50.18593|-81.64274|Otter Rapids
+T|49.92421|-94.93445|Ottermere
+T|54.76892|-128.27187|Pacific
+T|45.53164|-73.62467|Parc
+T|47.91982|-74.61486|Parent
+T|53.50338|-113.57373|Park Gates
+T|45.35068|-80.03728|Parry Sound
+T|54.42653|-99.99669|Paterson
+T|55.69781|-101.21172|Pawistik
+T|47.53200|-72.23480|Pearl Lake
+T|50.32142|-122.80619|Pemberton
+T|59.98776|-134.90486|Pennington
+T|53.84330|-121.29073|Penny
+T|47.77883|-65.72960|Petit Rocher
+T|47.30416|-70.56635|Petite-Rivière-Saint-François
+T|43.83146|-79.08441|Pickering
+T|55.58568|-97.15419|Pikwitonei
+T|45.38716|-73.99175|Pincourt–Terrasse-Vaudreuil
+T|45.44960|-73.76416|Pine Beach
+T|54.84009|-98.75316|Pipun
+T|55.91541|-96.29901|Pit Siding
+T|60.03256|-134.86259|Pit Spur
+T|52.44722|-65.80912|Pitaga
+T|49.22562|-122.68793|Pitt Meadows
+T|50.38464|-99.08932|Plumas
+T|46.90956|-81.77355|Pogamasing
+T|45.44736|-73.80304|Pointe-Claire
+T|45.67473|-73.50623|Pointe-aux-Trembles
+T|47.35546|-72.19975|Pont Beaudet
+T|54.64286|-99.16174|Ponton
+T|49.26148|-122.77409|Port Coquitlam
+T|43.55605|-79.58708|Port Credit
+T|49.21240|-122.60599|Port Haney
+T|43.94355|-78.29879|Port Hope
+T|42.66506|-81.21474|Port Stanley
+T|49.97714|-98.28823|Portage la Prairie
+T|49.58703|-119.73302|Prairie Valley Station
+T|51.15791|-65.72440|Premio
+T|48.24228|-76.73327|Press
+T|53.91912|-122.74404|Prince George
+T|54.29596|-130.35173|Prince Rupert
+T|53.95999|-101.25212|Prospector
+T|55.76210|-101.19863|Pukatawagan
+T|52.97634|-122.48821|Quesnel
+T|46.81832|-71.21435|Québec
+T|46.88536|-71.14508|Québec (Chutes-Montmorency)
+T|49.72833|-123.16069|Railway Museum of BC
+T|47.44659|-82.33882|Ramsey
+T|50.42536|-81.58799|Ranoke
+T|47.67172|-73.00409|Rapide Blanc
+T|54.30328|-100.33959|Rawebb
+T|49.97305|-93.35835|Red Lake Road
+T|49.97865|-94.39409|Redditt
+T|50.96840|-81.12733|Renison
+T|45.73570|-73.48597|Repentigny
+T|52.47073|-102.64716|Reserve
+T|49.89020|-95.12392|Rice Lake
+T|49.99459|-92.82696|Richan
+T|43.87480|-79.42661|Richmond Hill
+T|48.45016|-68.52140|Rimouski
+T|50.02888|-100.23845|Rivers
+T|45.66123|-73.53823|Rivière-des-Prairies
+T|47.82488|-69.52754|Rivière-du-Loup
+T|46.98905|-72.17951|Rivière-à-Pierre
+T|47.33001|-82.19879|Roberts
+T|51.23027|-101.35248|Roblin
+T|46.72957|-65.42545|Rogersville
+T|54.06054|-101.30426|Root Lake
+T|45.63457|-73.79590|Rosemère
+T|52.91308|-66.19386|Ross Bay
+T|43.78027|-79.13050|Rouge Hill
+T|46.93376|-72.28687|Rousseau
+T|55.26733|-100.94125|Ruddock
+T|47.26208|-81.47465|Ruel
+T|43.83832|-79.49908|Rutherford
+T|45.89021|-64.36741|Sackville
+T|45.52328|-73.30591|Saint-Basile-le-Grand
+T|45.51199|-73.37449|Saint-Bruno
+T|45.37386|-73.56998|Saint-Constant
+T|47.36636|-72.21109|Saint-Hilaire de Portneuf
+T|45.62761|-72.94887|Saint-Hyacinthe
+T|47.55919|-70.20454|Saint-Irénée
+T|46.27348|-73.10935|Saint-Justin
+T|45.77316|-73.99909|Saint-Jérôme
+T|45.49903|-73.50742|Saint-Lambert Station
+T|45.59978|-73.61621|Saint-Léonard–Montréal-Nord
+T|47.89921|-73.75288|Saint-Maurice Rivière Boom
+T|45.58281|-73.63045|Saint-Michel–Montréal-Nord
+T|46.40102|-73.01597|Saint-Paulin
+T|46.72313|-72.56422|Saint-Tite
+T|45.40776|-73.95080|Sainte-Anne-de-Bellevue
+T|45.38204|-73.60004|Sainte-Catherine
+T|46.75436|-71.29765|Sainte-Foy
+T|45.62528|-73.76442|Sainte-Rose
+T|45.63598|-73.83412|Sainte-Thérèse
+T|47.48233|-72.21853|Sanford
+T|47.89398|-73.79317|Sanmaur
+T|42.95725|-82.38892|Sarnia
+T|52.10481|-106.73829|Saskatoon
+T|50.48821|-66.10251|Saumon
+T|45.54938|-73.65435|Sauvé
+T|50.23860|-90.70504|Savant Lake
+T|53.61795|-66.34265|Sawbill
+T|48.55878|-67.68956|Sayabec
+T|43.71699|-79.25468|Scarborough
+T|54.81606|-66.83554|Schefferville
+T|52.17803|-65.70264|Seahorse
+T|48.39219|-77.24426|Senneterre
+T|50.20078|-66.36577|Sept-Îles
+T|50.70812|-122.28921|Seton Portage
+T|53.30879|-66.19767|Shabo
+T|50.72877|-122.21994|Shalalth
+T|46.54968|-72.74530|Shawinigan
+T|46.94096|-81.79806|Sheahan
+T|50.98492|-114.10932|Shepard
+T|55.12549|-101.09064|Sherridon
+T|48.29627|-76.83037|Signai
+T|57.19716|-94.16866|Silcox
+T|54.43957|-101.38293|Simonhouse
+T|54.01990|-121.67913|Sinclair Mills
+T|47.14647|-81.96056|Sinker
+T|50.09757|-91.91652|Sioux Lookout
+T|55.46295|-97.38784|Sipiwesk
+T|47.87904|-74.37386|Sisco Club
+T|54.77775|-127.17596|Smithers
+T|44.91254|-76.02392|Smiths Falls
+T|50.72902|-122.24230|South Shalalth
+T|44.02272|-79.80793|South Simcoe Railroad
+T|45.69182|-64.11192|Springhill Junction
+T|43.14773|-79.25599|St. Catharines
+T|43.53795|-80.55710|St. Jacobs Village
+T|43.26041|-81.13649|St. Marys
+T|47.44144|-72.24949|Stadacona
+T|43.97092|-79.25007|Stouffville GO Station
+T|48.02979|-74.86601|Strachan
+T|46.80460|-81.67986|Stralak
+T|43.36454|-80.97577|Stratford
+T|42.95495|-81.62250|Strathroy
+T|43.57619|-79.70897|Streetsville
+T|51.93823|-102.54321|Sturgis
+T|46.48749|-80.99215|Sudbury
+T|46.52450|-80.90226|Sudbury Junction
+T|49.11870|-122.80032|Sullivan
+T|47.59480|-82.77286|Sultan
+T|47.78847|-72.18540|Summit
+T|47.78343|-72.18677|Summit Club
+T|48.48275|-84.53455|Swanson
+T|53.47105|-66.30023|Talzie
+T|54.69141|-127.05028|Telkwa
+T|50.39029|-66.16671|Tellier
+T|54.51475|-128.58689|Terrace (Kitimat)
+T|45.72843|-73.52117|Terrebonne
+T|53.82403|-101.24768|The Pas
+T|57.08291|-94.14650|Thibaudeau
+T|55.31893|-97.68799|Thicket Portage
+T|55.74065|-97.82997|Thompson
+T|50.93457|-118.44289|Three Valley
+T|58.65999|-94.12089|Tidal
+T|50.88231|-65.95086|Tika
+T|47.96842|-74.76482|Timbrell
+T|51.40321|-101.58677|Togo
+T|51.02536|-65.84648|Tonkas
+T|43.68300|-79.61344|Toronto Pearson Terminal 1
+T|43.64453|-79.38038|Toronto Union Station
+T|44.99622|-64.12819|Trecothic Creek Station
+T|53.90901|-101.17163|Tremaudan
+T|44.11529|-77.59889|Trenton Junction
+T|47.61341|-72.24406|Triton Club
+T|48.12702|-69.17337|Trois-Pistoles
+T|45.36277|-63.27557|Truro
+T|54.56598|-99.47989|Turnbull
+T|42.70526|-81.20841|Union Depot
+T|43.85168|-79.31433|Unionville
+T|52.44172|-109.16076|Unity
+T|54.12054|-121.94800|Upper Fraser
+T|54.63646|-128.41599|Usk
+T|52.83486|-119.26165|Valemount
+T|45.44972|-73.79102|Valois
+T|47.93662|-72.15022|Van Bruyssels
+T|49.26861|-123.08592|Vancouver (Rocky Mountaineer)
+T|49.27375|-123.09786|Vancouver Pacific Central
+T|54.01478|-124.01290|Vanderhoof
+T|47.85750|-73.55610|Vandry
+T|45.39941|-74.05148|Vaudreuil
+T|45.47355|-73.60350|Vendôme
+T|51.58157|-102.07797|Veregin
+T|50.02933|-126.34666|Vernon Reload
+T|53.09260|-111.77779|Viking
+T|45.60380|-73.74271|Vimont
+T|54.90904|-98.63066|Wabowden
+T|51.43662|-65.62121|Waco
+T|52.83234|-110.86299|Wainwright
+T|52.64994|-105.73570|Wakaw
+T|54.17692|-101.36815|Wanless
+T|44.74889|-79.33471|Washago
+T|49.28595|-123.11128|Waterfront
+T|43.49850|-80.54393|Waterloo
+T|51.67159|-105.46983|Watrous
+T|60.08516|-134.83654|Watson
+T|56.81858|-94.09333|Weir River
+T|54.50314|-99.75351|Wekusko
+T|43.26664|-79.86612|West Harbour
+T|43.70005|-79.51276|Weston
+T|47.41815|-81.54629|Westree
+T|47.89820|-73.77532|Weymont
+T|50.09587|-122.99706|Whistler Station
+T|43.86489|-78.93851|Whitby
+T|59.62486|-135.13826|White Pass
+T|48.58944|-85.28241|White River
+T|47.85332|-73.46781|Wigwam Club
+T|55.72592|-96.81414|Wilde
+T|52.12982|-122.14750|Williams Lake
+T|54.07390|-122.47685|Willow River
+T|47.77120|-73.33408|Windigo
+T|42.32506|-83.00713|Windsor
+T|44.99669|-64.12830|Windsor Train Station
+T|49.88897|-97.13426|Winnipeg
+T|49.88237|-95.18367|Winnitoba
+T|56.17661|-95.21358|Wivenhoe
+T|47.51189|-82.62952|Woman River
+T|43.12639|-80.75217|Woodstock
+T|50.21599|-126.56470|Woss Reload
+T|49.41180|-81.06622|Wurtele
+T|42.94811|-82.12079|Wyoming
+T|51.93730|-65.75143|Éric
+T|45.39613|-73.96517|Île-Perrot

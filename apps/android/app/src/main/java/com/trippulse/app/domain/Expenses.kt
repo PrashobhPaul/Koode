@@ -205,6 +205,33 @@ object Expenses {
      * Whether a new opportunity would duplicate one already known: the same
      * category and label still open, or answered for the same moment.
      */
+    /** "Metro · Habsiguda Metro → HITEC City Metro": a fare, by the stage it paid for. */
+    fun fareLabel(category: Category, from: String, to: String): String = "${category.label} · $from → $to"
+
+    /** A finished stage, as far as its fare's label cares. */
+    data class FareStage(val mode: String, val fromName: String, val toName: String, val endedAtMs: Long?)
+
+    /**
+     * What a fare's label should say now. A fare is written down the moment
+     * its stage ends, often before the place it ended at has a name ("En
+     * route", or the area a station was later found to be in); once the
+     * stage is named, its fare is too. Only Koode's own labels change: one
+     * written as "<fare> · <from> → <to>" at the moment a stage ended. Null
+     * when the label is already right or is not one of these.
+     */
+    fun relabelled(label: String, category: Category, atMs: Long, stages: List<FareStage>): String? {
+        val prefix = "${category.label} · "
+        if (!label.startsWith(prefix) || " → " !in label) return null
+        val stage = stages.firstOrNull { st ->
+            st.endedAtMs != null && kotlin.math.abs(st.endedAtMs - atMs) <= FARE_MATCH_MS && Category.fareFor(st.mode) == category
+        } ?: return null
+        val want = fareLabel(category, stage.fromName, stage.toName)
+        return want.takeIf { it != label && stage.fromName.isNotBlank() && stage.toName.isNotBlank() }
+    }
+
+    /** A fare is written at the moment its stage ends; this much apart is still that moment. */
+    const val FARE_MATCH_MS = 5_000L
+
     fun isDuplicate(existing: List<Opportunity>, category: Category, label: String, atMs: Long): Boolean =
         existing.any { it.category == category && it.label == label && (it.open || kotlin.math.abs(it.atMs - atMs) < 45 * 60_000L) }
 }

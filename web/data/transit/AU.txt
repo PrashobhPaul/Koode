@@ -1,0 +1,1818 @@
+# Transit for Koode, AU. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|-35.27793|149.12933|Alinga Street|Canberra Metro|M
+S|-35.25056|149.13374|Dickson Interchange|Canberra Metro|M
+S|-35.27262|149.13018|Elouera Street|Canberra Metro|M
+S|-35.22850|149.14422|EPIC and Racecourse|Canberra Metro|M
+S|-35.18563|149.13548|Gungahlin Place Platform 1|Canberra Metro|M
+S|-35.26590|149.13126|Ipima Street|Canberra Metro|M
+S|-35.26016|149.13218|Macarthur Avenue|Canberra Metro|M
+S|-35.18699|149.14341|Manning Clark North|Canberra Metro|M
+S|-35.19343|149.15097|Mapleton Avenue|Canberra Metro|M
+S|-35.20038|149.14933|Nullarbor Avenue|Canberra Metro|M
+S|-35.23582|149.14391|Phillip Avenue|Canberra Metro|M
+S|-35.22159|149.14473|Sandford Street|Canberra Metro|M
+S|-35.24447|149.13456|Swinden Street|Canberra Metro|M
+S|-35.20905|149.14735|Well Station Drive|Canberra Metro|M
+S|-32.92700|151.77186|Civic Light Rail|Newcastle Transport|M
+S|-32.92640|151.77721|Crown Street Light Rail|Newcastle Transport|M
+S|-32.92647|151.76582|Honeysuckle Light Rail|Newcastle Transport|M
+S|-32.92750|151.78635|Newcastle Beach Light Rail|Newcastle Transport|M
+S|-32.92427|151.75932|Newcastle Interchange Light Rail|Newcastle Transport|M
+S|-32.92635|151.78160|Queens Wharf Light Rail|Newcastle Transport|M
+S|-33.90189|151.13810|Arlington|Sydney Light Rail|M
+S|-33.87094|151.19244|Bank Street|Sydney Light Rail|M
+S|-33.80082|151.00457|Benaud Oval Light Rail|Sydney Light Rail|M
+S|-33.86413|151.20746|Bridge Street|Sydney Light Rail|M
+S|-33.87980|151.20567|Capitol Square|Sydney Light Rail|M
+S|-33.78197|151.04718|Carlingford Light Rail|Sydney Light Rail|M
+S|-33.88421|151.20766|Central Chalmers Street|Sydney Light Rail|M
+S|-33.88241|151.20672|Central Grand Concourse|Sydney Light Rail|M
+S|-33.80259|150.99304|Childrens Hospital Light Rail|Sydney Light Rail|M
+S|-33.87861|151.20556|Chinatown|Sydney Light Rail|M
+S|-33.81294|151.00362|Church Street Light Rail|Sydney Light Rail|M
+S|-33.86151|151.21005|Circular Quay|Sydney Light Rail|M
+S|-33.87258|151.19807|Convention|Sydney Light Rail|M
+S|-33.90503|151.13905|Dulwich Grove|Sydney Light Rail|M
+S|-33.91031|151.14005|Dulwich Hill|Sydney Light Rail|M
+S|-33.80381|151.03321|Dundas Light Rail|Sydney Light Rail|M
+S|-33.90563|151.22396|ES Marks|Sydney Light Rail|M
+S|-33.87725|151.19965|Exhibition Centre|Sydney Light Rail|M
+S|-33.80519|151.00583|Fennell Street Light Rail|Sydney Light Rail|M
+S|-33.87721|151.18742|Glebe|Sydney Light Rail|M
+S|-33.87957|151.14723|Hawthorne|Sydney Light Rail|M
+S|-33.88145|151.20536|Haymarket|Sydney Light Rail|M
+S|-33.86743|151.19204|John Street Square|Sydney Light Rail|M
+S|-33.87543|151.17872|Jubilee Park|Sydney Light Rail|M
+S|-33.92507|151.22920|Juniors Kingsford|Sydney Light Rail|M
+S|-33.90941|151.22335|Kensington|Sydney Light Rail|M
+S|-33.92179|151.22687|Kingsford|Sydney Light Rail|M
+S|-33.87498|151.15414|Leichhardt North|Sydney Light Rail|M
+S|-33.89384|151.14341|Lewisham West|Sydney Light Rail|M
+S|-33.87417|151.16507|Lilyfield|Sydney Light Rail|M
+S|-33.88397|151.14512|Marion|Sydney Light Rail|M
+S|-33.89363|151.22181|Moore Park|Sydney Light Rail|M
+S|-33.80146|151.00139|Ngara Light Rail|Sydney Light Rail|M
+S|-33.87932|151.20272|Paddy's Markets|Sydney Light Rail|M
+S|-33.81556|151.00515|Parramatta Square Light Rail|Sydney Light Rail|M
+S|-33.80907|151.00526|Prince Alfred Square Light Rail|Sydney Light Rail|M
+S|-33.86943|151.19758|Pyrmont Bay|Sydney Light Rail|M
+S|-33.87157|151.20697|QVB|Sydney Light Rail|M
+S|-33.91713|151.24055|Randwick|Sydney Light Rail|M
+S|-33.81692|151.01120|Robin Thomas Light Rail|Sydney Light Rail|M
+S|-33.81814|151.02449|Rosehill Gardens Light Rail|Sydney Light Rail|M
+S|-33.90517|151.22885|Royal Randwick|Sydney Light Rail|M
+S|-33.87187|151.17272|Rozelle Bay|Sydney Light Rail|M
+S|-33.88810|151.21187|Surry Hills|Sydney Light Rail|M
+S|-33.88916|151.14526|Taverners Hill|Sydney Light Rail|M
+S|-33.79440|151.04115|Telopea Light Rail|Sydney Light Rail|M
+S|-33.86766|151.19529|The Star|Sydney Light Rail|M
+S|-33.87386|151.20689|Town Hall|Sydney Light Rail|M
+S|-33.81720|151.01851|Tramway Avenue Light Rail|Sydney Light Rail|M
+S|-33.91668|151.22590|UNSW Anzac Parade|Sydney Light Rail|M
+S|-33.91638|151.23554|UNSW High Street|Sydney Light Rail|M
+S|-33.91050|151.23520|Wansey Road|Sydney Light Rail|M
+S|-33.89879|151.14015|Waratah Mills|Sydney Light Rail|M
+S|-33.87439|151.19404|Wentworth Park|Sydney Light Rail|M
+S|-33.80471|150.99007|Westmead Hospital Light Rail|Sydney Light Rail|M
+S|-33.80759|150.98761|Westmead Light Rail|Sydney Light Rail|M
+S|-33.86667|151.20718|Wynyard|Sydney Light Rail|M
+S|-33.80996|151.02927|Yallamundi Light Rail|Sydney Light Rail|M
+S|-33.86037|151.20275|Barangaroo, Platform 1|Sydney Metro|M
+S|-33.85903|151.20252|Barangaroo, Platform 2|Sydney Metro|M
+S|-33.73062|150.94399|Bella Vista|Sydney Metro|M
+S|-33.73148|151.00781|Castle Hill|Sydney Metro|M
+S|-33.88380|151.20658|Central, Platform 26|Sydney Metro|M
+S|-33.88453|151.20621|Central, Platform 27|Sydney Metro|M
+S|-33.79748|151.18094|Chatswood, Platform 2|Sydney Metro|M
+S|-33.73658|151.03188|Cherrybrook|Sydney Metro|M
+S|-33.82574|151.19925|Crows Nest|Sydney Metro|M
+S|-33.77286|151.08209|Epping|Sydney Metro|M
+S|-33.87442|151.20907|Gadigal 1|Sydney Metro|M
+S|-33.87347|151.20807|Gadigal 2|Sydney Metro|M
+S|-33.72780|150.98739|Hills Showground|Sydney Metro|M
+S|-33.71312|150.93508|Kellyville|Sydney Metro|M
+S|-33.78513|151.12829|Macquarie Park|Sydney Metro|M
+S|-33.77741|151.11820|Macquarie University|Sydney Metro|M
+S|-33.86728|151.21121|Martin Place|Sydney Metro|M
+S|-33.79442|151.13807|North Ryde|Sydney Metro|M
+S|-33.73426|150.96398|Norwest|Sydney Metro|M
+S|-33.69181|150.92414|Rouse Hill|Sydney Metro|M
+S|-33.91348|151.16760|Sydenham, Platform 1|Sydney Metro|M
+S|-33.69175|150.90553|Tallawong|Sydney Metro|M
+S|-33.83620|151.20776|Victoria Cross|Sydney Metro|M
+S|-33.89771|151.20032|Waterloo|Sydney Metro|M
+S|-28.02803|153.42967|Broadbeach North|Translink|M
+S|-28.03542|153.43106|Broadbeach South|Translink|M
+S|-27.97351|153.41878|Broadwater Parklands|Translink|M
+S|-28.08987|153.45303|Burleigh Heads|Translink|M
+S|-28.00150|153.42837|Cavill Avenue|Translink|M
+S|-28.07607|153.44533|Christine Avenue|Translink|M
+S|-27.99651|153.42916|Cypress Aveune|Translink|M
+S|-28.01734|153.42928|Florida Gardens|Translink|M
+S|-27.96083|153.38085|Gold Coast University Hospital|Translink|M
+S|-27.96334|153.38469|Griffith University|Translink|M
+S|-27.92593|153.33926|Helensvale|Translink|M
+S|-27.98206|153.42347|Main Beach|Translink|M
+S|-28.04213|153.43425|Mermaid Beach|Translink|M
+S|-28.05070|153.43638|Mermaid Beach South|Translink|M
+S|-28.06899|153.44193|Miami|Translink|M
+S|-28.06521|153.43885|Miami North|Translink|M
+S|-27.97067|153.40851|Nerang Street|Translink|M
+S|-28.05984|153.43767|Nobby Beach|Translink|M
+S|-28.01006|153.42949|Northcliffe|Translink|M
+S|-27.95192|153.34714|Parkwood|Translink|M
+S|-27.96305|153.36467|Parkwood East|Translink|M
+S|-27.97018|153.39441|Queen Street|Translink|M
+S|-28.08424|153.44838|Second Avenue|Translink|M
+S|-27.96784|153.41356|Southport|Translink|M
+S|-27.97255|153.41555|Southport South|Translink|M
+S|-28.00612|153.42907|Surfers Paradise|Translink|M
+S|-27.99262|153.42926|Surfers Paradise North|Translink|M
+S|-33.60304|151.30027|Bennets Wharf|Palm Beach Ferries|W
+S|-33.60588|151.29424|Bonnie Doon Wharf|Palm Beach Ferries|W
+S|-33.59704|151.29962|Currawong Wharf|Palm Beach Ferries|W
+S|-33.59048|151.30140|Mackerel Beach Wharf|Palm Beach Ferries|W
+S|-33.59575|151.31896|Palm Beach Ferry Wharf|Palm Beach Ferries|W
+S|-33.60407|151.29371|The Basin Wharf|Palm Beach Ferries|W
+S|-31.96036|115.85862|Barrack Street Jetty|Rottnest Express|W
+S|-32.05260|115.72973|Northport Rous Head|Rottnest Express|W
+S|-31.99564|115.54353|Thomson Bay Ferry Landing|Rottnest Express|W
+S|-31.82385|115.73888|Hillarys Ferry Terminal|Rottnest Fast Ferries|W
+S|-19.15916|146.85489|Car Ferry Ramp - Townsville|SeaLink Queensland|W
+S|-19.25584|146.82682|Magnetic Island Ferries - Townsville Terminal|SeaLink Queensland|W
+S|-32.05279|115.74188|B Shed|SeaLink Rottnest Island|W
+S|-33.84362|151.12825|Abbotsford|Sydney Ferries|W
+S|-33.85453|151.18630|Balmain|Sydney Ferries|W
+S|-33.85683|151.19624|Balmain East Wharf|Sydney Ferries|W
+S|-33.86417|151.20042|Barangaroo, Wharf 1, Sida A|Sydney Ferries|W
+S|-33.84637|151.18646|Birchgrove|Sydney Ferries|W
+S|-33.87138|151.18524|Blackwattle Bay Wharf|Sydney Ferries|W
+S|-33.84067|151.11690|Cabarita|Sydney Ferries|W
+S|-33.84540|151.14185|Chiswick|Sydney Ferries|W
+S|-33.86068|151.21195|Circular Quay 2B|Sydney Ferries|W
+S|-33.86069|151.21140|Circular Quay 3B|Sydney Ferries|W
+S|-33.84548|151.17344|Cockatoo Island|Sydney Ferries|W
+S|-33.84802|151.23099|Cremorne Point|Sydney Ferries|W
+S|-33.86641|151.23957|Darling Point|Sydney Ferries|W
+S|-33.87280|151.24271|Double Bay, Side B|Sydney Ferries|W
+S|-33.84542|151.15720|Drummoyne Ferry Wharf|Sydney Ferries|W
+S|-33.84201|151.18067|Greenwich Point Wharf|Sydney Ferries|W
+S|-33.83419|151.18226|Greenwich Wharf|Sydney Ferries|W
+S|-33.83578|151.16113|Hunters Hill Ferry Wharf|Sydney Ferries|W
+S|-33.84221|151.14196|Huntleys Point|Sydney Ferries|W
+S|-33.84939|151.22049|Kirribilli|Sydney Ferries|W
+S|-33.83181|151.10197|Kissing Point|Sydney Ferries|W
+S|-33.84340|151.22170|Kurraba Point|Sydney Ferries|W
+S|-33.83617|151.16940|Longueville Wharf|Sydney Ferries|W
+S|-33.80045|151.28371|Manly Wharf|Sydney Ferries|W
+S|-33.84887|151.20669|McMahons Point Wharf|Sydney Ferries|W
+S|-33.82131|151.09023|Meadowbank|Sydney Ferries|W
+S|-33.84931|151.21045|Milsons Point Wharf|Sydney Ferries|W
+S|-33.83845|151.23224|Mosman Bay|Sydney Ferries|W
+S|-33.84238|151.21936|Neutral Bay|Sydney Ferries|W
+S|-33.84470|151.21884|North Sydney|Sydney Ferries|W
+S|-33.83259|151.17862|Northwood Wharf|Sydney Ferries|W
+S|-33.84073|151.23046|Old Cremorne|Sydney Ferries|W
+S|-33.81389|151.01054|Parramatta Ferry Wharf|Sydney Ferries|W
+S|-33.86464|151.19100|Pirrama Park Wharf|Sydney Ferries|W
+S|-33.86820|151.19886|Pyrmont Bay Wharf|Sydney Ferries|W
+S|-33.82999|151.15606|Riverview College Wharf|Sydney Ferries|W
+S|-33.87058|151.26213|Rose Bay Wharf|Sydney Ferries|W
+S|-33.81800|151.04374|Rydalmere Ferry Wharf|Sydney Ferries|W
+S|-33.84324|151.23256|South Mosman|Sydney Ferries|W
+S|-33.82195|151.07884|Sydney Olympic Park|Sydney Ferries|W
+S|-33.84639|151.23960|Taronga Zoo|Sydney Ferries|W
+S|-33.84353|151.28098|Watsons Bay Wharf|Sydney Ferries|W
+S|-33.83891|151.17616|Woolwich Wharf|Sydney Ferries|W
+S|-41.17942|146.36754|Spirit of Tasmania|TT-Line Company|W
+S|-38.10654|144.36076|Spirit of Tasmania|TT-Line Company|W
+S|-27.44314|153.06381|Apollo Road|Translink|W
+S|-27.44029|153.06411|Bretts Wharf|Translink|W
+S|-27.45075|153.05219|Bulimba|Translink|W
+S|-27.57520|153.33226|Coochiemudlo Island|Translink|W
+S|-27.47245|153.03904|Dockside|Translink|W
+S|-27.49231|153.00218|Guyatt Park|Translink|W
+S|-27.46117|153.05309|Hawthorne|Translink|W
+S|-27.46568|153.03348|Holman Street|Translink|W
+S|-27.46325|153.03754|Howard Smith Wharves|Translink|W
+S|-27.48197|153.02883|Maritime Museum|Translink|W
+S|-27.47362|153.00563|Milton|Translink|W
+S|-27.47726|153.04327|Mowbray Park|Translink|W
+S|-27.47173|153.05259|New Farm Park|Translink|W
+S|-27.47272|153.02245|North Quay|Translink|W
+S|-27.44548|153.08379|Northshore Hamilton|Translink|W
+S|-27.47851|153.02621|QUT Gardens Point|Translink|W
+S|-27.48328|152.99693|Regatta|Translink|W
+S|-27.46688|153.03134|Riverside|Translink|W
+S|-27.47585|153.02233|South Bank|Translink|W
+S|-27.47481|153.04214|Sydney Street|Translink|W
+S|-27.45184|153.04948|Teneriffe|Translink|W
+S|-27.49674|153.01959|UQ St Lucia|Translink|W
+S|-27.58187|153.31907|Victoria Point|Translink|W
+S|-27.49041|153.00323|West End|Translink|W
+S|-31.95820|115.85603|Elizabeth Quay Ferry Terminal|Transperth|W
+S|-31.97056|115.85394|Mends Street Jetty|Transperth|W
+S|-38.44615|145.23974|Cowes Jetty|Transport Victoria - Ferries|W
+S|-37.82921|144.90040|Fishermans Bend|Transport Victoria - Ferries|W
+S|-38.14308|144.36225|Port Phillip Ferries (Geelong-Docklands)|Transport Victoria - Ferries|W
+S|-37.81710|144.94478|Port Phillip Ferries (Geelong-Docklands)|Transport Victoria - Ferries|W
+S|-38.26561|144.67250|Queenscliff Ferry Terminal|Transport Victoria - Ferries|W
+S|-38.33611|144.74574|Sorrento Ferry Terminal|Transport Victoria - Ferries|W
+S|-37.83197|144.89590|Spotswood|Transport Victoria - Ferries|W
+S|-38.37224|145.22473|Stony Point Pier|Transport Victoria - Ferries|W
+S|-38.38314|145.27071|Tankerton Jetty|Transport Victoria - Ferries|W
+S|-33.83735|151.10583||Transport for New South Wales|W
+S|-33.83558|151.10869||Transport for New South Wales|W
+S|-34.08272|151.15067|Bundeena|Transport for New South Wales|W
+S|-34.05634|151.14966|Cronulla|Transport for New South Wales|W
+S|-32.92527|151.78025|Muloobinba / Queens Wharf|Transport for New South Wales|W
+S|-32.91988|151.78245|Stockton Wharf|Transport for New South Wales|W
+L|Canberra Metro|Canberra Metro|#343F4B|0 2:592 5:749 6:640 1:1070 12:674 10:1325 3:889 11:797 13:1419 9:974 8:783 7:1206 4:738
+L|Canberra Metro|Canberra Metro|#343F4B|4 7:738 8:1212 9:784 13:975 11:1420 3:797 10:897 12:1344 1:647 6:1071 5:640 2:750 0:592
+L|Newcastle Transport|Newcastle Beach to Newcastle Interchange|#EE343F|17 19:462 15:412 14:503 16:595 18:657
+L|Newcastle Transport|Newcastle Interchange to Newcastle Beach|#EE343F|18 16:655 14:594 15:505 19:412 17:464
+L|Sydney Light Rail|Carlingford to Westmead|#BB2043|25 65:1651 35:1435 77:791 60:1014 68:652 59:839 54:578 30:452 55:456 38:433 22:552 52:345 28:839 74:403 75:373
+L|Sydney Light Rail|Central to Dulwich Hill|#BE1622|27 24:407 53:277 37:412 32:535 56:363 66:298 42:358 21:453 73:477 39:692 43:836 62:739 49:777 47:999 40:873 50:566 64:533 48:584 72:677 20:387 33:377 34:620
+L|Sydney Light Rail|Dulwich Hill to Central|#BE1622|34 33:636 20:359 72:415 48:630 64:565 50:610 40:488 47:875 49:1045 62:774 43:738 39:840 73:686 21:475 42:456 66:364 56:299 32:366 37:534 53:407 24:290 27:442
+L|Sydney Light Rail|Kingsford Line|#781140|31 23:522 76:255 57:558 67:239 29:527 41:349 26:485 63:667 51:1270 36:1373 45:393 69:877 46:578 44:433
+L|Sydney Light Rail|Kingsford Line|#781140|44 46:434 69:586 45:876 36:397 51:1375 63:1194 26:736 41:416 29:353 67:527 57:239 76:558 23:318 31:467
+L|Sydney Light Rail|Randwick Line|#DD1E25|58 70:506 71:719 61:854 51:1563 63:1194 26:736 41:416 29:353 67:527 57:239 76:558 23:318 31:467
+L|Sydney Light Rail|Randwick Line|#DD1E25|31 23:522 76:255 57:558 67:239 29:527 41:349 26:485 63:667 51:1270 61:1531 71:880 70:719 58:438
+L|Sydney Light Rail|Westmead to Carlingford|#BB2043|75 74:412 28:414 52:833 22:355 38:505 55:432 30:456 54:443 59:582 68:836 60:646 77:1017 35:792 65:1426 25:1621
+L|Sydney Metro|Metro North West & Bankstown Line|#168388|98 101:4086 82:1661 89:1212 94:805 79:1311 100:2766 86:1514 84:3769 95:4315 92:1401 93:1346 87:3810 85:6351 81:2542 90:2015 96:2320 80:2243 91:2213 97:2606 99:1872
+L|Sydney Metro|Metro North West & Bankstown Line|#168388|99 97:1880 91:2606 80:2057 96:2206 90:2331 81:2154 85:2417 87:6364 93:3966 92:1183 95:1391 84:4317 86:3903 100:1549 78:2744 94:1390 88:725 83:1191 101:1705 98:3961
+L|Translink|L1 G|#ffc425|112 121:3065 122:2333 110:1890 111:463 123:1363 118:1435 125:760 126:626 104:367 113:1109 128:1340 108:435 106:565 127:523 120:436 109:810 102:1200 103:837 114:803 115:971 119:1040 117:636 116:516 107:856 124:951 105:843
+L|Translink|L1 G|#ffc425|105 124:840 107:952 116:855 117:516 119:641 115:1037 114:971 103:844 102:833 109:1200 120:811 127:435 106:520 108:568 128:431 113:1349 104:1096 126:372 125:801 118:687 123:1440 111:1367 110:472 122:1878 121:2336 112:3032
+L|Palm Beach Ferries|Palm Beach - Bennetts - Bonnie Doon - Basin - Currawong - Mackeral|#5AB031|133 129:3696 130:1474 134:437 131:1688 132:1080
+L|Palm Beach Ferries|Palm Beach - Bennetts - Currawong - Mackeral|#5AB031|133 129:3837 131:856 132:1080
+L|Rottnest Express|Express||135 137:39799
+L|Rottnest Express|Express||141 137:20341
+L|Rottnest Express|Express||136 137:19480
+L|Rottnest Express|Express||136 137:19423
+L|Rottnest Fast Ferries|Fast Ferries||138 137:27242
+L|SeaLink Queensland|Magnetic Island Ferry||139 140:11250
+L|SeaLink Rottnest Island|SeaLink||141 137:20341
+L|Sydney Ferries|Circular Quay to Watsons Bay|#65B32E|150 178:8375 183:6369
+L|Sydney Ferries|F10 B Blackwattle Bay|#469B3B|145 147:2079
+L|Sydney Ferries|F10 Blackwattle Bay via Pirrama Park|#469B3B|145 175:1069 147:1063
+L|Sydney Ferries|Ferry|#BFD730|176 145:522 144:1059 166:1714 168:456 151:1825
+L|Sydney Ferries|Ferry|#648C3C|151 145:1106 152:6246 156:1556 160:2244 149:541 142:1581 148:1161 162:1772 167:1685 181:1066 179:3828 174:3506
+L|Sydney Ferries|Ferry|#BFD730|151 168:1825 166:456 144:1714 145:1059 176:522
+L|Sydney Ferries|Ferry|#00B189|150 154:3137 155:909
+L|Sydney Ferries|Ferry|#00B189|150 155:3723
+L|Sydney Ferries|Ferry|#00B189|155 154:909 150:3137
+L|Sydney Ferries|Ferry|#00B189|155 150:3722
+L|Sydney Ferries|Ferry|#55622B|152 184:1307 157:943 146:781 143:1846 151:4224
+L|Sydney Ferries|Ferry|#648C3C|174 179:3506 181:3829 167:1066 162:1685 148:1772 142:1161 149:1581 160:541 156:2244 152:1556 145:6246 151:1106
+L|Sydney Ferries|Ferry|#144734|151 182:3408
+L|Sydney Ferries|Ferry|#00AB51|151 153:2835 180:659 173:350 169:341
+L|Sydney Ferries|Ferry|#144734|182 151:3408
+L|Sydney Ferries|Ferry|#00AB51|169 173:341 180:350 153:659 151:2835
+L|Sydney Ferries|Ferry|#286142|170 163:255 161:677 151:1887
+L|Sydney Ferries|Ferry|#286142|151 161:1887 171:589 170:308
+L|Sydney Ferries|Ferry|#55622B|151 143:4224 146:1846 157:781 184:943 152:1307
+L|Sydney Ferries|Ferry|#5AB031|146 157:781 158:1099 172:394 164:969 159:1252 177:863
+L|Sydney Ferries|Ferry|#5AB031|159 177:863 164:1866 172:969 158:394 157:1099 146:781
+L|Sydney Ferries|Manly Ferry|#00774B|151 165:11247
+L|Sydney Ferries|Manly Ferry|#00774B|165 151:11250
+L|Sydney Ferries|Watsons Bay to Circular Quay|#65B32E|183 178:6370 150:8375
+L|TT-Line Company|Geelong - Devonport||186 185:447940
+L|Translink|Ferry F1||201 188:2079 207:3378 189:313 193:1556 199:1484 198:1743 206:299 195:2501 204:1266 202:2644 205:490 200:397 197:2242 203:1385 192:1858 210:378 208:1937
+L|Translink|Ferry F1||201 187:2032 188:597 207:3980 189:313 193:1556 199:1484 198:1743 206:299 195:2501 204:1266 202:2644 205:490 200:397 203:5693 192:1858 210:378 208:1937
+L|Translink|Ferry F1||193 189:1556 207:313 188:3980 187:597 201:2032
+L|Translink|Ferry F1||193 189:1556 207:313 188:3378 201:2079
+L|Translink|Ferry F1||208 210:2004 192:378 203:1858 200:5692 205:397 202:490 204:2644 195:1266 206:2501 198:299 199:1743 193:1484 189:1556 207:313 188:3980 187:597 201:2032
+L|Translink|Ferry F1||208 210:2004 192:378 203:1858 197:1385 200:2242 205:397 202:490 204:2644 195:1266 206:2501 198:299 199:1743 193:1484 189:1556 207:313 188:3378 201:2079
+L|Translink|Ferry F11||204 193:3997 189:1213 188:2753 187:575
+L|Translink|Ferry F11||187 188:575 189:2753 193:1213 204:3997
+L|Translink|Ferry F12||202 200:770 197:2120 203:1385 192:1678 210:256
+L|Translink|Ferry F12||210 192:256 203:1678 197:1385 200:2120 202:770
+L|Translink|Ferry F21||207 189:317
+L|Translink|Ferry F21||189 207:334
+L|Translink|Ferry F22||206 191:403
+L|Translink|Ferry F22||191 206:403
+L|Translink|Ferry F23||204 194:254
+L|Translink|Ferry F23||194 204:254
+L|Translink|Ferry F24||202 196:510
+L|Translink|Ferry F24||196 202:510
+L|Translink|Ferry F50||190 209:1523
+L|Translink|Ferry F50||209 190:1523
+L|Transperth|Transperth Ferry - Elizabeth Quay to Mends Street||211 212:1396
+L|Transperth|Transperth Ferry - Mends Street to Elizabeth Quay||212 211:1396
+L|Transport Victoria - Ferries|Geelong-Docklands Ferry|#00A499|215 216:68949
+L|Transport Victoria - Ferries|Queenscliff - Sorrento Ferry||217 218:10654
+L|Transport Victoria - Ferries|Queenscliff - Sorrento Ferry||218 217:10650
+L|Transport Victoria - Ferries|Western Port Ferries||220 221:9079 213:8069 220:20369
+L|Transport Victoria - Ferries|Western Port Ferries||220 213:20375 221:8068 220:9078
+L|Transport Victoria - Ferries|Westgate Punt||214 219:540
+L|Transport Victoria - Ferries|Westgate Punt||219 214:500
+L|Transport for New South Wales|Bundeena - Cronulla|#5AB031|224 225:3668
+L|Transport for New South Wales|Cronulla Bundeena|#5AB031|225 224:3669
+L|Transport for New South Wales|Mortlake Ferry||223 222:329
+L|Transport for New South Wales|Newcastle - Stockton Ferry|#5AB031|226 227:636
+T|-32.16686|150.89196|Aberdeen
+T|-32.93378|151.72002|Adamstown
+T|-34.92100|138.59677|Adelaide
+T|-34.93806|138.58113|Adelaide Parklands Terminal
+T|-34.94407|138.58329|Adelaide Showground
+T|-32.17109|117.98404|Ainsworth
+T|-37.86660|144.76073|Aircraft
+T|-31.94404|115.97484|Airport Central
+T|-37.86836|145.07973|Alamein
+T|-35.02815|117.88599|Albany
+T|-34.88156|138.52324|Albert Park
+T|-34.85813|138.51843|Alberton
+T|-37.77721|144.82438|Albion
+T|-27.42905|153.04047|Albion
+T|-34.56292|150.79862|Albion Park
+T|-36.08566|146.92428|Albury
+T|-36.08397|146.92450|Albury
+T|-27.42322|153.00083|Alderley
+T|-23.69742|133.87341|Alice Springs
+T|-31.61542|115.69265|Alkimos
+T|-33.96969|151.11451|Allawah
+T|-17.33837|144.67806|Almaden
+T|-23.64828|146.64272|Alpha
+T|-37.77839|145.03128|Alphington
+T|-27.58280|153.06372|Altandi
+T|-37.86718|144.82953|Altona
+T|-26.34329|152.67407|Amamoor
+T|-28.69001|115.10382|Ambania
+T|-31.15064|117.08770|Amery
+T|-23.55275|147.74683|Anakie
+T|-34.50064|139.04300|Angaston
+T|-37.76135|144.96071|Anstey
+T|-37.83341|144.97293|Anzac
+T|-37.28232|142.93729|Ararat
+T|-23.37560|150.50696|Archer Park
+T|-32.03077|118.09614|Ardath
+T|-37.78300|144.80153|Ardeer
+T|-37.80136|144.94014|Arden
+T|-37.85629|145.01924|Armadale
+T|-32.15369|116.01296|Armadale
+T|-30.51516|151.65171|Armidale
+T|-33.93644|151.14735|Arncliffe
+T|-29.44122|115.62903|Arrino
+T|-33.80886|151.18514|Artarmon
+T|-27.42949|153.06333|Ascot
+T|-34.99092|138.56122|Ascot Park
+T|-37.77533|144.92183|Ascot Vale
+T|-37.86200|145.08140|Ashburton
+T|-33.88766|151.12582|Ashfield
+T|-31.91281|115.93609|Ashfield
+T|-38.02724|145.10213|Aspendale
+T|-33.68868|151.10808|Asquith
+T|-32.15494|115.85795|Aubin Grove
+T|-37.82241|145.04588|Auburn
+T|-33.84929|151.03283|Auburn
+T|-27.47660|152.99676|Auchenflower
+T|-34.30648|150.92922|Austinmer
+T|-24.85262|152.33599|Australian Sugar Cane Railway
+T|-36.89368|145.22944|Avenel
+T|-31.64155|116.62788|Avon Yard
+T|-33.01294|151.54162|Awaba
+T|-19.57428|147.39614|Ayr
+T|-17.34317|145.92536|Babinda
+T|-37.68780|144.43759|Bacchus Marsh
+T|-37.82872|147.62738|Bairnsdale
+T|-37.86960|144.99351|Balaclava
+T|-27.32085|153.01104|Bald Hills
+T|-31.84941|115.92212|Ballajura
+T|-37.60423|144.22534|Ballan
+T|-37.55862|143.85948|Ballarat
+T|-33.30722|117.55572|Ballaying
+T|-30.59707|116.76910|Ballidu
+T|-33.94534|151.14041|Banksia
+T|-27.57657|153.04655|Banoon
+T|-27.37455|153.07743|Banyo
+T|-23.55216|145.28971|Barcaldine
+T|-33.93160|151.12488|Bardwell Park
+T|-34.28365|146.57191|Barellan
+T|-34.29110|150.58012|Bargo
+T|-16.83644|145.64298|Barron Falls
+T|-31.90372|115.94700|Bassendean
+T|-33.42556|149.58320|Bathurst
+T|-37.73354|144.96284|Batman
+T|-38.19408|145.16052|Baxter
+T|-37.84174|145.26812|Bayswater
+T|-31.91840|115.91187|Bayswater
+T|-30.44842|117.86625|Beacon
+T|-38.05109|145.36651|Beaconsfield
+T|-37.42768|143.38232|Beaufort
+T|-32.02247|115.95423|Beckenham
+T|-30.83971|119.68152|Beckwith
+T|-33.74963|151.06639|Beecroft
+T|-33.23138|115.90958|Beela
+T|-27.71740|153.20444|Beenleigh
+T|-26.95993|152.95919|Beerburrum
+T|-26.85699|152.95837|Beerwah
+T|-34.99801|138.63292|Belair
+T|-37.90901|145.35525|Belgrave
+T|-37.90768|145.35659|Belgrave (Narrow-gauge)
+T|-37.74598|145.00025|Bell
+T|-33.50565|150.27887|Bell
+T|-34.36285|150.91005|Bellambi
+T|-29.91838|149.79057|Bellata Station
+T|-36.54475|145.98372|Benalla
+T|-30.81102|117.85977|Bencubbin
+T|-36.76559|144.28296|Bendigo
+T|-37.91754|145.03693|Bentleigh
+T|-33.87192|151.03229|Berala
+T|-32.79897|151.65790|Beresfield
+T|-33.62354|151.15317|Berowra
+T|-34.27089|140.59627|Berri
+T|-42.81556|147.25491|Berriedale
+T|-34.78030|150.69679|Berry
+T|-38.04011|145.34531|Berwick
+T|-27.68852|153.15870|Bethania
+T|-32.10801|116.92567|Beverley
+T|-33.94908|151.08105|Beverly Hills
+T|-33.93755|151.11349|Bexley North
+T|-27.38283|153.07267|Bindha
+T|-30.63100|116.36427|Bindi Bindi
+T|-27.49401|153.21878|Birkdale
+T|-38.32880|143.78333|Birregurra
+T|-33.89332|151.02403|Birrong
+T|-38.33716|145.17809|Bittern
+T|-35.40740|138.79320|Black Swamp
+T|-17.94069|141.75544|Blackbull
+T|-37.82008|145.15005|Blackburn
+T|-33.63323|150.28432|Blackheath
+T|-33.76845|150.90741|Blacktown
+T|-23.58607|148.88352|Blackwater
+T|-35.02096|138.61901|Blackwood
+T|-33.74363|150.60962|Blaxland
+T|-33.52721|149.25440|Blayney
+T|-36.38609|148.39307|Blue Cow
+T|-23.58277|149.06989|Bluff
+T|-26.58163|148.95550|Blythdale
+T|-41.65934|145.60497|Boco Siding
+T|-31.37401|118.87350|Bodallin
+T|-30.70358|150.04002|Boggabri Station
+T|-27.49367|153.03074|Boggo Road
+T|-31.27384|116.50656|Bolgart
+T|-34.85386|150.60980|Bomaderry
+T|-34.65854|150.85385|Bombo
+T|-38.06545|145.12011|Bonbeach
+T|-33.89124|151.24846|Bondi Junction
+T|-30.84242|121.15042|Bonnie Vale
+T|-27.34675|153.06799|Boondall
+T|-31.01509|124.47482|Boonderoo
+T|-32.97156|151.60483|Booragul
+T|-27.60933|152.78987|Booval
+T|-36.31052|140.77736|Bordertown
+T|-37.86066|145.28484|Boronia
+T|-33.47341|150.20250|Bottom Points
+T|-34.90718|138.57714|Bowden
+T|-20.02174|148.20577|Bowen
+T|-27.44523|153.03760|Bowen Hills
+T|-29.32133|116.14588|Bowgada North
+T|-34.47802|150.41671|Bowral
+T|-37.81932|145.12212|Box Hill
+T|-33.48038|115.72986|Boyanup
+T|-32.66221|151.34570|Branxton
+T|-27.29945|152.98615|Bray Park
+T|-35.02153|138.51919|Brighton
+T|-37.92651|144.98906|Brighton Beach
+T|-28.74546|114.84145|Bringo
+T|-27.46584|153.02584|Brisbane Central
+T|-37.20761|145.04249|Broadford
+T|-32.92313|151.73445|Broadmeadow
+T|-37.68281|144.91970|Broadmeadows
+T|-34.69590|138.67411|Broadmeadows
+T|-31.95935|141.46674|Broken Hill
+T|-32.36862|117.01013|Brookton
+T|-33.84761|117.64664|Broomehill CBH
+T|-31.87739|118.14962|Bruce Rock
+T|-37.76769|144.95961|Brunswick
+T|-33.25792|115.83831|Brunswick Junction
+T|-35.13797|138.87509|Bugle Ranges
+T|-24.52768|151.38374|Builyan
+T|-32.04709|115.85411|Bull Creek
+T|-37.63431|144.80454|Bulla Hill
+T|-33.72354|150.41474|Bullaburra
+T|-32.49774|117.74308|Bullaring
+T|-34.33443|150.91476|Bulli
+T|-17.71074|144.51425|Bullock Creek
+T|-36.44273|148.44227|Bullocks Flat
+T|-33.34448|115.65713|Bunbury Terminal
+T|-27.60749|152.80482|Bundamba
+T|-27.61390|152.80122|Bundamba Racecourse
+T|-34.65611|150.29884|Bundanoon
+T|-35.25598|149.44637|Bungendore
+T|-33.00126|118.82797|Buniche
+T|-38.09895|145.72071|Bunyip Station
+T|-30.52483|117.17276|Burakin
+T|-27.49655|153.04045|Buranda
+T|-41.05387|145.90805|Burnie
+T|-37.82761|145.00809|Burnley
+T|-27.16245|152.95721|Burpengary
+T|-31.38640|118.48345|Burracoppin
+T|-34.49423|150.39807|Burradoo
+T|-31.95990|115.89995|Burswood
+T|-37.85167|145.08058|Burwood
+T|-33.87714|151.10404|Burwood
+T|-43.12838|147.85400|Bush Mill Station site (15" gauge abandoned)
+T|-31.63569|115.70033|Butler
+T|-34.25547|150.53361|Buxton
+T|-32.21646|116.00738|Byford
+T|-28.64181|153.61120|Byron Beach
+T|-27.61171|152.57903|Cabanda
+T|-27.08290|152.95379|Caboolture
+T|-33.89500|150.93881|Cabramatta
+T|-30.76732|117.13624|Cadoux
+T|-16.92567|145.77126|Cairns
+T|-31.09076|116.44634|Calingiri
+T|-33.18381|138.48342|Caltowie
+T|-37.82656|145.05866|Camberwell
+T|-34.06363|150.81439|Campbelltown
+T|-38.22882|143.15076|Camperdown
+T|-35.31932|149.14941|Canberra
+T|-33.88720|150.94366|Canley Vale
+T|-28.89870|115.86276|Canna
+T|-32.00974|115.85613|Canning Bridge
+T|-32.02441|115.91554|Canning Junction
+T|-32.01344|115.94495|Cannington
+T|-27.46532|153.08861|Cannon Hill
+T|-37.82475|145.08076|Canterbury
+T|-23.08468|148.02220|Capella
+T|-32.94165|151.66283|Cardiff
+T|-38.07128|145.43764|Cardinia Road
+T|-32.24367|116.00116|Cardup
+T|-18.26782|146.02806|Cardwell
+T|-34.04160|151.12274|Caringbah
+T|-31.97988|115.91004|Carlisle
+T|-33.96824|151.12450|Carlton
+T|-21.90988|149.41561|Carmila
+T|-29.68463|115.87947|Carnamah
+T|-37.88630|145.05873|Carnegie
+T|-37.76606|144.73563|Caroline Springs
+T|-31.39087|118.66874|Carrabin
+T|-33.88432|150.96151|Carramar
+T|-38.07748|145.12306|Carrum
+T|-27.34707|153.02884|Carseldine
+T|-34.47474|116.03017|Cascades
+T|-28.86110|153.03825|Casino Station
+T|-37.06295|144.21404|Castlemaine
+T|-33.95016|150.91184|Casula
+T|-37.87732|145.04238|Caulfield
+T|-33.88388|151.20597|Central
+T|-27.86298|153.31667|Central Park
+T|-32.12685|116.01255|Challis
+T|-26.96900|133.37017|Chandler
+T|-26.40619|146.24421|Charleville
+T|-32.05248|133.32983|Charra
+T|-20.07718|146.27072|Charters Towers
+T|-37.82423|145.08866|Chatham
+T|-27.51199|152.97276|Chelmer
+T|-38.05328|145.11664|Chelsea
+T|-37.96701|145.05470|Cheltenham
+T|-34.86600|138.52476|Cheltenham
+T|-33.75568|151.07856|Cheltenham
+T|-33.88354|150.99942|Chester Hill
+T|-34.77469|138.63813|Chidda
+T|-30.99736|122.83476|Chifley
+T|-36.15566|146.61181|Chiltern
+T|-26.73716|150.62488|Chinchilla
+T|-35.12931|138.49628|Christie Downs
+T|-33.86136|151.21072|Circular Quay
+T|-31.94468|115.84505|City West
+T|-31.94940|115.87251|Claisebrook
+T|-31.98073|115.78145|Claremont
+T|-33.47733|150.22103|Clarence
+T|-34.96145|138.58040|Clarence Park
+T|-33.60862|150.78799|Clarendon
+T|-17.81162|141.11968|Clarina
+T|-37.48358|144.74524|Clarkefield
+T|-31.69067|115.73808|Clarkson
+T|-27.41822|153.05782|Clayfield
+T|-37.92462|145.12069|Clayton
+T|-30.43506|117.64555|Cleary
+T|-37.92844|145.42346|Clematis
+T|-27.52419|153.26522|Cleveland
+T|-27.93080|151.90641|Clifton
+T|-37.78889|144.99536|Clifton Hill
+T|-20.71421|140.51739|Cloncurry
+T|-37.30273|143.78208|Clunes
+T|-33.83597|151.01707|Clyde
+T|-37.90708|145.21477|Clydesdale
+T|-34.24216|150.97749|Coalcliff
+T|-37.71255|144.60408|Cobblebank
+T|-37.74218|144.96332|Coburg
+T|-37.93448|145.49149|Cockatoo
+T|-32.12533|115.85836|Cockburn Central
+T|-32.94270|151.62372|Cockle Creek
+T|-30.30613|153.13779|Coffs Harbour
+T|-38.34327|143.58690|Colac
+T|-34.28957|150.94323|Coledale
+T|-37.80447|144.99376|Collingwood
+T|-34.00435|151.06806|Como
+T|-41.83038|147.43555|Conara
+T|-33.84840|151.08561|Concord West
+T|-33.08406|147.15308|Condobolin
+T|-34.43774|150.88528|Coniston
+T|-28.13918|153.48464|Conservation
+T|-30.61308|130.41337|Cook
+T|-32.99479|115.89334|Cookernup
+T|-34.81596|147.20189|Coolamon Station
+T|-37.66140|144.92598|Coolaroo
+T|-36.23648|149.13538|Cooma
+T|-27.85236|153.31705|Coomera
+T|-31.02251|123.15870|Coonana
+T|-27.56750|153.03592|Coopers Plains
+T|-26.33452|152.82297|Cooran
+T|-29.88318|116.02087|Coorow
+T|-26.41768|152.91119|Cooroy
+T|-27.48976|153.05520|Coorparoo
+T|-34.64123|148.03066|Cootamundra
+T|-34.63114|148.03475|Cootamundra West
+T|-27.53908|152.98012|Corinda
+T|-38.07228|144.37993|Corio
+T|-35.02519|138.61434|Coromandel
+T|-32.33080|117.87266|Corrigin
+T|-34.37573|150.90486|Corrimal
+T|-31.99682|115.76095|Cottesloe
+T|-34.23265|150.54981|Couridjah
+T|-33.59311|151.17169|Cowan
+T|-30.99646|117.45152|Cowcowing
+T|-33.83455|148.70017|Cowra
+T|-37.60226|144.94309|Craigieburn
+T|-38.09973|145.28073|Cranbourne
+T|-37.42395|143.88806|Creswick
+T|-38.36597|145.20414|Crib Point
+T|-34.46704|150.87829|Cringila
+T|-17.86529|141.16431|Critters Camp
+T|-34.05573|151.15146|Cronulla
+T|-37.76406|144.99705|Croxton
+T|-37.79534|145.28042|Croydon
+T|-34.89705|138.56387|Croydon
+T|-33.88323|151.11560|Croydon
+T|-18.20253|142.23932|Croydon
+T|-32.82018|117.17989|Cuballing
+T|-35.66600|147.03832|Culcairn
+T|-31.64645|117.24362|Cunderdin
+T|-31.72494|115.75056|Currambine
+T|-35.44718|138.76385|Currency Creek
+T|-30.91293|122.01238|Curtin
+T|-31.95180|115.81340|Daglish
+T|-26.32126|152.67631|Dagun
+T|-27.23046|152.97577|Dakabin
+T|-27.17982|151.27147|Dalby
+T|-37.99007|145.20976|Dandenong
+T|-32.58086|121.58486|Daniell
+T|-34.49304|150.79180|Dapto
+T|-37.77475|145.03868|Darebin
+T|-33.46853|136.19831|Darke Peak
+T|-37.86898|145.06297|Darling
+T|-32.85082|143.62537|Darnick Station
+T|-27.56592|152.95239|Darra
+T|-30.85262|119.88307|Darrine
+T|-12.47295|130.90403|Darwin
+T|-27.32744|153.06340|Deagon
+T|-30.76721|128.96893|Deakin
+T|-29.44244|151.85101|Deepwater
+T|-37.77744|144.77115|Deer Park
+T|-33.79985|151.08736|Denistone
+T|-37.77919|145.00836|Dennis
+T|-37.67333|145.15881|Diamond Creek
+T|-37.62760|144.72001|Diggers Rest
+T|-36.45197|142.03093|Dimboola
+T|-17.14964|145.11125|Dimbulah
+T|-36.36912|144.23115|Dingee
+T|-27.59626|152.83349|Dinmore
+T|-33.93363|151.18087|Domestic Airport
+T|-27.38565|153.11849|Domestic Airport
+T|-41.16380|146.33815|Don Junction
+T|-41.18166|146.31767|Don Village
+T|-37.54199|144.97023|Donnybrook
+T|-31.60830|117.88159|Doodlakine
+T|-31.60372|117.89406|Doodlakine
+T|-36.32800|145.68555|Dookie
+T|-27.43140|153.07473|Doomben
+T|-33.76399|150.86838|Doonside
+T|-33.08372|151.50095|Dora Creek
+T|-30.33372|152.70765|Dorrigo
+T|-34.18325|150.71025|Douglas Park
+T|-27.59257|151.91716|DownsSteam Drayton Station
+T|-34.81431|138.49894|Draper
+T|-38.13646|145.85607|Drouin
+T|-34.83479|138.58577|Dry Creek
+T|-38.18001|144.55750|Drysdale
+T|-23.71176|149.67769|Duaringa
+T|-42.18330|145.48239|Dubbill Barrill
+T|-32.24506|148.60779|Dubbo
+T|-21.35554|139.86604|Duchess
+T|-32.86959|117.90288|Dudinin
+T|-34.88496|138.58323|Dudley Park
+T|-33.31509|117.73926|Dumbleyung
+T|-33.31147|117.72850|Dumbleyung CBH
+T|-32.40238|151.75935|Dungog
+T|-27.50081|153.02848|Dutton Park
+T|-32.71169|116.06290|Dwellingup
+T|-27.41537|153.04960|Eagle Junction
+T|-36.71860|144.24851|Eaglehawk
+T|-37.76374|145.05377|Eaglemont
+T|-37.82572|145.06831|East Camberwell
+T|-34.89925|138.50166|East Grange
+T|-32.73627|151.53920|East Greta Junction
+T|-31.89645|115.97999|East Guildford
+T|-17.96920|141.48452|East Haydon
+T|-33.96185|150.98463|East Hills
+T|-27.61007|152.77601|East Ipswich
+T|-32.74482|151.58739|East Maitland
+T|-37.87685|145.06917|East Malvern
+T|-38.08432|145.50674|East Pakenham
+T|-31.94410|115.87719|East Perth
+T|-31.94318|115.87707|East Perth Terminal
+T|-37.82634|144.99676|East Richmond
+T|-33.60180|150.75918|East Richmond
+T|-41.43066|147.16027|East Tamar Junction
+T|-33.79013|151.08226|Eastwood
+T|-27.60331|152.82214|Ebbw Vale
+T|-36.13106|144.75330|Echuca
+T|-35.02160|138.59440|Eden Hills
+T|-27.69810|153.17094|Edens Landing
+T|-33.87924|151.23614|Edgecliff
+T|-31.77214|115.77874|Edgewater
+T|-38.03650|145.10757|Edithvale
+T|-33.96927|150.85863|Edmondson Park
+T|-34.97219|138.57121|Edwardstown
+T|-31.58367|115.67254|Eglinton
+T|-18.51399|144.09169|Einasleigh
+T|-31.01346|117.11149|Ejanding
+T|-27.01097|152.94584|Elimbah
+T|-34.71739|138.66461|Elizabeth Interchange
+T|-31.95709|115.85522|Elizabeth Quay
+T|-34.73114|138.65593|Elizabeth South
+T|-18.07939|142.07385|Ellavale
+T|-31.78160|115.96339|Ellenbrook
+T|-36.49488|144.60758|Elmore
+T|-37.88512|145.00109|Elsternwick
+T|-37.71378|145.14760|Eltham
+T|-37.93366|145.43951|Emerald
+T|-23.52661|148.15984|Emerald
+T|-34.96656|138.57385|Emerson
+T|-33.74570|150.67158|Emu Plains
+T|-34.06786|151.01473|Engadine
+T|-27.42033|152.99239|Enoggera
+T|-37.65233|145.03193|Epping
+T|-36.70711|144.32089|Epsom
+T|-28.69531|115.04228|Eradu
+T|-33.90095|151.18527|Erskineville
+T|-37.75610|144.91620|Essendon
+T|-34.84879|138.49492|Ethelton
+T|-32.73827|116.13911|Etmilyn
+T|-33.05477|146.39100|Euabalong West Station
+T|-26.72541|152.95685|Eudlo
+T|-26.48041|152.95503|Eumundi
+T|-30.84962|152.90012|Eungai
+T|-36.74907|145.56810|Euroa
+T|-34.62057|138.73262|Evanston
+T|-34.61369|150.31740|Exeter
+T|-27.45011|153.03110|Exhibition
+T|-37.77918|145.01692|Fairfield
+T|-33.87242|150.95700|Fairfield
+T|-27.50973|153.02792|Fairfield
+T|-34.39537|150.89638|Fairy Meadow
+T|-32.98554|151.58110|Fassifern
+T|-33.69643|150.53507|Faulconbridge
+T|-37.71465|144.96054|Fawkner
+T|-37.88158|145.29515|Ferntree Gully
+T|-27.40088|152.93449|Ferny Grove
+T|-37.94667|145.50559|Fielder
+T|-41.63814|147.96549|Fingal
+T|-42.74354|146.64615|Fitzgerald
+T|-37.81187|144.95602|Flagstaff
+T|-33.86488|151.06995|Flemington
+T|-37.78821|144.93927|Flemington Bridge
+T|-37.78750|144.90721|Flemington Racecourse
+T|-35.01895|138.56930|Flinders
+T|-37.81842|144.96648|Flinders Street
+T|-42.75930|146.60145|Florentine (Railtrack Riders)
+T|-42.76068|146.59652|Florentine Junction
+T|-37.80143|144.90224|Footscray
+T|-33.37902|148.01201|Forbes Railway Station
+T|-30.85038|128.10555|Forrest
+T|-18.58690|143.60270|Forsayth
+T|-34.85270|138.47688|Fort Glanville
+T|-27.45590|153.03394|Fortitude Valley
+T|-38.14267|145.12620|Frankston
+T|-32.05202|115.74522|Fremantle
+T|-16.88100|145.70977|Freshwater
+T|-27.59809|153.07955|Fruitgrove
+T|-30.79934|117.67917|Gabbin
+T|-27.60210|152.91915|Gailes
+T|-37.89664|145.00418|Gardenvale
+T|-37.85280|145.05087|Gardiner
+T|-38.09114|145.67436|Garfield Station
+T|-27.55442|152.27748|Gatton
+T|-34.60865|138.73973|Gawler
+T|-34.59446|138.74820|Gawler Central
+T|-34.59521|138.74095|Gawler Oval
+T|-34.61297|138.73872|Gawler Racecourse
+T|-27.41924|152.98497|Gaythorne
+T|-27.36868|153.04722|Geebung
+T|-38.14427|144.35508|Geelong
+T|-37.95022|145.54844|Gembrook (Heritage)
+T|-37.95210|145.54958|Gembrook (Town)
+T|-34.74472|150.81768|Gerringong
+T|-32.39789|148.83049|Geurie Station
+T|-31.35114|115.90479|Gingin
+T|-37.76001|144.81124|Ginifer
+T|-19.51154|147.10520|Giru
+T|-37.45906|144.59897|Gisborne
+T|-33.26967|138.35788|Gladstone
+T|-23.84642|151.26295|Gladstone
+T|-34.84246|138.49351|Glanville
+T|-26.89921|152.95624|Glass House Mountains
+T|-37.88931|145.04228|Glen Huntly
+T|-29.73975|151.72660|Glen Innes
+T|-37.85918|145.05813|Glen Iris
+T|-37.87947|145.16235|Glen Waverley
+T|-35.01131|138.62320|Glenalta
+T|-37.74720|144.92093|Glenbervie
+T|-33.76903|150.62073|Glenbrook
+T|-31.91513|115.82319|Glendalough
+T|-37.82138|145.03635|Glenferrie
+T|-33.97224|150.89309|Glenfield
+T|-42.83194|147.27624|Glenorchy
+T|-17.84954|141.13045|Glenore
+T|-30.04951|152.98677|Glenreagh
+T|-37.70442|144.91733|Glenroy
+T|-37.63970|142.54572|Glenthompson
+T|-32.00467|151.96697|Gloucester
+T|-18.15303|142.19604|Golden Gate
+T|-30.84822|121.65840|Golden Ridge
+T|-24.60239|151.31541|Golembil
+T|-27.60879|152.90150|Goodna
+T|-34.95162|138.58489|Goodwood
+T|-35.50463|138.78529|Goolwa
+T|-31.29788|116.82700|Goomalling
+T|-28.53865|150.30679|Goondiwindi
+T|-21.80615|147.95792|Goonyella Mine
+T|-36.61479|144.50456|Goornong
+T|-33.75580|151.15433|Gordon
+T|-17.09321|145.78783|Gordonvale
+T|-33.42342|151.34175|Gosford
+T|-32.07128|115.99968|Gosnells
+T|-34.75833|149.71946|Goulburn
+T|-37.70064|144.95884|Gowrie
+T|-27.52064|152.97587|Graceville
+T|-29.70362|152.94168|Grafton Station
+T|-34.90029|138.49082|Grange
+T|-31.98704|115.76474|Grant Street
+T|-28.77509|114.77453|Grants
+T|-33.83309|151.01241|Granville
+T|-31.63869|116.78112|Grass Valley
+T|-33.90620|151.20244|Green Square
+T|-34.79901|138.61654|Greenfields
+T|-31.92093|116.96274|Greenhills
+T|-37.70375|145.10790|Greensborough
+T|-31.81860|115.78324|Greenwood
+T|-32.68667|151.38411|Greta
+T|-34.28677|146.04770|Griffith
+T|-27.40458|152.96252|Grovely
+T|-33.85432|150.98449|Guildford
+T|-31.89895|115.96579|Guildford
+T|-32.35655|149.54185|Gulgong
+T|-30.97920|150.24794|Gunnedah Station
+T|-34.77971|149.26130|Gunning
+T|-34.03489|151.08551|Gymea
+T|-26.15954|152.68305|Gympie North
+T|-31.00486|126.09164|Haig
+T|-42.13533|145.50404|Hall's Creek
+T|-38.01796|145.27032|Hallam
+T|-35.06629|138.50565|Hallett Cove
+T|-35.07943|138.50191|Hallett Cove Beach
+T|-37.74637|142.02849|Hamilton
+T|-32.91864|151.74876|Hamilton
+T|-37.93811|145.00148|Hampton
+T|-34.55353|148.37153|Harden
+T|-33.82334|151.00765|Harris Park
+T|-37.84403|145.07557|Hartwell
+T|-33.07899|115.89771|Harvey
+T|-38.30561|145.18599|Hastings
+T|-33.54708|151.22630|Hawkesbury River
+T|-37.84467|145.00197|Hawksburn
+T|-37.62266|145.09741|Hawkstowe
+T|-37.82165|145.02332|Hawthorn
+T|-17.94616|141.38961|Haydon Mail Stop
+T|-33.72397|150.45449|Hazelbrook
+T|-37.65499|145.51028|Healesville
+T|-34.08796|151.00826|Heathcote
+T|-37.37157|145.02795|Heathcote Junction
+T|-37.81881|145.21451|Heatherdale
+T|-37.82836|145.24458|Heathmont
+T|-37.75711|145.06079|Heidelberg
+T|-34.17694|150.99481|Helensburgh
+T|-27.92543|153.33899|Helensvale
+T|-27.54799|152.12312|Helidon
+T|-27.44730|153.12749|Hemmant
+T|-27.42220|153.06267|Hendra
+T|-35.51768|147.03527|Henty
+T|-17.38552|145.38499|Herberton
+T|-17.37249|145.38642|Herberton Historic Village
+T|-28.81199|153.27300|Heritage Park
+T|-32.82905|151.68424|Hexham
+T|-37.83452|145.02265|Heyington
+T|-31.76421|121.71041|Higginsville Siding
+T|-32.74142|151.56375|High Street
+T|-31.95463|115.99220|High Wycombe
+T|-37.94844|145.04188|Highett
+T|-32.50433|151.64985|Hilldale
+T|-31.52964|118.08089|Hines Hill
+T|-37.87451|145.09024|Holmesglen
+T|-27.70960|153.18760|Holmview
+T|-33.96322|150.95647|Holsworthy
+T|-19.66553|147.41406|Home Hill
+T|-33.86681|151.08646|Homebush
+T|-27.87967|153.33132|Hope Island
+T|-37.88323|144.70109|Hoppers Crossing
+T|-33.70348|151.09839|Hornsby
+T|-36.70758|142.20086|Horsham
+T|-35.01229|138.52371|Hove
+T|-25.31857|152.56464|Howard
+T|-20.84784|144.19708|Hughenden
+T|-37.89400|145.07581|Hughesdale
+T|-37.91084|145.10213|Huntingdale
+T|-36.66637|144.36832|Huntly
+T|-37.63942|145.19215|Hurstbridge
+T|-33.96740|151.10257|Hurstville
+T|-32.45062|118.86346|Hyden
+T|-32.45545|118.85249|Hyden CBH
+T|-42.75598|146.61576|Hydro Siding
+T|-23.48898|144.50740|Ilfracombe
+T|-27.50283|152.97588|Indooroopilly
+T|-18.64655|146.16494|Ingham
+T|-33.99719|150.86490|Ingleburn
+T|-28.42044|151.08121|Inglewood
+T|-17.52615|146.01907|Innisfail
+T|-17.51787|146.02385|Innisfail Mini Rail
+T|-33.93497|151.16587|International Airport
+T|-27.40267|153.10871|International Airport
+T|-38.10540|144.04806|Inverleigh
+T|-41.41710|147.14443|Invermay
+T|-37.52245|143.87316|Invermay Miniature Railway
+T|-27.61288|152.76042|Ipswich
+T|-32.69686|115.95009|Isandra Siding
+T|-34.87558|138.58188|Islington
+T|-34.86948|138.58048|Islington
+T|-37.76888|145.04545|Ivanhoe
+T|-32.91437|144.31172|Ivanhoe Station
+T|-37.69515|144.91583|Jacana
+T|-34.01595|151.06463|Jannali
+T|-30.84227|120.20736|Jaurdi
+T|-31.43852|116.72369|Jennacubbine
+T|-23.60182|146.12580|Jericho
+T|-37.77492|144.95874|Jewell
+T|-21.44158|149.23988|Jilalan
+T|-32.78690|118.00164|Jitarning
+T|-37.81650|144.98384|Jolimont
+T|-31.74512|115.76746|Joondalup
+T|-37.87366|145.11227|Jordanville
+T|-20.65890|141.74665|Julia Creek
+T|-31.71552|116.08122|Jumperkine
+T|-34.87050|147.58374|Junee
+T|-30.36119|117.11681|Kalannie
+T|-30.74623|121.46651|Kalgoorlie
+T|-27.25662|152.99994|Kallangur
+T|-38.12169|145.13542|Kananook
+T|-32.85969|149.97018|Kandos
+T|-28.13576|153.48471|Kangaroo
+T|-36.79502|144.24896|Kangaroo Flat
+T|-34.32171|142.18590|Karadoc
+T|-32.49885|118.70912|Karlgarin
+T|-27.60442|152.70908|Karrabin
+T|-31.96839|115.79624|Karrakatta
+T|-33.69215|117.55709|Katanning
+T|-14.51461|132.25368|Katherine
+T|-14.46581|132.26268|Katherine
+T|-33.71185|150.31123|Katoomba
+T|-37.72956|144.79381|Keilor Plains
+T|-31.63209|117.72981|Kellerberrin
+T|-31.63334|117.71987|Kellerberrin Town
+T|-32.11318|116.01323|Kelmscott
+T|-34.47016|150.81753|Kembla Grange
+T|-31.07681|152.83288|Kempsey
+T|-31.63536|152.70644|Kendall
+T|-37.79394|144.93056|Kensington
+T|-32.03638|115.96972|Kenwick
+T|-37.69584|145.01170|Keon Park
+T|-27.40917|152.95674|Keperra
+T|-35.73292|143.92437|Kerang
+T|-34.67258|150.85453|Kiama
+T|-34.85960|138.57836|Kilburn
+T|-34.88620|138.54967|Kilkenny
+T|-33.76549|151.16169|Killara
+T|-37.29366|144.98343|Kilmore East
+T|-33.87449|151.22223|Kings Cross
+T|-33.94057|151.10063|Kingsgrove
+T|-27.65733|153.11830|Kingston
+T|-32.00448|115.55271|Kingstown
+T|-33.75829|150.72001|Kingswood
+T|-27.22555|153.08149|Kippa-Ring
+T|-34.03495|151.07191|Kirrawee
+T|-30.59392|117.17173|Kirwan
+T|-31.02944|124.19037|Kitchener
+T|-26.67110|152.99291|Koala
+T|-33.96216|151.13257|Kogarah
+T|-32.49503|118.26885|Kondinin
+T|-31.05245|116.77534|Konnongorring
+T|-33.46640|151.31851|Koolewong
+T|-30.82824|119.51423|Koolyanobbing
+T|-30.82148|119.54539|Koolyanobbing East
+T|-31.60498|118.50977|Koonadgin
+T|-30.82472|117.48109|Koorda
+T|-31.05872|151.05617|Kootingal Station
+T|-37.83978|145.03310|Kooyong
+T|-31.69777|118.16325|Korbelka
+T|-32.94139|151.69855|Kotara
+T|-34.65184|138.70664|Kudla
+T|-32.95205|118.53602|Kuender
+T|-33.18941|118.08438|Kukerin
+T|-25.87079|133.41597|Kulgera
+T|-32.67334|118.15372|Kulin
+T|-32.66972|118.15690|Kulin
+T|-30.48332|117.28051|Kulja
+T|-27.60916|152.56184|Kunkala
+T|-31.11338|117.91884|Kununoppin
+T|-27.60482|153.09118|Kuraby
+T|-16.81848|145.63909|Kuranda
+T|-32.23494|115.84266|Kwinana
+T|-37.25829|144.45090|Kyneton
+T|-28.62018|153.00123|Kyogle Station
+T|-37.82067|145.14087|Laburnum
+T|-27.62829|152.39314|Laidley
+T|-33.10050|118.46223|Lake Grace
+T|-31.00340|119.33894|Lake Julia
+T|-32.47368|115.77052|Lakelands
+T|-38.26130|144.61447|Lakers Siding
+T|-37.93040|145.45965|Lakeside
+T|-37.66584|145.01728|Lalor
+T|-26.80790|152.96640|Landsborough
+T|-33.77377|150.64273|Lapstone
+T|-38.02182|144.41467|Lara
+T|-34.82750|138.49110|Largs
+T|-34.81999|138.49479|Largs North
+T|-37.86380|144.77235|Laverton
+T|-27.28166|152.98091|Lawnton
+T|-33.71902|150.42997|Lawson
+T|-38.15202|145.13943|Leawarra
+T|-31.93901|115.84032|Leederville
+T|-34.55456|146.39775|Leeton
+T|-33.88152|150.98523|Leightonfield
+T|-33.95439|150.80806|Leppington
+T|-34.05076|150.83051|Leumeah
+T|-33.71190|150.33050|Leura
+T|-33.89337|151.14763|Lewisham
+T|-33.86381|151.04524|Lidcombe
+T|-37.75716|145.34587|Lilydale
+T|-33.71492|150.50546|Linden
+T|-33.77561|151.16921|Lindfield
+T|-27.44193|153.14495|Lindum
+T|-33.38221|151.36998|Lisarow
+T|-33.48050|150.15750|Lithgow
+T|-37.96257|144.49932|Little River
+T|-33.92454|150.92764|Liverpool
+T|-31.97171|115.79161|Loch Street
+T|-32.72052|151.45022|Lochinvar
+T|-34.04534|151.05135|Loftus
+T|-27.67070|153.13793|Loganlea
+T|-23.44029|144.25220|Longreach
+T|-38.11100|145.76681|Longwarry Station
+T|-35.10917|138.49157|Lonsdale
+T|-30.94513|127.03783|Loongana
+T|-28.13621|153.48876|Lorikeet
+T|-27.47009|153.18853|Lota
+T|-42.19189|145.36535|Lowana
+T|-42.19138|145.43408|Lower Landing
+T|-38.05716|145.24931|Lynbrook
+T|-42.11684|145.52780|Lynchford
+T|-34.99518|138.60587|Lynton
+T|-34.45453|150.87606|Lysaghts
+T|-25.53892|152.70642|Macalister
+T|-34.07199|150.79719|Macarthur
+T|-37.79486|144.93608|Macaulay
+T|-33.89691|151.18589|Macdonaldtown
+T|-23.77781|133.86803|Macdonnell
+T|-37.42365|144.56122|Macedon
+T|-21.17158|149.15995|Mackay
+T|-21.17294|149.14929|Mackay Miniature Railway
+T|-30.70946|152.91318|Macksville
+T|-37.72607|145.06914|Macleod
+T|-33.98479|150.87890|Macquarie Fields
+T|-32.04937|115.98294|Maddington
+T|-32.73803|151.55213|Maitland
+T|-30.67396|134.17660|Malbooma
+T|-36.99252|144.07395|Maldon
+T|-37.18974|144.37533|Malmsbury
+T|-37.86634|145.02946|Malvern
+T|-32.52707|115.74663|Mandurah
+T|-27.24631|153.02769|Mango Hill
+T|-27.23352|153.03590|Mango Hill East
+T|-28.97309|134.37510|Manguri
+T|-34.24133|116.14707|Manjimup
+T|-27.45670|153.18029|Manly
+T|-30.84738|117.09920|Manmanning
+T|-24.53991|151.37662|Many Peaks
+T|-33.74618|150.90019|Marayong
+T|-30.05189|116.07453|Marchagee
+T|-16.99308|145.42120|Mareeba
+T|-35.04232|138.51724|Marino
+T|-35.04615|138.51269|Marino Rocks
+T|-34.99900|138.55283|Marion Railway Station
+T|-22.81383|149.89031|Marlborough
+T|-38.19903|144.35486|Marshall
+T|-32.55872|151.61851|Martins Creek
+T|-34.70952|150.00623|Marulan
+T|-37.05114|143.74256|Maryborough
+T|-25.50803|152.63655|Maryborough West
+T|-33.92319|151.18727|Mascot
+T|-31.99533|117.16378|Mawson
+T|-34.80381|138.61223|Mawson Interchange
+T|-42.75409|146.62482|Maydena
+T|-31.92831|115.89172|Maylands
+T|-31.95178|115.86640|McIver
+T|-37.91140|145.03810|McKinnon
+T|-30.25156|116.66964|McLevie
+T|-33.81591|151.09010|Meadowbank
+T|-31.62377|117.01349|Meckering
+T|-31.63369|116.99043|Meckering Siding
+T|-33.67356|150.28066|Medlow Bath
+T|-37.81003|144.96248|Melbourne Central
+T|-31.92247|115.90032|Meltham
+T|-37.70341|144.57087|Melton
+T|-34.12530|150.74438|Menangle
+T|-34.10365|150.74496|Menangle Park
+T|-32.38938|142.42469|Menindee Station
+T|-37.98355|145.06633|Mentone
+T|-37.92083|145.40509|Menzies Creek
+T|-38.07917|145.26349|Merinda Park
+T|-37.72093|144.96133|Merlynston
+T|-37.60250|145.10090|Mernda
+T|-31.48251|118.27657|Merredin
+T|-37.77763|144.99303|Merri
+T|-33.83681|150.99233|Merrylands
+T|-37.33089|145.01726|Mesa
+T|-32.76493|151.61791|Metford
+T|-37.91491|144.99654|Middle Brighton
+T|-37.80253|144.89141|Middle Footscray
+T|-37.64420|145.09199|Middle Gorge
+T|-35.51198|138.70402|Middleton
+T|-31.89238|116.00373|Midland
+T|-34.79953|138.49911|Midlunga
+T|-34.92512|138.58028|Mile End
+T|-26.66025|150.18490|Miles
+T|-30.49062|116.36073|Miling
+T|-34.95885|138.59056|Millswood
+T|-33.44874|149.18275|Millthorpe
+T|-33.84586|151.21179|Milsons Point
+T|-27.46892|153.00523|Milton
+T|-32.66834|151.58449|Mindaribba
+T|-29.18984|115.44423|Mingenew
+T|-33.69631|117.54886|Miniature Train Station
+T|-34.62589|150.85242|Minnamurra
+T|-32.85586|135.15450|Minnipa
+T|-31.13706|117.18367|Minnivale
+T|-34.02724|150.84258|Minto
+T|-34.03631|151.10270|Miranda
+T|-24.32896|151.56335|Miriam Vale
+T|-37.81809|145.19280|Mitcham
+T|-34.97720|138.60867|Mitcham
+T|-26.48715|147.96854|Mitchell
+T|-35.00205|138.56678|Mitchell Park
+T|-27.41168|152.97600|Mitchelton
+T|-38.17692|146.26057|Moe
+T|-30.45598|117.52963|Mollerin
+T|-26.21094|152.68424|Monkland
+T|-37.71523|145.12112|Montmorency
+T|-42.82610|147.26824|Montrose
+T|-26.76583|152.96316|Mooloolah
+T|-31.59926|116.22291|Moondyne
+T|-37.76593|144.91926|Moonee Ponds
+T|-37.93436|145.03679|Moorabbin
+T|-31.31877|119.07355|Moorine Rock
+T|-38.21400|145.10696|Moorooduc
+T|-37.78470|145.31319|Mooroolbark
+T|-36.39918|145.35786|Mooroopna
+T|-29.21045|116.00997|Morawa
+T|-29.21725|116.00837|Morawa CBH
+T|-27.11037|152.95264|Morayfield
+T|-38.00591|145.08728|Mordialloc
+T|-29.47338|149.84823|Moree
+T|-37.75429|144.96189|Moreland
+T|-33.10909|151.48791|Morisset
+T|-31.89603|115.92002|Morley
+T|-27.47090|153.06947|Morningside
+T|-38.22988|145.05030|Mornington
+T|-38.35384|145.18940|Morradoo
+T|-33.97085|151.08113|Mortdale
+T|-26.41463|147.11328|Morven
+T|-38.23676|146.39723|Morwell
+T|-32.00695|115.75740|Mosman Park
+T|-34.54817|150.37135|Moss Vale
+T|-32.06180|133.54813|Moule
+T|-33.22746|117.92928|Moulyinning
+T|-35.06416|138.86386|Mount Barker
+T|-34.62757|117.66341|Mount Barker
+T|-33.67197|151.11453|Mount Colah
+T|-33.76958|150.82020|Mount Druitt
+T|-20.72653|139.48480|Mount Isa
+T|-33.65317|151.13687|Mount Kuring-gai
+T|-23.80787|150.97860|Mount Larcom
+T|-31.93477|115.88087|Mount Lawley
+T|-18.14675|144.31810|Mount Surprise
+T|-33.58780|150.25680|Mount Victoria
+T|-30.82604|120.29770|Mount Walton
+T|-37.87526|145.12813|Mount Waverley
+T|-41.40551|147.14890|Mowbray Junction
+T|-29.45642|116.30885|Mt Gibson Extension Hill Mine transfer
+T|-37.02236|144.15010|Muckleford
+T|-30.91413|118.20761|Mukinbudin
+T|-33.62664|150.83048|Mulgrave
+T|-28.26856|117.38684|Munbinia
+T|-32.29467|115.98664|Mundijong
+T|-30.90276|127.52944|Mundrabilla
+T|-26.45463|147.53771|Mungallala
+T|-34.66851|138.69648|Munno Para
+T|-31.75073|118.56076|Muntadgin CBH
+T|-27.46474|153.10571|Murarrie
+T|-36.61313|145.24058|Murchison East
+T|-32.06643|115.85047|Murdoch
+T|-27.46341|152.05948|Murphys Creek
+T|-35.11650|139.27498|Murray Bridge
+T|-35.11637|139.27517|Murray Bridge (SA)
+T|-27.25239|153.01154|Murrumba Downs
+T|-37.89025|145.06747|Murrumbeena
+T|-31.76837|150.83941|Murrurundi
+T|-33.87590|151.21000|Museum
+T|-31.84462|115.94581|Mussel Pool
+T|-32.26751|150.89057|Muswellbrook
+T|-28.50007|114.78807|Nabawa
+T|-36.78534|145.16046|Nagambie
+T|-27.25980|117.98862|Nallan
+T|-26.62549|152.95802|Nambour
+T|-30.62912|152.97749|Nambucca Heads
+T|-38.08155|145.57182|Nar Nar Goon
+T|-27.20232|152.95988|Narangba
+T|-33.39472|151.34440|Narara
+T|-32.06564|118.39697|Narembeen
+T|-31.00068|124.83167|Naretha
+T|-30.32521|149.79202|Narrabri
+T|-34.74062|146.55712|Narrandera Station
+T|-38.02760|145.30390|Narre Warren
+T|-33.94758|151.07026|Narwee
+T|-27.99411|153.35003|Nerang
+T|-31.83024|138.11528|Neuroodla
+T|-42.77605|147.05579|New Norfolk
+T|-32.92416|151.75943|Newcastle Interchange
+T|-33.09196|119.02332|Newdegate
+T|-37.78734|144.92900|Newmarket
+T|-27.43290|153.01063|Newmarket
+T|-37.84246|144.88357|Newport
+T|-33.89792|151.17961|Newtown
+T|-36.33199|141.65376|Nhill
+T|-33.38314|151.35450|Niagara Park
+T|-32.02296|115.91522|Niana Station
+T|-42.75481|146.61212|Nicholl's Junction
+T|-32.06159|115.93468|Nicholson Road
+T|-35.14031|138.49228|Noarlunga Centre
+T|-37.93438|145.45524|Nobelius
+T|-37.93179|145.44916|Nobelius Siding
+T|-37.96647|145.17615|Noble Park
+T|-28.67765|115.21641|Nola
+T|-32.92450|117.52422|Nomans Lake
+T|-31.87453|115.91778|Noranda
+T|-27.48166|153.06231|Norman Park
+T|-33.72085|151.09705|Normanhurst
+T|-17.67278|141.07220|Normanton
+T|-32.19260|121.78178|Norseman
+T|-34.90622|138.58164|North Adelaide
+T|-28.62942|153.58470|North Beach
+T|-27.33868|153.06069|North Boondall
+T|-37.90485|145.00261|North Brighton
+T|-28.84826|153.04685|North Casino Miniature Railway Station
+T|-32.51789|115.96868|North Dandalup
+T|-32.02952|115.75185|North Fremantle
+T|-38.12241|144.35236|North Geelong
+T|-34.78625|138.49478|North Haven
+T|-37.80761|144.94235|North Melbourne
+T|-37.81037|144.99252|North Richmond
+T|-38.09832|144.36541|North Shore
+T|-33.85902|151.08813|North Strathfield
+T|-33.84121|151.20746|North Sydney
+T|-37.85701|144.88899|North Williamstown
+T|-34.41212|150.89144|North Wollongong
+T|-27.43728|153.15881|North Wynnum
+T|-31.64913|116.67640|Northam
+T|-37.76987|144.99525|Northcote
+T|-27.39295|153.06922|Northgate
+T|-27.36608|153.08341|Nudgee
+T|-37.82053|145.17465|Nunawading
+T|-27.40084|153.06204|Nundah
+T|-30.98504|126.54477|Nurina
+T|-34.75076|138.64410|Nurlutta
+T|-34.57195|150.82041|Oak Flats
+T|-37.71802|144.92150|Oak Park
+T|-27.43115|151.72019|Oakey
+T|-35.00944|138.54112|Oaklands
+T|-37.90060|145.08859|Oakleigh
+T|-33.98052|151.07903|Oatley
+T|-31.98790|115.91633|Oats Street
+T|-38.06630|145.41171|Officer
+T|-28.85505|153.05041|Old Casino Railway Station
+T|-28.76999|114.61274|Old Geraldton railway station
+T|-26.18748|152.67119|Old Gympie
+T|-31.66098|116.66237|Old Northam Railway Station
+T|-32.40558|137.97095|Old Willows
+T|-32.00734|115.51698|Oliver Hill
+T|-33.84654|151.06951|Olympic Park
+T|-33.30094|149.10128|Orange East Fork
+T|-33.28673|149.10362|Orange Station
+T|-27.79919|153.28243|Ormeau
+T|-27.51459|153.25585|Ormiston
+T|-37.90426|145.03948|Ormond
+T|-34.79306|138.49918|Osborne
+T|-34.21069|151.00582|Otford
+T|-33.35953|151.36994|Ourimbah
+T|-34.77820|138.48423|Outer Harbor
+T|-34.89613|138.58434|Ovingham
+T|-27.40451|152.96916|Oxford Park
+T|-27.55211|152.97385|Oxley
+T|-33.95190|151.03233|Padstow
+T|-38.08063|145.48632|Pakenham
+T|-26.68869|152.96076|Palmwoods
+T|-33.95434|150.99784|Panania
+T|-34.78298|138.63075|Parafield
+T|-34.79128|138.62335|Parafield Gardens
+T|-37.99248|145.07559|Parkdale
+T|-33.14222|148.17331|Parkes Station
+T|-30.72948|121.50313|Parkeston
+T|-37.79968|144.95886|Parkville
+T|-37.81092|144.97291|Parliament
+T|-33.81751|151.00540|Parramatta
+T|-37.73086|144.92819|Pascoe Vale
+T|-32.60238|151.61472|Paterson
+T|-37.92488|145.03563|Patterson
+T|-32.82935|151.47477|Pelaw Main
+T|-34.44324|116.03300|Pemberton
+T|-33.80150|150.95645|Pendle Hill
+T|-41.10824|146.06901|Penguin Miniature Railway Station
+T|-33.73792|151.07256|Pennant Hills
+T|-33.74999|150.69609|Penrith
+T|-34.67243|150.21191|Penrose
+T|-33.96616|151.08918|Penshurst
+T|-20.52567|145.39795|Pentland
+T|-29.44156|116.28597|Perenjori
+T|-36.40519|148.41179|Perisher Valley
+T|-31.95143|115.86042|Perth
+T|-31.95028|115.89290|Perth Stadium
+T|-32.97420|138.83637|Peterborough
+T|-34.83473|138.49195|Peterhead
+T|-33.89391|151.15537|Petersham
+T|-27.26843|152.98209|Petrie
+T|-30.83917|116.38740|Piawaning
+T|-34.17901|150.61260|Picton
+T|-33.34654|115.71059|Picton Junction
+T|-27.81611|153.29643|Pimpama
+T|-35.00073|138.62431|Pinera
+T|-32.75211|118.62501|Pingaring
+T|-32.53174|117.08425|Pingelly
+T|-33.53504|118.51095|Pingrup
+T|-33.53502|118.50982|Pingrup (Historical)
+T|-32.62840|115.87975|Pinjarra
+T|-35.25506|143.36501|Pira
+T|-30.38961|116.66917|Pithara
+T|-33.44619|151.32844|Point Clare
+T|-26.36627|152.85714|Pomona
+T|-34.84917|138.50781|Port Adelaide
+T|-32.49356|137.76729|Port Augusta
+T|-34.84497|138.50890|Port Dock
+T|-35.53272|138.68051|Port Elliot Station
+T|-34.47720|150.90256|Port Kembla
+T|-34.47277|150.88834|Port Kembla North
+T|-37.84983|144.98979|Prahran
+T|-33.38798|116.27364|Premier Mine
+T|-37.73877|145.00054|Preston
+T|-41.77433|145.52891|Primrose Junction
+T|-20.40292|148.57867|Proserpine
+T|-33.74470|151.14197|Pymble
+T|-36.05318|144.11332|Pyramid
+T|-33.72773|150.88648|Quakers Hill
+T|-35.34293|149.22762|Queanbeyan
+T|-32.00658|115.93788|Queens Park
+T|-38.26433|144.66163|Queenscliff
+T|-31.50527|150.68104|Quirindi
+T|-32.07538|115.89658|Ranford Road
+T|-17.60933|145.48271|Ravenshoe
+T|-31.00870|125.33235|Rawlinna
+T|-36.53419|144.20139|Raywood
+T|-27.59945|152.87249|Redbank
+T|-31.93359|115.94971|Redcliffe
+T|-33.89229|151.19833|Redfern
+T|-42.16020|145.32764|Regatta Point
+T|-37.72839|145.00278|Regent
+T|-33.88284|151.02428|Regents Park
+T|-30.81985|128.42822|Reid
+T|-29.93240|115.28462|Renison Goldfields Corporation
+T|-37.71684|145.00699|Reservoir
+T|-33.95253|151.01491|Revesby
+T|-33.83040|151.08706|Rhodes
+T|-27.59605|152.94690|Richlands
+T|-37.82393|144.98926|Richmond
+T|-33.59884|150.75265|Richmond
+T|-20.73561|143.14163|Richmond
+T|-37.46504|144.67985|Riddells Creek
+T|-37.46494|144.68000|Riddells Creek
+T|-42.15300|145.49566|Rinadeena
+T|-37.81583|145.22903|Ringwood
+T|-37.81171|145.25010|Ringwood East
+T|-37.87589|144.99521|Ripponlea
+T|-27.60665|152.75866|RiverLink Shopping Centre
+T|-37.83150|145.06947|Riversdale
+T|-33.67912|150.86029|Riverstone
+T|-27.59498|152.85054|Riverview
+T|-33.95151|151.05212|Riverwood
+T|-34.59088|150.59376|Robertson
+T|-28.07122|153.37797|Robina
+T|-36.36229|144.69846|Rochester
+T|-37.72910|144.65058|Rockbank
+T|-33.95187|151.13685|Rockdale
+T|-23.39000|150.51219|Rockhampton
+T|-23.39030|150.51199|Rockhampton Railway Station
+T|-32.29015|115.76128|Rockingham
+T|-27.54471|153.01411|Rocklea
+T|-26.57616|148.79227|Roma
+T|-27.46498|153.01835|Roma Street
+T|-33.77152|150.84501|Rooty Hill
+T|-37.74288|145.06618|Rosanna
+T|-38.15664|146.78704|Rosedale
+T|-42.82028|147.26205|Rosetta
+T|-33.78437|151.17755|Roseville
+T|-27.64302|152.59293|Rosewood
+T|-27.22409|153.04797|Rothwell
+T|-37.63819|144.93538|Roxburgh Park
+T|-34.06272|151.05675|Royal National Park
+T|-37.78118|144.95232|Royal Park
+T|-27.59258|153.06880|Runcorn
+T|-37.78302|144.99213|Rushall
+T|-36.58728|145.02101|Rushworth
+T|-37.70790|145.00945|Ruthven
+T|-33.48382|150.03178|Rydal Station
+T|-38.10323|147.05440|Sale
+T|-27.55386|153.02277|Salisbury
+T|-34.76316|138.64243|Salisbury Interchange
+T|-32.47188|137.93635|Saltia Siding
+T|-32.87214|151.70273|Sandgate
+T|-27.32228|153.06951|Sandgate Train Station
+T|-37.95651|145.16281|Sandown Park
+T|-37.95026|145.00439|Sandringham
+T|-21.42599|149.21708|Sarina
+T|-30.35949|153.09753|Sawtell
+T|-34.26488|150.96578|Scarborough
+T|-33.72898|150.30138|Scenic Railway Top Station
+T|-33.73112|150.30181|Scenic Railway Valley Station
+T|-33.70433|150.87377|Schofields
+T|-32.04688|150.86700|Scone
+T|-37.90476|145.21362|Scoresby
+T|-35.03253|138.52143|Seacliff Railway Station
+T|-38.10401|145.12823|Seaford
+T|-35.18924|138.48350|Seaford
+T|-35.17870|138.48766|Seaford Meadows
+T|-32.08475|116.01113|Seaforth
+T|-37.86787|144.84107|Seaholme
+T|-34.89037|138.51504|Seaton Park
+T|-37.80904|144.89564|Seddon
+T|-33.88526|151.01148|Sefton
+T|-37.91549|145.37137|Selby
+T|-34.83831|138.47940|Semaphore
+T|-32.36374|115.97618|Serpentine
+T|-31.99962|115.54152|Settlement
+T|-33.77437|150.93626|Seven Hills
+T|-37.02449|145.13851|Seymour
+T|-41.38455|146.33199|Sheffield
+T|-34.59117|150.84477|Shellharbour Junction
+T|-31.95964|115.80546|Shenton Park
+T|-36.38385|145.40608|Shepparton
+T|-32.13787|116.01043|Sherwood
+T|-27.53112|152.97948|Sherwood
+T|-38.38638|142.53886|Sherwood Park Railway Station
+T|-27.32697|153.08012|Shorncliffe
+T|-37.78341|144.91493|Showgrounds
+T|-31.97706|115.78688|Showgrounds
+T|-30.51395|116.03019|Simcoa Siding
+T|-32.57195|151.16561|Singleton
+T|-37.92227|145.40733|Site of Marshall Halt
+T|-34.68208|138.68671|Smithfield
+T|-36.21665|149.15311|Snowy Junction
+T|-38.22542|145.17633|Somerville
+T|-27.48193|153.02300|South Bank
+T|-27.47510|153.01846|South Brisbane
+T|-38.15868|144.35939|South Geelong
+T|-37.79951|144.92484|South Kensington
+T|-32.19742|118.33453|South Kumminin
+T|-37.64922|145.06727|South Morang
+T|-37.83810|144.99237|South Yarra
+T|-37.81838|144.95237|Southern Cross
+T|-31.21495|119.31057|Southern Cross
+T|-31.21834|119.30809|Southern Cross (Grain only)
+T|-37.95884|145.04913|Southland
+T|-37.83073|144.88591|Spotswood
+T|-27.46527|151.97597|Spring Bluff
+T|-27.66018|152.92183|Springfield
+T|-27.67428|152.90275|Springfield Central
+T|-36.18633|146.47048|Springhurst
+T|-37.94959|145.15378|Springvale
+T|-33.69875|150.56397|Springwood
+T|-37.74453|144.79964|St Albans
+T|-34.87076|138.52978|St Clair
+T|-33.87090|151.21182|St James
+T|-22.35097|149.52288|St Lawrence
+T|-41.46257|147.18646|St Leonards
+T|-33.82244|151.19419|St Leonards
+T|-33.76209|150.77516|St Marys
+T|-33.90729|151.18067|St Peters
+T|-33.89451|151.16391|Stanmore
+T|-28.65753|151.93752|Stanthorpe
+T|-34.22638|150.98111|Stanwell Park
+T|-37.80836|144.96297|State Library
+T|-37.05932|142.77342|Stawell
+T|-30.91072|120.79900|Stewart
+T|-31.89456|115.80509|Stirling
+T|-34.50071|147.87919|Stockinbingal
+T|-38.37408|145.22169|Stony Point
+T|-37.96711|147.08157|Stratford
+T|-35.26124|138.89204|Strathalbyn
+T|-33.87170|151.09423|Strathfield
+T|-37.74395|144.92693|Strathmore
+T|-27.31138|152.98955|Strathpine
+T|-32.80148|149.07852|Stuart Town Station
+T|-31.94470|115.82400|Subiaco
+T|-31.90019|115.95587|Success Hill
+T|-38.25303|144.59977|Suma Park
+T|-33.89046|151.13872|Summer Hill
+T|-34.51431|150.70635|Summit Tank
+T|-37.57914|144.72798|Sunbury Station
+T|-27.58083|153.05411|Sunnybank
+T|-37.78858|144.83278|Sunshine
+T|-27.37569|153.05617|Sunshine
+T|-26.62524|152.95511|Sunshine Railway Modellers Society.
+T|-34.03163|151.05727|Sutherland
+T|-38.27063|144.63827|Swan Bay
+T|-35.34159|143.56249|Swan Hill
+T|-27.65377|152.81470|Swanbank
+T|-31.98275|115.77062|Swanbourne
+T|-33.91474|151.16611|Sydenham
+T|-37.87628|145.14979|Syndal
+T|-34.22352|150.59010|Tahmoor
+T|-35.25493|139.45603|Tailem Bend
+T|-37.17095|143.70638|Talbot
+T|-37.09237|145.10282|Tallarook
+T|-34.71834|150.08644|Tallong
+T|-34.62853|138.72591|Tambelin
+T|-31.64204|117.48720|Tammin
+T|-31.08730|150.93080|Tamworth
+T|-38.22373|145.06690|Tanti
+T|-34.80561|138.49905|Taperoo
+T|-35.07006|149.65141|Tarago
+T|-33.52424|149.90758|Tarana
+T|-31.90628|152.45713|Taree
+T|-33.10925|118.23595|Tarin Rock
+T|-27.49314|152.98167|Taringa
+T|-37.83215|144.69462|Tarneit
+T|-37.65727|145.42652|Tarrawarra
+T|-32.80914|151.66976|Tarro
+T|-33.45091|151.31862|Tascott
+T|-42.83113|147.27469|Tasmanian Transport Museum
+T|-37.90806|145.34294|Tecoma
+T|-42.18952|145.42831|Teepookana
+T|-32.72340|151.53982|Telarah
+T|-33.92454|151.15643|Tempe
+T|-28.62215|115.36723|Tenindewa
+T|-28.61768|115.37571|Tenindewa
+T|-19.69326|134.17550|Tennant Creek
+T|-29.05554|152.00534|Tenterfield
+T|-32.96250|151.60354|Teralba
+T|-38.23626|142.91140|Terang
+T|-28.85685|151.17222|Texas
+T|-27.62683|152.62981|Thagoona
+T|-35.27170|147.11848|The Rock
+T|-28.57491|151.94961|The Summit
+T|-27.59866|152.75976|The Workshops Rail Museum
+T|-32.14717|133.65325|Thevenard
+T|-34.20453|150.57181|Thirlmere
+T|-34.31817|150.91891|Thirroul
+T|-27.61478|152.74565|Thomas Street
+T|-37.68050|145.01429|Thomastown
+T|-37.95982|146.41953|Thomson
+T|-37.75499|144.99859|Thornbury
+T|-27.48611|153.19273|Thorneside
+T|-33.73182|151.07839|Thornleigh
+T|-32.04734|115.95238|Thornlie
+T|-32.78352|151.63975|Thornton
+T|-29.53412|115.76340|Three Springs
+T|-34.32625|142.17362|Thurla
+T|-25.54483|152.71194|Tiger Street
+T|-32.97641|117.77452|Tincurrin
+T|-35.80756|145.55756|Tocumwal
+T|-35.00920|138.56729|Tonsley
+T|-31.55158|116.46516|Toodyay
+T|-27.40792|153.05867|Toombul
+T|-33.78747|150.95146|Toongabbie
+T|-37.85066|145.01368|Toorak
+T|-37.84934|145.04171|Tooronga
+T|-27.48534|152.99315|Toowong
+T|-27.55705|151.95185|Toowoomba
+T|-33.47117|150.18971|Top Points
+T|-20.77041|145.01949|Torrens Creek
+T|-34.98392|138.61108|Torrens Park
+T|-37.79927|144.86321|Tottenham
+T|-37.81648|144.96711|Town Hall
+T|-33.87357|151.20685|Town Hall
+T|-19.26937|146.80803|Townsville
+T|-34.38405|150.90153|Towradgi
+T|-38.20741|146.15494|Trafalgar
+T|-38.19837|146.53870|Traralgon
+T|-26.31975|152.78289|Traveston
+T|-31.11376|117.79586|Trayning
+T|-27.63179|153.09787|Trinder Park
+T|-33.30780|151.42019|Tuggerah
+T|-41.72976|145.62392|Tullah - Wee Georgie Wood
+T|-17.93234|145.93281|Tully
+T|-17.56413|145.45263|Tumoulin
+T|-41.27944|147.12728|Turners Marsh
+T|-33.73231|151.12838|Turramurra
+T|-33.92992|151.13996|Turrella
+T|-38.25979|145.18623|Tyabb
+T|-38.08489|145.62837|Tynong
+T|-34.45468|150.84607|Unanderra
+T|-37.82238|145.10142|Union
+T|-34.96656|138.59785|Unley Park
+T|-37.66599|144.94686|Upfield
+T|-37.89261|145.30771|Upper Ferntree Gully
+T|-37.90361|145.33135|Upwey
+T|-30.64400|151.50499|Uralla Station
+T|-30.49903|153.01865|Urunga
+T|-33.70449|150.58387|Valley Heights
+T|-28.09713|153.39923|Varsity Lakes
+T|-41.40957|147.14887|Vermont
+T|-35.55452|138.62410|Victor Harbour
+T|-37.79912|144.99443|Victoria Park
+T|-31.97161|115.90222|Victoria Park
+T|-32.75090|151.59374|Victoria Street
+T|-32.01199|115.75497|Victoria Street
+T|-31.83453|115.94420|Village Junction
+T|-33.88088|150.97616|Villawood
+T|-33.65040|150.85112|Vineyard
+T|-36.63833|145.71799|Violet Town
+T|-27.38217|153.06246|Virginia
+T|-27.58917|152.92435|Wacol
+T|-35.12036|147.36852|Wagga Wagga
+T|-33.30998|117.34586|Wagin
+T|-33.71754|151.11700|Wahroonga
+T|-33.70999|151.10429|Waitara
+T|-30.94138|151.40231|Walcha Road Statiun
+T|-37.95043|146.44957|Walhalla
+T|-28.94851|114.79447|Walkaway
+T|-28.93923|114.80173|Walkaway
+T|-37.41680|145.00526|Wallan
+T|-32.49615|151.69563|Wallarobba
+T|-30.87476|120.56845|Wallaroo
+T|-34.52097|148.15930|Wallendbeen
+T|-33.40748|150.06823|Wallerawang
+T|-27.60735|152.66798|Walloon
+T|-37.35458|145.02650|Wandong
+T|-37.33134|145.01594|Wandong
+T|-36.35520|146.31692|Wangaratta
+T|-32.88704|151.70987|Warabrook
+T|-32.90237|151.73121|Waratah
+T|-32.32653|115.76792|Warnbro
+T|-33.24750|151.44863|Warnervale
+T|-32.84539|115.92035|Waroona
+T|-35.01136|138.53362|Warradale
+T|-38.16479|145.93225|Warragul
+T|-31.16045|150.86207|Warral
+T|-33.72420|151.12171|Warrawee
+T|-41.13686|147.73608|Warrentinna
+T|-33.72129|150.60235|Warrimoo
+T|-38.38513|142.47539|Warrnambool
+T|-38.38504|142.47547|Warrnambool Railway Station
+T|-31.84483|115.79640|Warwick
+T|-28.21789|152.04083|Warwick
+T|-33.91333|150.93510|Warwick Farm
+T|-34.13445|150.99446|Waterfall
+T|-37.70078|144.77381|Watergardens
+T|-30.29841|116.05790|Watheroo
+T|-37.71095|145.08378|Watsonia
+T|-37.66405|145.18173|Wattle Glen
+T|-31.45600|152.73658|Wauchope
+T|-38.21582|144.30612|Waurn Ponds
+T|-33.83809|151.19765|Waverton
+T|-30.82540|117.99149|Welbungin
+T|-32.26400|115.81710|Wellard
+T|-27.49438|153.24174|Wellington Point
+T|-32.55396|148.94673|Wellington Station
+T|-37.53978|143.82000|Wendouree
+T|-33.70988|150.37641|Wentworth Falls
+T|-33.80718|150.97266|Wentworthville
+T|-37.89950|144.66090|Werribee
+T|-33.75922|150.75794|Werrington
+T|-31.34952|150.64638|Werris Creek
+T|-34.89177|138.55698|West Croydon
+T|-37.80174|144.88410|West Footscray
+T|-30.77445|121.42852|West Kalgoorlie
+T|-31.94268|115.83320|West Leederville
+T|-31.48495|118.24984|West Merredin
+T|-37.81469|144.99148|West Richmond
+T|-33.80704|151.09029|West Ryde
+T|-31.09348|150.91262|West Tamworth
+T|-37.82729|144.66279|West Tarneit
+T|-37.93777|145.13798|Westall
+T|-41.55510|147.21716|Western Junction
+T|-37.78061|144.99927|Westgarth
+T|-33.80850|150.98802|Westmead
+T|-37.86515|144.81351|Westona
+T|-31.83590|115.96454|Whiteman Park
+T|-31.79938|115.78234|Whitfords
+T|-32.78093|117.50006|Wickepin
+T|-32.78263|117.49473|Wickepin CBH
+T|-31.01198|125.70269|Wilban
+T|-28.13736|153.48543|Wild
+T|-27.86186|153.31819|Wildlife
+T|-35.13085|147.36722|Willans Hill
+T|-37.87004|144.74696|Williams Landing
+T|-37.86765|144.90536|Williamstown
+T|-37.86395|144.89446|Williamstown Beach
+T|-37.83540|145.07011|Willison
+T|-31.65016|150.72610|Willow Tree
+T|-27.52884|151.94441|Willowburn
+T|-32.02049|115.91928|Wilson Park
+T|-27.43621|153.01919|Wilston
+T|-38.24019|143.98376|Winchelsea
+T|-37.85581|144.99166|Windsor
+T|-33.61369|150.81105|Windsor
+T|-27.43534|153.02907|Windsor
+T|-34.69223|150.15825|Wingello
+T|-31.86803|152.36719|Wingham
+T|-22.38385|143.03721|Winton
+T|-18.61652|143.76703|Wirra Wirra
+T|-32.46293|151.74250|Wirragulla
+T|-36.10575|146.87158|Wodonga
+T|-31.90139|118.52677|Wogarl
+T|-33.92852|151.15399|Wolli Creek
+T|-34.42703|150.88819|Wollongong
+T|-33.83171|151.19173|Wollstonecraft
+T|-34.27575|150.95336|Wombarra
+T|-34.70432|138.67001|Womma
+T|-33.49215|151.25701|Wondabyne
+T|-30.89313|116.71630|Wongan Hills
+T|-33.56309|117.43133|Woodanilling
+T|-31.89152|115.99287|Woodbridge
+T|-37.35930|144.52609|Woodend
+T|-33.73547|150.48219|Woodford
+T|-26.95724|152.78167|Woodford
+T|-34.98290|138.56720|Woodlands Park
+T|-27.63814|153.10380|Woodridge
+T|-34.87710|138.53773|Woodville
+T|-34.88143|138.54350|Woodville Park
+T|-34.04766|151.14409|Woolooware
+T|-27.41988|153.04348|Wooloowin
+T|-32.45408|137.97530|Woolshed Flat
+T|-26.66053|152.96283|Woombye
+T|-34.34959|150.91521|Woonona
+T|-33.29220|116.01334|Worsley Siding
+T|-33.48588|151.32314|Woy Woy
+T|-37.92917|145.47082|Wright
+T|-27.61361|152.73275|Wulkuraka
+T|-31.18094|117.38072|Wyalkatchem
+T|-33.18035|151.48711|Wyee
+T|-37.87224|144.60842|Wyndham Vale
+T|-27.43976|153.16612|Wynnum
+T|-27.44519|153.17013|Wynnum Central
+T|-33.86599|151.20581|Wynyard
+T|-33.28548|151.42523|Wyong
+T|-33.90675|151.02431|Yagoona
+T|-31.53187|115.64383|Yanchep
+T|-26.56090|152.95816|Yandina
+T|-32.94797|135.27329|Yaninee
+T|-32.95554|115.89955|Yarloop
+T|-38.20329|146.06343|Yarragon
+T|-37.97766|145.19097|Yarraman
+T|-37.81574|144.89001|Yarraville
+T|-34.80897|148.91527|Yass Junction
+T|-32.59187|117.62461|Yealering
+T|-27.52478|153.01412|Yeerongpilly
+T|-33.86463|150.97115|Yennora
+T|-30.92232|116.38943|Yerecoin
+T|-27.51781|153.01689|Yeronga
+T|-34.37182|150.54345|Yerrinbool
+T|-32.90178|117.37464|Yilliminning
+T|-31.90262|116.77374|York CBH
+T|-32.74018|117.16322|Yornaning
+T|-34.31126|148.29694|Young
+T|-21.51785|149.23288|Yukan
+T|-26.61316|149.38483|Yuleba
+T|-31.03160|123.56966|Zanthus
+T|-33.47178|150.20202|Zig Zag
+T|-27.35857|153.03668|Zillmere

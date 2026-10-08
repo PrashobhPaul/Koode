@@ -78,7 +78,9 @@ class CommuteStagesTest {
         // The four minutes on the platform and at the kerb are the change's.
         assertEquals(min(36), change.atMs)
         assertEquals(min(40), change.endMs)
-        assertTrue(s.headline.contains("by metro"))
+        // Ridden two ways: told as a journey, the ways named in the story.
+        assertFalse(s.headline, s.headline.contains(" by "))
+        assertTrue(s.paragraphs.any { it.contains("metro") && it.contains("cab") })
     }
 
     @Test fun a_walk_of_a_kilometre_or_more_is_a_way_of_travelling() {

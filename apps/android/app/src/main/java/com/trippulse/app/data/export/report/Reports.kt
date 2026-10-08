@@ -49,6 +49,38 @@ object Reports {
         val mapBackdrop: RouteMap.Backdrop? = null
     )
 
+    /**
+     * The route as drawn: the recorded path, with each metro ride following
+     * its line's stations rather than the chords between a train's few fixes
+     * (see TransitNetwork.followLine). Times are spread along the stations so
+     * a ride is not drawn as a stretch out of contact.
+     */
+    internal fun routePath(i: JourneyStory.Input): List<RouteMap.Point> {
+        val pts = i.samples.map { RouteMap.Point(it.tMs, it.lat, it.lng) }
+        val net = com.trippulse.app.data.TransitData.current
+        if (net.isEmpty || pts.size < 2) return pts
+        val stages = com.trippulse.app.domain.MapStages.of(
+            listOf(i.startedAtMs to i.mode) + i.events.filter { it.type == com.trippulse.app.domain.EventTypes.LEG_STARTED }
+                .mapNotNull { e -> (e.payload["mode"] as? String)?.let { e.eventTimeMs to it } }
+        )
+        val runs = com.trippulse.app.domain.MapStages.runs(pts.map { it.tMs }, stages, i.mode)
+        if (runs.none { com.trippulse.app.domain.TransitNetwork.kindOf(it.mode) != null }) return pts
+        val out = ArrayList<RouteMap.Point>()
+        for (r in runs) {
+            val seg = pts.subList(r.from, r.to + 1)
+            val kind = com.trippulse.app.domain.TransitNetwork.kindOf(r.mode)
+            val drawn = if (kind == null) seg else {
+                val geo = seg.map { com.trippulse.app.domain.GeoPoint(it.lat, it.lng) }
+                val line = net.followLine(geo, kind)
+                if (line === geo) seg else line.mapIndexed { k, g ->
+                    RouteMap.Point(seg.first().tMs + (seg.last().tMs - seg.first().tMs) * k / (line.size - 1), g.lat, g.lng)
+                }
+            }
+            out += if (out.isEmpty()) drawn else drawn.drop(1)
+        }
+        return out
+    }
+
     fun journey(j: JourneyInput): Report {
         val s = j.story; val i = j.input; val z = i.zone; val m = j.measures
         val completed = i.endedAtMs != null
@@ -102,7 +134,7 @@ object Reports {
             blocks += Heading("The route")
             blocks += RouteMap(
                 backdrop = j.mapBackdrop,
-                path = i.samples.map { RouteMap.Point(it.tMs, it.lat, it.lng) },
+                path = routePath(i),
                 markers = s.stops.filter { it.lat != null && it.lng != null && !it.loggedLater && it.items.isNotEmpty() }
                     .map { RouteMap.Marker(it.lat!!, it.lng!!, stopIcon(it)) } +
                     s.halts.filter { it.lat != null && it.lng != null }.map { RouteMap.Marker(it.lat!!, it.lng!!, Icon(Pictures.STAY)) },
@@ -111,7 +143,12 @@ object Reports {
                 endIcon = if (!completed && s.halts.lastOrNull()?.endMs == null && s.halts.isNotEmpty()) Icon(Pictures.STAY) else null,
                 endIsCurrent = !completed
             )
-            blocks += Footnote("The line is the path the phone recorded. A dashed line is a stretch with the phone out of contact.")
+            blocks += Footnote(
+                "The line is the path the phone recorded. A dashed line is a stretch with the phone out of contact." +
+                    if (i.events.any { it.type == com.trippulse.app.domain.EventTypes.LEG_STARTED && com.trippulse.app.domain.TransitNetwork.kindOf(it.payload["mode"] as? String) != null } ||
+                        com.trippulse.app.domain.TransitNetwork.kindOf(i.mode) != null)
+                        " A metro or ferry ride follows its line, stop to stop, and is measured along it." else ""
+            )
         }
 
         blocks += Space(10f)
@@ -556,7 +593,7 @@ object Reports {
         if (i.samples.size >= 2) {
             blocks += RouteMap(
                 backdrop = l.mapBackdrop,
-                path = i.samples.map { RouteMap.Point(it.tMs, it.lat, it.lng) },
+                path = routePath(i),
                 markers = l.story.stops.filter { it.lat != null && !it.loggedLater && it.items.isNotEmpty() }.map { RouteMap.Marker(it.lat!!, it.lng!!, stopIcon(it)) },
                 startLabel = JourneyStory.short(i.origin),
                 endLabel = place?.let { "Last known · ${JourneyStory.short(it)}" },
