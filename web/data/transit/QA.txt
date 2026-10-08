@@ -1,5 +1,6 @@
 # Transit for Koode, QA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|25.25766|51.44414|Al Aziziyah|Doha Metro|M
 S|25.29126|51.52008|Al Bidda|Doha Metro|M
 S|25.27480|51.53968|Al Doha Al Jadeda|Doha Metro|M

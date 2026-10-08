@@ -1,5 +1,6 @@
 # Transit for Koode, AR. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-32.90450|-68.85295|25 de Mayo|MendoTRAN|M
 S|-32.94167|-68.81518|9 de Julio|MendoTRAN|M
 S|-32.95492|-68.79527|Alta Italia|MendoTRAN|M
@@ -16,12 +17,12 @@ S|-32.94737|-68.80819|Luzuriaga|MendoTRAN|M
 S|-32.84740|-68.83881|Marcos Burgos|MendoTRAN|M
 S|-32.95711|-68.78953|Maza|MendoTRAN|M
 S|-32.88282|-68.84819|Mendoza|MendoTRAN|M
-S|-32.93827|-68.81933|Parque TIC|MendoTRAN|M
+S|-32.93825|-68.81934|Parque TIC|MendoTRAN|M
 S|-32.85505|-68.84055|Patricias Mendocinas|MendoTRAN|M
 S|-32.89680|-68.85185|Pedro Molina|MendoTRAN|M
 S|-32.90864|-68.85196|Pellegrini|MendoTRAN|M
-S|-32.95253|-68.80121|Piedra Buena|MendoTRAN|M
-S|-32.92691|-68.83323|Progreso|MendoTRAN|M
+S|-32.95251|-68.80122|Piedra Buena|MendoTRAN|M
+S|-32.92689|-68.83322|Progreso|MendoTRAN|M
 S|-32.86642|-68.84380|Rubilar|MendoTRAN|M
 S|-32.91599|-68.84650|San Martín|MendoTRAN|M
 S|-32.87936|-68.84723|Suipacha|MendoTRAN|M
@@ -141,9 +142,53 @@ S|-34.58408|-58.46637|Tronador - Villa Ortúzar|Subte de Buenos Aires|M
 S|-34.60404|-58.38708|Uruguay|Subte de Buenos Aires|M
 S|-34.63982|-58.45801|Varela|Subte de Buenos Aires|M
 S|-34.61521|-58.40474|Venezuela|Subte de Buenos Aires|M
+S|-22.73367|-64.35088|Puerto Chalanas|Aguas Blancas-Bermejo|W
+S|-27.57188|-54.67860|Alba Posse|Alba Posse - Porto Mauá|W
+S|-27.57289|-54.67345|Porto Mauá|Alba Posse - Porto Mauá|W
+S|-29.11351|-56.55515|Alvear|Alvear - Itaqui|W
+S|-29.11758|-56.55400|Itaqui|Alvear - Itaqui|W
+S|-25.59352|-54.58034|Balsa InterCom|Argentina: Balsa Iguazú S.R.L.|W
+S|-25.59184|-54.59604|Balsa InterCom|Argentina: Balsa Iguazú S.R.L.|W
+S|-27.10091|-55.51785|Bella Vista(PY) - Corpus(AR)|Balsa (Ferry): Corpus Christi (Arg) - Bella Vista (Py)|W
+S|-27.10632|-55.52243|Corpus(AR) - Bella Vista(PY)|Balsa (Ferry): Corpus Christi (Arg) - Bella Vista (Py)|W
+S|-26.41082|-54.69535|Puerto Eldorado (Arg)|Balsa (Ferry): Mayor Otaño (Py) - Eldorado (Arg)|W
+S|-26.40364|-54.69890|Puerto Mayor Otaño (Py)|Balsa (Ferry): Mayor Otaño (Py) - Eldorado (Arg)|W
 S|-34.90272|-56.21372|Buquebus|Buquebus|W
 S|-34.59728|-58.36760|Buquebus|Buquebus|W
+S|-34.62538|-58.36057|Colonia Express|Buquebus|W
 S|-34.47404|-57.84416|Terminal Fluviomarítima Colonia|Buquebus|W
+S|-27.46909|-54.34772|Porto San Antonio|Colonia Alicia - San Antonio|W
+S|-27.46506|-54.34509|Puerto Colonia Alicia|Colonia Alicia - San Antonio|W
+S|-27.49881|-54.51980|Colonia Aurora|Colonia Aurora - Pratos|W
+S|-27.49778|-54.51556|Pratos|Colonia Aurora - Pratos|W
+S|-25.36133|-57.64703|Puerto Itá Enramada (Py)|Copanatra S.R.L.|W
+S|-25.37405|-57.64965|Puerto Pilcomayo (Arg)|Copanatra S.R.L.|W
+S|-48.51194|-72.60006|Bahia Bahamondez|Cruce Lago O'Higgins|W
+S|-48.87531|-72.73795|Sofanor Mancilla|Cruce Lago O'Higgins|W
+S|-27.30006|-54.19028|Porto Soberbo|El Soberbio - Porto Soberbo|W
+S|-27.30041|-54.19293|Puerto El Soberbio|El Soberbio - Porto Soberbo|W
+S|-34.42121|-58.58010|Estación Fluvial Domingo Faustino Sarmiento|Estación Fluvial Sarmiento - Museo Sarmiento|W
+S|-34.38540|-58.56146|Tres Bocas|Estación Fluvial Sarmiento - Museo Sarmiento|W
+S|-26.18263|-58.13796|Pontón de Alberdi|Formosa (ARG) - Alberdi (PY)|W
+S|-26.18135|-58.16207|Puerto de Formosa|Formosa (ARG) - Alberdi (PY)|W
+S|-34.00381|-58.28818|Estación Fluvial Carmelo|Líneas Delta Argentino S.R.L.|W
+S|-34.42121|-58.58097|Estación Fluvial Internacional Tigre|Líneas Delta Argentino S.R.L.|W
+S|-27.73063|-54.91300|Panambí|Panambí - Porto Vera Cruz|W
+S|-27.73338|-54.90277|Porto Vera Cruz|Panambí - Porto Vera Cruz|W
+S|-27.89785|-55.13858|Porto Xavier|Porto Xavier - San Javier|W
+S|-27.89374|-55.13546|San Javier|Porto Xavier - San Javier|W
+S|-26.79104|-55.02368|Puerto Rico|Puerto Triunfo a Puerto Rico|W
+S|-26.78788|-55.02714|Puerto Triunfo|Puerto Triunfo a Puerto Rico|W
+S|-26.85352|-58.32439|Puerto Cano (Arg)|Rio Paraguay Servicio S.A. (Balsa Rafaela)|W
+S|-26.86780|-58.31978|Puerto de Pilar (Py)|Rio Paraguay Servicio S.A. (Balsa Rafaela)|W
+S|-40.78323|-71.65676|Futaleufú|Ruta Ferry Futaleufú|W
+S|-40.78278|-71.66213|Patagonia Argentina|Ruta Ferry Patagonia Argentina|W
+S|-40.85807|-71.61396|Puerto Arrayanes|Ruta Ferry Patagonia Argentina|W
+S|-41.04557|-71.79914|Puerto Alegre|Turisur|W
+S|-25.96008|-54.60957|Itaipyte|ferry|W
+S|-41.02411|-71.81394|Puerto Blest|ferry|W
+S|-41.01823|-71.82126|Puerto Los Cántaros|ferry|W
+S|-25.95915|-54.60441|Wanda|ferry|W
 L|MendoTRAN|Metrotranvía 100|red|8 14:699 2:588 20:615 12:863 1:912 16:539 9:860 21:948 7:858 23:871 19:967 0:468 18:862 4:730 15:854 24:392 5:335 11:720 22:411 10:751 17:548 6:307 13:554 3:866
 L|MendoTRAN|Metrotranvía 101|red|3 13:866 6:554 17:307 10:546 22:753 11:410 5:720 24:335 15:393 4:854 18:729 0:864 19:469 23:970 7:871 21:858 9:948 16:860 1:540 12:910 20:865 2:616 14:588 8:699
 L|Mitre|Tren al Desarrollo|blue|30 27:1579 36:1528 32:4324
@@ -164,8 +209,559 @@ L|Subte de Buenos Aires|Línea E|#6B297E|118 139:479 104:850 79:976 94:912 56:69
 L|Subte de Buenos Aires|Línea E|#6B297E|126 68:664 73:822 59:858 57:493 92:662 129:724 80:573 116:563 96:480 87:647 58:589 56:959 94:695 79:908 104:980 139:847 118:478
 L|Subte de Buenos Aires|Línea H|#F4CC21|82 98:765 133:962 75:512 74:560 110:563 140:681 89:897 90:701 66:702 112:872 88:812
 L|Subte de Buenos Aires|Línea H|#F4CC21|88 112:822 66:858 90:702 89:701 140:896 110:682 74:564 75:560 133:512 98:964 82:764
-L|Buquebus|Buenos Aires - Colonia||142 143:49985
-L|Buquebus|Buenos Aires - Montevideo||142 141:202580
+L|Alba Posse - Porto Mauá|Alba Posse - Porto Mauá||142 143:542
+L|Alvear - Itaqui|Alvear - Itaqui||144 145:465
+L|Argentina: Balsa Iguazú S.R.L.|Balsa||147 146:1614
+L|Balsa (Ferry): Corpus Christi (Arg) - Bella Vista (Py)|Balsa||148 149:774
+L|Balsa (Ferry): Mayor Otaño (Py) - Eldorado (Arg)|Balsa||150 151:909
+L|Buquebus|Buenos Aires - Colonia||153 155:49985
+L|Buquebus|Buenos Aires - Montevideo||153 152:202580
+L|Buquebus|Buquebus||152 154:300115
+L|Colonia Alicia - San Antonio|Colonia Alicia - San Antonio||157 156:558
+L|Colonia Aurora - Pratos|Colonia Aurora - Pratos||158 159:434
+L|Copanatra S.R.L.|Balsa||161 160:1568
+L|Cruce Lago O'Higgins|Cruce Lago O'Higgins||163 162:49201
+L|El Soberbio - Porto Soberbo|El Soberbio - Porto Soberbo||165 164:265
+L|Estación Fluvial Sarmiento - Museo Sarmiento|Estación Fluvial Sarmiento - Museo Sarmiento||166 167:7059
+L|Formosa (ARG) - Alberdi (PY)|Formosa||168 169:2473
+L|Líneas Delta Argentino S.R.L.|Tigre - Carmelo||171 170:68194
+L|Panambí - Porto Vera Cruz|Panambí - Porto Vera Cruz||172 173:1053
+L|Porto Xavier - San Javier|Porto Xavier - San Javier||174 175:595
+L|Puerto Triunfo a Puerto Rico|Puerto Triunfo a Puerto Rico||177 176:554
+L|Rio Paraguay Servicio S.A. (Balsa Rafaela)|Balsa||179 178:1760
+L|Ruta Ferry Futaleufú|Ruta Ferry Futaleufú||182 180:9997
+L|Ruta Ferry Patagonia Argentina|Ruta Ferry Patagonia Argentina||181 182:9474
+L|ferry|ferry||187 184:577
+L|ferry|ferry||185 186:910
+R|-34.78036|-58.73801|20 de Junio|Belgrano
+R|-27.38926|-59.08513|Aborigen|Belgrano
+R|-34.50298|-58.66605|Adolfo Sourdeaux|Belgrano
+R|-27.45471|-58.99137|Alberdi|Belgrano
+R|-34.71069|-58.51445|Aldo Bonzi|Belgrano
+R|-31.39821|-64.18025|Alta Córdoba|Belgrano
+R|-27.41098|-59.05495|Anunciación|Belgrano
+R|-31.33955|-64.25704|Argüello|Belgrano
+R|-34.53755|-58.47794|Aristóbulo del Valle|Belgrano
+R|-26.69111|-60.73370|Avia Terai|Belgrano
+R|-24.74114|-65.39599|Batalla de Salta|Belgrano
+R|-27.45161|-58.99480|Belgrano|Belgrano
+R|-24.68461|-65.14811|Betania|Belgrano
+R|-31.30791|-64.46302|Bialet Massé|Belgrano
+R|-34.50903|-58.56489|Boulogne Sur Mer|Belgrano
+R|-27.41525|-59.04529|Cacuí|Belgrano
+R|-26.80489|-60.84158|Campo Largo|Belgrano
+R|-24.91096|-65.64618|Campo Quijano|Belgrano
+R|-24.66417|-65.10193|Campo Santo (El Bordo)|Belgrano
+R|-30.86077|-64.52268|Capilla del Monte|Belgrano
+R|-34.52880|-58.53739|Carapachay|Belgrano
+R|-31.34700|-64.40353|Casa Bamba|Belgrano
+R|-31.15342|-64.47261|Casa Grande|Belgrano
+R|-31.37330|-64.44184|Cassaffousth|Belgrano
+R|-34.43921|-58.82414|Cecilia Grierson|Belgrano
+R|-27.65085|-59.86104|Charadai|Belgrano
+R|-27.21498|-61.19188|Charata|Belgrano
+R|-27.91621|-61.39899|Chorotis|Belgrano
+R|-34.54307|-58.44777|Ciudad Universitaria|Belgrano
+R|-24.97918|-65.58292|Combate de Rosario de Lerma|Belgrano
+R|-26.95566|-60.96959|Corzuela|Belgrano
+R|-31.24369|-64.46773|Cosquín|Belgrano
+R|-27.52724|-59.57418|Cote Lai|Belgrano
+R|-31.42033|-64.17509|Córdoba|Belgrano
+R|-34.45346|-58.79656|Del Viso|Belgrano
+R|-27.77633|-59.90627|Desvío Kilómetro 443|Belgrano
+R|-27.58646|-59.71122|Desvío Kilómetro 474|Belgrano
+R|-27.41268|-59.33704|Desvío Kilómetro 519|Belgrano
+R|-27.41364|-59.29233|Desvío Kilómetro 523|Belgrano
+R|-27.39411|-59.16676|Desvío Kilómetro 535|Belgrano
+R|-34.64912|-58.41661|Doctor Antonio Sáenz|Belgrano
+R|-34.50263|-58.64249|Don Torcuato|Belgrano
+R|-31.32710|-64.33200|Dumesnil|Belgrano
+R|-34.53714|-58.51306|Florida (Belgrano)|Belgrano
+R|-27.40899|-59.23392|Fortín Cardozo|Belgrano
+R|-26.88409|-60.90871|Fortín Las Chuñas|Belgrano
+R|-27.44012|-59.00775|Fotheringam|Belgrano
+R|-27.42429|-59.02960|Güemes|Belgrano
+R|-24.67319|-65.04409|Güemes|Belgrano
+R|-27.38594|-59.10857|General Dónovan|Belgrano
+R|-27.41087|-59.41841|General Obligado|Belgrano
+R|-27.31766|-61.28031|General Pinedo|Belgrano
+R|-34.77163|-58.64675|González Catán|Belgrano
+R|-34.48529|-58.72533|Grand Bourg|Belgrano
+R|-27.61005|-61.34752|Hermoso Campo|Belgrano
+R|-27.44833|-58.99848|Hernandarias|Belgrano
+R|-31.36931|-64.21119|Hospital Neonatal|Belgrano
+R|-31.07437|-64.49428|Huerta Grande|Belgrano
+R|-34.76092|-58.61771|Independencia|Belgrano
+R|-34.71033|-58.50591|Ingeniero Castello|Belgrano
+R|-34.70454|-58.58750|Isidro Casanova|Belgrano
+R|-27.48649|-61.32680|Itín|Belgrano
+R|-24.79167|-65.43547|José de San Martín|Belgrano
+R|-34.71078|-58.53728|José Ingenieros|Belgrano
+R|-34.70900|-58.55190|Justo Villegas|Belgrano
+R|-27.45927|-59.49192|Kilómetro 501|Belgrano
+R|-31.34330|-64.33848|La Calera|Belgrano
+R|-30.98235|-64.49401|La Cumbre|Belgrano
+R|-31.09372|-64.48770|La Falda|Belgrano
+R|-34.75062|-58.58437|Laferrere|Belgrano
+R|-26.75966|-60.54001|La Mascota|Belgrano
+R|-27.08970|-61.08420|Las Breñas|Belgrano
+R|-31.35197|-64.23775|La Tablada|Belgrano
+R|-27.97718|-59.97822|La Vicuña|Belgrano
+R|-34.69216|-58.68648|Libertad|Belgrano
+R|-28.10161|-59.98032|Los Amores|Belgrano
+R|-27.38363|-59.09148|Los Aromos|Belgrano
+R|-26.79928|-60.83680|Los Hacheros|Belgrano
+R|-34.49878|-58.69504|Los Polvorines|Belgrano
+R|-34.85111|-59.05383|Lozano|Belgrano
+R|-34.67722|-58.47705|Lugano|Belgrano
+R|-24.83758|-65.46218|Macacha Güemes|Belgrano
+R|-23.62814|-65.40871|Maimará|Belgrano
+R|-34.46283|-58.77562|Manuel Alberti|Belgrano
+R|-34.75612|-58.60085|María Eva Duarte|Belgrano
+R|-34.75612|-58.60085|María Eva Duarte|Belgrano
+R|-34.78651|-58.82968|Marcos Paz (Belgrano)|Belgrano
+R|-34.70868|-58.73063|Marinos del Crucero General Belgrano|Belgrano
+R|-34.69014|-58.50748|Marinos del Fournier|Belgrano
+R|-34.69716|-58.64672|Merlo Gómez|Belgrano
+R|-34.53166|-58.52384|Munro|Belgrano
+R|-26.73182|-60.61881|Napenay|Belgrano
+R|-34.49371|-58.70637|Pablo Nogués|Belgrano
+R|-24.90670|-65.49207|Pacto de los Cerrillos|Belgrano
+R|-34.54363|-58.50018|Padilla|Belgrano
+R|-27.15590|-61.14102|Pampa del Cielo|Belgrano
+R|-27.01274|-61.01846|Pozo del Indio|Belgrano
+R|-26.79468|-60.44080|Presidencia Roque Sáenz Peña|Belgrano
+R|-34.66636|-58.45075|Presidente Illia|Belgrano
+R|-34.66496|-58.44757|Presidente Illia|Belgrano
+R|-27.37410|-59.08921|Puerto Tirol|Belgrano
+R|-23.74847|-65.47001|Purmamarca|Belgrano
+R|-34.72240|-58.53068|Querandí|Belgrano
+R|-34.69970|-58.62632|Rafael Castillo|Belgrano
+R|-27.46380|-58.98105|Resistencia|Belgrano
+R|-34.59016|-58.37392|Retiro (Belgrano)|Belgrano
+R|-27.56514|-59.66175|Rio Tapenagá|Belgrano
+R|-31.36407|-64.22025|Rodríguez del Busto|Belgrano
+R|-34.57246|-58.40266|Saldías|Belgrano
+R|-24.77708|-65.41128|Salta|Belgrano
+R|-24.22693|-66.31612|San Antonio de los Cobres|Belgrano
+R|-30.92370|-64.53516|San Esteban|Belgrano
+R|-27.45935|-58.98603|San Martín|Belgrano
+R|-31.34594|-64.46078|San Roque|Belgrano
+R|-31.27809|-64.46267|Santa María|Belgrano
+R|-27.42089|-59.03547|Sarmiento|Belgrano
+R|-27.43179|-59.01720|Sierras de Córdoba|Belgrano
+R|-34.71245|-58.52414|Sánchez de Mendeville|Belgrano
+R|-34.70231|-58.51160|Tapiales|Belgrano
+R|-26.69886|-60.75211|Tierra de Luchadores|Belgrano
+R|-34.47897|-58.73947|Tierras Altas|Belgrano
+R|-34.47066|-58.75800|Tortuguitas|Belgrano
+R|-31.33614|-64.28946|Tristán Narvaja|Belgrano
+R|-23.85346|-65.46527|Tumbaya|Belgrano
+R|-31.11680|-64.48555|Valle Hermoso|Belgrano
+R|-27.81623|-61.38226|Venados Grandes|Belgrano
+R|-24.20297|-66.41316|Viaducto La Polvorilla|Belgrano
+R|-34.50416|-58.61948|Vicealmirante Montes|Belgrano
+R|-34.52369|-58.54628|Villa Adelina|Belgrano
+R|-34.50337|-58.68071|Villa de Mayo|Belgrano
+R|-34.68418|-58.49240|Villa Madero|Belgrano
+R|-34.41626|-58.87213|Villa Rosa|Belgrano
+R|-34.82896|-58.93848|Villars|Belgrano
+R|-34.66228|-58.44106|Villa Soldati|Belgrano
+R|-23.91559|-65.46641|Volcán|Belgrano
+R|-27.71540|-61.36516|Zuberbühler|Belgrano
+R|-27.36068|-55.84842|Encarnación|Casimiro Zbikoski S.A. - Trenes Argentinos
+R|-27.38017|-55.88388|Posadas|Casimiro Zbikoski S.A. - Trenes Argentinos
+R|-25.68383|-54.44902|Cataratas|Iguazú Argentina S.A.
+R|-25.67860|-54.45317|Central|Iguazú Argentina S.A.
+R|-25.70142|-54.44488|Garganta del Diablo|Iguazú Argentina S.A.
+R|-34.57188|-58.42520|3 de Febrero|Mitre
+R|-34.47989|-58.50400|Acassuso|Mitre
+R|-33.15626|-60.50897|Arroyo Seco|Mitre
+R|-34.47958|-58.60301|Bancalari R|Mitre
+R|-33.81948|-59.51712|Baradero|Mitre
+R|-34.51502|-58.48923|Bartolomé Mitre|Mitre
+R|-34.46071|-58.52658|Beccar|Mitre
+R|-34.55887|-58.44894|Belgrano C|Mitre
+R|-34.56781|-58.46246|Belgrano R|Mitre
+R|-34.40931|-58.68455|Benavídez|Mitre
+R|-34.15675|-58.95859|Campana|Mitre
+R|-34.43757|-58.56739|Carupá|Mitre
+R|-34.54205|-58.56717|Chilavert|Mitre
+R|-34.56533|-58.47512|Coghlan|Mitre
+R|-34.57302|-58.44819|Colegiales|Mitre
+R|-34.47205|-58.57434|Doctor Albert Schweitzer|Mitre
+R|-34.52313|-58.49413|Doctor Cetrángolo|Mitre
+R|-34.56846|-58.47912|Doctor Luis María Drago|Mitre
+R|-34.46282|-58.64597|El Talar|Mitre
+R|-33.26050|-60.38327|Empalme Villa Constitucion|Mitre
+R|-34.34964|-58.79509|Escobar|Mitre
+R|-34.53015|-58.49444|Florida (Mitre)|Mitre
+R|-34.42157|-58.73665|Garín|Mitre
+R|-34.58049|-58.50170|General Juan Martín de Pueyrredón|Mitre
+R|-34.45603|-58.61980|General Pacheco|Mitre
+R|-34.57473|-58.48785|General Urquiza|Mitre
+R|-33.65928|-59.86907|Gobernador Castro|Mitre
+R|-34.38295|-58.73637|Ingeniero Maschwitz|Mitre
+R|-34.22215|-58.89656|Ingeniero Romulo Otamendi|Mitre
+R|-34.53449|-58.57622|José León Suárez|Mitre
+R|-34.54254|-58.49469|Juan B. Justo|Mitre
+R|-34.16020|-58.97714|Kilómetro 83|Mitre
+R|-34.49763|-58.48841|La Lucila|Mitre
+R|-34.04120|-59.19458|Lima|Mitre
+R|-34.56258|-58.43638|Lisandro de la Torre|Mitre
+R|-34.33089|-58.98745|Los Cardales|Mitre
+R|-34.44692|-58.67737|López Camelo|Mitre
+R|-34.55444|-58.48680|Luis María Saavedra|Mitre
+R|-34.55743|-58.54786|Malaver|Mitre
+R|-34.40685|-58.77202|Maquinista Savio|Mitre
+R|-34.48862|-58.49641|Martínez|Mitre
+R|-34.38280|-58.82975|Matheu|Mitre
+R|-34.58107|-58.51724|Miguelete|Mitre
+R|-34.57552|-58.43471|Ministro Carranza|Mitre
+R|-34.57552|-58.43471|Ministro Carranza|Mitre
+R|-34.54849|-58.46274|Núñez|Mitre
+R|-34.50782|-58.48060|Olivos|Mitre
+R|-33.50185|-60.06755|Ramallo|Mitre
+R|-34.59115|-58.37468|Retiro (Mitre)|Mitre
+R|-34.53661|-58.46800|Rivadavia|Mitre
+R|-34.27798|-58.89032|Río Luján|Mitre
+R|-32.93073|-60.65753|Rosario Norte|Mitre
+R|-33.00931|-60.65035|Rosario Sur|Mitre
+R|-34.56347|-58.54073|San Andrés|Mitre
+R|-34.44423|-58.55877|San Fernando C|Mitre
+R|-34.47201|-58.51357|San Isidro C|Mitre
+R|-34.57371|-58.53158|San Martín|Mitre
+R|-33.34429|-60.22613|San Nicolas R|Mitre
+R|-33.69439|-59.68287|San Pedro|Mitre
+R|-34.42353|-58.58176|Tigre|Mitre
+R|-34.52484|-58.47276|Vicente López|Mitre
+R|-34.45631|-58.54095|Victoria|Mitre
+R|-34.55091|-58.55597|Villa Ballester|Mitre
+R|-34.45064|-58.55071|Virreyes|Mitre
+R|-34.37014|-58.86933|Zelaya|Mitre
+R|-34.09782|-59.03784|Zárate (Mitre)|Mitre
+R|-35.28139|-58.80296|Abbott|Roca
+R|-34.79781|-58.39424|Adrogué|Roca
+R|-38.95558|-68.14085|Aeropuerto|Roca
+R|-41.06791|-68.38236|Aguada de Guerra|Roca
+R|-34.70980|-58.50612|Agustín De Elía|Roca
+R|-34.98056|-58.37391|Alejandro Korn|Roca
+R|-34.97754|-58.67454|Alejandro Petión|Roca
+R|-35.36121|-58.15125|Altamirano|Roca
+R|-34.74359|-58.39542|Banfield|Roca
+R|-38.95542|-68.17824|Barrio Unión|Roca
+R|-34.76413|-58.20842|Berazategui|Roca
+R|-34.70939|-58.28038|Bernal|Roca
+R|-34.81952|-58.23010|Bosques|Roca
+R|-42.26684|-71.13886|Bruno J. Thomae|Roca
+R|-34.82497|-58.39132|Burzaco|Roca
+R|-34.91000|-58.59434|Carlos Spegazzini|Roca
+R|-36.09303|-57.81046|Castelli|Roca
+R|-35.05924|-58.75443|Cañuelas|Roca
+R|-35.57907|-57.98273|Chascomús|Roca
+R|-38.94192|-67.99642|Cipolletti|Roca
+R|-34.86574|-58.04209|City Bell|Roca
+R|-34.80115|-58.33811|Claypole|Roca
+R|-41.24637|-70.03505|Clemente Onelli|Roca
+R|-41.03241|-70.26361|Comallo|Roca
+R|-38.95531|-68.19607|Constituyentes|Roca
+R|-35.16797|-58.23197|Coronel Brandsen|Roca
+R|-37.45452|-57.72857|Coronel Vidal|Roca
+R|-34.66204|-58.37665|Darío Santillán y Maximiliano Kosteki|Roca
+R|-36.30309|-57.68750|Dolores|Roca
+R|-35.07051|-58.29042|Domselaar|Roca
+R|-38.95568|-68.11688|El Cholar|Roca
+R|-34.83325|-58.49614|El Jagüel|Roca
+R|-42.05487|-71.16576|El Maitén|Roca
+R|-41.35239|-69.72851|Empalme|Roca
+R|-42.90379|-71.31807|Esquel|Roca
+R|-34.81100|-58.25670|Estanislao S. Zeballos|Roca
+R|-38.95579|-68.10532|ETON|Roca
+R|-34.85412|-58.52293|Ezeiza|Roca
+R|-34.75185|-58.23421|Ezpeleta|Roca
+R|-34.81114|-58.27407|Florencio Varela|Roca
+R|-36.65604|-57.79123|General Guido|Roca
+R|-37.27687|-57.77884|General Pirán|Roca
+R|-34.68567|-58.38269|Gerli|Roca
+R|-34.88864|-58.38368|Glew|Roca
+R|-35.44979|-58.09397|Gándara|Roca
+R|-34.91796|-58.38068|Guernica|Roca
+R|-34.79108|-58.15537|Guillermo Enrique Hudson|Roca
+R|-34.64454|-58.59177|Haedo (Sarmiento)|Sarmiento
+R|-35.02694|-58.72970|Hospital Cuenca Alta Néstor Kirchner|Roca
+R|-34.78615|-58.40784|Hospital Español|Roca
+R|-34.86459|-58.53616|Hospital Ezeiza|Roca
+R|-38.95582|-68.07951|Ignacio Rivas|Roca
+R|-34.80895|-58.30221|Ingeniero Dante Ardigó|Roca
+R|-41.32919|-69.54668|Ingeniero Jacobacci|Roca
+R|-34.65818|-58.57304|Ingeniero S. Brian|Roca
+R|-34.73323|-58.47485|Intendente Pedro P. Turner|Roca
+R|-41.09821|-71.13875|Ñirihuau|Roca
+R|-35.27765|-58.19807|Jeppener|Roca
+R|-34.79192|-58.38130|José Mármol|Roca
+R|-34.83396|-58.18561|Juan María Gutiérrez|Roca
+R|-34.77138|-58.44410|Juan XXIII|Roca
+R|-34.98639|-58.68971|Kloosterman|Roca
+R|-34.74333|-58.46511|Km 34|Roca
+R|-35.16513|-58.78825|La Noria|Roca
+R|-34.70739|-58.39060|Lanús|Roca
+R|-34.70739|-58.39060|Lanús|Roca
+R|-34.90452|-57.94945|La Plata|Roca
+R|-37.08680|-57.83202|Las Armas|Roca
+R|-34.69306|-58.52818|La Tablada|Roca
+R|-35.87388|-57.89547|Lezama|Roca
+R|-34.79712|-58.42939|Llavallol|Roca
+R|-34.76114|-58.39734|Lomas de Zamora|Roca
+R|-34.85939|-58.38725|Longchamps|Roca
+R|-34.80328|-58.44858|Luis Guillón|Roca
+R|-34.87994|-58.01054|Manuel Bernardo Gonnet|Roca
+R|-41.24992|-68.70265|Maquinchao|Roca
+R|-37.98848|-57.56453|Mar del Plata|Roca
+R|-40.50833|-67.26468|Ministro Ramos Mexía|Roca
+R|-35.43668|-58.81753|Monte|Roca
+R|-34.81448|-58.46968|Monte Grande|Roca
+R|-34.93636|-58.62059|Máximo Paz|Roca
+R|-42.95770|-71.17598|Nahuel Pan|Roca
+R|-38.95589|-68.05825|Neuquén Central|Roca
+R|-41.55699|-69.86885|Ojo de Agua|Roca
+R|-41.88162|-70.90950|Ñorquincó|Roca
+R|-34.83658|-58.09463|Pereyra|Roca
+R|-41.06140|-71.01207|Perito Moreno|Roca
+R|-41.12475|-70.72125|Pilcaniyeu|Roca
+R|-34.62902|-58.38067|Plaza Constitución|Roca
+R|-38.95517|-68.23302|Plottier|Roca
+R|-34.78233|-58.17080|Plátanos|Roca
+R|-34.72467|-58.26079|Quilmes|Roca
+R|-34.79672|-58.35907|Rafael Calzada|Roca
+R|-34.78938|-58.20318|Ranelagh|Roca
+R|-34.72706|-58.39363|Remedios de Escalada|Roca
+R|-35.02165|-58.72383|Ricardo Levene|Roca
+R|-34.88142|-57.99608|Ringuelet|Roca
+R|-40.73341|-64.94387|San Antonio Oeste|Roca
+R|-41.13040|-71.27417|San Carlos de Bariloche|Roca
+R|-34.67382|-58.55585|San Justo|Roca
+R|-34.78034|-58.43748|Santa Catalina|Roca
+R|-34.82513|-58.21299|Santa Sofía|Roca
+R|-34.82513|-58.21299|Santa Sofía|Roca
+R|-34.67886|-58.34466|Sarandí|Roca
+R|-36.20367|-57.74274|Sevigné|Roca
+R|-40.58888|-67.75436|Sierra Colorada|Roca
+R|-34.80659|-58.21273|Sourigues|Roca
+R|-34.77610|-58.39618|Temperley|Roca
+R|-34.89091|-57.96809|Tolosa|Roca
+R|-34.88942|-58.56785|Tristán Suárez|Roca
+R|-34.79507|-58.40764|Turdera|Roca
+R|-34.87016|-58.54326|Unión Ferroviaria|Roca
+R|-40.68862|-66.14463|Valcheta|Roca
+R|-34.96226|-58.64797|Vicente Casares|Roca
+R|-40.83755|-62.98067|Viedma|Roca
+R|-34.69147|-58.32542|Villa Domínico|Roca
+R|-34.84957|-58.07525|Villa Elisa|Roca
+R|-34.77438|-58.19502|Villa España|Roca
+R|-37.66392|-57.66937|Vivoratá|Roca
+R|-34.69752|-58.31139|Wilde|Roca
+R|-34.56380|-58.68467|Bella Vista|San Martín
+R|-34.60459|-58.56456|Caseros|San Martín
+R|-34.61052|-59.89724|Castilla|San Martín
+R|-34.62970|-60.47019|Chacabuco|San Martín
+R|-34.55559|-59.20674|Cortínes|San Martín
+R|-34.62171|-60.40816|Cucha Cucha|San Martín
+R|-34.60267|-58.51278|Devoto|San Martín
+R|-34.48792|-59.07570|Doctor Domingo Cabred|San Martín
+R|-34.60493|-58.59604|El Palomar|San Martín
+R|-34.61017|-59.63010|Franklin|San Martín
+R|-34.61043|-59.75055|General Rivas|San Martín
+R|-34.59112|-58.63230|Hurlingham|San Martín
+R|-34.51925|-58.75003|José C. Paz|San Martín
+R|-34.58422|-60.94982|Junín|San Martín
+R|-34.59699|-58.46723|La Paternal|San Martín
+R|-34.45224|-59.00673|Manzanares|San Martín
+R|-34.65678|-59.43145|Mercedes P.|San Martín
+R|-34.55129|-58.70343|Muñiz|San Martín
+R|-34.58170|-60.70022|O’Higgins|San Martín
+R|-34.57894|-58.42683|Palermo|San Martín
+R|-34.46866|-58.90823|Pilar (San Martín)|San Martín
+R|-34.49099|-58.83846|Presidente Derqui|San Martín
+R|-34.61048|-60.06749|Rawson|San Martín
+R|-34.58935|-58.37322|Retiro (San Martín)|San Martín
+R|-34.54401|-58.71351|San Miguel|San Martín
+R|-34.54401|-58.71351|San Miguel|San Martín
+R|-34.60369|-58.54098|Santos Lugares|San Martín
+R|-34.60317|-58.52789|Sáenz Peña|San Martín
+R|-34.50400|-58.79768|Sol y Verde|San Martín
+R|-34.47866|-58.87697|Villa Astolfi|San Martín
+R|-34.59329|-58.44805|Villa Crespo|San Martín
+R|-34.60140|-58.49407|Villa del Parque|San Martín
+R|-34.57835|-58.65678|William Case Morris|San Martín
+R|-34.70607|-58.77937|Agustín Ferrari|Sarmiento
+R|-35.03469|-60.27730|Andrés Vaccarezza|Sarmiento
+R|-35.11968|-60.47848|Bragado|Sarmiento
+R|-34.61924|-58.44366|Caballito|Sarmiento
+R|-34.65206|-58.64200|Castelar|Sarmiento
+R|-34.91735|-59.99616|Chivilcoy Sud|Sarmiento
+R|-34.63993|-58.54108|Ciudadela|Sarmiento
+R|-35.15165|-59.09105|Empalme Lobos|Sarmiento
+R|-34.62782|-58.46607|Flores|Sarmiento
+R|-34.63237|-58.48089|Floresta|Sarmiento
+R|-34.63224|-58.85528|Francisco Álvarez|Sarmiento
+R|-34.89225|-58.91784|General Hornos|Sarmiento
+R|-34.92803|-58.94454|General Las Heras|Sarmiento
+R|-34.60883|-58.95318|General Rodríguez|Sarmiento
+R|-34.64778|-59.35272|Gowland|Sarmiento
+R|-34.62271|-58.89363|Ingeniero Pablo Marín|Sarmiento
+R|-34.65952|-58.66588|Ituzaingó|Sarmiento
+R|-34.60073|-59.17352|Jáuregui|Sarmiento
+R|-34.68011|-58.76027|Kilómetro 34,5|Sarmiento
+R|-34.59851|-58.99742|La Fraternidad|Sarmiento
+R|-34.63987|-58.82797|La Reja|Sarmiento
+R|-34.61612|-58.92196|Las Malvinas|Sarmiento
+R|-34.58462|-59.05670|Lezica y Torrezuri|Sarmiento
+R|-34.63887|-58.52634|Liniers|Sarmiento
+R|-35.18478|-59.09291|Lobos|Sarmiento
+R|-34.57763|-59.10517|Luján|Sarmiento
+R|-34.74479|-58.80808|Maquinista Ricardo Cal|Sarmiento
+R|-34.78308|-58.83661|Marcos Paz (Sarmiento)|Sarmiento
+R|-34.72437|-58.79304|Mariano Acosta|Sarmiento
+R|-35.06628|-60.40666|Mechita|Sarmiento
+R|-34.65770|-59.43236|Mercedes (Sarmiento)|Sarmiento
+R|-34.66445|-58.72788|Merlo|Sarmiento
+R|-34.65051|-58.78962|Moreno|Sarmiento
+R|-34.64824|-58.61977|Morón|Sarmiento
+R|-34.64771|-58.61478|Morón|Sarmiento
+R|-34.62801|-59.25540|Olivera|Sarmiento
+R|-34.60838|-58.40701|Once de Septiembre|Sarmiento
+R|-34.65822|-58.76207|Paso del Rey|Sarmiento
+R|-34.64045|-58.56427|Ramos Mejía|Sarmiento
+R|-34.66551|-58.69848|San Antonio de Padua|Sarmiento
+R|-35.00209|-58.99980|Speratti|Sarmiento
+R|-34.77333|-59.69038|Suipacha|Sarmiento
+R|-34.57744|-59.08723|Universidad de Luján|Sarmiento
+R|-34.63626|-58.50209|Villa Luro|Sarmiento
+R|-34.85792|-58.89230|Zamudio|Sarmiento
+R|-35.05848|-59.04193|Zapiola|Sarmiento
+R|-54.83319|-68.42380|El Tren del Fin del Mundo|Tranex Turismo S.A.
+R|-54.82804|-68.43776|La Macarena|Tranex Turismo S.A.
+R|-54.83588|-68.47107|Parque Nacional Tren del Fin del Mundo|Tranex Turismo S.A.
+R|-34.59560|-58.51055|Antonio Devoto|Urquiza
+R|-34.54379|-58.68575|Campo de Mayo|Urquiza
+R|-34.55531|-58.66986|Capitán Lozano|Urquiza
+R|-34.59718|-58.52439|Coronel Lynch|Urquiza
+R|-34.59321|-58.49466|Doctor Francisco Beiró|Urquiza
+R|-34.58022|-58.64035|Ejército de los Andes|Urquiza
+R|-34.59447|-58.50312|El Libertador|Urquiza
+R|-34.59554|-58.53532|Fernández Moreno|Urquiza
+R|-34.53286|-58.70092|General Lemos|Urquiza
+R|-34.58786|-58.62103|Jorge Newbery|Urquiza
+R|-34.59010|-58.46630|José Artigas|Urquiza
+R|-34.59001|-58.57185|José María Bosch|Urquiza
+R|-34.57330|-58.64558|Juan B. de La Salle|Urquiza
+R|-34.58664|-58.45552|LACROZE|Urquiza
+R|-34.59378|-58.54698|Lourdes|Urquiza
+R|-34.58897|-58.59067|Martín Coronado|Urquiza
+R|-34.58835|-58.60799|Pablo Podestá|Urquiza
+R|-34.58835|-58.60799|Pablo Podestá|Urquiza
+R|-34.59248|-58.47628|Pedro Arata|Urquiza
+R|-34.58754|-58.62985|Rubén Darío|Urquiza
+R|-34.56243|-58.66024|Sargento Barrufaldi|Urquiza
+R|-34.53720|-58.69492|Sargento Cabral|Urquiza
+R|-34.54886|-58.67880|Teniente Agneta|Urquiza
+R|-34.59190|-58.55935|Tropezón|Urquiza
+Q|Belgrano|Línea Belgrano Norte|red|L55|105 108:3244 28:5295 8:3158 94:2234 43:1382 90:1160 20:1295 128:1010 14:2359 127:5073 41:2118 2:2164 129:1344 78:1434 92:1181 53:1972 120:1474 121:1917 83:1850 34:2167 24:2936 131:5134
+Q|Belgrano|Línea Belgrano Norte|red|L55|131 24:5084 34:3034 83:2118 121:1897 120:1871 53:1474 92:1972 78:1181 129:1431 2:1344 41:2164 127:2118 14:5076 128:2359 20:1008 90:1297 43:1159 94:1382 8:2229 28:3165 108:5297 105:3244
+Q|Belgrano|Línea Belgrano Sur|#37bbed|L55|118 4:1298 117:924 63:1217 64:1352 60:3295 103:3593 89:1882 74:3685 87:4480
+Q|Belgrano|Línea Belgrano Sur|#37bbed|L55|87 74:4480 89:3676 103:1891 60:3595 64:3296 63:1351 117:1217 4:923 118:1298
+Q|Belgrano|Línea Belgrano Sur|#37bbed|L55|52 58:3012 85:1676 69:1630 102:5686 59:2952 118:1108 88:1981 130:1531 80:1675 99:3066 133:664 40:3286
+Q|Belgrano|Línea Belgrano Sur|#37bbed|L55|52 0:8626 86:8582 132:11801
+Q|Belgrano|Línea Belgrano Sur|#37bbed|L55|52 0:8626 86:8582 132:11801 79:11462
+Q|Belgrano|Línea Belgrano Sur|#37bbed|L55|40 133:3285 98:993 80:2734 130:1678 88:1531 118:1974 59:1113 102:2942 69:5723 84:1858 58:1580 52:2845
+Q|Belgrano|Train to the Clouds|#37bbed|L55|110 126:11005 110:11007
+Q|Belgrano|Tren Metropolitano|#37bbed|L55|104 112:685 3:737 11:480 55:514 46:1291 116:1308 47:1497 115:697 15:1164 6:1064 1:3940 76:881 100:1368
+Q|Belgrano|Tren Metropolitano|#37bbed|L55|100 76:1368 1:881 6:3941 15:1064 115:1164 47:697 116:1497 46:1308 55:1291 11:514 3:480 112:737 104:685
+Q|Belgrano|Tren Metropolitano|#37bbed|L55|33 56:8491 107:1099 72:2080 7:2300 122:3332 42:5989 66:2058
+Q|Belgrano|Tren Metropolitano|#37bbed|L55|66 42:1941 122:5989 7:3332 72:2301 107:2080 56:1099 33:8493
+Q|Belgrano|Tren Metropolitano|#37bbed|L55|66 42:1941 122:5989 7:3332 72:2301 107:2080 56:1099 5:5166
+Q|Belgrano|Tren Metropolitano|#37bbed|L55|5 56:5165 107:1099 72:2080 7:2300 122:3332 42:5989 66:2058
+Q|Belgrano|Tren Regional|#37bbed|L55|15 49:7068 39:5970 44:6842 38:5846 37:4408 50:8066 65:10040 32:11452 106:9598 36:5748 25:16400 35:14864 73:23923 75:13738
+Q|Belgrano|Tren Regional|#37bbed|L55|75 73:13738 35:23917 25:14862 36:16392 106:5748 32:9596 65:11449 50:10037 37:8066 38:4408 44:5846 39:6841 49:5970 15:7069
+Q|Belgrano|Tren Regional|#37bbed|L55|97 70:11273 91:8406 9:12282 119:2401 77:13934 16:778 45:11009 30:9959 96:7956 71:10717 95:9236 26:8247 51:14336 61:19591 54:13814 135:11775 125:11270 27:11182
+Q|Belgrano|Tren Regional|#37bbed|L55|27 125:11181 135:11270 54:11775 61:13814 51:19588 26:14331 95:8246 71:9234 96:10714 30:7955 45:9957 16:11006 77:778 119:13930 9:2401 91:12285 70:8408 97:11276
+Q|Belgrano|Tren Regional Salta|#37bbed|L55|48 18:7365 12:5319 10:29270 109:4382
+Q|Belgrano|Tren Regional Salta|#37bbed|L55|109 10:4382 12:29260 18:5319 48:7366
+Q|Belgrano|Tren Regional Salta|#37bbed|L55|109 62:2960 81:5963 93:8278 29:12434 17:10885
+Q|Belgrano|Tren Regional Salta|#37bbed|L55|17 29:10888 93:12430 81:8277 62:5963 109:2960
+Q|Belgrano|Tren Solar de la Quebrada|brown|L55|134 123:7315 101:12177 82:15192
+Q|Belgrano|Tren de las Sierras|#37bbed|L55|33 56:8491 107:1099 72:2080 7:2300 122:3332 42:5989 66:2058 21:6649 23:5039 113:5126 13:4586 114:3585 31:4031 22:10785 124:5414
+Q|Belgrano|Tren de las Sierras|#37bbed|L55|31 22:10785 124:5414
+Q|Belgrano|Tren de las Sierras|#37bbed|L55|124 22:5415 31:10787 114:4031 13:3585 113:4586 23:5127 21:5038 66:6759 42:2240 122:5989 7:3332 72:2301 107:2080 56:1099 33:8493
+Q|Belgrano|Tren de las Sierras|#37bbed|L55|124 22:5415 31:10787 114:4031 13:3585 113:4586 23:5127 21:5038 66:6759 42:1941 122:5989 7:3332 72:2301 107:2080 56:1099 5:5166
+Q|Belgrano|Tren de las Sierras|#37bbed|L55|124 22:5415 31:10787
+Q|Belgrano|Tren de las Sierras|#37bbed|L55|124 68:2612 57:2594 67:12432 111:8469 19:7825
+Q|Casimiro Zbikoski S.A. - Trenes Argentinos|Tren Internacional Encarnación → Posadas||L55|136 137:4217
+Q|Casimiro Zbikoski S.A. - Trenes Argentinos|Tren Internacional Posadas → Encarnación||L55|137 136:4265
+Q|Iguazú Argentina S.A.|Tren Ecológico de la Selva|green|L55|139 138:810 140:2269
+Q|Iguazú Argentina S.A.|Tren Ecológico de la Selva|green|L55|140 138:2268 139:810
+Q|Mitre|Ferrocarril Mitre|#37bbed|L55|350 151:80030 206:11986 174:16456 145:39159 199:22567 167:18369 188:25350 198:23405 160:17737 143:16357 193:20946 192:11062
+Q|Mitre|Ferrocarril Mitre|#37bbed|L55|192 193:11096 143:20960 160:16367 198:17749 188:23423 167:25375 199:18375 145:22582 174:39222 206:16466 151:11986 350:80248
+Q|Mitre|Línea Mitre|#37bbed|L55|170 153:1173 203:1419 179:1035 194:934 197:1419 183:1579 164:1424 166:1439 158:1065 149:1609 155:1430 185:1465 141:816 189:5617
+Q|Mitre|Línea Mitre|#37bbed|L55|146 157:1030 162:776 171:1369 178:1466 154:1707 149:1213 185:2896 141:816 189:5613
+Q|Mitre|Línea Mitre|#37bbed|L55|189 141:5604 184:1055 149:2664 154:1213 178:1709 171:1468 162:1370 157:776 146:1034
+Q|Mitre|Línea Mitre|#37bbed|L55|203 144:9231 165:3043 150:7895 168:5584 161:6581 191:12094 169:6221 151:9581 172:1778 206:10208
+Q|Mitre|Línea Mitre|#37bbed|L55|189 141:5607 184:1055 155:1234 149:1430 158:1604 166:1066 164:1441 183:1426 197:1582 194:1421 179:932 203:1035 153:1419 170:1189
+Q|Mitre|Línea Mitre|#37bbed|L55|176 205:11734 182:3920 180:5933 163:3632 177:6126 159:3376 156:6941 202:3523
+Q|Mitre|Línea Mitre|#37bbed|L55|202 156:3522 159:6940 177:3376 163:6124 180:3632 182:5932 205:3919 176:11729
+Q|Mitre|Línea Mitre|#37bbed|L55|189 175:6638 148:1241 186:1729 190:1403 201:1382 187:2003 173:1380 181:1247 142:1199 196:1242 147:1747 202:1448 204:1093 195:1029 152:1077 200:2048
+Q|Mitre|Línea Mitre|#37bbed|L55|200 152:2048 195:1076 204:1028 202:1092 147:1452 196:1747 142:1241 181:1199 173:1247 187:1382 201:2003 190:1382 186:1402 148:1728 175:1249 189:6630
+Q|Mitre|Línea Mitre|#37bbed|L55|206 172:10207 151:1779 169:9591 191:6223 161:12097 168:6582 150:5586 165:7898 144:3044 203:9233
+Q|Roca|Expreso Río Negro|#A5CA37|L55|260 229:50133 230:42807 294:47703 293:30396 263:17375 305:12503
+Q|Roca|Expreso Río Negro|#A5CA37|L55|305 263:12497 293:17370 294:30411 230:47656 229:42787 260:50179
+Q|Roca|Expreso Río Negro||L55|305 293:29833
+Q|Roca|Ferrocarril Roca|#37bbed|X110|295 232:63993 225:52451 276:34919 223:25553 311:13724 235:12210 247:41427 274:51075 248:21512 233:20135 325:23728 283:37353
+Q|Roca|Ferrocarril Roca|#37bbed|X110|283 325:37345 233:23724 248:20133 274:21509 247:51041 235:41409 311:12208 223:13720 276:25546 225:34903 232:52311 295:64016
+Q|Roca|Ferrocarril Roca - Rápido|#37bbed|X110|295 283:398804
+Q|Roca|Ferrocarril Roca - Rápido|#37bbed|X110|283 295:396763
+Q|Roca|La Trochita||L55|260 240:15485 290:27272
+Q|Roca|La Trochita||L55|239 220:26051
+Q|Roca|La Trochita||L55|239 291:36455
+Q|Roca|La Trochita||L55|241 288:18879
+Q|Roca|Línea Roca|#37bbed|L55|314 256:1970 307:2880 267:1163 269:3649 262:1481 211:3814 275:2740 306:3319 261:2364 254:2267
+Q|Roca|Línea Roca|#37bbed|L55|254 261:2268 306:2364 275:3319 211:2744 262:3926 269:1367 267:3648 256:4148 314:1855
+Q|Roca|Línea Roca|#37bbed|L55|219 308:1802 266:2566
+Q|Roca|Línea Roca|#37bbed|L55|266 309:2834 219:1534
+Q|Roca|Línea Roca|#37bbed|L55|244 257:1678 318:894 316:3098 222:3316 287:3787 320:3837 213:3050 268:1599 302:5083 255:793 224:4496
+Q|Roca|Línea Roca|#37bbed|L55|224 255:4498 302:792 268:5085 213:1755 320:2893 287:3836 222:3785 316:3318 318:3098 257:894 244:1678
+Q|Roca|Línea Roca|#37bbed|L55|224 270:12505 207:12936 285:17274
+Q|Roca|Línea Roca|#37bbed|L55|225 251:18081 214:11115 264:10295 232:12835 236:12004 212:12642
+Q|Roca|Línea Roca|#37bbed|L55|212 252:6973 250:3234 279:3283 221:3876 208:2985 314:2348 278:1666 215:1955 301:1823 272:2208 249:2506 234:2738 295:3661
+Q|Roca|Línea Roca|#37bbed|L55|295 234:3660 249:2739 272:2506 301:2207 215:1822 278:1955 314:1666 208:2349 221:2985 279:3876 250:3283 252:3268 212:6940
+Q|Roca|Línea Roca|#37bbed|L55|295 234:3659 249:2739 272:2506 301:2207 215:1822 278:1955 314:1665 317:2921 277:2004 280:1922 286:2291 238:3186 244:3362
+Q|Roca|Línea Roca|#37bbed|L55|244 238:3358 286:3190 280:2292 277:1924 317:2004 314:2912 278:1666 215:1955 301:1823 272:2208 249:2506 234:2738 295:3659
+Q|Roca|Línea Roca|#37bbed|L55|295 234:3658 310:3888 322:2269 326:1464 218:3142 298:2546 245:3891 217:2722 297:3989 253:1712 292:7501 323:2321 227:3534 281:3204 303:1418 315:3050 273:2183
+Q|Roca|Línea Roca|#37bbed|L55|273 315:2183 303:3043 281:1423 227:3203 323:3536 292:2321 253:7498 297:1712 217:3987 245:2721 298:3894 218:2541 326:3142 322:1467 310:2262 234:3896 295:3658
+Q|Roca|Línea Roca|#37bbed|L55|212 236:12860 232:11933 264:13060 214:10202 251:11087 225:18072
+Q|Roca|Línea Roca|#37bbed|L55|285 207:17274 270:12936 224:12502
+Q|Roca|Línea Roca - Rápido|#37bbed|L55|224 213:12127 316:13829 244:5669 286:6448 295:25791
+Q|Roca|Línea Roca - Rápido|#37bbed|L55|295 286:25811 244:6450 316:5671 213:13993 224:11974
+Q|Roca|Línea Roca - Vía Circuito|#37bbed|L55|295 234:3927 310:3766 322:2269 326:1464 218:3142 298:2546 245:3891 217:2722 324:1831 300:1820 313:2092 219:2585 242:2601 246:1593 259:2610 228:3393 299:1978 265:2067 314:2603 278:1668 215:1954 272:4027 234:5617 295:3930
+Q|Roca|Línea Roca - Vía Circuito|#37bbed|L55|295 234:3928 271:5887 215:3778 278:1954 314:1669 265:2607 299:2058 228:1978 259:3394 246:2608 242:1594 219:2603 313:2577 300:2092 324:1820 217:1824 245:2721 298:3894 218:2541 326:3142 322:1467 310:2262 234:3778 295:3928
+Q|Roca|Tren Patagónico|#A5CA37|X110|321 304:175582 319:124828 284:105743 312:43095 210:80630 282:34995 260:71961 229:50133 230:42807 294:47703 305:60015
+Q|Roca|Tren Patagónico|#A5CA37|X110|305 294:60012 230:47656 229:42787 260:50179 282:71877 210:34935 312:80330 284:43047 319:105980 304:119087 321:175830
+Q|Roca|Tren del Valle|#37bbed|L55|226 289:5908 258:1840 243:2231 237:1003 209:2076 216:3237 231:1543 296:3199
+Q|Roca|Tren del Valle|#37bbed|L55|296 231:3199 216:1543 209:3237 237:2076 243:1003 258:2231 289:1840 226:5907
+Q|San Martín|Ferrocarril San Martín|#37bbed|X110|340 345:23458 330:22383 332:5753 349:31400 329:15544 337:13421 336:11059 343:21158 331:24130 334:14151 342:7458 347:9412 339:15551 354:23462 350:16341
+Q|San Martín|Ferrocarril San Martín|#37bbed|X110|350 339:39791 347:15541 342:9407 334:7461 331:14159 343:24155 336:21147 337:11060 329:13421 349:15544 332:31403 330:5754 345:22372 340:23458
+Q|San Martín|Línea San Martín|#37bbed|L55|334 342:7458 347:9412 356:3060 348:3787 355:4009 339:4691 351:4429 344:1134 327:2220 359:3021 338:2649 335:3747 328:2887 353:2183 354:1179 333:1387 358:1727 341:2530 357:1837 346:2509 350:6276
+Q|San Martín|Línea San Martín|#37bbed|L55|350 346:6270 357:2510 341:1832 358:2533 333:1729 354:1386 353:1184 328:2179 335:2886 338:3748 359:2650 327:3022 344:2221 352:1431 339:4130 355:4690 348:4009 356:3787 347:3059 342:9407 334:7461
+Q|Sarmiento|Ferrocarril Sarmiento|#37bbed|X110|362 389:9335 361:12431 365:28972 401:33073 390:27147 385:31562 392:30141 254:18714 396:17562
+Q|Sarmiento|Ferrocarril Sarmiento|#37bbed|X110|396 254:17570 392:18720 385:30111 390:31591 401:27176 365:33115 361:29005 389:12435 362:9338
+Q|Sarmiento|Línea Sarmiento|#37bbed|L55|392 380:3666 370:2667 375:3669 381:2715 373:2963 379:4199 382:5611 402:2878 385:1758 377:6775 395:8086 374:9235 390:7482
+Q|Sarmiento|Línea Sarmiento|#37bbed|L55|390 374:7479 395:9232 377:8084 385:6773 402:1763 382:2878 379:5613 373:4199 381:2964 375:2716 370:3668 380:2668 392:3665
+Q|Sarmiento|Línea Sarmiento|#37bbed|L55|391 378:3897 360:3371 388:2373 386:2636 387:4979 404:9762 371:4416 372:4639 400:9603 405:7329 367:11766 384:3716
+Q|Sarmiento|Línea Sarmiento|#37bbed|L55|384 367:3716 405:11763 400:7327 372:9600 371:4638 404:4415 387:9759 386:4980 388:2636 360:2373 378:3371 391:3897
+Q|Sarmiento|Línea Sarmiento|#37bbed|L55|392 397:2677 391:3212 399:2728 376:3071 364:2335 394:2557 254:2133 398:2723 366:1983 383:1339 403:2245 369:1996 368:1448 363:2265 396:3565
+Q|Sarmiento|Línea Sarmiento|#37bbed|L55|396 363:3563 368:2266 369:1447 403:1997 383:2246 366:1346 398:2131 254:2567 393:2598 364:2092 376:2338 399:3069 391:2732 397:3211 392:2677
+Q|Tranex Turismo S.A.|Tren del Fin del Mundo|green|L55|406 407:1168 408:2486
+Q|Urquiza|Línea Urquiza|#EF3E33|L55|417 430:713 410:1113 431:849 411:1087 429:1179 421:1804 414:918 428:1331 418:880 426:1190 424:1665 420:1732 432:1164 423:1154 416:1085 412:1018 409:1287 415:773 413:707 427:1782 419:913 422:1209
+Q|Urquiza|Línea Urquiza|#EF3E33|L55|422 419:1197 427:1078 413:1620 415:867 409:613 412:1288 416:1019 423:1085 432:1153 420:1164 424:1730 425:1456 418:1265 428:818 414:1534 421:914 429:1802 411:1181 431:1088 410:850 430:1112 417:713
 T|-33.00119|-68.80938|1085 - FADEP
 T|-34.78036|-58.73801|20 de Junio
 T|-29.36691|-56.83002|25 de Febrero
@@ -1536,3 +2132,771 @@ T|-33.12952|-60.80199|Álvarez
 T|-30.36995|-61.13155|Ñanducita
 T|-41.09821|-71.13875|Ñirihuau
 T|-41.88444|-70.90775|Ñorquincó
+B|-34.11728|-59.02122|3 de julio
+B|-38.71650|-62.29543|506
+B|-38.68738|-62.33935|519A Don Bosco S/N
+B|-38.68759|-62.33868|519A Teresa Ascensio S/N
+B|-38.98048|-67.83081|Agencia
+B|-30.02651|-59.53120|Albizatti Empresa Silvia
+B|-25.11839|-66.16342|Ale Hnos
+B|-31.42280|-63.04552|Arroyito Bus Station
+B|-26.68549|-60.72859|Avia Terai
+B|-30.95323|-67.30189|Bus Station Astica
+B|-27.77333|-65.58904|Bus Station Néstor Kirchner
+B|-23.74512|-65.49893|Bus Terminal
+B|-34.95983|-57.95024|Bus company 273
+B|-42.76535|-65.04104|Bus terminal
+B|-26.06540|-65.97233|Bus terminal
+B|-33.01330|-69.11917|Cacheuta
+B|-26.20543|-59.08026|Castillo
+B|-32.40997|-63.24657|Centro de Transferencia
+B|-34.09755|-59.03726|Centro de Transferencia Zárate
+B|-34.75924|-58.61652|Centro de Trasbordo González Catán
+B|-34.64983|-58.78949|Centro de Trasbordo Moreno
+B|-35.57907|-57.98273|Chascomús
+B|-32.89015|-68.78338|Control Grupo 500 (General Roca S.R.L.)
+B|-24.85327|-65.42880|Control Linea 1A Las Palmas, 1A Valdivia, 1B
+B|-24.85282|-65.44351|Control Linea 1A San Carlos
+B|-24.80277|-65.42800|Control Linea 1C
+B|-32.94178|-68.84168|Control Línea 3
+B|-24.71824|-65.42084|Control de Colectivos
+B|-27.49814|-58.81456|Corrientes Capital
+B|-32.75926|-68.39433|Costa de Araujo
+B|-31.42470|-64.17256|Córdoba Bus Terminal II
+B|-32.74454|-60.73096|Darsena para omnibus
+B|-41.60862|-65.35381|Don Otto - Agencia Sierra Grande
+B|-32.16315|-58.40145|Dr. Agustín Gutiérrez
+B|-31.74559|-60.50262|ERSA Paraná
+B|-31.35111|-64.62207|El Durazno
+B|-26.79149|-65.21735|El Rayo Bus SRL
+B|-29.78401|-67.99280|Embarcadero de Autobuses
+B|-26.06963|-65.97525|Empresa Aconquija
+B|-40.81747|-62.99536|Empresa Ceferino
+B|-26.07366|-65.97503|Empresa El Indio
+B|-31.21733|-64.31717|Empresa de transporte Intercórdoba.
+B|-31.59985|-60.66574|Estacion Liena 4 - 8 - 14
+B|-35.15235|-65.94233|Estacion Terminal de Omnibus
+B|-31.16627|-64.32021|Estacion Terminal de Omnibus Rio Ceballos
+B|-32.10682|-64.75384|Estacion de Buses de Villa Yacanto De Calamuchita
+B|-31.64864|-68.28924|Estacion de Omnibus de Caucete
+B|-24.90235|-60.32668|Estacion de Omnibus de Pozo del Tigre
+B|-32.81249|-61.39667|Estacion de la Ciudad
+B|-31.56564|-60.74076|Estacion terminal Linea 5
+B|-28.17474|-66.21369|Estacion terminal Saujil
+B|-34.66471|-58.72969|Estación Central de Micros Merlo
+B|-38.94222|-68.00818|Estación Central de Ómnibus Cipolletti
+B|-34.78831|-62.19760|Estación De Micros Coronel Granada
+B|-27.49469|-58.93648|Estación Intermedia de Micros de Barranqueras
+B|-33.01913|-60.87891|Estación Interurbana Zavalla
+B|-31.84358|-59.01960|Estación Omnibus Villaguay Juan Pablo II
+B|-29.12307|-59.65346|Estación Terminal de Colectivos
+B|-31.65476|-64.44658|Estación Terminal de Omnibus
+B|-30.95472|-62.33950|Estación Terminal de Omnibus
+B|-27.45627|-59.02245|Estación Terminal de Omnibus
+B|-31.53920|-68.51073|Estación Terminal de Omnibus San Juan
+B|-32.03043|-61.22369|Estación Terminal de Ómnibus Doctor Raúl Ricardo Alfonsín
+B|-31.64325|-60.70030|Estación Terminal de Ómnibus General Manuel Belgrano
+B|-38.95619|-68.21753|Estación Terminal de Ómnibus de Plottier
+B|-23.12852|-64.32851|Estación de Micros
+B|-30.94458|-61.55781|Estación de Omnibus
+B|-32.39848|-59.79706|Estación de Omnibus "La Delfina"
+B|-30.24603|-68.74006|Estación de Omnibus de San José de Jáchal
+B|-31.54173|-68.53666|Estación de Transbordo Córdoba
+B|-31.53734|-68.51942|Estación de Transbordo Mitre
+B|-27.43233|-55.88876|Estación de Transferencia Campus UNaM
+B|-32.59147|-66.12726|Estación de buses San Francisco del Monte de Oro
+B|-34.53716|-58.47595|Estación de trasbordo Puente Saavedra
+B|-37.35838|-62.43742|Estación de Ómnibus
+B|-33.24509|-61.35925|Estación de Ómnibus Chabás
+B|-32.98623|-62.02125|Estación de Ómnibus Dr. Isaac H. Vivanco Gómez
+B|-33.45523|-61.48509|Estación de Ómnibus Firmat «Ovidio Lagos»
+B|-36.22830|-64.23453|Estación de Ómnibus Winifreda
+B|-34.51458|-63.94074|Estación de Ómnibus de Jovita
+B|-33.73646|-69.11785|Estación de ómnibus
+B|-27.48779|-55.11740|Expreso Singer
+B|-34.76064|-58.39671|Expreso Villa Galicia San José
+B|-34.18318|-62.02248|Garita de espera de micro
+B|-50.46880|-73.02969|Glaciar Perito Moreno
+B|-25.26518|-57.72759|Godoy (a Formosa)
+B|-32.97125|-68.83620|Group7
+B|-30.86614|-61.35112|Humberto Primo
+B|-32.88713|-60.71637|José Ignacio Rucci
+B|-31.26991|-58.10712|La Criolla
+B|-28.15500|-65.65919|La Merced
+B|-34.18875|-61.52653|La Terminal
+B|-32.65430|-62.29258|La Terminal Leones
+B|-30.38231|-63.59584|Las Arrias
+B|-53.78947|-67.70744|Lider
+B|-34.81378|-58.46688|Liniers Bus
+B|-46.54437|-71.62399|Los Antiguos
+B|-43.24293|-65.31944|Línea 2
+B|-34.73682|-58.25157|Línea 22 - Terminal
+B|-43.24921|-65.31430|Línea 3
+B|-43.24471|-65.31789|Línea 3
+B|-43.24124|-65.31282|Línea 3
+B|-53.80353|-67.66186|Línea Siete - C
+B|-48.75513|-70.25556|Marga Taqsa
+B|-54.80694|-68.30800|Marga Taqsa Bus Ticket Agency
+B|-34.18697|-58.94836|MasterBus
+B|-32.89492|-68.83039|Mendoza Bus Station
+B|-34.81426|-58.46800|Monte Grande Bus
+B|-29.14460|-59.26246|Mz.237
+B|-29.30125|-67.50599|Nonogasta Bus Terminal
+B|-34.89242|-58.03529|Norte 13 - 273
+B|-27.67359|-67.02948|Nueva Terminal de Belén
+B|-28.62659|-65.12845|Nueva Terminal de Ómnibus
+B|-27.91676|-63.88749|Nueva terminal de ómnibus de Fernández
+B|-26.19565|-58.20524|Parada 25, 40, 80, 90
+B|-40.73303|-64.94381|Parada Andesmar
+B|-35.32905|-61.61489|Parada Linea "Caballito Criollo"
+B|-26.84807|-65.21243|Parada Linea Nº 19
+B|-32.67939|-68.63514|Parada de Colectivos
+B|-33.98206|-64.08328|Parada de Omnibus
+B|-32.39385|-59.27583|Parada de autobuses
+B|-34.05928|-60.10262|Parada de colectivos larga distancia
+B|-39.26096|-68.78297|Parada de Ómnibus Villa El Chocón
+B|-39.10277|-68.60049|Parada para transporte de personal
+B|-31.64988|-64.08943|Parador
+B|-32.30138|-61.41155|Parador "Centeno"
+B|-29.08642|-56.54821|Parador Alvear
+B|-34.68545|-58.56192|Parador Bru Bus
+B|-31.39574|-64.75234|Parador Del Valle
+B|-34.63473|-58.78698|Parador Dover
+B|-31.79558|-58.31810|Parador Gastiazoro
+B|-32.58384|-62.83338|Parador La Delicia
+B|-34.53240|-58.70039|Parador Larga Distancia Lemos
+B|-34.63473|-58.78667|Parador Las Piedras
+B|-31.84273|-63.74420|Parador Municipal
+B|-33.36406|-60.25207|Parador San Nicolás
+B|-33.14523|-61.27908|Parador Sanford
+B|-33.90547|-61.10872|Parador de Colón
+B|-32.54071|-63.47784|Parador de Omnibus Luca
+B|-32.20343|-63.16235|Parador de Omnibus de Arroyo Algodón
+B|-31.72864|-64.42841|Parador de Villa La Bolsa
+B|-32.65427|-62.29257|Parador de Ómnibus Ciudad de Leones
+B|-33.34995|-61.44505|Parador de Ómnibus Villada «Victor Van Zuylen»
+B|-30.20390|-69.26597|Predio Tudcum Barrick
+B|-34.58665|-58.37458|Retiro Bus Terminal
+B|-34.73207|-58.52301|Rotonda Ciudad Evita
+B|-34.26579|-62.70352|Rufino Bus Station
+B|-34.70219|-58.51028|Rutatlántica
+B|-26.78675|-60.43019|Saenz Peña
+B|-40.73245|-64.96861|San Antonio Oeste
+B|-31.53925|-68.51132|San Juan's Bus Station
+B|-49.30411|-67.73609|San Julián
+B|-45.58205|-69.06911|Sarmiento
+B|-32.80299|-63.24382|TERMINAL DE OMNIBUS
+B|-37.98377|-57.57661|TIENDA LEÓN
+B|-29.18920|-67.49141|TRANSPORTE CHILECITO
+B|-31.35434|-64.32930|Taller Calcita - Cooperativa La Calera
+B|-54.51023|-67.19850|Techni Austral Buses
+B|-32.72048|-59.39676|Termianl de Ómnibus
+B|-45.04057|-70.82316|Terminal
+B|-38.08587|-63.43074|Terminal
+B|-37.46007|-63.58274|Terminal
+B|-34.52022|-61.38981|Terminal
+B|-33.91738|-64.39087|Terminal
+B|-33.81906|-64.45857|Terminal
+B|-33.69815|-61.61527|Terminal
+B|-33.50038|-65.78964|Terminal
+B|-33.17697|-64.99249|Terminal
+B|-32.92133|-66.32608|Terminal
+B|-32.23705|-65.80540|Terminal
+B|-31.57269|-66.23242|Terminal
+B|-31.32025|-65.08827|Terminal
+B|-31.21125|-66.31884|Terminal
+B|-30.95457|-66.22438|Terminal
+B|-28.19548|-65.10516|Terminal
+B|-27.82799|-61.13798|Terminal
+B|-26.53822|-59.33969|Terminal
+B|-25.94545|-60.63086|Terminal
+B|-51.60046|-72.22417|Terminal 28 de Noviembre
+B|-34.68088|-58.54815|Terminal 46
+B|-45.88298|-67.54410|Terminal Abel Amaya
+B|-34.80714|-58.18417|Terminal Barrio Marítimo
+B|-28.10545|-65.31698|Terminal Bañado de Ovanta
+B|-34.78007|-58.26171|Terminal Berazategui
+B|-33.08593|-68.46450|Terminal Bus
+B|-28.47549|-65.77448|Terminal Catamarca
+B|-27.44655|-55.87055|Terminal Crucero del Norte
+B|-24.22779|-64.86991|Terminal De Omnibus De San Pedro
+B|-30.63747|-65.38882|Terminal De Omnibus de Serrezuela
+B|-31.65471|-64.44666|Terminal De Ómnibus De Alta Gracia
+B|-31.69884|-61.56666|Terminal Doctor Alfredo Grassi
+B|-30.78286|-64.64610|Terminal Don Toto Sánchez
+B|-24.38852|-65.25794|Terminal El Carmen
+B|-34.63982|-58.53241|Terminal Empresa Almafuerte
+B|-34.62566|-58.38502|Terminal Empresa San Vicente
+B|-23.94035|-64.80113|Terminal Fraile Pintadi
+B|-31.52732|-58.40766|Terminal General Campos
+B|-31.40536|-62.62861|Terminal La Francia
+B|-34.70708|-58.45486|Terminal La Noria
+B|-33.29502|-68.05031|Terminal Las Catitas
+B|-31.55954|-60.72900|Terminal Linea 3
+B|-31.85504|-64.37932|Terminal Los Molinos
+B|-34.80678|-58.44194|Terminal Luis Guillón
+B|-34.61072|-58.40775|Terminal Línea 194
+B|-34.64012|-58.53078|Terminal Línea 242 - La Cabaña
+B|-34.88882|-58.38522|Terminal Línea 404
+B|-34.66219|-58.51911|Terminal Líneas 382-620
+B|-35.47399|-69.58942|Terminal Malargüe
+B|-31.64385|-60.70025|Terminal Manuel Belgrano
+B|-45.85556|-67.54681|Terminal Máximo Abásolo
+B|-38.95747|-68.10534|Terminal Neuquén
+B|-27.46697|-55.74632|Terminal Nueva
+B|-33.41274|-63.29102|Terminal Omnibus
+B|-33.17783|-63.28206|Terminal Omnibus
+B|-32.75543|-63.79319|Terminal Omnibus
+B|-32.69801|-63.70922|Terminal Omnibus
+B|-32.19678|-61.71039|Terminal Omnibus
+B|-31.82359|-58.81895|Terminal Omnibus
+B|-30.89136|-63.11591|Terminal Omnibus
+B|-30.87148|-62.02590|Terminal Omnibus
+B|-29.72507|-57.09446|Terminal Omnibus
+B|-28.98151|-59.10034|Terminal Omnibus  de Santa Lucía
+B|-27.58847|-65.61975|Terminal Omnibus Alberdi
+B|-30.85896|-64.52634|Terminal Omnibus Capilla del Monte
+B|-31.41893|-64.49340|Terminal Omnibus Carlos Paz
+B|-34.47281|-58.65598|Terminal Omnibus El Talar Pacheco
+B|-32.42324|-63.73819|Terminal Omnibus General San Martín
+B|-27.08974|-61.08297|Terminal Omnibus Las Breñas
+B|-32.35016|-65.01644|Terminal Omnibus Merlo
+B|-43.24851|-65.30263|Terminal Omnibus Trelew
+B|-31.23569|-64.31356|Terminal Omnibus Unquillo (Intendente Julio Rey)
+B|-37.94083|-57.60794|Terminal Omnibus Urbanos
+B|-30.70346|-64.06803|Terminal Omnibus Villa Del Totoral
+B|-34.47522|-58.66031|Terminal Panamericana y 197
+B|-34.59765|-58.36935|Terminal Puerto Madero
+B|-38.99167|-64.10573|Terminal Río Colorado
+B|-34.24632|-59.46281|Terminal San Antonio de Areco
+B|-30.92499|-64.52697|Terminal San Esteban
+B|-34.47423|-58.51340|Terminal San Isidro Línea 338
+B|-31.90182|-61.86122|Terminal San Jorge
+B|-34.68477|-58.56088|Terminal San Justo
+B|-31.38807|-63.41832|Terminal Santiago Temple
+B|-36.93694|-60.15593|Terminal Sierras Bayas
+B|-36.42973|-61.42304|Terminal Urdampilleta
+B|-37.17659|-62.76045|Terminal Vieja
+B|-31.05021|-64.49905|Terminal Villa Giardino
+B|-29.90553|-63.72540|Terminal Villa de María del Rio Seco
+B|-31.55137|-63.53500|Terminal Villa del Rosario
+B|-30.94979|-59.78408|Terminal Zeneiser
+B|-26.58389|-62.85003|Terminal colectivo Campo Gallo
+B|-27.49810|-58.81438|Terminal de  Ómnibus Corrientes Capital
+B|-22.72162|-65.69720|Terminal de Abra Pampa
+B|-35.33404|-64.12151|Terminal de Alta Italia
+B|-22.91968|-65.58873|Terminal de Autobuses
+B|-23.20889|-64.10151|Terminal de Autobuses de Embarcacion
+B|-31.34086|-59.44665|Terminal de Bovril
+B|-32.55929|-65.24485|Terminal de Bus Concarán
+B|-32.73999|-65.27769|Terminal de Bus Tilisarao
+B|-34.64169|-60.46039|Terminal de Chacabuco
+B|-35.04105|-58.40985|Terminal de Colectivos
+B|-25.64063|-60.25630|Terminal de Colectivos
+B|-29.69078|-60.24804|Terminal de Colectivos Margarita
+B|-33.91371|-60.58683|Terminal de Colectivos de Pergamino
+B|-34.29429|-60.25323|Terminal de Colectivos de Salto
+B|-29.42293|-66.85414|Terminal de Combis
+B|-34.60560|-58.38191|Terminal de Combis Obelisco
+B|-31.38495|-58.01242|Terminal de Concordia
+B|-32.02644|-60.30258|Terminal de Crespo
+B|-41.32928|-69.54670|Terminal de Ingeniero Jacobacci
+B|-27.59254|-56.68646|Terminal de Ituzaingó
+B|-32.36794|-65.93307|Terminal de Luján
+B|-41.25073|-68.70362|Terminal de Maquinchao
+B|-29.18278|-58.08193|Terminal de Mercedes
+B|-38.14601|-58.22427|Terminal de Micros
+B|-33.56222|-62.88033|Terminal de Micros
+B|-32.87614|-65.63443|Terminal de Micros
+B|-32.61909|-64.98057|Terminal de Micros
+B|-30.21571|-64.49292|Terminal de Micros
+B|-33.54223|-61.12511|Terminal de Micros de Alcorta
+B|-36.58319|-56.69954|Terminal de Micros de Mar del Tuyú
+B|-30.77338|-64.10693|Terminal de Micros de Sarmiento
+B|-24.44946|-65.15893|Terminal de Monterrico
+B|-36.89564|-60.31402|Terminal de Olavarria
+B|-38.85168|-60.07219|Terminal de Omnibus
+B|-37.97858|-63.60547|Terminal de Omnibus
+B|-37.84607|-57.50693|Terminal de Omnibus
+B|-37.05074|-69.87978|Terminal de Omnibus
+B|-36.64239|-57.78849|Terminal de Omnibus
+B|-36.31955|-57.69362|Terminal de Omnibus
+B|-36.30534|-61.72667|Terminal de Omnibus
+B|-35.70187|-63.02233|Terminal de Omnibus
+B|-35.38045|-64.47300|Terminal de Omnibus
+B|-34.12014|-59.01607|Terminal de Omnibus
+B|-33.71643|-58.65982|Terminal de Omnibus
+B|-33.63800|-63.89081|Terminal de Omnibus
+B|-33.27981|-62.18613|Terminal de Omnibus
+B|-33.04319|-61.16584|Terminal de Omnibus
+B|-32.61767|-60.15944|Terminal de Omnibus
+B|-32.48528|-58.24222|Terminal de Omnibus
+B|-32.41435|-63.23263|Terminal de Omnibus
+B|-32.34636|-62.88380|Terminal de Omnibus
+B|-32.09948|-63.03083|Terminal de Omnibus
+B|-31.87209|-60.00776|Terminal de Omnibus
+B|-31.64611|-63.75816|Terminal de Omnibus
+B|-31.62437|-58.50621|Terminal de Omnibus
+B|-31.34292|-66.58945|Terminal de Omnibus
+B|-30.98172|-61.74306|Terminal de Omnibus
+B|-30.98119|-57.92373|Terminal de Omnibus
+B|-30.94953|-59.78440|Terminal de Omnibus
+B|-30.63564|-67.47004|Terminal de Omnibus
+B|-30.42504|-64.34871|Terminal de Omnibus
+B|-30.38369|-58.75047|Terminal de Omnibus
+B|-30.33585|-58.30779|Terminal de Omnibus
+B|-30.25175|-57.64313|Terminal de Omnibus
+B|-29.76595|-62.04472|Terminal de Omnibus
+B|-29.49788|-59.74768|Terminal de Omnibus
+B|-29.38074|-63.47238|Terminal de Omnibus
+B|-28.95588|-58.57093|Terminal de Omnibus
+B|-28.83943|-58.83304|Terminal de Omnibus
+B|-28.76182|-68.20830|Terminal de Omnibus
+B|-27.77844|-64.26346|Terminal de Omnibus
+B|-27.58052|-66.31539|Terminal de Omnibus
+B|-27.28665|-60.41544|Terminal de Omnibus
+B|-27.16994|-65.49441|Terminal de Omnibus
+B|-26.70316|-66.05088|Terminal de Omnibus
+B|-26.60123|-60.95213|Terminal de Omnibus
+B|-26.14563|-59.59620|Terminal de Omnibus
+B|-25.72901|-59.10401|Terminal de Omnibus
+B|-24.71066|-60.59043|Terminal de Omnibus
+B|-24.42988|-63.99313|Terminal de Omnibus
+B|-22.60044|-63.80653|Terminal de Omnibus
+B|-28.55892|-66.80440|Terminal de Omnibus Aimogasta
+B|-35.72154|-65.32673|Terminal de Omnibus Arizona
+B|-32.49016|-63.40375|Terminal de Omnibus Arroyo Cabral
+B|-34.66083|-58.37625|Terminal de Omnibus Avellaneda
+B|-30.86505|-62.03560|Terminal de Omnibus Brinkmann
+B|-30.35533|-66.30964|Terminal de Omnibus Chamical
+B|-28.85629|-66.23503|Terminal de Omnibus Chumbicha
+B|-32.61016|-63.58049|Terminal de Omnibus Dalmacio Velez Sarfield
+B|-34.37853|-64.49115|Terminal de Omnibus Del Campillo
+B|-36.78406|-59.85173|Terminal de Omnibus Francisco Toscano
+B|-36.52135|-57.32565|Terminal de Omnibus General Conesa
+B|-32.72034|-61.91299|Terminal de Omnibus General Roca
+B|-35.45197|-60.88181|Terminal de Omnibus Jesús Abel Blanco
+B|-30.98386|-64.10615|Terminal de Omnibus Jesús María
+B|-30.75614|-57.98845|Terminal de Omnibus Leonidas Echagüe
+B|-40.72818|-64.94236|Terminal de Omnibus Olaff
+B|-32.24967|-63.65056|Terminal de Omnibus Pampayasta Sur
+B|-37.10717|-56.87981|Terminal de Omnibus Pinamar
+B|-30.57318|-59.93550|Terminal de Omnibus Ramón Ruiz
+B|-33.11415|-64.35164|Terminal de Omnibus Río Cuarto
+B|-27.49171|-64.86549|Terminal de Omnibus Termas de Rio Hondo
+B|-33.36618|-69.14783|Terminal de Omnibus Tupungato
+B|-32.59065|-69.34736|Terminal de Omnibus Uspallata
+B|-30.85665|-64.98635|Terminal de Omnibus Villa de Soto
+B|-31.06397|-64.30016|Terminal de Omnibus de Agua de Oro
+B|-29.08679|-56.55502|Terminal de Omnibus de Alvear El Palenque
+B|-27.58331|-66.30485|Terminal de Omnibus de Andalgalá
+B|-28.52212|-59.04169|Terminal de Omnibus de Bella Vista
+B|-35.16932|-58.23133|Terminal de Omnibus de Brandsen
+B|-27.75145|-57.61915|Terminal de Omnibus de Caa Cati
+B|-34.19021|-58.94583|Terminal de Omnibus de Campana
+B|-27.91187|-55.82294|Terminal de Omnibus de Colonia Liebig
+B|-28.38757|-57.89720|Terminal de Omnibus de Concepcion del Yaguarete Cora
+B|-27.99544|-55.52002|Terminal de Omnibus de Concepción de la Sierra
+B|-30.02005|-59.53129|Terminal de Omnibus de Esquina
+B|-29.37837|-65.29088|Terminal de Omnibus de Esquiú
+B|-31.13068|-64.13958|Terminal de Omnibus de Estación General Paz
+B|-22.93682|-63.86072|Terminal de Omnibus de General Ballivian
+B|-29.14482|-59.26290|Terminal de Omnibus de Goya
+B|-23.89776|-61.85137|Terminal de Omnibus de Ingeniero Guillermo N Juarez
+B|-27.43033|-57.33856|Terminal de Omnibus de Ita Ibaté
+B|-27.59260|-56.68649|Terminal de Omnibus de Ituzaingo
+B|-29.16946|-56.65233|Terminal de Omnibus de La Cruz
+B|-36.86538|-57.87305|Terminal de Omnibus de Maipú
+B|-29.69127|-60.24712|Terminal de Omnibus de Margarita
+B|-29.18289|-58.08231|Terminal de Omnibus de Mercedes
+B|-30.61649|-57.97993|Terminal de Omnibus de Mocoretá
+B|-30.25174|-57.64317|Terminal de Omnibus de Monte Caseros
+B|-35.01024|-59.28019|Terminal de Omnibus de Navarro
+B|-29.72523|-57.09460|Terminal de Omnibus de Paso de los Libres
+B|-24.38750|-65.11477|Terminal de Omnibus de Perico
+B|-23.31390|-64.22637|Terminal de Omnibus de Pichanal
+B|-29.14397|-59.65050|Terminal de Omnibus de Reconquista
+B|-29.27301|-65.06410|Terminal de Omnibus de Recreo
+B|-51.62770|-69.24769|Terminal de Omnibus de Río Gallegos
+B|-28.25636|-58.61972|Terminal de Omnibus de Saladas
+B|-28.12460|-58.76665|Terminal de Omnibus de San Lorenzo
+B|-33.29525|-66.29699|Terminal de Omnibus de San Luis
+B|-27.99244|-57.59578|Terminal de Omnibus de San Miguel
+B|-28.57706|-58.71321|Terminal de Omnibus de San Roque
+B|-28.54684|-56.04375|Terminal de Omnibus de Santo Tome
+B|-34.47211|-63.53938|Terminal de Omnibus de Serrano
+B|-28.31788|-58.28136|Terminal de Omnibus de Tabay
+B|-28.06008|-56.01500|Terminal de Omnibus de Virasoro
+B|-29.47016|-56.81844|Terminal de Omnibus de Yapeyu
+B|-22.10294|-65.59975|Terminal de Omnibuses
+B|-31.91212|-63.68398|Terminal de Oncativo
+B|-31.24108|-61.50618|Terminal de Rafaela
+B|-33.77819|-69.06054|Terminal de San Carlos
+B|-26.23309|-65.49525|Terminal de San Pedro de Colalao
+B|-23.57622|-65.39866|Terminal de Tilcara
+B|-27.40264|-55.91494|Terminal de Transferencia Quaranta
+B|-32.68929|-58.89174|Terminal de Urdinarrain
+B|-22.73477|-64.35150|Terminal de bus Aguas Blancas
+B|-34.45000|-59.45013|Terminal de buses
+B|-34.83408|-67.92286|Terminal de colectivos
+B|-34.69979|-58.29857|Terminal de colectivos
+B|-34.35001|-58.79538|Terminal de colectivos
+B|-27.11109|-60.58580|Terminal de colectivos
+B|-37.82925|-58.23488|Terminal de omnibus
+B|-37.03211|-64.28767|Terminal de omnibus
+B|-33.15634|-62.85853|Terminal de omnibus
+B|-32.68177|-61.52040|Terminal de omnibus
+B|-32.58850|-61.17404|Terminal de omnibus
+B|-28.34799|-59.26446|Terminal de omnibus
+B|-26.18461|-59.36229|Terminal de omnibus
+B|-23.12852|-64.32848|Terminal de omnibus
+B|-36.40651|-63.42584|Terminal de omnibus Catriló
+B|-45.86321|-67.48080|Terminal de omnibus Municipalidad de Comodoro RivadaviaAngel Solari
+B|-26.26305|-53.64837|Terminal de Ómnibis de Bernardo de Irigoyen
+B|-31.30035|-63.75900|Terminal de Ómnibud de Piquillín
+B|-47.74721|-65.88433|Terminal de Ómnibus
+B|-45.69096|-70.25395|Terminal de Ómnibus
+B|-42.90635|-71.31339|Terminal de Ómnibus
+B|-41.04339|-62.82694|Terminal de Ómnibus
+B|-40.84601|-68.09041|Terminal de Ómnibus
+B|-40.80123|-62.97663|Terminal de Ómnibus
+B|-40.58582|-67.75165|Terminal de Ómnibus
+B|-40.10913|-64.45352|Terminal de Ómnibus
+B|-39.31462|-65.75066|Terminal de Ómnibus
+B|-38.54851|-58.73100|Terminal de Ómnibus
+B|-38.36841|-60.28578|Terminal de Ómnibus
+B|-38.35499|-59.62016|Terminal de Ómnibus
+B|-38.15839|-58.77746|Terminal de Ómnibus
+B|-38.09986|-62.21776|Terminal de Ómnibus
+B|-38.02925|-60.10202|Terminal de Ómnibus
+B|-37.67882|-59.81032|Terminal de Ómnibus
+B|-37.54129|-62.75975|Terminal de Ómnibus
+B|-37.54118|-60.79272|Terminal de Ómnibus
+B|-37.45315|-61.92489|Terminal de Ómnibus
+B|-37.36664|-64.60318|Terminal de Ómnibus
+B|-37.32090|-59.11740|Terminal de Ómnibus
+B|-37.24404|-61.25887|Terminal de Ómnibus
+B|-37.16048|-58.48633|Terminal de Ómnibus
+B|-37.05777|-61.92947|Terminal de Ómnibus
+B|-37.01001|-62.41956|Terminal de Ómnibus
+B|-36.77447|-59.08899|Terminal de Ómnibus
+B|-36.76213|-62.50675|Terminal de Ómnibus
+B|-36.73241|-56.69527|Terminal de Ómnibus
+B|-36.68641|-56.68836|Terminal de Ómnibus
+B|-36.65997|-56.68483|Terminal de Ómnibus
+B|-36.40984|-56.93959|Terminal de Ómnibus
+B|-36.23655|-61.12207|Terminal de Ómnibus
+B|-36.09177|-57.81013|Terminal de Ómnibus
+B|-36.02674|-60.01493|Terminal de Ómnibus
+B|-35.97801|-62.72914|Terminal de Ómnibus
+B|-35.81091|-61.90480|Terminal de Ómnibus
+B|-35.43230|-60.16627|Terminal de Ómnibus
+B|-35.39504|-62.42466|Terminal de Ómnibus
+B|-35.11209|-60.49081|Terminal de Ómnibus
+B|-35.08210|-57.51924|Terminal de Ómnibus
+B|-34.99911|-61.03662|Terminal de Ómnibus
+B|-34.97908|-67.69380|Terminal de Ómnibus
+B|-34.90560|-57.95469|Terminal de Ómnibus
+B|-34.88855|-60.01236|Terminal de Ómnibus
+B|-34.84392|-62.46721|Terminal de Ómnibus
+B|-34.74504|-60.98826|Terminal de Ómnibus
+B|-34.58905|-60.94940|Terminal de Ómnibus
+B|-34.48201|-64.17244|Terminal de Ómnibus
+B|-34.43894|-61.81536|Terminal de Ómnibus
+B|-34.06455|-60.10370|Terminal de Ómnibus
+B|-33.79337|-61.21248|Terminal de Ómnibus
+B|-33.73549|-61.97579|Terminal de Ómnibus
+B|-33.66522|-65.46670|Terminal de Ómnibus
+B|-33.57788|-69.01202|Terminal de Ómnibus
+B|-33.38301|-64.72171|Terminal de Ómnibus
+B|-33.29549|-66.29702|Terminal de Ómnibus
+B|-33.19488|-68.46741|Terminal de Ómnibus
+B|-33.02092|-58.53488|Terminal de Ómnibus
+B|-32.56711|-64.39374|Terminal de Ómnibus
+B|-32.19147|-64.25575|Terminal de Ómnibus
+B|-32.17074|-60.19674|Terminal de Ómnibus
+B|-31.90076|-64.77322|Terminal de Ómnibus
+B|-31.73966|-60.51791|Terminal de Ómnibus
+B|-31.55305|-61.07612|Terminal de Ómnibus
+B|-31.45341|-60.93127|Terminal de Ómnibus
+B|-31.43708|-61.25876|Terminal de Ómnibus
+B|-31.33632|-61.81888|Terminal de Ómnibus
+B|-31.23080|-59.98512|Terminal de Ómnibus
+B|-31.15372|-63.40650|Terminal de Ómnibus
+B|-29.44088|-66.86097|Terminal de Ómnibus
+B|-29.23393|-61.76595|Terminal de Ómnibus
+B|-29.17631|-67.49353|Terminal de Ómnibus
+B|-27.73549|-64.24934|Terminal de Ómnibus
+B|-27.69405|-67.62496|Terminal de Ómnibus
+B|-27.31944|-58.57979|Terminal de Ómnibus
+B|-27.29074|-60.71644|Terminal de Ómnibus
+B|-27.22015|-61.19239|Terminal de Ómnibus
+B|-26.95590|-60.96697|Terminal de Ómnibus
+B|-26.82142|-55.02595|Terminal de Ómnibus
+B|-26.80195|-66.06811|Terminal de Ómnibus
+B|-26.19068|-58.19415|Terminal de Ómnibus
+B|-25.61307|-63.26684|Terminal de Ómnibus
+B|-23.81018|-64.78783|Terminal de Ómnibus
+B|-33.34140|-66.62399|Terminal de Ómnibus "Balde"
+B|-36.75187|-62.95535|Terminal de Ómnibus "Don Francisco Claro Natalio Osio"
+B|-24.22145|-65.27196|Terminal de Ómnibus "Gral. Manuel Eduardo Arias"
+B|-39.41470|-65.69499|Terminal de Ómnibus "Manolo García"
+B|-35.38857|-59.34434|Terminal de Ómnibus "Néstor Kirchner"
+B|-37.18000|-62.74944|Terminal de Ómnibus "Vicente O. Crivera"
+B|-37.76947|-67.71758|Terminal de Ómnibus 25 de Mayo
+B|-31.00921|-62.66390|Terminal de Ómnibus Balnearia
+B|-36.81165|-62.24828|Terminal de Ómnibus Bonifacio
+B|-26.79982|-60.83764|Terminal de Ómnibus Campo Largo
+B|-33.02359|-64.04686|Terminal de Ómnibus Charras
+B|-27.35318|-65.59571|Terminal de Ómnibus Concepción
+B|-32.02542|-64.19465|Terminal de Ómnibus Corralito
+B|-31.42257|-64.17526|Terminal de Ómnibus Córdoba
+B|-36.59789|-61.75168|Terminal de Ómnibus Daireaux
+B|-34.65160|-58.46387|Terminal de Ómnibus Dellepiane
+B|-34.37267|-62.12727|Terminal de Ómnibus Diego de Alvear
+B|-34.45151|-58.55051|Terminal de Ómnibus E.C.S.F.
+B|-31.38414|-62.82821|Terminal de Ómnibus El Tío
+B|-31.07130|-64.48975|Terminal de Ómnibus Huerta Grande
+B|-30.86632|-61.35118|Terminal de Ómnibus Humberto Primo
+B|-30.98392|-64.10594|Terminal de Ómnibus Jesús María
+B|-30.78397|-60.59107|Terminal de Ómnibus José de San Martín
+B|-33.45893|-67.55343|Terminal de Ómnibus La Paz
+B|-36.48858|-56.70369|Terminal de Ómnibus Las Toninas
+B|-35.20091|-59.09657|Terminal de Ómnibus Lobos
+B|-32.62706|-62.69221|Terminal de Ómnibus Manuel Belgrano
+B|-36.73283|-56.69528|Terminal de Ómnibus Mar de Ajo
+B|-30.99479|-62.82590|Terminal de Ómnibus Marull
+B|-34.66123|-59.43784|Terminal de Ómnibus Mercedes
+B|-31.72398|-65.00594|Terminal de Ómnibus Mina Clavero
+B|-38.26290|-57.84291|Terminal de Ómnibus Miramar
+B|-30.91609|-62.67484|Terminal de Ómnibus Miramar
+B|-35.43637|-58.81742|Terminal de Ómnibus Monte
+B|-38.97469|-61.28909|Terminal de Ómnibus Monte Hermoso
+B|-34.64232|-58.52820|Terminal de Ómnibus Parada Liniers
+B|-28.39467|-66.22524|Terminal de Ómnibus Pomán
+B|-46.53789|-68.93498|Terminal de Ómnibus Punta Rieles
+B|-34.84090|-67.76442|Terminal de Ómnibus Real Del Padre
+B|-36.38476|-56.72759|Terminal de Ómnibus San Clemente del Tuyú
+B|-34.00840|-62.24211|Terminal de Ómnibus Sancti Spiritu
+B|-28.06844|-67.55922|Terminal de Ómnibus Tinogasta
+B|-32.61402|-60.13790|Terminal de Ómnibus Victoria
+B|-31.97575|-64.54521|Terminal de Ómnibus Villa General Belgrano
+B|-29.32625|-68.22827|Terminal de Ómnibus Villa Unión
+B|-27.38624|-54.74653|Terminal de Ómnibus de 25 de Mayo
+B|-27.57124|-54.68034|Terminal de Ómnibus de Alba Posse
+B|-29.90722|-59.83149|Terminal de Ómnibus de Alejandra
+B|-39.23958|-70.91537|Terminal de Ómnibus de Aluminé
+B|-37.18287|-70.67254|Terminal de Ómnibus de Andacollo
+B|-25.68386|-54.04523|Terminal de Ómnibus de Andresito
+B|-27.09407|-54.88952|Terminal de Ómnibus de Aristóbulo del Valle
+B|-32.77491|-61.60191|Terminal de Ómnibus de Armstrong
+B|-34.23097|-61.10388|Terminal de Ómnibus de Ascensión
+B|-32.66190|-63.24507|Terminal de Ómnibus de Ausonia
+B|-28.06063|-55.67332|Terminal de Ómnibus de Azara
+B|-38.73632|-62.24628|Terminal de Ómnibus de Bahia Blanca
+B|-32.54248|-62.98228|Terminal de Ómnibus de Ballesteros
+B|-41.13044|-71.27202|Terminal de Ómnibus de Bariloche
+B|-28.52210|-59.04160|Terminal de Ómnibus de Bella Vista
+B|-32.44772|-64.40480|Terminal de Ómnibus de Berrotarán
+B|-27.48229|-55.47190|Terminal de Ómnibus de Bonpland
+B|-34.75557|-65.27086|Terminal de Ómnibus de Buena Esperanza
+B|-33.12709|-62.09426|Terminal de Ómnibus de Camilo Aldao
+B|-27.45731|-55.02393|Terminal de Ómnibus de Campo Ramón
+B|-27.32258|-55.05448|Terminal de Ómnibus de Campo Viera
+B|-26.92669|-55.05976|Terminal de Ómnibus de Capioví
+B|-34.15952|-59.78811|Terminal de Ómnibus de Capitán Sarmiento
+B|-35.62870|-61.35948|Terminal de Ómnibus de Carlos Casares "Guillermo Duverni"
+B|-31.41891|-64.49339|Terminal de Ómnibus de Carlos Paz
+B|-40.80123|-62.97667|Terminal de Ómnibus de Carmen de Patagones "Cheché Vaquero"
+B|-37.87576|-67.79551|Terminal de Ómnibus de Catriel
+B|-27.64192|-55.50359|Terminal de Ómnibus de Cerro Azul
+B|-33.07907|-63.27205|Terminal de Ómnibus de Chazón
+B|-39.11467|-66.94511|Terminal de Ómnibus de Chichinales
+B|-39.16233|-66.15275|Terminal de Ómnibus de Chimpay
+B|-39.28996|-65.65664|Terminal de Ómnibus de Choele Choel
+B|-37.38154|-70.26515|Terminal de Ómnibus de Chos Malal
+B|-38.83349|-68.07363|Terminal de Ómnibus de Cinco Saltos
+B|-27.47398|-54.52060|Terminal de Ómnibus de Colonia Aurora
+B|-32.21705|-58.14736|Terminal de Ómnibus de Colón
+B|-32.84824|-64.35812|Terminal de Ómnibus de Coronel Baigorria
+B|-38.72058|-61.28655|Terminal de Ómnibus de Coronel Dorrego
+B|-33.00734|-61.80720|Terminal de Ómnibus de Cruz Alta
+B|-29.78909|-58.05124|Terminal de Ómnibus de Curuzú Cuatiá
+B|-38.92980|-69.22546|Terminal de Ómnibus de Cutral Có
+B|-31.81489|-64.29213|Terminal de Ómnibus de Despeñaderos
+B|-30.42513|-64.34881|Terminal de Ómnibus de Deán Funes
+B|-27.02045|-54.68419|Terminal de Ómnibus de Dos de Mayo
+B|-35.91660|-64.29443|Terminal de Ómnibus de Eduardo Castex
+B|-26.71592|-54.81309|Terminal de Ómnibus de El Alcázar
+B|-49.33360|-72.88289|Terminal de Ómnibus de El Chaltén
+B|-31.96492|-62.29945|Terminal de Ómnibus de El Fortín
+B|-27.30062|-54.19414|Terminal de Ómnibus de El Soberbio
+B|-26.42518|-54.63733|Terminal de Ómnibus de Eldorado
+B|-32.19567|-64.40257|Terminal de Ómnibus de Embalse
+B|-23.20980|-64.10203|Terminal de Ómnibus de Embarcacion
+B|-30.95484|-58.78653|Terminal de Ómnibus de Federal
+B|-31.58689|-60.93824|Terminal de Ómnibus de Franck
+B|-26.81973|-54.95786|Terminal de Ómnibus de Garuhapé
+B|-35.67030|-63.74200|Terminal de Ómnibus de General Pico
+B|-39.04109|-67.57632|Terminal de Ómnibus de General Roca
+B|-44.04659|-70.59911|Terminal de Ómnibus de Gobernador Costa
+B|-27.19577|-55.47450|Terminal de Ómnibus de Gobernador Roca
+B|-35.55315|-63.37969|Terminal de Ómnibus de González Moreno
+B|-25.86601|-58.88725|Terminal de Ómnibus de Gran Guardia
+B|-33.13237|-59.31624|Terminal de Ómnibus de Gualeguay
+B|-27.52107|-55.15010|Terminal de Ómnibus de Guaraní
+B|-37.66975|-63.53813|Terminal de Ómnibus de Guatraché
+B|-31.50876|-59.83581|Terminal de Ómnibus de Hasenkamp
+B|-23.20516|-65.34746|Terminal de Ómnibus de Humahuaca
+B|-25.20764|-59.85176|Terminal de Ómnibus de Ibarreta
+B|-32.81683|-63.02809|Terminal de Ómnibus de Idiazabal
+B|-35.23501|-63.59034|Terminal de Ómnibus de Intendente Alvear
+B|-22.79441|-65.21803|Terminal de Ómnibus de Iruya
+B|-27.27378|-58.24291|Terminal de Ómnibus de Itatí
+B|-22.97835|-65.35291|Terminal de Ómnibus de Iturbe "Hipólito Yrigoyen"
+B|-32.16503|-63.46204|Terminal de Ómnibus de James Craik
+B|-27.04741|-55.24415|Terminal de Ómnibus de Jardín América
+B|-39.94875|-71.07352|Terminal de Ómnibus de Junín de los Andes
+B|-33.85746|-65.18179|Terminal de Ómnibus de Justo Daract
+B|-32.30064|-64.48283|Terminal de Ómnibus de La Cruz
+B|-34.70630|-58.45390|Terminal de Ómnibus de La Noria
+B|-30.89334|-63.00085|Terminal de Ómnibus de La Para
+B|-33.05530|-65.62123|Terminal de Ómnibus de La Toma
+B|-31.77831|-63.80082|Terminal de Ómnibus de Laguna Larga
+B|-36.01743|-59.10198|Terminal de Ómnibus de Las Flores
+B|-40.79127|-65.07144|Terminal de Ómnibus de Las Grutas
+B|-38.53368|-70.36574|Terminal de Ómnibus de Las Lajas
+B|-36.99022|-70.75474|Terminal de Ómnibus de Las Ovejas
+B|-27.62816|-55.34135|Terminal de Ómnibus de Leandro N. Alem
+B|-38.07086|-70.61098|Terminal de Ómnibus de Loncopué
+B|-28.30183|-64.18604|Terminal de Ómnibus de Loreto
+B|-37.13367|-63.66630|Terminal de Ómnibus de Macachín
+B|-33.66000|-61.45869|Terminal de Ómnibus de Melincué
+B|-34.34835|-63.44224|Terminal de Ómnibus de Melo
+B|-26.57387|-54.73373|Terminal de Ómnibus de Montecarlo
+B|-30.70778|-62.00184|Terminal de Ómnibus de Morteros
+B|-33.64512|-61.85420|Terminal de Ómnibus de Murphy «Evita»
+B|-32.91640|-65.37281|Terminal de Ómnibus de Naschel
+B|-32.04226|-63.56968|Terminal de Ómnibus de Oliva
+B|-24.26670|-65.21131|Terminal de Ómnibus de Palpalá
+B|-33.12599|-63.04085|Terminal de Ómnibus de Pascanas
+B|-46.58257|-70.92833|Terminal de Ómnibus de Perito Moreno
+B|-39.51367|-69.29226|Terminal de Ómnibus de Picún Leufú
+B|-40.05264|-70.08019|Terminal de Ómnibus de Piedra del Águila
+B|-36.51018|-61.56078|Terminal de Ómnibus de Pirovano
+B|-27.40175|-55.91483|Terminal de Ómnibus de Posadas
+B|-26.34613|-54.15138|Terminal de Ómnibus de Pozo Azul
+B|-22.05056|-63.68795|Terminal de Ómnibus de Profesor Salvador Mazza
+B|-26.02164|-54.60501|Terminal de Ómnibus de Puerto Esperanza
+B|-25.59846|-54.57105|Terminal de Ómnibus de Puerto Iguazú
+B|-25.92167|-54.58121|Terminal de Ómnibus de Puerto Libertad
+B|-26.49169|-54.67495|Terminal de Ómnibus de Puerto Piray
+B|-26.46877|-54.71611|Terminal de Ómnibus de Puerto Piray
+B|-26.80849|-55.02108|Terminal de Ómnibus de Puerto Rico
+B|-26.80588|-55.01181|Terminal de Ómnibus de Puerto Rico
+B|-50.02095|-68.53232|Terminal de Ómnibus de Puerto Santa Cruz
+B|-38.87706|-62.07085|Terminal de Ómnibus de Punta Alta
+B|-43.30395|-65.09753|Terminal de Ómnibus de Rawson
+B|-35.04128|-64.26297|Terminal de Ómnibus de Realicó
+B|-24.27188|-64.76656|Terminal de Ómnibus de Rodeito
+B|-53.78435|-67.71762|Terminal de Ómnibus de Río Grande
+B|-31.13986|-64.29098|Terminal de Ómnibus de Salsipuedes
+B|-24.79545|-65.39861|Terminal de Ómnibus de Salta
+B|-27.08234|-54.83058|Terminal de Ómnibus de Salto Encantado
+B|-31.97499|-64.37420|Terminal de Ómnibus de San Agustín
+B|-26.06026|-53.74155|Terminal de Ómnibus de San Antonio
+B|-40.73296|-64.99363|Terminal de Ómnibus de San Antonio Oeste
+B|-34.24341|-59.46600|Terminal de Ómnibus de San Antonio de Areco
+B|-30.31403|-61.23501|Terminal de Ómnibus de San Cristóbal
+B|-32.36783|-61.35024|Terminal de Ómnibus de San Genaro
+B|-27.25990|-55.52963|Terminal de Ómnibus de San Ignacio
+B|-27.86500|-55.13810|Terminal de Ómnibus de San Javier
+B|-27.76429|-55.78582|Terminal de Ómnibus de San José
+B|-32.62099|-62.47776|Terminal de Ómnibus de San Marcos Sud
+B|-40.16061|-71.35758|Terminal de Ómnibus de San Martín de los Andes
+B|-33.67967|-59.66100|Terminal de Ómnibus de San Pedro
+B|-34.61676|-68.33228|Terminal de Ómnibus de San Rafael
+B|-26.99154|-54.48544|Terminal de Ómnibus de San Vicente
+B|-27.36992|-55.58080|Terminal de Ómnibus de Santa Ana
+B|-36.23345|-66.93601|Terminal de Ómnibus de Santa Isabel
+B|-33.88808|-61.69146|Terminal de Ómnibus de Santa Isabel
+B|-32.34293|-65.20706|Terminal de Ómnibus de Santa Rosa del Conlara
+B|-36.53566|-56.71429|Terminal de Ómnibus de Santa Teresita
+B|-27.14205|-55.40566|Terminal de Ómnibus de Santo Pipó
+B|-30.08877|-58.78854|Terminal de Ómnibus de Sauce
+B|-30.94267|-64.09227|Terminal de Ómnibus de Sinsacate
+B|-32.24136|-63.97988|Terminal de Ómnibus de Tancacha
+B|-36.35177|-60.03224|Terminal de Ómnibus de Tapalqué
+B|-22.51608|-63.79415|Terminal de Ómnibus de Tartagal "Alberto Abraham"
+B|-43.49104|-70.80952|Terminal de Ómnibus de Tecka
+B|-36.26457|-65.50890|Terminal de Ómnibus de Telén
+B|-36.28505|-62.55335|Terminal de Ómnibus de Treinta de Agosto
+B|-54.80796|-68.30599|Terminal de Ómnibus de Ushuaia
+B|-40.82052|-63.00424|Terminal de Ómnibus de Viedma
+B|-37.67221|-59.39618|Terminal de Ómnibus de Villa Cacique
+B|-31.70702|-65.02070|Terminal de Ómnibus de Villa Cura Brochero
+B|-31.95494|-65.18783|Terminal de Ómnibus de Villa Dolores
+B|-37.28194|-57.00710|Terminal de Ómnibus de Villa Gesell
+B|-34.84024|-64.58552|Terminal de Ómnibus de Villa Huidobro
+B|-40.76157|-71.64747|Terminal de Ómnibus de Villa La Angostura
+B|-28.49099|-59.34742|Terminal de Ómnibus de Villa Ocampo
+B|-39.09711|-67.08673|Terminal de Ómnibus de Villa Regina
+B|-32.93853|-65.04213|Terminal de Ómnibus de Villa del Carmen
+B|-27.56972|-60.72359|Terminal de Ómnibus de Villa Ángela
+B|-25.96848|-54.57117|Terminal de Ómnibus de Wanda
+B|-33.17212|-62.76838|Terminal de Ómnibus de Wenceslao Escalante
+B|-38.90631|-70.06831|Terminal de Ómnibus de Zapala
+B|-34.64790|-58.61001|Terminal de Ómnibus del Oeste
+B|-34.45753|-58.91280|Terminal de Ómnibus del Pilar
+B|-34.45429|-58.91388|Terminal de Ómnibus del Pilar - Larga Distancia
+B|-32.34407|-65.01225|Terminal de Ómnibus locales
+B|-32.07668|-60.46554|Terminal de Ómnibus y Colectivos
+B|-37.15468|-63.24230|Terminal de Ómnibus “Don Moisés Roitbud”
+B|-27.91918|-55.75026|Terminal de Ómnubus de Apóstoles
+B|-35.63494|-59.77712|Terminal de Ómnubus de Saladillo
+B|-40.68656|-66.16048|Terminal de ómnibus
+B|-35.49395|-62.98613|Terminal de ómnibus
+B|-35.03269|-63.01230|Terminal de ómnibus
+B|-34.84085|-64.36791|Terminal de ómnibus
+B|-34.35599|-58.79708|Terminal de ómnibus
+B|-33.01849|-66.30034|Terminal de ómnibus
+B|-32.93874|-63.24871|Terminal de ómnibus
+B|-30.54324|-65.95574|Terminal de ómnibus
+B|-25.12000|-64.12533|Terminal de ómnibus
+B|-46.43888|-67.54085|Terminal de ómnibus Caleta Olivia
+B|-37.99117|-61.34943|Terminal de ómnibus Islas Malvinas
+B|-31.08981|-64.48729|Terminal de ómnibus La Falda
+B|-30.98336|-64.49468|Terminal de ómnibus La Falda
+B|-32.68687|-62.11110|Terminal de ómnibus Marcos Juárez
+B|-27.63978|-62.42112|Terminal de ómnibus Quimilí
+B|-34.99409|-67.51040|Terminal de ómnibus de Bowen
+B|-25.28705|-57.70692|Terminal de ómnibus de Clorinda
+B|-49.98259|-68.90917|Terminal de ómnibus de Comandante Luis Piedrabuena
+B|-50.33737|-72.24537|Terminal de ómnibus de El Calafate
+B|-32.94318|-62.23615|Terminal de ómnibus de Inrriville
+B|-30.90594|-62.21256|Terminal de ómnibus de La Paquita
+B|-31.86980|-62.70787|Terminal de ómnibus de Las Varillas
+B|-36.26583|-63.16433|Terminal de ómnibus de Pellegrini
+B|-25.49595|-64.97509|Terminal de ómnibus de San José de Metán
+B|-31.11636|-64.48522|Terminal de ómnibus de Valle Hermoso
+B|-45.86402|-67.47379|Terminal del Puerto
+B|-26.80278|-59.55687|Terminal Ómnibus Capitán Solari
+B|-27.68703|-60.90991|Terminal Ómnibus Coronel Du Graty
+B|-27.17677|-60.62477|Terminal Ómnibus La Clotilde
+B|-31.90897|-64.23829|Terminal Ómnibus Monte Ralo
+B|-27.32969|-61.28626|Terminal Ómnibus Pinedo
+B|-26.62445|-54.12096|Terminal Ómnibus de San Pedro
+B|-28.88523|-62.26766|Terminal ómnibus Bandera
+B|-43.29203|-65.08505|Transporte urbano "Bahia"
+B|-33.60010|-61.31199|Trasportadores Rurales Argentinos
+B|-34.95982|-57.94938|Union Platense
+B|-41.96262|-71.53833|Via Bariloche
+B|-34.72532|-58.25067|Via Bariloche
+B|-36.02773|-59.08406|Ypf the flower
+B|-31.64369|-63.34315|erminal de Ómnibus de Luque
+B|-32.53247|-58.92874|estación jose Abelardo Toti alzaga
+B|-32.20942|-58.21975|terminal
+B|-27.65131|-67.02856|terminal de obnibus Belen
+B|-34.86755|-61.52717|terminal de omnibus
+B|-43.25825|-65.29905|to beach SUBE or cash 56 each
+B|-34.47250|-58.57598|trans per

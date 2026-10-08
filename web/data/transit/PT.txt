@@ -15,7 +15,7 @@ S|41.15073|-8.58564|Campanhã|Metro do Porto|M
 S|41.14875|-8.59869|Campo 24 de Agosto|Metro do Porto|M
 S|41.15856|-8.62190|Carolina Michaelis|Metro do Porto|M
 S|41.17984|-8.54351|Carreira|Metro do Porto|M
-S|41.16060|-8.62887|Casa da Música|Metro do Porto|M
+S|41.16063|-8.62869|Casa da Música|Metro do Porto|M
 S|41.26273|-8.61699|Castêlo da Maia|Metro do Porto|M
 S|41.18065|-8.68125|Câmara de Matosinhos|Metro do Porto|M
 S|41.12966|-8.60616|Câmara Gaia|Metro do Porto|M
@@ -173,18 +173,50 @@ S|38.67896|-28.20360|Velas|Atlânticoline|W
 S|39.67191|-31.10993|Vila do Corvo|Atlânticoline|W
 S|40.64990|-8.73003|Forte da Barra|AveiroBus|W
 S|40.66068|-8.72975|São Jacinto|AveiroBus|W
-S|40.14824|-8.85835|Cais Norte (Figueira)|CM Figueira da Foz|W
+S|39.73611|-7.49476|Cais Fluvial dos Lentiscais|Balcón del Tajo|W
+S|39.66633|-7.53351|Embarcadero de Cedillo|Balcón del Tajo|W
+S|40.14810|-8.85835|Cais Norte (Figueira)|CM Figueira da Foz|W
 S|40.14152|-8.86045|Cais Sul (Cabedelo)|CM Figueira da Foz|W
+S|37.13669|-7.59511|Cabanas|Cabanas - Praia de Cabanas|W
+S|37.13650|-7.59191|Praia de Cabanas|Cabanas - Praia de Cabanas|W
+S|39.52286|-7.83464|Barca d'Amieira (Amieira do Tejo)|Câmara Municipal de Nisa|W
+S|39.52392|-7.83546|Barca d'Amieira (Envendos)|Câmara Municipal de Nisa|W
+S|41.14006|-8.61363|Cais da Estiva|Douro River Ferry|W
+S|41.13798|-8.61382|Cais do Choupelo|Douro River Ferry|W
+S|37.01223|-7.93614|Cais das portas do mar|Faro - Praia de Faro|W
+S|37.00314|-7.98599|Praia de Faro|Faro - Praia de Faro|W
+S|37.02372|-7.80602|Armona|Olhão - Armona|W
+S|37.02242|-7.83714|Olhão|Olhão - Armona|W
+S|36.97808|-7.86647|Farol|Olhão - Farol|W
+S|37.05365|-7.74329|Fuseta|Passeios Ria Formosa|W
+S|37.04406|-7.74558|Praia da Fuseta-Mar|Passeios Ria Formosa|W
+S|37.10264|-8.67070|Vai Vem|Pedestrian boat crossing|W
+S|39.41420|-9.50653|Berlengas|Peniche - Berlengas|W
+S|39.35274|-9.37813|Peniche|Peniche - Berlengas|W
+S|32.64139|-16.91666|Funchal|Porto Santo Line|W
+S|33.05895|-16.31142|Porto Santo|Porto Santo Line|W
+S|41.06636|-8.26288|Ilha do Castelo|Praia Fluvial do Castelo - Ilha do Castelo|W
+S|41.06460|-8.26428|Praia Fluvial do Castelo|Praia Fluvial do Castelo - Ilha do Castelo|W
+S|37.09974|-7.66145|Santa Luzia|Silnido|W
+S|37.10027|-7.64226|Terra Estreita|Silnido|W
+S|37.11554|-7.62124|Ilha de Tavira|Silnido - Transportes Fluviais Lda.|W
+S|37.11622|-7.62875|Quatro Águas|Silnido - Transportes Fluviais Lda.|W
+S|37.12536|-7.64634|Tavira|Silnido - Transportes Fluviais Lda.|W
+S|37.21404|-7.41044|Ayamonte (España)|Transporte Fluvial del Guadiana|W
+S|37.19701|-7.41362|Vila Real de Santo António (Portugal)|Transporte Fluvial del Guadiana|W
 S|38.65145|-9.07900|Barreiro|Transtejo Soflusa|W
 S|38.69449|-9.19840|Belém|Transtejo Soflusa|W
 S|38.68827|-9.14835|Cacilhas|Transtejo Soflusa|W
 S|38.70437|-9.14584|Cais do Sodré|Transtejo Soflusa|W
 S|38.69953|-9.00637|Montijo|Transtejo Soflusa|W
-S|38.69444|-9.22509|Pedrouços/Algés|Transtejo Soflusa|W
+S|38.69409|-9.22658|Pedrouços/Algés|Transtejo Soflusa|W
 S|38.67815|-9.20693|Porto Brandão|Transtejo Soflusa|W
 S|38.64789|-9.09555|Seixal|Transtejo Soflusa|W
 S|38.70629|-9.13343|Terreiro do Paço|Transtejo Soflusa|W
 S|38.67487|-9.23088|Trafaria|Transtejo Soflusa|W
+S|41.68376|-8.83136|Praia do Cabedelo|Viana do Castelo - Praia do Cabedelo|W
+S|41.69013|-8.82803|Viana do Castelo|Viana do Castelo - Praia do Cabedelo|W
+S|37.11819|-7.62912|Vila Galé Albacora|Vila Galé Albacora|W
 L|Metro do Porto|Linha A|#3CAEEF|71 49:948 8:550 48:534 16:617 57:721 59:657 28:785 76:660 70:645 55:672 83:742 64:613 32:972 14:866 12:624 42:460 74:862 6:440 11:681 35:573 10:955 25:1151
 L|Metro do Porto|Linha A|#3CAEEF|25 10:1151 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 76:650 28:661 59:784 57:656 16:722 48:617 8:531 49:564 71:887
 L|Metro do Porto|Linha B|#E62621|25 10:1151 35:951 11:569 6:683 74:437 42:866 12:461 14:624 32:865 64:972 83:613 55:742 70:671 31:684 23:687 27:1770 21:2027 79:590 58:956 44:1142 82:1983 52:2029 51:1046 77:854 50:1823 26:773 75:1531 66:856 4:662 68:1215 81:669 2:727 62:669 73:559 63:623
@@ -215,12 +247,16 @@ L|Metropolitano de Lisboa|Linha Verde|#00AAA6|118 115:894 147:521 132:486 127:61
 L|Metropolitano de Lisboa|Linha Verde|#00AAA6|152 119:779 108:1842 146:616 112:1057 105:596 113:474 111:635 127:421 132:616 147:492 115:515 118:901
 L|Metropolitano de Lisboa|Linha Vermelha|#DF096F|151 148:763 105:1064 135:807 116:1068 122:870 136:669 117:819 137:799 133:1028 125:1171 104:1372
 L|Metropolitano de Lisboa|Linha Vermelha|#DF096F|104 125:1370 133:1173 137:1033 117:804 136:815 122:668 116:871 135:1071 105:807 148:1065 151:761
+L|Andante|Cais do Ouro – Afurada||155 154:386
 L|Andante|Travessia Fluvial||154 155:386
 L|Andante|Travessia Fluvial||155 154:386
 L|Atlantic Ferries|Atlantic Ferries||157 158:6662
 L|Atlantic Ferries|Atlantic Ferries||158 157:6663
 L|Atlantic Ferries|Atlantic Ferries||156 159:3075
 L|Atlantic Ferries|Atlantic Ferries||159 156:3076
+L|Atlantic Ferries|Setúbal||158 157:6663
+L|Atlantic Ferries|Setúbal||156 159:3075
+L|Atlânticoline|Calheta – Angra do Heroísmo||160 164:120234
 L|Atlânticoline|Linha Azul||163 164:8118
 L|Atlânticoline|Linha Azul||164 163:8119
 L|Atlânticoline|Linha Branca||163 167:27507 168:31553 162:58965 165:110876
@@ -235,27 +271,639 @@ L|Atlânticoline|Linha Verde||163 164:10028 168:32909
 L|Atlânticoline|Linha Verde||163 167:27507 168:28279
 L|Atlânticoline|Linha Verde||168 164:32860 163:10029
 L|Atlânticoline|Linha Verde||168 167:28290 163:27511
+L|Atlânticoline|Madalena – Velas||164 168:32909
+L|Atlânticoline|Santa Cruz das Flores – Vila do Corvo||166 169:24432
+L|Atlânticoline|São Roque – Velas||168 164:41861
+L|Atlânticoline|Velas – Graciosa||165 168:123914
+L|AveiroBus|Forte da Barra - São Jacinto||171 170:1428
 L|AveiroBus|Linha 13|#498CB0|170 171:1428
 L|AveiroBus|Linha 13|#498CB0|171 170:1428
-L|CM Figueira da Foz|Ferry Figueira da Foz → Cabedelo||172 173:931
-L|Transtejo Soflusa|Transtejo Soflusa|#FBBA00|177 176:1830
-L|Transtejo Soflusa|Transtejo Soflusa|#FBBA00|176 177:1830
-L|Transtejo Soflusa|Transtejo Soflusa|#009A9D|177 181:8287
-L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|177 181:17971 174:3695 177:19572
-L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|177 174:19565 181:3695 177:17975
-L|Transtejo Soflusa|Transtejo Soflusa|#009A9D|181 177:8289
-L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|181 174:1844
-L|Transtejo Soflusa|Transtejo Soflusa|#E71E6C|177 178:13107
-L|Transtejo Soflusa|Transtejo Soflusa|#E71E6C|178 177:13107
-L|Transtejo Soflusa|Transtejo Soflusa|#5284C4|182 174:8844
-L|Transtejo Soflusa|Transtejo Soflusa|#5284C4|174 182:8847
-L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|175 180:2257 183:2258
-L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|175 183:5988 180:4555
-L|Transtejo Soflusa|Transtejo Soflusa|#ee7502|180 183:3058 179:4560 180:2649
-L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|180 183:4555 175:5989
-L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|183 180:2258 175:2257
-L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|174 181:1844
-L|Transtejo Soflusa|Transtejo Soflusa|#ee7502|179 183:4559 180:3058 179:2650
+L|Balcón del Tajo|Ruta Cedillo a Lentiscais y Castelo Branco||173 172:11072
+L|CM Figueira da Foz|Ferry Figueira da Foz → Cabedelo||174 175:931
+L|CM Figueira da Foz|Figueira da Foz - Cabedelo||175 174:931
+L|Cabanas - Praia de Cabanas|Cabanas - Praia de Cabanas||176 177:308
+L|Culatra - Farol|Culatra - Farol||185 186:8256
+L|Câmara Municipal de Nisa|Barca d'Amieira||178 179:148
+L|Douro River Ferry|Cais da Estiva - Cais do Choupelo||180 181:249
+L|Faro - Farol|Faro - Farol||182 186:8056
+L|Faro - Ilha Deserta|Faro - Ilha Deserta||182 186:8343
+L|Faro - Praia de Faro|Faro - Praia de Faro||182 183:5024
+L|Olhão - Armona|Olhão - Armona||185 184:3091
+L|Olhão - Farol|Olhão - Farol||186 185:6991
+L|Passeios Ria Formosa|Fuseta - Praia da Fuseta-Mar||187 188:1275
+L|Peniche - Berlengas|Peniche - Berlengas||190 191:13132
+L|Porto Santo Line|Funchal – Porto Santo||192 193:77607
+L|Praia Fluvial do Castelo - Ilha do Castelo|Praia Fluvial do Castelo - Ilha do Castelo||195 194:227
+L|Silnido|Silnido||196 197:1764
+L|Silnido - Transportes Fluviais Lda.|Quatro Águas - Ilha de Tavira||199 198:695
+L|Silnido - Transportes Fluviais Lda.|Silnido||200 198:3041
+L|Transporte Fluvial del Guadiana|Vila Real de Santo António||202 201:2014
+L|Transtejo Soflusa|Barreiro – Terreiro do Paço||203 211:8847
+L|Transtejo Soflusa|Belém – Pedrouços/Algés||204 208:3157
+L|Transtejo Soflusa|Cacilhas – Cais do Sodré||206 205:1830
+L|Transtejo Soflusa|Montijo – Cais do Sodré||206 207:13107
+L|Transtejo Soflusa|Porto Brandão – Belém||204 209:2023
+L|Transtejo Soflusa|Porto Brandão – Pedrouços/Algés||209 208:2864
+L|Transtejo Soflusa|Trafaria – Belém||204 212:3730
+L|Transtejo Soflusa|Trafaria – Pedrouços/Algés||208 212:2371
+L|Transtejo Soflusa|Trafaria – Porto Brandão||209 212:2258
+L|Transtejo Soflusa|Transtejo Soflusa|#FBBA00|206 205:1830
+L|Transtejo Soflusa|Transtejo Soflusa|#FBBA00|205 206:1830
+L|Transtejo Soflusa|Transtejo Soflusa|#009A9D|206 210:8287
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|206 210:17971 203:3695 206:19572
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|206 203:19565 210:3695 206:17975
+L|Transtejo Soflusa|Transtejo Soflusa|#009A9D|210 206:8289
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|210 203:1844
+L|Transtejo Soflusa|Transtejo Soflusa|#E71E6C|206 207:13107
+L|Transtejo Soflusa|Transtejo Soflusa|#E71E6C|207 206:13107
+L|Transtejo Soflusa|Transtejo Soflusa|#5284C4|211 203:8844
+L|Transtejo Soflusa|Transtejo Soflusa|#5284C4|203 211:8847
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|204 209:2257 212:2258
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|204 212:5988 209:4555
+L|Transtejo Soflusa|Transtejo Soflusa|#ee7502|209 212:3058 208:4560 209:2649
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|209 212:4555 204:5989
+L|Transtejo Soflusa|Transtejo Soflusa|#EB8B41|212 209:2258 204:2257
+L|Transtejo Soflusa|Transtejo Soflusa|#5285c4|203 210:1844
+L|Transtejo Soflusa|Transtejo Soflusa|#ee7502|208 212:4559 209:3058 208:2650
+L|Viana do Castelo - Praia do Cabedelo|Viana do Castelo - Praia do Cabedelo||213 214:969
+L|Vila Galé Albacora|Vila Galé Albacora - Ilha de Tavira||215 198:813
+R|38.76652|-9.29847|Agualva-Cacém|CP Lisboa
+R|38.70235|-9.17402|Alcântara-Mar|CP Lisboa
+R|38.70741|-9.17326|Alcântara-Terra|CP Lisboa
+R|38.69838|-9.22939|Algés|CP Lisboa
+R|38.79770|-9.34116|Algueirão-Mem Martins|CP Lisboa
+R|38.92393|-9.01141|Alhandra|CP Lisboa
+R|38.65180|-9.02654|Alhos Vedros|CP Lisboa
+R|38.88988|-9.03411|Alverca|CP Lisboa
+R|38.75968|-9.23573|Amadora|CP Lisboa
+R|38.75968|-9.23573|Amadora|CP Lisboa
+R|39.06844|-8.86638|Azambuja|CP Lisboa
+R|38.65958|-9.04434|Baixa da Banheira|CP Lisboa
+R|38.65290|-9.07927|Barreiro|CP Lisboa
+R|38.65977|-9.07158|Barreiro-A|CP Lisboa
+R|38.69618|-9.19759|Belém|CP Lisboa
+R|38.74437|-9.19962|Benfica|CP Lisboa
+R|38.80685|-9.09468|Bobadela|CP Lisboa
+R|38.74709|-9.10280|Braço de Prata|CP Lisboa
+R|38.70598|-9.14574|Cais do Sodré|CP Lisboa
+R|38.73251|-9.16774|Campolide|CP Lisboa
+R|38.73151|-9.16886|Campolide-A|CP Lisboa
+R|38.68783|-9.33732|Carcavelos|CP Lisboa
+R|39.00552|-8.95373|Carregado|CP Lisboa
+R|38.70087|-9.41791|Cascais|CP Lisboa
+R|38.98907|-8.96536|Castanheira do Ribatejo|CP Lisboa
+R|38.69875|-9.27439|Caxias|CP Lisboa
+R|38.69980|-9.25220|Cruz Quebrada|CP Lisboa
+R|39.05077|-8.90252|Espadanal da Azambuja|CP Lisboa
+R|38.70325|-9.39873|Estoril|CP Lisboa
+R|38.66183|-9.05831|Lavradio|CP Lisboa
+R|38.71459|-9.14184|Lisboa - Rossio|CP Lisboa
+R|38.73903|-9.10876|Marvila|CP Lisboa
+R|38.75165|-9.28420|Massamá-Barcarena|CP Lisboa
+R|38.79325|-9.33081|Mercês|CP Lisboa
+R|38.78957|-9.31264|Mira Sintra-Meleças|CP Regional
+R|38.64465|-8.99579|Moita|CP Lisboa
+R|38.75546|-9.26545|Monte Abraão|CP Lisboa
+R|38.70360|-9.40644|Monte Estoril|CP Lisboa
+R|38.77765|-9.09949|Moscavide|CP Lisboa
+R|38.68848|-9.31892|Oeiras|CP Lisboa
+R|38.57158|-8.87275|Palmela-A|CP Lisboa
+R|38.69711|-9.29054|Paço de Arcos|CP Lisboa
+R|38.68974|-9.35640|Parede|CP Lisboa
+R|38.63816|-8.95626|Penteado|CP Lisboa
+R|38.80225|-9.37637|Portela de Sintra|CP Lisboa
+R|38.52493|-8.88652|Praça do Quebedo|CP Lisboa
+R|38.51793|-8.83791|Praias Sado A|CP Lisboa
+R|38.85929|-9.06420|Póvoa|CP Lisboa
+R|38.75880|-9.25697|Queluz-Belas|CP Lisboa
+R|38.75096|-9.22296|Reboleira|CP Lisboa
+R|38.75096|-9.22296|Reboleira|CP Lisboa
+R|38.78424|-9.32097|Rio de Mouro|CP Lisboa
+R|38.78424|-9.32097|Rio de Mouro|CP Lisboa
+R|38.74569|-9.13551|Roma-Areeiro|CP Lisboa
+R|38.79497|-9.09980|Sacavém|CP Lisboa
+R|38.74695|-9.21323|Santa Cruz - Damaia|CP Lisboa
+R|38.84104|-9.08011|Santa Iria|CP Lisboa
+R|38.68703|-9.31255|Santo Amaro|CP Lisboa
+R|38.70617|-9.15528|Santos|CP Lisboa
+R|38.53120|-8.88455|Setúbal|CP Lisboa
+R|38.79926|-9.38536|Sintra|CP Lisboa
+R|38.70106|-9.38547|São João do Estoril|CP Lisboa
+R|38.69537|-9.37170|São Pedro do Estoril|CP Lisboa
+R|38.60624|-8.88862|Venda do Alcaide|CP Lisboa
+R|39.03647|-8.92803|Vila Nova da Rainha|CP Lisboa
+R|38.40693|-8.09549|Alcáçovas|CP Longo Curso
+R|38.23272|-7.99998|Alvito|CP Longo Curso
+R|37.69001|-8.41493|Amoreiras - Odemira|CP Longo Curso
+R|41.53678|-8.60900|Barcelos|CP Longo Curso
+R|41.64626|-8.70109|Barroselas|CP Longo Curso
+R|38.01834|-7.85839|Beja|CP Longo Curso
+R|40.33336|-7.33612|Belmonte - Manteigas|CP Longo Curso
+R|40.43488|-7.26830|Benespera|CP Longo Curso
+R|41.54805|-8.43446|Braga|CP Longo Curso
+R|41.87406|-8.83427|Caminha|CP Longo Curso
+R|40.30596|-7.37068|Caria|CP Longo Curso
+R|38.49821|-8.15822|Casa Branca|CP Longo Curso
+R|39.81803|-7.49066|Castelo Branco|CP Longo Curso
+R|39.71445|-8.54545|Caxarias|CP Longo Curso
+R|40.27754|-7.49606|Covilhã|CP Longo Curso
+R|38.16317|-7.89485|Cuba|CP Longo Curso
+R|38.74457|-9.14859|Entrecampos|CP Lisboa
+R|39.46165|-8.47375|Entroncamento|CP Regional
+R|38.00277|-8.41398|Ermidas-Sado|CP Longo Curso
+R|41.40556|-8.52943|Famalicão|CP Longo Curso
+R|38.63643|-8.69154|Fernando Pó|CP Longo Curso
+R|37.72721|-8.33791|Funcheira|CP Longo Curso
+R|40.14101|-7.49628|Fundão|CP Longo Curso
+R|40.16491|-8.63471|Granja do Ulmeiro - Alfarelos|CP Longo Curso
+R|38.18179|-8.55453|Grândola|CP Longo Curso
+R|41.43513|-8.29430|Guimarães|CP Longo Curso
+R|38.76782|-9.09907|Lisboa - Oriente|CP Longo Curso
+R|38.71463|-9.12204|Lisboa - Santa Apolónia|CP Longo Curso
+R|40.38877|-7.28728|Maçainhas|CP Longo Curso
+R|37.25544|-8.29077|Messines - Alte|CP Longo Curso
+R|41.81306|-8.86248|Âncora-Praia|CP Longo Curso
+R|41.45474|-8.54429|Nine|CP Longo Curso
+R|38.66223|-8.61940|Pegões|CP Longo Curso
+R|38.63012|-8.91283|Pinhal Novo|CP Lisboa
+R|38.63439|-8.74337|Poceirão|CP Longo Curso
+R|39.91649|-8.63016|Pombal|CP Longo Curso
+R|38.66604|-9.17985|Pragal|CP Longo Curso
+R|39.65512|-7.67283|Ródão|CP Longo Curso
+R|40.51156|-7.23890|Sabugal|CP Longo Curso
+R|37.49580|-8.48138|Santa Clara - Sabóia|CP Longo Curso
+R|39.24212|-8.67509|Santarém|CP Longo Curso
+R|41.35107|-8.47341|Santo Tirso|CP Longo Curso
+R|38.74024|-9.16667|Sete Rios|CP Lisboa
+R|38.66809|-8.58564|São João das Craveiras|CP Longo Curso
+R|41.33737|-8.54765|Trofa|CP Longo Curso
+R|38.67955|-8.45456|Vendas Novas|CP Longo Curso
+R|38.95530|-8.98623|Vila Franca de Xira|CP Longo Curso
+R|38.29379|-8.03506|Vila Nova da Baronia|CP Longo Curso
+R|41.93597|-8.74832|Vila Nova de Cerveira|CP Longo Curso
+R|41.37909|-8.31237|Vizela|CP Longo Curso
+R|38.56041|-7.90711|Évora|CP Longo Curso
+R|41.05051|-8.65116|Aguda|CP Porto
+R|41.48999|-8.50888|Arentim|CP Porto
+R|41.19674|-8.63064|Arroteia|CP Porto
+R|40.80842|-8.58540|Avanca|CP Porto
+R|41.52014|-8.46834|Aveleda|CP Porto
+R|41.38981|-8.52618|Barrimau|CP Porto
+R|41.23527|-8.27422|Bustelo|CP Porto
+R|41.22056|-8.53570|Cabeda|CP Porto
+R|40.68479|-8.59817|Cacia|CP Porto
+R|40.71636|-8.56400|Canelas|CP Porto
+R|41.36368|-8.43765|Caniços|CP Porto
+R|40.92511|-8.62617|Carvalheira - Maceda|CP Porto
+R|41.12437|-8.63408|Coimbrões|CP Porto
+R|40.94065|-8.63025|Cortegaça|CP Porto
+R|41.48172|-8.52876|Couto de Cambeses|CP Porto
+R|41.42151|-8.30085|Covas|CP Porto
+R|41.37647|-8.34191|Cuca|CP Porto
+R|41.37946|-8.52156|Esmeriz|CP Porto
+R|40.96277|-8.63550|Esmoriz|CP Porto
+R|41.00629|-8.64439|Espinho|CP Longo Curso
+R|40.75115|-8.57548|Estarreja|CP Porto
+R|41.53081|-8.44148|Ferreiros|CP Porto
+R|41.08157|-8.64748|Francelos|CP Porto
+R|41.12976|-8.62028|Gaia|CP Longo Curso
+R|41.13319|-8.60868|General Torres|CP Porto
+R|41.36456|-8.38876|Giesteira|CP Porto
+R|41.03853|-8.64713|Granja|CP Porto
+R|41.20072|-8.55650|Águas Santas|CP Porto
+R|41.18511|-8.59841|Hospital São João|CP Porto
+R|41.18122|-8.34217|Irivo|CP Porto
+R|41.20841|-8.62954|Leça do Balio|CP Porto
+R|41.24383|-8.55678|Leandro|CP Porto
+R|41.36560|-8.36349|Lordelo|CP Porto
+R|41.43693|-8.53821|Louro|CP Porto
+R|41.35095|-8.52649|Lousado|CP Porto
+R|41.11149|-8.63777|Madalena|CP Porto
+R|41.52689|-8.45838|Mazagão|CP Porto
+R|41.24892|-8.25811|Meinedo|CP Porto
+R|41.06716|-8.64986|Miramar|CP Porto
+R|41.42897|-8.52208|Mouquim|CP Porto
+R|41.40320|-8.31957|Nespereira|CP Porto
+R|41.19293|-8.33769|Oleiros|CP Porto
+R|41.25733|-8.19897|Oliveira|CP Porto
+R|40.86404|-8.61667|Ovar|CP Porto
+R|41.20226|-8.55690|Palmilheira|CP Porto
+R|41.16009|-8.37297|Parada|CP Porto
+R|40.97569|-8.63691|Paramos|CP Porto
+R|41.37740|-8.32410|Pereirinhas|CP Porto
+R|41.30086|-8.54875|Portela|CP Porto
+R|41.23157|-8.17523|Recesinhos|CP Porto
+R|41.49764|-8.49628|Ruilhe|CP Porto
+R|40.72886|-8.56487|Salreu|CP Porto
+R|40.99034|-8.64074|Silvalde|CP Porto
+R|41.25841|-8.55816|São Frutuoso|CP Porto
+R|41.19714|-8.57921|São Gemil|CP Porto
+R|41.19031|-8.61331|São Mamede de Infesta|CP Porto
+R|41.16977|-8.46778|São Martinho do Campo|CP Porto
+R|41.27796|-8.55359|São Romão|CP Porto
+R|41.50918|-8.48299|Tadim|CP Porto
+R|41.16377|-8.43793|Terronhas|CP Porto
+R|41.16126|-8.41894|Trancoso|CP Porto
+R|41.22906|-8.55175|Travagem|CP Porto
+R|41.09902|-8.63206|Valadares|CP Porto
+R|41.35744|-8.40624|Vila das Aves|CP Porto
+R|40.83420|-8.60150|Válega|CP Porto
+R|39.44019|-8.19432|Abrantes|CP Regional
+R|40.25134|-8.45022|Adémia|CP Regional
+R|41.77562|-8.86161|Afife|CP Regional
+R|40.61324|-8.45321|Aguieira|CP Regional
+R|40.41521|-8.45684|Aguim|CP Regional
+R|39.79359|-8.58932|Albergaria dos Doze|CP Regional
+R|37.12869|-8.23302|Albufeira - Ferreiras|CP Regional
+R|37.16991|-8.34867|Alcantarilha|CP Regional
+R|40.60046|-6.88579|Aldeia|CP Regional
+R|41.17646|-7.37781|Alegria|CP Regional
+R|37.16790|-8.30323|Algoz|CP Regional
+R|37.09510|-8.02395|Almancil|CP Regional
+R|39.46232|-8.37404|Almourol|CP Regional
+R|41.64843|-8.73962|Alvarães|CP Regional
+R|40.19234|-8.54412|Ameal|CP Regional
+R|41.10640|-8.00741|Aregos|CP Regional
+R|41.68411|-8.79932|Areia - Darque|CP Regional
+R|41.72115|-8.85557|Areosa|CP Regional
+R|40.90924|-8.50103|Arrifana|CP Regional
+R|39.09684|-7.33335|Arronches|CP Regional
+R|39.13888|-7.38228|Assumar|CP Regional
+R|40.64339|-8.64046|Aveiro|CP Regional
+R|40.63990|-8.59187|Azurva|CP Regional
+R|38.89137|-6.98262|Badajoz|CP Regional
+R|40.67738|-7.32777|Baraçal|CP Regional
+R|41.14053|-7.88746|Barqueiros|CP Regional
+R|39.46161|-8.43524|Barquinha|CP Regional
+R|39.35243|-8.13562|Bemposta|CP Regional
+R|40.21451|-8.45611|Bencanta|CP Regional
+R|39.36490|-9.15902|Óbidos|CP Regional
+R|40.12236|-8.76457|Bifurcação de Lares|CP Regional
+R|37.12255|-8.15227|Boliqueime|CP Regional
+R|39.26509|-9.15333|Bombarral|CP Regional
+R|37.01403|-7.92102|Bom João|CP Regional
+R|40.58723|-8.49807|Cabanões|CP Regional
+R|37.17638|-7.53810|Cacela|CP Regional
+R|41.25286|-8.22717|Caíde|CP Regional
+R|39.40675|-9.14026|Caldas da Rainha|CP Regional
+R|41.15290|-7.82667|Caldas de Moledo|CP Regional
+R|40.49106|-7.90649|Canas - Felgueira|CP Regional
+R|41.58589|-8.63271|Carapeços|CP Regional
+R|39.54859|-8.46283|Carrascal - Delongo|CP Regional
+R|40.43330|-8.00760|Carregal do Sal|CP Regional
+R|41.48693|-8.56411|Carreira|CP Regional
+R|41.75041|-8.86336|Carreço-A|CP Regional
+R|41.97984|-8.70266|Carvalha-A|CP Regional
+R|40.63540|-8.45289|Carvalhal da Portela|CP Regional
+R|39.57105|-8.39535|Carvalhos de Figueiredo|CP Regional
+R|40.20477|-8.48388|Casais|CP Regional
+R|40.57944|-8.48791|Casal do Álvaro|CP Regional
+R|40.40805|-8.08432|Castelejo|CP Regional
+R|37.19680|-7.48385|Castro Marim|CP Regional
+R|40.93956|-8.53749|Cavaco|CP Regional
+R|40.66523|-7.38256|Celorico da Beira|CP Regional
+R|40.51158|-7.04740|Cerdeira|CP Regional
+R|39.27572|-7.80793|Chança|CP Regional
+R|39.65436|-8.49385|Chão de Maçãs - Fátima|CP Regional
+R|40.22473|-8.44048|Coimbra-B|CP Regional
+R|37.14438|-7.60562|Conceição|CP Regional
+R|41.16883|-8.57472|Contumil|CP Porto
+R|40.86814|-8.49413|Couto de Cucujães|CP Regional
+R|41.15237|-7.68807|Covelinhas|CP Regional
+R|39.26945|-7.63528|Crato|CP Regional
+R|41.17151|-8.35543|Cête|CP Porto
+R|40.42455|-8.45610|Curia|CP Regional
+R|39.54793|-8.42979|Curvaceiras|CP Regional
+R|39.34450|-9.17240|Dagorda - Peniche|CP Regional
+R|41.68023|-8.78195|Darque|CP Regional
+R|39.04256|-9.18462|Dois Portos|CP Regional
+R|41.63907|-8.66702|Durrães|CP Regional
+R|40.60944|-8.53170|Eirol|CP Regional
+R|40.63114|-8.56839|Eixo|CP Regional
+R|38.89554|-7.14228|Elvas|CP Regional
+R|41.21712|-8.55415|Ermesinde|CP Porto
+R|41.12428|-7.95090|Ermida|CP Regional
+R|40.91963|-8.51641|Escapães|CP Regional
+R|40.64150|-8.61798|Esgueira|CP Regional
+R|40.20907|-8.47077|Espadaneira|CP Regional
+R|41.00217|-8.64353|Espinho - Vouga|CP Regional
+R|41.90934|-8.79293|Esqueiro|CP Regional
+R|37.14344|-8.48549|Estômbar - Lagoa|CP Regional
+R|39.53163|-9.08571|Famalicão da Nazaré|CP Regional
+R|40.87923|-8.49491|Faria|CP Regional
+R|37.01926|-7.94044|Faro|CP Longo Curso
+R|39.02245|-9.17936|Feliteira|CP Regional
+R|41.14454|-7.33150|Ferradosa|CP Regional
+R|37.13876|-8.51907|Ferragudo|CP Regional
+R|41.16188|-7.61125|Ferrão|CP Regional
+R|40.14848|-8.84690|Figueira da Foz|CP Regional
+R|40.14191|-8.81379|Fontela|CP Regional
+R|40.14633|-8.82490|Fontela-A|CP Regional
+R|40.17948|-8.60708|Formoselha - Santo Varão|CP Regional
+R|40.61031|-7.52704|Fornos de Algodres|CP Regional
+R|40.59322|-6.90446|Freineda|CP Regional
+R|41.13469|-7.21117|Freixo de Numão - Mós do Douro|CP Regional
+R|39.61651|-8.49501|Fungalvaz|CP Regional
+R|37.06021|-7.75179|Fuseta|CP Regional
+R|37.05366|-7.74966|Fuseta-A|CP Regional
+R|40.52177|-7.21455|Gata|CP Regional
+R|41.16623|-7.79912|Godim|CP Regional
+R|41.91999|-8.76315|Gondarém|CP Regional
+R|40.57340|-7.60209|Gouveia|CP Regional
+R|40.55246|-7.23985|Guarda|CP Regional
+R|40.57752|-8.44827|Águeda|CP Regional
+R|39.94816|-8.80178|Guia|CP Regional
+R|38.94977|-9.23340|Jerumelo|CP Regional
+R|41.14067|-8.11942|Juncal|CP Regional
+R|37.10833|-8.67129|Lagos Train|CP Regional
+R|39.52882|-8.46903|Lamarosa|CP Regional
+R|40.98377|-8.60529|Lapa|CP Regional
+R|40.47423|-7.92216|Lapa do Lobo|CP Regional
+R|39.75666|-8.82796|Leiria|CP Regional
+R|39.83794|-8.59339|Litém|CP Regional
+R|37.07375|-7.73128|Livramento|CP Regional
+R|41.21685|-8.15568|Livração|CP Porto
+R|37.10426|-8.05827|Loulé|CP Regional
+R|40.01626|-8.81550|Louriçal|CP Regional
+R|40.39021|-8.38502|Luso - Buçaco|CP Regional
+R|37.08889|-7.70000|Luz|CP Regional
+R|40.65343|-8.45834|Macinhata|CP Regional
+R|38.89744|-9.29136|Mafra|CP Regional
+R|38.92859|-9.25801|Malveira|CP Regional
+R|40.58664|-7.76020|Mangualde|CP Regional
+R|41.18097|-8.13680|Marco de Canaveses|CP Regional
+R|39.73640|-8.92684|Marinha Grande|CP Regional
+R|39.68719|-8.94591|Martingança|CP Regional
+R|40.14038|-8.67629|Marujal|CP Regional
+R|39.36850|-8.55432|Mato Miranda|CP Regional
+R|40.37542|-8.45385|Mealhada|CP Regional
+R|37.11858|-8.64747|Meia Praia|CP Regional
+R|37.15416|-8.60966|Mexilhoeira Grande|CP Regional
+R|41.50821|-8.58190|Midões|CP Regional
+R|41.11759|-7.97252|Mirão|CP Regional
+R|40.51935|-7.01331|Miuzela|CP Regional
+R|40.45046|-8.45939|Mogofores|CP Regional
+R|40.57465|-7.80957|Moimenta - Alcafache|CP Regional
+R|41.84792|-8.86433|Moledo do Minho|CP Regional
+R|40.98226|-8.62552|Monte de Paramos|CP Regional
+R|40.40811|-8.26441|Monte dos Lobos|CP Regional
+R|37.19004|-7.44833|Monte Gordo|CP Regional
+R|40.16007|-8.65409|Montemor|CP Regional
+R|39.85599|-8.84777|Monte Real|CP Regional
+R|39.90033|-8.83442|Monte Redondo|CP Regional
+R|40.39086|-8.24125|Mortágua|CP Regional
+R|41.09462|-8.06920|Mosteirô|CP Regional
+R|40.60529|-8.46008|Mourisca do Vouga|CP Regional
+R|40.53018|-7.84991|Nelas|CP Regional
+R|40.54355|-8.54991|Oiã|CP Regional
+R|37.03036|-7.83997|Olhão|CP Regional
+R|40.84018|-8.48177|Oliveira de Azeméis|CP Regional
+R|40.51016|-8.49874|Oliveira do Bairro|CP Regional
+R|40.45039|-7.96332|Oliveirinha - Cabanas|CP Regional
+R|40.57216|-8.47674|Oronhe|CP Regional
+R|39.19123|-9.17717|Outeiro|CP Regional
+R|39.57960|-8.47376|Paialvo|CP Regional
+R|39.29427|-9.16267|Paúl|CP Regional
+R|41.10357|-8.09087|Pala|CP Regional
+R|40.33857|-8.43162|Pampilhosa|CP Regional
+R|40.97205|-8.58395|Paços de Brandão|CP Regional
+R|40.41896|-8.04602|Papízios|CP Regional
+R|40.48120|-8.48014|Paraimo|CP Regional
+R|41.20436|-8.32353|Paredes|CP Regional
+R|37.08026|-7.98491|Parque das Cidades|CP Regional
+R|39.65553|-8.98492|Pataias|CP Regional
+R|38.87056|-9.29547|Pedra Furada|CP Regional
+R|39.96777|-8.63326|Pelariga|CP Regional
+R|41.21766|-8.29494|Penafiel|CP Regional
+R|40.18636|-8.58495|Pereira|CP Regional
+R|38.98867|-9.19740|Pero Negro|CP Regional
+R|41.19040|-7.54513|Pinhão|CP Regional
+R|41.13029|-7.12349|Pocinho|CP Regional
+R|39.26549|-8.01304|Ponte de Sor|CP Regional
+R|37.16363|-8.38881|Poço Barreto|CP Regional
+R|39.19892|-7.46112|Portalegre|CP Regional
+R|37.13309|-7.64821|Porta Nova|CP Regional
+R|37.14465|-8.53749|Portimão|CP Regional
+R|41.14919|-8.58471|Porto - Campanhã|CP Regional
+R|41.12184|-7.91063|Porto de Rei|CP Regional
+R|41.14549|-8.60951|Porto - São Bento|CP Regional
+R|39.46722|-8.34757|Praia do Ribatejo|CP Regional
+R|40.35675|-8.41207|Quinta do Valongo - Vacariça|CP Regional
+R|40.59104|-8.61269|Quintans|CP Regional
+R|39.13952|-9.21598|Ramalhal|CP Regional
+R|41.15382|-8.39920|Recarei-Sobreira|CP Porto
+R|41.16074|-7.86654|Rede|CP Regional
+R|39.09951|-8.79353|Reguengo - Vale da Pedra - Pontével|CP Regional
+R|40.13068|-8.74535|Reveles|CP Regional
+R|41.15857|-7.78363|Régua|CP Regional
+R|39.43220|-8.50455|Riachos - Torres Novas - Golegã|CP Regional
+R|40.96096|-8.57121|Rio Meão|CP Regional
+R|41.18454|-8.55715|Rio Tinto|CP Porto
+R|40.50701|-7.09071|Rochoso|CP Regional
+R|39.07297|-9.20985|Runa|CP Regional
+R|38.83056|-9.30001|Sabugo|CP Regional
+R|39.49242|-9.14728|Salir do Porto|CP Regional
+R|40.98406|-8.59332|Sampaio - Oleiros|CP Regional
+R|40.92667|-8.53096|Sanfins|CP Regional
+R|39.55275|-8.39343|Santa Cita|CP Regional
+R|40.39050|-8.12439|Santa Comba Dão|CP Regional
+R|39.00605|-7.25339|Santa Eulália-A|CP Regional
+R|39.44754|-8.29647|Santa Margarida|CP Regional
+R|39.14416|-8.75890|Santana-Cartaxo|CP Regional
+R|40.85132|-8.48959|Santiago de Riba-Ul|CP Regional
+R|38.96892|-9.19932|Sapataria|CP Regional
+R|39.67844|-8.50798|Seiça - Ourém|CP Regional
+R|41.89651|-8.81924|Seixas|CP Regional
+R|41.86948|-8.84352|Senhora da Agonia|CP Regional
+R|41.64664|-8.72098|Senhora das Neves|CP Regional
+R|40.67216|-8.45272|Sernada do Vouga|CP Regional
+R|39.11359|-8.77786|Setil|CP Regional
+R|41.56604|-8.62778|Silva|CP Regional
+R|40.98882|-8.63035|Silvalde - Vouga|CP Regional
+R|37.17567|-8.44046|Silves|CP Regional
+R|40.01090|-8.63354|Simões|CP Regional
+R|40.41481|-8.30143|Soito|CP Regional
+R|40.89860|-8.49522|São João da Madeira|CP Regional
+R|40.62221|-8.54805|São João de Loure|CP Regional
+R|40.95549|-8.55116|São João de Ver|CP Regional
+R|39.32202|-9.17945|São Mamede|CP Regional
+R|39.50801|-9.13317|São Martinho do Porto|CP Regional
+R|41.99361|-8.66637|São Pedro da Torre|CP Regional
+R|39.54287|-8.47163|Soudos - Vila Nova|CP Regional
+R|40.05502|-8.63949|Soure|CP Regional
+R|40.28624|-8.42565|Souselas|CP Regional
+R|41.19712|-8.50200|Suzão|CP Porto
+R|40.60112|-8.52437|Taipa-Requeixo|CP Regional
+R|41.60879|-8.63480|Tamel|CP Regional
+R|39.46127|-8.39533|Tancos|CP Regional
+R|40.20592|-8.50028|Taveiro|CP Regional
+R|37.12099|-7.65570|Tavira|CP Regional
+R|39.59848|-8.41281|Tomar|CP Regional
+R|39.30967|-7.90849|Torre das Vargens|CP Regional
+R|39.09271|-9.25431|Torres Vedras|CP Regional
+R|39.46043|-8.24803|Tramagal|CP Regional
+R|40.59421|-8.51447|Travassô|CP Regional
+R|41.20736|-7.42013|Tua|CP Regional
+R|37.16489|-8.25638|Tunes|CP Regional
+R|39.58445|-9.01763|Valado|CP Regional
+R|39.31373|-8.62998|Vale de Figueira|CP Regional
+R|39.18841|-8.72384|Vale de Santarém|CP Regional
+R|41.18825|-8.48727|Valongo|CP Porto
+R|40.62420|-8.44992|Valongo - Vouga|CP Regional
+R|41.14313|-7.31604|Vargelas|CP Regional
+R|39.85087|-8.65228|Vermoil|CP Regional
+R|40.13966|-8.70346|Verride|CP Regional
+R|41.14122|-7.26203|Vesúvio|CP Regional
+R|40.92427|-8.53539|Vila da Feira|CP Regional
+R|40.49782|-7.14799|Vila Fernando|CP Regional
+R|40.72477|-7.25815|Vila Franca das Naves|CP Regional
+R|41.24610|-8.18483|Vila Meã|CP Porto
+R|40.10775|-8.63789|Vila Nova de Anços|CP Regional
+R|40.19295|-8.52500|Vila Pouca do Campo|CP Regional
+R|37.19971|-7.42146|Vila Real de Santo António|CP Regional
+R|40.60610|-6.82924|Vilar Formoso|CP Regional
+R|40.26324|-8.44136|Vilela - Fornos|CP Regional
+R|39.08658|-8.82787|Virtudes|CP Regional
+R|39.00637|-9.18320|Zibreira|CP Regional
+R|42.02470|-8.63929|Valença|Comboios de Portugal;Renfe Operadora
+R|41.69521|-8.83156|Viana do Castelo|Comboios de Portugal;Renfe Operadora
+R|42.23939|-8.71198|Vigo-Guixar|Comboios de Portugal;Renfe Operadora
+R|38.58465|-9.05157|Coina|Fertagus
+R|38.63649|-9.15174|Corroios|Fertagus
+R|38.60989|-9.10152|Fogueteiro|Fertagus
+R|38.62063|-9.12884|Foros de Amora|Fertagus
+R|38.59005|-8.99524|Penalva|Fertagus
+R|40.91017|-5.87861||Renfe Alvia
+R|40.79286|-6.24866|La Fuente de San Esteban-Boadilla|Renfe Alvia
+Q|CP Lisboa|Linha da Azambuja|#777777|L55|2 20:2749 107:1113 81:1708 53:1147 31:2763 17:1010 91:2319 38:1071 54:2055 16:1342 56:3936 47:2483 7:4370 5:4201 111:4276 24:4058
+Q|CP Lisboa|Linha da Azambuja|#777777|L55|2 20:2749 107:1113 81:1708 53:1147 31:2763 17:1010 91:2319 38:1071 54:2055 16:1342 56:3936 47:2483 7:4370 5:4201 111:4276 24:4058 22:2094 64:4117 27:2717 10:3627
+Q|CP Lisboa|Linha da Azambuja|#777777|L55|24 111:4141 5:4191 7:4287 47:4283 56:2591 16:3903 54:1427 38:1889 91:1074 17:2321 31:1065 53:2703 81:1144 107:1715 20:1109 2:2748
+Q|CP Lisboa|Linha da Azambuja|#777777|L55|10 27:3626 64:2716 22:4114 24:2094 111:4141 5:4191 7:4287 47:4283 56:2591 16:3903 54:1427 38:1889 91:1074 17:2321 31:1065 53:2703 81:1144 107:1715 20:1109 2:2748
+Q|CP Lisboa|Linha da Azambuja|#A162A5|L55|92 17:4001 91:2322 38:1071 54:2055 16:1342 56:3936 47:2483 7:4370 5:4201 111:4276 24:4058 22:2094 64:4117 27:2717 10:3626
+Q|CP Lisboa|Linha da Azambuja|#A162A5|L55|10 27:3626 64:2716 22:4114 24:2094 111:4141 5:4191 7:4287 47:4283 56:2591 16:3903 54:1427 38:1889 91:1074 17:2324 92:4002
+Q|CP Lisboa|Linha de Cascais|#FDC500|L55|23 37:1039 28:794 61:1126 62:1464 42:1516 21:1736 39:1588 57:560 41:2383 25:1424 26:2026 3:1909 14:3015 1:2114 58:1776 18:806
+Q|CP Lisboa|Linha de Cascais|#FDC500|L55|18 58:967 1:1613 14:2263 3:2867 26:2023 25:1946 41:1522 57:2387 39:551 21:1608 42:1749 62:1494 61:1418 28:1204 37:599 23:1056
+Q|CP Lisboa|Linha de Cascais|#FDC500|L55|23 37:1041 28:794 61:1126 62:1464 42:1516 21:1736 39:1588 3:8303 1:5129 18:2583
+Q|CP Lisboa|Linha de Cascais|#FDC500|L55|18 1:2580 3:5130 39:8429 21:1608 42:1749 62:1494 61:1418 28:1204 37:599 23:1057
+Q|CP Lisboa|Linha de Cascais|#FDC500|L55|39 57:626 41:2383 25:1424 26:2026 3:1909 14:3015 1:2114 58:1776 18:806
+Q|CP Lisboa|Linha de Cascais|#FDC500|L55|18 58:966 1:1613 14:2263 3:2867 26:2023 25:1946 41:1522 57:2387 39:487
+Q|CP Lisboa|Linha de Sintra|#A41E45|L55|30 19:3114 15:3368 55:1225 50:1047 9:1561 48:1938 36:938 32:2158 0:2211 52:3333 33:1337 4:1147 44:3061 60:889
+Q|CP Lisboa|Linha de Sintra|#1E8642|L55|30 19:3114 15:3368 55:1225 50:1047 9:1561 48:1938 36:938 32:2158 0:2212 34:2924
+Q|CP Lisboa|Linha de Sintra|#A41E45|L55|60 44:893 4:3258 33:1083 51:1420 0:3122 32:2195 36:2134 48:965 8:2149 49:1554 55:834 15:1220 19:3384 30:3111
+Q|CP Lisboa|Linha de Sintra|#5871B5|L55|60 44:893 4:3258 33:1083 51:1420 0:3121 32:2202 36:2136 48:956 8:2149 49:1556 55:834 15:1222 107:3103 81:1714 53:1147 17:3773 91:2319
+Q|CP Lisboa|Linha de Sintra|#1E8642|L55|34 0:2937 32:2195 36:2134 48:965 8:2149 49:1554 55:834 15:1220 19:3384 30:3111
+Q|CP Lisboa|Linha de Sintra|#5871B5|L55|91 17:2320 53:3777 81:1146 107:1717 15:3103 55:1224 50:1046 9:1560 48:1935 36:947 32:2155 0:2207 52:3333 33:1337 4:1147 44:3061 60:889
+Q|CP Lisboa|Linha de Sintra|#EB753A|L55|60 44:892 4:3258 33:1083 51:1420 0:3121 32:2202 36:2136 48:956 8:2149 49:1556 55:834 15:1222 107:3103 81:1714 53:1147 17:3773 91:2319 38:1071 54:2055 16:1342 56:3936 47:2483 7:4284
+Q|CP Lisboa|Linha de Sintra|#EB753A|L55|7 47:4282 56:2591 16:3903 54:1427 38:1889 91:1074 17:2321 53:3777 81:1146 107:1717 15:3103 55:1224 50:1046 9:1560 48:1935 36:947 32:2155 0:2207 52:3333 33:1337 4:1147 44:3061 60:889
+Q|CP Lisboa|Linha do Sado|#2DAAE1|L55|12 13:1108 29:1253 11:1241 6:1778 35:2788 43:3530 98:3911 63:3564 40:4129 59:4860 45:645 46:6631
+Q|CP Lisboa|Linha do Sado|#2DAAE1|L55|12 13:1108 29:1253 11:1241 6:1778 35:2788 43:3530 98:3911 63:3564 40:4129 59:4859
+Q|CP Lisboa|Linha do Sado|#2DAAE1|L55|46 45:6494 59:642 40:4855 63:4128 98:3560 43:3913 35:3530 6:2788 11:1779 29:1240 13:1249 12:1109
+Q|CP Lisboa|Linha do Sado|#2DAAE1|L55|59 40:4858 63:4128 98:3560 43:3913 35:3530 6:2788 11:1779 29:1240 13:1249 12:1109
+Q|CP Longo Curso|CP Alfa Pendular|#729b2c|H220|357 139:3819 202:59423 238:58350 91:209440 92:6326
+Q|CP Longo Curso|CP Alfa Pendular|#729b2c|H220|92 91:6322 238:210960 202:58997 139:59408 357:3816 84:31491 96:6736 73:14974
+Q|CP Longo Curso|CP Alfa Pendular|#729b2c|H220|92 91:6322 238:210960 202:58893 139:59312 357:3818
+Q|CP Longo Curso|CP Alfa Pendular|#729b2c|H220|73 96:14960 84:6739 357:31473 139:3819 202:59328 238:58320 91:209440 92:6326
+Q|CP Longo Curso|CP Alfa Pendular|#729b2c|H220|357 139:3822 202:59328 238:58320 91:209440 81:7234 98:25969 417:226805 187:5206 296:17200 264:15651
+Q|CP Longo Curso|CP Alfa Pendular|#729b2c|H220|264 296:15660 187:17204 417:5201 104:47192 86:37058 83:34726 89:27079 98:69450 81:26041 91:7239 238:210960 202:58997 139:59408 357:3819
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|92 91:6460 111:23734 105:44052 82:31833 100:63128 88:28670 238:20097 338:13962 202:41289 135:43851 139:15445 357:3818 109:22315 106:7426 114:19341 90:7778
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|92 91:6460 111:23734 105:44052 82:31833 78:32584 100:30502 238:47605 309:18702 202:36544 136:14589 159:13314 135:15944 139:15445 357:3814 84:31490 96:6736 73:14974
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|92 91:6460 111:23734 105:44052 82:31833 78:32584 100:30502 238:47605 202:58997 159:28001 135:15944 139:15445 357:3814 109:22314 84:9169 68:18151 69:17723 439:13495 95:14858 74:8253 113:10865 438:14132
+Q|CP Longo Curso|CP Intercidades|#734795|X110|92 91:6460 111:23734 105:44052 82:31833 181:29436 102:63876 77:30115 87:50921 79:20364 75:13715 71:4304 93:8134 72:5830 103:9411 283:4951
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|90 114:7773 106:19301 109:7438 357:22314 139:3822 135:15436 159:15941 202:28072 238:58350 100:47527 78:30466 82:32563 105:31795 111:44057 91:23637 92:6464
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|73 96:14961 84:6739 357:31473 139:3819 135:15436 202:43999 338:41041 238:13959 88:20077 100:28657 82:63007 105:31795 111:44057 91:23637 92:6465
+Q|CP Longo Curso|CP Intercidades|#555657|X110|91 81:7233 107:1715 101:8824 98:25419 99:14745 85:4532 97:6943 108:3015 110:11917 76:33502 115:26007
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|91 81:7233 107:1715 101:8824 98:25419 89:69305 83:26896 86:34689 67:9022 104:28166 94:34928 417:12199 187:5206 296:17200 264:15651
+Q|CP Longo Curso|CP Intercidades|#555657|X110|115 76:24742 65:12392 112:14417 66:8201 80:12201 70:16702
+Q|CP Longo Curso|CP Intercidades|#555657|X110|115 76:25991 110:33553 108:11914 97:3015 85:6941 99:4532 98:14752 101:25454 107:8815 81:1708 91:7241
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|357 139:3822 135:15436 159:15941 136:13312 202:14768 338:41041 238:13959 88:20077 100:28657 78:30466 82:32563 105:31795 111:44057 91:23637 92:6465
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|438 113:14123 74:10859 95:8250 439:14841 69:13489 68:17710 96:11377 84:6771 109:9164 357:22314 139:3822 135:15436 159:15941 202:27977 238:58320 100:47527 78:30466 82:32563 105:31795 111:44057 91:23637 92:6464
+Q|CP Longo Curso|CP Intercidades|#555657|X110|283 429:20649 234:13380 273:15613 303:23382 327:11268 223:18987 379:12425 324:11904 338:25718 238:13961 88:20077 100:28657 78:30466 237:9518 82:23049 105:31795 111:44057 91:23637 92:6325
+Q|CP Longo Curso|CP Intercidades|#734795|X110|283 103:4951 72:9409 93:5830 71:8130 75:4303 79:13698 87:20413 77:50765 102:30078 181:63749 82:29427 105:31795 111:44057 91:23637 92:6464
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|92 91:6321 111:23734 105:44052 82:31833 78:32584 100:30502 88:28670 238:20097 338:13962 309:4738 202:36544 136:14589 159:13314 135:15944 139:15445 357:3819
+Q|CP Longo Curso|CP Intercidades|#555657|X110|92 91:6321 111:23734 105:44052 82:31833 237:23152 78:9421 100:30502 88:28670 238:20097 338:13965 324:25776 379:11904 223:12430 327:19003 303:11274 273:23390 234:15625 429:13389 283:20651
+Q|CP Longo Curso|CP Intercidades|#555657|X110|70 80:16705 66:12208 112:8203 65:14422 76:12396 115:24761
+Q|CP Longo Curso|CP Intercidades|#0a7335|X110|264 296:15660 187:17204 417:5207 94:12203 104:34969 67:28192 86:8851 83:34726 89:27079 98:69450 101:25454 107:8815 81:1708 91:7241
+Q|CP Longo Curso|CP Intercidades|#555657|X110|76 65:11817 112:14417 66:8201 80:12201 70:16699
+Q|CP Longo Curso|CP Intercidades|#555657|X110|70 80:16702 66:12208 112:8203 65:14422 76:11820
+Q|CP Porto|Linha de Aveiro|#F9C212|L55|359 357:2292 140:2908 139:1002 128:1319 151:1596 178:1540 138:2402 154:1624 116:1948 142:1367 135:3642 168:1792 162:1651 134:1437 129:2503 127:1759 159:6799 180:3724 119:3155 136:6434 167:2630 125:1392 124:4645 202:6015
+Q|CP Porto|Linha de Aveiro|#F9C212|L55|202 124:6018 125:4641 167:1391 136:2630 119:6433 180:3155 159:3725 127:6800 129:1758 134:2504 162:1436 168:1651 135:1793 142:3641 116:1367 154:1951 138:1623 178:2402 151:1539 128:1601 139:1319 140:1004 357:2903 359:2290
+Q|CP Porto|Linha de Braga|#50B948|L55|359 357:2610 240:2442 371:2279 143:1813 254:1866 177:1344 147:1688 169:1612 173:2351 164:2742 109:4174 150:2563 133:3453 121:1243 84:1910 155:2792 149:1825 96:2119 130:3377 117:2040 166:1371 174:1691 120:1732 152:1180 137:1488 73:2090
+Q|CP Porto|Linha de Braga|#50B948|L55|359 357:2616 240:2440 371:2280 160:1989 254:1692 177:1344 147:1688 169:1612 173:2347 164:2751 109:4172 150:2557 133:3461 121:1239 84:1909 155:2794 149:1828 96:2117 130:3373 117:2039 166:1371 174:1691 120:1733 152:1177 137:1489 73:2092
+Q|CP Porto|Linha de Guimarães|#EE1E23|L55|359 357:2610 240:2442 371:2279 143:1813 254:1866 177:1344 147:1688 169:1612 173:2351 164:2742 109:4174 150:2555 106:4870 126:4538 179:3030 141:1678 148:2688 132:2266 163:1575 114:1073 156:3421 131:2752 90:2392
+Q|CP Porto|Linha de Guimarães|#EE1E23|L55|90 131:2392 156:2752 114:3421 163:1077 132:1575 148:2267 141:2689 179:1678 126:3033 106:4516 150:4891 109:2547 164:4172 173:2751 169:2347 147:1612 177:1688 254:1344 160:1692 371:1989 240:2280 357:2439 359:2616
+Q|CP Porto|Linha de Leixões|#a887a6|L55|159 127:6800 129:1758 134:2504 162:1436 168:1651 135:1793 142:3641 116:1367 154:1951 138:1623 178:2402 151:1539 128:1601 139:1319 140:1004 357:2820 240:2492 170:3350 144:2869 171:1478 118:1681 146:1326
+Q|CP Porto|Linha de Leixões|#a887a6|L55|146 118:1326 171:1680 144:1478 170:2862 240:3339 357:2492 140:2823 139:1002 128:1319 151:1596 178:1540 138:2402 154:1624 116:1948 142:1367 135:3642 168:1792 162:1651 134:1437 129:2503 127:1759 159:6799
+Q|CP Porto|Linha do Marco|#3CAEEF|L55|359 357:2610 240:2442 371:2279 143:1813 254:1869 123:1991 405:3907 421:1604 172:2720 175:3059 176:1626 364:1933 161:2697 244:2130 145:1547 157:1348 342:1938 347:2965 122:2848 153:2243 217:2837 158:2832 430:2734 165:1909 295:2584 304:4624
+Q|CP Porto|Linha do Marco|#3CAEEF|L55|304 295:4623 165:2584 430:1907 158:2736 217:2832 153:2832 122:2244 347:2846 342:2959 157:1936 145:1348 244:1678 161:2001 364:2698 176:1930 175:1626 172:3063 421:2726 405:1600 123:3912 254:1982 160:1695 371:1989 240:2280 357:2439 359:2616
+Q|CP Regional|CP InterRegional|#2773b9|X110|359 357:2610 254:9812 342:27988 347:2965 217:7930 295:9287 304:4624 325:12406 196:5983 255:5713 365:10440 368:8719 242:9008 268:6893 350:7594 416:12969 190:5295 266:6282 423:1518 426:5264 275:4570 351:8521
+Q|CP Regional|CP InterRegional|#2773b9|X110|359 357:2610 254:9812 342:27988 347:2965 217:7930 295:9287 304:4624 325:12410 196:5984 255:5714 365:10441 368:8721
+Q|CP Regional|CP InterRegional|#2773b9|X110|368 365:8720 255:10436 196:5712 325:5982 304:12411 295:4623 217:9286 347:7922 342:2959 254:27995 357:9838 359:2616
+Q|CP Regional|CP InterRegional|#2773b9|X110|368 242:9008 268:6893 350:7595 416:12969 190:5295 266:6282 423:1518 426:5264 275:4570 351:8521
+Q|CP Regional|CP InterRegional|#2773b9|X110|351 275:8521 426:4570 423:5264 266:1518 190:6284 416:5297 350:12967 268:7593 242:6892 368:9007 365:8718 255:10438 196:5713 325:5983 304:12411 295:4625 217:9289 347:7922 342:2959 254:27995 357:9838 359:2616
+Q|CP Regional|CP InterRegional|#2773b9|X110|351 275:8521 426:4570 423:5264 266:1518 190:6284 416:5297 350:12966 268:7592 242:6892 368:9009 365:8717 255:10436 196:5712 325:5982 304:12412 295:4623 217:9286 347:7922 342:2959 254:27995 357:9855
+Q|CP Regional|CP InterRegional|#2773b9|X110|92 81:4388 107:1717 0:14183 34:2993 374:4997 301:7799 302:5087 349:9839 249:6799 413:9115 363:8920 334:6875 213:9061 210:12303 218:5391
+Q|CP Regional|CP InterRegional|#2773b9|X110|288 356:16823 261:5092 393:5997 417:17287 187:5200 212:8588 296:8612 264:15651 214:2301 329:7731 278:9234 410:12451 355:1621 239:4180 216:7108 433:11907
+Q|CP Regional|CP InterRegional|#2773b9|X110|438 113:14123 74:10859 317:3892 95:4359 183:4540 439:10299 197:3318 69:10172 407:8138 68:9573 96:11377 84:6771 109:9164 254:13912 357:8399 359:2611
+Q|CP Regional|CP InterRegional|#2773b9|X110|438 113:14123 74:10859 317:3892 95:4359 183:4540 439:10299 197:3318 194:6911 69:3263 250:3154 407:4985 68:9573 312:4304 224:2935 96:4140 84:6771 109:9164 254:13912 357:8264
+Q|CP Regional|CP InterRegional|#2773b9|X110|438 113:14123 74:10859 317:3892 95:4359 183:4540 439:10299 197:3318 194:6911 388:1593 69:1670 250:3154 407:4985 68:9573 96:11377 84:6771 109:9164 254:13912 357:8402 139:3819 135:15436 159:15941 136:13312 202:14673 309:36405 338:4735 238:13959 88:20077 269:22401
+Q|CP Regional|CP InterRegional|#2773b9|X110|238 88:18875 425:7672 297:21603 285:7771 323:6311 322:5139 292:11895 305:10071 306:7214 418:14032 400:13493 218:12032
+Q|CP Regional|CP InterRegional|#2773b9|X110|357 254:9879 342:27988 347:2965 217:7930 295:9287 304:4624 325:12410 196:5984 255:5714 365:10441 368:8721 242:9008 268:6893 350:7595 416:12969 190:5295 266:6282 423:1518 426:5264 275:4570 351:8521
+Q|CP Regional|CP InterRegional|#2773b9|X110|357 254:9879 342:27988 347:2965 217:7930 295:9287 304:4624 325:12410 196:5984 255:5714 365:10441 368:8721
+Q|CP Regional|CP InterRegional|#2773b9|X110|218 400:12034 418:13502 306:14038 305:7208 292:10073 322:11897 323:5139 285:6313 297:7772 425:21776 88:7674 238:18883
+Q|CP Regional|CP InterRegional|#2773b9|X110|218 210:5391 213:12300 334:9060 363:6876 413:8743 249:9113 349:6798 302:9838 301:5087 374:7796 34:5140 0:2846 107:14153 81:1714 92:6450
+Q|CP Regional|CP InterRegional|#2773b9|X110|433 216:11904 239:7106 355:4179 410:1621 278:12444 329:9231 214:7730 264:2301 296:15661 212:8615 187:8589 417:5201 393:17289 261:5995 356:5092 288:16819
+Q|CP Regional|CP InterRegional|#2773b9|X110|92 91:6323 111:23734 105:44052 82:31833 289:8163 411:9818
+Q|CP Regional|CP InterRegional|#2773b9|X110|359 357:2608 254:8400 109:13912 84:9169 96:6767 68:11382 407:9576 69:8140 197:10175 439:3319 183:10315 95:4541 317:4359 74:3893 113:10865 438:14132
+Q|CP Regional|CP InterRegional|#2773b9|X110|357 254:8267 109:13912 84:9169 96:6767 68:11382 407:9576 250:4985 69:3154 388:1670 194:1593 197:6912 439:3319 183:10315 95:4541 317:4359 74:3893 113:10865 438:14132
+Q|CP Regional|CP InterRegional|#2773b9|X110|269 88:22404 238:20097 338:13962 309:4738 202:36449 136:14684 159:13314 135:15944 139:15445 357:3816 254:8402 109:13912 84:9169 96:6767 68:11382 407:9576 69:8140 197:10175 439:3319 183:10315 95:4541 317:4359 74:3893 113:10865 438:14132
+Q|CP Regional|CP Regional|#c1d22b|L55|202 257:2098 203:2370 252:2301 397:2063 251:2019 406:1143 415:1294 215:1629 230:1372 333:1272 284:2660 326:5141 184:1316 422:1467 227:1602 300:2173 389:2748
+Q|CP Regional|CP Regional|#c1d22b|L55|389 300:2748 227:2173 422:1601 184:1467 326:1316 284:5139 333:2660 230:1272 215:1372 415:1629 406:1294 251:1143 397:2019 252:2063 203:2301 257:2370 202:2098
+Q|CP Regional|CP Regional|#ec7d22|L55|202 362:6634 328:7936 331:5802 341:3700 315:3864 245:2960 185:1050 309:4472 338:4735 404:6294 435:2881 182:1556 238:3145
+Q|CP Regional|CP Regional|#ec7d22|L55|238 182:3229 435:1556 404:2882 338:6292 309:4738 185:4473 245:1050 315:2958 341:3864 331:3699 328:5804 362:7939 202:6637
+Q|CP Regional|CP Regional|#ec7d22|L55|359 357:2610 240:2442 371:2279 254:3726 405:5282 421:1603 364:9337 244:4826 342:4833 347:2965 217:7930 430:4794 304:9116 287:4932 337:4964 325:2513 196:5984 313:3307 255:2407 358:3541 206:3763 365:3137 219:3473 280:3633 368:1613
+Q|CP Regional|CP Regional|#ec7d22|L55|304 287:4934 337:4966 325:2513 196:5984 313:3307 255:2407 358:3541 206:3763 365:3137 219:3474 280:3633 368:1613
+Q|CP Regional|CP Regional|#ec7d22|L55|368 280:1614 219:3632 365:3474 206:3137 358:3763 255:3541 313:2406 196:3306 325:5983 337:2513 287:4965 304:4932 295:4625 430:4493 217:4795 347:7922 342:2959 244:4961 364:4699 254:15925 240:5963 357:2439
+Q|CP Regional|CP Regional|#ec7d22|L55|368 280:1612 219:3632 365:3474 206:3137 358:3763 255:3539 313:2406 196:3306 325:5982 337:2513 287:4965 304:4932
+Q|CP Regional|CP Regional|#ec7d22|L55|351 275:8521 426:4570 423:5264 266:1518 190:6284 416:5297 350:12966 268:7592 242:6892 368:9009
+Q|CP Regional|CP Regional|#ec7d22|L55|92 81:4388 107:1717 0:14183 34:2993 374:4997 345:4589 301:3210 302:5087 286:3471 384:3989 349:2378 437:2391 265:1909 249:2499 373:4283 413:4831 363:8920 334:6875 213:9061 336:3548 399:3540 247:2663 210:2552 218:5391
+Q|CP Regional|CP Regional|#ec7d22|L55|288 310:2561 311:5390 356:8869 267:1951 261:3141 393:5997 353:5092 188:3634 191:4161 417:4401 187:5200 212:8588 296:8612 192:3358 343:4250 264:8044
+Q|CP Regional|CP Regional|#ec7d22|L55|288 310:2561 311:5390 356:8869 267:1951 261:3141 393:5997 353:5092 188:3634 191:4161 417:4401 187:5200 212:8588 296:8612 192:3358 343:4250 264:8044 214:2301 329:7731 278:9234 277:811 294:2864 299:3323 410:5405 355:1621 239:4180 216:7108 232:5845 320:3440 433:2620
+Q|CP Regional|CP Regional|#ec7d22|L55|264 343:8046 192:4251 296:3359 212:8615 187:8589 417:5201 191:4401 188:4161 353:3633 393:5093 261:5995 267:3140 356:1952 311:8870 310:5389 288:2561
+Q|CP Regional|CP Regional|#ec7d22|L55|264 214:2301 329:7731 278:9234 277:811 294:2864 299:3323 410:5405 355:1621 239:4180 216:7108 232:5845 320:3440 433:2620
+Q|CP Regional|CP Regional|#c1d22b|L55|259 392:1864 318:859 290:2029 376:1093 339:1667 370:1921 398:1925 233:2630 377:2343 427:696 256:1791 199:2023 396:1337 263:2473 241:1251 383:2141 330:2008
+Q|CP Regional|CP Regional|#c1d22b|L55|330 383:2009 241:2141 263:1251 396:2473 199:1337 256:2023 427:1797 377:696 233:2344 398:2630 370:1925 339:1922 376:1667 290:1093 318:2029 392:859 259:1864
+Q|CP Regional|CP Regional|#ec7d22|L55|82 207:3790 408:3653 193:1942 360:2533 381:5753 414:5466 181:5436
+Q|CP Regional|CP Regional|#ec7d22|L55|82 408:7444 193:1942 360:2534 381:5833 414:5464 181:5361 208:11370 352:20814 412:10952 236:9571 243:15515 354:17214 201:10231 200:6423 380:13456 253:18159 204:15915
+Q|CP Regional|CP Regional|#ec7d22|L55|204 253:15915 380:18171 200:13463 201:6424 354:10235 243:17227 236:15516 412:9575 352:10948 208:20819 181:11374 414:5438 381:5388 360:5834 193:2571 408:1906 82:7445
+Q|CP Regional|CP Regional|#ec7d22|L55|438 401:4257 226:3397 113:6472 281:2254 260:2855 386:2696 74:3056 387:945 317:2947 95:4359 183:4540 225:2813 198:3308 439:4162 197:3318 248:1550 194:5361 388:1593 69:1670 250:3154 407:4985 221:2750 391:3179 68:3645 312:4304 224:2935 96:4140 84:6771 150:6609 109:2557 254:13912 240:5960 357:2304
+Q|CP Regional|CP Regional|#ec7d22|L55|438 401:4257 226:3397 113:6472 281:2254 260:2855 386:2696 74:3056 387:945 317:2947 95:4359 183:4540 225:2813 198:3308 439:3701
+Q|CP Regional|CP Regional|#ec7d22|L55|438 401:4257 226:3397 113:6472 281:2254 260:2855 386:2696 74:3056 387:945 317:2947 95:4359 183:4540 225:2813 198:3308 439:4162 197:3318 248:1550 194:5361 388:1593 69:1670 250:3154 407:4985 221:2750 391:3179 68:3645 312:4304 224:2935 96:4138
+Q|CP Regional|CP Regional|#ec7d22|L55|283 279:4036 428:6481 372:5059 235:3927 314:3159 274:14992 189:2622 434:5033
+Q|CP Regional|CP Regional|#ec7d22|L55|283 429:20649 205:8517 234:5181 273:15613 282:8019 303:15370 316:4618 327:6651 220:7978 291:2320 332:4384 223:4312 340:3931 231:4156 379:4340 324:11904 319:2735 395:3386 298:8174 361:5142 338:3621 238:13910
+Q|CP Regional|CP Regional|#ec7d22|L55|434 189:5032 274:2622 314:14982 235:3159 372:3927 428:5059 279:6483 283:4037
+Q|CP Regional|CP Regional|#ec7d22|L55|238 338:13964 361:3624 298:5139 395:8177 319:3386 324:2735 379:11904 231:4341 340:4156 223:3931 332:4313 291:4385 220:2320 327:7981 316:6652 303:4619 282:15370 273:8021 234:15625 205:5182 429:8519 283:20651
+Q|CP Regional|CP Regional|#ec7d22|L55|238 209:2110 258:1366 409:2654 348:7830 272:2104 88:2813 431:6945 403:6041 394:5167 346:4782 100:5724 424:8302 293:5567 186:6807 78:10271 385:6469 237:3049 276:4197 335:4588 289:6100 82:8167
+Q|CP Regional|CP Regional|#ec7d22|L55|82 289:8164 335:6100 276:4591 237:4252 385:2996 78:6467 186:10279 293:6852 424:5571 100:8305 346:5724 394:4783 403:5168 431:6040 88:6951 272:2813 348:2107 409:7832 258:2653 209:1415 238:2057
+Q|CP Regional|CP Regional|#ec7d22|L55|218 210:5391 247:2552 399:2663 336:3539 213:3548 334:9060 363:6876 373:7962 249:4282 265:2499 437:1909 349:2390 384:2378 286:4130 302:3331 301:5087 345:3206 374:4590 34:5140 0:2846 107:14153 81:1714 92:6450
+Q|CP Regional|CP Regional|#ec7d22|L55|70 80:16705 66:12208 112:8203
+Q|CP Regional|CP Regional|#ec7d22|L55|112 66:8201 80:12201 70:16702
+Q|CP Regional|CP Regional|#ec7d22|L55|433 320:2620 232:3440 216:5844 239:7106 355:4179 410:1621 299:5404 294:3323 277:2863 278:811 329:9231 214:7730 264:2301
+Q|CP Regional|CP Regional|#ec7d22|L55|433 320:2620 232:3440 216:5844 239:7106 355:4179 410:1621 299:5404 294:3323 277:2863 278:811 329:9231 214:7730 264:2301 343:8046 192:4251 296:3359 212:8615 187:8589 417:5201 191:4401 188:4161 353:3633 393:5093 261:5995 267:3140 356:1952 311:8870 310:5389 288:2561
+Q|CP Regional|CP Regional|#ec7d22|L55|92 91:6323 47:10881 7:4370 111:8478 10:16619 436:3940 366:3443 390:2069 382:3844 420:6004 105:8104 419:9390 308:9813 369:8419 82:4197 289:8163 402:1630 222:1013 246:3276 378:3267 228:2261 411:3471
+Q|CP Regional|CP Regional|#ec7d22|L55|357 240:2306 254:5958 109:13912 150:2563 84:6606 96:6767 224:4140 312:2936 68:4304 391:3645 221:3180 407:2751 250:4985 69:3154 388:1670 194:1593 248:5362 197:1549 439:3320
+Q|CP Regional|CP Regional|#ec7d22|L55|439 197:3319 248:1550 194:5361 388:1593 69:1670 250:3154 407:4985 221:2750 391:3179 68:3645 312:4304 224:2935 96:4138
+Q|CP Regional|CP Regional|#ec7d22|L55|96 224:4139 312:2936 68:4304 391:3645 221:3180 407:2751 250:4985 69:3154 388:1670 194:1593 248:5362 197:1549 439:3319 198:4190 225:3308 183:2814 95:4541 317:4359 387:2947 74:945 386:3057 260:2697 281:2856 113:2254 226:6474 401:3397 438:4258
+Q|CP Regional|CP Regional|#ec7d22|L55|96 224:4139 312:2936 68:4304 391:3645 221:3180 407:2751 250:4985 69:3154 388:1670 194:1593 248:5362 197:1549 439:3320
+Q|CP Regional|CP Regional|#ec7d22|L55|292 305:10072 306:7214 344:5327 418:8706 262:8505 400:4991 375:2308 218:9724
+Q|CP Regional|CP Urbano||L55|269 271:1899 270:1083 211:4863 367:2122 425:4853 307:2422 321:3299 88:1863 272:2814 348:2107 195:3594 432:1627 409:2610 229:1427 258:1225 209:1415 238:2057
+Q|CP Regional|CP Urbano||L55|238 209:2110 258:1366 229:1227 409:1427 432:2610 195:1627 348:3594 272:2104 88:2813 321:1865 307:3299 425:2422 367:4853 211:2122 270:4864 271:1083 269:1899
+Q|Comboios de Portugal;Renfe Operadora|Train IN|#7A1A53|L55|357 96:38126 439:42502 438:50681 440:28820
+Q|Comboios de Portugal;Renfe Operadora|Train IN|#7A1A53|L55|440 438:28790 439:50347 96:42447 357:38084
+Q|Fertagus|Fertagus|#DD4250|L55|59 40:4856 63:4128 98:3560 445:8790 441:5277 443:5183 444:2704 442:2653 101:4964 20:7703 107:1113 81:1714 53:1145
+Q|Fertagus|Fertagus|#DD4250|L55|53 81:1145 107:1715 20:1109 101:7715 442:4906 444:2652 443:2707 441:5184 445:5270 98:8797 63:3564 40:4129 59:4859
+Q|Fertagus|Fertagus|#DD4250|L55|53 81:1145 107:1715 20:1109 101:7715 442:4906 444:2652 443:2707 441:5184
+Q|Fertagus|Fertagus|#DD4250|L55|441 443:5183 444:2704 442:2653 101:4964 20:7703 107:1113 81:1714 53:1145
+Q|Renfe Alvia|Línea Medina del Campo-Vilar Formoso||L55|446 447:34707
 T|39.44019|-8.19432|Abrantes
 T|40.25134|-8.45022|Adémia
 T|41.77562|-8.86161|Afife
@@ -342,6 +990,7 @@ T|38.70598|-9.14574|Cais do Sodré
 T|39.40675|-9.14026|Caldas da Rainha
 T|41.15290|-7.82667|Caldas de Moledo
 T|41.87406|-8.83427|Caminha
+T|41.15168|-8.63335|Campo Alegre
 T|38.73251|-9.16774|Campolide
 T|38.73151|-9.16886|Campolide-A
 T|40.49106|-7.90649|Canas - Felgueira
@@ -360,6 +1009,7 @@ T|40.63540|-8.45289|Carvalhal da Portela
 T|40.92511|-8.62617|Carvalheira - Maceda
 T|39.57105|-8.39535|Carvalhos de Figueiredo
 T|38.49821|-8.15822|Casa Branca
+T|41.15986|-8.62905|Casa da Música
 T|40.20477|-8.48388|Casais
 T|40.57944|-8.48791|Casal do Álvaro
 T|38.70087|-9.41791|Cascais
@@ -398,6 +1048,7 @@ T|39.54793|-8.42979|Curvaceiras
 T|41.17151|-8.35543|Cête
 T|39.34450|-9.17240|Dagorda - Peniche
 T|41.68023|-8.78195|Darque
+T|41.12905|-8.62102|Devesas
 T|39.04256|-9.18462|Dois Portos
 T|40.13252|-7.47346|Donas
 T|41.63907|-8.66702|Durrães
@@ -451,6 +1102,7 @@ T|39.61651|-8.49501|Fungalvaz
 T|37.06021|-7.75179|Fuseta
 T|37.05366|-7.74966|Fuseta-A
 T|41.12976|-8.62028|Gaia
+T|41.15161|-8.62616|Galiza
 T|40.52177|-7.21455|Gata
 T|41.13319|-8.60868|General Torres
 T|41.36456|-8.38876|Giesteira
@@ -469,6 +1121,7 @@ T|39.94816|-8.80178|Guia
 T|41.21471|-8.65865|Guifões
 T|41.43513|-8.29430|Guimarães
 T|41.18511|-8.59841|Hospital São João
+T|41.14807|-8.61923|Hospital de Santo António
 T|41.70176|-8.83416|Igreja
 T|41.18122|-8.34217|Irivo
 T|38.94977|-9.23340|Jerumelo
@@ -663,11 +1316,13 @@ T|37.17567|-8.44046|Silves
 T|40.01090|-8.63354|Simões
 T|38.79926|-9.38536|Sintra
 T|40.02687|-7.45535|Soalheira
+T|41.11996|-8.61473|Soares dos Reis
 T|40.41481|-8.30143|Soito
 T|39.54287|-8.47163|Soudos - Vila Nova
 T|40.05502|-8.63949|Soure
 T|40.28624|-8.42565|Souselas
 T|41.19712|-8.50200|Suzão
+T|41.14572|-8.61133|São Bento
 T|41.25841|-8.55816|São Frutuoso
 T|41.19714|-8.57921|São Gemil
 T|40.89860|-8.49522|São João da Madeira
@@ -742,3 +1397,174 @@ T|40.57752|-8.44827|Águeda
 T|41.81306|-8.86248|Âncora-Praia
 T|38.56041|-7.90711|Évora
 T|39.36490|-9.15902|Óbidos
+B|37.09902|-8.24539|Albufeira Bus Station
+B|39.05589|-9.00718|Alenquer (Lg. Rainha Santa Isabel)
+B|38.72253|-7.98444|Arraiolos
+B|40.99565|-8.53890|Auto Viação Feirense, Lda
+B|41.74622|-7.46779|Auto Viação do Tâmega
+B|41.69647|-8.84316|Avic Transportes
+B|37.12647|-8.31368|Bus Parking loot
+B|37.83182|-25.14534|C.M. Nordeste Paragem Vila do Nordeste
+B|38.80971|-9.23313|Caneças (Escola Secundária)
+B|41.16105|-8.62996|Casa da Música (Metro)
+B|41.81174|-8.85979|Central Camionagem de Vila Praia Ancora
+B|38.37540|-8.51022|Central Municipal de Camionagem
+B|38.65525|-27.22484|Central Rodoviária
+B|40.27371|-7.49822|Central de Camionagem
+B|41.08332|-7.14273|Central de Camionagem
+B|41.26610|-8.07225|Central de Camionagem
+B|41.30369|-7.15410|Central de Camionagem
+B|41.51361|-7.98728|Central de Camionagem
+B|38.01859|-8.69308|Central de Camionagem da Rodoviária do Alentejo
+B|41.53499|-8.60691|Central de Camionagem de Barcelos
+B|41.53819|-8.77882|Central de Camionagem de Esposende
+B|41.44934|-8.17574|Central de Camionagem de Fafe
+B|41.31395|-8.33952|Central de Camionagem de Figueiró
+B|41.09866|-7.80607|Central de Camionagem de Lamego
+B|41.49620|-6.27274|Central de Camionagem de Miranda do Douro
+B|41.82235|-7.78677|Central de Camionagem de Montalegre
+B|40.73101|-8.17139|Central de Camionagem de Oliveira de Frades
+B|40.36370|-8.02522|Central de Camionagem de Tábua
+B|41.60371|-7.31094|Central de Camionagem de Valpaços
+B|41.50187|-7.64131|Central de Camionagem de Vila Pouca de Aguiar
+B|42.10986|-8.26160|Central de Transportes
+B|40.34612|-8.59436|Centro
+B|40.72617|-8.36633|Centro Coordenador Transportes de Sever do Vouga
+B|40.89780|-8.49414|Centro Coordenador de Transportes
+B|41.85177|-8.42219|Centro Coordenador de Transportes
+B|42.02256|-8.64251|Centro Coordenador de Transportes - Central de Camionagem
+B|41.38919|-8.76025|Centro Coordenador de Transportes da Póvoa de Varzim
+B|40.68952|-8.47538|Centro Coordenador de Transportes de Albergaria-a-Velha
+B|41.55550|-8.42582|Centro Coordenador de Transportes de Braga
+B|39.81874|-7.48891|Centro Coordenador de Transportes de Castelo Branco
+B|42.07646|-8.48953|Centro Coordenador de Transportes de Monção
+B|40.75973|-8.06076|Centro Intermodal de Transportes de São Pedro do Sul
+B|40.51934|-8.08934|Centro de Coordenação de Transportes de Tondela
+B|38.96098|-8.51908|Coruche - Terminal
+B|32.77088|-16.84386|Cruz
+B|41.63773|-8.14434|Estação Central Camionagem
+B|40.36264|-7.85975|Estação Rodoviária
+B|40.83862|-8.47653|Estação Rodoviária da Transdev de Oliveira de Azeméis
+B|41.40780|-8.51440|Estação Rodoviária de Famalicão
+B|39.74561|-8.80498|Estação Rodoviária de Leiria
+B|38.76791|-9.10064|Estação Rodoviária de Lisboa-Oriente
+B|41.81147|-6.76198|Estação Rodoviária de Mercadorias
+B|40.41973|-7.70623|Estação Rodoviária de Seia
+B|40.89663|-7.49007|Estação Rodoviária de Sernancelhe
+B|41.24653|-7.30670|Estação da Mobilidade
+B|37.82233|-25.52326|Estação da Ribeira Grande
+B|32.72096|-16.76861|Estação de Autocarros (Machico)
+B|40.33977|-8.58806|Estação de Autocarros de Cantanhede
+B|41.65300|-8.43772|Estação de Autocarros de Vila Verde
+B|40.61975|-7.53651|Estação de Camionagem de Fornos de Algodres
+B|39.02035|-9.15353|Estação de Sobral de Monte Agraço
+B|40.97785|-7.61387|Estação de camionagem de Moimenta
+B|37.02210|-7.96895|Faro Aeroporto
+B|41.17685|-6.79054|Freixo (cruzamento)
+B|39.63125|-8.68079|Fátima Bus Station
+B|38.00902|-7.85848|Gare Rodoviária
+B|37.59896|-8.64462|Gare Rodoviária do Alentejo - Odemira
+B|40.57505|-8.44794|Gare da Transdev
+B|40.36371|-7.34116|Ginjal
+B|40.41708|-7.70683|Hub Intermodal de Seia
+B|40.99620|-8.53803|Interface Lourosa/Fiães
+B|40.06031|-8.62132|Interface Multimodal de Soure
+B|41.21877|-7.56391|Interface de Mobilidade Urbana de Provesende
+B|38.52965|-8.88574|Interface de Transportes de Setúbal
+B|41.07126|-8.56988|Interface dos Carvalhos
+B|41.39079|-7.99947|Landim
+B|41.54043|-6.96889|Macedo de Cavaleiros
+B|41.48123|-7.18060|Mirandela
+B|41.34234|-6.70927|Mogadouro
+B|40.19849|-8.64538|Moisés Transportes
+B|37.08496|-8.75065|Montinhos da Luz
+B|41.65396|-8.30392|Paragem
+B|41.65639|-8.31699|Paragem
+B|41.65728|-8.31339|Paragem
+B|40.85615|-8.37525|Paragem de autocarro
+B|38.69204|-9.35923|Parede (Terminal)
+B|38.94030|-9.33524|Parque Intermodal de Mafra
+B|38.80249|-9.37658|Portela de Sintra (Estação Norte)
+B|37.14710|-8.53493|Portimão bus station
+B|40.75879|-8.06517|Rede Expressos
+B|39.74767|-8.93084|Rede Nacional de Expressos da Marinha Grande
+B|32.67323|-17.06423|Ribiera Brava
+B|32.77078|-17.23463|Rodoeste 80
+B|41.74021|-7.47591|Rodonorte
+B|41.32416|-8.14593|Rodonorte Lixa
+B|39.24867|-8.00857|Rodoviaria
+B|37.93848|-7.60106|Rodoviária
+B|39.29752|-7.43265|Rodoviária
+B|40.13903|-7.50174|Rodoviária
+B|39.90196|-8.27488|Rodoviária - Figueiró dos Vinhos
+B|39.59890|-8.41226|Rodoviária do Tejo
+B|41.67978|-8.04930|Ruivães
+B|37.15860|-7.89104|S. Brás Alportel "Circular"
+B|32.64761|-16.91586|S.A.M.
+B|38.79655|-9.39131|Scotturb
+B|38.74183|-9.16627|Sete Rios Coach Station
+B|38.96753|-9.40562|Terminal Intermodal Ericeira
+B|39.46300|-8.21375|Terminal Rodoviária de Abrantes
+B|37.10723|-8.67639|Terminal Rodoviário
+B|37.15220|-7.89079|Terminal Rodoviário
+B|38.06259|-8.11802|Terminal Rodoviário
+B|38.30823|-7.70693|Terminal Rodoviário
+B|38.56797|-7.91779|Terminal Rodoviário
+B|39.47785|-8.53654|Terminal Rodoviário
+B|39.51410|-7.64730|Terminal Rodoviário
+B|39.91899|-8.14761|Terminal Rodoviário
+B|40.21286|-8.25704|Terminal Rodoviário
+B|40.22015|-8.43938|Terminal Rodoviário Flixbus
+B|37.01733|-7.93798|Terminal Rodoviário Urbano
+B|39.59688|-9.06887|Terminal Rodoviário da Nazaré
+B|38.76650|-9.29813|Terminal Rodoviário de Agualva-Cacém
+B|38.70255|-7.40450|Terminal Rodoviário de Alandroal
+B|39.54997|-8.97580|Terminal Rodoviário de Alcobaça
+B|38.98299|-9.07957|Terminal Rodoviário de Arruda dos Vinhos
+B|40.64377|-8.63856|Terminal Rodoviário de Aveiro
+B|38.68756|-9.14689|Terminal Rodoviário de Cacilhas
+B|39.40576|-9.13444|Terminal Rodoviário de Caldas da Rainha
+B|38.70189|-9.41859|Terminal Rodoviário de Cascais
+B|40.90032|-7.93383|Terminal Rodoviário de Castro Daire
+B|37.80050|-8.67221|Terminal Rodoviário de Cercal do Alentejo
+B|40.21644|-8.43739|Terminal Rodoviário de Coimbra
+B|38.87488|-7.16083|Terminal Rodoviário de Elvas
+B|38.84415|-7.58172|Terminal Rodoviário de Estremoz
+B|37.01708|-7.93742|Terminal Rodoviário de Faro
+B|37.13304|-8.45425|Terminal Rodoviário de Lagoa
+B|37.14165|-8.02148|Terminal Rodoviário de Loulé
+B|38.13666|-7.44583|Terminal Rodoviário de Moura
+B|37.02890|-7.84108|Terminal Rodoviário de Olhão
+B|38.57029|-8.90567|Terminal Rodoviário de Palmela
+B|39.36059|-9.37518|Terminal Rodoviário de Peniche
+B|37.06792|-8.09999|Terminal Rodoviário de Quarteira
+B|39.23622|-8.68781|Terminal Rodoviário de Santarém
+B|38.05792|-8.78501|Terminal Rodoviário de Santo André
+B|38.44590|-9.09978|Terminal Rodoviário de Sesimbra
+B|37.95762|-8.86266|Terminal Rodoviário de Sines
+B|37.12719|-7.65248|Terminal Rodoviário de Tavira
+B|39.09293|-9.26607|Terminal Rodoviário de Torres Vedras
+B|40.36354|-8.02549|Terminal Rodoviário de Tábua
+B|41.29961|-7.75002|Terminal Rodoviário de Vila Real
+B|40.72320|-8.10919|Terminal Rodoviário de Vouzela
+B|38.65221|-9.07790|Terminal Rodoviário do Barreiro
+B|38.64688|-9.09623|Terminal Rodviário do Seixal
+B|40.14830|-8.84903|Terminal da Figueira da Foz
+B|41.14377|-8.60650|Terminal das Camélias
+B|38.69898|-9.22757|Terminal de Algés
+B|37.77248|-25.31079|Terminal de Autocarros
+B|41.17288|-7.04905|Terminal de Autocarros (Santos)
+B|41.17279|-7.04921|Terminal de Camionagem
+B|41.81060|-6.76121|Terminal de Camionagem de Bragança
+B|38.42298|-7.53842|Terminal de Transportes Rodoviária do Alentejo, S.A.
+B|41.69529|-8.83202|Terminal de Viana do Castelo
+B|41.13655|-8.53125|Terminal do Souto
+B|39.65481|-8.57797|Terminal rodoviário
+B|41.39077|-7.99951|Transdev
+B|40.84842|-8.39764|Vale de Cambra (CCT)
+B|41.20768|-8.28277|Valpi
+B|38.92756|-9.23722|Venda do Pinheiro (Eco Parque)
+B|37.19726|-7.41511|Vila Real de Santo António
+B|40.35034|-7.09102|Viuva Monteiro
+B|40.96854|-7.26181|Viúva Carneiro & Filhos
+B|38.53965|-8.88814|Várzea Bus Station

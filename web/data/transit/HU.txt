@@ -1,5 +1,6 @@
 # Transit for Koode, HU. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|47.19952|18.94491|Angyalisziget|BHÉV|M
 S|47.56743|19.04877|Aquincum|BHÉV|M
 S|47.50687|19.03778|Batthyány tér|BHÉV|M
@@ -206,6 +207,1778 @@ L|Szeged|1 => Hódmezővásárhely vasútállomás|#FDC434|135 123:240 120:244 1
 L|Szeged|1 => Szeged vasútállomás|#FDC434|125 127:972 128:797 126:433 133:384 124:741 117:12421 131:11461 129:265 137:616 122:233 136:373 130:291 118:569 134:506 132:285 119:296 120:543 121:451 135:129
 L|local|Skanzenvasút => Főbejárat||141 139:364 143:417 142:400 140:330 138:432
 L|local|Skanzenvasút => Néprajzi látványtár||138 140:432 142:330 143:400 139:417 141:364
+R|47.85401|18.85324|Máriakút|Börzsöny 2020 Kft.
+R|47.80594|19.95114|Farkasmály|Egererdő Zrt.
+R|47.78946|19.93756|Felsőújváros|Egererdő Zrt.
+R|47.78408|19.93346|Gyöngyös|Egererdő Zrt.
+R|47.83064|19.97073|Mátrafüred|Egererdő Zrt.
+R|47.82701|19.97130|Mátrafüred alsó|Egererdő Zrt.
+R|47.79785|19.94497|Nyúlmály|Egererdő Zrt.
+R|47.81284|19.95877|Pipishegy|Egererdő Zrt.
+R|50.91946|14.13693|Bad Schandau|EuroCity
+R|48.75395|16.89332|Břeclav|EuroCity
+R|52.52487|13.36972|Berlin Hauptbahnhof|EuroCity
+R|52.47486|13.36467|Berlin Südkreuz|EuroCity
+R|52.47747|13.36701|Berlin Südkreuz|EuroCity
+R|49.90088|18.35943|Bohumín|EuroCity
+R|48.15892|17.10635|Bratislava hl.st.|EuroCity
+R|49.19067|16.61302|Brno hl.n.|EuroCity
+R|47.51072|19.05748|Budapest-Nyugati|MÁV-Start
+R|49.92561|18.31164|Chałupki|EuroCity
+R|50.33038|19.18482|Dąbrowa Górnicza|EuroCity
+R|50.77353|14.20120|Děčín hlavní nádraží|EuroCity
+R|51.04040|13.73152|Dresden Hbf|EuroCity
+R|48.85634|17.12210|Hodonín|EuroCity
+R|49.56559|17.74156|Hranice na Moravě|EuroCity
+R|50.25762|19.01719|Katowice|EuroCity
+R|50.02520|15.21434|Kolín|EuroCity
+R|48.66192|17.04744|Kúty|EuroCity
+R|47.79108|18.95889|Nagymaros-Visegrád|EuroCity
+R|47.99512|18.17415|Nové Zámky|EuroCity
+R|51.35890|20.23211|Opoczno Południe|EuroCity
+R|49.85137|18.26614|Ostrava hlavní nádraží|EuroCity
+R|49.82103|18.21022|Ostrava-Svinov|EuroCity
+R|49.20278|17.53118|Otrokovice|EuroCity
+R|50.03170|15.75616|Pardubice hl.n.|EuroCity
+R|49.44690|17.44537|Přerov|EuroCity
+R|50.08308|14.43618|Praha hlavní nádraží|EuroCity
+R|50.11066|14.43975|Praha-Holešovice|EuroCity
+R|50.08883|18.54739|Rybnik|EuroCity
+R|50.27885|19.12646|Sosnowiec Główny|EuroCity
+R|49.07627|17.42275|Staré Město u Uherského Hradiště|EuroCity
+R|50.65942|14.04467|Ústí nad Labem hlavní nádraží|EuroCity
+R|47.82106|18.86194|Szob|EuroCity
+R|47.80011|18.67966|Štúrovo|EuroCity
+R|50.13579|18.96382|Tychy|EuroCity
+R|47.78272|19.13301|Vác|MÁV-Start
+R|52.22880|21.00307|Warszawa Centralna|EuroCity
+R|52.25151|21.05221|Warszawa Wschodnia|EuroCity
+R|52.22033|20.96519|Warszawa Zachodnia|EuroCity
+R|50.00822|18.47641|Wodzisław Śląski|EuroCity
+R|50.48011|19.42325|Zawiercie|EuroCity
+R|47.15464|9.81477|Bludenz|EuroNight
+R|47.16872|9.47885|Buchs SG|EuroNight
+R|49.99374|16.22328|Choceň|EuroNight
+R|49.89701|16.44663|Česká Třebová|EuroNight
+R|47.24094|9.60423|Feldkirch|EuroNight
+R|47.26326|11.40112|Innsbruck Hauptbahnhof|EuroNight
+R|48.12746|11.60560|München Ost|EuroNight
+R|47.84943|17.26759|Mosonmagyaróvár|EuroNight
+R|50.10031|14.50426|Praha-Libeň|EuroNight
+R|47.84999|12.11926|Rosenheim|EuroNight
+R|47.04501|9.44513|Sargans|EuroNight
+R|49.97111|16.37922|Ústí nad Orlicí|EuroNight
+R|48.16587|14.02662|Wels Hauptbahnhof|EuroNight
+R|47.37768|8.53888|Zürich Hauptbahnhof|EuroNight
+R|47.30828|16.73470|Acsád|GYSEV
+R|46.85401|16.93655|Alsónemesapáti|GYSEV
+R|46.86305|16.77937|Andráshida|GYSEV
+R|46.87493|16.74609|Bagod|GYSEV
+R|46.81810|16.35806|Bajánsenye|GYSEV
+R|46.73198|16.84898|Bak|GYSEV
+R|46.69072|16.82450|Baktüttös|GYSEV
+R|46.79214|16.93267|Búcsúszentlászló|GYSEV
+R|47.46664|17.08467|Beled|GYSEV
+R|47.38867|16.75235|Bük|GYSEV
+R|47.18294|17.19118|Boba|GYSEV
+R|46.77808|16.85323|Bocfölde|GYSEV
+R|47.68545|17.23420|Bősárkány|GYSEV
+R|46.85148|16.62478|Budafa|GYSEV
+R|47.26146|17.15221|Celldömölk|GYSEV
+R|46.60781|16.64203|Csömödér-Páka|GYSEV
+R|47.43049|17.02631|Csánig|GYSEV
+R|47.02576|17.16701|Dabronc|GYSEV
+R|47.44808|17.05409|Dénesfa|GYSEV
+R|46.94188|16.86217|Egervár-Vasboldogasszony|GYSEV
+R|47.52208|17.31664|Egyed-Rábacsanak|GYSEV
+R|47.64415|17.42491|Enese|GYSEV
+R|47.59601|17.19591|Farád|GYSEV
+R|46.84140|16.54349|Felsőjánosfa|GYSEV
+R|46.66718|16.98269|Felsőrajk|GYSEV
+R|47.45617|17.51496|Gecse-Gyarmat|GYSEV
+R|46.60022|16.98258|Gelse|GYSEV
+R|47.28589|16.60003|Gencsapáti alsó|GYSEV
+R|47.29952|16.59379|Gencsapáti felső|GYSEV
+R|46.64691|16.73973|Gutorfölde|GYSEV
+R|47.50168|17.55960|Gyömöre-Tét|GYSEV
+R|47.31637|16.58861|Gyöngyösfalu|GYSEV
+R|47.20317|16.65686|Gyöngyöshermán|GYSEV
+R|47.66312|17.64808|Győrszabadhegy|GYSEV
+R|46.98968|16.84187|Győrvár|GYSEV
+R|47.72007|17.21559|Hanságliget|GYSEV
+R|47.35801|16.89877|Hegyfalu|GYSEV
+R|46.82009|16.32919|Hodoš / Hodos|GYSEV
+R|46.60313|16.60383|Iklódbördőce|GYSEV
+R|47.65765|17.52333|Ikrény|GYSEV
+R|47.45821|16.78678|Újkér|GYSEV
+R|47.11546|17.17164|Jánosháza|GYSEV
+R|47.78905|17.13763|Jánossomorja|GYSEV
+R|47.58195|17.04783|Kapuvár|GYSEV
+R|46.90569|16.94673|Kemendollár|GYSEV
+R|47.27897|17.10908|Kemenesmihályfa|GYSEV
+R|47.13917|17.18287|Kemenespálfa|GYSEV
+R|47.28012|17.22178|Külsővat|GYSEV
+R|47.25435|16.62587|Kámon|GYSEV
+R|47.63281|17.35954|Kóny|GYSEV
+R|47.63265|16.63698|Kópháza|GYSEV
+R|47.38174|16.55689|Kőszeg|GYSEV
+R|47.36184|16.56743|Kőszegfalva|GYSEV
+R|47.30052|16.84320|Ölbő-Alsószeleste|GYSEV
+R|46.62117|16.52953|Lenti|GYSEV
+R|46.61112|16.57271|Lentiszombathely|GYSEV
+R|47.34080|16.58035|Lukácsháza|GYSEV
+R|47.32673|16.58527|Lukácsháza alsó|GYSEV
+R|47.50962|16.77737|Lövő|GYSEV
+R|47.51429|17.17626|Magyarkeresztúr-Zsebeháza|GYSEV
+R|47.42773|17.34888|Marcaltő|GYSEV
+R|47.32366|17.36441|Mezőlak|GYSEV
+R|47.31851|17.32927|Mihályháza|GYSEV
+R|47.63769|17.61415|Ménfőcsanak felső|GYSEV
+R|47.85272|17.16060|Mosonszolnok|GYSEV
+R|47.60133|16.68943|Nagycenk|GYSEV
+R|46.44069|16.98696|Nagykanizsa|GYSEV
+R|46.82719|16.45575|Nagyrákos|GYSEV
+R|47.26570|17.05747|Nagysimonyi|GYSEV
+R|47.40291|17.37640|Nemesgörzsöny|GYSEV
+R|47.09363|17.18371|Nemeskeresztúr|GYSEV
+R|47.20386|17.18864|Nemeskocs|GYSEV
+R|46.62650|16.68522|Ortaháza|GYSEV
+R|47.28403|17.02433|Ostffyasszonyfa|GYSEV
+R|46.95906|16.99700|Pakod|GYSEV
+R|46.83596|16.49691|Pankasz|GYSEV
+R|47.00966|16.83353|Pácsony|GYSEV
+R|47.59565|16.88944|Petőháza|GYSEV
+R|47.60021|16.76893|Pinnye|GYSEV
+R|46.92431|16.97195|Pókaszepetk|GYSEV
+R|47.49220|17.13739|Páli-Vadosfa|GYSEV
+R|47.23891|16.83318|Porpác|GYSEV
+R|47.34049|17.45885|Pápa|GYSEV
+R|47.32685|16.85577|Pósfa|GYSEV
+R|47.08495|16.76852|Püspökmolnári|GYSEV
+R|46.68193|16.95819|Pötréte|GYSEV
+R|47.43870|17.33741|Rábahíd|GYSEV
+R|47.64896|17.46209|Rábapatona|GYSEV
+R|47.55741|17.31523|Rábapordány|GYSEV
+R|47.59282|17.16149|Rábatamási|GYSEV
+R|46.61803|16.47107|Rédics|GYSEV
+R|46.65506|16.76636|Rádiháza|GYSEV
+R|47.06039|17.19931|Rigács|GYSEV
+R|46.82912|16.41613|Őriszentpéter|GYSEV
+R|47.29134|16.70412|Salköveskút-Vassurány|GYSEV
+R|47.54744|16.74861|Sopronkövesd|GYSEV
+R|47.13658|16.71991|Sorkifalud|GYSEV
+R|46.75518|16.85112|Sárhida|GYSEV
+R|47.25897|16.92952|Sárvár|GYSEV
+R|47.46054|17.31519|Szany-Rábaszentandrás|GYSEV
+R|47.12237|16.73330|Szentléránt|GYSEV
+R|47.46923|17.54744|Szerecseny|GYSEV
+R|47.53341|17.20967|Szil-Sopronnémeti|GYSEV
+R|47.58934|17.12289|Szárföld|GYSEV
+R|46.67000|16.80047|Tófej|GYSEV
+R|47.43040|16.78181|Tormásliget|GYSEV
+R|46.99501|17.09472|Türje|GYSEV
+R|47.37163|16.92416|Vasegerszeg|GYSEV
+R|47.05697|16.80003|Vasvár|GYSEV
+R|47.40265|17.49633|Vaszar|GYSEV
+R|47.58717|17.09956|Veszkény|GYSEV
+R|47.47777|17.11173|Vica|GYSEV
+R|47.30582|17.28261|Vinár|GYSEV
+R|47.58208|16.98711|Vitnyéd-Csermajor|GYSEV
+R|47.38532|16.96104|Vámoscsalád|GYSEV
+R|47.23575|16.72711|Vép|GYSEV
+R|46.98312|17.04079|Zalabér-Batyk|GYSEV
+R|46.85783|16.66128|Zalacséb-Salomvár|GYSEV
+R|46.83355|16.84834|Zalaegerszeg|GYSEV
+R|46.85159|16.83559|Zalaegerszeg-Ola|GYSEV
+R|46.84544|16.57645|Zalalövő|GYSEV
+R|46.84550|16.60401|Zalapatakalja|GYSEV
+R|46.87221|16.71237|Zalaszentgyörgy|GYSEV
+R|46.88747|16.91110|Zalaszentiván|GYSEV
+R|46.91465|16.87673|Zalaszentlőrinc|GYSEV
+R|46.72328|16.95183|Zalaszentmihály-Pacsa|GYSEV
+R|47.53190|21.69456|Ballatanya|HU:regional
+R|47.52908|21.72171|Csereerdő|HU:regional
+R|47.52963|21.64767|Debrecen-Fatelep|HU:regional
+R|47.54334|21.73669|Erdészlak|HU:regional
+R|47.53127|21.70340|Fancsika|HU:regional
+R|47.54803|21.81759|Haláperdő|HU:regional
+R|47.55762|21.83455|Hármashegyalja|HU:regional
+R|47.55253|21.83103|Hármashegyi-tó|HU:regional
+R|47.52980|21.65914|Hétvezér utca|HU:regional
+R|47.55073|21.76015|Martinka|HU:regional
+R|47.55148|21.79361|Sámsoni út|HU:regional
+R|48.17187|17.14666|Bratislava-Nové Mesto|IDS BK
+R|46.11623|19.32884|Almás|MÁV SZESZA
+R|47.79133|19.66829|Apc-Zagyvaszántó|MÁV SZESZA
+R|46.11784|19.34682|Bácsalmás|MÁV SZESZA
+R|46.11566|19.15983|Bácsbokod-Bácsborsód|MÁV SZESZA
+R|46.32969|19.39504|Erdőszél|MÁV SZESZA
+R|46.62515|19.80135|Galambos|MÁV SZESZA
+R|46.45854|19.60200|Harkakötöny|MÁV SZESZA
+R|47.96041|20.86959|Hejőkeresztúr|MÁV SZESZA
+R|46.29281|19.33072|Jánoshalma|MÁV SZESZA
+R|47.82907|19.68740|Jobbágyi|MÁV SZESZA
+R|46.56592|19.75345|Jászszentlászló|MÁV SZESZA
+R|46.70702|19.83423|Kiskunfélegyháza|MÁV SZESZA
+R|46.43353|19.49388|Kiskunhalas|MÁV SZESZA
+R|46.50187|19.72773|Kiskunmajsa|MÁV SZESZA
+R|48.00969|19.83182|Kisterenye|MÁV SZESZA
+R|48.02359|19.83070|Kisterenye-Bányatelep|MÁV SZESZA
+R|46.18916|18.26471|Komló|MÁV SZESZA
+R|46.35599|19.41691|Kunfehértó|MÁV SZESZA
+R|46.78100|19.76851|Kunszállás|MÁV SZESZA
+R|47.73741|19.67402|Lőrinci|MÁV SZESZA
+R|46.19308|18.15663|Magyarhertelend|MÁV SZESZA
+R|46.21025|18.18625|Magyarszék|MÁV SZESZA
+R|46.21639|18.24202|Mecsekjánosi|MÁV SZESZA
+R|46.22425|18.21355|Mecsekpölöske|MÁV SZESZA
+R|48.09871|20.81094|Miskolc-Tiszai|MÁV-Start
+R|46.21286|19.37045|Mélykút|MÁV SZESZA
+R|47.93902|19.70680|Mátraszőlős-Hasznos|MÁV SZESZA
+R|47.96854|19.78077|Mátraverebély|MÁV SZESZA
+R|47.97983|19.81946|Nagybátony|MÁV SZESZA
+R|47.99249|20.84029|Nyékládháza|MÁV SZESZA
+R|47.91909|19.68879|Pásztó|MÁV SZESZA
+R|47.94248|20.98912|Sajószöged|MÁV SZESZA
+R|48.10474|19.80620|Salgótarján|MÁV SZESZA
+R|48.08952|19.79103|Salgótarján külső|MÁV SZESZA
+R|47.75883|19.67110|Selyp|MÁV SZESZA
+R|48.15520|19.81562|Somoskőújfalu|MÁV SZESZA
+R|46.25722|18.10457|Sásd|MÁV SZESZA
+R|47.85150|19.69036|Szurdokpüspöki|MÁV SZESZA
+R|46.47253|19.65015|Tajó|MÁV SZESZA
+R|47.95599|19.74603|Tar|MÁV SZESZA
+R|47.92605|21.03007|Tiszaújváros|MÁV SZESZA
+R|46.81584|19.75360|Városföld|MÁV SZESZA
+R|48.06755|19.78499|Zagyvapálfalva|MÁV SZESZA
+R|46.96424|16.37811|Alsórönök|MÁV-START
+R|46.98508|17.97538|Alsóörs|MÁV-START
+R|46.92528|17.83252|Aszófő|MÁV-START
+R|46.78855|17.50657|Badacsony|MÁV-START
+R|46.79060|17.47422|Badacsonylábdihegy|MÁV-START
+R|46.80463|17.51822|Badacsonytomaj|MÁV-START
+R|46.80980|17.46915|Badacsonytördemic-Szigliget|MÁV-START
+R|46.87972|17.74787|Balatonakali-Dörgicse|MÁV-START
+R|47.01731|18.16772|Balatonakarattya|MÁV-START
+R|47.02831|18.01542|Balatonalmádi|MÁV-START
+R|46.96253|17.89770|Balatonarács|MÁV-START
+R|47.03110|18.21446|Balatonfőkajár felső|MÁV-START
+R|46.95631|17.88297|Balatonfüred|MÁV-START
+R|47.05973|18.04260|Balatonfűzfő|MÁV-START
+R|47.03240|18.10597|Balatonkenese|MÁV-START
+R|46.82526|17.58355|Balatonrendes|MÁV-START
+R|46.85113|17.66307|Balatonszepezd|MÁV-START
+R|46.90474|17.80786|Balatonudvari|MÁV-START
+R|46.81481|17.57200|Ábrahámhegy|MÁV-START
+R|47.03363|18.18621|Csajág|MÁV-START
+R|47.02524|18.13752|Csittényhegy|MÁV-START
+R|46.97835|16.49972|Csákánydoroszló|MÁV-START
+R|46.97495|17.93191|Csopak|MÁV-START
+R|47.60196|17.24891|Csorna|MÁV SZESZA
+R|47.09084|16.61973|Egyházasrádóc|MÁV-START
+R|47.05011|18.25604|Füle|MÁV-START
+R|46.89363|17.78965|Fövenyes|MÁV-START
+R|46.96465|16.28264|Haris|MÁV-START
+R|47.00567|16.54577|Horvátnádalja|MÁV-START
+R|47.16131|16.63026|Ják-Balogunyom|MÁV-START
+R|47.01037|18.00414|Káptalanfüred|MÁV-START
+R|47.01610|16.59730|Körmend|MÁV-START
+R|46.83695|17.47638|Nemesgulács-Kisapáti|MÁV-START
+R|47.06959|18.28391|Polgárdi|MÁV-START
+R|47.07910|18.31501|Polgárdi-Ipartelepek|MÁV-START
+R|47.41902|17.00906|Répcelak|MÁV-START
+R|46.96760|16.43299|Rátót|MÁV-START
+R|46.82910|17.63233|Révfülöp|MÁV-START
+R|46.91241|17.81818|Örvényes|MÁV-START
+R|46.83972|17.64968|Szepezdfürdő|MÁV-START
+R|47.23735|16.63276|Szombathely|GYSEV
+R|47.20641|16.64172|Szombathely-Szőlős|MÁV-START
+R|46.87699|17.42879|Tapolca|MÁV-START
+R|46.87757|17.70884|Zánka-Erzsébettábor|MÁV-START
+R|46.87292|17.68782|Zánka-Köveskál|MÁV-START
+R|48.28650|21.18121|Abaújszántó|MÁV-Start
+R|48.26867|21.17950|Abaújszántói fürdő|MÁV-Start
+R|46.15269|18.07531|Abaliget|MÁV-Start
+R|47.69064|17.54062|Abda|MÁV-Start
+R|47.45523|20.55333|Abádszalók|MÁV-Start
+R|47.17321|20.01749|Abony|MÁV-Start
+R|47.17321|20.01749|Abony|MÁV-Start
+R|47.20640|20.12520|Abonyi út|MÁV-Start
+R|47.80102|19.38604|Acsa-Erdőkürt|MÁV-Start
+R|47.69647|19.97520|Adács|MÁV-Start
+R|47.10615|18.84782|Adony|MÁV-Start
+R|47.19746|18.60444|Agárd|MÁV-Start
+R|48.18670|22.04898|Ajak|MÁV-Start
+R|48.18670|22.04898|Ajak|MÁV-Start
+R|47.10594|17.57286|Ajka|MÁV-Start
+R|47.09677|17.55519|Ajka-Gyártelep|MÁV-Start
+R|47.48578|19.22276|Akadémiaújtelep|MÁV-Start
+R|46.83200|18.65753|Alap|MÁV-Start
+R|47.44109|19.03376|Albertfalva|MÁV-Start
+R|47.24034|19.60665|Albertirsa|MÁV-Start
+R|47.95593|20.35712|Almár|MÁV-Start
+R|47.72525|18.26180|Almásfüzitő|MÁV-Start
+R|47.73133|18.21656|Almásfüzitő felső|MÁV-Start
+R|47.73133|18.21656|Almásfüzitő felső|MÁV-Start
+R|46.72428|17.51643|Alsóbélatelep|MÁV-Start
+R|48.21256|20.79219|Alsóboldva|MÁV-Start
+R|47.56335|18.42433|Alsógalla|MÁV-Start
+R|47.67581|19.13424|Alsógöd|MÁV-Start
+R|46.76585|17.27637|Alsógyenes|MÁV-Start
+R|46.96164|19.57898|Alsóméntelek|MÁV-Start
+R|46.19936|18.73806|Alsónyék|MÁV-Start
+R|46.89838|19.77995|Alsóúrrét|MÁV-Start
+R|46.35303|20.74060|Ambrózfalva|MÁV-Start
+R|46.64740|17.89239|Andocs|MÁV-Start
+R|47.85220|20.40233|Andornaktálya|MÁV-Start
+R|47.55022|19.08951|Angyalföld|MÁV-Start
+R|47.58408|21.65587|Apafa|MÁV-Start
+R|47.95380|21.93903|Apagy|MÁV-Start
+R|47.56622|19.04787|Aquincum|MÁV-Start
+R|47.66279|21.84269|Aradványpuszta|MÁV-Start
+R|48.21130|22.25353|Aranyosapáti|MÁV-Start
+R|47.57367|19.01775|Aranyvölgy railway station|MÁV-Start
+R|48.22017|20.96173|Aszaló|MÁV-Start
+R|47.64761|19.49260|Aszód|MÁV-Start
+R|46.02836|17.34228|Babócsa|MÁV-Start
+R|47.64062|19.47110|Bag|MÁV-Start
+R|47.64062|19.47110|Bag|MÁV-Start
+R|47.06026|20.31550|Bagimajor|MÁV-Start
+R|46.18684|18.95747|Baja|MÁV SZESZA
+R|46.19313|18.92130|Baja-Dunafürdő|MÁV-Start
+R|47.41605|17.81176|Bakonygyirót|MÁV-Start
+R|47.44383|18.10337|Bakonysárkány|MÁV-Start
+R|47.39600|17.81760|Bakonyszentlászló|MÁV-Start
+R|47.98854|22.08341|Baktalórántháza|MÁV-Start
+R|48.07135|19.29368|Balassagyarmat|MÁV-Start
+R|46.98427|18.17074|Balatonaliga|MÁV-Start
+R|46.71268|17.31276|Balatonberény|MÁV-Start
+R|46.77606|17.64696|Balatonboglár|MÁV-Start
+R|46.80265|17.38515|Balatonederics|MÁV-Start
+R|46.71348|17.48290|Balatonfenyves|MÁV-Start
+R|46.70825|17.45385|Balatonfenyves alsó|MÁV-Start
+R|46.85336|17.87993|Balatonföldvár|MÁV-Start
+R|46.75188|17.35419|Balatongyörök|MÁV-Start
+R|46.78734|17.69401|Balatonlelle|MÁV-Start
+R|46.79473|17.72017|Balatonlelle felső|MÁV-Start
+R|46.79576|17.72389|Balatonlelle felső|MÁV-Start
+R|46.70421|17.37555|Balatonmáriafürdő|MÁV-Start
+R|46.81203|17.77650|Balatonszemes|MÁV-Start
+R|46.69256|17.28888|Balatonszentgyörgy|MÁV-Start
+R|46.89175|17.99304|Balatonszéplak alsó|MÁV-Start
+R|46.89785|18.01785|Balatonszéplak felső|MÁV-Start
+R|46.83211|17.83041|Balatonszárszó|MÁV-Start
+R|46.96509|18.15859|Balatonvilágos|MÁV-Start
+R|47.61386|21.34795|Balmazújváros|MÁV-Start
+R|46.41322|20.00155|Balástya|MÁV-Start
+R|47.29833|18.75490|Baracska|MÁV-Start
+R|45.95174|17.44673|Barcs|MÁV-Start
+R|45.95834|17.48621|Barcs felső|MÁV-Start
+R|47.39874|18.98827|Barosstelep|MÁV-Start
+R|48.02614|21.51452|Bashalom|MÁV-Start
+R|46.74611|18.10991|Bábonymegyer|MÁV-Start
+R|48.37395|20.72559|Büdöskútpuszta|MÁV-Start
+R|48.53745|20.73798|Bódvaszilas|MÁV-Start
+R|46.77597|17.37255|Becehegy|MÁV-Start
+R|47.89564|19.36709|Becske alsó|MÁV-Start
+R|46.63968|18.41143|Belecska|MÁV-Start
+R|46.31678|17.42065|Beleg|MÁV-Start
+R|45.76574|18.59615|Beli Manastir|MÁV-Start
+R|47.10297|18.49980|Belsőbáránd|MÁV-Start
+R|46.34131|20.84851|Belsőkamaráspuszta|MÁV-Start
+R|47.88552|19.07138|Berkenye|MÁV-Start
+R|46.20124|17.14374|Berzence|MÁV-Start
+R|46.98708|20.11101|Óbög|MÁV-Start
+R|47.48023|18.83452|Biatorbágy|MÁV-Start
+R|46.65980|21.17953|Bicere|MÁV-Start
+R|47.48431|18.61845|Bicske|MÁV-Start
+R|47.48652|18.64275|Bicske alsó|MÁV-Start
+R|46.04101|18.05390|Bicsérd|MÁV-Start
+R|47.20877|21.22178|Biharnagybajom|MÁV-Start
+R|46.11307|17.99968|Bükkösd|MÁV-Start
+R|48.05573|20.34069|Bélapátfalva|MÁV-Start
+R|48.05759|20.35297|Bélapátfalvi Cementgyár|MÁV-Start
+R|46.73740|17.53473|Bélatelep|MÁV-Start
+R|46.12250|17.20833|Bélavár|MÁV-Start
+R|45.93761|18.53837|Bóly|MÁV-Start
+R|47.32443|20.66550|Bánhalma-Halastó|MÁV-Start
+R|47.57405|18.37223|Bánhida|MÁV-Start
+R|46.50541|21.09400|Bánkút|MÁV-Start
+R|48.29995|20.35198|Bánréve|MÁV-Start
+R|48.28401|20.36802|Bánrévei Vízmű|MÁV-Start
+R|47.64066|21.66609|Bocskaikert|MÁV-Start
+R|47.31806|18.25205|Bodajk|MÁV-Start
+R|48.17575|21.35442|Bodrogkeresztúr|MÁV-Start
+R|48.28549|21.51222|Bodrogolaszi|MÁV-Start
+R|48.22321|20.79055|Boldva|MÁV-Start
+R|46.28213|17.27524|Bolhás|MÁV-Start
+R|46.60957|17.91052|Bonnya|MÁV-Start
+R|46.76984|19.91281|Borsihalom|MÁV-Start
+R|48.25847|20.77094|Borsodszirák|MÁV-Start
+R|47.97319|19.09477|Borsosberény|MÁV-Start
+R|47.13999|18.51502|Börgönd|MÁV-Start
+R|46.20264|18.71556|Bátaszék|MÁV-Start
+R|47.56912|19.03271|Óbuda|MÁV-Start
+R|47.42597|19.04146|Budafok|MÁV-Start
+R|47.20840|19.73158|Budai út|MÁV-Start
+R|47.49948|19.02488|Budapest-Déli|MÁV-Start
+R|47.44755|18.96495|Budaörs|MÁV-Start
+R|47.40560|19.01777|Budatétény|MÁV-Start
+R|46.77219|18.62381|Cece|MÁV-Start
+R|47.18247|19.80744|Cegléd|MÁV-Start
+R|47.21649|19.65719|Ceglédbercel|MÁV-Start
+R|47.21069|19.68607|Ceglédbercel-Cserő|MÁV-Start
+R|46.26353|18.55753|Cikó|MÁV-Start
+R|47.71703|18.00443|Ács|MÁV-Start
+R|47.30137|19.23260|Ócsa|MÁV-Start
+R|46.82279|20.66353|Csabacsűd|MÁV-Start
+R|46.82921|20.64920|Csabacsűd felső|MÁV-Start
+R|46.53839|19.90911|Csengele|MÁV-Start
+R|46.08554|17.98754|Cserdi-Helesfa|MÁV-Start
+R|46.46615|18.33531|Csibrák|MÁV-Start
+R|46.33713|18.15277|Csikóstőttős|MÁV-Start
+R|47.89079|20.76399|Csincse|MÁV-Start
+R|47.32973|18.23763|Csókakő|MÁV-Start
+R|46.31875|18.74234|Őcsény|MÁV-Start
+R|48.27676|21.03328|Csobád|MÁV-Start
+R|46.70442|20.14013|Csongrád|MÁV-Start
+R|46.71146|20.12767|Csongrád alsó|MÁV-Start
+R|46.69024|19.92220|Csongrádi úti tanyák|MÁV-Start
+R|46.62344|20.84104|Csorvás|MÁV-Start
+R|46.63522|20.88972|Csorvás alsó|MÁV-Start
+R|46.86203|20.93043|Csárdaszállás|MÁV-Start
+R|46.26118|17.09178|Csurgó|MÁV-Start
+R|47.19460|19.32950|Dabas|MÁV-Start
+R|45.99219|17.59832|Darány|MÁV-Start
+R|46.76650|18.14674|Daránypuszta|MÁV-Start
+R|46.41591|18.25272|Döbrököz|MÁV-Start
+R|47.51989|21.62876|Debrecen|MÁV-Start
+R|47.54059|21.64812|Debrecen-Csapókert|MÁV-Start
+R|47.52771|21.65865|Debrecen-Szabadságtelep|MÁV-Start
+R|46.28384|18.75593|Decs|MÁV-Start
+R|48.04561|19.19670|Dejtár|MÁV-Start
+R|48.11154|21.92710|Demecser|MÁV-Start
+R|47.11216|17.43588|Devecser|MÁV-Start
+R|47.18071|18.56357|Dinnyés|MÁV-Start
+R|47.94003|19.04946|Diósjenő|MÁV-Start
+R|46.85410|18.14140|Ádánd|MÁV-Start
+R|46.66990|20.36821|Dónát|MÁV-Start
+R|47.60282|21.70654|Dombostanya|MÁV-Start
+R|46.36992|18.14953|Dombóvár|MÁV-Start
+R|46.36366|18.13406|Dombóvár alsó|MÁV-Start
+R|47.72357|18.73292|Dorog|MÁV-Start
+R|48.04243|19.05696|Drégely|MÁV-Start
+R|48.05476|19.04724|Drégelypalánk|MÁV-Start
+R|48.00202|19.07959|Drégelyvár|MÁV-Start
+R|48.28065|20.50461|Dubicsány|MÁV-Start
+R|47.73298|18.32631|Dunaalmás|MÁV-Start
+R|47.29429|18.87908|Dunai Finomító|MÁV-Start
+R|46.96061|18.91410|Dunaújváros|MÁV-Start
+R|46.98310|18.90316|Dunaújváros külső|MÁV-Start
+R|47.62591|19.13597|Dunakeszi|MÁV-Start
+R|47.60768|19.12882|Dunakeszi alsó|MÁV-Start
+R|47.64343|19.13489|Dunakeszi-Gyártelep|MÁV-Start
+R|47.03404|20.94335|Dévaványa|MÁV-Start
+R|46.49402|18.37733|Dúzs|MÁV-Start
+R|47.46253|21.48865|Ebes|MÁV-Start
+R|47.44051|19.31485|Ecser|MÁV-Start
+R|48.29969|20.74955|Edelény|MÁV-Start
+R|48.27884|20.76089|Edelény alsó|MÁV-Start
+R|47.89167|20.38186|Eger|MÁV-Start
+R|47.71149|20.52237|Egerfarmos|MÁV-Start
+R|47.93651|20.37075|Eger-Felnémet|MÁV-Start
+R|47.90739|20.38082|Egervár|MÁV-Start
+R|47.61663|20.88392|Egyek|MÁV-Start
+R|47.97248|21.36504|Egyházerdő|MÁV-Start
+R|47.93071|20.82269|Emőd|MÁV-Start
+R|48.36068|22.19013|Eperjeske alsó|MÁV-Start
+R|47.19269|17.92160|Eplény|MÁV-Start
+R|47.24703|18.87538|Ercsi|MÁV-Start
+R|48.21803|21.40186|Erdőbénye|MÁV-Start
+R|47.68315|20.30243|Erdőtelek|MÁV-Start
+R|47.77818|18.74327|Esztergom|MÁV-Start
+R|47.74297|18.71766|Esztergom-Kertváros|MÁV-Start
+R|47.75556|18.53001|Eternitgyár|MÁV-Start
+R|47.35533|19.83736|Farmos|MÁV-Start
+R|46.67006|20.45649|Fábiánsebestyén|MÁV-Start
+R|46.44925|18.73532|Fácánkert|MÁV-Start
+R|47.19436|20.55753|Fegyvernek-Örményes|MÁV-Start
+R|47.97879|22.52421|Fehérgyarmat|MÁV-Start
+R|47.94062|22.04138|Ófehértó|MÁV-Start
+R|47.70588|19.14354|Felsőgöd|MÁV-Start
+R|47.06884|19.49837|Felsőlajos|MÁV-Start
+R|46.98704|19.55775|Felsőméntelek|MÁV-Start
+R|46.56068|17.82138|Felsőmocsolád|MÁV-Start
+R|47.34320|19.23060|Felsőpakony|MÁV-Start
+R|48.08368|20.86607|Felsőzsolca|MÁV-Start
+R|47.81816|19.06827|Fenyveshegy|MÁV-Start
+R|47.46857|19.08860|Ferencváros railway station|MÁV-Start
+R|47.43721|19.22385|Ferihegy|MÁV-Start
+R|48.26712|22.10731|Fényeslitke|MÁV-Start
+R|46.75010|17.55781|Fonyód|MÁV-Start
+R|46.75916|17.59220|Fonyódliget|MÁV-Start
+R|46.67227|21.02347|Fürjes|MÁV-Start
+R|47.75122|20.41446|Füzesabony|MÁV-Start
+R|47.98876|21.64770|Füzesbokor|MÁV-Start
+R|47.11298|21.19428|Füzesgyarmat|MÁV-Start
+R|47.09359|21.20158|Füzesgyarmatfürdő|MÁV-Start
+R|47.92633|22.74477|Gacsály|MÁV-Start
+R|47.84641|19.38626|Galgaguta|MÁV-Start
+R|47.73550|19.37206|Galgagyörk|MÁV-Start
+R|47.63219|19.55891|Galgahévíz|MÁV-Start
+R|47.69387|19.39259|Galgamácsa|MÁV-Start
+R|47.68795|19.13751|Göd|MÁV-Start
+R|47.59272|19.35862|Gödöllő|MÁV-Start
+R|47.56409|19.37570|Gödöllő-Állami telepek|MÁV-Start
+R|46.65665|20.58831|Gádoros|MÁV-Start
+R|47.02096|17.20771|Gógánfa|MÁV-Start
+R|48.12833|21.95194|Gégény|MÁV-Start
+R|46.22318|18.10463|Godisa|MÁV-Start
+R|48.24248|21.20472|Golop|MÁV-Start
+R|47.20607|18.62474|Gárdony|MÁV-Start
+R|48.03983|21.55521|Görögszállás|MÁV-Start
+R|46.68502|19.96240|Gátér|MÁV-Start
+R|46.76337|17.29234|Gyenesdiás|MÁV-Start
+R|46.24916|16.95601|Gyékényes|MÁV-Start
+R|47.37603|19.22004|Gyál|MÁV-Start
+R|47.38945|19.20564|Gyál felső|MÁV-Start
+R|47.42965|19.39359|Gyömrő|MÁV-Start
+R|47.17990|19.35295|Gyón|MÁV-Start
+R|45.98312|17.95683|Gyöngyfa-Magyarmecske|MÁV-Start
+R|47.78311|19.93722|Gyöngyös|MÁV-Start
+R|47.74415|19.93241|Gyöngyöshalász|MÁV-Start
+R|46.92476|20.82243|Gyoma|MÁV-Start
+R|46.56778|20.63066|Gyopárosfürdő|MÁV-Start
+R|47.49416|17.79878|Győrasszonyfa|MÁV-Start
+R|48.17178|22.26913|Gyüre|MÁV-Start
+R|47.68444|17.66362|Győr-Gyárváros|MÁV-Start
+R|47.68865|17.74605|Győrszentiván|MÁV-Start
+R|47.68865|17.74605|Győrszentiván|MÁV-Start
+R|46.65640|21.27360|Gyula|MÁV-Start
+R|46.69487|21.32283|Gyulai városerdő|MÁV-Start
+R|47.66860|21.52405|Hajdúböszörmény|MÁV-Start
+R|47.80530|21.49305|Hajdúdorog|MÁV-Start
+R|47.68721|21.67965|Hajdúhadház|MÁV-Start
+R|47.83181|21.42747|Hajdúnánás|MÁV-Start
+R|47.84266|21.40751|Hajdúnánás-Vásártér|MÁV-Start
+R|47.60811|21.75496|Hajdúsámson|MÁV-Start
+R|47.60816|21.57842|Hajdúszentgyörgy|MÁV-Start
+R|47.42926|21.40717|Hajdúszoboszló|MÁV-Start
+R|47.74856|21.50821|Hajdúvid|MÁV-Start
+R|47.14100|18.00909|Hajmáskér|MÁV-Start
+R|47.99887|21.41453|Hajnalos|MÁV-Start
+R|47.52162|21.81878|Haláp|MÁV-Start
+R|46.91169|20.56233|Halászlak|MÁV-Start
+R|47.66313|19.67123|Hatvan|MÁV-Start
+R|46.41348|20.34012|Hódmezővásárhely|MÁV-Start
+R|46.40294|20.31163|Hódmezővásárhelyi Népkert|MÁV-Start
+R|47.49368|18.74579|Herceghalom|MÁV-Start
+R|47.49368|18.74579|Herceghalom|MÁV-Start
+R|47.13677|17.76044|Herend|MÁV-Start
+R|47.16113|19.40250|Hernád|MÁV-Start
+R|48.05146|20.98507|Hernádnémeti-Bőcs|MÁV-Start
+R|48.48766|21.21418|Hernádszurdok|MÁV-Start
+R|46.93084|19.59491|Hetényegyháza|MÁV-Start
+R|46.12827|18.04509|Hetvehely|MÁV-Start
+R|47.60923|20.30629|Heves|MÁV-Start
+R|47.56178|20.36624|Hevesvezekény|MÁV-Start
+R|46.26923|18.52310|Hidas-Bonyhád|MÁV-Start
+R|46.67506|20.26692|Hékéd|MÁV-Start
+R|47.89617|22.21380|Hodász|MÁV-Start
+R|46.94579|20.26961|Homok|MÁV-Start
+R|47.58610|21.15445|Hortobágy|MÁV-Start
+R|47.60394|21.07415|Hortobágyi Halastó|MÁV-Start
+R|47.37106|19.38892|Hosszúberek-Péteri|MÁV-Start
+R|47.37106|19.38892|Hosszúberek-Péteri|MÁV-Start
+R|47.23559|21.10191|Hosszúhát|MÁV-Start
+R|47.41222|19.03513|Háros|MÁV-Start
+R|47.63875|19.52657|Hévízgyörk|MÁV-Start
+R|47.65806|19.44440|Iklad-Domony|MÁV-Start
+R|47.66776|19.42837|Iklad-Domony felső|MÁV-Start
+R|47.24701|19.31783|Inárcs-Kakucs|MÁV-Start
+R|48.05463|19.22348|Ipolyszög|MÁV-Start
+R|48.05754|19.10688|Ipolyvece|MÁV-Start
+R|47.53742|19.38900|Isaszeg|MÁV-Start
+R|47.55034|19.10632|Istvántelek|MÁV-Start
+R|47.17731|18.81163|Iváncsa|MÁV-Start
+R|46.96200|20.09351|Újbög|MÁV-Start
+R|47.81515|21.70653|Újfehértó|MÁV-Start
+R|48.25112|22.22141|Újkenéz|MÁV-Start
+R|46.34467|17.55515|Jákó-Nagybajom|MÁV-Start
+R|47.94213|22.65687|Jánkmajtis|MÁV-Start
+R|46.33435|20.05119|Jánosszállás|MÁV-Start
+R|47.53162|19.12611|Újpalota|MÁV-Start
+R|47.55865|19.07971|Újpest|MÁV-Start
+R|48.48973|20.69387|Jósvafő-Aggtelek|MÁV-Start
+R|47.51357|20.15531|Jászapáti|MÁV-Start
+R|47.49469|19.89345|Jászberény|MÁV-Start
+R|47.36738|20.00103|Jászboldogháza-Jánoshida|MÁV-Start
+R|47.56283|20.02826|Jászdózsa|MÁV-Start
+R|47.59331|19.75369|Jászfényszaru|MÁV-Start
+R|47.45601|20.20361|Jászkisér|MÁV-Start
+R|47.43811|20.20261|Jászkisér felső|MÁV-Start
+R|47.37289|20.15863|Jászladány|MÁV-Start
+R|47.63598|19.97009|Jászárokszállás|MÁV-Start
+R|47.28568|20.06684|Újszász|MÁV-Start
+R|46.61974|20.61623|Justhmajor|MÁV-Start
+R|46.93724|18.87166|Újvenyim|MÁV-Start
+R|46.66063|20.53655|Újváros|MÁV-Start
+R|47.60068|21.58449|Józsa|MÁV-Start
+R|46.70460|21.33284|József Szanatórium|MÁV-Start
+R|47.36896|21.25954|Kaba|MÁV-Start
+R|46.43534|19.98764|Kapitányság|MÁV-Start
+R|46.71360|17.97802|Kapoly|MÁV-Start
+R|46.36417|17.66055|Kaposfő|MÁV-Start
+R|46.41434|17.75909|Kaposfüred|MÁV-Start
+R|46.36697|17.72402|Kaposújlak|MÁV-Start
+R|46.36549|17.69949|Kaposmérő|MÁV-Start
+R|46.33095|18.14307|Kaposszekcső|MÁV-Start
+R|46.35678|17.82035|Kaposszentjakab|MÁV-Start
+R|46.36587|17.77392|Kapostüskevár|MÁV-Start
+R|46.35268|17.79489|Kaposvár|MÁV-Start
+R|47.13352|17.28781|Karakószörcsök|MÁV-Start
+R|47.30338|20.92956|Karcag|MÁV-Start
+R|47.71709|20.04491|Karácsond|MÁV-Start
+R|46.68115|17.87502|Karád|MÁV-Start
+R|46.49825|20.69769|Kardoskút|MÁV-Start
+R|47.39110|18.99098|Kastélypark|MÁV-Start
+R|48.26428|20.62855|Kazincbarcika|MÁV-Start
+R|48.25517|20.64927|Kazincbarcika alsó|MÁV-Start
+R|47.48314|19.12715|Kőbánya alsó|MÁV-Start
+R|47.49182|19.13386|Kőbánya felső|MÁV-Start
+R|47.46365|19.14967|Kőbánya-Kispest|MÁV-Start
+R|47.52042|18.31676|Kecskéd alsó|MÁV-Start
+R|46.91380|19.70090|Kecskemét|MÁV-Start
+R|46.89543|19.69148|Kecskemét alsó|MÁV-Start
+R|46.90117|19.67592|Kecskemét-Máriaváros|MÁV-Start
+R|48.06531|21.80188|Kemecse|MÁV-Start
+R|47.25433|20.68630|Kenderes|MÁV-Start
+R|47.08981|20.33987|Kengyel|MÁV-Start
+R|46.90238|20.04623|Kerekdomb|MÁV-Start
+R|47.15142|17.23867|Kerta|MÁV-Start
+R|46.59727|18.42643|Keszőhidegkút-Gyönk|MÁV-Start
+R|46.75792|17.24748|Keszthely|MÁV-Start
+R|46.68905|20.02104|Kettőshalom|MÁV-Start
+R|47.80444|17.34217|Kimle-Károlyháza|MÁV-Start
+R|45.98945|17.97233|Királyegyháza-Rigópuszta|MÁV-Start
+R|47.49425|18.02494|Kisbér|MÁV-Start
+R|46.61498|17.86696|Kisbárapáti|MÁV-Start
+R|46.71961|20.71787|Kiscsákó|MÁV-Start
+R|47.04799|18.35496|Kiscséripuszta|MÁV-Start
+R|46.01205|17.66685|Kisdobsza|MÁV-Start
+R|46.88830|19.80728|Kisfái|MÁV-Start
+R|47.98911|21.46986|Kisfástanya|MÁV-Start
+R|47.22406|20.75130|Kisújszállás|MÁV-Start
+R|46.36201|17.60778|Kiskorpád|MÁV-Start
+R|47.49531|20.48158|Kisköre|MÁV-Start
+R|47.48081|20.50772|Kisköre-Tiszahíd|MÁV-Start
+R|46.27163|20.09080|Kiskundorozsma|MÁV-Start
+R|47.55067|21.54364|Kismacs|MÁV-Start
+R|47.82717|19.01063|Kismaros|MÁV-Start
+R|47.44752|19.15698|Kispest|MÁV-Start
+R|47.96605|22.62938|Kisszekeres|MÁV-Start
+R|46.75117|20.72166|Kisszénás|MÁV-Start
+R|46.46713|19.96669|Kistelek|MÁV-Start
+R|46.51419|19.92862|Kisteleki szőlők|MÁV-Start
+R|45.90921|18.31550|Kistótfalu|MÁV-Start
+R|48.14510|22.29693|Kisvarsány|MÁV-Start
+R|47.79540|19.11357|Kisvác|MÁV-Start
+R|48.20815|22.07824|Kisvárda|MÁV-Start
+R|48.22815|22.09191|Kisvárda-Hármasút|MÁV-Start
+R|47.76687|19.93526|Kitérőgyár|MÁV-Start
+R|48.09323|21.88394|Kék|MÁV-Start
+R|48.09323|21.88394|Kék|MÁV-Start
+R|45.90472|17.85230|Kákics|MÁV-Start
+R|47.00557|19.55152|Klábertelep|MÁV-Start
+R|47.73394|20.25390|Kál-Kápolna|MÁV-Start
+R|47.85439|21.93488|Kállósemjén|MÁV-Start
+R|47.63773|18.84681|Klotildliget|MÁV-Start
+R|47.60069|21.23765|Kónya|MÁV-Start
+R|46.69980|20.07407|Kónyaszék|MÁV-Start
+R|47.94193|22.37571|Kocsord|MÁV-Start
+R|47.94628|22.40141|Kocsord alsó|MÁV-Start
+R|48.54616|20.75648|Komjáti|MÁV-Start
+R|48.30497|22.11818|Komoró|MÁV-Start
+R|47.74958|18.11389|Komárom|MÁV-Start
+R|47.52564|21.71343|Kondoroskert|MÁV-Start
+R|47.24561|18.69308|Kápolnásnyék|MÁV-Start
+R|46.56437|20.22500|Kórógyszentgyörgy|MÁV-Start
+R|47.54288|18.33336|Környe|MÁV-Start
+R|46.97001|21.08589|Körösladány|MÁV-Start
+R|46.53255|21.17210|Kétegyháza|MÁV-Start
+R|46.75856|21.47957|Kötegyán|MÁV-Start
+R|47.07694|20.48769|Kétpó|MÁV-Start
+R|47.69449|20.56410|Kétútköz|MÁV-Start
+R|46.45941|20.45209|Kútvölgy|MÁV-Start
+R|47.05109|18.89775|Kulcs|MÁV-Start
+R|46.90841|20.26773|Kungyalu|MÁV-Start
+R|47.37651|20.64082|Kunhegyes|MÁV-Start
+R|46.84835|20.29337|Kunszentmárton|MÁV-Start
+R|46.45031|18.31849|Kurd|MÁV-Start
+R|46.32606|17.45341|Kutas|MÁV-Start
+R|45.99588|18.66905|Középmező|MÁV-Start
+R|45.97047|17.52496|Középrigóc|MÁV-Start
+R|47.02839|19.54237|Lajosmizse|MÁV-Start
+R|47.02282|19.54991|Lajosmizse alsó|MÁV-Start
+R|46.87294|20.00364|Lakitelek|MÁV-Start
+R|47.75209|18.51488|Lábatlan|MÁV-Start
+R|47.75589|17.42544|Lébény-Mosonszentmiklós|MÁV-Start
+R|46.66068|17.61330|Lengyeltóti|MÁV-Start
+R|47.68759|18.77255|Leányvár|MÁV-Start
+R|46.98726|18.24757|Lepsény|MÁV-Start
+R|47.94788|21.99357|Levelek-Magy|MÁV-Start
+R|47.88975|17.19212|Levél|MÁV-Start
+R|47.95160|22.07131|Ligettanya|MÁV-Start
+R|46.43229|21.23781|Lőkösháza|MÁV-Start
+R|47.39079|19.35075|Üllő|MÁV-Start
+R|47.55820|21.52419|Látókép|MÁV-Start
+R|47.72399|20.09567|Ludas|MÁV-Start
+R|47.64750|18.81886|Magdolnavölgy|MÁV-Start
+R|47.43901|19.33993|Maglód|MÁV-Start
+R|47.43416|19.36337|Maglódi nyaraló|MÁV-Start
+R|45.83484|18.49076|Magyarbóly|MÁV-Start
+R|46.45089|20.96930|Magyarbánhegyes|MÁV-Start
+R|47.84894|19.04675|Magyarkút|MÁV-Start
+R|47.83118|19.04020|Magyarkút-Verőce|MÁV-Start
+R|47.97079|19.35691|Magyarnándor|MÁV-Start
+R|47.80784|20.40476|Maklár|MÁV-Start
+R|47.16022|18.40647|Maroshegy|MÁV-Start
+R|47.02083|20.29197|Martfű|MÁV-Start
+R|47.32052|18.78093|Martonvásár|MÁV-Start
+R|46.25714|18.59447|Mőcsény|MÁV-Start
+R|48.18991|21.26864|Mád|MÁV-Start
+R|46.06020|18.15193|Mecsekalja-Cserkút|MÁV-Start
+R|46.49593|21.03026|Medgyesegyháza|MÁV-Start
+R|47.44133|19.93930|Meggyespele|MÁV-Start
+R|47.42676|19.44021|Mende|MÁV-Start
+R|46.50956|17.83212|Mernye|MÁV-Start
+R|46.81066|21.01582|Mezőberény|MÁV-Start
+R|46.81479|21.01301|Mezőberény|MÁV-Start
+R|46.90539|18.81046|Mezőfalva|MÁV-Start
+R|46.31076|20.81616|Mezőhegyes|MÁV-Start
+R|47.84516|20.66964|Mezőkeresztes-Mezőnyárád|MÁV-Start
+R|46.40798|20.89989|Mezőkovácsháza|MÁV-Start
+R|47.80685|20.59078|Mezőkövesd felső|MÁV-Start
+R|47.01349|20.61941|Mezőtúr|MÁV-Start
+R|47.72501|20.48055|Mezőtárkány|MÁV-Start
+R|48.15697|21.26751|Mezőzombor|MÁV-Start
+R|46.30991|18.22239|Mágocs-Alsómocsolád|MÁV-Start
+R|46.77444|21.45552|Méhkerék|MÁV-Start
+R|46.91342|19.63083|Miklóstelep|MÁV-Start
+R|46.52403|20.19401|Mindszent|MÁV-Start
+R|48.10650|20.80043|Miskolc-Gömöri|MÁV-Start
+R|48.32717|22.19633|Mándok|MÁV-Start
+R|48.03201|20.32999|Mónosbél|MÁV-Start
+R|46.97869|19.57069|Méntelek|MÁV-Start
+R|46.00247|18.68438|Mohács|MÁV-Start
+R|47.99671|19.34642|Mohora|MÁV-Start
+R|46.03526|17.74828|Molvány|MÁV-Start
+R|47.34540|19.43702|Monor|MÁV-Start
+R|47.30924|19.49887|Monorierdő|MÁV-Start
+R|47.36950|18.18881|Mór|MÁV-Start
+R|48.36162|21.13961|Méra|MÁV-Start
+R|46.23606|18.62711|Mórágy|MÁV-Start
+R|47.59590|19.38908|Máriabesnyő|MÁV-Start
+R|46.70482|17.43489|Máriahullámtelep|MÁV-Start
+R|47.85283|22.01917|Máriapócs|MÁV-Start
+R|46.70248|17.40903|Máriaszőlőtelep|MÁV-Start
+R|47.12693|17.81081|Márkó|MÁV-Start
+R|45.88669|18.49907|Márok|MÁV-Start
+R|46.47333|20.23606|Mártély|MÁV-Start
+R|47.95085|22.31359|Mátészalka|MÁV-Start
+R|46.36383|16.87666|Murakeresztúr|MÁV-Start
+R|46.75699|21.03814|Murony|MÁV-Start
+R|46.27909|18.40904|Máza-Szászvár|MÁV-Start
+R|46.35620|18.00779|Nagyberki|MÁV-Start
+R|47.52377|21.76334|Nagycsere|MÁV-Start
+R|48.05414|22.31132|Nagydobos|MÁV-Start
+R|46.61549|18.64996|Nagydorog|MÁV-Start
+R|47.86489|22.38550|Nagyecsed|MÁV-Start
+R|47.58208|21.44339|Nagyhát|MÁV-Start
+R|47.63061|18.05081|Nagyigmánd-Bábolna|MÁV-Start
+R|46.84858|18.76546|Nagykarácsony|MÁV-Start
+R|46.86597|18.78300|Nagykarácsony felső|MÁV-Start
+R|47.87084|21.82569|Nagykálló|MÁV-Start
+R|47.03843|19.76020|Nagykőrös|MÁV-Start
+R|47.03843|19.76020|Nagykőrös|MÁV-Start
+R|47.41097|19.73490|Nagykáta|MÁV-Start
+R|46.97711|20.74497|Nagylapos|MÁV-Start
+R|46.97922|18.63561|Nagylók|MÁV-Start
+R|47.78003|18.95206|Nagymaros|MÁV-Start
+R|46.27961|18.45710|Nagymányok|MÁV-Start
+R|46.94331|19.58550|Nagynyír|MÁV-Start
+R|45.95337|18.56483|Nagynyárád|MÁV-Start
+R|47.99383|19.10082|Nagyoroszi|MÁV-Start
+R|46.03809|17.89796|Nagypeterd|MÁV-Start
+R|46.37069|20.73746|Nagyér|MÁV-Start
+R|47.97588|22.61325|Nagyszekeres|MÁV-Start
+R|47.70554|17.87202|Nagyszentjános|MÁV-Start
+R|46.67270|20.67450|Nagyszénás|MÁV-Start
+R|47.72665|20.16196|Nagyút|MÁV-Start
+R|46.76336|20.29171|Nagytőke|MÁV-Start
+R|47.39826|18.97233|Nagytétény-Diósd|MÁV-Start
+R|47.94855|21.87311|Napkor|MÁV-Start
+R|46.02372|17.70783|Nemeske|MÁV-Start
+R|47.73437|18.34527|Neszmély|MÁV-Start
+R|47.90222|19.04718|Nógrád|MÁV-Start
+R|47.87953|19.37133|Nógrádkövesd|MÁV-Start
+R|47.76109|18.56148|Nyergesújfalu|MÁV-Start
+R|47.76246|18.54077|Nyergesújfalu felső|MÁV-Start
+R|47.58764|17.69819|Nyúl|MÁV-Start
+R|47.69904|21.90259|Nyíradony|MÁV-Start
+R|48.08224|21.85472|Nyírbogdány|MÁV-Start
+R|47.79310|22.06698|Nyírbogát|MÁV-Start
+R|47.52389|22.01674|Nyírábrány|MÁV-Start
+R|47.84246|22.13111|Nyírbátor|MÁV-Start
+R|47.90806|22.34829|Nyírcsaholy|MÁV-Start
+R|47.86560|22.17931|Nyírcsászári|MÁV-Start
+R|47.94654|21.70515|Nyíregyháza|MÁV-Start
+R|47.94294|21.74013|Nyíregyháza külső|MÁV-Start
+R|47.75080|21.98796|Nyírgelse|MÁV-Start
+R|46.85764|19.92281|Nyárjas|MÁV-Start
+R|46.87013|19.85142|Nyárlőrinc|MÁV-Start
+R|46.86401|19.87848|Nyárlőrinc alsó|MÁV-Start
+R|46.87737|19.82897|Nyárlőrinci szőlők|MÁV-Start
+R|48.05905|22.20315|Nyírmada|MÁV-Start
+R|47.92259|22.25665|Nyírmeggyes|MÁV-Start
+R|47.73745|21.95894|Nyírmihálydi|MÁV-Start
+R|48.00513|21.61567|Nyírtelek|MÁV-Start
+R|47.62338|20.95105|Ohat-Pusztakócs|MÁV-Start
+R|46.89248|21.33916|Okány|MÁV-Start
+R|45.93444|17.86562|Okorág-Kárászpuszta|MÁV-Start
+R|48.25826|21.44812|Olaszliszka-Tolcsva|MÁV-Start
+R|48.12179|20.90740|Onga|MÁV-Start
+R|47.94572|21.80642|Oros|MÁV-Start
+R|46.56632|20.66447|Orosháza|MÁV-Start
+R|46.55355|20.65593|Orosháza felső|MÁV-Start
+R|46.57920|20.68318|Orosháza-Üveggyár|MÁV-Start
+R|46.59580|20.75704|Orosházi tanyák|MÁV-Start
+R|47.48695|18.30900|Oroszlány|MÁV-Start
+R|46.51443|17.65704|Osztopán|MÁV-Start
+R|45.89136|18.39413|Palkonya|MÁV-Start
+R|46.55314|17.63645|Pamuk|MÁV-Start
+R|47.54752|17.74070|Pannonhalma|MÁV-Start
+R|47.49376|19.33831|Pécel|MÁV-Start
+R|46.06637|18.22533|Pécs|MÁV-Start
+R|46.06348|18.27022|Pécsbánya-Rendező|MÁV-Start
+R|46.07177|18.24029|Pécs-Külváros|MÁV-Start
+R|46.00925|18.27547|Pécsudvard|MÁV-Start
+R|47.99521|22.56709|Penyige|MÁV-Start
+R|48.47151|20.69117|Perkupa|MÁV-Start
+R|47.40311|19.18746|Pestszentimre|MÁV-Start
+R|47.41395|19.17319|Pestszentimre felső|MÁV-Start
+R|47.45484|19.18276|Pestszentlőrinc|MÁV-Start
+R|46.61737|19.86533|Petőfiszállás|MÁV-Start
+R|46.58780|19.87452|Petőfiszállási tanyák|MÁV-Start
+R|46.72530|19.84724|Petőfiváros|MÁV-Start
+R|47.26296|18.71341|Pettend|MÁV-Start
+R|47.27958|19.53705|Pilis|MÁV-Start
+R|47.63855|18.82925|Piliscsaba|MÁV-Start
+R|47.67486|18.79064|Piliscsév|MÁV-Start
+R|47.65613|18.79746|Pilisjászfalu|MÁV-Start
+R|47.61473|18.90126|Pilisvörösvár|MÁV-Start
+R|46.68127|18.43002|Pincehely|MÁV-Start
+R|47.14668|20.12812|Piroska|MÁV-Start
+R|47.75306|18.47802|Piszke|MÁV-Start
+R|46.32634|20.74628|Pitvaros|MÁV-Start
+R|47.99792|22.31837|Ópályi|MÁV-Start
+R|48.29632|20.38205|Pogonyipuszta|MÁV-Start
+R|47.01888|18.30041|Polgárdi-Tekerespuszta|MÁV-Start
+R|47.65797|20.65412|Poroszló|MÁV-Start
+R|47.41806|19.95857|Portelek|MÁV-Start
+R|47.32698|17.84144|Porva-Csesznek|MÁV-Start
+R|46.19916|18.82833|Pörböly|MÁV-Start
+R|46.19916|18.82833|Pörböly|MÁV-Start
+R|47.77289|19.36865|Püspökhatvan|MÁV-Start
+R|47.31905|21.09591|Püspökladány-Vásártér|MÁV-Start
+R|46.00683|17.35769|Péterhida-Komlósd|MÁV-Start
+R|47.16730|18.12224|Pétfürdő|MÁV-Start
+R|48.15879|21.99704|Pátroha|MÁV-Start
+R|46.68614|17.59466|Pusztaberény|MÁV-Start
+R|46.93989|20.55679|Pusztabánréve|MÁV-Start
+R|47.56433|19.79437|Pusztamonostor|MÁV-Start
+R|47.09288|20.45576|Pusztapó|MÁV-Start
+R|47.13938|18.76182|Pusztaszabolcs|MÁV-Start
+R|47.43997|19.47111|Pusztaszentistván|MÁV-Start
+R|46.67651|20.40758|Pusztatemplom|MÁV-Start
+R|48.28634|20.43740|Putnok|MÁV-Start
+R|48.12024|21.47483|Rakamaz|MÁV-Start
+R|46.85073|17.41222|Raposka|MÁV-Start
+R|47.02423|18.91010|Rácalmás|MÁV-Start
+R|47.36970|18.90085|Érd|MÁV-Start
+R|47.38009|18.92484|Érd alsó|MÁV-Start
+R|47.38120|18.92218|Érd felső|MÁV-Start
+R|47.39020|18.93796|Érdliget|MÁV-Start
+R|47.39020|18.93796|Érdliget|MÁV-Start
+R|46.60884|17.63261|Öreglak|MÁV-Start
+R|46.56858|18.39547|Regöly|MÁV-Start
+R|46.91799|19.62057|Úrihegy|MÁV-Start
+R|48.02189|22.17787|Rákóczitanya|MÁV-Start
+R|47.13296|19.44714|Örkény|MÁV-Start
+R|47.48882|19.17354|Rákos|MÁV-Start
+R|47.49179|19.28372|Rákoscsaba|MÁV-Start
+R|47.48758|19.27194|Rákoscsaba-Újtelep|MÁV-Start
+R|47.46893|19.24432|Rákoshegy|MÁV-Start
+R|47.46893|19.24432|Rákoshegy|MÁV-Start
+R|47.45666|19.29555|Rákoskert|MÁV-Start
+R|47.48614|19.25774|Rákosliget|MÁV-Start
+R|47.56567|19.11213|Rákospalota-Újpest|MÁV-Start
+R|47.52690|19.09086|Rákosrendező|MÁV-Start
+R|47.58042|19.00262|Üröm|MÁV-Start
+R|47.91296|22.78222|Rozsály|MÁV-Start
+R|46.86653|19.98921|Árpádszállás|MÁV-Start
+R|46.43005|17.84754|Répáspuszta|MÁV-Start
+R|46.29781|16.88763|Őrtilos|MÁV-Start
+R|48.21437|21.23014|Rátka|MÁV-Start
+R|46.81379|18.60130|Rétszilas|MÁV-Start
+R|46.82890|18.63689|Rétszilas alsó|MÁV-Start
+R|48.18527|20.76659|Sajóecseg|MÁV-Start
+R|48.27270|20.58258|Sajókaza|MÁV-Start
+R|48.16812|20.77409|Sajókeresztúr|MÁV-Start
+R|48.22216|20.70841|Sajószentpéter|MÁV-Start
+R|46.73667|21.40250|Sarkad|MÁV-Start
+R|46.72985|21.38391|Sarkadi Cukorgyár|MÁV-Start
+R|46.82361|21.41746|Sarkadkeresztúr|MÁV-Start
+R|45.87317|17.85914|Sellye|MÁV-Start
+R|46.65546|19.85331|Selymes|MÁV-Start
+R|47.12097|18.58156|Seregélyes|MÁV-Start
+R|47.11936|18.61275|Seregélyes-Szőlőhegy|MÁV-Start
+R|48.02875|19.04424|Sáferkút|MÁV-Start
+R|46.90782|18.05406|Siófok|MÁV-Start
+R|46.88046|18.12561|Siójut|MÁV-Start
+R|46.75649|18.54085|Simontornya|MÁV-Start
+R|46.84063|20.61012|Sirató|MÁV-Start
+R|46.91118|18.07694|Sióvölgy|MÁV-Start
+R|47.15983|18.07469|Öskü|MÁV-Start
+R|47.45170|19.52719|Sülysáp|MÁV-Start
+R|46.98098|17.27084|Sümeg|MÁV-Start
+R|46.95231|17.29256|Sümegi Bazaltbánya|MÁV-Start
+R|47.59637|18.94947|Solymár|MÁV-Start
+R|47.12436|17.36880|Somlóvásárhely|MÁV-Start
+R|46.80291|18.14931|Som-Nagyberény|MÁV-Start
+R|46.47247|17.83686|Somodor|MÁV-Start
+R|46.45379|17.84057|Somogyaszaló|MÁV-Start
+R|46.49070|17.69451|Somogyjád|MÁV-Start
+R|46.72054|17.92075|Somogymeggyes|MÁV-Start
+R|46.28912|17.30679|Somogyszob|MÁV-Start
+R|46.16322|17.17933|Somogyudvarhely|MÁV-Start
+R|46.58048|17.63463|Somogyvár|MÁV-Start
+R|47.25971|21.36086|Sáp|MÁV-Start
+R|46.89677|18.61203|Sárbogárd|MÁV-Start
+R|46.78272|18.58905|Sáregres|MÁV-Start
+R|47.03955|18.66026|Sárosd|MÁV-Start
+R|48.32587|21.56613|Sárospatak|MÁV-Start
+R|47.23155|21.18058|Sárrétudvari|MÁV-Start
+R|47.99709|21.72891|Sóstó|MÁV-Start
+R|48.01213|21.74301|Sóstóhegy|MÁV-Start
+R|48.38586|21.65754|Sátoraljaújhely|MÁV-Start
+R|47.76129|18.45490|Süttő|MÁV-Start
+R|47.75661|18.43687|Süttő felső|MÁV-Start
+R|45.96064|17.91177|Sumony|MÁV-Start
+R|47.10540|18.38824|Szabadbattyán|MÁV-START
+R|47.08281|18.70477|Szabadegyháza|MÁV-Start
+R|46.92451|18.10034|Szabadifürdő|MÁV-Start
+R|46.93490|18.12021|Szabadisóstó|MÁV-Start
+R|47.62610|18.89350|Szabadságliget|MÁV-Start
+R|47.17037|20.29520|Szajol|MÁV-Start
+R|46.52392|18.38920|Szakály-Hőgyész|MÁV-Start
+R|46.28415|18.28874|Szalatnak|MÁV-Start
+R|48.44887|20.72228|Szalonna|MÁV-Start
+R|46.86057|20.56679|Szarvas|MÁV-Start
+R|47.98836|20.33269|Szarvaskő|MÁV-Start
+R|46.20177|18.08345|Szatina-Kishajmás|MÁV-Start
+R|46.34569|20.04404|Szatymaz|MÁV-Start
+R|47.72936|19.15502|Sződ-Sződliget|MÁV-Start
+R|47.72936|19.15502|Sződ-Sződliget|MÁV-Start
+R|46.26697|20.12561|Szeged-Rókus|MÁV-Start
+R|47.01525|21.14830|Szeghalom|MÁV-Start
+R|48.20045|21.38588|Szegi|MÁV-Start
+R|46.58865|20.24993|Szegvár|MÁV-Start
+R|46.34961|18.71274|Szekszárd|MÁV-Start
+R|46.38103|18.72894|Szekszárd-Palánk|MÁV-Start
+R|47.42557|20.18891|Szellőhát|MÁV-Start
+R|47.44304|19.21411|Szemeretelep|MÁV-Start
+R|48.40069|20.72131|Szendrő|MÁV-Start
+R|48.40990|20.72011|Szendrő felső|MÁV-Start
+R|48.33451|20.73186|Szendrőlád|MÁV-Start
+R|46.27369|17.18083|Szenta|MÁV-Start
+R|47.51991|21.96594|Szentannapuszta|MÁV-Start
+R|46.03659|17.92707|Szentdénes|MÁV-Start
+R|46.65760|20.27245|Szentes|MÁV-Start
+R|46.59097|20.62833|Szentetornya|MÁV-Start
+R|46.03311|17.99076|Szentlőrinc|MÁV-Start
+R|47.43204|19.68054|Szentmártonkáta|MÁV-Start
+R|48.15576|21.21473|Szerencs|MÁV-Start
+R|47.23449|21.14560|Szerep|MÁV-Start
+R|46.38994|20.01617|Őszeszék|MÁV-Start
+R|48.03630|19.33302|Szügy|MÁV-Start
+R|46.04313|17.80226|Szigetvár|MÁV-Start
+R|47.76717|20.49270|Szihalom|MÁV-Start
+R|46.85834|19.97521|Szikra|MÁV-Start
+R|48.20166|20.94174|Szikszó|MÁV-Start
+R|48.11424|20.37896|Szilvásvárad|MÁV-Start
+R|48.09554|20.38247|Szilvásvárad-Szalajkavölgy|MÁV-Start
+R|48.14857|20.78268|Szirmabesenyő|MÁV-Start
+R|45.96728|18.29024|Szőkéd|MÁV-Start
+R|47.18302|18.42499|Székesfehérvár|MÁV-Start
+R|46.50411|20.54095|Székkutas|MÁV-Start
+R|47.60141|18.92805|Szélhegy|MÁV-Start
+R|47.45078|19.55889|Szőlősnyaraló|MÁV-Start
+R|46.86239|17.89957|Szántód|MÁV-Start
+R|47.73570|18.17712|Szőny|MÁV-Start
+R|47.73671|18.14308|Szőny-Déli|MÁV-Start
+R|47.81639|18.87313|Szob alsó|MÁV-Start
+R|47.87104|19.03068|Szokolya|MÁV-Start
+R|47.17924|20.17533|Szolnok|MÁV-Start
+R|47.98732|21.36678|Szorgalmatos|MÁV-Start
+R|47.48492|18.52795|Szár|MÁV-Start
+R|46.57535|18.42028|Szárazd|MÁV-Start
+R|47.20091|18.38104|Szárazrét|MÁV-Start
+R|47.51910|18.49525|Szárliget|MÁV-Start
+R|47.32077|20.09122|Szászberek|MÁV-Start
+R|46.28739|18.37006|Szászvár|MÁV-Start
+R|47.32258|18.89931|Százhalombatta|MÁV-Start
+R|45.93578|18.30708|Áta|MÁV-Start
+R|46.73410|18.04147|Tab|MÁV-Start
+R|48.09116|21.12863|Taktaharkány|MÁV-Start
+R|48.11236|21.14926|Taktaszada|MÁV-Start
+R|47.63279|21.79586|Tamásipuszta|MÁV-Start
+R|48.12508|21.33988|Tarcal|MÁV-Start
+R|47.50469|17.78878|Tarjánpuszta|MÁV-Start
+R|47.54712|20.39015|Tarnaszentmiklós|MÁV-Start
+R|47.66395|18.32788|Tata|MÁV-Start
+R|46.63657|17.62111|Tatárvár|MÁV-Start
+R|47.09846|19.47918|Táborfalva|MÁV-Start
+R|47.52939|21.58843|Tócóvölgy|MÁV-Start
+R|47.90342|21.40404|Tedej|MÁV-Start
+R|46.65575|20.96367|Telekgerendás|MÁV-Start
+R|46.51587|18.69530|Tengelic|MÁV-Start
+R|47.71481|21.68497|Téglás|MÁV-Start
+R|47.81527|22.40282|Tiborszállás|MÁV-Start
+R|46.81850|19.98238|Tiszaalpár|MÁV-Start
+R|46.79083|19.95154|Tiszaalpár alsó|MÁV-Start
+R|46.83610|19.97666|Tiszaalpár felső|MÁV-Start
+R|48.37086|22.14447|Tiszabezdéd|MÁV-Start
+R|48.01039|21.49185|Tiszaeszlár|MÁV-Start
+R|46.97552|20.27666|Tiszaföldvár|MÁV-Start
+R|47.62787|20.75600|Tiszafüred|MÁV-Start
+R|47.01691|20.13446|Tiszajenő alsó|MÁV-Start
+R|47.03628|20.14241|Tiszajenő-Vezseny|MÁV-Start
+R|46.93741|20.08184|Tiszakécske|MÁV-Start
+R|48.03951|21.05636|Tiszalúc|MÁV-Start
+R|48.01302|21.36953|Tiszalök|MÁV-Start
+R|47.13567|20.36970|Tiszatenyő|MÁV-Start
+R|47.94536|21.37510|Tiszavasvári|MÁV-Start
+R|47.05935|20.14270|Tiszavárkony|MÁV-Start
+R|48.22819|21.22309|Tállya|MÁV-Start
+R|48.11250|21.40640|Tokaj|MÁV-Start
+R|47.73473|18.67462|Tokod|MÁV-Start
+R|46.41518|18.75023|Tolna-Mözs|MÁV-Start
+R|46.72790|18.47606|Tolnanémedi|MÁV-Start
+R|46.39582|17.83994|Toponár|MÁV-Start
+R|48.55818|20.78731|Tornanádaska|MÁV-Start
+R|48.26837|22.20203|Tornyospálca|MÁV-Start
+R|47.32469|19.95000|Tápiógyörgye|MÁV-Start
+R|47.44281|19.61506|Tápiószecső|MÁV-Start
+R|47.34627|19.87376|Tápiószele|MÁV-Start
+R|47.37331|19.79792|Tápiószentmárton|MÁV-Start
+R|47.45000|18.90825|Törökbálint|MÁV-Start
+R|47.16983|20.41240|Törökszentmiklós|MÁV-Start
+R|47.36530|18.87352|Tárnok|MÁV-Start
+R|46.85116|19.97970|Tőserdő|MÁV-Start
+R|47.12879|17.33126|Tüskevár|MÁV-Start
+R|47.09796|20.13843|Tószeg|MÁV-Start
+R|47.74121|18.64783|Tát|MÁV-Start
+R|47.71957|17.48940|Öttevény|MÁV-Start
+R|46.40876|20.72692|Tótkomlós|MÁV-Start
+R|47.38495|18.95564|Tétényliget|MÁV-Start
+R|47.96027|22.44228|Tunyogmatolcs|MÁV-Start
+R|47.96604|22.46469|Tunyogmatolcs alsó|MÁV-Start
+R|47.62640|19.59724|Tura|MÁV-Start
+R|48.34241|22.13183|Tuzsér|MÁV-Start
+R|47.64659|18.34819|Tóvároskert|MÁV-Start
+R|46.29260|17.35768|Ötvöskónyi|MÁV-Start
+R|47.04076|17.19649|Ukk|GYSEV
+R|46.92030|17.33164|Uzsa|MÁV-Start
+R|46.89824|17.34536|Uzsabánya alsó|MÁV-Start
+R|48.27630|20.55593|Vadna|MÁV-Start
+R|48.00645|22.16359|Vaja-Rohod|MÁV-Start
+R|46.71419|18.64813|Vajta|MÁV-Start
+R|47.52737|22.13289|Valea lui Mihai|MÁV-Start
+R|48.15178|22.29009|Varsány|MÁV-Start
+R|47.54377|19.09908|Vasútmúzeum|MÁV-Start
+R|47.77331|19.14959|Vác-Alsóváros|MÁV-Start
+R|47.70518|19.34042|Váckisújfalu|MÁV-Start
+R|47.73288|19.21777|Vácrátót|MÁV-Start
+R|47.40866|19.25607|Vecsés|MÁV-Start
+R|47.40323|19.27026|Vecsés-Kertekalja|MÁV-Start
+R|47.22625|18.66266|Velence|MÁV-Start
+R|47.21847|18.64794|Velencefürdő|MÁV-Start
+R|47.82378|19.03173|Verőce|MÁV-Start
+R|47.82378|19.03173|Verőce|MÁV-Start
+R|47.11896|17.91140|Veszprém|MÁV-Start
+R|47.44330|17.81853|Veszprémvarsány|MÁV-Start
+R|46.38538|20.87956|Végegyháza|MÁV-Start
+R|46.36746|20.86696|Végegyháza alsó|MÁV-Start
+R|46.85531|19.93948|Világoshegy|MÁV-Start
+R|45.87727|18.45151|Villány|MÁV-Start
+R|45.87979|18.42632|Villánykövesd|MÁV-Start
+R|46.36670|20.03078|Vilmaszállás|MÁV-Start
+R|47.36028|17.81966|Vinye|MÁV-Start
+R|48.06822|21.52582|Virányos|MÁV-Start
+R|48.09557|22.30807|Vitka|MÁV-Start
+R|47.68611|19.92778|Vámosgyörk|MÁV-Start
+R|47.51782|21.89386|Vámospércs|MÁV-Start
+R|45.89941|18.33423|Vokány|MÁV-Start
+R|46.75518|17.31811|Vonyarcvashegy|MÁV-Start
+R|46.28123|18.43629|Váralja|MÁV-Start
+R|46.45899|17.72758|Várda|MÁV-Start
+R|47.73760|18.36694|Várhegyalja|MÁV-Start
+R|46.69755|19.86577|Városi park|MÁV-Start
+R|47.14408|17.65295|Városlőd|MÁV-Start
+R|47.13438|17.63181|Városlőd-Kislőd|MÁV-Start
+R|47.19458|18.14890|Várpalota|MÁV-Start
+R|46.66334|17.25983|Vörs|MÁV-Start
+R|47.61064|18.91249|Vörösvárbánya|MÁV-Start
+R|47.61918|18.37536|Vértesszőlős|MÁV-Start
+R|46.31020|18.13873|Vásárosdombó|MÁV-Start
+R|48.12656|22.30573|Vásárosnamény|MÁV-Start
+R|48.08212|22.25123|Vásárosnamény külső|MÁV-Start
+R|46.93893|21.26325|Vésztő|MÁV-Start
+R|46.10144|17.23910|Vízvár|MÁV-Start
+R|47.24423|20.09744|Zagyvarékas|MÁV-Start
+R|47.90298|22.79540|Zajta|MÁV-Start
+R|47.01102|17.22083|Zalagyömörő|MÁV-Start
+R|46.52988|17.18791|Zalakomár|MÁV-Start
+R|46.49141|17.13514|Zalaszentjakab|MÁV-Start
+R|46.87990|17.94484|Zamárdi|MÁV-Start
+R|46.88654|17.97188|Zamárdi felső|MÁV-Start
+R|48.22249|20.29469|Ózd|MÁV-Start
+R|48.23469|20.31910|Ózd alsó|MÁV-Start
+R|47.80006|18.90930|Zebegény|MÁV-Start
+R|47.62678|21.57847|Zelemér|MÁV-Start
+R|48.40170|22.18376|Záhony|MÁV-Start
+R|47.12449|18.67220|Zichyújfalu|MÁV-Start
+R|47.26670|17.87815|Zirc|MÁV-Start
+R|46.25500|16.93791|Zákány|MÁV-Start
+R|46.27511|17.14104|Zrínyitelep|MÁV-Start
+R|47.51161|19.10092|Zugló|MÁV-Start
+R|46.10399|19.76331|Палић|MÁV-Start;Србија Воз
+R|46.15591|19.95779|Хоргош|MÁV-Start;Србија Воз
+R|46.12743|19.85684|Bački Vinogradi|MÁV-Start;Србија Воз
+R|46.19257|20.03054|Röszke|MÁV-Start;Србија Воз
+R|46.10329|19.67088|Subotica|MÁV-Start;Србија Воз
+R|46.23959|20.14332|Szeged|MÁV-Start
+R|46.22267|20.08045|Szentmihálytelek|MÁV-Start;Србија Воз
+R|47.94285|16.84432|Bad Neusiedl am See|VOR
+R|47.77398|16.32481|Bad Sauerbrunn|VOR
+R|47.72788|16.51774|Baumgarten-Schattendorf|VOR
+R|48.12128|17.09911|Bratislava-Petržalka|VOR
+R|48.01905|16.78110|Bruck an der Leitha|VOR
+R|47.60390|16.62018|Deutschkreutz|VOR
+R|47.74788|16.49494|Draßburg|VOR
+R|47.87769|16.36234|Ebenfurth|VOR
+R|47.59968|16.85993|Fertőszentmiklós|GYSEV
+R|47.61773|16.85071|Fertőszéplak-Fertőd|VOR
+R|47.83986|16.91581|Frauenkirchen|VOR
+R|48.01062|16.98111|Gattendorf|VOR
+R|47.89170|16.90504|Gols|VOR
+R|47.79244|16.26277|Katzelsdorf|VOR
+R|48.08154|17.07154|Kittsee|VOR
+R|47.70073|16.49185|Loipersbach-Schattendorf|VOR
+R|47.71756|16.42883|Marz-Rohrbach|VOR
+R|47.73574|16.40896|Mattersburg|VOR
+R|47.74146|16.40250|Mattersburg Hirtengasse|VOR
+R|47.83472|16.45914|Müllendorf|VOR
+R|47.87476|16.94685|Mönchhof-Halbturn|VOR
+R|48.00885|16.93826|Neudorf / Novo Selo|VOR
+R|47.79371|16.30066|Neudörfl|VOR
+R|47.86850|16.38127|Neufeld an der Leitha|VOR
+R|47.95566|16.82352|Neusiedl am See|VOR
+R|47.94283|17.08624|Nickelsdorf|VOR
+R|48.04206|17.04138|Pama / Bijelo Selo|VOR
+R|47.70408|16.90346|Pamhagen|VOR
+R|47.99205|16.85197|Parndorf Ort / Pandrof mjesto|VOR
+R|47.98692|16.87151|Parndorf / Pandrof|VOR
+R|47.67765|16.58689|Sopron|GYSEV
+R|47.78282|16.92794|St. Andrä am Zicksee|VOR
+R|47.73397|16.93046|Wallern im Burgenland|VOR
+R|47.92575|16.86381|Weiden am See|VOR
+R|47.81027|16.23382|Wiener Neustadt Hauptbahnhof|VOR
+R|47.75317|16.37010|Wiesen-Sigleß|VOR
+R|47.79004|16.49057|Wulkaprodersdorf|VOR
+R|47.96802|17.02440|Zurndorf|VOR
+R|46.94938|16.01425|Fehring|Verkehrsverbund Steiermark
+R|46.94427|16.06024|Hohenbrugg an der Raab|Verkehrsverbund Steiermark
+R|46.93502|16.13935|Jennersdorf|Verkehrsverbund Steiermark
+R|46.94554|16.22923|Mogersdorf|Verkehrsverbund Steiermark
+R|46.95746|16.26338|Szentgotthárd|Verkehrsverbund Steiermark
+R|48.00861|18.89163|Csarnapuszta|Volánbusz
+R|47.98171|18.89661|Feketevölgy kitérő|Volánbusz
+R|48.00012|18.90044|Godóvár|Volánbusz
+R|48.01330|18.89416|Kemence|Volánbusz
+R|48.00142|18.89801|Kőrózsa|Volánbusz
+R|47.97338|17.20774|Bezenye|ZSSK; GySĚV
+R|47.99435|17.19292|Rajka|ZSSK; GySĚV
+R|48.04659|17.15106|Rusovce|ZSSK; GySĚV
+R|47.86607|18.86581|Márianosztra|lcn
+R|47.90135|18.87681|Nagyirtáspuszta|lcn
+R|47.49814|18.96169|Csillebérc|local
+R|47.53535|18.96135|Hárshegy|local
+R|47.54110|18.96366|Hűvösvölgy|local
+R|47.51474|18.95086|Jánoshegy|local
+R|48.44751|21.46288|Kemencepatak|local
+R|48.45742|21.48275|Kishuta|local
+R|48.42661|21.44019|Kőkapu|local
+R|47.49986|18.97077|Normafa|local
+R|48.47066|21.51291|Pálháza|local
+R|48.46695|21.49785|Pálháza-Ipartelep|local
+R|48.42430|21.42858|Rostalló|local
+R|47.49412|18.97670|Széchenyihegy|local
+R|47.52840|18.95522|Szépjuhászné|local
+R|47.50584|18.95874|Virágvölgy|local
+R|46.17236|17.90067||rail
+R|47.87737|19.92157||rail
+R|46.16768|17.88927|Almamellék|rail
+R|46.71251|17.47930|Balatonfenyves GV|rail
+R|46.30631|17.21163|Baláta|rail
+R|47.61574|16.68968|Barátság|rail
+R|47.21219|21.53229|Berettyóújfalu|MÁV-Start
+R|47.13546|21.72191|Biharkeresztes|MÁV-Start
+R|46.66988|21.08118|Békéscsaba|MÁV-Start
+R|47.29974|21.23531|Báránd|MÁV-Start
+R|47.84409|19.01593|Börzsönyliget|rail
+R|47.83876|19.93108|Cserkő|rail
+R|47.09960|21.87635|Episcopia Bihor|MÁV-Start
+R|46.48136|17.50914|Felsőkak|rail
+R|47.62472|16.69199|Fertőboz|GYSEV
+R|46.65989|21.16592|Fényes|rail
+R|46.32154|18.90032|Gemenci delta|rail
+R|46.25543|18.85229|Gyöngyösoldal|rail
+R|47.82842|19.92715|Gyöngyössolymos|rail
+R|46.49311|17.44209|Gyóta-Busvár|rail
+R|46.68039|17.49978|Imremajor|rail
+R|47.80861|19.93338|Jánoska|rail
+R|47.61089|16.70544|Kastély (Nagycenk)|rail
+R|46.31729|17.22041|Kaszó|rail
+R|46.20146|17.89607|Kikerics|rail
+R|47.85890|19.93575|Lajosháza|rail
+R|46.19755|17.90027|Lukafai elágazás|rail
+R|46.50750|17.43357|Mesztegnyő EV|rail
+R|47.17608|21.62593|Mezőpeterd|MÁV-Start
+R|46.47933|17.49540|Mélyéger|rail
+R|47.61892|16.69506|Nádtelep|rail
+R|47.07009|21.93630|Oradea|rail
+R|46.66288|17.45758|Pálmajor|rail
+R|47.32793|21.12853|Püspökladány|MÁV-Start
+R|47.84703|19.93212|Őrlőmű|rail
+R|46.20477|17.88986|Sasrét|rail
+R|46.63908|17.47839|Somogyszentpál|rail
+R|46.64960|17.47147|Somogyszentpál felső|rail
+R|48.09537|20.39269|Szalajka-Fatelep|rail
+R|48.07511|20.41328|Szalajka-Fátyol-vízesés|rail
+R|48.08566|20.40668|Szalajka-Halastó|rail
+R|47.88321|19.91557|Szalajkaház|rail
+R|47.81532|19.92868|Toppancshíd|rail
+R|47.82233|19.92621|Zemanek|rail
+R|47.60191|19.15411|Alagimajor|rwn
+R|47.63558|19.22282|Csomád|MÁV-Start
+R|47.73600|19.19637|Csörög|rwn
+R|47.66211|19.29585|Erdőkertes|rwn
+R|47.61137|19.18170|Fót|MÁV-Start
+R|47.62207|19.20062|Fótfürdő|rwn
+R|47.61495|19.19254|Fótújfalu|rwn
+R|47.64184|19.27405|Ivacs|rwn
+R|47.75211|19.16475|Máriaudvar|rwn
+R|47.68558|19.28398|Őrbottyán|rwn
+R|47.57828|19.12277|Rákospalota-Kertváros|rwn
+R|47.71746|19.25810|Rudnaykert|rwn
+R|47.72514|19.24963|Váchartyán|rwn
+R|47.64908|19.28878|Veresegyház|rwn
+R|47.67551|19.28661|Vicziántelep|rwn
+R|47.46430|19.02062|Budapest-Kelenföld|MÁV-Start
+R|47.50041|19.08398|Budapest Keleti|MÁV-Start
+R|47.68208|17.63483|Győr|GYSEV
+R|47.91321|17.14673|Hegyeshalom|GYSEV
+R|48.29021|14.29186|Linz Hauptbahnhof|EuroNight
+R|47.84943|17.26759|Mosonmagyaróvár|ÖBB railjet;DB InterCityExpress
+R|48.13999|11.55742|Munich Central|EuroNight
+R|47.81288|13.04579|Salzburg Hauptbahnhof|EuroNight
+R|48.20828|15.62579|St. Pölten Hauptbahnhof|EuroNight
+R|47.58544|18.39290|Tatabánya|MÁV-Start
+R|48.18499|16.37794|Vienna Central|VOR
+R|48.17438|16.33406|Wien Meidling|VOR
+R|48.32736|21.11748|Forró-Encs|Železničná spoločnosť Slovensko
+R|48.24634|20.99134|Halmaj|Železničná spoločnosť Slovensko
+R|48.50887|21.23014|Hidasnémeti|MÁV-Start
+R|48.28929|21.05367|Ináncs|Železničná spoločnosť Slovensko
+R|48.72229|21.26904|Košice|Železničná spoločnosť Slovensko
+R|47.79736|20.56791|Mezőkövesd|MÁV-Start
+R|48.09871|20.81094|Miskolc-Tiszai|MÁV-Start
+R|48.40364|21.17008|Novajidrány|Železničná spoločnosť Slovensko
+R|48.19304|20.93479|Szikszó-Vásártér|Železničná spoločnosť Slovensko
+R|50.43986|30.48866|Kyiv Passenger Railway Station|Укрзалізниця
+R|49.83991|23.99386|Lviv-Main|Укрзалізниця
+Q|Börzsöny 2020 Kft.|Bezina-völgyi Erdei Vasút||L55|0 40:4153
+Q|Egererdő Zrt.|Mátravasút||L55|4 5:437 7:1894 1:963 6:1012 2:1119 3:760
+Q|Egererdő Zrt.|Mátravasút||L55|3 2:760 6:1119 1:1012 7:963 5:1894 4:437
+Q|EuroCity|EC 130||X110|16 43:44183 26:17061 40:8559 41:14468 27:44264 14:91051 25:60229 9:24257 21:21864 38:33186 31:16907 33:28346 22:27532 30:49826 29:5370 13:9341 17:4734 47:22604 36:11375 42:34884 23:16659 37:8853 18:9311 48:25678 28:131055 46:118877 44:2753 45:4544
+Q|EuroCity|EC 131||X110|45 44:4542 46:2751 28:118223 48:130295 18:25782 37:9319 23:8849 42:16648 36:34859 47:11370 17:22563 13:4732 29:9335 30:5371 22:49681 33:27549 31:28322 38:16891 21:33115 9:21842 25:24251 14:60240 27:90973 41:44008 40:14508 26:8517 43:17066 16:44253
+Q|EuroCity|EC 172|#9D9D9D|X110|1290 43:45100 26:17061 40:8595 41:14435 27:44264 14:91051 25:60229 9:18371 15:60106 32:149123 24:41533 34:69978 35:3306 39:72240 19:22636 8:22411 20:39347 12:175842 10:5400
+Q|EuroCity|EC 173|#9D9D9D|X110|10 11:5709 20:174712 8:39412 19:22239 39:22608 35:72109 34:3304 24:69856 32:41541 15:148031 9:59955 25:18361 14:60240 27:90973 41:44008 40:14508 26:8517 43:17066 1290:44940
+Q|EuroNight|EN 40462||X110|1290 1289:8076 1298:57186 1291:67614 56:35069 1292:11428 1299:72206 1300:3507 1297:60642 1293:122654 61:25020 1296:99353 54:191636 49:135251 53:21992 50:16020 59:15027 62:108254
+Q|EuroNight|EN 40467||X110|62 59:107997 50:15023 53:16029 49:22087 54:135456 1296:192909 1293:124339 1297:122512 1300:60615 1299:3524 1292:71941 1294:11637 1291:34786 1298:67682 1289:56938 1290:8082
+Q|EuroNight|EN 462||X110|1290 1289:8076 1298:57186 1291:67614 56:35069 1292:11428 1299:72206 1300:3507 1297:60642 1293:122654 61:25020 1296:99353 55:144777
+Q|EuroNight|EN 463||X110|1295 55:4817 58:54822 1296:88086 1293:124327 1297:122555 1300:60615 1299:3524 1292:71941 1294:11637 1291:34786 1298:67682 1289:56938 1290:8082
+Q|EuroNight|EN 476||X110|1290 43:45100 41:43872 27:44264 14:91051 25:60229 9:18371 15:60106 52:89602 32:59819 24:41533 34:62097
+Q|EuroNight|EN 477||X110|34 57:5663 24:56344 32:41541 51:34623 60:14576 52:10501 15:89329 9:59955 25:18361 14:60240 27:90973 41:44008 43:43872 1290:44940
+Q|GYSEV|Sz||L55|284 111:1904 90:4032 91:1583 94:1904 120:1172 119:1608 115:2552 114:2389
+Q|GYSEV|Sz||L55|284 178:7419 144:8069 161:7755 136:8405 131:3748 108:4565 77:3846
+Q|GYSEV|Sz||L55|284 157:8567 63:2975 72:11648 168:5197 103:3046 121:5697 158:4783 128:7843 113:5404 1193:6512
+Q|GYSEV|Sz||L55|267 75:10017 98:4076 105:9762 127:7357 1292:7097
+Q|GYSEV|Sz||L55|267 165:8815 122:3228 143:3803 174:2503 71:2483 81:3050 79:2854 279:1846 177:5479 170:3246 99:2447 146:4793 116:3108 144:7323 178:8064 284:7772
+Q|GYSEV|Sz||L55|267 151:7594 83:3923 162:7140 149:2978 123:1474 132:3435 145:9678
+Q|GYSEV|Sz||L55|77 134:7128 73:2266 109:4912 104:3074 133:2574 155:4025 1091:2201 80:3681 169:6746 179:4335 137:4848 142:4353 107:2952 186:3739 181:8932
+Q|GYSEV|Sz||L55|77 108:3847 131:4564 136:3749 161:8401 144:7752 178:8064 284:7423
+Q|GYSEV|Sz||L55|181 186:8937 107:3740 142:2952 137:4353 179:4849 169:4335 80:6749 1091:3682 155:2201 133:4026 104:2574 109:3074 73:4912 134:2267 77:7134
+Q|GYSEV|Sz||L55|181 186:11343 187:4298 82:3244 97:5748 139:2825 171:8835 147:3824 163:5039 159:1859 95:8791 284:4263
+Q|GYSEV|Sz||L55|181 186:8277 64:5757 70:6770 188:7989 148:4683 87:2496 89:7424 129:17802
+Q|GYSEV|Sz||L55|153 117:4514 118:3560 101:2691 78:3019 135:3954 92:4786 154:2233 167:3153 69:3170 68:5554 160:2574 74:2558 181:6119
+Q|GYSEV|Sz||L55|181 74:6119 160:2558 68:2574 69:5553 167:3171 154:3152 92:2233 135:4784 78:3953 101:3018 118:2692 117:3561 153:4514
+Q|GYSEV|Sz||L55|181 182:3357 65:4556 66:2924 185:2673 180:4234 76:2994 184:1709 183:2070 86:2616 138:3632 130:3288 156:3064 67:4739 100:2205
+Q|GYSEV|Sz||L55|100 67:2205 156:4869 130:2934 138:3289 86:3633 183:2616 184:2070 76:1709 180:2995 185:4235 66:2673 65:2923 182:4555 181:3357
+Q|GYSEV|Sz||L55|1292 127:7096 105:7357 98:9757 75:4075 267:10015
+Q|GYSEV|Sz||L55|284 178:7768 144:8069 116:7325 146:3108 99:4794 170:2448 177:3246 279:5481 79:1846 81:2855 71:3051 174:2484 143:2503 122:3803 165:3228 267:8817
+Q|GYSEV|Sz||L55|284 95:4263 159:8788 163:1859 147:5038 171:3823 139:8831 97:2825 82:5747 187:3243 186:4297 181:11304
+Q|GYSEV|Sz||L55|1193 1244:10467 141:6536 1171:6847 140:2255 176:7486 106:4706 173:3827 166:1766 152:2913 85:2619 267:4065 112:8990 84:5083 150:2836 102:4698 1291:8901
+Q|GYSEV|Sz||L55|1193 113:6510 128:5402 158:7840 121:4782 103:5697 168:3046 72:5196 63:11639 157:2974 284:8563
+Q|GYSEV|Sz||L55|1291 102:8897 150:4698 84:2836 112:5082 267:8985 85:4064 152:2618 166:2913 173:1766 106:3827 176:4706 140:7488 1171:2255 141:6848 1244:6539 1193:10473
+Q|GYSEV|Sz||L55|77 110:6037 175:5401 125:3845 124:2713 145:7434 172:7678 88:6239 164:3321 93:3939 126:15827 96:3792 544:2829 1291:3150
+Q|GYSEV|Sz||L55|1291 544:3150 96:2829 126:3791 93:15823 164:3939 88:3321 172:6238 145:7676 124:7432 125:2713 175:3844 110:5400 77:6036
+Q|GYSEV|Sz||L55|145 132:9683 123:3436 149:1474 162:2978 83:7140 151:3923 267:7597
+Q|GYSEV|Sz||L55|114 115:2389 119:2552 120:1608 94:1172 91:1904 90:1583 111:4032 284:1904
+Q|GYSEV|Sz||L55|129 89:17803 87:7424 148:2497 188:4683 70:7989 64:6770 186:5756 181:8274
+Q|HU:regional|Train ZSUZSI|#00390F|L55|191 197:875 189:2673 193:669 190:1398 192:2231 198:2078 199:2721 194:1965 196:1295 195:625
+Q|HU:regional|Train ZSUZSI|#00390F|L55|195 196:585 194:1295 199:1966 198:2721 192:2077 190:2231 193:1398 189:669 197:2673 191:875
+Q|IDS BK|Train S8||L55|1212 1213:6526 1166:11515 200:8914
+Q|IDS BK|Train S8||L55|200 1166:8939 1213:11448 1212:6525
+Q|MÁV SZESZA|916 Répce IC||X110|1205 271:1664 244:7277 280:4187 265:5241 272:4774 275:4079 268:8914 273:8414 285:5063 284:3578 279:43188 267:28603 1291:30526
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|337 204:18010 201:12979 203:1503 226:12468 209:9872 205:6762 218:3380 213:11439
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|337 204:18010 201:12979 203:1503 226:12468 209:9872 218:10142 213:11439
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|337 204:18010 201:12979 203:1503 226:12468 209:9872 205:6762 218:3380 213:12835 207:9079 239:4090 214:7116 211:7405 206:7718 212:9616
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|213 218:11517 205:3347 209:6752 226:9894 203:12477 201:1482 204:12999 337:17996
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|213 218:11517 209:10097 226:9894 203:12477 201:1482 204:12999 337:17996
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|212 206:9602 211:7718 214:7501 239:7116 207:4093 213:9024 218:13138 205:3347 209:6752 226:9894 203:12477 201:1482 204:12999 337:17996
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|212 206:9602 211:7718 214:7501 239:7116 207:4093 213:8982
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|213 207:9075 239:4090 214:7116 211:7405 206:7718 212:9616
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|213 207:9075 239:4090 214:7116 211:7405 206:7718 212:9616 219:9641 242:4101 641:11526
+Q|MÁV SZESZA|KISKUN IR|#29803C|X110|641 242:11604 219:4088 212:9535 206:9638 211:7718 214:7501 239:7116 207:4093 213:8982
+Q|MÁV SZESZA|S447|#00A0E3|L55|457 237:13431 221:8816 222:3178 224:2820 223:2937 217:3745
+Q|MÁV SZESZA|S447|#00A0E3|L55|237 221:8816 222:3178 224:2820 223:2937 217:3745
+Q|MÁV SZESZA|S447|#00A0E3|L55|217 223:3760 224:2973 222:2794 221:3191 237:8866 457:13320
+Q|MÁV SZESZA|S447|#00A0E3|L55|217 223:3760 224:2973 222:2794 221:3191 237:8866
+Q|MÁV SZESZA|S889|#00A0E3|L55|225 230:12699 208:4479 232:9344 241:3529
+Q|MÁV SZESZA|S889|#00A0E3|L55|241 232:3479 208:9366 230:4376 225:12723
+Q|MÁV SZESZA|Sz 58xx|#00A0E3|L55|236 233:6300 234:1977 243:2508 216:6485 215:1640 229:3422 228:3409 240:3074 227:3449 231:2648 238:8039 210:2551 202:4411 235:3587 220:2418 562:8322
+Q|MÁV SZESZA|Sz 58xx|#00A0E3|L55|240 227:3445 231:2648 238:8039 210:2551 202:4411 235:3587 220:2418 562:8322
+Q|MÁV SZESZA|Sz 58xx|#00A0E3|L55|562 220:8289 235:2425 202:3518 210:4488 238:2567 231:8023 227:2658 240:3439 228:3108 229:3313 215:3422 216:1699 243:6428 234:2580 233:1983 236:6292
+Q|MÁV-START|IC 197 Kék Hullám||X110|414 1289:4084 1013:62414 253:49554 256:14429 246:5231 282:1870 261:1165 270:1868 251:3791 287:3001 288:1774 260:3113 283:1651 281:2109 259:4472 262:1473 249:4711 247:2035 248:2888 250:2212 276:3022 286:6053
+Q|MÁV-START|IC 197 Kék Hullám||X110|286 276:6051 250:3022 248:2212 247:2888 249:2036 262:4704 259:1473 281:4473 260:3761 288:3113 287:1775 251:3001 270:3792 261:1868 282:1165 246:1870 256:5232 253:14440 1013:49620 1289:62628 414:4085
+Q|MÁV-START|IC 929 Savaria||X110|1205 271:1664 244:7277 280:4187 265:5241 272:4774 275:4079 268:8914 273:8414 285:5063 284:3580 279:43182 267:28603 1291:30527 1298:67682 1289:56938 1290:8182
+Q|MÁV-START|Sz||L55|256 254:1363 266:3260 245:3685 274:3850 253:2280 257:4385 258:7159 264:2876 252:2813 263:2458 255:3110 269:4071 277:3101 278:2796 968:6922 735:6636 1013:3464
+Q|MÁV-START|Sz||L55|1013 735:3381 968:6631 278:6919 277:2796 269:3101 255:4070 263:3110 252:2457 264:2814 258:2876 257:7159 253:4384 274:2280 245:3849 266:3684 254:3259 256:1360
+Q|MÁV-Start|102||L55|661 645:6172 394:7922 705:6232 293:11057 664:4725 663:2530 1038:8961 574:2415 573:7049 488:8267 683:7737
+Q|MÁV-Start|81|#00AFF0|L55|376 729:11349 1114:6141 1115:2022 848:3118 1122:5101 673:1926 1031:3079 1012:3800 855:4887 853:6518 854:3666 852:1360
+Q|MÁV-Start|81|#00AFF0|L55|852 854:1360 853:3666 855:6518 1012:4887 1031:3799 673:3079 1122:1926 848:5100 1115:3118 1114:2022 729:6139 376:11341
+Q|MÁV-Start|G10|#B0CB1F|L55|1291 692:37222 1039:20034 1298:10409 315:3936 384:19230 385:1963 382:15524 1289:17074 414:4115
+Q|MÁV-Start|G10|#B0CB1F|L55|384 385:1963 382:15524 1289:15798
+Q|MÁV-Start|G10|#B0CB1F|L55|1290 505:3806 1289:6016 382:16599 385:15523 384:1910 315:19305 1298:3971 1089:7636 1039:2713 692:20162 422:8956 544:25835 1291:2200
+Q|MÁV-Start|G10|#B0CB1F|L55|1290 505:3806 1289:6016 382:16599 385:15523 384:1910 315:19305 1298:3971 1089:7636 1039:2713 692:20162 422:8956 805:10111 545:9733 544:5996 1291:2200
+Q|MÁV-Start|G10|#B0CB1F|L55|1290 505:3806 1289:6014 382:16466 385:15523 384:1910 315:19305 1298:3975 1089:7635 1039:2713 692:20162 422:8956 544:25835 1291:2200 292:8002 1082:4996 715:6250 652:8185 56:7615 720:7092 1292:4334
+Q|MÁV-Start|G30|#B0CB1F|L55|414 1289:4084 899:15610 1105:26528 1106:1436 528:2194 300:1760 1013:14989
+Q|MÁV-Start|G30|#B0CB1F|L55|1013 300:14938 528:1816 1106:2320 1105:1435 899:26625 1289:15449 414:4116
+Q|MÁV-Start|G30|#B0CB1F|L55|1013 300:14938 528:1816 1106:2320 1105:1435 1289:42090 414:4116
+Q|MÁV-Start|G40|#B0CB1F|L55|957 796:9384 959:7103 969:5856 891:7653 593:5758 486:9373 1030:8988 898:5526 1289:18411 414:4115
+Q|MÁV-Start|G40|#B0CB1F|L55|457 444:10186 707:7901 428:2506 472:4773 974:3967 904:5291 1025:2030 649:3172 374:4813 870:5123 1067:6314 939:5949 958:5163 923:3584 957:9206 796:9384 959:7103 969:5856 891:7653 593:5758 486:9373 1030:8988 898:5526 1289:18411 414:4115
+Q|MÁV-Start|G43|#B0CB1F|L55|639 505:5445 1289:5624 412:5388 416:3255 367:2384 901:4091 900:1596 1077:4056 737:8573 364:3149 694:7461 1105:3163 528:3629 300:1760 1013:14991
+Q|MÁV-Start|G43|#B0CB1F|L55|1013 452:11376 300:3564 528:1816 1106:2320 1105:1435 694:3040 864:2557 364:5078 737:2983 1077:8682 900:4051 902:1731 367:3983 416:2439 412:3189 1289:5213 505:5759 639:5308
+Q|MÁV-Start|G43|#B0CB1F|L55|1013 300:14940 528:1816 1105:3755 694:3040 364:7636 737:2983 1077:8682 900:4051 902:1731 367:3983 416:2439 412:3189 1289:5213 505:5759 639:5308
+Q|MÁV-Start|G43|#B0CB1F|L55|723 1103:7548 639:10298 505:5445 1289:5624 412:5388 416:3255 367:2384 901:4091 900:1596 1077:4056 737:8573 364:3149 694:7461 1105:3163 528:3629 300:1760 1013:14991
+Q|MÁV-Start|G44|#B0CB1F|L55|1077 900:4153 902:1731 367:3983 416:2439 412:3189 1289:4571 414:4116
+Q|MÁV-Start|G50|#B0CB1F|L55|1022 294:12547 418:16118 308:16999 865:7139 767:4467 766:6122 639:26535 637:2722 1155:3794 16:3905
+Q|MÁV-Start|G60|#B0CB1F|L55|1290 638:4478 908:3122 911:5928 535:12754 743:3744 943:7149 1016:2344 1072:4510 1000:5102 794:4849
+Q|MÁV-Start|G60|#B0CB1F|L55|1290 638:4478 908:3122 911:5928 535:12754 943:10893 1016:2344 1072:4510 1000:5102 794:4849 1074:6220 492:3634 1073:2916 1071:6397 612:9928 1139:5189 1022:9661
+Q|MÁV-Start|G60|#B0CB1F|L55|1022 1139:9663 612:5221 1071:10010 1073:6252 492:2941 1074:3586 794:6377 1000:4701 1072:5092 1016:4519 943:2346 535:11030 908:18602 638:3037 1290:4522
+Q|MÁV-Start|G70|#B0CB1F|L55|40 1020:974 1148:3419 797:4177 26:1310 667:6173 1108:1444 43:9444 1100:1726 498:7663 470:7106 915:8836 916:4648 16:3015
+Q|MÁV-Start|G70|#B0CB1F|L55|40 1020:974 1148:3419 797:4177 26:1310 667:6173 1108:1444 43:9444 1100:1726 498:7663 470:7106 915:8836 916:4648 16:3015
+Q|MÁV-Start|G70|#B0CB1F|L55|40 1020:974 1148:3419 797:4177 26:1310 667:6173 1108:1444 43:9444 1100:1726 498:7663 470:7106 468:2062 915:6774 916:4648 16:3015
+Q|MÁV-Start|G70|#B0CB1F|L55|16 916:2955 915:4698 470:8942 498:7202 1100:7607 43:1602 1107:9665 667:1371 26:6022 797:1309 1148:4228 1020:3353 40:944
+Q|MÁV-Start|G70|#B0CB1F|L55|16 916:2955 915:4698 468:6896 470:2046 498:7202 1100:7607 43:1602 1107:9665 667:1371 26:6022 797:1309 1148:4228 1020:3353 40:944
+Q|MÁV-Start|G71|#B0CB1F|L55|43 1100:1564 1282:2624 1276:2940 1102:1670 1286:2600 1285:1057 1283:4358 1288:1252 1277:1702 1287:1569 1281:1401 1280:8404 1278:1118 915:7628 16:7647
+Q|MÁV-Start|G71|#B0CB1F|L55|1102 1286:2600 1285:1057 1283:4358 1288:1252 1277:1702 1287:1569 1281:1401 1280:8404 1278:1118 915:7628 16:7647
+Q|MÁV-Start|G80|#B0CB1F|L55|591 851:8581 909:4305 914:2115 305:2716 1290:11268
+Q|MÁV-Start|GEMENC IR||X110|957 417:14162 1096:6721 785:11223 1045:11928 494:8014 1066:4111 987:7839 432:4210 448:4048 410:10265 319:1794 880:7279 337:10219
+Q|MÁV-Start|GEMENC IR||X110|1013 377:13864 957:24807 417:14162 1096:6721 785:11223 1045:11928 494:8014 1066:4111 987:7839 432:4210 448:4048 410:10403
+Q|MÁV-Start|GEMENC IR||X110|1013 377:13864 957:24807 417:14162 1096:6721 785:11223 1045:11928 494:8014 1066:4111 987:7839 432:4210 448:4048 410:10265 319:1794 880:7279 337:10219
+Q|MÁV-Start|GEMENC IR||X110|337 881:10498 319:7002 410:1795 448:10261 432:4048 987:4212 1066:7840 494:4112 1045:8016 785:11931 1096:11224 417:6721 957:14164 377:24822 1013:13875
+Q|MÁV-Start|IC GÖCSEJ||X110|181 186:8937 179:15899 1091:14768 104:8801 303:32889 1109:35457 885:18433 1130:4092 1013:22370 1289:62628 414:4085
+Q|MÁV-Start|IC GÖCSEJ||X110|414 1289:4117 1013:62413 1130:22376 885:4091 1109:18420 303:35453 104:32886 1091:8800 179:14757 186:15886 181:8932
+Q|MÁV-Start|IR CÍVIS||X110|445 473:12182 556:7218 618:12959 1263:10937 630:15393 661:16445 495:14795 1076:11310 973:9154 1022:9756 294:12548 418:15964 723:43400 506:11526 639:6507 1155:6516 16:4062
+Q|MÁV-Start|IR CÍVIS||X110|16 1155:4231 639:6533 506:6395 418:54699 295:16241 1022:12275 973:9749 1076:9156 495:11315 661:14802 630:16465 1263:15397 618:10948 556:12971 473:7221 445:12191
+Q|MÁV-Start|IR85 MÁTRA IR|#29803C|X110|1290 521:35583 771:2552 335:9332 332:2203 1087:8057 562:7587 1120:20970 539:8021 538:4403
+Q|MÁV-Start|IR85 MÁTRA IR|#29803C|X110|1290 521:35583 771:2552 335:9332 332:2203 1087:8057 562:7587 1120:20970 539:8021 678:2565 538:1837
+Q|MÁV-Start|IR85 MÁTRA IR|#29803C|X110|538 539:4383 1120:7976 562:20838 1087:7598 332:8235 334:2241 771:9115 521:2550 1290:35410
+Q|MÁV-Start|IR85 MÁTRA IR|#29803C|X110|538 678:1818 539:2566 1120:7976 562:20838 1087:7598 332:8235 334:2241 771:9115 521:2550 1290:35410
+Q|MÁV-Start|IR87 AGRIA IR|#29803C|X110|1290 521:35583 771:2552 335:9332 332:2203 1087:8057 562:7587 1120:20970 683:25339 511:12169 734:6806 477:9532
+Q|MÁV-Start|IR87 AGRIA IR|#29803C|X110|1290 521:35583 771:2552 335:9332 332:2203 1087:8057 562:7587 1120:20970 683:25339 511:12169 734:6806 477:9532
+Q|MÁV-Start|IR87 AGRIA IR|#29803C|X110|1290 521:35583 771:2552 335:9332 332:2203 1087:8057 562:7587 1120:20970 298:3689 631:5741 725:3889 807:4927 683:7081 511:12169 734:6806 477:9532
+Q|MÁV-Start|IR87 AGRIA IR|#29803C|X110|477 323:4574 734:4957 511:6954 683:12056 807:7227 725:4776 631:3978 298:5651 1120:3757 562:20838 1087:7598 332:8235 334:2241 771:9115 521:2550 1290:35410
+Q|MÁV-Start|IR87 AGRIA IR|#29803C|X110|477 734:9531 511:6954 683:12056 807:7227 725:4776 631:3978 298:5651 1120:3757 562:20838 1087:7598 332:8235 334:2241 771:9115 521:2550 1290:35410
+Q|MÁV-Start|IR87 AGRIA IR|#29803C|X110|477 734:9531 511:6954 683:12056 1120:25384 562:20838 1087:7598 332:8235 334:2241 771:9115 521:2550 1290:35410
+Q|MÁV-Start|S10|#00A0E3|L55|1291 544:2275 546:6126 805:9597 422:10048 692:9166 1018:5106 311:2911 310:3424 1039:8616 1089:2604 1133:3742 1298:4064 384:23161 1289:33568 414:4115
+Q|MÁV-Start|S10|#00A0E3|L55|1291 544:2275 546:6126 805:9597 422:10048 692:9166 1018:5106 311:2911 310:3424 1039:8616 1089:2604 1133:3742 1298:4064 315:3936 1027:7835 1024:4592 384:6814 385:1963 565:7864 382:7659 1075:7250 415:4471 1289:5238 414:4115
+Q|MÁV-Start|S10|#00A0E3|L55|1291 544:2275 546:6126 805:9597 422:10048 692:9166
+Q|MÁV-Start|S10|#00A0E3|L55|1291 544:2275 546:6126 805:9597 422:10048 692:9166 1018:5106 311:2911 310:3424 1039:8616 1089:2604 1133:3742 1298:4064
+Q|MÁV-Start|S10|#00A0E3|L55|1298 315:3936 1027:7835 1024:4592 384:6814 385:1963 565:7864 382:7659 1075:7250 415:4471 1289:5238 414:4115
+Q|MÁV-Start|S10|#00A0E3|L55|414 1289:4085 415:5359 1075:4526 382:7199 566:7767 385:7754 384:1910 1024:6854 1027:4557 315:7891 1298:3971 1133:3970 1089:3665 1039:2713 310:8495 312:3707 1018:2783 692:5180
+Q|MÁV-Start|S10|#00A0E3|L55|414 1289:4085 415:5359 1075:4526 382:7199 566:7767 385:7754 384:1910 1024:6854 1027:4557 315:7891 1298:3971 1133:3970 1089:3665 1039:2713 310:8495 312:3707 1018:2783 692:5180 422:8956 805:10111 545:9733 544:5996 1291:2200
+Q|MÁV-Start|S10|#00A0E3|L55|1298 1133:3970 1089:3665 1039:2713 310:8495 312:3707 1018:2783 692:5180 422:8956 805:10111 545:9733 544:5996 1291:2200
+Q|MÁV-Start|S10|#00A0E3|L55|692 1018:5106 311:2911 310:3424 1039:8616 1089:2604 1133:3742 1298:4064 315:3936 1027:7835 1024:4592 384:6814 385:1963 565:7864 382:7659 1075:7250 415:4471 1289:5238 414:4115
+Q|MÁV-Start|S10|#00A0E3|L55|692 1018:5106 311:2911 310:3424 1039:8616 1089:2604 1133:3742 1298:4064
+Q|MÁV-Start|S12|#00A0E3|L55|414 1289:4085 415:5359 1075:4526 382:7199 566:7767 385:7754 384:1910 1024:6854 1027:4557 315:7891 1298:3971 395:2187 696:4646 640:3239 846:3835
+Q|MÁV-Start|S12|#00A0E3|L55|846 640:3835 696:3240 395:4648 1298:2346
+Q|MÁV-Start|S12|#00A0E3|L55|846 640:3835 696:3240 395:4648 1298:2164 315:3936 1027:7835 1024:4592 384:6814 385:1963 565:7864 382:7659 1075:7250 415:4471 1289:5238 414:4115
+Q|MÁV-Start|S12|#00A0E3|L55|1298 395:2346 696:4646 640:3239 846:3835
+Q|MÁV-Start|S150|#00A0E3|L55|1013 1026:4825 400:16227 431:1687 768:5732 340:10623 654:8285 788:16203 1019:14740 692:3449
+Q|MÁV-Start|S150|#00A0E3|L55|692 1019:3440 788:14730 654:16198 340:8281 768:10617 431:5730 400:1687 1026:16214 1013:4824
+Q|MÁV-Start|S21|#00A0E3|L55|16 1155:4098 637:3728 639:2805 668:2358 859:4466 858:1589 534:2052 533:1812 502:3832 423:4856 588:8899 441:6701 536:2315 568:4464 907:4749 1041:4622 499:3503 711:5619
+Q|MÁV-Start|S21|#00A0E3|L55|16 1155:4098 637:3728 639:2805 668:2358 859:4466 858:1589 534:2052 533:1812 502:3832 423:4856 588:8899 441:6701
+Q|MÁV-Start|S21|#00A0E3|L55|16 1155:4098 637:3728 639:2805 668:2358 859:4466 858:1589 534:2052 533:1812 502:3832 423:4856 588:8899 441:6701 536:2315 568:4464 907:4749 1041:4622 499:3503 711:5619 712:848 682:1935 500:2130 762:1347 318:2028 799:2090 571:1549 905:2484 757:945 643:3767 642:1540 641:2319
+Q|MÁV-Start|S21|#00A0E3|L55|16 1155:4098 637:3728 639:2805 668:2358 859:4466 858:1589 534:2052 533:1812 502:3832 423:4856 588:8899 441:6701 536:2315 568:4464 907:4749 1041:4622
+Q|MÁV-Start|S21|#00A0E3|L55|423 502:4857 533:3832 534:1812 858:2052 859:1589 668:4466 639:2548
+Q|MÁV-Start|S21|#00A0E3|L55|423 588:8899 441:6701 536:2315 568:4464 907:4749 1041:4622 499:3503 711:5619
+Q|MÁV-Start|S21|#00A0E3|L55|441 588:6717 423:8889 502:4857 533:3832 534:1812 858:2052 859:1589 668:4466 639:2548 637:2722 1155:3794 16:3928
+Q|MÁV-Start|S21|#00A0E3|L55|1041 907:4623 568:4750 536:4465 441:2316 588:6717 423:8889 502:4857 533:3832 534:1812 858:2052 859:1589 668:4466 639:2548 637:2722 1155:3794 16:3928
+Q|MÁV-Start|S21|#00A0E3|L55|711 499:5621 1041:3503 907:4623 568:4750 536:4465 441:2316 588:6717 423:8889 502:4857 533:3832 534:1812 858:2052 859:1589 668:4466 639:2548 637:2722 1155:3794 16:3928
+Q|MÁV-Start|S21|#00A0E3|L55|711 499:5621 1041:3503 907:4623 568:4750 536:4465 441:2316 588:6717 423:8889 502:4857 533:3832 534:1812 858:2052 859:1589 668:4466 639:2548
+Q|MÁV-Start|S21|#00A0E3|L55|641 642:2319 643:1540 757:3767 905:945 571:2485 799:1549 318:2090 762:2028 500:1347 682:2131 712:1935 711:848 499:5621 1041:3503 907:4623 568:4750 536:4465 441:2316 588:6717 423:8889 502:4857 533:3832 534:1812 858:2052 859:1589 668:4466 639:2548 637:2722 1155:3794 16:3928
+Q|MÁV-Start|S210|#00A0E3|L55|1041 499:3503 711:5619 712:848 682:1935 500:2130 762:1347 318:2028 799:2090 571:1549 905:2484 757:945 643:3767 642:1540 641:2319
+Q|MÁV-Start|S210|#00A0E3|L55|711 712:848 682:1935 500:2130 762:1347 318:2028 799:2090 571:1549 905:2484 757:945 643:3767 642:1540 641:2319
+Q|MÁV-Start|S210|#00A0E3|L55|641 642:2319 643:1540 757:3767 905:945 571:2485 799:1549 318:2090 762:2028 500:1347 682:2131 712:1935 711:848
+Q|MÁV-Start|S210|#00A0E3|L55|641 642:2319 643:1540 757:3767 905:945 571:2485 799:1549 318:2090 762:2028 500:1347 682:2131 712:1935 711:848 499:5621 1041:3503
+Q|MÁV-Start|S220|#00A0E3|L55|641 320:7435 659:2360 831:2095 829:1888 830:2177 828:3448 1113:1296 1007:2930 919:1407 713:1308 647:4654 1057:4862 594:2873 381:3078 1055:3770 1056:2245 1062:2548 1080:4359 871:5907 1022:5132
+Q|MÁV-Start|S220|#00A0E3|L55|641 320:7435 659:2360 831:2095 829:1888 830:2177 828:3448 1113:1296 1007:2930 919:1407 713:1308 647:4654 1057:4862 594:2873 381:3078 1055:3770 1056:2245 1080:6908 1022:11041
+Q|MÁV-Start|S220|#00A0E3|L55|641 320:7435 659:2360 831:2095 829:1888 830:2177 828:3448 1113:1296 1007:2930 919:1407 713:1308
+Q|MÁV-Start|S220|#00A0E3|L55|713 647:4654 1057:4862 594:2873 381:3078 1055:3770 1056:2245 1062:2548 1080:4359 871:5907 1022:5132
+Q|MÁV-Start|S220|#00A0E3|L55|713 647:4654 1057:4862 594:2873 381:3078 1055:3770 1056:2245 1080:6908 1022:11041
+Q|MÁV-Start|S220|#00A0E3|L55|1057 647:4861 713:4653 919:1308 1007:1407 1113:2930 828:1296 830:3449 829:2177 831:1888 659:2095 320:2360 641:7437
+Q|MÁV-Start|S220|#00A0E3|L55|1022 871:5130 1080:5906 1062:4359 1056:2548 1055:2245 381:3769 594:3078 1057:2873 647:4861 713:4653 919:1308 1007:1407 1113:2930 828:1296 830:3449 829:2177 831:1888 659:2095 320:2360 641:7437
+Q|MÁV-Start|S220|#00A0E3|L55|1022 1080:11036 1056:6908 1055:2245 381:3769 594:3078 1057:2873 647:4861 713:4653 919:1308 1007:1407 1113:2930 828:1296 830:3449 829:2177 831:1888 659:2095 320:2360 641:7437
+Q|MÁV-Start|S220|#00A0E3|L55|1022 871:5130 1080:5906 1062:4359 1056:2548 1055:2245 381:3769 594:3078 1057:2873 647:4861 713:4653
+Q|MÁV-Start|S225|#00A0E3|L55|641 793:14884 418:19146 295:24604 1022:12276
+Q|MÁV-Start|S225|#00A0E3|L55|1022 294:12551 418:25206 792:18967 641:14679
+Q|MÁV-Start|S30|#00A0E3|L55|414 1289:4084 899:15610 1013:46853 735:3468 968:6630 657:7044 876:5212 718:5365 344:6988 361:2499 971:4154 970:2279 937:3801 359:3099 358:2011 1145:1578 1144:2155 1017:4002 350:1762 360:4447 356:4783 353:4557 352:2169 346:3878 509:4832 508:2552
+Q|MÁV-Start|S30|#00A0E3|L55|414 1289:4084 307:2829 412:1833 634:5763 1084:2747 899:2448 1077:4200 737:8567 364:3149 864:4997 694:2465 1105:3163 1106:1436 528:2194 300:1760 452:3619 1013:11373 735:3468 968:6630 718:17613 344:6988 361:2499 971:4154 970:2279 937:3801 359:3099 358:2011 1145:1578 1144:2155 1017:4002 350:1762 360:4447 356:4783 353:4557 352:2169 346:3878 509:4832 508:2552
+Q|MÁV-Start|S30|#00A0E3|L55|414 1289:4084 307:2829 412:1833 634:5763 1084:2747 899:2448 1077:4200 737:8567 364:3149 864:4997 694:2465 1105:3163 1106:1436 528:2194 300:1760 452:3619 1013:11373
+Q|MÁV-Start|S30|#00A0E3|L55|414 1289:4084 307:2829 412:1833 634:5763 1084:2747 899:2448 1077:4200 737:8567
+Q|MÁV-Start|S30|#00A0E3|L55|414 1289:4084 307:2829 412:1833 634:5763 1084:2747 899:2448 1077:4267
+Q|MÁV-Start|S30|#00A0E3|L55|737 1077:8564 899:4379 1084:2270 634:2749 412:5958 307:1723 1289:2748 414:4116
+Q|MÁV-Start|S30|#00A0E3|L55|508 509:2553 346:4833 352:3878 354:2440 356:4447 360:4626 350:4448 1017:1802 1144:3963 1145:2155 358:1578 359:2011 937:3181 970:3722 971:2279 361:4155 344:2499 718:6988 876:5367 657:5214 968:7045 735:6635 1013:3464 737:34177 1077:8564 899:4379 1289:15449 414:4116
+Q|MÁV-Start|S30|#00A0E3|L55|508 509:2553 346:4833 352:3878 354:2440 356:4447 360:4626 350:4448 1017:1802 1144:3963 1145:2155 358:1578 359:2011 937:3181 970:3722 971:2279 361:4155 344:2499 718:6988 735:24267 1013:3464 452:11374 300:3564 528:1816 1106:2320 1105:1435 694:3040 864:2557 364:5078 737:2983 1077:8564 899:4379 1084:2270 634:2749 412:5958 307:1723 1289:2748 414:4116
+Q|MÁV-Start|S30|#00A0E3|L55|1013 452:11374 300:3564 528:1816 1106:2320 1105:1435 694:3040 864:2557 364:5078 737:2983 1077:8564 899:4379 1084:2270 634:2749 412:5958 307:1723 1289:2748 414:4116
+Q|MÁV-Start|S36|#00A0E3|L55|639 505:5445 1289:5624 307:2853 412:1833 634:5763 1084:2747 899:2448 1077:4267
+Q|MÁV-Start|S36|#00A0E3|L55|639 505:5445 1289:5624 307:2853 412:1833 634:5763 1084:2747 899:2448 1077:4200 737:8567
+Q|MÁV-Start|S36|#00A0E3|L55|639 505:5445 1289:6016
+Q|MÁV-Start|S36|#00A0E3|L55|694 364:7636 737:2983 1077:8564 899:4379 1084:2270 634:2749 412:5958 307:1723 1289:2776 505:5759 639:5308
+Q|MÁV-Start|S36|#00A0E3|L55|737 1077:8564 899:4379 1084:2270 634:2749 412:5958 307:1723 1289:2776 505:5759 639:5308
+Q|MÁV-Start|S36|#00A0E3|L55|1077 899:4363 1084:2270 634:2749 412:5958 307:1723 1289:2776 505:5759 639:5308
+Q|MÁV-Start|S36|#00A0E3|L55|723 1103:7548 639:10298 505:5445 1289:5624 307:2853 412:1833 634:5763 1084:2747 899:2448 1077:4200 737:8567 364:3149 694:7461
+Q|MÁV-Start|S36|#00A0E3|L55|723 1103:7548 639:10298 505:5445 1289:5624 307:2853 412:1833 634:5763 1084:2747 899:2448 1077:4200 737:8567
+Q|MÁV-Start|S40|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525 465:3761 486:5226 593:9363 891:5685 969:7650 959:5855 796:7102 957:9383 923:9206 958:3584 939:5161 1067:5947 870:6312 374:5122 649:4812 1025:3172 904:2030 974:5291 472:3967 428:4771 707:2506 444:7898 457:10181
+Q|MÁV-Start|S40|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525 465:3761 486:5226 593:9363 891:5685
+Q|MÁV-Start|S40|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525
+Q|MÁV-Start|S40|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 901:4091 900:1596 898:2488 1030:5525 486:8987 593:9363 891:5685
+Q|MÁV-Start|S40|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525 465:3761 486:5226 593:9363 891:5685 969:7650 959:5855 796:7102 957:9383
+Q|MÁV-Start|S40|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525 465:3761 486:5226 593:9363 891:5685 969:7650 959:5855 796:7102 957:9383 923:9206 958:3584 939:5161 1067:5947 870:6312
+Q|MÁV-Start|S40|#00A0E3|L55|957 923:9206 958:3584 939:5161 1067:5947 870:6312 374:5122 649:4812 1025:3172 904:2030 974:5291 472:3967 428:4771 707:2506 444:7898 457:10181
+Q|MÁV-Start|S40|#00A0E3|L55|870 1067:6314 939:5949 958:5163 923:3584 957:9206 796:9384 959:7103 969:5856 593:13413 486:9373 465:5266 1030:3721 898:5526 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S40|#00A0E3|L55|457 444:10186 707:7901 428:2506 472:4773 974:3967 904:5291 1025:2030 649:3172 374:4813 870:5123 1067:6314 939:5949 958:5163 923:3584 957:9206 796:9384 959:7103 969:5856 891:7653 593:5758 486:9373 465:5266 1030:3721 898:5526 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S40|#00A0E3|L55|593 486:9373 465:5266 1030:3721 898:5526 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S40|#00A0E3|L55|1030 898:5606 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S40|#00A0E3|L55|891 593:5754 486:9373 1030:8988 898:5526 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S42|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525 465:3761 486:5226 593:9363 891:7732 299:8067 703:7275 897:3401 467:4828 466:2595
+Q|MÁV-Start|S42|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525 465:3761 486:5226 593:9363 891:7732 466:26815
+Q|MÁV-Start|S42|#00A0E3|L55|414 1289:4084 412:4667 584:1893 416:1363 367:2384 809:1162 901:2929 900:1596 898:2488 1030:5525 465:3761 486:5226 593:9363 891:7732 299:8067 703:7275 897:3401 466:7423
+Q|MÁV-Start|S42|#00A0E3|L55|891 299:8003 703:7275 897:3401 467:4828 466:2595
+Q|MÁV-Start|S42|#00A0E3|L55|466 593:32615 486:9373 465:5266 1030:3721 898:5526 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S42|#00A0E3|L55|466 467:2595 897:4828 703:3401 299:7277 593:12207 486:9373 465:5266 1030:3721 898:5526 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S42|#00A0E3|L55|466 897:7423 703:3401 299:7277 593:12207 486:9373 465:5266 1030:3721 898:5526 900:2511 902:1731 809:2774 367:1209 416:2439 584:1273 412:1916 1289:4554 414:4115
+Q|MÁV-Start|S431|#00A0E3|L55|466 614:5068 747:6211 790:4841 789:2503 306:8416 924:1610 923:3780 958:3584 939:5161
+Q|MÁV-Start|S431|#00A0E3|L55|466 747:11277 790:4841 789:2503 306:8416 924:1610 923:3780 958:3584 939:5161
+Q|MÁV-Start|S431|#00A0E3|L55|939 958:5163 923:3584 924:3780 306:1610 789:8418 790:2503 747:4842 614:6213 466:5069
+Q|MÁV-Start|S431|#00A0E3|L55|939 958:5163 923:3584 924:3780 306:1610 789:8418 790:2503 747:4842 466:11284
+Q|MÁV-Start|S440|#00A0E3|L55|891 1151:7358 935:4639 934:2333 409:5711 1013:8725
+Q|MÁV-Start|S440|#00A0E3|L55|891 1151:7358 935:4639 934:2333 1013:14438
+Q|MÁV-Start|S440|#00A0E3|L55|1013 409:8721 934:5710 935:2333 1151:4639 891:7360
+Q|MÁV-Start|S440|#00A0E3|L55|1013 934:14427 935:2333 1151:4639 891:7360
+Q|MÁV-Start|S50|#00A0E3|L55|16 1155:4075 637:3728 639:2805 860:2578 990:2872 506:945 1103:3895 1104:1467 723:6085 581:3924 766:4500
+Q|MÁV-Start|S50|#00A0E3|L55|16 1155:4075 637:3728 639:2805 860:2578 990:2872 506:945 1103:3895 1104:1467 723:6085 581:3924 766:4555 767:6304 865:4281 308:7135 419:4707 420:2367 413:3696 418:6372 295:16241 1022:12275
+Q|MÁV-Start|S50|#00A0E3|L55|766 582:4725 723:3703 1104:6215 1103:1333 506:3977 990:1022 860:2846 639:2638 637:2722 1155:3794 16:3905
+Q|MÁV-Start|S50|#00A0E3|L55|418 295:16241 1022:12275
+Q|MÁV-Start|S50|#00A0E3|L55|418 413:6367 420:3572 419:2277 308:4780 865:7139 767:4467 766:6122 582:4782 723:3703 1104:6215 1103:1333 506:3977 990:1022 860:2846 639:2638 637:2722 1155:3794 16:3905
+Q|MÁV-Start|S50|#00A0E3|L55|1022 294:12547 418:16118 413:6367 420:3572 419:2277 308:4780 865:7139 767:4467 766:6122 582:4782 723:3703 1104:6215 1103:1333 506:3977 990:1022 860:2846 639:2638 637:2722 1155:3794 16:3905
+Q|MÁV-Start|S50|#00A0E3|L55|1022 294:12547 418:16118
+Q|MÁV-Start|S60|#00A0E3|L55|1290 638:4478 908:3122 911:5928 913:4224 474:2365 727:1874 728:1881 535:2414 743:3744 892:2643 943:4505 794:16803
+Q|MÁV-Start|S60|#00A0E3|L55|1290 638:4478 908:3122 911:5928 913:4224 474:2365 727:1874 728:1881 535:2414 743:3744 892:2643 943:4505 1016:2344 1072:4510 1000:5102 794:4849 1074:6220 492:3634 1073:2916 1071:6397 612:9928 1139:5189 1022:9661
+Q|MÁV-Start|S60|#00A0E3|L55|1290 638:4478 908:3122 911:5928 913:4224 474:2365 727:1874 728:1881 535:2414 743:3744 892:2643 943:4505
+Q|MÁV-Start|S60|#00A0E3|L55|1290 638:4478 908:3122 911:5928 913:4224 474:2365 727:1874 728:1881 535:2414 743:3744 892:2643 943:4505 1016:2344 1072:4510 1000:5102 794:4849
+Q|MÁV-Start|S60|#00A0E3|L55|794 1074:6220 492:3634 1073:2916 1071:6397 612:9928 1139:5189 1022:9661
+Q|MÁV-Start|S60|#00A0E3|L55|1022 1139:9663 612:5221 1071:10010 1073:6252 492:2941 1074:3586 794:6377
+Q|MÁV-Start|S60|#00A0E3|L55|1022 1139:9663 612:5221 1071:10010 1073:6252 492:2941 1074:3586 794:6377 1000:4701 1072:5092 1016:4519 943:2346 892:4503 743:2647 535:3882 728:2271 727:1881 474:1871 913:2548 912:4292 908:5731 638:3037 1290:4522
+Q|MÁV-Start|S60|#00A0E3|L55|794 1000:4701 1072:5092 1016:4519 943:2346 892:4503 743:2647 535:3882 728:2271 727:1881 474:1871 913:2548 912:4292 908:5731 638:3037 1290:4522
+Q|MÁV-Start|S60|#00A0E3|L55|943 892:4503 743:2647 535:3882 728:2271 727:1881 474:1871 913:2548 912:4292 908:5731 638:3037 1290:4522
+Q|MÁV-Start|S70|#00A0E3|L55|40 1020:974 1148:3419 797:4177 26:1310 667:6173 1108:1444 43:9444 1100:1726 981:5021 498:2642 520:2125 316:1268 470:3713 468:2062 469:2029 915:4745 592:1885 916:2764 16:3015
+Q|MÁV-Start|S70|#00A0E3|L55|16 916:2955 592:3007 915:1691 469:4900 468:1996 470:2046 316:3620 520:1269 498:2313 982:2734 1100:4873 43:1561
+Q|MÁV-Start|S70|#00A0E3|L55|16 916:2955 592:3007 915:1691 469:4900 468:1996 470:2046 316:3620 520:1269 498:2313 982:2734 1100:4873 43:1602 1107:9665 667:1371 26:6022 797:1309 1148:4228 1020:3353 40:944
+Q|MÁV-Start|S70|#00A0E3|L55|43 1100:1687 981:5021 498:2642 520:2125 316:1268 470:3713 468:2062 469:2029 915:4745 592:1885 916:2764 16:3015
+Q|MÁV-Start|S71|#00A0E3|L55|43 1100:1564 1282:2624 1276:2940 1286:4270 1285:1057 1283:4358 1288:1252 1277:1702 1287:1569 1281:1401 1275:4115 1279:3045 1280:1244 1278:1118 1274:2280 1284:3719 915:1629 592:1869 916:2764 16:3016
+Q|MÁV-Start|S71|#00A0E3|L55|43 1100:1564 1282:2624 1276:2940 1102:1670 1283:8014 1277:2953 1287:1569 1281:1401 1275:4115 1279:3045 1280:1244 1278:1118 1274:2280 1284:3719 915:1629 592:1869 916:2764 16:3016
+Q|MÁV-Start|S72|#00A0E3|L55|16 916:3012 324:3135 601:1214 327:2607 411:1130 330:1259 917:1393 946:4541 1015:1752 1132:1742 869:1009 972:1451 685:5236 866:1644 726:1301 868:1924 867:2183 717:2102 459:5023 490:2905 489:4545
+Q|MÁV-Start|S72|#00A0E3|L55|16 916:3012 324:3135 601:1214 327:2607 411:1245
+Q|MÁV-Start|S72|#00A0E3|L55|489 490:4544 459:2905 717:5087 867:2036 868:2183 726:1924 866:1284 685:1660 972:5224 869:1614 1132:914 1015:1680 946:1688 917:4653 330:1342 411:1217 327:1251 601:2598 324:1241 916:3029 16:3012
+Q|MÁV-Start|S72|#00A0E3|L55|866 685:1692 972:5224 869:1614 1132:914 1015:1680 946:1688 917:4653 330:1342 327:2468 601:2598 16:7281
+Q|MÁV-Start|S74|#00A0E3|L55|489 490:4560 1065:3339 1081:2304 815:6899 816:1620 491:1147 714:1223 872:2864 965:1988 966:1544 1126:5852 812:1648 464:1502 310:5255
+Q|MÁV-Start|S74|#00A0E3|L55|489 490:4560 1065:3339 1081:2304 815:6899 816:1620 491:1147 714:1223
+Q|MÁV-Start|S74|#00A0E3|L55|489 490:4560 1065:3339 1081:2304 815:6899 816:1620 491:1147 714:1223 872:2864 965:1988 966:1544 1126:5852 812:1648 464:1502 310:5255 692:11503
+Q|MÁV-Start|S74|#00A0E3|L55|489 490:4560 1065:3339 1081:2304 815:6899 816:1620 491:1147 714:1223 872:2864 965:1988
+Q|MÁV-Start|S74|#00A0E3|L55|714 491:1223 816:1147 815:1620 1081:6897 1065:2303 490:3339 489:4561
+Q|MÁV-Start|S74|#00A0E3|L55|965 872:1988 714:2864 491:1223 816:1147 815:1620 1081:6897 1065:2303 490:3339 489:4561
+Q|MÁV-Start|S74|#00A0E3|L55|310 464:5256 812:1502 1126:1648 966:5854 965:1544 872:1988 714:2864 491:1223 816:1147 815:1620 1081:6897 1065:2303 490:3339 489:4561
+Q|MÁV-Start|S74|#00A0E3|L55|692 310:11479 464:5276 812:1502 1126:1648 966:5854 965:1544 872:1988 714:2864 491:1223 816:1147 815:1620 1081:6897 1065:2303 490:3339 489:4561
+Q|MÁV-Start|S750|#00A0E3|L55|343 589:7534 449:2341 590:6795 461:4931 460:1742 936:2101 462:4257 801:2277 408:3568 453:5469 813:4542 379:2764 1021:3701 731:2785 732:2373 504:2657 675:4370 43:1970
+Q|MÁV-Start|S750|#00A0E3|L55|343 589:7534 449:2341 590:6795 461:4931 460:1742 462:5726 801:2277 408:3568 453:5469 813:4542 379:2764 1021:3701 731:2785 732:2373 504:2657 675:4370 43:1970
+Q|MÁV-Start|S750|#00A0E3|L55|461 590:4881 449:6891 589:2244 343:7495
+Q|MÁV-Start|S750|#00A0E3|L55|453 813:4542 379:2764 1021:3701 731:2785 732:2373 504:2657 675:4370 43:1970
+Q|MÁV-Start|S750|#00A0E3|L55|43 675:1970 504:4371 732:2657 731:2373 1021:2831 379:3691 813:2764 453:4543 408:5471 801:3641 462:2062 936:4258 460:2163 461:1732 590:4931 449:6794 589:2341 343:7495
+Q|MÁV-Start|S750|#00A0E3|L55|43 675:1970 504:4371 732:2657 731:2373 1021:2831 379:3691 813:2764 453:4543 408:5471 801:3641 462:2062 460:6046 461:1732 590:4931 449:6794 589:2341 343:7495
+Q|MÁV-Start|S750|#00A0E3|L55|43 675:1970 504:4371 732:2657 731:2373 1021:2831 379:3691 813:2764 453:4543 408:5471 801:3641 462:2062 460:6046 461:1732
+Q|MÁV-Start|S750|#00A0E3|L55|43 675:1970 504:4371 732:2657 731:2373 1021:2831 379:3691 813:2764 453:4543 408:5471 801:3641 462:2062 936:4258 460:2163 461:1732
+Q|MÁV-Start|S750|#00A0E3|L55|43 675:1970 504:4371 732:2657 731:2373 1021:2831 379:3691 813:2764 453:4543
+Q|MÁV-Start|S76|#00A0E3|L55|908 600:6351 324:3462 601:1268 327:2607 411:1130 330:1259 917:1393 946:4541 1015:1752 1132:1742 869:1009
+Q|MÁV-Start|S76|#00A0E3|L55|908 600:6351 324:3462 601:1268 327:2607 330:2388 917:1393 946:4541 1015:1752 1132:1742 869:1009
+Q|MÁV-Start|S76|#00A0E3|L55|869 1132:914 1015:1680 946:1688 917:4653 330:1342 327:2468 601:2598 324:1241 600:3378 908:6542
+Q|MÁV-Start|S76|#00A0E3|L55|869 1132:914 1015:1680 946:1688 917:4653 330:1342 411:1217 327:1251 601:2598 324:1241 600:3378 908:6542
+Q|MÁV-Start|S77|#00A0E3|L55|332 586:4126 519:5513 1101:4500 43:19123
+Q|MÁV-Start|S77|#00A0E3|L55|43 1101:19153 519:4447 586:5590 332:4048
+Q|MÁV-Start|S77|#00A0E3|L55|43 1101:19153 519:4447 586:5590 332:4048 585:2783 518:2516 1087:2926 562:7588
+Q|MÁV-Start|S77|#00A0E3|L55|562 1087:7467 518:3004 585:2550 332:2670 586:4126 587:1561 519:3952 1101:4500 43:19123
+Q|MÁV-Start|S780|#00A0E3|L55|332 586:4030 587:1561 519:3952 517:5077 882:4313 297:4252 516:5109 814:4066 733:11951 764:3189 1004:4719 343:6257
+Q|MÁV-Start|S780|#00A0E3|L55|332 586:4030 587:1561 519:3952 517:5077 882:4313 297:4252 516:5109 814:4066 373:1979 733:9972 764:3189 1004:4719 343:6257
+Q|MÁV-Start|S780|#00A0E3|L55|343 1004:6256 764:4719 733:3261 814:11864 516:4075 297:5185 882:4174 517:4313 519:5074 587:3953 586:1638 332:3952
+Q|MÁV-Start|S780|#00A0E3|L55|343 1004:6256 764:4719 733:3261 373:9896 814:1968 516:4075 297:5185 882:4174 517:4313 519:5074 587:3953 586:1638 332:3952
+Q|MÁV-Start|S780|#00A0E3|L55|343 1004:6256 764:4719 733:3261 373:9896 814:1968 516:4075 297:5185 882:4174 517:4313 519:5074 587:3953 586:1638 332:4048 585:2783 518:2516 1087:2926 562:7588
+Q|MÁV-Start|S780|#00A0E3|L55|562 1087:7575 518:3004 585:2550 332:2670 586:4126 587:1561 519:3952 517:5077 882:4313 297:4252 516:5109 814:4066 733:11951 764:3189 1004:4719 343:6257
+Q|MÁV-Start|S780|#00A0E3|L55|562 1087:7575 518:3004 585:2550 332:2670 586:4126 587:1561 519:3952 517:5077 882:4313 297:4252 516:5109 814:4066 373:1979 733:9972 764:3189 1004:4719 343:6257
+Q|MÁV-Start|S80|#00A0E3|L55|1290 638:4521 908:3089 305:3822 914:2654 910:1130 909:1008 851:4190 591:8552 521:9707 771:2552 335:9332 332:2203 1087:8057 562:7588
+Q|MÁV-Start|S80|#00A0E3|L55|1290 638:4521 908:3089 305:3822 914:2654 910:1130 909:1008 851:4190 591:8552 521:6441
+Q|MÁV-Start|S80|#00A0E3|L55|1290 638:4521 908:3089 305:3822 914:2654 910:1130 909:1008 851:4190 591:8552 522:3066 521:4131 332:14645
+Q|MÁV-Start|S80|#00A0E3|L55|1290 638:4521 908:3089 305:3822 914:2654 910:1130 909:1008 851:4190 591:8552 522:3066 521:4131 771:2552 335:9332 332:2203 585:2617 518:2516 1087:2926 562:7587 1120:20970 298:3689 631:5741 725:3889 807:4927 683:7081 511:12169
+Q|MÁV-Start|S80|#00A0E3|L55|1290 638:4521 908:3089 305:3822 914:2654 910:1130 909:1008 851:4190 591:8552 522:3066 521:3375
+Q|MÁV-Start|S80|#00A0E3|L55|562 1087:7574 518:3004 585:2550 332:2679 334:2241 771:9115 521:2550 522:3929 591:2937 851:8581 909:4305 910:974 914:1142 305:2716 908:3677 638:3111 1290:4479
+Q|MÁV-Start|S80|#00A0E3|L55|521 591:6440 851:8581 909:4305 910:974 914:1142 305:2716 908:3677 638:3111 1290:4479
+Q|MÁV-Start|S80|#00A0E3|L55|521 522:3503 591:2937 851:8581 909:4305 910:974 914:1142 305:2716 908:3677 638:3111 1290:4479
+Q|MÁV-Start|S80|#00A0E3|L55|332 334:2241 771:9115 521:2550 522:3929 591:2937 851:8581 909:4305 910:974 914:1142 305:2716 908:3677 638:3111 1290:4479
+Q|MÁV-Start|S80|#00A0E3|L55|511 683:12056 807:7227 725:4776 631:3978 298:5651 1120:3757 562:20838 1087:7598 332:8235 334:2241 771:9115 521:2550 1290:35410
+Q|MÁV-Start|S820|#00A0E3|L55|1022 612:14675 605:10234 604:16169 889:10838 607:4377 562:10148
+Q|MÁV-Start|S820|#00A0E3|L55|1022 612:14675 605:10234 878:6425 742:2899 604:6842 889:10838 607:4377 562:10148
+Q|MÁV-Start|S820|#00A0E3|L55|1022 1139:9663 612:5221 605:10234 604:16169 889:10838 607:4377 562:10148
+Q|MÁV-Start|S820|#00A0E3|L55|1022 1139:9663 612:5221 605:10234 878:6425 742:2899 604:6842 889:10838 607:4377 562:10148
+Q|MÁV-Start|S820|#00A0E3|L55|1022 1139:9663 612:5221 605:10234 878:6425 604:9742 889:10838 607:4377 562:10148
+Q|MÁV-Start|S820|#00A0E3|L55|562 607:10142 889:4376 604:10831 742:6841 878:2898 605:6423 612:10326 1022:14625
+Q|MÁV-Start|S820|#00A0E3|L55|562 607:10142 889:4376 604:10831 742:6841 878:2898 605:6423 612:10326 1139:5189 1022:9661
+Q|MÁV-Start|S820|#00A0E3|L55|562 607:10142 889:4376 604:10831 605:16159 612:10326 1022:14625
+Q|MÁV-Start|S820|#00A0E3|L55|562 607:10142 889:4376 604:10831 605:16159 612:10326 1139:5189 1022:9661
+Q|MÁV-Start|S820|#00A0E3|L55|562 607:10142 889:4376 604:10831 878:9738 605:6423 612:10326 1022:14625
+Q|MÁV-Start|Sz||L55|508 391:2342 313:2084 348:2837 349:2292 772:1521 774:1794 355:2804 345:4984 357:2906 650:8516
+Q|MÁV-Start|Sz||L55|457 625:4526 1134:2366 237:6461 526:3886 979:3290 291:6255 572:3866 388:4456 427:3185 999:8252 386:4930 740:7848 852:5842
+Q|MÁV-Start|Sz||L55|1066 988:4118 987:3722 432:4210 448:4048 410:10414
+Q|MÁV-Start|Sz||L55|410 448:10417 432:4048 987:4211 988:3722 1066:4118
+Q|MÁV-Start|Sz||L55|852 740:5841 386:7846 999:4930 427:8254 388:3185 572:4457 291:3866 979:6256 526:3290 237:3886 1134:6462 625:2366 457:4526
+Q|MÁV-Start|Sz||L55|852 999:18613 996:5019 802:2255 1005:7418 765:4301 811:3394 658:3423 442:5734 710:6181 366:3272 365:3339
+Q|MÁV-Start|Sz||L55|1161 983:4249 564:21819 563:2483 702:10002 1014:8417 842:11714 845:7804 437:7127 438:3976 1044:6099 510:4915 1238:5220
+Q|MÁV-Start|Sz||L55|1261 1242:5742 1237:12639 1258:8485 1236:8105 956:13982 1239:10404 1263:8834
+Q|MÁV-Start|Sz||L55|337 338:3278 880:6966 319:7279 410:1795 770:8078 738:3629 421:3994 575:2821 798:5743 1124:1657 781:2033 1029:3295 975:7429 755:8407 429:8316 457:3967
+Q|MÁV-Start|Sz||L55|650 357:8515 345:2906 355:4984 774:2804 772:1794 349:1521 348:2292 313:2837 391:2084 508:2342
+Q|MÁV-Start|Sz||L55|77 134:7128 73:2266 648:5282 629:4300 1079:3333 947:2884 451:5291 304:10967 303:1796 1129:5944 1128:2080 567:8804 775:4536 1109:9408
+Q|MÁV-Start|Sz||L55|1013 1130:22376 885:4091 942:4131 558:6108 1109:8185
+Q|MÁV-Start|Sz||L55|1109 775:9409 567:4537 1128:8805 1129:2080 303:5942 304:1796 451:10969 947:5292 1079:2884 629:3334 648:4302 73:5284 134:2267 77:7134
+Q|MÁV-Start|Sz||L55|1109 558:8188 942:6109 885:4131 1130:4092 1013:22371
+Q|MÁV-Start|Sz||L55|303 304:1796 451:10969 947:5292 1079:2884 629:3334 648:4302 73:5284 134:2267 77:7134
+Q|MÁV-Start|Sz||L55|77 134:7128 73:2266 648:5282 629:4300 1079:3333 947:2884 451:5291 304:10967 303:1796
+Q|MÁV-Start|Sz||L55|1291 544:3150 96:2829 817:9770 850:5476 1037:6061 542:1399 1110:5924 339:3622 341:2465 1117:4772 879:4548 1152:7586 485:9384 1109:11276
+Q|MÁV-Start|Sz||L55|129 1143:14939 1142:5910 1131:15962 357:3941
+Q|MÁV-Start|Sz||L55|129 779:12727 921:8228 1153:6265 532:1731 440:10896 1154:5323 994:3069 404:7413 953:2377 1090:4456 375:5615 708:2719 597:8148 662:4476 621:4160 624:3111 623:1894 628:6159 626:2164 782:15624 458:10960 457:1588
+Q|MÁV-Start|Sz||L55|129 779:12727 921:8228 1153:6265 532:1731 380:16390 954:5159 392:5066 1138:3556 333:11377 884:2678 365:10311
+Q|MÁV-Start|Sz||L55|628 627:2555 622:5528 1125:5800 951:4754 847:4559 849:4842 955:3122 903:3269 1040:3200 716:2680 887:3349 508:8117
+Q|MÁV-Start|Sz||L55|508 887:8115 716:3348 1040:2680 903:3200 955:3269 849:3122 847:4841 951:4558 1125:4753 622:5798 627:5527 628:2555
+Q|MÁV-Start|Sz||L55|357 1131:3941 1142:15956 1143:5908 129:14930
+Q|MÁV-Start|Sz||L55|937 941:1993 938:5462 454:3162 948:6198 443:4235 369:3869 1032:5598 620:5837 952:5744 632:7333 322:4006 405:6833 655:3716 501:10125 744:5724 949:4099 950:2122 920:2677 1068:3941 626:5274 628:2181
+Q|MÁV-Start|Sz||L55|628 626:2181 1068:5275 920:3941 950:2677 949:2122 744:4099 501:5724 655:10128 405:3716 322:6834 632:4006 952:7336 620:5743 1032:5838 369:5599 443:3870 948:4235 454:6199 938:3162 941:5464 937:1993
+Q|MÁV-Start|Sz||L55|1109 485:11281 1152:9387 879:7588 1117:4548 341:4773 339:2466 1110:3622 542:5924 1037:1399 850:6063 817:5478 96:9774 544:2829 1291:3150
+Q|MÁV-Start|Sz||L55|457 458:1588 782:10959 626:15624 628:2164 623:6160 624:1894 621:3110 662:4160 597:4475 708:8145 375:2719 1090:5613 953:4456 404:2377 994:7411 1154:3069 440:5322 532:10894 1153:1732 921:6267 779:8229 129:12736
+Q|MÁV-Start|Sz||L55|999 653:5673 537:1387 967:4309 838:4713 681:3619 932:3556
+Q|MÁV-Start|Sz||L55|365 366:3339 710:3273 442:6183 658:5735 811:3424 765:3394 1005:4301 802:7418 996:2255 999:5019 852:18624
+Q|MÁV-Start|Sz||L55|365 884:10317 333:2678 1138:11384 392:3557 954:5067 380:5160 532:16402 1153:1732 921:6267 779:8229 129:12736
+Q|MÁV-Start|Sz||L55|932 681:3556 838:3620 967:4714 537:4310 653:1387 999:5674
+Q|MÁV-Start|Sz||L55|763 709:1358 800:9648 393:2708 776:6451 1114:3935
+Q|MÁV-Start|Sz||L55|1114 776:3935 393:6452 800:2709 709:9654 763:1358
+Q|MÁV-Start|Sz||L55|457 429:3967 755:8314 975:8405 1029:7429 781:3295 1124:2033 798:1657 575:5742 421:2820 738:3993 770:3628 410:8074 319:1794 880:7279 338:6965 337:3278
+Q|MÁV-Start|Sz||L55|825 962:6804 963:1944 644:7536 819:4234 680:2681 450:3642 525:2709 886:4680 302:5041 676:3186 677:2424 507:4468 691:4381 1088:4140 1051:3280 1150:4495
+Q|MÁV-Start|Sz||L55|825 791:13454 684:8961 773:6511 822:8688 824:4559 577:4521 833:4336 778:5543
+Q|MÁV-Start|Sz||L55|1150 1051:4494 1088:3280 691:4241 507:4280 677:4467 676:2475 301:3412 886:4789 525:4661 450:2684 679:3872 819:2460 644:4369 963:7492 962:2039 825:6620
+Q|MÁV-Start|Sz||L55|445 446:2995 325:4897 399:6354 551:5032 1046:3290 595:11208 825:14778
+Q|MÁV-Start|Sz||L55|445 446:2995 325:4897 456:5357 554:3708 1035:4306 328:5122 818:6114 834:6190 827:2643 820:7938 822:8351 824:4559 577:4521 833:4336 778:5543
+Q|MÁV-Start|Sz||L55|825 595:14869 1046:11110 551:3289 399:5170 325:6366 446:4747 445:2990
+Q|MÁV-Start|Sz||L55|825 512:6439 835:3002 529:5909 1118:3860 895:6836 1064:5717 1036:6200 754:7122 1001:4159 1034:6880 1033:2830 1058:8391 569:5541 503:9540 225:5155 230:12852 483:7085 430:6333 749:8659 751:7259 1306:2006 1006:6541 511:6120
+Q|MÁV-Start|Sz||L55|1263 883:2768 583:9700 1002:3308 961:2765 387:4022 513:11502 514:2213 984:11603 1137:13997
+Q|MÁV-Start|Sz||L55|496 1086:5007 1085:1880 689:3830 688:1939 778:5902 874:5579 784:6375 1119:4628 1135:3738 674:2216 1098:900 543:2947 329:4570 596:5124 1070:2453 760:6734 484:3788 1150:4955
+Q|MÁV-Start|Sz||L55|778 823:5567 786:5589 1047:5966
+Q|MÁV-Start|Sz||L55|1150 484:4954 760:3787 1070:6734 596:2452 329:5123 543:4569 1098:2947 674:899 1135:2216 1119:3738 784:4628 874:6375 778:5578 688:5901 689:1939 1085:3831 1086:1880 496:5008
+Q|MÁV-Start|Sz||L55|1140 918:1480 515:3182 598:6944 669:3498 804:1665 856:4170 496:3736
+Q|MÁV-Start|Sz||L55|496 856:3737 804:4169 669:1665 598:3498 515:6942 918:3182 1140:1480
+Q|MÁV-Start|Sz||L55|1047 786:5967 823:5591 778:5568
+Q|MÁV-Start|Sz||L55|778 833:5540 577:4335 824:4520 822:4557 820:8347 827:7935 834:2642 818:6188 328:6112 1035:5121 554:4305 456:3708 325:5506 446:4747 445:2990
+Q|MÁV-Start|Sz||L55|778 833:5540 577:4335 824:4520 822:4557 773:8690 684:6511 791:8964 825:13465
+Q|MÁV-Start|Sz||L55|1135 1136:6899 832:4486 906:4565 1095:1995 342:6482 721:4576 497:2662 719:3783 326:4184 810:5046 841:5132 826:4884 825:3371
+Q|MÁV-Start|Sz||L55|825 826:3371 841:4884 810:5132 326:5046 719:4183 497:3783 721:2662 342:4576 1095:6484 906:1995 832:4565 1136:4487 1135:6902
+Q|MÁV-Start|Sz||L55|1097 821:8827 995:3846 1121:5454 560:5649 783:4183 693:3738 447:4139 445:2433
+Q|MÁV-Start|Sz||L55|445 447:2433 693:4138 783:3738 560:4183 1121:5649 995:5454 821:3846 1097:8828
+Q|MÁV-Start|Sz||L55|1263 1239:8830 956:10397 1236:13971 1258:8101 1237:8480 1242:12631 1261:5740
+Q|MÁV-Start|Sz||L55|1137 984:14009 514:11611 513:2213 387:11505 961:4023 1002:2765 583:3308 883:9701 1263:2768
+Q|MÁV-Start|Sz||L55|1137 837:8337 931:10278 756:6486 699:4007 929:6881 930:1593 617:4820 548:1318 547:5901 1245:8261 1238:7243
+Q|MÁV-Start|Sz||L55|1137 984:16600 697:7035 471:18227 540:16316
+Q|MÁV-Start|Sz||L55|1238 1245:7242 383:1056 547:7205 548:5903 930:6141 929:1593 699:6883 756:4007 931:6487 837:10283 1137:8340
+Q|MÁV-Start|Sz||L55|1238 698:19048 396:7571 741:5081 730:6837 750:7183 1111:3011 1112:2204 378:3220 748:4430
+Q|MÁV-Start|Sz||L55|1238 1044:10134 438:6097 437:3976 845:7124 842:7800 1014:11705 702:8413 563:9996 564:2482 983:21791 1161:4248
+Q|MÁV-Start|Sz||L55|540 471:16328 697:18252 984:7038 1137:16658
+Q|MÁV-Start|Sz||L55|748 378:4431 1112:3221 1111:2204 750:3011 730:7187 741:6841 396:5082 698:7574 1238:19114
+Q|MÁV-Start|Sz||L55|748 873:6017 321:3001 803:1964 1083:4286 633:10314 843:7191 842:1982 844:2064 806:10468 656:7721 670:3575 424:9119 425:1309 940:3268 977:4414 561:5874 888:3132 752:10990
+Q|MÁV-Start|Sz||L55|842 541:3350 998:2680 613:3597 523:5352 615:4066 493:6401 893:3806 455:3178 997:7652
+Q|MÁV-Start|Sz||L55|752 888:10987 561:3132 977:5874 940:4413 425:3267 424:1309 670:9116 656:3574 806:7718 844:10468 842:2064 843:1982 633:7189 1083:10313 803:4286 321:1964 873:3001 748:6016
+Q|MÁV-Start|Sz||L55|563 564:2483 777:10300 758:6804 695:5366 986:3390 997:8405
+Q|MÁV-Start|Sz||L55|997 986:8403 695:3390 758:5365 777:6802 564:10295 563:2484
+Q|MÁV-Start|Sz||L55|997 576:2038 434:11307 435:1452 687:4340 651:4282 530:4522 436:3110 1127:4406 212:2723
+Q|MÁV-Start|Sz||L55|1022 973:9751 1060:6891 646:6223 336:3805 736:4805 1053:5169 578:3341 704:4143 706:7190 808:9871 576:10194 997:2040
+Q|MÁV-Start|Sz||L55|1022 296:6495 1139:4744 612:5125 1028:5147 610:8177 989:6744 609:1752 608:2180 603:7681 606:12481 611:9369 1120:6628
+Q|MÁV-Start|Sz||L55|1022 973:9698 1060:6941 890:8192 700:2869 752:12262 795:10351 540:8462 439:10983 745:8724 780:6188 1238:10353 698:16632 722:12173
+Q|MÁV-Start|Sz||L55|997 576:2040 808:10195 706:9872 704:7191 578:4143 1053:3341 736:5169 336:4806 646:3805 1060:6224 973:6894 1022:9759
+Q|MÁV-Start|Sz||L55|997 455:7654 893:3178 493:3805 615:6400 523:4066 613:5351 998:3597 541:2680 842:3350
+Q|MÁV-Start|Sz||L55|212 1127:2722 436:4405 530:3110 651:4523 687:4283 435:4341 434:1452 576:11302 997:2038
+Q|MÁV-Start|Sz||L55|212 933:5877 861:4278 862:3367 426:6106 672:3073 671:5972 619:3853 363:2674 1003:2807 1116:2804 980:2535 599:1311 665:7570 1161:5802
+Q|MÁV-Start|Sz||L55|713 919:1316 1078:1916 1050:1684 1048:2278 1049:4045 406:3756 863:7062 212:3270
+Q|MÁV-Start|Sz||L55|212 863:3270 406:7065 1049:3757 1048:4046 1050:2278 1078:1684 919:1916 713:1316
+Q|MÁV-Start|Sz||L55|511 1006:6122 1306:6544 751:2007 749:7263 430:8665 483:6336 230:7063 1307:12870 503:4510 569:9534 1058:5541 1033:8405 1034:2827 1001:6882 754:4159 1036:7119 1064:6199 895:5718 1118:6834 529:3860 835:5906 512:3002 825:6437
+Q|MÁV-Start|Sz||L55|529 368:4004 1052:2427 660:3222 559:4297 1059:3732
+Q|MÁV-Start|Sz||L55|1001 754:4163 401:7381 985:3461 487:2294 839:5697 402:6368 960:6230 964:9632
+Q|MÁV-Start|Sz||L55|1069 690:2528 371:1746 602:6399 857:1969 976:3905 992:4292 991:1041 370:3759 993:4640 475:4517 476:2483 407:2299 403:4249 314:1243 925:3860 927:2050 1011:2189 759:4799 225:1459
+Q|MÁV-Start|Sz||L55|225 759:1459 1011:4802 927:2189 925:2049 314:3861 403:1243 407:4250 476:2299 475:2483 993:4518 370:4641 991:3760 992:1041 976:4292 857:3906 602:1969 371:6401 690:1747 1069:2528
+Q|MÁV-Start|Sz||L55|1146 1147:2306 398:6845 397:2292 875:2492 894:4210 463:4919 1094:3821 926:2126 635:3503 636:1901 928:5783 925:6282 759:9038 225:1474
+Q|MÁV-Start|Sz||L55|225 759:1474 925:9041 928:6291 636:5784 635:1901 926:3504 1094:2126 463:3821 894:4920 875:4211 397:2496 398:2290 1147:6843 1146:2305
+Q|MÁV-Start|Sz||L55|1059 1023:3075 482:1650 1061:3469 1043:5142 553:6761 552:2085 550:5720 557:6635 549:8945 1149:6985 555:2058 616:944 1042:8124 445:4491
+Q|MÁV-Start|Sz||L55|445 1042:4491 616:8125 555:944 1149:2058 549:6988 557:8946 550:6635 552:5722 553:2085 1043:6761 1061:5143 482:3469 1023:1650 1059:3076
+Q|MÁV-Start|Sz||L55|1161 665:5804 599:7571 980:1311 1116:2535 1003:2804 363:2807 619:2674 671:3853 672:5974 426:3073 862:6107 861:3367 933:4278 212:5878
+Q|MÁV-Start|Sz||L55|1009 1010:2248 390:5272 389:974 761:3097 978:5982 309:4967 479:3116 480:3594 477:2055
+Q|MÁV-Start|Sz||L55|477 480:2055 479:3594 309:3117 978:4968 761:5984 389:3097 390:974 1010:5274 1009:2248
+Q|MÁV-Start|Sz||L55|1120 611:6626 606:9365 603:12472 608:7678 609:2180 989:1752 610:6742 1028:8174 612:5145 1139:5189 296:4650 1022:6529
+Q|MÁV-Start|Sz||L55|964 960:9626 402:6227 839:6367 487:5694 985:2294 401:3460 754:7379 1001:4162
+Q|MÁV-Start|Sz||L55|1303 570:2469 1308:9867 769:5184 1301:4139 1304:6456 433:2074 1302:4611 331:3642 1008:2407 1309:1171 840:7986 503:6160 1307:4513
+Q|MÁV-Start|Sz||L55|1307 503:4509 840:6161 1309:7987 1008:1171 331:2407 1302:3643 433:4612 1304:2074 1301:6458 769:4139 1308:5184 570:9869 1303:2469
+Q|MÁV-Start|Sz||L55|289 290:2192 527:3560 1063:2273 922:1778 739:4713 1001:5931
+Q|MÁV-Start|Sz||L55|1001 739:5933 922:4714 1063:1778 527:2273 290:3561 289:2192
+Q|MÁV-Start|Sz||L55|1059 559:3731 660:4297 1052:3222 368:2427 529:4005
+Q|MÁV-Start|Sz||L55|1238 780:10267 746:6729 439:8192 540:10987 795:8471 752:10358 700:12340 890:2802 1060:8195 973:6894 1022:9759
+Q|MÁV-Start|Sz 6627||L55|511 753:5927 478:3481 701:3650 877:7919 1054:8862 481:9727 579:21019 686:6529 362:8654 787:8083 724:6735 666:1874 1042:4625 445:4531
+Q|MÁV-Start|Sz 6670||L55|445 1042:4531 666:4626 724:1875 787:6737 362:8087 686:8652 579:6528 580:6344 836:9578 481:5101 1054:9728 877:8866 701:7923 478:3650 753:3481 511:5929
+Q|MÁV-Start|Sz 9612||L55|650 317:2644 531:1226 1123:2318 351:2977 372:3092 347:3279 896:6134 286:4099 944:19061 1141:5121 524:1526 1091:2452
+Q|MÁV-Start|Sz 9639||L55|286 896:3244 347:6133 351:6371 1123:2977 531:2319 317:1226 650:2644 357:8501
+Q|MÁV-Start|Sz 9648||L55|357 650:8503 317:2644 531:1226 1123:2318 351:2977 347:6372 896:6134 286:3244
+Q|MÁV-Start|Sz 9649||L55|1091 524:2451 1141:1526 944:5120 945:3594 1092:4812 1093:2688 286:9290 896:4098 347:6133 351:6371 1123:2977 531:2319 317:1226 650:2644
+Q|MÁV-Start|Train 102||L55|683 488:7735 573:8267 574:7046 1038:2415 663:8955 664:2529 293:4724 705:11050 645:14153 661:6262
+Q|MÁV-Start|Z30|#FECC00|L55|414 1289:4084 899:15610 1077:4200 737:8567 364:3149 864:4997 694:2465 1105:3163 1106:1436 528:2194 300:1760 452:3619 1013:11373
+Q|MÁV-Start|Z30|#FECC00|L55|414 1289:4084 899:15610 1077:4200 737:8567
+Q|MÁV-Start|Z30|#FECC00|L55|1013 452:11374 300:3564 528:1816 1106:2320 1105:1435 694:3040 864:2557 364:5078 737:2983 1077:8564 899:4379 1289:15449 414:4116
+Q|MÁV-Start|Z30|#FECC00|L55|737 1077:8564 899:4379 1289:15449 414:4116
+Q|MÁV-Start|Z42|#FECC00|L55|414 1289:4084 900:15984 1030:8013 593:18101 891:7732 466:26815
+Q|MÁV-Start|Z42|#FECC00|L55|414 1289:4084 900:15984 1030:8013 593:18101 891:7732 299:8067 703:7275 897:3401 467:4828 466:2595
+Q|MÁV-Start|Z42|#FECC00|L55|414 1289:4084 900:15984 1030:8013 593:18101 891:7732 299:8067 703:7275 897:3401 466:7423
+Q|MÁV-Start|Z42|#FECC00|L55|466 467:2595 897:4828 703:3401 299:7277 593:12207 1030:18119 900:8038 1289:15898 414:4115
+Q|MÁV-Start|Z50|#FECC00|L55|16 1155:4097 637:3728 639:2805 506:6395 766:19916 767:6304 865:4281 308:7135 419:4707 420:2367 413:3696 418:6372
+Q|MÁV-Start|Z50|#FECC00|L55|16 1155:4097 637:3728 639:2805 506:6395 766:19916 767:6304 865:4281 308:7135 419:4707 420:2367 413:3696 418:6372 295:16241 1022:12275
+Q|MÁV-Start|Z50|#FECC00|L55|418 413:6367 420:3572 419:2277 308:4780 865:7139 767:4467 766:6122 506:20020 639:6507 637:2722 1155:3794 16:3927
+Q|MÁV-Start|Z50|#FECC00|L55|1022 294:12547 418:16118 413:6367 420:3572 419:2277 308:4780 865:7139 767:4467 766:6122 506:20020 639:6507 637:2722 1155:3794 16:3927
+Q|MÁV-Start|Z60|#FECC00|L55|1290 638:4478 908:3122 943:29561 1016:2344 1072:4510 1000:5102 794:4849 1074:6220 492:3634 1073:2916 1071:6397 612:9928 1139:5189 1022:9661
+Q|MÁV-Start|Z60|#FECC00|L55|1022 1139:9663 612:5221 1071:10010 1073:6252 492:2941 1074:3586 794:6377 1000:4701 1072:5092 1016:4519 943:2346 908:29626 638:3037 1290:4522
+Q|MÁV-Start|Z70|#FECC00|L55|40 1020:974 1148:3419 797:4177 26:1310 667:6173 1108:1444 43:9444 16:44248
+Q|MÁV-Start|Z70|#FECC00|L55|16 43:44247 1107:9665 667:1371 26:6022 797:1309 1148:4228 1020:3353 40:944
+Q|MÁV-Start|Z72|#FECC00|L55|16 1099:5161 601:2139 327:2607 946:8324 869:4504 972:1451 685:5236 866:1660 868:3209 867:2183 717:2102 459:5023 490:2905 489:4545
+Q|MÁV-Start|Z72|#FECC00|L55|16 601:7609 327:2607 330:2388 869:10440 972:1451 685:5236 866:1660 868:3209 867:2183 717:2102 459:5023 490:2905 489:4545
+Q|MÁV-Start|Z72|#FECC00|L55|16 601:7609 327:2607 946:8324 869:4504 972:1451 685:5236 866:1660 868:3209 867:2183 717:2102 459:5023 490:2905 489:4545
+Q|MÁV-Start|Z72|#FECC00|L55|16 601:7609 327:2607 946:8324 869:4504 972:1451 685:5236 866:1660 726:1284 868:1924 717:5343 459:5023 490:2905 489:4545
+Q|MÁV-Start|Z72|#FECC00|L55|16 601:7609 327:2607 946:8324 869:4504 972:1451 685:5236 866:1660 726:1284 868:1924 867:2183 717:2102 459:5023 490:2905 489:4545
+Q|MÁV-Start|Z72|#FECC00|L55|489 490:4544 459:2905 717:5087 867:2036 868:2183 866:3208 685:1660 972:5224 869:1614 946:4281 327:8463 601:2598 1099:2250 16:5579
+Q|MÁV-Start|Z72|#FECC00|L55|489 490:4544 459:2905 717:5087 867:2036 868:2183 726:1924 866:1284 685:1660 972:5224 869:1614 946:4281 327:8463 601:2598 16:7281
+Q|MÁV-Start|Z72|#FECC00|L55|489 490:4544 459:2905 717:5087 867:2036 868:2183 866:3208 685:1660 972:5224 869:1614 946:4281 327:8463 601:2598 16:7281
+Q|MÁV-Start|Z72|#FECC00|L55|489 490:4544 459:2905 717:5087 868:5276 726:1924 866:1284 685:1660 972:5224 869:1614 946:4281 327:8463 601:2598 16:7281
+Q|MÁV-Start;Србија Воз|Re/Sz||L55|1160 1156:7947 1158:7673 1157:8419 1159:6953 1162:5093 1161:7554
+Q|MÁV-Start;Србија Воз|Sz/Re||L55|1161 1162:7608 1159:5036 1157:6950 1158:8416 1156:7671 1160:7947
+Q|VOR|R93||L55|1197 1176:3623 1185:2865 1164:2898 1198:4299 1181:2993 1180:798 1179:2500 1178:5669 1193:7896
+Q|VOR|R93||L55|1193 1178:7899 1179:5670 1180:2500 1181:797 1198:2994 1164:4300 1185:2898 1176:2865 1197:3614
+Q|VOR|REX6||L55|1168 1193:9168 1165:7743 1169:4116 1199:5800 1182:5653 1186:7792 1170:1873 1300:35484 1299:3516 1167:37893 1191:6299 1192:1578 1184:5792 1174:3213 1189:5833 1177:4915 1166:4839
+Q|VOR|REX6||L55|1166 1177:4839 1189:4914 1174:5831 1184:3213 1192:5758 1191:1608 1167:6303 1299:38006 1300:3542 1170:35483 1186:1886 1182:7789 1199:5652 1169:5799 1165:4115 1193:7739 1168:9166
+Q|VOR|REX62||L55|1167 1191:6298 1192:1580 1200:11903 1188:5426 1292:5511 1291:46397
+Q|VOR|REX62||L55|1291 1292:46520 1188:5513 1200:5430 1192:11908 1191:1576 1167:6302
+Q|VOR|REX63||L55|1187 1163:2316 1196:2508 1175:4979 1183:3724 1173:4860 1194:6466 1195:5419 1190:3925 1172:10550 1171:2461
+Q|VOR|REX63||L55|1171 1172:2461 1190:10553 1195:3925 1194:5419 1173:6467 1183:4861 1175:3724 1196:4981 1163:2508 1187:2316
+Q|VOR|REX93||L55|1197 1180:17470 1179:2500 1178:5669 1193:7896 1168:9166
+Q|VOR|REX93||L55|1168 1193:9168 1178:7899 1179:5670 1180:2500 1197:17475
+Q|Verkehrsverbund Steiermark|R530||L55|1201 1202:3544 1203:6116 1204:6938 1205:2929
+Q|Verkehrsverbund Steiermark|R530||L55|1205 1204:2928 1203:6937 1202:6117 1201:3544
+Q|Volánbusz|319||L55|1209 1206:583 1210:950 1208:243 1207:2018
+Q|Volánbusz|319||L55|1207 1208:2018 1210:243 1206:950 1209:583
+Q|ZSSK; GySĚV|Bratislava-Petržalka -> Hegyeshalom||L55|1166 1213:10396 1212:6525 1211:2633 1292:10713
+Q|lcn|Bezina-völgyi Erdei Vasút||L55|1215 1214:4249
+Q|local|Pálházai Állami Erdei Vasút||L55|1224 1225:1237 1221:1597 1220:1869 1222:3353 1226:901
+Q|local|Pálházai Állami Erdei Vasút||L55|1226 1222:901 1220:3353 1221:1869 1224:2834
+Q|local|S210|#00A0E3|L55|641 642:2319 643:1540 757:3767 905:945 571:2485
+Q|local|S210|#00A0E3|L55|571 905:2484 757:945 643:3767 642:1540 641:2319
+Q|local|Személyvonat|#00A0E3|L55|1218 1217:696 1228:1246 1219:2178 1229:1557 1216:933 1223:1068 1227:754
+Q|local|Személyvonat|#00A0E3|L55|1218 1228:1648 1219:2178 1229:1557 1216:933 1223:1068 1227:754
+Q|local|Személyvonat|#00A0E3|L55|1227 1223:779 1216:891 1229:971 1219:1562 1228:2146 1217:1281 1218:683
+Q|local|Személyvonat|#00A0E3|L55|1227 1223:779 1216:891 1229:971 1219:1562 1228:2146 1218:1644
+Q|rail|307||L55|1253 1234:1879
+Q|rail|307||L55|1234 1253:1879
+Q|rail|308||L55|1232 1230:1533 1256:2890 1254:549 1265:610
+Q|rail|308||L55|1265 1254:610 1256:549 1230:2890 1232:1533
+Q|rail|310||L55|1246 1247:9612
+Q|rail|310||L55|1247 1246:9616
+Q|rail|311||L55|1257 1249:2123 1259:5187 1243:1077
+Q|rail|311||L55|1243 1259:1077 1249:5188 1257:2123
+Q|rail|323||L55|1269 1270:1477 1268:1630
+Q|rail|323||L55|1268 1269:3107
+Q|rail|39b||L55|1266 1267:1390 1262:2147 1250:4062 1233:5326
+Q|rail|39b||L55|1233 1250:5324 1262:4061 1267:2146 1266:1390
+Q|rail|8a||L55|1252 1235:1402 1260:577 1244:833
+Q|rail|8a||L55|1244 1260:833 1235:577 1252:1402
+Q|rail|Mátravasút||L55|3 2:760 1251:2675 1272:843 1273:881 1248:701 1241:1253 1264:978 1255:1388 1231:2686 1271:790
+Q|rail|Mátravasút||L55|1271 1255:3476 1264:1388 1241:978 1248:1253 1273:701 1272:881 1251:843 2:2675 3:760
+Q|rail|R Békéscaba => Salonta||L55|1238 1245:7230
+Q|rail|R Oradea => Püspökladány||L55|1261 1242:5747 1237:12461 1258:8593 1236:8172 1239:24487 1263:8820
+Q|rail|R Salonta => Békéscaba||L55|1245 1238:7231
+Q|rwn|G71|#B0CB1F|L55|16 915:7654 1278:7779 1280:970 1281:8407 1287:1402 1277:1569 1288:1702 1283:1252 1285:4359 1286:1057 1102:2600 1276:1670 1282:2940 1100:2624 43:1564
+Q|rwn|S71|#00A0E3|L55|16 916:2956 592:3007 915:1691 1284:1629 1274:3720 1278:2428 1280:970 1279:1245 1275:3201 1281:3960 1287:1402 1277:1569 1288:1702 1283:1252 1285:4359 1286:1057 1276:4271 1282:2940 1100:2624 43:1564
+Q|ÖBB railjet;DB InterCityExpress|ICE 90|#0050FF|H220|1295 1296:148901 1293:124334 1297:122522 1300:60615 1299:3524 1292:71941 1294:11637 1291:34786 1298:67682 1289:56938 1290:8082
+Q|Železničná spoločnosť Slovensko|Train EC Hornád||X110|1290 562:65763 1306:71111 1307:44333 1309:18658 1302:7222 1304:6687 1301:6458 1308:9324 1303:12494 1305:26289
+Q|Укрзалізниця|Vienna-Kiev||L55|1311 1310:508652
 T|46.15269|18.07531|Abaliget
 T|48.30880|21.19807|Abaújkér
 T|48.28650|21.18121|Abaújszántó
@@ -1714,3 +3487,203 @@ T|46.82912|16.41613|Őriszentpéter
 T|47.84703|19.93212|Őrlőmű
 T|46.29781|16.88763|Őrtilos
 T|46.38994|20.01617|Őszeszék
+B|46.35031|20.80041|6-os major
+B|47.47768|20.59475|Abádszalók, autóbusz-állomás
+B|47.10647|17.56600|Ajka Autóbusz-állomás
+B|47.10593|17.57210|Ajka, vasútállomás
+B|48.41012|20.65493|Alsótelekes, élelmiszerbolt
+B|46.98554|17.97527|Alsóörs autóbusz-állomás
+B|46.29819|18.53503|Autóbusz állomás Bonyhád
+B|47.64998|18.31630|Autóbusz-állomás
+B|47.74702|18.11415|Autóbusz-állomás
+B|47.45028|21.40313|Autóbuszállomás
+B|48.09663|20.77022|Avas kilátó autóbusz-végállomás
+B|47.42708|19.16051|BKV Zrt. Dél-Pesti Autóbuszgarázs
+B|46.18364|18.95605|Baja, autóbusz-állomás
+B|48.08352|19.29672|Balassagyarmat, autóbusz-állomás
+B|47.03040|18.01507|Balatonalmádi bus station
+B|46.28701|21.01961|Battonya, autóbusz-állomás
+B|47.22249|21.53367|Berettyóújfalu, autóbusz-állomás
+B|46.26403|19.22385|Borota,Szövetkezeti bolt
+B|47.75152|18.62345|Botlik-Trans Kft.
+B|46.08526|18.26971|Budai Állomás
+B|47.50707|18.92130|Budakeszi, Dózsa György tér
+B|47.47427|19.09859|Budapest Nepliget Bus Station
+B|47.43076|19.07153|Budapest, Csepel, Szent Imre tér
+B|47.46391|19.02273|Budapest, Kelenföld vasútállomás
+B|47.43227|19.06671|Budapest, Vermes Miklós utca
+B|47.53194|19.06566|Budapest, Árpád híd autóbusz-állomás
+B|47.55886|19.07836|Budapest, Újpest-Városkapu XIII. kerület
+B|46.61989|18.85877|Bus station
+B|47.04690|16.80285|Buszpályaudvar
+B|47.66907|21.51313|Buszállomás
+B|46.12823|19.32964|Bácsalmás, autóbusz-állomás
+B|46.13494|19.42313|Bácsszölös, autóbusz-váróterem
+B|46.77280|21.12610|Békés, autóbusz-állomás
+B|46.66943|21.08318|Békéscsaba, autóbusz-állomás
+B|46.86537|20.48460|Békésszentandrás, Bethlen Gábor utca
+B|46.87126|20.48137|Békésszentandrás, autóbusz-váróterem
+B|45.96952|18.51553|Bóly, autóbusz-váróterem
+B|47.18215|19.80392|Cegléd, autóbusz-állomás
+B|47.26095|17.15245|Celldömölk, vasútállomás
+B|47.83699|22.68030|Csenger, autóbusz-állomás
+B|46.12814|19.47131|Csikéria, autóbusz-váróterem
+B|46.70872|20.14767|Csongrád, autóbusz-állomás
+B|47.61120|17.25328|Csorna, autóbusz-állomás
+B|46.25329|17.10009|Csurgó, autóbusz-állomás
+B|47.03144|17.16773|Dabronc
+B|47.52562|21.61809|Debrecen, autóbusz-állomás
+B|47.10527|17.43840|Devecser, autóbusz-pályaudvar
+B|46.80506|18.92633|Dunaföldvár, autóbusz-állomás
+B|46.95832|18.93698|Dunaújváros central bus station
+B|47.51444|19.53410|Dány, Bethlen Gábor utca
+B|48.29555|20.74304|Edelény, autóbusz-állomás
+B|47.90056|20.37147|Eger, autóbusz-állomás
+B|48.32826|21.11767|Encs autóbusz-állomás
+B|47.77910|18.74311|Esztergom, vasútállomás
+B|47.73078|18.67108|Farkas-Transz Kft.
+B|47.98984|22.51550|Fehérgyarmat, autóbusz-állomás
+B|47.63890|18.30610|Fellner Jakab utca
+B|48.10902|20.67628|Felső-Majláth autóbusz-végállomás
+B|46.19402|19.18872|Felsőszentiván, autóbusz-váróterem
+B|46.74973|17.55802|Fonyód, vasútállomás
+B|47.61726|19.19519|Fót, autóbusz-állomás
+B|47.28928|21.37045|Földes, autóbusz-váróterem
+B|46.06683|18.22447|Főpályaudvar
+B|47.47358|18.99268|Gazdagréti lakótelep
+B|46.93969|20.83345|Gyomaendrőd, autóbusz-váróterem
+B|46.64241|21.27229|Gyula, autóbusz-állomás
+B|47.78269|19.93043|Gyöngyös, autóbusz-állomás
+B|47.68142|17.63637|Győr bus station
+B|47.02091|17.18645|Gógánfa
+B|47.02218|17.19812|Gógánfa
+B|47.59912|19.35267|Gödöllő, autóbusz-állomás
+B|47.45033|21.40315|Hajdúszoboszló, autóbusz-állomás
+B|46.94942|16.68623|Halastó, autóbusz-megálló
+B|45.85037|18.24259|Harkány, autóbusz-állomás
+B|47.17836|20.17602|Helyi autóbusz végállomás
+B|48.08752|19.79327|Helyi autóbusz-állomás
+B|46.34932|18.71149|Helyközi autóbusz-állomás
+B|47.13213|17.75013|Herend autóbusz-váróterem
+B|47.59389|20.28101|Heves, autóbusz-állomás
+B|46.41597|20.32909|Hódmezővásárhely, autóbusz-állomás
+B|47.93143|18.77679|Ipolytölgyes, Homokpuszta
+B|47.18390|18.40789|Jancsár utca
+B|47.69317|16.57272|Jereván lakótelep
+B|46.29930|19.32654|Jánoshalma, autóbusz-állomás
+B|47.51491|20.13917|Jászapáti, autóbusz-állomás
+B|47.50149|19.90940|Jászberény, autóbusz-állomás
+B|47.56639|19.71791|Jászfényszaru, autóbusz-váróterem
+B|47.36140|20.15569|Jászladány, Újszászi út
+B|47.43118|19.45010|Játszótér - Tanyák
+B|47.58962|17.03498|Kapuvár
+B|47.31989|20.92084|Karcag, aut. áll.
+B|47.31989|20.92086|Karcag, autóbusz-állomás
+B|46.91428|19.69820|Kecskemét, autóbusz-állomás
+B|47.46448|19.01810|Kelenföld vasútállomás M
+B|46.03603|18.22945|Kertváros
+B|46.75816|17.24647|Keszthely, autóbusz-állomás
+B|47.50007|18.02581|Kisbér, Autóbusz-állomás
+B|46.71151|19.85257|Kiskunfélegyháza, autóbusz-állomás
+B|46.43014|19.47668|Kiskunhalas, autóbusz-állomás
+B|46.46978|19.98172|Kistelek, autóbusz-állomás
+B|48.20929|22.07744|Kisvárda, autóbusz-állomás
+B|46.18959|18.26529|Komló Autóbusz-állomás
+B|47.70036|18.73013|Kréber Kft. Telephely
+B|47.36855|20.63256|Kunhegyes Autóbusz-állomás
+B|46.84266|20.29006|Kunszentmárton, autóbusz-pályaudvar
+B|47.70679|19.63375|Kutúrotthon autóbusz megálló
+B|47.47927|19.60249|Kóka, autóbusz-forduló
+B|47.01610|16.59809|Körmend
+B|47.38729|16.54458|Kőszeg, autóbusz-állomás
+B|46.66711|17.64406|Lengyeltóti
+B|46.62220|16.54072|Lenti, autóbusz-állomás
+B|48.21129|19.59817|Litke, Kultúrház
+B|47.38094|21.89141|Létavértes buszállomás
+B|48.08305|19.60408|Magyargéc
+B|46.21900|20.47634|Makó, autóbusz-állomás
+B|46.91715|19.66112|Margaréta otthon sofőrpihenő
+B|47.82037|20.90292|Mezőcsát, autóbusz-váróterem
+B|46.37137|20.81849|Mezőhegyes, 81-es major
+B|47.79751|20.56659|Mezőkövesd, autóbusz-állomás
+B|45.98930|18.68601|Mohács, autóbusz-állomás
+B|47.35052|19.44766|Monor, autóbusz-állomás
+B|47.87755|17.25588|Mosonmagyaróvár
+B|47.95146|22.31407|Mátészalka, autóbusz-állomás
+B|46.21482|19.37725|Mélykút autóbuszállomás
+B|47.36952|18.21585|Mór, autóbusz-állomás
+B|46.21648|19.89046|Mórahalom, autóbusz-állomás
+B|46.22759|17.35670|Nagyatád, autóbusz-állomás
+B|46.45651|16.98588|Nagykanizsa, autóbusz-állomás
+B|47.87648|21.85023|Nagykálló Autóbusz-állomás
+B|47.03301|19.78455|Nagykőrös, Szabadság tér
+B|47.00612|17.45451|Nyirád Buszforduló
+B|46.56412|20.66323|Orosháza, autóbusz-állomás
+B|46.72269|17.00835|Pacsa, autóbusz-állomás
+B|46.15395|18.32330|Petőfi akna
+B|47.62441|18.91732|Pitá Tours Bt. Telephely
+B|47.87128|21.11454|Polgár, autóbusz-állomás
+B|47.33200|17.46874|Pápa autóbusz-pályaudvar
+B|48.12864|20.78446|Repülőtér autóbusz-végállomás
+B|48.12844|20.78439|Repülőtér/Bosch
+B|47.92086|19.26251|Romhány, vasútállomás
+B|47.59587|18.38853|Régi autóbusz-állomás
+B|47.92686|19.13864|Rétság autóbusz-forduló
+B|47.52797|21.61349|Segner tér
+B|45.87453|17.85071|Sellye, autóbusz-váróterem
+B|45.85633|18.29255|Siklós, autóbusz-állomás
+B|46.90775|18.05565|Siófok, autóbusz-állomás
+B|46.58064|19.39028|Soltvadkert, autóbusz váróterem
+B|47.50141|19.10722|Stadion autóbusz-állomás
+B|46.86039|20.55493|Szarvas, autóbusz-állomás
+B|46.25709|20.14080|Szeged Bus Station
+B|48.24957|20.64753|Szent Flórián téri Autóbusz váróterem
+B|45.87534|17.65988|Szentborbás, forduló
+B|47.66012|19.07534|Szentendre, autóbusz-állomás
+B|46.65075|20.25979|Szentes, autóbusz-állomás
+B|46.95759|16.26476|Szentgotthárd autóbusz-állomás
+B|46.04409|17.80239|Szigetvár, autóbusz-állomás
+B|47.17801|20.19339|Szolnok
+B|47.23286|16.61540|Szombathely, autóbusz-állomás
+B|46.90816|19.68992|Széchenyi tér
+B|46.90820|19.68994|Széchényi téri Buszmegálló
+B|48.08146|19.52439|Szécsény, autóbusz-állomás
+B|47.18357|18.42436|Székesfehérvár, Vasútállomás
+B|47.18869|18.40950|Székesfehérvár, autóbusz-állomás
+B|46.36660|20.10595|Sándorfalva autóbusz-állomás
+B|48.32541|21.56634|Sárospataki autóbusz-állomás
+B|47.25418|16.92646|Sárvár, autóbusz-állomás
+B|48.38606|21.65698|Sátoraljaújhely, vasútállomás
+B|46.97679|17.28272|Sümeg Buszpályaudvar
+B|47.92379|20.37066|TESCO végállomás
+B|47.18611|20.20363|Tallin városrészi autóbuszállomás
+B|47.58689|18.39251|Tatabánya, autóbusz-állomás
+B|46.17538|19.30059|Tataháza, autóbusz-váróterem
+B|46.98051|20.25439|Tiszaföldvár, autóbusz-állomás
+B|47.62732|20.75682|Tiszafüred, autóbusz-állomás
+B|47.91927|21.02889|Tiszaújváros, MOL autóbusz-váróterem
+B|47.92976|21.03183|Tiszaújváros, autóbusz-állomás
+B|46.20453|19.53394|Tompa, autóbusz-váróterem
+B|47.28297|19.86790|Tápiószőlős, Tápiószőlősi elágazás
+B|47.17923|20.41424|Törökszentmiklós, autóbusz-állomás
+B|46.06583|18.18847|Uránváros
+B|47.04679|16.80292|Vasvár, autóbusz-állomás
+B|46.83299|16.84764|Vasútállomás
+B|47.84647|20.22555|Verpelét, autóbusz-pályaudvar
+B|47.09534|17.91415|Veszprém, autóbusz-állomás
+B|47.20809|18.43136|Videoton
+B|48.21726|20.26883|Volánbusz Járműfenntartási Telephely
+B|47.78164|19.12981|Vác, autóbusz-állomás
+B|47.36458|18.67732|Váli buszpályaudvar
+B|48.12761|22.30525|Vásárosnamény, autóbusz-állomás
+B|46.84500|16.84962|Zalaegerszeg, autóbusz-állomás
+B|46.55197|17.12347|Zalakaros, autóbusz-pályaudvar
+B|46.94498|17.07691|Zalaszentgrót, autóbusz-állomás
+B|47.26733|17.87690|Zirc, autóbusz-állomás
+B|48.40120|22.18234|Záhony, autóbusz-állomás
+B|47.37950|18.92534|Érd, autóbusz-állomás
+B|48.21877|20.28997|Ózd, autóbusz-állomás
+B|46.90145|20.38342|Öcsöd, autóbusz-állomás
+B|47.50150|19.13602|Örs vezér tere
+B|47.96159|21.74275|Örökösföld helyi autóbusz-végállomás
+B|48.10104|20.72995|Újgyőri főtér autóbusz-végállomás

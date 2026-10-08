@@ -1,5 +1,6 @@
 # Transit for Koode, CA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|51.04658|-114.06424|1 Street Southwest|CTrain|M
 S|51.01757|-114.06139|39 Avenue|CTrain|M
 S|51.04660|-114.06916|3 Street Southwest|CTrain|M
@@ -353,13 +354,17 @@ S|49.27454|-123.12190|Yaletown-Roundhouse|TransLink|M
 S|49.19427|-123.17834|YVR–Airport|TransLink|M
 S|48.72182|-122.51225|Bellingham|Alaska Marine Highway|W
 S|55.35368|-131.69461|Ketchikan|Alaska Marine Highway|W
+S|54.29583|-130.35318|Prince Rupert|Alaska Marine Highway|W
 S|56.09322|-117.56585||Alberta Transportation|W
 S|56.09538|-117.57020||Alberta Transportation|W
 S|57.97315|-117.14644||Alberta Transportation|W
 S|57.97402|-117.13556||Alberta Transportation|W
+S|44.19266|-76.74068|Millhaven Wharf|Amherst Island Ferry|W
+S|44.17213|-76.70312|Stella Wharf|Amherst Island Ferry|W
 S|49.27249|-123.13394|Granville Island Terminal (Aquabus)|Aquabus|W
 S|49.27424|-123.13437|Hornby Terminal (Aquabus)|Aquabus|W
 S|49.27101|-123.11551|Spyglass Dock|Aquabus|W
+S|52.37527|-126.79515|Bella Coola|BC Ferries|W
 S|49.37949|-123.33135|Bowen Island (Snug Cove)|BC Ferries|W
 S|48.57725|-123.46734|Brentwood Bay|BC Ferries|W
 S|49.52639|-124.84655|Buckley Bay|BC Ferries|W
@@ -382,16 +387,21 @@ S|53.24627|-132.00895|Graham Island 2 (Skidegate)|BC Ferries|W
 S|49.51125|-124.70454|Hornby Island (Shingle Spit)|BC Ferries|W
 S|49.39556|-123.43320|Keats Island (Eastbourne)|BC Ferries|W
 S|49.39447|-123.48366|Keats Island (Keats Landing)|BC Ferries|W
+S|52.61127|-128.52579|Klemtu|BC Ferries|W
 S|49.49144|-124.35159|Lasqueti Island (False Bay)|BC Ferries|W
 S|50.62678|-127.01816|Malcolm Island (Sointula)|BC Ferries|W
 S|48.84470|-123.32483|Mayne Island (Village Bay) Berth 2|BC Ferries|W
 S|48.61399|-123.51777|Mill Bay|BC Ferries|W
 S|53.21149|-131.98876|Moresby Island (Alliford Bay)|BC Ferries|W
+S|49.19454|-123.95622|Nanaimo (Departure Bay) Berth 1|BC Ferries|W
 S|49.19351|-123.95540|Nanaimo (Departure Bay) Berth 2|BC Ferries|W
+S|49.19365|-123.95474|Nanaimo (Departure Bay) Berth 3|BC Ferries|W
 S|49.16252|-123.89097|Nanaimo (Duke Point)|BC Ferries|W
+S|49.16619|-123.93071|Nanaimo Harbour Ferry Terminal|BC Ferries|W
 S|49.16676|-123.93096|Nanaimo (Nanaimo Harbour)|BC Ferries|W
 S|48.80052|-123.31561|Pender Island (Otter Bay)|BC Ferries|W
 S|48.97073|-123.66127|Penelakut Island (Telegraph Harbour)|BC Ferries|W
+S|50.72556|-127.45687|Port Hardy (Bear Cove)|BC Ferries|W
 S|50.59261|-127.08525|Port McNeill|BC Ferries|W
 S|49.78142|-124.17710|Powell River (Saltery Bay)|BC Ferries|W
 S|49.83524|-124.53074|Powell River (Westview)|BC Ferries|W
@@ -403,7 +413,6 @@ S|48.88125|-123.57339|Salt Spring Island (Vesuvius Bay)|BC Ferries|W
 S|48.79809|-123.20138|Saturna Island (Lyall Harbour)|BC Ferries|W
 S|53.24640|-132.01045|Skidegate|BC Ferries|W
 S|49.75315|-124.00884|Sunshine Coast (Earls Cove)|BC Ferries|W
-S|49.43394|-123.47234|Sunshine Coast (Langdale)|BC Ferries|W
 S|49.79482|-124.62007|Texada Island (Blubber Bay)|BC Ferries|W
 S|48.98042|-123.67870|Thetis Island (Preedy Harbour)|BC Ferries|W
 S|49.00620|-123.12941|Vancouver (Tsawwassen) Berth 2|BC Ferries|W
@@ -413,14 +422,25 @@ S|49.00693|-123.13321|Vancouver (Tsawwassen) Berth 5|BC Ferries|W
 S|48.68952|-123.41175|Victoria (Swartz Bay) Berth 1|BC Ferries|W
 S|48.68959|-123.41023|Victoria (Swartz Bay) Berth 2|BC Ferries|W
 S|48.68915|-123.41022|Victoria (Swartz Bay) Berth 3|BC Ferries|W
-S|49.37596|-123.27161|West Vancouver (Horseshoe Bay) Berth 2|BC Ferries|W
+S|49.37603|-123.27188|Horseshoe Bay Berth 1 (Foot Access)|British Columbia Ferry Services|W
 S|49.37627|-123.27102|West Vancouver (Horseshoe Bay) Berth 3|BC Ferries|W
+S|48.82566|-125.13667|Bamfield East Dock|Bamfield Water Taxi|W
+S|48.83554|-125.13921|Bamfield West Dock|Bamfield Water Taxi|W
 S|44.66071|-65.75714|Digby|Bay Ferries|W
 S|45.25483|-66.06212|Saint John|Bay Ferries|W
+S|44.39944|-68.22581|Bar Harbor Ferry Terminal|Bay Ferries Limited|W
+S|43.83295|-66.12453|Yarmouth Ferry Terminal|Bay Ferries Limited|W
+S|52.13882|-128.14376|Bella Bella (McLoughlin Bay)|Bella Coola ↔ Bella Bella|W
+S|52.35253|-127.69316|Ocean Falls|Bella Coola ↔ Ocean Falls|W
 S|43.63387|-79.39772|Bathurst Street Terminal|Billy Bishop Airport|W
 S|43.63244|-79.39625|Billy Bishop Terminal|Billy Bishop Airport|W
 S|48.12184|-123.43073|Port Angeles|Black Ball Ferry Line|W
 S|48.42167|-123.37071|Victoria|Black Ball Ferry Line|W
+S|51.57306|-112.88584|Bleriot Ferry|Bleriot Ferry|W
+S|49.51775|-57.87560|Norris Point|BonTours|W
+S|49.50294|-57.91255|Woody Point|BonTours|W
+S|48.85211|-123.44578|Salt Spring Island (Long Harbour)|British Columbia Ferry Services|W
+S|49.43394|-123.47234|Sunshine Coast (Langdale)|BC Ferries|W
 S|49.39488|-117.54261||British Columbia Ministry of Transportation|W
 S|49.39547|-117.54594||British Columbia Ministry of Transportation|W
 S|49.60763|-117.05390||British Columbia Ministry of Transportation|W
@@ -447,6 +467,8 @@ S|49.19191|-122.72615|Port Kells|British Columbia Ministry of Transportation|W
 S|50.63477|-117.92889|Shelter Bay|British Columbia Ministry of Transportation|W
 S|54.02647|-125.77068|Southside|British Columbia Ministry of Transportation|W
 S|54.63443|-128.40905|South Usk|British Columbia Ministry of Transportation|W
+S|45.25717|-81.66400|Chi Cheemaun Ferry Terminal|Bruce Anchor Flowerpot Island Cruise|W
+S|45.29871|-81.61721|Flowerpot Island Dock|Bruce Anchor Flowerpot Island Cruise|W
 S|44.53746|-64.23820|Chester|CA:NS:R|W
 S|44.39611|-66.20421|East Ferry|CA:NS:R|W
 S|44.30296|-64.35928|East LaHave|CA:NS:R|W
@@ -459,6 +481,12 @@ S|45.99285|-60.98606|Little Narrows (west)|CA:NS:R|W
 S|44.46461|-64.17142|Tancook|CA:NS:R|W
 S|44.39604|-66.21369|Tiverton|CA:NS:R|W
 S|44.26566|-66.34792|Westport|CA:NS:R|W
+S|47.37859|-61.85664|Cap-aux-Meules|CMTA Traversier|W
+S|47.38047|-61.85392|Cap-aux-Meules|CMTA Traversier|W
+S|47.27744|-61.71858|Île d'Entrée|CMTA Traversier|W
+S|46.34921|-62.25181|Souris|CMTA Traversier|W
+S|50.71296|-127.49025|North Coast Trail Water Taxi - Port Hardy|Cape Scott Water Taxi|W
+S|50.85362|-127.86713|Shushartie Bay|Cape Scott Water Taxi|W
 S|43.62247|-79.37841|Centre Island|City of Toronto|W
 S|43.62789|-79.38907|Hanlan's Point Ferry Dock|City of Toronto|W
 S|49.27663|-123.13690|Aquatic Centre Dock (False Creek Ferries)|False Creek Ferries|W
@@ -469,20 +497,26 @@ S|49.27420|-123.10982|Plaza of Nations Dock|False Creek Ferries|W
 S|49.26942|-123.11876|Stamps Landing Dock|False Creek Ferries|W
 S|49.27249|-123.10565|Village Dock|False Creek Ferries|W
 S|49.27171|-123.11795|Yaletown Dock|False Creek Ferries|W
+S|45.76852|-66.13977|Gagetown|Gagetown-Jemseg Ferry|W
+S|45.76855|-66.13300|Lower Jemseg|Gagetown-Jemseg Ferry|W
 S|49.71108|-126.50635|Critter Cove|Get West Adventure Cruises|W
 S|49.67872|-126.11709|Gold River|Get West Adventure Cruises|W
 S|49.59334|-126.61652|Nootka Island|Get West Adventure Cruises|W
+S|49.60611|-99.44189|Stockton Ferry (Eastbound)|Glenboro – South Cypress|W
+S|49.60610|-99.44076|Stockton Ferry (Westbound)|Glenboro – South Cypress|W
 S|45.61080|-65.90222||Government of New Brunswick|W
 S|45.61387|-65.91242||Government of New Brunswick|W
 S|45.04690|-66.80916|Blacks Harbour|Government of New Brunswick|W
 S|45.02423|-66.93836|Deer Island|Government of New Brunswick|W
-S|45.45273|-65.98041|Gondola Point|Government of New Brunswick|W
+S|45.45301|-65.97994|Gondola Point|Gondola Point Ferry|W
 S|44.76133|-66.74691|Grand Manan Island|Government of New Brunswick|W
 S|44.66113|-66.75734|Grand Manan Island (Ingall's Head)|Government of New Brunswick|W
-S|45.35157|-66.21813|Hardings Point|Government of New Brunswick|W
-S|45.45767|-65.98407|Kingston Peninsula|Government of New Brunswick|W
+S|45.35177|-66.21840|Hardings Point|Government of New Brunswick|W
+S|45.33128|-66.11453|Kennebecasis|Government of New Brunswick|W
+S|45.45788|-65.98356|Kingston Peninsula|Gondola Point Ferry|W
 S|45.05153|-66.89487|Letete|Government of New Brunswick|W
-S|45.34849|-66.22364|Westfield|Government of New Brunswick|W
+S|45.32039|-66.08181|Millidgeville|Government of New Brunswick|W
+S|45.34869|-66.22382|Westfield|Government of New Brunswick|W
 S|44.62786|-66.72352|Whitehead Island|Government of New Brunswick|W
 S|47.54724|-54.88038|Bay L'Argent|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|47.63036|-52.92408|Bell Island|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
@@ -497,11 +531,13 @@ S|53.34411|-60.40073|Goose Bay|Government of Newfoundland and Labrador Departmen
 S|47.58898|-57.10144|Grey River|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|47.56035|-55.92786|Hermitage|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|55.45494|-60.22168|Hopedale|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.68394|-58.39546|La Poile|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|49.56740|-55.73605|Long Island|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|55.08473|-59.17118|Makkovik|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|47.63128|-56.22676|McCallum|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|56.54321|-61.68660|Nain|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|55.94438|-61.09072|Natuashish|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.39574|-54.66732|Petite Forte|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|49.56159|-55.73910|Pilley's Island|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|47.68065|-55.42961|Pool's Cove|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|47.62662|-52.85766|Portugal Cove|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
@@ -509,25 +545,69 @@ S|54.90816|-59.76637|Postville|Government of Newfoundland and Labrador Departmen
 S|47.52180|-57.38496|Ramea|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|47.63598|-55.21172|Rencontre East|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|54.18138|-58.42624|Rigolet|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.60903|-58.68995|Rose Blanche|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|47.39465|-54.57717|South East Bight Ferry Terminal|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
 S|48.83567|-53.69839|St. Brendan's|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|W
+S|50.94606|-109.80206|Estuary Ferry|Government of Saskatchewan|W
+S|52.49021|-106.28270|Hague Ferry East Terminal|Government of Saskatchewan|W
+S|52.49302|-106.28440|Hague Ferry West Terminal|Government of Saskatchewan|W
+S|50.90451|-106.91775|Riverhurst Ferry - East Shore Terminal|Government of Saskatchewan|W
+S|50.91747|-106.94013|Riverhurst Ferry - West Shore Terminal|Government of Saskatchewan|W
+S|52.83602|-106.09205|St. Laurent Ferry East Terminal|Government of Saskatchewan|W
+S|52.83551|-106.09504|St. Laurent Ferry West Terminal|Government of Saskatchewan|W
+S|52.94623|-106.43227|Wingard Ferry East Terminal|Government of Saskatchewan|W
+S|52.94640|-106.43554|Wingard Ferry West Terminal|Government of Saskatchewan|W
+S|44.66405|-63.56926|Dartmouth Ferry Terminal|Halifax - Dartmouth Ferry|W
+S|44.64898|-63.54940|Woodside Ferry Terminal|Halifax - Dartmouth Ferry|W
+S|44.13006|-76.33526|Ferry to Wolfe Island|Horne's Ferry|W
+S|44.13545|-76.35416|Horne's Ferry|Horne's Ferry|W
+S|49.16354|-123.92249|Hullo - Nanaimo|Hullo Ferries|W
+S|49.29031|-123.11635|Hullo - Vancouver|Hullo Ferries|W
+S|47.05647|-70.53422|Gare fluviale de L'Isle-aux-Grues|L'Isle-aux-Grues–Montmagny|W
+S|46.98898|-70.55390|Gare fluviale de Montmagny|L'Isle-aux-Grues–Montmagny|W
+S|53.45600|-55.76520|Black Tickle|Labrador Marine Inc.|W
 S|51.41545|-57.15118|Blanc Sablon|Labrador Marine Inc.|W
 S|51.20422|-56.77379|St. Barbe|Labrador Marine Inc.|W
-S|48.83580|-125.13916|Bamfield|Lady Rose Marine Services|W
 S|49.00510|-125.00756|Kildonan|Lady Rose Marine Services|W
 S|49.23538|-124.81485|Port Alberni|Lady Rose Marine Services|W
 S|54.33343|-130.28293|Arrow Point|Lax Kw’alaams Band|W
 S|54.43370|-130.31471|Lax Kw'alaams Ferry - Spirit of Lax Kw'alaams|Lax Kw’alaams Band|W
+S|49.15486|-125.90502|Lone Cone - Meares Island|Lone Cone - Meares Island|W
+S|49.18515|-125.91842|Lone Cone - Meares Island|Lone Cone - Meares Island|W
+S|54.24121|-97.58465|Norway House|Manitoba Infrastructure|W
+S|54.24387|-97.58822|Sea Falls|Manitoba Infrastructure|W
+S|56.24666|-96.11119|Split Lake|Manitoba Infrastructure|W
+S|56.08537|-96.10262|York Landing|Manitoba Infrastructure|W
 S|47.29022|-53.99177|Argentia|Marine Atlantic|W
 S|46.20907|-60.24562|Marine Atlantic - North Sydney Terminal|Marine Atlantic|W
-S|47.57933|-59.14125|Port aux Basques|Marine Atlantic|W
+S|47.58077|-59.14203|Port aux Basques|Marine Atlantic|W
+S|58.06114|-103.79425|Barge Landing|Ministry of Highways and Infrastructure|W
+S|58.10735|-103.16621|Barge Landing|Ministry of Highways and Infrastructure|W
+S|46.33644|-72.51785|Navette fluviale Bécancour - Trois-Rivières|Navette fluviale Bécancour - Trois-Rivières|W
+S|46.34109|-72.53817|Navette fluviale Bécancour - Trois-Rivières|Navette fluviale Bécancour - Trois-Rivières|W
+S|48.38370|-70.58796|Sainte-Rose-du-Nord|Navettes maritines du Fjord|W
+S|48.13787|-69.71474|Tadoussac|Navettes maritines du Fjord|W
+S|49.17186|-123.93643|Maffeo Sutton Dock|Newcastle Island Passenger Ferry|W
+S|49.18009|-123.92877|Saysutshun / Newcastle Island Dock|Newcastle Island Passenger Ferry|W
 S|45.73901|-62.68899|Caribou|Northumberland Ferries Limited|W
+S|45.80330|-62.58499|Pictou Island|Northumberland Ferries Limited|W
 S|45.95414|-62.74907|Wood Islands|Northumberland Ferries Limited|W
 S|45.17437|-61.69726|Issacs’s Harbour|Nova Scotia Department of Public Works|W
 S|45.16917|-61.70300|Port Bickerton|Nova Scotia Department of Public Works|W
+S|41.45806|-82.71327|Jet Express|Ontario Ferries|W
+S|42.02628|-82.73119|Kingsville Ferry Terminal|Ontario Ferries|W
+S|42.02621|-82.60236|Leamington Ferry Terminal|Ontario Ferries|W
+S|41.76332|-82.69168|West Dock|Ontario Ferries|W
 S|44.04792|-77.05065|Adolphustown|Ontario Ministry of Transportation|W
+S|44.21518|-76.42566|Dawson's Point (winter dock)|Ontario Ministry of Transportation|W
 S|44.04161|-77.05919|Glenora|Ontario Ministry of Transportation|W
+S|44.19560|-76.44128|Marysville (summer dock)|Ontario Ministry of Transportation|W
+S|49.16604|-123.93346|Nanaimo|Protection Island Ferry|W
+S|49.17671|-123.92635|Protection Island|Protection Island Ferry|W
 S|49.19946|-122.91181|Quayside|Q to Q Ferry|W
 S|49.19360|-122.92196|Queensborough|Q to Q Ferry|W
+S|45.51168|-76.22217|Quyon Ferry|Quyon Ferry|W
+S|45.51602|-76.22891|Quyon Ferry|Quyon Ferry|W
 S|48.47942|-68.51415||Relais Nordik|W
 S|49.81269|-64.36425||Relais Nordik|W
 S|50.18456|-61.26345||Relais Nordik|W
@@ -539,8 +619,14 @@ S|50.67970|-59.23939||Relais Nordik|W
 S|50.83792|-58.97293||Relais Nordik|W
 S|51.18149|-58.56952|Pointe-à-la-Truite|Relais Nordik|W
 S|50.19730|-66.38285|Traversier Rimouski/Sept-îles/Basse-Côte-Nord|Relais Nordik|W
+S|47.84080|-69.87422|Gare fluviale de Saint-Siméon|Rivière-du-Loup - Saint-Siméon|W
+S|47.84773|-69.56936|La Traverse Rivière-du-Loup-Saint-Siméon|Rivière-du-Loup - Saint-Siméon|W
 S|47.07371|-55.83008|Fortune|SPM Ferries|W
 S|46.77897|-56.17114|Saint-Pierre|SPM Ferries|W
+S|51.21992|-58.66330|Pakuashipi|Saint-Augustin/Pakuashipi|W
+S|51.22626|-58.65469|Saint-Augustin|Saint-Augustin/Pointe-à-la-Truite|W
+S|44.17361|-76.50256|Simcoe Island|Simcoe Island Ferry|W
+S|44.17032|-76.49923|Wolfe Island|Simcoe Island Ferry|W
 S|49.23274|-68.13409|Baie-Comeau|Société des traversiers du Québec|W
 S|48.12647|-69.72965|Baie-Sainte-Catherine|Société des traversiers du Québec|W
 S|49.32213|-67.59283|Godbout|Société des traversiers du Québec|W
@@ -549,14 +635,33 @@ S|46.81061|-71.18834|Lévis|Société des traversiers du Québec|W
 S|48.84445|-67.57320|Matane|Société des traversiers du Québec|W
 S|46.81182|-71.20160|Québec|Société des traversiers du Québec|W
 S|46.05956|-73.12603|Saint-Ignace-de-Loyola|Société des traversiers du Québec|W
-S|47.44832|-70.36451|Saint-Joseph-de-la-Rive|Société des traversiers du Québec|W
+S|47.44879|-70.36538|Saint-Joseph-de-la-Rive|Société des traversiers du Québec|W
 S|46.04803|-73.11374|Sorel-Tracy|Société des traversiers du Québec|W
 S|48.13937|-69.72659|Tadoussac|Société des traversiers du Québec|W
+S|49.17242|-125.90569|Opitsaht|Tla-o-qui-aht First Nation|W
+S|49.15449|-125.91073|Opitsat Water Taxi|Tla-o-qui-aht First Nation|W
 S|43.64016|-79.37514|Jack Layton Ferry Terminal|City of Toronto|W
-S|43.63142|-79.35782|Ward's Island Ferry Dock|Toronto Island Ferries|W
+S|43.63142|-79.35782|Ward's Island Ferry Dock|City of Toronto|W
 S|49.30954|-123.08392|Lonsdale Quay|Translink|W
 S|49.28702|-123.10903|Waterfront|Translink|W
+S|45.52065|-73.86908|Laval -Île Bizard|Traverse Laval - Île-Bizard|W
+S|45.51947|-73.86929|Île Bizard-Laval|Traverse Laval - Île-Bizard|W
+S|48.02433|-69.34739|Terminal de L'Isle-Verte (village)|Traverse de l'Île-Verte|W
+S|48.03970|-69.40666|Terminal de l'île Verte (Notre-Dame-des-Sept-Douleurs)|Traverse de l'Île-Verte|W
+S|46.12915|-73.11148|Bateau Passeur|Traverse Île Dupas|W
+S|46.15151|-73.05820|Bâteau Passeur|Traverse Île Dupas|W
+S|45.58789|-75.24227|Traverse Thurso-Clarence|Traversier Écolos|W
+S|45.58358|-75.24077|Traversier Ecolos|Traversier Écolos|W
 S|47.61349|-122.35349|Seattle|Victoria Clipper|W
+S|48.42291|-123.37992|Coast Hotel|Victoria Harbour Ferry|W
+S|48.42341|-123.37074|Harbour Air Seaplanes|Victoria Harbour Ferry|W
+S|48.42608|-123.38076|Songhees Landing|Victoria Harbour Ferry|W
+S|45.51324|-73.53829|Île Sainte-Hélène|Vieux-Port – Île Sainte-Hélène – Longueuil|W
+S|45.54025|-73.51782|Longueuil - Port de plaisance|Vieux-Port – Île Sainte-Hélène – Longueuil|W
+S|50.43505|-104.61515|Legislative Landing|Willow Island|W
+S|50.43665|-104.60772|Willow Island Overlook|Willow Island|W
+S|43.64373|-79.35320|Ookwemin Minising|York Bay Marine Services|W
+S|43.63627|-79.39675|Portland|York Bay Marine Services|W
 L|CTrain|CTrain Blue Line|blue|5 34:1386 3:1144 42:1353 32:910 37:1858 20:970 8:513 6:342 2:413 15:514 17:352 13:1332 44:1146 11:1327 23:1029 26:1629 29:1961 43:1110 28:2674 27:1014 30:1675
 L|CTrain|CTrain Blue Line|blue|30 27:1573 28:1202 43:2688 29:1107 26:1957 23:1634 11:1003 44:1320 13:1170 17:1344 0:521 4:586 7:343 20:683 37:976 32:1851 42:910 3:1354 34:1144 5:1285
 L|CTrain|CTrain Red Line|red|35 33:1216 22:1461 14:1436 9:2168 36:958 24:1625 16:2189 1:2318 21:1610 41:791 17:865 0:521 4:586 7:343 38:1426 31:1011 25:922 10:1191 40:1151 12:1069 19:2707 18:3808 39:2342
@@ -602,206 +707,380 @@ L|TransLink|Expo Line|#0060a9|348 305:558 313:413 343:577 325:1075 308:2731 329:
 L|TransLink|Expo Line|#0060a9|348 305:558 313:413 343:577 325:1075 308:2731 329:1960 298:864 316:1202 333:1685 327:778 337:1297 310:2424 297:2031 330:2881 307:594 339:2596 300:1154 324:2077 334:1666
 L|TransLink|Millennium Line|#ffd520|319 323:582 309:905 315:1946 328:1342 304:4252 324:1604 334:1791 320:1528 342:1907 314:1473 301:1451 312:913 338:1600 335:946 308:1828 347:829
 L|TransLink|Millennium Line|#ffd520|347 308:827 335:1832 338:947 312:1602 301:909 314:1450 342:1471 320:1907 334:1526 324:1803 304:1616 328:4327 315:1263 309:2025 323:831 319:584
+L|Alaska Marine Highway|Alaska Marine Highway - Bellingham ↔ Ketchikan||351 353:981100
 L|Alaska Marine Highway|Bellingham - Ketchikan||351 352:1139020
-L|Alberta Transportation|La Crete Ferry||356 355:701
-L|Alberta Transportation|La Crete Ferry||355 356:649
-L|Alberta Transportation|Shaftesbury Ferry||354 353:360
-L|Alberta Transportation|Shaftesbury Ferry||353 354:389
-L|Aquabus|Aquabus to Hornby Terminal||467 465:488 468:1103 359:209 466:721 462:532 357:725 358:253
-L|Aquabus|Aquabus to The Village||358 357:253 462:725 466:532 359:721 468:209 465:1103 467:488
-L|BC Ferries|Bowen Island||360 413:5296
-L|BC Ferries|Brentwood Bay to Mill Bay||361 385:5731
-L|BC Ferries|Buckley Bay to Denman Island West||362 370:1873
-L|BC Ferries|Campbell River to Quadra Island||363 397:2683
-L|BC Ferries|Chemainus --> Penelakut Island||364 391:6825 405:1818 364:7126
-L|BC Ferries|Chemainus --> Thetis Island||364 405:7127 391:1817 364:6823
-L|BC Ferries|Comox||365 394:30905
-L|BC Ferries|Cormorant Island||392 366:11237
-L|BC Ferries|Cortes Island||367 396:11857
-L|BC Ferries|Crofton to Salt Spring Island||368 399:5051
-L|BC Ferries|Denman Island East||369 379:1953
-L|BC Ferries|Denman Island West to Buckley Bay||370 362:1873
-L|BC Ferries|Digby||371 372:4020
-L|BC Ferries|French Creek to Lasqueti||373 382:16589
-L|BC Ferries|Gabriola Island||374 389:5488
-L|BC Ferries|Gambier||376 403:3037
-L|BC Ferries|Graham Island||401 395:174413
-L|BC Ferries|Graham Island||386 377:4433
-L|BC Ferries|Graham Island||378 386:4422
-L|BC Ferries|Hornby Island||379 369:1953
-L|BC Ferries|Keats||380 403:5360
-L|BC Ferries|Keats||381 403:4546
-L|BC Ferries|Langdale||403 380:5359
-L|BC Ferries|Langdale||403 381:4546
-L|BC Ferries|Langdale||403 376:3037
-L|BC Ferries|Lasqueti||382 373:16585
-L|BC Ferries|Malcolm Island||383 392:7007
-L|BC Ferries|Mayne Island||384 375:8527 406:21173
-L|BC Ferries|Mayne Island||384 412:22584
-L|BC Ferries|Mayne Island||384 390:5378
-L|BC Ferries|Mill Bay to Brentwood Bay||385 361:5729
-L|BC Ferries|Moresby Island||386 377:4433
-L|BC Ferries|Moresby Island||386 378:4423
-L|BC Ferries|Nanaimo||387 414:56023
-L|BC Ferries|Nanaimo||388 407:60823
-L|BC Ferries|Nanaimo||389 374:5489
-L|BC Ferries|Pender Island||390 412:17310
-L|BC Ferries|Pender Island||390 384:5378
-L|BC Ferries|Port McNeill to Cormorant Island||392 366:11237
-L|BC Ferries|Port McNeill to Malcolm Island||392 383:7010
-L|BC Ferries|Powell River||394 404:8341
-L|BC Ferries|Powell River||394 365:30854
-L|BC Ferries|Powell River||393 402:14641
-L|BC Ferries|Prince Rupert||372 371:4022
-L|BC Ferries|Prince Rupert to Graham Island||395 401:172320
-L|BC Ferries|Quadra Island||397 363:2683
-L|BC Ferries|Quadra Island||396 367:11858
-L|BC Ferries|Salt Spring Island||398 412:10227
-L|BC Ferries|Salt Spring Island||399 368:5050
-L|BC Ferries|Saturna Island||400 384:10638
-L|BC Ferries|Sunshine Coast||403 414:17842
-L|BC Ferries|Sunshine Coast||402 393:14647
-L|BC Ferries|Texada Island||404 394:8345
-L|BC Ferries|Vancouver||407 388:60987
-L|BC Ferries|Vancouver||410 411:121
-L|BC Ferries|Vancouver||375 384:8524
-L|BC Ferries|Victoria||410 411:121 407:48622 408:94 409:80
-L|BC Ferries|Victoria||412 400:29270
-L|BC Ferries|Victoria||412 375:28538
-L|BC Ferries|Victoria||412 390:17385
-L|BC Ferries|Victoria||412 398:10231
-L|BC Ferries|West Vancouver||413 360:5296
-L|BC Ferries|West Vancouver||414 403:17858
-L|BC Ferries|West Vancouver||414 387:55852
-L|Bay Ferries|Digby to Saint John||415 416:70455
-L|Bay Ferries|Saint John to Digby||416 415:70366
-L|Billy Bishop Airport|Billy Bishop Airport Ferry||418 417:198
-L|Billy Bishop Airport|Billy Bishop Airport Ferry||417 418:198
-L|Black Ball Ferry Line|Port Angeles to Victoria||419 420:35527
-L|Black Ball Ferry Line|Victoria to Port Angeles||420 419:35506
-L|British Columbia Ministry of Transportation|Adams Lake Cable Ferry||428 429:834
-L|British Columbia Ministry of Transportation|Adams Lake Cable Ferry||429 428:834
-L|British Columbia Ministry of Transportation|Arrow Park Cable Ferry||425 434:523
-L|British Columbia Ministry of Transportation|Arrow Park Cable Ferry||434 425:523
-L|British Columbia Ministry of Transportation|Barnston Island to Port Kells||436 443:224
-L|British Columbia Ministry of Transportation|Big Bar Reaction Ferry||433 432:179
-L|British Columbia Ministry of Transportation|Big Bar Reaction Ferry||432 433:193
-L|British Columbia Ministry of Transportation|Francois Lake||441 445:2863
-L|British Columbia Ministry of Transportation|Francoise Lake||445 441:2863
-L|British Columbia Ministry of Transportation|Glade Cable Ferry||421 422:250
-L|British Columbia Ministry of Transportation|Glade Cable Ferry||422 421:250
-L|British Columbia Ministry of Transportation|Harrop Cable Ferry||424 423:390
-L|British Columbia Ministry of Transportation|Harrop Cable Ferry||423 424:421
-L|British Columbia Ministry of Transportation|Kootenay Lake||435 439:8667
-L|British Columbia Ministry of Transportation|Kootenay Lake||439 435:8663
-L|British Columbia Ministry of Transportation|Lytton Reaction Ferry||427 426:183
-L|British Columbia Ministry of Transportation|Lytton Reaction Ferry||426 427:169
-L|British Columbia Ministry of Transportation|McLure Reaction Ferry||430 431:133
-L|British Columbia Ministry of Transportation|McLure Reaction Ferry||431 430:123
-L|British Columbia Ministry of Transportation|Needles Cable Ferry||440 437:952
-L|British Columbia Ministry of Transportation|Needles Cable Ferry||437 440:952
-L|British Columbia Ministry of Transportation|Port Kells to Barnston Island||443 436:224
-L|British Columbia Ministry of Transportation|Upper Arrow Lake||438 444:5074
-L|British Columbia Ministry of Transportation|Upper Arrow Lake||444 438:5073
-L|British Columbia Ministry of Transportation|Usk Reaction Ferry||446 442:227
-L|British Columbia Ministry of Transportation|Usk Reaction Ferry||442 446:227
-L|CA:NS:R|Chester -> Tancook||447 456:9929
-L|CA:NS:R|East Ferry -> Tiverton||448 457:805
-L|CA:NS:R|East LaHave -> LaHave||453 449:789
-L|CA:NS:R|Englishtown -> Jersey Cove||450 452:162
-L|CA:NS:R|Freeport -> Westport||451 458:1449
-L|CA:NS:R|Jersey Cove -> Englishtown||452 450:162
-L|CA:NS:R|LaHave -> East LaHave||449 453:789
-L|CA:NS:R|Little Narrows||455 454:196
-L|CA:NS:R|Little Narrows||455 454:196
-L|CA:NS:R|Tancook -> Tancook||456 447:9933
-L|CA:NS:R|Tiverton -> East Ferry||457 448:805
-L|CA:NS:R|Westport -> Freeport||458 451:1449
-L|City of Toronto|Toronto Island Ferry||552 553:1780
-L|City of Toronto|Toronto Island Ferry||459 552:2027
-L|City of Toronto|Toronto Island Ferry||552 459:2027
-L|City of Toronto|Toronto Island Ferry||460 552:1887
-L|City of Toronto|Toronto Island Ferry||552 460:1887
-L|Clipper Vacations|Seattle to Victoria||556 420:133581
-L|False Creek Ferries|1 Aquatic Centre||463 461:398
-L|False Creek Ferries|1 Granville Island||461 463:398
-L|False Creek Ferries|2 Granville Island||464 461:824
-L|False Creek Ferries|2 Maritime Museum||463 461:398 464:824
-L|False Creek Ferries|3 Granville Island||467 465:489 468:1107 466:281 462:533 463:924
-L|False Creek Ferries|3 Village||463 462:924 466:533 468:281 465:1107 467:489
-L|Get West Adventure Cruises|Gold River -> Critter Cove -> Nootka Island||470 469:35433 471:29211
-L|Get West Adventure Cruises|Nootka Island -> Critter Cove -> Gold River||471 469:29242 470:35415
-L|Government of New Brunswick|Belleisle Bay||473 472:933
-L|Government of New Brunswick|Belleisle Bay||472 473:864
-L|Government of New Brunswick|Blacks Harbour -> Grand Manan Island||474 477:32067
-L|Government of New Brunswick|Deer Island -> Letete||475 481:5189
-L|Government of New Brunswick|Gondola Point -> Kingston Peninsula||476 480:666
-L|Government of New Brunswick|Grand Manan Island -> Blacks Harbour||477 474:32072
-L|Government of New Brunswick|Grand Manan Island -> White Head Island||478 483:5560
-L|Government of New Brunswick|Hardings Point - Westfield||479 482:549
-L|Government of New Brunswick|Kingston Peninsula -> Gondola Point||480 476:617
-L|Government of New Brunswick|Letete -> Deer Island||481 475:5188
-L|Government of New Brunswick|Westfield -> Harding Points||482 479:593
-L|Government of New Brunswick|White Head Island -> Grand Manan Island||483 478:5561
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Bay L'Argent -> Rencontre East||484 507:30649
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Bell Island -> Portugal Cove||485 504:5070
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burgeo -> Grey River -> Francois||486 494:43189
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burgeo -> Ramea||486 506:20921
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burnside -> St. Brendan's||487 509:15563
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Farewell -> Change Islands -> Fogo Island||489 488:5775 490:8575
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Fogo Island -> Change Islands -> Farewell||490 488:8575 489:5774
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Francois -> Grey River -> Burgeo||494 486:43204 491:71845
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Gaultois -> Hermitage||492 495:5681
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Gaultois -> McCallum||492 499:26066
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Goose Bay -> Rigolet -> Ports North to Nain||493 508:168574 498:113185 505:96335 496:152030 501:122477 500:100415
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Hermitage -> Gaultois||495 492:5682
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Long Island -> Pilley's Island||497 502:733
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|McCallum -> Gaultois||499 492:26054
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Nain -> Ports South to Rigolet --> Goose Bay||500 501:100335 496:121297 505:150891 498:96570 508:120004 493:166411
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Pilley's Island -> Long Island||502 497:733
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Pool's Cove -> Rencontre East||503 507:19340
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Portugal Cove -> Bell Island||504 485:5070
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Ramea -> Burgeo||506 486:20945
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Rencontre East -> Bay L'Argent||507 484:30609
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Rencontre East -> Pool's Cove||507 503:19353
-L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|St. Brendan's -> Burnside||509 487:15554
-L|Labrador Marine Inc.|Blanc Sablon to St. Barbe||510 511:35384
-L|Labrador Marine Inc.|St. Barbe to Blanc Sablon||511 510:35472
-L|Lady Rose Marine Services|Bamfield -> Port Alberni||512 514:56077
-L|Lady Rose Marine Services|Port Alberni -> Kildonan ->Bamfield||514 513:32642 512:30664
-L|Lax Kw’alaams Band|Arrow Point to Tuck Landing||515 516:13116
-L|Lax Kw’alaams Band|Tuck Landing to Arrow Point||516 515:13108
-L|Marine Atlantic|Marine Atlantic||518 517:520636
-L|Marine Atlantic|Marine Atlantic||517 518:511618
-L|Marine Atlantic|North Sydney to Port aux Basques||518 519:176402
-L|Marine Atlantic|Port aux Basques - North Sydney||519 518:175642
-L|Northumberland Ferries Limited|Caribou -> Woods Island||520 521:26220
-L|Northumberland Ferries Limited|Woods Island -> Caribou||521 520:26204
-L|Nova Scotia Department of Public Works|Issac's Harbour -> Port Bickerton||522 523:735
-L|Nova Scotia Department of Public Works|Port Bickerton -> Issac's Harbour||523 522:735
-L|Ontario Ministry of Transportation|Adolphustown -> Glenora||524 525:981
-L|Ontario Ministry of Transportation|Glenora -> Adolphustown||525 524:981
-L|Q to Q Ferry|Quayside to Queensborough||526 527:1069
-L|Q to Q Ferry|Queensborough to Quayside||527 526:1069
-L|Relais Nordik|Rimouski - Blanc Sablon||510 537:143013 536:60708 535:54106 534:34658 532:102270 530:53274 531:47334 533:140675 529:85633 538:294822 528:292337
-L|SPM Ferries|Fortune -> Saint-Pierre||539 540:44039
-L|SPM Ferries|Saint-Pierre -> Fortune||540 539:44144
-L|Société des traversiers du Québec|Baie-Comeau -> Matane||541 546:60816
-L|Société des traversiers du Québec|Baie-Sainte-Catherine -> Tadoussac||542 551:1565
-L|Société des traversiers du Québec|Godbout -> Matane||543 546:52935
-L|Société des traversiers du Québec|L'Isle-aux-Coudres -> Saint-Joseph-de-la-Rive||544 549:3798
-L|Société des traversiers du Québec|Lévis -> Québec||545 547:1020
-L|Société des traversiers du Québec|Matane -> Baie-Comeau||546 541:61049
-L|Société des traversiers du Québec|Matane -> Godbout||546 543:52938
-L|Société des traversiers du Québec|Québec -> Lévis||547 545:1020
-L|Société des traversiers du Québec|Saint-Ignace-de-Loyola -> Sorel-Tracy||550 548:1715
-L|Société des traversiers du Québec|Saint-Joseph-de-la-Rive -> L'Isle-aux-Coudres||549 544:3797
-L|Société des traversiers du Québec|Sorel-Tracy -> Saint-Ignace-de-Loyola||550 548:1715
-L|Société des traversiers du Québec|Tadoussac -> Baie-Sainte-Catherine||551 542:1565
-L|Toronto Island Ferries|Toronto Island Ferry||553 552:1780
-L|Translink|SeaBus|brown|555 554:3150
-L|Translink|SeaBus|brown|554 555:3150
-L|Victoria Clipper|Victoria to Seattle||420 556:132602
+L|Alberta Transportation|La Crete Ferry||357 356:701
+L|Alberta Transportation|La Crete Ferry||356 357:649
+L|Alberta Transportation|Shaftesbury Ferry||355 354:360
+L|Alberta Transportation|Shaftesbury Ferry||354 355:389
+L|Amherst Island Ferry|Amherst Island Ferry||359 358:3810
+L|Aquabus|Aquabus to Hornby Terminal||494 492:488 495:1103 362:209 493:721 489:532 360:725 361:253
+L|Aquabus|Aquabus to The Village||361 360:253 489:725 493:532 362:721 495:209 492:1103 494:488
+L|Aquabus|David Lam Park - Stamps Landing||489 493:521
+L|Aquabus|Granville Island - Hornby||361 489:888
+L|Aquabus|Stamps Landing - Spyglass||493 362:310
+L|Aquabus|Yaletown - Plaza of Nations||495 492:685
+L|Aquabus|Yaletown - Spyglass||362 495:193
+L|BC Ferries|Bella Bella ↔ Ocean Falls||429 430:47062
+L|BC Ferries|Bella Bella ↔ Port Hardy||400 429:179748
+L|BC Ferries|Bella Coola - Port Hardy||363 400:242285
+L|BC Ferries|Berth 2 approach||392 393:149
+L|BC Ferries|Berth 3 Approach||417 415:145
+L|BC Ferries|Berth 3 approach||394 392:210
+L|BC Ferries|Berth 4 Approach||417 416:68
+L|BC Ferries|Bowen Island||364 421:5296
+L|BC Ferries|Brentwood Bay to Mill Bay||365 390:5731
+L|BC Ferries|Buckley Bay to Denman Island West||366 374:1873
+L|BC Ferries|Campbell River to Quadra Island||367 406:2683
+L|BC Ferries|Chemainus --> Penelakut Island||368 399:6825 413:1818 368:7126
+L|BC Ferries|Chemainus --> Thetis Island||368 413:7127 399:1817 368:6823
+L|BC Ferries|Comox||369 403:30905
+L|BC Ferries|Cormorant Island||401 370:11237
+L|BC Ferries|Cortes Island||371 405:11857
+L|BC Ferries|Crofton to Salt Spring Island||372 408:5051
+L|BC Ferries|Denman Island East||373 383:1953
+L|BC Ferries|Denman Island West to Buckley Bay||374 366:1873
+L|BC Ferries|Departure Bay ↔ Horseshoe Bay||422 392:55594
+L|BC Ferries|Digby||375 376:4020
+L|BC Ferries|Duke Point ↔ Tsawwassen||417 395:60463
+L|BC Ferries|French Creek to Lasqueti||377 387:16589
+L|BC Ferries|Fulford Harbour ↔ Swartz Bay||419 407:9499
+L|BC Ferries|Gabriola Island||378 397:5488
+L|BC Ferries|Gambier||380 439:3037
+L|BC Ferries|Graham Island||410 404:174413
+L|BC Ferries|Graham Island||391 381:4433
+L|BC Ferries|Graham Island||382 391:4422
+L|BC Ferries|Hornby Island||383 373:1953
+L|BC Ferries|Keats||384 439:5360
+L|BC Ferries|Keats||385 439:4546
+L|BC Ferries|Klemtu ↔ Bella Bella||386 429:73330
+L|BC Ferries|Klemtu ↔ Port Hardy||386 400:251459
+L|BC Ferries|Langdale||439 384:5359
+L|BC Ferries|Langdale||439 385:4546
+L|BC Ferries|Langdale||439 380:3037
+L|BC Ferries|Lasqueti||387 377:16585
+L|BC Ferries|Malcolm Island||388 401:7007
+L|BC Ferries|Mayne Island||389 379:8527 414:21173
+L|BC Ferries|Mayne Island||389 420:22584
+L|BC Ferries|Mayne Island||389 398:5378
+L|BC Ferries|Mill Bay to Brentwood Bay||390 365:5729
+L|BC Ferries|Moresby Island||391 381:4433
+L|BC Ferries|Moresby Island||391 382:4423
+L|BC Ferries|Nanaimo||393 422:56023
+L|BC Ferries|Nanaimo||395 415:60823
+L|BC Ferries|Nanaimo||397 378:5489
+L|BC Ferries|Nanaimo Harbour ↔ Descanso Bay||396 378:5485
+L|BC Ferries|Pender Island||398 420:17310
+L|BC Ferries|Pender Island||398 389:5378
+L|BC Ferries|Port McNeill to Cormorant Island||401 370:11237
+L|BC Ferries|Port McNeill to Malcolm Island||401 388:7010
+L|BC Ferries|Powell River||403 412:8341
+L|BC Ferries|Powell River||403 369:30854
+L|BC Ferries|Powell River||402 411:14641
+L|BC Ferries|Prince Rupert||376 375:4022
+L|BC Ferries|Prince Rupert to Graham Island||404 410:172320
+L|BC Ferries|Prince Rupert ↔ Bella Bella||429 404:321382
+L|BC Ferries|Prince Rupert ↔ Klemtu||404 386:244467
+L|BC Ferries|Quadra Island||406 367:2683
+L|BC Ferries|Quadra Island||405 371:11858
+L|BC Ferries|Salt Spring Island||407 420:10227
+L|BC Ferries|Salt Spring Island||408 372:5050
+L|BC Ferries|Saturna Island||409 389:10638
+L|BC Ferries|Shearwater ↔ Bella Bella||429 430:60591
+L|BC Ferries|Sunshine Coast||439 422:17842
+L|BC Ferries|Sunshine Coast||411 402:14647
+L|BC Ferries|Swartz Bay ↔ Pender Island||419 398:15656
+L|BC Ferries|Swartz Bay ↔ Saturna Island||409 419:27513
+L|BC Ferries|Swartz Bay ↔ Tsawwassen||419 417:45860
+L|BC Ferries|Texada Island||412 403:8345
+L|BC Ferries|Vancouver||415 395:60987
+L|BC Ferries|Vancouver||418 419:121
+L|BC Ferries|Vancouver||379 389:8524
+L|BC Ferries|Victoria||418 419:121 415:48622 416:94 417:80
+L|BC Ferries|Victoria||420 409:29270
+L|BC Ferries|Victoria||420 379:28538
+L|BC Ferries|Victoria||420 398:17385
+L|BC Ferries|Victoria||420 407:10231
+L|BC Ferries|West Vancouver||421 364:5296
+L|BC Ferries|West Vancouver||422 439:17858
+L|BC Ferries|West Vancouver||422 393:55852
+L|Bamfield Water Taxi|Bamfield Water Taxi||424 423:1611
+L|Bay Ferries|Digby to Saint John||425 426:70455
+L|Bay Ferries|Digby-Saint John Ferry||426 425:70366
+L|Bay Ferries|Saint John to Digby||426 425:70366
+L|Bay Ferries Limited|Bar Harbor, Maine - Yarmouth, Nova Scotia||428 427:188533
+L|Bella Coola ↔ Bella Bella|Bella Coola ↔ Bella Bella||429 363:130248
+L|Bella Coola ↔ Ocean Falls|Bella Coola ↔ Ocean Falls||363 430:82000
+L|Berth 1 Approach|Berth 1 Approach||418 419:156
+L|Berth 3 Approach|Berth 3 Approach||420 419:76
+L|Berth 4 Approach|Berth 4 Approach||420 419:158
+L|Berth 5 Approach|Berth 5 Approach||420 419:245
+L|Billy Bishop Airport|Billy Bishop Airport Ferry||432 431:198
+L|Billy Bishop Airport|Billy Bishop Airport Ferry||431 432:198
+L|Black Ball Ferry Line|Port Angeles to Victoria||433 434:35527
+L|Black Ball Ferry Line|Victoria to Port Angeles||434 433:35506
+L|Black Ball Transport|Port Angeles ↔ Victoria||433 434:35527
+L|Blue Heron Cruises|Blue Heron Flowerpot Island Drop Off Cruise||467 466:7346
+L|Blue Heron Flowerpot Island Drop Off Cruise|Blue Heron Flowerpot Island Drop Off Cruise||466 467:6444
+L|BonTours|Bonne Bay Water Shuttle||436 437:3195
+L|Bowen Land and Sea Taxi|Q to Q Ferry||604 603:1069
+L|British Columbia Ferry Services|Berth 1 approach||421 422:107
+L|British Columbia Ferry Services|Berth 2 approach||421 422:57
+L|British Columbia Ferry Services|Bowen Island ↔ Horseshoe Bay||422 364:4858
+L|British Columbia Ferry Services|Brentwood Bay ↔ Mill Bay||365 390:5731
+L|British Columbia Ferry Services|Buckley Bay ↔ Denman Island||366 374:1873
+L|British Columbia Ferry Services|Campbell River ↔ Quadra Island||367 406:2683
+L|British Columbia Ferry Services|Comox||369 412:23203
+L|British Columbia Ferry Services|Crofton ↔ Vesuvius Bay||372 408:5051
+L|British Columbia Ferry Services|Denman Island||373 383:1953
+L|British Columbia Ferry Services|Galiano Island||379 389:7672
+L|British Columbia Ferry Services|Galiano Island||379 398:12055
+L|British Columbia Ferry Services|Galiano Island||379 414:20026
+L|British Columbia Ferry Services|Gambier Island||380 384:7261
+L|British Columbia Ferry Services|Keats Island||384 385:4528
+L|British Columbia Ferry Services|Keats Island||385 380:7087
+L|British Columbia Ferry Services|Langdale ↔ Gambier Island||439 380:3037
+L|British Columbia Ferry Services|Langdale ↔ Horseshoe Bay||422 439:17817
+L|British Columbia Ferry Services|Langdale ↔ Keats Island||439 384:5359
+L|British Columbia Ferry Services|Langdale ↔ Keats Island||439 385:4546
+L|British Columbia Ferry Services|Mayne Island||389 398:5378
+L|British Columbia Ferry Services|Mayne Island||389 438:10531
+L|British Columbia Ferry Services|Mayne Island||389 409:10631
+L|British Columbia Ferry Services|Mayne Island||389 414:23894
+L|British Columbia Ferry Services|Moresby Island||382 381:43
+L|British Columbia Ferry Services|Pender Island||398 438:12027
+L|British Columbia Ferry Services|Pender Island||398 409:8864
+L|British Columbia Ferry Services|Prince Rupert ↔ Skidegate||410 404:174413
+L|British Columbia Ferry Services|Quadra Island||371 405:11857
+L|British Columbia Ferry Services|Salt Spring Island||438 414:33021
+L|British Columbia Ferry Services|Saltery Bay ↔ Earls Cove||402 411:14641
+L|British Columbia Ferry Services|Swartz Bay ↔ Galiano Island||379 419:26778
+L|British Columbia Ferry Services|Swartz Bay ↔ Mayne Island||389 419:20931
+L|British Columbia Ministry of Transportation|Adams Lake Cable Ferry||447 448:834
+L|British Columbia Ministry of Transportation|Adams Lake Cable Ferry||448 447:834
+L|British Columbia Ministry of Transportation|Arrow Park Cable Ferry||444 453:523
+L|British Columbia Ministry of Transportation|Arrow Park Cable Ferry||453 444:523
+L|British Columbia Ministry of Transportation|Barnston Island Ferry||455 462:224
+L|British Columbia Ministry of Transportation|Barnston Island to Port Kells||455 462:224
+L|British Columbia Ministry of Transportation|Big Bar Reaction Ferry||452 451:179
+L|British Columbia Ministry of Transportation|Big Bar Reaction Ferry||451 452:193
+L|British Columbia Ministry of Transportation|Francois Lake||460 464:2863
+L|British Columbia Ministry of Transportation|Francoise Lake||464 460:2863
+L|British Columbia Ministry of Transportation|François Lake Ferry||464 460:2863
+L|British Columbia Ministry of Transportation|Glade Cable Ferry||440 441:250
+L|British Columbia Ministry of Transportation|Glade Cable Ferry||441 440:250
+L|British Columbia Ministry of Transportation|Harrop Cable Ferry||443 442:390
+L|British Columbia Ministry of Transportation|Harrop Cable Ferry||442 443:421
+L|British Columbia Ministry of Transportation|Kootenay Lake||454 458:8667
+L|British Columbia Ministry of Transportation|Kootenay Lake||458 454:8663
+L|British Columbia Ministry of Transportation|Kootenay Lake Ferry||454 458:8667
+L|British Columbia Ministry of Transportation|Lytton Reaction Ferry||446 445:183
+L|British Columbia Ministry of Transportation|Lytton Reaction Ferry||445 446:169
+L|British Columbia Ministry of Transportation|McLure Reaction Ferry||449 450:133
+L|British Columbia Ministry of Transportation|McLure Reaction Ferry||450 449:123
+L|British Columbia Ministry of Transportation|Needles Cable Ferry||459 456:952
+L|British Columbia Ministry of Transportation|Needles Cable Ferry||456 459:952
+L|British Columbia Ministry of Transportation|Needles Cable Ferry||456 459:952
+L|British Columbia Ministry of Transportation|Port Kells to Barnston Island||462 455:224
+L|British Columbia Ministry of Transportation|Upper Arrow Lake||457 463:5074
+L|British Columbia Ministry of Transportation|Upper Arrow Lake||463 457:5073
+L|British Columbia Ministry of Transportation|Upper Arrow Lakes Ferry||463 457:5073
+L|British Columbia Ministry of Transportation|Usk Ferry||465 461:227
+L|British Columbia Ministry of Transportation|Usk Reaction Ferry||465 461:227
+L|British Columbia Ministry of Transportation|Usk Reaction Ferry||461 465:227
+L|Bruce Anchor Cruises|Bruce Anchor Flowerpot Island Cruise||467 466:7353
+L|Bruce Anchor Flowerpot Island Cruise|Bruce Anchor Flowerpot Island Cruise||466 467:6440
+L|CA:NS:R|Chester -> Tancook||468 477:9929
+L|CA:NS:R|East Ferry -> Tiverton||469 478:805
+L|CA:NS:R|East LaHave -> LaHave||474 470:789
+L|CA:NS:R|Englishtown -> Jersey Cove||471 473:162
+L|CA:NS:R|Freeport -> Westport||472 479:1449
+L|CA:NS:R|Grand Passage Ferry||479 472:1449
+L|CA:NS:R|Jersey Cove -> Englishtown||473 471:162
+L|CA:NS:R|LaHave -> East LaHave||470 474:789
+L|CA:NS:R|Little Narrows||476 475:196
+L|CA:NS:R|Little Narrows||476 475:196
+L|CA:NS:R|Tancook -> Tancook||477 468:9933
+L|CA:NS:R|Tiverton -> East Ferry||478 469:805
+L|CA:NS:R|Westport -> Freeport||479 472:1449
+L|CMTA Traversier|Souris ― Cap-aux-Meules||481 483:139316
+L|CMTA Traversier|Île d'Entrée - Cap-aux-Meules||482 480:15830
+L|Cape Scott Water Taxi|Port Hardy ↔ Shushartie Bay||485 484:34648
+L|City of Prince Rupert|Digby Island Ferry||375 376:4020
+L|City of Toronto|Toronto - Centre Island||486 639:2027
+L|City of Toronto|Toronto - Hanlan's Point||639 487:1887
+L|City of Toronto|Toronto - Ward's Island||640 639:1776
+L|City of Toronto|Toronto Island Ferry||639 640:1780
+L|City of Toronto|Toronto Island Ferry||486 639:2027
+L|City of Toronto|Toronto Island Ferry||639 486:2027
+L|City of Toronto|Toronto Island Ferry||487 639:1887
+L|City of Toronto|Toronto Island Ferry||639 487:1887
+L|Clipper Vacations|Seattle to Victoria||651 434:133581
+L|Clipper Vacations|Victoria Clipper - Seattle ↔ Victoria||651 434:133581
+L|Coastal Transport Limited|Blacks Harbour - Grand Manan Ferry||508 505:32072
+L|Department of Public Works, Nova Scotia|Englishtown Ferry||471 473:162
+L|False Creek Ferries|1 Aquatic Centre||490 488:398
+L|False Creek Ferries|1 Granville Island||488 490:398
+L|False Creek Ferries|2 Granville Island||491 488:824
+L|False Creek Ferries|2 Maritime Museum||490 488:398 491:824
+L|False Creek Ferries|3 Granville Island||494 492:489 495:1107 493:281 489:533 490:924
+L|False Creek Ferries|3 Village||490 489:924 493:533 495:281 492:1107 494:489
+L|False Creek Ferries|David Lam Park - Stamps Landing||489 493:522
+L|False Creek Ferries|Granville Island - Aquatic Centre||491 489:2139
+L|False Creek Ferries|Stamps Landing - Spyglass||493 362:310
+L|False Creek Ferries|Yaletown - Plaza of Nations||495 492:687
+L|False Creek Ferries|Yaletown - Spyglass||362 495:193
+L|Gagetown-Jemseg Ferry|Gagetown-Jemseg Ferry||496 497:525
+L|Get West Adventure Cruises|Gold River - Critter Cove||499 500:52055
+L|Get West Adventure Cruises|Gold River -> Critter Cove -> Nootka Island||499 498:35433 500:29211
+L|Get West Adventure Cruises|Nootka Island -> Critter Cove -> Gold River||500 498:29242 499:35415
+L|Glenboro – South Cypress|Stockton Ferry||501 502:82
+L|Gondola Point Ferry|Gondola Point Ferry||512 507:617
+L|Gondola Point Ferry|Gondola Point Ferry||512 507:608
+L|Government of New Brunswick|Belleisle Bay||504 503:933
+L|Government of New Brunswick|Belleisle Bay||503 504:864
+L|Government of New Brunswick|Blacks Harbour -> Grand Manan Island||505 508:32067
+L|Government of New Brunswick|Deer Island -> Letete||506 513:5189
+L|Government of New Brunswick|Gondola Point -> Kingston Peninsula||507 512:666
+L|Government of New Brunswick|Grand Manan Island -> Blacks Harbour||508 505:32072
+L|Government of New Brunswick|Grand Manan Island -> White Head Island||509 516:5560
+L|Government of New Brunswick|Hardings Point - Westfield||510 515:549
+L|Government of New Brunswick|Ingalls Head - White Head Island||516 509:5561
+L|Government of New Brunswick|Kingston Peninsula -> Gondola Point||512 507:617
+L|Government of New Brunswick|Letete - Deer Island||506 513:5189
+L|Government of New Brunswick|Letete -> Deer Island||513 506:5188
+L|Government of New Brunswick|Summerville-Millidgeville||511 514:3940
+L|Government of New Brunswick|Westfield -> Harding Points||515 510:593
+L|Government of New Brunswick|White Head Island -> Grand Manan Island||516 509:5561
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Bay L'Argent -> Rencontre East||517 542:30649
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Bell Island - Portugal Cove||539 518:5070
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Bell Island -> Portugal Cove||518 539:5070
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burgeo -> Grey River -> Francois||519 527:43189
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burgeo -> Ramea||519 541:20921
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Burnside -> St. Brendan's||520 546:15563
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Farewell - Change Islands||522 523:14352
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Farewell -> Change Islands -> Fogo Island||522 521:5775 523:8575
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Fogo Island -> Change Islands -> Farewell||523 521:8575 522:5774
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Francois -> Grey River -> Burgeo||527 519:43204 524:71845
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Gaultois -> Hermitage||525 528:5681
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Gaultois -> McCallum||525 533:26066
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Goose Bay - Rigolet||526 543:168574
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Goose Bay -> Rigolet -> Ports North to Nain||526 543:168574 532:113185 540:96335 529:152030 535:122477 534:100415
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Government of Newfoundland and Labrador Department of Transportation and Infrastructure||537 531:733
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Grey River - Francois||527 528:102926
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Hermitage -> Gaultois||528 525:5682
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|La Poile - Rose Blanche||530 544:25593
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Long Island -> Pilley's Island||531 537:733
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|McCallum -> Gaultois||533 525:26054
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Nain -> Ports South to Rigolet --> Goose Bay||534 535:100335 529:121297 540:150891 532:96570 543:120004 526:166411
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Natuashish - Nain||543 534:558435
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Pilley's Island -> Long Island||537 531:733
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Pool's Cove -> Rencontre East||538 542:19340
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Portugal Cove -> Bell Island||539 518:5070
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Ramea -> Burgeo||541 519:20945
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Rencontre East -> Bay L'Argent||542 517:30609
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|Rencontre East -> Pool's Cove||542 538:19353
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|South East Bight - Petite Forte||536 545:8928
+L|Government of Newfoundland and Labrador Department of Transportation and Infrastructure|St. Brendan's -> Burnside||546 520:15554
+L|Government of Nova Scotia|Little Narrows||476 475:196
+L|Government of Saskatchewan|Hague Ferry||548 549:332
+L|Government of Saskatchewan|Riverhurst Ferry||550 551:2126
+L|Government of Saskatchewan|St. Laurent Ferry||553 552:225
+L|Government of Saskatchewan|Wingard Ferry||554 555:220
+L|Halifax - Dartmouth Ferry|Halifax - Dartmouth Ferry||556 557:3139
+L|Horne's Ferry|Wolfe Island-Cape Vincent||559 558:1643
+L|Hullo Ferries|Nanaimo Harbour ↔ Coal Harbour||560 561:62595
+L|L'Isle-aux-Grues–Montmagny|L'Isle-aux-Grues–Montmagny||562 563:7735
+L|Labrador Marine Inc.|Blanc Sablon to St. Barbe||565 566:35384
+L|Labrador Marine Inc.|Blanc-Sablon – Sainte-Barbe||616 566:140543
+L|Labrador Marine Inc.|Rigolet – Cartwright||543 564:244134
+L|Labrador Marine Inc.|St. Barbe to Blanc Sablon||566 565:35472
+L|Lady Rose Marine Services|Bamfield -> Port Alberni||424 568:56077
+L|Lady Rose Marine Services|Port Alberni -> Kildonan ->Bamfield||568 567:32642 424:30664
+L|Lax Kw'alaams Band|Prince Rupert to Lax Kw'alaams Ferry||569 570:13116
+L|Lax Kw’alaams Band|Arrow Point to Tuck Landing||569 570:13116
+L|Lax Kw’alaams Band|Tuck Landing to Arrow Point||570 569:13108
+L|Lone Cone - Meares Island|Lone Cone - Meares Island||571 572:4536
+L|Manitoba Infrastructure|Sea Falls - Norway House||573 574:375
+L|Manitoba Infrastructure|Split Lake - York Landing||576 575:27592
+L|Marine Atlantic|Marine Atlantic||578 577:520636
+L|Marine Atlantic|Marine Atlantic||577 578:511618
+L|Marine Atlantic|North Sydney - Port aux Basques Ferry||578 579:176402
+L|Marine Atlantic|North Sydney to Port aux Basques||578 579:176402
+L|Marine Atlantic|North Sydney-Argentia Ferry||578 577:520636
+L|Marine Atlantic|Port aux Basques - North Sydney||579 578:175642
+L|Ministry of Highways and Infrastructure|Wollaston Lake Barge||581 580:42493
+L|NS Transportation and Infrastructure Renewal|LaHave River Ferry||474 470:789
+L|Navette fluviale Bécancour - Trois-Rivières|Navette fluviale Bécancour - Trois-Rivières||582 583:1714
+L|Navettes maritines du Fjord|Sainte-Rose-du-Nord/Parc national Fjord-du-Saguenay||585 584:80099
+L|New Brunswick Department of Transportation and Infrastructure|Westfield Ferry||510 515:549
+L|New Brunswick Department of Transportation and Infrastructure|Westfield Ferry||510 515:544
+L|Newcastle Island Passenger Ferry|Newcastle Island Passenger Ferry||586 587:1086
+L|Newfoundland and Labrador Department of Transportation and Infrastructure|St. Brendan’s - Burnside||520 546:15563
+L|North Sydney - Port aux Basques Ferry|North Sydney - Port aux Basques Ferry||578 579:176982
+L|Northumberland Ferries Limited|Caribou -> Woods Island||588 590:26220
+L|Northumberland Ferries Limited|Caribou-Wood Islands Ferry||589 590:22506
+L|Northumberland Ferries Limited|Woods Island -> Caribou||590 588:26204
+L|Nova Scotia Department of Public Works|Issac's Harbour -> Port Bickerton||591 592:735
+L|Nova Scotia Department of Public Works|Port Bickerton -> Issac's Harbour||592 591:735
+L|Nova Scotia Department of Transportation and Infrastructure Renewal|Country Harbour Ferry||592 591:735
+L|Ontario Ferries|Kingsville - Pelee Island||596 594:29593
+L|Ontario Ferries|Leamington - Pelee Island||596 595:30619
+L|Ontario Ferries|Sandusky - Pelee Island||596 593:34823
+L|Ontario Ministry of Transportation|Adolphustown -> Glenora||597 599:981
+L|Ontario Ministry of Transportation|Glenora -> Adolphustown||599 597:981
+L|Ontario Ministry of Transportation|Glenora Ferry||597 599:981
+L|Ontario Ministry of Transportation|Kingston-Wolfe Island Ferry||598 600:2698
+L|Petit Passage|Petit Passage||469 478:805
+L|Protection Island Ferry|Protection Island Ferry||601 602:1350
+L|Q to Q Ferry|Quayside to Queensborough||603 604:1069
+L|Q to Q Ferry|Queensborough to Quayside||604 603:1069
+L|Quyon Ferry|Quyon Ferry||606 605:712
+L|Québec - Lévis|Québec - Lévis||632 630:1020
+L|Relais Nordik|Rimouski - Blanc Sablon||565 616:143013 615:60708 614:54106 613:34658 611:102270 609:53274 610:47334 612:140675 608:85633 617:294822 607:292337
+L|Rivière-du-Loup - Saint-Siméon|Rivière-du-Loup - Saint-Siméon||618 619:26727
+L|SPM Ferries|Fortune -> Saint-Pierre||620 621:44039
+L|SPM Ferries|Saint-Pierre - Fortune||620 621:44039
+L|SPM Ferries|Saint-Pierre -> Fortune||621 620:44144
+L|Saint-Augustin/Pakuashipi|Saint-Augustin/Pakuashipi||622 623:1005
+L|Saint-Augustin/Pointe-à-la-Truite|Saint-Augustin/Pointe-à-la-Truite||623 616:8645
+L|Simcoe Island Ferry|Simcoe Island Ferry||625 624:451
+L|Société des traversiers du Québec|Baie-Comeau -> Matane||626 631:60816
+L|Société des traversiers du Québec|Baie-Sainte-Catherine -> Tadoussac||627 636:1565
+L|Société des traversiers du Québec|Godbout -> Matane||628 631:52935
+L|Société des traversiers du Québec|L'Isle-aux-Coudres -> Saint-Joseph-de-la-Rive||629 634:3798
+L|Société des traversiers du Québec|L'Isle-aux-Coudres–Saint-Joseph-de-la-Rive||629 634:3798
+L|Société des traversiers du Québec|L'Isle-aux-Coudres–Saint-Joseph-de-la-Rive||634 629:3804
+L|Société des traversiers du Québec|Lévis -> Québec||630 632:1020
+L|Société des traversiers du Québec|Matane -> Baie-Comeau||631 626:61049
+L|Société des traversiers du Québec|Matane -> Godbout||631 628:52938
+L|Société des traversiers du Québec|Québec -> Lévis||632 630:1020
+L|Société des traversiers du Québec|Saint-Ignace-de-Loyola -> Sorel-Tracy||635 633:1715
+L|Société des traversiers du Québec|Saint-Joseph-de-la-Rive -> L'Isle-aux-Coudres||634 629:3797
+L|Société des traversiers du Québec|Sorel-Tracy -> Saint-Ignace-de-Loyola||635 633:1715
+L|Société des traversiers du Québec|Sorel–Saint-Ignace-de-Loyola||635 633:1715
+L|Société des traversiers du Québec|Tadoussac -> Baie-Sainte-Catherine||636 627:1565
+L|Société des traversiers du Québec|Traverse Matane–Godbout||626 628:43811
+L|Tadoussac–Baie-Sainte-Catherine|Tadoussac–Baie-Sainte-Catherine||636 627:1565
+L|Tla-o-qui-aht First Nation|Opitsat Water Taxi||638 637:2143
+L|Toronto City Centre Airport Ferry|Toronto City Centre Airport Ferry||431 432:198
+L|Toronto Island Ferries|Toronto Island Ferry||640 639:1780
+L|Translink|SeaBus|brown|642 641:3150
+L|Translink|SeaBus||642 641:3150
+L|Translink|SeaBus|brown|641 642:3150
+L|Traverse Laval - Île-Bizard|Traverse Laval - Île-Bizard||643 644:133
+L|Traverse de l'Île-Verte|Traverse de l'Île-Verte||646 645:5191
+L|Traverse Île Dupas|Traverse Île Dupas||648 647:5019
+L|Traversier Écolos|Traversier Thurso-Rockland||649 650:490
+L|Victoria Clipper|Victoria to Seattle||434 651:132602
+L|Victoria Harbour Ferry|Harbour Route||654 652:360
+L|Victoria Harbour Ferry|Harbour Route||654 652:532
+L|Victoria Harbour Ferry|Harbour Route||653 654:992
+L|Victoria Harbour Ferry|Harbour Route||653 652:1374
+L|Vieux-Port – Île Sainte-Hélène – Longueuil|Vieux-Port – Île Sainte-Hélène – Longueuil||655 656:3894
+L|Western Pacific Marine|French Creek ↔ Lasqueti||377 387:16589
+L|Willow Island|Willow Island||657 658:689
+L|York Bay Marine Services|East-West Shuttle||659 660:4129
 T|49.11688|-122.27647|Abbotsford
 T|43.63407|-80.03511|Acton
 T|49.23938|-121.76505|Agassiz
@@ -810,7 +1089,6 @@ T|45.53484|-73.66264|Ahuntsic
 T|43.84799|-79.04279|Ajax
 T|49.23505|-124.81243|Alberni Pacific Railway, E&N Train Station
 T|52.32170|-112.70016|Alberta Prairie Steam Tours
-T|48.80171|-123.71535|Alderlea Station
 T|43.31330|-79.85559|Aldershot
 T|45.31794|-74.63976|Alexandria
 T|54.11514|-122.05381|Aleza Lake
@@ -834,7 +1112,7 @@ T|50.22898|-87.89016|Auden
 T|44.00076|-79.45977|Aurora
 T|46.55164|-81.10472|Azilda
 T|57.71550|-94.23160|Back
-T|47.43556|-70.50557|Baie-Saint-Paul
+T|47.43556|-70.50557|Baie Saint Paul
 T|45.41987|-73.91561|Baie-d'Urfé
 T|51.18175|-115.57615|Banff
 T|44.35114|-79.62744|Barrie South
@@ -874,6 +1152,7 @@ T|43.41716|-79.72235|Bronte
 T|47.85377|-72.15587|Brooks
 T|49.67533|-81.52151|Brownrigg
 T|54.04879|-100.80510|Budd
+T|50.98744|-104.86404|Bulyea
 T|43.34085|-79.80970|Burlington
 T|54.22863|-125.76367|Burns Lake
 T|54.68125|-98.98562|Button
@@ -929,7 +1208,7 @@ T|47.66221|-72.98386|Club Vermillon
 T|49.18876|-81.00971|Clute
 T|43.96789|-78.17062|Cobourg
 T|49.06015|-81.02329|Cochrane
-T|50.29558|-89.45008|Collins
+T|50.29543|-89.45041|Collins
 T|49.05798|-117.59551|Columbia Gardens
 T|43.24181|-79.75978|Confederation
 T|48.19439|-75.74919|Consolidated Bathurst
@@ -948,7 +1227,7 @@ T|52.48968|-105.73045|Cudworth
 T|48.22970|-75.99842|Da-Rou-Lac Lodge
 T|48.15306|-84.03309|Dalton
 T|43.68643|-79.30036|Danforth
-T|51.15034|-100.05227|Dauphin
+T|51.15039|-100.05219|Dauphin
 T|45.56015|-73.70982|De la Concorde
 T|45.36681|-73.54082|Delson
 T|54.25296|-100.53725|Dering
@@ -964,7 +1243,6 @@ T|45.38639|-74.00848|Dorion
 T|54.84080|-128.34373|Dorreen
 T|45.44920|-73.74352|Dorval
 T|43.75348|-79.47828|Downsview Park
-T|48.80321|-123.71121|Drinkwater Station
 T|45.88211|-72.48839|Drummondville
 T|52.63012|-65.98973|Dry Lake
 T|45.43763|-73.65595|Du Canal
@@ -996,7 +1274,7 @@ T|47.33746|-72.20244|Falrie
 T|50.00858|-94.20489|Farlane
 T|43.50968|-80.55093|Farmer's Market
 T|47.20467|-81.40797|Felix
-T|47.81406|-73.41787|Ferguson
+T|47.81245|-73.41759|Ferguson
 T|50.31449|-88.42324|Ferland
 T|54.00692|-100.87390|Finger
 T|47.48471|-72.77336|Fitzpatrick
@@ -1004,6 +1282,7 @@ T|50.24525|-90.44450|Flindt Landing
 T|48.24620|-82.43953|Foleyet
 T|47.05267|-81.86657|Forks
 T|48.23526|-76.42872|Forsythe
+T|45.52264|-73.53579|Fort Edmonton
 T|53.49880|-113.58596|Fort Edmonton
 T|54.05843|-124.55473|Fort Fraser
 T|48.46559|-84.41286|Franz
@@ -1012,7 +1291,6 @@ T|49.84626|-81.61779|Fraserdale
 T|48.24958|-76.11323|Gagnon
 T|51.13390|-80.91340|Galeton
 T|44.36871|-76.15376|Gananoque
-T|49.30756|-81.02778|Gardiner
 T|48.34688|-64.67558|Gare de Chandler
 T|48.59339|-68.20563|Gare de Rivière-Blanche
 T|46.64018|-72.63835|Garneau
@@ -1084,7 +1362,7 @@ T|55.09946|-128.05202|Kitwanga
 T|48.01645|-72.18135|Kondiaronk
 T|47.63226|-82.97424|Kormak
 T|54.22612|-129.55150|Kwinitsa
-T|47.62451|-70.14136|La Malbaie
+T|47.62450|-70.14122|La Malbaie
 T|47.36115|-70.02530|La Pocatière
 T|55.22601|-97.96791|La Pérouse
 T|47.43942|-72.78257|La Tuque
@@ -1124,14 +1402,13 @@ T|45.49422|-73.57129|Lucien-L'Allier
 T|56.29116|-94.86541|Luke
 T|55.02946|-98.41448|Lyddal
 T|57.80109|-94.21446|M'Clintock
-T|55.76135|-101.19881|MCCN Station
 T|51.81779|-65.70538|Mai
 T|49.93147|-94.98357|Malachi
 T|43.70517|-79.63823|Malton
 T|48.06743|-74.89532|Maniwawa Club
 T|47.87262|-74.47021|Manjobagues
 T|43.85950|-79.50690|Maple
-T|49.21652|-122.66612|Maple Meadows
+T|49.21651|-122.66611|Maple Meadows
 T|50.07783|-126.42358|Maquilla Reload
 T|43.88266|-79.26247|Markham
 T|45.72960|-73.59832|Mascouche
@@ -1160,7 +1437,7 @@ T|47.21995|-72.25147|Miquick
 T|45.71215|-73.91916|Mirabel
 T|47.00472|-65.57337|Miramichi
 T|48.31103|-84.08482|Missanabie
-T|49.13377|-122.30373|Mission City
+T|49.13383|-122.30380|Mission City
 T|49.12817|-122.30314|Mission Harbour
 T|46.08334|-64.78608|Moncton
 T|48.16827|-75.64170|Monet
@@ -1186,14 +1463,13 @@ T|44.25349|-76.95427|Napanee
 T|47.72502|-83.20237|Nemegos
 T|55.25025|-127.57945|New Hazelton
 T|44.06051|-79.46008|Newmarket
-T|43.10883|-79.06344|Niagara Falls VIA station;Niagara Falls, Ontario
+T|43.10883|-79.06331|Niagara Falls, Ontario
 T|47.95740|-83.76590|Nicholson
 T|50.59229|-66.02286|Nicman
 T|50.72188|-65.98376|Nipisso
 T|56.12536|-95.37986|Nonsuch
 T|46.31386|-79.43851|North Bay
 T|49.87687|-121.44985|North Bend
-T|48.80213|-123.70971|North Cowichan Station
 T|49.69087|-123.16396|North Pole Express - WCRA
 T|49.31555|-123.11406|North Vancouver
 T|48.51820|-85.13972|O'Brien
@@ -1247,7 +1523,7 @@ T|47.35546|-72.19975|Pont Beaudet
 T|54.64286|-99.16174|Ponton
 T|49.26148|-122.77409|Port Coquitlam
 T|43.55605|-79.58708|Port Credit
-T|49.21240|-122.60599|Port Haney
+T|49.21243|-122.60622|Port Haney
 T|43.94355|-78.29879|Port Hope
 T|42.66506|-81.21474|Port Stanley
 T|49.97714|-98.28823|Portage la Prairie
@@ -1258,9 +1534,9 @@ T|53.91912|-122.74404|Prince George
 T|54.29596|-130.35173|Prince Rupert
 T|53.95999|-101.25212|Prospector
 T|55.76210|-101.19863|Pukatawagan
+T|46.88536|-71.14508|Quebéc Chutes-Montmorency
 T|52.97634|-122.48821|Quesnel
 T|46.81832|-71.21435|Québec
-T|46.88536|-71.14508|Québec (Chutes-Montmorency)
 T|49.72833|-123.16069|Railway Museum of BC
 T|47.44659|-82.33882|Ramsey
 T|50.42536|-81.58799|Ranoke
@@ -1296,7 +1572,6 @@ T|45.51199|-73.37449|Saint-Bruno
 T|45.37386|-73.56998|Saint-Constant
 T|47.36636|-72.21109|Saint-Hilaire de Portneuf
 T|45.62761|-72.94887|Saint-Hyacinthe
-T|47.55919|-70.20454|Saint-Irénée
 T|46.27348|-73.10935|Saint-Justin
 T|45.77316|-73.99909|Saint-Jérôme
 T|45.49903|-73.50742|Saint-Lambert Station
@@ -1307,13 +1582,14 @@ T|46.40102|-73.01597|Saint-Paulin
 T|46.72313|-72.56422|Saint-Tite
 T|45.40776|-73.95080|Sainte-Anne-de-Bellevue
 T|45.38204|-73.60004|Sainte-Catherine
-T|46.75436|-71.29765|Sainte-Foy
+T|46.75433|-71.29765|Sainte-Foy
 T|45.62528|-73.76442|Sainte-Rose
 T|45.63598|-73.83412|Sainte-Thérèse
 T|47.48233|-72.21853|Sanford
 T|47.89398|-73.79317|Sanmaur
 T|42.95725|-82.38892|Sarnia
 T|52.10481|-106.73829|Saskatoon
+T|52.10490|-106.73832|Saskatoon VIA Station
 T|50.48821|-66.10251|Saumon
 T|45.54938|-73.65435|Sauvé
 T|50.23860|-90.70504|Savant Lake
@@ -1344,10 +1620,12 @@ T|44.91254|-76.02392|Smiths Falls
 T|50.72902|-122.24230|South Shalalth
 T|44.02272|-79.80793|South Simcoe Railroad
 T|45.69182|-64.11192|Springhill Junction
-T|43.14773|-79.25599|St. Catharines
+T|43.14800|-79.25695|St. Catharines
 T|43.53795|-80.55710|St. Jacobs Village
 T|43.26041|-81.13649|St. Marys
 T|47.44144|-72.24949|Stadacona
+T|45.60105|-73.56002|Station Anjou - Édicule Principale -  Ligne Bleue
+T|47.55919|-70.20454|Station Saint-Irénée
 T|43.97092|-79.25007|Stouffville GO Station
 T|48.02979|-74.86601|Strachan
 T|46.80460|-81.67986|Stralak
@@ -1403,11 +1681,12 @@ T|45.47355|-73.60350|Vendôme
 T|51.58157|-102.07797|Veregin
 T|50.02933|-126.34666|Vernon Reload
 T|53.09260|-111.77779|Viking
+T|45.52654|-73.53666|Village
 T|45.60380|-73.74271|Vimont
 T|54.90904|-98.63066|Wabowden
 T|51.43662|-65.62121|Waco
 T|52.83234|-110.86299|Wainwright
-T|52.64994|-105.73570|Wakaw
+T|52.64994|-105.73563|Wakaw
 T|54.17692|-101.36815|Wanless
 T|44.74889|-79.33471|Washago
 T|49.28595|-123.11128|Waterfront
@@ -1441,3 +1720,484 @@ T|49.41180|-81.06622|Wurtele
 T|42.94811|-82.12079|Wyoming
 T|51.93730|-65.75143|Éric
 T|45.39613|-73.96517|Île-Perrot
+B|45.51601|-73.64301|165/435
+B|49.19992|-122.94914|22nd Street Station
+B|49.24423|-123.04519|29th Avenue Station
+B|51.08887|-114.16745|40 Avenue
+B|51.00531|-114.11758|54 Avenue SW
+B|49.21985|-123.06570|54th Avenue Loop
+B|49.21380|-123.14073|63rd Avenue Loop
+B|51.03762|-114.18617|69 Street
+B|51.12277|-114.07095|78 Avenue
+B|44.64938|-63.57278|8435 - Water Street Terminal
+B|50.97701|-113.99623|85 Avenue
+B|53.57198|-113.39029|Abbottsfield Transit Centre
+B|45.57749|-62.64055|Aberdeen Terminal
+B|43.46091|-80.13367|Aberfoyle GO Park & Ride
+B|43.35735|-80.31314|Ainslie Street Terminal
+B|51.13106|-114.00961|Airport
+B|49.19167|-123.14162|Airport Station
+B|44.66459|-63.56894|Alderney Gate Terminal
+B|43.31314|-79.85599|Aldershot GO
+B|44.37341|-79.68601|Allandale Waterfront GO
+B|45.81929|-64.23335|Amherst
+B|50.95433|-114.07372|Anderson Bus Terminal
+B|45.44624|-73.60393|Angrignon
+B|43.37930|-79.76044|Appleby GO
+B|44.00013|-79.45927|Aurora GO Station
+B|46.04143|-73.70715|Autobus Riviera
+B|49.89122|-97.15240|Balmoral Station
+B|45.05874|-77.85891|Bancroft Community Transit
+B|51.13145|-114.01083|Banff Explorer
+B|51.17623|-115.56993|Banff Explorer
+B|51.04631|-114.00576|Barlow / Max Bell
+B|44.37408|-79.69020|Barrie Allandale Transit Terminal
+B|43.66593|-79.41121|Bathurst
+B|44.65513|-63.62777|Bayers Road Terminal
+B|45.34610|-75.80959|Bayshore Transitway Station
+B|49.84869|-97.16584|Beaumont Station
+B|53.58810|-113.43508|Belvedere Transit Centre
+B|43.89441|-79.44205|Bernard Terminal
+B|53.54285|-113.30646|Bethel Transit Terminal
+B|45.38470|-75.67660|Billings Bridge
+B|49.26514|-123.21569|Blanca Loop
+B|43.97561|-79.39710|Bloomington Go Bus
+B|45.43167|-73.91105|Boucle de bus Anse-à-l'Orme
+B|49.26550|-123.02523|Boundary Loop
+B|49.04830|-122.30877|Bourquin Exchange
+B|51.09574|-114.21944|Bowness
+B|49.23301|-122.88287|Braid Station
+B|43.70173|-79.69111|Bramalea GO Station
+B|43.71885|-79.72055|Bramalea Terminal
+B|43.68692|-79.76279|Brampton Downtown Bus Terminal
+B|43.14080|-80.26469|Brantford Bus Terminal
+B|51.08674|-114.13248|Brentwood
+B|44.67060|-63.57450|Bridge Terminal
+B|49.19539|-123.12660|Bridgeport Station
+B|43.67699|-79.35822|Broadview
+B|43.11897|-79.24897|Brock University
+B|43.41628|-79.72418|Bronte GO Station
+B|43.34078|-79.81153|Burlington Transit
+B|43.39273|-80.32263|Cambridge Centre Station
+B|43.39279|-80.32268|Cambridge Centre Terminal
+B|51.09824|-115.36337|Canmore Collegiate High School
+B|51.08755|-115.34603|Canmore Intercity Bus Terminal - Coast Hotel
+B|51.09627|-115.35618|Canmore Intercity Bus Terminal - Northwinds Hotel
+B|50.93680|-114.06731|Canyon Meadows Bus Terminal
+B|53.53863|-113.42289|Capilano Transit Centre
+B|49.31924|-123.01871|Capilano University Exchange
+B|48.42099|-123.36612|Capital City Station
+B|49.16031|-122.66041|Carvolth Exchange
+B|44.64861|-79.34348|Casino Rama Bus Terminal
+B|53.61653|-113.51651|Castle Downs Transit Centre
+B|43.67350|-79.36903|Castle Frank
+B|44.25508|-76.57259|Cataraqui Centre Transfer Point
+B|43.61746|-79.62784|Cawthra
+B|43.60797|-79.63572|Central Parkway Station
+B|52.11238|-106.59809|Centre Mall Transit Terminal
+B|53.45727|-113.51555|Century Park Transit Centre
+B|46.24679|-63.12459|Charlottetown Terminal
+B|49.83026|-97.15881|Chevrier Station
+B|50.99729|-114.06651|Chinook
+B|43.53995|-79.74258|Churchill Meadows Community Centre Terminal
+B|45.54203|-73.92214|Cinema Guzzo
+B|49.69314|-112.83585|City Centre Terminal
+B|43.59436|-79.64692|City Centre Transit Terminal
+B|52.10118|-106.72449|Civic Operations Centre
+B|49.83416|-97.16201|Clarence Station
+B|43.51282|-79.63310|Clarkson GO Bus Terminal
+B|44.75430|-63.66307|Cobequid Terminal
+B|53.56685|-113.58787|Cold Shot
+B|55.18971|-118.79183|Cold Shot Grande Prairie
+B|53.57092|-113.45974|Coliseum Transit Centre
+B|48.44514|-123.46637|Colwood Transit Exchange
+B|43.39076|-80.40363|Conestoga College Doon Campus - Door 3
+B|43.49812|-80.52915|Conestoga Station
+B|46.13399|-63.84369|Confederation Bridge Shuttle
+B|52.13386|-106.72163|Confederation Transit Terminal
+B|52.08549|-106.64199|Cope Terminus
+B|53.55352|-113.95636|Copperhaven Transfer
+B|49.27535|-122.79875|Coquitlam Central
+B|45.92916|-66.66270|Corbett Centre
+B|43.88054|-79.23161|Cornell Terminal
+B|48.95179|-57.94570|Corner Brook Main Transit Terminal
+B|49.20650|-124.00338|Country Club Bus Exchange
+B|43.88549|-78.76916|Courtice Rd @ Baseline Rd Park & Ride
+B|43.68416|-79.32303|Coxwell
+B|51.12357|-114.20763|Crowfoot
+B|51.10378|-114.15862|Dalhousie
+B|53.49927|-113.44453|Davies Transit Centre
+B|45.48141|-75.68318|De la Cité
+B|43.37282|-80.31808|Delta Station
+B|46.51558|-84.33775|Dennis Street Terminal
+B|42.27365|-82.99973|Devonshire Mall
+B|43.60824|-79.57825|Dixie
+B|49.87438|-97.23058|Domo Bus Shuttle Stop
+B|43.72160|-79.33785|Don Valley Station Bus Terminal
+B|50.95312|-113.99736|Douglas Glen Terminal
+B|49.16445|-123.93140|Downtown Nanaimo Transit Exchange
+B|49.84904|-99.94849|Downtown Terminal
+B|44.23127|-76.48486|Downtown Transfer Point
+B|46.49264|-80.99159|Downtown Transit Hub
+B|45.89055|-72.51646|Drummondville
+B|43.63435|-79.42579|Dufferin Gate Loop
+B|49.23447|-123.18579|Dunbar Loop
+B|53.60177|-113.41069|East Clareview Transit Centre
+B|44.07850|-79.45657|East Gwillimbury GO
+B|43.22873|-79.76576|Eastgate Terminal
+B|53.61805|-113.49019|Eaux Claires Transit Centre
+B|50.66886|-120.35099|Ebus
+B|49.37690|-121.44210|Ebus - Vancouver, Kamloops & Kelowna
+B|49.21222|-122.95878|Edmonds Station
+B|43.70540|-79.39879|Eglinton
+B|51.08436|-115.33457|Elizabeth Rummel School
+B|45.36451|-73.71206|Exo - Point de vente et centre de services
+B|43.17844|-79.24554|Fairview Mall
+B|45.45934|-73.83657|Fairview-Pointe-Claire Terminal
+B|44.80299|-63.59758|Fall River Terminal
+B|43.08087|-79.08058|Fallsview Casino
+B|43.01177|-81.19884|Fanshawe College
+B|43.78093|-79.41489|Finch Bus Terminal
+B|43.78204|-79.41576|Finch GO Bus Terminal
+B|43.76514|-79.49102|Finch West Station
+B|50.92419|-114.07434|Fish Creek - Lacombe Bus Terminal
+B|51.06517|-114.13251|Foothills Hospital
+B|49.86264|-97.14544|Fort Rouge Station
+B|43.25634|-79.87086|Frank A. Cooke Transit Terminal
+B|45.95787|-66.65642|Fredericton
+B|45.47332|-75.74118|Freeman
+B|49.95217|-97.14547|Garden City Terminal
+B|44.23599|-76.56799|Gardiners Centre Terminal
+B|48.45030|-68.52154|Gare (Point de correspondance)
+B|45.40007|-74.05191|Gare Vaudreuil
+B|45.51674|-73.56371|Gare d'autocars de Montréal
+B|46.77281|-71.30119|Gare d'autocars de Sainte-Foy
+B|45.72969|-73.59891|Gare de Mascouche
+B|46.08980|-71.30073|Gare de Thetford
+B|46.81888|-71.21376|Gare routière
+B|50.11576|-122.95637|Gateway Bus Loop
+B|43.66597|-79.73383|Gateway Terminal
+B|53.53618|-113.50448|Government Centre Transit Centre
+B|45.35989|-75.65867|Greenboro
+B|43.68256|-79.33025|Greenwood
+B|51.06012|-99.52420|Greyhound Bus Depot
+B|50.04028|-110.67683|Greyhound Canada
+B|53.55731|-113.87944|Greystone Centennial Transfer
+B|43.54531|-80.24583|Guelph Central Station
+B|49.19148|-122.80386|Guildford Exchange
+B|44.88882|-63.51678|Halifax Airport Station (charter buses only)
+B|44.63935|-63.56827|Halifax Bus Terminal
+B|44.65023|-63.57581|Halifax Transit Lounge
+B|43.25279|-79.86934|Hamilton GO Centre Bus Terminal
+B|51.14097|-114.14947|Hamptons Bus Terminal WB
+B|49.21935|-122.59708|Haney Place Bus Station
+B|49.88083|-97.13526|Harkness Station
+B|49.21014|-123.06481|Harrison Loop
+B|49.26631|-123.12019|Heather Square
+B|43.19316|-79.81003|Heritage Greene Terminal
+B|50.98019|-114.09559|Heritage Park
+B|53.42613|-113.54437|Heritage Valley Transit Centre
+B|45.37874|-75.67968|Heron
+B|45.37711|-75.68570|Heron At Mooney's Bay Station
+B|44.68440|-63.58918|Highfield Terminal
+B|43.43058|-80.52537|Highland Hills Terminal
+B|44.06762|-79.42163|Highway 404 Park & Ride
+B|43.78298|-79.52400|Highway 407 Bus Terminal
+B|42.28639|-83.06459|Hotel Dieu Grace Healthcare
+B|42.98039|-81.25075|InterCity Bus Terminal
+B|47.65370|-70.15300|Intercar
+B|48.42847|-71.06671|Intercar Chicoutimi
+B|49.62290|-125.02768|Island Link Bus - Cumberland Stop
+B|49.19157|-123.95350|IslandLink Bus Lines
+B|43.64477|-79.52436|Islington Bus Terminal
+B|53.54074|-113.59194|Jasper Place Transit Centre
+B|49.85585|-97.15001|Jubilee Station
+B|43.73241|-79.26353|Kennedy Station Bus Platform A
+B|43.73174|-79.26328|Kennedy Station Bus Platform B
+B|45.27418|-66.05850|King Square North
+B|45.96148|-66.64289|Kings Place
+B|44.26005|-76.50602|Kingston Bus Terminal
+B|44.24200|-76.51678|Kingston Centre Transfer Point
+B|53.55839|-113.50130|Kingsway/Royal Alex Transit Centre
+B|49.28141|-123.02627|Kootenay Loop
+B|44.66134|-63.65704|Lacewood Terminal
+B|49.08767|-123.06226|Ladner Exchange
+B|53.45858|-113.44502|Lakewood Transit Centre
+B|45.25405|-66.09489|Lancaster Mall
+B|48.44553|-123.50492|Langford Transit Exchange
+B|50.67681|-120.32599|Lansdowne Exchange
+B|43.72526|-79.40262|Lawrence
+B|51.08641|-115.35856|Lawrence Grassi Middle School
+B|52.16830|-106.63852|Lawson Transit Terminal
+B|53.45560|-113.58026|Leger Transit Centre
+B|45.47796|-75.69743|Les Promenades
+B|53.52264|-113.66570|Lewis Farms Transit Centre
+B|43.21789|-79.86336|Lime Ridge Terminal
+B|43.59164|-79.78815|Lisgar
+B|45.28541|-75.74686|Longfields Stn
+B|49.31084|-123.08262|Lonsdale Quay Bus Exchange
+B|49.24769|-122.89512|Lougheed Station
+B|45.40644|-75.66429|Lycee Claudel
+B|43.68905|-79.30158|Main Street
+B|43.84768|-79.54058|Major Mackenzie West Terminal
+B|47.36964|-68.32399|Maritime Bus
+B|45.61625|-61.99729|Maritime Bus Antigonish
+B|48.00311|-66.68296|Maritime Bus Campbellton
+B|44.67177|-63.57901|Maritime Bus Dartmouth Terminal
+B|47.02009|-65.44521|Maritime Bus Miramichi
+B|45.72535|-63.87938|Maritime Bus Oxford
+B|46.64697|-64.87551|Maritime Bus Rexton
+B|45.35593|-63.29467|Maritime Bus Truro
+B|52.10037|-106.62058|Market Mall Transit Terminal
+B|49.80834|-97.15732|Markham Station
+B|49.20308|-123.13375|Marpole Loop
+B|45.30599|-66.01763|McAllister Place
+B|57.43497|-111.58808|McClelland Lake Lodge Bus Area
+B|50.91563|-113.95715|McKenzie Towne Station
+B|51.10884|-113.97518|McKnight-Westwinds
+B|43.26176|-79.92269|McMaster University Bus Terminal
+B|48.63024|-123.41313|McTavish Transit Exchange
+B|53.47850|-113.36757|Meadows Transit Centre
+B|43.58352|-79.75873|Meadowvale Town Centre Bus Terminal
+B|45.49798|-73.56570|Megabus Montréal
+B|53.50544|-113.98814|Memorial Composite Transfer
+B|44.66092|-63.66321|Metro Transit Lacewood Terminal
+B|49.22606|-123.00295|Metrotown Station
+B|44.68551|-63.56101|Micmac Terminal
+B|53.45725|-113.42936|Mill Woods Transit Centre
+B|53.48581|-113.45360|Millgate TC on 86 Street
+B|43.52390|-79.86701|Milton GO
+B|43.52792|-79.90345|Milton Park & Ride
+B|49.83700|-119.48033|Mission Recreation Exchange
+B|43.23846|-79.88371|Mohawk College Transit Terminal
+B|46.08372|-64.78602|Moncton
+B|49.04656|-122.29037|Montrose Exchange
+B|49.27785|-122.84631|Moody Centre Station
+B|43.10360|-79.11567|Morrison-Dorchester Hub
+B|43.68864|-79.48786|Mount Dennis Bus Terminal
+B|43.67490|-79.82240|Mount Pleasant GO
+B|51.01419|-114.13337|Mount Royal University Terminal
+B|43.18527|-79.90342|Mountain Transit Centre
+B|44.64766|-63.62017|Mumford Bus Terminal
+B|53.61715|-113.59331|Nakî Transit Centre
+B|49.24837|-123.05591|Nanaimo Station
+B|45.27474|-75.71644|Nepean Woods
+B|44.05278|-79.48646|Newmarket Bus Terminal
+B|49.13336|-122.84210|Newton Exchange
+B|43.10820|-79.06363|Niagara Falls Bus Station
+B|43.10814|-79.06370|Niagara Falls Bus Terminal
+B|46.30857|-79.46391|North Bay Transit
+B|51.15782|-114.06891|North Pointe Terminal
+B|51.15709|-114.06894|North Pointe Terminal and Park and Ride
+B|49.72790|-112.82472|North Terminal
+B|53.60004|-113.49001|Northgate Transit Centre
+B|43.98983|-79.23751|Old Elm
+B|48.14792|-80.04548|Ontario Northland
+B|43.94349|-78.89545|Ontario Tech/Durham College North Campus Terminal
+B|49.88051|-119.44230|Orchard Park Exchange
+B|53.51338|-113.33087|Ordze Transit Centre
+B|48.45417|-67.41518|Orleans Express Amqui
+B|48.58487|-68.19426|Orleans Express Mont Joli
+B|48.46496|-68.51223|Orleans Express Rimouski
+B|48.01805|-66.68879|Orléans Express Pointe-à-la-Croix
+B|45.48000|-75.51968|Orléans Park & Ride
+B|49.87349|-97.14092|Osborne Station
+B|43.89775|-78.86530|Oshawa Bus Terminal
+B|43.88918|-78.87703|Oshawa Centre Terminal
+B|44.56860|-80.94151|Owen Sound Transit Terminal
+B|45.41976|-75.75410|Parc-o-Bus Saint-Dominique
+B|45.47438|-75.69759|Parc-o-bus Pierre-Lafontaine
+B|45.46943|-75.71629|Parc-o-bus et Station Rapibus de la Gappe
+B|46.72774|-71.29582|Parc-relais-bus des Rivières
+B|44.34017|-79.68015|Park Place
+B|49.32700|-123.13857|Park Royal
+B|49.31834|-124.31153|Parksville Exchange
+B|49.22954|-123.01196|Patterson station
+B|49.46379|-119.58871|Peachtree Square Exchange
+B|51.05191|-113.94149|Penbrooke
+B|44.67073|-63.53851|Penhorn Terminal
+B|44.30487|-78.32194|Peterborough Terminal
+B|43.40788|-80.32773|Pinebush Station
+B|43.77887|-79.51216|Pioneer Village YRT Bus Terminal
+B|46.81267|-71.21476|Place D'Youville
+B|45.47874|-75.51843|Place d'Orléans
+B|49.82215|-97.15616|Plaza Station
+B|45.39275|-75.66938|Pleasant Park
+B|49.88137|-97.19918|Polo Park Terminal
+B|49.88141|-97.19921|Polo Park Transit Hub
+B|49.26102|-122.77399|Port Coquitlam Station
+B|43.55552|-79.58735|Port Credit GO
+B|44.73499|-63.28651|Porters Lake Transit Terminal
+B|44.66995|-63.50574|Portland Hills Terminal
+B|49.25387|-122.91813|Production Station Bus Loop
+B|43.80941|-79.45409|Promenade Terminal
+B|51.18028|-115.57686|Pursuit Bus Station
+B|44.14199|-79.44001|Queensville Sdrd. @ Hwy. 404 Park & Ride
+B|45.35917|-75.77199|Queensway
+B|49.88732|-119.49497|Queensway Bus Exchange
+B|45.48617|-75.66157|Rapibus Station Gouin
+B|51.08440|-114.05692|Red Arrow Calgary North
+B|53.53919|-113.49948|Red Arrow Edmonton
+B|45.93542|-66.66279|Regent Mall
+B|43.66291|-79.59132|Renforth
+B|51.01858|-114.16050|Richmond
+B|43.83998|-79.42539|Richmond Hill Centre Terminal
+B|43.87598|-79.42639|Richmond Hill GO Station
+B|43.83994|-79.42546|Richmond Hill Terminal
+B|49.16760|-123.13530|Richmond-Brighouse Exchange
+B|53.54412|-113.50142|Rider Express Edmonton Downtown
+B|45.40380|-75.79477|Rivermead
+B|45.39652|-75.66942|Riverside
+B|45.26871|-75.69492|Riverview Park & Ride
+B|44.16277|-77.38168|Robert E. Ledoucier Transit Centre
+B|42.97453|-81.26281|Robert Q Air Bus
+B|50.98753|-114.09566|Rockyview Hospital
+B|49.27863|-122.91265|SFU Transit Exchange
+B|49.27984|-122.92018|SFU Transportation Centre
+B|49.67653|-96.65893|SRSD Transportation Office
+B|45.42071|-75.63654|ST. LAURENT 4E
+B|51.75154|-104.53172|STC
+B|52.10959|-101.25027|SVSD Bus Garage
+B|44.76801|-63.69900|Sackville Terminal
+B|45.27782|-66.06322|Saint John Terminal
+B|49.82654|-97.11080|Saint Vital Centre Terminal
+B|45.52320|-73.86204|Sainte-Dorothée
+B|51.13439|-114.08942|Sandstone
+B|43.77444|-79.25787|Scarborough Centre Station
+B|54.62452|-97.79309|School Bus Garage
+B|53.99643|-97.78590|School Bus Station
+B|44.64971|-63.57541|Scotia Square Bus Depot Point
+B|49.20424|-122.87513|Scott Road Station
+B|49.13755|-122.88806|Scottsdale Exchange
+B|49.84265|-97.16903|Seel Station
+B|50.14687|-96.86897|Selkirk Bus Depot
+B|50.91074|-114.06992|Shawnessy
+B|43.74926|-79.46224|Sheppard West
+B|43.76172|-79.41226|Sheppard-Yonge Bus Terminal
+B|43.65598|-79.74164|Sheridan College Bus Terminal
+B|43.79655|-79.52811|SmartCentres Place Bus Terminal
+B|45.40126|-75.66652|Smyth
+B|50.89857|-114.06969|Somerset - Bridlewood
+B|52.26757|-113.81097|Sorensen Station
+B|43.54336|-79.68384|South Common Centre Bus Terminal
+B|49.03595|-123.06846|South Delta Exchange
+B|45.35359|-75.65519|South Keys
+B|45.35360|-75.65496|South Keys
+B|43.41218|-79.70495|South Oakville Centre
+B|49.07199|-122.82234|South Surrey Park and Ride
+B|51.25718|-114.00659|South Transit Terminal
+B|50.96437|-114.07761|Southland
+B|49.25879|-122.96399|Sperling-Burnaby Lake Station
+B|43.41000|-80.39293|Sportsworld Station
+B|53.56753|-113.87750|Spruce Grove Transit Centre
+B|43.59374|-79.64620|Square One Bus Terminal
+B|43.59511|-79.64873|Square One GO Bus Terminal
+B|53.64014|-113.62362|St. Albert Centre Exchange
+B|43.15983|-79.24385|St. Catharines Transit Hub
+B|43.68776|-79.39247|St. Clair
+B|43.66861|-79.39816|St. George
+B|45.12489|-66.81797|St. George-Irving
+B|44.22385|-76.52631|St. Lawrence College Transfer Point
+B|49.80879|-97.14505|Stadium Station
+B|53.55930|-113.47202|Stadium Transit Centre
+B|49.30053|-123.13390|Stanley Park Loop
+B|48.42473|-71.05095|Station Cégep
+B|45.49057|-75.64337|Station Rapibus Labrosse
+B|45.37867|-71.92940|Station Université
+B|45.40212|-71.95236|Station du Carrefour de l'Estrie
+B|45.41185|-71.88437|Station du Cégep
+B|48.38119|-71.08258|Station du Royaume
+B|45.43248|-73.30398|Stationnement incitatif de Chambly
+B|45.57086|-73.41202|Stationnement incitatif de Touraine - A20
+B|43.51856|-80.23948|Stone Road Mall
+B|45.27329|-75.74552|Strandherd
+B|43.57542|-79.70919|Streetsville GO
+B|46.50474|-80.93807|Sudbury
+B|51.05908|-114.07402|Sunnyside
+B|49.18890|-122.84888|Surrey Central Bus Loop
+B|50.67101|-120.36836|TRU Exchange
+B|42.31603|-82.93661|Tecumseh Mall Bus Terminal
+B|48.42865|-71.06614|Terminal STS Chicoutimi
+B|45.88074|-72.48570|Terminal Urbain CTD
+B|46.84718|-71.21675|Terminus Beauport
+B|45.43702|-73.43217|Terminus Brossard
+B|45.36512|-73.71173|Terminus Châteauguay
+B|45.51386|-73.68358|Terminus Côte-Vertu
+B|45.44849|-73.74319|Terminus Dorval
+B|46.36344|-72.53070|Terminus Fusey
+B|46.83065|-71.29655|Terminus Galeries de la Capitale
+B|46.37358|-72.55598|Terminus Galeries du Cap
+B|48.41182|-71.25367|Terminus Jonquière
+B|48.33722|-70.87955|Terminus La Baie
+B|45.42532|-73.64843|Terminus Lafleur/Newman
+B|46.67185|-71.34103|Terminus Lagueux
+B|45.56859|-73.74847|Terminus Le Carrefour
+B|46.81251|-71.32399|Terminus Les Saules
+B|45.52428|-73.52146|Terminus Longueuil
+B|45.49819|-73.56427|Terminus Mansfield
+B|45.46643|-73.46866|Terminus Panama
+B|45.58981|-73.53781|Terminus Radisson Sud
+B|45.74658|-73.45413|Terminus Repentigny
+B|45.56136|-73.89283|Terminus Saint-Eustache
+B|45.32605|-73.29038|Terminus Saint-Jean-sur-Richelieu
+B|45.58245|-73.32340|Terminus Sainte-Julie
+B|45.63576|-73.83504|Terminus Sainte-Thérèse
+B|45.69793|-73.65293|Terminus Terrebonne
+B|45.57285|-73.44376|Terminus de Mortagne
+B|46.03763|-73.08826|Terminus de Sorel
+B|46.81047|-71.18759|Terminus de la Traverse
+B|45.40747|-75.86613|Terminus des Allumettières
+B|46.81725|-71.23101|Terminus du Parc-Victoria
+B|43.43532|-80.56074|The Boardwalk
+B|56.73137|-111.43699|Thickwood Terminal
+B|50.72246|-127.49018|Tofino & Greyhound Bus, k'awat'si Tours
+B|49.19142|-123.95351|Tofino & Vancouver Island Connector Bus Stop
+B|49.15313|-125.90708|Tofino Bus Depot
+B|49.31660|-124.29482|Tofino Bus Stop
+B|50.02665|-125.24227|Tofino Bus Stop
+B|43.62159|-79.62371|Tomken
+B|49.09481|-117.70788|Trail Transit Exchange - Ceder and Spokane
+B|45.40155|-71.88932|Transdev Limocar
+B|42.31600|-82.93658|Transit Windsor Tecumseh Mall HUB
+B|43.73067|-79.76405|Trinity Common Bus Terminal
+B|51.13360|-114.23601|Tuscany LRT Station Loop (south)
+B|51.13503|-114.23462|Tuscany Station - Rocky Ridge Terminal
+B|49.80887|-97.13043|U of M Station
+B|49.93965|-119.39486|UBC Okanagan Exchange Waiting Room
+B|43.64391|-79.37771|Union Station Bus Terminal
+B|43.85208|-79.31385|Unionville GO Station Bus Terminal
+B|53.52489|-113.52197|University Transit Centre
+B|43.52923|-80.22455|University of Guelph
+B|43.54786|-79.66346|University of Toronto Mississauga
+B|43.78436|-79.18566|University of Toronto Scarborough
+B|43.47425|-80.54021|University of Waterloo Station
+B|52.13032|-106.63634|University/Place Riel Transit Terminal
+B|43.48563|-79.71901|Uptown Core Terminal
+B|49.15805|-123.96662|VIU Transit Exchange
+B|48.99674|-123.82267|Vancouver Island Connector
+B|49.27353|-123.09786|Vancouver Main Terminal
+B|43.82711|-79.53411|Vaughan Mills Terminal
+B|50.11365|-122.95204|Village Gondola Transit Exchange
+B|51.07407|-114.01317|Vista
+B|51.11869|-114.15679|WB Edgedale DR @ Edgemont BV NW
+B|45.36859|-75.66715|Walkley
+B|60.06039|-128.69923|Watson Lake Shuttle and Freight
+B|42.99283|-79.24627|Welland Bus Terminal
+B|53.60227|-113.41212|West Clareview Transit Centre
+B|53.52509|-113.62188|West Edmonton Mall Temporary Transit Centre
+B|49.82873|-119.63487|West Kelowna
+B|42.28652|-83.06458|West Windsor Bus Terminal
+B|53.56112|-113.55578|Westmount Transit Centre
+B|43.72160|-79.64053|Westwood Mall;Westwood Square Bus Terminal Platform F
+B|49.03210|-122.80106|White Rock Centre
+B|51.08690|-113.98293|Whitehorn
+B|43.73463|-79.45090|Wilson Station Bus Terminal
+B|42.31773|-83.04305|Windsor International Transit Terminal
+B|43.68642|-79.31261|Woodbine
+B|44.19191|-79.43723|Woodbine Ave. @ Hwy. 404 Park & Ride
+B|44.64892|-63.54792|Woodside Bus Terminal
+B|43.13145|-80.75018|Woodstock Bus Terminal
+B|43.74520|-79.40650|York Mills GO Bus Terminal
+B|43.72519|-79.44907|Yorkdale Bus Terminal
+B|49.87252|-97.06154|cn yard
+B|45.69777|-73.65376|exo - secteur Terrebonne Mascouche
