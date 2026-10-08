@@ -6702,6 +6702,7 @@
 22.65890|88.11346|Pantihal
 29.01749|79.51808|Pantnagar
 18.98942|73.12269|Panvel
+18.99094|73.12060|Panvel (Suburban)
 15.50052|78.34063|Panyam
 33.84643|75.03857|Panzgom
 10.92327|79.26893|Papanasam
@@ -6802,6 +6803,7 @@
 15.17118|77.52163|Pathakothacheruvu
 32.25938|75.63654|Pathankot Cantonment
 32.27220|75.64778|Pathankot Junction
+32.27151|75.64930|Pathankot Junction (NG)
 23.68289|86.42833|Pathardih Bazar
 23.90568|79.19240|Patharia
 24.61065|92.32213|Patharkandi
