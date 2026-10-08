@@ -481,7 +481,8 @@ object JourneyStory {
         val out = ArrayList<StageSpan>()
         for ((i, st) in starts.withIndex()) {
             val from = if (i == 0) minOf(input.startedAtMs, st.second) else st.second
-            val to = starts.getOrNull(i + 1)?.second ?: endMs
+            // A stage ends where the next begins, and none runs past the journey's end.
+            val to = minOf(starts.getOrNull(i + 1)?.second ?: endMs, endMs)
             if (to <= from) continue
             val last = out.lastOrNull()
             if (last != null && last.mode.equals(st.first, ignoreCase = true)) out[out.lastIndex] = last.copy(toMs = to)

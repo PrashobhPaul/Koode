@@ -94,6 +94,26 @@ object StageRepair {
     }
 
     /**
+     * The stages as they were within the journey: none began after it
+     * ended, and none ran past its end. "Got off" at the destination is
+     * often tapped a while after arriving (the arrival itself is noticed
+     * from the fixes); the stage ended when the journey did, and a stage
+     * begun after that was never part of it. On a journey that has ended
+     * ([completed]), a stage still open ended with it too.
+     */
+    fun <T> withinJourney(
+        items: List<T>, endMs: Long, startedAt: (T) -> Long?, completedAt: (T) -> Long?,
+        completed: Boolean = true, endedAt: (T, Long) -> T
+    ): List<T> = items.filter { (startedAt(it) ?: Long.MIN_VALUE) < endMs }.map { item ->
+        val c = completedAt(item)
+        when {
+            c != null && c > endMs -> endedAt(item, endMs)
+            c == null && completed && startedAt(item) != null -> endedAt(item, endMs)
+            else -> item
+        }
+    }
+
+    /**
      * The stages of a journey as a traveller tells them: [ridden], less a
      * walk from a place to the same place ([goesNowhere]: the last steps of
      * arriving), and a ride after a short walk between rides starting where

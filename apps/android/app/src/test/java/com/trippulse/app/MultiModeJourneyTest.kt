@@ -141,6 +141,29 @@ class MultiModeJourneyTest {
         assertEquals(walked, StageRepair.told(walked, { it.mode }, { it.m }, { it.from }, { it.to }) { st, from -> st.copy(from = from) })
     }
 
+    @Test fun no_stage_runs_past_the_journeys_end() {
+        // The journey closed at its arrival, 11:43; "got off the bike taxi"
+        // was tapped at 11:57 and started a walk. The bike taxi ran 11:34 to
+        // 11:43, the walk was never part of the journey.
+        data class S(val mode: String, val started: Long?, val completed: Long?)
+        val arrived = min(67)
+        val legs = listOf(S("BIKE_TAXI", min(0), min(19)), S("METRO", min(19), min(56)), S("BIKE_TAXI", min(58), min(81)), S("WALK", min(81), null))
+        val within = StageRepair.withinJourney(legs, arrived, { it.started }, { it.completed }) { l, e -> l.copy(completed = e) }
+        assertEquals(3, within.size)
+        assertEquals(arrived, within.last().completed)
+        assertTrue(within.sumOf { it.completed!! - it.started!! } <= arrived - min(0))
+        // A stage still open when the journey ended ended with it; not while the journey is under way.
+        val open = listOf(S("CAB", min(0), null))
+        assertEquals(min(30), StageRepair.withinJourney(open, min(30), { it.started }, { it.completed }) { l, e -> l.copy(completed = e) }.single().completed)
+        assertNull(StageRepair.withinJourney(open, min(30), { it.started }, { it.completed }, completed = false) { l, e -> l.copy(completed = e) }.single().completed)
+
+        // The story tells the same: the last part is 11 minutes, not 23.
+        val s = story(input().copy(endedAtMs = arrived, nowMs = min(90)))
+        val text = s.paragraphs.joinToString(" ")
+        assertTrue(text, text.contains("bike taxi again (11 min)"))
+        assertFalse(text, text.contains("23 min") || text.contains("on foot"))
+    }
+
     @Test fun a_walk_from_the_office_to_the_office_is_not_a_stage() {
         assertTrue(StageRepair.goesNowhere("WALK", "Qualizeal Office", "Qualizeal Office"))
         assertFalse(StageRepair.goesNowhere("BIKE_TAXI", "Qualizeal Office", "Qualizeal Office"))
