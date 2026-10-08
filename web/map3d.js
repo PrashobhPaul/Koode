@@ -467,7 +467,11 @@
       cells.forEach(function (c) {
         var st = c[0], m = c[1];
         if (st < 0) { last = -1; return; }
-        if (last >= 0 && isFinite(m)) { link(last, st, m); if (adj[st][last] === undefined) link(st, last, m); }
+        if (last >= 0 && isFinite(m)) {
+          // Never less than the straight line between the two stations.
+          var hop = Math.max(m, distM(stations[last], stations[st]));
+          link(last, st, hop); if (adj[st][last] === undefined) link(st, last, hop);
+        }
         last = st;
       });
     });
@@ -479,7 +483,8 @@
         if (b[0] - a[0] > 0.008) break;
         if (a[3] !== b[3] || Math.abs(a[1] - b[1]) > 0.01) continue;
         var m = distM(a, b), same = a[2] && a[2].toLowerCase() === b[2].toLowerCase();
-        if (m <= INTERCHANGE_M || (same && m <= SAME_NAME_M)) { link(order[x], order[y], 0); link(order[y], order[x], 0); }
+        // A change of line costs the walk between the stations.
+        if (m <= INTERCHANGE_M || (same && m <= SAME_NAME_M)) { link(order[x], order[y], m); link(order[y], order[x], m); }
       }
     }
     transit.stations = stations;

@@ -240,16 +240,21 @@ class TransitNetwork(val stations: List<Station>, private val edges: List<List<E
                 for ((s, m) in cells) {
                     if (s < 0) { last = -1; continue }
                     if (last >= 0 && m != null) {
-                        link(last, s, m)
+                        // Never less than the straight line between the two
+                        // stations: a ride cannot be shorter than that.
+                        val hop = maxOf(m, Geo.haversineM(stations[last].point, stations[s].point))
+                        link(last, s, hop)
                         // The other direction is usually its own line; if it
                         // is missing, the same track serves both ways.
-                        if (adj[s][last] == null) link(s, last, m)
+                        if (adj[s][last] == null) link(s, last, hop)
                     }
                     last = s
                 }
             }
-            // Interchanges: changing lines costs no distance ridden. Sorted
-            // by latitude so only neighbours are compared.
+            // Interchanges: changing lines costs the walk between the two
+            // stations (it was travelled, and it keeps a chain of nearby
+            // stations from becoming a free shortcut). Sorted by latitude so
+            // only neighbours are compared.
             val order = stations.indices.sortedBy { stations[it].lat }
             for (x in order.indices) {
                 val a = stations[order[x]]
@@ -260,7 +265,7 @@ class TransitNetwork(val stations: List<Station>, private val edges: List<List<E
                     val m = Geo.haversineM(a.point, b.point)
                     val same = a.name.isNotBlank() && a.name.equals(b.name, ignoreCase = true)
                     if (m <= INTERCHANGE_M || (same && m <= SAME_NAME_INTERCHANGE_M)) {
-                        link(order[x], order[y], 0.0); link(order[y], order[x], 0.0)
+                        link(order[x], order[y], m); link(order[y], order[x], m)
                     }
                 }
             }

@@ -75,9 +75,10 @@ RATIO_MIN, FALLBACK = 1.0, 1.08
 RATIO_MAX = {"M": 1.5, "W": 2.5}
 
 # Stops of one name this close are one station: both directions' platforms,
-# the lines meeting at an interchange. Kept tight so New York's several
-# "86 St" stations a few blocks apart stay apart.
-SAME_NAME_M = 350.0
+# the lines meeting at an interchange. Kept tight so stations a block apart
+# on different lines (New York's two 23rd Streets) stay two stations; the
+# app links those by the walk between them.
+SAME_NAME_M = 200.0
 SAME_SPOT_M = 40.0
 
 
@@ -280,7 +281,13 @@ def build_network(routes, stops):
     for root in sorted(groups, key=lambda r: (stop_list[r][4], stop_list[r][3], key_of(stop_list[r][2]), stop_list[r][0], stop_list[r][1])):
         idx = groups[root]
         kind = stop_list[root][4]
-        names = [stop_list[i][2] for i in idx if stop_list[i][2]]
+        # A stop shared by a metro (or water metro) and an ordinary service
+        # is named and labelled as the metro's: "Vypin Water Metro".
+        nets = [stop_list[i][3] for i in idx]
+        metro = [n for n in nets if re.search(r"m[eé]tro", n, re.I)]
+        network = max(sorted(set(metro or nets)), key=nets.count)
+        names = [stop_list[i][2] for i in idx if stop_list[i][2] and stop_list[i][3] == network] or \
+                [stop_list[i][2] for i in idx if stop_list[i][2]]
         name = base_name(max(sorted(set(names)), key=names.count)) if names else ""
         lat = sum(stop_list[i][0] for i in idx) / len(idx)
         lon = sum(stop_list[i][1] for i in idx) / len(idx)
@@ -290,7 +297,7 @@ def build_network(routes, stops):
             f = min(same, key=lambda f: metres(lat, lon, f[0], f[1]))
             lat, lon = f[0], f[1]
         sid = len(stations)
-        stations.append((lat, lon, clean(name), clean(stop_list[root][3]), kind))
+        stations.append((lat, lon, clean(name), clean(network), kind))
         for i in idx:
             station_of[i] = sid
 
