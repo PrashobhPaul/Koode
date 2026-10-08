@@ -147,7 +147,7 @@ object Reports {
                 "The line is the path the phone recorded. A dashed line is a stretch with the phone out of contact." +
                     if (i.events.any { it.type == com.trippulse.app.domain.EventTypes.LEG_STARTED && com.trippulse.app.domain.TransitNetwork.kindOf(it.payload["mode"] as? String) != null } ||
                         com.trippulse.app.domain.TransitNetwork.kindOf(i.mode) != null)
-                        " A metro or ferry ride follows its line, stop to stop, and is measured along it." else ""
+                        " A train, metro or ferry ride follows its line, stop to stop, and is measured along it." else ""
             )
         }
 

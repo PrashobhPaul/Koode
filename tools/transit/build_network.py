@@ -16,6 +16,19 @@ downloaded when the phone is there) and by the web viewer:
                                 boat's course) from each to the next
   T|lat|lng|name                a railway station, for naming where a train
                                 stage began or ended
+  R|lat|lng|name|network        a station on a mapped railway line
+  Q|network|line|colour|class|a b:m ...
+                                a railway line, as L but numbering the R
+                                rows, with its speed class: H high-speed
+                                (Shinkansen, TGV, ICE, AVE, Eurostar,
+                                Acela), X long-distance and limited express,
+                                L everything else; followed by the speed,
+                                km/h, its trains keep between stops in that
+                                country ("H270" in Japan, "H190" in Germany)
+  B|lat|lng|name                a bus or coach station, for naming where a
+                                bus stage began or ended
+
+Apps that know only S, L and T rows skip the others.
 
 Why along the track: a ride is a few phone fixes far apart, and the
 straight lines between them cut every bend. The track is what was ridden,
@@ -64,6 +77,15 @@ Q_STOPS = ('[out:json][timeout:300];area{area}->.a;rel(area.a)["route"~"' + ROUT
            'nw(area.a)["public_transport"="station"]["subway"="yes"];'
            'nw(area.a)["public_transport"="station"]["light_rail"="yes"];'
            'nw(area.a)["amenity"="ferry_terminal"];)->.st;(.stops;.st;);out center tags;')
+# Railway lines: the routes without their geometry, then each track way once
+# (a busy track is shared by dozens of services; asking per route repeats it).
+Q_TRAINS = ('[out:json][timeout:300];area{area}->.a;rel(area.a)["route"="train"]->.r;'
+            '.r out body;way(r.r);out geom;node(r.r);out body;')
+# Ferries mapped as a way and not a route (most sea crossings), with the
+# terminals at their ends, wherever those are: Dover's crossing ends in Calais.
+Q_FERRY_WAYS = ('[out:json][timeout:300];area{area}->.a;way(area.a)["route"="ferry"]->.f;.f out body geom;'
+                'nw(around.f:1500)["amenity"="ferry_terminal"];out center tags;')
+Q_BUS = '[out:json][timeout:300];area{area}->.a;nw(area.a)["amenity"="bus_station"];out center tags;'
 Q_RAIL = ('[out:json][timeout:300];area{area}->.a;(nw(area.a)["railway"~"^(station|halt)$"]'
           '["station"!~"subway|light_rail|monorail"]["usage"!~"tourism"];);out center tags;')
 
@@ -83,7 +105,14 @@ ALIAS = re.compile(r"^.*\b(station|stn\.?)\s*,\s*(.+)$", re.I)
 # cleanly between two stops; the straight line, a little longer, is used.
 # A boat's course bends round headlands and islands, so it is allowed more.
 RATIO_MIN, FALLBACK = 1.0, 1.08
-RATIO_MAX = {"M": 1.5, "W": 2.5}
+RATIO_MAX = {"M": 1.5, "W": 2.5, "R": 1.6}
+
+# How fast a railway line runs, for the time a ride takes: high-speed, long
+# distance and limited express, everything else.
+HIGH_SPEED = re.compile(r"shinkansen|新幹線|\bTGV\b|inoui|ouigo|\bICE\b|\bAVE\b|avlo|iryo|eurostar|thalys|frecciarossa|"
+                        r"\bitalo\b|acela|\bKTX\b|\bSRT\b|高铁|\bCRH\b|lyria|high[- ]speed", re.I)
+EXPRESS = re.compile(r"intercity|inter-city|\bI[CR]E?\b|\bEC\b|\bEN\b|express|特急|limited|amtrak|railjet|nightjet|"
+                     r"night train|sleeper|\bTEE\b|eurocity|euronight|\bTER\b(?!.*\bomnibus)", re.I)
 
 # Stops of one name this close are one station: both directions' platforms,
 # the lines meeting at an interchange. Kept tight so stations a block apart
@@ -196,8 +225,131 @@ def clean(s):
     return re.sub(r"[|\r\n]+", " ", s).strip()
 
 
-def build_network(routes, stops):
-    """Stations (lat, lon, name, network, kind) and lines ("L|…" rows)."""
+# How fast each class of train runs between stops, km/h, where it differs
+# from the usual: a Shinkansen or a TGV holds 270 for hours, an ICE shares
+# much of its way with slower trains, the Acela most of its.
+CRUISE = {"H": 220, "X": 110, "L": 55}
+CRUISE_BY_COUNTRY = {
+    "JP": {"H": 270, "X": 100}, "FR": {"H": 270, "X": 130}, "ES": {"H": 260}, "IT": {"H": 250},
+    "CN": {"H": 280}, "KR": {"H": 250}, "TW": {"H": 260}, "DE": {"H": 190, "X": 130}, "AT": {"H": 170},
+    "CH": {"H": 150, "X": 100}, "BE": {"H": 230}, "NL": {"H": 200}, "GB": {"H": 200, "X": 140},
+    "SE": {"H": 160}, "US": {"H": 120, "X": 90, "L": 60}, "CA": {"X": 90}, "IN": {"H": 130, "X": 75, "L": 45},
+}
+
+
+def cruise(cc, klass):
+    return CRUISE_BY_COUNTRY.get(cc, {}).get(klass, CRUISE[klass])
+
+
+def rail_class(t):
+    """H, X or L: see the Q rows."""
+    service = t.get("service", "")
+    if service == "high_speed" or t.get("highspeed") == "yes":
+        return "H"
+    words = " ".join(t.get(k, "") for k in ("name", "name:en", "network", "brand", "ref", "operator"))
+    if HIGH_SPEED.search(words):
+        return "H"
+    if service in ("long_distance", "night") or EXPRESS.search(words):
+        return "X"
+    return "L"
+
+
+def inflate(answer):
+    """
+    Routes asked for without geometry (Q_TRAINS) in the shape asked with it:
+    each member way given its track, each member node its place. Returns the
+    routes and the member nodes (the stops, with their names).
+    """
+    els = (answer or {}).get("elements", [])
+    ways = {e["id"]: e for e in els if e.get("type") == "way"}
+    nodes = {e["id"]: e for e in els if e.get("type") == "node"}
+    rels = []
+    for e in els:
+        if e.get("type") != "relation":
+            continue
+        members = []
+        for m in e.get("members", []):
+            m = dict(m)
+            if m.get("type") == "way" and m.get("ref") in ways:
+                m["geometry"] = ways[m["ref"]].get("geometry")
+            elif m.get("type") == "node" and m.get("ref") in nodes:
+                m["lat"], m["lon"] = nodes[m["ref"]]["lat"], nodes[m["ref"]]["lon"]
+            members.append(m)
+        rels.append(dict(e, members=members))
+    return {"elements": rels}, {"elements": list(nodes.values()) + [w for w in ways.values() if w.get("tags", {}).get("public_transport")]}
+
+
+def ferry_crossings(answer):
+    """
+    Ferries mapped as ways, as routes from terminal to terminal: ways joined
+    end to end where only two meet, each end matched to a terminal within
+    1.5 km. Returns routes in the shape of Q_FERRIES' and the terminals.
+    """
+    els = (answer or {}).get("elements", [])
+    ways = [e for e in els if e.get("type") == "way" and e.get("tags", {}).get("route") == "ferry"
+            and len(e.get("geometry") or []) >= 2 and len(e.get("nodes") or []) >= 2
+            and not UNBUILT.search(e.get("tags", {}).get("name", ""))]
+    terminals = [e for e in els if e.get("tags", {}).get("amenity") == "ferry_terminal" and name_of(e.get("tags", {})) and centre(e)]
+    ends = {}
+    for w in ways:
+        for nid in (w["nodes"][0], w["nodes"][-1]):
+            ends.setdefault(nid, []).append(w)
+    used, routes = set(), []
+    for w in sorted(ways, key=lambda w: w["id"]):
+        if w["id"] in used:
+            continue
+        used.add(w["id"])
+        pts = [(p["lat"], p["lon"]) for p in w["geometry"] if p]
+        first, last, t = w["nodes"][0], w["nodes"][-1], w.get("tags", {})
+        grew = True
+        while grew:
+            grew = False
+            for at_end in (True, False):
+                nid = last if at_end else first
+                meet = ends.get(nid, [])
+                others = [o for o in meet if o["id"] not in used]
+                if len(meet) != 2 or len(others) != 1:
+                    continue
+                o = others[0]
+                used.add(o["id"])
+                op = [(p["lat"], p["lon"]) for p in o["geometry"] if p]
+                forward = o["nodes"][0] == nid if at_end else o["nodes"][-1] == nid
+                if not forward:
+                    op = op[::-1]
+                if at_end:
+                    pts += op[1:]
+                    last = o["nodes"][-1] if o["nodes"][0] == nid else o["nodes"][0]
+                else:
+                    pts = op[:-1] + pts
+                    first = o["nodes"][0] if o["nodes"][-1] == nid else o["nodes"][-1]
+                grew = True
+
+        def terminal(p):
+            best = min(((metres(p[0], p[1], *centre(x)), x) for x in terminals), default=None, key=lambda b: b[0])
+            return best[1] if best and best[0] <= 1500 else None
+        a, b = terminal(pts[0]), terminal(pts[-1])
+        if not a or not b or a is b:
+            continue
+        member = lambda x: {"type": x["type"], "ref": x["id"], "role": "stop", "lat": centre(x)[0], "lon": centre(x)[1]}
+        routes.append({"type": "relation", "id": -w["id"],
+                       "tags": {"route": "ferry", "name": t.get("name", ""),
+                                "network": t.get("network") or t.get("operator") or t.get("name") or "ferry"},
+                       "members": [member(a), {"type": "way", "ref": w["id"], "role": "",
+                                               "geometry": [{"lat": la, "lon": lo} for la, lo in pts]}, member(b)]})
+    return routes, terminals
+
+
+# Platforms and tracks are where a train stops, not what the station is called.
+PLATFORM = re.compile(r"\s*[-–,]?\s*\b(voie|gleis|quai|platform|track|bahnsteig|binario|spoor|hall)\s*\d+[\w\s\-–]*(,.*)?$"
+                      r"|\s*\((tief|oben|unten|lower level|upper level|rer)\)\s*$", re.I)
+
+
+def build_network(routes, stops, station_kind="M", rail=None, cc=""):
+    """
+    Stations (lat, lon, name, network, kind) and lines ("L|…" rows; "Q|…"
+    rows for railway lines, [station_kind] R, whose named stations [rail]
+    also are).
+    """
     tags = {}
     features = []  # named stations and terminals: (lat, lon, name, kind)
     for el in stops.get("elements", []):
@@ -209,14 +361,30 @@ def build_network(routes, stops):
             continue
         if t.get("amenity") == "ferry_terminal" or t.get("ferry") == "yes":
             features.append((c[0], c[1], n, "W"))
-        elif t.get("railway") == "station" or t.get("public_transport") == "station":
-            features.append((c[0], c[1], n, "M"))
+        elif t.get("railway") in ("station", "halt") or t.get("public_transport") == "station":
+            features.append((c[0], c[1], n, station_kind))
+    for el in (rail or {}).get("elements", []):
+        c, n = centre(el), name_of(el.get("tags", {}))
+        if c and n:
+            features.append((c[0], c[1], n, station_kind))
+
+    # Stations by 0.01-degree square, so each stop looks only at its neighbours.
+    grid = {}
+    for f in features:
+        grid.setdefault((int(f[0] * 100), int(f[1] * 100)), []).append(f)
+
+    def near_features(lat, lon, kind):
+        y, x = int(lat * 100), int(lon * 100)
+        return (f for dy in (-1, 0, 1) for dx in (-1, 0, 1) for f in grid.get((y + dy, x + dx), ()) if f[3] == kind)
 
     def stop_name(ref, lat, lon, kind):
         n = name_of(tags.get(ref, {}))
+        best = min(((metres(lat, lon, f[0], f[1]), f[2]) for f in near_features(lat, lon, kind)), default=None)
+        # A train stops at a platform ("Gleis 27-36"); riders name the station.
+        if kind == "R" and best and best[0] <= 400:
+            return PLATFORM.sub("", best[1]).strip() or best[1]
         if n:
-            return n
-        best = min(((metres(lat, lon, f[0], f[1]), f[2]) for f in features if f[3] == kind), default=None)
+            return PLATFORM.sub("", n).strip() or n
         return best[1] if best and best[0] <= 350 else ""
 
     lines = []  # (network, name, colour, kind, [(stop_index, metres_from_previous)])
@@ -226,9 +394,9 @@ def build_network(routes, stops):
         if rel.get("type") != "relation":
             continue
         t = rel.get("tags", {})
-        kind = "W" if t.get("route") == "ferry" else "M"
-        network = (t.get("network") or (t.get("operator") if kind == "W" else "") or "").strip()
-        title = t.get("name", "")
+        kind = {"ferry": "W", "train": "R"}.get(t.get("route"), "M")
+        network = (t.get("network") or (t.get("operator") if kind != "M" else "") or ("rail" if kind == "R" else "")).strip()
+        title = (t.get("name:en") if kind == "R" else None) or t.get("name", "")
         if not network or UNBUILT.search(title) or t.get("state") in ("proposed", "construction"):
             continue
         members = rel.get("members", [])
@@ -258,7 +426,8 @@ def build_network(routes, stops):
             prev = here
         if len(seq) >= 2:
             line = re.sub(r"\s*[(:].*$", "", title).strip() or t.get("ref", "") or network
-            lines.append((network, clean(line), clean(t.get("colour", "")), kind, seq))
+            klass = rail_class(t) if kind == "R" else ""
+            lines.append((network, clean(line), clean(t.get("colour", "")), kind, seq, f"{klass}{cruise(cc, klass)}" if klass else ""))
 
     # Stops become stations: the stop positions of both directions, and of
     # every line through an interchange, share the station's name. A metro
@@ -324,7 +493,7 @@ def build_network(routes, stops):
             station_of[i] = sid
 
     out_lines = []
-    for network, name, colour, kind, seq in sorted(lines, key=lambda l: (l[3], l[0], l[1], l[4][0][0])):
+    for network, name, colour, kind, seq, klass in sorted(lines, key=lambda l: (l[3], l[0], l[1], l[4][0][0])):
         cells, last, carry = [], None, 0
         for stop, m in seq:
             s = station_of[stop]
@@ -334,7 +503,10 @@ def build_network(routes, stops):
             cells.append(str(s) if last is None else f"{s}:{m + carry}")
             last, carry = s, 0
         if len(cells) >= 2:
-            out_lines.append(f"L|{network}|{name}|{colour}|{' '.join(cells)}")
+            if kind == "R":
+                out_lines.append(f"Q|{network}|{name}|{colour}|{klass}|{' '.join(cells)}")
+            else:
+                out_lines.append(f"L|{network}|{name}|{colour}|{' '.join(cells)}")
     return stations, out_lines
 
 
@@ -350,20 +522,24 @@ def build_rail(rail):
     return sorted(seen.values(), key=lambda r: (r[2], r[0], r[1]))
 
 
-def render(cc, stations, lines, rail, date):
+def render(cc, stations, lines, rail, date, trains=((), ()), buses=()):
     out = [f"# Transit for Koode, {cc}. Data (c) OpenStreetMap contributors, ODbL 1.0. Built {date} by tools/transit/build_network.py",
-           "# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station"]
+           "# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station",
+           "# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station"]
     out += [f"S|{lat:.5f}|{lon:.5f}|{n}|{net}|{kind}" for lat, lon, n, net, kind in stations]
     out += lines
+    out += [r if isinstance(r, str) else f"R|{r[0]:.5f}|{r[1]:.5f}|{r[2]}|{r[3]}" for r in trains[0]]
+    out += list(trains[1])
     out += [f"T|{lat:.5f}|{lon:.5f}|{n}" for lat, lon, n in rail]
+    out += [f"B|{lat:.5f}|{lon:.5f}|{n}" for lat, lon, n in buses]
     return "\n".join(out) + "\n"
 
 
 def carry_ferries(text, offset):
     """
     The ferry terminals and lines of an earlier file, numbered from [offset]:
-    kept when the ferry query found nothing this time, so a busy server
-    does not take Kochi's Water Metro off the map.
+    kept when a ferry query found nothing this time, so a busy server does
+    not take Kochi's Water Metro off the map.
     """
     old = [l.rstrip("\n").split("|") for l in (text or "").splitlines()]
     s_rows = [r for r in old if r[0] == "S"]
@@ -383,14 +559,31 @@ def carry_ferries(text, offset):
     return stations, lines
 
 
-def count_stations(path):
-    """(metro and ferry stations, railway stations) in a country's file."""
+def carry_rows(text, *kinds):
+    """An earlier file's rows of [kinds], as they were (R and Q rows number only each other)."""
+    return [l for l in (text or "").splitlines() if l.split("|", 1)[0] in kinds]
+
+
+def count_rows(path):
+    """How many of each thing a country's file has: M, W, R, T and B."""
+    n = dict.fromkeys("MWRTB", 0)
     try:
         with open(path, encoding="utf-8") as f:
-            lines = f.readlines()
-        return sum(1 for l in lines if l.startswith("S|")), sum(1 for l in lines if l.startswith("T|"))
+            for l in f:
+                r = l.rstrip("\n").split("|")
+                if r[0] == "S":
+                    n["W" if r[-1] == "W" else "M"] += 1
+                elif r[0] in "RTB" and len(r[0]) == 1:
+                    n[r[0]] += 1
     except OSError:
-        return 0, 0
+        pass
+    return n
+
+
+def count_stations(path):
+    """(metro and ferry stations, railway stations) in a country's file."""
+    n = count_rows(path)
+    return n["M"] + n["W"], n["T"]
 
 
 def main():
@@ -398,42 +591,77 @@ def main():
     ap.add_argument("--fetch", action="store_true", help="query Overpass")
     ap.add_argument("--country", default="IN")
     ap.add_argument("--routes"); ap.add_argument("--stops"); ap.add_argument("--rail")
+    ap.add_argument("--trains"); ap.add_argument("--ferry-ways"); ap.add_argument("--buses")
     ap.add_argument("--out", required=True, help="the country's file")
     ap.add_argument("--previous", help="the file it replaces; a much smaller result is refused")
     a = ap.parse_args()
 
-    load = lambda p: json.load(open(p, encoding="utf-8"))
+    load = lambda p: json.load(open(p, encoding="utf-8")) if p else None
     q = lambda t: scoped(t, a.country)
+    previous = ""
+    if a.previous and os.path.exists(a.previous):
+        with open(a.previous, encoding="utf-8") as f:
+            previous = f.read()
+
     if a.fetch:
         routes = overpass(q(Q_ROUTES))
         ferries = overpass(q(Q_FERRIES), attempts=3, required=False)
-        if ferries is None:
-            print(f"{a.country}: the ferry query failed; keeping the ferries already known", file=sys.stderr)
-        routes = {"elements": routes.get("elements", []) + (ferries or {}).get("elements", [])}
+        ferry_ways = overpass(q(Q_FERRY_WAYS), attempts=3, required=False)
+        stops = overpass(q(Q_STOPS))
+        rail = overpass(q(Q_RAIL))
+        trains = overpass(q(Q_TRAINS), attempts=4, required=False)
+        buses = overpass(q(Q_BUS), attempts=3, required=False)
     else:
-        routes = load(a.routes)
-    stops = overpass(q(Q_STOPS)) if a.fetch else load(a.stops)
-    rail = overpass(q(Q_RAIL)) if a.fetch else (load(a.rail) if a.rail else {"elements": []})
+        routes, stops = load(a.routes), load(a.stops)
+        rail = load(a.rail) or {"elements": []}
+        ferries, ferry_ways = {"elements": []}, load(a.ferry_ways) or {"elements": []}
+        trains, buses = load(a.trains) or {"elements": []}, load(a.buses) or {"elements": []}
 
-    stations, lines = build_network(routes, stops)
-    if a.fetch and ferries is None and a.previous and os.path.exists(a.previous):
-        with open(a.previous, encoding="utf-8") as f:
-            kept, kept_lines = carry_ferries(f.read(), len(stations))
+    # Ferries: both kinds of mapping or neither, so a half-failed pair does
+    # not leave every crossing doubled with the ones kept from before.
+    keep_ferries = ferries is None or ferry_ways is None
+    if keep_ferries:
+        print(f"{a.country}: a ferry query failed; keeping the ferries already known", file=sys.stderr)
+        elements = routes.get("elements", [])
+    else:
+        crossings, terminals = ferry_crossings(ferry_ways)
+        elements = routes.get("elements", []) + ferries.get("elements", []) + crossings
+        stops = {"elements": stops.get("elements", []) + terminals}
+    stations, lines = build_network({"elements": elements}, stops)
+    if keep_ferries:
+        kept, kept_lines = carry_ferries(previous, len(stations))
         stations, lines = stations + kept, lines + kept_lines
     rows = build_rail(rail)
+
+    if trains is None:
+        print(f"{a.country}: the railway lines query failed; keeping the lines already known", file=sys.stderr)
+        rail_net = (carry_rows(previous, "R"), carry_rows(previous, "Q"))
+    else:
+        train_routes, train_stops = inflate(trains)
+        rail_net = build_network(train_routes, train_stops, station_kind="R", rail=rail, cc=a.country)
+        rail_net = ([(la, lo, n, net) for la, lo, n, net, _ in rail_net[0]], rail_net[1])
+    if buses is None:
+        print(f"{a.country}: the bus station query failed; keeping the ones already known", file=sys.stderr)
+        bus_rows = [tuple([float(r[1]), float(r[2]), r[3]]) for r in (l.split("|") for l in carry_rows(previous, "B")) if len(r) >= 4]
+    else:
+        bus_rows = build_rail(buses)
+
     # Each kind is checked on its own: thousands of railway stations must
     # not hide a metro list that came back with most of its cities missing.
-    metro_before, rail_before = count_stations(a.previous) if a.previous else (0, 0)
+    text = render(a.country, stations, lines, rows, time.strftime("%Y-%m-%d"), rail_net, bus_rows)
     if len(stations) + len(rows) == 0:
         raise SystemExit(f"{a.country}: nothing found; not writing")
-    for what, now, before in (("metro and ferry", len(stations), metro_before), ("railway", len(rows), rail_before)):
-        if before >= 20 and now < before * SHRINK_LIMIT:
-            raise SystemExit(f"{a.country}: {now} {what} stations against {before} before; not writing (is OpenStreetMap or Overpass broken?)")
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     with open(a.out, "w", encoding="utf-8", newline="\n") as f:
-        f.write(render(a.country, stations, lines, rows, time.strftime("%Y-%m-%d")))
-    kinds = {k: sum(1 for s in stations if s[4] == k) for k in "MW"}
-    print(f"{a.country}: {kinds['M']} metro stations, {kinds['W']} ferry terminals, {len(lines)} lines, {len(rows)} railway stations")
+        f.write(text)
+    now, before = count_rows(a.out), count_rows(a.previous) if a.previous else dict.fromkeys("MWRTB", 0)
+    names = {"M": "metro", "W": "ferry", "R": "railway line", "T": "railway", "B": "bus"}
+    for k in "MWRTB":
+        if before[k] >= 20 and now[k] < before[k] * SHRINK_LIMIT:
+            os.remove(a.out)
+            raise SystemExit(f"{a.country}: {now[k]} {names[k]} stations against {before[k]} before; not writing (is OpenStreetMap or Overpass broken?)")
+    print(f"{a.country}: {now['M']} metro stations, {now['W']} ferry terminals, {len(lines)} lines; "
+          f"{now['R']} stations on {len(rail_net[1])} railway lines; {now['T']} railway and {now['B']} bus stations")
 
 
 if __name__ == "__main__":

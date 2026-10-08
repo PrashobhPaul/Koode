@@ -435,11 +435,17 @@
   // instead, from data/transit/<country>.txt (OpenStreetMap, ODbL). Only the
   // country the ride is in is fetched, found from data/transit/index.json.
   var transit = { index: null, loading: {}, texts: {}, stations: [], adj: [] };
-  var STATION_M = 450, LINE_END_M = 1200, INTERCHANGE_M = 250, SAME_NAME_M = 800;
+  var STATION_M = 450, RAIL_M = 600, LINE_END_M = 1200, INTERCHANGE_M = 250, SAME_NAME_M = 800;
   function parseTransit(texts) {
     var stations = [], lines = [];
     texts.forEach(function (text) {
-      var local = {}, count = 0;
+      var local = {}, localRail = {}, count = 0, railCount = 0;
+      function cellsOf(field, map) {
+        return field.trim().split(' ').map(function (c) {
+          var parts = c.split(':'), i = parseInt(parts[0], 10);
+          return [i in map ? map[i] : -1, parseFloat(parts[1])];
+        });
+      }
       text.split('\n').forEach(function (raw) {
         var f = raw.trim().split('|');
         if (f[0] === 'S') {
@@ -449,11 +455,18 @@
           if (!isFinite(lat) || !isFinite(lng)) return;
           local[n] = stations.length;
           stations.push([lat, lng, f[3], (f[5] || 'M').trim()]);
+        } else if (f[0] === 'R') {
+          // A station on a railway line; R rows are numbered on their own.
+          var r = railCount++;
+          if (f.length < 4) return;
+          var rlat = parseFloat(f[1]), rlng = parseFloat(f[2]);
+          if (!isFinite(rlat) || !isFinite(rlng)) return;
+          localRail[r] = stations.length;
+          stations.push([rlat, rlng, f[3], 'R']);
         } else if (f[0] === 'L' && f.length >= 5) {
-          lines.push(f[4].trim().split(' ').map(function (c) {
-            var parts = c.split(':'), i = parseInt(parts[0], 10);
-            return [i in local ? local[i] : -1, parseFloat(parts[1])];
-          }));
+          lines.push(cellsOf(f[4], local));
+        } else if (f[0] === 'Q' && f.length >= 6) {
+          lines.push(cellsOf(f[5], localRail));
         }
       });
     });
@@ -554,13 +567,13 @@
   /** A metro or ferry stretch along its line's stations (TransitNetwork.followLine); [lat, lng] points. */
   function followLine(points, kind) {
     if (points.length < 2 || !transit.stations.length) return points;
-    var s = nearestStation(points[0], kind, STATION_M), e = nearestStation(points[points.length - 1], kind, LINE_END_M);
+    var s = nearestStation(points[0], kind, kind === 'R' ? RAIL_M : STATION_M), e = nearestStation(points[points.length - 1], kind, LINE_END_M);
     if (s < 0 || e < 0 || s === e) return points;
     var path = rideStations(s, e);
     if (!path) return points;
     return [points[0]].concat(path.map(function (i) { return [transit.stations[i][0], transit.stations[i][1]]; }), [points[points.length - 1]]);
   }
-  var RIDE_KIND = { METRO: 'M', FERRY: 'W' };
+  var RIDE_KIND = { METRO: 'M', FERRY: 'W', SHIP: 'W', TRAIN: 'R' };
 
   /** The trail cut into one line per stage, neighbours sharing their joining point. */
   function trailFeatures(trail, times, stages, fallback) {

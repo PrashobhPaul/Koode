@@ -128,6 +128,72 @@ class TransitNetworkTest {
         assertNull(n.ride(0, 2))
     }
 
+    /** Tokyo to Shin-Osaka on the Shinkansen, and a local line beside it. */
+    private val japan = """
+        R|35.68124|139.76712|Tokyo|JR Central
+        R|35.50759|139.61744|Shin-Yokohama|JR Central
+        R|34.73348|135.50022|Shin-Osaka|JR Central
+        R|35.68300|139.76600|Tokyo|JR East
+        R|35.46580|139.62270|Yokohama|JR East
+        Q|JR Central|Tokaido Shinkansen|blue|H270|0 1:28800 2:486400
+        Q|JR East|Tokaido Line|orange|L|3 4:28800
+        Q|JR Central|Tokaido Main Line|orange|L55|0 2:510000
+        B|35.68900|139.70200|Busta Shinjuku
+        B|51.49270|-0.14930|Victoria Coach Station
+        T|35.68124|139.76712|Tokyo
+    """.trimIndent()
+
+    @Test fun a_train_rides_its_railway_line_at_its_speed() {
+        val n = TransitNetwork.parse(japan)
+        assertEquals(5, n.stations.size)
+        assertTrue(n.stations.all { it.kind == TransitNetwork.Kind.RAIL })
+        val tokyo = n.nearestStation(GeoPoint(35.6815, 139.7670), TransitNetwork.Kind.RAIL)!!
+        val osaka = n.nearestStation(GeoPoint(34.7336, 135.5003), TransitNetwork.Kind.RAIL)!!
+        // Counted, never short: the shortest track between the two (the old main line).
+        assertEquals(510_000.0, n.ride(tokyo, osaka)!!.metres, 1.0)
+        // Timed as a traveller would go: the Shinkansen, about two and a
+        // half hours (the road would say six, the main line nine).
+        val fastest = n.fastest(tokyo, osaka)!!
+        assertEquals(515_200.0, fastest.metres, 1.0)
+        assertTrue("${fastest.seconds / 3600} h", fastest.seconds / 3600 in 1.8..2.6)
+        val local = n.ride(n.nearestStation(GeoPoint(35.6830, 139.7660), TransitNetwork.Kind.RAIL)!!,
+            n.nearestStation(GeoPoint(35.4658, 139.6227), TransitNetwork.Kind.RAIL)!!)!!
+        assertTrue("local ${local.kmh} km/h", local.kmh in 45.0..60.0)
+        // The ride still ahead, from a train near Shin-Yokohama to Osaka.
+        val ahead = n.ahead(GeoPoint(35.52, 139.60), GeoPoint(34.7400, 135.5100), TransitNetwork.Kind.RAIL)!!
+        assertEquals(486_400.0, ahead.metres, 1.0)
+        assertTrue(ahead.kmh > 200)
+        assertEquals("Shin-Osaka station", n.stationLabel(GeoPoint(34.7340, 135.5000), listOf("TRAIN")))
+        assertEquals(TransitNetwork.Kind.RAIL, TransitNetwork.kindOf("TRAIN"))
+        assertEquals(TransitNetwork.Kind.WATER, TransitNetwork.kindOf("SHIP"))
+    }
+
+    @Test fun a_bus_stage_is_named_after_its_coach_station() {
+        val n = TransitNetwork.parse(japan)
+        assertEquals("Victoria Coach Station", n.stationLabel(GeoPoint(51.4930, -0.1490), listOf("BUS")))
+        assertEquals("Busta Shinjuku bus station", n.stationLabel(GeoPoint(35.6891, 139.7021), listOf("BUS")))
+        assertNull(n.stationLabel(GeoPoint(51.5030, -0.1490), listOf("BUS")))
+        assertNull(n.stationLabel(GeoPoint(51.4930, -0.1490), listOf("CAB")))
+    }
+
+    @Test fun a_station_is_found_again_after_the_network_is_rebuilt() {
+        val alone = TransitNetwork.parse(japan)
+        val osaka = alone.stations[alone.nearestStation(GeoPoint(34.7335, 135.5002), TransitNetwork.Kind.RAIL)!!]
+        val both = TransitNetwork.combine(listOf(country("IN"), japan))
+        val i = both.indexOf(osaka)!!
+        assertEquals("Shin-Osaka", both.stations[i].name)
+        assertTrue(i > alone.stations.size)
+    }
+
+    @Test fun files_from_apps_that_know_only_metro_rows_still_read() {
+        // An old file, and a new file read the old way, agree on the metro.
+        val n = TransitNetwork.parse("S|17.0|78.0|One|A Metro|M\nR|35.0|139.0|X|JR\nS|17.02|78.0|Two|A Metro|M\nL|A Metro|L|x|0 1:2400\nQ|JR|y|z|H|0 0:5")
+        // Railway stations are numbered after the metro's in the file, but held in order read.
+        assertEquals(TransitNetwork.Kind.RAIL, n.stations[1].kind)
+        assertEquals(2400.0, n.ride(0, 2)!!.metres, 0.1)
+        assertEquals(TransitNetwork.Kind.METRO, n.stations[0].kind)
+    }
+
     @Test fun labels_say_what_riders_say() {
         fun st(name: String, network: String, kind: TransitNetwork.Kind = TransitNetwork.Kind.METRO) =
             TransitNetwork.Station(0.0, 0.0, name, network, kind)

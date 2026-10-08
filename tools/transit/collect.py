@@ -25,21 +25,18 @@ BUNDLED = {"IN": "apps/android/app/src/main/assets/transit"}
 
 def summary(path):
     lats, lngs, built = [], [], ""
-    metro = rail = 0
+    count = dict.fromkeys("STRB", 0)
     with open(path, encoding="utf-8") as f:
         for line in f:
             if line.startswith("# Transit") and "Built " in line:
                 built = line.split("Built ")[1].split()[0]
             parts = line.rstrip("\n").split("|")
-            if parts[0] in ("S", "T") and len(parts) >= 3:
+            if parts[0] in count and len(parts) >= 3:
                 try:
                     lat, lng = float(parts[1]), float(parts[2])
                 except ValueError:
                     continue
-                if parts[0] == "S":
-                    metro += 1
-                else:
-                    rail += 1
+                count[parts[0]] += 1
                 lats.append(lat); lngs.append(lng)
     if not lats:
         return None
@@ -47,7 +44,8 @@ def summary(path):
     # territories (France) has a box round the world, but only a few squares.
     cells = sorted({f"{math.floor(a)},{math.floor(b)}" for a, b in zip(lats, lngs)})
     return {"bbox": [round(min(lats) - 0.2, 2), round(min(lngs) - 0.2, 2), round(max(lats) + 0.2, 2), round(max(lngs) + 0.2, 2)],
-            "cells": cells, "stations": metro, "railway": rail, "bytes": os.path.getsize(path), "built": built}
+            "cells": cells, "stations": count["S"], "railway": count["T"],
+            "rail_lines": count["R"], "bus": count["B"], "bytes": os.path.getsize(path), "built": built}
 
 
 def main(built):
@@ -69,7 +67,7 @@ def main(built):
         if os.path.exists(src):
             os.makedirs(folder, exist_ok=True)
             shutil.copyfile(src, os.path.join(folder, f"{cc}.txt"))
-    print(", ".join(f"{cc} {v['stations']}+{v['railway']}" for cc, v in index.items()))
+    print(", ".join(f"{cc} {v['stations']}+{v['rail_lines']}+{v['railway']}+{v['bus']}" for cc, v in index.items()))
 
 
 if __name__ == "__main__":

@@ -181,7 +181,12 @@ class TripManager(
      * journey had covered before it. Each fix near a station raises the count
      * to at least the track ridden so far (see [metroFloor]).
      */
-    private data class MetroAnchor(val legIndex: Int, val station: Int, val coveredBeforeM: Double, val kind: com.trippulse.app.domain.TransitNetwork.Kind)
+    /**
+     * Where a ride on rails or water began, and what the journey had covered
+     * before it. The station is held as itself, not by its number: the
+     * network is rebuilt when a country's data arrives or a border is near.
+     */
+    private data class MetroAnchor(val legIndex: Int, val station: com.trippulse.app.domain.TransitNetwork.Station, val coveredBeforeM: Double, val kind: com.trippulse.app.domain.TransitNetwork.Kind)
     private var metroAnchor: MetroAnchor? = null
     /**
      * A metro ride just ended on a stale fix (underground, or the phone kept
@@ -190,7 +195,7 @@ class TripManager(
      */
     private data class MetroExit(
         val tripId: String, val endedIndex: Int, val startedIndex: Int,
-        val anchor: MetroAnchor, val station: Int, val label: String, val atMs: Long
+        val anchor: MetroAnchor, val station: com.trippulse.app.domain.TransitNetwork.Station, val label: String, val atMs: Long
     )
     private var metroExit: MetroExit? = null
     private var lastEtaCalcMs: Long = 0
@@ -659,21 +664,22 @@ class TripManager(
 
         val now = System.currentTimeMillis()
         val here = GeoPoint(lat, lng)
-        val hereName = nameForPoint(here, listOfNotNull(current?.mode, newMode).filter { rideKind(it) != null || TransportCatalog.profile(it).key == TransportCatalog.TRAIN.key })
+        val hereName = nameForPoint(here, listOfNotNull(current?.mode, newMode).filter { rideKind(it) != null || TransportCatalog.profile(it).key == TransportCatalog.BUS.key })
 
         // A metro ride that ends here is counted to this station at least.
         var coveredNow = s0.distanceCoveredM
         val endedKind = rideKind(current?.mode)
         if (current != null && endedKind != null) {
-            val net = TransitData.load(appContext)
+            val net = TransitData.load(appContext, here)
             val anchor = metroAnchorFor(t, current, net, s0.distanceCoveredM, now)
             val end = net.nearestStation(here, endedKind)
-            if (anchor != null && end != null) {
-                net.ride(anchor.station, end)?.let { coveredNow = maxOf(coveredNow, anchor.coveredBeforeM + it.metres) }
+            val from = anchor?.let { net.indexOf(it.station) }
+            if (anchor != null && end != null && from != null) {
+                net.ride(from, end)?.let { coveredNow = maxOf(coveredNow, anchor.coveredBeforeM + it.metres) }
                 // A stale last fix may have been taken a station or more back.
                 val stale = s0.lastLocationAtMs?.let { now - it > METRO_STALE_FIX_MS } ?: true
                 val named = hereName == com.trippulse.app.domain.TransitNetwork.label(net.stations[end])
-                metroExit = if (stale && named) MetroExit(t.tripId, current.legIndex, current.legIndex + 1, anchor, end, hereName, now) else null
+                metroExit = if (stale && named) MetroExit(t.tripId, current.legIndex, current.legIndex + 1, anchor, net.stations[end], hereName, now) else null
             }
             if (coveredNow > s0.distanceCoveredM) lastDistancePoint = here
         }
@@ -750,7 +756,8 @@ class TripManager(
         var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = arrived && s0.arrivalPromptDue, updatedAtMs = now,
             distanceCoveredM = coveredNow, progressPct = progress(coveredNow, s0.distanceRemainingM))
         rideKind(newMode)?.let { kind ->
-            TransitData.load(appContext).nearestStation(here, kind)?.let { metroAnchor = MetroAnchor(nextIndex, it, coveredNow, kind) }
+            val net = TransitData.load(appContext, here)
+            net.nearestStation(here, kind)?.let { metroAnchor = MetroAnchor(nextIndex, net.stations[it], coveredNow, kind) }
         }
         if (modeChanged) {
             // A new mode is a revision of the plan, and the coach re-reads it
@@ -809,7 +816,7 @@ class TripManager(
         // the geocoder files it under. A saved place right there still wins.
         if (modes.isNotEmpty()) {
             PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, SAVED_BEATS_STATION_M)?.let { return it }
-            TransitData.load(appContext).stationLabel(p, modes)?.let { return it }
+            TransitData.load(appContext, p).stationLabel(p, modes)?.let { return it }
         }
         return PlaceResolver.nearestSavedLabel(saved, p.lat, p.lng, NEAR_PLACE_M) ?: EN_ROUTE
     }
@@ -822,7 +829,7 @@ class TripManager(
         return Geo.haversineM(GeoPoint(lat, lng), GeoPoint(t.destLat, t.destLng)) <= cfg.arrivalRadiusM
     }
 
-    /** The network a mode rides on (the metro; a water metro or ferry), if any. */
+    /** The network a mode rides on (the metro; a water metro, ferry or ship; the railway), if any. */
     private fun rideKind(mode: String?) = com.trippulse.app.domain.TransitNetwork.kindOf(mode)
 
     /**
@@ -840,7 +847,8 @@ class TripManager(
         val net = TransitData.current.takeIf { !it.isEmpty } ?: return covered
         val anchor = metroAnchorFor(t, leg, net, covered, fix.timeMs)?.also { metroAnchor = it } ?: return covered
         val here = net.nearestStation(fix.point, kind) ?: return covered
-        val ride = net.ride(anchor.station, here)?.metres ?: return covered
+        val from = net.indexOf(anchor.station) ?: return covered
+        val ride = net.ride(from, here)?.metres ?: return covered
         return maxOf(covered, anchor.coveredBeforeM + ride)
     }
 
@@ -857,7 +865,7 @@ class TripManager(
         val station = net.nearestStation(GeoPoint(leg.fromLat, leg.fromLng), kind) ?: return null
         val started = leg.startedAtMs ?: return null
         val ridden = StageRepair.pathLengthM(db.locationDao().allForTrip(t.tripId), { it.tMs }, { it.lat }, { it.lng }, started, nowMs) ?: 0.0
-        return MetroAnchor(leg.legIndex, station, (coveredNowM - ridden).coerceAtLeast(0.0), kind)
+        return MetroAnchor(leg.legIndex, net.stations[station], (coveredNowM - ridden).coerceAtLeast(0.0), kind)
     }
 
     /**
@@ -873,9 +881,11 @@ class TripManager(
         metroExit = null
         val net = TransitData.current.takeIf { !it.isEmpty } ?: return covered
         val station = net.nearestStation(fix.point, x.anchor.kind) ?: return covered
-        if (station == x.station) return covered
-        val was = net.ride(x.anchor.station, x.station)?.metres ?: return covered
-        val further = net.ride(x.anchor.station, station)?.metres ?: return covered
+        val from = net.indexOf(x.anchor.station) ?: return covered
+        val ended = net.indexOf(x.station) ?: return covered
+        if (station == ended) return covered
+        val was = net.ride(from, ended)?.metres ?: return covered
+        val further = net.ride(from, station)?.metres ?: return covered
         if (further <= was) return covered
         val label = com.trippulse.app.domain.TransitNetwork.label(net.stations[station])
         val rows = db.legDao().forTrip(x.tripId)
@@ -1008,6 +1018,8 @@ class TripManager(
         if (terminal(s)) return@withLock
         val now = fix.timeMs
         val profile = activeProfile()
+        // The stations around the phone: a new square may bring a country's.
+        if (rideKind(activeLeg()?.mode ?: t.transportMode) != null) runCatching { TransitData.follow(appContext, fix.point) }
 
         // rolling display speed
         val speedKmh = fix.speedMps?.takeIf { it >= 0f }?.let { it * 3.6 }
@@ -2355,14 +2367,32 @@ class TripManager(
     private fun legDestination(t: ActiveTripEntity): GeoPoint =
         activeLeg()?.let { GeoPoint(it.toLat, it.toLng) } ?: GeoPoint(t.destLat, t.destLng)
 
+    /**
+     * On a train, a metro or a boat, the ride still ahead along its lines,
+     * at their speeds: a road route says six hours from Tokyo to Osaka, the
+     * Shinkansen takes two and a half. Null off the network, or on a road.
+     */
+    private fun rideAhead(from: GeoPoint): com.trippulse.app.domain.TransitNetwork.Ride? {
+        val t = trip ?: return null
+        val kind = rideKind(activeLeg()?.mode ?: t.transportMode) ?: return null
+        val net = TransitData.current.takeIf { !it.isEmpty } ?: return null
+        return net.ahead(from, legDestination(t), kind)?.takeIf { it.seconds > 0 }
+    }
+    private var lastRideAhead: com.trippulse.app.domain.TransitNetwork.Ride? = null
+
     private fun remainingDistanceM(from: GeoPoint): Double {
         val t = trip ?: return 0.0
+        lastRideAhead = runCatching { rideAhead(from) }.getOrNull()
         val route = currentRoute
         // On a hybrid journey the legs still ahead are added on, so "distance
         // to go" always means to the final destination.
         val onwardM = legs.filter { it.legIndex > t.activeLegIndex }
             .sumOf { Geo.haversineM(GeoPoint(it.fromLat, it.fromLng), GeoPoint(it.toLat, it.toLng)) * cfg.roadDistanceFactor }
-        val legRemaining = if (route != null && route.provider != "fallback" && route.polyline.size >= 2) {
+        val ahead = lastRideAhead
+        val legRemaining = if (ahead != null) {
+            // The ride along its lines, and from its last station to where the stage is going.
+            ahead.metres + Geo.haversineM(ahead.stations.lastOrNull()?.let { TransitData.current.stations.getOrNull(it)?.point } ?: legDestination(t), legDestination(t)) * cfg.roadDistanceFactor
+        } else if (route != null && route.provider != "fallback" && route.polyline.size >= 2) {
             Geo.remainingAlongPathM(from, route.polyline)
         } else {
             Geo.haversineM(from, legDestination(t)) * cfg.roadDistanceFactor
@@ -2372,6 +2402,11 @@ class TripManager(
 
     private fun remainingTravelSeconds(remainingM: Double): Long {
         val route = currentRoute
+        lastRideAhead?.let { ahead ->
+            // The ride at its lines' speeds; what is left after it at the usual pace.
+            val after = (remainingM - ahead.metres).coerceAtLeast(0.0)
+            return (ahead.seconds + after / (cfg.fallbackAvgSpeedKmh / 3.6)).toLong()
+        }
         return if (route != null && route.distanceM > 0) {
             // scale the route duration by the fraction of distance remaining
             val frac = (remainingM / route.distanceM).coerceIn(0.0, 1.0)
