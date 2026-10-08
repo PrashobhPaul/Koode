@@ -871,6 +871,42 @@ S|28.77038|77.51070|Murad Nagar|RapidX|M
 S|28.58909|77.30151|New Ashok Nagar|RapidX|M
 S|28.66764|77.36813|Sahibabad|RapidX|M
 S|28.58919|77.25807|Sarai Kale Khan|RapidX|M
+S|9.59645|76.43049|Kumarakam Boat Jetty|Kerala State Water Transport Department|W
+S|9.60506|76.36587|Muhamma Boat Jetty|Kerala State Water Transport Department|W
+S|9.98700|76.26760|Bolgatty|Kochi Water Metro Limited|W
+S|10.07263|76.28274|Cheranalloor|Kochi Water Metro Limited|W
+S|10.07380|76.28262|Eloor|Kochi Water Metro Limited|W
+S|9.96846|76.24308|Fort Kochi|Kochi Water Metro Limited|W
+S|9.98386|76.27270|High Court|Kochi Water Metro Limited|W
+S|9.99232|76.35133|Kakkanad|Kochi Water Metro Limited|W
+S|10.02821|76.25834|Mulavukad North|Kochi Water Metro Limited|W
+S|9.96700|76.32277|Vytilla|Kochi Water Metro Limited|W
+S|10.03808|76.26933|Chittoor Ferry|Kochi city boat|W
+S|10.07319|76.28281|Eloor Ferry|Kochi city boat|W
+S|9.97014|76.26219|Embarkation Jetty|Kochi city boat|W
+S|9.97262|76.27807|Ernakulam|Kochi city boat|W
+S|9.98464|76.27226|Ernakulam Ferry Terminal|Kochi city boat|W
+S|9.96864|76.24501|Fort Kochi Junkar Jetty|Kochi city boat|W
+S|10.05323|76.25053|Kadamakudy|Kochi city boat|W
+S|10.06143|76.28119|Kanayannur|Kochi city boat|W
+S|10.05889|76.27519|Kandanad|Kochi city boat|W
+S|10.05165|76.26658|Kanjirakkadu Ferry|Kochi city boat|W
+S|10.02619|76.25837|Korangotta Ferry Terminal|Kochi city boat|W
+S|10.05847|76.27158|Kothadu|Kochi city boat|W
+S|10.04286|76.26697|Moolampilly|Kochi city boat|W
+S|10.01158|76.26189|Mulavukadu North|Kochi city boat|W
+S|10.02451|76.25738|Mulavukadu Panchayat|Kochi city boat|W
+S|10.05401|76.26064|Paliyamthuruth Central Ferry|Kochi city boat|W
+S|10.05567|76.25537|Paliyamthuruth East Ferry|Kochi city boat|W
+S|10.04846|76.26503|Pizhala|Kochi city boat|W
+S|9.99740|76.26505|Ponjikkara Ferry Terminal|Kochi city boat|W
+S|10.00364|76.26371|Ponnarimangalam Ferry Terminal|Kochi city boat|W
+S|10.03049|76.26552|Porangotta|Kochi city boat|W
+S|9.99702|76.26741|Thanthonni Thuruth Ferry Terminal|Kochi city boat|W
+S|10.05441|76.26670|Thekke Jetty|Kochi city boat|W
+S|10.03122|76.26791|Vaduthala Boat Jetty|Kochi city boat|W
+S|10.06863|76.28021|Varapuzha Ferry|Kochi city boat|W
+S|9.97434|76.24435|Vypin|Kochi city boat|W
 L|Agra Metro|Metro 1|#FFD700|2 0:644 5:1567 1:1153 3:873 4:715
 L|Agra Metro|Metro 1|#FFD700|4 3:714 1:869 5:1153 0:1574 2:635
 L|Ahmedabad Metro|Blue Line|blue|56 32:971 55:1179 36:1279 8:790 10:1097 25:1621 24:1185 15:2305 47:1377 33:1488 49:635 11:900 18:1096 19:904 13:1111 51:904 52:938
@@ -985,6 +1021,30 @@ L|RapidX|Delhi–Meerut RRTS|#F0631E|870 868:5331 128:7007 869:5909 863:5056 864
 L|RapidX|Delhi–Meerut RRTS|#F0631E|870 868:5331 128:7007 869:5909 863:5056 864:4330 861:3936 862:2182
 L|RapidX|Delhi–Meerut RRTS|#F0631E|583 575:9030 586:6422 581:6251 865:8356 866:3854 867:6917 861:6161 864:3936 863:4331 869:5056 128:5902 868:7001 870:5342
 L|RapidX|Delhi–Meerut RRTS|#F0631E|862 861:2188 864:3936 863:4331 869:5056 128:5902 868:7001 870:5342
+L|Kerala State Water Transport Department|Kumarakom → Muhamma Ferry||871 872:7182
+L|Kerala State Water Transport Department|Muhamma → Kumarakom Ferry||872 871:7181
+L|Kochi Water Metro Limited|Cheranalloor → Eloor → South Chittoor Water Metro||874 875:312 881:5276
+L|Kochi Water Metro Limited|Fort Kochi → High Court Water Metro||876 877:3686
+L|Kochi Water Metro Limited|High Court → Fort Kochi Water Metro||877 876:3686
+L|Kochi Water Metro Limited|High Court → South Chittoor Water Metro||877 873:678 879:4776 881:1951
+L|Kochi Water Metro Limited|High Court → Vypin Water Metro||877 906:3299
+L|Kochi Water Metro Limited|Kakkanad → Vytilla Water Metro||878 880:5103
+L|Kochi Water Metro Limited|South Chittoor → Eloor → Cheranalloor Water Metro||881 875:5276 874:312
+L|Kochi Water Metro Limited|South Chittoor → High Court Water Metro||881 879:1951 873:4776 877:678
+L|Kochi Water Metro Limited|Vypin → High Court Water Metro||906 877:3299
+L|Kochi Water Metro Limited|Vytilla → Kakkanad Water Metro||880 878:5104
+L|Kochi city boat|Chittoor → Eloor||881 893:709 898:729 903:739 892:808 889:403 888:718 905:836 882:614
+L|Kochi city boat|Chittoor → Kadamakkudy||881 893:709 898:729 890:632 896:1251 897:634 887:690
+L|Kochi city boat|Eloor → Chittoor||882 905:614 888:836 889:718 892:403 903:808 898:739 893:729 881:556
+L|Kochi city boat|Eloor → Ernakulam Boat Jetty||882 905:614 888:836 889:718 892:403 903:808 898:739 893:729 881:556 904:1056 901:307 891:1046 895:388 894:1648 900:1130 899:982 902:549 885:1585
+L|Kochi city boat|Ernakulam Boat Jetty → Eloor||885 902:1585 899:549 900:982 894:1130 895:1648 891:388 901:1046 904:307 881:903 893:709 898:729 903:739 892:808 889:403 888:718 905:836 882:614
+L|Kochi city boat|Ernakulam → Fort Kochi via Wellington Island||884 883:1994
+L|Kochi city boat|Ernakulam → Vypin||884 883:1994 906:2333
+L|Kochi city boat|Fort Kochi → Ernakulam via Wellington Island||883 884:1995
+L|Kochi city boat|High Court → Mulavukad||885 902:1585 899:549 900:982 894:1130 895:1648 891:388
+L|Kochi city boat|Kadamakkudy → Chittoor||887 897:690 896:634 890:1251 898:632 893:729 881:556
+L|Kochi city boat|Mulavukad → High Court||891 895:388 894:1648 900:1130 899:982 902:549 885:1585
+L|Kochi city boat|Vypin → Ernakulam||906 883:2333 884:2001
 T|23.44971|72.42238|Aambliyasan Junction
 T|22.54787|88.19952|Abada
 T|25.21574|86.32288|Abhaipur

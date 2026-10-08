@@ -130,6 +130,16 @@ class BuildTest(unittest.TestCase):
         self.assertEqual(b.count_stations(f.name), (2, 1))
         self.assertEqual(b.count_stations("/nonexistent"), (0, 0))
 
+    def test_ferries_are_kept_when_their_query_fails(self):
+        before = ("# x\nS|17|78|A|Hyd Metro|M\nS|9.98|76.27|High Court|Kochi Water Metro|W\n"
+                  "S|9.97|76.24|Fort Kochi|Kochi Water Metro|W\nL|Hyd Metro|Blue|blue|0 0:10\n"
+                  "L|Kochi Water Metro|HC-FK|teal|1 2:3690\nT|1|2|C\n")
+        stations, lines = b.carry_ferries(before, 5)
+        self.assertEqual([s[2] for s in stations], ["High Court", "Fort Kochi"])
+        self.assertTrue(all(s[4] == "W" for s in stations))
+        self.assertEqual(lines, ["L|Kochi Water Metro|HC-FK|teal|5 6:3690"])
+        self.assertEqual(b.carry_ferries(None, 0), ([], []))
+
     def test_rail_dedupes_node_and_way_of_one_station(self):
         rows = b.build_rail({"elements": [
             {"type": "node", "id": 1, "lat": 17.4337, "lon": 78.5016, "tags": {"name": "Secunderabad Junction"}},

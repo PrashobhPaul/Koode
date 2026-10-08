@@ -118,7 +118,7 @@ def overpass(query, attempts=6, required=True):
                 time.sleep(60 * ((i + 1) // len(OVERPASS)))
     if required:
         raise SystemExit("Overpass did not answer")
-    return {"elements": []}
+    return None
 
 
 def metres(lat1, lon1, lat2, lon2):
@@ -359,6 +359,30 @@ def render(cc, stations, lines, rail, date):
     return "\n".join(out) + "\n"
 
 
+def carry_ferries(text, offset):
+    """
+    The ferry terminals and lines of an earlier file, numbered from [offset]:
+    kept when the ferry query found nothing this time, so a busy server
+    does not take Kochi's Water Metro off the map.
+    """
+    old = [l.rstrip("\n").split("|") for l in (text or "").splitlines()]
+    s_rows = [r for r in old if r[0] == "S"]
+    new_id, stations = {}, []
+    for i, r in enumerate(s_rows):
+        if len(r) >= 6 and r[5] == "W":
+            new_id[i] = offset + len(stations)
+            stations.append((float(r[1]), float(r[2]), r[3], r[4], "W"))
+    lines = []
+    for r in old:
+        if r[0] != "L" or len(r) < 5:
+            continue
+        cells = [c.split(":") for c in r[4].split()]
+        if cells and all(int(c[0]) in new_id for c in cells):
+            moved = [":".join([str(new_id[int(c[0])])] + c[1:]) for c in cells]
+            lines.append("|".join(r[:4] + [" ".join(moved)]))
+    return stations, lines
+
+
 def count_stations(path):
     """(metro and ferry stations, railway stations) in a country's file."""
     try:
@@ -383,15 +407,19 @@ def main():
     if a.fetch:
         routes = overpass(q(Q_ROUTES))
         ferries = overpass(q(Q_FERRIES), attempts=3, required=False)
-        if not ferries["elements"]:
-            print(f"{a.country}: no ferries this time", file=sys.stderr)
-        routes = {"elements": routes.get("elements", []) + ferries.get("elements", [])}
+        if ferries is None:
+            print(f"{a.country}: the ferry query failed; keeping the ferries already known", file=sys.stderr)
+        routes = {"elements": routes.get("elements", []) + (ferries or {}).get("elements", [])}
     else:
         routes = load(a.routes)
     stops = overpass(q(Q_STOPS)) if a.fetch else load(a.stops)
     rail = overpass(q(Q_RAIL)) if a.fetch else (load(a.rail) if a.rail else {"elements": []})
 
     stations, lines = build_network(routes, stops)
+    if a.fetch and ferries is None and a.previous and os.path.exists(a.previous):
+        with open(a.previous, encoding="utf-8") as f:
+            kept, kept_lines = carry_ferries(f.read(), len(stations))
+        stations, lines = stations + kept, lines + kept_lines
     rows = build_rail(rail)
     # Each kind is checked on its own: thousands of railway stations must
     # not hide a metro list that came back with most of its cities missing.
