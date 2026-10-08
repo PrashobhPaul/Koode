@@ -1,0 +1,541 @@
+# Transit for Koode, CL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|-33.41545|-70.58999|Alcántara|Metro de Santiago|M
+S|-33.43722|-70.63341|Baquedano|Metro de Santiago|M
+S|-33.45298|-70.73904|Barrancas|Metro de Santiago|M
+S|-33.43663|-70.64413|Bellas Artes|Metro de Santiago|M
+S|-33.51952|-70.60003|Bellavista de La Florida|Metro de Santiago|M
+S|-33.44133|-70.70665|Blanqueado|Metro de Santiago|M
+S|-33.47661|-70.64218|Bío Bío|Metro de Santiago|M
+S|-33.49179|-70.61752|Camino Agrícola|Metro de Santiago|M
+S|-33.37326|-70.68634|Cardenal Caro|Metro de Santiago|M
+S|-33.48640|-70.61918|Carlos Valdovinos|Metro de Santiago|M
+S|-33.41398|-70.64360|Cementerios|Metro de Santiago|M
+S|-33.48343|-70.69556|Cerrillos|Metro de Santiago|M
+S|-33.42275|-70.64506|Cerro Blanco|Metro de Santiago|M
+S|-33.45491|-70.59814|Chile España|Metro de Santiago|M
+S|-33.50954|-70.65665|Ciudad del Niño|Metro de Santiago|M
+S|-33.39789|-70.66960|Conchalí|Metro de Santiago|M
+S|-33.57067|-70.67338|Copa Lo Martínez|Metro de Santiago|M
+S|-33.42632|-70.59098|Cristóbal Colón|Metro de Santiago|M
+S|-33.43914|-70.66853|Cumming|Metro de Santiago|M
+S|-33.49024|-70.75312|Del Sol|Metro de Santiago|M
+S|-33.50244|-70.65463|Departamental|Metro de Santiago|M
+S|-33.39696|-70.64274|Dorsal|Metro de Santiago|M
+S|-33.45592|-70.69973|Ecuador|Metro de Santiago|M
+S|-33.40595|-70.64317|Einstein|Metro de Santiago|M
+S|-33.54657|-70.66675|El Bosque|Metro de Santiago|M
+S|-33.41662|-70.59571|El Golf|Metro de Santiago|M
+S|-33.56929|-70.58381|Elisa Correa|Metro de Santiago|M
+S|-33.48260|-70.64938|El Llano|Metro de Santiago|M
+S|-33.52643|-70.66140|El Parrón|Metro de Santiago|M
+S|-33.41348|-70.58268|Escuela Militar|Metro de Santiago|M
+S|-33.45082|-70.67896|Estación Central|Metro de Santiago|M
+S|-33.46238|-70.60622|Estadio Nacional|Metro de Santiago|M
+S|-33.45210|-70.55811|Fernando Castillo Velasco|Metro de Santiago|M
+S|-33.36547|-70.70554|Ferrocarril|Metro de Santiago|M
+S|-33.43179|-70.58470|Francisco Bilbao|Metro de Santiago|M
+S|-33.47666|-70.64948|Franklin|Metro de Santiago|M
+S|-33.46953|-70.57650|Grecia|Metro de Santiago|M
+S|-33.43801|-70.69103|Gruta de Lourdes|Metro de Santiago|M
+S|-33.40794|-70.55585|Hernando de Magallanes|Metro de Santiago|M
+S|-33.58288|-70.67681|Hospital El Pino|Metro de Santiago|M
+S|-33.41767|-70.65646|Hospitales|Metro de Santiago|M
+S|-33.57690|-70.58232|Hospital Sótero del Río|Metro de Santiago|M
+S|-33.43872|-70.60734|Inés de Suárez|Metro de Santiago|M
+S|-33.45505|-70.62832|Irarrázaval|Metro de Santiago|M
+S|-33.45505|-70.62832|Irarrázaval|Metro de Santiago|M
+S|-33.53735|-70.66433|La Cisterna|Metro de Santiago|M
+S|-33.54113|-70.61605|La Granja|Metro de Santiago|M
+S|-33.46216|-70.73791|Laguna Sur|Metro de Santiago|M
+S|-33.44487|-70.65487|La Moneda|Metro de Santiago|M
+S|-33.60138|-70.57748|Las Mercedes|Metro de Santiago|M
+S|-33.47527|-70.73998|Las Parcelas|Metro de Santiago|M
+S|-33.45754|-70.70676|Las Rejas|Metro de Santiago|M
+S|-33.49911|-70.58655|Las Torres|Metro de Santiago|M
+S|-33.36683|-70.71977|Lo Cruzat|Metro de Santiago|M
+S|-33.51727|-70.65882|Lo Ovalle|Metro de Santiago|M
+S|-33.44341|-70.71675|Lo Prado|Metro de Santiago|M
+S|-33.40789|-70.54499|Los Dominicos|Metro de Santiago|M
+S|-33.44619|-70.66045|Los Héroes|Metro de Santiago|M
+S|-33.42202|-70.60856|Los Leones|Metro de Santiago|M
+S|-33.36543|-70.69199|Los Libertadores|Metro de Santiago|M
+S|-33.46262|-70.57392|Los Orientales|Metro de Santiago|M
+S|-33.47984|-70.57867|Los Presidentes|Metro de Santiago|M
+S|-33.56123|-70.58527|Los Quillayes|Metro de Santiago|M
+S|-33.47840|-70.68090|Lo Valledor|Metro de Santiago|M
+S|-33.49683|-70.65301|Lo Vial|Metro de Santiago|M
+S|-33.50924|-70.59005|Macul|Metro de Santiago|M
+S|-33.40946|-70.56973|Manquehue|Metro de Santiago|M
+S|-33.42855|-70.61965|Manuel Montt|Metro de Santiago|M
+S|-33.45827|-70.64308|Matta|Metro de Santiago|M
+S|-33.51330|-70.60591|Mirador|Metro de Santiago|M
+S|-33.45319|-70.61352|Monseñor Eyzaguirre|Metro de Santiago|M
+S|-33.48229|-70.74544|Monte Tabor|Metro de Santiago|M
+S|-33.45158|-70.72268|Neptuno|Metro de Santiago|M
+S|-33.56040|-70.67055|Observatorio|Metro de Santiago|M
+S|-33.45747|-70.71545|Pajaritos|Metro de Santiago|M
+S|-33.45139|-70.65056|Parque Almagro|Metro de Santiago|M
+S|-33.44280|-70.63196|Parque Bustamante|Metro de Santiago|M
+S|-33.46085|-70.65685|Parque O'Higgins|Metro de Santiago|M
+S|-33.42973|-70.64712|Patronato|Metro de Santiago|M
+S|-33.50795|-70.61245|Pedrero|Metro de Santiago|M
+S|-33.42548|-70.61380|Pedro de Valdivia|Metro de Santiago|M
+S|-33.40677|-70.66097|Plaza Chacabuco|Metro de Santiago|M
+S|-33.43742|-70.65128|Plaza de Armas|Metro de Santiago|M
+S|-33.43742|-70.65128|Plaza de Armas|Metro de Santiago|M
+S|-33.51020|-70.75700|Plaza de Maipú|Metro de Santiago|M
+S|-33.60952|-70.57584|Plaza de Puente Alto|Metro de Santiago|M
+S|-33.45349|-70.57082|Plaza Egaña|Metro de Santiago|M
+S|-33.36572|-70.72889|Plaza Quilicura|Metro de Santiago|M
+S|-33.47869|-70.66479|Presidente Pedro Aguirre Cerda|Metro de Santiago|M
+S|-33.43920|-70.57315|Príncipe de Gales|Metro de Santiago|M
+S|-33.58957|-70.57983|Protectora de la Infancia|Metro de Santiago|M
+S|-33.44486|-70.74114|Pudahuel|Metro de Santiago|M
+S|-33.43284|-70.65308|Puente Cal y Canto|Metro de Santiago|M
+S|-33.48826|-70.58042|Quilín|Metro de Santiago|M
+S|-33.44037|-70.68029|Quinta Normal|Metro de Santiago|M
+S|-33.44770|-70.66714|República|Metro de Santiago|M
+S|-33.47782|-70.62226|Rodrigo de Araya|Metro de Santiago|M
+S|-33.53611|-70.59270|Rojas Magallanes|Metro de Santiago|M
+S|-33.46966|-70.65637|Rondizzoni|Metro de Santiago|M
+S|-33.43272|-70.62609|Salvador|Metro de Santiago|M
+S|-33.45420|-70.69227|San Alberto Hurtado|Metro de Santiago|M
+S|-33.49934|-70.61583|San Joaquín|Metro de Santiago|M
+S|-33.55382|-70.58656|San José de la Estrella|Metro de Santiago|M
+S|-33.48872|-70.65107|San Miguel|Metro de Santiago|M
+S|-33.44422|-70.72325|San Pablo|Metro de Santiago|M
+S|-33.54123|-70.64313|San Ramón|Metro de Santiago|M
+S|-33.43825|-70.65990|Santa Ana|Metro de Santiago|M
+S|-33.44712|-70.63043|Santa Isabel|Metro de Santiago|M
+S|-33.53110|-70.60554|Santa Julia|Metro de Santiago|M
+S|-33.44246|-70.64474|Santa Lucía|Metro de Santiago|M
+S|-33.54239|-70.63413|Santa Rosa|Metro de Santiago|M
+S|-33.49624|-70.75743|Santiago Bueras|Metro de Santiago|M
+S|-33.44618|-70.57193|Simón Bolívar|Metro de Santiago|M
+S|-33.41822|-70.60149|Tobalaba|Metro de Santiago|M
+S|-33.45297|-70.65859|Toesca|Metro de Santiago|M
+S|-33.54629|-70.58810|Trinidad|Metro de Santiago|M
+S|-33.46736|-70.62476|Ñuble|Metro de Santiago|M
+S|-33.44936|-70.67335|Unión Latinoamericana|Metro de Santiago|M
+S|-33.43976|-70.63989|Universidad Católica|Metro de Santiago|M
+S|-33.44387|-70.65067|Universidad de Chile|Metro de Santiago|M
+S|-33.45286|-70.68656|Universidad de Santiago|Metro de Santiago|M
+S|-33.45419|-70.60497|Ñuñoa|Metro de Santiago|M
+S|-33.38075|-70.64634|Vespucio Norte|Metro de Santiago|M
+S|-33.52642|-70.59679|Vicente Valdés|Metro de Santiago|M
+S|-33.51976|-70.59621|Vicuña Mackenna|Metro de Santiago|M
+S|-33.45467|-70.58148|Villa Frei|Metro de Santiago|M
+S|-33.38538|-70.67964|Vivaceta|Metro de Santiago|M
+S|-33.39094|-70.64244|Zapadores|Metro de Santiago|M
+S|-45.16435|-73.52687||Naviera Austral|W
+S|-44.89743|-73.30261||Naviera Austral|W
+S|-43.96121|-73.10250||Naviera Austral|W
+S|-43.89926|-73.74775||Naviera Austral|W
+S|-43.76914|-72.95130||Naviera Austral|W
+S|-43.12221|-73.62137||Naviera Austral|W
+S|-42.48149|-73.75834||Naviera Austral|W
+S|-42.31767|-72.78786|Ayacara|Naviera Austral|W
+S|-42.90846|-72.72012|Chaitén|Naviera Austral|W
+S|-44.10329|-73.12380|Melimoyu|Naviera Austral|W
+S|-44.72472|-72.68821|Muelle Local|Naviera Austral|W
+S|-44.25866|-73.20178|Puerto Gala|Naviera Austral|W
+S|-45.46441|-72.82516|Puerto Oxxean|Naviera Austral|W
+S|-42.55871|-72.60396|Caleta Gonzalo|Naviera Puelche|W
+S|-42.50730|-72.80589|Chumeldén|Naviera Puelche|W
+S|-42.00652|-72.59594|Pichicolo|Naviera Puelche|W
+S|-51.73065|-72.51572|Ferry Terminal Puerto Natales|Navimag|W
+S|-49.13007|-74.40824|Puerto Edén|Navimag|W
+S|-41.48512|-72.95957|Rampa EMPORMONTT|Navimag|W
+S|-46.53590|-71.73226|Embarcadero Chile Chico|Somarco|W
+S|-46.29511|-71.92637|Ferry a Chile Chico|Somarco|W
+S|-41.97134|-72.47196|Hornopirén|Somarco|W
+S|-42.54552|-72.52335|Rampa Fiordo Largo|Somarco|W
+S|-42.48855|-72.43646|Rampa Leptepú|Somarco|W
+S|-47.80347|-73.53695|Muelle Caleta Tortel|Transbordadora Austral Broom|W
+S|-51.73154|-72.51346|Navimag Checkin|Transbordadora Austral Broom|W
+S|-47.93517|-73.32342|Puerto Yungay|Transbordadora Austral Broom|W
+L|Metro de Santiago|Línea 1|#cc0000|56 38:1017 66:1281 29:1331 0:716 25:547 113:631 58:731 80:622 67:647 99:758 1:913 118:610 109:545 119:571 48:406 57:593 95:589 117:606 30:546 120:744 100:552 22:776 51:676 74:822 72:1106 104:708
+L|Metro de Santiago|Línea 1|#cc0000|104 72:707 74:1111 51:823 22:676 100:718 120:551 30:744 117:546 95:606 57:589 48:593 119:406 109:572 118:546 1:608 99:915 67:757 80:646 58:623 113:730 25:630 0:547 29:716 66:1330 38:1279 56:1018
+L|Metro de Santiago|Línea 2|#ffbe2e|122 127:1316 21:666 23:994 10:889 12:983 78:795 92:733 106:944 57:892 114:838 77:942 98:885 35:1096 27:680 103:695 64:916 20:638 14:807 54:879 28:1124 45:1352 24:935 73:1547 16:1194 39:1374
+L|Metro de Santiago|Línea 2|#ffbe2e|39 16:1374 73:1194 24:1547 45:1010 28:1352 54:1040 14:879 20:807 64:638 103:916 27:751 35:682 98:1095 77:885 114:1065 57:715 106:892 92:937 78:738 12:795 10:984 23:889 21:994 127:666 122:1321
+L|Metro de Santiago|Línea 3|#83441D|87 53:868 33:1359 59:1261 8:1184 126:1498 15:1675 81:1272 40:1277 92:1699 82:521 119:742 75:811 68:1348 43:1441 70:1377 121:837 13:665 125:1561 86:1024 32:1192
+L|Metro de Santiago|Línea 3|#83441D|32 86:1191 125:1025 13:1560 121:665 70:775 43:1379 68:1441 75:1342 119:811 82:743 92:521 40:1699 81:1277 15:1274 126:1674 8:1496 59:1189 33:1261 53:1357 87:870
+L|Metro de Santiago|Línea 4|#292d91|113 17:1242 34:841 89:1404 112:780 86:794 60:1074 36:801 61:1152 93:923 52:1336 65:1198 124:1315 123:767 97:1138 115:1204 102:846 62:827 26:902 41:852 90:1420 49:1323 85:913
+L|Metro de Santiago|Línea 4|#292d91|85 49:913 90:1323 41:1420 26:852 62:902 102:827 115:847 97:1204 123:1138 124:760 65:1317 52:1196 93:1337 61:923 36:1152 60:801 86:1075 112:794 89:842 34:1405 17:841 113:1242
+L|Metro de Santiago|Línea 4A|#0099ff|124 108:1538 46:1573 110:1694 105:848 45:1994
+L|Metro de Santiago|Línea 4A|#0099ff|45 105:1995 110:849 46:1694 108:1575 124:1539
+L|Metro de Santiago|Línea 5|#006633|84 111:1514 19:809 71:1145 50:927 47:1530 2:1021 91:1025 104:1880 55:532 5:968 37:1501 94:1052 18:1100 106:833 83:874 3:577 1:1070 76:599 107:501 44:668 116:1653 96:1161 9:997 7:619 101:848 79:1034 69:848 4:883 123:820
+L|Metro de Santiago|Línea 5|#006633|123 4:821 69:884 79:847 101:1032 7:848 9:620 96:996 116:1161 44:1653 107:668 76:501 1:600 3:1074 83:577 106:944 18:899 94:1188 37:1052 5:1501 55:968 104:532 91:1881 2:1027 47:1021 50:1528 71:928 19:1145 111:810 84:1514
+L|Metro de Santiago|Línea 6|#8e16a1|11 63:1757 88:1497 35:1502 6:675 116:2060 31:1976 121:976 42:1738 58:2214
+L|Metro de Santiago|Línea 6|#8e16a1|58 42:2218 121:1737 31:976 116:1972 6:2059 35:675 88:1502 63:1497 11:1755
+L|Metro de Santiago|Ruta Roja de la Línea 2|#ffbe2e|122 127:1316 21:666 10:1883 78:1778 92:733 106:944 57:892 77:1779 35:1982 27:680 64:1611 14:1445 54:879 45:2392 24:935 16:2741 39:1374
+L|Metro de Santiago|Ruta Roja de la Línea 2|#ffbe2e|39 16:1374 24:2741 45:1010 54:2392 14:879 64:1445 27:1611 35:682 77:1981 57:1780 106:892 92:937 78:738 10:1779 21:1883 127:666 122:1321
+L|Metro de Santiago|Ruta Roja de la Línea 4|#292d91|113 34:2082 89:1404 86:1574 60:1074 61:1954 52:2259 65:1198 124:1315 123:767 115:2342 62:1673 26:902 41:852 49:2743 85:913
+L|Metro de Santiago|Ruta Roja de la Línea 4|#292d91|85 49:913 41:2743 26:852 62:902 115:1674 123:2342 124:760 65:1317 52:1196 61:2260 60:1953 86:1075 89:1574 34:1405 113:2083
+L|Metro de Santiago|Ruta Roja de la Línea 5|#006633|84 111:1514 71:1954 47:2457 2:1021 91:1025 104:1880 5:1500 94:2553 106:1933 83:874 3:577 1:1070 76:599 44:1169 116:1653 96:1161 7:1616 101:848 69:1882 4:883 123:820
+L|Metro de Santiago|Ruta Roja de la Línea 5|#006633|123 4:821 69:884 101:1880 7:848 96:1616 116:1161 44:1653 76:1169 1:600 3:1074 83:577 106:944 94:1933 5:2553 104:1500 91:1881 2:1027 47:1021 71:2455 111:1955 84:1514
+L|Metro de Santiago|Ruta Verde de la Línea 2|#ffbe2e|122 127:1316 23:1660 12:1872 92:1528 106:944 57:892 114:838 98:1827 35:1096 103:1375 20:1554 54:1685 28:1124 45:1352 73:2482 39:2568
+L|Metro de Santiago|Ruta Verde de la Línea 2|#ffbe2e|39 73:2568 45:2482 28:1352 54:1040 20:1685 103:1554 35:1377 98:1095 114:1950 57:715 106:892 92:937 12:1533 23:1872 127:1660 122:1321
+L|Metro de Santiago|Ruta Verde de la Línea 4|#292d91|113 17:1242 34:841 112:2184 86:794 36:1875 93:2075 65:2533 124:1315 123:767 97:1138 102:2051 26:1729 41:852 90:1420 85:2236
+L|Metro de Santiago|Ruta Verde de la Línea 4|#292d91|85 90:2236 41:1420 26:852 102:1729 97:2051 123:1138 124:760 65:1317 93:2533 36:2075 86:1876 112:794 34:2185 17:841 113:1242
+L|Metro de Santiago|Ruta Verde de la Línea 5|#006633|84 19:2322 50:2073 47:1530 91:2089 104:1880 55:532 37:2469 18:2153 106:833 83:874 3:577 1:1070 107:1100 44:668 116:1653 9:2158 101:1467 79:1034 4:1731 123:820
+L|Metro de Santiago|Ruta Verde de la Línea 5|#006633|123 4:821 79:1732 101:1032 9:1469 116:2156 44:1653 107:668 1:1101 3:1074 83:577 106:944 18:899 37:2153 55:2469 104:532 91:1881 47:2092 50:1528 19:2073 84:2324
+L|Naviera Austral|Ruta Castro||136 134:113238
+L|Naviera Austral|Ruta Castro||134 136:113587
+L|Naviera Austral|Ruta Chaitén||146 135:96962 136:79809
+L|Naviera Austral|Ruta Chaitén||136 135:79667 146:96837
+L|Naviera Austral|Ruta Chiloé||136 133:83858
+L|Naviera Austral|Ruta Chiloé||133 136:83629
+L|Naviera Austral|Ruta Cisnes||133 131:88285 138:147264
+L|Naviera Austral|Ruta Cisnes||138 131:146143 133:88221
+L|Naviera Austral|Ruta Cordillera Norte||133 131:136875 132:70724 130:38885 137:31868 139:27110 138:117018 129:64103 128:46903 140:92711
+L|Naviera Austral|Ruta Cordillera Sur||133 131:136875 132:70724 130:38885 137:31868 139:27110 138:117018 129:64103 128:46903 140:92711
+L|Naviera Puelche|Ayacara – Caleta Gonzalo||135 141:31790
+L|Naviera Puelche|Ayacara – Chumeldén||135 142:21612
+L|Naviera Puelche|Ayacara – Chumeldén – Caleta Gonzalo||135 142:32215 141:21359
+L|Naviera Puelche|Ayacara – Pichicolo||135 143:41523
+L|Naviera Puelche|Caleta Gonzalo – Ayacara||141 135:31756
+L|Naviera Puelche|Caleta Gonzalo – Ayacara – Pichicolo||141 135:32590 143:41523
+L|Naviera Puelche|Caleta Gonzalo – Chumeldén||141 142:19300
+L|Naviera Puelche|Caleta Gonzalo – Chumeldén – Ayacara||141 142:21344 135:32158
+L|Naviera Puelche|Chumeldén – Ayacara||142 135:21609
+L|Naviera Puelche|Chumeldén – Caleta Gonzalo||142 141:19312
+L|Naviera Puelche|Chumeldén – Pichicolo||142 143:65485
+L|Naviera Puelche|Pichicolo – Ayacara||143 135:41580
+L|Naviera Puelche|Pichicolo – Ayacara – Caleta Gonzalo||143 135:41580 141:32543
+L|Naviera Puelche|Pichicolo – Chumeldén||143 142:65625
+L|Navimag|Puerto Montt - Puerto Edén - Puerto Natales||146 145:1010406 144:389458
+L|Navimag|Puerto Natales - Puerto Edén - Puerto Montt||144 145:380056 146:983309
+L|Somarco|Caleta Gonzalo – Fiordo Largo||141 150:7309
+L|Somarco|Chile Chico – Puerto Ibáñez||147 148:35763
+L|Somarco|Fiordo Largo – Caleta Gonzalo||150 141:7310
+L|Somarco|Hornopirén – Leptepú||149 151:58653
+L|Somarco|Leptepú – Hornopirén||151 149:58631
+L|Somarco|Puerto Ibáñez – Chile Chico||148 147:35805
+L|Transbordadora Austral Broom|Puerto Natales - Puerto Edén - Caleta Tortel - Puerto Yungay||153 145:380916 152:263038 154:34762
+L|Transbordadora Austral Broom|Puerto Yungay - Caleta Tortel - Puerto Edén - Puerto Natales||154 152:34766 145:265727 153:390432
+T|-24.22761|-69.08095|Adolfo Zaldívar
+T|-33.45234|-70.67906|Alameda
+T|-36.84687|-73.13094|Alborada
+T|-41.39948|-72.91948|Alerce
+T|-18.24355|-69.79825|Angostura
+T|-33.69328|-70.33582|Antigua Estación FCM El Melocotón
+T|-33.73201|-70.31792|Antigua Estación FCM San Alfonso
+T|-39.80550|-72.95750|Antilhue
+T|-23.64219|-70.38927|Antofagasta
+T|-18.47477|-70.31891|Arica (FCALP)
+T|-18.47350|-70.31747|Arica (FTA)
+T|-33.03247|-71.63041|Ascensor Artillería
+T|-33.04287|-71.60396|Ascensor Barón
+T|-33.05160|-71.61046|Ascensor Carlos van Buren
+T|-33.04442|-71.60287|Ascensor Cerro Los Lecheros
+T|-33.05258|-71.61322|Ascensor Cerro la Cruz
+T|-33.04094|-71.62650|Ascensor Concepción
+T|-33.03801|-71.63057|Ascensor Cordillera
+T|-33.03961|-71.62945|Ascensor El Peral
+T|-33.04774|-71.62148|Ascensor Espíritu Santo
+T|-33.04951|-71.61934|Ascensor Florida
+T|-33.04650|-71.60259|Ascensor Larraín
+T|-33.05014|-71.61735|Ascensor Mariposas
+T|-33.04384|-71.62659|Ascensor Reina Victoria
+T|-33.04040|-71.63235|Ascensor San Agustín
+T|-33.02715|-71.55753|Ascensor Villanelo
+T|-33.03140|-71.63004|Ascensor Villaseca
+T|-21.72530|-68.27600|Ascotán
+T|-24.10998|-69.36430|Augusta Victoria
+T|-35.36578|-72.37039|Banco de Arena
+T|-23.33378|-69.84079|Baquedano (FCAB)
+T|-23.33403|-69.83996|Baquedano (Ferronor)
+T|-33.59632|-71.61547|Barrancas
+T|-33.04221|-71.60561|Barón
+T|-33.23985|-70.81437|Batuco
+T|-33.04311|-71.62056|Bellavista
+T|-37.20256|-72.77059|Buenuraqui
+T|-33.73236|-70.72843|Buin
+T|-33.71345|-70.72453|Buin Zoo
+T|-36.35815|-71.93471|Buli
+T|-36.74536|-72.29260|Bulnes
+T|-37.03477|-72.39988|Cabrero
+T|-38.67581|-72.50443|Cajón
+T|-38.67990|-72.50907|Cajón-Paradero
+T|-22.46243|-68.92268|Calama
+T|-35.22136|-71.42471|Camarico
+T|-40.43958|-73.12456|Caracol
+T|-36.89849|-73.14339|Cardenal Raúl Silva Henríquez
+T|-41.00762|-73.12669|Casma
+T|-32.78637|-71.19317|Caupolicán
+T|-21.53417|-68.34095|Cebollar
+T|-23.12255|-69.54775|Central
+T|-20.36992|-69.91960|Central
+T|-18.36026|-69.95793|Central
+T|-22.23869|-68.76311|Cere
+T|-22.63968|-69.15046|Cerritos Bayos
+T|-20.85662|-69.53808|Cerro Gordo
+T|-23.91715|-69.62733|Cerro Negro
+T|-22.39679|-69.56028|Chacance
+T|-32.80700|-70.95907|Chagres
+T|-22.98109|-69.39204|Chela
+T|-36.91536|-73.02884|Chiguayante
+T|-36.60386|-72.11246|Chillán
+T|-34.71243|-71.04088|Chimbarongo
+T|-18.46360|-70.30168|Chinchorro
+T|-17.69649|-69.68711|Chislluma
+T|-33.68969|-71.08387|Chiñigüe
+T|-33.03335|-71.53284|Chorrillos
+T|-33.62316|-70.70057|Cinco Pinos
+T|-36.52440|-72.06807|Cocharcas
+T|-37.55748|-72.59608|Coigüe
+T|-33.29089|-70.76936|Colina
+T|-37.95319|-72.44444|Collipulli
+T|-35.47667|-71.74401|Colín
+T|-34.08786|-70.45126|Colón
+T|-36.83016|-73.06104|Concepción
+T|-22.03096|-68.62432|Conchi
+T|-35.33611|-72.40420|Constitución
+T|-27.35915|-70.34405|Copiapó
+T|-29.97401|-71.33447|Coquimbo
+T|-35.44641|-71.87230|Corinto
+T|-37.02464|-73.15081|Coronel
+T|-17.99229|-69.66077|Coronel Alcérreca
+T|-36.85480|-73.13285|Costa Mar
+T|-36.99841|-73.16279|Cristo Redentor
+T|-40.41983|-72.78601|Crucero
+T|-23.39821|-69.95415|Cuevitas
+T|-33.42654|-70.63351|Cumbre
+T|-23.46141|-70.28052|Cumbre
+T|-34.98450|-71.24645|Curicó
+T|-35.46198|-71.93071|Curtiduría
+T|-35.45570|-71.95487|Curtiduría Escuela
+T|-33.72208|-70.85261|Desvío Lonquén
+T|-36.83740|-73.11806|Diagonal Biobío
+T|-37.36285|-72.67467|Diuquín
+T|-36.72554|-73.11665|El Arenal
+T|-33.04317|-71.40653|El Belloto
+T|-32.69114|-71.21388|El Melón
+T|-33.67929|-70.98969|El Monte
+T|-35.46513|-71.89263|El Morro
+T|-36.86782|-73.13599|El Parque
+T|-35.45301|-71.98730|El Peumo
+T|-33.04123|-71.52118|El Salto
+T|-33.03957|-71.42882|El Sol
+T|-35.46146|-71.97414|El Tricahue
+T|-20.70137|-69.59687|Empalme Km. 699
+T|-32.86552|-70.85021|Enrique Meiggs
+T|-38.05499|-72.37699|Ercilla
+T|-27.34495|-70.74061|EstaciónEstación de Monte Amargo de trenes de copiapó
+T|-35.41264|-72.19839|Forel
+T|-33.04389|-71.61293|Francia
+T|-38.94836|-72.62852|Freire
+T|-33.58671|-70.69844|Freire
+T|-28.50700|-71.08138|Freirina
+T|-41.12539|-73.06098|Frutillar
+T|-20.49568|-69.79813|Gallinazos
+T|-36.93352|-72.34949|General Cruz
+T|-17.65348|-69.63509|General Lagos
+T|-37.19642|-72.83525|Gomero
+T|-35.44521|-72.02414|González Bastías
+T|-39.10285|-72.67285|Gorbea
+T|-34.06569|-70.72506|Graneros
+T|-21.49089|-69.52090|Hilaricos
+T|-36.95379|-73.15672|Hito Galvarino
+T|-33.86809|-70.74582|Hospital
+T|-33.02853|-71.54294|Hospital
+T|-36.73962|-73.10255|Hospital Las Higueras
+T|-36.98055|-72.94113|Hualqui
+T|-39.79166|-73.11978|Huellelhue
+T|-35.45469|-71.57132|Huilquilemu
+T|-36.98823|-73.16316|Huinca
+T|-35.41525|-72.23201|Huinganes
+T|-17.83445|-69.70412|Humapalca
+T|-24.22999|-68.89007|Imilac
+T|-38.19602|-72.31277|Inspector Fernández
+T|-38.66268|-72.47640|Instituto Claret
+T|-32.77714|-71.19437|J.J. Godoy
+T|-36.83843|-73.09796|Juan Pablo II
+T|-28.25769|-70.69823|Km. 765
+T|-32.79047|-71.19361|La Calera
+T|-33.04167|-71.38204|La Concepción
+T|-36.95124|-73.01315|La Leonera
+T|-23.76979|-70.32549|La Negra
+T|-20.38418|-69.85831|La Noria
+T|-41.45885|-72.91765|La Paloma
+T|-23.13177|-69.87728|La Rioja
+T|-29.90178|-71.25691|La Serena
+T|-40.29863|-73.07266|La Unión
+T|-37.01270|-73.15809|Laguna Quiñenco
+T|-37.28197|-72.71678|Laja
+T|-39.45106|-72.77961|Lanco
+T|-33.04389|-71.39468|Las Américas
+T|-20.31541|-70.02002|Las Carpas
+T|-39.23547|-72.67710|Lastarria
+T|-23.45053|-70.06359|Latorre
+T|-38.52511|-72.43216|Lautaro
+T|-38.53367|-72.43685|Lautaro Centro
+T|-32.98441|-71.27801|Limache
+T|-35.84760|-71.59045|Linares
+T|-33.76349|-70.73485|Linderos
+T|-36.71434|-72.97813|Lirquén
+T|-28.56775|-70.79603|Llanos de Soto
+T|-41.25300|-73.00651|Llanquihue
+T|-32.84342|-70.95252|Llay Llay
+T|-33.57272|-70.69829|Lo Blanco
+T|-33.51453|-70.68588|Lo Espejo
+T|-33.47721|-70.68065|Lo Valledor
+T|-36.88250|-73.13954|Lomas Coloradas
+T|-39.36984|-72.63682|Loncoche
+T|-35.96572|-71.68898|Longaví
+T|-35.05516|-71.26887|Lontué
+T|-36.80821|-73.07106|Lorenzo Arenas
+T|-37.15592|-72.91681|Los Acacios
+T|-32.82647|-70.59974|Los Andes
+T|-22.86576|-69.28759|Los Arrieros
+T|-36.98019|-73.16284|Los Canelos
+T|-36.75667|-73.09166|Los Cóndores
+T|-35.42078|-72.27101|Los Digüeñes
+T|-39.86335|-72.81761|Los Lagos
+T|-34.22745|-70.78486|Los Lirios
+T|-35.45458|-71.96296|Los Llocos
+T|-35.42587|-72.15139|Los Maquis
+T|-33.36025|-70.50177|Los Quincheros
+T|-35.43073|-72.12760|Los Romeros
+T|-22.73977|-69.73134|Lynch
+T|-33.60641|-70.69701|Maestranza
+T|-28.52769|-70.92486|Maitencillo
+T|-33.60793|-70.85841|Malloco
+T|-33.58757|-71.52874|Malvilla
+T|-36.93860|-73.01130|Manquimávida
+T|-35.38860|-72.28852|Maquehua
+T|-35.38533|-72.29096|Maquehua Escuela
+T|-39.56570|-72.93239|Mariquina
+T|-35.52276|-71.68484|Maule
+T|-33.67968|-71.21099|Melipilla
+T|-36.71196|-73.11554|Mercado
+T|-38.82962|-72.62250|Metrenco
+T|-37.79558|-72.47461|Mininco
+T|-35.91517|-71.64560|Miraflores
+T|-22.50400|-69.56807|Miraje
+T|-33.02490|-71.56152|Miramar
+T|-35.10231|-71.30266|Molina
+T|-37.08556|-72.44207|Monte Águila
+T|-32.96637|-70.83733|Montenegro
+T|-24.34117|-68.43641|Monturaqui
+T|-39.77731|-72.94849|Mulpún
+T|-39.66529|-72.94987|Máfil
+T|-36.64678|-72.22907|Nebuco
+T|-33.63227|-70.70461|Nos
+T|-36.65141|-72.46320|Nueva Aldea
+T|-23.65753|-70.25321|O'Higgins
+T|-32.84367|-71.08416|Ocoa
+T|-21.22481|-68.25351|Ollagüe
+T|-40.57494|-73.14106|Osorno
+T|-33.56780|-70.81568|Padre Hurtado
+T|-38.76246|-72.60469|Padre Las Casas-Paradero
+T|-40.07109|-72.87774|Paillaco
+T|-33.81607|-70.74360|Paine
+T|-23.87866|-69.73496|Palestina
+T|-23.33061|-70.40060|Pampa
+T|-18.28940|-69.86407|Pampa Ossa
+T|-23.07519|-69.49179|Pampa Unión
+T|-35.36823|-71.58814|Panguilemo
+T|-36.13849|-71.83351|Parral
+T|-33.49273|-70.68180|Pedro Aguirre Cerda
+T|-36.92572|-73.02142|Pedro Medina
+T|-22.61341|-69.62911|Pedro de Valdivia
+T|-34.46191|-70.89183|Pelequén
+T|-38.42022|-72.37509|Perquenco
+T|-36.23595|-71.87161|Perquilauquén
+T|-33.04020|-71.35298|Peñablanca
+T|-35.43522|-72.10212|Pichamán
+T|-35.43091|-72.09164|Pichamán Oriente
+T|-40.15120|-72.89787|Pichi Ropulli
+T|-38.63621|-72.45386|Pillanlelbún
+T|-39.80571|-73.05783|Pishuinco
+T|-38.98404|-72.64196|Pitrufquén
+T|-35.44740|-71.82240|Pocoa
+T|-18.45058|-70.06704|Poconchile
+T|-33.17005|-70.88672|Polpaico
+T|-33.03274|-71.59142|Portales
+T|-23.70050|-70.28462|Portezuelo
+T|-23.47273|-70.17137|Prat
+T|-33.64813|-71.35653|Puangue
+T|-28.65927|-70.89118|Pucol
+T|-33.03938|-71.62596|Puerto
+T|-41.31305|-72.98389|Puerto Varas
+T|-20.19143|-70.13440|Punta Negra
+T|-18.17493|-69.74563|Puquios
+T|-40.91197|-73.16300|Purranque
+T|-35.76821|-71.66469|Putagán
+T|-38.33598|-72.37465|Púa
+T|-18.32517|-69.88279|Quebrada Honda
+T|-38.86836|-72.61616|Quepe
+T|-37.05459|-72.96331|Quilacoya
+T|-21.66311|-69.53446|Quillagua
+T|-38.46522|-72.38671|Quillem
+T|-33.04527|-71.44464|Quilpué
+T|-34.81269|-71.06018|Quinta
+T|-21.04462|-69.48071|Ramaditas
+T|-34.17080|-70.75311|Rancagua
+T|-35.36753|-72.33780|Rancho Astillero
+T|-40.24941|-73.01625|Rapaco
+T|-35.45655|-71.78189|Rauquén
+T|-33.02719|-71.57529|Recreo
+T|-37.67103|-72.58824|Renaico
+T|-34.40756|-70.86718|Rengo
+T|-34.28603|-70.81535|Requínoa
+T|-36.05650|-71.76729|Retiro
+T|-39.98907|-72.83566|Reumén
+T|-32.81874|-71.52535|Ritoque
+T|-34.34955|-70.84056|Rosario
+T|-18.41163|-70.13456|Rosario
+T|-36.67284|-72.27919|Rucapequén
+T|-33.00830|-70.89327|Rungue
+T|-32.90963|-70.30523|Río Blanco
+T|-40.79374|-73.21286|Río Negro
+T|-20.42003|-69.87807|San Antonio
+T|-33.59500|-70.69784|San Bernardo
+T|-36.42575|-71.96638|San Carlos
+T|-34.58974|-70.98257|San Fernando
+T|-33.97706|-70.71328|San Francisco
+T|-35.60251|-71.70020|San Javier
+T|-21.40687|-68.35691|San Martín
+T|-18.36015|-70.02406|San Martín
+T|-37.07884|-72.95815|San Miguel
+T|-32.93790|-71.27668|San Pedro
+T|-21.94325|-68.54382|San Pedro
+T|-35.30673|-71.51890|San Rafael
+T|-37.26390|-72.72759|San Rosendo
+T|-22.34295|-68.83378|San Salvador
+T|-37.46060|-72.58388|Santa Fe
+T|-21.89364|-69.55827|Santa Fe
+T|-33.04206|-71.36596|Sargento Aldea
+T|-33.36020|-70.49908|Senda 20 Sur
+T|-33.36022|-70.50039|Senda 9 Sur
+T|-22.88973|-69.32047|Sierra Gorda
+T|-24.45092|-68.29054|Socompa
+T|-21.26810|-69.49289|Soledad
+T|-33.65925|-70.92727|Talagante
+T|-35.42978|-71.64960|Talca
+T|-37.16497|-72.90680|Talcamávida
+T|-38.73693|-72.57915|Temuco
+T|-34.87108|-71.15887|Teno
+T|-21.97397|-69.58684|Teresa
+T|-33.08639|-70.92823|Tiltil
+T|-22.06955|-69.59543|Toco
+T|-35.42333|-72.05680|Toconey
+T|-37.23072|-72.65214|Turquía
+T|-37.11906|-72.94265|Unihue
+T|-36.78386|-73.08560|Universidad Técnica Federico Santa María
+T|-39.82384|-73.21815|Valdivia
+T|-33.04017|-71.46883|Valencia
+T|-37.13730|-72.93365|Valle Chanco
+T|-28.57173|-70.76743|Vallenar
+T|-38.23723|-72.33294|Victoria
+T|-32.85675|-70.45276|Vilcuya
+T|-35.69627|-71.68011|Villa Alegre
+T|-33.04249|-71.37355|Villa Alemana
+T|-17.78394|-69.70794|Villa Industrial
+T|-17.59509|-69.47696|Visviri
+T|-33.02636|-71.55186|Viña del Mar
+T|-37.14654|-72.53974|Yumbel
+T|-36.29416|-71.90170|Ñiquén

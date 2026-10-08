@@ -1,0 +1,1614 @@
+# Transit for Koode, SE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|59.33647|17.95376|Abrahamsberg|SL|M
+S|59.34628|18.15649|AGA|SL|M
+S|59.41558|17.91322|Akalla|SL|M
+S|59.23931|17.84481|Alby|SL|M
+S|59.33332|17.98007|Alvik|SL|M
+S|59.32889|17.98219|Alviks strand|SL|M
+S|59.30658|18.00239|Aspudden|SL|M
+S|59.30432|17.97441|Axelsberg|SL|M
+S|59.27619|18.13134|Bagarmossen|SL|M
+S|59.35704|18.13261|Baggeby|SL|M
+S|59.27030|18.04959|Bandhagen|SL|M
+S|59.38070|18.03740|Bergshamra|SL|M
+S|59.29120|18.11549|Björkhagen|SL|M
+S|59.34847|17.88270|Blackeberg|SL|M
+S|59.36070|17.96300|Bällsta bro|SL|M
+S|59.29050|18.09116|Blåsut|SL|M
+S|59.35411|18.13797|Bodal|SL|M
+S|59.29478|17.93344|Bredäng|SL|M
+S|59.34840|18.20363|Brevik|SL|M
+S|59.35384|17.95698|Bromma Blocks|SL|M
+S|59.35703|17.94678|Bromma flygplats|SL|M
+S|59.33828|17.93969|Brommaplan|SL|M
+S|59.39095|18.04196|Danderyds sjukhus|SL|M
+S|59.36756|17.96430|Duvbo|SL|M
+S|59.28929|18.07020|Enskede gård|SL|M
+S|59.24335|18.09393|Farsta|SL|M
+S|59.23505|18.10207|Farsta strand|SL|M
+S|59.24736|17.86070|Fittja|SL|M
+S|59.33295|18.03105|Fridhemsplan|SL|M
+S|59.28647|17.96488|Fruängen|SL|M
+S|59.32330|18.06700|Gamla stan|SL|M
+S|59.29419|18.07660|Globen|SL|M
+S|59.34588|18.09888|Gärdet|SL|M
+S|59.31583|18.01064|Gröndal|SL|M
+S|59.35669|18.22720|Gåshaga|SL|M
+S|59.35688|18.23386|Gåshaga brygga|SL|M
+S|59.26362|18.08208|Gubbängen|SL|M
+S|59.29957|18.08024|Gullmarsplan|SL|M
+S|59.26255|18.01277|Hagsätra|SL|M
+S|59.24328|17.82509|Hallunda|SL|M
+S|59.29480|18.10433|Hammarbyhöjden|SL|M
+S|59.34427|18.19374|Högberga|SL|M
+S|59.26376|18.04306|Högdalen|SL|M
+S|59.29500|17.97792|Hägerstensåsen|SL|M
+S|59.39660|17.88822|Hjulsta|SL|M
+S|59.25732|18.08285|Hökarängen|SL|M
+S|59.31642|18.03671|Hornstull|SL|M
+S|59.36697|17.84391|Hässelby gård|SL|M
+S|59.36147|17.83246|Hässelby strand|SL|M
+S|59.33583|18.06327|Hötorget|SL|M
+S|59.40818|17.92867|Husby|SL|M
+S|59.34966|17.98707|Huvudsta|SL|M
+S|59.34594|17.89375|Islandstorget|SL|M
+S|59.36795|17.85785|Johannelund|SL|M
+S|59.34275|17.96972|Johannesfred|SL|M
+S|59.33975|18.09229|Karlaplan|SL|M
+S|59.35589|17.96128|Karlsbodavägen|SL|M
+S|59.34214|17.92422|Åkeshov|SL|M
+S|59.40312|17.94242|Kista|SL|M
+S|59.34442|18.17979|Kottla|SL|M
+S|59.35263|18.21775|Käppala|SL|M
+S|59.33256|18.00411|Kristineberg|SL|M
+S|59.28416|18.11463|Kärrtorp|SL|M
+S|59.33084|18.07105|Kungsträdgården|SL|M
+S|59.35054|18.14601|Larsberg|SL|M
+S|59.31074|18.02313|Liljeholmen|SL|M
+S|59.29326|18.06357|Linde|SL|M
+S|59.30418|18.09590|Luma|SL|M
+S|59.31712|18.06047|Mariatorget|SL|M
+S|59.24986|17.88187|Masmo|SL|M
+S|59.31517|18.07321|Medborgarplatsen|SL|M
+S|59.30161|18.01100|Midsommarkransen|SL|M
+S|59.30050|17.95574|Mälarhöjden|SL|M
+S|59.39858|18.03640|Mörby centrum|SL|M
+S|59.30268|18.08804|Mårtensdal|SL|M
+S|59.36758|17.98179|Näckrosen|SL|M
+S|59.34189|17.90741|Ängbyplan|SL|M
+S|59.35028|17.96210|Norra Ulvsunda|SL|M
+S|59.24390|17.81273|Norsborg|SL|M
+S|59.34299|18.04793|Odenplan|SL|M
+S|59.35491|17.88185|Råcksta|SL|M
+S|59.33015|18.04426|Rådhuset|SL|M
+S|59.34027|18.05907|Rådmansgatan|SL|M
+S|59.25669|18.02845|Rågsved|SL|M
+S|59.38825|17.92838|Rinkeby|SL|M
+S|59.37558|17.94073|Rissne|SL|M
+S|59.30534|17.98770|Örnsberg|SL|M
+S|59.35736|18.10240|Ropsten|SL|M
+S|59.29924|18.02968|Årstaberg|SL|M
+S|59.30587|18.02557|Årstadal|SL|M
+S|59.29634|18.03952|Årstafältet|SL|M
+S|59.28569|18.09198|Sandsborg|SL|M
+S|59.34054|18.03722|Sankt Eriksplan|SL|M
+S|59.30684|18.12075|Sickla|SL|M
+S|59.30276|18.10361|Sickla kaj|SL|M
+S|59.30625|18.10884|Sickla udde|SL|M
+S|59.30870|18.07596|Skanstull|SL|M
+S|59.26641|18.13299|Skarpnäck|SL|M
+S|59.27869|18.09540|Skogskyrkogården|SL|M
+S|59.27692|17.90675|Skärholmen|SL|M
+S|59.29558|18.08990|Skärmarbrink|SL|M
+S|59.34336|18.17026|Skärsätra|SL|M
+S|59.31932|18.07220|Slussen|SL|M
+S|59.28300|18.07028|Sockenplan|SL|M
+S|59.36387|18.00849|Solna|SL|M
+S|59.35942|17.97954|Solna Business Park|SL|M
+S|59.35951|17.99782|Solna centrum|SL|M
+S|59.36131|17.99614|Solna centrum|SL|M
+S|59.35446|17.97319|Solna strand|SL|M
+S|59.34229|18.08045|Stadion|SL|M
+S|59.33762|18.01588|Stadshagen|SL|M
+S|59.33548|18.07769|Östermalmstorg|SL|M
+S|59.32477|17.99306|Stora Essingen|SL|M
+S|59.33456|17.96606|Stora mossen|SL|M
+S|59.28576|17.92167|Sätra|SL|M
+S|59.27464|18.05582|Stureby|SL|M
+S|59.36105|17.96976|Sundbybergs centrum|SL|M
+S|59.27749|18.06713|Svedmyra|SL|M
+S|59.27153|18.08606|Tallkrogen|SL|M
+S|59.33189|18.06094|T-Centralen|SL|M
+S|59.29836|17.99820|Telefonplan|SL|M
+S|59.39477|17.89969|Tensta|SL|M
+S|59.33145|18.01432|Thorildsplan|SL|M
+S|59.36195|18.11775|Torsvik/Millesgården|SL|M
+S|59.31420|18.01811|Trekanten|SL|M
+S|59.36520|18.05460|Universitetet|SL|M
+S|59.29504|18.04847|Valla torg|SL|M
+S|59.36393|17.87084|Vällingby|SL|M
+S|59.27601|17.89065|Vårberg|SL|M
+S|59.26508|17.88366|Vårby gård|SL|M
+S|59.29132|17.96669|Västertorp|SL|M
+S|59.34735|18.00387|Västra skogen|SL|M
+S|59.31783|18.04919|Zinkensdamm|SL|M
+S|56.11608|15.68558|Bredavik brygga|Blekingetrafiken|W
+S|56.10247|15.47468|Garpahamnen|Blekingetrafiken|W
+S|56.16330|15.59686|Handelshamnen|Blekingetrafiken|W
+S|56.11830|15.48874|Hasslö Horn|Blekingetrafiken|W
+S|56.16026|15.72443|Trummenäs|Blekingetrafiken|W
+S|66.95011|17.71740|Boat tours Kvikkjokk|Båttrafik Kvikkjokk|W
+S|66.94505|17.65452|Bobäcken|Båttrafik Kvikkjokk|W
+S|58.90338|17.95589|Nynäshamn - Visby|Destination Gotland|W
+S|57.26390|16.45818|Oskarshamn - Visby|Destination Gotland|W
+S|57.63468|18.27941|Visby - Nynäshamn|Destination Gotland|W
+S|57.63371|18.27771|Visby - Oskarshamn|Destination Gotland|W
+S|59.32881|17.98553|Alviks Strand|E/S Movitz|W
+S|59.33998|18.00467|Hornsbergs Strand|E/S Movitz|W
+S|59.35392|17.96914|Solna Strand|E/S Movitz|W
+S|59.31654|17.98457|Stora Essingen|E/S Movitz|W
+S|60.22564|19.53554|Eckerölinjen|Eckerö Linjen|W
+S|60.09859|18.81513|Grisslehamn|Eckerö Linjen|W
+S|53.94142|10.86048|Anleger 6|Finnlines Plc|W
+S|60.22004|25.19656|Finnlines Helsinki-Travemünde|Finnlines Plc|W
+S|59.72030|19.06610|Kapellskär|Finnlines Plc|W
+S|60.45816|22.03555|Naantali|Finnlines Plc|W
+S|58.19518|11.48892|Fröjdendal|Färjerederiet Trafikverket|W
+S|58.19594|11.48524|Malö|Färjerederiet Trafikverket|W
+S|57.26557|16.45401|Oskarshamn - Blå Jungfrun|Oskarshamns turistbyrå|W
+S|57.25531|16.78951|Sikhamn, Blå Jungfrun|Oskarshamns turistbyrå|W
+S|57.76042|16.68123|Gränsö Slott|Rais Skärgårdsturer|W
+S|57.69612|16.73327|Hornsudde|Rais Skärgårdsturer|W
+S|57.70419|16.76432|Idö|Rais Skärgårdsturer|W
+S|57.73791|16.67913|Västervik Resort|Rais Skärgårdsturer|W
+S|57.75937|16.64240|Västervik Skärgårdterminalen|Rais Skärgårdsturer|W
+S|55.62730|12.99001||Rederi AB Nordö-Link|W
+S|53.94212|10.85980|Anleger 5a|Rederi AB Nordö-Link|W
+S|59.30803|18.09753|Barnängsbryggan|Ressel rederi|W
+S|59.30921|18.10126|Henriksdal|Ressel rederi|W
+S|59.30582|18.09933|Lumabryggan|Ressel rederi|W
+S|59.31577|18.10680|Masthamnen|Ressel rederi|W
+S|55.90314|12.72302|Back vikens Hamn|Rååbåtarna|W
+S|55.99247|12.74368|Venbåtarna|Rååbåtarna|W
+S|59.32422|18.09427|Allmänna gränd|SL|W
+S|59.32076|18.15187|Blockhusudden|SL|W
+S|59.31563|17.98816|Ekensberg|SL|W
+S|59.38995|18.09100|Ekudden|SL|W
+S|59.31608|18.12423|Finnboda hamn|SL|W
+S|59.34584|18.13144|Frihamnen|SL|W
+S|59.40324|18.15396|Frösvik|SL|W
+S|59.27138|17.84637|Jungfrusund|SL|W
+S|59.32774|18.05801|Klara Mälarstrand|SL|W
+S|59.30478|17.90223|Kungshättan|SL|W
+S|59.31760|18.13652|Kvarnholmen|SL|W
+S|59.34315|18.15195|Lidingö/Dalénum|SL|W
+S|59.32328|18.00889|Lilla Essingen|E/S Movitz|W
+S|59.31581|18.45910|Ålstäket|SL|W
+S|59.38979|18.13824|Mor Annas brygga|SL|W
+S|59.31802|18.15693|Nacka strand|SL|W
+S|59.33219|18.07686|Nybroplan|Ressel rederi|W
+S|59.35841|18.10623|Ropsten|SL|W
+S|59.31513|18.11032|Saltsjöqvarn|SL|W
+S|59.32499|18.08920|Skeppsholmen|SL|W
+S|59.32380|18.07643|Slussen|SL|W
+S|59.39047|18.10961|Sticklinge brygga|SL|W
+S|59.39872|18.13541|Storholmen norra|SL|W
+S|59.39336|18.13421|Storholmen södra|SL|W
+S|59.39693|18.14452|Storholmen östra|SL|W
+S|59.29256|17.81144|Tappström|SL|W
+S|59.37652|18.09203|Tranholmen|SL|W
+S|60.11707|20.30008|Långnäs|Silja Line|W
+S|60.16259|24.95750|Olympia Terminal|Silja Line|W
+S|60.43633|22.21909|Silja Line: Turku|Silja Line|W
+S|59.35060|18.11509|Värtahamnen, Stockholm|Silja Line|W
+S|57.43489|10.54296||Stena Line|W
+S|57.43509|10.54029||Stena Line|W
+S|57.70172|11.94514||Stena Line|W
+S|54.31921|10.13955|Kiel Schwedenkai|Stena Line|W
+S|57.69583|11.91439|Stena Line Tysklandsterminalen|Stena Line|W
+S|57.38895|18.18524|Klintehamn|Stora Karlsö|W
+S|57.31112|18.07376|Lilla Karlsö|Stora Karlsö|W
+S|57.29007|17.97077|Stora Karlsö|Stora Karlsö|W
+S|59.30762|18.34609|Artipelag/Hålludden|Strömma Kanalbolag|W
+S|59.29565|18.24971|Fisksätra Marina|Strömma Kanalbolag|W
+S|59.32436|18.38131|Gustavsberg|Strömma Kanalbolag|W
+S|59.32017|18.22421|Lilla Björknäs|Strömma Kanalbolag|W
+S|59.33144|18.07649|Nybrokajen|Strömma Kanalbolag|W
+S|59.28848|18.91552|Sandhamn|Strömma Kanalbolag|W
+S|59.33163|18.07962|Strandvägen|Strömma Kanalbolag|W
+S|59.33011|18.21831|Talludden|Strömma Kanalbolag|W
+S|59.29245|18.91374|Telegrafholmen|Strömma Kanalbolag|W
+S|55.36731|13.15771||TT-Line GmbH & Co. KG|W
+S|55.36999|13.15033||TT-Line GmbH & Co. KG|W
+S|55.65792|21.15729||TT-Line GmbH & Co. KG|W
+S|53.94049|10.86219|Anleger 6a|TT-Line GmbH & Co. KG|W
+S|59.44396|24.77005|Tallinn|Tallink|W
+S|59.35262|18.11733|Värtahamnen, Stockholm|Tallink|W
+S|60.34616|18.46170|Gräsö färjeläget|Trafikverket|W
+S|60.34079|18.44679|Öregrund Färjeläget|Trafikverket|W
+S|58.30256|11.50432|Finnsbo färjeläge|Trafikverket Färjerederiet|W
+S|58.23866|11.54489|Fruvik|Trafikverket Färjerederiet|W
+S|58.55245|11.26639|Hamburgö|Trafikverket Färjerederiet|W
+S|58.55245|11.26876|Hamburgsund|Trafikverket Färjerederiet|W
+S|58.13437|11.84314|Kolhättans färjeläge|Trafikverket Färjerederiet|W
+S|57.81795|11.88004|Kornhallsleden|Trafikverket Färjerederiet|W
+S|57.81886|11.87707|Kornhallsleden|Trafikverket Färjerederiet|W
+S|58.09041|11.52771|Lyr|Trafikverket Färjerederiet|W
+S|58.09183|11.52876|Lyresten|Trafikverket Färjerederiet|W
+S|58.23740|11.54363|Ängö brygga|Trafikverket Färjerederiet|W
+S|58.30013|11.53495|Skår|Trafikverket Färjerederiet|W
+S|58.35787|11.33871|Stallens färjeläge|Trafikverket Färjerederiet|W
+S|58.13855|11.83252|Svanesunds färjeläge|Trafikverket Färjerederiet|W
+S|58.36292|11.34488|Tullboden färjeläge|Trafikverket Färjerederiet|W
+S|55.37100|13.15760|Terminal C|Unity Line|W
+S|53.89970|14.25693|Terminal Promowy Świnoujście|Unity Line|W
+S|55.67733|12.59128||Ventrafiken|W
+S|55.86535|12.82572||Ventrafiken|W
+S|55.90386|12.72231|Bäckviken|Ventrafiken|W
+S|60.16399|24.96585|Katajanokka pier EK7|Viking Line|W
+S|60.09225|19.92799|Mariehamn|Viking Line|W
+S|59.31613|18.09908|Viking Line: Stadsgården, Stockholm|Viking Line|W
+S|57.71090|11.65838|Öckerö färjeläge|Västtrafik|W
+S|58.92345|11.13081|Öddö|Västtrafik|W
+S|57.92942|11.60204|Dyrön norra|Västtrafik|W
+S|57.70049|11.91515|Eriksbergs färjeläge|Västtrafik|W
+S|58.25019|11.45783|Fiskebäckskil brygga|Västtrafik|W
+S|57.71164|11.68462|Framnäs|Västtrafik|W
+S|57.69497|11.68647|Grötö färjeläge|Västtrafik|W
+S|58.17890|11.40405|Gullholmen hamnen|Västtrafik|W
+S|58.17581|11.40383|Gullholmensbaden Piren|Västtrafik|W
+S|58.01591|11.51335|Härön|Västtrafik|W
+S|57.71081|11.68326|Kalvsund|Västtrafik|W
+S|58.87850|11.05280|Kilesand|Västtrafik|W
+S|57.69269|11.91172|Klippans färjeläge|Västtrafik|W
+S|58.11306|11.36599|Käringön|Västtrafik|W
+S|58.01507|11.51421|Kyrkesunds brygga|Västtrafik|W
+S|57.70555|11.93973|Lindholmspiren|Västtrafik|W
+S|58.89150|11.00782|Långegärde|Västtrafik|W
+S|57.71049|11.95160|Lundbystrand|Västtrafik|W
+S|58.27304|11.43744|Lysekil Södra hamnen|Västtrafik|W
+S|57.93553|11.57541|Rönnängs brygga|Västtrafik|W
+S|57.70609|11.95652|Stenpiren|Västtrafik|W
+S|58.24963|11.46376|Östersidans färjeläge|Västtrafik|W
+S|57.92414|11.58909|Åstol|Västtrafik|W
+S|58.91071|11.11219|Styrsö|Västtrafik|W
+S|57.93590|11.57157|Tjörnekalv|Västtrafik|W
+S|58.17537|11.41482|Tuvesvik|Västtrafik|W
+S|58.89315|11.01029|Västra Bryggan|Västtrafik|W
+S|59.43781|18.65712|Ahlsvik|Waxholmsbolaget|W
+S|59.62138|18.89055|Almvik|Waxholmsbolaget|W
+S|59.59965|18.85105|Alsvik (Yxlan)|Waxholmsbolaget|W
+S|59.37747|18.72951|Arbodaö|Waxholmsbolaget|W
+S|59.85121|19.10749|Arholma|Waxholmsbolaget|W
+S|58.90166|18.14743|Aspö|Waxholmsbolaget|W
+S|59.11699|18.41164|Aspö|Waxholmsbolaget|W
+S|59.21576|18.75337|Aspö|Waxholmsbolaget|W
+S|59.40614|18.88877|Berg brygga|Waxholmsbolaget|W
+S|59.04910|18.34133|Björksund|Waxholmsbolaget|W
+S|59.43900|18.43984|Bjurön|Waxholmsbolaget|W
+S|59.30691|18.29247|Boo|Waxholmsbolaget|W
+S|59.58847|18.83240|Brokholmen|Waxholmsbolaget|W
+S|59.46567|18.72756|Brottö|Waxholmsbolaget|W
+S|59.60447|18.86854|Bruket|Waxholmsbolaget|W
+S|59.17748|18.66988|Bunkvik|Waxholmsbolaget|W
+S|59.12957|18.40522|Dalarö|Ornö Sjötrafik AB|W
+S|59.11327|18.39192|Dalarö Skans|Waxholmsbolaget|W
+S|59.44320|18.88645|Dragedet|Waxholmsbolaget|W
+S|59.62766|18.89354|Duvnäs|Waxholmsbolaget|W
+S|59.46664|18.63289|Edö|Waxholmsbolaget|W
+S|59.41232|18.35260|Edholma|Waxholmsbolaget|W
+S|59.37513|18.31848|Edlunda|Waxholmsbolaget|W
+S|59.47007|18.42075|Ekholmen|Waxholmsbolaget|W
+S|59.45622|18.40463|Elgö|Waxholmsbolaget|W
+S|59.74557|19.16329|Fejan|Waxholmsbolaget|W
+S|59.10405|18.39872|Fåglarö|Waxholmsbolaget|W
+S|59.47567|18.46501|Fåglarö|Waxholmsbolaget|W
+S|59.48283|18.82673|Finnhamn|Waxholmsbolaget|W
+S|59.07089|18.51640|Fiversättraö|Waxholmsbolaget|W
+S|59.32753|18.17945|Fjäderholmarna|Waxholmsbolaget|W
+S|59.03551|18.51055|Fjärdlång|Waxholmsbolaget|W
+S|59.40006|18.33373|Fredriksberg|Waxholmsbolaget|W
+S|59.64309|18.81784|Fårgångsö|Waxholmsbolaget|W
+S|59.37218|18.33596|Furuholmen|Waxholmsbolaget|W
+S|59.65809|18.91658|Furusund (Tullbryggan)|Waxholmsbolaget|W
+S|59.38486|18.69050|Galtholmen|Waxholmsbolaget|W
+S|59.29447|18.75642|Gatan|Waxholmsbolaget|W
+S|59.45199|18.74575|Gistholmen|Waxholmsbolaget|W
+S|59.39025|18.63947|Gällnö|Waxholmsbolaget|W
+S|59.39655|18.70572|Gällnönäs|Waxholmsbolaget|W
+S|59.59149|18.85503|Glyxnäs|Waxholmsbolaget|W
+S|59.37285|18.87740|Granholmen|Waxholmsbolaget|W
+S|59.37620|18.30865|Granholmen|Waxholmsbolaget|W
+S|59.76785|19.03202|Gräddö|Waxholmsbolaget|W
+S|59.39096|18.43423|Grenadjärbryggan|Waxholmsbolaget|W
+S|59.19136|18.45466|Gränö|Waxholmsbolaget|W
+S|59.68476|19.01704|Gräskö|Waxholmsbolaget|W
+S|59.46057|18.51930|Grundvik|Waxholmsbolaget|W
+S|58.97049|18.32520|Gruvbryggan|Waxholmsbolaget|W
+S|59.35714|18.23522|Gåshaga brygga|Waxholmsbolaget|W
+S|59.34614|18.89938|Hagede|Waxholmsbolaget|W
+S|59.33909|18.90045|Harö|Waxholmsbolaget|W
+S|59.31651|18.84495|Hasselö|Waxholmsbolaget|W
+S|59.31462|18.83287|Hasselkobben|Waxholmsbolaget|W
+S|59.34870|18.24438|Hasseludden|Waxholmsbolaget|W
+S|59.64954|18.79446|Hemmarö|Waxholmsbolaget|W
+S|59.38694|18.34236|Höganäs|Waxholmsbolaget|W
+S|59.64608|18.81749|Högmarsö|Waxholmsbolaget|W
+S|59.41967|18.67772|Hjälmö|Waxholmsbolaget|W
+S|59.77997|18.95161|Håknäs|Waxholmsbolaget|W
+S|59.08922|18.41526|Hässelmara|Waxholmsbolaget|W
+S|59.36546|18.44084|Hästholmen|Waxholmsbolaget|W
+S|59.45558|18.59902|Hummelmora|Waxholmsbolaget|W
+S|59.50197|18.84425|Husarö|Waxholmsbolaget|W
+S|59.20431|18.75770|Idöborg|Waxholmsbolaget|W
+S|59.12534|18.40934|Jutholmen|Waxholmsbolaget|W
+S|59.19142|18.71950|Kalkberget|Waxholmsbolaget|W
+S|59.18889|18.45255|Kalvholmen|Waxholmsbolaget|W
+S|59.37769|18.36502|Kalvholmen|Waxholmsbolaget|W
+S|59.71806|19.07105|Kapellskär|Waxholmsbolaget|W
+S|59.41655|18.62915|Karklö|Waxholmsbolaget|W
+S|59.43429|18.68948|Karlshem|Waxholmsbolaget|W
+S|59.38147|18.33216|Karlsudd|Waxholmsbolaget|W
+S|59.40228|18.35957|Kastellet|Waxholmsbolaget|W
+S|59.34583|18.22374|Klippudden|Waxholmsbolaget|W
+S|59.37646|18.43496|Knutsholmen|Waxholmsbolaget|W
+S|59.63446|18.89999|Kolsvik|Waxholmsbolaget|W
+S|59.38145|18.81409|Korsö|Waxholmsbolaget|W
+S|59.36327|18.34213|Koviksudde|Waxholmsbolaget|W
+S|59.66001|18.92991|Köpmanholm|Waxholmsbolaget|W
+S|59.11127|18.48956|Kymmendö|Waxholmsbolaget|W
+S|58.91998|18.19159|Ålö|Waxholmsbolaget|W
+S|59.49620|18.52343|Laggarsvik|Waxholmsbolaget|W
+S|59.43380|18.70203|Lådna|Waxholmsbolaget|W
+S|59.45208|18.38482|Lervik|Waxholmsbolaget|W
+S|59.76995|19.07901|Lidö|Waxholmsbolaget|W
+S|59.45204|18.47222|Lilla Saxaren|Waxholmsbolaget|W
+S|59.41317|18.49611|Lillsved|Waxholmsbolaget|W
+S|59.47268|18.51173|Linanäs|Waxholmsbolaget|W
+S|59.41031|18.89611|Löka brygga|Waxholmsbolaget|W
+S|59.51700|18.54455|Ålön|Waxholmsbolaget|W
+S|59.29636|18.77189|Långvik|Waxholmsbolaget|W
+S|59.44233|18.92081|Långvik|Waxholmsbolaget|W
+S|59.45399|18.44545|Losten|Waxholmsbolaget|W
+S|59.04475|18.36530|Lättinge|Waxholmsbolaget|W
+S|59.06201|18.48011|Mefjärd|Waxholmsbolaget|W
+S|59.40401|18.87472|Möjaström|Waxholmsbolaget|W
+S|59.46530|18.41836|Mjölkö|Waxholmsbolaget|W
+S|59.16249|18.62894|Mörtö|Waxholmsbolaget|W
+S|59.15266|18.61627|Mörtö södra|Waxholmsbolaget|W
+S|59.61627|18.76178|Nationalparken Ängsö|Waxholmsbolaget|W
+S|59.19498|18.44254|Ängsö|Waxholmsbolaget|W
+S|59.17262|18.65599|Ängsholmen|Waxholmsbolaget|W
+S|59.20877|18.74003|Nämdöböte|Waxholmsbolaget|W
+S|59.38406|18.39405|Norehill|Waxholmsbolaget|W
+S|58.90510|18.14986|Norrö|Waxholmsbolaget|W
+S|59.47072|18.44386|Norra Betsö|Waxholmsbolaget|W
+S|59.49449|18.80675|Norra Ekskäret|Waxholmsbolaget|W
+S|59.41909|18.55882|Norra Grinda|Waxholmsbolaget|W
+S|59.47713|18.74909|Norra Ingmarsö|Waxholmsbolaget|W
+S|59.35538|18.41166|Norra Lagnö|Waxholmsbolaget|W
+S|59.40424|18.77987|Norra Stavsudda|Waxholmsbolaget|W
+S|59.45885|18.67674|Norra Svartsö|Waxholmsbolaget|W
+S|59.39298|18.37638|Norra Tynningö|Waxholmsbolaget|W
+S|59.64260|19.02065|Norröra (Saltkråkan)|Waxholmsbolaget|W
+S|59.64896|18.93808|Norrsund|Waxholmsbolaget|W
+S|59.75787|18.71499|Norrtälje hamn|Waxholmsbolaget|W
+S|59.48558|18.68175|Nässlingen|Waxholmsbolaget|W
+S|58.96163|18.29336|Näsudden|Waxholmsbolaget|W
+S|58.88176|18.10982|Nåttarö|Waxholmsbolaget|W
+S|58.90099|17.95306|Nynäshamn|Waxholmsbolaget|W
+S|59.11193|18.48378|Ornöboda|Waxholmsbolaget|W
+S|59.05205|18.43313|Ornö kyrka|Waxholmsbolaget|W
+S|59.37704|18.40693|Orrlunda|Waxholmsbolaget|W
+S|59.18056|18.70056|Orrön|Waxholmsbolaget|W
+S|59.48544|18.72522|Äpplarö|Waxholmsbolaget|W
+S|59.39049|18.39909|Ramsö|Waxholmsbolaget|W
+S|59.38454|18.41898|Ramsöberg|Waxholmsbolaget|W
+S|59.42374|18.90967|Ramsmora|Waxholmsbolaget|W
+S|59.48190|18.50992|Öran|Waxholmsbolaget|W
+S|59.59419|19.17232|Rödlöga|Waxholmsbolaget|W
+S|59.16582|18.58444|Rögrund|Waxholmsbolaget|W
+S|59.39707|18.37629|Rindöbaden|Waxholmsbolaget|W
+S|59.40316|18.36507|Rindö västra|Waxholmsbolaget|W
+S|59.37026|18.36261|Risberga|Waxholmsbolaget|W
+S|59.36007|18.28552|Riset|Waxholmsbolaget|W
+S|58.91930|18.17803|Rånö|Waxholmsbolaget|W
+S|59.43184|18.58600|Örsö|Waxholmsbolaget|W
+S|59.27906|18.31630|Saltsjöbaden|Waxholmsbolaget|W
+S|59.18233|18.69315|Sand|Waxholmsbolaget|W
+S|59.45548|18.73984|Söderboudd|Waxholmsbolaget|W
+S|59.38702|18.80723|Söderholm|Waxholmsbolaget|W
+S|59.40369|18.87435|Södermöja|Waxholmsbolaget|W
+S|59.64202|18.79074|Söderäng|Waxholmsbolaget|W
+S|59.62725|19.01168|Söderöra|Waxholmsbolaget|W
+S|59.10249|18.48393|Söderviken|Waxholmsbolaget|W
+S|59.40727|18.55300|Södra Grinda|Waxholmsbolaget|W
+S|59.46537|18.75096|Södra Ingmarsö|Waxholmsbolaget|W
+S|59.38824|18.81043|Södra Stavsudda|Waxholmsbolaget|W
+S|59.38474|18.78931|Södra Träskö|Waxholmsbolaget|W
+S|59.48300|18.46751|Seglarö|Waxholmsbolaget|W
+S|59.55575|18.62289|Siaröfortet|Waxholmsbolaget|W
+S|59.86986|19.07722|Simpnäs|Waxholmsbolaget|W
+S|59.56609|18.78416|Själbottna|Waxholmsbolaget|W
+S|59.44388|18.68079|Skälvik|Waxholmsbolaget|W
+S|59.36814|18.44278|Skogsö Södra|Waxholmsbolaget|W
+S|59.36629|18.43374|Skogsö udde|Waxholmsbolaget|W
+S|59.49655|18.53779|Skuggan|Waxholmsbolaget|W
+S|59.67422|18.76497|Solö|Waxholmsbolaget|W
+S|59.37306|18.69875|Sollenkroka|Waxholmsbolaget|W
+S|59.37788|18.70736|Sollenkrokaö|Waxholmsbolaget|W
+S|59.18462|18.70040|Solvik|Waxholmsbolaget|W
+S|58.95766|18.29450|Spränga|Waxholmsbolaget|W
+S|59.49154|18.84518|Särsö|Waxholmsbolaget|W
+S|59.54838|18.57569|Östanå färjeläge|Waxholmsbolaget|W
+S|59.19748|18.73996|Östanvik|Waxholmsbolaget|W
+S|59.43025|18.57874|Staveström|Waxholmsbolaget|W
+S|59.28633|18.70482|Stavsnäs|Waxholmsbolaget|W
+S|59.41318|18.36779|Stegesund|Waxholmsbolaget|W
+S|59.44872|18.57838|Stensvik|Waxholmsbolaget|W
+S|59.83375|19.07776|Östersjö|Waxholmsbolaget|W
+S|59.63644|18.92085|Stämmarsund|Waxholmsbolaget|W
+S|59.39367|18.34503|Stora Ekholmen|Waxholmsbolaget|W
+S|59.45518|18.82250|Stora Kalholmen|Waxholmsbolaget|W
+S|59.45030|18.48302|Stora Saxaren|Waxholmsbolaget|W
+S|59.11381|18.41275|Stora Segelholmen|Waxholmsbolaget|W
+S|59.49709|18.50048|Stora Timrarö östra|Waxholmsbolaget|W
+S|59.45492|18.45499|Storkrån|Waxholmsbolaget|W
+S|59.44130|18.58458|Storängen|Waxholmsbolaget|W
+S|59.32901|18.07580|Strömkajen|Waxholmsbolaget|W
+S|59.44400|18.58883|Strömsholm|Waxholmsbolaget|W
+S|59.50473|18.63805|Åsättra brygga|Waxholmsbolaget|W
+S|59.28023|18.73139|Styrsvik|Waxholmsbolaget|W
+S|59.17097|18.63915|Sunnansund|Waxholmsbolaget|W
+S|59.58016|19.06694|Svartlöga|Waxholmsbolaget|W
+S|59.36361|18.32258|Tegelön|Waxholmsbolaget|W
+S|59.34147|18.22580|Telegrafberget|Waxholmsbolaget|W
+S|59.43148|18.67587|Trädgårdarna|Waxholmsbolaget|W
+S|59.42887|18.64681|Trångholmen|Waxholmsbolaget|W
+S|59.38453|18.77329|Träskö-Gåln|Waxholmsbolaget|W
+S|59.44203|18.69985|Träskökvarn|Waxholmsbolaget|W
+S|59.22977|18.36056|Tyresö (Trintorp)|Waxholmsbolaget|W
+S|59.17489|18.64884|Uvö|Waxholmsbolaget|W
+S|59.57553|18.78459|Vagnsunda|Waxholmsbolaget|W
+S|59.38419|18.34344|Vasholmen|Waxholmsbolaget|W
+S|59.40218|18.35564|Vaxholm|Waxholmsbolaget|W
+S|59.39114|18.40651|Vegabryggan|Waxholmsbolaget|W
+S|59.56319|18.70787|Vettersö|Waxholmsbolaget|W
+S|59.40872|18.53534|Viggsö|Waxholmsbolaget|W
+S|59.42205|18.36046|Vikingsborg|Waxholmsbolaget|W
+S|59.49914|18.55125|Väsbystrand|Waxholmsbolaget|W
+S|59.18753|18.70696|Västanvik|Waxholmsbolaget|W
+S|59.30552|18.81395|Västra Skarprunmarn|Waxholmsbolaget|W
+S|59.38253|18.77205|Ytterö|Waxholmsbolaget|W
+S|59.42500|18.35552|Ytterby brygga|Waxholmsbolaget|W
+S|59.63219|18.86387|Yxlö|Waxholmsbolaget|W
+S|59.61553|18.87075|Yxlövik|Waxholmsbolaget|W
+S|56.04369|12.69092|Helsingborg-Helsingør|Öresundslinjen|W
+S|56.03295|12.61600|Helsingør-Helsingborg|Öresundslinjen|W
+L|SL|Lidingöbanan 21|#B56631|87 123:968 9:1165 16:490 64:639 1:729 101:855 59:563 41:869 18:736 60:953 34:677 35:437
+L|SL|Lidingöbanan 21|#B56631|35 34:341 60:771 18:951 41:736 59:868 101:563 1:856 64:807 16:610 9:441 123:1165 87:968
+L|SL|Tunnelbana 10|blue|44 116:6759 108:697 51:1049 131:1067 110:1286 28:853 81:1015 119:937 63:684
+L|SL|Tunnelbana 10|blue|63 119:661 81:940 28:1035 110:854 131:1289 51:1041 108:1045 116:698 23:935 85:1606 84:1607 121:1834 44:791
+L|SL|Tunnelbana 11|blue|2 50:1216 58:973 75:5314 106:1296 131:1435 110:1289 28:853 81:1015 119:937 63:687
+L|SL|Tunnelbana 11|blue|63 119:673 81:940 28:1035 110:854 131:1289 106:1466 75:1283 58:5330 50:955 2:1210
+L|SL|Tunnelbana 13|red|78 39:679 3:1186 27:1431 69:1360 129:1990 128:1686 99:914 114:1362 17:1283 72:1430 7:1198 86:806 6:885 65:1298 46:1008 132:733 68:674 102:751 30:545 119:1083 111:1121 55:949 32:792 87:1423
+L|SL|Tunnelbana 13|red|87 32:1415 55:791 111:960 119:1131 30:1066 102:548 68:775 132:660 46:726 65:992 6:1468 86:1055 7:807 72:1193 17:1433 114:1276 99:1374 128:908 129:1660 69:2006 27:1355 3:1439 39:1192 78:677
+L|SL|Tunnelbana 14|red|29 120:2563 71:817 65:1242 46:1013 132:733 68:674 102:751 30:545 119:1083 111:1121 125:4818 11:1940 22:1238 73:919
+L|SL|Tunnelbana 14|red|73 22:918 11:1229 125:1930 109:3280 111:894 119:1131 30:1066 102:548 68:775 132:660 46:726 65:992 71:1254 120:838 43:1217 130:761 29:577
+L|SL|Tunnelbana 17|green|102 30:547 119:1083 79:1896 28:1611 122:1056 21:4351 48:8058
+L|SL|Tunnelbana 17|green|48 47:897 53:805 127:888 80:1219 13:744 52:711 76:903 57:963 21:1044 0:775 113:730 4:996 61:1276 122:592 28:1030 92:860 79:748 82:813 49:546 119:564 30:1071 102:544 70:464 96:733 37:1049 100:732 40:866 12:862 62:792 8:1351 97:1108
+L|SL|Tunnelbana 18|green|48 47:897 53:805 127:888 80:1219 13:744 52:711 76:903 57:963 21:1044 0:775 113:730 4:996 61:1276 122:592 28:1030 92:860 79:748 82:813 49:546 119:564 30:1071 102:544 70:464 96:733 37:1049 100:731 15:599 91:539 98:803 118:1000 36:945 45:701 25:1717 26:1059
+L|SL|Tunnelbana 18|green|26 25:1061 45:1715 36:700 118:939 98:1005 91:805 15:537 100:601 37:727 96:1050 70:733 102:456 30:547 119:1083 49:549 82:546 79:809 92:747 28:868 122:1056 61:586 4:1275 113:985 0:730 21:776 57:1049 76:962 52:904 13:708 80:739 127:1227 53:893 47:806 48:898
+L|SL|Tunnelbana 19|green|48 47:897 53:805 127:888 80:1219 13:744 52:711 76:903 57:963 21:1044 0:775 113:730 4:996 61:1276 122:592 28:1030 92:860 79:748 82:813 49:546 119:564 30:1071 102:544 70:464 96:733 37:1050 31:693 24:748 103:766 117:653 115:725 10:651 42:819 83:1170 38:1386
+L|SL|Tunnelbana 19|green|38 102:9705 30:547 119:1083 79:1896 28:1611 122:1056 21:4351 48:8058
+L|SL|Tvärbanan 30|#D77D00|93 95:811 94:525 67:506 74:483 37:759 31:683 66:749 126:925 90:536 88:663 89:805 65:693 124:610 33:454 112:1752 5:796 4:496 54:1310 77:950 56:660 14:648 116:377 105:709 107:1152 104:818
+L|SL|Tvärbanan 30|#D77D00|104 107:815 105:1073 116:783 14:448 56:598 77:651 54:958 4:1249 5:574 112:773 33:1660 124:570 65:609 89:657 88:807 90:668 126:535 66:875 31:802 37:690 74:755 67:486 94:545 95:516 93:776
+L|SL|Tvärbanan 31|#D77D00|20 19:704 77:518 54:958 4:1249 5:548
+L|SL|Tvärbanan 31|#D77D00|5 4:497 54:1310 77:950 19:522 20:704
+L|Blekingetrafiken|Hasslöpendeln||134 136:2089 135:8716
+L|Blekingetrafiken|Sturköpendeln||135 133:8332
+L|Blekingetrafiken|Trummenäspendeln||137 135:8183
+L|Båttrafik Kvikkjokk|Padjelantaleden - Kvikkjokk||139 138:3402
+L|Destination Gotland|Oskarshamn - Visby||143 141:119833
+L|Destination Gotland|Visby - Nynäshamn||142 140:144025
+L|E/S Movitz|Båt||147 183:1695 144:1577 145:1776 146:2741
+L|Eckerö Linjen|Båt||148 149:43031
+L|Eckerö Linjen|Båt||149 148:43799
+L|Finnlines Plc|Finnlines||153 198:117537 152:87157
+L|Finnlines Plc|Finnlines||152 198:87806 153:118423
+L|Finnlines Plc|Travemünde – Helsinki||150 151:1209568
+L|Färjerederiet Trafikverket|Vägfärja Malöleden||155 154:231
+L|Ornö Sjötrafik AB|Ornö Sjötrafik||337 292:6610
+L|Ornö Sjötrafik AB|Ornö Sjötrafik||337 292:7396
+L|Ornö Sjötrafik AB|Ornö Sjötrafik||292 337:6605
+L|Ornö Sjötrafik AB|Ornö Sjötrafik||292 337:7392
+L|Oskarshamns turistbyrå|Oskarshamn-Blå Jungfrun||157 156:21123
+L|Rais Skärgårdsturer|Idö - Västervik||160 159:3807 161:6341 158:4099 162:3874
+L|Rais Skärgårdsturer|Västervik - Idö||162 158:3874 161:4098 159:6338 160:3807
+L|Rederi AB Nordö-Link|Travemünde – Malmö||163 164:249146
+L|Ressel rederi|Cityline||165 167:589 166:676 168:857 171:1310 187:1402
+L|Ressel rederi|Cityline||187 171:1402 168:1310 165:1318 167:589 166:891
+L|Rååbåtarna|Bäckviken => Råå||169 170:10202
+L|Rååbåtarna|Råå => Bäckviken||170 169:10201
+L|SL|Båt 89||196 180:5768 173:6975 183:1525 179:2973
+L|SL|Båt 89||196 180:5768 173:6975 183:1525 179:2973
+L|SL|Båt 89||180 173:6975 183:1525 179:2973
+L|SL|Båt 89||178 180:5099 173:6975 183:1525 179:2973
+L|SL|Djurgårdsfärjan 82||191 190:886 171:461
+L|SL|Djurgårdsfärjan 82||171 190:461 191:886
+L|SL|Pendelbåt 80||187 171:1375 189:1454 175:827 181:919 172:1011 186:743 182:4687 176:1330 188:2122
+L|SL|Pendelbåt 80||188 176:2122 182:1330 186:4686 172:743 181:1011 175:919 189:827 171:1454 187:1375
+L|SL|Pendelbåt 80||188 197:4833 174:1605 192:2348 194:1545 185:492 194:492 192:1545 174:2348 197:1605 188:4832
+L|SL|Pendelbåt 80||188 197:4833 174:1605 192:2348 194:1545 185:886 195:1600 177:1170 193:2539 192:1861 174:2348 197:1605 188:4832
+L|SL|Pendelbåt 80X||187 186:5509
+L|SL|Pendelbåt 80X||186 187:5511
+L|SL|Pendelbåt 84||456 184:26435 387:6759 355:4898 412:3560
+L|SL|Pendelbåt 84||412 355:3560 387:4897 184:6756 456:26442
+L|Silja Line|Silja Line||247 152:66398
+L|Silja Line|Silja Line||200 198:128231 201:167038
+L|Silja Line|Silja Line||200 247:148816 201:171458
+L|Silja Line|Silja Line||201 198:169210 200:129202
+L|Silja Line|Silja Line||201 247:173141 200:150036
+L|Silja Line|Silja Line||201 247:216994 199:310616
+L|Silja Line|Silja Line||201 247:173141 200:150036
+L|Silja Line|Silja Line||199 247:310058 201:214376
+L|Silja Line|Silja Line||152 247:66817
+L|Sjöstadstrafiken|Sjöstadstrafiken||166 165:310 167:589 166:910
+L|Stena Line|Frederikshavn => Göteborg||203 204:91733
+L|Stena Line|Göteborg - Kiel||206 205:431400
+L|Stena Line|Göteborg => Frederikshavn||204 202:90995
+L|Stena Line|Göteborg => Frederikshavn||204 203:91163
+L|Stena Line|Kiel - Göteborg||205 206:440629
+L|Stora Karlsö|Båt||207 208:16524 209:7107
+L|Stora Karlsö|Båt||207 209:17031
+L|Stora Karlsö|Båt||209 207:17057
+L|Stora Karlsö|Båt||209 208:7110 207:16535
+L|Strömma Kanalbolag|Cinderella Stockholm ↔ Sandhamn||215 218:644 315:20594 423:5615 472:15900 326:9454 186:7139 216:5751
+L|Strömma Kanalbolag|Cinderella Stockholm ↔ Sandhamn||216 186:5749 326:7143 472:9462 423:15901 315:5613 218:20556 215:644
+L|Strömma Kanalbolag|Djurgården Runt||456 187:387
+L|Strömma Kanalbolag|Stora kanalturen till Gustavsberg||212 210:3338 214:22445
+L|Strömma Kanalbolag|Stora kanalturen till Gustavsberg||214 210:22436 212:3338
+L|Strömma Kanalbolag|Strömma kanalturen till Sandhamn||215 287:37520 211:3120 213:4746 217:1203 214:10129
+L|Strömma Kanalbolag|Strömma kanalturen till Sandhamn||214 217:10129 213:1203 211:4745 287:3121 215:37502
+L|TT-Line GmbH & Co. KG|TT-Line GmbH & Co. KG||222 219:225734
+L|TT-Line GmbH & Co. KG|TT-Line GmbH & Co. KG||221 220:601920
+L|Tallink|Tallink||223 247:311655 224:214359
+L|Tallink|Tallink||224 247:216966 223:307236
+L|Trafikverket|Färja||225 226:1036
+L|Trafikverket|Färja||226 225:1037
+L|Trafikverket Färjerederiet|Hamburgsund - Hamburgö||230 229:138
+L|Trafikverket Färjerederiet|Hamburgö - Hamburgsund||230 229:138
+L|Trafikverket Färjerederiet|Vägfärja Bohus-Malmönleden||240 238:665
+L|Trafikverket Färjerederiet|Vägfärja Gullmarsleden||237 227:1843
+L|Trafikverket Färjerederiet|Vägfärja Kornhallsleden||232 233:203
+L|Trafikverket Färjerederiet|Vägfärja Lyrleden||235 234:169
+L|Trafikverket Färjerederiet|Vägfärja Svanesundsleden||239 231:824
+L|Trafikverket Färjerederiet|Vägfärja Ängöleden||236 228:157
+L|Unity Line|Świnoujście - Trelleborg||242 241:181628
+L|Ventrafiken|Bäckviken => København||245 243:27662
+L|Ventrafiken|Bäckviken => Landskrona||245 244:8295
+L|Ventrafiken|København => Bäckviken||243 245:27687
+L|Ventrafiken|Landskrona => Bäckviken||244 245:8300
+L|Viking Line|Viking Line||248 247:174754
+L|Viking Line|Viking Line||248 198:170693
+L|Viking Line|Viking Line||248 247:218201 246:312333
+L|Viking Line|Viking Line||247 248:172988
+L|Viking Line|Viking Line||198 248:168312
+L|Viking Line|Viking Line||246 247:311762 248:215443
+L|Västtrafik|362||263 258:120
+L|Västtrafik|Färja 285 Älvsnabben||269 264:1341 252:1969 261:1370
+L|Västtrafik|Färja 285 Älvsnabben||261 252:1370 264:1969 269:1341
+L|Västtrafik|Färja 287||269 266:741
+L|Västtrafik|Färja 287||266 269:741
+L|Västtrafik|Färja 296 Grötö - Framnäs - Kalvsund - Öckerö||255 254:2280 259:133 249:1789
+L|Västtrafik|Färja 296 Öckerö - Kalvsund - Framnäs - Grötö||249 259:1789 254:133 255:2280
+L|Västtrafik|Färja 361 Rönnäng - Tjörnekalv - Dyrön - Åstol - Rönnäng||268 273:505 251:2093 271:1727 268:1615
+L|Västtrafik|Färja 381||274 256:1407 257:574 262:7899
+L|Västtrafik|Färja 899 Kilesand - Styrsö - Öddö - Norra Hamnen||260 272:6028 250:2355
+L|Västtrafik|Färja 899 Norra Hamnen - Öddö - Styrsö - Västra Bryggan||250 275:7853
+L|Västtrafik|Färja 899 Västra Bryggan - Långegärde||265 275:237
+L|Västtrafik|Lysekil Södra hamnen - Östersidan - Fiskebäckskil||267 270:6227 253:682
+L|Västtrafik|Älvsnabbare||269 264:1164
+L|Västtrafik|Älvsnabbare||264 269:1164
+L|Waxholmsbolaget|Färja 10||304 440:2524 340:1959 384:4941 386:4739 402:3089 389:9629 394:3206 458:3625
+L|Waxholmsbolaget|Färja 10||340 440:1256 304:2197 384:2943 386:4809 402:3156 394:3058 458:3625
+L|Waxholmsbolaget|Färja 10||340 440:1256 304:2197 384:2943 386:4809 402:3089 389:9629 394:3206 458:3625
+L|Waxholmsbolaget|Färja 10||340 458:13393
+L|Waxholmsbolaget|Färja 10||369 294:2214 450:4581 304:4033 440:2650 340:1959 384:4941 386:4739 402:3089 389:9629 394:3206 458:3625
+L|Waxholmsbolaget|Färja 10||458 394:3624 389:3206 402:9633 386:3089 384:4810 304:2025
+L|Waxholmsbolaget|Färja 10||458 304:12836
+L|Waxholmsbolaget|Färja 10||458 394:3624 389:3206 402:9633 386:3089 384:4810 304:2943 440:2197 340:1256
+L|Waxholmsbolaget|Färja 10||458 394:3624 389:3206 402:9633 386:3089 384:4740 340:4941 440:1959 304:2649 450:4032 294:4579 369:2214
+L|Waxholmsbolaget|Färja 10||458 394:3624 389:3206 402:9633 386:3089 384:4810 304:2943 440:2197 340:1256
+L|Waxholmsbolaget|Färja 10||458 394:3624 389:3206 402:9633 386:3089 384:5605 340:4941 440:1959 304:2600 424:11474
+L|Waxholmsbolaget|Färja 10||458 340:13392
+L|Waxholmsbolaget|Färja 12||456 186:5695 331:6783 326:1556 472:9680 385:13380 443:2299 414:838 455:1200 457:509 446:1420 339:2524 296:3888 389:4704 402:4622 386:3089 384:4740 340:4789 304:4651 450:4032 294:4579
+L|Waxholmsbolaget|Färja 12||294 450:4581 304:4033 340:4652 384:4789 386:4739 402:3089 389:4620 296:4705 339:3887 446:2523 457:1420 455:509 414:1200 443:838 385:2299 472:13374 326:9668 331:1556 186:6779 456:5696
+L|Waxholmsbolaget|Färja 13||456 186:5695 331:6515 326:1582 472:9680 364:9508 475:2574 423:1096 347:5220 465:1834 276:2470 335:2506 464:2233 431:2901 348:1262 360:1162 467:2080 314:5369 417:679 289:2236 424:2460 304:5542 340:2569
+L|Waxholmsbolaget|Färja 13||340 304:2569 424:5540 289:2460 417:2235 314:679 467:5367 360:2080 348:1162 431:1262 464:2901 335:2233 276:2506 465:2470 347:1833 423:5218 475:1096 364:2575 472:9505 326:9668 331:1582 186:6512 456:5696
+L|Waxholmsbolaget|Färja 14||456 186:5695 331:6515 326:1582 319:6050 298:694 472:4033 475:13163 423:1096 315:5613 436:5029 437:1793 279:2786 480:3823 466:251 388:2387 426:2399 425:1359 418:244 354:786 318:5962 419:5384 373:40 284:1275 366:790 405:2258 369:2422 294:2214
+L|Waxholmsbolaget|Färja 14||294 369:2214 405:2422 366:2257 284:790 373:1275 419:40 318:5382 354:5963 418:786 425:244 426:1359 388:2399 466:2387 480:251 279:3823 437:2786 436:1793 316:2837 312:1849 315:3573 423:5615 475:1096 286:6909 472:8080 333:1989 471:447 349:894 326:7735 331:1582 186:6512 456:5902
+L|Waxholmsbolaget|Färja 16||444 459:2358 313:2290 368:1287 479:3046 330:1798 329:1004 328:4525 327:831
+L|Waxholmsbolaget|Färja 16||327 328:831 329:4523 330:1004 479:1798 368:3046 313:1286 459:2289 444:2359
+L|Waxholmsbolaget|Färja 17||444 459:2012 380:11665 283:1580 341:2006 442:1442 343:1577 478:1407 438:651 401:824 416:728 291:1543 379:1034 469:518 460:1436 375:1532 376:1382 408:4635 344:9904 322:312 378:822 468:8601 415:9003
+L|Waxholmsbolaget|Färja 17||415 468:8997 378:8591 322:822 344:312 408:9899 376:4634 375:1382 460:1532 469:1436 379:518 291:1034 416:1544 401:728 438:824 478:651 343:1407 442:1577 341:1442 283:2006 380:1580 459:11673 444:2013
+L|Waxholmsbolaget|Färja 18||456 186:5695 287:12154 415:5847 468:8997 378:8591 322:822 344:312 357:9762 398:641 422:1513 305:7965 372:3784 399:6038 307:5178 325:23834 395:2690 439:580
+L|Waxholmsbolaget|Färja 18||439 395:580 325:2691 307:23871 399:5180 372:6039 305:3784 422:7968 398:1514 357:641 344:9766 322:312 378:822 468:8601 415:9003 287:5849 186:12157 191:5485 456:697
+L|Waxholmsbolaget|Färja 20||371 285:1845 337:12784 302:2044 293:1541 452:2127 282:523 342:1006 292:652
+L|Waxholmsbolaget|Färja 20||292 342:652 282:1006 452:523 293:2127 302:1541 337:2044 285:12769 371:1845
+L|Waxholmsbolaget|Färja 22||358 413:968 382:2619 281:553 396:3910 397:12318
+L|Waxholmsbolaget|Färja 22||397 396:12314 281:3911 382:553 413:2619 358:968
+L|Waxholmsbolaget|Färja 23||444 459:1656
+L|Waxholmsbolaget|Färja 23||459 444:1656
+L|Waxholmsbolaget|Färja 24||456 331:12549 326:1582 472:9668 367:18492 441:4171 428:3632 377:11215 482:8003 311:4312 356:893 392:1409
+L|Waxholmsbolaget|Färja 24||392 356:1409 311:893 482:4310 377:8000 428:11206 441:3631 367:4170 472:18464 326:9657 331:1582 191:12613 456:697
+L|Waxholmsbolaget|Färja 25||311 309:6768 334:452 420:3320 332:1447 435:3682
+L|Waxholmsbolaget|Färja 25||435 332:3681 420:1447 334:3320 309:452 311:6770
+L|Waxholmsbolaget|Färja 26||456 326:11145 472:9271 453:14957 367:3494 474:12474 430:4918 470:1853 288:3989 317:2495 278:1728 290:1546 483:1513 277:1673 295:772 353:976 448:1838 392:2089 323:13098 391:9208 421:2067 461:7847 407:6446
+L|Waxholmsbolaget|Färja 26||407 461:6444 421:7849 391:2067 323:9216 392:13092 448:2089 353:1838 295:976 277:772 483:1673 290:1513 278:1546 317:1728 288:2494 470:3989 430:1852 474:4918 367:12464 453:3493 472:14940 333:2020 471:447 349:894 298:1178 319:694 326:6047 331:1582 456:12542
+L|Waxholmsbolaget|Färja 3||472 390:1658 381:2887 403:1697 473:443 404:1052 352:1469 432:1194 338:341 433:468 387:2266
+L|Waxholmsbolaget|Färja 3||387 433:2267 338:468 432:316 352:1194 404:1469 473:1052 403:443 381:1697 390:2888 472:1659
+L|Waxholmsbolaget|Färja 4||456 186:5274 331:6167 326:1462 319:5970 298:694 349:1178 471:894 333:482 472:2584 409:1721 390:781 403:1481 473:443 404:1052 321:1724
+L|Waxholmsbolaget|Färja 4||456 191:643 186:5019 463:4761 331:1437 326:1368 319:5962 298:694 310:1540 349:1504 471:908 333:488 308:2639 472:2223 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:643 186:5019 463:4761 331:1437 326:1368 319:5962 298:694 310:1339 333:2852 308:2634 472:2200 410:840 390:1789 403:1430 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||456 191:643 181:3843 186:1223 306:1693 463:3444 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:643 186:5019 463:4761 351:991 331:1327 326:1556 333:8897 308:2639 472:2223 350:364 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:643 181:3843 186:1223 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:643 186:5019 463:4761 331:1437 326:1368 319:5962 298:694 310:1339 333:2852 308:2639 472:2223 410:867 390:1738 403:1430 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||456 191:643 186:5019 463:4761 331:1437 326:1368 333:8807 308:2639 472:2223 350:364 410:578 409:1220 390:728 403:1481 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||404 321:1898 473:2777 403:443 472:3200 333:2828 471:502 462:2969 326:6585 331:1807 456:12586
+L|Waxholmsbolaget|Färja 4||404 473:1052 403:443 409:1593 472:1643 326:9765 331:1497 456:12588
+L|Waxholmsbolaget|Färja 4||404 473:1052 403:443 409:1593 472:1676 462:8122 412:2285 326:4459 331:1497 456:12586
+L|Waxholmsbolaget|Färja 4||404 473:1052 403:443 390:1405 350:1552 472:429 326:9776 331:1368 463:1437 191:10061 456:668
+L|Waxholmsbolaget|Färja 4||403 390:1343 472:2172 191:20133
+L|Waxholmsbolaget|Färja 4||403 472:3122 349:4331 298:1178 319:790 326:6141 331:1556 351:1327 456:10004
+L|Waxholmsbolaget|Färja 4||403 390:1481 409:776 350:1262 472:437 333:2361 326:8982 331:1985 191:12523 456:668
+L|Waxholmsbolaget|Färja 4||184 321:9466 473:1674 403:443 390:1343 472:1598
+L|Waxholmsbolaget|Färja 4||184 321:9466 473:1674 403:443 390:1481 409:784 472:1425
+L|Waxholmsbolaget|Färja 4||184 321:10565 404:1780 473:1052 403:443 390:1405 350:1552 472:312
+L|Waxholmsbolaget|Färja 4||184 321:9466 473:1674 403:443 390:1405 350:1552 472:312
+L|Waxholmsbolaget|Färja 4||184 321:9466 473:1674 403:443 390:1430 410:1772 472:831 308:2223 333:2639 326:9005 331:1875 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||184 321:9466 473:1674 403:443 390:1430 410:1740 350:597 472:296
+L|Waxholmsbolaget|Färja 4||184 321:8602
+L|Waxholmsbolaget|Färja 4||184 321:10565 404:1780 473:1052 403:443 390:1481 409:776 350:1262 472:308
+L|Waxholmsbolaget|Färja 4||184 321:9466 473:1674 403:443 390:1430 410:1740 350:597 472:372 308:2251 333:2644 326:9005 331:1875 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||184 321:9466 473:1674 403:443 390:1430 410:1738 472:825 308:2251 333:2644 326:9005 331:1875 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1738 472:825 308:2290 449:1663 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 306:3443 186:1729 191:5052 456:668
+L|Waxholmsbolaget|Färja 4||321 404:1724 473:1052 403:443 390:1481 409:778 472:1840 333:2629 471:443 345:1562 411:1576 355:1746 462:1288 412:2285 326:4424 331:1462 186:6121 191:5046 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1738 472:825 308:2290 449:1663 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 306:3443 186:1692 181:1223 191:3820 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1481 409:728 410:1220 350:578 472:364 308:2223 333:2639 326:9090 331:2062 351:1327 463:991 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 403:2154 409:1688 472:1693 333:2584 471:502 462:2969 326:6585 331:1807 456:12586
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1481 409:776 350:1262 472:471 449:1566 333:847 471:467 462:2946 412:2285 326:4527 331:1556 351:1327 463:991 306:3386 191:6544 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1740 350:597 472:364 308:2262 449:1665 333:847 471:447 349:894 298:1178 319:790 326:6141 331:1556 351:1327 463:991 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1740 350:597 472:288 308:2200 333:2633 326:9005 331:1875 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1481 409:728 410:1155 472:759 308:2251 333:2644 326:9090 331:2062 351:1327 463:991 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1481 409:776 350:1262 472:471 449:1566 333:847 471:447 349:894 298:1178 319:790 326:6141 331:1556 351:1327 463:991 191:10563 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1738 472:825 308:2290 449:1663 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 186:4759 181:1223 191:3820 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1740 350:597 472:372 308:2251 333:2644 326:9005 331:1875 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1738 472:825 308:2290 449:1663 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1740 350:597 472:372 308:2290 449:1663 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 404:1724 473:1052 403:443 390:1430 410:1740 350:597 472:372 308:2290 449:1663 333:847 471:447 349:894 310:1504 298:1540 319:790 326:6066 331:1368 463:1437 306:3443 186:1692 181:1223 191:3820 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1740 350:597 472:372 308:2251 333:2644 349:1107 298:1409 326:6842 331:1368 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||321 404:1724 473:1052 403:443 390:1430 410:1740 350:597 472:372 308:2290 449:1663 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 306:3443 186:1692 181:1223 191:3820 456:668
+L|Waxholmsbolaget|Färja 4||321 404:1724 473:1052 403:443 390:1430 410:1740 350:597 472:372 308:2290 449:1663 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 186:4759 181:1223 191:3820 456:668
+L|Waxholmsbolaget|Färja 4||321 404:1724 473:1052 403:443 390:1430 410:1740 350:597 472:372 308:2290 449:1663 333:847 471:447 349:894 310:1504 298:1540 319:790 326:6066 331:1368 463:1437 186:4759 181:1223 191:3820 456:668
+L|Waxholmsbolaget|Färja 4||321 473:1674 403:443 390:1430 410:1740 350:597 472:364 308:2262 449:1665 333:847 471:447 349:894 298:1178 319:790 326:6141 331:1556 351:1327 463:991 186:4759 181:1223 191:3820 456:668
+L|Waxholmsbolaget|Färja 4||321 404:1724 473:1052 403:443 390:1430 410:1740 350:597 472:364 308:2262 449:1665 333:847 471:447 349:894 298:1178 319:790 326:6066 331:1368 463:1437 186:4759 191:4991 456:668
+L|Waxholmsbolaget|Färja 4||472 350:291 409:1262 390:776 403:1481 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||472 410:825 390:1738 403:1430 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 390:1608 403:1343 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 350:295 409:1262 390:776 403:1481 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||472 350:277 410:597 390:1740 403:1430 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||456 191:662 181:3835 186:1223 306:1693 463:3444 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 186:5279 463:4761 351:991 331:1327 326:1556 412:4528 462:2285 355:1288 411:1746 345:1623 333:2269 472:2847 390:2173 403:1343 473:443 404:1052 321:1724
+L|Waxholmsbolaget|Färja 4||456 191:662 186:5008 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 350:364 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:662 186:5008 463:4761 351:991 331:1327 326:1556 333:8897 308:2634 472:2200 350:288 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:662 181:3835 186:1223 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 404:1052 321:1724
+L|Waxholmsbolaget|Färja 4||456 191:662 186:5008 463:4761 331:1437 326:1368 333:8807 308:2639 472:2223 350:364 410:578 409:1220 390:728 403:1481 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||456 191:662 181:3835 186:1223 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 350:364 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:662 181:3835 186:1223 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 186:5279 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 472:1211 350:488 445:3119 390:5277 403:1455
+L|Waxholmsbolaget|Färja 4||456 191:662 186:5008 463:4761 331:1437 326:1368 412:4502 333:5116 308:2634 472:2200 350:288 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:662 186:5008 463:4761 351:991 331:1327 326:1556 333:8897 308:2639 472:2234 350:407 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 351:9706 331:1327 326:1556 412:4528 462:2285 471:2946 333:467 472:2629 409:1820 403:1593
+L|Waxholmsbolaget|Färja 4||456 351:9706 331:1327 326:1556 412:4528 462:2285 471:2946 333:502 472:2584 409:1693 403:1593
+L|Waxholmsbolaget|Färja 4||472 350:378 445:3141 409:4185 390:755 403:1481 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||472 350:298 390:1552 403:1405 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||472 381:3111 404:1585 321:1976 184:13364
+L|Waxholmsbolaget|Färja 4||472 410:815 390:1632 403:1430 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 390:1651 403:1343 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 410:817 390:1664 403:1430 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 410:817 390:1664 403:1430 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 410:817 390:1664 381:2887 403:1697 473:443 404:1052 321:1780 184:11388
+L|Waxholmsbolaget|Färja 4||472 350:373 445:3141 409:4180 390:755 403:1481 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||472 410:817 390:1688 403:1430 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 390:1634 403:1343 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||472 381:3080 404:1549 321:1976 184:13364
+L|Waxholmsbolaget|Färja 4||472 350:290 409:1262 390:776 403:2907 381:1346 400:1155 404:1160 321:1955 184:13438
+L|Waxholmsbolaget|Färja 4||456 191:663 186:5002 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 181:3830 186:1223 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 350:364 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 181:3830 186:1223 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 186:5002 463:4761 331:1437 326:1368 333:8807 308:2639 472:2223 350:364 410:578 409:1220 390:728 403:1481 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||456 191:663 181:3830 186:1223 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 404:1052 321:1724
+L|Waxholmsbolaget|Färja 4||456 191:663 181:3830 186:1223 306:1693 463:3444 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 181:3830 186:1223 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 186:5002 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1668 472:2239 350:288 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 181:3830 186:1223 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:894 333:447 449:848 308:1661 472:2221 350:403 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 186:5002 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 186:5002 463:4761 331:1437 326:1368 412:4502 333:5116 308:2634 472:2200 350:288 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:663 181:3830 186:1223 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2282 350:454 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:640 181:3849 186:1223 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1665 472:2262 410:831 390:1772 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:640 186:5026 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:640 186:5026 463:4761 351:991 331:1327 326:1556 333:8897 308:2634 472:2200 350:288 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 331:12180 326:1825 462:6594 333:3305 472:2828 403:3199 473:443 404:1052 321:1724
+L|Waxholmsbolaget|Färja 4||456 331:12180 326:1825 462:6594 471:2969 333:502 472:2584 409:1693 403:1593 473:443 404:1052
+L|Waxholmsbolaget|Färja 4||456 191:666 186:4996 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1668 472:2239 350:288 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:666 186:4996 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:666 181:3825 186:1223 463:4761 351:991 331:1327 326:1556 319:6036 298:694 349:1178 471:908 333:488 308:2645 472:2252 410:825 390:1738 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 191:638 181:3855 186:1223 463:4761 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:447 449:848 308:1663 472:2290 350:372 410:597 390:1740 403:1430 473:443 404:1052 321:1724
+L|Waxholmsbolaget|Färja 4||456 191:638 186:5032 463:4761 331:1437 326:1368 319:5962 298:694 310:1339 333:2852 308:2634 472:2200 410:840 390:1789 403:1430 473:443 404:1052 321:1780 184:10563
+L|Waxholmsbolaget|Färja 4||456 191:638 186:5032 463:4761 351:991 331:1327 326:1556 333:8897 308:2639 472:2234 350:407 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||472 410:820 390:1710 403:1430 473:443 321:1674 184:9465
+L|Waxholmsbolaget|Färja 4||456 331:12227 326:1535 319:6023 298:694 349:1178 471:894 333:482 472:2584 409:1693 403:1593 473:443 321:2777 404:1898
+L|Waxholmsbolaget|Färja 4||456 331:12226 326:1845 462:6605 333:3305 472:2584 409:1693 403:1593 473:443 321:2777 404:1898
+L|Waxholmsbolaget|Färja 4||456 463:9665 331:1437 326:1368 319:5962 298:694 310:1540 349:1504 471:894 333:447 449:848 472:1586 350:475 390:1822 403:1405
+L|Waxholmsbolaget|Färja 4||456 191:599 186:5047 463:4761 351:991 331:1327 326:1556 333:8897 308:2639 472:2234 350:407 410:578 409:1220 390:728 403:1481 473:443 321:1674
+L|Waxholmsbolaget|Färja 4||456 463:9679 331:1437 326:1368 319:5962 298:694 349:1178 471:894 333:482 472:2324 350:416 409:1262 390:776 403:1481 473:443 321:2777 404:1898
+L|Waxholmsbolaget|Färja 4||456 191:604 186:5040 463:4761 331:1437 326:1368 412:4502 333:5116 308:2634 472:2204 350:362 410:597 390:1740 403:1430 473:443 321:1674
+L|Waxholmsbolaget|Färja 40||444 215:20919 284:26856 405:3064 450:6835 304:5592 317:13069 483:2914 353:2819 448:1834 311:2472 356:1767 323:8882 346:5109 301:9466 362:5765 320:2725 336:5007 393:13617
+L|Waxholmsbolaget|Färja 40||397 396:12411 325:18182 307:23895 399:5180 357:10172 292:10349 408:21488 438:8710 442:3070 341:1708 215:17995
+L|Waxholmsbolaget|Färja 40||215 341:18040 442:1707 438:3070 408:8707 292:21475 357:10344 399:10144 307:5178 325:23858 396:18155 397:12415
+L|Waxholmsbolaget|Färja 40||362 447:7515 429:7268 280:6028
+L|Waxholmsbolaget|Färja 40||362 447:7515 280:3411
+L|Waxholmsbolaget|Färja 40||393 336:13625 320:5005 362:2726 301:5762 346:9461 323:5106 356:8877 311:1767 448:2471 353:1833 483:2818 317:2913 304:13063 450:5591 405:6831 284:3063 215:26803 444:20918
+L|Waxholmsbolaget|Färja 40||280 447:3410 362:7514
+L|Waxholmsbolaget|Färja 40||280 429:6029 447:7266 362:7514
+L|Waxholmsbolaget|Färja 8||456 186:5695 331:6515 326:1582 355:7883 411:1844 345:1576 471:1562 333:443 472:1989 286:8085 370:2882 454:643 363:1500 451:961 324:2533
+L|Waxholmsbolaget|Färja 8||324 451:2533 363:961 454:1500 370:643 286:2882 472:8080 333:1989 471:443 345:1562 411:1576 355:1844 326:7882 331:1582 186:6512 191:5485 456:697
+L|Waxholmsbolaget|Färja 9||456 186:5695 331:6515 326:1582 412:4535 462:2285 355:1288 411:1746 345:1576 471:1562 333:443 472:1984 297:1219 481:2341 476:430 361:4300 300:1330 374:1583 299:1032 383:1663 427:3525 303:2027 365:4925 406:1245 359:2368 434:1055 477:874
+L|Waxholmsbolaget|Färja 9||477 434:874 359:1055 453:2240 406:2881 365:1245 303:4925 427:2027 383:3524 299:1663 374:1032 300:1582 361:1330 472:6387 345:3936 411:1637 355:1746 462:1288 412:2285 326:4535 331:1582 186:6512 456:5696
+L|Öresundslinjen|Helsingborg => Helsingør||484 485:5241
+L|Öresundslinjen|Helsingør => Helsingborg||485 484:5242
+L|Öresundslinjen|Helsingør => Helsingborg||485 484:5193
+T|68.35738|18.78247|Abisko Turiststation
+T|68.34900|18.82860|Abisko Östra
+T|57.92705|12.53232|Alingsås
+T|59.32905|17.97422|Alléparken
+T|59.87597|18.04449|Almunge
+T|57.82895|16.46667|Almvik
+T|59.41071|18.07288|Altorp
+T|56.89899|14.55723|Alvesta
+T|57.83770|14.81206|Aneby
+T|57.69988|16.33441|Ankarsrum
+T|57.53860|12.10076|Anneberg
+T|57.98780|12.44085|Anten
+T|59.39711|15.84071|Arboga
+T|61.47023|16.38002|Arbrå
+T|58.02208|12.46576|Arelid
+T|59.64943|17.92850|Arlanda central
+T|59.65107|17.93114|Arlanda norra
+T|59.64660|17.92829|Arlanda södra
+T|59.45868|18.14134|Arninge
+T|65.58877|19.16999|Arvidsjaur
+T|59.65351|12.59134|Arvika
+T|64.55159|19.10928|Arvsele
+T|57.76268|12.25870|Aspedalen
+T|57.75444|12.24073|Aspen
+T|57.49466|12.66927|Assberg
+T|57.67282|15.83995|Astrid Lindgrens värld
+T|65.73976|19.39352|Auktsjaur
+T|65.60507|18.65111|Avaviken
+T|60.12962|16.21671|Avesta Krylbo
+T|60.14730|16.17061|Avesta centrum
+T|56.21457|13.84897|Ballingslöv
+T|57.86029|14.12809|Bankeryd
+T|59.40520|17.86435|Barkarby
+T|56.28787|12.82731|Barkåkra
+T|58.20548|15.97410|Basthagen
+T|64.78975|20.04173|Bastuträsk
+T|59.02875|12.23496|Bengtsfors
+T|57.21652|16.03297|Berga
+T|57.46736|12.59871|Berghem
+T|56.18276|15.60120|Bergåsa
+T|55.88382|12.99573|Billeberga
+T|56.05656|12.97682|Billesholm
+T|58.98720|12.25179|Billingsfors Norra
+T|56.08318|12.91228|Bjuv
+T|56.29167|13.70660|Bjärnum
+T|57.42733|12.52341|Björketorp
+T|68.40653|18.68563|Björkliden
+T|57.52097|14.91057|Björköby
+T|65.34468|17.58931|Blattnicksele
+T|58.54021|13.32065|Blomberg
+T|56.98096|16.33104|Blomstermåla
+T|57.61029|16.12347|Blägda
+T|62.45913|16.37607|Bodaborg
+T|57.50609|14.69474|Bodafors
+T|65.82885|21.70823|Boden C
+T|57.85247|12.01374|Bohus
+T|57.66763|12.57058|Bollebygd
+T|61.35044|16.39198|Bollnäs
+T|57.11576|14.16918|Bor
+T|57.11615|14.17007|Bor Norra
+T|57.88328|13.01498|Borgstena
+T|60.48267|15.42512|Borlänge
+T|57.72084|12.93185|Borås C
+T|58.19423|15.05480|Boxholm
+T|57.17652|13.73770|Bredaryd
+T|59.83217|14.72797|Bredsjö
+T|57.66942|14.70109|Brinellskolan
+T|59.51229|17.63285|Bro
+T|57.97778|12.43451|Brobacka
+T|56.06720|14.48077|Bromölla
+T|63.07653|14.83141|Brunflo
+T|59.61766|12.96118|Brunsberg
+T|57.64165|15.27513|Bruzaholm
+T|62.75015|15.41739|Bräcke
+T|56.23107|15.11593|Bräkne Hoby
+T|59.40502|18.06048|Bråvallavägen
+T|57.26412|13.83672|Buffalo Spring
+T|65.55388|17.85286|Buresjön
+T|55.64055|13.07941|Burlöv
+T|58.85334|12.40020|Buterud
+T|59.66156|13.16615|Bäckebron
+T|59.52280|18.07211|Bällsta
+T|59.85704|17.81544|Bärby
+T|59.56847|17.53354|Bålsta
+T|59.10977|12.56999|Bårnäs
+T|56.43116|12.90579|Båstad
+T|59.88413|12.29809|Charlottenberg
+T|58.46402|13.44185|Dala kvarn
+T|58.92351|12.30621|Dals Långed
+T|59.22914|14.44065|Degerfors
+T|61.79769|16.55530|Delsbo
+T|57.23057|12.32004|Derome
+T|58.52966|11.57934|Dingle
+T|59.57154|16.38972|Dingtuna
+T|56.63329|14.21442|Diö
+T|59.41272|18.05759|Djursholms Ekeby
+T|59.39817|18.05885|Djursholms Ösby
+T|60.56007|15.13861|Djurås
+T|64.25824|16.40634|Dorotea
+T|64.25637|16.38982|Dorotea Camping
+T|59.23939|14.40816|Dressinstation Degerfors Trelänsbanan
+T|63.38997|12.91761|Duved
+T|55.82302|13.03235|Dösjebro
+T|58.91343|11.93245|Ed
+T|59.62695|12.82958|Edane
+T|59.90122|13.17106|Edsbjörke
+T|57.19064|14.30634|Ekebohult
+T|57.53993|18.52384|Eken
+T|57.48939|15.01966|Ekenässjön
+T|57.66391|14.97680|Eksjö
+T|59.63904|18.22627|Ekskogen
+T|57.18116|14.28204|Elgaryd
+T|56.62978|15.53473|Emmaboda
+T|63.28966|12.33730|Enafors
+T|59.42546|18.05127|Enebyberg
+T|59.64462|17.08827|Enköping
+T|59.45199|18.06364|Ensta
+T|62.52813|15.92350|Erikslund
+T|59.27288|18.28523|Erstaviksbadet
+T|59.36922|16.50569|Eskilstuna C
+T|55.83773|13.30513|Eslöv
+T|57.69548|16.28920|Fagersand
+T|59.99058|15.81605|Fagersta C
+T|60.00269|15.78722|Fagersta Norra
+T|59.51926|13.22058|Fagerås
+T|58.14393|16.20692|Falerum
+T|56.91954|12.50824|Falkenberg
+T|58.17583|13.55260|Falköping
+T|60.60296|15.64292|Falun
+T|59.91989|18.11531|Faringe
+T|59.23664|18.10329|Farsta strand
+T|59.43351|15.59161|Fellingsbro station
+T|58.49318|13.24695|Filsbäck
+T|60.85996|16.43297|Finkelboda
+T|59.07269|12.59476|Finntorp
+T|59.29417|18.25615|Fisksätra
+T|56.04368|14.28056|Fjälkinge
+T|67.51847|20.09337|Fjällåsen
+T|57.36533|15.67190|Flaten
+T|59.21860|17.94659|Flemingsberg
+T|59.05737|16.58776|Flen
+T|58.13919|13.33497|Floby
+T|57.81012|12.36163|Floda
+T|60.20844|16.31449|Fors
+T|57.69758|14.47532|Forserum
+T|57.16347|13.83231|Forsheda
+T|58.61802|13.49127|Forshem
+T|58.50769|13.14704|Framnäs city
+T|57.61642|14.59538|Fredriksdal
+T|61.78564|16.62209|Fredriksfors
+T|58.95069|12.25170|Friluftsgården
+T|57.82711|13.00855|Fristad
+T|57.55781|12.78971|Fritsla
+T|59.62660|13.18465|Frykåsen
+T|62.49594|16.16800|Fränsta
+T|59.62466|18.17092|Frösunda
+T|59.46741|15.36345|Frövi
+T|61.16988|15.13160|Furudal
+T|55.77521|13.09730|Furulund
+T|60.65135|17.33034|Furuvik
+T|59.85849|17.68233|Fyrislund
+T|57.94391|16.37418|Fästad
+T|61.80183|14.68171|Fågelsjö
+T|62.99313|14.57446|Fåker
+T|57.73775|16.42028|Fårhult
+T|56.35514|12.80118|Förslöv
+T|60.59897|15.08064|Gagnef
+T|59.44683|18.08459|Galoppfältet
+T|57.89679|16.41006|Gamleby
+T|57.72735|12.00418|Gamlestaden
+T|55.99043|12.80561|Gantofta
+T|56.87060|14.64514|Gemla
+T|66.55351|19.91268|Geografiska Polcirkeln
+T|57.17416|14.27117|Gimarp
+T|57.16574|14.26108|Gimmarpsby
+T|55.94420|12.81395|Glumslöv
+T|62.05580|17.24756|Gnarp
+T|59.04859|17.31222|Gnesta
+T|57.35836|13.73541|Gnosjö
+T|57.52024|15.89711|Gnötteln
+T|57.70935|11.97319|Gothenburg Central
+T|59.45893|15.38993|Granskogen
+T|59.25762|17.20778|Gripsholmsviken
+T|59.35375|13.11423|Grums
+T|59.70466|14.53022|Grythyttan
+T|58.08036|12.49020|Gräfsnäs
+T|60.07595|15.00482|Grängesberg
+T|58.33471|12.68502|Grästorp
+T|58.89917|17.93181|Gröndalsviken
+T|66.19535|21.19144|Gullträsk
+T|55.72696|13.16751|Gunnesbo
+T|59.85275|17.83430|Gunsta
+T|61.23446|17.09597|Gussi
+T|55.59764|14.21122|Gyllebosjö
+T|59.50170|14.97140|Gyttorp
+T|67.13346|20.65116|Gällivare
+T|62.91122|15.22869|Gällö
+T|55.54650|14.18135|Gärsnäs
+T|60.67593|17.15092|Gävle
+T|58.87215|14.33354|Gårdsjö
+T|57.38217|15.75500|Gårdveda
+T|57.90651|14.07670|Habo
+T|62.92421|14.52206|Hackås
+T|59.46026|15.39523|Hagaberg
+T|59.06712|15.11080|Hallsberg
+T|59.61465|16.22014|Hallstahammar
+T|63.72586|15.47495|Hallviken
+T|56.66930|12.86425|Halmstad C
+T|57.89461|18.84004|Hamnen
+T|59.16644|18.13406|Handen
+T|59.07683|12.59193|Hanefors
+T|65.82813|24.13089|Haparanda
+T|58.75028|13.93986|Hasslerör
+T|59.94050|16.85232|Heby
+T|57.51352|12.08401|Hede
+T|60.27417|15.98014|Hedemora
+T|66.23534|23.68255|Hedenäset
+T|59.24570|17.23247|Hedlandet
+T|59.40906|17.96233|Helenelund
+T|56.04385|12.69468|Helsingborg C
+T|59.06828|17.97562|Hemfosa
+T|59.31213|18.10840|Henriksdal
+T|58.07886|13.02086|Herrljunga
+T|57.54450|18.53105|Hesselby
+T|57.44317|13.59564|Hestra
+T|57.31354|13.88366|Hillerstorp
+T|57.70441|12.45109|Hindås
+T|57.66273|16.24378|Hjorted
+T|59.25668|17.20234|Hjorthagen
+T|57.62894|15.34377|Hjältevad
+T|55.67326|13.13507|Hjärup
+T|60.56936|16.26716|Hofors
+T|57.51405|14.27519|Hok
+T|56.42195|15.54226|Holmsjö
+T|61.11842|16.72118|Holmsveden
+T|60.29616|16.41342|Horndals bruk
+T|57.35341|12.47731|Horred
+T|64.11588|16.20167|Hoting
+T|64.10793|16.17332|Hoting Camping
+T|58.85480|14.21534|Hova
+T|56.78592|15.14084|Hovmantorp
+T|57.73477|14.12374|Hovslätt
+T|59.23624|17.97873|Huddinge
+T|61.72417|17.10886|Hudiksvall
+T|57.64415|15.12992|Hult
+T|57.21491|15.43757|Hultanäs
+T|57.34343|15.61106|Hultarp
+T|57.48676|15.84661|Hultsfred
+T|57.49625|15.86219|Hultsfred hembygdspark
+T|57.78210|14.26577|Huskvarna
+T|63.34398|19.15593|Husum
+T|55.56275|12.97587|Hyllie
+T|59.45095|18.12481|Hägernäs
+T|63.38574|14.87989|Häggenås
+T|59.44379|17.93288|Häggvik
+T|55.86093|12.91174|Häljarp
+T|59.78072|14.51869|Hällefors
+T|59.16191|16.50305|Hälleforsnäs
+T|58.63008|13.43315|Hällekis
+T|58.58003|11.53536|Hällevadsholm
+T|64.30588|19.62581|Hällnäs
+T|59.24447|17.28928|Härnön
+T|62.63490|17.92776|Härnösand
+T|56.15785|13.76357|Hässleholm C
+T|56.28774|13.93431|Hästveda
+T|58.30702|12.90733|Håkantorp
+T|58.82466|12.41295|Håverud
+T|59.22139|14.40752|Högberg
+T|59.55731|13.05266|Högboda
+T|60.02398|16.00787|Högfors
+T|59.32333|17.94008|Höglandstorget
+T|57.16608|16.02727|Högsby
+T|63.63292|19.90984|Hörnefors
+T|57.15090|14.22833|Hösjömo
+T|55.93692|13.54160|Höör
+T|59.28992|18.27544|Igelboda
+T|61.64505|17.08148|Iggesund
+T|57.19118|14.32030|Impregneringen
+T|57.63441|15.41736|Ingatorp
+T|60.67439|15.09558|Insjön
+T|59.24789|17.18387|Jagbacken
+T|59.42387|17.83299|Jakobsberg
+T|59.03939|12.61245|Jakobsbyn
+T|63.18696|14.63167|Jamtli
+T|57.76171|16.57954|Jenny
+T|66.60709|19.84000|Jokkmokk
+T|57.74989|12.17374|Jonsered
+T|59.14226|18.12649|Jordbro
+T|60.84218|16.46791|Jädraås
+T|63.62626|15.20689|Jämtlands Sikås
+T|59.46426|15.15117|Järle
+T|59.09360|17.56784|Järna
+T|63.34241|13.47202|Järpen
+T|58.37901|12.97009|Järpås
+T|61.71580|16.17217|Järvsö
+T|57.78458|14.16299|Jönköping Centralstation
+T|65.05392|20.02987|Jörn
+T|67.54270|20.10354|Kaitum
+T|65.86580|23.14159|Kalix västra
+T|57.90327|18.85790|Kalkbrottet
+T|59.45226|17.80721|Kallhäll
+T|56.66150|16.35972|Kalmar C
+T|57.52017|18.50218|Kambshagtorp
+T|60.03680|16.07282|Karbenning
+T|56.17685|14.86759|Karlshamn
+T|56.16649|15.58537|Karlskrona C
+T|59.37800|13.49908|Karlstads central
+T|58.99657|16.20808|Katrineholm C
+T|56.14451|12.77814|Kattarp
+T|68.41976|18.16144|Katterjåkk
+T|59.50478|13.31587|Kil
+T|61.23118|16.57005|Kilafors
+T|56.47469|14.09823|Killeberg
+T|58.54618|15.97197|Kimstad
+T|57.50584|12.69781|Kinna
+T|57.02532|13.10727|Kinnared
+T|67.86772|20.19999|Kiruna
+T|57.98495|15.63397|Kisa
+T|57.35191|14.09732|Klevshult
+T|56.13069|13.13037|Klippan
+T|57.49822|15.87278|Kloster
+T|55.69536|13.17271|Klostergården
+T|59.32498|17.97377|Klövervägen
+T|57.73410|12.94261|Knalleland
+T|59.72531|17.78694|Knivsta
+T|57.94462|11.85062|Kode
+T|59.56426|16.23345|Kolbäck
+T|58.67388|16.36278|Kolmården
+T|59.82585|13.14090|Kolsnäs
+T|59.87271|14.98609|Kopparberg
+T|57.30093|15.12324|Korsberga
+T|65.66502|20.86611|Korsträsk
+T|64.96632|17.70951|Kovallberget
+T|59.51013|18.07576|Kragstalund
+T|62.92901|17.77862|Kramfors
+T|59.10878|18.06519|Krigslida
+T|56.03172|14.15130|Kristianstad C
+T|56.02278|14.16158|Kristianstads södra
+T|57.51228|15.88252|Kristinebergsbadet
+T|59.31725|14.10758|Kristinehamn
+T|63.32591|14.44809|Krokom
+T|59.12457|12.54392|Kroppan
+T|59.12691|15.14064|Kumla
+T|57.49006|12.07988|Kungsbacka
+T|59.47780|17.75222|Kungsängen
+T|59.42775|16.10239|Kungsör
+T|58.05596|12.47513|Kvarnabo
+T|62.56578|14.37239|Kvarnsjö
+T|59.45073|16.32062|Kvicksund
+T|56.13729|13.04446|Kvidinge
+T|59.37514|12.10203|Kyrkeryd
+T|59.48975|15.06548|Källarhalsen
+T|58.51063|13.30200|Källby
+T|60.08866|15.94064|Kärrgruvan
+T|55.79488|13.11133|Kävlinge
+T|66.15363|19.98755|Kåbdalis
+T|55.99832|13.08333|Kågeröd
+T|57.61037|12.04851|Kållered
+T|59.65676|18.26758|Kårsta
+T|59.50596|16.00739|Köping
+T|55.45621|13.93331|Köpingebro
+T|56.50225|12.99906|Laholm
+T|59.42404|18.07412|Lahäll
+T|58.30521|16.02284|Lakvik
+T|57.17158|14.58551|Lammhult
+T|57.07679|13.26518|Landeryd
+T|55.87908|12.85751|Landskrona
+T|58.98932|14.61621|Laxå
+T|60.73421|15.00288|Leksand
+T|59.54409|13.12113|Lene
+T|59.82654|12.36290|Lerot
+T|57.76909|12.27168|Lerum
+T|56.74975|15.25922|Lessebo
+T|58.50462|13.16393|Lidköping
+T|59.47517|15.12359|Lilla Mon
+T|61.64161|14.79600|Lillhamra
+T|59.30510|18.16169|Lillängen
+T|57.53577|13.35300|Limmared
+T|59.59504|15.22811|Lindesberg
+T|59.58412|18.10926|Lindholmen
+T|57.57604|12.07867|Lindome
+T|61.04518|16.67285|Lingbo
+T|58.43638|15.78568|Linghem
+T|58.41655|15.62588|Linköping C
+T|57.69838|11.99502|Liseberg
+T|63.31841|14.85672|Lit
+T|57.98655|13.05343|Ljung
+T|62.49560|16.06783|Ljungaverk
+T|58.22447|11.92115|Ljungskile
+T|61.82675|16.09682|Ljusdal
+T|61.21249|17.11223|Ljusne
+T|55.67393|13.07494|Lomma
+T|58.44111|13.04791|Lovene
+T|60.15061|15.18311|Ludvika
+T|58.64438|13.70220|Lugnås
+T|65.58410|22.16549|Luleå C
+T|55.70673|13.18638|Lund centralstation
+T|58.47223|13.44307|Lundsbrunn
+T|58.47729|13.44471|Lundsbrunns kurort
+T|55.54114|14.04259|Lunnarp
+T|64.59498|18.66861|Lycksele
+T|58.80509|14.05693|Lyrestad
+T|60.01585|13.13773|Lysvik
+T|59.24782|17.16861|Läggesta
+T|59.24614|17.17415|Läggesta nedre
+T|59.87189|17.95923|Länna
+T|68.42364|18.32500|Låktatjåkka
+T|58.93644|12.28033|Långbron
+T|57.69698|16.29523|Långsjön
+T|58.01498|12.16391|Lödöse södra
+T|57.55199|15.72041|Lönneberga
+T|59.86645|17.94407|Löt
+T|59.84705|17.88672|Lövstahagen
+T|57.26251|13.83094|Main Street
+T|66.39012|19.70257|Maitum
+T|57.57779|14.45973|Malmbäck
+T|55.54724|12.99265|Malmö Syd Svågertorp
+T|55.60914|13.00066|Malmö central
+T|58.34789|15.28786|Mantorp
+T|56.07592|12.71052|Maria
+T|57.61617|15.58499|Mariannelund
+T|59.25878|17.21887|Mariefred
+T|59.25737|17.22579|Mariefreds Ångbåtsstation
+T|55.86463|13.15907|Marieholm
+T|59.25260|17.18636|Marielund
+T|59.84296|17.87503|Marielund
+T|58.71125|13.82554|Mariestad
+T|56.45919|13.59382|Markaryd
+T|60.49141|17.43074|Marma
+T|64.78956|18.09398|Medelås
+T|60.45049|17.40058|Mehedeby
+T|58.70199|12.46485|Mellerud
+T|64.44302|16.81702|Meselefors
+T|60.06859|15.93775|Mimerlaven
+T|58.32276|15.13197|Mjölby
+T|59.89602|18.06187|Moga
+T|57.00245|14.57644|Moheda
+T|57.90646|13.02263|Mollaryd
+T|59.55779|18.08522|Molnby
+T|61.00905|14.55888|Mora
+T|61.00490|14.54275|Morastrand
+T|59.93295|16.96126|Morgongåva
+T|65.88241|19.42660|Moskosel
+T|58.53777|15.04873|Motala C
+T|57.91513|13.88274|Mullsjö
+T|57.53593|18.51970|Munkebos
+T|58.46479|11.67792|Munkedal
+T|58.43831|11.67920|Munkedals hamn
+T|58.46528|11.67850|Munkedals nedre
+T|66.48464|20.88098|Murjek
+T|58.44454|13.43895|Myråsen
+T|59.62809|17.86102|Märsta
+T|57.39034|15.82514|Målilla
+T|57.38857|15.77869|Målilla sanatorium
+T|57.65411|14.07082|Månsarp
+T|59.04742|17.41838|Mölnbo
+T|57.65625|12.01859|Mölndal
+T|57.65683|12.11784|Mölnlycke
+T|56.05568|12.87345|Mörarp
+T|59.39208|18.04718|Mörby
+T|56.18681|14.74347|Mörrum
+T|63.30851|13.65771|Mörsil
+T|59.30657|18.13053|Nacka
+T|66.75432|20.95019|Nattavaara
+T|59.28851|18.29213|Neglinge
+T|62.26832|17.37748|Njurundabommen
+T|59.32873|17.91840|Nockeby
+T|59.32905|17.92824|Nockeby torg
+T|57.91778|12.06072|Nol
+T|59.51638|15.04197|Nora
+T|60.06113|15.93058|Norberg
+T|63.57855|19.48486|Nordmaling
+T|57.70456|14.11606|Norrahammar
+T|64.91115|17.01693|Norrheden
+T|57.12386|15.17005|Norrhult
+T|58.59667|16.18314|Norrköping C
+T|59.45911|17.92428|Norrviken
+T|57.86171|12.43927|Norsesund
+T|65.61187|22.11517|Notviken
+T|56.74232|15.90848|Nybro
+T|57.52941|18.51299|Nygårds
+T|59.62366|14.30768|Nykroppa
+T|59.17889|17.43182|Nykvarn
+T|58.75653|16.99681|Nyköping C
+T|58.91393|17.94258|Nynäsgård
+T|58.90085|17.95088|Nynäshamn
+T|56.81961|13.78844|Näglinge
+T|63.34870|14.25417|Nälden
+T|59.42733|18.08522|Näsby allé
+T|59.43022|18.09545|Näsbypark
+T|57.65205|14.69418|Nässjö C
+T|57.89316|12.04331|Nödinge
+T|60.89146|16.72104|Ockelbo
+T|57.19284|14.33082|Ohs bruk
+T|57.26320|13.83896|Old Mexico
+T|60.13001|13.03845|Oleby
+T|59.32791|17.93527|Olovslund
+T|57.66492|14.83273|Ormaryd
+T|59.54574|18.07955|Ormsta
+T|61.11892|14.62090|Orsa
+T|56.38115|13.99553|Osby
+T|57.26268|16.45775|Oskarshamn
+T|56.80648|12.97191|Oskarström
+T|59.69608|12.46952|Ottebol
+T|55.54176|13.09568|Oxie
+T|60.85276|16.44363|Pallanite
+T|57.74088|12.10334|Partille
+T|55.58062|13.02934|Persborg
+T|59.49466|15.00692|Pershyttan
+T|56.13645|13.39736|Perstorp
+T|62.95493|15.04068|Pilgrimstad
+T|65.98751|19.35972|Piteälvsbron
+T|66.96590|19.82936|Porjus
+T|56.02935|12.81750|Påarp
+T|58.44597|14.91566|Quisbergs Allé
+T|58.61007|11.47092|Rabbalshede
+T|56.02366|12.72771|Ramlösa
+T|59.76969|16.20784|Ramnäs
+T|59.81029|16.63994|Ransta
+T|59.15429|14.30252|Rastplats Mosstorp
+T|57.17604|13.59302|Reftele
+T|65.64547|18.52461|Renviken
+T|68.42664|18.12079|Riksgränsen
+T|58.13548|15.68178|Rimforsa
+T|59.28309|18.30226|Ringvägen
+T|58.30132|16.02637|Risten
+T|57.77511|14.19830|Rocksjön
+T|57.50794|18.45690|Roma
+T|57.51276|18.46888|Roma Kungsgård
+T|56.20699|15.28299|Ronneby
+T|57.36198|15.83858|Rosenfors
+T|55.58889|13.03079|Rosengård
+T|59.58377|17.88003|Rosersberg
+T|59.43567|18.05807|Roslags Näsby
+T|59.47588|17.91464|Rotebro
+T|59.79514|13.12872|Rottneros
+T|56.98555|14.31261|Rydaholm
+T|59.46539|18.18506|Rydbo
+T|55.96586|12.78350|Rydebäck
+T|55.47427|13.58773|Rydsgård
+T|60.88533|15.11490|Rättvik
+T|57.65435|12.50047|Rävlanda
+T|58.61051|13.37645|Råbäck
+T|62.47918|14.35915|Röjan
+T|59.19352|17.75033|Rönninge
+T|57.17237|14.06404|Rörstorp
+T|59.92496|16.60656|Sala
+T|59.30051|18.19892|Saltsjö-Duvnäs
+T|59.30686|18.14945|Saltsjö-Järla
+T|59.27901|18.31228|Saltsjöbaden
+T|57.70986|12.79152|Sandared
+T|57.98852|13.77237|Sandhem
+T|65.24339|17.66362|Sandsjönäs
+T|59.32378|14.57589|Sandviken
+T|60.61433|16.77851|Sandviken station
+T|56.68612|12.89254|Sannarp
+T|59.02889|17.92674|Segersäng
+T|59.85539|17.90871|Selknä
+T|59.30684|18.12104|Sickla
+T|59.80706|14.58370|Sikfors
+T|57.54259|15.74301|Silverdalen
+T|55.55415|14.35286|Simrishamn
+T|57.20102|15.38878|Sissehult
+T|67.62587|20.23447|Sjisjka
+T|59.24475|17.24963|Sjöbygget
+T|57.13154|14.17508|Sjövägen
+T|58.38313|13.44097|Skara
+T|64.44405|19.42552|Skatan
+T|58.92238|11.26294|Skee
+T|57.48843|12.64940|Skene
+T|57.42826|14.09088|Skillingaryd
+T|59.83270|15.69185|Skinnskatteberg
+T|65.02694|17.48652|Skiråsen
+T|58.45329|13.44026|Skogsmark
+T|59.21944|18.15339|Skogås
+T|55.48020|13.49803|Skurup
+T|60.62296|17.40538|Skutskär
+T|60.07993|17.73707|Skyttorp
+T|58.39272|15.09245|Skänninge
+T|59.89496|14.93015|Skäret
+T|61.72017|17.18006|Skålbovägen
+T|58.78108|12.41891|Skållerud
+T|59.87443|17.74399|Skölsta
+T|58.38960|13.85232|Skövde
+T|65.58570|18.15810|Slagnäs
+T|59.03749|12.64281|Slommerud
+T|56.67765|16.23305|Smedby
+T|60.13655|15.40539|Smedjebacken
+T|59.32089|17.96416|Smedslätten
+T|55.54966|14.11737|Smedstorp
+T|57.16137|13.41463|Smålandsstenar
+T|59.42839|17.94845|Sollentuna
+T|59.36649|18.00963|Solna
+T|59.35942|17.97954|Solna Business Park
+T|59.27091|18.29612|Solsidan
+T|65.53488|17.54263|Sorsele
+T|59.38363|17.89818|Spånga
+T|57.59903|16.09888|Spångenäs
+T|63.39871|13.07655|Station Åre
+T|62.82964|15.30513|Stavre
+T|62.82987|15.30474|Stavre
+T|55.90027|13.39305|Stehag
+T|57.79147|12.31416|Stenkullen
+T|57.14349|14.20176|Stensjön
+T|57.58257|14.82321|Stensjön
+T|58.27387|13.71493|Stenstorp
+T|58.07224|11.82405|Stenungsund
+T|57.31642|14.59159|Stockaryd
+T|59.32987|18.05750|Stockholm Central
+T|59.33199|18.05890|Stockholm City
+T|59.34346|18.04551|Stockholm Odenplan
+T|59.31335|18.06056|Stockholms södra
+T|59.34656|18.07064|Stockholms östra
+T|59.38482|18.04377|Stocksund
+T|58.01948|11.83623|Stora Höga
+T|58.32604|12.92588|Stora Levene
+T|59.48172|15.08737|Stora Mon
+T|59.53287|14.27172|Storfors
+T|63.31626|12.09989|Storlien
+T|65.09686|17.11237|Storuman
+T|60.58233|16.53518|Storvik
+T|59.95635|17.70627|Storvreta
+T|59.30559|18.17794|Storängen
+T|59.71359|15.14328|Storå
+T|59.37044|17.02789|Strängnäs
+T|56.55040|13.73271|Strömsnäsbruk
+T|58.93631|11.17334|Strömstad
+T|59.25420|17.99677|Stuvsta
+T|59.93317|14.94334|Ställdalen
+T|55.75060|13.19991|Stångby
+T|62.41980|16.59958|Stöde
+T|59.36074|17.97187|Sundbyberg
+T|59.36105|17.96976|Sundbybergs centrum
+T|65.67363|21.93496|Sunderby sjukhus
+T|62.38684|17.31536|Sundsvall C
+T|62.38964|17.29228|Sundsvall Västra
+T|59.83564|13.14868|Sunne
+T|59.70652|16.21921|Surahammar
+T|57.82521|12.01327|Surte
+T|55.91228|13.11038|Svalöv
+T|59.17978|12.55098|Svanskog
+T|59.17386|12.54440|Svanskog Folkets Hus
+T|60.87435|16.38394|Svartbäcken Nedre
+T|55.42850|13.71741|Svarte
+T|62.31795|17.37129|Svartvik
+T|55.50682|13.23289|Svedala
+T|62.03545|14.35240|Sveg
+T|58.14455|11.93626|Svenshögen
+T|62.76719|14.43625|Svenstavik Centrum
+T|59.13233|12.91629|Säffle
+T|60.34671|15.75721|Säter
+T|57.72479|12.02547|Sävenäs
+T|57.40278|14.66548|Sävsjö
+T|60.07256|15.53706|Söderbärke
+T|61.29935|17.03529|Söderhamn
+T|59.16256|17.64577|Södertälje Syd
+T|59.19160|17.62770|Södertälje centrum
+T|59.17845|17.64692|Södertälje hamn
+T|56.04991|14.58352|Sölvesborg
+T|65.02086|17.63872|Sörsjöliden
+T|62.34271|14.62988|Sörtjärn
+T|56.03643|13.68067|Sösdala
+T|57.67884|14.08723|Taberg
+T|57.12665|14.17197|Tagel
+T|59.45567|15.38973|Talludden
+T|60.86958|16.40901|Tallås
+T|62.99865|14.74352|Tandsbyn
+T|58.40044|15.66024|Tannefors
+T|58.71369|11.29577|Tanum
+T|59.27952|18.28068|Tattby
+T|59.24075|17.30056|Taxinge-Näsby
+T|55.87052|13.08578|Teckomatorp
+T|57.70515|14.32665|Tenhult
+T|59.44219|18.06260|Tibble
+T|60.34520|17.51393|Tierp
+T|62.48587|17.33003|Timrå
+T|59.28419|18.27732|Tippen
+T|58.89711|12.38601|Tisselskog
+T|57.72240|16.39701|Tjursbo
+T|57.75294|16.63066|Tjustskolan
+T|56.00042|13.62997|Tjörnarp
+T|60.25888|17.63399|Tobo
+T|57.17340|12.30040|Tofta
+T|59.57757|13.24030|Tolita
+T|55.54644|13.94936|Tomelilla
+T|62.47252|16.33572|Torpshammar
+T|57.94075|13.02952|Torpåkra
+T|60.13628|13.00108|Torsby
+T|60.51353|16.48847|Torsåker
+T|56.95766|13.07964|Torup
+T|58.82442|14.09914|Torved
+T|57.62803|16.18105|Totebo
+T|58.03817|14.97516|Tranås
+T|63.69264|18.86801|Trehörningsjö
+T|56.70206|16.11688|Trekanten
+T|55.37171|13.15939|Trelleborg C
+T|55.59329|13.00104|Triangeln
+T|58.28744|12.29912|Trollhättan
+T|58.59466|13.34777|Trolmen
+T|59.22781|18.13039|Trångsund
+T|57.52349|18.50688|Tule
+T|59.20545|17.90424|Tullinge
+T|59.19961|17.83631|Tumba
+T|57.57682|16.10376|Tuna
+T|59.46899|18.30736|Tunagård
+T|59.10267|18.04566|Tungelsta
+T|58.41293|13.43093|Tveta
+T|64.09718|19.67451|Tvärålund
+T|56.15958|13.59827|Tyringe
+T|59.44430|18.07467|Täby centrum
+T|59.49302|18.06628|Täby kyrkby
+T|59.47313|18.23524|Täljö
+T|60.81810|15.01877|Tällberg
+T|55.92665|12.95206|Tågarp
+T|58.70547|14.12779|Töreboda
+T|58.35408|11.92327|Uddevalla Central
+T|58.34991|11.94535|Uddevalla Östra
+T|59.38077|18.00038|Ulriksdal
+T|63.83236|15.62029|Ulriksfors
+T|63.82996|20.26688|Umeå Central
+T|63.81755|20.29369|Umeå Östra
+T|64.69871|18.36782|Umgransele
+T|63.31432|13.24102|Undersåker
+T|59.36507|18.05103|Universitetet
+T|59.52088|17.89902|Upplands Väsby
+T|59.85822|17.64656|Uppsala central
+T|59.85784|17.64925|Uppsala östra
+T|60.03231|15.64220|Vad
+T|57.49825|14.14557|Vaggeryd
+T|58.94581|17.49843|Vagnhärad
+T|59.53417|18.08006|Vallentuna
+T|61.51824|16.36750|Vallsta
+T|55.96379|12.86185|Vallåkra
+T|57.73550|16.48380|Valstad
+T|58.26107|12.95148|Vara
+T|57.11191|12.24941|Varberg
+T|66.04488|19.53186|Varjisträsk
+T|68.42980|18.25902|Vassijaure
+T|60.02537|17.73092|Vattholma
+T|57.26671|12.33684|Veddige
+T|58.16909|12.99864|Vedum
+T|59.18641|18.13568|Vega
+T|57.52441|15.96966|Vena
+T|59.39982|18.06781|Vendevägen
+T|57.72882|16.51540|Verkebäck
+T|57.42587|15.08185|Vetlanda
+T|59.44927|18.10428|Viggbyholm
+T|59.46482|14.86018|Vikersvik
+T|58.38347|15.43289|Vikingstad
+T|58.38619|13.45588|Vilan
+T|64.62286|16.65149|Vilhelmina
+T|64.64639|16.61368|Vilhelmina norra
+T|57.66316|15.85806|Vimmerby
+T|64.20316|19.71328|Vindeln
+T|59.04188|15.87359|Vingåker
+T|56.10484|13.91692|Vinslöv
+T|55.56546|14.20839|Virrestad
+T|59.87223|16.08417|Virsbo
+T|59.46261|18.06316|Visinge
+T|57.62925|12.84511|Viskafors
+T|56.78682|14.45461|Vislanda
+T|56.53955|15.58115|Vissefjärda
+T|56.34234|13.66329|Vittsjö
+T|64.79205|16.81634|Vojmån
+T|57.53694|16.06954|Väderum
+T|59.39122|13.58260|Välsviken
+T|58.37757|12.31827|Vänersborg C
+T|63.90849|19.74969|Vännäs
+T|63.91523|19.81812|Vännäsby
+T|59.25788|17.22195|Värdshuset
+T|57.18629|14.03585|Värnamo
+T|59.38170|13.85231|Väse
+T|63.05285|17.74464|Västeraspby
+T|59.12307|18.10338|Västerhaninge
+T|57.75558|16.64289|Västervik
+T|59.60741|16.55229|Västerås Central
+T|55.49026|13.10795|Västra Ingelstad
+T|57.88772|12.47430|Västra bodarna
+T|59.72790|13.14694|Västra Ämtervik
+T|56.87654|14.80504|Växjö
+T|58.03142|12.81019|Vårgårda
+T|55.42739|13.82520|Ystad
+T|57.86234|11.91762|Ytterby
+T|62.19719|14.85563|Ytterhogdal
+T|56.55093|14.13690|Älmhult
+T|61.49811|14.74802|Älvho
+T|60.55535|17.42809|Älvkarleby
+T|65.67825|20.99476|Älvsbyn
+T|59.27855|18.01109|Älvsjö
+T|57.95814|12.11581|Älvängen
+T|57.69175|14.56806|Äng
+T|56.24562|12.85396|Ängelholm
+T|59.95749|16.00909|Ängelsberg
+T|59.96711|16.00760|Ängelsbergs bruk
+T|58.62605|13.60886|Äskekärr
+T|60.84839|16.45309|Åbo
+T|55.65514|13.10455|Åkarp
+T|59.48063|18.27038|Åkers Runö
+T|59.47920|18.29816|Åkersberga
+T|59.32062|17.95204|Ålstens gård
+T|59.32345|17.95648|Ålstensgatan
+T|59.76888|12.36689|Åmotfors
+T|59.04659|12.69833|Åmål
+T|62.52331|15.65882|Ånge
+T|63.32133|12.53912|Ånn
+T|59.86418|17.70268|Årsta
+T|59.29961|18.02808|Årstaberg
+T|59.85741|12.34236|Ås
+T|57.36326|12.13567|Åsa
+T|62.64082|14.37185|Åsarna södra
+T|57.16754|15.34809|Åseda
+T|58.80545|12.42556|Åsensbruk
+T|56.13389|12.94910|Åstorp
+T|58.45852|11.68380|Åtorp
+T|58.20370|16.00205|Åtvidaberg
+T|56.10561|12.74604|Ödåkra
+T|59.77416|13.12307|Öjervik
+T|59.14103|12.52639|Ömmeln
+T|56.06065|14.02891|Önnestad
+T|60.22920|17.70397|Örbyhus
+T|59.26970|15.20207|Örebro Södra
+T|59.27802|15.21067|Örebro centralstation
+T|63.28788|18.70559|Örnsköldsvik
+T|63.30277|18.71559|Örnsköldsvik Norra
+T|56.69689|15.74993|Örsjö
+T|55.77881|13.24394|Örtofta
+T|58.98400|17.90263|Ösmo
+T|59.40402|18.07396|Östberga
+T|59.46122|18.31110|Österskär
+T|63.17061|14.63764|Östersund C
+T|63.17803|14.63132|Östersund Västra
+T|59.18506|17.65850|Östertälje
+T|59.29499|18.23549|Östervik
+T|55.60787|13.03150|Östervärn
+T|58.63415|13.55986|Österäng
+T|55.46767|13.13268|Östra Grevie
+T|55.58538|14.22804|Östra Vemmerlöv
+T|58.84321|11.25977|Överby
+T|62.27498|14.80074|Överhogdal
+T|57.98975|16.31937|Överums bruk
+T|58.35881|12.27409|Öxnered

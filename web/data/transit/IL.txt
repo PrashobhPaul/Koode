@@ -1,0 +1,173 @@
+# Transit for Koode, IL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|32.08290|34.80303|Abba Hillel|Tel Aviv LRT|M
+S|32.09271|34.83813|Aharonovich|Tel Aviv LRT|M
+S|32.06271|34.77488|Allenby|Tel Aviv LRT|M
+S|32.08156|34.79651|Arlozoroff|Tel Aviv LRT|M
+S|32.01746|34.74473|Balfour|Tel Aviv LRT|M
+S|32.09146|34.86675|Beilinson|Tel Aviv LRT|M
+S|32.09092|34.82339|Ben Gurion|Tel Aviv LRT|M
+S|32.08677|34.81205|Bialik|Tel Aviv LRT|M
+S|32.01641|34.74834|Binyamin|Tel Aviv LRT|M
+S|32.05026|34.75895|Bloomfield Stadium|Tel Aviv LRT|M
+S|32.06559|34.78322|Carlebach|Tel Aviv LRT|M
+S|32.09095|34.87238|Dankner|Tel Aviv LRT|M
+S|32.04607|34.75836|Ehrlich|Tel Aviv LRT|M
+S|32.05834|34.76277|Elifelet|Tel Aviv LRT|M
+S|32.09888|34.84627|Em HaMoshavot Bridge|Tel Aviv LRT|M
+S|32.02817|34.74897|HaAtzma'ut|Tel Aviv LRT|M
+S|32.03872|34.75584|HaBesht|Tel Aviv LRT|M
+S|32.00226|34.74675|HaKomemiyut|Tel Aviv LRT|M
+S|32.00587|34.74899|HeAmal|Tel Aviv LRT|M
+S|32.04214|34.75708|Isakov|Tel Aviv LRT|M
+S|32.02171|34.74322|Jabotinsky|Tel Aviv LRT|M
+S|32.01083|34.75149|Kaf Tet BeNovember|Tel Aviv LRT|M
+S|32.10631|34.86233|Kiryat Aryeh|Tel Aviv LRT|M
+S|32.09191|34.87751|Krol|Tel Aviv LRT|M
+S|32.03358|34.75165|Mahrozet|Tel Aviv LRT|M
+S|32.09465|34.88639|Petah Tikva CBS|Tel Aviv LRT|M
+S|32.09374|34.88212|Pinsker|Tel Aviv LRT|M
+S|32.02673|34.74447|Rothschild|Tel Aviv LRT|M
+S|32.09194|34.86140|Shaham|Tel Aviv LRT|M
+S|32.05450|34.75952|Shalma|Tel Aviv LRT|M
+S|32.07692|34.79215|Shaul HaMelech|Tel Aviv LRT|M
+S|32.09266|34.85330|Shenkar|Tel Aviv LRT|M
+S|32.07036|34.78861|Yehudit|Tel Aviv LRT|M
+S|32.01539|34.75215|Yoseftal|Tel Aviv LRT|M
+S|31.79916|35.23206|Ammunition Hill|ירושלים|M
+S|31.81118|35.23279|A-Sahal|ירושלים|M
+S|31.81975|35.22907|Beit Hanina|ירושלים|M
+S|31.76680|35.19654|Betsal'el Bazak|ירושלים|M
+S|31.78787|35.20357|Binyene Ha'Uma ICC|ירושלים|M
+S|31.78846|35.20255|Central|ירושלים|M
+S|31.77968|35.22386|City Hall|ירושלים|M
+S|31.78248|35.22784|Damascus Gate|ירושלים|M
+S|31.78061|35.18832|Denya Square|ירושלים|M
+S|31.80548|35.23427|Giv'at HaMivtar|ירושלים|M
+S|31.76122|35.19988|Giv'at Mordekhay|ירושלים|M
+S|31.78076|35.19784|Giv'at Ram|ירושלים|M
+S|31.75223|35.19891|Gonenim|ירושלים|M
+S|31.78484|35.20068|Government Complex|ירושלים|M
+S|31.75287|35.18802|Ha'Ayal|ירושלים|M
+S|31.76472|35.14766|Hadassah Ein Kerem|ירושלים|M
+S|31.78457|35.21519|HaDavidka|ירושלים|M
+S|31.76199|35.17160|HaMifletset Playground|ירושלים|M
+S|31.78792|35.20678|HaTurim|ירושלים|M
+S|31.77223|35.19610|Hebrew Park|ירושלים|M
+S|31.78279|35.19169|HeHaluts|ירושלים|M
+S|31.82895|35.23840|Hel Ha'Avir|ירושלים|M
+S|31.75983|35.16791|Henrietta Szold – East|ירושלים|M
+S|31.78286|35.21836|Jaffa – Center|ירושלים|M
+S|31.76695|35.17444|Kiryat HaYovel – West|ירושלים|M
+S|31.76002|35.16413|Kiryat Menahem|ירושלים|M
+S|31.78623|35.19816|Kiryat Moshe|ירושלים|M
+S|31.78601|35.21142|Mahane Yehuda|ירושלים|M
+S|31.75195|35.19262|Malha Sports Complex|ירושלים|M
+S|31.74931|35.18532|Manahat (Malha)|ירושלים|M
+S|31.83728|35.23415|Mazal Kashat|ירושלים|M
+S|31.76417|35.15124|Medical School|ירושלים|M
+S|31.83344|35.23469|Moshe Dayan – North|ירושלים|M
+S|31.77085|35.18157|Mount Herzl|ירושלים|M
+S|31.84098|35.24022|Neve Ya'akov – North|ירושלים|M
+S|31.75702|35.15999|Ora Junction|ירושלים|M
+S|31.75634|35.19813|Pat Jct|ירושלים|M
+S|31.82375|35.23762|Pisgat Ze'ev – Center|ירושלים|M
+S|31.77725|35.19532|Safra University Campus|ירושלים|M
+S|31.82610|35.24022|Sayeret Dukhifat|ירושלים|M
+S|31.79304|35.22633|Shim'on HaTsadik|ירושלים|M
+S|31.78654|35.22713|Shivtei Israel|ירושלים|M
+S|31.76875|35.17767|Shmaryahu Levin|ירושלים|M
+S|31.81435|35.22987|Shu'afat|ירושלים|M
+S|31.77695|35.18500|Yefe Nof|ירושלים|M
+S|31.81932|35.23930|Yekutiel Adam|ירושלים|M
+S|31.83811|35.23739|Yitzhak Tabenkin|ירושלים|M
+L|Tel Aviv LRT|מערכת להסעת המונים במטרופולין תל אביב - הקו האדום|red|17 18:466 21:601 33:596 8:372 4:358 20:537 27:651 15:475 24:658 16:739 19:390 12:458 9:460 29:478 13:660 2:1226 10:890 32:726 30:802 3:687 0:607 7:985 6:1223 1:1431 31:1410 28:761 5:515 11:548 23:532 26:477 25:416
+L|Tel Aviv LRT|מערכת להסעת המונים במטרופולין תל אביב - הקו האדום|red|17 18:466 21:601 33:596 8:372 4:358 20:537 27:651 15:475 24:658 16:739 19:390 12:458 9:460 29:478 13:660 2:1226 10:890 32:726 30:802 3:687 0:607 7:985 6:1223 1:1431 14:1243 22:1863
+L|Tel Aviv LRT|מערכת להסעת המונים במטרופולין תל אביב - הקו האדום|red|22 14:1844 1:1247 6:1430 7:1203 0:909 3:669 30:696 32:793 10:750 2:876 13:1263 29:630 9:465 12:481 19:444 16:403 24:720 15:657 27:478 20:672 4:520 8:379 33:379 21:574 18:604 17:435
+L|Tel Aviv LRT|מערכת להסעת המונים במטרופולין תל אביב - הקו האדום|red|22 14:1844 1:1247 6:1430 7:1203 0:909 3:669 30:696 32:793 10:750 2:876 13:1263
+L|Tel Aviv LRT|מערכת להסעת המונים במטרופולין תל אביב - הקו האדום|red|13 2:1225 10:890 32:726 30:802 3:687 0:607 7:985 6:1223 1:1431 14:1243 22:1863
+L|Tel Aviv LRT|מערכת להסעת המונים במטרופולין תל אביב - הקו האדום|red|25 26:413 23:482 11:550 28:1014 31:782 1:1431 6:1430 7:1203 0:909 3:669 30:696 32:793 10:750 2:876 13:1263 29:630 9:465 12:481 19:444 16:403 24:720 15:657 27:478 20:672 4:520 8:379 33:379 21:574 18:604 17:435
+L|ירושלים|הרכבת הקלה בירושלים - הקו האדום|red|39 60:616 54:772 42:450 78:513 67:753 76:498 58:475 51:657 56:450 59:423 69:710 65:1521 49:396 61:8857 50:398 57:356 40:633 41:708 75:462 74:726 34:881 43:762 35:672 77:454 36:644 79:1047 71:760 73:370 55:449 66:653 64:441 80:366 68:541 52:7203
+L|ירושלים|הרכבת הקלה בירושלים - הקו האדום|red|39 60:624 54:770 42:455 78:512 67:755 76:492 58:481 51:652 59:877 56:427 69:1062 65:1529 49:403 61:8859 50:401 57:355 40:633 41:697 75:463 74:726 34:883 43:757 35:667 77:454 36:656 79:1046 71:763 73:370 55:441 66:660 64:443 80:375 68:534 52:7191
+L|ירושלים|הרכבת הקלה בירושלים - הקו האדום|red|60 54:770 42:455 78:512 67:755 76:492 58:481 51:652 56:450 59:427 69:710 65:1529 49:403 39:7925 61:921 50:401 57:355 40:633 41:697 75:463 74:726 34:883 43:757 52:3498
+L|ירושלים|הרכבת הקלה בירושלים - הקו הצהוב|#FEBE15|37 63:2381 62:971 48:453 44:1573 53:1340 72:562 45:491 70:3036 47:3566 38:510 46:4577 52:4699
+L|ירושלים|הרכבת הקלה בירושלים - הקו הצהוב|#FEBE15|62 48:452 44:1565 53:1340 72:563 45:490 70:3037 63:2159 47:5731 38:519 52:350 37:2906 46:1752
+T|32.92819|35.08306|Acre
+T|32.62156|35.29523|Afula
+T|32.91173|35.17344|Ahihud
+T|31.77394|34.66624|Ashdod–Ad Halom–Metropol
+T|31.67593|34.60449|Ashkelon
+T|32.69276|34.94022|Atlit
+T|32.00083|34.75935|Bat Yam - Komemiyyut
+T|32.01461|34.76198|Bat Yam - Yoseftal
+T|31.24308|34.79838|Be'er Sheva Merkaz
+T|31.93246|34.83057|Be'er Ya'akov
+T|31.26190|34.80940|Beer Sheva North - University
+T|32.51500|35.48853|Beit Shean
+T|32.26260|34.86023|Beit Yehoshua
+T|32.00040|34.87048|Ben Gurion Airport
+T|31.75782|34.98936|Bet Shemesh
+T|31.74483|35.17811|Biblical Zoo
+T|32.51455|34.94963|Binyamina
+T|32.10289|34.83055|Bnei Brak–Ramat HaHayal
+T|32.80757|34.99050|Bney Zion Hospital
+T|32.48526|34.95417|Caesarea-Pardes Hana
+T|32.80468|34.98791|Carmel Center
+T|31.06892|35.01183|Dimona
+T|32.81749|34.99973|Downtown
+T|32.79389|35.03709|HaMifrats Central Station
+T|32.79281|35.03314|HaMifrats Central Station - HaEmek Line
+T|32.81262|34.99504|HaNevi'im
+T|32.81466|34.99731|Hadar – City Hall
+T|32.44383|34.95132|Hadera East
+T|32.43838|34.89934|Hadera West
+T|32.83034|34.98176|Haifa Bat Galim
+T|32.82230|34.99736|Haifa Center HaShmona
+T|32.79351|34.95746|Haifa-Hof HaCarmel (Raziel)
+T|32.16398|34.81759|Herzelia
+T|32.17000|34.90201|Hod HaSharon - Sokolov
+T|32.03531|34.75969|Holon - Wolfson
+T|32.03704|34.77641|Holon Junction
+T|32.80940|35.05442|Hutzot Hamifratz
+T|31.78811|35.20277|Jerusalem - Yitzhak Navon
+T|31.74775|35.18821|Jerusalem Malcha
+T|32.92392|35.29714|Karmiel
+T|31.99290|34.85332|Kfar Chabad
+T|32.16747|34.91680|Kfar Sava-Nordau (A.Kostyuk)
+T|31.60315|34.77793|Kiryat Gat
+T|32.82481|35.06427|Kiryat Haim
+T|31.74691|34.82251|Kiryat Mal'akhi - Yoav
+T|32.83296|35.06992|Kiryat Motzkin
+T|31.36982|34.79816|Lehavim Rahat
+T|31.94764|34.87822|Lod
+T|31.96703|34.87868|Lod - Gane Aviv
+T|32.80966|34.99238|Masada
+T|31.84214|34.85631|Mazkeret Batya
+T|32.64721|35.20945|Migdal HaEmek – Kfar Baruch
+T|31.90107|35.00575|Modi'in Center
+T|33.00495|35.09883|Nahariya
+T|32.31995|34.86933|Netanya
+T|32.27967|34.86551|Netanya Sapir
+T|31.41075|34.57171|Netivot
+T|31.32151|34.63423|Ofakim
+T|31.89312|34.96070|Pa'atai Modi'in
+T|32.11189|34.90103|Petah Tikva Segula
+T|32.10625|34.86284|Petah Tikva–Kiryat Aryeh
+T|32.17265|34.88660|Ra'anana South
+T|32.17998|34.85084|Ra'anana West
+T|31.92922|34.87673|Ramla
+T|31.90910|34.80691|Rechovot
+T|31.98770|34.75728|Rishon LeTsiyyon - Moshe Dayan
+T|31.94885|34.80308|Rishon LeTsiyyon HaRishonim
+T|32.12064|34.93446|Rosh Ha'Ayin-North
+T|31.51577|34.58543|Sderot
+T|32.27634|34.99660|Shomron – Tayyiba
+T|32.05415|34.78480|Tel Aviv - HaHagana
+T|32.07356|34.79316|Tel Aviv Hashalom
+T|32.08424|34.79831|Tel Aviv Savidor Center
+T|32.10371|34.80461|Tel Aviv University
+T|32.22966|34.97701|Tira - Kokhav Ya'ir
+T|31.86134|34.74389|Yavne - East
+T|31.89118|34.73122|Yavne - West
+T|32.68104|35.12577|Yokneam – Kfar Yehoshua
+T|30.93829|34.66184|שרידים של תחנת רכבת טורקית

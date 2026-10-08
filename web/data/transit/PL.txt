@@ -1,0 +1,3348 @@
+# Transit for Koode, PL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|52.10383|16.15498|Adamowo|PKM|M
+S|52.46857|16.97962|Czerwonak|PKM|M
+S|52.48001|16.97805|Czerwonak Osiedle|PKM|M
+S|52.15696|16.29690|Drzymałowo|PKM|M
+S|52.22547|16.53124|Granowo|PKM|M
+S|52.23530|16.39091|Grąblewo|PKM|M
+S|52.23039|16.36396|Grodzisk Wielkopolski|PKM|M
+S|52.22835|16.48338|Kotowo|PKM|M
+S|52.34405|16.89281|Luboń koło Poznania|PKM|M
+S|52.57505|17.01572|Murowana Goślina|PKM|M
+S|52.61351|17.09492|Łopuchowo|PKM|M
+S|52.61904|17.10986|Łopuchowo Osiedle|PKM|M
+S|52.51144|16.98760|Owińska|PKM|M
+S|52.36854|16.90117|Poznań Dębiec|PKM|M
+S|52.41645|16.93680|Poznań Garbary|PKM|M
+S|52.40181|16.91221|Poznań Główny|PKM|M
+S|52.43839|16.98141|Poznań Karolin|PKM|M
+S|52.41817|16.97108|Poznań Wschód|PKM|M
+S|52.58344|17.02339|Przebędowo|PKM|M
+S|52.75369|17.18397|Przysieczyn|PKM|M
+S|52.22921|16.44137|Ptaszkowo|PKM|M
+S|52.13498|16.20700|Rostarzewo|PKM|M
+S|52.70883|17.17628|Roszkowo Wągrowieckie|PKM|M
+S|52.17725|16.34183|Ruchocice|PKM|M
+S|52.63460|17.14397|Sława Wielkopolska|PKM|M
+S|52.67421|17.16203|Skoki|PKM|M
+S|52.24342|16.61369|Strykowo Poznańskie|PKM|M
+S|52.28081|16.71016|Stęszew|PKM|M
+S|52.31780|16.80086|Szreniawa|PKM|M
+S|52.11627|16.17226|Tłoki|PKM|M
+S|52.29646|16.76706|Trzebaw Rosnówko|PKM|M
+S|52.80963|17.20340|Wągrowiec|PKM|M
+S|52.31548|16.86885|Wiry|PKM|M
+S|52.11116|16.10826|Wolsztyn|PKM|M
+S|52.56523|17.00857|Zielone Wzgórza|PKM|M
+S|52.23921|20.91550|Bemowo|ZTM Warszawa|M
+S|52.29359|21.02894|Bródno|ZTM Warszawa|M
+S|52.23101|21.01019|Centrum|ZTM Warszawa|M
+S|52.23991|21.03179|Centrum Nauki Kopernik|ZTM Warszawa|M
+S|52.25806|20.99419|Dworzec Gdański|ZTM Warszawa|M
+S|52.25378|21.03580|Dworzec Wileński|ZTM Warszawa|M
+S|52.14930|21.04611|Imielin|ZTM Warszawa|M
+S|52.13208|21.06507|Kabaty|ZTM Warszawa|M
+S|52.29208|21.04869|Kondratowicza|ZTM Warszawa|M
+S|52.23918|20.94438|Księcia Janusza|ZTM Warszawa|M
+S|52.27158|20.97194|Marymont|ZTM Warszawa|M
+S|52.29077|20.92987|Młociny|ZTM Warszawa|M
+S|52.23766|20.96010|Młynów|ZTM Warszawa|M
+S|52.14110|21.05644|Natolin|ZTM Warszawa|M
+S|52.23682|21.01682|Nowy Świat-Uniwersytet|ZTM Warszawa|M
+S|52.26926|20.98450|Plac Wilsona|ZTM Warszawa|M
+S|52.23245|20.96638|Płocka|ZTM Warszawa|M
+S|52.20878|21.00793|Pole Mokotowskie|ZTM Warszawa|M
+S|52.21866|21.01530|Politechnika|ZTM Warszawa|M
+S|52.19886|21.01223|Racławicka|ZTM Warszawa|M
+S|52.24522|21.00088|Ratusz Arsenał|ZTM Warszawa|M
+S|52.23008|20.98289|Rondo Daszyńskiego|ZTM Warszawa|M
+S|52.23307|20.99810|Rondo ONZ|ZTM Warszawa|M
+S|52.27683|20.96013|Słodowiec|ZTM Warszawa|M
+S|52.24683|21.04285|Stadion Narodowy|ZTM Warszawa|M
+S|52.28183|20.94935|Stare Bielany|ZTM Warszawa|M
+S|52.15608|21.03472|Stokłosy|ZTM Warszawa|M
+S|52.17276|21.02629|Służew|ZTM Warszawa|M
+S|52.26347|21.04552|Szwedzka|ZTM Warszawa|M
+S|52.26925|21.05137|Targówek Mieszkaniowy|ZTM Warszawa|M
+S|52.27510|21.05506|Trocka|ZTM Warszawa|M
+S|52.24033|20.92987|Ulrychów|ZTM Warszawa|M
+S|52.16205|21.02763|Ursynów|ZTM Warszawa|M
+S|52.28635|20.93952|Wawrzyszew|ZTM Warszawa|M
+S|52.18987|21.01680|Wierzbno|ZTM Warszawa|M
+S|52.18182|21.02315|Wilanowska|ZTM Warszawa|M
+S|52.23510|21.00790|Świętokrzyska|ZTM Warszawa|M
+S|52.28375|21.06215|Zacisze|ZTM Warszawa|M
+S|53.16159|16.73913|Most 500-lecia Piły|Piła|W
+S|53.16958|16.75030|Most Władysława Łokietka|Piła|W
+S|53.14680|16.75141|Most Zygmunta Starego|Piła|W
+S|53.15239|16.74077|Sródmieście - Wyspa|Piła|W
+S|55.37157|13.15446||Unity Line|W
+S|53.89970|14.25693|Terminal Promowy Świnoujście|Unity Line|W
+S|54.03193|21.76836|Giżycko|Żegluga Mazurska Spółka|W
+S|53.80041|21.57088|Port Mikołajki|Żegluga Mazurska Spółka|W
+S|53.68539|20.10202|Żegluga Ostródzko-Elbląska|Żegłoga Ostródzko-Elbląska|W
+S|53.70271|19.95932|Żegluga Ostródzko-Elbląska|Żegłoga Ostródzko-Elbląska|W
+L|PKM|PKM 3||15 14:2875 17:2482 16:2638 1:3367 2:1270 12:3707 34:6804 9:1188 18:1073 10:5929 11:1181 24:3073 25:4624 22:3978 19:4988 31:6527
+L|PKM|PKM3||31 19:6520 22:4988 25:3978 24:4624 11:3072 10:1181 18:5926 9:1072 34:1189 12:6801 2:3707 1:1270 16:3367 17:2636 14:2461 15:2900 13:3789 8:2767 32:3871 28:4793 30:3504 27:4378 26:7866 4:6852 7:3279 20:2866 5:3543 6:2069 23:7361 3:3898 21:7065 29:3975 0:1851 33:4592
+L|ZTM Warszawa|M1|blue|46 68:819 60:836 58:919 45:997 50:903 39:1456 55:1519 71:1134 37:565 53:1431 52:1253 54:1137 69:1042 70:1006 62:1101 67:1190 61:839 41:1085 48:1147 42:1158
+L|ZTM Warszawa|M1|blue|42 48:1158 41:1155 61:1079 67:832 62:1191 70:1111 69:1002 54:1042 52:1135 53:1247 37:1441 71:564 55:1135 39:1518 50:1467 45:906 58:989 60:919 68:836 46:819
+L|ZTM Warszawa|M2|#c60c30|36 43:1356 72:1473 65:1120 64:728 63:793 40:1564 59:945 38:1145 49:1080 71:563 57:766 56:1101 51:1374 47:808 44:1086 66:988 35:1005
+L|ZTM Warszawa|M2|#c60c30|35 66:1001 44:988 47:1086 51:791 56:1397 57:1102 71:767 49:562 38:1086 59:1159 40:953 63:1543 64:806 65:719 72:1134 43:1491 36:1355
+L|Piła|Pilski Tramwaj Wodny linia czerwona|red|76 75:1017
+L|Piła|Pilski Tramwaj Wodny linia niebieska|blue|74 73:1249 76:1104
+L|Piła|Pilski Tramwaj Wodny linia zielona|green|74 73:1249 76:1104 75:1017
+L|Unity Line|Świnoujście - Trelleborg||78 77:181628
+L|Żegluga Mazurska Spółka|Giżycko - Mikołajki||80 79:35773
+L|Żegłoga Ostródzko-Elbląska|Żegłoga Ostródzko-Elbląska||81 82:14894
+T|52.10386|16.15492|Adamowo
+T|51.90426|22.48226|Aleksandrów
+T|52.87586|18.69639|Aleksandrów Kujawski
+T|50.05930|19.52585|Alwernia
+T|49.85579|19.35336|Andrychów
+T|49.85847|19.32396|Andrychów Górnica
+T|49.34061|20.82099|Andrzejówka
+T|53.12910|17.48655|Anieliny
+T|52.20930|17.20876|Annopole
+T|51.77075|20.41953|Annosław
+T|51.51250|17.86118|Antonin
+T|51.47580|20.19835|Antoniów
+T|51.42479|21.27882|Antoniówka
+T|52.65986|20.31828|Arcelin
+T|53.85304|23.02508|Augustów
+T|53.86239|23.00395|Augustów Port
+T|51.98702|21.51383|Augustówka
+T|52.35354|18.67018|Babiak
+T|49.93443|21.89955|Babica
+T|49.93380|21.86996|Babica Kolonia
+T|50.14207|18.29913|Babice
+T|52.16957|15.81608|Babimost
+T|52.58033|16.63183|Baborówko
+T|52.68331|20.25993|Baboszewo
+T|51.53693|19.71676|Baby
+T|49.83530|22.24524|Bachórz
+T|53.04640|22.98241|Baciuty
+T|53.73727|22.23960|Bajtkowo
+T|52.40477|16.97912|Balbinka
+T|50.17905|19.38341|Balin
+T|53.76793|23.16120|Balinka
+T|49.18536|22.21547|Balnica
+T|50.47255|21.55966|Baranów Sandomierski
+T|50.14658|20.09541|Baranówka
+T|52.51767|21.64758|Barchów
+T|49.52655|20.64865|Barcice
+T|53.84475|20.70030|Barczewo
+T|52.15683|21.62625|Barcząca
+T|50.50952|16.75796|Bardo Przyłęk
+T|50.50485|16.73408|Bardo Śląskie
+T|50.64194|16.40795|Bartnica
+T|53.99927|23.05390|Bartny Dół
+T|51.52513|21.17802|Bartodzieje
+T|53.71318|20.44730|Bartąg
+T|49.86475|19.62111|Barwałd Górny
+T|49.86934|19.60276|Barwałd Średni
+T|53.32702|15.26401|Barzkowice
+T|52.21592|18.76790|Barłogi
+T|53.86271|15.19236|Baszewice
+T|50.17860|23.25006|Basznia
+T|50.18995|23.20724|Basznia Dolna
+T|51.09085|15.15570|Batowice Lubańskie
+T|49.39723|20.01604|Bańska Niżna
+T|49.73449|18.70223|Bażanowice
+T|52.10554|20.06479|Bednary
+T|51.73200|19.64235|Bedoń
+T|52.20383|16.00814|Belęcin Wielkopolski
+T|51.51422|22.72152|Berejów
+T|51.02340|20.83576|Berezów
+T|49.59055|21.95622|Besko
+T|51.77186|22.80423|Bezwola
+T|52.02677|20.03299|Bełchów
+T|49.97286|18.37311|Bełsznica
+T|50.37690|23.44953|Bełżec
+T|50.38077|23.40367|Bełżec Drugi
+T|51.67735|17.56578|Biadki
+T|50.00379|20.73508|Biadoliny
+T|51.29751|15.92847|Biała Górna
+T|53.06128|16.51703|Biała Pilska
+T|53.61487|22.06559|Biała Piska
+T|52.02025|23.13041|Biała Podlaska
+T|52.02064|23.16153|Biała Podlaska Wschodnia
+T|51.80230|20.47279|Biała Rawska
+T|51.17524|19.02496|Biała Szlachecka
+T|52.12868|22.30937|Białki Siedleckie
+T|54.00999|15.97765|Białogard
+T|53.09776|17.12428|Białośliwie
+T|53.09666|17.11829|Białośliwie Wąskotorowe
+T|53.61524|14.84103|Białuń
+T|53.88672|16.85538|Biały Bór
+T|49.37622|20.00718|Biały Dunajec
+T|50.72846|17.02995|Biały Kościół
+T|53.25655|15.95452|Biały Zdrój Południowy
+T|51.79855|19.99904|Białynin
+T|53.13362|23.13544|Białystok
+T|53.15052|23.07199|Białystok Bacieczki
+T|53.14052|23.18419|Białystok Fabryczny
+T|53.10645|23.11371|Białystok Nowe Miasto
+T|53.09780|23.12954|Białystok Stadion
+T|53.12119|23.08678|Białystok Starosielce
+T|53.11550|23.10301|Białystok Zielone Wzgórza
+T|49.73285|21.26386|Biecz
+T|54.09581|15.35327|Bieczyno Pomorskie
+T|51.03613|16.97577|Bielany Wrocławskie
+T|50.69278|16.62078|Bielawa Centralna
+T|50.66320|16.59963|Bielawa Góry Sowie
+T|50.67942|16.58851|Bielawa Jezioro
+T|50.68587|16.60672|Bielawa Zachodnia
+T|52.82227|14.46685|Bielin
+T|51.42400|20.50207|Bieliny Opoczyńskie
+T|52.76138|23.18815|Bielsk Podlaski
+T|49.82986|19.04532|Bielsko-Biala Main Station
+T|49.86145|19.03582|Bielsko-Biała Komorowice
+T|49.79706|19.06080|Bielsko-Biała Leszczyny
+T|49.81401|19.04964|Bielsko-Biała Lipnik
+T|49.78242|19.07460|Bielsko-Biała Mikuszowice
+T|49.84154|19.04152|Bielsko-Biała Północ
+T|49.83465|19.05856|Bielsko-Biała Wschód
+T|51.71599|15.17941|Bieniów
+T|50.29435|18.25610|Bierawa
+T|50.47554|16.60505|Bierkowice
+T|52.95711|16.34282|Biernatowo
+T|51.12844|17.54612|Bierutów
+T|53.02406|15.65812|Bierzwnik
+T|53.72009|20.19267|Biesal
+T|54.19358|16.88778|Biesowice
+T|54.01291|23.01188|Binduga
+T|51.73895|17.79240|Biniew
+T|51.16056|22.94748|Biskupice
+T|50.99399|17.51554|Biskupice Oławskie
+T|52.46682|17.16858|Biskupice Wielkopolskie
+T|51.07115|18.21030|Biskupice koło Kluczborka
+T|53.48949|19.38931|Biskupiec Pomorski
+T|52.79410|17.73266|Biskupin
+T|52.78508|17.74387|Biskupin Muzeum
+T|53.65507|17.21163|Biskupnica
+T|50.55142|22.73180|Biłgoraj
+T|53.66012|17.12944|Bińcze
+T|50.77389|18.96959|Blachownia
+T|53.90636|23.01500|Blizna
+T|51.11044|20.75729|Bliżyn
+T|49.71677|20.95765|Bobowa
+T|49.70819|20.93911|Bobowa-Miasto
+T|52.44749|15.64678|Bobowicko
+T|52.05858|20.01041|Bobrowniki
+T|53.52828|16.07833|Bobrowo Pomorskie
+T|51.02872|19.40482|Bobry
+T|50.04970|22.85920|Bobrówka
+T|49.97734|20.43097|Bochnia
+T|52.32675|14.94624|Boczów
+T|50.91347|21.43440|Bodzechów
+T|54.10013|19.57294|Bogaczewo
+T|51.84412|15.26803|Bogaczów
+T|52.68934|15.07940|Bogdaniec
+T|52.62734|16.81817|Bogdanowo
+T|49.79842|20.97654|Bogoniowice Ciężkowice
+T|49.98429|21.93453|Boguchwała
+T|49.99459|21.94390|Boguchwała Dolna
+T|50.00752|20.87276|Bogumiłowice
+T|53.42204|19.00073|Boguszewo
+T|51.75109|20.19124|Boguszyce
+T|50.75038|16.20172|Boguszów-Gorce
+T|50.72761|16.21765|Boguszów-Gorce Dzikowiec
+T|50.74792|16.22176|Boguszów-Gorce Wschód
+T|50.76238|16.16723|Boguszów-Gorce Zachód
+T|51.70068|16.74400|Bojanowo
+T|53.02771|22.94964|Bojary
+T|50.95023|21.32207|Boksycka
+T|52.53947|16.97927|Bolechowo
+T|54.37270|16.58410|Boleszewo
+T|52.73650|14.51894|Boleszkowice
+T|50.88769|16.46463|Bolesławice Świdnickie
+T|51.26608|15.56953|Bolesławiec
+T|54.15032|16.25357|Bonin
+T|50.87893|17.02458|Boreczek
+T|52.08904|22.35833|Borki-Kosy
+T|50.93232|18.15652|Borkowice
+T|54.33347|18.33344|Borkowo
+T|50.66538|18.90143|Boronów
+T|51.18411|17.27609|Borowa Oleśnicka
+T|52.48353|23.22285|Borowiki
+T|51.82502|22.27026|Borowina
+T|53.22733|22.93095|Borsukówka
+T|51.60975|19.03566|Borszewice
+T|50.98193|17.55677|Borucice
+T|51.96088|16.33532|Boszkowo
+T|52.18989|20.52687|Boża Wola
+T|51.73241|17.43393|Bożacin
+T|54.56885|17.96776|Bożepole Wielkie
+T|53.80230|18.96129|Brachlewo
+T|54.38094|19.84215|Braniewo
+T|51.45537|20.11500|Bratków
+T|51.93851|19.65279|Bratoszewice
+T|51.27603|17.09413|Brochocin Trzebnicki
+T|52.31469|20.28424|Brochów
+T|53.26367|19.40592|Brodnica
+T|51.02151|21.20030|Brody Iłżeckie
+T|52.51380|20.74804|Brody Warszawskie
+T|53.56280|16.81750|Brokęcino
+T|51.79450|17.77431|Bronów
+T|53.88251|17.72799|Brusy
+T|52.14191|20.71901|Brwinów
+T|51.09723|20.80321|Brzask
+T|50.85290|17.47089|Brzeg
+T|51.26696|16.72503|Brzeg Dolny
+T|51.69107|15.91797|Brzeg Głogowski
+T|49.98676|20.60934|Brzesko Okocim
+T|49.99585|19.15477|Brzeszcze
+T|49.97230|19.12846|Brzeszcze Jawiszowice
+T|52.69651|18.96440|Brzezie
+T|51.21972|16.83680|Brzezinka Średzka
+T|50.77593|20.56686|Brzeziny
+T|49.96744|19.62792|Brzeźnica
+T|51.52890|22.74255|Brzeźnica Bychawska
+T|53.67090|17.48220|Brzeźno Człuchowskie
+T|53.02728|18.02057|Brzoza Bydgoska
+T|52.96139|18.68531|Brzoza Toruńska
+T|51.95371|22.60754|Brzozowica
+T|52.65330|15.36739|Brzozowiec Gorzowski
+T|51.49350|20.14670|Brzustów
+T|50.89837|21.48288|Brzóstowa
+T|52.10503|20.67830|Brzózki
+T|51.91701|15.36303|Buchałów
+T|52.15303|15.08149|Budachów
+T|52.24445|18.56345|Budki Nowe
+T|50.16819|21.91818|Budy Głogowskie
+T|50.52285|17.53337|Budziszowice
+T|52.89360|16.96620|Budzyń
+T|53.47944|20.37599|Bujaki
+T|52.34348|16.52068|Buk
+T|50.85935|20.20101|Bukowa
+T|51.39951|17.36854|Bukowice Trzebnickie
+T|52.38526|15.70641|Bukowiec Międzyrzecki
+T|51.38817|17.58322|Bukowina Sycowska
+T|50.26398|19.45948|Bukowno
+T|50.27538|19.40977|Bukowno Przymiarki
+T|50.89635|18.10685|Bukowo
+T|53.57348|17.37224|Bukowo Człuchowskie
+T|53.86776|20.37892|Bukwałd
+T|49.87621|19.28981|Bulowice
+T|53.27506|20.13537|Burkat
+T|50.79349|16.47338|Burkatów
+T|53.40139|19.07000|Bursztynowo
+T|50.46193|20.68582|Busko-Zdrój
+T|51.11372|18.19988|Byczyna Kluczborska
+T|53.13188|18.05293|Bydgoszcz Bielawy
+T|53.13354|18.11126|Bydgoszcz Brdyujście
+T|53.11834|17.95163|Bydgoszcz Błonie
+T|53.14634|18.15687|Bydgoszcz Fordon
+T|53.14432|18.03091|Bydgoszcz Leśna
+T|53.14816|17.91215|Bydgoszcz Osowa Góra
+T|53.14086|18.13763|Bydgoszcz Politechnika
+T|53.14772|18.16605|Bydgoszcz Stary Fordon
+T|53.12790|18.08273|Bydgoszcz Wschód
+T|53.13613|17.94872|Bydgoszcz Zachód
+T|53.13529|17.99160|Bydgoszcz main railway station
+T|53.10715|18.11264|Bydgoszcz Łęgnowo
+T|49.65891|19.78698|Bystra Podhalańska
+T|50.78129|16.45613|Bystrzyca Górna
+T|50.29690|16.65496|Bystrzyca Kłodzka
+T|50.28556|16.64699|Bystrzyca Kłodzka Przedmieście
+T|51.34939|22.63866|Bystrzyca koło Lublina
+T|52.13169|15.14740|Bytnica
+T|50.34302|18.91528|Bytom
+T|50.35180|18.88210|Bytom Karb
+T|50.34967|18.88552|Bytom Karb Wąskotorowy
+T|51.72676|15.81989|Bytom Odrzański
+T|50.38410|18.88400|Bytom Stroszek
+T|50.34258|18.91395|Bytom Wąskotorowy
+T|53.93181|18.26741|Bytonia
+T|54.01962|20.31615|Bzowiec
+T|51.51783|21.72550|Bąkowiec
+T|50.95613|18.31460|Bąków
+T|50.06656|21.77390|Będziemyśl
+T|50.33052|19.15793|Będzin Ksawera
+T|50.31919|19.13554|Będzin Miasto
+T|54.21119|15.99278|Będzino
+T|52.07341|15.31123|Będów
+T|53.78796|18.04276|Będźmierowice
+T|51.67368|18.47109|Błaszki
+T|50.74424|15.99003|Błażkowa
+T|52.18652|20.60740|Błonie
+T|52.18898|20.64007|Błonie Rokitno
+T|51.99300|16.30047|Błotnica
+T|50.48382|18.40410|Błotnica Strzelecka
+T|53.47628|18.11520|Błądzim
+T|52.14847|21.73632|Cegłów
+T|53.57635|18.02758|Cekcyn
+T|52.05765|21.39409|Celestynów
+T|53.90965|20.39672|Cerkiewnik
+T|49.59706|19.93728|Chabówka
+T|49.58996|19.92045|Chabówka Stadion
+T|54.53193|16.92043|Charnowo Słupskie
+T|50.39613|19.94139|Charsznica
+T|49.92580|18.31141|Chałupki
+T|54.76153|18.50260|Chałupy
+T|51.64495|19.28652|Chechło
+T|51.14132|23.49420|Chełm
+T|51.14096|23.54234|Chełm Cementownia
+T|51.13805|23.45832|Chełm City
+T|50.10935|19.18384|Chełm Śląski
+T|50.09936|19.25421|Chełmek
+T|51.45605|16.35949|Chełmek Wołowski
+T|53.18519|18.59791|Chełmża
+T|52.56007|16.82530|Chludowo
+T|53.00162|18.05014|Chmielniki Bydgoskie
+T|50.52334|21.68582|Chmielów Zagumnie
+T|51.41642|15.91207|Chocianów
+T|52.07025|17.34957|Chocicza
+T|51.92345|19.26739|Chociszew
+T|52.30709|15.76998|Chociszewo Rogoziniec
+T|51.40651|18.98254|Chociw Łaski
+T|53.47058|15.33579|Chociwel
+T|49.87414|19.45198|Chocznia
+T|49.86256|19.43205|Chocznia Górna
+T|52.99392|16.90957|Chodzież
+T|52.96386|14.44396|Chojna
+T|53.68907|17.57775|Chojnice
+T|49.85086|20.98348|Chojnik
+T|51.27769|15.93766|Chojnów
+T|53.28189|20.93955|Chorzele
+T|50.34356|21.45309|Chorzelów
+T|50.33037|21.44342|Chorzelów Południowy
+T|51.20964|18.94115|Chorzew Siemkowice
+T|50.27828|18.94496|Chorzów Batory
+T|50.29847|18.94927|Chorzów Miasto
+T|50.31683|18.95696|Chorzów Stary
+T|50.29286|18.94131|Chorzów Uniwersytet
+T|53.16485|15.40403|Choszczno
+T|52.41570|20.88469|Chotomów
+T|51.99684|23.35582|Chotyłów
+T|51.35813|20.92988|Chronów
+T|52.03144|21.44851|Chrosna
+T|52.28138|15.99173|Chrośnica
+T|51.69487|19.79433|Chrusty Nowe
+T|50.40038|19.32907|Chruszczobród
+T|50.13328|19.39820|Chrzanów
+T|50.14453|19.41409|Chrzanów Śródmieście
+T|51.07349|17.27614|Chrząstawa Mała
+T|50.66066|18.07517|Chrząstowice
+T|50.34435|19.68571|Chrząstowice Olkuskie
+T|52.44713|21.47470|Chrzęsne
+T|51.35540|16.18093|Chróstnik
+T|50.79282|17.81670|Chróścice
+T|50.61677|17.37826|Chróścina Nyska
+T|50.66984|17.81814|Chróścina Opolska
+T|52.28324|17.52505|Chwalibogowo
+T|49.89295|18.80905|Chybie
+T|49.88746|18.82079|Chybie Mnich
+T|51.90273|21.10069|Chynów
+T|52.73904|23.51501|Chytra
+T|50.75631|18.62946|Ciasna
+T|50.86542|15.97986|Ciechanowice
+T|52.88376|20.59077|Ciechanów
+T|52.86465|20.61541|Ciechanów Przemysłowy
+T|52.88113|18.78760|Ciechocinek
+T|54.17253|16.88774|Ciecholub
+T|51.31894|22.60813|Ciecierzyn
+T|52.57744|20.66418|Cieksyn
+T|52.27256|17.96599|Cienin
+T|52.27006|18.00953|Cienin Kościelny
+T|54.23361|18.64759|Cieplewo
+T|52.98892|18.46860|Cierpice
+T|52.99190|18.44654|Cierpice Kąkol
+T|52.22606|22.59478|Cierpigórz
+T|51.63136|17.35262|Cieszków
+T|49.75131|18.63593|Cieszyn
+T|49.78464|18.60399|Cieszyn Marklowice
+T|49.75071|18.64875|Cieszyn Uniwersytet
+T|53.52067|15.46919|Cieszyno Łobeskie
+T|49.98492|20.38066|Cikowice
+T|52.20997|21.39049|Cisie
+T|49.58350|19.10554|Cisiec
+T|49.60956|19.13626|Cięcina
+T|49.62153|19.15199|Cięcina Dolna
+T|50.29392|21.75208|Cmolas
+T|53.29310|15.81660|Cybowo
+T|54.24127|19.13833|Cyganek
+T|54.22807|19.11871|Cyganka Przejazd
+T|50.51277|21.69701|Cygany
+T|50.96440|19.16345|Cykarzew Północny
+T|51.96771|21.07773|Czachówek Górny
+T|51.95823|21.08157|Czachówek Południowy
+T|51.97347|21.10421|Czachówek Wschodni
+T|53.53724|16.23803|Czaplinek
+T|54.04816|18.76682|Czarlin
+T|53.30570|23.27976|Czarna Białostocka
+T|50.06040|21.24879|Czarna Tarnowska
+T|53.85121|18.10864|Czarna Woda
+T|50.82389|19.94470|Czarnca
+T|53.67999|16.93857|Czarne
+T|53.55744|16.31911|Czarne Małe
+T|51.14368|20.51855|Czarniecka Góra
+T|53.69978|16.76792|Czarnobór
+T|53.93991|15.98145|Czarnowęsy Pomorskie
+T|53.24843|23.20914|Czarny Blok
+T|49.45911|22.21974|Czaszyn
+T|49.91549|19.00733|Czechowice-Dziedzice
+T|49.89018|19.02432|Czechowice-Dziedzice Południowe
+T|49.90570|19.02238|Czechowice-Dziedzice Przystanek
+T|53.35118|22.83685|Czechowizna
+T|51.68547|17.86060|Czekanów
+T|51.72793|17.16381|Czeluścin
+T|52.13852|16.75190|Czempiń
+T|53.28503|14.51265|Czepino
+T|52.51875|23.35351|Czeremcha
+T|52.86370|19.42479|Czermno
+T|51.70225|15.88458|Czerna
+T|51.22998|16.80355|Czerna Mała
+T|51.04968|17.23581|Czernica Wrocławska
+T|52.42446|17.56519|Czerniejewo
+T|52.50893|19.08936|Czerniewice
+T|52.93947|18.95104|Czernikowo
+T|53.80072|17.97059|Czersk
+T|53.55143|18.46758|Czersk Świecki
+T|52.93611|20.50600|Czeruchy
+T|52.01515|15.41250|Czerwieńsk
+T|50.14879|18.68518|Czerwionka
+T|50.15669|18.66430|Czerwionka Dębieńsko
+T|52.46857|16.97962|Czerwonak
+T|52.48001|16.97810|Czerwonak Osiedle
+T|53.91399|20.89277|Czerwonka
+T|50.75807|17.45937|Czeska Wieś
+T|51.30764|22.26300|Czesławice
+T|49.94031|21.83331|Czudec
+T|53.47223|23.63163|Czuprynowo
+T|52.80022|22.34348|Czyżew
+T|49.97406|18.42544|Czyżowice
+T|50.80843|19.12097|Częstochowa
+T|50.83528|19.15163|Częstochowa Aniołów
+T|50.79159|19.02919|Częstochowa Gnaszyn
+T|50.78763|19.15543|Częstochowa Raków
+T|50.79732|19.10700|Częstochowa Stradom
+T|53.65711|17.37039|Człuchów
+T|52.59447|20.46390|Dalanówek
+T|52.68247|21.49435|Dalekie
+T|53.30628|14.52908|Daleszewo
+T|53.74788|16.60847|Dalęcino
+T|54.49760|17.27330|Damnica
+T|51.66746|17.61427|Daniszyn
+T|49.93726|19.08236|Dankowice
+T|54.41698|16.40439|Darłowo
+T|54.07733|15.87478|Daszewo
+T|52.67173|15.30670|Deszczno
+T|52.37890|21.31319|Dobczyn
+T|52.96897|15.74543|Dobiegniew
+T|51.63104|21.17635|Dobieszyn
+T|53.22687|16.52491|Dobino Wałeckie
+T|50.50729|16.94269|Doboszowice
+T|53.98295|20.38539|Dobre Miasto
+T|53.91003|19.82914|Dobrocin
+T|51.27051|17.36380|Dobroszyce
+T|52.56179|23.39159|Dobrowoda
+T|51.62936|19.24084|Dobroń
+T|51.99857|23.44138|Dobrynka
+T|51.12429|19.44432|Dobryszyce koło Radomska
+T|49.87286|21.74366|Dobrzechów
+T|52.99910|18.82210|Dobrzejewice
+T|50.77202|17.85948|Dobrzeń Wielki
+T|51.08755|17.18003|Dobrzykowice Wrocławskie
+T|53.19439|23.00283|Dobrzyniewo Duże
+T|53.43423|20.38657|Dobrzyń
+T|53.19895|15.20964|Dolice
+T|53.49874|18.67722|Dolna Grupa
+T|53.21131|14.48096|Dolna Odra
+T|53.25554|16.92985|Dolnik
+T|52.02057|19.82106|Domaniewice
+T|52.01191|19.79190|Domaniewice Centrum
+T|51.34436|17.99533|Domanin
+T|50.21315|16.65524|Domaszków
+T|51.04862|17.88336|Domaszowice
+T|51.00999|16.95294|Domasław
+T|51.21232|22.84359|Dominów
+T|53.66781|17.03300|Domisław
+T|52.35375|16.67797|Dopiewo
+T|51.17208|23.78418|Dorohusk
+T|53.49153|18.71008|Dragacz
+T|52.89685|15.95046|Drawiny
+T|52.86084|16.09306|Drawski Młyn
+T|53.52304|15.82303|Drawsko Pomorskie
+T|54.04900|14.99689|Dreżewo
+T|49.88675|18.75710|Drogomyśl
+T|52.21016|16.82375|Drużyna Poznańska
+T|53.67913|22.10385|Drygały
+T|50.87563|21.57818|Drygulec
+T|52.26944|15.16170|Drzewce
+T|51.43699|20.46570|Drzewica
+T|52.36982|14.77142|Drzeńsko
+T|53.80683|16.86617|Drzonowo
+T|53.50711|18.30607|Drzycim
+T|52.15695|16.29694|Drzymałowo
+T|51.10257|19.14303|Dubidze
+T|51.11560|19.13071|Dubidze-Kolonia
+T|53.50876|18.55659|Dubielno
+T|50.14047|19.52066|Dulowa
+T|54.12184|16.09126|Dunowo
+T|50.40903|16.38581|Duszniki-Zdrój
+T|50.73207|21.79118|Dwikozy
+T|50.04550|19.28561|Dwory
+T|54.14083|15.72681|Dygowo
+T|49.80579|22.23964|Dynów
+T|50.32983|17.67656|Dytmarów
+T|53.23886|20.16732|Działdowo
+T|51.11697|18.91429|Działoszyn
+T|53.07049|16.81560|Dziembówko
+T|54.00996|17.77394|Dziemiany Kaszubskie
+T|50.24214|18.30057|Dziergowice
+T|51.71217|17.35372|Dzierżanów Wielkopolski
+T|50.72424|16.64091|Dzierżoniów Śląski
+T|54.31507|18.26611|Dzierżążno
+T|51.11708|18.61480|Dzietrzniki
+T|52.05541|22.38622|Dziewule
+T|53.61887|18.90142|Dziwno
+T|51.75724|16.85477|Dzięczyn
+T|50.16976|21.49529|Dąbie koło Dębicy
+T|52.42379|21.08611|Dąbkowizna
+T|52.61887|14.71235|Dąbroszyn
+T|53.64712|23.36554|Dąbrowa Białostocka
+T|53.17525|18.28197|Dąbrowa Chełmińska
+T|53.18133|18.29397|Dąbrowa Chełmińska Centrum
+T|50.33037|19.18482|Dąbrowa Górnicza
+T|50.34388|19.22599|Dąbrowa Górnicza Gołonóg
+T|50.35047|19.24079|Dąbrowa Górnicza Pogoria
+T|50.31230|19.28728|Dąbrowa Górnicza Południowa
+T|50.38866|19.29746|Dąbrowa Górnicza Sikorka
+T|50.31082|19.26855|Dąbrowa Górnicza Strzemieszyce
+T|50.30336|19.31128|Dąbrowa Górnicza Wschodnia
+T|50.36659|19.26468|Dąbrowa Górnicza Ząbkowice
+T|50.38692|18.86841|Dąbrowa Miejska
+T|50.69158|17.75387|Dąbrowa Niemodlińska
+T|51.23008|17.36892|Dąbrowa Oleśnicka
+T|52.84013|22.45582|Dąbrowa-Łazy
+T|51.93337|20.10231|Dąbrowice Skierniewickie
+T|53.51737|18.48951|Dąbrowy
+T|49.81472|19.59974|Dąbrówka Jezioro Mucharskie
+T|53.97753|19.08710|Dąbrówka Malborska
+T|52.27772|15.80014|Dąbrówka Wielkopolska
+T|51.30931|21.04590|Dąbrówka Zabłotnia
+T|51.48192|20.25828|Dęba Opoczyńska
+T|50.42881|21.74313|Dęba Rozalin
+T|52.19920|21.42278|Dębe Wielkie
+T|50.05393|21.40415|Dębica
+T|50.06245|21.44886|Dębica Wschodnia
+T|51.57978|21.83177|Dęblin
+T|50.66428|18.11277|Dębska Kuźnia
+T|50.70175|20.59758|Dębska Wola
+T|50.48224|23.10320|Długi Kąt
+T|49.57813|22.04951|Długie
+T|50.23847|16.63786|Długopole-Zdrój
+T|51.17846|17.19445|Długołęka
+T|54.15098|19.41555|Elbląg
+T|53.82435|22.36305|Ełk
+T|53.80083|22.37298|Ełk Szyba Wschód
+T|53.80209|22.37014|Ełk Szyba Zachód
+T|53.82626|22.36346|Ełk Wąskotorowy
+T|53.17672|23.02504|Fasty
+T|52.49846|17.42399|Fałkowo
+T|53.26961|18.62955|Firlus
+T|54.06763|19.24904|Fiszewo
+T|52.61950|16.13417|Folwark
+T|50.66045|18.36015|Fosowskie
+T|54.35763|19.67613|Frombork
+T|52.36082|22.92905|Fronołów
+T|49.83155|21.61818|Frysztak
+T|50.39459|19.87880|Gajówka
+T|53.84494|20.13852|Gamerki Wielkie
+T|51.49480|21.63006|Garbatka-Letnisko
+T|51.51256|16.89026|Garbce
+T|54.58964|17.70306|Garczegorze
+T|54.12374|17.91089|Garczyn
+T|53.59136|18.93339|Gardeja
+T|51.53988|17.64868|Garki
+T|51.90190|21.55347|Garwolin
+T|52.11234|19.21956|Gawrony
+T|51.72982|19.73182|Gałkówek
+T|54.52297|16.93974|Gałęzinowo
+T|53.81647|19.17013|Gdakowo
+T|54.36513|18.57355|Gdańsk Brętowo
+T|54.37828|18.48713|Gdańsk Firoga
+T|54.35371|18.55030|Gdańsk Jasień
+T|54.35536|18.52856|Gdańsk Kiełpinek
+T|54.36233|18.49217|Gdańsk Kokoszki
+T|54.30147|18.63591|Gdańsk Lipce
+T|54.37349|18.50638|Gdańsk Matarnia
+T|54.37816|18.57208|Gdańsk Niedźwiednik
+T|54.40949|18.57198|Gdańsk Oliwa
+T|54.32425|18.63448|Gdańsk Orunia
+T|54.42239|18.45281|Gdańsk Osowa
+T|54.37419|18.62741|Gdańsk Politechnika
+T|54.38273|18.46654|Gdańsk Port Lotniczy
+T|54.40073|18.57662|Gdańsk Przymorze-Uniwersytet
+T|54.38743|18.44651|Gdańsk Rębiechowo
+T|54.38750|18.63316|Gdańsk Stadion Expo
+T|54.36464|18.64179|Gdańsk Stocznia
+T|54.39175|18.57883|Gdańsk Strzyża
+T|54.38177|18.60551|Gdańsk Wrzeszcz
+T|54.38977|18.59153|Gdańsk Zaspa
+T|54.35643|18.64419|Gdańsk railway station
+T|54.34688|18.64435|Gdańsk Śródmieście
+T|54.42077|18.56849|Gdańsk Żabianka-AWFiS
+T|54.54575|18.46366|Gdynia Chylonia
+T|54.54981|18.44719|Gdynia Cisowa
+T|54.53404|18.49665|Gdynia Grabówek
+T|54.52179|18.52683|Gdynia Główna
+T|54.46988|18.50885|Gdynia Karwiny
+T|54.54135|18.47851|Gdynia Leszczynki
+T|54.47665|18.54863|Gdynia Orłowo
+T|54.49158|18.53835|Gdynia Redłowo
+T|54.49615|18.53322|Gdynia Stadion
+T|54.52555|18.51926|Gdynia Stocznia - Uniwersytet Morski
+T|54.50762|18.53549|Gdynia Wzgórze Świętego Maksymiliana
+T|53.38225|23.43531|Geniusze
+T|51.19206|15.29986|Gierałtów
+T|51.21681|15.28457|Gierałtów Wykroty
+T|52.99261|21.60396|Gierwaty
+T|51.11990|20.72883|Gilów
+T|54.03140|21.77773|Giżycko
+T|49.73700|21.53852|Gliniczek
+T|53.46581|23.50109|Gliniszcze
+T|51.88694|19.49720|Glinnik
+T|51.88254|19.48164|Glinnik Wieś
+T|50.30116|18.67704|Gliwice
+T|50.35691|18.62147|Gliwice Kuźnica
+T|50.34036|18.62236|Gliwice Łabędy
+T|50.10022|22.52146|Gniewczyna
+T|52.88807|18.40395|Gniewkowo
+T|52.52967|17.60323|Gniezno
+T|52.52784|17.59651|Gniezno Wąskotorowe
+T|49.94432|18.96676|Goczałkowice
+T|49.93637|18.97590|Goczałkowice-Zdrój
+T|51.00843|16.32533|Goczałków
+T|53.81760|20.25035|Godki
+T|52.90122|14.45858|Godków
+T|54.58192|17.86323|Godętowo
+T|53.37198|15.17592|Gogolewo
+T|50.49316|18.01860|Gogolin
+T|53.55946|14.83959|Goleniów
+T|53.52968|14.81018|Goleniów Park Przemysłowy
+T|49.74706|18.74940|Goleszów
+T|49.73690|18.73326|Goleszów Górny
+T|51.90627|17.45960|Golina
+T|51.87356|18.17957|Goliszew
+T|52.53491|16.82798|Golęczewo
+T|51.16356|19.48679|Gomunice
+T|53.45939|22.72632|Goniądz
+T|49.66345|21.16259|Gorlice
+T|49.67223|21.17387|Gorlice Glinik
+T|49.69412|21.19543|Gorlice Zagórzany
+T|50.35442|16.64084|Gorzanów
+T|51.32832|16.18104|Gorzelin
+T|51.21829|19.60324|Gorzkowice
+T|53.35074|18.69344|Gorzuchowo Chełmińskie
+T|50.48974|16.57179|Gorzuchów Kłodzki
+T|51.69184|17.50413|Gorzupia
+T|50.07375|19.24211|Gorzów Chrzanowski
+T|52.72765|15.22864|Gorzów Wielkopolski
+T|52.68922|15.28056|Gorzów Wielkopolski Karnin
+T|52.71815|15.18164|Gorzów Wielkopolski Wieprzyce
+T|52.73184|15.24920|Gorzów Wielkopolski Wschodni
+T|52.72267|15.23909|Gorzów Wielkopolski Zamoście
+T|52.69950|15.26203|Gorzów Wielkopolski Zieleniec
+T|51.19705|19.54402|Gorzędów
+T|52.43342|19.47617|Gostynin
+T|50.18465|20.06123|Goszcza
+T|50.57306|17.62216|Goszczowice
+T|52.92104|21.58193|Goworowo
+T|52.72936|19.69564|Gozdowo
+T|52.54682|19.09112|Gołaszewo Kujawskie
+T|52.94732|17.30521|Gołańcz
+T|52.78457|20.68183|Gołotczyzna
+T|54.21252|18.03680|Gołubie Kaszubskie
+T|51.50529|21.90995|Gołąb
+T|54.60506|18.16108|Gościcino Wejherowskie
+T|53.97530|19.01827|Gościszewo
+T|51.81629|21.13986|Gośniewice
+T|50.47852|17.25717|Goświnowice
+T|51.65364|15.11633|Grabik
+T|50.04603|21.33237|Grabiny
+T|51.71244|21.70527|Grabniak
+T|51.34322|17.40347|Grabowno Wielkie
+T|53.07262|21.53389|Grabowo
+T|51.70383|22.09664|Grabów Szlachecki
+T|51.74208|21.18211|Grabów nad Pilicą
+T|53.65010|22.44818|Grajewo
+T|53.32013|20.03509|Gralewo
+T|51.51168|17.64518|Granowiec
+T|52.22543|16.53124|Granowo
+T|52.66249|23.24161|Gregorowce
+T|52.64780|23.25810|Gregorowce Południowe
+T|50.49437|20.64181|Grochowiska
+T|50.69778|17.37628|Grodków Śląski
+T|54.34533|19.96155|Grodzie
+T|52.11040|20.62346|Grodzisk Mazowiecki
+T|52.10332|20.63678|Grodzisk Mazowiecki Jordanowice
+T|52.10071|20.65956|Grodzisk Mazowiecki Okrężna
+T|52.10276|20.65107|Grodzisk Mazowiecki Piaskowa
+T|52.10064|20.62845|Grodzisk Mazowiecki Radońska
+T|52.23047|16.36389|Grodzisk Wielkopolski
+T|50.17007|22.50872|Grodzisko Dolne
+T|52.16083|21.87233|Grodziszcze Mazowieckie
+T|53.60631|20.86206|Grom
+T|49.83439|20.96115|Gromnik
+T|53.99152|19.05367|Gronajny
+T|54.09001|19.30595|Gronowo Elbląskie
+T|51.42955|21.30204|Groszowice Wrzosów
+T|51.88724|19.31104|Grotniki
+T|53.48198|18.76155|Grudziądz
+T|53.43341|18.72544|Grudziądz Mniszek
+T|53.50320|18.84783|Grudziądz Owczarki
+T|53.47419|18.74885|Grudziądz Przedmieście
+T|53.45075|18.73328|Grudziądz Rządz
+T|53.48633|18.81207|Grudziądz Tuszewo
+T|53.48240|18.74750|Grudziądz Śródmieście
+T|53.50396|18.62950|Grupa
+T|49.62599|20.95713|Grybów
+T|53.91441|15.19146|Gryfice
+T|53.91360|15.19167|Gryfice Wąskotorowe
+T|53.25412|14.49296|Gryfino
+T|51.03398|15.42898|Gryfów Śląski
+T|52.88892|17.22787|Grylewo
+T|53.61309|20.34660|Gryźliny
+T|52.48550|21.42875|Grzegorzewo
+T|53.83246|16.41977|Grzmiąca
+T|53.20348|18.44669|Grzybno
+T|53.15516|18.61701|Grzywna
+T|53.35826|14.97251|Grzędzice
+T|50.08004|22.45256|Grzęska
+T|51.57971|22.79420|Gródek
+T|52.23527|16.39089|Grąblewo
+T|51.59350|16.18487|Grębocice
+T|53.04582|18.69004|Grębocin
+T|51.06543|17.79990|Gręboszów
+T|50.60515|21.83928|Grębów
+T|49.29845|19.94535|Gubałówka - Stacja Dolna
+T|49.30640|19.93279|Gubałówka - Stacja Górna
+T|51.97851|14.72136|Gubin
+T|53.77756|17.86104|Gutowiec
+T|52.33241|17.64377|Gutowo Wielkopolskie
+T|52.36812|17.31660|Gułtowy
+T|53.73201|16.82793|Gwda Mała
+T|53.19201|18.33158|Gzin
+T|51.98924|21.19295|Góra Kalwaria
+T|50.52921|18.00333|Górażdże
+T|51.95422|16.57691|Górka Duchowna
+T|52.79341|15.48879|Górki Noteckie
+T|53.89844|14.82441|Górki Pomorskie
+T|50.14225|18.38886|Górki Śląskie
+T|53.95948|20.98448|Górowo
+T|52.49934|14.65749|Górzyca
+T|53.96946|15.23352|Górzyca Reska
+T|50.86020|15.56759|Górzyniec
+T|54.01071|15.28686|Gąbin
+T|52.30196|17.04550|Gądki
+T|52.24615|14.96364|Gądków Wielki
+T|53.68022|20.43721|Gągławki
+T|52.76633|17.74458|Gąsawa
+T|51.23181|20.94733|Gąsawy Plebańskie
+T|52.73847|20.72049|Gąsocin
+T|52.48299|17.57023|Gębarzewo
+T|52.60513|18.02590|Gębice
+T|51.66961|16.07987|Głogów
+T|51.67542|15.99225|Głogów Huta
+T|51.64478|16.13359|Głogów Krzepów
+T|50.14736|21.95961|Głogów Małopolski
+T|50.13648|21.96486|Głogów Małopolski Niwa
+T|50.11351|21.98641|Głogów Małopolski Południowy
+T|51.68659|15.95438|Głogów Wróblin
+T|50.34750|17.87558|Głogówek
+T|51.73514|16.09548|Głogówko
+T|54.13073|15.43863|Głowaczewo
+T|51.96140|19.70302|Głowno
+T|51.97901|19.72202|Głowno Północne
+T|53.20207|18.54371|Głuchowo
+T|50.33044|17.39458|Głuchołazy
+T|50.31662|17.38964|Głuchołazy Miasto
+T|50.08347|22.27908|Głuchów
+T|51.77753|20.07301|Głuchów
+T|51.20245|22.00558|Głusko
+T|50.68787|16.35399|Głuszyca
+T|50.67285|16.37139|Głuszyca Górna
+T|54.48988|17.42389|Głuszyno Pomorskie
+T|52.48475|15.53401|Głębokie Międzyrzeckie
+T|49.91107|22.30118|Hadle Szklarskie
+T|52.73355|23.58307|Hajnówka
+T|52.73598|23.60685|Hajnówka Wąskotorowa
+T|52.22338|21.35028|Halinów
+T|53.39615|19.84516|Hartowiec
+T|54.61104|18.80088|Hel
+T|54.62346|18.80183|Hel - Bruno
+T|54.62544|18.80021|Hel - Cezar Południowy
+T|54.62620|18.79994|Hel - Cezar Północny
+T|54.62922|18.79346|Hel - Muzeum Kolei Helskich
+T|54.17400|20.14460|Henrykowo
+T|50.66308|17.03014|Henryków
+T|50.74729|18.85455|Herby Nowe
+T|50.74766|18.88213|Herby Stare
+T|51.75464|22.16094|Hordzieżka
+T|50.19440|23.35686|Horyniec-Zdrój
+T|52.97144|23.09530|Hołówki Duże
+T|50.29837|23.57603|Hrebenne
+T|50.79667|23.90857|Hrubieszów Miasto
+T|53.07272|23.12808|Hryniewicze
+T|49.68852|19.40741|Hucisko
+T|49.78571|22.85841|Hurko
+T|51.27039|18.96337|Huta
+T|50.38943|21.71579|Huta Komorowska
+T|50.96337|16.57814|Imbramowice
+T|50.14151|19.17636|Imielin
+T|52.80519|18.24394|Inowrocław
+T|52.76939|18.24316|Inowrocław Rąbinek
+T|49.85305|19.38811|Inwałd
+T|53.79507|16.51547|Iwin
+T|51.05467|17.06881|Iwiny
+T|51.61013|18.91422|Izabelów
+T|50.89057|23.15545|Izbica
+T|53.58108|19.57312|Iława Główna
+T|53.59558|19.54881|Iława Miasto
+T|51.50209|15.18864|Iłowa Żagańska
+T|52.18374|16.79942|Iłowiec
+T|53.16583|20.29331|Iłowo
+T|51.15327|21.23667|Iłża
+T|53.39345|19.16292|Jabłonowo Pomorskie
+T|52.90799|22.64949|Jabłoń Kościelna
+T|52.15693|19.79584|Jackowice
+T|52.63116|20.77501|Jackowo Dworskie
+T|50.96437|19.35468|Jacków
+T|50.48293|21.69635|Jadachy
+T|53.12392|17.37180|Jadwiżyn
+T|51.35588|15.17027|Jagodzin
+T|52.85587|18.19947|Jaksice
+T|52.08667|20.55188|Jaktorów
+T|50.81093|21.66479|Jakubowice
+T|53.52907|19.50167|Jamielnik
+T|52.74887|18.11605|Janikowo
+T|51.05591|18.60556|Janinów
+T|49.69514|20.93388|Jankowa
+T|51.56733|15.18086|Jankowa Żagańska
+T|49.48516|22.35904|Jankowce
+T|52.53884|17.71959|Jankowo Dolne
+T|53.51660|15.77432|Jankowo Pomorskie
+T|51.60919|17.80960|Janków Przygodzki
+T|50.87850|15.91876|Janowice Wielkie
+T|54.33350|19.02537|Jantar
+T|54.33454|19.00387|Jantar Leśniczówka
+T|54.33318|19.04551|Jantar Młyn
+T|54.33344|19.03375|Jantar Port
+T|52.32453|20.28256|Janówek
+T|52.42529|20.77844|Janówek
+T|51.96831|17.49472|Jarocin
+T|51.46153|19.69314|Jarosty
+T|50.34228|19.62181|Jaroszowiec Olkuski
+T|50.01062|22.67839|Jarosław
+T|53.92982|14.79978|Jarszewo
+T|52.45782|21.44770|Jarzębia Łąka
+T|54.31240|19.99344|Jarzębiec
+T|50.85245|21.62762|Jasice
+T|50.50416|17.50390|Jasienica Dolna
+T|52.41543|21.39857|Jasienica Mazowiecka
+T|49.98702|20.55815|Jasień Brzeski
+T|50.45939|18.07526|Jasiona
+T|50.11555|22.02154|Jasionka Lotnisko
+T|50.61640|20.38642|Jasionna
+T|52.12462|20.12367|Jasionna Łowicka
+T|51.85965|22.59097|Jaski
+T|54.70167|18.67665|Jastarnia
+T|54.70794|18.65535|Jastarnia Wczasy
+T|53.40826|16.79820|Jastrowie
+T|53.42494|16.81150|Jastrowie Miasto
+T|51.24881|20.98456|Jastrząb
+T|53.13198|21.24947|Jastrząbka
+T|53.51983|18.26699|Jastrzębie Pomorskie
+T|53.74583|23.19825|Jastrzębna
+T|52.29515|16.06123|Jastrzębsko
+T|51.20212|22.91061|Jaszczów
+T|49.73746|21.47040|Jasło
+T|49.74940|21.53397|Jasło Fabryczne
+T|49.72614|21.45099|Jasło Niegłowice
+T|49.94966|19.11549|Jawiszowice Jaźnik
+T|51.05505|16.19844|Jawor
+T|49.88854|22.27518|Jawornik Polski
+T|50.21298|19.33708|Jaworzno Ciężkowice
+T|50.24625|19.29756|Jaworzno Szczakowa
+T|51.01455|18.65327|Jaworzno koło Wielunia
+T|50.91249|16.42888|Jaworzyna Śląska
+T|54.12924|15.78997|Jazy
+T|49.96176|19.67446|Jaśkowice
+T|51.21510|16.31414|Jaśkowice Legnickie
+T|50.40108|21.46909|Jaślany
+T|49.71903|21.64798|Jedlicze
+T|49.72618|21.62608|Jedlicze Męcinka
+T|51.86939|19.32074|Jedlicze koło Zgierza
+T|50.71154|16.34302|Jedlina-Zdrój
+T|50.72990|16.32210|Jedlina-Zdrój Borowa
+T|50.72115|16.34464|Jedlina-Zdrój Centrum
+T|51.45512|21.40778|Jedlnia Kościelna
+T|51.42966|21.32764|Jedlnia-Letnisko
+T|53.39105|19.87619|Jeglia
+T|51.04457|17.30540|Jelcz Miłoszyce
+T|51.03702|17.34541|Jelcz-Laskowice
+T|50.90259|15.75599|Jelenia Góra
+T|50.86975|15.68524|Jelenia Góra Cieplice
+T|50.86399|15.65736|Jelenia Góra Orle
+T|50.88766|15.70523|Jelenia Góra Przemysłowa
+T|50.85173|15.64529|Jelenia Góra Sobieszów
+T|50.90990|15.74310|Jelenia Góra Zabobrze
+T|50.90060|15.71945|Jelenia Góra Zachodnia
+T|53.65935|16.62536|Jelenino
+T|51.50205|20.07299|Jeleń
+T|49.65242|19.32097|Jeleśnia
+T|50.30406|22.36472|Jelna
+T|52.50494|17.62528|Jelonek
+T|53.55266|21.15408|Jeruty
+T|52.30665|14.86740|Jerzmanice Lubuskie
+T|51.12776|15.06096|Jerzmanki
+T|52.01482|20.33472|Jesionka
+T|53.44646|20.99581|Jesionowiec
+T|51.23568|16.09759|Jezierzany
+T|54.50429|17.12187|Jezierzyce Słupskie
+T|53.22558|16.10748|Jeziorki Wałeckie
+T|50.79379|18.04661|Jełowa
+T|53.50731|18.48875|Jeżewo
+T|51.80562|19.96147|Jeżów
+T|50.39929|19.81566|Jeżówka
+T|53.81585|20.29609|Jonkowo
+T|49.63766|19.83286|Jordanów
+T|50.73213|16.40531|Jugowice
+T|50.76465|19.47327|Julianka
+T|54.33205|19.07093|Junoszyno
+T|54.68494|18.71341|Jurata
+T|51.73086|19.68352|Justynów
+T|49.70685|19.69199|Juszczyn
+T|52.22905|21.33329|Józefin
+T|52.13867|21.23400|Józefów
+T|50.51819|23.03977|Józefów Roztoczański
+T|50.64451|20.27567|Jędrzejów
+T|50.64411|20.28798|Jędrzejów Wąskotorowy
+T|51.17409|15.01773|Jędrzychowice
+T|51.74262|16.68102|Kaczkowo
+T|52.72699|20.17322|Kaczorowo
+T|53.10543|16.88165|Kaczory
+T|49.83225|18.61074|Kaczyce
+T|49.86924|21.68535|Kalembina
+T|50.56635|18.88826|Kalety
+T|53.90263|18.21539|Kaliska
+T|52.41271|19.12332|Kaliska Kujawskie
+T|51.74283|18.07137|Kalisz
+T|54.04511|17.78615|Kalisz Kaszubski
+T|53.27758|15.88143|Kalisz Pomorski
+T|51.72593|18.02727|Kalisz Szczypiorno
+T|51.73349|18.14132|Kalisz Winiary
+T|53.62049|22.00639|Kaliszki
+T|49.87388|19.67375|Kalwaria Zebrzydowska
+T|49.87118|19.68862|Kalwaria Zebrzydowska Lanckorona
+T|50.53614|16.89898|Kamieniec Ząbkowicki
+T|50.78525|16.02282|Kamienna Góra
+T|53.87714|18.16264|Kamienna Karczma
+T|53.69170|23.26257|Kamienna Nowa
+T|52.64164|14.78018|Kamień Mały
+T|53.96624|14.77416|Kamień Pomorski
+T|51.98870|19.75315|Kamień Łowicki
+T|50.32735|20.00575|Kamieńczyce
+T|51.18630|19.49914|Kamieńsk
+T|49.57802|20.78142|Kamionka Wielka
+T|53.12977|18.77973|Kamionki Jezioro
+T|51.12465|23.10407|Kanie
+T|52.13165|20.77431|Kanie Helenowskie
+T|49.92636|19.05323|Kaniów
+T|54.10876|15.39698|Karcino
+T|51.21591|21.99748|Karczmiska Wąskotorowe
+T|54.04530|15.88323|Karlino
+T|54.02827|15.04794|Karnice
+T|52.86705|19.26467|Karnkowo
+T|51.18983|23.55061|Karolinówka
+T|50.78250|15.76165|Karpacz
+T|54.33489|18.20669|Kartuzy
+T|54.34502|16.53526|Karwice
+T|51.75476|16.90434|Karzec
+T|50.88026|17.69905|Karłowice
+T|50.25761|19.01715|Katowice
+T|50.22595|18.97852|Katowice Ligota
+T|50.21345|18.97039|Katowice Piotrowice
+T|50.18293|18.96033|Katowice Podlesie
+T|50.25892|19.09247|Katowice Szopienice Południowe
+T|50.25730|19.05745|Katowice Zawodzie
+T|50.26387|18.98958|Katowice Załęże
+T|54.07195|16.88389|Kawcze
+T|52.24985|18.15088|Kawnice
+T|52.11088|20.69800|Kazimierówka
+T|50.82772|18.08137|Kały
+T|52.70738|20.74739|Kałęczyn
+T|49.97999|22.42308|Kańczuga
+T|52.47635|16.78923|Kiekrz
+T|50.85526|20.57452|Kielce Białogon
+T|50.87431|20.61793|Kielce Główne
+T|50.88591|20.60242|Kielce Herbskie
+T|50.88979|20.62533|Kielce Piaski
+T|50.83351|20.53868|Kielce Słowik
+T|50.88881|20.58388|Kielce Ślichowice
+T|52.74397|22.17876|Kietlanka
+T|54.28707|18.22999|Kiełpino Kartuskie
+T|50.60776|20.57771|Kije
+T|52.82825|22.42216|Kity
+T|49.87831|19.53460|Klecza Dolna
+T|49.86514|19.56708|Klecza Górna
+T|52.39602|21.35314|Klembów
+T|51.36271|22.11017|Klementowice
+T|53.10228|23.07984|Klepacze
+T|52.56432|23.31898|Kleszczele
+T|53.73625|20.56828|Klewki
+T|50.52509|20.02999|Klimontów
+T|53.46086|14.78402|Kliniska
+T|50.97108|18.20101|Kluczbork
+T|53.71756|15.65500|Klępnica
+T|50.21728|18.68815|Knurów
+T|53.28463|22.89608|Knyszyn
+T|50.97426|16.92659|Kobierzyce
+T|50.06602|18.92350|Kobiór
+T|52.03766|23.56099|Kobylany
+T|52.84865|17.20160|Kobylec
+T|51.72006|17.22387|Kobylin
+T|52.44581|17.07947|Kobylnica
+T|54.44244|16.98602|Kobylnica Słupska
+T|52.33695|21.21557|Kobyłka
+T|52.32730|21.19331|Kobyłka Ossów
+T|50.69954|18.74864|Kochanowice
+T|50.11130|21.49235|Kochanówka Pustków
+T|50.71379|18.65765|Kochcice-Glinica
+T|53.11634|17.08798|Kocik-Młyn
+T|49.69029|19.72287|Kojszówka
+T|50.01783|20.06969|Kokotów
+T|50.24541|21.78505|Kolbuszowa
+T|50.22264|21.80549|Kolbuszowa Górna
+T|53.24500|15.12388|Kolin
+T|53.99426|20.99149|Kolno
+T|53.56728|21.27160|Kolonia
+T|50.65192|18.38811|Kolonowskie
+T|51.61489|19.19594|Kolumna
+T|51.74347|19.81845|Koluszki
+T|49.33887|22.07240|Komańcza
+T|49.34630|22.08058|Komańcza Letnisko
+T|54.10479|19.50999|Komorowo Żuławskie
+T|52.14811|20.81137|Komorów
+T|50.34955|21.73304|Komorów Podmurynia
+T|50.63146|17.82070|Komprachcice
+T|53.14446|22.04599|Konarzyce
+T|50.77639|19.70004|Koniecpol
+T|50.77744|19.67262|Koniecpol Centrum
+T|50.77251|19.65333|Koniecpol Magdasz
+T|52.23110|18.25410|Konin
+T|52.23690|18.22174|Konin Zachód
+T|51.54596|15.19151|Konin Żagański
+T|53.34940|19.22766|Konojady
+T|52.99674|20.45963|Konopki
+T|52.86998|19.10275|Konotopie
+T|51.02108|17.40412|Kopalina
+T|50.43937|16.87473|Kopalnia Złota Główna
+T|53.29644|18.64715|Kornatowo
+T|52.18316|20.20623|Kornelin
+T|51.21693|20.40519|Kornica
+T|54.17243|21.13634|Korsze
+T|50.73828|19.17668|Korwinów
+T|50.05592|22.93698|Korzenica
+T|51.54460|16.87224|Korzeńsko
+T|54.29652|16.87384|Korzybie
+T|50.08357|22.32285|Kosina
+T|52.10710|22.33601|Kosiorki
+T|50.92174|20.61533|Kostomłoty
+T|52.59136|14.64697|Kostrzyn
+T|52.39325|17.22547|Kostrzyn Wielkopolski
+T|51.16566|18.14555|Kostów
+T|54.19068|16.16972|Koszalin
+T|54.16567|16.21665|Koszalin Kretomino
+T|54.20415|16.17402|Koszalin Politechnika
+T|54.18095|16.17732|Koszalin Wenedów
+T|54.21223|16.18501|Koszalin Wschodni
+T|54.18715|16.16921|Koszalin Wąskotorowy
+T|52.16910|21.98688|Koszewnica
+T|50.62299|18.83586|Koszęcin
+T|51.34652|21.06370|Kosów
+T|51.91460|17.64896|Kotlin
+T|53.28439|18.12088|Kotomierz
+T|52.22832|16.48337|Kotowo
+T|50.46883|18.43588|Kotulin
+T|52.17627|22.06783|Kotuń
+T|50.72838|18.03553|Kotórz Mały
+T|51.89359|17.74665|Kowalew Plac Zabaw
+T|53.16361|18.86860|Kowalewo Pomorskie
+T|52.39732|14.75982|Kowalów
+T|53.85356|20.08040|Kozia Góra
+T|52.80214|19.97240|Koziebrody
+T|53.09946|22.04059|Koziki
+T|52.86589|19.49868|Koziołek
+T|51.49385|19.02290|Kozuby
+T|49.84973|19.14265|Kozy
+T|49.85748|19.16394|Kozy Zagroda
+T|53.30878|20.31117|Kozłowo
+T|50.47543|20.01248|Kozłów
+T|52.04025|21.43436|Kołbiel
+T|52.21097|18.63215|Koło
+T|54.18225|15.57155|Kołobrzeg
+T|54.18112|15.59555|Kołobrzeg Amfiteatr
+T|54.17645|15.59729|Kołobrzeg Ogrody
+T|54.16232|15.54357|Kołobrzeg Radzikowo
+T|54.17503|15.55917|Kołobrzeg Stadion
+T|52.71352|18.03603|Kołodziejewo
+T|49.85103|18.62588|Kończyce
+T|51.34910|21.04534|Kończyce Radomskie
+T|51.19020|20.42285|Końskie
+T|51.39847|22.04831|Końskowola
+T|52.07780|16.64056|Kościan
+T|54.05384|16.01047|Kościernica
+T|54.12045|17.99500|Kościerzyna
+T|51.87245|15.31882|Koźla Kożuchowska
+T|51.45113|16.23300|Koźlice
+T|51.83197|17.44375|Koźmin Wielkopolski
+T|53.28908|16.99154|Krajenka
+T|50.06842|19.94789|Krakow Main Station
+T|50.07094|19.80128|Kraków Airport
+T|50.10753|19.99547|Kraków Batowice
+T|50.02150|20.02985|Kraków Bieżanów
+T|50.01009|20.03534|Kraków Bieżanów Drożdżownia
+T|50.02984|19.94647|Kraków Bonarka
+T|50.08299|19.89261|Kraków Bronowice
+T|50.05708|19.94803|Kraków Grzegórzki
+T|50.08740|20.16893|Kraków Kościelniki
+T|50.09047|20.07402|Kraków Lubocza
+T|50.08359|19.85979|Kraków Mydlniki
+T|50.09118|19.84447|Kraków Mydlniki Wapiennik
+T|50.08179|19.85847|Kraków Młynówka
+T|50.09036|20.12825|Kraków Nowa Huta
+T|50.07649|19.82552|Kraków Olszanica
+T|49.98844|19.89854|Kraków Opatkowice
+T|50.10696|20.01421|Kraków Piastów
+T|50.04116|19.95922|Kraków Podgórze
+T|50.04087|19.95924|Kraków Podgórze P2
+T|50.02662|19.99832|Kraków Prokocim
+T|50.05200|20.16359|Kraków Przylasek
+T|50.03502|19.97479|Kraków Płaszów
+T|50.01392|19.93432|Kraków Sanktuarium
+T|49.98556|19.87490|Kraków Sidzina
+T|50.00037|19.92811|Kraków Swoszowice
+T|50.04844|19.95698|Kraków Zabłocie
+T|50.07979|19.84940|Kraków Zakliki
+T|50.01816|20.05074|Kraków Złocień
+T|50.02309|19.93374|Kraków Łagiewniki
+T|50.08195|19.91773|Kraków Łobzów
+T|52.24518|18.47669|Kramsk
+T|50.66830|18.25002|Krasiejów
+T|52.03897|18.90588|Kraski
+T|51.02442|23.18273|Krasnystaw Fabryczny
+T|50.98504|23.18295|Krasnystaw Miasto
+T|50.92965|22.28299|Kraśnik
+T|51.75901|16.97151|Krobia
+T|53.73016|17.65570|Krojanty
+T|49.69372|21.74890|Krosno
+T|49.68255|21.77306|Krosno Miasto
+T|52.03194|15.09367|Krosno Odrzańskie
+T|49.70193|21.72223|Krosno Polanka
+T|49.70924|21.69828|Krosno Turaszówka
+T|51.86341|19.92320|Krosnowa
+T|50.39235|16.63689|Krosnowice Kłodzkie
+T|53.10778|17.20736|Krostkowo
+T|51.70168|17.42619|Krotoszyn
+T|51.47120|17.37389|Krośnice
+T|52.96803|20.49075|Krośnice Mazowieckie
+T|51.47871|17.34373|Krośnice Wąskotorowe
+T|52.42716|21.35857|Krusze
+T|53.98996|23.09320|Krusznik
+T|51.57983|21.17897|Kruszyna
+T|49.40963|20.95715|Krynica-Zdrój
+T|52.00671|22.37578|Krynka Łukowska
+T|50.80165|23.09555|Krzak
+T|50.58756|20.14060|Krzcięcice
+T|50.08174|22.18716|Krzemienica
+T|49.84077|19.11511|Krzemionki
+T|50.96913|18.69712|Krzepice
+T|54.23375|18.08295|Krzeszna
+T|50.13083|19.63509|Krzeszowice
+T|52.23545|19.16690|Krzewie
+T|51.01544|14.93979|Krzewina Zgorzelecka
+T|51.90421|16.45255|Krzycko Wielkie
+T|52.17798|22.43918|Krzymosze
+T|51.79527|22.20564|Krzywda
+T|53.08843|14.45376|Krzywin Gryfiński
+T|51.02615|18.20176|Krzywizna
+T|51.97544|16.93791|Krzywińska Kolej Drezynowa
+T|52.87764|16.01942|Krzyż
+T|49.98946|18.27569|Krzyżanowice
+T|50.79395|16.53010|Krzyżowa
+T|54.03723|19.11715|Królewo Malborskie
+T|53.22773|16.05794|Krępa Krajeńska
+T|51.87153|21.11141|Krężel
+T|51.15319|22.46634|Krężnica Jara
+T|53.33070|19.06835|Książki
+T|52.24573|17.49345|Książno
+T|51.24223|16.76381|Księginice
+T|50.47576|17.44286|Kubice
+T|50.42980|16.24410|Kudowa-Zdrój
+T|51.71916|17.31883|Kuklinów
+T|50.82884|18.79261|Kuleje
+T|53.01976|22.52013|Kulesze Kościelne
+T|53.87951|18.69050|Kulice Tczewskie
+T|50.41937|16.32549|Kulin Kłodzki
+T|53.43923|23.59055|Kundzin
+T|51.21501|16.25463|Kunice
+T|52.34179|14.63844|Kunowice
+T|50.96786|21.29535|Kunów
+T|52.25739|15.61401|Kupienino
+T|53.11122|23.32137|Kuriany
+T|53.05583|21.75495|Kurpie
+T|49.70792|19.43373|Kurów Suski
+T|50.77788|19.26156|Kusięta Nowe
+T|52.22709|19.34814|Kutno
+T|52.23972|19.30470|Kutno Azory
+T|50.20086|18.29857|Kuźnia Raciborska
+T|54.73624|18.57664|Kuźnica (Hel)
+T|53.51194|23.64237|Kuźnica Białostocka
+T|53.57836|18.42155|Kwiatki
+T|53.73068|18.93339|Kwidzyn
+T|52.62325|18.01587|Kwieciszewo
+T|50.92421|15.50368|Kwieciszowice
+T|52.28207|17.10319|Kórnik
+T|51.85782|16.68663|Kąkolewo
+T|52.60669|20.76225|Kątne
+T|51.03799|16.74997|Kąty Wrocławskie
+T|50.34506|18.20461|Kędzierzyn-Koźle
+T|50.31069|18.23961|Kędzierzyn-Koźle Azoty
+T|50.35065|18.15475|Kędzierzyn-Koźle Przystanek
+T|50.34665|18.13147|Kędzierzyn-Koźle Zachodnie
+T|50.65384|22.03262|Kępa
+T|54.24148|16.89068|Kępice
+T|50.63287|21.90197|Kępie Zaleszańskie
+T|54.21618|16.89738|Kępka
+T|51.29195|18.00141|Kępno
+T|52.13822|20.14796|Kęszyce
+T|54.07236|21.38752|Kętrzyn
+T|49.88067|19.22677|Kęty
+T|49.87815|19.19678|Kęty Podlesie
+T|50.00172|20.30140|Kłaj
+T|50.90899|18.92346|Kłobuck
+T|52.22738|18.89053|Kłodawa
+T|50.45133|16.65677|Kłodzko Główne
+T|50.41570|16.64092|Kłodzko Książek
+T|50.43460|16.65824|Kłodzko Miasto
+T|50.41503|16.61294|Kłodzko Zagórze
+T|49.95311|20.95714|Kłokowa
+T|50.91599|19.34146|Kłomnice
+T|49.72345|19.50360|Lachowice
+T|49.71235|19.47314|Lachowice Centrum
+T|49.52293|19.00499|Laliki
+T|49.49861|19.97979|Lasek
+T|51.60795|22.84121|Laski
+T|52.45983|14.71267|Laski Lubuskie
+T|52.03605|15.30578|Laski Odrzańskie
+T|53.66627|18.20805|Laski Tucholskie
+T|50.85610|18.09497|Laskowice Oleskie
+T|53.49105|18.45591|Laskowice Pomorskie
+T|52.91618|17.25129|Laskownica
+T|51.81589|16.48595|Lasocice
+T|50.46265|18.89120|Lasowice Zalew
+T|51.22519|15.03510|Lasów
+T|52.49092|17.36315|Lednogóra
+T|52.40191|20.94100|Legionowo
+T|52.41261|20.94271|Legionowo Piaski
+T|52.41128|20.91423|Legionowo Przystanek
+T|51.21409|16.16965|Legnica
+T|51.20168|16.19797|Legnica Piekary
+T|51.16524|16.18531|Legnica Strefa
+T|49.29900|20.92534|Leluchów
+T|51.76803|21.63167|Leokadia
+T|51.66825|22.01257|Leopoldów
+T|53.48670|18.38717|Leosia
+T|51.47922|21.19373|Lesiów
+T|53.58626|15.57096|Lesięcin
+T|49.50545|22.33540|Lesko Łukawica
+T|52.64633|21.46949|Leszczydół
+T|50.13975|18.61764|Leszczyny
+T|51.84597|16.56547|Leszno
+T|51.86025|16.61210|Leszno Grzybowo
+T|51.46688|15.61605|Leszno Górne
+T|51.89006|15.31879|Letnica
+T|52.61940|16.13324|Letnisko
+T|53.02788|23.12482|Lewickie
+T|50.75815|17.61532|Lewin Brzeski
+T|50.40554|16.27469|Lewin Kłodzki
+T|52.73021|23.21155|Lewki
+T|49.89207|19.72996|Leńcze
+T|54.51393|17.66886|Leśnice
+T|51.04954|22.35665|Leśniczówka
+T|54.34782|18.45932|Leźno
+T|50.26383|22.41999|Leżajsk
+T|50.11315|19.32618|Libiąż
+T|49.71196|21.24106|Libusza
+T|50.45631|18.46392|Ligota Toszecka
+T|52.43509|17.03699|Ligowiec
+T|54.09063|21.26515|Linkowo
+T|53.41118|19.03313|Linowo
+T|50.68929|22.06815|Lipa
+T|51.90523|19.94324|Lipce Reymontowskie
+T|51.06736|21.12820|Lipie
+T|53.44637|18.11252|Lipienica
+T|53.46395|19.31723|Lipinki
+T|51.64888|15.00976|Lipinki Łużyckie
+T|53.73634|22.39760|Lipińskie Małe
+T|53.49728|17.25728|Lipka Krajeńska
+T|50.89825|17.37252|Lipki
+T|52.85415|19.17904|Lipno
+T|51.91916|16.57063|Lipno Nowe
+T|53.75393|18.10887|Lipowa Tucholska
+T|50.73710|17.42713|Lipowa Śląska
+T|51.15524|20.90109|Lipowe Pole
+T|54.07025|17.76727|Lipuska Huta
+T|54.09675|17.78039|Lipusz
+T|54.09293|18.82572|Lisewo
+T|53.02240|14.45067|Lisie Pole
+T|53.43098|15.29731|Lisowo
+T|50.72084|18.79106|Lisów
+T|50.97226|17.21439|Lizawice
+T|53.52662|18.20551|Lniano
+T|53.59984|16.77983|Lotyń
+T|50.77431|16.43454|Lubachów
+T|50.16581|23.12576|Lubaczów
+T|53.70003|20.02684|Lubajny
+T|53.38850|18.09700|Lubania-Lipiny
+T|51.69236|15.12065|Lubanice
+T|52.74299|18.92414|Lubanie
+T|51.44564|22.60823|Lubartów
+T|51.46422|22.59951|Lubartów Lipowa
+T|51.47325|22.60520|Lubartów Słowackiego
+T|49.86539|21.03711|Lubaszowa
+T|50.70585|16.00304|Lubawka
+T|51.11136|15.29354|Lubań Śląski
+T|53.02797|18.74527|Lubicz
+T|53.91561|14.41602|Lubiewo
+T|51.39578|16.19344|Lubin
+T|51.40863|16.19926|Lubin Stadion
+T|51.23496|22.71542|Lublin AIRPORT
+T|51.23129|22.56896|Lublin Główny
+T|51.26608|22.60597|Lublin Ponikwoda
+T|51.24228|22.59954|Lublin Północny
+T|51.21893|22.50893|Lublin Zachodni
+T|51.25793|22.61004|Lublin Zadębie
+T|51.17150|22.50289|Lublin Zemborzyce
+T|50.67256|18.69104|Lubliniec
+T|53.93561|17.74231|Lubnia
+T|54.06650|20.23271|Lubomino
+T|52.34398|16.89282|Luboń koło Poznania
+T|50.33914|23.53072|Lubycza Królewska
+T|50.07226|21.52942|Lubzina
+T|51.27722|19.64817|Luciążanka
+T|52.55322|21.45927|Lucynów
+T|50.61947|16.48130|Ludwikowice Kłodzkie
+T|50.85187|20.16267|Ludynia
+T|50.84743|20.11414|Ludynia Dwór
+T|50.76090|19.38802|Lusławice
+T|52.34399|15.75442|Lutol Suchy
+T|49.96570|21.92260|Lutoryż
+T|54.56695|18.10257|Luzino
+T|54.53362|17.75024|Lębork
+T|54.55009|17.79288|Lębork Mosty
+T|54.54543|17.73446|Lębork Nowy Świat
+T|54.64523|17.68163|Lędziechowo
+T|53.33172|23.31812|Machnacz
+T|49.20578|22.29904|Majdan
+T|51.14839|22.42647|Majdan
+T|50.37894|21.72523|Majdan Królewski
+T|50.36290|21.73668|Majdan Królewski Podlasek
+T|51.35677|23.61104|Majdan Stuleński
+T|53.80187|18.67951|Majewo
+T|53.21456|18.02946|Maksymilianowo
+T|51.94224|20.04563|Maków
+T|49.72693|19.67688|Maków Podhalański
+T|54.03597|19.04315|Malbork
+T|54.04736|19.02397|Malbork Kałdowo
+T|51.21569|16.48597|Malczyce
+T|52.16939|20.84117|Malichy
+T|52.40844|16.95724|Maltanka
+T|49.94380|22.36572|Manasterz
+T|54.12877|16.29700|Manowo
+T|49.67097|20.65815|Marcinkowice
+T|53.69543|20.67114|Marcinkowo
+T|51.09333|20.97998|Marcinków
+T|50.87687|16.58681|Marcinowice Świdnickie
+T|50.85150|16.00760|Marciszów
+T|51.09624|21.21355|Marcule
+T|50.11366|18.27112|Markowice Raciborskie Wąskotorowe
+T|49.87404|21.70569|Markuszowa
+T|54.02682|21.51594|Martiany
+T|52.38539|17.56129|Marzenin
+T|50.65112|19.25319|Masłońskie Natalin
+T|51.93999|22.49385|Matysy
+T|50.40505|23.31467|Maziły
+T|52.02734|23.53167|Małaszewicze
+T|53.92102|19.73604|Małdyty
+T|53.60992|18.10950|Małe Gacno
+T|52.69460|22.03486|Małkinia
+T|50.85021|20.27280|Małogoszcz
+T|51.54969|15.44694|Małomice
+T|51.40442|16.47141|Małowice Wołowskie
+T|50.48915|17.47703|Mańkowice
+T|49.80248|22.93929|Medyka
+T|49.79413|22.91026|Medyka Rozrządowa
+T|49.78619|22.88394|Medyka Towarowa
+T|50.69222|21.80593|Metan
+T|53.43691|18.94740|Mełno
+T|53.09260|17.02076|Miasteczko Krajeńskie
+T|50.49761|18.90023|Miasteczko Śląskie
+T|50.48695|18.91929|Miasteczko Śląskie Centrum
+T|50.48761|18.92086|Miasteczko Śląskie Wąskotorowe
+T|50.47513|18.90840|Miasteczko Śląskie Zalew
+T|53.99833|16.96535|Miastko
+T|52.05938|21.00947|Miasto Las Zalesie
+T|52.80884|16.17666|Miały
+T|51.84388|21.12089|Michalczew
+T|52.15123|21.22152|Michalin
+T|52.17536|20.88126|Michałowice
+T|52.42257|20.96274|Michałów-Reginów
+T|50.35360|20.01074|Miechów
+T|53.36468|14.92470|Miedwiecko
+T|50.29268|21.42970|Mielec
+T|50.25805|21.48371|Mielec Południowy
+T|50.28008|21.44567|Mielec Wolności
+T|54.25441|16.05389|Mielno
+T|52.14933|21.68712|Mienia
+T|50.66931|16.19335|Mieroszów
+T|50.46306|19.12855|Mierzęcice
+T|52.95099|15.82725|Mierzęcin
+T|52.83678|19.74524|Mieszaki
+T|52.78174|14.48587|Mieszkowice
+T|52.02316|17.44059|Mieszków
+T|50.98519|16.65609|Mietków
+T|51.67334|21.74739|Mika
+T|54.33237|18.96619|Mikoszewo
+T|53.84979|19.15829|Mikołajki Pomorskie
+T|50.17286|18.89930|Mikołów
+T|50.19425|18.92316|Mikołów Jamna
+T|52.72690|23.31588|Mikłasze
+T|51.70209|22.87516|Milanów
+T|52.12515|20.66818|Milanówek
+T|52.12224|20.68248|Milanówek Grudów
+T|53.04177|16.85816|Milcz
+T|49.60562|21.90274|Milcza
+T|51.35533|19.67571|Milejów
+T|51.52738|17.29504|Milicz
+T|49.34578|20.85048|Milik
+T|49.55502|19.09355|Milówka
+T|49.54034|19.10265|Milówka Zabawa
+T|51.21733|22.76406|Minkowice
+T|51.01183|17.45706|Minkowice Oławskie
+T|51.16549|17.16547|Mirków
+T|50.97316|15.38033|Mirsk
+T|51.95931|22.68820|Misie
+T|50.71941|20.36513|Miąsowa
+T|52.06361|20.48247|Międzyborów
+T|51.40105|17.65296|Międzybórz Sycowski
+T|50.14451|16.65499|Międzylesie
+T|51.97603|22.78560|Międzyrzec Podlaski
+T|52.44495|15.59362|Międzyrzecz
+T|53.92413|14.45458|Międzyzdroje
+T|51.18826|16.73964|Miękinia
+T|51.25556|16.05461|Miłkowice
+T|50.80985|15.76389|Miłków
+T|54.14712|18.74053|Miłobądz
+T|51.26893|22.31227|Miłocin Lubelski
+T|54.20532|15.90938|Miłogoszcz
+T|52.20884|17.47677|Miłosław
+T|52.17586|21.55222|Mińsk Mazowiecki
+T|52.16779|21.58553|Mińsk Mazowiecki Anielina
+T|53.91374|19.12291|Mleczewo
+T|50.70789|20.33361|Mnichów
+T|53.98033|15.08245|Modlimowo
+T|52.44395|20.70499|Modlin
+T|51.37568|15.81342|Modła
+T|52.65859|17.94618|Mogilno
+T|51.97878|20.09952|Mokra
+T|52.45749|21.50000|Mokra Wieś
+T|50.70799|23.20536|Mokre
+T|49.44750|22.16754|Mokre Małopolskie
+T|51.07888|16.90874|Mokronos Górny
+T|52.74108|16.27819|Mokrz
+T|53.87444|14.58043|Mokrzyca Wielka
+T|53.41586|19.78047|Montowo
+T|52.19590|22.49691|Mordy
+T|52.20325|22.52100|Mordy Miasto
+T|49.46211|22.18689|Morochów
+T|52.73033|23.41132|Morze
+T|53.83673|18.68622|Morzeszczyn
+T|53.21862|15.15528|Morzyca
+T|53.91902|19.92285|Morąg
+T|53.90988|19.94577|Morąg Kolonia
+T|52.24037|16.85165|Mosina
+T|52.24796|16.84178|Mosina Pożegowo
+T|50.52462|22.10818|Moskale
+T|52.26890|15.39576|Mostki
+T|53.57442|14.94064|Mosty
+T|52.51907|21.44207|Mostówka
+T|51.50348|19.70042|Moszczenica
+T|49.69656|21.12366|Moszczenica Małopolska
+T|53.64233|17.48879|Moszczenica Pomorska
+T|50.59359|20.47897|Motkowice
+T|51.22142|22.42350|Motycz
+T|51.23779|22.37216|Motycz Leśny
+T|53.40225|22.79682|Mońki
+T|50.77206|16.58040|Mościsko Dzierżoniowskie
+T|50.94752|15.36166|Mroczkowice
+T|52.16395|21.80054|Mrozy
+T|51.18366|16.79396|Mrozów
+T|54.65301|18.41303|Mrzezino
+T|49.59290|20.82862|Mszalnica
+T|49.99033|22.71855|Munina
+T|52.57480|17.01554|Murowana Goślina
+T|49.34565|20.89335|Muszyna
+T|49.32825|20.90764|Muszyna Poprad
+T|49.35738|20.89504|Muszyna Zdrój
+T|50.92532|19.17931|Mykanów
+T|50.57431|19.32902|Myszków
+T|50.54348|19.37731|Myszków Mrzygłód
+T|50.59483|19.29154|Myszków Nowa Wieś
+T|50.56558|19.35973|Myszków Światowit
+T|50.83533|15.78802|Mysłakowice
+T|50.82508|15.78641|Mysłakowice Orzeł
+T|52.09240|20.01623|Mysłaków
+T|50.23784|19.14167|Mysłowice
+T|50.19714|19.15453|Mysłowice Brzezinka
+T|50.21329|19.14710|Mysłowice Brzęczkowice
+T|50.17075|19.16221|Mysłowice Kosztowy
+T|50.52562|17.32826|Myśliczyn
+T|50.93950|17.63116|Mąkoszyce
+T|53.83234|17.67126|Męcikał
+T|51.60911|18.84666|Męcka Wola
+T|53.12608|20.35096|Mława
+T|53.10899|20.36394|Mława Miasto
+T|49.46919|20.69510|Młodów
+T|50.98954|15.45045|Młyńsko
+T|54.21427|16.07328|Mścice
+T|51.08179|17.21947|Nadolice Małe
+T|51.07986|17.25083|Nadolice Wielkie
+T|53.30676|19.32179|Najmowo
+T|53.14257|17.60720|Nakło nad Notecią
+T|50.42991|18.90279|Nakło Śląskie
+T|51.07443|17.71690|Namysłów
+T|52.67815|14.57045|Namyślin
+T|52.86858|23.73755|Narewka
+T|53.18991|20.25370|Narzym
+T|52.57219|20.76774|Nasielsk
+T|53.74622|20.37659|Naterki
+T|51.48240|17.34501|Natura
+T|53.20320|18.48484|Nawra
+T|51.31804|22.21318|Nałęczów
+T|52.35436|17.40180|Nekla
+T|53.45978|18.87995|Nicwałd
+T|50.76016|20.57858|Nida
+T|53.35851|20.41412|Nidzica
+T|52.47073|17.68789|Niechanowo
+T|54.09428|15.07841|Niechorze
+T|54.09031|15.06791|Niechorze - Latarnia
+T|51.86542|15.66437|Niedoradz
+T|51.11405|22.37661|Niedrzwica
+T|51.07977|22.36371|Niedrzwica Kościelna
+T|50.69830|23.04437|Niedzieliska-Kolonia
+T|52.14029|19.88429|Niedźwiada Łowicka
+T|53.94635|15.07127|Niedźwiedziska
+T|50.20432|20.08093|Niedźwiedź
+T|51.48595|17.88373|Niedźwiedź Wielkopolski
+T|54.15277|16.14685|Niekłonice
+T|53.82954|15.87062|Nielep
+T|51.36265|22.64653|Niemce
+T|50.71498|16.83721|Niemcza
+T|52.25875|22.70150|Niemojki
+T|50.10214|19.51816|Nieporaz Oblaszki
+T|50.10671|19.50989|Nieporaz Puszcza Dulowska
+T|52.43064|21.03220|Nieporęt
+T|52.80303|18.87022|Nieszawa Waganiec
+T|52.05780|15.35064|Nietkowice
+T|52.02592|15.34341|Nietków
+T|52.00025|16.53536|Nietążkowo Szkoła
+T|53.08270|23.04576|Niewodnica
+T|53.14408|17.15600|Nieżychowo
+T|53.80275|20.56481|Nikielkowo
+T|50.51427|22.14033|Nisko
+T|50.52087|22.12275|Nisko Osiedle
+T|50.49547|22.17346|Nisko Podwolina
+T|50.50475|22.15777|Nisko Racławice
+T|49.87868|22.86187|Niziny
+T|54.09253|16.05231|Nosówko
+T|51.07543|19.14665|Nowa Brzeźnica
+T|50.41593|21.73985|Nowa Dęba
+T|50.08879|22.99359|Nowa Grobla
+T|52.09141|20.99523|Nowa Iwiczna
+T|50.57730|16.49681|Nowa Ruda
+T|50.58842|16.51604|Nowa Ruda Przedmieście
+T|50.61205|16.50958|Nowa Ruda Zdrojowisko
+T|50.32024|22.34839|Nowa Sarzyna
+T|50.33091|22.33605|Nowa Sarzyna Kolonia
+T|52.16139|20.17216|Nowa Sucha
+T|51.79896|15.70880|Nowa Sól
+T|52.02682|16.50323|Nowa Wieś
+T|54.02449|19.65645|Nowa Wieś Cierpkie
+T|53.77168|22.32322|Nowa Wieś Ełcka
+T|53.08476|21.41258|Nowa Wieś Kościelna
+T|54.55862|17.72160|Nowa Wieś Lęborska
+T|52.14049|20.79558|Nowa Wieś Warszawska
+T|52.96851|18.09654|Nowa Wieś Wielka
+T|52.01462|16.21608|Nowawieś Mochy
+T|52.85380|15.83394|Nowe Drezdenko
+T|52.19337|21.44020|Nowe Dębe Wielkie
+T|52.23773|19.22651|Nowe Kutnowskie
+T|51.70806|17.99791|Nowe Skalmierzyce
+T|50.44909|23.14144|Nowiny
+T|52.67265|15.00289|Nowiny Wielkie
+T|53.66612|15.12108|Nowogard
+T|51.81200|15.24440|Nowogród Bobrzański
+T|51.79496|15.22548|Nowogród Osiedle
+T|49.56238|22.08562|Nowosielce
+T|50.07306|19.18546|Nowy Bieruń
+T|54.19884|19.11302|Nowy Dwór Gdański Cmentarz
+T|54.21091|19.12293|Nowy Dwór Gdański Wąskotorowy
+T|54.22161|19.11913|Nowy Dwór Gdański Żelichowo
+T|54.21719|19.12491|Nowy Dwór Gdański Żeromskiego
+T|52.42528|20.72399|Nowy Dwór Mazowiecki
+T|54.14604|20.14245|Nowy Dwór koło Ornety
+T|54.39247|16.52586|Nowy Jarosław
+T|50.36211|17.41366|Nowy Las
+T|54.06748|21.32432|Nowy Młyn
+T|52.47259|23.17688|Nowy Nurzec
+T|52.03060|16.19502|Nowy Solec
+T|49.60653|20.70267|Nowy Sącz
+T|49.58595|20.66039|Nowy Sącz Biegonice
+T|49.63066|20.67707|Nowy Sącz Chełmiec
+T|49.59731|20.67897|Nowy Sącz Dąbrówka
+T|49.59931|20.72253|Nowy Sącz Gorzków
+T|49.58748|20.74328|Nowy Sącz Jamnica
+T|49.62014|20.69111|Nowy Sącz Miasto
+T|49.47258|20.01586|Nowy Targ
+T|52.30412|16.13304|Nowy Tomyśl
+T|52.08070|16.14273|Nowy Widzim
+T|49.52117|22.25914|Nowy Zagórz
+T|49.25242|22.08296|Nowy Łupków
+T|50.37767|17.36956|Nowy Świętów
+T|52.46006|23.08298|Nurzec
+T|50.47765|17.34195|Nysa
+T|50.46585|17.35860|Nysa Wschodnia
+T|50.15700|18.29176|Nędza
+T|50.16471|18.31260|Nędza Wieś
+T|50.15119|18.32040|Nędza Wąskotorowa
+T|52.65806|16.83068|Oborniki Wielkopolskie
+T|52.64656|16.82046|Oborniki Wielkopolskie Miasto
+T|51.29961|16.90733|Oborniki Śląskie
+T|52.11046|16.70126|Oborzyska Stare
+T|51.88729|17.44929|Obra Stara
+T|52.96824|18.88294|Obrowo
+T|52.29393|17.53402|Obłaczkowo
+T|51.70205|17.93355|Ociąż
+T|51.57459|17.66772|Odolanów
+T|52.86988|18.74696|Odolion
+T|53.31605|15.45377|Ognica
+T|52.90581|19.02612|Ograszka
+T|52.00079|23.23971|Ogrodniki
+T|51.27096|15.77857|Okmiany
+T|53.52014|16.83059|Okonek
+T|51.73162|22.13592|Okrzeja
+T|51.43720|15.18161|Okrąglica
+T|51.49173|23.58987|Okuninka Białe
+T|50.88207|18.42483|Olesno Śląskie
+T|50.15711|23.03668|Oleszyce
+T|51.20066|17.38592|Oleśnica
+T|51.21651|17.36462|Oleśnica Rataje
+T|50.27441|19.57043|Olkusz
+T|49.47653|22.43575|Olszanica
+T|50.79517|17.47768|Olszanka
+T|53.21718|21.05450|Olszewka
+T|53.76584|20.43838|Olsztyn Dajtki
+T|53.80883|20.40368|Olsztyn Gutkowo
+T|53.78574|20.49767|Olsztyn Główny
+T|53.78370|20.44967|Olsztyn Jezioro Ukiel
+T|53.78952|20.44495|Olsztyn Likusy
+T|53.79652|20.43532|Olsztyn Redykajny
+T|53.77873|20.46910|Olsztyn Zachodni
+T|53.78274|20.48257|Olsztyn Śródmieście
+T|53.58451|20.29482|Olsztynek
+T|51.06969|15.38065|Olszyna Lubańska
+T|53.55383|21.10731|Olszyny
+T|49.96037|18.33889|Olza
+T|52.18139|20.90467|Opacz
+T|52.30974|16.40031|Opalenica
+T|51.74337|18.22747|Opatówek
+T|51.37286|20.27151|Opoczno
+T|51.35918|20.23244|Opoczno Południe
+T|50.74252|17.88216|Opole Borki
+T|50.64466|17.86680|Opole Chmielowice
+T|50.71643|17.90324|Opole Czarnowąsy
+T|50.67343|17.98754|Opole Gosławice
+T|50.63651|17.95471|Opole Groszowice
+T|50.60972|17.97600|Opole Grotowice
+T|50.66165|17.92721|Opole Główne
+T|51.15064|21.97931|Opole Lubelskie Wąskotorowe
+T|50.67446|17.93431|Opole Wschodnie
+T|50.66085|17.89852|Opole Zachodnie
+T|52.51108|18.00960|Orchowo
+T|52.72693|23.34846|Orlanka
+T|54.11498|20.15075|Orneta
+T|52.81081|23.15882|Orzechowicze
+T|52.12691|17.47782|Orzechowo
+T|50.15439|18.77769|Orzesze
+T|50.14480|18.74075|Orzesze Jaśkowice
+T|50.14186|18.77458|Orzesze Miasto
+T|52.68232|23.53419|Orzeszkowo
+T|51.39393|16.50812|Orzeszków
+T|50.93183|15.35211|Orłowice
+T|51.26181|15.84727|Osetnica
+T|53.59370|18.34716|Osie
+T|49.67498|19.75578|Osielec
+T|53.60885|15.01240|Osina
+T|51.33833|16.86563|Osola
+T|52.24949|16.81844|Osowa Góra
+T|53.47289|22.65683|Osowiec
+T|50.75287|18.04342|Osowiec Przystanek
+T|50.77392|18.04505|Osowiec Śląski
+T|53.11036|18.62727|Ostaszewo Toruńskie
+T|53.14358|18.21419|Ostromecko
+T|53.71952|23.24400|Ostrowie Biebrzańskie
+T|50.93299|21.37966|Ostrowiec Świętokrzyski
+T|53.43312|19.26726|Ostrowite koło Jabłonowa
+T|52.43149|17.95371|Ostrowo Las
+T|52.44306|17.96987|Ostrowo Stare
+T|52.29886|19.19229|Ostrowy
+T|53.05616|21.61711|Ostrołęka
+T|51.42952|17.94056|Ostrzeszów
+T|53.69946|19.94971|Ostróda
+T|51.64923|17.80524|Ostrów Wielkopolski
+T|51.64749|17.73146|Ostrów Wielkopolski Gorzyce
+T|49.95435|22.78359|Ostrów koło Radymna
+T|52.55968|21.75069|Ostrówek Węgrowski
+T|52.93322|16.92675|Ostrówki koło Chodzieży
+T|50.55115|18.12420|Otmice
+T|50.47413|17.15256|Otmuchów
+T|50.48138|17.11057|Otmuchów Jezioro
+T|52.32532|17.69149|Otoczna
+T|54.33050|18.37684|Otomino
+T|52.12637|20.76153|Otrębusy
+T|52.34669|16.59739|Otusz
+T|52.10956|21.26310|Otwock
+T|52.10122|21.29438|Otwock Śródborów
+T|52.12100|21.25162|Otwock Świder
+T|52.91256|18.69260|Otłoczyn
+T|52.51143|16.98754|Owińska
+T|50.66993|18.21026|Ozimek
+T|51.97150|19.26622|Ozorków
+T|51.95890|19.26960|Ozorków Nowe Miasto
+T|50.93058|17.29776|Oława
+T|50.94502|17.26871|Oława Zachodnia
+T|50.04207|19.20037|Oświęcim
+T|52.20745|20.79581|Ożarów Mazowiecki
+T|51.66093|19.32498|Pabianice
+T|51.66985|19.34190|Pabianice Północne
+T|53.17149|14.47159|Pacholęta
+T|52.39693|17.15896|Paczkowo
+T|50.47842|17.01106|Paczków
+T|50.41210|18.57215|Paczyna
+T|50.43420|21.50594|Padew
+T|50.54529|17.35332|Pakosławice
+T|52.37455|16.74889|Palędzie
+T|52.55367|16.68506|Pamiątkowo
+T|50.89660|18.74859|Panki
+T|52.36048|15.73495|Panowice
+T|53.06839|18.69374|Papowo Toruńskie
+T|53.99543|15.06452|Paprotno
+T|50.17535|18.47373|Paproć
+T|53.17501|21.14095|Parciaki
+T|51.62620|22.87161|Parczew
+T|51.63449|22.88097|Parczew Kolejowa
+T|51.48100|17.34931|Park
+T|52.70793|16.91463|Parkowo
+T|53.37060|18.26910|Parlin
+T|52.15644|20.76312|Parzniew
+T|53.84568|14.74918|Parłówko
+T|52.85397|21.56052|Pasieki
+T|51.20889|17.10961|Pasikurowice
+T|53.63225|20.76462|Pasym
+T|54.05535|19.65653|Pasłęk
+T|52.27090|22.74549|Patków
+T|52.22938|18.36703|Patrzyków
+T|50.68076|18.56658|Pawonków
+T|51.81980|16.75920|Pawłowice
+T|49.96379|18.72493|Pawłowice Śląskie Centrum
+T|51.42185|17.65472|Pawłów Wielkopolski
+T|53.15224|17.85682|Pawłówek
+T|51.47921|17.35036|Pałac Krośnice
+T|51.48100|17.34085|Pałac Wierzchowice
+T|51.49041|22.65912|Pałecznica
+T|53.92692|18.70728|Pelplin
+T|51.99661|23.27987|Perkowice
+T|52.00363|16.26961|Perkowo
+T|51.92282|18.14545|Petryki
+T|51.29552|20.36340|Petrykozy
+T|49.66689|19.27911|Pewel Mała
+T|49.66915|19.37997|Pewel Wielka
+T|49.66062|19.35247|Pewel Wielka Centrum
+T|50.04775|22.61172|Pełkinie
+T|52.21002|20.34436|Piasecznica
+T|52.06653|21.01729|Piaseczno
+T|52.07019|21.02394|Piaseczno Miasto Wąskotorowe
+T|52.06548|21.01926|Piaseczno Wiadukt
+T|50.01275|18.94000|Piasek
+T|53.62097|17.72979|Piastoszyn
+T|52.18258|20.84272|Piastów
+T|50.85172|15.59147|Piechowice
+T|50.85042|15.61667|Piechowice Dolne
+T|50.87550|20.48228|Piekoszów
+T|50.87067|20.44728|Piekoszów Łaziska
+T|54.24034|20.12478|Pieniężno
+T|51.25522|17.09891|Pierwoszów Miłocin
+T|52.26333|17.15735|Pierzchno
+T|52.50568|17.48262|Pierzyska
+T|49.83041|18.81332|Pierściec
+T|53.96502|18.39565|Piesienice
+T|49.70990|19.17208|Pietrzykowice Żywieckie
+T|51.24521|15.04689|Pieńsk
+T|53.65593|19.73694|Pikus
+T|51.95485|21.53402|Pilawa
+T|50.21344|18.56523|Pilchowice
+T|50.61676|22.02689|Pilchów
+T|53.96223|18.34833|Pinczyn
+T|51.47978|21.46203|Pionki
+T|51.47193|21.44126|Pionki Zachodnie
+T|52.53777|18.51947|Piotrków Kujawski
+T|51.41047|19.68464|Piotrków Trybunalski
+T|50.12853|19.68318|Pisary
+T|53.63182|21.79474|Pisz
+T|53.62739|21.83006|Pisz Wschodni
+T|49.43167|20.71773|Piwniczna
+T|49.44064|20.71737|Piwniczna-Zdrój
+T|53.13912|16.77202|Piła Fabryczna
+T|53.14307|16.74480|Piła Główna
+T|53.10136|16.78806|Piła Kalina
+T|53.16289|16.77707|Piła Podlasie
+T|50.67877|16.77326|Piława Górna
+T|50.52340|20.51912|Pińczów
+T|52.30116|22.82111|Platerów
+T|52.42848|17.93343|Plaża Wojskowa
+T|52.28238|20.28958|Plecewice
+T|51.89259|17.73222|Pleszew
+T|51.89257|17.77545|Pleszew Lipowa
+T|51.89118|17.78329|Pleszew Miasto
+T|51.89322|17.73352|Pleszew Wąskotorowy
+T|52.20470|15.01675|Pliszka
+T|50.66469|18.46866|Pludry
+T|52.47930|17.27785|Pobiedziska
+T|52.47429|17.23975|Pobiedziska Letnisko
+T|53.13156|17.10953|Pobórka Wielka
+T|52.69179|23.21047|Podbiele
+T|53.93417|16.13883|Podborsko
+T|49.96659|19.77350|Podbory Skawińskie
+T|51.36045|20.87571|Podbór
+T|50.66391|20.32087|Podchojny
+T|52.12237|20.72514|Podkowa Leśna Główna
+T|52.12378|20.73842|Podkowa Leśna Wschodnia
+T|52.12093|20.71232|Podkowa Leśna Zachodnia
+T|53.55806|22.53472|Podlasek
+T|50.76495|19.60356|Podlesie
+T|52.93674|15.87647|Podlesiec
+T|49.89821|19.75342|Podolany
+T|51.76768|20.34152|Podskarbice
+T|52.34131|17.48152|Podstolice
+T|52.86487|19.57879|Podwierzbie
+T|51.20968|22.78742|Podzamcze
+T|50.01812|20.16906|Podłęże
+T|52.09470|21.34056|Pogorzel Warszawska
+T|53.70727|22.15011|Pogorzel Wielka
+T|54.09414|15.12531|Pogorzelica
+T|54.09396|15.10144|Pogorzelica Sandra
+T|54.50407|17.64325|Pogorzelice
+T|49.80667|18.59760|Pogwizdów
+T|50.34389|18.07956|Pokrzywnica
+T|50.81463|15.42952|Polana Jakuszycka
+T|50.39759|16.51441|Polanica-Zdrój
+T|51.23306|21.94102|Polanówka
+T|52.12185|20.69721|Polesie
+T|50.83106|22.30648|Polichna Kraśnicka
+T|52.45903|15.69302|Policko
+T|52.58905|23.42335|Policzna
+T|49.67526|20.99458|Polna
+T|52.17018|17.18042|Polwica
+T|52.47326|20.74332|Pomiechówek
+T|51.17943|22.06555|Poniatowa
+T|51.76153|16.80810|Poniec
+T|53.90573|15.13930|Popiele
+T|50.82956|17.76241|Popielów
+T|54.30914|19.10939|Popowo
+T|52.53599|15.52212|Popowo Skwierzyńskie
+T|50.67694|19.21918|Poraj
+T|52.30228|16.28686|Porażyn
+T|49.34322|20.00352|Poronin
+T|49.32950|19.99601|Poronin Misiagi
+T|52.01183|23.06215|Porosiuki
+T|53.59373|14.89695|Port Lotniczy Szczecin Goleniów
+T|50.48396|19.33205|Poręba
+T|50.61733|20.19640|Potok
+T|50.79660|22.16331|Potok Kraśnicki
+T|54.48495|17.48810|Potęgowo
+T|53.74340|17.59979|Powałki
+T|54.01099|23.02425|Powały
+T|52.41381|17.91104|Powidz
+T|52.12331|16.05452|Powodowo
+T|49.36816|20.93978|Powroźnik
+T|52.40966|17.02817|Poznań Antoninek
+T|52.36818|16.90108|Poznań Dębiec
+T|52.37346|16.91061|Poznań Dębina
+T|52.41644|16.93684|Poznań Garbary
+T|52.38021|16.88149|Poznań Górczyn
+T|52.37786|16.82547|Poznań Junikowo
+T|52.43842|16.98141|Poznań Karolin
+T|52.34170|16.97554|Poznań Krzesiny
+T|52.40163|16.91158|Poznań Main Station
+T|52.44728|16.88094|Poznań Podolany
+T|52.36623|16.93428|Poznań Starołęka
+T|52.46014|16.86616|Poznań Strzeszyn
+T|52.43357|16.85037|Poznań Wola
+T|52.41822|16.97148|Poznań Wschód
+T|53.75731|19.21081|Prabuty
+T|52.80638|21.56992|Prabuty Góry
+T|54.33241|18.95038|Prawy Brzeg Wisły
+T|52.66026|19.71384|Proboszczewice Płockie
+T|52.56672|18.02106|Procyń
+T|52.47168|17.21483|Promno
+T|53.69514|22.43178|Prostki
+T|53.30521|15.77397|Prostynia
+T|52.65923|21.96101|Prostyń
+T|51.01002|15.42454|Proszówka
+T|49.87926|18.69262|Pruchna
+T|50.32918|17.57766|Prudnik
+T|54.25723|18.64697|Pruszcz Gdański
+T|53.33412|18.19854|Pruszcz Pomorski
+T|52.16822|20.79893|Pruszków
+T|52.16161|20.81658|Pruszków WKD
+T|52.58364|17.02370|Przebędowo
+T|50.01345|19.36889|Przeciszów
+T|50.73298|17.66776|Przecza
+T|51.19050|16.66465|Przedmoście Święte
+T|49.77948|22.79411|Przemyśl Bakończyce
+T|49.78361|22.78015|Przemyśl Główny
+T|49.78461|22.80455|Przemyśl Wschodni
+T|49.79347|22.77373|Przemyśl Zasanie
+T|53.77024|16.53708|Przeradz
+T|50.68918|16.81965|Przerzeczyn Zdrój
+T|52.76906|21.55113|Przetycz
+T|50.06699|22.50544|Przeworsk
+T|50.06646|22.50143|Przeworsk Wąski
+T|52.43225|17.93784|Przybrodzin
+T|51.12514|16.15869|Przybyłowice
+T|49.79879|21.64745|Przybówka
+T|51.56996|17.83000|Przygodzice
+T|52.75397|17.18394|Przysieczyn
+T|52.03627|16.60437|Przysieka Stara
+T|49.73298|21.39386|Przysieki
+T|51.37775|20.65972|Przysucha
+T|50.24694|18.73647|Przyszowice
+T|49.89604|19.67854|Przytkowice
+T|54.12331|16.85747|Przytocko
+T|50.58156|17.98909|Przywory Opolskie
+T|53.04974|18.32427|Przyłubie
+T|51.84097|19.91736|Przyłęk Duży
+T|50.39920|20.00838|Pstroszyce
+T|52.49342|15.77322|Pszczew
+T|49.97498|18.95347|Pszczyna
+T|50.01682|18.90659|Pszczyna Czarków
+T|54.17460|18.70166|Pszczółki
+T|50.85604|16.53016|Pszenno
+T|49.60338|20.88161|Ptaszkowa
+T|52.22918|16.44137|Ptaszkowo
+T|53.36467|16.78387|Ptusza
+T|52.40603|16.97512|Ptyś
+T|54.71488|18.40863|Puck
+T|50.14356|21.49629|Pustków
+T|50.95413|16.85731|Pustków Żurawski
+T|50.07961|21.45697|Pustynia
+T|52.29561|16.87112|Puszczykowo
+T|52.27299|16.86378|Puszczykówko
+T|50.95908|22.30639|Pułankowice
+T|51.41046|22.01142|Puławy
+T|51.47502|21.94909|Puławy Azoty
+T|51.44651|21.96827|Puławy Chemia
+T|51.42779|21.98423|Puławy Miasto
+T|50.46812|19.07672|Pyrzowice Lotnisko
+T|50.38358|18.61940|Pyskowice
+T|49.52104|19.96047|Pyzówka
+T|49.97634|19.57582|Półwieś
+T|51.77685|20.44333|Pągów
+T|51.16052|18.63369|Pątnów Wieluński
+T|52.66426|16.48883|Pęckowo
+T|51.24719|16.92712|Pęgów
+T|51.73706|17.11271|Pępowo
+T|54.36646|18.40115|Pępowo Kartuskie
+T|53.33554|15.19538|Pęzino
+T|52.19639|17.21218|Płaczki
+T|49.75501|20.95096|Pławna
+T|52.20006|20.70199|Płochocin
+T|54.02070|22.98306|Płociczno Tartak
+T|54.03793|22.94897|Płociczno koło Suwałk
+T|52.55271|19.71265|Płock
+T|52.52425|19.67226|Płock Radziwie
+T|52.58872|19.73383|Płock Trzepowo
+T|53.80787|15.26153|Płoty
+T|52.61570|20.36683|Płońsk
+T|53.29500|16.75031|Płytnica
+T|51.91756|20.00346|Płyćwia
+T|49.56571|19.88183|Raba Wyżna
+T|49.62686|19.99051|Rabka Zaryte
+T|49.60935|19.95187|Rabka-Zdrój
+T|53.49803|23.48451|Racewo
+T|52.92958|22.71161|Racibory
+T|52.28034|19.34166|Raciborów Kutnowski
+T|50.09060|18.22671|Racibórz
+T|50.11323|18.27016|Racibórz Markowice
+T|52.77891|20.10491|Raciąż
+T|50.31210|17.76061|Racławice Śląskie
+T|53.66821|17.65392|Racławki
+T|50.78022|20.52842|Radkowice
+T|51.72326|18.35003|Radliczyce
+T|50.04125|18.49467|Radlin Obszary
+T|52.03354|17.49947|Radlin Wielkopolski
+T|52.09055|15.26795|Radnica
+T|51.41241|21.18793|Radom Gołębiów
+T|51.39092|21.15538|Radom Główny
+T|51.35297|21.10211|Radom Potkanów
+T|51.36349|21.13684|Radom Południowy
+T|51.41958|21.18649|Radom Północny
+T|51.43931|21.18485|Radom Stara Wola
+T|51.39908|21.17372|Radom Wschodni
+T|51.07453|19.43761|Radomsko
+T|52.03118|22.38102|Radomyśl
+T|50.02056|18.88895|Radostowice
+T|53.96961|17.77853|Raduń
+T|49.93972|22.82832|Radymno
+T|51.46661|20.39738|Radzice
+T|49.64749|19.16399|Radziechowy Wieprz
+T|50.40904|18.91521|Radzionków
+T|50.39591|18.89992|Radzionków Rojca
+T|53.32000|14.53344|Radziszewo
+T|49.91775|19.80920|Radziszów
+T|49.93692|19.80688|Radziszów Centrum
+T|52.00029|20.29035|Radziwiłłów Mazowiecki
+T|52.42429|21.17744|Radzymin
+T|51.82711|22.66883|Radzyń Podlaski
+T|52.43191|14.74240|Radów
+T|49.51712|19.11222|Rajcza
+T|49.50689|19.10061|Rajcza Centrum
+T|51.41507|21.25340|Rajec Poduchowny
+T|52.84352|23.14121|Rajsk
+T|52.13829|16.26397|Rakoniewice
+T|53.47814|19.64153|Rakowice
+T|51.19320|17.09834|Ramiszów
+T|50.38850|18.16043|Raszowa
+T|53.24586|21.00421|Raszujka
+T|51.30153|16.18164|Raszówka
+T|51.76678|20.24583|Rawa Mazowiecka
+T|51.60925|16.83944|Rawicz
+T|54.43066|16.91823|Reblino
+T|53.27094|15.56306|Recz Pomorski
+T|53.84528|14.64350|Recław
+T|54.59495|18.35326|Reda
+T|54.60268|18.31761|Reda Pieleszewo
+T|54.63197|18.36361|Reda Rekowo
+T|53.67108|19.40816|Redaki
+T|51.76695|20.38105|Regnów
+T|50.07771|19.52831|Regulice
+T|52.17035|20.85865|Reguły
+T|51.11769|23.23834|Rejowiec
+T|52.54656|23.35571|Repczyce
+T|53.37225|14.86501|Reptowo
+T|54.07556|15.01113|Rewal
+T|51.99229|16.56425|Robaczyn
+T|50.96342|17.59801|Rogalice
+T|54.03715|20.28423|Rogiedle
+T|51.01453|16.30193|Rogoźnica
+T|50.11686|21.96889|Rogoźnica koło Rzeszowa
+T|52.75524|16.97215|Rogoźno Wielkopolskie
+T|52.46183|19.54132|Rogożew
+T|51.81830|19.88652|Rogów
+T|51.81676|19.88535|Rogów Osobowy Wąskotorowy
+T|50.93410|16.75914|Rogów Sobócki
+T|51.81287|19.88079|Rogów Towarowy Wąskotorowy
+T|53.54352|18.91099|Rogóźno Pomorskie
+T|50.08357|22.36251|Rogóżno koło Łańcuta
+T|51.66755|19.78068|Rokiciny
+T|49.57866|19.90588|Rokiciny Podhalańskie
+T|52.51064|16.75616|Rokietnica
+T|53.76655|14.85486|Rokita
+T|51.33543|15.89325|Rokitki
+T|54.08087|18.73691|Rokitki Tczewskie
+T|51.61202|21.79828|Rokitnia Stara
+T|51.78804|20.45090|Rokszyce
+T|50.07832|21.57915|Ropczyce
+T|50.07725|21.62823|Ropczyce Witkowice
+T|54.06319|16.30307|Rosnowo Ośrodek
+T|54.06648|16.29854|Rosnowo Wąskotorowe
+T|53.70540|18.11462|Rosochatka
+T|52.13495|16.20701|Rostarzewo
+T|52.70883|17.17620|Roszkowo Wągrowieckie
+T|49.96509|18.29412|Roszków Raciborski
+T|51.17865|22.00728|Rozalin
+T|53.35907|23.36547|Rozedranka
+T|51.30159|19.66014|Rozprza
+T|50.18770|16.66577|Roztoki Bystrzyckie
+T|51.33884|21.05407|Rożki
+T|52.67922|16.87175|Rożnowo
+T|52.17727|16.34180|Ruchocice
+T|53.64913|21.56311|Ruciane-Nida
+T|53.64227|21.52277|Ruciane-Nida Zachód
+T|53.58932|22.52069|Ruda
+T|51.26236|20.38235|Ruda Białaczowska
+T|50.30381|18.87802|Ruda Chebzie
+T|51.85285|21.58977|Ruda Talubska
+T|51.29254|21.04023|Ruda Wielka
+T|50.31592|18.85088|Ruda Śląska
+T|51.23557|23.58878|Ruda-Huta
+T|51.24791|23.60111|Ruda-Opalin
+T|50.11882|19.71933|Rudawa
+T|51.52910|16.28097|Rudna Gwizdanów
+T|51.50574|16.26961|Rudna Miasto
+T|50.08110|21.94150|Rudna Wielka
+T|51.28764|22.62253|Rudnik
+T|50.45821|22.21679|Rudnik Stróża
+T|50.43575|22.24919|Rudnik nad Sanem
+T|50.87821|19.23225|Rudniki koło Częstochowy
+T|50.18987|18.46415|Rudy
+T|49.94032|18.30323|Rudyszwałd
+T|53.63861|19.66961|Rudzienice Suskie
+T|50.36663|18.40422|Rudziniec Gliwicki
+T|54.56914|18.38666|Rumia
+T|54.55957|18.40454|Rumia Janowo
+T|54.48101|17.54981|Runowo
+T|53.55576|15.52945|Runowo Pomorskie
+T|52.01928|20.93459|Runów
+T|53.49357|14.79587|Rurka
+T|51.31696|18.96943|Rusiec Łódzki
+T|50.64901|18.76377|Rusinowice
+T|51.40106|15.17663|Ruszów
+T|52.36147|19.15908|Rutkowice
+T|53.22928|16.28343|Rutwica
+T|52.58221|21.45838|Rybienko
+T|54.28796|19.11114|Rybina
+T|50.91048|15.64584|Rybnica
+T|50.08910|18.54797|Rybnik
+T|50.06646|18.49466|Rybnik Niedobczyce
+T|50.06937|18.46932|Rybnik Niewiadom
+T|50.10279|18.56561|Rybnik Paruszowiec
+T|50.09650|18.58614|Rybnik Piaski
+T|50.05614|18.49716|Rybnik Rymer
+T|50.16742|18.47689|Rybnik Stodoły
+T|50.06661|18.51536|Rybnik Towarowy
+T|53.38098|19.91317|Rybno Pomorskie
+T|53.91573|15.07700|Rybokarty
+T|49.49885|19.08188|Rycerka
+T|53.14251|18.81446|Rychnowo Wielkie
+T|52.80762|16.83547|Ryczywół
+T|49.98909|19.54066|Ryczów
+T|50.06901|18.42598|Rydułtowy
+T|51.77126|16.64642|Rydzyna
+T|53.84223|18.95661|Ryjewo
+T|51.60635|21.92255|Ryki
+T|50.86818|20.37888|Rykoszyn
+T|51.47255|16.22737|Rynarcice
+T|53.15205|18.00539|Rynkowo Wiadukt
+T|53.06859|19.42762|Rypin
+T|53.74823|17.72512|Rytel
+T|53.76053|17.77320|Rytel Wieś
+T|49.48635|20.68023|Rytro
+T|50.84001|22.20826|Rzeczyca
+T|50.84168|22.26714|Rzeczyca-Kolonia
+T|50.35660|18.56771|Rzeczyce Śląskie
+T|50.21685|21.50620|Rzemień
+T|49.37174|22.11205|Rzepedź
+T|52.34992|14.81529|Rzepin
+T|52.34663|14.82464|Rzepin Miasto
+T|50.89735|19.32841|Rzerzęczyce
+T|51.24962|16.16585|Rzeszotary
+T|50.06446|21.98896|Rzeszów Baranówka
+T|50.04310|21.99810|Rzeszów Centrum
+T|50.07792|21.96837|Rzeszów Dworzysko
+T|50.04299|22.00609|Rzeszów Główny
+T|50.07562|21.98721|Rzeszów Miłocin
+T|50.02259|21.97776|Rzeszów Osiedle
+T|50.05243|22.03061|Rzeszów Pobitno
+T|50.02716|21.98365|Rzeszów Politechnika
+T|50.06283|21.99240|Rzeszów Staromieście
+T|50.03849|21.98973|Rzeszów Staroniwa
+T|50.05345|21.99420|Rzeszów Zachodni
+T|50.05853|22.06933|Rzeszów Załęże
+T|50.00593|21.95717|Rzeszów Zwięczyca
+T|49.98479|20.51516|Rzezawa
+T|50.24001|21.49541|Rzochów
+T|49.94569|19.80437|Rzozów
+T|49.95832|19.80329|Rzozów Centrum
+T|50.88581|19.17799|Rząsawa
+T|53.52447|15.95178|Rzęśnica
+T|52.54071|18.01349|Różanna
+T|53.62327|23.39220|Różanystok
+T|54.21148|18.66217|Różyny
+T|53.86941|15.95236|Rąbino
+T|54.38706|18.41902|Rębiechowo
+T|50.94822|15.45603|Rębiszów
+T|53.05405|15.59037|Rębusz
+T|52.17315|22.17264|Sabinka
+T|53.66691|18.87995|Sadlinki
+T|51.05601|16.82469|Sadowice Wrocławskie
+T|52.60507|21.85806|Sadowne Węgrowskie
+T|51.28627|22.28440|Sadurki
+T|53.67184|19.82074|Samborowo
+T|53.12778|17.43474|Samostrzel
+T|50.66029|21.76525|Sandomierz
+T|49.55277|22.21149|Sanok
+T|49.56906|22.15949|Sanok Dąbrówka
+T|49.55594|22.19859|Sanok Miasto
+T|52.74304|15.41527|Santok
+T|52.82208|15.55077|Sarbiewo
+T|52.32511|22.87950|Sarnaki
+T|51.84284|22.29587|Sarnów
+T|52.14755|16.55448|Sepno
+T|53.36105|18.08973|Serock
+T|52.19648|20.46758|Seroki
+T|53.54452|23.44802|Sidra
+T|51.03826|17.14254|Siechnice
+T|52.16179|22.27192|Siedlce
+T|52.14431|22.29786|Siedlce Wschodnie
+T|52.17352|22.23551|Siedlce Zachodnie
+T|51.45695|19.01544|Siedlce Łaskie
+T|51.23365|17.11882|Siedlec Trzebnicki
+T|54.00027|21.91454|Siedliska
+T|50.26160|23.55437|Siedliska Tomaszowskie
+T|49.86055|21.01934|Siedliska koło Tuchowa
+T|52.98364|16.39858|Siedlisko Czarnkowskie
+T|54.49836|17.06272|Siemianice
+T|52.89997|23.81484|Siemianówka
+T|52.39076|22.94471|Siemiatycze
+T|49.53898|19.92254|Sieniawa
+T|51.63656|15.06138|Sieniawa Żarska
+T|49.75451|21.29687|Siepietnica
+T|51.59765|18.71364|Sieradz
+T|51.61517|18.77657|Sieradz Męka
+T|51.60301|18.73037|Sieradz Warta
+T|51.99867|20.06165|Sierakowice Skierniewickie
+T|50.79882|18.59360|Sieraków Śląski
+T|52.37072|19.42050|Sierakówek
+T|52.84801|19.65313|Sierpc
+T|52.01824|19.22274|Sierpów
+T|50.47928|19.23744|Siewierz
+T|53.64417|17.69335|Silno
+T|53.63515|16.49223|Silnowo
+T|50.81826|20.55041|Sitkówka Nowiny
+T|51.98578|22.86605|Sitno
+T|51.33895|20.32443|Sitowa
+T|53.52443|20.97152|Siódmak
+T|54.39950|16.48744|Sińczyca
+T|51.69729|18.43026|Skalmierz
+T|51.12215|20.91766|Skarżysko Kościelne
+T|51.10809|20.85059|Skarżysko Milica
+T|51.10044|20.85957|Skarżysko Zachodnie
+T|51.11619|20.88201|Skarżysko-Kamienna
+T|49.63084|19.87952|Skawa
+T|49.61256|19.90046|Skawa Środkowa
+T|49.97734|19.82295|Skawina
+T|49.98122|19.84143|Skawina Jagielnia
+T|49.97314|19.79254|Skawina Zachodnia
+T|54.24951|16.30469|Skibno
+T|51.96762|20.15143|Skierniewice
+T|51.97759|20.22130|Skierniewice Rawka
+T|52.22538|19.40544|Sklęczki
+T|49.79298|18.78951|Skoczów
+T|49.79890|18.80125|Skoczów Bajerki
+T|49.77213|18.77915|Skoczów Bładnice
+T|52.67430|17.16201|Skoki
+T|51.54014|21.84841|Skoki-Borowa
+T|51.38708|16.84894|Skokowa
+T|50.59324|17.37506|Skoroszyce
+T|54.16577|17.98096|Skorzewo
+T|54.18505|18.68244|Skowarcz
+T|49.74511|21.33926|Skołyszyn
+T|51.60219|19.96697|Skrzynki
+T|51.36521|20.72140|Skrzynno
+T|52.59045|15.49977|Skwierzyna
+T|53.21925|16.87121|Skórka
+T|52.87211|19.34180|Skępe
+T|50.99224|18.14432|Smardy
+T|51.87098|19.46748|Smardzew
+T|51.03069|17.06613|Smardzów Wrocławski
+T|51.39491|20.60516|Smogorzów Przysuski
+T|51.07159|16.88196|Smolec
+T|53.54054|19.60413|Smolniki
+T|50.27470|20.04668|Smroków
+T|53.74796|18.68589|Smętowo
+T|51.44422|23.59705|Sobibór
+T|50.73130|20.43063|Sobków
+T|51.74166|21.67249|Sobolew
+T|50.90532|16.74010|Sobótka
+T|50.90784|16.70077|Sobótka Zachodnia
+T|52.21505|20.23866|Sochaczew
+T|52.25807|20.26970|Sochaczew Chodaków
+T|52.22881|20.24750|Sochaczew Miasto
+T|52.21787|20.23772|Sochaczew Muzeum
+T|53.08622|23.51121|Sokole Białostockie
+T|53.29399|15.50552|Sokoliniec
+T|52.83848|16.96925|Sokołowo Budzyńskie
+T|53.00002|22.71865|Sokoły
+T|51.99794|22.95719|Sokule
+T|53.40312|23.50642|Sokółka
+T|53.07845|18.22464|Solec Kujawski
+T|52.10974|17.31960|Solec Wielkopolski
+T|51.16411|17.46573|Solniki Wielkie
+T|54.26944|18.19272|Somonino
+T|54.28705|18.20193|Somonino Bernardyno
+T|54.44006|18.56231|Sopot
+T|54.45764|18.55358|Sopot Kamienny Potok
+T|54.43129|18.56524|Sopot Wyścigi
+T|52.17588|21.94056|Sosnowe
+T|50.26551|19.17277|Sosnowiec Dańdówka
+T|50.27895|19.12639|Sosnowiec Główny
+T|50.22865|19.16542|Sosnowiec Jęzor Południowy
+T|50.28864|19.23160|Sosnowiec Kazimierz
+T|50.26168|19.26974|Sosnowiec Maczki
+T|50.27210|19.21625|Sosnowiec Porąbka
+T|50.26973|19.12536|Sosnowiec Południowy
+T|50.84589|18.50169|Sowczyce
+T|50.55551|17.60908|Sowin
+T|51.13800|20.69092|Sołtyków
+T|49.90156|22.85151|Sośnica Jarosławska
+T|51.47154|17.63945|Sośnie Ostrowskie
+T|51.55206|20.13525|Spała
+T|53.59097|21.35430|Spychowo
+T|49.99511|19.47684|Spytkowice
+T|49.99864|19.52291|Spytkowice Kępki
+T|52.25770|18.09112|Spławie
+T|52.11302|16.35860|Stacja Wielichowo
+T|54.51640|18.54348|Stacja dolna
+T|54.51570|18.54393|Stacja górna
+T|50.56233|22.06102|Stalowa Wola
+T|50.57023|22.05506|Stalowa Wola Centrum
+T|50.60313|22.02525|Stalowa Wola Charzewice
+T|50.54493|22.07889|Stalowa Wola Południe
+T|50.59134|22.04196|Stalowa Wola Rozwadów
+T|50.20003|18.51096|Stanica Wąskotorowa
+T|50.66426|18.31897|Staniszcze Małe
+T|49.99199|20.35459|Stanisławice
+T|50.01065|20.20668|Staniątki
+T|50.92994|16.37488|Stanowice
+T|50.91399|15.56591|Stara Kamienica
+T|54.32648|18.41305|Stara Piła
+T|52.08427|21.35879|Stara Wieś
+T|53.23193|16.70537|Stara Łubianka
+T|51.05153|21.05805|Starachowice
+T|51.01501|21.10845|Starachowice Michałów
+T|51.04191|21.07879|Starachowice Wschodnie
+T|51.03779|21.08433|Starachowice Wschodnie Wąskotorowe
+T|50.56344|16.94676|Starczów
+T|52.73189|23.45359|Stare Berezowo
+T|52.85345|15.92176|Stare Bielice
+T|51.99598|16.58497|Stare Bojanowo
+T|51.99506|16.58456|Stare Bojanowo Wąskotorowe
+T|51.77670|16.19570|Stare Drzewce
+T|52.04668|19.89997|Stare Grudze
+T|53.61406|21.92435|Stare Guty
+T|53.69140|20.09391|Stare Jabłonki
+T|53.92519|22.16833|Stare Juchy
+T|52.85448|15.67809|Stare Kurowo
+T|50.91553|18.37495|Stare Olesno
+T|54.05334|19.20569|Stare Pole
+T|53.33929|15.03117|Stargard
+T|51.97899|16.31233|Starkowo
+T|53.97715|18.52577|Starogard Gdański
+T|50.76472|19.52887|Staropole Częstochowskie
+T|54.13792|15.48140|Stary Borek
+T|50.98364|19.16076|Stary Broniszew
+T|50.95211|19.16985|Stary Cykarzew
+T|50.76410|21.75008|Stary Garbów
+T|50.65024|17.37772|Stary Grodków
+T|51.07898|16.16124|Stary Jawor
+T|53.13193|15.45508|Stary Klukom
+T|49.55968|20.64332|Stary Sącz
+T|50.40518|16.57627|Stary Wielisław
+T|51.30765|15.19510|Stary Węgliniec
+T|51.21326|22.47370|Stasin Polny
+T|51.00528|21.24566|Staw Kunowski
+T|50.58115|20.59078|Stawiany Pińczowskie
+T|53.65072|20.40758|Stawiguda
+T|53.86679|14.82777|Stawno
+T|51.47860|17.34435|Stawy
+T|52.23615|15.97206|Stefanowo
+T|54.32785|19.11139|Stegna Gdańska
+T|54.32750|19.12594|Stegna Morska
+T|54.32774|19.12061|Stegna PKS
+T|54.71490|17.58228|Steknica
+T|49.99430|20.68033|Sterkowiec
+T|54.01133|21.64906|Sterławki Małe
+T|54.01578|21.58212|Sterławki Wielkie
+T|53.10871|16.62488|Stobno
+T|54.06397|18.96900|Stogi Malborskie
+T|52.16159|22.38651|Stok Lacki
+T|52.90172|23.11329|Strabla
+T|54.15490|15.65012|Stramnica
+T|50.06742|22.11452|Strażów
+T|49.83361|19.66910|Stronie
+T|53.28572|18.05922|Stronno
+T|49.91122|18.75344|Strumień
+T|52.24345|16.61366|Strykowo Poznańskie
+T|51.91058|19.59342|Stryków
+T|49.73324|19.52491|Stryszawa
+T|49.82558|19.62187|Stryszów
+T|52.31069|17.80578|Strzałkowo
+T|53.26193|15.10879|Strzebielewo
+T|54.56289|18.02879|Strzebielino Morskie
+T|50.61842|18.90004|Strzebiń
+T|50.97457|16.35895|Strzegom
+T|52.32292|19.36880|Strzelce Kujawskie
+T|50.51671|18.30661|Strzelce Opolskie
+T|50.91099|16.66099|Strzelce Świdnickie
+T|50.78421|17.06024|Strzelin
+T|54.51306|16.96322|Strzelinko
+T|51.69365|21.17269|Strzyżyna
+T|54.49093|17.37378|Strzyżyno Słupskie
+T|49.86867|21.77135|Strzyżów Zachodni
+T|49.86926|21.80151|Strzyżów nad Wisłokiem
+T|49.65485|20.97613|Stróże
+T|53.24357|16.36163|Strączno
+T|51.10961|15.08581|Studniska
+T|51.42708|15.69509|Studzianka
+T|52.53788|20.75150|Studzianki Nowe
+T|51.37631|23.61213|Stulno
+T|53.02114|20.43401|Stupsk Mazowiecki
+T|51.01086|21.15137|Styków Iłżecki
+T|51.14351|20.57355|Stąporków
+T|52.28079|16.71021|Stęszew
+T|53.98613|18.75358|Subkowy
+T|54.00250|18.76072|Subkowy Centrum
+T|49.74063|19.58072|Sucha Beskidzka
+T|49.74338|19.60335|Sucha Beskidzka Zamek
+T|50.39868|18.86309|Sucha Góra
+T|52.02288|20.35937|Sucha Żyrardowska
+T|52.91037|18.48003|Suchatówka
+T|51.04656|20.84970|Suchedniów
+T|51.06528|20.84915|Suchedniów Północny
+T|52.61736|23.28365|Suchowolce
+T|50.65726|18.03652|Suchy Bór Opolski
+T|52.09167|15.61679|Sulechów
+T|52.24778|21.27696|Sulejówek
+T|52.24065|21.29865|Sulejówek Miłosna
+T|53.31802|15.31499|Sulino
+T|53.51715|15.89296|Suliszewo Drawskie
+T|50.90540|22.33327|Sulów
+T|52.13870|17.30881|Sulęcinek
+T|50.13698|18.40149|Sumina
+T|50.12187|18.41056|Sumina Wieś
+T|50.01263|22.76887|Surochów
+T|50.41613|23.22619|Susiec
+T|52.78523|19.68303|Susk
+T|53.71114|19.32919|Susz
+T|50.03500|18.79236|Suszec
+T|50.03958|18.77391|Suszec Kopalnia
+T|50.04557|18.75402|Suszec Rudziczka
+T|50.53084|16.82437|Suszka
+T|54.10582|22.94534|Suwałki
+T|51.92696|21.09235|Sułkowice
+T|54.03805|18.65618|Swarożyn
+T|54.75259|18.38243|Swarzewo
+T|52.40427|17.07445|Swarzędz
+T|53.93552|20.39271|Swobodna
+T|51.90610|19.54060|Swędów
+T|54.41466|16.85010|Sycewice
+T|52.42922|22.99843|Sycze
+T|53.78694|22.56457|Sypitki
+T|51.99172|22.91054|Szachy
+T|51.41965|20.16846|Szadkowice
+T|49.44034|20.01712|Szaflary
+T|49.42340|20.01903|Szaflary Centrum
+T|49.67927|21.02355|Szalowa
+T|52.60205|16.58826|Szamotuly
+T|51.94693|22.54489|Szaniawy
+T|50.00952|20.25674|Szarów
+T|50.85332|22.33184|Szastarka
+T|53.85324|18.05537|Szałamaje
+T|52.00459|20.91116|Szczaki Złotokłos
+T|52.26438|15.69395|Szczaniec
+T|49.40722|22.14296|Szczawne Kulaszne
+T|52.03950|15.23383|Szczawno-Ciemnice
+T|50.68084|22.98749|Szczebrzeszyn
+T|53.38590|14.73839|Szczecin Dunikowo
+T|53.39135|14.67046|Szczecin Dąbie
+T|53.39800|14.49762|Szczecin Gumieńce
+T|53.41824|14.54941|Szczecin Main Railway Station
+T|53.35997|14.58566|Szczecin Podjuchy
+T|53.41331|14.56580|Szczecin Port Centralny
+T|53.49479|14.61481|Szczecin Stołczyn
+T|53.41175|14.71302|Szczecin Trzebusz
+T|53.42948|14.74401|Szczecin Załom
+T|53.37882|14.63690|Szczecin Zdroje
+T|53.38328|14.76283|Szczecin Zdunowo
+T|53.41823|14.55977|Szczecin Łasztownia
+T|53.35248|14.57391|Szczecin Żydowce
+T|53.69382|16.70551|Szczecinek
+T|53.72318|16.68436|Szczecinek Bugno
+T|53.71818|16.69719|Szczecinek Chyże
+T|51.21515|16.35069|Szczedrzykowice
+T|50.07958|18.67191|Szczejkowice
+T|50.29356|20.03264|Szczepanowice
+T|50.89833|16.62518|Szczepanów
+T|53.96689|22.98474|Szczepki
+T|50.88323|20.52568|Szczukowskie Górki
+T|50.40837|16.44979|Szczytna
+T|53.56022|20.99681|Szczytno
+T|49.75611|21.61558|Szebnie
+T|52.87026|22.54147|Szepietowo
+T|53.63977|21.69954|Szeroki Bór
+T|51.21614|16.95408|Szewce
+T|52.48335|21.56334|Szewnica
+T|50.84836|15.55696|Szklarska Poręba Dolna
+T|50.83261|15.51868|Szklarska Poręba Górna
+T|50.82666|15.49706|Szklarska Poręba Huta
+T|50.83847|15.53998|Szklarska Poręba Średnia
+T|49.87174|22.24832|Szklary
+T|49.88111|22.24381|Szklary Tunel
+T|53.76289|18.11974|Szlachta
+T|54.00694|18.60982|Szpęgawsk
+T|52.31777|16.80088|Szreniawa
+T|53.92431|19.02113|Sztum
+T|53.89514|19.00170|Sztumska Wieś
+T|54.32688|19.17477|Sztutowo
+T|54.32644|19.15347|Sztutowo Muzeum
+T|52.76060|22.22745|Szulborze Wielkie
+T|50.34459|17.48112|Szybowice
+T|51.20800|20.92345|Szydłowiec
+T|53.16672|16.60690|Szydłowo Krajeńskie
+T|50.60604|17.70506|Szydłów
+T|50.60525|17.71830|Szydłów Centrum
+T|54.07271|18.92751|Szymankowo
+T|53.48694|20.96647|Szymany
+T|53.48912|20.94754|Szymany Lotnisko
+T|52.89403|22.60944|Szymbory
+T|50.52833|18.22414|Szymiszów
+T|50.15111|18.34967|Szymocice
+T|50.15076|18.33549|Szymocice Wieś
+T|50.15452|18.36033|Szymocice Wąskotorowe
+T|49.49464|19.05070|Sól
+T|49.51716|19.03131|Sól Kiczora
+T|52.30330|16.20352|Sątopy
+T|54.07293|21.02409|Sątopy-Samulewo
+T|51.62889|18.57001|Sędzice
+T|50.56588|20.05490|Sędziszów
+T|50.07544|21.69286|Sędziszów Małopolski
+T|50.07004|21.72859|Sędziszów Małopolski Wschodni
+T|50.81342|16.06985|Sędzisław
+T|52.63469|17.14399|Sława Wielkopolska
+T|50.35138|18.31382|Sławięcice
+T|54.25673|18.17556|Sławki
+T|50.29492|19.37465|Sławków
+T|54.35567|16.66963|Sławno
+T|51.40182|20.20375|Słomianka
+T|50.24943|20.06370|Słomniki
+T|50.23587|20.07637|Słomniki Miasto
+T|51.92874|15.38980|Słone
+T|53.09220|15.51536|Słonice
+T|54.38366|16.92663|Słonowice
+T|53.94158|16.97730|Słosinko
+T|51.72261|19.83870|Słotwiny
+T|54.20718|15.94197|Słowienkowo
+T|52.33607|14.59535|Słubice
+T|52.28738|17.85208|Słupca
+T|51.25196|18.04129|Słupia
+T|52.21860|17.21879|Słupia Wielka
+T|54.46822|17.01645|Słupsk
+T|54.48350|17.01440|Słupsk Północny
+T|50.35799|18.50785|Taciszów
+T|51.84096|17.75614|Taczanów
+T|51.58699|17.70146|Tarchały Wielkie
+T|51.98097|20.87357|Tarczyn Wąskotorowy
+T|49.64952|21.82185|Targowiska
+T|49.47930|22.25985|Tarnawa Dolna
+T|50.56795|21.69618|Tarnobrzeg
+T|50.54390|21.68812|Tarnobrzeg Ocice
+T|50.60157|21.75579|Tarnobrzeg Olszynka
+T|50.60467|21.74863|Tarnobrzeg Sobów
+T|50.62520|21.75851|Tarnobrzeg Wielowieś
+T|49.73625|21.57788|Tarnowiec
+T|50.91389|17.65222|Tarnowiec Brzeski
+T|53.30635|15.36605|Tarnowo Pomorskie
+T|52.80393|16.97529|Tarnowo Rogozińskie
+T|50.45160|21.73574|Tarnowska Wola
+T|50.44603|18.86440|Tarnowskie Góry
+T|50.42390|18.85787|Tarnowskie Góry Kopalnia Srebra
+T|50.44005|18.86123|Tarnowskie Góry Wąskotorowe
+T|50.00529|20.97512|Tarnów
+T|50.00641|20.92377|Tarnów Mościce
+T|50.57204|18.07783|Tarnów Opolski
+T|50.85457|23.12208|Tarzymiechy
+T|51.50637|22.68653|Tarło
+T|54.09725|18.78978|Tczew
+T|52.20221|20.41640|Teresin Niepokalanów
+T|52.07433|23.60125|Terespol
+T|53.40951|18.35138|Terespol Pomorski
+T|50.57441|22.88530|Tereszpol Biłgorajski
+T|53.61439|18.26635|Tleń
+T|54.32180|19.52304|Tolkmicko
+T|51.28608|15.68007|Tomaszów Bolesławiecki
+T|51.54694|20.03362|Tomaszów Mazowiecki
+T|51.52453|20.06602|Tomaszów Mazowiecki Białobrzegi
+T|51.44963|20.12118|Tomaszówek
+T|52.63987|23.62234|Topiło
+T|51.61285|17.76190|Topola-Osiedle
+T|52.26013|15.26056|Toporów
+T|52.58449|21.81177|Topór
+T|52.97470|18.67413|Toruń Czerniewice
+T|53.00012|18.61465|Toruń Główny
+T|53.05556|18.61803|Toruń Katarzynka
+T|52.99001|18.57834|Toruń Kluczyki
+T|53.01231|18.61972|Toruń Miasto
+T|53.02676|18.63391|Toruń Wschodni
+T|52.31244|15.05951|Torzym
+T|50.44174|18.51318|Toszek
+T|54.11690|21.23590|Tołkiny
+T|51.34948|21.10111|Trablice
+T|54.23945|23.20801|Trakiszki
+T|51.13637|22.99259|Trawniki
+T|53.84416|14.71729|Troszyn
+T|53.07071|23.02486|Trypucie
+T|50.13676|22.53893|Tryńcza
+T|50.07863|21.83900|Trzciana
+T|53.03284|16.46500|Trzcianka
+T|53.08580|17.94804|Trzciniec
+T|50.88322|15.87203|Trzcińsko
+T|52.29651|16.76717|Trzebaw Rosnówko
+T|54.06032|15.27754|Trzebiatów
+T|50.15412|19.45296|Trzebinia
+T|52.62553|15.40546|Trzebiszewo
+T|51.30404|17.06329|Trzebnica
+T|53.15318|17.64121|Trzeciewnica
+T|52.56987|17.81784|Trzemeszno
+T|54.07340|14.99452|Trzęsacz
+T|53.39550|15.23835|Trąbki
+T|53.58359|17.86061|Tuchola
+T|53.57652|17.89150|Tuchola Rudzki Most
+T|52.16784|16.04746|Tuchorza
+T|49.89216|21.05568|Tuchów
+T|53.35184|19.95512|Tuczki
+T|53.21896|16.17542|Tuczno Krajeńskie
+T|54.27596|19.13317|Tujsk
+T|50.96746|20.60216|Tumlin
+T|50.43359|19.99124|Tunel
+T|51.67159|14.83803|Tuplice
+T|51.66610|14.91037|Tuplice Dębinka
+T|50.61780|21.97264|Turbia
+T|53.64718|16.72288|Turowo Pomorskie
+T|53.30724|20.08398|Turza Wielka
+T|53.10014|18.73562|Turzno
+T|52.83339|18.78123|Turzno Kujawskie
+T|52.23046|19.02590|Turzynów
+T|50.76839|19.31719|Turów
+T|50.18591|21.50250|Tuszyma
+T|50.37349|21.45882|Tuszów Narodowy
+T|50.59817|17.64946|Tułowice
+T|52.34446|20.28403|Tułowice Sochaczewskie
+T|50.87505|18.10022|Tuły
+T|53.68248|18.67152|Twarda Góra
+T|50.34713|17.99886|Twardawa
+T|51.36026|17.46774|Twardogóra
+T|52.16894|20.82325|Tworki
+T|50.01654|18.24953|Tworków
+T|53.92148|16.23507|Tychowo
+T|50.13577|18.96418|Tychy
+T|50.11734|18.98238|Tychy Aleja Bielska
+T|50.11415|18.98604|Tychy Grota Roweckiego
+T|50.10774|19.00088|Tychy Lodowisko
+T|50.12115|18.97879|Tychy Zachodnie
+T|50.11002|18.95315|Tychy Żwaków
+T|54.20537|15.84533|Tymień
+T|52.11626|16.17232|Tłoki
+T|52.43112|21.43540|Tłuszcz
+T|51.05632|15.42003|Ubocze
+T|49.46536|22.39990|Uherce
+T|49.46387|22.38036|Uherce Tunel
+T|53.00499|22.90993|Uhowo
+T|51.31950|23.61930|Uhrusk
+T|51.29561|23.61892|Uhrusk Przystanek
+T|53.34837|15.11692|Ulikowo
+T|50.58256|20.51921|Umianowice
+T|53.72892|20.29887|Unieszewo
+T|53.20617|18.38266|Unisław Pomorski
+T|50.71111|16.22430|Unisław Śląski
+T|52.50739|21.62235|Urle
+T|50.01368|22.46882|Urzejowice
+T|51.99678|21.06007|Ustanówek
+T|49.43579|22.50760|Ustjanowa
+T|54.57825|16.86215|Ustka
+T|54.57982|16.84559|Ustka Uroczysko
+T|54.20021|15.74678|Ustronie Morskie
+T|49.72798|18.80190|Ustroń
+T|49.70968|18.82128|Ustroń Brzegi
+T|49.69641|18.83020|Ustroń Polana
+T|49.72050|18.81672|Ustroń Zdrój
+T|51.80234|22.72955|Ustrzesz
+T|49.42910|22.59599|Ustrzyki Dolne
+T|49.88537|19.50165|Wadowice
+T|49.88781|19.48222|Wadowice Osiedle Podhalanin
+T|49.86262|22.85715|Walawa
+T|53.10823|23.65164|Waliły
+T|51.39848|22.62990|Wandzin
+T|53.51128|20.35565|Waplewo
+T|52.58515|16.82260|Wargowo
+T|51.79385|21.16867|Warka
+T|51.78132|21.17731|Warka Miasto
+T|50.82960|17.04622|Warkocz
+T|53.58908|18.62316|Warlubie
+T|53.92834|14.53524|Warnowo
+T|52.22882|21.00316|Warsaw Central
+T|52.16963|20.97533|Warsaw Chopin Airport
+T|52.22940|21.00759|Warsaw City Center
+T|52.25159|21.05237|Warsaw East
+T|52.20606|20.94084|Warszawa Aleje Jerozolimskie
+T|52.20531|20.94228|Warszawa Aleje Jerozolimskie WKD
+T|52.21299|21.15994|Warszawa Anin
+T|52.35771|20.97238|Warszawa Choszczówka
+T|52.12856|20.99112|Warszawa Dawidy
+T|52.15838|21.21429|Warszawa Falenica
+T|52.25910|20.99236|Warszawa Gdańska
+T|52.23867|21.13264|Warszawa Gocławek
+T|52.20840|20.86406|Warszawa Gołąbki
+T|52.25550|21.08424|Warszawa Grochów
+T|52.22504|20.98504|Warszawa Główna
+T|52.11031|20.99313|Warszawa Jeziorki
+T|52.24622|20.95901|Warszawa Koło
+T|52.17012|21.20262|Warszawa Miedzeszyn
+T|52.20392|21.16898|Warszawa Międzylesie
+T|52.27728|21.17046|Warszawa Mokry Ług
+T|52.23914|20.95847|Warszawa Młynów
+T|52.22583|20.99084|Warszawa Ochota
+T|52.22541|20.98952|Warszawa Ochota WKD
+T|52.16574|20.98736|Warszawa Okęcie
+T|52.24988|21.10649|Warszawa Olszynka Grochowska
+T|52.23371|21.02813|Warszawa Powiśle
+T|52.25608|20.97238|Warszawa Powązki
+T|52.27751|21.02235|Warszawa Praga
+T|52.33403|20.98591|Warszawa Płudy
+T|52.18161|21.19122|Warszawa Radość
+T|52.19678|20.96618|Warszawa Rakowiec
+T|52.19448|20.93585|Warszawa Raków
+T|52.21439|20.94786|Warszawa Reduta Ordona
+T|52.25711|21.15848|Warszawa Rembertów
+T|52.18646|20.92438|Warszawa Salomea
+T|52.24480|21.04396|Warszawa Stadion
+T|52.18075|20.98704|Warszawa Służewiec
+T|52.26425|21.05174|Warszawa Targówek
+T|52.29418|21.01304|Warszawa Toruńska
+T|52.19640|20.88525|Warszawa Ursus
+T|52.19146|20.87002|Warszawa Ursus Niedźwiadek
+T|52.20575|20.88962|Warszawa Ursus Północny
+T|52.22335|21.14961|Warszawa Wawer
+T|52.25409|21.22409|Warszawa Wesoła
+T|52.25580|21.03855|Warszawa Wileńska
+T|52.22980|20.95783|Warszawa Wola
+T|52.25282|21.25086|Warszawa Wola Grzybowska
+T|52.20608|20.91457|Warszawa Włochy
+T|52.26352|21.01782|Warszawa ZOO
+T|52.22016|20.96517|Warszawa Zachodnia
+T|52.21946|20.96557|Warszawa Zachodnia WKD
+T|52.22203|20.96143|Warszawa Zachodnia peron 9
+T|52.27794|21.08021|Warszawa Zacisze-Wilno
+T|52.22748|20.99938|Warszawa Śródmieście WKD
+T|52.31422|20.99887|Warszawa Żerań
+T|52.19342|20.98031|Warszawa Żwirki i Wigury
+T|49.98903|18.71549|Warszowice
+T|52.58474|19.08075|Warząchewka
+T|53.19832|23.17704|Wasilków
+T|50.77337|16.26986|Wałbrzych Centrum
+T|50.76139|16.26705|Wałbrzych Fabryczny
+T|50.74339|16.28069|Wałbrzych Główny
+T|50.78623|16.28523|Wałbrzych Miasto
+T|50.81639|16.30271|Wałbrzych Szczawienko
+T|53.27489|16.48430|Wałcz
+T|53.27682|16.45736|Wałcz Raduń
+T|53.38792|18.72276|Wałdowo Szlacheckie
+T|50.05050|21.14256|Wałki
+T|51.98455|14.79283|Wałowice
+T|51.03928|19.14678|Ważne Młyny
+T|54.60575|18.22965|Wejherowo
+T|54.60193|18.27562|Wejherowo Śmiechowo
+T|54.60359|18.24930|Wejherowo-Nanice
+T|52.79795|17.75016|Wenecja
+T|52.79838|17.75349|Wenecja Muzeum
+T|52.81125|17.74261|Wenecja Ośrodek Wypoczynkowy
+T|50.74552|23.76773|Werbkowice
+T|50.24797|23.48729|Werchrata
+T|49.63251|21.84657|Widacz
+T|50.20158|21.87289|Widełka
+T|53.12381|14.44614|Widuchowa
+T|54.42874|16.96262|Widzino
+T|50.98104|19.36722|Widzów Teklinów
+T|54.30427|16.38812|Wiekowo
+T|53.87366|16.32646|Wielanowo
+T|53.40065|20.95300|Wielbark
+T|52.90738|16.17995|Wieleń
+T|49.99847|20.03670|Wieliczka Bogucice
+T|49.98911|20.04933|Wieliczka Park
+T|49.98565|20.05665|Wieliczka Rynek-Kopalnia
+T|52.42820|20.97475|Wieliszew
+T|52.44336|20.99517|Wieliszew Centrum
+T|49.95954|19.71177|Wielkie Drogi
+T|51.22353|18.58249|Wieluń
+T|51.23964|18.55021|Wieluń Dąbrowa
+T|51.36347|20.78961|Wieniawa
+T|49.40253|20.75534|Wierchomla Wielka
+T|50.86501|20.31263|Wierna Rzeka
+T|51.29955|18.16459|Wieruszów Miasto
+T|50.23901|22.46418|Wierzawice
+T|51.02224|17.97571|Wierzbica Górna
+T|50.96509|16.89923|Wierzbice
+T|52.56716|15.78203|Wierzbno
+T|51.39694|15.75878|Wierzbowa Śląska
+T|52.86835|18.35824|Wierzchosławice
+T|51.50283|17.35166|Wierzchowice
+T|53.61790|17.44730|Wierzchowo Człuchowskie
+T|53.54815|18.11283|Wierzchucin
+T|53.55713|18.09094|Wierzchucin Stary
+T|50.41478|19.34969|Wiesiółka
+T|53.41874|20.40039|Wietrzychowo
+T|53.52623|15.65070|Wiewiecko
+T|54.23485|18.12546|Wieżyca
+T|52.46425|19.10632|Wiktorowo
+T|52.34961|20.30371|Wilcze Tułowskie
+T|49.67596|20.94368|Wilczyska
+T|54.01957|21.73800|Wilkasy Niegocin
+T|51.25159|19.63043|Wilkoszewice
+T|51.88674|16.54122|Wilkowice
+T|49.76002|19.08822|Wilkowice Bystra
+T|52.25639|15.46906|Wilkowo Świebodzińskie
+T|50.98612|22.32943|Wilkołaz
+T|51.00702|22.33600|Wilkołaz Wieś
+T|51.09424|17.65841|Wilków Namysłowski
+T|50.74975|16.84423|Wilków Wielki
+T|50.08694|19.53417|Winnica
+T|53.89478|20.79760|Wipsowo
+T|52.31545|16.86888|Wiry
+T|51.14503|19.09671|Wistka
+T|49.64733|18.86550|Wisła Dziechcinka
+T|49.62169|18.87607|Wisła Głębce
+T|49.66967|18.84746|Wisła Jawornik
+T|49.63500|18.86962|Wisła Kopydło
+T|49.65864|18.85448|Wisła Uzdrowisko
+T|49.95178|21.91484|Wisłoczanka
+T|52.18594|20.57411|Witanów
+T|51.93603|17.56278|Witaszyce
+T|52.44227|17.76844|Witkowo
+T|53.28451|15.07834|Witkowo
+T|50.79383|16.12747|Witków Śląski
+T|52.66737|14.89605|Witnica
+T|52.86615|14.45115|Witnica Chojeńska
+T|52.15682|19.27659|Witonia
+T|52.63920|23.48447|Witowo
+T|52.84104|18.30428|Więcławice
+T|49.86617|21.65192|Wiśniowa
+T|52.58479|20.57183|Wkra
+T|50.00823|18.47635|Wodzisław Śląski
+T|49.99843|18.46391|Wodzisław Śląski Centrum
+T|50.02007|18.48111|Wodzisław Śląski Radlin
+T|50.88475|15.82129|Wojanów
+T|49.77631|21.65911|Wojaszówka
+T|52.32689|16.46664|Wojnowice Wielkopolskie
+T|50.26991|21.46619|Wojsław
+T|51.54319|21.17731|Wola Bierwiecka
+T|50.13086|19.57708|Wola Filipowska
+T|51.27707|21.02655|Wola Lipieniecka
+T|49.90633|19.77708|Wola Radziszowska
+T|49.91067|19.79467|Wola Radziszowska Lipki
+T|51.82211|21.60095|Wola Rowska
+T|50.03522|21.07237|Wola Rzędzińska
+T|49.69402|21.05956|Wola Łużańska
+T|51.35329|21.00017|Wolanów
+T|50.37587|19.77253|Wolbrom
+T|50.37954|19.75456|Wolbrom Zachodni
+T|51.59331|19.72347|Wolbórka
+T|51.76523|17.43715|Wolenice
+T|50.75335|20.47043|Wolica
+T|53.84871|14.60955|Wolin
+T|52.11145|16.10831|Wolsztyn
+T|53.68853|15.63549|Worowo
+T|53.85967|22.24898|Woszczele
+T|51.01345|18.04734|Wołczyn
+T|52.34663|21.23807|Wołomin
+T|52.35433|21.25572|Wołomin Słoneczna
+T|53.81727|20.19819|Wołowno
+T|51.33393|16.63288|Wołów
+T|51.06428|17.08462|Wrocław Brochów
+T|51.09663|16.97426|Wrocław Grabiszyn
+T|51.09792|17.03795|Wrocław Główny
+T|51.13498|17.10017|Wrocław Kowale
+T|51.12804|16.95221|Wrocław Kuźniki
+T|51.14196|16.86728|Wrocław Leśnica
+T|51.11630|16.99839|Wrocław Mikołajów
+T|51.11114|16.97477|Wrocław Muchobór
+T|51.12566|17.03299|Wrocław Nadodrze
+T|51.11968|16.95518|Wrocław Nowy Dwór
+T|51.16709|16.99660|Wrocław Osobowice
+T|51.06112|16.99767|Wrocław Partynice
+T|51.16878|17.10838|Wrocław Pawłowice
+T|51.12245|17.11427|Wrocław Popiele
+T|51.12736|17.00142|Wrocław Popowice
+T|51.17002|16.90313|Wrocław Pracze
+T|51.15045|17.11854|Wrocław Psie Pole
+T|51.13799|17.00371|Wrocław Różanka
+T|51.14255|17.08354|Wrocław Sołtysowice
+T|51.13703|16.94063|Wrocław Stadion
+T|51.10981|17.14567|Wrocław Strachocin
+T|51.11586|17.12134|Wrocław Swojczyce
+T|51.12295|17.01424|Wrocław Szczepin
+T|51.10354|17.15769|Wrocław Wojnów
+T|51.09804|17.16821|Wrocław Wojnów Wschodni
+T|51.06908|17.03217|Wrocław Wojszyce
+T|51.08995|16.94950|Wrocław Zachodni
+T|51.15874|17.12219|Wrocław Zakrzów
+T|51.19808|16.96976|Wrocław Świniary
+T|51.12615|16.91641|Wrocław Żerniki
+T|53.24145|18.61054|Wrocławki
+T|52.05982|16.16499|Wroniawy
+T|52.70503|16.38619|Wronki
+T|52.71013|16.36168|Wronki Zamość
+T|54.67767|17.66807|Wrzeście
+T|52.32691|17.55524|Września
+T|54.40294|16.77819|Wrześnica
+T|54.11429|15.83788|Wrzosowo
+T|52.18439|21.48269|Wrzosów
+T|54.34346|16.91721|Wrząca Pomorska
+T|49.61356|21.87843|Wróblik Szlachecki
+T|51.79390|16.31669|Wschowa
+T|53.32291|18.07582|Wudzyn
+T|52.61105|17.90382|Wydartowo
+T|53.97627|22.03353|Wydminy
+T|50.60424|20.45862|Wygoda
+T|51.68877|21.73102|Wygoda
+T|51.66064|19.90464|Wykno
+T|50.12438|18.91236|Wyry
+T|53.11917|17.29505|Wyrzysk Osiek
+T|49.43586|22.15139|Wysoczany
+T|54.27669|20.02357|Wysoka Braniewska
+T|53.82597|14.83201|Wysoka Kamieńska
+T|52.60173|21.44661|Wyszków
+T|50.46645|17.39088|Wyszków Śląski
+T|53.62585|15.06349|Wyszomierz
+T|53.06121|20.39208|Wyszyny
+T|50.46841|17.22085|Wójcice
+T|52.32168|17.75339|Wólka
+T|51.12841|23.06641|Wólka Kańska
+T|50.70871|23.08673|Wólka Niedzieliska
+T|50.92697|23.18344|Wólka Orłowska
+T|51.15337|20.63206|Wólka Plebańska
+T|53.27989|23.24394|Wólka Ratowiecka
+T|52.29072|20.29167|Wólka Smolana
+T|53.26524|18.98212|Wąbrzeźno
+T|51.07971|21.01635|Wąchock
+T|52.80964|17.20355|Wągrowiec
+T|51.79105|19.84927|Wągry
+T|51.14517|20.47762|Wąsosz Konecki
+T|49.60363|19.11884|Węgierska Górka
+T|51.29010|15.22297|Węgliniec
+T|53.54347|15.56029|Węgorzyno
+T|50.92579|17.03282|Węgry
+T|50.01874|20.10700|Węgrzce Wielkie
+T|52.01283|14.95204|Wężyska
+T|54.79347|18.40190|Władysławowo
+T|54.79356|18.41767|Władysławowo Port
+T|52.65303|19.05889|Włocławek
+T|52.66861|19.03718|Włocławek Zazamcze
+T|51.51608|23.58574|Włodawa
+T|50.02284|19.32937|Włosienica
+T|51.75283|17.02622|Włostowo
+T|51.93274|16.37368|Włoszakowice
+T|50.83779|20.01455|Włoszczowa
+T|50.85639|19.94605|Włoszczowa Północ
+T|50.65175|20.58657|Włoszczowice
+T|51.54337|22.76325|Zabiele
+T|53.08505|21.34021|Zabiele Wielkie
+T|50.11801|19.79836|Zabierzów
+T|50.10561|19.82361|Zabierzów Rząska
+T|52.01242|21.47196|Zabieżki
+T|49.87011|18.81123|Zaborze
+T|49.90731|21.83037|Zaborów
+T|49.92402|21.81970|Zaborów Błonia
+T|50.30530|18.78713|Zabrze
+T|50.30613|18.74752|Zabrze Maciejów
+T|50.32408|18.78702|Zabrze Północne
+T|49.90759|18.93859|Zabrzeg
+T|49.90404|18.90743|Zabrzeg Czarnolesie
+T|50.09538|21.97933|Zaczernie
+T|51.27012|15.29948|Zagajnik
+T|50.97445|20.66350|Zagnańsk
+T|52.36488|21.28058|Zagościniec
+T|50.05147|22.90488|Zagrody
+T|51.07853|23.19041|Zagrody Kościół
+T|49.51345|22.26434|Zagórz
+T|49.92499|22.33708|Zagórze
+T|50.75374|16.40360|Zagórze Śląskie
+T|53.10132|23.35810|Zajezierce
+T|51.54205|21.81726|Zajezierze koło Dęblina
+T|53.44439|19.71276|Zajączkowo Lubawskie
+T|50.76847|22.10841|Zaklików
+T|50.75478|22.09334|Zaklików Miasto
+T|49.30077|19.96304|Zakopane
+T|53.41645|17.14086|Zakrzewo Złotowskie
+T|51.03575|17.21007|Zakrzów Kotowice
+T|53.28273|20.28415|Zakrzów Sarnowo
+T|52.02652|21.04178|Zalesie Górne
+T|51.12170|23.16646|Zalesie Krasieńskie
+T|49.88007|19.26345|Zamek Bulowicki
+T|51.77635|20.26204|Zamkowa Wola
+T|50.71358|23.23860|Zamość
+T|50.71662|23.26245|Zamość Starówka
+T|50.72265|23.27542|Zamość Wschód
+T|52.15851|17.15926|Zaniemyśl
+T|51.63355|19.93357|Zaosie
+T|53.66439|18.11744|Zarośle
+T|49.58417|22.01956|Zarszyn
+T|50.36335|19.69900|Zarzecze
+T|51.09812|15.21957|Zaręba
+T|50.27245|21.76203|Zarębki
+T|52.73097|22.14077|Zaręby Kościelne
+T|51.73552|14.66927|Zasieki
+T|53.31239|22.85744|Zastocze
+T|50.12378|20.06907|Zastów
+T|50.00230|19.42859|Zator
+T|50.00532|19.40630|Zator Park Rozrywki
+T|50.71589|23.12517|Zawada
+T|51.75986|20.15329|Zawady
+T|50.60913|18.47328|Zawadzkie
+T|51.12411|23.35503|Zawadówka
+T|52.82950|19.84367|Zawidz
+T|52.82412|19.87805|Zawidz Kościelny
+T|50.48064|19.42316|Zawiercie
+T|50.51107|19.39864|Zawiercie Borowe Pole
+T|49.52937|22.31284|Załuż
+T|51.94774|18.14664|Zbiersk
+T|53.94273|18.30533|Zblewo
+T|50.63049|21.93375|Zbydniów
+T|52.24261|15.81818|Zbąszynek
+T|52.25941|15.89476|Zbąszyń
+T|52.25688|15.92686|Zbąszyń Przedmieście
+T|52.95404|22.78219|Zdrody Nowe
+T|51.64642|17.36627|Zduny
+T|51.61136|18.94721|Zduńska Wola
+T|51.58902|18.99473|Zduńska Wola Karsznice
+T|51.58034|19.00525|Zduńska Wola Południowa
+T|50.42179|18.12645|Zdzieszowice
+T|51.25468|15.38917|Zebrzydowa
+T|49.87154|18.62164|Zebrzydowice
+T|52.45194|21.00823|Zegrze Południowe
+T|49.96104|19.74596|Zelczyna
+T|49.77497|19.59147|Zembrzyce
+T|51.84946|19.42579|Zgierz
+T|51.86394|19.42214|Zgierz Jaracza
+T|51.86480|19.34032|Zgierz Kontrewers
+T|51.86915|19.38375|Zgierz Północ
+T|51.86118|19.43746|Zgierz Rudunki
+T|51.14017|15.00304|Zgorzelec
+T|51.15480|15.02012|Zgorzelec Miasto
+T|53.21675|18.93124|Zieleń
+T|51.94738|15.51113|Zielona Góra Główna
+T|51.91575|15.62647|Zielona Góra Nowy Kisielin
+T|51.97793|15.43883|Zielona Góra Przylep
+T|51.93712|15.58916|Zielona Góra Stary Kisielin
+T|53.15100|17.80799|Zielonczyn
+T|52.56523|17.00853|Zielone Wzgórza
+T|52.31181|21.15766|Zielonka
+T|52.29145|21.15402|Zielonka Bankowa
+T|53.98089|19.70096|Zielonka Pasłęcka
+T|53.57752|18.10928|Zielonka Pomorska
+T|53.16707|15.30219|Ziemomyśl
+T|52.95482|23.08537|Zimnochy
+T|50.60865|17.03389|Ziębice
+T|52.18573|19.71618|Zosinów
+T|49.38747|20.75385|Zubrzyk
+T|49.50426|18.97716|Zwardoń
+T|52.83650|15.58377|Zwierzyn
+T|50.60940|22.98402|Zwierzyniec
+T|52.39977|16.99248|Zwierzyniec
+T|52.27184|20.28596|Zwierzyniec k/Sochaczewa
+T|52.72754|21.52571|Zygmuntowo Mazowieckie
+T|51.40874|20.57183|Zygmuntów
+T|52.29247|21.11340|Ząbki
+T|50.59730|16.81277|Ząbkowice Śląskie
+T|53.63730|19.46084|Ząbrowo
+T|51.00667|17.16207|Zębice Wrocławskie
+T|53.52787|16.01870|Złocieniec
+T|50.76854|23.10099|Złojec
+T|51.77224|20.11857|Złota
+T|52.50985|16.83063|Złotkowo
+T|52.49525|16.83639|Złotniki
+T|52.48470|16.84374|Złotniki Grzybowe
+T|52.90364|18.14733|Złotniki Kujawskie
+T|52.22503|19.49221|Złotniki Kutnowskie
+T|51.89334|18.17482|Złotniki Wielkie-Bloki
+T|51.88898|18.17785|Złotniki Wielkie-Wieś
+T|53.35907|17.05310|Złotów
+T|50.88787|21.52921|Ćmielów
+T|53.91111|14.56248|Ładzin
+T|50.79003|16.84986|Łagiewniki
+T|51.30541|22.61711|Łagiewniki
+T|52.33692|15.30140|Łagów
+T|50.53763|17.56530|Łambinowice
+T|54.14181|21.06894|Łankiejmy
+T|52.98992|22.88351|Łapy
+T|52.97350|22.83846|Łapy Osse
+T|51.60374|19.11179|Łask
+T|51.79816|21.60850|Łaskarzew
+T|50.47767|16.67087|Ławica
+T|50.15939|18.84523|Łaziska Górne
+T|50.15807|18.82078|Łaziska Górne Brada
+T|50.13002|18.86789|Łaziska Średnie
+T|51.63120|19.75485|Łaznów
+T|50.43008|19.39189|Łazy
+T|50.08175|22.22640|Łańcut
+T|54.75597|17.55342|Łeba
+T|54.49146|17.33952|Łebień
+T|53.63665|15.62773|Łobez
+T|52.53397|21.68752|Łochów
+T|49.72515|19.14133|Łodygowice
+T|49.73573|19.12369|Łodygowice Górne
+T|50.86237|15.79778|Łomnica
+T|50.87816|15.80127|Łomnica Dolna
+T|50.88682|15.79441|Łomnica Średnia
+T|49.41896|20.72507|Łomnica-Zdrój
+T|53.17177|22.06426|Łomża
+T|51.32971|22.15153|Łopatki
+T|52.61371|17.09535|Łopuchowo
+T|52.61899|17.10978|Łopuchowo Osiedle
+T|49.96720|22.40552|Łopuszka Mała
+T|49.95187|22.39549|Łopuszka Wielka
+T|50.78858|17.55175|Łosiów
+T|51.29727|16.67487|Łososiowice
+T|49.91274|21.00355|Łowczów
+T|49.92791|20.94959|Łowczówek Pleśna
+T|52.10473|19.95562|Łowicz Główny
+T|52.09305|19.94669|Łowicz Przedmieście
+T|53.69019|14.86619|Łoźnica
+T|54.11482|17.86661|Łubiana
+T|53.58383|16.38943|Łubowo
+T|50.16261|20.07450|Łuczyce
+T|52.51538|14.65095|Ługi Górzyckie
+T|51.94048|22.39286|Łuków
+T|51.93197|22.41459|Łuków Zapowiednik
+T|51.92451|22.35981|Łuków Łapiguz
+T|50.10071|18.40917|Łuków Śląski
+T|49.24723|22.05913|Łupków
+T|52.70087|15.12348|Łupowo
+T|53.08463|18.61991|Łysomice
+T|51.74103|19.61715|Łódź Andrzejów
+T|51.74156|19.61291|Łódź Andrzejów Szosa
+T|51.81545|19.45663|Łódź Arturówek
+T|51.72641|19.48420|Łódź Chojny
+T|51.73589|19.51061|Łódź Dąbrowa
+T|51.76955|19.46961|Łódź Fabryczna
+T|51.75782|19.43054|Łódź Kaliska
+T|51.72091|19.35928|Łódź Lublinek
+T|51.80017|19.48616|Łódź Marysin
+T|51.76681|19.50744|Łódź Niciarniana
+T|51.72369|19.54369|Łódź Olechów Wiadukt
+T|51.72979|19.59477|Łódź Olechów Wschód
+T|51.72491|19.55902|Łódź Olechów Zachód
+T|51.72622|19.44530|Łódź Pabianicka
+T|51.82666|19.44338|Łódź Radogoszcz Wschód
+T|51.82197|19.41575|Łódź Radogoszcz Zachód
+T|51.74035|19.40658|Łódź Retkinia
+T|51.77656|19.51056|Łódź Stoki
+T|51.80800|19.47123|Łódź Warszawska
+T|51.76310|19.54381|Łódź Widzew
+T|51.75171|19.51324|Łódź Zarzew
+T|51.79355|19.40702|Łódź Żabieniec
+T|52.48703|19.59605|Łąck
+T|50.99166|20.79844|Łączna
+T|53.83096|18.06272|Łąg
+T|51.65678|17.66895|Łąkociny
+T|53.64080|18.21529|Łążek
+T|52.04924|19.19325|Łęczyca
+T|53.82110|20.61726|Łęgajny
+T|52.13244|15.67450|Łęgowo Sulechowskie
+T|51.21718|18.09154|Łęka Opatowska
+T|50.36277|22.25696|Łętownia
+T|51.40911|16.42181|Ścinawa
+T|50.52636|16.50544|Ścinawka Średnia
+T|53.15609|17.70016|Ślesin
+T|53.71295|18.18222|Śliwice
+T|53.68718|18.19301|Śliwiczki
+T|54.07299|15.03257|Śliwin
+T|52.00615|16.52663|Śmigiel
+T|52.01901|16.51161|Śmigiel Zachód
+T|53.04385|21.99093|Śniadowo
+T|53.04495|22.02332|Śniadowo-Stara Stacja
+T|52.19034|17.19289|Śnieciska
+T|52.21833|17.27420|Środa Wielkopolska
+T|52.22186|17.27956|Środa Wielkopolska Miasto
+T|52.22005|17.27137|Środa Wielkopolska Wąskotorowa
+T|51.18943|16.60654|Środa Śląska
+T|50.84122|16.48151|Świdnica Miasto
+T|50.83504|16.50391|Świdnica Przedmieście
+T|50.86006|16.47937|Świdnica Zawiszów
+T|51.22380|22.69492|Świdnik Miasto
+T|51.22104|22.71438|Świdnik Wschód
+T|53.78114|15.77272|Świdwin
+T|53.77065|15.76536|Świdwin Zamek
+T|50.85997|16.33505|Świebodzice
+T|52.24525|15.53996|Świebodzin
+T|53.41666|18.10488|Świekatowo
+T|50.91143|15.34351|Świeradów-Zdrój
+T|52.67038|20.76285|Świercze
+T|50.63239|16.43250|Świerki Dolne
+T|50.07808|21.90154|Świlcza
+T|53.90444|14.26602|Świnoujście
+T|53.91460|14.23352|Świnoujście Centrum
+T|53.90142|14.26034|Świnoujście Port
+T|53.89745|14.33702|Świnoujście Przytór
+T|53.90032|14.28578|Świnoujście Warszów
+T|51.02956|17.12314|Święta Katarzyna
+T|53.56277|21.22887|Świętajno
+T|50.28896|18.91839|Świętochłowice
+T|54.33974|19.57823|Święty Kamień
+T|53.87640|20.01761|Żabi Róg
+T|53.34213|19.98321|Żabiny
+T|53.85440|17.70703|Żabno koło Chojnic
+T|53.71719|15.18992|Żabowo
+T|51.60376|15.31542|Żagań
+T|51.73218|19.79100|Żakowice
+T|51.73014|19.78620|Żakowice Południowe
+T|53.59765|17.75967|Żalno
+T|50.62332|19.27288|Żarki-Letnisko
+T|49.87753|21.81904|Żarnowa
+T|51.63447|15.13770|Żary
+T|51.59934|15.16569|Żary Kunice
+T|51.64124|15.11652|Żary Muzyków
+T|50.93950|16.49278|Żarów
+T|53.08700|23.47123|Żednia
+T|49.36756|20.78526|Żegiestów
+T|49.36271|20.80392|Żegiestów-Zdrój
+T|54.67405|18.41611|Żelistrzewo
+T|50.80381|19.85856|Żelisławice
+T|53.52409|16.14991|Żelisławie Pomorskie
+T|52.06984|17.49765|Żerków
+T|51.47533|16.90187|Żmigród
+T|52.84531|17.72322|Żnin Licealna
+T|52.84860|17.73571|Żnin Potockiego
+T|50.05297|18.70206|Żory
+T|54.25926|20.08812|Żugienie
+T|54.34438|18.36193|Żukowo
+T|54.35068|18.37705|Żukowo Wschodnie
+T|54.33249|18.34775|Żukowo Zachodnie
+T|51.06188|23.17198|Żulin
+T|49.81996|22.82446|Żurawica Osobowa
+T|49.83264|22.83744|Żurawica Rozrządowa
+T|50.64242|22.95980|Żurawnica
+T|52.21310|19.61887|Żychlin
+T|51.64771|21.76040|Życzyn
+T|52.45360|17.56811|Żydowo
+T|52.05246|20.44898|Żyrardów
+T|51.48300|21.55654|Żytkowice
+T|49.67912|19.18567|Żywiec
+T|49.67631|19.22233|Żywiec Sporysz
+T|50.98342|17.04958|Żórawina
+T|53.69517|16.81258|Żółtnica
+T|53.28890|15.69048|Żółwino

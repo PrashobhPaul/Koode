@@ -1,0 +1,279 @@
+# Transit for Koode, NZ. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|-36.82212|174.76634|Bayswater Ferry Terminal|AT|W
+S|-36.78988|174.67829|Beach Haven|AT|W
+S|-36.82284|174.73398|Birkenhead Pier 1|AT|W
+S|-36.83324|174.79533|Devonport Pier 1|AT|W
+S|-36.83343|174.79573|Devonport Pier 2|AT|W
+S|-36.84145|174.76728|Downtown|AT|W
+S|-36.80892|175.02693|Ferry Terminal - Kennedy Point|AT|W
+S|-36.62436|174.78795|Gulf Harbour Ferry Terminal|AT|W
+S|-36.88004|174.89519|Half Moon Bay Passenger Ferry Terminal|AT|W
+S|-36.83814|174.75531|Hamer Street Sealink|AT|W
+S|-36.78767|174.67238|Hobsonville Point|AT|W
+S|-36.78068|174.99171|Pier 1|AT|W
+S|-36.78022|174.99147|Pier 3|AT|W
+S|-36.88991|174.98970|Pine Harbour Ferry Terminal|AT|W
+S|-36.72631|174.95251|Rakino Passenger Ferry Terminal|AT|W
+S|-36.80914|174.86253|Rangitoto Wharf|AT|W
+S|-36.87980|174.89675|Sealink|AT|W
+S|-36.82687|174.74638|Te Onewa Northcote Point Ferry Terminal|AT|W
+S|-36.81085|174.64553|West Harbour|AT|W
+S|-36.78517|175.15764|Man O' War Bay|Explore Group|W
+S|-36.81785|175.19389|Rotoroa Island Wharf|Explore Group|W
+S|-36.60586|174.88797|Tiritiri Matangi Island Wharf|Explore Group|W
+S|-36.84252|174.76309|Viaduct Marina|Explore Group|W
+S|-36.42981|174.81853|Kawau Island|Kawau Cruises|W
+S|-36.38875|174.73020|Sandspit|Kawau Cruises|W
+S|-37.67175|176.17187|Matakana|MV Silver Supporter Shipping|W
+S|-25.06868|-130.09614|Pitcairn|MV Silver Supporter Shipping|W
+S|-41.28058|174.90541|Days Bay Wharf|Metlink|W
+S|-41.25531|174.86718|Matiu/Somes Island Wharf|Metlink|W
+S|-41.28354|174.77935|Queens Wharf|Metlink|W
+S|-43.62351|172.73680|Diamond Harbour Jetty|Metro Christchurch|W
+S|-43.60547|172.72178|Lyttelton Jetty|Metro Christchurch|W
+S|-23.11790|-134.96866|Mangareva|Pitcairn Government’s|W
+S|-45.80791|170.62376|Carey's Bay Wharf|Port To Port Cruises And Wildlife Tours Ltd|W
+S|-45.87156|170.52875|Forsyth Barr Stadium|Port To Port Cruises And Wildlife Tours Ltd|W
+S|-45.81814|170.62644|Port Chalmers (Back Beach) Wharf|Port To Port Cruises And Wildlife Tours Ltd|W
+S|-45.83742|170.64520|Portobello Wharf|Port To Port Cruises And Wildlife Tours Ltd|W
+S|-45.82822|170.63756|Quarantine Island Wharf|Port To Port Cruises And Wildlife Tours Ltd|W
+S|-45.88037|170.50629|Steamer Basin|Port To Port Cruises And Wildlife Tours Ltd|W
+L|AT|Bayswater Ferry||5 0:2388
+L|AT|Birkenhead Ferry||2 5:5661 17:3440
+L|AT|Devonport Ferry||3 5:3128
+L|AT|Downtown – Devonport – Matiatia|#00b1bf|11 4:18874 5:3872
+L|AT|Downtown – Matiatia||5 11:22060
+L|AT|Gulf Harbour Ferry||7 5:29549
+L|AT|Half Moon Bay Ferry||5 8:13986
+L|AT|Hobsonville/Beach Haven Ferry||5 10:12760 1:1206
+L|AT|Inner Harbour Loop|#00b1bf|2 17:2286 0:3265 5:4192
+L|AT|Island Direct||5 12:21892
+L|AT|KPHM||6 16:17068
+L|AT|KPHS||6 9:25007
+L|AT|Pine Harbour Ferry||13 5:22213
+L|AT|Rakino Island Ferry|#000000|14 5:25386 0:2432
+L|AT|Rangitoto Island Ferry||4 15:7120 5:11039
+L|AT|West Harbour Ferry||5 18:13068
+L|Explore Group|Rotoroa Island Ferry||22 20:45745 19:6138
+L|Explore Group|Tiritiri Matangi Ferry||22 7:34014 21:9476
+L|Kawau Cruises|Sandspit - Kawau||24 23:9658
+L|MV Silver Supporter Shipping|Tauranga - Pitcairn||25 26:29183754
+L|Metlink|MIF||28 27:4846
+L|Metlink|QDF||29 27:10593
+L|Metlink|QMF||29 28:8621
+L|Metro Christchurch|F|#075699|30 31:3035
+L|Pitcairn Government’s|Tauranga - Mangareva||25 32:29659555
+L|Port To Port Cruises And Wildlife Tours Ltd|Forsyth Barr Stadium Event Ferry||38 34:2079
+L|Port To Port Cruises And Wildlife Tours Ltd|Port Chalmers||35 37:1537 36:1321
+L|Port To Port Cruises And Wildlife Tours Ltd|Portobello to Carey's Bay||36 33:4205
+L|Port To Port Cruises And Wildlife Tours Ltd|Portobello to Port Chalmers or Quarantine Island||36 37:1321 35:1536
+T|-39.68005|176.88294|Aggie Bank Station
+T|-41.12056|174.85549|Aotea Lagoon Miniature Railway
+T|-42.94422|171.56462|Arthur's Pass
+T|-41.21956|174.89199|Ava
+T|-36.89716|174.69916|Avondale
+T|-40.36519|175.58909|Awa Puni
+T|-37.99885|176.89000|Awakeri
+T|-41.24649|174.77431|Awarua Street
+T|-36.87765|174.72081|Baldwin Avenue
+T|-41.51195|173.96010|Beaver Station
+T|-41.50902|173.95982|Blenheim
+T|-41.24602|174.78876|Box Hill
+T|-41.53154|173.93970|Brayshaw Station
+T|-40.37032|175.61594|Cafe Platform
+T|-41.02184|175.52328|Carterton
+T|-43.03612|171.75697|Cass
+T|-41.51664|173.94264|Chinaman's Creek Crossing
+T|-43.53992|172.60791|Christchurch
+T|-41.28450|174.77297|Clifton
+T|-41.25505|174.76649|Crofton Downs
+T|-36.73526|175.50611|Crown Flat
+T|-43.48927|172.11284|Darfield
+T|-42.86156|173.21929|Domett
+T|-39.30489|174.46533|Douglas
+T|-37.10498|174.95155|Drury
+T|-45.87536|170.50917|Dunedin
+T|-40.64987|175.70666|Eketahuna
+T|-36.89848|174.80818|Ellerslie
+T|-39.42939|174.29399|Eltham
+T|-41.20750|174.93033|Epuni
+T|-40.37154|175.61099|Esplanade Station
+T|-36.73606|175.50864|Eyefull Tower
+T|-45.42038|168.67448|Fairlight
+T|-41.11338|175.32973|Featherston
+T|-40.22657|175.56884|Feilding
+T|-41.91630|171.47218|Festival Site
+T|-42.99941|172.71559|Frog Rock
+T|-36.91078|174.66721|Fruitvale Road
+T|-41.50859|173.95184|Fulton Station
+T|-37.60868|175.03257|Glen Afton
+T|-36.91025|174.65283|Glen Eden
+T|-36.87898|174.85420|Glen Innes
+T|-37.20875|174.78640|Glenbrook
+T|-43.05439|172.75800|Glenmark
+T|-36.86560|174.77000|Grafton
+T|-37.13511|175.53701|Grahamstown Station
+T|-36.88985|174.79779|Greenlane
+T|-42.44829|171.21459|Greymouth
+T|-41.26419|173.28812|Grove Station
+T|-37.79092|175.26523|Hamilton
+T|-45.10213|170.96955|Harbourside
+T|-39.63906|176.84642|Hastings
+T|-36.88147|174.63094|Henderson
+T|-41.14234|175.02595|Heretaunga
+T|-35.74305|174.27098|Hikurangi Station
+T|-45.71209|170.34033|Hindon
+T|-36.73588|175.50639|Hoki Mai Loop
+T|-37.01348|174.87469|Homai
+T|-37.55782|175.15971|Huntly
+T|-46.41188|168.34507|Invercargill
+T|-41.22334|174.80479|Johnsonville
+T|-42.39592|173.68076|Kaikōura
+T|-35.38021|174.06444|Kawakawa
+T|-44.26765|171.15128|Keanes Crossing
+T|-41.28534|174.76771|Kelburn
+T|-41.14962|174.83824|Kenepuru
+T|-41.24310|174.79318|Khandallah
+T|-36.87264|174.74420|Kingsland
+T|-45.33009|168.71187|Kingston
+T|-41.28425|174.77481|Lambton
+T|-40.63122|175.27774|Levin
+T|-41.15897|174.83204|Linden
+T|-38.09410|176.08195|Mamaku
+T|-41.09534|174.86822|Mana
+T|-38.88299|174.98194|Mangaparo
+T|-40.41380|175.86217|Mangatainoka
+T|-41.15633|174.97890|Manor Park
+T|-36.99389|174.87747|Manukau
+T|-37.02329|174.89616|Manurewa
+T|-40.08763|175.39161|Marton
+T|-40.94050|175.65490|Masterton
+T|-41.04876|175.44879|Matarawa
+T|-38.76512|175.09959|Matiere
+T|-36.86769|174.75857|Maungawhau Station
+T|-41.10802|175.13404|Maymorn
+T|-36.86627|174.82076|Meadowbank
+T|-45.50818|170.12295|Middlemarch
+T|-36.96299|174.83905|Middlemore
+T|-35.73940|174.26848|Millington Bush Station
+T|-35.74115|174.26913|Milnes Station
+T|-42.57698|171.47855|Moana
+T|-37.21748|174.76975|Morley Road
+T|-36.87500|174.73524|Morningside
+T|-45.88677|170.35041|Mosgiel
+T|-36.88474|174.71412|Mount Albert
+T|-45.75269|170.34558|Mount Allan
+T|-35.74291|174.26982|Museum Station
+T|-41.19785|174.94611|Naenae
+T|-36.90938|174.68406|New Lynn
+T|-36.86920|174.77905|Newmarket
+T|-41.25131|174.77153|Ngaio
+T|-41.24863|174.81362|Ngauranga
+T|-38.07606|176.20905|Ngongotahā
+T|-39.40241|175.41547|Ohakune
+T|-38.79634|175.22311|Okahukura
+T|-41.53741|173.92870|Omaka Station
+T|-36.92594|174.78629|Onehunga
+T|-40.11079|176.26348|Ormondville
+T|-42.82877|171.56279|Otira
+T|-40.98732|174.95412|Paekākāriki
+T|-37.15611|174.89814|Paerātā
+T|-40.44496|175.81526|Pahiatua
+T|-45.48476|170.71630|Palmerston
+T|-40.34417|175.59429|Palmerston North
+T|-36.89809|174.84928|Panmure
+T|-37.06444|174.94634|Papakura
+T|-36.97742|174.84925|Papatoetoe
+T|-40.91666|175.00727|Paraparaumu
+T|-41.10606|174.86662|Paremata
+T|-36.85492|174.77758|Parnell
+T|-36.91046|174.81555|Penrose
+T|-41.22209|174.86963|Petone
+T|-41.28837|174.00486|Picton
+T|-43.92350|171.70825|Plains
+T|-40.37152|175.61982|Playground Station
+T|-44.26119|171.13121|Pleasant Point
+T|-41.08367|174.86715|Plimmerton
+T|-41.13760|174.84339|Porirua
+T|-36.73700|175.50438|Pottery
+T|-36.98980|174.85602|Puhinui
+T|-37.20409|174.91103|Pukekohe
+T|-37.60375|175.05612|Pukemiro Junction
+T|-41.03800|174.88677|Pukerua Bay
+T|-45.63474|170.21197|Puketerangi
+T|-41.16941|174.96976|Pōmare
+T|-45.10992|170.97841|Quarry Siding
+T|-43.30053|172.59748|Rangiora
+T|-41.23221|174.80178|Raroa
+T|-36.73717|175.50614|Ravington
+T|-41.17498|174.82720|Redwood (north)
+T|-41.17635|174.82695|Redwood (south)
+T|-36.88135|174.78543|Remuera
+T|-40.94763|175.63845|Renall Street
+T|-43.58877|172.38369|Rolleston
+T|-37.74934|175.23052|Rotokauri
+T|-36.86799|174.60348|Rānui
+T|-41.28509|174.76958|Salamanca
+T|-41.67349|174.07516|Seddon
+T|-40.54648|175.41104|Shannon
+T|-41.14730|175.01029|Silverstream
+T|-41.24680|174.78433|Simla Crescent
+T|-41.93186|171.47509|Softrock Station
+T|-40.95336|175.62550|Solway
+T|-43.33421|171.93060|Springfield
+T|-39.34408|174.31335|Stratford, Victoria Road
+T|-36.87352|174.62083|Sturges Road
+T|-36.89690|174.63190|Sunnyvale
+T|-36.86630|174.57682|Swanson
+T|-36.91466|174.84262|Sylvia Park
+T|-39.67862|175.79723|Taihape
+T|-41.18035|174.96075|Taitā
+T|-37.04105|174.91934|Takaanini
+T|-41.18522|174.82838|Takapu Road
+T|-41.28481|174.77124|Talavera
+T|-39.01885|174.85628|Tangarakau
+T|-35.36070|174.09431|Taumarere
+T|-38.88267|175.26475|Taumarunui
+T|-41.16921|174.82842|Tawa
+T|-39.49715|176.91547|Te Awa
+T|-38.33568|175.16583|Te Kūiti
+T|-37.03118|174.90611|Te Mahia
+T|-36.92013|174.80140|Te Pāpapa
+T|-39.23846|174.58448|Te Wera
+T|-36.84853|174.77934|The Strand
+T|-43.12973|171.68892|Ticket Office
+T|-44.39630|171.25612|Timaru
+T|-38.81915|175.01140|Toi Toi
+T|-38.93806|175.00937|Tokirima
+T|-39.33472|174.39319|Toko
+T|-40.47652|175.51040|Tokomaru Museum
+T|-41.13793|175.03825|Trentham
+T|-41.25866|173.29681|Tui Station
+T|-37.25050|174.73332|Victoria Avenue
+T|-37.39795|175.83382|Waihi
+T|-40.87664|175.06612|Waikanae
+T|-42.97186|172.70662|Waikari
+T|-37.41416|175.77928|Waikino
+T|-39.17583|175.39321|Waimarino National Park
+T|-43.05770|172.75893|Waipara
+T|-39.02101|174.22101|Waitara Road
+T|-45.74661|170.57265|Waitati
+T|-36.84462|174.76949|Waitematā
+T|-41.26194|173.29567|Wakefield Quay Station
+T|-41.13052|175.05890|Wallaceville
+T|-41.21398|174.92123|Waterloo
+T|-41.27886|174.78039|Wellington
+T|-41.21193|174.88999|Western Hutt
+T|-41.75657|171.59788|Westport
+T|-35.33557|174.10757|Whangae Tunnel
+T|-39.14357|174.73881|Whangamōmona
+T|-41.18883|174.95466|Wingate
+T|-45.87749|170.38783|Wingatui
+T|-41.22087|174.91128|Woburn
+T|-41.06744|175.40158|Woodside
+T|-40.34514|175.86716|Woodville
+T|-45.09587|170.97546|Ōamaru
+T|-36.86232|174.80939|Ōrākei
+T|-40.76293|175.15644|Ōtaki
+T|-36.94697|174.83371|Ōtāhuhu

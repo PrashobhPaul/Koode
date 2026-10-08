@@ -1,0 +1,941 @@
+# Transit for Koode, TH. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|13.72646|100.50907|Charoen Nakhon|BTS|M
+S|13.73033|100.50773|Khlong San|BTS|M
+S|13.72093|100.50272|Krung Thon Buri|รถไฟฟ้าบีทีเอส|M
+S|13.74018|100.47071|จรัญฯ 13|Metropolitan Rapid Transit|M
+S|13.81272|100.70294|Bang Chan|Metropolitan Rapid Transit|M
+S|13.76908|100.63977|Bang Kapi|Metropolitan Rapid Transit|M
+S|13.71194|100.42234|Bang Khae|Metropolitan Rapid Transit|M
+S|13.76333|100.47330|Bang Khun Non|Metropolitan Rapid Transit|M
+S|13.86165|100.50465|Bang Krasor|Metropolitan Rapid Transit|M
+S|13.79898|100.50979|Bang O|Metropolitan Rapid Transit|M
+S|13.72462|100.46508|Bang Phai|Metropolitan Rapid Transit|M
+S|13.79241|100.50489|Bang Phlat|Metropolitan Rapid Transit|M
+S|13.87577|100.43380|Bang Phlu|Metropolitan Rapid Transit|M
+S|13.80640|100.52101|Bang Pho|Metropolitan Rapid Transit|M
+S|13.87481|100.45597|Bang Rak Noi Tha It|Metropolitan Rapid Transit|M
+S|13.87661|100.44494|Bang Rak Yai|Metropolitan Rapid Transit|M
+S|13.82008|100.53246|Bang Son|Metropolitan Rapid Transit|M
+S|13.80239|100.54105|Bang Sue|Metropolitan Rapid Transit|M
+S|13.72079|100.45779|Bang Wa|Metropolitan Rapid Transit|M
+S|13.77738|100.48526|Bang Yi Khan|Metropolitan Rapid Transit|M
+S|13.89330|100.56015|Chaeng Watthana 14|Metropolitan Rapid Transit|M
+S|13.90416|100.52926|Chaeng Watthana-Pak Kret 28|Metropolitan Rapid Transit|M
+S|13.80296|100.55328|Chatuchak Park|Metropolitan Rapid Transit|M
+S|13.79443|100.59443|Chok Chai 4|Metropolitan Rapid Transit|M
+S|13.75580|100.46932|Fai Chai|Metropolitan Rapid Transit|M
+S|13.89077|100.56735|Government Complex|Metropolitan Rapid Transit|M
+S|13.77869|100.57357|Huai Khwang|Metropolitan Rapid Transit|M
+S|13.73757|100.51713|Hua Lamphong|Metropolitan Rapid Transit|M
+S|13.91044|100.54426|Impact Muang Thong Thani|Metropolitan Rapid Transit|M
+S|13.73836|100.48570|Itsaraphap|Metropolitan Rapid Transit|M
+S|13.72527|100.64178|Kalantan|Metropolitan Rapid Transit|M
+S|13.79795|100.54788|Kamphaeng Phet|Metropolitan Rapid Transit|M
+S|13.86266|100.52065|Khae Rai|Metropolitan Rapid Transit|M
+S|13.89243|100.40822|Khlong Bang Phai|Metropolitan Rapid Transit|M
+S|13.72213|100.55437|Khlong Toei|Metropolitan Rapid Transit|M
+S|13.84062|100.65879|Khu Bon|Metropolitan Rapid Transit|M
+S|13.91838|100.54564|Lake Muang Thong Thani|Metropolitan Rapid Transit|M
+S|13.88408|100.58269|Lak Si|Metropolitan Rapid Transit|M
+S|13.71088|100.40948|Lak Song|Metropolitan Rapid Transit|M
+S|13.80650|100.57287|Lat Phrao|Metropolitan Rapid Transit|M
+S|13.80698|100.57478|Lat Phrao|Metropolitan Rapid Transit|M
+S|13.77463|100.62984|Lat Phrao 101|Metropolitan Rapid Transit|M
+S|13.78709|100.60757|Lat Phrao 71|Metropolitan Rapid Transit|M
+S|13.78370|100.61366|Lat Phrao 83|Metropolitan Rapid Transit|M
+S|13.86280|100.61781|Lat Pla Khao|Metropolitan Rapid Transit|M
+S|13.72561|100.54572|Lumphini|Metropolitan Rapid Transit|M
+S|13.77837|100.62316|Mahatthai|Metropolitan Rapid Transit|M
+S|13.85501|100.63223|Maiyalap|Metropolitan Rapid Transit|M
+S|13.80841|100.73269|Min Buri|Metropolitan Rapid Transit|M
+S|13.81251|100.72584|Min Buri Market|Metropolitan Rapid Transit|M
+S|13.84853|100.51472|Ministry of Public Health|Metropolitan Rapid Transit|M
+S|13.89743|100.54845|Muang Thong Thani|Metropolitan Rapid Transit|M
+S|13.88758|100.57571|National Telecom|Metropolitan Rapid Transit|M
+S|13.85972|100.51812|Nonthaburi Civic Center|Metropolitan Rapid Transit|M
+S|13.86017|100.51307|Nonthaburi Civic Center|Metropolitan Rapid Transit|M
+S|13.81653|100.68565|Nopparat|Metropolitan Rapid Transit|M
+S|13.82445|100.67721|Outer Ring Road-Ram Inthra|Metropolitan Rapid Transit|M
+S|13.90650|100.51558|Pak Kret Bypass|Metropolitan Rapid Transit|M
+S|13.81288|100.56146|Phahon Yothin|Metropolitan Rapid Transit|M
+S|13.71291|100.43433|Phasi Charoen|Metropolitan Rapid Transit|M
+S|13.80016|100.58420|Phawana|Metropolitan Rapid Transit|M
+S|13.74919|100.56342|Phetchaburi|Metropolitan Rapid Transit|M
+S|13.71556|100.44545|Phetkasem 48|Metropolitan Rapid Transit|M
+S|13.87029|100.48013|Phra Nang Klao Bridge|Metropolitan Rapid Transit|M
+S|13.75782|100.56528|Phra Ram 9|Metropolitan Rapid Transit|M
+S|13.72267|100.55991|Queen Sirikit National Convention Centre|Metropolitan Rapid Transit|M
+S|13.87994|100.58930|Rajabhat Phranakhon|Metropolitan Rapid Transit|M
+S|13.87095|100.60262|Ram Inthra 3|Metropolitan Rapid Transit|M
+S|13.85831|100.62613|Ram Inthra Kor Mor 4|Metropolitan Rapid Transit|M
+S|13.84527|100.65024|Ram Inthra Kor Mor 6|Metropolitan Rapid Transit|M
+S|13.83379|100.66757|Ram Inthra Kor Mor 9|Metropolitan Rapid Transit|M
+S|13.79897|100.57455|Ratchadaphisek|Metropolitan Rapid Transit|M
+S|13.89857|100.50709|Royal Irrigation Department|Metropolitan Rapid Transit|M
+S|13.87051|100.46669|Sai Ma|Metropolitan Rapid Transit|M
+S|13.88928|100.51057|Samakkhi|Metropolitan Rapid Transit|M
+S|13.87467|100.41936|Sam Yaek Bang Yai|Metropolitan Rapid Transit|M
+S|13.73206|100.53012|Sam Yan|Metropolitan Rapid Transit|M
+S|13.74700|100.50230|Sam Yot|Metropolitan Rapid Transit|M
+S|13.87414|100.51632|Sanambin Nam|Metropolitan Rapid Transit|M
+S|13.74433|100.49462|Sanam Chai|Metropolitan Rapid Transit|M
+S|13.81269|100.71263|Setthabutbamphen|Metropolitan Rapid Transit|M
+S|13.64349|100.63627|Si Bearing|Metropolitan Rapid Transit|M
+S|13.63310|100.63011|Si Dan|Metropolitan Rapid Transit|M
+S|13.66769|100.64507|Si Iam|Metropolitan Rapid Transit|M
+S|13.75041|100.64479|Si Kritha|Metropolitan Rapid Transit|M
+S|13.65497|100.64216|Si La Salle|Metropolitan Rapid Transit|M
+S|13.72920|100.53707|Si Lom|Metropolitan Rapid Transit|M
+S|13.71110|100.64420|Si Nut|Metropolitan Rapid Transit|M
+S|13.90057|100.54001|Si Rat|Metropolitan Rapid Transit|M
+S|13.78387|100.49333|Sirindhorn|Metropolitan Rapid Transit|M
+S|13.62984|100.62269|Si Thepha|Metropolitan Rapid Transit|M
+S|13.70112|100.64647|Srinagarindra 38|Metropolitan Rapid Transit|M
+S|13.73747|100.56150|Sukhumvit|Metropolitan Rapid Transit|M
+S|13.78949|100.57408|Sutthisan|Metropolitan Rapid Transit|M
+S|13.88101|100.40929|Talad Bang Yai|Metropolitan Rapid Transit|M
+S|13.80616|100.53078|Tao Poon|Metropolitan Rapid Transit|M
+S|13.76616|100.57012|Thailand Cultural Centre|Metropolitan Rapid Transit|M
+S|13.72965|100.47404|Tha Phra|Metropolitan Rapid Transit|M
+S|13.63673|100.60990|Thipphawan|Metropolitan Rapid Transit|M
+S|13.84926|100.64288|Vacharaphol|Metropolitan Rapid Transit|M
+S|13.74221|100.50991|Wat Mangkon|Metropolitan Rapid Transit|M
+S|13.82986|100.52650|Wong Sawang|Metropolitan Rapid Transit|M
+S|13.76182|100.64557|Yaek Lam Sali|Metropolitan Rapid Transit|M
+S|13.86596|100.49408|Yaek Nonthaburi 1|Metropolitan Rapid Transit|M
+S|13.90620|100.50539|Yaek Pak Kret|Metropolitan Rapid Transit|M
+S|13.83953|100.51497|Yaek Tiwanon|Metropolitan Rapid Transit|M
+S|13.86758|100.59197|11th Infantry Regiment|รถไฟฟ้าบีทีเอส|M
+S|13.77971|100.54462|Ari|รถไฟฟ้าบีทีเอส|M
+S|13.73704|100.56036|Asok|รถไฟฟ้าบีทีเอส|M
+S|13.85605|100.58518|Bang Bua|รถไฟฟ้าบีทีเอส|M
+S|13.69676|100.60534|Bang Chak|รถไฟฟ้าบีทีเอส|M
+S|13.66814|100.60466|Bang Na|รถไฟฟ้าบีทีเอส|M
+S|13.66118|100.60181|Bearing|รถไฟฟ้าบีทีเอส|M
+S|13.91071|100.61740|Bhumibol Adulyadej Hospital|รถไฟฟ้าบีทีเอส|M
+S|13.62159|100.59016|Chang Erawan|รถไฟฟ้าบีทีเอส|M
+S|13.74410|100.54307|Chit Lom|รถไฟฟ้าบีทีเอส|M
+S|13.71954|100.58511|Ekkamai|รถไฟฟ้าบีทีเอส|M
+S|13.81668|100.56204|Ha Yaek Lat Phrao|รถไฟฟ้าบีทีเอส|M
+S|13.84231|100.57711|Kasetsart University|รถไฟฟ้าบีทีเอส|M
+S|13.56769|100.60769|Kheha|รถไฟฟ้าบีทีเอส|M
+S|13.93237|100.64652|Khu Khot|รถไฟฟ้าบีทีเอส|M
+S|13.80260|100.55379|Mo Chit|รถไฟฟ้าบีทีเอส|M
+S|13.74054|100.55543|Nana|รถไฟฟ้าบีทีเอส|M
+S|13.74651|100.52909|National Stadium|รถไฟฟ้าบีทีเอส|M
+S|13.70562|100.60100|On Nut|รถไฟฟ้าบีทีเอส|M
+S|13.60212|100.59709|Pak Nam|รถไฟฟ้าบีทีเอส|M
+S|13.82412|100.56643|Phahonyothin 24|รถไฟฟ้าบีทีเอส|M
+S|13.88245|100.60073|Phahonyothin 59|รถไฟฟ้าบีทีเอส|M
+S|13.75696|100.53382|Phaya Thai|รถไฟฟ้าบีทีเอส|M
+S|13.74307|100.54898|Phloen Chit|รถไฟฟ้าบีทีเอส|M
+S|13.71924|100.48597|Pho Nimit|รถไฟฟ้าบีทีเอส|M
+S|13.58419|100.60791|Phraek Sa|รถไฟฟ้าบีทีเอส|M
+S|13.71517|100.59124|Phra Khanong|รถไฟฟ้าบีทีเอส|M
+S|13.73043|100.56971|Phrom Phong|รถไฟฟ้าบีทีเอส|M
+S|13.63728|100.59201|Pu Chao|รถไฟฟ้าบีทีเอส|M
+S|13.68928|100.60900|Punnawithi|รถไฟฟ้าบีทีเอส|M
+S|13.75186|100.53155|Ratchathewi|รถไฟฟ้าบีทีเอส|M
+S|13.82975|100.56972|Ratchayothin|รถไฟฟ้าบีทีเอส|M
+S|13.85033|100.58182|Royal Forest Department|รถไฟฟ้าบีทีเอส|M
+S|13.91797|100.62169|Royal Thai Air Force Museum|รถไฟฟ้าบีทีเอส|M
+S|13.60841|100.59491|Royal Thai Naval Academy|รถไฟฟ้าบีทีเอส|M
+S|13.57778|100.60546|Sai Luat|รถไฟฟ้าบีทีเอส|M
+S|13.88845|100.60427|Sai Yud|รถไฟฟ้าบีทีเอส|M
+S|13.64649|100.59579|Samrong|Metropolitan Rapid Transit|M
+S|13.77262|100.54207|Sanam Pao|รถไฟฟ้าบีทีเอส|M
+S|13.79382|100.54971|Saphan Khwai|รถไฟฟ้าบีทีเอส|M
+S|13.89661|100.60908|Saphan Mai|รถไฟฟ้าบีทีเอส|M
+S|13.83641|100.57363|Sena Nikhom|รถไฟฟ้าบีทีเอส|M
+S|13.78594|100.54686|Sena Ruam|รถไฟฟ้าบีทีเอส|M
+S|13.74562|100.53422|Siam|รถไฟฟ้าบีทีเอส|M
+S|13.59200|100.60904|Srinagarindra|รถไฟฟ้าบีทีเอส|M
+S|13.71422|100.47669|Talat Phlu|รถไฟฟ้าบีทีเอส|M
+S|13.72423|100.57851|Thong Lo|รถไฟฟ้าบีทีเอส|M
+S|13.67987|100.60947|Udom Suk|รถไฟฟ้าบีทีเอส|M
+S|13.76276|100.53705|Victory Monument|รถไฟฟ้าบีทีเอส|M
+S|13.87528|100.59673|Wat Phra Sri Mahathat|Metropolitan Rapid Transit|M
+S|13.72108|100.49516|Wongwian Yai|รถไฟฟ้าบีทีเอส|M
+S|13.71302|100.46890|Wutthakat|รถไฟฟ้าบีทีเอส|M
+S|13.92501|100.62584|Yaek Kor Por Aor|รถไฟฟ้าบีทีเอส|M
+S|13.80636|100.51879|Bang Po|Chao Phraya Express Boat|W
+S|13.79869|100.51685|Kiak Kai|Chao Phraya Express Boat|W
+S|13.78155|100.50109|Krung Thon Bridge|Chao Phraya Express Boat|W
+S|13.73249|100.51188|Marine Department|Chao Phraya Express Boat|W
+S|13.73974|100.49822|Memorial Bridge|Chao Phraya Express Boat|W
+S|13.88327|100.48516|Ministry of Commerce|Chao Phraya Express Boat|W
+S|13.84186|100.49116|Nonthaburi|Chao Phraya Express Boat|W
+S|13.91533|100.49465|Pakkret|Chao Phraya Express Boat|W
+S|13.78754|100.50814|Payap|Chao Phraya Express Boat|W
+S|13.76299|100.49069|Phra Pinklao Bridge N12|Chao Phraya Express Boat|W
+S|13.83291|100.49627|Pibul 2|Chao Phraya Express Boat|W
+S|13.74161|100.49385|Rajinee N7|Chao Phraya Express Boat|W
+S|13.83221|100.49389|Rama 5 Bridge|Chao Phraya Express Boat|W
+S|13.81284|100.51374|Rama 7 Bridge|Chao Phraya Express Boat|W
+S|13.75256|100.48827|Tha Chang N9|Chao Phraya Express Boat|W
+S|13.77204|100.50010|Thewet|Chao Phraya Express Boat|W
+S|13.82822|100.49690|Wat Kien|Chao Phraya Express Boat|W
+S|13.90517|100.49138|Wat Klangkret|Chao Phraya Express Boat|W
+S|13.70654|100.50384|Wat Rajsingkorn|Chao Phraya Express Boat|W
+S|13.75551|100.50644|Phanfa Leelard|Golden Mount Line|W
+S|13.74982|100.52431|Sapan Charoenpol|Golden Mount Line|W
+S|13.74920|100.53088|Sapan Hua Chang|Golden Mount Line|W
+S|13.75342|100.51596|Talad Bobae|Golden Mount Line|W
+S|13.74785|100.56295|Asok Pier|NIDA Line|W
+S|13.74415|100.58146|Baan Don Mosque|NIDA Line|W
+S|13.76503|100.64739|Bangkapi|NIDA Line|W
+S|13.74269|100.58846|Charn Issara|NIDA Line|W
+S|13.74871|100.54457|Chidlom|NIDA Line|W
+S|13.74592|100.57348|Italthai|NIDA Line|W
+S|13.74833|100.55912|Nana Chard|NIDA Line|W
+S|13.74825|100.55403|Nana Nua|NIDA Line|W
+S|13.74739|100.56574|Prasanmit|NIDA Line|W
+S|13.74926|100.54120|Pratunam|Golden Mount Line|W
+S|13.76153|100.61832|Ramkhamhaeng|NIDA Line|W
+S|13.75782|100.61158|Ramkhamhaeng 29|NIDA Line|W
+S|13.74191|100.59826|Sapan Klongtun|NIDA Line|W
+S|13.76216|100.62369|Sapan Mit Mahadthai|NIDA Line|W
+S|13.74319|100.58589|Soi Thonglor|NIDA Line|W
+S|13.76464|100.64345|The Mall Bangkapi|NIDA Line|W
+S|13.75465|100.60813|The Mall Ram|NIDA Line|W
+S|13.74148|100.59407|Vijit School|NIDA Line|W
+S|13.74571|100.57437|Wat Mai Chonglom|NIDA Line|W
+S|13.76772|100.65211|Wat Sriboonrueng|NIDA Line|W
+S|13.75995|100.61378|Wat Thepleela|NIDA Line|W
+S|13.74827|100.54818|Wireless|NIDA Line|W
+S|13.71862|100.45818|Bangwa Pier (Phasi Charoen Canal)|บริษัท กรุงเทพธนาคม จำกัด|W
+S|13.72376|100.48214|Wat Intharam Pier|บริษัท กรุงเทพธนาคม จำกัด|W
+S|13.75448|100.48843|Maharaj|เรือด่วนเจ้าพระยา|W
+S|13.76356|100.49404|Phra Arthit|เรือด่วนเจ้าพระยา|W
+S|13.73836|100.50474|Rachawong|เรือด่วนเจ้าพระยา|W
+S|13.71886|100.51271|Sathorn (Taksin)|เรือด่วนเจ้าพระยา|W
+S|13.72842|100.51311|Si Phraya|เรือด่วนเจ้าพระยา|W
+S|13.74598|100.49001|Tha Tien|เรือด่วนเจ้าพระยา|W
+S|13.75569|100.48683|Tha Wang Lang|เรือด่วนเจ้าพระยา|W
+L|BTS|รถไฟฟ้าสายสีทอง|#A58704|2 0:1145 1:493
+L|BTS|รถไฟฟ้าสายสีทอง|#A58704|1 0:497 2:1153
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#E76589|53 32:573 78:1351 74:1787 72:1093 104:899 57:1165 21:1513 88:1227 51:1153 20:1344 25:827 52:972 37:850 66:849 155:1077 67:705 44:1874 68:1027 47:752 99:1315 69:911 35:1141 70:1224 56:1465 55:1266 4:2020 80:1049 49:1430 48:957
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#E76589|48 49:957 80:1430 4:1049 55:2020 56:1266 70:1465 35:1224 69:1056 99:984 47:1316 68:752 44:1027 67:2024 155:718 66:1062 37:849 52:850 25:972 20:827 51:1344 88:1137 21:1227 57:1513 104:1165 72:899 74:1093 78:1787 32:1351 53:573
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#C4007B|51 28:1770 36:890
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#C4007B|36 28:890 51:1769
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีน้ำเงิน|#1E398D|97 3:1319 24:1733 7:987 19:2025 89:1141 11:1580 9:900 13:1622 95:1056 17:1199 31:956 22:871 58:1610 39:1420 71:924 93:1049 26:1195 96:1489 64:1074 61:975 92:1312 65:1690 34:792 45:1008 86:1016 76:817 27:1533 100:942 77:1002 79:1122 29:1401 97:1712 10:1274 18:995 62:1362 59:1246 6:1302 38:1394
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีน้ำเงิน|#1E398D|38 6:1395 59:1302 62:1245 18:1361 10:994 97:1118 29:1716 79:1384 77:1157 100:1005 27:946 76:1530 86:815 45:1018 34:1006 65:758 92:1686 96:3369 17:5483 95:1197 13:1056 9:1615 11:901 89:1583 19:1140 7:2025 24:983 3:1733 97:1313
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีม่วง|#893B90|33 94:1268 75:1566 12:1565 15:1207 14:1236 73:1254 63:1464 103:1625 8:1241 54:924 50:1787 105:1206 101:1640 16:1378 95:1558
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีม่วง|#893B90|95 16:1558 101:1369 105:1641 50:1213 54:1773 8:925 103:1242 63:1620 73:1468 14:1256 15:1232 12:1207 75:1566 94:1578 33:1268
+L|Metropolitan Rapid Transit|รถไฟฟ้าสายสีเหลือง|#FFD400|40 60:1340 23:1277 42:1765 43:748 46:1194 41:890 5:1240 102:1146 84:1279 30:2830 87:1597 91:1137 83:3723 85:1441 81:1430 82:1322 90:1158 98:1575 143:1726
+L|Metropolitan Rapid Transit|รถไฟฟ้าสายสีเหลือง|#FFD400|143 98:1726 90:1701 82:1158 81:1428 85:1430 83:1441 91:3723 87:1137 30:1597 84:2830 102:1279 5:1146 41:1240 46:890 43:1194 42:808 23:1634 60:1277 40:1340
+L|รถไฟฟ้าบีทีเอส|ขบวนเสริม รถไฟฟ้าบีทีเอส สายสีลม|#02817D|18 157:1674 151:914 130:1158 156:1021 2:818
+L|รถไฟฟ้าบีทีเอส|ขบวนเสริม รถไฟฟ้าบีทีเอส สายสีลม|#02817D|2 156:818 130:1020 151:1157 157:918 18:1678
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสีลม|#02817D|123 149:564 18:10756
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสีลม|#02817D|18 149:10770 123:564
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|120 158:2477 139:898 113:927 146:1799 142:1041 127:766 155:905 106:996 109:1471 138:729 118:1022 147:754 137:848 126:717 117:950 145:2865 148:925 107:729 144:831 154:1279 128:728 136:621 149:978 115:973 129:649 122:766 108:657 133:1249 152:1173 116:883 132:819 124:1531 110:1086 135:917 153:1087 111:1402 112:829 143:1750 134:1098 114:1900 140:1538 125:740 150:1795 131:920 141:749 119:1206
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|119 141:1207 131:749 150:919 125:1794 140:740 114:1539 134:1902 143:1098 112:1750 111:828 153:1402 135:1083 110:917 124:1086 132:1528 116:820 152:883 133:1172 108:1249 122:658 129:763 115:648 149:973 136:986 128:621 154:729 144:1280 107:830 148:730 145:925 121:1070 117:1794 126:951 137:717 147:849 118:753 138:1021 109:730 106:1470 155:998 127:900 142:766 146:1041 113:1799 139:927 158:899 120:2481
+L|Chao Phraya Express Boat|เรือด่วนพิเศษธงส้ม|#ef5d28|165 171:1196 175:592 159:3652 160:943 172:1728 167:3090 161:1091 174:1141 207:1236 168:397 212:981 173:410 211:812 208:1947 162:1088 210:508 209:1141 177:1799 163:4018
+L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเขียว|#38b54d|166 176:1271 164:2714 165:4992 172:4354 161:4017 174:1141 168:1541 212:981 173:410 208:2564 210:1537 209:1141
+L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเหลือง|#ffdb1a|165 172:4354 159:972 174:4641 168:1541 212:981 208:2943 210:1537 209:1141
+L|Chao Phraya Express Boat|เรือประจำทาง||165 169:1225 172:3146 159:972 160:943 167:1675 161:1091 174:1141 207:1236 168:397 212:981 173:410 211:812 170:688 208:1330 162:1088 210:508 209:1141 177:1799 163:4018
+L|Golden Mount Line|Boat||178 181:1060 179:1001 180:737 191:1125
+L|Golden Mount Line|Boat||191 180:1124 179:737 181:1001 178:1060
+L|NIDA Line|Boat||191 186:344 203:397 189:634 188:552 182:420 190:309 187:854 200:100 183:791 196:495 185:287 199:627 194:514 198:1814 193:516 202:337 192:543 195:592 197:2162 184:438 201:607
+L|บริษัท กรุงเทพธนาคม จำกัด|เส้นทางเดินเรือโดยสารฯ คลองบางกอกใหญ่ → แม่น้ำเจ้าพระยา|#84a307|204 205:2709 163:4597 170:1020 173:1944
+L|เรือด่วนเจ้าพระยา|เรือท่องเที่ยวเจ้าพระยา||207 212:1261 206:236 211:1032 208:1947 210:1537 209:1141
+T|6.16652|101.83161|Aisatia
+T|13.69271|102.50520|Aranyaprathet
+T|13.75003|100.56413|Asok
+T|15.13564|101.04362|Assumption Convent School
+T|14.35671|100.58320|Ayutthaya
+T|6.44120|101.45752|Balo
+T|15.46864|101.68537|Bamnet Narong
+T|13.50155|100.18044|Ban Bo
+T|17.16911|100.10949|Ban Bung
+T|12.70627|101.05465|Ban Chang
+T|13.52477|100.24026|Ban Chi Pha Khao
+T|13.79916|100.42060|Ban Chimphli
+T|14.61518|101.01815|Ban Chong Tai
+T|15.26263|101.33634|Ban Chongko
+T|17.71845|100.12774|Ban Dan
+T|17.38322|100.08280|Ban Dara Junction
+T|7.04761|100.43264|Ban Din Lan
+T|14.41571|100.65960|Ban Don Klang
+T|9.12103|99.17323|Ban Don Rak
+T|9.07879|99.04467|Ban Don Riap
+T|15.38929|102.31283|Ban Don Yai
+T|14.04050|101.59885|Ban Dong Bang
+T|15.22576|102.28882|Ban Dong Phlong
+T|9.71866|99.12389|Ban Duat
+T|16.19773|102.76629|Ban Haet
+T|15.96596|102.69367|Ban Han
+T|15.00364|102.49907|Ban Hin Khon
+T|12.82630|100.92144|Ban Huai Khwang
+T|7.50513|100.11627|Ban Huai Taen
+T|8.28666|99.94329|Ban Huai Yung
+T|13.91722|101.96908|Ban Kaeng
+T|14.97375|103.85331|Ban Kalan
+T|13.48727|100.13770|Ban Kalong
+T|13.97315|99.31535|Ban Kao
+T|15.60543|102.29413|Ban Kao Ngio
+T|7.55482|100.10338|Ban Khai Thai
+T|9.09404|99.08434|Ban Khanai
+T|15.10715|104.50420|Ban Khlo
+T|15.60702|102.16467|Ban Khok Krabueang
+T|10.65261|99.27404|Ban Khok Ma
+T|13.56303|100.31353|Ban Khom
+T|17.19947|100.07929|Ban Khon
+T|7.85517|100.02865|Ban Khon Hat
+T|10.28043|99.09646|Ban Khron
+T|13.49188|99.82841|Ban Khu Bua
+T|14.72072|100.67837|Ban Klap Junction
+T|15.47955|101.70814|Ban Kloi
+T|13.66287|102.54845|Ban Klong Luk Border
+T|13.58835|99.81565|Ban Kluai
+T|15.00430|102.13852|Ban Ko
+T|14.00737|101.67907|Ban Ko Deang
+T|9.50952|99.17334|Ban Ko Muk
+T|8.21326|99.64495|Ban Ko Pring
+T|15.27908|101.22071|Ban Ko Rang
+T|7.14594|100.38526|Ban Ko Yai
+T|8.18859|99.89980|Ban Koei Chen
+T|15.14147|100.44202|Ban Kok Kwao
+T|15.10422|102.18699|Ban Kradon
+T|15.60181|102.27612|Ban Kraphi
+T|11.34972|99.55647|Ban Krut
+T|13.54192|100.27000|Ban Laem
+T|15.60017|102.11997|Ban Lueam
+T|14.38410|100.59710|Ban Ma
+T|16.69010|100.27291|Ban Mai
+T|19.36680|100.00342|Ban Mai
+T|14.86833|101.64373|Ban Mai Samrong
+T|15.28110|102.29527|Ban Makha
+T|7.70154|100.07910|Ban Makok Tai
+T|15.03979|100.54022|Ban Mi
+T|14.61666|100.72642|Ban Mo
+T|8.88657|99.31045|Ban Na
+T|13.47682|100.10255|Ban Na Khok
+T|13.48606|100.12114|Ban Na Khwang
+T|7.90162|100.01182|Ban Nang Long
+T|15.12596|104.22462|Ban Niam
+T|6.76026|101.04998|Ban Nikhom
+T|15.10731|104.62193|Ban Non Phueng
+T|14.89768|101.05200|Ban Nong Bua
+T|15.12909|102.20601|Ban Nong Kan Nga
+T|15.58310|102.05610|Ban Nong Kham
+T|15.60194|102.21737|Ban Nong Prue Pong
+T|13.97194|99.69304|Ban Nong Suea
+T|15.02088|103.02116|Ban Nong Tat
+T|13.41181|99.83880|Ban Pa Kai
+T|14.75945|100.64324|Ban Pa Wai
+T|15.43578|101.59370|Ban Pak Chap
+T|14.07416|101.31533|Ban Pak Phli
+T|6.49773|101.39295|Ban Patae
+T|14.45056|100.72077|Ban Phachi Junction
+T|16.05952|102.72547|Ban Phai
+T|14.54874|100.98301|Ban Phai Na Bun Junction
+T|14.98589|102.19297|Ban Phanao
+T|12.70456|100.97225|Ban Phlu Ta Luang
+T|14.28215|100.58868|Ban Pho
+T|14.99566|102.22623|Ban Phra Phut
+T|14.02250|101.64238|Ban Phrom Saeng
+T|8.59325|99.42126|Ban Phru Krachaeng
+T|14.21593|99.08901|Ban Phu Phong
+T|18.09612|99.86694|Ban Pin
+T|14.53007|100.72599|Ban Plak Raet
+T|14.52236|100.86430|Ban Pok Paek
+T|13.80970|99.87515|Ban Pong
+T|13.72468|102.38051|Ban Pong Khom
+T|13.95867|99.34498|Ban Pong Siao
+T|15.49749|102.36468|Ban Rai
+T|15.60445|102.31180|Ban Sa Khrok
+T|10.99908|99.39068|Ban Sai Thong
+T|15.02681|102.99199|Ban Salaeng Phan
+T|6.35816|101.53843|Ban Salo Bukit Yuerae
+T|14.01515|101.20288|Ban Sang
+T|10.80818|99.34852|Ban Sap Sombun
+T|15.59845|102.35136|Ban Sok Rang
+T|8.63359|99.37243|Ban Song
+T|7.78056|100.06201|Ban Sunthra
+T|15.57728|102.02075|Ban Ta Noen
+T|15.11984|104.17302|Ban Tae
+T|15.25294|100.35147|Ban Takhli
+T|14.99074|103.14572|Ban Tako
+T|16.85549|100.26662|Ban Teng Nam
+T|8.32901|99.94178|Ban Tha Chang
+T|13.73294|100.68874|Ban Thap Chang
+T|15.11825|104.72138|Ban Thon
+T|7.99403|99.98674|Ban Thung Khai
+T|8.22224|99.92157|Ban Thung Lo
+T|9.10411|99.11751|Ban Thung Luang
+T|9.12105|99.20163|Ban Thung Pho Junction
+T|7.53113|100.10953|Ban Ton Don
+T|7.87672|100.01900|Ban Trok Khae
+T|16.90899|100.25044|Ban Tum
+T|8.06064|99.96130|Ban Tun
+T|15.39720|101.45352|Ban Wa Tabaek (Thep Sathit)
+T|16.67875|102.84602|Ban Wang Chai
+T|9.04753|98.97856|Ban Yang
+T|6.59055|101.27471|Ban Yupo
+T|14.67289|101.36944|Bandai Ma
+T|13.79221|100.47750|Bang Bamru
+T|13.66651|100.42883|Bang Bon
+T|13.15993|99.89963|Bang Chak
+T|7.42201|100.16723|Bang Kaeo
+T|13.29792|99.85348|Bang Khem
+T|13.84937|100.56167|Bang Khen
+T|7.08770|100.41544|Bang Klam
+T|13.50874|100.19749|Bang Krachao
+T|16.57669|100.29902|Bang Krathum
+T|13.03449|100.94006|Bang Lamung
+T|16.02855|100.38120|Bang Mun Nak
+T|13.60512|100.36027|Bang Nam Chuet
+T|13.85006|101.10200|Bang Nam Priao
+T|14.23935|100.58459|Bang Pa-in
+T|13.23576|100.95358|Bang Phra
+T|13.77846|100.45351|Bang Ramat
+T|11.08579|99.44986|Bang Saphan Noi
+T|11.21334|99.50889|Bang Saphan Yai
+T|13.51580|100.21431|Bang Si Khot
+T|13.82213|100.53421|Bang Son
+T|13.80414|100.53996|Bang Sue Junction
+T|13.49420|100.16010|Bang Tho Rat
+T|13.70061|101.01865|Bang Toey
+T|13.73931|100.51665|Bangkok
+T|9.01027|99.26964|Bo Krang
+T|12.00377|99.85838|Bo Nok
+T|13.44114|99.83501|Bo Takhro
+T|14.88995|103.57632|Bu Ruesi
+T|14.42827|101.00624|Bu Yai
+T|15.58746|102.42868|Bua Yai Junction
+T|15.72409|100.21090|Bueng Boraphet
+T|16.74811|100.26406|Bueng Phra
+T|6.19825|101.81877|Bukit
+T|15.15618|104.78959|Bung Wai
+T|15.00331|103.10794|Buri Ram
+T|11.14100|99.47319|Cha Muang
+T|12.79983|99.96621|Cha-am
+T|7.96713|99.99771|Cha-uat
+T|13.69558|101.05888|Chachoengsao Junction
+T|7.67525|100.08066|Chai Buri
+T|9.38847|99.19533|Chaiya
+T|15.01278|102.41043|Chakkarat
+T|15.10691|104.39334|Chaloem Kanchana
+T|15.12230|100.45990|Chan Sen
+T|6.90922|100.74011|Chana
+T|14.81444|101.49340|Chanthuek
+T|13.16793|100.80642|Chao Por Khao Yai Shrine
+T|13.76318|100.47258|Charan Sanitwong
+T|13.72646|100.50907|Charoen Nakhon
+T|15.55567|101.83996|Chatturat
+T|13.82662|100.54947|Chatuchak
+T|8.42064|99.50837|Chawang
+T|13.63644|99.82127|Chet Samian
+T|18.78352|99.01682|Chiang Mai
+T|19.89150|99.87934|Chiang Rai
+T|14.05534|100.59238|Chiang Rak
+T|14.13054|100.58210|Chiang Rak Noi
+T|13.76654|100.52471|Chitlada
+T|6.23593|101.80064|Cho-airong
+T|13.70183|100.46514|Chom Thong
+T|13.34220|100.99829|Chon Buri
+T|15.16495|100.42049|Chong Khae
+T|14.16792|99.10058|Chong Khaep
+T|8.14239|99.76910|Chong Khao
+T|15.35211|101.38696|Chong Samran
+T|12.62476|100.92161|Chuk Samet
+T|15.89462|100.31014|Chum Saeng
+T|10.50336|99.17593|Chumphon
+T|17.98052|100.04622|Den Chai
+T|13.91469|100.59787|Don Muang
+T|11.45690|99.60631|Don Sai
+T|13.60098|101.10895|Don Si Non
+T|14.30984|100.01637|Don Thong
+T|9.63476|99.15515|Don Thup
+T|14.47972|100.72840|Don Ya Nang
+T|15.30545|100.33148|Dong Maku
+T|16.13868|100.41481|Dong Takhop
+T|14.08701|99.95669|Flying Training School
+T|12.01792|102.29021|Funicular Station 1
+T|12.01766|102.29066|Funicular Station 2
+T|12.01735|102.29122|Funicular Station 3
+T|12.01701|102.29182|Funicular Station 4
+T|7.31566|100.25213|Han Kong
+T|7.29324|100.27205|Han Thao
+T|18.33617|99.36956|Hang Chat
+T|7.00387|100.46732|Hat Yai Junction
+T|15.00287|102.56567|Hin Dat
+T|11.16231|99.47515|Hin Kong
+T|14.66320|101.13328|Hin Lap
+T|14.74129|101.05108|Hin Son
+T|16.08205|100.40567|Ho Krai
+T|16.33929|100.40317|Hua Dong
+T|12.56462|99.95517|Hua Hin
+T|13.73802|100.64526|Hua Mak
+T|13.73839|100.63974|Hua Mak
+T|9.83217|99.08396|Hua Mat
+T|15.42700|100.21931|Hua Ngio
+T|13.72842|100.78290|Hua Takhe
+T|15.34903|100.31291|Hua Wai
+T|13.77051|102.23121|Huai Chot
+T|13.71292|102.42238|Huai Duea
+T|15.07025|100.51063|Huai Kaeo
+T|16.27332|100.42541|Huai Ket
+T|15.10980|104.68814|Huai Khayung
+T|12.32449|99.91104|Huai Khwang
+T|17.04223|102.92797|Huai Koeng
+T|18.06623|99.92115|Huai Mae Ta
+T|8.83534|99.34988|Huai Mut
+T|8.56865|99.45663|Huai Prik
+T|15.56274|102.41141|Huai Rahat
+T|17.88601|100.04045|Huai Rai
+T|18.25590|99.65747|Huai Rak Mai
+T|14.97274|103.19000|Huai Rat
+T|18.37079|99.29550|Huai Rian
+T|12.70356|99.95023|Huai Sai Nuea
+T|12.66776|99.94875|Huai Sai Tai
+T|11.03090|99.41448|Huai Sak
+T|17.20936|102.93810|Huai Sam Phat
+T|16.75696|102.87084|Huai Siao
+T|14.99939|102.64676|Huai Thalaeng
+T|15.05908|104.03005|Huai Thap Than
+T|15.42457|101.53112|Huai Yai Chio
+T|11.60507|99.67202|Huai Yang
+T|7.78605|99.63816|Huai Yot
+T|12.63140|100.94018|Jam Bo Ri
+T|13.98951|101.72269|Kabin Buri
+T|13.99684|101.76117|Kabin Kao
+T|6.31259|101.67160|Kadae
+T|14.92192|103.72692|Kadon Kho
+T|14.58748|101.00533|Kaeng Khoi Junction
+T|18.02479|99.94687|Kaeng Luang
+T|14.84231|101.06381|Kaeng Suea Ten
+T|13.65260|100.41323|Kan Kheha
+T|13.89866|100.58887|Kan Kheha
+T|9.66661|99.14590|Kan Thuli
+T|14.03421|99.52561|Kanchanaburi
+T|7.41090|99.51459|Kantang
+T|15.10729|104.57834|Kanthararom
+T|8.00444|99.64211|Kapang
+T|17.35066|102.83156|Kham Kling
+T|11.87124|99.81105|Khan Kradai
+T|10.95829|99.36432|Khao Chai Rat
+T|7.45984|100.14040|Khao Chaison
+T|12.73369|100.95458|Khao Chi Chan Junction
+T|8.14784|99.88221|Khao Chum Thong Junction
+T|14.71553|101.00900|Khao Hin Dat
+T|9.05591|99.25600|Khao Hua Khwai
+T|14.66292|101.01707|Khao Khok
+T|9.04572|98.99827|Khao Lung
+T|9.47068|99.17934|Khao Phanom Baek
+T|8.97344|99.29398|Khao Phlu
+T|17.85014|100.04312|Khao Phlueng
+T|13.20244|100.94162|Khao Phra Bat
+T|10.13516|99.10409|Khao Pip
+T|14.00298|99.50879|Khao Pun
+T|16.85007|102.87651|Khao Suan Kwang
+T|10.16682|99.10576|Khao Suan Thurian
+T|14.78004|101.05448|Khao Sung
+T|12.45957|99.97004|Khao Tao
+T|13.03948|99.95974|Khao Thamon
+T|15.57199|100.17621|Khao Thong
+T|15.17377|101.06890|Khao Yai Ka Ta
+T|13.23951|99.86101|Khao Yoi
+T|13.45675|100.07449|Khet Mueang
+T|9.03127|98.94707|Khiri Rat Nikhom
+T|13.70404|100.99138|Khlong Bang Phra
+T|13.82124|99.95866|Khlong Bang Tan
+T|13.55166|100.28881|Khlong Chak
+T|8.38186|99.54012|Khlong Chan Di
+T|8.24084|99.62171|Khlong Chang
+T|9.88076|99.07427|Khlong Khanan
+T|14.84253|101.54432|Khlong Khanan Chit
+T|8.29438|99.57262|Khlong Kui
+T|9.24696|99.18690|Khlong Kut
+T|13.70712|100.96654|Khlong Kwaeng Klan
+T|13.72007|100.86306|Khlong Luang Phaeng
+T|13.80885|100.25073|Khlong Maha Sawat
+T|17.34736|99.98336|Khlong Maphlap
+T|13.51910|100.22218|Khlong Nok Lek
+T|14.02317|100.59807|Khlong Nueng
+T|14.87427|101.57105|Khlong Phai
+T|14.18588|100.57830|Khlong Phutsa
+T|15.81491|100.28347|Khlong Pla Kot
+T|6.64450|101.21846|Khlong Sai
+T|9.20877|99.16464|Khlong Sai
+T|13.73031|100.50772|Khlong San
+T|13.90722|101.11381|Khlong Sip Kao Junction
+T|8.67529|99.35555|Khlong Sun
+T|13.73445|99.84997|Khlong Ta Khot
+T|13.74434|100.58952|Khlong Tan
+T|13.70648|100.46977|Khlong Ton Sai
+T|13.71586|100.89693|Khlong Udom Chonlajorn
+T|10.75244|99.33467|Khlong Wang Chang
+T|8.92625|99.30123|Khlong Ya
+T|14.89983|100.59363|Khok Kathiam Junction
+T|15.27458|101.36920|Khok Khli
+T|8.25059|99.94271|Khok Khram
+T|13.58695|100.34011|Khok Khwai
+T|14.93120|101.95887|Khok Kruat
+T|14.06493|101.45792|Khok Makok
+T|14.89739|101.76954|Khok Sa-at
+T|7.23790|100.31155|Khok Sai
+T|14.98715|101.02310|Khok Salung
+T|6.03383|101.91633|Khok Saya
+T|11.40608|99.59442|Khok Ta Hom
+T|16.42681|102.82567|Khon Kaen
+T|10.00984|99.09126|Khuan Hin Mui
+T|7.34724|100.23099|Khuan Khiam
+T|7.19232|100.35036|Khuan Niang
+T|8.10431|99.93694|Khuan Nong Khwa
+T|7.37572|100.20125|Khuan Phra
+T|18.50052|99.26535|Khun Tan
+T|16.95367|100.23239|Khwae Noi
+T|14.64792|101.25232|Klang Dong
+T|8.74560|99.35757|Klong Prap
+T|9.05793|99.02433|Klong Yan
+T|13.93862|101.12711|Klong Yi Sib Et
+T|14.15532|99.10692|Ko Maha Mongkhon
+T|6.86412|100.87891|Ko Saba
+T|8.52518|99.47337|Krabiat
+T|14.92692|103.30269|Krasang
+T|13.80403|100.54171|Krung Thep Aphiwat
+T|13.72111|100.50371|Krung Thon Buri
+T|12.06955|99.87207|Kui Buri
+T|17.12204|102.94810|Kumphawapi
+T|14.90555|101.88220|Kut Chik
+T|13.09908|100.89834|Laem Chabang
+T|7.81333|100.04733|Laem Tanot
+T|8.32214|99.54765|Lak Chang
+T|13.96572|100.60538|Lak Hok (Rangsit U.)
+T|13.88631|100.58194|Lak Si
+T|6.35540|101.57926|Lalo
+T|14.89985|103.42283|Lam Chi
+T|15.22010|101.13952|Lam Narai
+T|15.02451|102.82971|Lam Plai Mat
+T|9.77471|99.10771|Lamae
+T|18.59376|99.02109|Lamphun
+T|9.94929|99.07642|Lang Suan
+T|14.86133|101.59614|Lat Bua Khao
+T|13.72751|100.74855|Lat Krabang
+T|13.43585|100.04520|Lat Yai
+T|14.79853|100.61538|Lop Buri
+T|14.79364|100.55809|Lop Buri 2
+T|13.87056|99.82210|Luk Kae
+T|14.09273|99.18182|Lum Sum
+T|18.27290|99.78651|Mae Chang
+T|18.25184|100.20853|Mae Kham Mi
+T|13.40749|99.99843|Mae Klong
+T|18.26140|99.70704|Mae Mo
+T|13.71391|100.55386|Mae Nam
+T|17.93594|100.05766|Mae Phuak
+T|17.93597|100.05778|Mae Phuak Railway Station
+T|18.40394|99.26300|Mae Tan Noi
+T|18.19995|99.55669|Mae Tha
+T|16.60976|100.28420|Mae Thiap
+T|13.54625|100.27662|Maha Chai
+T|6.51169|101.36835|Mai Kaen
+T|13.75091|100.56114|Makkasan
+T|13.75386|100.54737|Makkasan
+T|14.47418|100.09809|Malai Maen
+T|9.16540|99.15898|Maluan
+T|8.39563|99.94587|Mamuang Song Ton
+T|10.86930|99.34260|Map Ammarit
+T|14.61895|101.08369|Map Kabao
+T|14.40228|100.63208|Map Phra Chan
+T|12.69084|101.12833|Map Ta Phut
+T|6.33488|101.63871|Maruebo
+T|14.65125|101.19941|Muak Lek
+T|15.44510|102.33119|Mueang Khong
+T|15.81967|102.60052|Mueang Phon
+T|14.89374|103.65503|Mueang Thi
+T|8.26588|99.59603|Na Bon
+T|10.53631|99.20746|Na Cha-ang
+T|13.93345|99.44773|Na Kan
+T|6.96555|100.55519|Na Muang
+T|11.25890|99.53109|Na Phak Khuang
+T|17.61985|102.77275|Na Phu
+T|6.68300|101.14332|Na Pradu
+T|8.80126|99.36223|Na San
+T|17.84184|102.74816|Na Tha
+T|13.80619|100.17612|Nakhon Chai Si
+T|13.76598|99.85545|Nakhon Chum
+T|18.27958|99.47268|Nakhon Lampang
+T|13.82450|100.05874|Nakhon Pathom
+T|14.97227|102.07890|Nakhon Ratchasima
+T|15.66439|100.15827|Nakhon Sawan
+T|8.43951|99.95964|Nakhon Si Thammarat
+T|16.70936|102.86122|Nam Phong
+T|14.23213|99.06786|Namtok
+T|14.23747|99.05875|Namtok Sai Yok Noi
+T|14.11465|100.58400|Nawa Nakhon
+T|13.54862|100.28210|Nikhom Rotfai Maha Chai
+T|15.47579|100.17309|Noen Makok
+T|15.30943|102.29837|Noen Thua Paep
+T|15.52269|101.77206|Non Khro
+T|16.64326|102.81861|Non Phayom
+T|16.96700|102.89740|Non Sa-at
+T|15.17689|102.24812|Non Sung
+T|15.51280|102.37578|Non Thonglang
+T|14.55577|100.96280|Nong Bua Junction
+T|15.66831|102.49664|Nong Bua Lai
+T|7.92660|100.00642|Nong Chik
+T|15.57171|101.95275|Nong Chim
+T|12.95331|99.96656|Nong Chok
+T|14.68341|100.70621|Nong Don
+T|11.74218|99.76752|Nong Hin
+T|12.53283|99.96458|Nong Kae
+T|15.08639|104.09430|Nong Kaen
+T|17.86446|102.73097|Nong Khai
+T|12.28426|99.89061|Nong Khang
+T|17.37526|102.81311|Nong Khon Kwang
+T|14.06311|101.41436|Nong Krachap
+T|15.00589|102.75591|Nong Krathing
+T|14.47374|100.75721|Nong Kuai
+T|18.46222|99.05711|Nong Lom
+T|15.14081|102.21633|Nong Maeo
+T|13.00461|99.96249|Nong Mai Lueang
+T|15.75840|102.56717|Nong Makhuea
+T|15.01316|102.34674|Nong Manorom
+T|11.30424|99.54525|Nong Mongkhon
+T|14.04951|101.26833|Nong Nam Khao
+T|14.88186|101.67176|Nong Nam Khun
+T|10.57531|99.21639|Nong Nian
+T|15.59895|102.24848|Nong Phluang
+T|15.39383|100.25925|Nong Pho
+T|13.81768|99.91088|Nong Pla Duk Junction
+T|13.18924|99.87192|Nong Pla Lai
+T|14.49077|100.78444|Nong Saeng
+T|14.99362|100.57320|Nong Sai Khao
+T|12.90367|99.97056|Nong Sala
+T|13.98077|101.82534|Nong Sang
+T|14.05220|101.57049|Nong Seang
+T|14.03267|101.61780|Nong Si Wichai
+T|14.51613|100.82475|Nong Sida
+T|17.26731|102.89456|Nong Takai
+T|14.95119|100.58238|Nong Tao
+T|14.90882|103.36308|Nong Teng
+T|17.10014|100.16342|Nong Tom
+T|15.10702|104.43915|Nong Waeng
+T|14.50560|100.72716|Nong Wiwat
+T|18.24421|99.50053|Nong Wua Thao
+T|14.13432|100.98613|Ongkharak
+T|19.49609|99.98379|Pa Daet
+T|19.56017|99.95969|Pa Ngae
+T|6.26727|101.75983|Pa Phai
+T|6.66289|101.17992|Pa Rai
+T|18.63760|99.04225|Pa Sao
+T|6.66884|100.32450|Padang Besar (Thai)
+T|13.69332|101.07683|Paet Rio
+T|14.70505|101.41059|Pak Chong
+T|7.73711|100.07693|Pak Khlong
+T|15.70417|100.15416|Pak Nam Pho
+T|17.99485|100.00669|Pak Pan
+T|14.01651|99.54408|Pak Phraek
+T|10.09191|99.10238|Pak Tako
+T|13.37433|99.84361|Pak Tho
+T|14.65350|101.29994|Pang Asok
+T|18.37001|99.32498|Pang Muang
+T|18.29893|99.85833|Pang Puai
+T|17.79988|100.07636|Pang Ton Phueng
+T|14.86690|101.06206|Pasak Jolasid Dam
+T|10.71119|99.31629|Pathio
+T|6.72909|101.09453|Pattani
+T|12.94020|100.90942|Pattaya
+T|12.86968|100.90961|Pattaya Floating Market
+T|12.90845|100.90123|Pattaya Tai
+T|18.20726|99.87077|Pha Khan
+T|18.22774|99.87676|Pha Kho
+T|14.64452|101.10064|Pha Sadet
+T|15.25024|101.26060|Phaendin Thong
+T|15.09782|100.48373|Phai Yai
+T|13.46298|101.08111|Phan Thong
+T|7.62096|100.08570|Phatthalung
+T|13.75701|100.53319|Phaya Thai
+T|13.11648|99.94117|Phetchaburi
+T|17.28903|100.08825|Phichai
+T|16.44782|100.34662|Phichit
+T|16.81498|100.26570|Phitsanulok
+T|8.37339|99.54363|Pho Than Khlai Wachasit
+T|15.34830|102.30355|Phon Songkhram
+T|15.22043|100.36667|Phon Thong
+T|13.69328|99.85058|Photharam
+T|13.72818|100.77547|Phra Chom Klao
+T|14.42870|100.68555|Phra Kaeo
+T|13.95250|101.92351|Phra Prong
+T|18.15564|100.17243|Phrae
+T|13.62098|100.37801|Phrom Daen
+T|17.03117|100.20110|Phrom Phiram
+T|13.80892|101.09437|Phrong Akat
+T|8.70851|99.35354|Phru Phi
+T|14.95614|102.02371|Phukhao Lat
+T|13.80004|100.39506|Phutthamonthon Sai 2
+T|19.65395|99.92968|Pong Kluea
+T|14.06315|101.51866|Prachantakham
+T|14.07094|101.37368|Prachin Buri
+T|11.80778|99.79374|Prachuap Khiri Khan
+T|12.37644|99.92617|Pran Buri
+T|13.71237|100.92494|Preng
+T|13.82228|99.99248|Prong Maduea
+T|17.91119|100.06314|Rai Klet Dao
+T|17.34633|100.07797|Rai Oi
+T|6.47695|101.43189|Raman
+T|13.76851|100.52550|Ramathibodi Hospital
+T|13.74299|100.60015|Ramkhamhaeng
+T|13.63914|100.39823|Rang Pho
+T|13.64941|100.40977|Rang Sakae
+T|13.99054|100.60215|Rangsit
+T|13.52987|99.82406|Ratchaburi
+T|13.75511|100.54212|Ratchaprarop
+T|8.15413|99.84073|Ron Phibun
+T|15.11593|100.46598|Rongrian Chan Sen
+T|6.39404|101.51543|Rueso
+T|13.82723|102.07517|Sa Kaeo
+T|13.79963|102.13926|Sa Kaeo Provincial Office
+T|13.85034|99.84954|Sa Kosinarai
+T|10.60965|99.23904|Sa Phli
+T|10.47370|99.15517|Saeng Daet
+T|8.16029|99.72147|Sai Yai
+T|15.70623|102.52313|Sala Din
+T|13.88285|102.00961|Sala Lamduan
+T|18.46173|99.13902|Sala Mae Tha
+T|18.23872|99.59594|Sala Pha Lat
+T|13.80088|100.37122|Sala Thammasop
+T|13.80250|100.32433|Sala Ya
+T|12.16039|99.86107|Sam Krathai
+T|12.21262|99.88079|Sam Roi Yot
+T|13.77944|100.52994|Sam Sen
+T|13.63027|100.38837|Sam Yaek
+T|12.64779|100.95526|Samae Sarn
+T|16.51709|102.84305|Samran
+T|15.02092|103.94057|Samrong Thap
+T|19.76588|99.89728|San Pa Hiang
+T|13.82389|100.04132|Sanam Chandra Palace
+T|14.76174|101.45551|Sap Muang
+T|14.04316|99.50492|Saphan Khwae Yai
+T|14.52739|100.91622|Saraburi
+T|18.71019|99.04180|Saraphi
+T|17.31467|99.83232|Sawankhalok
+T|10.23633|99.10485|Sawi
+T|13.15620|100.94594|Si Racha Junction
+T|15.11632|104.32736|Si Sa Ket
+T|14.22634|100.00773|Si Samran
+T|14.89312|101.72135|Sikhio
+T|14.94520|103.78640|Sikhoraphum
+T|17.63927|100.10104|Sila At
+T|18.41701|100.17563|Song
+T|6.02598|101.96487|Su-ngai Kolok
+T|6.08592|101.88100|Su-ngai Padi
+T|12.77468|100.92423|Suan Nong Nuch
+T|12.49993|99.97228|Suan Son Pradiphat
+T|14.89992|101.81471|Sung Noen
+T|14.46563|100.09500|Suphan Buri
+T|15.07013|101.01725|Suranarai
+T|9.10415|99.23042|Surat Thani
+T|14.89159|103.49400|Surin
+T|13.69430|100.75130|Suvarnabhumi
+T|13.53140|100.26353|Ta Chalom
+T|6.78004|101.02693|Ta Paet
+T|15.21050|101.13078|Talat Lam Narai
+T|13.72082|100.47802|Talat Phlu
+T|13.78927|100.44008|Taling Chan Junction
+T|7.21083|100.59076|Tang Kuan Hill Lift lower station
+T|7.21050|100.58953|Tang Kuan Hill Lift upper station
+T|6.29249|101.71379|Tanyong Mat
+T|16.22070|100.42410|Taphan Hin
+T|6.61465|101.25806|Tase
+T|13.81224|100.13175|Tha Chalaep
+T|9.56565|99.16505|Tha Chana
+T|9.27534|99.19942|Tha Chang
+T|15.00191|102.27439|Tha Chang
+T|18.50649|99.20546|Tha Chomphu
+T|13.79035|102.16858|Tha Kasem
+T|14.84018|100.60633|Tha Khae
+T|14.04059|99.25723|Tha Kilen
+T|16.51215|100.33011|Tha Lo
+T|6.89085|100.80585|Tha Maenglak
+T|13.97692|99.65948|Tha Muang
+T|16.33860|102.80467|Tha Phra
+T|14.56244|100.72440|Tha Rua
+T|13.95620|99.75175|Tha Ruea Noi
+T|17.41131|100.09747|Tha Sak
+T|17.64651|100.11891|Tha Sao
+T|14.00469|99.28735|Tha Ta Suea
+T|10.04389|99.09326|Tha Thong
+T|13.53607|100.26772|Thachalom City Hospital
+T|15.21220|100.37467|Thale Wa
+T|14.10549|99.16627|Tham Krasae
+T|14.10012|99.16953|Tham Krasae Bridge
+T|15.03053|102.91391|Thamenchai
+T|14.07938|100.58854|Thammasat University
+T|8.46724|99.49194|Than Pho
+T|14.96782|102.10187|Thanon Chira Junction
+T|13.81674|99.87727|Thanon Song Phon
+T|15.75509|100.25771|Thap Krit
+T|11.49909|99.62305|Thap Sakae
+T|6.82388|100.97039|Thepha Railway Station
+T|8.09783|99.66798|Thi Wang
+T|13.76070|100.47877|Thonburi
+T|14.01090|99.95582|Thung Bua
+T|10.40252|99.13774|Thung Kha
+T|11.92165|99.81960|Thung Mamao
+T|11.52660|99.63583|Thung Pradu
+T|13.61264|100.36872|Thung Si Thong
+T|13.86021|100.56753|Thung Song Hong
+T|8.17074|99.67950|Thung Song Junction
+T|13.97974|99.64027|Thung Thong
+T|6.11909|101.85836|Todeng
+T|13.82560|100.09130|Ton Samrong
+T|7.55441|99.60450|Trang
+T|17.48332|100.10934|Tron
+T|12.66145|100.96508|U-Tapao
+T|15.20067|104.85855|Ubon Ratchathani
+T|17.40417|102.80557|Udon Thani
+T|13.75857|100.52631|Uruphong
+T|15.10600|104.14043|Uthumphon Phisai
+T|17.62036|100.09726|Uttaradit
+T|11.71577|99.74991|Wa Ko
+T|11.68792|99.72242|Wang Duan
+T|15.49841|101.74018|Wang Ka-am
+T|17.54446|100.10016|Wang Kaphi
+T|15.97686|100.34780|Wang Krang
+T|16.39895|100.38951|Wang Krot
+T|13.96156|99.46181|Wang Lan
+T|14.12023|99.13954|Wang Pho
+T|12.40078|99.93221|Wang Phong
+T|14.07321|99.22634|Wang Sing
+T|13.95310|99.37477|Wang Takhian
+T|8.35567|99.94089|Wang Wua
+T|14.19558|99.08920|Wang Yai
+T|13.94327|99.41589|Wang Yen
+T|6.66733|101.17033|Wat Chang Hai
+T|6.97209|100.66639|Wat Khuan Mit
+T|7.25948|100.29934|Wat Khuan Phayoe
+T|13.80799|100.21618|Wat Ngio Rai
+T|18.80436|98.92121|Wat Phrathat Doi Suthep
+T|13.69156|100.45756|Wat Sai
+T|13.84159|100.55750|Wat Samian Nari
+T|13.68325|100.44766|Wat Sing
+T|13.80567|100.28371|Wat Suwan
+T|13.95334|99.60549|Wat Tham Khao Noi
+T|13.95376|99.60565|Wat Tham Suea
+T|13.74126|102.32319|Watthana Nakhon
+T|20.01083|100.05282|Wiang Chiang Rung
+T|14.33930|100.98057|Wihan Daeng
+T|10.32821|99.11162|Wisai
+T|13.98471|99.46759|Witthayalai Kaset
+T|13.72439|100.49123|Wongwian Yai
+T|13.71254|100.47264|Wutthakat
+T|6.56054|101.29310|Yala
+T|12.80140|100.92245|Yanasangwararam
+T|13.75863|100.52147|Yommarat
+T|13.97082|101.14957|Yothaka
+T|18.80407|98.92032|กู้ชีพพระธาตุดอยสุเทพ
+T|13.72481|100.82438|คลองมอญ
+T|13.18157|100.94552|ค่ายลูกเสือวชิราวุธ
+T|19.93569|99.99474|ทุ่งก่อ
+T|7.59396|100.09322|นาปรือ
+T|19.25324|99.97916|บ้านร้อง
+T|13.10939|99.93609|พระที่นั่งเพชรภูมิไพโรจน์
+T|14.65998|101.18258|มวกเหล็กใหม่
+T|13.16758|100.80603|ศาลเจ้าแม่กวนอิม
+T|18.07140|100.11021|สูงเม่น
+T|18.35760|100.18492|หนองเสี้ยว
+T|15.62418|102.45952|เนินสวัสดิ์

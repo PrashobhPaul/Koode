@@ -1,0 +1,483 @@
+# Transit for Koode, BD. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+S|23.77843|90.38005|Agargaon|ঢাকা মেট্রোরেল|M
+S|23.73001|90.40748|Bangladesh Secretariat|ঢাকা মেট্রোরেল|M
+S|23.76639|90.38310|Bijoy Shoroni|ঢাকা মেট্রোরেল|M
+S|23.73168|90.39682|Dhaka University|ঢাকা মেট্রোরেল|M
+S|23.75904|90.38711|Farmgate|ঢাকা মেট্রোরেল|M
+S|23.75127|90.39278|Karwan Bazar|ঢাকা মেট্রোরেল|M
+S|23.79924|90.37199|Kazipara|ঢাকা মেট্রোরেল|M
+S|23.80836|90.36826|Mirpur 10|ঢাকা মেট্রোরেল|M
+S|23.81910|90.36528|Mirpur 11|ঢাকা মেট্রোরেল|M
+S|23.72806|90.41906|Motijheel|ঢাকা মেট্রোরেল|M
+S|23.82616|90.36419|Pallabi|ঢাকা মেট্রোরেল|M
+S|23.73946|90.39598|Shahbagh|ঢাকা মেট্রোরেল|M
+S|23.79096|90.37551|Shewrapara|ঢাকা মেট্রোরেল|M
+S|23.85972|90.36518|Uttara Center|ঢাকা মেট্রোরেল|M
+S|23.86911|90.36753|Uttara North|ঢাকা মেট্রোরেল|M
+S|23.84590|90.36315|Uttara South|ঢাকা মেট্রোরেল|M
+L|ঢাকা মেট্রোরেল|এমআরটি লাইন ৬|#006E34|14 13:1085 15:1540 10:2207 8:792 7:1225 6:1079 12:983 0:1464 2:1369 4:1163 5:1149 11:1296 3:968 1:1325 9:1242
+L|ঢাকা মেট্রোরেল|এমআরটি লাইন ৬|#006E34|9 1:1254 3:1313 11:972 5:1294 4:1137 2:1178 0:1367 12:1464 6:982 7:1080 8:1225 10:793 15:2207 13:1540 14:1076
+T|24.25987|88.97179|Abdulpur Junction
+T|25.92415|89.34876|Aditmari Railway Station
+T|24.92368|91.68852|Afzalabad
+T|24.61382|88.97525|Ahasangonj
+T|23.86923|91.20602|Akhaura
+T|24.96459|89.01576|Akkelpur
+T|23.76141|88.93651|Alamdanga Railway Station
+T|23.30614|91.13819|Alishwar Railway Station
+T|23.93558|90.77262|Amirganj
+T|24.61513|88.39551|Amnura Bypass
+T|24.62728|88.39881|Amnura Junction
+T|23.09039|91.43130|Anandapur
+T|23.49208|88.88527|Ansar Baria
+T|22.88001|89.48467|Arangghata Railway Station
+T|24.28976|88.88257|Arani Railway Station
+T|24.03824|91.00164|Ashuganj Railway Station
+T|24.64082|90.71298|Atharabari Railway Station
+T|23.89332|91.22080|Azampur
+T|24.20610|89.00632|Azim Nagar Railway Station, Gopalpur, Natore
+T|24.72403|90.43407|BAU Railway Station
+T|25.67203|89.05807|Badarganj
+T|25.70713|89.18083|Badarganj
+T|25.67189|89.05774|Badarganj Railway Station
+T|22.66494|89.78183|Bagerhat College
+T|22.65706|89.79343|Bagerhat Railway Station
+T|25.16617|89.73570|Bahadurabad Ghat
+T|23.68638|89.56152|Baharpur
+T|22.78926|89.67347|Bahirdia
+T|24.46274|89.70020|Bahirgola
+T|24.19972|90.91302|Bajitpur Railway Station
+T|22.99208|91.10061|Bajra
+T|23.54566|89.85999|Bakhunda
+T|25.58417|89.66809|Balabarihat Railway Station
+T|24.08481|91.59339|Balla
+T|25.53375|89.44566|Bamandanga
+T|23.79580|90.40089|Banani Rail Station
+T|23.79567|90.40092|Banani railway station
+T|22.57873|91.68187|Barabkunda Railway Station
+T|22.67723|91.63430|Baraiyadhala Railway Station
+T|26.20235|89.11124|Barakhata Railway Station
+T|24.58758|91.97885|Baramchal
+T|24.89773|90.88159|Barhatta Railway Station
+T|24.70527|92.19111|Barlekha
+T|22.75304|91.59842|BaroTakia Railway Station Bazar, Mirsharai, Chittagong
+T|23.30610|89.14994|Barobazar Railway Station
+T|23.27756|89.75533|Bashpur Halt
+T|24.47012|88.96291|Basudebpur Station
+T|22.33501|91.82647|Battali Railway Station
+T|22.97840|89.44689|Bejerdanga Railway Station
+T|23.24167|91.45014|Belonia Railway Station
+T|23.04310|88.90278|Benapole
+T|22.61772|89.64053|Bhaga
+T|24.05026|90.97820|Bhairab Bazar Junction
+T|23.40035|89.98441|Bhanga
+T|23.40048|89.98450|Bhanga Railway Station
+T|24.35174|91.84129|Bhanugach Railway Station
+T|23.21307|89.69950|Bhatiapara Ghat
+T|22.42997|91.74885|Bhatiary Railway Station
+T|23.89101|91.17185|Bhatshala
+T|22.35268|91.94348|Bhengura
+T|24.02320|88.99187|Bheramara
+T|25.58636|88.93985|Bhowanipur Railway Station
+T|24.46730|89.86667|Bhuapur
+T|23.76655|90.38311|Bijoy Sarani Metro Station
+T|23.07721|91.10808|Bipulashar Station
+T|25.39793|88.99400|Birampur rail station
+T|24.55930|88.96436|Birkutsa Railway Station, Durlabhpur, Natore
+T|25.63526|88.53912|Birol
+T|23.38980|89.68756|Boalmari
+T|24.84857|89.36667|Bogura Railway Station
+T|24.70672|89.82666|Boira
+T|25.16439|89.52334|Bonarpara
+T|22.99490|89.84263|Borashi
+T|23.96680|91.10862|Bramhonbaria Station
+T|26.39607|88.93561|Burimari
+T|22.27960|92.00316|Chakrashala
+T|23.23092|90.64305|Chandpur
+T|23.22552|90.65502|Chandpur Court
+T|23.07353|89.77688|Chandra Dighalia
+T|24.59889|88.28041|Chapai Nababganj
+T|23.19789|89.75208|Chapta
+T|23.62447|90.49830|Chasara
+T|24.84386|88.99446|Chatiangram
+T|24.18875|89.27557|Chatmohar
+T|22.33402|91.82956|Chattogram Railway Station
+T|23.07582|89.36578|Chengutia
+T|25.02872|91.65660|Chhatak Bazar
+T|23.14081|89.78172|Chhoto Bahirbagh
+T|26.24314|88.79631|Chilahati
+T|22.88486|91.53870|Chinky Astana
+T|25.64588|88.77584|Chirirbandar
+T|23.23573|91.02936|Chitoshi
+T|22.47081|91.79492|Chittagong University Railway Station
+T|22.94391|91.12069|Chowmuhani
+T|23.63804|88.85463|Chuadanga
+T|22.69090|89.64926|Chulkati Bazar
+T|21.42936|92.01504|Cox's Bazar Railway Station
+T|22.35194|91.76620|Cricket Stadium Railway Station
+T|23.46364|91.16673|Cumilla Railway Station
+T|23.52647|88.79713|Darshana Railway Junction
+T|24.11269|89.13037|Dashuria
+T|22.86839|89.52705|Daulatpur College
+T|22.87663|89.52231|Daulatpur Rail Station
+T|25.15696|89.75662|Dewangonj Railway Station
+T|22.34120|91.81383|Dewanhat Halt
+T|23.85207|90.40838|Dhaka Airport Railway Station
+T|23.81565|90.41048|Dhaka Cantonment
+T|22.33668|91.95708|Dhalghat
+T|22.54426|89.58737|Digraj
+T|25.62507|88.63279|Dinajpur
+T|22.16335|92.06917|Dohazari
+T|22.17018|92.06618|Dohazari New Railway Station
+T|26.10464|88.81998|Domar
+T|24.33006|89.92819|Elenga railway station
+T|23.59551|89.85841|Faridpur College
+T|23.61088|89.84269|Faridpur Railway Station
+T|22.45872|91.81177|Fatehabad railway junction
+T|22.41066|91.75575|Faujdarhat
+T|24.69766|91.94338|Fenchuganj
+T|23.01310|91.40318|Feni Junction
+T|25.49543|88.96889|Fulbari
+T|23.14753|91.43126|Fulgazi Railway Station
+T|24.34193|90.82457|Gachihata
+T|23.06869|89.04841|Gadkhali
+T|24.45363|90.54785|Gafargaon Railway Station
+T|25.33231|89.54247|Gaibandha
+T|25.33271|89.54227|Gaibandha Rail station
+T|23.60992|88.82684|Gaidghat Old Station
+T|23.82615|91.19375|Gangasagar
+T|23.93780|90.63388|Ghorashal
+T|23.94060|90.61991|Ghorashal Flag
+T|23.72390|89.76413|Goalanda Bazar Railway Station
+T|23.76187|89.78045|Goalundo Ghat
+T|22.94780|89.82892|Gobra
+T|22.37817|91.91717|Gomdandi
+T|23.03408|89.84011|Gopalganj
+T|24.76381|90.56564|Gouripur Junction
+T|23.08767|91.29743|Gunboti
+T|23.25818|90.84823|Hajiganj
+T|22.32340|91.78110|HaliShahar Station
+T|23.81533|88.99177|Halsa
+T|24.01709|91.31061|Harashpur
+T|23.13551|91.23726|Hasanpur
+T|22.19557|92.05221|Hashimpur
+T|26.12833|89.13869|Hathibandha
+T|26.12836|89.13844|Hatibandha
+T|23.96968|90.82451|Hatubhanga
+T|24.56797|89.85967|Hemnagar Railway Station
+T|25.27751|89.00699|Hili Railway Station
+T|24.84875|90.64544|Hironpur Railway Station
+T|24.06275|90.22032|Hitech Park Railway Station
+T|24.38951|89.82009|Ibrahimabad Rail Station
+T|23.79206|91.17277|Imambari Railway Station
+T|24.15506|89.05750|Ishwardi Bypass
+T|24.13025|89.06279|Ishwardi Junction
+T|24.69170|90.60355|Ishwarganj Railway Station
+T|25.07780|89.79162|Islampur Bazar
+T|24.64174|89.80858|Jagannathganj Ghat
+T|23.89068|89.09881|Jagati
+T|25.03052|89.02195|Jamalganj Railway Station
+T|24.91530|89.95395|Jamalpur Railway Station (Junction)
+T|24.94447|89.91387|Jamalpur cout
+T|24.36127|89.66043|Jamtoil
+T|22.39587|91.87195|Jan ali Hat
+T|25.00953|90.64879|Jaria Zanjail
+T|22.71752|89.75698|Jatrapur
+T|23.57070|88.80966|Jayarampur
+T|23.18911|89.18391|Jessore Cantonment Railway Station
+T|23.93044|90.67437|Jinardi
+T|23.99804|90.42031|Joydebpur Junction
+T|25.09900|89.02604|Joypurhat Railway Station
+T|22.36766|91.78149|Kaibalyadham
+T|25.95604|89.24168|Kakina Railway Station
+T|24.52256|92.03666|Kalaura Junction
+T|25.96719|89.20246|Kaligonj
+T|23.76815|89.48041|Kalukhali Junction
+T|23.73195|90.42627|Kamalapur Railway Station
+T|23.53288|89.54118|Kamarkhali Ghat
+T|25.44025|89.49584|Kamarpara Rail Station
+T|25.62354|88.59975|Kanchan
+T|22.23549|92.02841|Kanchannagar
+T|24.30832|90.51245|Kaoraid
+T|22.79976|89.60966|Karnapur
+T|23.74027|91.15556|Kasba
+T|23.23348|89.72508|Kashiani Junction
+T|22.73455|89.63299|Katakhali
+T|25.77779|89.42363|Kaunia Junction
+T|23.64862|90.41527|Keraniganj Elevated Railway Station
+T|23.95349|90.79854|Khanabari railway station
+T|22.21597|92.03975|Khanhat
+T|22.73432|89.72211|Khanjahanpur
+T|22.26119|92.01498|Kharna
+T|24.87730|91.77041|Khazanchigaon
+T|23.17113|91.12876|Khila Train Station
+T|23.83088|89.30297|Khoksha
+T|25.65645|88.97495|Kholahati
+T|22.84147|89.54262|Khulna Junction Rail Station
+T|22.82252|89.55795|Khulna Old Railway Station
+T|22.82030|89.55795|Khulna Railway Station
+T|24.42631|90.78866|Kishoreganj Railway Station
+T|26.22215|88.44713|Kismat Railway Station
+T|24.22913|89.98654|Korotia Railway Station
+T|23.41557|89.01404|Kotchadpur
+T|24.15100|90.92867|Kuliarchar Railway Station
+T|23.86058|89.24102|Kumarkhali
+T|22.50517|91.71581|Kumira Railway Staion
+T|25.39453|89.51997|Kuptala Railway Station
+T|25.80756|89.62130|Kurigram
+T|23.90247|89.14556|Kushtia
+T|23.90707|89.12829|Kushtia Court Station
+T|23.25492|91.12370|Laksham Junction
+T|23.35636|91.15157|Lalmai Railway Station
+T|25.91183|89.44537|Lalmonirhat Junction
+T|25.91151|89.44468|Lalmonirhat Railway Station
+T|23.80442|89.35745|Machhpara
+T|24.53560|88.96193|Madhnogor Railway Station
+T|23.24435|90.75626|Madhu Road
+T|23.54675|89.63071|Madhukhali
+T|25.87730|89.44782|Mahendranagar Railway Station
+T|22.86065|91.10494|Maijdee Court
+T|24.68619|91.95155|Maijgaon
+T|24.68626|91.95165|Maijgaon Railway Station
+T|23.43471|91.17102|Mainamati Railway Station
+T|23.23485|90.69770|Maishadi
+T|24.16272|89.09402|Majhgram Juncton
+T|24.29794|90.84649|Manik Khali railway Station
+T|24.06940|91.34505|Mantala
+T|23.24520|90.94332|Meher
+T|23.21670|89.16403|Meherullah Nagar
+T|24.97818|89.85342|Melandaha Bazar
+T|23.99258|90.86702|Methikanda railway station, raipura
+T|23.87770|90.35667|Metro Rail Depot
+T|22.75373|91.59811|Mirersharai
+T|24.10553|90.10141|Mirjapur Railway Station
+T|24.79760|91.91016|Moghlabazar
+T|22.79161|89.52028|Mohammadnagar Railway Station
+T|24.87082|90.97303|Mohanganj Railway Station
+T|22.32724|91.77611|Mohila Polytechnic
+T|23.68426|88.87896|Mominpur
+T|23.68797|91.15235|Mondorbag Railway station
+T|22.47741|89.59963|Mongla
+T|24.42603|91.93911|Monu Rail Station
+T|24.03851|90.28236|Mouchak
+T|23.40043|89.12461|Mubarakganj Railway Station
+T|22.93833|91.51469|Muhurigang
+T|23.96362|91.26459|Mukundahpur
+T|24.16382|89.14328|Muladuli
+T|22.77436|89.71177|Mulghar
+T|23.71657|88.89386|Munshiganj
+T|24.75327|90.41010|Mymensingh Railway Junction
+T|24.50234|88.95916|Naldanga Hut Railway Station, Naogaon Highway, Naldanga, Natore
+T|25.48171|89.47396|Naldanga Rail Station
+T|24.31517|88.80137|Nandangachi Railway Station
+T|24.86771|90.03590|Nandina
+T|23.16534|91.20123|Nangolkot
+T|23.61798|90.50557|Narayanganj Railway station
+T|23.93082|90.72116|Narshingdi Railway Station
+T|24.86501|90.11993|Narundi
+T|23.11322|91.11542|Natherpetua Train Station
+T|24.41081|88.96659|Natore Railway Station
+T|23.05582|88.99394|Navaron
+T|26.27769|88.49611|Nayaniburuz Railway Station
+T|22.62936|91.78768|Nazir Hat
+T|24.88878|90.72075|Netrokona Bara Station
+T|24.88735|90.73124|Netrokona Court Railway Station
+T|25.94908|88.83584|Nilphamari
+T|25.93126|88.83867|Nilphamari College Station, Train station
+T|23.03319|89.39530|Noapara Railway Station
+T|24.18076|91.35671|Noapara Train Station
+T|24.01600|89.25611|Pabna Railway Station
+T|23.74754|89.71171|Pachuria
+T|23.39837|90.21882|Padma Railway Station, Padma Brg Rd, Shibchar
+T|22.35424|91.79530|Pahartoli
+T|24.07088|89.04069|Pakshi
+T|26.33008|88.54045|Panchagarh
+T|26.32656|88.53588|Panchagarh Railway Station
+T|25.18852|89.02157|Panchbibi
+T|24.82736|89.22106|Panchpir Majar Rail Station
+T|23.78615|89.41715|Pangsha Railway Station
+T|25.65322|88.91550|Parbatipur Junction
+T|23.21614|91.44530|Parshuram Railway Station
+T|26.34376|89.02133|Patgram
+T|22.95094|89.47470|Phultala Junction
+T|24.63055|89.83117|Pingna
+T|25.65933|89.40780|Pirgacha
+T|25.85926|88.35783|Pirganj
+T|24.87908|90.19660|Piyarpur
+T|22.36594|91.81172|Polytechnic Halt
+T|23.86468|89.03261|Poradaha Junction
+T|22.29789|91.98200|Potiya Railway Station
+T|23.93621|90.47654|Pubail
+T|23.44245|89.95735|Pukuria
+T|22.80351|89.58620|Purba Rupsha
+T|23.73176|90.42597|Railway Residential Hotel Dhaka Railway Station
+T|23.58008|91.15229|Rajapur
+T|25.79788|89.54614|Rajarhat
+T|24.40997|88.96691|Rajshahi - Dhaka Hwy, Natore
+T|24.37905|88.56555|Rajshahi Court Rail Station
+T|24.37897|88.56551|Rajshahi Court Railway Station
+T|24.37500|88.60857|Rajshahi Railway Station
+T|24.37546|88.64319|Rajshahi University Railway Station
+T|25.72840|89.26402|Rangpur
+T|24.74145|88.96952|Raninagar Railway Station
+T|24.27642|91.48560|Rathnapur
+T|24.82045|88.31946|Rohanpur Railway Station
+T|25.57646|89.67493|Romna Railway Station
+T|26.16825|88.40546|Ruhia Railway Station
+T|23.12540|89.28667|Rupdia
+T|23.51899|91.16832|Sadam Rasulpur
+T|23.46241|88.96145|Safdarpur
+T|24.39612|89.73347|Saidabad Railway Station
+T|25.78703|88.89315|Saidpur
+T|22.79592|89.63970|Samantasena
+T|24.80619|88.98606|Santahar Junction
+T|24.21848|90.90087|Sararchar
+T|24.33729|88.75253|Sardah
+T|24.76083|89.84006|Sarishabari Railway Station
+T|22.09212|92.06198|Satkania Railway Station
+T|23.43446|89.66528|Satoir
+T|24.91650|91.70259|Satpur Halt
+T|24.67945|88.97570|Shahagola Railway Station, Mirat, Naogaon
+T|24.25321|91.38211|Shahaji Bazar
+T|23.24062|90.72489|Shahatoli
+T|24.80423|92.23686|Shahbazpur
+T|26.07436|89.13831|Shahid Borhan Nagar Railway Station
+T|24.27834|91.44987|Shaistaganj Junction
+T|24.83814|90.57935|Shamgonj Junction
+T|24.38288|91.90040|Shamshernagar Railway Station
+T|23.05845|91.33937|Sharshadi Railway Station
+T|23.63853|91.14688|Shashidal Railway Station
+T|22.68509|89.76484|Shat Gambuj
+T|25.99839|88.40369|Shibganj Railway Station
+T|22.91285|89.50089|Shiromoni Old Station
+T|22.36851|91.82653|Sholashohor Junction
+T|25.69431|89.14884|Shyampur
+T|23.12161|89.34662|Singia Railway Station
+T|24.44996|89.70535|Sirajganj
+T|24.45104|89.70233|Sirajganj Bazar
+T|24.47769|89.70616|Sirajganj Ghat
+T|24.43897|89.70135|Sirajganj Raypur
+T|22.62299|91.66039|Sitakund Railway Station
+T|22.62358|91.66020|Sitakunda Railway Station
+T|24.31613|89.61231|Solop Rail Station
+T|23.04401|91.09864|Sonaimuri
+T|22.82770|91.10146|Sonapur
+T|25.04222|89.49745|Sonotala
+T|24.30661|91.73482|Sreemangal Railway Station
+T|24.30658|91.73476|Sreemongal Railway station
+T|23.53740|90.29135|Sreenagar Railway Station
+T|24.19899|90.47956|Sreepur
+T|24.00558|90.90230|Srinidi Railstation
+T|24.48141|88.95269|Substation Naldanga, Naldanga, Natore
+T|25.82297|88.40370|Sultanpur School Railway Station
+T|23.41599|89.08235|Sundarpur
+T|23.77344|89.59694|Surjonogor
+T|24.88176|91.86799|Sylhet Railway Station
+T|23.49027|89.87667|Talma
+T|24.01042|91.03823|Talrhahar
+T|23.01251|89.41254|Taltolar Hat Old Station
+T|24.27385|89.93759|Tangail
+T|24.68572|89.82433|Tarakandi Railway Station
+T|24.07407|89.20614|Tebunia
+T|23.76224|90.39501|Tejgaon Railway Station
+T|24.90734|90.81782|Thakrokona Railway Station
+T|24.43950|91.95503|Tilagaon Railway Station
+T|24.87683|89.00180|Tilakpur Station
+T|25.80852|89.44074|Tista Junction
+T|23.89857|90.40813|Tongi Junction
+T|26.02355|88.82413|Toronibari Railway Station, Train station
+T|25.96753|89.20225|Tush Bhandar Railway Station
+T|25.65212|89.62388|Ulipur Railway Station
+T|24.29007|89.57012|Ullapra
+T|23.49252|88.84513|Uthli
+T|25.73381|89.40960|অন্নদানগর
+T|23.61004|89.81897|অম্বিকাপুর
+T|24.66026|89.81770|অ্যাডভোকেট মতিউর রহমান তালুকদার
+T|24.80866|89.04751|আদমদিঘী
+T|25.92429|89.34883|আদিতমারী
+T|25.29343|89.55683|আনন্দ বাজার
+T|23.63965|89.74429|আমিরাবাদ
+T|24.81866|89.12895|আলতাফনগর
+T|23.63882|89.57993|আড়কান্দি
+T|23.92844|90.55410|আড়ীখোলা
+T|24.67241|92.17070|কাঁঠালতলী
+T|25.61904|88.70621|কাউগাঁ
+T|25.29923|89.57997|কাঞ্চিপাড়া
+T|22.60050|91.79251|কাটিরহাট
+T|24.41099|89.68046|কালিয়া হরিপুর
+T|23.97024|89.58973|কাশীনাথপুর
+T|24.83308|89.26666|কাহালু
+T|23.64865|90.41559|কেরানীগঞ্জ
+T|22.31574|91.97280|খান মোহনা
+T|23.70128|89.71338|খানখানাপুর
+T|24.17846|89.21964|গফুরাবাদ
+T|24.88540|89.45182|গাবতলী
+T|24.20068|89.32339|গুয়াখড়া
+T|23.70150|90.42896|গেণ্ডারিয়া
+T|23.48749|89.63758|ঘোড়াখালী
+T|22.41711|91.81382|চট্টগ্রাম ক্যান্টনমেন্ট
+T|22.53475|91.79314|চারিয়া মাদ্রাসা
+T|25.60728|89.42020|চৌধুরাণী
+T|22.44468|91.81835|চৌধুরীরহাট
+T|23.87772|89.20488|চড়াইকোল
+T|23.16105|89.37745|জামদিয়া
+T|24.59392|92.11594|জুড়ী
+T|22.47628|91.80630|জোবরা
+T|23.84070|89.66799|ঢালারচর
+T|23.97495|89.40946|তাঁতীবন্দ
+T|24.82379|89.17858|তালোড়া
+T|25.28197|89.54321|ত্রিমোহনী জংশন
+T|24.63797|92.16131|দক্ষিণভাগ
+T|23.52907|88.80985|দর্শনা হল্ট রেল স্টেশন
+T|24.24165|89.45184|দিলপাশার
+T|23.97773|89.36815|দুবলিয়া
+T|23.62015|89.77275|ধূলদী
+T|23.13799|89.16142|ধোপাখোলা
+T|23.35879|89.89618|নগরকান্দা
+T|23.17697|89.49566|নড়াইল
+T|23.60252|89.60564|নলিয়াগ্রাম
+T|24.81394|89.07700|নশরৎপুর
+T|23.61074|90.32673|নিমতলা
+T|23.14671|89.34886|পদ্মবিলা জংশন
+T|23.65077|90.47387|ফতুল্লা
+T|25.19015|89.59381|ফুলছড়ি
+T|23.29857|89.74289|বনমালীপুর-নড়াইল
+T|23.66181|89.71903|বসন্তপুর
+T|23.89744|89.63680|বাঁধেরহাট
+T|25.23629|89.54282|বাদিয়াখালী রোড
+T|25.31005|89.61457|বালাসী ঘাট
+T|23.78099|89.54109|বেলগাছি
+T|24.21503|89.38080|বড়াল ব্রিজ
+T|25.18949|89.58066|ভরতখালী
+T|23.37455|90.02242|ভাঙ্গা জংশন
+T|24.21081|89.36465|ভাঙ্গুড়া
+T|24.98176|89.50077|ভেলুড়পাড়া
+T|24.38538|90.53581|মশাখালী
+T|25.10447|89.49381|মহিমাগঞ্জ
+T|24.27288|89.53039|মহিষাখোলা
+T|23.28345|89.78037|মহেশপুর
+T|23.50373|90.27448|মাওয়া
+T|23.94154|88.99701|মিরপুর
+T|23.32991|89.85309|মুকসুদপুর
+T|24.75701|92.20908|মুড়াউল
+T|25.99082|89.45197|মোগলহাট
+T|23.99533|89.30423|রাঘবপুর
+T|23.76285|89.64534|রাজবাড়ী
+T|23.70728|89.52449|রামদিয়া
+T|24.26122|89.49958|লাহিড়ী মোহনপুর
+T|23.20214|89.63883|লোহাগড়া
+T|24.22154|89.40447|শরৎনগর
+T|25.07482|89.49374|শালমারা
+T|25.99826|88.40346|শিবগঞ্জ রেলওয়ে স্টেশন
+T|23.38625|90.12996|শিবচর
+T|23.68503|90.44240|শ্যামপুর বড়ইতলা
+T|22.55382|91.79056|সরকার হাট
+T|23.32349|89.71834|সহস্রাইল
+T|23.97263|89.48666|সাঁথিয়া রাজাপুর
+T|24.92706|89.48000|সুখানপুকুর
+T|25.80064|88.45936|সেতাবগঞ্জ রেল ষ্টেশন
+T|24.94439|89.49203|সৈয়দ আহমেদ কলেজ
+T|24.37554|88.68590|হরিয়ান
+T|22.50570|91.80399|হাটহাজারী
+T|25.57173|89.42998|হাসানগঞ্জ
