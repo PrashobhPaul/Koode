@@ -1,0 +1,2943 @@
+# Transit for Koode, ZA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
+R|-25.85167|28.18959|Centurion|Gautrain
+R|-25.74764|28.23787|Hatfield|Gautrain
+R|-26.08334|28.11165|Marlboro|Gautrain
+R|-25.99562|28.13567|Midrand|Gautrain
+R|-26.13217|28.23110|O.R. Tambo International Airport|Gautrain
+R|-26.19678|28.04168|Park|Gautrain
+R|-25.75956|28.19045|Pretoria Gautrain|Metrorail Gauteng
+R|-26.14507|28.04414|Rosebank|Gautrain
+R|-26.10828|28.05693|Sandton|Gautrain
+R|-32.66299|27.52665|Amabele|Kei Rail
+R|-31.59445|28.78224|Mthatha|Kei Rail
+R|-32.96587|27.79964|Arnoldton|Metrorail Eastern Cape
+R|-32.97310|27.88661|Cambridge|Metrorail Eastern Cape
+R|-32.98644|27.89440|Chiselhurst|Metrorail Eastern Cape
+R|-32.96542|27.83145|Dawn|Metrorail Eastern Cape
+R|-33.78101|25.41824|De Mist|Metrorail Eastern Cape
+R|-33.79779|25.46967|Despatch|Metrorail Eastern Cape
+R|-32.91876|27.73167|Egerton|Metrorail Eastern Cape
+R|-32.92083|27.69948|Fort Jackson|Metrorail Eastern Cape
+R|-32.97068|27.87166|Highgate|Metrorail Eastern Cape
+R|-32.96688|27.84198|Horseshoe|Metrorail Eastern Cape
+R|-33.77157|25.40880|Kariega|Metrorail Eastern Cape
+R|-32.89817|27.64183|Lonetree|Metrorail Eastern Cape
+R|-32.93148|27.78149|Mdantsane|Metrorail Eastern Cape
+R|-32.92236|27.75835|Mount Ruth|Metrorail Eastern Cape
+R|-32.94825|27.78316|Mtsotso|Metrorail Eastern Cape
+R|-33.89919|25.60803|New Brighton|Metrorail Eastern Cape
+R|-33.89919|25.60803|New Brighton|Metrorail Eastern Cape
+R|-33.94645|25.61006|North End|Metrorail Eastern Cape
+R|-32.99853|27.89014|Panmure|Metrorail Eastern Cape
+R|-33.81542|25.52087|Perseverance|Metrorail Eastern Cape
+R|-33.83861|25.56890|Redhouse|Metrorail Eastern Cape
+R|-33.00934|27.90261|Southernwood|Metrorail Eastern Cape
+R|-33.86724|25.60062|Swartkops|Metrorail Eastern Cape
+R|-33.86724|25.60062|Swartkops|Metrorail Eastern Cape
+R|-33.92372|25.60439|Sydenham|Metrorail Eastern Cape
+R|-32.97765|27.89881|Vincent|Metrorail Eastern Cape
+R|-32.96673|27.82060|Wilsonia|Metrorail Eastern Cape
+R|-25.62385|28.10730|Akasiaboom|Metrorail Gauteng
+R|-26.17246|28.41690|Alliance|Metrorail Gauteng
+R|-26.65657|27.94372|Alloy|Metrorail Gauteng
+R|-26.65657|27.94372|Alloy|Metrorail Gauteng
+R|-26.20458|28.21238|Angelo|Metrorail Gauteng
+R|-26.37132|27.83551|Anglers|Metrorail Gauteng
+R|-26.35029|28.12641|Angus|Metrorail Gauteng
+R|-26.22996|28.35560|Anzac|Metrorail Gauteng
+R|-26.21607|28.33402|Apex|Metrorail Gauteng
+R|-25.76298|28.07486|Atteridgeville|Metrorail Gauteng
+R|-25.76298|28.07486|Atteridgeville|Metrorail Gauteng
+R|-26.20233|28.29707|Avenue|Metrorail Gauteng
+R|-26.31127|27.51277|Bank|Metrorail Gauteng
+R|-25.75565|28.17928|Barracks|Metrorail Gauteng
+R|-25.73737|28.17874|Belle Ombre|Metrorail Gauteng
+R|-26.19798|28.31060|Benoni|Metrorail Gauteng
+R|-26.21622|28.08660|Benrose|Metrorail Gauteng
+R|-26.21622|28.08660|Benrose|Metrorail Gauteng
+R|-26.06743|28.23445|Birchleigh|Metrorail Gauteng
+R|-26.21906|28.24142|Boksburg|Metrorail Gauteng
+R|-26.21827|28.25980|Boksburg East|Metrorail Gauteng
+R|-26.22518|28.04025|Booysens|Metrorail Gauteng
+R|-25.75686|28.18508|Bosmanstraat|Metrorail Gauteng
+R|-25.75686|28.18508|Bosmanstraat|Metrorail Gauteng
+R|-26.18342|27.95118|Bosmont|Metrorail Gauteng
+R|-26.19786|28.02325|Braamfontein|Metrorail Gauteng
+R|-26.24044|28.36104|Brakpan|Metrorail Gauteng
+R|-25.72206|28.18935|Capital Park|Metrorail Gauteng
+R|-26.14018|27.73429|Central|Metrorail Gauteng
+R|-25.83487|28.21088|Centurion|Metrorail Gauteng
+R|-26.20865|28.11846|Cleveland|Metrorail Gauteng
+R|-25.76700|28.13321|Cor Delfos|Metrorail Gauteng
+R|-26.20184|27.97202|Croesus|Metrorail Gauteng
+R|-26.22247|28.01381|Crown|Metrorail Gauteng
+R|-26.29228|28.46933|Daggafontein|Metrorail Gauteng
+R|-26.48746|28.06357|Daleside|Metrorail Gauteng
+R|-26.24819|28.18429|Dallas|Metrorail Gauteng
+R|-25.71478|28.16586|Daspoort|Metrorail Gauteng
+R|-26.15636|28.42469|Daveyton|Metrorail Gauteng
+R|-25.72060|28.21549|Deerness|Metrorail Gauteng
+R|-26.20633|28.19893|Delmore|Metrorail Gauteng
+R|-25.71915|28.33683|Denneboom|Metrorail Gauteng
+R|-26.20598|28.09661|Denver|Metrorail Gauteng
+R|-25.75997|28.20534|Devenish Street|Metrorail Gauteng
+R|-25.62461|27.94496|De Wildt|Metrorail Gauteng
+R|-26.19721|28.05417|Doornfontein|Metrorail Gauteng
+R|-26.21354|28.14967|Driehoek|Metrorail Gauteng
+R|-26.23320|27.89242|Dube|Metrorail Gauteng
+R|-26.66420|27.92919|Duncanville|Metrorail Gauteng
+R|-26.34932|28.44153|Dunnottar|Metrorail Gauteng
+R|-26.20950|28.28575|Dunswart|Metrorail Gauteng
+R|-26.21724|28.23007|East Rand|Metrorail Gauteng
+R|-26.55771|27.87858|Eatonside|Metrorail Gauteng
+R|-25.72210|28.35979|Eerste Fabrieke|Metrorail Gauteng
+R|-25.72210|28.35979|Eerste Fabrieke|Metrorail Gauteng
+R|-25.72062|28.30646|Eersterust|Metrorail Gauteng
+R|-26.16672|28.20536|Elandsfontein|Metrorail Gauteng
+R|-25.76131|28.14525|Elektro|Metrorail Gauteng
+R|-26.19873|28.05894|Ellis Park|Metrorail Gauteng
+R|-26.24185|28.19296|Elsburg|Metrorail Gauteng
+R|-26.24185|28.19296|Elsburg|Metrorail Gauteng
+R|-26.21197|28.04441|Faraday|Metrorail Gauteng
+R|-26.17688|27.91447|Florida|Metrorail Gauteng
+R|-25.78350|28.19299|Fonteine|Metrorail Gauteng
+R|-25.61950|27.99186|Ga-Rankuwa|Metrorail Gauteng
+R|-26.20812|28.13283|Geldenhuis|Metrorail Gauteng
+R|-26.20812|28.13283|Geldenhuis|Metrorail Gauteng
+R|-26.20770|28.08041|George Goch|Metrorail Gauteng
+R|-26.16475|27.88038|Georgina|Metrorail Gauteng
+R|-26.22665|28.16457|Germiston South|Metrorail Gauteng
+R|-26.22084|28.16208|Germiston West|Metrorail Gauteng
+R|-25.72199|28.20517|Gezina|Metrorail Gauteng
+R|-25.74009|28.16109|Golf|Metrorail Gauteng
+R|-26.30522|27.77146|Goudeon|Metrorail Gauteng
+R|-26.31631|27.57955|Goudryk|Metrorail Gauteng
+R|-26.42629|27.86256|Grasmere|Metrorail Gauteng
+R|-25.73028|28.40643|Greenview|Metrorail Gauteng
+R|-25.73028|28.40643|Greenview|Metrorail Gauteng
+R|-26.20285|28.00539|Grosvenor|Metrorail Gauteng
+R|-26.16758|27.89369|Hamberg|Metrorail Gauteng
+R|-25.74659|28.24115|Hartbeesspruit|Metrorail Gauteng
+R|-26.52379|28.04070|Henley on Klip|Metrorail Gauteng
+R|-25.72428|28.16730|Hercules|Metrorail Gauteng
+R|-26.22176|28.14175|Hillview|Metrorail Gauteng
+R|-26.16779|27.70774|Homelake|Metrorail Gauteng
+R|-26.14642|27.86376|Horison|Metrorail Gauteng
+R|-25.62717|28.05562|Hornsnek|Metrorail Gauteng
+R|-26.60316|27.85348|Houtheuwel|Metrorail Gauteng
+R|-26.23040|27.87712|Ikwezi|Metrorail Gauteng
+R|-26.21907|28.16044|India|Metrorail Gauteng
+R|-26.20052|27.98089|Industria|Metrorail Gauteng
+R|-26.24946|27.86355|Inhlazane|Metrorail Gauteng
+R|-25.87540|28.22441|Irene|Metrorail Gauteng
+R|-26.13540|28.22187|Isando|Metrorail Gauteng
+R|-26.20389|28.06339|Jeppe|Metrorail Gauteng
+R|-26.21996|28.11867|Jupiter|Metrorail Gauteng
+R|-26.03537|28.25468|Kaalfontein|Metrorail Gauteng
+R|-25.76025|28.08845|Kalafong|Metrorail Gauteng
+R|-25.76025|28.08845|Kalafong|Metrorail Gauteng
+R|-26.22005|28.07034|Kaserne West|Metrorail Gauteng
+R|-26.30752|28.16140|Katlehong|Metrorail Gauteng
+R|-26.10809|28.22708|Kempton Park|Metrorail Gauteng
+R|-26.62359|27.87153|Kleigrond|Metrorail Gauteng
+R|-26.42109|28.08691|Kliprivier|Metrorail Gauteng
+R|-26.27265|27.88775|Kliptown|Metrorail Gauteng
+R|-25.81339|28.20116|Kloofsig|Metrorail Gauteng
+R|-26.19738|28.19588|Knights|Metrorail Gauteng
+R|-25.72632|28.27898|Koedoespoort|Metrorail Gauteng
+R|-25.72632|28.27898|Koedoespoort|Metrorail Gauteng
+R|-26.58667|27.99396|Kookrus|Metrorail Gauteng
+R|-25.58163|28.09073|Kopanong|Metrorail Gauteng
+R|-25.58163|28.09073|Kopanong|Metrorail Gauteng
+R|-26.21759|28.18936|Kutalo|Metrorail Gauteng
+R|-26.56638|27.86375|Kwaggastroom|Metrorail Gauteng
+R|-26.36513|28.15267|Kwesine|Metrorail Gauteng
+R|-26.20191|27.99058|Langlaagte|Metrorail Gauteng
+R|-26.11505|27.79351|Lanwen|Metrorail Gauteng
+R|-26.35507|27.83075|Lawley|Metrorail Gauteng
+R|-26.65510|27.90612|Leeuhof|Metrorail Gauteng
+R|-26.31977|27.82327|Lenasia|Metrorail Gauteng
+R|-26.02922|28.19646|Leralla|Metrorail Gauteng
+R|-26.01125|28.21483|Limindlela|Metrorail Gauteng
+R|-26.32644|28.15771|Lindela|Metrorail Gauteng
+R|-25.75492|28.22533|Loftus Versveldpark|Metrorail Gauteng
+R|-26.19848|27.96339|Longdale|Metrorail Gauteng
+R|-26.11963|27.81136|Luipaardsvlei|Metrorail Gauteng
+R|-25.63426|28.08209|Lynross|Metrorail Gauteng
+R|-25.49650|28.08969|Mabopane|Metrorail Gauteng
+R|-25.49650|28.08969|Mabopane|Metrorail Gauteng
+R|-26.32938|27.44111|Maizelands|Metrorail Gauteng
+R|-25.72705|28.38507|Mamelodi Gardens|Metrorail Gauteng
+R|-25.72705|28.38507|Mamelodi Gardens|Metrorail Gauteng
+R|-26.17951|27.94026|Maraisburg|Metrorail Gauteng
+R|-26.20428|28.01383|Mayfair|Metrorail Gauteng
+R|-25.76256|28.19786|Mears Street|Metrorail Gauteng
+R|-25.62171|28.01913|Medunsa|Metrorail Gauteng
+R|-26.26212|27.84665|Merafe|Metrorail Gauteng
+R|-26.55497|28.00993|Meyerton|Metrorail Gauteng
+R|-26.41426|27.85683|Midannadale|Metrorail Gauteng
+R|-26.29326|27.85096|Midway|Metrorail Gauteng
+R|-26.12807|27.73940|Millsite|Metrorail Gauteng
+R|-26.22604|27.92812|Mlamlankunzi|Metrorail Gauteng
+R|-25.70124|28.17115|Mountain View|Metrorail Gauteng
+R|-26.31911|28.14036|Mpilisweni|Metrorail Gauteng
+R|-26.22320|27.92293|Mzimhlope|Metrorail Gauteng
+R|-26.25794|27.82278|Naledi|Metrorail Gauteng
+R|-26.25158|27.90629|Nancefield|Metrorail Gauteng
+R|-26.30445|28.14320|Natalspruit|Metrorail Gauteng
+R|-26.21459|27.94261|New Canada|Metrorail Gauteng
+R|-26.18635|27.96305|Newclare|Metrorail Gauteng
+R|-26.26248|28.40773|New Era|Metrorail Gauteng
+R|-26.20662|28.32016|New Kleinfontein|Metrorail Gauteng
+R|-26.42265|28.44857|Nigel|Metrorail Gauteng
+R|-26.18098|28.31836|Northmead|Metrorail Gauteng
+R|-26.00575|28.24875|Oakmoor|Metrorail Gauteng
+R|-25.96394|28.23552|Olifantsfontein|Metrorail Gauteng
+R|-26.23754|27.91723|Orlando|Metrorail Gauteng
+R|-25.73448|28.44301|Panpoort|Metrorail Gauteng
+R|-26.23578|28.18693|Park Hill|Metrorail Gauteng
+R|-26.23510|27.90482|Phefeni|Metrorail Gauteng
+R|-26.22652|27.90901|Phomolong|Metrorail Gauteng
+R|-25.73522|28.42803|Pienaarspoort|Metrorail Gauteng
+R|-25.71973|28.23929|Pierneefsrus|Metrorail Gauteng
+R|-26.34087|28.15247|Pilot|Metrorail Gauteng
+R|-25.91374|28.22886|Pinedene|Metrorail Gauteng
+R|-26.26504|28.43117|Pollak Park|Metrorail Gauteng
+R|-26.21224|28.15882|President|Metrorail Gauteng
+R|-25.75949|28.18922|Pretoria|Metrorail Gauteng
+R|-25.67098|28.18188|Pretoria-Noord|Metrorail Gauteng
+R|-25.75609|28.16765|Pretoria-Wes|Metrorail Gauteng
+R|-25.75609|28.16765|Pretoria-Wes|Metrorail Gauteng
+R|-26.13266|27.85353|Princess|Metrorail Gauteng
+R|-25.72208|28.25204|Queenswood|Metrorail Gauteng
+R|-26.18133|27.69793|Randfontein|Metrorail Gauteng
+R|-26.18105|28.19968|Ravensklip|Metrorail Gauteng
+R|-25.75857|28.15348|Rebecca|Metrorail Gauteng
+R|-25.75857|28.15348|Rebecca|Metrorail Gauteng
+R|-26.62661|27.96754|Redan|Metrorail Gauteng
+R|-26.62661|27.96754|Redan|Metrorail Gauteng
+R|-26.22129|28.15034|Refinery|Metrorail Gauteng
+R|-26.53820|27.88815|Residensia|Metrorail Gauteng
+R|-26.12728|28.22456|Rhodesfield|Metrorail Gauteng
+R|-25.74961|28.23236|Rissik|Metrorail Gauteng
+R|-26.32415|28.45057|Road bend|Metrorail Gauteng
+R|-26.15812|27.71499|Robinson|Metrorail Gauteng
+R|-26.15898|27.86993|Roodepoort|Metrorail Gauteng
+R|-25.63771|28.09454|Rosslyn|Metrorail Gauteng
+R|-25.76402|28.06169|Saulsville|Metrorail Gauteng
+R|-25.76402|28.06169|Saulsville|Metrorail Gauteng
+R|-26.25713|28.37680|Schapenrust|Metrorail Gauteng
+R|-25.75072|28.15980|Schutte Street|Metrorail Gauteng
+R|-26.28519|28.44745|Selpark|Metrorail Gauteng
+R|-26.38990|28.44169|Servaas|Metrorail Gauteng
+R|-25.72742|28.29686|Silverton|Metrorail Gauteng
+R|-26.46471|28.07277|Skansdam|Metrorail Gauteng
+R|-25.52081|28.08282|Soshanguve|Metrorail Gauteng
+R|-25.52081|28.08282|Soshanguve|Metrorail Gauteng
+R|-25.82464|28.20574|Sportpark|Metrorail Gauteng
+R|-26.25040|28.43831|Springs|Metrorail Gauteng
+R|-26.47150|27.87085|Stretford|Metrorail Gauteng
+R|-26.31477|28.46077|Struisbult|Metrorail Gauteng
+R|-26.30675|27.74752|Suurbekom|Metrorail Gauteng
+R|-25.61778|27.97223|Taillardshoop|Metrorail Gauteng
+R|-25.73277|28.16714|Technikon Rant|Metrorail Gauteng
+R|-26.00971|28.23146|Tembisa|Metrorail Gauteng
+R|-26.20421|28.11049|Tooronga|Metrorail Gauteng
+R|-26.28909|27.87048|Tshiawelo|Metrorail Gauteng
+R|-26.17940|27.92669|Unified|Metrorail Gauteng
+R|-26.27045|28.16271|Union|Metrorail Gauteng
+R|-26.08793|28.22178|Van Riebeeckpark|Metrorail Gauteng
+R|-26.17307|28.34448|Van Ryn|Metrorail Gauteng
+R|-26.21889|28.04478|Village Main|Metrorail Gauteng
+R|-25.71982|28.22884|Villieria|Metrorail Gauteng
+R|-26.26047|28.18168|Wadeville|Metrorail Gauteng
+R|-25.76012|28.21348|Walker Street|Metrorail Gauteng
+R|-25.71698|28.32135|Waltloo|Metrorail Gauteng
+R|-26.30237|27.81604|Waterworks|Metrorail Gauteng
+R|-26.25748|28.17247|Wattles|Metrorail Gauteng
+R|-26.23365|28.17606|Webber|Metrorail Gauteng
+R|-26.11189|27.74861|Wes-Rand|Metrorail Gauteng
+R|-26.18870|27.96842|Westbury|Metrorail Gauteng
+R|-26.21143|28.03386|Westgate|Metrorail Gauteng
+R|-26.31274|27.65194|Westonaria|Metrorail Gauteng
+R|-26.10974|27.78135|Windsor Mine|Metrorail Gauteng
+R|-25.64678|28.12822|Winternest|Metrorail Gauteng
+R|-26.12732|27.83141|Witpoortjie|Metrorail Gauteng
+R|-25.65690|28.16638|Wolmerton|Metrorail Gauteng
+R|-25.68000|28.18252|Wonderboom|Metrorail Gauteng
+R|-30.05684|30.88196|Amanzimtoti|Metrorail KwaZulu-Natal
+R|-29.75905|31.01925|Avoca|Metrorail KwaZulu-Natal
+R|-29.88951|30.95393|Bellair|Metrorail KwaZulu-Natal
+R|-29.85711|31.01240|Berea Road|Metrorail KwaZulu-Natal
+R|-29.79683|31.01405|Briardene|Metrorail KwaZulu-Natal
+R|-29.89003|30.89925|Burlington|Metrorail KwaZulu-Natal
+R|-29.62587|31.05834|Canelands|Metrorail KwaZulu-Natal
+R|-29.73201|30.58773|Cato Ridge|Metrorail KwaZulu-Natal
+R|-29.89649|30.91302|Cavendish|Metrorail KwaZulu-Natal
+R|-29.39060|31.26338|Charlottedale|Metrorail KwaZulu-Natal
+R|-29.91193|30.97485|Clairwood|Metrorail KwaZulu-Natal
+R|-30.24041|30.78331|Clansthal|Metrorail KwaZulu-Natal
+R|-29.79145|30.68123|Cliffdale|Metrorail KwaZulu-Natal
+R|-29.51000|31.19127|Compensation|Metrorail KwaZulu-Natal
+R|-29.87790|30.99685|Congella|Metrorail KwaZulu-Natal
+R|-29.86836|31.00627|Dalbridge|Metrorail KwaZulu-Natal
+R|-29.84663|30.79221|Dassenhoek|Metrorail KwaZulu-Natal
+R|-29.83435|30.73563|Delville Wood|Metrorail KwaZulu-Natal
+R|-30.07143|30.87354|Doonside|Metrorail KwaZulu-Natal
+R|-29.74311|31.00447|Duff's Road|Metrorail KwaZulu-Natal
+R|-29.77245|31.00222|Effingham|Metrorail KwaZulu-Natal
+R|-29.87308|30.90086|Escombe|Metrorail KwaZulu-Natal
+R|-29.58372|31.09352|Flamingo Heights|Metrorail KwaZulu-Natal
+R|-29.53104|31.16725|Fraser|Metrorail KwaZulu-Natal
+R|-29.78029|30.61266|Georgedale|Metrorail KwaZulu-Natal
+R|-29.37362|31.28360|Gledhow|Metrorail KwaZulu-Natal
+R|-29.84291|30.87989|Glen Park|Metrorail KwaZulu-Natal
+R|-29.78898|31.01982|Greenwood Park|Metrorail KwaZulu-Natal
+R|-29.40862|31.25306|Groutville|Metrorail KwaZulu-Natal
+R|-29.80142|30.65756|Hammarsdale|Metrorail KwaZulu-Natal
+R|-29.88870|30.94159|Hillary|Metrorail KwaZulu-Natal
+R|-30.18863|30.80888|Ilfracombe|Metrorail KwaZulu-Natal
+R|-30.11810|30.85025|Illovo Beach|Metrorail KwaZulu-Natal
+R|-29.98408|30.92832|Isipingo|Metrorail KwaZulu-Natal
+R|-30.12769|30.84596|Karridene|Metrorail KwaZulu-Natal
+R|-30.36276|30.71383|Kelso|Metrorail KwaZulu-Natal
+R|-29.79148|31.00110|Kenville|Metrorail KwaZulu-Natal
+R|-29.90477|31.01475|King's Rest|Metrorail KwaZulu-Natal
+R|-29.86219|30.85917|Klaarwater|Metrorail KwaZulu-Natal
+R|-29.34286|31.29438|KwaDukuza|Metrorail KwaZulu-Natal
+R|-29.75009|30.97357|kwaMashu|Metrorail KwaZulu-Natal
+R|-29.97245|30.90426|kwaMnyandu|Metrorail KwaZulu-Natal
+R|-29.83875|30.77606|kwaNdengezi|Metrorail KwaZulu-Natal
+R|-29.79579|30.62175|kwaTandaza|Metrorail KwaZulu-Natal
+R|-29.95921|30.88844|Lindokuhle|Metrorail KwaZulu-Natal
+R|-29.87951|30.91954|Malvern|Metrorail KwaZulu-Natal
+R|-29.86839|30.82879|Mariannhill|Metrorail KwaZulu-Natal
+R|-29.86839|30.82879|Mariannhill|Metrorail KwaZulu-Natal
+R|-29.94399|30.95873|Merebank|Metrorail KwaZulu-Natal
+R|-29.92571|30.97331|Montclair|Metrorail KwaZulu-Natal
+R|-29.85038|30.88324|Moseley|Metrorail KwaZulu-Natal
+R|-29.82658|31.02836|Moses Mabhida|Metrorail KwaZulu-Natal
+R|-29.70425|31.03261|Mount Edgecombe|Metrorail KwaZulu-Natal
+R|-29.90103|30.93353|Mount Vernon|Metrorail KwaZulu-Natal
+R|-29.86360|30.88595|Northdene|Metrorail KwaZulu-Natal
+R|-29.83488|30.70251|Nshongweni|Metrorail KwaZulu-Natal
+R|-29.60034|31.08208|Nyaninga|Metrorail KwaZulu-Natal
+R|-29.67265|31.03827|Ottawa|Metrorail KwaZulu-Natal
+R|-30.04109|30.88959|Pahla|Metrorail KwaZulu-Natal
+R|-30.31658|30.74183|Park Rynie|Metrorail KwaZulu-Natal
+R|-29.97416|30.93367|Pelgrim|Metrorail KwaZulu-Natal
+R|-29.71767|31.00990|Phoenix|Metrorail KwaZulu-Natal
+R|-29.81785|30.85779|Pinetown|Metrorail KwaZulu-Natal
+R|-29.87939|30.93128|Poet's Corner|Metrorail KwaZulu-Natal
+R|-29.77894|31.02283|Red Hill|Metrorail KwaZulu-Natal
+R|-30.27252|30.76027|Renishaw|Metrorail KwaZulu-Natal
+R|-29.96300|30.94120|Reunion|Metrorail KwaZulu-Natal
+R|-29.89882|30.98082|Rossburgh|Metrorail KwaZulu-Natal
+R|-29.83038|30.87686|Sarnia|Metrorail KwaZulu-Natal
+R|-30.28480|30.75882|Scottburgh|Metrorail KwaZulu-Natal
+R|-29.90049|30.96129|Sea View|Metrorail KwaZulu-Natal
+R|-29.45227|31.22038|Shakaskraal|Metrorail KwaZulu-Natal
+R|-29.88121|30.87867|Shallcross|Metrorail KwaZulu-Natal
+R|-29.85678|30.79097|Situndu Hills|Metrorail KwaZulu-Natal
+R|-29.74232|30.99321|Tembalihle|Metrorail KwaZulu-Natal
+R|-29.80386|31.00612|Temple|Metrorail KwaZulu-Natal
+R|-29.86245|30.80878|Thornwood|Metrorail KwaZulu-Natal
+R|-29.44272|31.24043|Tinley Manor|Metrorail KwaZulu-Natal
+R|-29.55918|31.12703|Tongaat|Metrorail KwaZulu-Natal
+R|-29.57090|31.11458|Tongaat Central|Metrorail KwaZulu-Natal
+R|-29.89038|30.98446|Umbilo|Metrorail KwaZulu-Natal
+R|-30.02273|30.90755|Umbogintwini|Metrorail KwaZulu-Natal
+R|-30.14608|30.83291|Umgababa|Metrorail KwaZulu-Natal
+R|-29.81644|31.02747|Umgeni|Metrorail KwaZulu-Natal
+R|-29.47653|31.21941|Umhlali|Metrorail KwaZulu-Natal
+R|-30.20439|30.80242|Umkomaas|Metrorail KwaZulu-Natal
+R|-29.95409|30.86604|Umlazi|Metrorail KwaZulu-Natal
+R|-29.64620|31.04923|Verulam|Metrorail KwaZulu-Natal
+R|-30.08346|30.86782|Warner Beach|Metrorail KwaZulu-Natal
+R|-30.09866|30.85652|Winkelspruit|Metrorail KwaZulu-Natal
+R|-29.96359|30.91716|Zwelethu|Metrorail KwaZulu-Natal
+R|-33.49277|18.68170|Abbotsdale|Metrorail Western Cape
+R|-33.89436|18.52854|Acacia Park|Metrorail Western Cape
+R|-33.89469|18.52878|Acacia Park|Metrorail Western Cape
+R|-33.36889|19.16500|Artois|Metrorail Western Cape
+R|-33.96272|18.50173|Athlone|Metrorail Western Cape
+R|-33.96272|18.50173|Athlone|Metrorail Western Cape
+R|-33.89777|18.59308|Avondale|Metrorail Western Cape
+R|-33.89777|18.59308|Avondale|Metrorail Western Cape
+R|-33.93952|18.60904|Belhar|Metrorail Western Cape
+R|-33.96433|18.70155|Blackheath|Metrorail Western Cape
+R|-33.94198|18.55000|Bonteheuwel|Metrorail Western Cape
+R|-33.56662|19.25608|Botha|Metrorail Western Cape
+R|-33.88084|18.68864|Brackenfell|Metrorail Western Cape
+R|-33.52448|19.20842|Breëriver|Metrorail Western Cape
+R|-33.90121|18.51168|Century City|Metrorail Western Cape
+R|-33.62626|19.37567|Chavonnes|Metrorail Western Cape
+R|-34.05481|18.70906|Chris Hani|Metrorail Western Cape
+R|-34.05481|18.70906|Chris Hani|Metrorail Western Cape
+R|-33.98171|18.46714|Claremont|Metrorail Western Cape
+R|-33.97643|18.50136|Crawford|Metrorail Western Cape
+R|-33.97643|18.50136|Crawford|Metrorail Western Cape
+R|-33.70656|18.98034|Dal Josafat|Metrorail Western Cape
+R|-33.89348|18.57873|De Grendel|Metrorail Western Cape
+R|-33.89348|18.57873|De Grendel|Metrorail Western Cape
+R|-34.03543|18.46704|Diep River|Metrorail Western Cape
+R|-33.92383|18.85418|Du Toit|Metrorail Western Cape
+R|-34.00075|18.73097|Eerste River|Metrorail Western Cape
+R|-33.85709|18.71133|Eikenfontein|Metrorail Western Cape
+R|-33.85709|18.71133|Eikenfontein|Metrorail Western Cape
+R|-33.91052|18.56914|Elsies River|Metrorail Western Cape
+R|-33.92369|18.44597|Esplanade|Metrorail Western Cape
+R|-33.92369|18.44597|Esplanade|Metrorail Western Cape
+R|-34.10243|18.46879|False Bay|Metrorail Western Cape
+R|-34.02632|18.74729|Faure|Metrorail Western Cape
+R|-34.05551|18.79270|Firgrove|Metrorail Western Cape
+R|-33.78594|18.71143|Fisantkraal|Metrorail Western Cape
+R|-34.13713|18.43255|Fish Hoek|Metrorail Western Cape
+R|-34.16346|18.43201|Glencairn|Metrorail Western Cape
+R|-33.91446|18.54754|Goodwood|Metrorail Western Cape
+R|-33.30138|19.04167|Gouda|Metrorail Western Cape
+R|-33.60789|19.31636|Goudini Road|Metrorail Western Cape
+R|-33.98844|18.47131|Harfield Road|Metrorail Western Cape
+R|-33.95319|18.50249|Hazendal|Metrorail Western Cape
+R|-33.95319|18.50249|Hazendal|Metrorail Western Cape
+R|-34.04590|18.46558|Heathfield|Metrorail Western Cape
+R|-33.96993|18.56177|Heideveld|Metrorail Western Cape
+R|-33.96993|18.56177|Heideveld|Metrorail Western Cape
+R|-33.43800|18.96848|Hermon|Metrorail Western Cape
+R|-33.57254|18.64765|Kalbaskraal|Metrorail Western Cape
+R|-34.12627|18.45008|Kalk Bay|Metrorail Western Cape
+R|-34.06705|18.62073|Kapteinsklip|Metrorail Western Cape
+R|-33.99530|18.47302|Kenilworth|Metrorail Western Cape
+R|-33.91301|18.49776|Kentemade|Metrorail Western Cape
+R|-33.91301|18.49776|Kentemade|Metrorail Western Cape
+R|-34.04799|18.67079|Khayelitsha|Metrorail Western Cape
+R|-33.80631|18.86974|Klapmuts|Metrorail Western Cape
+R|-33.69927|18.70064|Klipheuwel|Metrorail Western Cape
+R|-33.92573|18.47880|Koeberg Road|Metrorail Western Cape
+R|-33.87395|18.81957|Koelenhof|Metrorail Western Cape
+R|-33.84708|18.72398|Kraaifontein|Metrorail Western Cape
+R|-33.93367|18.67769|Kuils River|Metrorail Western Cape
+R|-34.05490|18.69475|Kuyasa|Metrorail Western Cape
+R|-34.05490|18.69475|Kuyasa|Metrorail Western Cape
+R|-34.08846|18.46249|Lakeside|Metrorail Western Cape
+R|-33.93904|18.52997|Langa|Metrorail Western Cape
+R|-33.93904|18.52997|Langa|Metrorail Western Cape
+R|-33.98759|18.50393|Lansdowne|Metrorail Western Cape
+R|-33.98759|18.50393|Lansdowne|Metrorail Western Cape
+R|-33.94339|18.58378|Lavistown|Metrorail Western Cape
+R|-34.03430|18.61139|Lentegeur|Metrorail Western Cape
+R|-33.98133|18.77125|Lynedoch|Metrorail Western Cape
+R|-33.92470|18.48705|Maitland|Metrorail Western Cape
+R|-33.92470|18.48705|Maitland|Metrorail Western Cape
+R|-33.57989|18.98289|Malan|Metrorail Western Cape
+R|-33.46791|18.72304|Malmesbury|Metrorail Western Cape
+R|-34.01892|18.62458|Mandalay|Metrorail Western Cape
+R|-33.67412|18.98550|Mbekweni|Metrorail Western Cape
+R|-33.76015|18.71838|Mellish|Metrorail Western Cape
+R|-33.98956|18.72055|Melton Rose|Metrorail Western Cape
+R|-33.72208|18.70754|Mikpunt|Metrorail Western Cape
+R|-34.04995|18.61936|Mitchell's Plain|Metrorail Western Cape
+R|-33.89164|18.54896|Monte Vista|Metrorail Western Cape
+R|-33.89164|18.54896|Monte Vista|Metrorail Western Cape
+R|-33.94662|18.47390|Mowbray|Metrorail Western Cape
+R|-34.10932|18.46807|Muizenberg|Metrorail Western Cape
+R|-33.83112|18.82801|Muldersvlei|Metrorail Western Cape
+R|-33.92226|18.51308|Mutual|Metrorail Western Cape
+R|-33.92226|18.51308|Mutual|Metrorail Western Cape
+R|-33.92943|18.49464|Ndabeni|Metrorail Western Cape
+R|-33.95247|18.56366|Netreg|Metrorail Western Cape
+R|-33.97422|18.46761|Newlands|Metrorail Western Cape
+R|-34.01696|18.64898|Nolungile|Metrorail Western Cape
+R|-34.02697|18.66315|Nonkqubela|Metrorail Western Cape
+R|-34.02697|18.66315|Nonkqubela|Metrorail Western Cape
+R|-33.99286|18.56001|Nyanga|Metrorail Western Cape
+R|-33.93796|18.47150|Observatory|Metrorail Western Cape
+R|-33.90041|18.60684|Oosterzee|Metrorail Western Cape
+R|-33.89988|18.60703|Oosterzee|Metrorail Western Cape
+R|-34.01349|18.49520|Ottery|Metrorail Western Cape
+R|-34.01349|18.49520|Ottery|Metrorail Western Cape
+R|-33.76498|18.96473|Paarl|Metrorail Western Cape
+R|-33.90959|18.58624|Parow|Metrorail Western Cape
+R|-33.93481|18.64610|Pentech|Metrorail Western Cape
+R|-34.01334|18.58531|Philippi|Metrorail Western Cape
+R|-34.01334|18.58531|Philippi|Metrorail Western Cape
+R|-33.93960|18.49066|Pinelands|Metrorail Western Cape
+R|-34.02194|18.46972|Plumstead|Metrorail Western Cape
+R|-34.06052|18.46355|Retreat|Metrorail Western Cape
+R|-33.47390|19.20165|Romans Rivier|Metrorail Western Cape
+R|-33.96216|18.47234|Rondebosch|Metrorail Western Cape
+R|-33.95473|18.47314|Rosebank|Metrorail Western Cape
+R|-33.92723|18.46501|Salt River|Metrorail Western Cape
+R|-33.92669|18.66123|Sarepta|Metrorail Western Cape
+R|-34.18682|18.42551|Simon's Town|Metrorail Western Cape
+R|-33.50752|18.98116|Soetendal|Metrorail Western Cape
+R|-34.08435|18.84147|Somerset West|Metrorail Western Cape
+R|-34.03296|18.48168|Southfield|Metrorail Western Cape
+R|-34.07667|18.46367|Steenberg|Metrorail Western Cape
+R|-33.93882|18.84968|Stellenbosch|Metrorail Western Cape
+R|-34.02913|18.46888|Steurhof|Metrorail Western Cape
+R|-33.90448|18.65720|Stikland|Metrorail Western Cape
+R|-33.90448|18.65720|Stikland|Metrorail Western Cape
+R|-34.11930|18.45846|St James|Metrorail Western Cape
+R|-34.01418|18.60639|Stock Road|Metrorail Western Cape
+R|-34.11490|18.83238|Strand|Metrorail Western Cape
+R|-34.14430|18.43712|Sunny Cove|Metrorail Western Cape
+R|-33.91885|18.53250|Thornton|Metrorail Western Cape
+R|-33.32082|19.09976|Tulbach Road|Metrorail Western Cape
+R|-33.90723|18.60165|Tygerberg|Metrorail Western Cape
+R|-33.93705|18.62860|Unibell|Metrorail Western Cape
+R|-34.09498|18.85306|Van der Stel|Metrorail Western Cape
+R|-33.91120|18.55843|Vasco|Metrorail Western Cape
+R|-33.96204|18.79988|Vlottenburg|Metrorail Western Cape
+R|-33.36430|19.01597|Voëlvlei|Metrorail Western Cape
+R|-34.00198|18.50113|Wetton|Metrorail Western Cape
+R|-33.62956|18.67003|Wintervogel|Metrorail Western Cape
+R|-34.01398|18.47077|Wittebome|Metrorail Western Cape
+R|-33.41301|19.19609|Wolseley|Metrorail Western Cape
+R|-33.92213|18.50764|Woltemade|Metrorail Western Cape
+R|-33.92531|18.44616|Woodstock|Metrorail Western Cape
+R|-33.92531|18.44616|Woodstock|Metrorail Western Cape
+R|-34.00486|18.47123|Wynberg|Metrorail Western Cape
+R|-33.92002|18.47670|Ysterplaat|Metrorail Western Cape
+R|-29.91559|30.91876|Bayview|PRASA
+R|-29.90696|30.88444|Chatsglen|Metrorail KwaZulu-Natal
+R|-29.89840|30.86173|Crossmoor|Metrorail KwaZulu-Natal
+R|-29.89479|31.02845|Fynnlands|Metrorail KwaZulu-Natal
+R|-29.92620|30.93706|Havenside|Metrorail KwaZulu-Natal
+R|-29.89228|31.03705|Island View|Metrorail KwaZulu-Natal
+R|-29.92394|30.98603|Jacobs|Metrorail KwaZulu-Natal
+R|-29.91777|30.99680|Wentworth|Metrorail KwaZulu-Natal
+R|-29.90918|30.90232|Westcliff|Metrorail KwaZulu-Natal
+R|-29.87861|31.05377|Wests|Metrorail KwaZulu-Natal
+R|-33.31406|26.07479|Alicedale|Shosholoza Meyl
+R|-32.35184|22.57692|Beaufort West|Shosholoza Meyl
+R|-33.90643|18.62706|Bellville|Metrorail Western Cape
+R|-30.49096|25.99858|Bethulie|Shosholoza Meyl
+R|-32.86614|27.52277|Blaney|Shosholoza Meyl
+R|-29.11857|26.22643|Bloemfontein|Shosholoza Meyl
+R|-27.64289|25.60044|Bloemhof|Shosholoza Meyl
+R|-28.69863|26.47200|Brandfort|Shosholoza Meyl
+R|-31.00040|26.32343|Burgersdorp|Shosholoza Meyl
+R|-33.92242|18.42635|Cape Town|Metrorail Western Cape
+R|-32.29842|27.15233|Cathcart|Shosholoza Meyl
+R|-27.89986|25.16546|Christiana|Shosholoza Meyl
+R|-30.72582|25.13741|Colesberg|Shosholoza Meyl
+R|-32.74425|25.80730|Cookhouse|Shosholoza Meyl
+R|-30.65039|24.01386|De Aar|Shosholoza Meyl
+R|-29.84484|31.02301|Durban|Metrorail KwaZulu-Natal
+R|-29.73514|25.93014|Edenburg|Shosholoza Meyl
+R|-25.70685|30.05575|eMakhazeni|Shosholoza Meyl
+R|-26.20980|28.16768|Germiston|Metrorail Gauteng
+R|-33.96010|25.62430|Gqeberha|Metrorail Eastern Cape
+R|-27.97499|27.02433|Hennenman|Shosholoza Meyl
+R|-33.72930|18.97668|Huguenot|Shosholoza Meyl
+R|-31.49829|23.18885|Hutchinson|Shosholoza Meyl
+R|-32.03134|27.05875|Imvani|Shosholoza Meyl
+R|-26.19767|28.04230|Johannesburg Park|Metrorail Gauteng
+R|-28.73535|24.76987|Kimberley|Shosholoza Meyl
+R|-26.86993|26.67038|Klerksdorp|Shosholoza Meyl
+R|-31.89285|26.87767|Komani|Shosholoza Meyl
+R|-25.43700|31.95324|Komatipoort|Shosholoza Meyl
+R|-27.23764|27.56924|Koppies|Shosholoza Meyl
+R|-27.65932|27.23421|Kroonstad|Shosholoza Meyl
+R|-26.10892|27.77094|Krugersdorp|Shosholoza Meyl
+R|-33.01665|27.90775|KuGompo City|Shosholoza Meyl
+R|-33.19808|20.86032|Laingsburg|Shosholoza Meyl
+R|-32.77523|21.97764|Leeu-Gamka|Shosholoza Meyl
+R|-33.23145|20.58088|Matjiesfontein|Shosholoza Meyl
+R|-31.21396|23.61265|Merriman|Shosholoza Meyl
+R|-31.39521|26.36561|Molteno|Shosholoza Meyl
+R|-27.76101|29.98084|Newcastle|Shosholoza Meyl
+R|-31.18269|24.95184|Noupoort|Shosholoza Meyl
+R|-32.88288|27.58369|Ntabozuko|Shosholoza Meyl
+R|-26.34275|27.39338|Oberholzer|Shosholoza Meyl
+R|-29.66893|24.20716|Orange River|Shosholoza Meyl
+R|-29.61075|30.36837|Pietermaritzburg|Shosholoza Meyl
+R|-26.71170|27.08467|Potchefstroom|Shosholoza Meyl
+R|-32.98495|21.68672|Prince Albert Road|Shosholoza Meyl
+R|-31.48980|25.11859|Rosmead|Shosholoza Meyl
+R|-26.85459|27.86651|Sasolburg|Shosholoza Meyl
+R|-30.26681|25.70777|Springfontein|Shosholoza Meyl
+R|-26.95466|29.23488|Standerton|Shosholoza Meyl
+R|-31.56659|26.55015|Sterkstroom|Shosholoza Meyl
+R|-32.56412|27.43437|Stutterheim|Shosholoza Meyl
+R|-28.40460|26.71908|Theunissen|Shosholoza Meyl
+R|-33.33816|20.03663|Touws River|Shosholoza Meyl
+R|-28.55797|29.78607|uMnambithi|Shosholoza Meyl
+R|-26.67416|27.93531|Vereeniging|Metrorail Gauteng
+R|-28.12880|26.89266|Virginia|Shosholoza Meyl
+R|-28.11562|24.86755|Warrenton|Shosholoza Meyl
+R|-33.63469|18.99205|Wellington|Shosholoza Meyl
+R|-33.63950|19.44117|Worcester|Shosholoza Meyl
+Q|Gautrain|Airport Line|#9d8b57|L55|8 2:6243 4:13565
+Q|Gautrain|Airport Line|#9d8b57|L55|4 2:13688 8:6097
+Q|Gautrain|East-West Commuter Line|blue|L55|8 2:6243 219:12666
+Q|Gautrain|East-West Commuter Line|blue|L55|219 2:12788 8:6097
+Q|Gautrain|North-South Commuter Line|red|L55|5 7:5781 8:4592 2:6211 3:10585 0:17939 6:14307 1:6736
+Q|Gautrain|North-South Commuter Line|red|L55|1 6:6802 0:14319 3:17945 2:10686 8:6116 7:4589 5:5783
+Q|Kei Rail|Mthatha - Amabele||L55|10 9:181123 542:57181
+Q|Metrorail Eastern Cape|Berlin Line||L55|550 22:6099 18:6809 17:3054 24:2672 23:2469 25:2123 11:3009 37:2104 14:1078 20:1064 19:2917 12:1410 36:1409 13:1115 29:1591 32:1651 542:969
+Q|Metrorail Eastern Cape|Berlin Line||L55|542 32:969 29:1651 13:1591 36:1115 12:1409 19:1410 20:2917 14:1064 37:1078 11:2104 25:3009 23:2123 24:2469 17:2672 18:3054 22:6808 550:6098
+Q|Metrorail Eastern Cape|Kariega CBD||L55|21 15:1836 16:5296 30:5109 31:5126 33:4502 26:3589 35:2758 28:2637 529:1966
+Q|Metrorail Eastern Cape|Uitenhage CBD||L55|529 28:2148 35:2654 27:2851 34:3551 31:4430 30:5051 16:5173 15:5122 21:1835
+Q|Metrorail Gauteng|Belle Ombre -> Mabopane|#F58220|L55|52 120:2871 75:1096 180:1653 265:3334 206:938 264:2599 262:3932 38:3677 149:5110 234:7629 166:2797
+Q|Metrorail Gauteng|Daveyton -> Johannesburg|black|L55|76 39:2401 248:7775 191:2805 49:3888 88:1468 58:2757 57:1856 89:1150 42:2253 78:1390 528:3484 204:1207 84:895 103:1966 68:1408 243:1031 80:1395 105:1698 132:1996 96:607 83:540 534:1134
+Q|Metrorail Gauteng|De Wildt -> Pretoria|#F58220|L55|82 240:2969 102:1948 173:2779 124:3667 164:2794 224:1333 262:3503 264:3932 206:2604 265:938 180:3335 75:1653 120:1096 241:962 110:1081 228:1082 207:1295 51:1201 60:797 6:587
+Q|Metrorail Gauteng|Eerste Fabrieke->Koedoespoort|#ED038C|L55|91 79:2343 253:1491 93:1811 231:1269
+Q|Metrorail Gauteng|Faraday -> Naledi|#00652E|L55|99 249:805 59:984 71:2766 186:7267 182:2299 198:1403 197:1090 85:1483 126:2199 129:2642 174:2176 183:2799
+Q|Metrorail Gauteng|George Gloch -> Naledi|#00652E|L55|105 132:2161 96:607 83:540 534:1086 63:1929 171:1372 116:897 153:1455 70:2221 162:994 186:2776 182:2299 198:1403 197:1090 85:1483 126:2199 129:2642 174:2176 183:2799
+Q|Metrorail Gauteng|George Goch -> Naledi|#00652E|L55|105 54:1324 137:1796 59:3404 71:2717 186:7267 182:2299 198:1403 197:1090 85:1483 126:2199 129:2642 174:2176 183:2799
+Q|Metrorail Gauteng|George Goch -> Vereeniging|#00652E|L55|105 132:2161 96:607 83:540 534:1134 63:1889 171:1372 116:897 153:1455 70:2221 162:994 186:2973 179:2051 194:1767 184:1753 142:3021 244:2658 177:2033 157:4717 155:4050 43:1853 176:5489 113:1480 237:5074 218:7744 90:2552 151:1769 125:4342 86:10796 140:7617 156:5123 565:3967
+Q|Metrorail Gauteng|George Goch -> Vereeniging|#00652E|L55|105 54:1324 137:1796 59:3354 71:2766 186:7267 179:2275 194:1767 184:1753 142:3021 244:2658 177:2033 157:4717 155:4050 43:1853 176:5489 113:1480 237:5074 218:7744 90:2552 151:1769 125:4342 140:3176 156:5123 86:2494 565:1466
+Q|Metrorail Gauteng|Germiston -> Kwesine|#EE1D23|L55|528 150:2385 97:3000 251:2321 138:6028 160:2395 201:1815 152:2678
+Q|Metrorail Gauteng|Germiston -> Kwesine|#EE1D23|L55|528 204:1226 108:865 107:744 256:1445 196:1077 97:1466 251:2321 138:6028 160:2395 201:1815 152:2678
+Q|Metrorail Gauteng|Germiston -> Vereeniging|#90268F|L55|528 98:5104 74:1172 255:1576 246:1772 185:4455 181:1673 44:3744 141:9371 232:5118 73:2676 119:4698 175:4776 147:3858 215:5178 40:4073 565:2065
+Q|Metrorail Gauteng|Germiston–>New Canada|white|L55|528 127:1534 217:1132 121:871 133:2680 137:4994 59:3379 71:2803 186:7375
+Q|Metrorail Gauteng|Hercules -> Pienaarspoort|#ED038C|L55|120 65:2313 109:1691 77:1033 250:1335 200:1082 210:1290 145:2724 231:1733 93:1272 253:1704 79:1628 92:2397
+Q|Metrorail Gauteng|Johannesburg -> Daveyton|black|L55|534 83:1146 96:533 132:897 105:1701 80:1698 243:1395 68:1031 103:1408 84:1966 204:895 528:1207 78:3484 42:1390 89:2254 57:1150 58:1856 88:2771 49:1480 191:3912 248:2753 39:7765 76:2408
+Q|Metrorail Gauteng|Johannesburg -> Leralla|#0072BC|L55|534 83:1146 96:533 132:897 105:1744 80:1644 243:1441 68:996 103:1418 84:1972 204:895 528:1207 144:3463 212:1851 94:1725 131:3867 219:1099 139:2074 247:2368 56:2660 134:4177 242:3989 159:2543 158:2838
+Q|Metrorail Gauteng|Johannesburg -> Oberholzer|#F9CC3E|L55|534 63:1929 171:1372 116:897 153:1455 70:2221 162:994 186:2973 179:2051 194:1767 184:1753 142:3021 244:2658 177:2033 254:3640 111:4460 239:2326 260:9646 112:7213 50:6977 167:7606 551:5003
+Q|Metrorail Gauteng|Johannesburg -> Pretoria|#0072BC|L55|534 83:1146 96:533 132:897 105:1744 80:1644 243:1441 68:996 103:1418 84:1972 204:895 528:1207 144:3463 212:1851 94:1725 131:3867 219:1099 139:2074 247:2368 56:2660 134:4177 192:3418 193:4914 202:5798 130:4349 67:4768 235:1258 143:1337 101:3443 205:2901
+Q|Metrorail Gauteng|Johannesburg -> Randfontein|#00A54F|L55|534 63:1929 171:1372 116:897 153:1455 128:1173 258:1781 187:621 62:1233 170:1177 245:1408 100:1370 117:2352 106:1359 223:1278 123:1556 209:1884 263:2311 163:2165 154:1909 261:1333 541:1081 257:2242 178:2069 222:4235 66:2796 122:4115 211:1782
+Q|Metrorail Gauteng|Johannesburg -> Springs|#00A54F|L55|534 83:1212 96:595 132:624 105:1999 80:1664 243:1432 68:1012 104:1446 84:1900 204:946 528:1168 78:3345 42:1390 89:2254 57:1240 58:1865 88:2715 53:2817 189:1496 46:2212 45:2889 64:1293 227:2505 188:3357 203:2407 236:2039
+Q|Metrorail Gauteng|Koedoespoort->Eerste Fabrieke|#ED038C|L55|231 93:1272 253:1609 79:1592 92:2528
+Q|Metrorail Gauteng|Kwesine -> Germiston|#EE1D23|L55|152 201:2678 160:1815 138:2395 251:6028 97:2321 196:1466 256:1077 107:1445 108:744 204:865 528:1226
+Q|Metrorail Gauteng|Kwesine -> Germiston|#EE1D23|L55|152 201:2678 160:1815 138:2395 251:6028 97:2321 150:3000 528:2385
+Q|Metrorail Gauteng|Leralla -> Johannesburg|#0072BC|L55|158 159:2838 242:2543 134:3989 56:4178 247:2660 139:2369 219:2074 131:1099 94:3867 212:1725 144:1851 528:3463 204:1207 84:895 103:1966 68:1408 243:1031 80:1395 105:1698 132:1996 96:607 83:540 534:1134
+Q|Metrorail Gauteng|Mabopane -> Belle Ombre|#F58220|L55|165 233:2776 148:7637 38:4962 262:3597 264:3932 206:2603 265:938 180:3335 75:1653 120:1096 52:2866
+Q|Metrorail Gauteng|Mabopane -> Pretoria|#F58220|L55|165 233:2776 148:7637 38:4962 262:3597 264:3932 206:2603 265:938 180:3335 75:1653 120:1096 241:962 110:1081 228:1082 207:1295 51:1201
+Q|Metrorail Gauteng|Metrorail|#00BAF1|L55|205 61:550 51:569 207:1201 213:1473 95:865 69:1664 136:5141 47:1428 226:1398
+Q|Metrorail Gauteng|Metrorail|#00BAF1|L55|225 48:1387 135:1413 69:5132 95:1660 214:908 208:1457 51:1170 60:612 6:620
+Q|Metrorail Gauteng|Naledi -> Faraday|#00652E|L55|183 174:2799 129:2176 126:2642 85:2199 197:1483 198:1090 182:1403 186:2299 71:7267 59:2766 249:984 99:805
+Q|Metrorail Gauteng|Naledi -> George Gloch|#00652E|L55|183 174:2799 129:2176 126:2642 85:2199 197:1483 198:1090 182:1403 186:2299 162:2776 70:994 153:2221 116:1455 171:897 63:1372 534:1889 83:1134 96:540 132:607 105:2161
+Q|Metrorail Gauteng|Naledi -> George Goch|#00652E|L55|183 174:2799 129:2176 126:2642 85:2199 197:1483 198:1090 182:1403 186:2299 71:7267 59:2766 137:3354 54:1796 105:1324
+Q|Metrorail Gauteng|Naledi -> Westgate|#00652E|L55|183 174:2799 129:2176 126:2642 85:2199 197:1483 198:1090 182:1403 186:2130 71:7638 259:2389
+Q|Metrorail Gauteng|New Canada–>Germiston|white|L55|186 71:7376 59:2803 137:3378 133:4994 121:2680 217:871 127:1132 528:1534
+Q|Metrorail Gauteng|Nigel -> Springs Route|#6E2527|L55|190 230:4033 87:4858 221:3274 238:1455 72:3141 229:2385 236:4364
+Q|Metrorail Gauteng|Oberholzer -> Johannesburg|#F9CC3E|L55|551 167:5003 50:7605 112:6977 260:7213 239:9646 111:2326 254:4460 177:3640 244:2033 142:2658 184:3021 194:1753 179:1767 186:2051 162:2973 70:994 153:2221 116:1455 171:897 63:1372 534:1929
+Q|Metrorail Gauteng|Pienaarspoort -> Hercules|#ED038C|L55|92 79:2397 253:1628 93:1704 231:1272 145:1733 210:2724 200:1290 250:1082 77:1335 109:1033 65:1691 120:2313
+Q|Metrorail Gauteng|Pienaarspoort -> Pretoria|#6E2527|L55|195 199:1560 115:2352 169:2206 91:2655 79:2343 253:1614 93:1784 231:1301 146:1816 118:4475 220:1056 161:849 252:1519 81:772 172:845
+Q|Metrorail Gauteng|Pretoria -> De Wildt|#F58220|L55|61 51:573 207:1201 228:1295 110:1082 241:1081 120:962 75:1096 180:1653 265:3334 206:977 264:2560 262:4031 224:3445 164:1374 124:2735 173:3747 102:2737 240:2003 82:2847
+Q|Metrorail Gauteng|Pretoria -> Johannesburg|#0072BC|L55|101 143:3443 235:1337 67:1258 130:4768 202:4349 193:5799 192:4914 134:3418 56:4178 247:2660 139:2369 219:2074 131:1099 94:3867 212:1725 144:1851 528:3463 204:1207 84:895 103:1966 68:1408 243:1031 80:1395 105:1698 132:1996 96:607 83:540 534:1134
+Q|Metrorail Gauteng|Pretoria -> Mabopane|#F58220|L55|51 207:1201 228:1295 110:1082 241:1081 120:962 75:1096 180:1653 265:3334 206:938 264:2603 262:3932 38:3677 149:5110 234:7629 166:2797
+Q|Metrorail Gauteng|Pretoria -> Pienaarspoort|#6E2527|L55|172 81:874 252:775 161:1497 220:912 118:954 145:4679 231:1733 93:1272 253:1704 79:1628 92:2397 168:2585 114:2200 199:2176 195:1555
+Q|Metrorail Gauteng|Randfontein -> Johannesburg|#00A54F|L55|211 122:1782 66:4114 222:2797 178:4235 257:2069 541:2242 261:1081 154:1333 163:1910 263:2165 209:2311 123:1884 223:1556 106:1278 117:1359 100:2352 245:1370 170:1408 62:1177 187:1233 258:621 128:1781 153:1173 116:1455 171:897 63:1372 534:1929
+Q|Metrorail Gauteng|Soweto Business Express||X110|534 85:17920 126:2199 174:4819 183:2799
+Q|Metrorail Gauteng|Soweto Business Express||X110|183 174:2799 126:4818 85:2199 534:17916
+Q|Metrorail Gauteng|Springs -> Johannesburg|#00A54F|L55|236 203:2057 188:2405 227:3356 64:2511 45:1281 46:2901 189:2197 53:1559 88:2844 58:2721 57:1856 89:1177 42:2244 78:1471 528:3381 204:1207 84:895 103:1972 68:1418 243:996 80:1441 105:1644 132:2036 96:605 83:533 534:1146
+Q|Metrorail Gauteng|Springs -> Nigel Route|#6E2527|L55|236 229:4365 72:2385 238:3142 221:1455 87:3274 230:4858 190:4034
+Q|Metrorail Gauteng|Tshwane JHB Business Express||X110|205 67:8939 139:32459 534:27967
+Q|Metrorail Gauteng|Tshwane JHB Business Express||X110|534 139:27956 67:32450 205:8938
+Q|Metrorail Gauteng|Vereeniging -> George Goch|#00652E|L55|565 86:1466 156:2494 140:5123 125:3176 151:4342 90:1768 218:2552 237:7744 113:5074 176:1480 43:5488 155:1853 157:4050 177:4717 244:2033 142:2658 184:3021 194:1753 179:1767 186:2274 71:7454 59:2859 137:3273 55:1975 105:1231
+Q|Metrorail Gauteng|Vereeniging -> George Goch|#00652E|L55|565 156:3967 140:5123 86:7618 125:10792 151:4342 90:1768 218:2552 237:7744 113:5074 176:1480 43:5488 155:1853 157:4050 177:4717 244:2033 142:2658 184:3021 194:1753 179:1767 186:2051 162:2973 70:994 153:2221 116:1455 171:897 63:1372 534:1889 83:1134 96:540 132:607 105:2161
+Q|Metrorail Gauteng|Vereeniging -> Germiston|#90268F|L55|565 41:2301 216:4036 147:5091 175:3906 119:4613 73:4698 232:2676 141:5118 44:9370 181:3744 185:1673 246:4455 255:1772 74:1576 98:1172 528:5071
+Q|Metrorail Gauteng|Westgate -> Naledi|#00652E|L55|259 71:2389 186:7638 182:2130 198:1403 197:1090 85:1483 126:2199 129:2642 174:2176 183:2799
+Q|Metrorail KwaZulu-Natal|Crossmoor Line|#F9CC3E|L55|525 269:1701 281:1653 280:1415 346:1814 333:950 276:1646 314:4286 504:3165 500:2549 508:1785 501:1804 502:2525
+Q|Metrorail KwaZulu-Natal|Crossmoor Line|#F9CC3E|L55|502 501:2505 508:1798 504:4351 314:2969 315:3582 276:1552 333:1684 346:1061 280:1858 281:1323 269:1544 525:1700
+Q|Metrorail KwaZulu-Natal|New Main Line|#00BAF1|L55|525 269:1900 281:1429 280:1419 346:1816 333:946 319:5719 274:2434 271:1986 338:3578 304:3670 312:3588 342:2169 339:1971 282:1624 308:1796 283:4415 321:3626 278:5564 295:2779 309:4118 290:2071 273:7328
+Q|Metrorail KwaZulu-Natal|New Main Line|#00BAF1|L55|273 290:7425 309:2147 295:4086 278:2725 321:5639 283:3519 308:4545 282:1780 339:1693 342:1870 313:3255 304:3550 338:3641 271:2338 274:2025 319:2287 333:5677 346:1067 280:1833 281:1321 269:1412 525:1810
+Q|Metrorail KwaZulu-Natal|North Coast Line|#90268F|L55|525 317:2119 349:1184 270:3280 293:1093 330:1216 267:2553 285:3219 327:2749 318:2929 323:3852 353:3364 272:2470 322:3766 288:2173 345:3267 344:1914 289:5216 279:3566 350:5358 337:2888 343:2640 294:4635 275:2218 291:3096 305:3917
+Q|Metrorail KwaZulu-Natal|North Coast Line|#90268F|L55|305 291:3918 275:3096 294:2218 343:4635 337:2640 350:2888 279:5358 289:3567 344:5217 345:1914 288:3267 322:2174 272:3766 353:2470 323:3364 318:3852 327:2930 285:2749 267:3219 330:2553 293:1216 270:1093 349:3395 525:3175
+Q|Metrorail KwaZulu-Natal|Old Main Line|#6E2527|L55|525 269:1900 281:1429 280:1419 346:1816 333:946 336:2748 268:1486 296:1604 329:1507 311:1192 287:2188 320:2288 316:1587 292:891 334:1446 328:2517
+Q|Metrorail KwaZulu-Natal|Old Main Line|#6E2527|L55|328 334:2517 292:1446 316:891 320:1634 287:2232 311:2188 329:1192 296:1507 268:1619 336:1517 333:2670 346:1067 280:1833 281:1321 269:1412 525:1843
+Q|Metrorail KwaZulu-Natal|South Coast Line|#0072BC|L55|525 281:3329 280:1419 346:1816 333:946 276:1721 315:1615 314:2497 332:2687 326:1333 299:1248 347:5108 324:2694 266:1906 284:1898 354:1538 355:2006 298:2248 300:1136 348:2446 297:5237 351:1820 277:4650 331:4287 335:1467 325:3935 301:5985
+Q|Metrorail KwaZulu-Natal|South Coast Line|#0072BC|L55|301 325:5984 335:3935 331:1467 277:4287 351:4650 297:1820 348:5236 300:2446 298:1136 355:2248 354:2006 284:1537 266:1898 324:1906 347:2685 299:5115 326:1248 332:1386 314:2808 315:2441 276:1558 333:1695 346:1067 280:1833 281:1321 269:1412 525:1843
+Q|Metrorail KwaZulu-Natal|Umlazi Line||L55|352 310:2740 307:3187 356:2016 332:3003 314:2770 315:2441 506:1845 507:1280 303:2283 503:1890 505:978 509:2234
+Q|Metrorail KwaZulu-Natal|Umlazi Line||L55|509 505:2276 503:1001 507:4222 506:1211 315:1930 314:2497 332:2719 356:2992 307:2046 310:2872 352:2735
+Q|Metrorail KwaZulu-Natal|West Line|#A6CE39|L55|509 505:2276 503:1001 507:4222 506:1211 276:1982 333:1695 346:1067 280:1833 281:1321 269:1412 525:1843
+Q|Metrorail KwaZulu-Natal|West Line|#A6CE39|L55|525 269:1849 281:1429 280:1419 346:1816 333:946 276:1721 506:1940 507:1280 303:2283 503:1890 505:978 509:2234
+Q|Metrorail KwaZulu-Natal|kwaMashu Line|#EE1D23|L55|306 340:2317 285:1255 286:5040 302:2301 341:1793 349:2706 317:1186 525:1988 269:1845 281:1503 280:1415 346:1814 333:950 276:1646 315:1661 314:2513 332:2717 356:2992 307:1999 310:2995 352:2695
+Q|Metrorail KwaZulu-Natal|kwaMashu Line|#EE1D23|L55|352 310:2695 307:2995 356:1999 332:3114 314:2722 315:2510 276:1552 333:1684 280:2918 269:2858 525:1700 317:2085 349:1184 341:2622 302:1782 286:2273 285:5039 340:1255 306:2317
+Q|Metrorail Western Cape|Business Express|#cf2272|X110|531 457:4196 512:38508 444:10682 519:8334
+Q|Metrorail Western Cape|Business Express|#cf2272|X110|519 444:8334 512:10680 457:38461 531:4195
+Q|Metrorail Western Cape|Business Express||X110|519 444:8334 417:16538 383:8885 391:8847 472:5524 481:5325
+Q|Metrorail Western Cape|Business Express||X110|481 472:5324 391:5522 383:8844 417:8883 444:16536 519:8334
+Q|Metrorail Western Cape|Cape Flats Line|#8c493a|L55|519 496:2085 468:1835 414:1082 429:932 445:1112 462:1165 399:1938 361:1126 376:1451 423:1294 491:1601 455:1412 473:2540 401:2196 464:1599
+Q|Metrorail Western Cape|Cape Flats Line|#8c493a|L55|464 401:1566 473:2386 456:2562 491:1397 424:1605 377:1297 362:1467 400:1103 462:1978 445:1179 428:1485 414:676 468:1305 497:1827 519:1870
+Q|Metrorail Western Cape|Cape Town -> Malmesbury|#99d420|L55|519 388:2052 499:2819 410:2242 371:1631 359:2032 439:1917 379:2899 363:1423 453:1331 512:2115 478:2745 369:3861 385:3414 416:1621 392:7079 434:2932 436:4357 413:2693 492:8342 405:7074 357:9725 431:4918
+Q|Metrorail Western Cape|Cape Town -> Worcester|#99d420|L55|519 388:2042 499:2836 409:2000 371:2032 358:1643 438:1905 380:2893 364:1425 454:1334 512:2036 477:2869 369:4042 384:3237 416:1629 442:10244 412:5883 457:10705 531:4195 378:2718 433:3448 568:4438 430:6883 471:8334 404:8429 490:9445 396:9308 484:7275 360:8809 494:5929 465:7183 370:5637 368:6434 397:7424 372:5949 569:6494
+Q|Metrorail Western Cape|Central Line|#33bef3|L55|519 496:2085 468:1835 414:1082 429:932 445:1073 462:1176 422:3784 367:2035 446:2070 402:2003 451:2548 461:4104 426:3634 437:1872 407:1943
+Q|Metrorail Western Cape|Central Line|#33bef3|L55|519 496:2085 468:1835 414:1082 429:932 445:1073 462:1176 422:3784 367:2035 446:2070 402:2003 451:2548 460:3828 480:2039 432:1860 448:2361 449:1966 411:2435 419:2648 374:1331
+Q|Metrorail Western Cape|Central Line||L55|519 387:1808 499:3075 443:3617 422:2675 367:2038 425:3141 365:2397 486:1805 459:1650 469:1937 512:6109
+Q|Metrorail Western Cape|Central Line||L55|519 388:2042 499:2838 444:3879 421:2694 367:1781 446:2088 403:1793 451:2700 461:3984 480:1783 432:1860 448:2361 449:1966 411:2435 419:2648 374:1331
+Q|Metrorail Western Cape|Central Line||L55|519 388:2042 499:2838 444:3879 421:2694 367:1783 446:2075 402:2003 451:2548 461:4104 426:3634 437:1872 407:1943
+Q|Metrorail Western Cape|Central Line|#33bef3|L55|407 437:1943 426:1872 461:3633 451:4104 402:2548 446:2003 367:2070 422:2035 462:3784 445:1176 429:1073 414:932 468:1082 496:1835 519:2084
+Q|Metrorail Western Cape|Central Line||L55|407 437:1943 426:1872 461:3633 451:4104 402:2548 446:2003 367:2075 421:1783 444:2694 499:3879 388:2838 519:2042
+Q|Metrorail Western Cape|Central Line||L55|512 469:6096 459:1937 486:1650 365:1805 425:2398 367:3141 422:2034 462:3784 445:1176 429:1073 414:932 468:1082 496:1835 519:2084
+Q|Metrorail Western Cape|Central Line||L55|373 418:1271 411:2628 450:2462 448:1945 432:2165 480:1724 460:2211 451:3838 403:2700 446:1793 367:2088 422:2038 443:2675 499:3617 387:3076 519:1808
+Q|Metrorail Western Cape|Central Line|#33bef3|L55|373 418:1271 411:2628 450:2462 448:1945 432:2165 480:1724 460:2211 451:3827 402:2548 446:2003 367:2070 422:2035 462:3784 445:1176 429:1073 414:932 468:1305 496:1612 519:2084
+Q|Metrorail Western Cape|Malmesbury -> Cape Town|#99d420|L55|431 357:4919 405:9726 492:7075 413:8342 436:2693 434:4357 392:2932 416:7273 384:1632 369:3423 477:3857 512:2869 454:2036 364:1334 380:1425 438:2893 358:1905 371:1643 409:2032 499:2000 388:2836 519:2042
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|568 433:4438 378:3448 531:2718 457:4196 412:10708 442:5726 416:10203 385:1625 369:3414 478:3862 512:2925 485:2410 458:1442 386:1623 488:948 395:1119 483:1509 444:1497 495:742 429:1818 414:925 468:1082 496:1835 519:2084
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|512 454:2036 364:1334 380:1425 438:2893 358:1905 371:1643 409:2032 499:2000 387:3061 519:1814
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|519 496:2085 468:1835 414:1082 429:925 495:1751 444:656 483:1768 395:1461 488:1050 386:979 458:1587 485:1447 512:2417 417:5831 366:4037 435:3303 383:1544 427:5363 489:3419 475:5279 382:1724 415:6473 442:4993
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|519 496:2085 468:1835 414:1082 429:925 495:1818 444:742 483:1497 395:1509 488:1119 386:948 458:1623 485:1442 512:2410 478:2925 369:3861 385:3414 416:1625 442:10201 412:5725 457:10705 531:4195 378:2718 433:3448 568:4438
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|519 496:2085 468:1835 414:1082 429:925 495:1751 444:656 483:1768 395:1461 488:1050 386:979 458:1587 485:1447 512:2417 417:5831 366:4037 435:3303 383:1544 390:3383 391:5463 472:5524 487:1675 481:3637
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|519 387:1814 499:3061 409:2000 371:2032 358:1643 438:1905 380:2893 364:1425 454:1334 512:2036
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|442 415:4994 382:6474 475:1724 489:5280 427:3419 383:5363 435:1544 366:3303 417:4037 512:5830 485:2417 458:1447 386:1587 488:979 395:1050 483:1461 444:1768 495:656 429:1751 414:925 468:1082 496:1835 519:2084
+Q|Metrorail Western Cape|Northern Line|#00a650|L55|481 487:3636 472:1675 391:5522 390:5462 383:3382 435:1544 366:3303 417:4037 512:5830 485:2417 458:1447 386:1587 488:979 395:1050 483:1461 444:1768 495:656 429:1751 414:925 468:1082 496:1835 519:2084
+Q|Metrorail Western Cape|Southern Line|#ed1c24|L55|519 496:2120 468:1546 452:1620 440:886 467:891 466:825 447:1474 375:754 398:927 408:762 498:1070 493:1015 463:895 476:786 381:739 401:1180 464:1599 474:1896 420:1322 389:1665 441:765 479:1487 406:1069 393:2386 482:1009 394:2523 470:2676
+Q|Metrorail Western Cape|Southern Line|#ed1c24|L55|470 394:2676 482:2522 393:1175 406:2366 479:1070 441:1456 389:791 420:1690 474:1295 464:1786 401:1566 381:1180 476:753 463:774 493:892 498:1016 408:1068 398:855 375:834 447:755 466:1473 467:825 440:889 452:1027 468:1377 497:1885 519:1882
+Q|Metrorail Western Cape|Worcester -> Cape Town|#99d420|L55|569 372:6493 397:5948 368:7422 370:6433 465:5637 494:7183 360:5928 484:8807 396:7274 490:9308 404:9447 471:8430 430:8335 568:6884 433:4438 378:3448 531:2718 457:4196 412:10708 442:5884 416:10245 384:1629 369:3238 477:4042 512:2869 454:2036 364:1334 380:1425 438:2893 358:1905 371:1643 409:2032 499:2000 388:2836 519:2042
+Q|PRASA|Chatsworth–Bluff||L55|502 501:2525 508:1804 500:1785 504:2550 314:3144 315:2635 506:1827 507:1211 503:4222 505:1001 509:2276
+Q|Shosholoza Meyl|Cape Town - Queenstown||L55|519 549:906347 522:57786 513:136978 518:74042 547:52882 560:33668 537:57539
+Q|Shosholoza Meyl|Johannesburg–Durban||L55|534 528:14536 559:157829 548:146833 564:121719 553:189789 525:73909
+Q|Shosholoza Meyl|Johannesburg–East London||L55|534 528:15052 565:73039 557:22581 539:52090 540:60272 530:42345 566:21726 562:35514 517:42038 515:54863 526:75704 558:64195 513:42568 518:74042 547:52882 560:33668 537:57539 533:24796 520:40042 561:55746 514:45841 550:6120 542:41560
+Q|Shosholoza Meyl|Johannesburg–Gqeberha||L55|534 528:15052 565:73039 557:22581 539:52090 540:60272 530:42345 566:21726 562:35514 517:42038 515:54863 526:75704 558:64195 522:89960 549:56711 556:44277 523:174108 510:82976 529:117733
+Q|Shosholoza Meyl|Johannesburg–Komatipoort||L55|538 527:245849 534:292812
+Q|Shosholoza Meyl|Shosholoza Meyl_Johannesburg–Cape Town||L55|541 551:50478 554:56824 536:46497 516:143944 521:53287 567:39093 535:70793 552:123045 524:121160 546:77658 532:52305 511:138952 544:77876 555:39543 543:84753 545:27279 563:57317 569:73682 568:43348 531:10604 512:42840 519:20136
+T|-33.15779|25.92773|Aalwynpoort
+T|-33.49277|18.68170|Abbotsdale
+T|-32.75027|24.30876|Aberdeen Road
+T|-28.21614|28.82455|Aberfeldy
+T|-32.29870|22.66251|Acacia
+T|-33.89469|18.52878|Acacia Park
+T|-24.59548|31.06471|Acornhoek
+T|-33.55580|25.68999|Addo
+T|-32.70321|26.29380|Adelaide
+T|-26.84167|26.56332|Afrikaner
+T|-28.20880|28.69565|Afrikaskop
+T|-30.67371|25.32165|Agtertang
+T|-29.06225|30.76035|Ahrens
+T|-25.61889|30.50558|Airlie
+T|-25.62385|28.10730|Akasiaboom
+T|-29.43552|30.42593|Albert Falls
+T|-34.20985|21.58247|Albertinia
+T|-26.21483|30.03059|Albion
+T|-27.91338|29.99670|Alcockspruit
+T|-33.64542|26.40060|Alexandria
+T|-29.86114|29.70477|Alfriston
+T|-32.79134|26.83408|Alice
+T|-33.31406|26.07479|Alicedale
+T|-25.44169|30.82594|Alkmaar
+T|-27.74759|26.65752|Allanridge
+T|-28.79267|26.41293|Alleman
+T|-26.17246|28.41690|Alliance
+T|-26.65657|27.94372|Alloy
+T|-30.15455|30.05630|Allwoodburn
+T|-33.81786|25.62865|Aloes
+T|-31.10968|24.95122|Altever
+T|-29.75974|30.72159|Alverstone
+T|-32.66299|27.52665|Amabele
+T|-27.25308|25.04799|Amalia
+T|-30.05684|30.88196|Amanzimtoti
+T|-29.05170|31.53184|Amatikulu
+T|-25.96711|30.14598|Ambleside
+T|-27.54508|27.34620|Amerika
+T|-27.68393|26.54200|Ancona
+T|-26.20458|28.21238|Angelo
+T|-29.11580|30.55775|Angikatali
+T|-26.37132|27.83551|Anglers
+T|-26.35029|28.12641|Angus
+T|-28.18266|28.38543|Annandale
+T|-33.06402|21.49887|Antjieskraal
+T|-33.34862|23.32029|Antonie
+T|-26.22996|28.35560|Anzac
+T|-26.21607|28.33402|Apex
+T|-24.64963|30.35750|Apiesdoring
+T|-33.50616|25.63918|Aranmor
+T|-26.04046|28.88322|Arbor
+T|-24.93448|28.63840|Ardeer
+T|-28.28265|23.76556|Ariesfontein
+T|-28.03046|27.85415|Arlington
+T|-32.96587|27.79964|Arnoldton
+T|-25.77774|29.77466|Arnot
+T|-25.17543|27.25917|Arthur's View
+T|-33.36889|19.16500|Artois
+T|-30.94731|25.01596|Arundel
+T|-25.31956|30.23669|Asbes
+T|-27.22639|29.07028|Ascent
+T|-29.67914|30.44727|Ashburton
+T|-33.83614|20.06495|Ashton
+T|-33.94509|24.32361|Assegaaibos
+T|-33.31456|26.37190|Atherstone
+T|-33.96272|18.50173|Athlone
+T|-25.24976|27.61429|Atlanta
+T|-33.59773|18.45547|Atlantis
+T|-25.76298|28.07486|Atteridgeville
+T|-26.20233|28.29707|Avenue
+T|-29.75905|31.01925|Avoca
+T|-33.89777|18.59308|Avondale
+T|-33.72757|23.16909|Avontuur
+T|-26.50681|29.36989|Baanbreker
+T|-29.75472|30.35581|Bafac
+T|-30.40759|29.42812|Bailden
+T|-31.79382|26.72514|Bailey
+T|-29.07089|23.91848|Bakenskop
+T|-26.65316|28.58811|Balfour North
+T|-29.39560|30.05515|Balgowan
+T|-27.88499|29.97762|Ballengeich
+T|-25.86086|28.97524|Balmoral
+T|-31.29355|26.23796|Bamboes
+T|-31.79179|18.23826|Bamboesbaai
+T|-26.93774|25.96709|Bamboesspruit
+T|-23.31943|29.80007|Bandelierkop
+T|-31.42383|25.06180|Bangor
+T|-26.31127|27.51277|Bank
+T|-33.24489|20.52764|Bantams
+T|-22.84266|29.67332|Baobab
+T|-33.47369|23.02906|Barandas
+T|-26.62150|25.57220|Barberspan
+T|-25.78773|31.04664|Barberton
+T|-25.76642|31.03200|Barberton Noord
+T|-33.62434|25.69778|Barkly Bridge
+T|-28.53560|24.52883|Barkly West
+T|-31.44583|23.23750|Barnard
+T|-32.00247|25.51101|Baroda
+T|-33.22457|24.56739|Baroe
+T|-25.75565|28.17928|Barracks
+T|-31.23125|24.94607|Barredeel
+T|-34.15883|21.99528|Bartlesfontein
+T|-31.91170|28.44479|Bashee
+T|-23.55091|30.05907|Baskloof
+T|-33.50436|26.84341|Bathurst
+T|-26.11637|27.68587|Battery
+T|-33.20340|20.74138|Baviaan
+T|-27.79785|32.14588|Bayala
+T|-29.76355|30.34898|Baynesfield
+T|-29.91559|30.91876|Bayview
+T|-29.06591|29.87928|Beacon Hill
+T|-28.76198|24.78390|Beaconsfield
+T|-32.35184|22.57692|Beaufort West
+T|-32.68489|26.08347|Bedford
+T|-28.73383|31.56845|Bedlane
+T|-27.21376|29.73310|Beechwick
+T|-25.37441|27.59619|Beestekraal
+T|-26.53596|25.93185|Beesteput
+T|-22.23563|29.98689|Beit Bridge
+T|-24.88551|28.30000|Bela Bela
+T|-33.93952|18.60904|Belhar
+T|-29.88951|30.95393|Bellair
+T|-25.73737|28.17874|Belle Ombre
+T|-33.90643|18.62706|Bellville
+T|-29.41579|24.36823|Belmont
+T|-34.04639|22.99168|Belvedere
+T|-26.19798|28.31060|Benoni
+T|-26.21622|28.08660|Benrose
+T|-29.85711|31.01240|Berea Road
+T|-25.73264|30.10854|Bergendal
+T|-32.92680|18.32774|Bergrivier
+T|-28.72674|29.34783|Bergville
+T|-31.89657|26.85054|Berry Park
+T|-27.10249|25.35718|Berseba
+T|-30.36470|25.66045|Besembos
+T|-27.93129|26.32576|Besempan
+T|-28.43871|29.64468|Besters
+T|-26.43499|29.48356|Bethal
+T|-28.22415|28.30217|Bethlehem
+T|-30.49096|25.99858|Bethulie
+T|-28.25723|27.68562|Biddulph
+T|-24.89109|27.14659|Bierspruit
+T|-31.71447|23.18323|Biesiespoort
+T|-33.99755|24.62794|Billson
+T|-24.92462|28.66506|Bingley
+T|-26.06743|28.23445|Birchleigh
+T|-31.49406|26.84533|Birds River
+T|-31.03877|18.26540|Bitterfontein
+T|-31.80876|28.53501|Bityi
+T|-33.96433|18.70155|Blackheath
+T|-25.95058|29.14582|Blackhill
+T|-32.86614|27.52277|Blaney
+T|-32.58662|27.76485|Bleakmoor
+T|-34.00903|22.75410|Bleshoender
+T|-25.67740|27.36521|Bleskop
+T|-30.70931|24.08025|Bletterman
+T|-33.08347|18.98070|Blikhuis
+T|-28.25408|23.23020|Blinkklip
+T|-27.90162|30.57647|Bloedrivier
+T|-29.11857|26.22643|Bloemfontein
+T|-27.64289|25.60044|Bloemhof
+T|-29.14117|26.29453|Bloemspruit
+T|-33.74174|22.29249|Blossoms
+T|-28.16806|31.07871|Bloubank
+T|-31.83644|24.79973|Blouwater
+T|-33.49778|25.46923|Bluecliff
+T|-28.08782|27.79879|Bobbert
+T|-31.01391|20.34413|Bodam
+T|-26.33031|26.46637|Bodenstein
+T|-33.88013|24.90906|Bodker
+T|-24.64077|28.65357|Boekenhout
+T|-30.03189|27.11610|Boesmanskop
+T|-33.43661|26.04934|Boesmanspoort
+T|-33.98608|25.55399|Bog Farm
+T|-28.20302|23.02103|Bokkoppie
+T|-26.21906|28.24142|Boksburg
+T|-26.21827|28.25980|Boksburg East
+T|-28.99912|21.72120|Boksputs
+T|-27.88990|28.40225|Bolivia
+T|-31.74203|26.66747|Bombani
+T|-30.75977|30.33460|Bomela
+T|-25.62643|28.20322|Bon Accord
+T|-26.81007|26.50771|Bonanza
+T|-33.93765|20.11340|Bonnievale
+T|-34.06595|20.61021|Bontbokskloof
+T|-33.94198|18.55000|Bonteheuwel
+T|-30.77154|30.06486|Booker
+T|-27.72763|30.97914|Boomlaer
+T|-25.96973|27.23393|Boons
+T|-26.22518|28.04025|Booysens
+T|-28.39510|24.33310|Borrelskop
+T|-27.54905|29.89547|Boscobello
+T|-26.56438|27.12881|Boskop
+T|-27.41027|25.87634|Boskuil
+T|-25.75686|28.18508|Bosmanstraat
+T|-26.18342|27.95118|Bosmont
+T|-25.23186|30.37073|Bosoord
+T|-25.31337|28.28260|Bosplaas
+T|-27.75292|27.17787|Bosrand
+T|-26.55833|25.68893|Bossies
+T|-28.90701|24.98749|Bosvark
+T|-33.02115|21.61902|Botesland
+T|-33.56662|19.25608|Botha
+T|-29.75453|30.74438|Botha's Hill
+T|-27.38293|26.62083|Bothaville
+T|-34.22663|19.20587|Botrivier
+T|-29.60506|30.32478|Boughton
+T|-25.54411|31.30674|Boulders
+T|-33.68106|25.85517|Bowens
+T|-31.87758|26.76530|Bowker's Park
+T|-26.19786|28.02325|Braamfontein
+T|-33.88084|18.68864|Brackenfell
+T|-30.31556|30.54816|Braemar
+T|-26.24044|28.36104|Brakpan
+T|-31.34477|23.35364|Brakpoort
+T|-24.22273|31.00705|Brakspruitbrug
+T|-28.38538|29.45375|Brakwal
+T|-30.63381|23.90090|Brand
+T|-23.62668|30.12974|Brandboontjies
+T|-28.69863|26.47200|Brandfort
+T|-27.94019|27.90104|Brandhoek
+T|-28.50619|28.13089|Brandlaagte
+T|-34.52507|20.05540|Bredasdorp
+T|-26.30560|29.98831|Breyten (BTN)
+T|-33.52448|19.20842|Breëriver
+T|-29.79683|31.01405|Briardene
+T|-29.72723|30.98695|Bridge City Station
+T|-25.64311|27.77715|Brits
+T|-30.58255|23.50316|Britstown
+T|-30.70776|23.98677|Britsville
+T|-27.74012|25.35291|Britten
+T|-29.02720|23.88744|Broadwaters
+T|-25.79467|28.74656|Bronkhorstspruit
+T|-29.61924|30.32067|Broomfield
+T|-33.77454|23.61184|Bruinklip
+T|-29.44730|30.65213|Bruyns Hill
+T|-26.35176|27.02717|Buckingham
+T|-34.04466|20.53948|Buffeljagsrivier
+T|-25.82865|25.79437|Buhrmannsdrif
+T|-26.47736|30.03194|Buhrmanskop
+T|-28.28792|26.14146|Bultfontein
+T|-29.87710|29.77767|Bulwer
+T|-25.64348|27.23034|Burgerreg
+T|-32.88737|18.83138|Burgers
+T|-31.00040|26.32343|Burgersdorp
+T|-24.67666|30.33138|Burgersfort
+T|-26.45867|30.17261|Burgerspan
+T|-30.82364|24.29150|Burgervilleweg
+T|-29.89003|30.89925|Burlington
+T|-28.11517|32.29222|Bushlands
+T|-32.33503|28.14327|Butterworth
+T|-29.80449|29.94548|Butu
+T|-24.85445|28.33768|Buyskop
+T|-29.27626|27.42044|Cabriere
+T|-26.68779|27.09063|Cachet
+T|-31.40018|27.68575|Cala Road
+T|-34.23853|19.42957|Caledon
+T|-25.71108|31.06068|Caledonian
+T|-33.53921|21.68510|Calitzdorp
+T|-31.46287|19.78192|Calvinia Station
+T|-32.97310|27.88661|Cambridge
+T|-26.62884|30.08375|Camden
+T|-33.83347|22.43500|Camfer
+T|-32.09157|27.07819|Camp
+T|-29.61937|30.35932|Camp
+T|-29.61482|30.35680|Camp
+T|-29.72648|30.54041|Camperdown
+T|-27.47201|31.94602|Candover
+T|-29.62587|31.05834|Canelands
+T|-30.73872|26.49194|Canfield
+T|-34.35066|18.48468|Cape Point Funicular (Lower)
+T|-34.35336|18.48926|Cape Point Funicular (Upper)
+T|-33.92242|18.42635|Cape Town
+T|-25.72206|28.18935|Capital Park
+T|-29.95780|25.44669|Carbon
+T|-30.21812|30.02598|Carisbrook
+T|-26.23621|30.01165|Carlchew
+T|-31.30273|24.95095|Carlton
+T|-30.97345|22.13844|Carnarvon
+T|-26.07103|30.12493|Carolina
+T|-31.12037|24.88149|Carolus
+T|-31.48613|26.45676|Carrickmore
+T|-29.96065|29.91161|Carthill
+T|-25.76324|29.71447|Casshome
+T|-29.65432|26.88489|Castor
+T|-32.29842|27.15233|Cathcart
+T|-29.73201|30.58773|Cato Ridge
+T|-29.89649|30.91302|Cavendish
+T|-29.52884|30.26572|Cedara
+T|-26.82714|29.00004|Cedarmont
+T|-30.37918|29.04106|Cedarville
+T|-30.71638|30.02821|Celebeni
+T|-30.78233|30.15362|Cenam
+T|-33.82896|24.86480|Centerton
+T|-33.64158|25.46176|Centlivres
+T|-30.05968|29.78401|Centocow
+T|-25.85167|28.18959|Centurion
+T|-25.83487|28.21088|Centurion
+T|-33.90131|18.51151|Century City
+T|-33.35593|19.31229|Ceres
+T|-29.09065|30.60388|Chailey
+T|-27.40859|29.87155|Charlestown
+T|-29.39060|31.26338|Charlottedale
+T|-32.43579|24.52627|Charlwood
+T|-29.90696|30.88444|Chatsglen
+T|-33.62626|19.37567|Chavonnes
+T|-33.94308|25.43369|Chelsea
+T|-33.86150|18.52863|Chempet
+T|-24.94716|28.59517|Chester
+T|-25.80631|26.79709|Chidima
+T|-28.83093|29.80712|Chieveley
+T|-32.98644|27.89440|Chiselhurst
+T|-28.20115|28.76357|Chivelston
+T|-34.05481|18.70906|Chris Hani
+T|-27.80001|26.67414|Chrisbouw
+T|-27.89986|25.16546|Christiana
+T|-24.76340|27.32529|Chromedale
+T|-23.05633|29.72698|Cilliersrus
+T|-25.43236|30.95415|Citrus
+T|-29.54156|30.38752|City View
+T|-29.91193|30.97485|Clairwood
+T|-30.24041|30.78331|Clansthal
+T|-33.98171|18.46714|Claremont
+T|-31.41232|27.12006|Clarks
+T|-26.20865|28.11846|Cleveland
+T|-25.90126|29.13514|Clewer
+T|-29.79145|30.68123|Cliffdale
+T|-28.32964|23.38491|Clifton
+T|-28.92522|27.58388|Clocolan
+T|-27.63517|29.96256|Clontarf
+T|-28.37615|29.42674|Clove
+T|-25.69874|31.07326|Clutha
+T|-33.36475|24.97147|Cockscomb
+T|-25.04857|28.30509|Codrington
+T|-33.45785|25.72204|Coerney
+T|-33.68737|25.81089|Colchester
+T|-28.73556|29.82610|Colenso
+T|-30.72582|25.13741|Colesberg
+T|-26.32889|26.32084|Coligny
+T|-31.54671|25.17255|Collett
+T|-25.67312|27.32393|Colombia
+T|-28.40742|29.55232|Colworth
+T|-30.23085|19.85794|Commissioner's Pan
+T|-29.51000|31.19127|Compensation
+T|-29.88802|29.88482|Comrie
+T|-27.21711|30.88734|Confidence
+T|-29.87790|30.99685|Congella
+T|-33.64856|25.99061|Congoskraal
+T|-31.28518|26.18616|Contat
+T|-28.22698|24.85267|Content
+T|-31.73408|25.30266|Conway
+T|-32.74425|25.80730|Cookhouse
+T|-34.19492|21.80303|Cooper
+T|-29.97377|22.30471|Copperton
+T|-25.76700|28.13321|Cor Delfos
+T|-23.54995|30.09143|Cordier
+T|-33.68782|26.15926|Cornville
+T|-25.42263|27.63073|Corona
+T|-24.03386|30.71215|Corundum
+T|-23.80274|29.61942|Cottage
+T|-29.41543|30.42990|Cramond
+T|-33.97643|18.50136|Crawford
+T|-24.63154|28.84489|Crecy
+T|-30.02976|29.83595|Creighton
+T|-26.20184|27.97202|Croesus
+T|-29.89840|30.86173|Crossmoor
+T|-29.18101|30.60940|Crowe's Place
+T|-26.22247|28.01381|Crown
+T|-25.84268|28.89967|Crown Douglas
+T|-30.11999|30.00785|Crystal Manor
+T|-25.67477|28.51904|Cullinan Station
+T|-26.69026|24.96436|Curnow
+T|-28.66271|21.03548|Currie's Camp
+T|-28.59764|31.96448|Cwaka
+T|-31.81170|25.34202|Cypress Grove
+T|-29.77201|20.37851|Dagab
+T|-26.29228|28.46933|Daggafontein
+T|-33.70656|18.98034|Dal Josafat
+T|-29.86836|31.00627|Dalbridge
+T|-26.48746|28.06357|Daleside
+T|-26.24819|28.18429|Dallas
+T|-25.75577|30.16868|Dalmanutha
+T|-29.34338|30.63255|Dalton
+T|-25.61380|28.20175|Dam
+T|-24.96730|28.49760|Dandaloo
+T|-28.01870|28.38616|Daniëlsrus
+T|-28.01516|30.06188|Dannhauser
+T|-28.53971|29.79465|Danskraal
+T|-29.47265|30.10526|Dargle
+T|-33.37471|18.38283|Darling
+T|-29.27319|31.36928|Darnall
+T|-25.71478|28.16586|Daspoort
+T|-33.51660|18.58965|Dassenberg
+T|-29.84663|30.79221|Dassenhoek
+T|-27.89261|30.87816|Dassieshoogte
+T|-26.44418|29.66920|Davel
+T|-26.15636|28.42469|Daveyton
+T|-32.96542|27.83145|Dawn
+T|-30.65039|24.01386|De Aar
+T|-27.23373|24.73890|De Beers
+T|-29.07988|26.26434|De Bloem
+T|-29.14726|25.80625|De Brug
+T|-29.30645|27.42818|De Bruyn
+T|-33.48231|19.66598|De Doorns
+T|-33.89348|18.57873|De Grendel
+T|-32.94397|18.76341|De Hoek
+T|-31.24119|23.51103|De Klerk
+T|-33.62601|26.31003|De Kol
+T|-30.59275|19.35034|De Kop
+T|-33.78101|25.41824|De Mist
+T|-33.67822|26.19003|De Mond
+T|-25.62461|27.94496|De Wildt
+T|-27.08689|29.16265|DeKuilen
+T|-27.02563|26.56940|Dean
+T|-32.83703|27.15631|Debe Nek
+T|-30.98918|23.80229|Deelfontein
+T|-28.45583|26.94710|Deelspruit
+T|-29.78856|29.96226|Deepdale
+T|-25.72060|28.21549|Deerness
+T|-29.80170|29.66533|Deholm
+T|-34.19011|21.45674|Dekriet
+T|-26.69417|25.45698|Delareyville
+T|-26.15319|28.67990|Delmas
+T|-26.20633|28.19893|Delmore
+T|-33.52602|22.51286|Delport
+T|-29.83435|30.73563|Delville Wood
+T|-33.37738|19.30645|Demeter Station
+T|-31.44241|26.93750|Dempsey
+T|-25.71915|28.33683|Denneboom
+T|-33.99125|22.72130|Dennebos
+T|-26.20598|28.09661|Denver
+T|-25.91063|27.04228|Derby
+T|-25.75301|29.55235|Derwent
+T|-33.79779|25.46967|Despatch
+T|-25.90622|26.98915|Dessing
+T|-25.75997|28.20534|Devenish Street
+T|-26.77095|24.89541|Devondale
+T|-29.57032|26.68670|Dewetsdorp
+T|-28.52388|24.52099|Diamantoord
+T|-27.74149|30.17150|Dicks
+T|-30.78051|23.95835|Die Put
+T|-34.03543|18.46704|Diep River
+T|-23.71510|29.78493|Dikgale
+T|-29.65845|22.48154|Diklipspoort
+T|-32.82801|27.20246|Dimbaza
+T|-29.64961|30.32598|Dlaba
+T|-32.52946|27.45013|Dohne
+T|-30.53156|25.49513|Donkerpoort
+T|-29.92150|29.87205|Donnybrook
+T|-30.07143|30.87354|Doonside
+T|-26.55835|25.07684|Doornbult
+T|-26.19721|28.05417|Doornfontein
+T|-31.38193|27.04489|Dordrecht
+T|-33.28336|26.03267|Doringkom
+T|-29.06304|23.77378|Douglas
+T|-27.05865|27.72479|Dover
+T|-28.01712|24.85577|Dowlish
+T|-33.14002|23.87353|Draaiberg
+T|-29.38202|22.11975|Draghoender
+T|-24.42942|31.01276|Drakensig
+T|-28.97472|29.69304|Draycott
+T|-34.22570|19.53194|Drayton
+T|-32.44115|25.74106|Drennan
+T|-30.95177|26.33297|Dreunberg
+T|-33.99432|20.21031|Drew
+T|-34.03177|24.80992|Drie Werwe
+T|-30.01700|25.44664|Driebad
+T|-26.21354|28.14967|Driehoek
+T|-30.48609|25.56154|Driekuil
+T|-26.41445|28.35186|Driemanskap
+T|-25.22864|30.34534|Driesprong
+T|-32.41319|22.52643|Droërivier
+T|-32.63178|18.81690|Droëryskloof
+T|-29.74833|30.69928|Drummond
+T|-24.30665|28.94061|Drummondlea
+T|-27.33425|24.72094|Dry Harts
+T|-33.92383|18.85418|Du Toit
+T|-26.23320|27.89242|Dube
+T|-29.74311|31.00447|Duff's Road
+T|-23.69728|30.14118|Duiwelkloof
+T|-33.98744|22.65152|Duiwerivier
+T|-28.73012|31.59430|Dukaneni
+T|-30.19736|29.59103|Dulini
+T|-28.69138|31.71907|Dumezweni
+T|-30.26858|30.43064|Dumisa
+T|-33.47039|25.54054|Dunbrody
+T|-26.66420|27.92919|Duncanville
+T|-28.16567|30.23040|Dundee
+T|-26.34932|28.44153|Dunnottar
+T|-26.20950|28.28575|Dunswart
+T|-33.85212|24.89492|Duplex
+T|-29.84484|31.02301|Durban
+T|-29.85076|30.29378|Durban Road
+T|-31.01871|24.70903|Dwaal
+T|-32.65097|18.30217|Dwarskersbos
+T|-33.04683|21.54487|Dwyka
+T|-28.61382|21.09934|Dyasonsklip
+T|-32.47043|27.99491|Eagle
+T|-33.38626|26.05697|Eagle's Crag
+T|-26.21724|28.23007|East Rand
+T|-32.66997|25.88552|Eastpoort
+T|-29.99539|29.91509|Eastwolds
+T|-26.55771|27.87858|Eatonside
+T|-29.73514|25.93014|Edenburg
+T|-29.65356|30.29940|Edendale
+T|-29.87422|29.73503|Edgehill
+T|-32.68837|18.88135|Eendekuil
+T|-26.38488|28.88509|Eendrag
+T|-28.70888|20.87887|Eenduin
+T|-28.55060|26.60311|Eensgevonden
+T|-28.12881|29.03717|Eeram
+T|-24.82962|28.39154|Eersbewoond
+T|-25.72210|28.35979|Eerste Fabrieke
+T|-34.00075|18.73097|Eerste River
+T|-23.98576|29.35097|Eerstegoud
+T|-27.29135|26.08858|Eersteling
+T|-25.72062|28.30646|Eersterust
+T|-29.77245|31.00222|Effingham
+T|-32.91876|27.73167|Egerton
+T|-31.66611|23.16265|Eggoklip
+T|-33.85709|18.71133|Eikenfontein
+T|-26.16672|28.20536|Elandsfontein
+T|-25.50453|30.70042|Elandshoek
+T|-29.71523|30.09710|Elandskop
+T|-28.40896|29.95794|Elandslaagte
+T|-27.19218|29.66450|Elandspoort
+T|-24.62423|28.87971|Elchienell
+T|-25.76131|28.14525|Elektro
+T|-34.15124|19.04167|Elgin
+T|-31.40408|27.59626|Ella
+T|-31.33819|27.84491|Elliot
+T|-26.19873|28.05894|Ellis Park Station
+T|-26.89764|29.14727|Elmtree
+T|-26.24185|28.19296|Elsburg
+T|-33.91052|18.56914|Elsies River
+T|-30.32742|25.69495|Elstow
+T|-25.86475|29.21230|Emalahleni
+T|-33.98615|25.58390|Emerald Hill
+T|-27.70948|22.96451|Emil
+T|-26.44366|29.42759|Emma's View
+T|-29.03614|25.24912|Emmaus
+T|-28.77179|31.90878|Empangeni
+T|-26.30357|28.58972|Endicott
+T|-28.98639|29.77886|Ennersdale
+T|-26.60842|27.40221|Enselspruit
+T|-27.77637|26.43977|Erfdeel
+T|-27.73954|23.02151|Erts
+T|-28.08462|23.04350|Ertsrand
+T|-29.87308|30.90086|Escombe
+T|-30.34050|30.65176|Esperanza
+T|-33.92369|18.44597|Esplanade
+T|-33.96434|24.42798|Essenbos
+T|-26.33692|29.87971|Estancia
+T|-23.81943|30.12516|Estate
+T|-29.00998|29.87275|Estcourt
+T|-30.20365|30.09445|Etterby
+T|-30.42729|29.44933|Ettrick
+T|-25.68117|31.18481|Eureka
+T|-31.45508|25.09738|Evendowns
+T|-25.57331|27.78363|Experiment
+T|-29.02228|31.65608|Fairbreeze
+T|-25.71834|30.22022|Fairview
+T|-33.99176|22.60001|Fairy Knowe
+T|-34.10243|18.46879|False Bay
+T|-26.21197|28.04441|Faraday
+T|-34.02632|18.74729|Faure
+T|-29.74783|25.31101|Fauresmith
+T|-29.35346|30.71955|Fawn Leas
+T|-27.73248|27.28178|Featherstone
+T|-28.83662|31.88790|Felixton
+T|-26.11996|27.74120|Ferguson
+T|-29.48344|30.19004|Fernhill
+T|-28.29301|32.30073|Fernwood
+T|-29.20636|26.17394|Ferreira
+T|-24.69403|27.32551|Ferrogate
+T|-33.64368|26.35450|Ficks
+T|-28.86483|27.87661|Ficksburg
+T|-28.58117|24.66259|Fieldsview
+T|-34.05553|18.79256|Firgrove
+T|-26.97850|29.27730|Firham
+T|-33.78594|18.71143|Fisantkraal
+T|-34.13713|18.43255|Fish Hoek
+T|-33.69774|25.46027|Fitzpatrick's Valley
+T|-29.58372|31.09352|Flamingo Heights
+T|-24.41185|29.25375|Flats End
+T|-31.38233|25.03413|Flonker
+T|-26.17688|27.91447|Florida
+T|-26.53650|27.49794|Fochville
+T|-25.78350|28.19299|Fonteine
+T|-32.49931|27.42782|Fort Cunynghame
+T|-32.92083|27.69948|Fort Jackson
+T|-31.39289|23.29744|Fortrug
+T|-26.61076|28.53110|Fortuna
+T|-29.26009|29.96380|Fountain Hall
+T|-28.58344|28.13205|Fouriesburg
+T|-28.07017|24.88439|Fourteen Streams
+T|-29.68435|30.38226|Foxhill
+T|-30.31816|29.45337|Franklin
+T|-30.90739|24.45214|Frans
+T|-29.61579|22.42486|Fransenhof
+T|-29.53104|31.16725|Fraser
+T|-28.89361|29.77230|Frere
+T|-27.92884|26.71521|Friedesheim
+T|-28.74498|20.82186|Friesdale
+T|-33.63373|22.21667|Friesland
+T|-33.17750|23.83079|Fullarton
+T|-26.23715|28.01545|Fun Train
+T|-26.23692|28.01260|Fun Train
+T|-29.89479|31.02845|Fynnlands
+T|-25.61950|27.99186|Ga-Rankuwa
+T|-32.34727|27.19125|Gaika
+T|-33.90873|24.95362|Gamtoos
+T|-32.05215|23.00887|Ganna
+T|-32.62946|27.47651|Gasela
+T|-31.25275|28.12438|Gatberg
+T|-26.34729|26.54741|Gatiep
+T|-26.43439|27.18596|Gatsrand
+T|-33.72829|23.45303|Gaviota
+T|-29.12935|30.46453|Gaywood
+T|-26.20368|28.44017|Geduld
+T|-33.91109|25.29308|Geduldrivier
+T|-28.64912|21.05745|Geelkop
+T|-26.20812|28.13283|Geldenhuis
+T|-28.75418|28.05346|Generaalsnek
+T|-27.82611|27.13175|Geneva
+T|-31.78605|25.31496|Genoegsaam
+T|-33.96586|22.46842|George
+T|-26.20770|28.08041|George Goch
+T|-29.78029|30.61266|Georgedale
+T|-26.16475|27.88038|Georgina
+T|-26.47425|26.10121|Gerdau
+T|-26.20980|28.16768|Germiston
+T|-26.23171|28.16738|Germiston Lake
+T|-26.22665|28.16457|Germiston South
+T|-26.22084|28.16208|Germiston West
+T|-26.74639|25.98735|Gestoptefontein
+T|-25.59638|30.05964|Gesukkel
+T|-24.03561|29.23140|Geyser
+T|-25.72199|28.20517|Gezina
+T|-29.66886|30.21804|Gezubuso
+T|-28.29484|24.20630|Ghaap
+T|-29.79332|30.80053|Gillitts Station
+T|-29.79321|30.80048|Gillitts Train Station
+T|-30.73171|30.01417|Gindrah
+T|-29.02973|31.58271|Gingindlovu
+T|-29.37362|31.28360|Gledhow
+T|-28.96299|26.33483|Glen
+T|-30.22113|30.11976|Glen Beulah
+T|-29.84291|30.87989|Glen Park
+T|-31.49249|26.81891|Glen Wallace
+T|-34.16346|18.43201|Glencairn
+T|-28.17200|30.15416|Glencoe
+T|-33.39540|25.16051|Glenconnor
+T|-31.67964|25.25880|Glenheath
+T|-30.29531|30.50593|Glenrosa
+T|-26.38623|28.30866|Glenroy
+T|-29.39403|30.77150|Glenside
+T|-28.10999|23.04979|Glosam
+T|-26.70523|28.28065|Goedbeloon
+T|-25.64611|30.28697|Goedgeluk
+T|-27.56342|26.64646|Golden Fleece
+T|-32.80987|25.78902|Golden Valley
+T|-25.74009|28.16109|Golf
+T|-28.47709|24.43492|Gong-Gong
+T|-30.12606|29.65253|Gongolula
+T|-33.78576|24.82878|Gonnakop
+T|-33.78284|24.84066|Gonnakop
+T|-33.91446|18.54754|Goodwood
+T|-31.18294|21.55616|Goraas
+T|-32.25455|27.12484|Goshen
+T|-33.30138|19.04167|Gouda
+T|-26.30522|27.77146|Goudeon
+T|-33.60789|19.31636|Goudini Road
+T|-23.52653|30.04598|Goudplaas
+T|-26.31631|27.57955|Goudryk
+T|-34.03595|22.94058|Goukamma
+T|-34.18736|21.73173|Gourits
+T|-32.82435|27.00831|Gowana
+T|-33.96010|25.62430|Gqeberha
+T|-32.26043|24.54088|Graaf-Reinet
+T|-32.15178|18.60647|Graafwater
+T|-24.96850|30.52684|Graan
+T|-26.50379|29.31448|Granary
+T|-29.62624|30.33805|Grange
+T|-23.20927|29.81707|Granite
+T|-24.93038|30.83953|Graskop
+T|-26.42629|27.86256|Grasmere
+T|-27.55671|25.69102|Grasslands
+T|-33.69856|25.69412|Grassridge
+T|-23.95793|30.61419|Gravelotte
+T|-23.95320|30.61017|Gravelotte
+T|-32.60663|27.72156|Grays
+T|-29.84290|30.30687|Green Hill
+T|-33.93541|25.41987|Greenbushes
+T|-27.12380|27.67479|Greenlands
+T|-25.56694|31.31971|Greenstone
+T|-25.73028|28.40643|Greenview
+T|-29.78898|31.01982|Greenwood Park
+T|-26.74563|28.74384|Greylingstad
+T|-29.06873|30.59704|Greytown
+T|-30.29177|25.61143|Grobler Halt
+T|-25.09057|27.24720|Groblersvlyt
+T|-23.53467|29.92648|Groenbult
+T|-27.29487|27.04208|Groenebloem
+T|-33.23306|25.94220|Groenheuwels
+T|-33.55150|18.61328|Groenrivier
+T|-34.18447|19.10771|Groenrug
+T|-28.27817|23.33726|Groenwater
+T|-26.35249|26.97787|Gromofont
+T|-25.59712|26.41332|Groot Marico
+T|-34.05055|22.23415|Groot-Brakrivier
+T|-33.86379|18.97641|Groot-Drakenstein
+T|-23.45692|29.93207|Groot-Spelonke
+T|-29.97097|23.01774|Grootdoring
+T|-26.20285|28.00539|Grosvenor
+T|-29.40862|31.25306|Groutville
+T|-29.77476|22.67572|Grovèput
+T|-28.86809|27.71020|Gumtree
+T|-27.69175|27.22350|Gunhill
+T|-24.40603|28.83114|Haakdoring
+T|-27.95660|28.38845|Haaks
+T|-33.73596|23.33950|Haarlem
+T|-33.26113|24.71381|Haasfontein
+T|-28.46662|32.16424|Haig
+T|-29.13416|26.14939|Haldon
+T|-32.25081|25.68160|Halesowen
+T|-34.28472|19.90553|Halfaampieskraal
+T|-26.22010|29.51136|Halfgewonnen (HWN)
+T|-33.14633|18.96000|Halfmanshof
+T|-26.24139|26.23533|Halfpad
+T|-30.01277|20.13262|Halfweg
+T|-29.18344|27.08950|Halkyn
+T|-27.03861|25.38777|Hallatt's Hope
+T|-26.16758|27.89369|Hamberg
+T|-26.46693|29.69517|Hamelfontein
+T|-29.13620|26.21900|Hamilton
+T|-25.40693|28.27997|Hammanskraal
+T|-29.80142|30.65756|Hammarsdale
+T|-33.83708|24.88153|Hankey
+T|-25.28186|29.87801|Hanmien
+T|-30.95317|24.53854|Hanover Road
+T|-29.26818|30.62036|Harden Heights
+T|-22.82031|29.69530|Hardepad
+T|-31.02389|24.97227|Haredale
+T|-33.98844|18.47131|Harfield Road
+T|-27.14569|26.39743|Harrisburg
+T|-28.27372|29.12168|Harrismith
+T|-26.77732|26.42227|Hartbeesfontein
+T|-25.74659|28.24115|Hartbeesspruit
+T|-34.12874|22.11255|Hartenbos
+T|-27.77026|24.79223|Hartswater
+T|-27.03102|29.23128|Harvard
+T|-25.74764|28.23787|Hatfield
+T|-28.07793|30.12077|Hattingsspruit
+T|-29.92620|30.93706|Havenside
+T|-28.92753|29.90182|Haviland
+T|-26.00769|30.12510|Hawerfontein
+T|-26.24675|28.82594|Hawerklip
+T|-31.84025|23.14179|Hazel
+T|-31.51243|26.70810|Hazelmere
+T|-33.95319|18.50249|Hazendal
+T|-33.56126|22.40864|Hazenjacht
+T|-25.04018|31.23089|Hazyview
+T|-34.04590|18.46558|Heathfield
+T|-28.65940|31.78617|Heatonville
+T|-25.43627|31.67657|Hectorspruit
+T|-34.08726|20.95627|Heidelberg
+T|-26.50958|28.37026|Heidelberg
+T|-33.96993|18.56177|Heideveld
+T|-33.85616|23.97346|Heights
+T|-27.29126|27.96529|Heilbron
+T|-29.71021|30.12367|Hemuhemu
+T|-29.63980|30.25757|Henley
+T|-26.52379|28.04070|Henley on Klip
+T|-27.97499|27.02433|Hennenman
+T|-25.72428|28.16730|Hercules
+T|-29.01959|30.78101|Hermannsburg
+T|-33.52231|25.67255|Hermitage
+T|-33.43800|18.96848|Hermon
+T|-29.55030|26.04988|Hertzberg
+T|-27.22074|25.14095|Hester
+T|-32.59157|18.74873|Het Kruis
+T|-29.19996|24.53950|Heuningsneskloof
+T|-27.44970|27.41923|Heuningspruit
+T|-33.46279|19.70167|Hexpas
+T|-25.27352|27.23867|Heystekrand
+T|-30.57542|30.57471|Hibberdene
+T|-29.15954|29.96246|Hidcote
+T|-30.25712|30.19373|Highflats
+T|-32.97068|27.87166|Highgate
+T|-33.33794|26.31625|Highlands
+T|-29.88870|30.94159|Hillary
+T|-29.77863|30.76703|Hillcrest
+T|-26.22176|28.14175|Hillview
+T|-29.55361|30.30155|Hilton road station
+T|-27.71470|30.99006|Hlobane
+T|-28.02406|32.27984|Hluhluwe
+T|-30.28259|30.31108|Hlutankungu
+T|-31.28300|20.53342|Hoedjies
+T|-24.35221|30.95556|Hoedspruit
+T|-27.88824|27.09268|Holfontein
+T|-33.81530|22.36012|Holgate
+T|-29.38909|30.02176|Holly
+T|-26.84652|29.07096|Holmdene
+T|-31.54825|18.42009|Holrivier
+T|-29.82376|29.68234|Home Rule
+T|-26.16779|27.70774|Homelake
+T|-28.41384|21.13968|Hondejag
+T|-25.65240|31.24977|Honeybird
+T|-29.14082|27.37844|Hoogfontein
+T|-27.46532|28.04671|Hoogte
+T|-30.12405|25.44279|Hookhaai Halt
+T|-33.06436|18.35291|Hopefield
+T|-26.14642|27.86376|Horison
+T|-25.62717|28.05562|Hornsnek
+T|-32.96688|27.84198|Horseshoe
+T|-25.64074|30.38005|Horseshoe
+T|-27.22187|22.96641|Hotazel
+T|-34.20613|19.15028|Houhoek
+T|-30.29336|29.39565|Houston's Hope
+T|-28.61475|26.53509|Houtenbeck
+T|-26.60316|27.85348|Houtheuwel
+T|-30.39238|24.09428|Houtkraal
+T|-34.02047|24.59756|Howley
+T|-25.46165|27.66790|Hoëwal
+T|-29.00692|31.70389|Hudley
+T|-33.38604|19.99817|Hugo
+T|-30.83951|25.07605|Hugoslaagte
+T|-33.72930|18.97668|Huguenot
+T|-34.02452|24.76861|Humansdorp
+T|-33.04734|24.12966|Humefield
+T|-33.97073|25.63309|Humewood Road
+T|-22.68657|29.80595|Huntleigh
+T|-31.49829|23.18885|Hutchinson
+T|-31.41661|27.54279|Ida
+T|-32.09769|28.29208|Idutywa
+T|-32.82076|26.91735|Igudu
+T|-26.23040|27.87712|Ikwezi
+T|-30.18863|30.80888|Ilfracombe
+T|-30.11810|30.85025|Illovo Beach
+T|-24.47539|29.21033|Immerpan
+T|-29.11851|25.60186|Immigrant
+T|-32.03134|27.05875|Imvani
+T|-29.74215|30.66356|Inchanga
+T|-26.21907|28.16044|India
+T|-26.20052|27.98089|Industria
+T|-31.46677|27.34201|Indwe
+T|-29.87557|29.89730|Inglenook
+T|-26.24946|27.86355|Inhlazane
+T|-30.33057|30.56639|Inverugie
+T|-28.79229|28.03078|Ionia
+T|-24.86870|31.30372|Ireagh
+T|-25.87540|28.22441|Irene
+T|-26.13540|28.22187|Isando
+T|-29.98408|30.92832|Isipingo
+T|-29.89228|31.03705|Island View
+T|-30.14984|30.06548|Ixopo
+T|-25.33117|30.22608|Izaak
+T|-30.78398|30.12346|Izingolweni
+T|-29.92394|30.98603|Jacobs
+T|-29.36285|30.68616|Jagbaan
+T|-33.91349|24.19718|Jagersbos
+T|-31.78316|24.87814|Jagpoort
+T|-29.70629|26.97367|Jammerdrif
+T|-27.90741|24.82286|Jan Kempdorp
+T|-33.27550|20.14374|Jan de Boers
+T|-24.79884|28.41147|Jantingh
+T|-33.39675|18.45387|Januarieskraal
+T|-24.69640|28.47577|Jasper
+T|-26.20389|28.06339|Jeppe
+T|-25.66925|31.13253|Joe's Luck
+T|-30.94940|23.87201|Joen
+T|-26.19767|28.04230|Johannesburg Park Station
+T|-30.28157|30.34709|Jolivet
+T|-34.26362|19.65382|Jongensklip
+T|-27.61496|27.26671|Jordaan
+T|-28.77375|21.58301|Josling
+T|-30.69967|25.22034|Joubert
+T|-33.82699|23.85451|Joubertina
+T|-34.04513|20.29662|Jubilee
+T|-32.13295|22.95250|Juk
+T|-26.21996|28.11867|Jupiter
+T|-26.03537|28.25468|Kaalfontein
+T|-28.13086|28.02276|Kaallaagte
+T|-29.27030|26.14134|Kaalspruit
+T|-27.97632|26.83469|Kaalvlei
+T|-25.53395|31.33037|Kaapmuiden
+T|-33.99548|24.92420|Kabeljousrivier
+T|-28.70354|20.91003|Kabies
+T|-28.76404|20.61094|Kakamas
+T|-25.76025|28.08845|Kalafong
+T|-33.57254|18.64765|Kalbaskraal
+T|-34.12627|18.45008|Kalk Bay
+T|-30.13203|24.13515|Kalkbult
+T|-28.41145|21.03186|Kalksloot
+T|-28.05593|26.94597|Kalkvlakte
+T|-26.59860|25.04258|Kameel
+T|-28.69259|24.77615|Kamfersdam
+T|-22.41980|29.95955|Kamkusi
+T|-33.90187|24.13541|Kammiebos
+T|-30.96041|18.99007|Kanakies
+T|-33.68648|22.25329|Kandelaars
+T|-28.63018|21.07421|Kanoneilandweg
+T|-33.38938|18.65231|Kanonkop
+T|-24.48193|31.03069|Kapama
+T|-32.05011|25.53375|Kaptein
+T|-34.06705|18.62073|Kapteinsklip Station
+T|-29.78733|22.88959|Karabee
+T|-28.42721|26.89388|Kareefontein
+T|-26.33524|29.95831|Karelshoop
+T|-30.50644|29.46857|Karg's Post
+T|-33.77157|25.40880|Kariega
+T|-33.43502|25.26934|Kariega
+T|-25.47266|31.10152|Karino
+T|-30.12769|30.84596|Karridene
+T|-34.12689|20.76722|Karringmelk
+T|-34.47039|20.01088|Kars
+T|-26.22005|28.07034|Kaserne West
+T|-26.30752|28.16140|Katlehong
+T|-25.47943|27.68501|Katnael
+T|-26.47141|28.40032|Kaydale
+T|-24.75331|28.41186|Keespoort
+T|-32.70299|27.54458|Kei Road
+T|-28.70511|20.96950|Keimoes
+T|-30.36276|30.71383|Kelso
+T|-26.39098|28.85082|Kelty
+T|-26.92751|30.76343|Kemp
+T|-26.10809|28.22708|Kempton Park
+T|-32.52417|24.50390|Kendrew
+T|-29.30398|21.06460|Kenhardt
+T|-33.99530|18.47302|Kenilworth
+T|-33.91301|18.49776|Kentemade
+T|-30.25709|30.39519|Kenterton
+T|-29.79148|31.00110|Kenville
+T|-29.14816|26.32187|Kerelaw
+T|-33.99335|24.67031|Kerkplaas
+T|-29.57583|30.32323|Ketelfontein
+T|-34.20000|21.66812|Keurfontein
+T|-34.03955|22.97758|Keytersnek
+T|-34.04799|18.67079|Khayelitsha
+T|-33.26524|18.38123|Kiekoesvlei
+T|-24.90950|27.19226|Kilkenny
+T|-28.73535|24.76987|Kimberley
+T|-33.97368|25.64279|King's Beach
+T|-32.84998|27.51013|King's Cross
+T|-29.90477|31.01475|King's Rest
+T|-27.48026|25.77363|Kingswood
+T|-33.64794|25.87710|Kinkelbos
+T|-26.42267|29.09561|Kinross
+T|-26.44709|29.56882|Kippen
+T|-30.33195|25.81090|Kirkham
+T|-29.86219|30.85917|Klaarwater
+T|-33.83695|19.96752|Klaas Voogdsrivier
+T|-33.80631|18.86974|Klapmuts
+T|-24.54209|31.02824|Klaserie
+T|-31.77545|18.62232|Klawer
+T|-26.62359|27.87153|Kleigrond
+T|-34.08809|22.14642|Klein-Brakrivier
+T|-26.64591|25.95247|Klein-Harts
+T|-33.05612|25.85044|Klein-Vis
+T|-28.90241|21.65415|Kleinbegin
+T|-34.16911|21.90901|Kleinberg
+T|-33.17654|18.91643|Kleindrif
+T|-33.32912|24.88417|Kleinpoort
+T|-31.52851|26.58963|Kleinskuur
+T|-29.17276|30.39655|Kleinveld
+T|-31.86598|18.59490|Kleipan
+T|-26.86993|26.67038|Klerksdorp
+T|-32.45322|22.45126|Klipbank
+T|-25.72724|26.74706|Klipbankfontein
+T|-34.30513|19.96631|Klipdale
+T|-26.64936|27.26281|Klipdrif
+T|-32.59926|25.75828|Klipfontein
+T|-33.69927|18.70064|Klipheuwel
+T|-31.44688|18.26647|Kliphoek
+T|-33.02086|24.33883|Klipplaat
+T|-28.55198|21.14614|Klippunt
+T|-26.42109|28.08691|Kliprivier
+T|-30.44976|29.47018|Kliprug
+T|-26.34973|29.96886|Klipstapel
+T|-25.21858|30.32178|Klipsteen
+T|-26.27265|27.88775|Kliptown
+T|-29.12713|24.58211|Klokfontein
+T|-29.79123|30.83355|Kloof
+T|-29.16440|26.06367|Kloofeind
+T|-25.81339|28.20116|Kloofsig
+T|-30.71708|26.14357|Knapdaar
+T|-31.58780|18.48781|Knersvlakte
+T|-28.30194|24.14509|Kneukel
+T|-26.19738|28.19588|Knights
+T|-30.26009|30.26539|Knockagh
+T|-33.21488|23.80196|Knoetze
+T|-31.95502|25.50644|Knutsford
+T|-34.04009|23.04380|Knysna
+T|-33.92573|18.47880|Koeberg Road
+T|-28.29469|24.83590|Koedoe
+T|-25.72632|28.27898|Koedoespoort
+T|-29.06202|21.78361|Koegrabie
+T|-26.84445|26.80706|Koekemoer
+T|-31.52692|18.29130|Koekenaap
+T|-33.87395|18.81957|Koelenhof
+T|-29.41084|25.01096|Koffiefontein
+T|-29.53672|20.78327|Kolke
+T|-31.99304|24.79946|Koloniesplaas
+T|-31.89285|26.87767|Komani
+T|-25.43700|31.95324|Komatipoort
+T|-32.58138|27.89364|Komga
+T|-31.20276|18.11259|Komkans
+T|-33.11902|25.90065|Kommadagga
+T|-28.80909|28.00919|Kommandonek
+T|-33.88047|24.06954|Kompaniesdrif
+T|-28.00123|27.70696|Komspruit
+T|-28.10703|31.04082|Komvoorhoogte
+T|-33.26104|20.28879|Konstabel
+T|-26.58667|27.99396|Kookrus
+T|-26.45526|30.26242|Koolbank
+T|-28.24092|24.03730|Koopmansfontein
+T|-31.23592|20.34120|Kootjieskolk
+T|-25.58163|28.09073|Kopanong
+T|-23.68680|29.85531|Koper
+T|-33.09952|18.41545|Koperfontein
+T|-27.16605|29.57720|Koppie Alleen
+T|-27.23764|27.56924|Koppies
+T|-33.01849|18.67770|Koringberg
+T|-26.35524|29.80782|Koringkraal
+T|-25.72827|30.25071|Koringland
+T|-30.81513|26.44036|Kortaf
+T|-25.87111|26.90153|Koster
+T|-32.90039|18.27307|Kotze
+T|-31.45895|26.91053|Koupsleegte
+T|-33.84708|18.72398|Kraaifontein
+T|-26.29725|25.30533|Kraaipan
+T|-26.56158|28.40594|Kraal
+T|-29.88293|24.17990|Kraankuil
+T|-29.22478|26.56039|Kraanvoël
+T|-33.81108|23.73295|Krakeelrivier
+T|-30.72855|26.52376|Kramberg
+T|-28.14078|28.56375|Kransfontein
+T|-28.96809|30.85950|Kranskop
+T|-32.22162|18.33609|Kreefbaai
+T|-28.16519|28.16403|Kriekdraai
+T|-34.21991|19.58977|Krige
+T|-34.08694|21.03676|Krombek
+T|-27.03474|29.36146|Kromdraai
+T|-27.80446|25.25854|Kromellenboog
+T|-24.64893|30.47210|Kromkloof
+T|-31.98152|23.01783|Kromrivier
+T|-32.76781|26.44096|Kroomie
+T|-24.88003|30.53438|Kroonkop
+T|-27.65932|27.23421|Kroonstad
+T|-26.10892|27.77094|Krugersdorp
+T|-32.85200|21.95490|Kruidfontein
+T|-34.00314|24.73065|Kruisfontein
+T|-28.63693|31.99228|Kruisplek
+T|-33.01665|27.90775|KuGompo City
+T|-32.22790|28.22094|KuLeleyo
+T|-33.93367|18.67769|Kuils River
+T|-30.25888|30.24315|Kunatha
+T|-26.21759|28.18936|Kutalo
+T|-34.05490|18.69475|Kuyasa
+T|-29.86600|29.89854|Kwa Thoba
+T|-28.70131|31.67991|Kwa Yaya
+T|-29.65339|30.23307|KwaDlozi
+T|-29.34286|31.29438|KwaDukuza
+T|-29.66889|30.19213|KwaGuzu
+T|-32.77971|26.63804|KwaMaqoma
+T|-32.33707|28.06370|KwaNofodosi
+T|-32.72718|25.58904|KwaNojoli
+T|-26.56638|27.86375|Kwaggastroom
+T|-31.19155|22.83712|Kweekwa
+T|-26.36513|28.15267|Kwesine
+T|-32.79913|26.78474|Kwezana
+T|-34.29408|20.02383|Kykoedie
+T|-33.45675|19.20598|La Plaisante
+T|-30.16616|30.08410|La Trappe
+T|-23.87839|29.46375|Ladanna
+T|-29.18900|27.44710|Ladybrand
+T|-33.19808|20.86032|Laingsburg
+T|-33.68718|26.10611|Lake Eric
+T|-31.14619|23.64768|Laken
+T|-26.88322|25.99325|Lakensvlei
+T|-34.08846|18.46249|Lakeside
+T|-31.07073|26.31153|Lalisa
+T|-29.88368|25.84186|Landmeter
+T|-31.34621|18.22439|Landplaas
+T|-33.93904|18.52997|Langa
+T|-32.96657|18.15034|Langebaanweg
+T|-32.94242|18.09186|Langeenheid
+T|-32.76081|25.61439|Langford
+T|-28.21266|20.33103|Langklip
+T|-26.20191|27.99058|Langlaagte
+T|-33.76086|19.74064|Langvlei
+T|-33.98759|18.50393|Lansdowne
+T|-26.11505|27.79351|Lanwen
+T|-26.27020|28.50930|Largo
+T|-26.99334|26.60647|Lava
+T|-33.94339|18.58378|Lavistown
+T|-26.35507|27.83075|Lawley
+T|-33.52973|22.47494|Le Roux
+T|-32.77523|21.97764|Leeu-Gamka
+T|-27.19518|26.31827|Leeubos
+T|-27.23953|26.23638|Leeudoringstad
+T|-26.66342|27.89492|Leeuhof
+T|-26.65510|27.90612|Leeuhof
+T|-34.05011|20.32127|Leeurivier
+T|-27.36769|31.85515|Leeuspoor
+T|-27.19598|27.61856|Leeustroom
+T|-25.06351|28.46592|Lehau
+T|-33.22066|18.90544|Leliedam
+T|-32.25700|22.75448|Lemoen
+T|-26.31977|27.82327|Lenasia
+T|-33.50212|25.69909|Lendlovu
+T|-27.93495|30.95700|Lenjanedrif
+T|-34.03430|18.61131|Lentegeur
+T|-31.27204|25.86456|Lenton Grove
+T|-26.02922|28.19646|Leralla
+T|-23.89038|30.36202|Lesitele Tank
+T|-26.36740|28.92678|Leslie
+T|-31.84740|26.76449|Lesseyton
+T|-23.88003|30.27434|Letaba
+T|-32.56328|22.27087|Letjiesbos
+T|-23.84554|30.22058|Letsie
+T|-23.88371|30.39606|Letsitele
+T|-30.34105|29.08576|Levels
+T|-26.45538|29.15069|Leven
+T|-28.17731|27.73073|Libertas
+T|-31.44065|27.39679|Lichfield
+T|-26.14425|26.17419|Lichtenburg
+T|-29.44077|30.10350|Lidgetton
+T|-26.39570|30.35500|Liefgekozen
+T|-30.27016|29.47687|Liewellyn
+T|-29.16536|26.58847|Likhatlhong
+T|-28.36089|23.52084|Lime Acres
+T|-32.31050|25.70035|Limebank
+T|-26.01125|28.21483|Limindlela
+T|-30.98985|24.63747|Linde
+T|-26.32644|28.15771|Lindela
+T|-27.88800|27.92568|Lindley
+T|-29.95921|30.88844|Lindokuhle
+T|-33.42260|25.44299|Lindores
+T|-29.46566|30.15398|Lions River
+T|-30.12028|30.02295|Loch Buidhe
+T|-34.19408|21.70283|Lodewyktenk
+T|-24.89393|28.84317|Lodge
+T|-25.13510|28.43080|Loenie
+T|-33.87167|25.02995|Loerie
+T|-25.75492|28.22533|Loftus Versveldpark
+T|-28.01527|23.10754|Lohatla
+T|-28.04127|23.05131|Lohatlha
+T|-32.89817|27.64183|Lonetree
+T|-32.84188|25.79164|Long Hope
+T|-25.55870|30.05908|Long Tom
+T|-26.19848|27.96339|Longdale
+T|-29.37107|30.59589|Longhill
+T|-31.79360|24.81098|Lootsberg
+T|-33.97260|25.51258|Lorraine
+T|-27.73845|26.47504|Losdorings
+T|-28.93490|29.61606|Loskop
+T|-26.39222|30.43253|Lothair
+T|-26.18604|26.20470|Lottie
+T|-23.05258|29.90584|Louis Trichardt
+T|-28.47456|21.27296|Louisville Road
+T|-33.80197|23.66472|Louterwater
+T|-25.64090|31.29149|Louw's Creek
+T|-27.94807|27.63189|Lovat
+T|-31.13462|26.29608|Lower Adamson
+T|-31.50398|26.51460|Lower Incline
+T|-29.10243|29.90152|Lowlands
+T|-25.63147|26.05363|Lucerne
+T|-31.32654|24.95796|Ludlow
+T|-30.08285|29.98472|Lufafa Road
+T|-26.11963|27.81136|Luipaardsvlei
+T|-24.02373|29.13765|Lunsklip
+T|-31.19675|26.28269|Lushof
+T|-32.65602|22.11702|Luttig
+T|-28.38800|20.66447|Lutzputs
+T|-31.54934|18.35204|Lutzville
+T|-29.15717|26.34928|Lynchfield
+T|-33.98133|18.77125|Lynedoch
+T|-25.83860|27.71879|Lynkloof
+T|-25.63426|28.08209|Lynross
+T|-30.06559|29.93900|Mabedlena
+T|-25.49650|28.08969|Mabopane
+T|-25.84846|25.69058|MacMullins
+T|-28.54959|24.76956|Macfarlane
+T|-25.66245|30.25221|Machadodorp
+T|-25.09509|28.45057|Mackenzie
+T|-31.07144|28.35564|Maclear
+T|-26.42479|25.19120|Madibogo
+T|-23.14273|29.85096|Madombidzha
+T|-30.25565|29.94822|Madonela
+T|-31.77983|28.56222|Madontsi
+T|-29.72916|30.11124|Mafunze
+T|-26.00166|27.53766|Magaliesburg
+T|-25.50659|31.45389|Magnesite
+T|-29.07378|31.48036|Magnolia
+T|-27.67165|24.77024|Magogong
+T|-28.72520|31.86928|Maguzula
+T|-27.48585|30.80600|Mahalumbe
+T|-25.86406|25.63915|Mahikeng
+T|-33.92470|18.48705|Maitland
+T|-26.32938|27.44111|Maizelands
+T|-33.95760|24.36388|Majoorskraal
+T|-27.47531|29.87301|Majuba
+T|-27.10662|29.78938|Majuba
+T|-33.30705|26.53315|Makhanda
+T|-26.34062|26.62851|Makokskraal
+T|-27.32171|25.99777|Makwassie
+T|-25.48938|31.50903|Malalane
+T|-33.57989|18.98289|Malan
+T|-24.89136|28.92225|Malebitsa
+T|-30.14870|29.62296|Malenge
+T|-30.69527|26.70511|Maletswai
+T|-33.46791|18.72304|Malmesbury
+T|-28.12049|30.34696|Malonjeni
+T|-29.87951|30.91954|Malvern
+T|-27.39425|22.99487|Mamathwane
+T|-31.92374|28.36275|Mamba
+T|-25.72705|28.38507|Mamelodi Gardens
+T|-33.44022|18.52413|Mamreweg
+T|-34.01892|18.62458|Mandalay
+T|-25.61368|26.46091|Mangope
+T|-23.39227|29.85438|Mannamead
+T|-29.63554|30.35696|Mansons Mill
+T|-32.25866|28.20137|Manyano
+T|-28.69543|31.74681|Manyela
+T|-26.33807|28.24974|Mapleton
+T|-23.03625|29.65805|Mara
+T|-32.61933|24.42665|Marais
+T|-26.17951|27.94026|Maraisburg
+T|-26.14643|25.42554|Mareetsane
+T|-33.51980|22.56173|Marevlakte
+T|-29.86839|30.82879|Mariannhill
+T|-25.58989|26.40333|Marico-Wes
+T|-25.69080|27.49300|Marikana
+T|-23.88694|30.33239|Mariveni
+T|-28.73808|24.76370|Market Square
+T|-26.08334|28.11165|Marlboro
+T|-32.10866|25.59347|Marlow
+T|-25.24249|30.27695|Marmerkop
+T|-25.67701|27.61668|Maroelakop
+T|-28.66766|27.44084|Marquard
+T|-29.18181|27.28722|Marseilles
+T|-33.45829|25.51119|Marshgrove
+T|-25.45241|30.94235|Mataffin
+T|-23.84555|29.55359|Matiaalla
+T|-27.27936|24.98972|Matjiesspruit
+T|-33.42915|19.83748|Matroosberg
+T|-24.80054|31.30366|Matshaye
+T|-23.78248|29.64272|Matsusa
+T|-27.36406|29.09577|Matts
+T|-25.27116|28.28716|Maubane
+T|-26.71580|30.20978|Maviristad
+T|-29.88964|29.79997|Mawuleni
+T|-30.03253|29.92558|Maxwell
+T|-26.20428|28.01383|Mayfair
+T|-33.67412|18.98550|Mbekweni
+T|-30.79217|30.18137|Mbeni
+T|-31.42246|27.49276|Mbokotwe
+T|-25.46616|30.97700|Mbombela
+T|-30.27725|30.44588|Mbulula
+T|-24.90759|28.99991|Mc Cabe's Vlei
+T|-32.79947|26.70151|Mdala
+T|-32.93148|27.78149|Mdantsane
+T|-29.81549|29.98232|Mdutshini
+T|-25.73540|29.59602|Meadowbank
+T|-29.49105|26.67489|Meadows
+T|-25.76256|28.19786|Mears Street
+T|-25.62171|28.01913|Medunsa
+T|-33.93363|24.26840|Melkhoutkraal
+T|-26.79047|26.12618|Melliodora
+T|-33.76015|18.71838|Mellish
+T|-33.88223|24.99436|Melon
+T|-29.16130|26.40701|Melorane
+T|-33.98956|18.72055|Melton Rose
+T|-30.65206|30.52298|Melville
+T|-33.24708|20.48078|Memorial
+T|-29.09812|30.64048|Menne
+T|-26.48459|30.11818|Meppel
+T|-26.26212|27.84665|Merafe
+T|-29.94399|30.95873|Merebank
+T|-32.82609|27.51207|Merino Vale
+T|-29.78716|25.90009|Merinorant
+T|-31.21396|23.61265|Merriman
+T|-29.38634|30.48164|Mersey
+T|-33.97123|20.15309|Merwespont
+T|-25.93077|27.12981|Metz
+T|-28.73507|31.81133|Mevamhlope
+T|-26.55497|28.00993|Meyerton
+T|-28.65165|28.08129|Meynell
+T|-28.17377|32.30562|Mfekayi
+T|-28.73265|31.55488|Mganu
+T|-27.88615|32.19778|Mhlosinga
+T|-24.15696|30.83001|Mica
+T|-26.41426|27.85683|Midannadale
+T|-28.57513|27.48043|Middel
+T|-31.49901|25.01564|Middelburg
+T|-25.77391|29.46967|Middelburg
+T|-24.68484|28.55231|Middelfontein
+T|-33.52810|22.54850|Middelplaas
+T|-26.23522|27.64036|Middelvlei
+T|-27.73215|28.01828|Middenin
+T|-32.82718|26.98414|Middledrift
+T|-32.93628|25.82098|Middleton
+T|-30.27850|29.14393|Midgley
+T|-28.65636|24.72393|Midlands
+T|-25.99562|28.13567|Midrand
+T|-26.29326|27.85096|Midway
+T|-26.60611|25.95713|Mieliebelt
+T|-28.87496|29.96014|Mielietuin
+T|-26.89993|25.45403|Migdol
+T|-33.72208|18.70754|Mikpunt
+T|-33.08150|23.92466|Miller
+T|-26.12807|27.73940|Millsite
+T|-27.96046|30.03296|Milnedale
+T|-33.42892|25.84121|Mimosa
+T|-29.64731|30.26777|Minimzolo
+T|-27.25191|26.68610|Mirage
+T|-33.75273|23.49494|Misgund
+T|-34.04953|18.61916|Mitchell's Plain
+T|-29.96445|29.86898|Mjila
+T|-29.46189|30.61789|Mkabela
+T|-24.97552|31.25835|Mkhuhlu
+T|-29.65216|30.41459|Mkondeni
+T|-27.09854|30.82092|Mkondo
+T|-27.61621|32.03353|Mkuze
+T|-26.22604|27.92812|Mlamlankunzi
+T|-29.81653|29.93140|Mnyamana
+T|-26.72017|24.93893|Mnyani
+T|-29.10439|27.45108|Modderpoort
+T|-29.02141|24.63574|Modderrivier
+T|-25.90346|30.17497|Moedig
+T|-24.19381|29.01837|Mokopane
+T|-29.10199|30.50913|Mollissima
+T|-31.39521|26.36561|Molteno
+T|-28.84204|30.00265|Mona
+T|-30.04216|29.79882|Mondi
+T|-33.93953|24.95142|Mondplaas
+T|-29.92571|30.97331|Montclair
+T|-33.89164|18.54896|Monte Vista
+T|-28.47859|27.52800|Montevideo
+T|-27.79401|27.98349|Mooigeleë
+T|-29.20929|29.99735|Mooirivier
+T|-26.43577|29.44633|Mooisand
+T|-27.99590|26.91043|Mooiveld
+T|-26.38809|29.70983|Mooivlei
+T|-27.90990|23.02395|Mookaneng
+T|-23.59293|30.09881|Mooketsi
+T|-27.14465|30.88105|Moolman
+T|-33.15281|18.66974|Moorreesburg
+T|-22.61592|29.85825|Mopane
+T|-32.94139|18.69447|Moravia
+T|-24.75240|30.32157|Morone
+T|-32.36601|25.69254|Mortimer
+T|-29.85038|30.88324|Moseley
+T|-29.82658|31.02836|Moses Mabhida
+T|-33.22916|20.71849|Mosterts Hoek
+T|-29.17999|30.34233|Mount Alida
+T|-29.70425|31.03261|Mount Edgecombe
+T|-28.68886|28.07713|Mount Morkel
+T|-27.50624|29.86498|Mount Prospect
+T|-32.92236|27.75835|Mount Ruth
+T|-33.14733|24.43800|Mount Stewart
+T|-29.90103|30.93353|Mount Vernon
+T|-25.70124|28.17115|Mountain View
+T|-33.94662|18.47390|Mowbray
+T|-26.31911|28.14036|Mpilisweni
+T|-29.41159|30.45457|Mpolweni
+T|-31.59445|28.78224|Mthatha
+T|-31.59411|28.78209|Mthatha Railway Station
+T|-28.68744|31.69750|Mtimona
+T|-32.94825|27.78316|Mtsotso
+T|-28.41766|32.18565|Mtubatuba
+T|-28.95997|31.75762|Mtunzini
+T|-34.10932|18.46807|Muizenberg
+T|-33.83112|18.82801|Muldersvlei
+T|-23.63712|29.90286|Munnik
+T|-31.96097|28.30357|Munyu
+T|-28.44220|31.72342|Munywana
+T|-29.70597|30.14837|Munywini
+T|-29.69899|30.17365|Munywini
+T|-22.34319|30.04071|Musina
+T|-33.92226|18.51308|Mutual
+T|-29.05908|30.68263|Mvozana
+T|-30.90279|23.93613|Mynfontein
+T|-27.38045|24.76824|Myra
+T|-32.83849|27.27991|Mzantsi
+T|-26.22320|27.92293|Mzimhlope
+T|-28.87199|31.88005|Mzingwenya
+T|-24.52114|28.71360|Naboomspruit
+T|-26.25794|27.82278|Naledi
+T|-26.25158|27.90629|Nancefield
+T|-28.14454|20.14689|Naroegas
+T|-26.23872|27.98092|Nasrec
+T|-26.30445|28.14320|Natalspruit
+T|-26.48794|29.50615|Naudesfontein
+T|-30.24227|30.01447|Ncalu
+T|-28.07472|32.28420|Ncemane
+T|-29.78272|30.01743|Ncwadi
+T|-32.34952|28.03807|Ndabakazi
+T|-33.92943|18.49464|Ndabeni
+T|-31.89453|28.46769|Ndyebo
+T|-25.37092|30.14112|Nederhorst
+T|-32.50845|25.77958|Nelland
+T|-32.11408|23.00322|Nelspoort
+T|-28.61583|29.84561|Nelthorpe
+T|-33.95247|18.56366|Netreg
+T|-28.73093|20.69841|Neushek
+T|-30.28200|29.17272|New Amalfi
+T|-33.89919|25.60803|New Brighton
+T|-26.21459|27.94261|New Canada
+T|-29.14223|29.92784|New Dell
+T|-26.26248|28.40773|New Era
+T|-29.02551|29.89015|New Formosa
+T|-28.85082|30.04854|New Furrow
+T|-29.36162|30.51792|New Hanover
+T|-26.20662|28.32016|New Kleinfontein
+T|-29.18663|29.98495|New Leigh
+T|-27.76101|29.98084|Newcastle
+T|-26.18635|27.96305|Newclare
+T|-33.97422|18.46761|Newlands
+T|-30.36569|29.44597|Newmarket
+T|-27.85936|29.97530|Ngagane
+T|-25.58640|30.63391|Ngodwana
+T|-28.68458|31.79613|Ngogodo
+T|-28.02549|31.01669|Ngogweni
+T|-28.72754|31.83056|Ngqwatayl
+T|-26.75890|30.38026|Ngwempisi
+T|-27.94959|32.24459|Ngweni
+T|-32.83790|26.93235|Ngwenya
+T|-28.20178|31.17591|Nhlazatshe
+T|-34.09394|20.66593|Niekerkshek
+T|-26.42265|28.44857|Nigel
+T|-25.69759|29.67393|Nitens
+T|-30.25468|30.36309|Njane
+T|-28.65938|31.79179|Nkomboshe
+T|-27.54205|31.98110|Nkonkoni
+T|-29.99987|29.86231|Nkonzo
+T|-28.72814|31.52764|Nkwalini
+T|-30.32225|30.60809|Nkwifa
+T|-31.78877|23.17421|Noblesfontein
+T|-34.01696|18.64898|Nolungile
+T|-34.02697|18.66315|Nonkqubela
+T|-29.37064|30.76141|Noodsberg
+T|-28.27076|24.08027|Nooibos
+T|-25.67664|31.08179|Noordkaap
+T|-28.75144|20.62005|Noordvoor
+T|-25.68355|27.41179|Norite
+T|-33.94645|25.61006|North End
+T|-24.96764|27.26455|Northam
+T|-29.86360|30.88595|Northdene
+T|-26.18098|28.31836|Northmead
+T|-30.62468|25.44413|Norvalspont
+T|-29.35613|29.99323|Nottingham Road
+T|-31.18269|24.95184|Noupoort
+T|-33.39928|25.43701|Nqweba
+T|-28.67451|32.04779|Nseleni
+T|-29.83488|30.70251|Nshongweni
+T|-28.71057|31.66191|Nsimbakazi
+T|-32.88288|27.58369|Ntabozuko
+T|-32.12940|28.25672|Ntisana
+T|-24.88620|28.88899|Nutfield
+T|-33.76961|23.57894|Nuweplaas
+T|-33.68649|19.59171|Nuy
+T|-32.17166|25.61162|Nxuba
+T|-28.22419|32.30592|Nyalazi River
+T|-33.99286|18.56001|Nyanga
+T|-29.60034|31.08208|Nyaninga
+T|-24.70726|28.42304|Nylstroom
+T|-28.72488|31.78252|Nyoka
+T|-26.13217|28.23110|O.R. Tambo International Airport
+T|-33.64318|25.91645|Oakhill
+T|-26.00575|28.24875|Oakmoor
+T|-26.36654|29.01133|Oban
+T|-26.34275|27.39338|Oberholzer
+T|-33.93796|18.47150|Observatory
+T|-26.04988|29.05136|Ogies
+T|-24.75348|30.55784|Ohrigstad
+T|-29.79754|29.63216|Okhalweni
+T|-30.49813|25.95978|Old Bethulie Train Station
+T|-28.29142|24.11851|Olea
+T|-29.16356|25.98875|Olienhoutplaat
+T|-25.96394|28.23552|Olifantsfontein
+T|-28.83899|24.89935|Olifantskop
+T|-24.27174|30.89505|Olifantstenk
+T|-30.61496|26.04733|Olive
+T|-30.85797|23.95695|Oloff
+T|-30.12882|23.09744|Omdraaisvlei
+T|-25.61164|28.12146|Onderstepoort
+T|-25.64254|30.35401|Ondervalle
+T|-33.73838|23.41892|Ongelegen
+T|-30.25727|23.21806|Ongers
+T|-25.40322|27.61070|Ontgin
+T|-30.80574|26.18381|Ontspringen
+T|-31.33391|26.30427|Onverwag
+T|-28.09509|27.95969|Ooreenkoms
+T|-28.94188|21.68181|Oorkruis
+T|-28.94031|21.68502|Oorkruis
+T|-33.90041|18.60684|Oosterzee
+T|-27.90305|27.52115|Oosthuizen
+T|-24.04575|29.09707|Opblaas
+T|-28.73892|24.75490|Open Mine Museum
+T|-26.39460|26.22155|Oppaslaagte
+T|-29.66893|24.20716|Orange River
+T|-23.88122|30.29970|Orangedene
+T|-29.63460|30.39604|Oribi Camp
+T|-26.23754|27.91723|Orlando
+T|-30.91360|26.29597|Osfontein
+T|-33.44660|19.72062|Osplaas
+T|-29.67265|31.03827|Ottawa
+T|-30.77958|30.17471|Otterburn
+T|-34.01349|18.49520|Ottery
+T|-29.49368|30.38702|Otto's Buff
+T|-26.81840|25.99533|Ottosdal
+T|-30.64402|26.07654|Oudag
+T|-33.61136|22.21861|Oudtshoorn
+T|-31.07969|20.33008|Oumuur
+T|-33.86993|22.44297|Oupad
+T|-34.03155|22.31344|Outeniqua
+T|-33.92247|18.46695|Paarden Eiland
+T|-33.76498|18.96473|Paarl
+T|-31.10006|18.18928|Paddagat
+T|-30.04109|30.88959|Pahla
+T|-32.47955|18.72085|Paleisheuwel
+T|-28.15162|23.04490|Palingpan
+T|-25.52319|30.06554|Palmer
+T|-27.20184|29.69035|Palmford
+T|-32.87671|21.90707|Palmiet
+T|-24.13503|31.03700|Palmloop
+T|-31.06223|22.65888|Pampoenpoort
+T|-25.75918|29.66711|Pan
+T|-26.80223|30.43332|Panbult
+T|-32.99853|27.89014|Panmure
+T|-25.73448|28.44301|Panpoort
+T|-26.87618|24.80546|Paradise
+T|-26.23578|28.18693|Park Hill
+T|-30.31658|30.74183|Park Rynie
+T|-26.19678|28.04168|Park Station
+T|-33.90959|18.58624|Parow
+T|-27.36359|27.11622|Passie
+T|-33.75933|24.81012|Patensie
+T|-33.43453|25.97031|Paterson
+T|-34.17739|19.07774|Patryslaagte
+T|-25.40949|27.15342|Paul
+T|-27.42246|30.82734|Paulpietersburg
+T|-32.77970|27.49913|Peelton
+T|-29.97416|30.93367|Pelgrim
+T|-25.63379|27.81155|Pendoring
+T|-31.52173|26.65915|Penhoek
+T|-28.57638|32.10605|Penicuik
+T|-28.95041|29.86478|Peniston
+T|-30.38587|30.69616|Pennington
+T|-33.93481|18.64610|Pentech
+T|-29.63495|30.37389|Pentrich
+T|-28.46286|29.87309|Pepworth
+T|-28.98295|25.07963|Perdeberg
+T|-27.18161|29.61704|Perdekop
+T|-30.54414|24.03694|Perdevlei
+T|-33.81542|25.52087|Perseverance
+T|-29.10854|25.41737|Petrusburg
+T|-29.78725|29.61455|Pevensey
+T|-23.97532|31.11139|Phalaborwa
+T|-22.93183|29.62028|Phareng
+T|-26.23510|27.90482|Phefeni
+T|-34.01334|18.58531|Philippi
+T|-30.18863|25.45223|Philippolis Road
+T|-29.71767|31.00990|Phoenix
+T|-25.55615|27.16075|Phokeng
+T|-26.22652|27.90901|Phomolong
+T|-25.73522|28.42803|Pienaarspoort
+T|-25.20528|28.29427|Pienaarsrivier
+T|-25.71973|28.23929|Pierneefsrus
+T|-27.00882|30.79148|Piet Retief
+T|-33.25221|20.43177|Pieter Meintjes
+T|-28.65721|29.83958|Pieter's
+T|-29.61075|30.36837|Pietermaritzburg
+T|-32.91364|18.76920|Piketberg
+T|-26.34087|28.15247|Pilot
+T|-25.91374|28.22886|Pinedene
+T|-33.93960|18.49066|Pinelands
+T|-29.81785|30.85779|Pinetown
+T|-32.83241|27.22874|Pirie
+T|-31.04190|23.75310|Plaatfontein
+T|-28.25539|23.90483|Plateau
+T|-27.11814|29.45405|Platrand
+T|-27.10423|29.46013|Platrand
+T|-33.32241|18.37220|Platteklip
+T|-29.64662|30.34508|Plessislaer
+T|-30.77272|25.11967|Plewman
+T|-32.87173|27.43674|Plumbago
+T|-34.02194|18.46972|Plumstead
+T|-29.87939|30.93128|Poet's Corner
+T|-23.76582|30.10192|Politsi
+T|-26.26504|28.43117|Pollak Park
+T|-23.89647|29.44582|Polokwane Train Station
+T|-29.83488|25.86357|Pompie
+T|-24.86970|27.09619|Pony
+T|-32.81402|18.84963|Pools
+T|-29.66792|26.92194|Populier
+T|-33.58988|26.88886|Port Alfred
+T|-28.91326|31.83024|Port Durnford
+T|-33.01828|27.89507|Port Rex
+T|-30.74349|30.45724|Port Shepstone
+T|-33.01197|19.00105|Porterville
+T|-33.02151|18.36429|Portugees
+T|-26.71170|27.08467|Potchefstroom
+T|-30.20355|24.11607|Potfontein
+T|-25.03191|30.48181|Potloodspruit
+T|-28.99529|30.80415|Potspruit
+T|-30.04274|24.14742|Poupan
+T|-33.92633|22.44662|Power
+T|-33.92855|22.44414|Power Van Station
+T|-25.83766|30.21132|Prairie
+T|-26.21224|28.15882|President
+T|-25.75949|28.18922|Pretoria
+T|-25.75956|28.19045|Pretoria Gautrain Station
+T|-25.67098|28.18188|Pretoria-Noord
+T|-25.75609|28.16765|Pretoria-Wes
+T|-29.68005|22.74756|Prieska
+T|-32.98495|21.68672|Prince Albert Road
+T|-33.30504|19.32344|Prince Alfred Hamlet
+T|-26.13266|27.85353|Princess
+T|-30.42047|25.60209|Priors
+T|-32.58819|27.81656|Prospect
+T|-34.26617|20.08184|Protem
+T|-28.17148|26.21395|Protespan
+T|-30.35249|25.84177|Providence
+T|-27.39036|24.71117|Pudimoe
+T|-26.04464|29.60212|Pullenshope (PSH)
+T|-33.49541|26.83095|Purdonton
+T|-29.23418|21.87189|Putsonderwater
+T|-22.75515|29.74925|Pylkop
+T|-25.58860|28.23043|Pyramid
+T|-25.61053|28.22377|Pyramid South
+T|-32.85219|27.03588|Qanda
+T|-32.88727|27.38920|Qonce
+T|-29.51355|30.23776|Quail
+T|-33.26400|20.21041|Quarry
+T|-25.72208|28.25204|Queenswood
+T|-31.76126|28.63279|Qunu
+T|-26.56782|27.65204|Raathsvlei
+T|-26.44122|25.17233|Rabatho
+T|-23.57937|29.94407|Radikofi
+T|-25.09097|28.30669|Radium
+T|-27.34070|24.85027|Rama
+T|-25.64866|25.57486|Ramatlabama
+T|-23.70594|29.83729|Ramothola
+T|-26.18133|27.69793|Randfontein
+T|-26.38396|28.09856|Randwater
+T|-25.52555|27.77816|Rashoop
+T|-32.04142|18.58371|Ratelfontein
+T|-26.35275|26.74155|Ratsagae
+T|-26.18105|28.19968|Ravensklip
+T|-29.31412|30.62727|Ravensworth
+T|-25.74275|28.53135|Rayton
+T|-25.75857|28.15348|Rebecca
+T|-25.45711|30.73107|Reception
+T|-29.77894|31.02283|Red Hill
+T|-26.62661|27.96754|Redan
+T|-33.83861|25.56890|Redhouse
+T|-29.86764|22.94953|Redlands
+T|-34.07623|22.17262|Reebok (abandoned)
+T|-26.22129|28.15034|Refinery
+T|-27.07758|26.52308|Regina
+T|-34.17252|21.37004|Reisiesbaan
+T|-27.79701|28.44094|Reitz
+T|-25.52239|26.17850|Renbaan
+T|-34.12304|20.71890|Renier
+T|-30.27252|30.76027|Renishaw
+T|-32.20936|22.85388|Renosterkop
+T|-26.53820|27.88815|Residensia
+T|-28.38414|28.22499|Retiefsnek
+T|-34.06052|18.46355|Retreat
+T|-29.96300|30.94120|Reunion
+T|-25.61588|31.30652|Revolver Creek
+T|-26.12651|28.22478|Rhodesfield
+T|-29.86664|30.27100|Richmond
+T|-30.76283|30.09882|Ridge
+T|-33.34170|18.87705|Riebeek West
+T|-33.38403|18.91724|Riebeek-Kasteel
+T|-32.15052|22.91013|Riem
+T|-27.71174|28.06663|Riemland
+T|-30.76107|24.19144|Riet
+T|-25.91627|29.78033|Rietkuil (RTI)
+T|-26.83002|25.45505|Rietpan
+T|-34.25824|19.76723|Rietpoel
+T|-26.50728|29.81949|Rietvleirus
+T|-29.66597|25.97573|Rietwater
+T|-33.08938|25.86367|Ripon
+T|-25.74961|28.23236|Rissik
+T|-28.53009|24.61263|Rivermead
+T|-34.09306|21.25675|Riversdale
+T|-30.08160|29.70354|Riverside
+T|-28.49771|24.78061|Riverton
+T|-25.43965|30.75529|Rivulets
+T|-26.32415|28.45057|Road bend
+T|-33.80747|19.87643|Robertson
+T|-26.15812|27.71499|Robinson
+T|-25.37598|30.98766|Rocky Drift
+T|-24.59959|29.07725|Roedtan
+T|-24.71599|31.23464|Rolle
+T|-33.47390|19.20165|Romans Rivier
+T|-33.96216|18.47234|Rondebosch
+T|-28.04227|28.37529|Rondehoek
+T|-33.98492|22.69692|Rondevlei
+T|-26.15898|27.86993|Roodepoort
+T|-26.29013|28.18514|Rooikop
+T|-33.47900|22.78662|Rooiloop
+T|-28.74529|21.98174|Rooilyf
+T|-29.19202|23.97186|Rooipan
+T|-27.29892|27.52227|Rooiwal
+T|-25.18837|29.89900|Roossenekal
+T|-33.95473|18.47314|Rosebank
+T|-26.14507|28.04414|Rosebank
+T|-25.29091|30.76621|Rosehaugh
+T|-29.30431|29.97914|Rosetta
+T|-31.48980|25.11859|Rosmead
+T|-32.61513|27.58600|Ross
+T|-29.89882|30.98082|Rossburgh
+T|-25.63771|28.09454|Rosslyn
+T|-30.42370|26.83803|Rouxville
+T|-25.71813|28.18884|Rovos Rail Station
+T|-23.91863|30.54985|Rubbervale
+T|-25.60399|27.78556|Rufus
+T|-29.15142|21.34646|Rugseer
+T|-34.02307|22.85591|Ruigtevlei
+T|-33.14250|21.11556|Ruiterskop
+T|-29.27742|26.57844|Rusfontein
+T|-33.27906|18.64928|Rust
+T|-25.66654|27.25197|Rustenburg
+T|-27.14569|29.52844|Rusthof
+T|-27.41070|27.16026|Rustig
+T|-24.58741|28.80423|Rutland
+T|-30.22126|30.14988|Rydal
+T|-32.32986|24.55551|Rynheath
+T|-26.35126|27.13537|Rysmierbult
+T|-30.31021|29.11139|Saamloop
+T|-26.66828|27.08862|Safarcamp
+T|-31.32738|18.77895|Saggiesberg
+T|-30.88055|20.44063|Sak River
+T|-33.00527|17.94330|Saldanha
+T|-34.00325|24.56186|Salielaagte
+T|-32.95218|18.04759|Salkor
+T|-29.27935|24.01102|Salt Lake
+T|-33.92723|18.46501|Salt River
+T|-33.18205|25.93879|Saltaire
+T|-32.28958|18.58925|Sandberg
+T|-24.01864|29.29516|Sandrivier
+T|-27.27423|29.78063|Sandspruit
+T|-26.10828|28.05693|Sandton
+T|-29.16078|26.54730|Sannaspos
+T|-26.53238|25.80439|Sannieshof
+T|-25.33995|30.17753|Santa
+T|-33.36412|25.04926|Sapkamma
+T|-33.92669|18.66123|Sarepta
+T|-29.83038|30.87686|Sarnia
+T|-26.85459|27.86651|Sasolburg
+T|-25.76402|28.06169|Saulsville
+T|-30.27171|30.48901|Sawoti
+T|-32.19307|25.63022|Scanlen
+T|-26.25713|28.37680|Schapenrust
+T|-28.97198|29.86018|Scheepersfontein
+T|-27.82774|30.70554|Scheepersnek
+T|-23.05946|29.78808|Schoemansdal
+T|-33.48264|22.85086|Scholtz
+T|-29.38079|30.55931|Schroeders
+T|-25.75072|28.15980|Schutte Street
+T|-27.19007|25.32372|Schweizer-Reneke
+T|-30.28480|30.75882|Scottburgh
+T|-29.90049|30.96129|Sea View
+T|-29.89142|29.83638|Seaford
+T|-26.00267|27.48843|Seekmore
+T|-28.81953|27.93152|Sekonyela
+T|-24.00985|30.67817|Selatirivier
+T|-33.50959|25.65963|Selborne
+T|-26.28519|28.44745|Selpark
+T|-28.32830|27.63563|Senekal
+T|-29.16923|26.67664|Sepane
+T|-27.38441|27.46641|Serfontein
+T|-33.98826|22.62721|Serpentine
+T|-26.38990|28.44169|Servaas
+T|-29.21016|30.59607|Sevenoaks
+T|-25.77106|30.23897|Sewefontein
+T|-32.55273|26.76423|Seymour
+T|-30.40828|30.68148|Sezela
+T|-29.45227|31.22038|Shakaskraal
+T|-29.88121|30.87867|Shallcross
+T|-29.51580|22.32834|Shamley's Farm
+T|-29.13615|26.27456|Shannon
+T|-25.68379|31.17328|Sheba
+T|-26.71352|30.30030|Sheepmoor
+T|-33.01317|25.83893|Sheldon
+T|-31.35430|25.00053|Sherborne
+T|-28.12801|28.47281|Sherbrooke
+T|-28.53138|28.11991|Sheridan
+T|-25.72511|29.63586|Shirley
+T|-24.91357|28.69482|Sibi
+T|-28.72389|31.84257|Siding 2043
+T|-25.45343|30.95909|Sierlik
+T|-33.73154|23.27954|Siesta
+T|-27.71941|29.98380|Signal Hill
+T|-32.51106|27.97650|Sihota
+T|-29.65356|30.28654|Sikoleni
+T|-29.65327|30.31618|Sikoleni
+T|-26.15864|28.78195|Silica
+T|-27.33210|24.87954|Siloam
+T|-28.34583|23.58018|Silver Streams
+T|-25.72742|28.29686|Silverton
+T|-34.18682|18.42551|Simon's Town
+T|-33.83402|18.95355|Simondium
+T|-29.67009|30.29433|Sinadini
+T|-30.25754|29.53558|Singisi
+T|-24.60841|28.97522|Singlewood
+T|-34.11829|18.90994|Sir Lowry's Pass Railway Station
+T|-29.65286|30.31180|Sitebisi
+T|-29.85678|30.79097|Situndu Hills
+T|-29.84157|29.89417|Sizanenjana
+T|-26.46471|28.07277|Skansdam
+T|-33.21994|20.68496|Skeiding
+T|-22.47150|29.93588|Skelmwater
+T|-34.02548|22.38116|Skimmelkrans
+T|-25.89265|29.17268|Skoongesig
+T|-27.42113|28.01664|Skoonroos
+T|-27.61537|26.60287|Skoonspruit
+T|-33.34144|19.30970|Skoonvlei
+T|-31.94247|18.61524|Skurfkop
+T|-29.82732|31.03107|Skycar
+T|-28.43573|28.18201|Slabberts
+T|-32.69908|25.82702|Slagtersnek
+T|-29.86811|25.44065|Sleutelspoort Halt
+T|-25.81252|25.83762|Slurry
+T|-28.43016|24.80002|Slypklip
+T|-27.34039|29.08447|Smalhof
+T|-30.23260|25.54259|Smartryk Halt
+T|-28.49923|29.71414|Smith's Crossing
+T|-33.47493|22.87993|Snyberg
+T|-30.17288|23.12759|Sodium
+T|-23.49293|29.92545|Soekmekaar
+T|-33.50752|18.98116|Soetendal
+T|-34.08435|18.84147|Somerset West
+T|-27.29890|29.09153|Sonder
+T|-29.70847|30.13828|Songonzima
+T|-30.77610|26.45698|Sonskyn
+T|-26.53517|25.88963|Sooihuis
+T|-25.52081|28.08282|Soshanguve
+T|-30.43296|19.60992|Sous
+T|-33.28252|18.89110|Soutbosvlei
+T|-32.74388|27.52319|Southdown
+T|-33.00934|27.90261|Southernwood
+T|-34.03296|18.48168|Southfield
+T|-30.67954|30.50570|Southport
+T|-33.62156|26.27781|Soutkloof
+T|-33.97287|18.78203|Spier
+T|-32.53436|27.99301|Spiral
+T|-24.92350|29.11163|Spoedwel
+T|-25.79080|29.82362|Spoelpan
+T|-25.82464|28.20574|Sportpark
+T|-28.53678|21.34100|Sprigg
+T|-30.26681|25.70777|Springfontein
+T|-33.66766|26.03923|Springmount
+T|-26.25040|28.43831|Springs
+T|-26.69400|28.66464|Sprucewell
+T|-26.58880|28.47459|Spruytsrus
+T|-34.11930|18.45846|St James
+T|-33.91659|25.35287|St. Albans
+T|-29.05576|23.82256|St.Clair
+T|-30.18251|30.05643|Stainton
+T|-26.95466|29.23488|Standerton
+T|-28.89962|29.92988|Stanley
+T|-31.74836|23.19568|Stapelia
+T|-24.73152|30.21431|Steelpoort
+T|-34.07667|18.46367|Steenberg
+T|-33.47719|25.33140|Steenbokvlakte
+T|-34.14620|18.94177|Steenbras
+T|-25.34424|30.21301|Steilte
+T|-32.50547|22.37166|Steins
+T|-33.93882|18.84968|Stellenbosch
+T|-25.62830|27.89086|Stephanus
+T|-31.08778|23.70553|Sterkaar
+T|-25.50386|29.85782|Sterkloop
+T|-31.56659|26.55015|Sterkstroom
+T|-34.02913|18.46888|Steurhof
+T|-31.29198|25.82452|Steynsburg
+T|-27.93470|27.58313|Steynsrus
+T|-33.90448|18.65720|Stikland
+T|-28.23668|26.18360|Stillerus
+T|-27.79326|30.74385|Stilwater
+T|-34.01418|18.60639|Stock Road
+T|-32.61163|27.66998|Stockton
+T|-33.51034|22.59327|Stompdrift
+T|-31.28265|26.29083|Stormberg
+T|-34.11490|18.83238|Strand
+T|-33.42963|25.47690|Strathsomers
+T|-26.47150|27.87085|Stretford
+T|-26.31477|28.46077|Struisbult
+T|-33.46941|22.94686|Struisvogel
+T|-30.83243|26.22579|Strydom
+T|-26.99339|25.96104|Strydpoort
+T|-32.56412|27.43437|Stutterheim
+T|-26.36419|28.43759|Sub-Nigel
+T|-25.66673|31.22012|Sugden
+T|-33.48990|25.59147|Summerville
+T|-33.89367|25.08449|Summit
+T|-25.35673|27.10606|Sun City
+T|-25.76282|29.95901|Sunbury
+T|-26.18738|28.54748|Sundra
+T|-29.14170|31.40584|Sundumbili
+T|-34.14430|18.43712|Sunny Cove
+T|-33.41316|25.44465|Sunnybank
+T|-28.31794|29.13536|Sunnymede
+T|-33.88696|25.18630|Sunnyside
+T|-30.66786|30.51216|Sunwich Port
+T|-32.38302|27.24154|Surbiton
+T|-26.30675|27.74752|Suurbekom
+T|-28.74542|29.43532|Suurlaer
+T|-30.68211|26.11237|Swaartrek
+T|-30.24025|29.33978|Swartberg
+T|-33.86724|25.60062|Swartkops
+T|-25.65172|26.68630|Swartruggens
+T|-34.00289|22.74102|Swartvlei
+T|-30.60180|23.71415|Sweetfontein
+T|-34.02958|20.44472|Swellendam
+T|-28.34950|29.27604|Swinburne
+T|-33.92372|25.60439|Sydenham
+T|-26.00542|27.32848|Syferbult
+T|-31.45547|26.42906|Syfergat
+T|-27.35050|27.97902|Syferkuil
+T|-30.87167|24.36371|Taaibos
+T|-27.84605|24.80925|Tadcaster
+T|-31.61741|25.24041|Tafelberg
+T|-31.46767|27.15960|Tafile
+T|-25.61778|27.97223|Taillardshoop
+T|-32.57123|27.94015|Tanga
+T|-32.00413|26.26653|Tarkastad
+T|-26.08013|27.63999|Tarlton
+T|-27.56606|24.74661|Taung
+T|-29.67598|30.17428|Taylor's
+T|-28.07002|30.39086|Tayside
+T|-26.76746|28.82608|Teakworth
+T|-25.73277|28.16714|Technikon Rant
+T|-29.74232|30.99321|Tembalihle
+T|-26.00971|28.23146|Tembisa
+T|-29.80386|31.00612|Temple
+T|-27.73583|30.88713|Tendeka
+T|-34.06760|22.19564|Tergniet
+T|-29.58590|30.31494|Teteluku
+T|-29.18884|26.81901|Thaba Nchu
+T|-24.60083|27.39224|Thabazimbi
+T|-33.90253|18.39889|The "Blue Train"
+T|-34.03441|24.83697|The Burns
+T|-33.96769|25.48558|Theescombe
+T|-28.31909|26.76163|Theron
+T|-28.40460|26.71908|Theunissen
+T|-32.41281|27.30343|Thomas River
+T|-32.45975|27.26812|Thomas River Station
+T|-32.64001|25.81496|Thorngrove
+T|-33.89771|25.13923|Thornhill
+T|-33.91885|18.53250|Thornton
+T|-29.73461|30.38461|Thornville
+T|-29.86245|30.80878|Thornwood
+T|-31.88479|23.09125|Three Sisters
+T|-28.00858|26.29167|Tierfontein
+T|-27.05344|24.75538|Tierkloof
+T|-29.44190|26.08928|Tierpoort
+T|-29.44272|31.24043|Tinley Manor
+T|-24.46424|28.77185|Tobias
+T|-28.30692|20.53360|Toeslaan
+T|-33.89170|24.92623|Togo
+T|-32.45213|27.38844|Toise
+T|-25.12159|28.30353|Tokomane
+T|-32.43069|27.98790|Toleni
+T|-25.58344|31.31792|Tonetti
+T|-29.55918|31.12703|Tongaat
+T|-29.57090|31.11458|Tongaat Central
+T|-30.94183|20.38080|Tontelbos
+T|-26.20421|28.11049|Tooronga
+T|-33.41988|23.10654|Toorwater
+T|-33.88229|22.43216|Topping
+T|-27.93671|28.96060|Toppunt
+T|-26.43837|30.02062|Torbanite
+T|-33.33816|20.03663|Touws River
+T|-31.92741|23.04976|Travalia
+T|-28.11690|28.35767|Trentham
+T|-28.30699|23.68615|Trewil
+T|-26.49833|29.22436|Trichart
+T|-31.68433|18.54184|Troe-Troe
+T|-30.02579|25.76713|Trompsburg
+T|-28.65426|21.46593|Trooilapspan
+T|-24.62248|28.91553|Truro
+T|-28.28005|23.14499|Tsantasabane
+T|-26.28909|27.87048|Tshiawelo
+T|-33.32082|19.09976|Tulbach Road
+T|-33.43842|19.76345|Tunnel
+T|-24.53449|29.14663|Turfbult
+T|-25.68849|27.54705|Turfgrond
+T|-24.82654|27.31160|Tussenin
+T|-30.10790|29.68261|Tutu
+T|-26.93124|29.20012|Tutuka
+T|-24.60838|28.82306|Twee Koppies
+T|-33.83362|23.89166|Twee Riviere
+T|-29.47672|30.18414|Tweedie
+T|-33.24867|20.36827|Tweedside
+T|-27.24809|26.97584|Tweekuil
+T|-27.55767|28.51072|Tweeling
+T|-29.18728|27.03077|Tweespruit
+T|-33.97872|24.49649|Two Streams
+T|-33.90745|18.60129|Tygerberg
+T|-32.12016|27.07616|Tylden
+T|-23.84489|30.17680|Tzaneen
+T|-31.20311|28.21252|Ugie
+T|-33.21882|18.39480|Uilkraal
+T|-28.24743|30.13419|Uithoek
+T|-24.14113|29.03423|Uitloop
+T|-29.32845|26.59148|Uitsig
+T|-29.70012|22.55439|Uitspanberg
+T|-25.65057|27.75749|Uitval
+T|-27.31165|24.92868|Uitvalskop
+T|-29.45110|22.23955|Uitvlug
+T|-28.35519|24.29073|Ulco
+T|-28.30370|31.44985|Ulundi
+T|-29.89038|30.98446|Umbilo
+T|-30.02273|30.90755|Umbogintwini
+T|-28.60791|29.83658|Umbulwana
+T|-28.22629|31.24319|Umfolozi
+T|-30.14608|30.83291|Umgababa
+T|-29.81644|31.02747|Umgeni
+T|-29.47653|31.21941|Umhlali
+T|-31.46427|27.21368|Umhlanga
+T|-29.77125|30.05605|Umhlongonek
+T|-30.20439|30.80242|Umkomaas
+T|-29.73171|30.50737|Umlaas Road
+T|-29.95409|30.86604|Umlazi
+T|-30.71559|30.47563|Umtentweni
+T|-29.15897|30.62514|Umvoti River
+T|-30.32491|30.65459|Umzinto
+T|-29.79257|29.49814|Underberg
+T|-33.93705|18.62860|Unibell
+T|-26.17940|27.92669|Unified
+T|-26.27045|28.16271|Union
+T|-28.45286|21.23949|Upington
+T|-29.39833|26.64605|Uysklip
+T|-25.56810|26.24069|Vaalkop
+T|-24.30354|28.11036|Vaalwater
+T|-28.82158|27.97184|Vailima
+T|-26.79693|28.93456|Val
+T|-33.98114|25.61123|Valley
+T|-33.97964|25.61680|Valley Junction (Old)
+T|-30.29679|25.78048|Valley-Dora
+T|-28.14389|28.11040|Valsrivier
+T|-28.37194|29.37888|Van Reenen
+T|-26.08793|28.22178|Van Riebeeckpark
+T|-26.17307|28.34448|Van Ryn
+T|-33.89428|25.21634|Van Stadens
+T|-29.02448|26.29813|Van Tonder
+T|-34.06022|21.20007|Van Wyk
+T|-26.60378|27.80581|Van der Bijl
+T|-25.72424|28.49538|Van der Merwe
+T|-34.09498|18.85306|Van der Stel
+T|-25.35221|29.81827|Vanadiumkop
+T|-33.91120|18.55843|Vasco
+T|-30.13813|30.05089|Vause
+T|-28.38176|27.59823|Veepos
+T|-26.33255|26.83384|Ventersdorp
+T|-33.44009|26.00508|Verby
+T|-29.15908|26.46332|Vercoe
+T|-26.67416|27.93531|Vereeniging
+T|-26.53177|25.99768|Vermaas
+T|-25.26414|30.25411|Vermont
+T|-31.60681|23.15880|Verster
+T|-29.64620|31.04923|Verulam
+T|-28.49011|26.66559|Vetrivier
+T|-29.59303|30.37466|Victoria
+T|-31.40420|23.12877|Victoria West
+T|-31.72381|28.68927|Viedgesville
+T|-27.08094|26.75092|Vierfontein
+T|-26.73286|27.92034|Viljoensdrif
+T|-27.20693|26.91828|Viljoenskroon
+T|-26.21889|28.04478|Village Main
+T|-25.71982|28.22884|Villieria
+T|-27.03070|28.61205|Villiers
+T|-32.97765|27.89881|Vincent
+T|-29.24949|27.37447|Vinies
+T|-33.79086|19.78722|Vink
+T|-28.12880|26.89266|Virginia
+T|-31.90395|25.40886|Visrivier
+T|-32.60251|22.19705|Viviers
+T|-24.61809|29.04006|Vlakte
+T|-33.49948|22.69508|Vlakteplaas
+T|-34.11738|20.84622|Vleidam
+T|-25.66078|26.60944|Vleidraai
+T|-33.15860|21.05333|Vleifontein
+T|-26.27554|27.59038|Vleikop
+T|-33.24833|18.90128|Vleitjies
+T|-27.48844|22.95681|Vlermuislaagte
+T|-33.96204|18.79988|Vlottenburg
+T|-25.18605|30.45183|Voetpad
+T|-27.37231|29.88981|Volksrus
+T|-33.34683|23.12921|Vondeling
+T|-34.13542|22.10486|Voorbaai
+T|-34.05995|20.33537|Voorhuis
+T|-29.14811|30.44679|Voorkeur
+T|-26.37150|29.97781|Voorslag
+T|-27.32847|29.84163|Vooruitsig
+T|-24.99551|30.51525|Vosloosnek
+T|-29.83070|29.92325|Voyizana
+T|-33.36430|19.01597|Voëlvlei
+T|-27.43550|29.14774|Vrede
+T|-31.65398|18.52200|Vredendal
+T|-28.15310|22.63459|Vrolik
+T|-26.95739|24.74818|Vryburg
+T|-26.03102|25.51519|Vryhof
+T|-26.26047|28.18168|Wadeville
+T|-29.15730|26.95062|Waghorn
+T|-33.87173|24.89336|Wagon Drift
+T|-25.88584|29.06639|Wakefield
+T|-25.76012|28.21348|Walker Street
+T|-28.22900|30.13466|Wallsend
+T|-25.71698|28.32135|Waltloo
+T|-28.34826|29.17918|Walton
+T|-30.28238|29.22889|Wanstead
+T|-25.59260|29.85907|Wapadskloof
+T|-32.19718|27.09739|Waqu
+T|-27.86194|28.97440|Warden
+T|-28.75336|20.77399|Warmsand
+T|-30.08346|30.86782|Warner Beach
+T|-28.11562|24.86755|Warrenton
+T|-28.31237|30.10302|Wasbank
+T|-31.26181|18.14175|Waterklip
+T|-29.98643|25.79987|Waterplas
+T|-22.90505|29.61637|Waterpoort
+T|-25.64085|30.33089|Waterval Boven
+T|-25.64827|30.38046|Waterval-Onder
+T|-26.30237|27.81604|Waterworks
+T|-26.25748|28.17247|Wattles
+T|-26.23365|28.17606|Webber
+T|-28.85558|30.07062|Weenen
+T|-28.52281|24.58577|Weir
+T|-26.20488|28.48646|Welgedag
+T|-29.07043|30.74026|Welgegund
+T|-28.21254|26.82394|Welgeleë
+T|-27.97545|26.75476|Welkom Train Station
+T|-33.63469|18.99205|Wellington
+T|-32.92833|21.74849|Weltevrede
+T|-30.36616|28.93291|Wembley
+T|-29.91777|30.99680|Wentworth
+T|-29.73181|27.02752|Wepener
+T|-26.75989|26.25512|Werda
+T|-25.50142|27.69642|Werkmetlus
+T|-26.11189|27.74861|Wes-Rand
+T|-27.84109|26.36705|Wesselbron
+T|-28.37276|30.06653|Wesselsnek
+T|-33.30356|26.51188|West Hill
+T|-25.45275|30.93173|West Taffin
+T|-26.18870|27.96842|Westbury
+T|-29.90918|30.90232|Westcliff
+T|-23.73336|30.11315|Westfalia
+T|-26.21143|28.03386|Westgate
+T|-27.58233|27.30282|Westleigh
+T|-29.17600|27.14868|Westminister
+T|-26.31274|27.65194|Westonaria
+T|-29.87861|31.05377|Wests
+T|-34.00198|18.50113|Wetton
+T|-33.23432|20.63611|Whitehill
+T|-28.01350|26.99128|Whites
+T|-31.28972|23.43437|Wildebeeste
+T|-25.62191|28.01729|Wildebeesthoek
+T|-33.99478|22.57307|Wilderness
+T|-31.07159|24.83510|Wildfontein
+T|-26.89381|30.68665|Wildrand
+T|-25.59059|26.29717|Wilgeboomspruit
+T|-29.12715|29.88476|Willbrook
+T|-24.94962|28.29774|Willem
+T|-28.09199|26.26998|Willemsrus
+T|-31.34341|20.91173|Williston
+T|-32.85397|27.07929|Willmerton
+T|-28.98273|29.83231|Willowford
+T|-33.30181|23.48291|Willowmore
+T|-32.96673|27.82060|Wilsonia
+T|-28.51365|27.01471|Winburg
+T|-27.58032|22.94017|Wincanton
+T|-26.10974|27.78135|Windsor Mine
+T|-28.34749|24.82120|Windsorton Road
+T|-30.09866|30.85652|Winkelspruit
+T|-28.43736|24.37419|Winter's Rush
+T|-25.64678|28.12822|Winternest
+T|-33.62956|18.67003|Wintervogel
+T|-26.50516|25.12195|Wirsing
+T|-31.39956|26.97325|Withoogte
+T|-23.64636|30.15615|Witkrans
+T|-27.30039|22.98173|Witloop
+T|-32.54515|25.74689|Witmos
+T|-28.48655|22.29102|Witpan
+T|-26.12732|27.83141|Witpoortjie
+T|-26.65535|30.09912|Witpuntspruit
+T|-29.53186|24.26117|Witput
+T|-26.14837|30.06802|Witrand
+T|-34.01398|18.47077|Wittebome
+T|-33.90362|25.25746|Witteklip
+T|-25.66962|27.67061|Wolhuterskop
+T|-27.18891|25.97137|Wolmaransstad
+T|-25.65690|28.16638|Wolmerton
+T|-33.41301|19.19609|Wolseley
+T|-33.92213|18.50764|Woltemade
+T|-33.29175|24.82518|Wolwefontein
+T|-26.91602|27.82053|Wolwehoek
+T|-25.68000|28.18252|Wonderboom
+T|-28.91466|29.90414|Wondergeluk
+T|-27.85658|27.41570|Wonderkop
+T|-25.55413|26.22355|Woodbine
+T|-29.76831|29.53604|Woodford
+T|-33.43329|25.77747|Woodlands
+T|-33.92531|18.44616|Woodstock
+T|-29.10422|30.48136|Woolstone
+T|-33.63950|19.44117|Worcester
+T|-24.99152|28.47028|Worthing
+T|-29.61236|26.00192|Wurasoord
+T|-33.13187|21.19019|Wyke
+T|-34.00486|18.47123|Wynberg
+T|-31.32033|28.02170|Xuka Drift
+T|-32.79786|26.54108|Xuxuwa
+T|-24.57461|28.67908|Ypres
+T|-33.92002|18.47670|Ysterplaat
+T|-32.16667|22.87348|Ysterrante
+T|-27.40361|28.53462|Zara
+T|-30.29396|27.08785|Zastron
+T|-24.32924|29.29324|Zebediela
+T|-33.76343|22.31514|Zebra
+T|-25.54925|26.08296|Zeerust
+T|-31.65952|28.71739|Zimbane
+T|-31.43809|27.44786|Zinja
+T|-26.42259|28.17855|Zonkizizwe
+T|-33.64236|26.20366|Zuney
+T|-30.43260|25.91557|Zwaluw
+T|-32.90050|21.83378|Zwarts
+T|-29.96359|30.91716|Zwelethu
+T|-28.65494|32.00525|eLubana
+T|-25.70685|30.05575|eMakhazeni
+T|-28.52908|31.87166|eMakwazini
+T|-32.80458|26.74655|eMxhelo
+T|-28.37859|31.66180|eNgolothi
+T|-28.71650|31.62120|eNkwenkwe
+T|-31.29501|28.06951|eNtwanazana
+T|-29.08037|31.45832|eNyoni
+T|-28.52115|32.14332|eSitheza
+T|-28.30120|31.53042|iLangakazi
+T|-28.33723|31.59447|iNtshamanzi
+T|-28.49151|31.79030|iSangeyana
+T|-29.75009|30.97357|kwaMashu
+T|-29.97245|30.90426|kwaMnyandu
+T|-29.83875|30.77606|kwaNdengezi
+T|-29.79579|30.62175|kwaTandaza
+T|-28.28641|31.38356|uLoliwe
+T|-28.55797|29.78607|uMnambithi
+T|-30.62138|30.54403|uMzumbe

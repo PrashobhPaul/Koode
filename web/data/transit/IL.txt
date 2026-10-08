@@ -1,5 +1,6 @@
 # Transit for Koode, IL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|32.08290|34.80303|Abba Hillel|Tel Aviv LRT|M
 S|32.09271|34.83813|Aharonovich|Tel Aviv LRT|M
 S|32.06271|34.77488|Allenby|Tel Aviv LRT|M
@@ -92,6 +93,38 @@ L|ירושלים|הרכבת הקלה בירושלים - הקו האדום|red|39
 L|ירושלים|הרכבת הקלה בירושלים - הקו האדום|red|60 54:770 42:455 78:512 67:755 76:492 58:481 51:652 56:450 59:427 69:710 65:1529 49:403 39:7925 61:921 50:401 57:355 40:633 41:697 75:463 74:726 34:883 43:757 52:3498
 L|ירושלים|הרכבת הקלה בירושלים - הקו הצהוב|#FEBE15|37 63:2381 62:971 48:453 44:1573 53:1340 72:562 45:491 70:3036 47:3566 38:510 46:4577 52:4699
 L|ירושלים|הרכבת הקלה בירושלים - הקו הצהוב|#FEBE15|62 48:452 44:1565 53:1340 72:563 45:490 70:3037 63:2159 47:5731 38:519 52:350 37:2906 46:1752
+R|31.77394|34.66624|Ashdod–Ad Halom–Metropol|רכבת ישראל
+R|31.67593|34.60449|Ashkelon|רכבת ישראל
+R|31.26190|34.80940|Beer Sheva North - University|רכבת ישראל
+R|31.93246|34.83057|Be'er Ya'akov|רכבת ישראל
+R|32.26260|34.86023|Beit Yehoshua|רכבת ישראל
+R|32.51455|34.94963|Binyamina|רכבת ישראל
+R|32.48526|34.95417|Caesarea-Pardes Hana|רכבת ישראל
+R|32.43838|34.89934|Hadera West|רכבת ישראל
+R|32.83034|34.98176|Haifa Bat Galim|רכבת ישראל
+R|32.82230|34.99736|Haifa Center HaShmona|רכבת ישראל
+R|32.79389|35.03709|HaMifrats Central|רכבת ישראל
+R|32.16398|34.81759|Herzelia|רכבת ישראל
+R|31.99290|34.85332|Kfar Chabad|רכבת ישראל
+R|32.83296|35.06992|Kiryat Motzkin|רכבת ישראל
+R|32.83296|35.06992|Kiryat Motzkin|רכבת ישראל
+R|31.36982|34.79816|Lehavim Rahat|רכבת ישראל
+R|31.94764|34.87822|Lod|רכבת ישראל
+R|31.96703|34.87868|Lod - Gane Aviv|רכבת ישראל
+R|32.31995|34.86933|Netanya|רכבת ישראל
+R|32.27967|34.86551|Netanya Sapir|רכבת ישראל
+R|31.90910|34.80691|Rechovot|רכבת ישראל
+R|32.05415|34.78480|Tel Aviv - HaHagana|רכבת ישראל
+R|32.07356|34.79316|Tel Aviv Hashalom|רכבת ישראל
+R|32.08424|34.79831|Tel Aviv Savidor Center|רכבת ישראל
+R|32.10371|34.80461|Tel Aviv University|רכבת ישראל
+Q|רכבת ישראל|Ashkelon ⇒ Binyamina|#1F234A|L55|1 0:12548 20:20479 3:4045 16:5081 17:2613 12:3768 21:9566 22:2364 23:1339 24:2222 11:6879 4:11673 19:1949 18:4491 7:13739 6:7612 5:3334
+Q|רכבת ישראל|Beer Sheva => Nahariyya|#389D48|L55|9 2:191564 15:12514
+Q|רכבת ישראל|Beit She'an => Atlit|#BC72B1|X110|9 8:1805
+Q|רכבת ישראל|Binyamina ⇒ Ashkelon|#1F234A|L55|20 3:4707
+Q|רכבת ישראל|Haifa ⇒ Kiryat Motzkin|#8A0808|L55|9 10:5544 14:5481
+Q|רכבת ישראל|Kiryat Motzkin ⇒ Haifa|#8A0808|L55|13 10:5444 9:5157
+Q|רכבת ישראל|Nahariyya => Beer Sheva|#389D48|L55|9 2:194983 15:12517
 T|32.92819|35.08306|Acre
 T|32.62156|35.29523|Afula
 T|32.91173|35.17344|Ahihud
@@ -171,3 +204,98 @@ T|31.86134|34.74389|Yavne - East
 T|31.89118|34.73122|Yavne - West
 T|32.68104|35.12577|Yokneam – Kfar Yehoshua
 T|30.93829|34.66184|שרידים של תחנת רכבת טורקית
+B|32.79358|34.95919|"Hof HaCarmel" Central Bus Station
+B|32.92712|35.08061|Acko central bus station
+B|32.60873|35.29278|Afula Central Bus Station
+B|32.05509|34.83372|Aluf Sade Terminus
+B|31.25620|35.21163|Arad central bus station
+B|31.79108|34.63894|Ashdod Central Bus Station
+B|31.66421|34.56651|Ashkelon Central Bus Station
+B|31.95441|34.80394|Avi HaAsirim
+B|32.09885|34.82546|Ayalon Mall Bus Terminal
+B|32.82914|34.98240|Bat-Galim Central Bus Station
+B|31.24271|34.79680|Be'er Sheva Central Bus Station
+B|32.92292|35.29967|Carmiel central bus station
+B|32.47113|35.03831|Central Bus Station Harish
+B|31.90004|35.00666|Central Bus Station Modiin Maccabim Reut
+B|33.20939|35.56937|Central bus station
+B|31.78394|35.22881|Damascus gate bus station
+B|31.06811|35.03250|Dimona Central Bus Station
+B|29.55638|34.95244|Eilat Central Bus Station
+B|31.81548|34.77124|Gedera central bus station
+B|31.78367|35.22923|Green Palestinian Bus Station
+B|31.80888|35.20615|HaArazim central bus station
+B|32.79306|35.03452|HaMifrats Central Station
+B|31.78191|35.22877|HaNevi'im Terminal
+B|32.69441|35.38476|HaTavor Terminal
+B|32.04869|34.81380|HaTayasim Terminal
+B|32.43553|34.91419|Hadera Central bus station
+B|32.98056|35.55653|Hazor Haglilit bus terminal
+B|32.09709|34.85290|HeHarash Terminal
+B|31.77677|35.22643|Jaffa Gate
+B|31.78913|35.20322|Jerusalem Central Bus Station
+B|31.73156|34.75616|Kastina terminal
+B|32.12695|34.85716|Kedma bus terminal
+B|32.17452|34.91491|Kfar Sava Center Bus Station
+B|31.60920|34.77029|Kiryat Gat Central Bus Station
+B|32.00343|34.80081|Kiryat Sharet Terminal
+B|32.85937|35.08968|Merkazit HaKrayot
+B|32.67923|35.23917|Migdal Haemeq Central Bus Station
+B|31.78320|35.23204|Mini buses to Jordan border
+B|32.09763|34.88489|Moshe Arens Terminal
+B|33.00577|35.09729|Nahariya Central Bus Station
+B|32.70163|35.29883|Nazareth Central Bus Station
+B|32.32714|34.85862|Netanya Central Bus Station
+B|31.94467|34.87601|New temporary central bus station
+B|32.02114|34.85373|Or Yehuda bus terminal
+B|32.09204|34.86542|Ovnat Bus Terminal
+B|32.09492|34.88627|Petah Tikva Central Bus Station
+B|31.86303|35.22712|Qalandiya Bus Parking
+B|32.17536|34.89044|Ra'anana Junction Terminal
+B|32.06932|34.83885|Ramat Amidar
+B|29.72658|35.00609|Ramon airport
+B|32.09916|34.77931|Reading bus terminal
+B|31.89288|34.80634|Rehovot Central Bus Station
+B|31.96759|34.78557|Rishon LeZion Central Bus Station
+B|32.96997|35.49705|Safed Central Bus Station
+B|31.52449|34.59622|Sderot central bus station
+B|31.78232|35.22923|Sherut Tel Aviv
+B|32.21351|34.83418|Shfayim park and ride
+B|31.81045|35.24630|Shufat Refugee Camp Bus Station
+B|32.00077|34.87047|TEL AVIV AIRPORT Terminal 3 Departure ABEL
+B|32.05540|34.77945|Tel Aviv New Central Bus Station
+B|32.11684|34.80371|Tel Aviv University Bus Terminal
+B|32.08292|34.79612|Terminal 2000
+B|31.90895|35.00740|Terminal City Hall - Modiin
+B|32.78716|35.53641|Tiberias central bus station
+B|31.78311|35.23130|To go to jordan
+B|32.10485|34.80407|University Train Station Bus Terminus (West)
+B|31.89017|34.73197|Yavne Central Bus Station
+B|32.65964|35.10563|Yokne'am Terminal
+B|29.56517|34.95258|с
+B|31.74451|35.21325|אגד
+B|32.81742|35.05204|אגד - מתחם קריות
+B|32.96654|35.36518|בית ג'ן 16
+B|32.19587|34.87890|דברת רעננה
+B|32.19785|34.89027|דמרי סנטר / שלמה וחיה אנגל
+B|32.13233|34.83012|חניון אוטובוסים
+B|32.94086|35.55005|חניון אוטובוסים בית ספר רמת כורזים
+B|32.00626|34.95134|חניון שוהם מרקט
+B|32.91038|35.35974|כמון גבעה דרומית
+B|32.06742|34.76569|כרמלית
+B|32.28216|34.85317|לבון/עגנון
+B|32.09000|34.88484|מוניות שירות 51
+B|31.71358|34.63242|מסוף אוטובוסים
+B|32.12870|34.79235|מסוף אזורי חן
+B|31.80035|35.21274|מסוף הר חוצבים
+B|31.75179|35.16812|מסוף משואה
+B|32.03734|34.86583|מסוף קרית אונו
+B|32.05452|34.78384|מסוף רכבת ההגנה
+B|32.01687|34.95727|מסוף שוהם
+B|32.08807|34.86877|מסוף שניידר
+B|32.79851|35.68971|מרכז בני יהודה
+B|31.88981|34.96581|מרכז מסחרי/שדרות המלאכות
+B|32.13392|34.90184|קניון שרונים\הרקון (מסוף שרונים)
+B|32.04585|34.80992|שד' ששת הימים/ דרך חיים בר לב
+B|32.85779|35.26192|תחבורה משגב
+B|31.95621|34.89830|תחנה מרכזית לוד

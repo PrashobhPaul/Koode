@@ -1,0 +1,779 @@
+# Transit for Koode, VN. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
+S|21.02838|105.82728|Cat Linh|Hanoi Metro|M
+S|21.04122|105.76269|Cau Dien|Hanoi Metro|M
+S|21.02922|105.80336|Cau Giay|Hanoi Metro|M
+S|21.03492|105.79437|Chua Ha|Hanoi Metro|M
+S|20.97022|105.77496|Ha Dong|Hanoi Metro|M
+S|20.96383|105.76681|La Khe|Hanoi Metro|M
+S|21.00640|105.81609|Lang|Hanoi Metro|M
+S|21.02015|105.82535|La Thanh|Hanoi Metro|M
+S|21.03805|105.77299|Le Duc Tho|Hanoi Metro|M
+S|21.04798|105.74481|Minh Khai|Hanoi Metro|M
+S|21.03666|105.78269|National University|Hanoi Metro|M
+S|21.05259|105.73523|Nhon|Hanoi Metro|M
+S|21.04392|105.75527|Phu Dien|Hanoi Metro|M
+S|20.98428|105.79306|Phung Khoang|Hanoi Metro|M
+S|20.99230|105.80442|Ring Road 3|Hanoi Metro|M
+S|21.01456|105.81947|Thai Ha|Hanoi Metro|M
+S|20.99768|105.81225|Thuong Dinh|Hanoi Metro|M
+S|20.95564|105.75620|Van Khe|Hanoi Metro|M
+S|20.97773|105.78480|Van Quan|Hanoi Metro|M
+S|20.94978|105.74843|Yen Nghia|Hanoi Metro|M
+S|10.80213|106.74225|An Phu|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.78179|106.70834|Ba Son|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.77095|106.69788|Ben Thanh|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.83265|106.76389|Binh Thai|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.85899|106.78884|High Tech Park|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.86630|106.80120|National University|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.77530|106.70207|Opera House|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.82143|106.75818|Phuoc Long|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.80855|106.75528|Rach Chiec|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.87954|106.81409|Suoi Tien Terminal|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.79859|106.72324|Tan Cang|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.80049|106.73365|Thao Dien|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.84641|106.77165|Thu Duc|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+S|10.79605|106.71551|Van Thanh Park|Đường sắt đô thị Thành phố Hồ Chí Minh|M
+L|Hanoi Metro|Tuyến 2A|#00C000|0 7:927 15:898 6:1057 16:1268 14:1008 13:1477 18:1124 4:1310 5:1109 17:1427 19:1036
+L|Hanoi Metro|Tuyến 2A|#00C000|19 17:1035 5:1428 4:1109 18:1310 13:1124 14:1478 16:1006 6:1274 15:1052 7:900 0:929
+L|Hanoi Metro|Tuyến 3|#a5b635|11 9:1124 12:1176 1:827 8:1127 10:1032 3:1240 2:1149
+L|Hanoi Metro|Tuyến 3|#a5b635|2 3:1150 10:1241 8:1030 1:1126 12:827 9:1176 11:1123
+L|Đường sắt đô thị Thành phố Hồ Chí Minh|Bến Thành - Suối Tiên|#0079b8|22 26:731 21:987 33:1817 30:923 31:1149 20:957 28:1662 27:1464 23:1395 32:1739 24:2370 25:1576 29:2069
+L|Đường sắt đô thị Thành phố Hồ Chí Minh|Suối Tiên - Bến Thành|#0079b8|29 25:2065 24:1575 32:2374 23:1738 27:1396 28:1464 20:1658 31:958 30:1149 33:925 21:1819 26:985 22:732
+T|15.59667|108.42735|An Mỹ
+T|21.27883|106.19168|Bac Giang
+T|21.17848|106.05620|Bac Ninh
+T|10.95079|106.82633|Bien Hoa
+T|20.08116|105.85514|Bim Son
+T|10.96858|108.00329|Binh Thuan
+T|21.03243|106.77793|Bàn Cờ
+T|20.49330|105.99760|Bình Lục
+T|15.28725|108.75857|Bình Sơn
+T|10.82735|106.71591|Bình Triệu
+T|13.88717|109.10134|Bình Định
+T|21.29067|105.46356|Bạch Hạc
+T|21.76615|106.73208|Bản Thí
+T|10.95231|107.32534|Bảo Chánh
+T|22.17852|104.35516|Bảo Hà
+T|21.36964|106.31723|Bảo Sơn
+T|21.17168|105.80096|Bắc Hồng
+T|21.51526|106.43127|Bắc Lệ
+T|14.43817|109.01928|Bồng Sơn
+T|11.85928|109.10526|Cam Thịnh Đông
+T|20.94521|106.27218|Cao Xá
+T|21.02843|105.91834|Cau Bay
+T|19.15906|105.62703|Cau Giat
+T|16.26958|107.88680|Cau Hai
+T|21.60211|106.53517|Chi Lang
+T|19.00832|105.57618|Cho Sy Train Station
+T|18.22376|105.69876|Chu Lễ
+T|11.22756|108.42447|Châu Hanh
+T|21.42954|105.15304|Chí Chủ
+T|21.15444|106.44592|Chí Linh
+T|13.30513|109.21941|Chí Thạnh
+T|20.80152|105.88447|Chợ Tía
+T|21.13334|105.87344|Co Loa
+T|11.35217|108.87668|Cà Ná
+T|20.97190|107.04058|Cái Lân
+T|20.29553|106.02549|Cát Đằng
+T|12.21726|109.08052|Cây Cầy
+T|20.96992|107.05240|Cảng Cái Lân
+T|20.46604|106.04994|Cầu Họ
+T|22.27977|104.24689|Cầu Nhò
+T|20.20305|105.96568|Cầu Yên
+T|20.96673|106.17206|Cẩm Giàng
+T|21.21686|106.38008|Cẩm Lý
+T|21.76119|104.83070|Cổ Phúc
+T|21.11039|106.33307|Cổ Thành
+T|16.07157|108.20930|Da Nang
+T|21.23311|105.86095|Da Phuc
+T|13.80720|109.14369|Dieu Tri
+T|15.47706|108.58712|Diêm Phổ
+T|16.68708|107.24757|Diên Sanh
+T|19.98747|105.84485|Do Len
+T|22.30527|103.77531|Do Quyen
+T|21.61983|104.95010|Doan Thuong
+T|21.15383|105.85167|Dong Anh
+T|21.94300|106.69763|Dong Dang
+T|16.81117|107.11189|Dong Ha
+T|17.46893|106.59973|Dong Hoi
+T|17.88817|106.02221|Dong Le
+T|10.90794|106.76948|Dĩ An
+T|10.93116|107.13781|Dầu Giây
+T|20.91607|106.56428|Dụ Nghĩa
+T|21.71361|106.66512|Ga Bắc Thuỷ
+T|20.16976|105.94163|Ghềnh
+T|12.70008|109.22364|Gia
+T|10.98530|107.54069|Gia Huynh
+T|21.05164|105.87875|Gia Lam
+T|10.96430|107.40293|Gia Ray
+T|20.97857|105.84056|Giáp Bát
+T|10.81587|106.68468|Gò Vấp
+T|21.63874|105.70883|Gốc Xộp
+T|16.19379|108.15112|Hai Van
+T|16.21158|108.11604|Hai Van North
+T|16.17059|108.13694|Hai Van South
+T|20.85602|106.68752|Haiphong
+T|21.02423|105.84101|Hanoi
+T|16.52902|107.43255|Hiền Sỹ
+T|18.38322|105.60199|Hoà Duyệt
+T|12.12177|109.09889|Hoà Tân
+T|17.57636|106.52236|Hoàn Lão
+T|19.26810|105.69645|Hoàng Mai
+T|16.45649|107.57805|Hue
+T|18.17050|105.70764|Huong Pho
+T|16.41853|107.66470|Huong Thuy
+T|16.90840|107.07752|Hà Thanh
+T|20.95305|105.76052|Hà Đông
+T|10.93077|107.94359|Hàm Cường Tây
+T|11.02722|108.06711|Hàm Liêm
+T|12.57451|109.16847|Hòa Huỳnh
+T|11.49873|108.91129|Hòa Trinh
+T|15.02277|108.83462|Hòa Vinh Tây
+T|13.20537|109.27026|Hòa Đa
+T|21.28105|105.64712|Hương Canh
+T|21.29168|105.51929|Hướng Lại
+T|20.97483|107.01042|Hạ Long
+T|20.94733|106.33003|Hải Dương
+T|12.90894|109.37682|Hảo Sơn
+T|10.95938|106.90576|Hố Nai
+T|21.41673|106.29039|Kep
+T|19.37552|105.73204|Khoa Trường
+T|14.08745|109.03776|Khánh Phước
+T|16.13339|108.12051|Kim Lien
+T|17.95043|105.96114|Kim Lũ
+T|21.14269|105.79017|Kim Nỗ
+T|11.71785|109.05083|Kà Rôm
+T|11.77955|109.07918|Kà Rôm
+T|13.38151|109.10591|La Hai
+T|18.06243|105.82657|La Khê
+T|20.97837|106.41420|Lai Khê
+T|21.29066|106.33775|Lan Mẫu
+T|22.06904|104.47591|Lang Khay
+T|22.11966|104.41570|Lang Thíp
+T|22.49227|103.97839|Lao Cai
+T|15.97053|108.18306|Le Trach
+T|21.14547|106.01827|Lim
+T|21.03987|105.85002|Long Bien
+T|10.93349|107.24476|Long Khánh
+T|11.12922|108.20539|Long Thanh
+T|10.77137|107.04169|Long Thanh Airport
+T|17.31928|106.62711|Long Đại
+T|21.49085|105.87757|Luong Son
+T|22.42884|104.04622|Làng Giàng
+T|22.35959|104.09289|Làng Vàng
+T|22.01862|104.53431|Lâm Giang
+T|16.22203|108.08132|Lăng Cô
+T|21.56223|105.84669|Lưu Xá
+T|12.33786|109.19491|Lương Sơn
+T|17.81130|106.18941|Lạc Sơn
+T|20.98306|106.03005|Lạc Đạo
+T|22.36759|104.13630|Lạng
+T|21.85574|106.76886|Lạng Sơn
+T|17.40512|106.60812|Lệ Kỳ
+T|17.77888|106.25775|Lệ Sơn
+T|11.07242|108.13171|Ma Lâm
+T|19.63314|105.70189|Minh Khoi
+T|17.71249|106.37051|Minh Lệ
+T|22.33662|103.82500|Mường Hoa
+T|21.87761|104.69463|Mậu A
+T|21.93023|104.63811|Mậu Đông
+T|14.95506|108.86554|Mộ Đức
+T|16.62846|107.30530|Mỹ Chánh
+T|18.89784|105.60168|Mỹ Lý
+T|17.18692|106.80610|Mỹ Trạch
+T|17.23887|106.69569|Mỹ Đức
+T|21.70106|106.95874|Na Dương
+T|20.42146|106.16444|Nam Dinh
+T|18.82545|105.65803|Nghi Long
+T|19.91621|105.81356|Nghĩa Trang
+T|17.66966|106.39419|Ngân Sơn
+T|11.92544|109.12093|Ngã Ba
+T|21.82269|104.75470|Ngòi Hóp
+T|17.82913|106.12170|Ngọc Lâm
+T|12.24848|109.18429|Nha Trang
+T|20.24211|105.97462|Ninh Binh
+T|12.48950|109.12384|Ninh Hòa
+T|15.88694|108.18679|Nông Sơn
+T|20.33160|106.07691|Núi Gôi
+T|15.42203|108.66977|Núi Thành
+T|10.94184|108.08231|Phan Thiet
+T|16.58454|107.36231|Pho Trach
+T|21.33944|106.25377|Pho Trang
+T|21.41128|105.87679|Pho Yen
+T|11.24223|108.60731|Phong Phú
+T|12.43325|109.12643|Phong Thạnh
+T|20.54061|105.91302|Phu Ly
+T|21.00375|105.96226|Phu Thuy
+T|13.99452|109.05713|Phù Cát
+T|14.18437|109.04006|Phù Mỹ
+T|15.70485|108.34165|Phú Cang
+T|21.05130|105.76497|Phú Diễn
+T|12.99972|109.36204|Phú Hiệp
+T|17.19322|106.74433|Phú Hòa
+T|20.96591|106.51183|Phú Thái
+T|21.40236|105.22405|Phú Thọ
+T|20.73690|105.91293|Phú Xuyên
+T|18.11128|105.76981|Phúc Trạch
+T|17.55182|106.54338|Phúc Tự
+T|21.23999|105.71234|Phúc Yên
+T|13.48590|109.03143|Phước Lãnh
+T|11.66650|108.99368|Phước Nhơn
+T|20.96882|106.45258|Phạm Xá
+T|22.31467|104.18682|Phố Lu
+T|21.47282|106.37818|Phố Vị
+T|21.33949|105.36577|Phủ Đức
+T|22.41590|104.02104|Pom Hán
+T|15.12097|108.78133|Quang Ngai
+T|13.77750|109.22529|Quy Nhơn
+T|18.78214|105.64690|Quán Hành
+T|21.60368|105.80346|Quán Triều
+T|16.73796|107.18692|Quảng Trị
+T|14.66196|109.06532|Sa Huỳnh
+T|17.05905|106.96580|Sa Lung
+T|10.78230|106.67716|Sai Gon
+T|22.33426|103.84037|Sapa
+T|21.25224|106.10474|Sen Hồ
+T|10.87427|107.75199|Song Phan
+T|10.87820|106.75178|Song Than
+T|12.02668|109.12390|Suoi Cat
+T|10.96874|107.63046|Suối Kiết
+T|10.92090|107.86796|Suối Vận
+T|10.92130|107.67275|Sông Dinh
+T|21.55646|106.49012|Sông Hóa
+T|11.26345|108.67363|Sông Lòng Sông
+T|11.21489|108.32282|Sông Lũy
+T|11.24866|108.50602|Sông Mao
+T|15.55738|108.48391|Tam Ky
+T|14.54811|109.04352|Tam Quan
+T|15.61356|108.41861|Tam Thành
+T|14.88046|108.91059|Thach Tru
+T|19.81281|105.76776|Thanh Hoa
+T|16.06645|108.18234|Thanh Khe
+T|18.29635|105.63651|Thanh Luyện
+T|11.59724|108.95006|Thap Cham
+T|21.19498|106.08163|Thi Cau
+T|16.27100|107.99372|Thua Luu
+T|20.87133|105.86443|Thuong Tin
+T|21.58678|105.82383|Thái Nguyên
+T|22.39945|104.08621|Thái Niên
+T|22.23502|104.28422|Thái Văn
+T|17.15162|106.86014|Thượng Lâm
+T|20.86585|106.65820|Thượng Lý
+T|21.20111|105.74965|Thạch Lỗi
+T|19.54278|105.70988|Thị Long
+T|20.50971|105.89490|Thịnh Châu
+T|17.61922|106.45896|Thọ Lộc
+T|14.75269|109.00700|Thủy Thạch
+T|16.97797|107.03065|Tiên An
+T|21.36669|105.29305|Tiên Kiên
+T|20.96775|106.37870|Tiền Trung
+T|22.30347|103.77545|Truc May
+T|21.31473|105.87122|Trung Gia
+T|10.93387|107.06284|Trung Hoà
+T|16.31966|107.77454|Truoi
+T|15.81015|108.23126|Trà Kiệu
+T|21.97103|104.59270|Trái Hút
+T|15.34903|108.72957|Trì Bình
+T|20.37190|106.13282|Trình Xuyên
+T|19.31592|105.72008|Trường Lâm
+T|11.94612|108.50146|Trại Mát
+T|21.05483|105.88600|Trạm đường sắt Thượng Cát
+T|10.96752|107.48808|Trản Táo
+T|10.94472|106.99414|Trảng Bom
+T|12.77781|109.30082|Tu Bông
+T|21.12020|105.96255|Tu Son
+T|13.08818|109.29731|Tuy Hoa
+T|20.96989|106.10175|Tuấn Lương
+T|21.81287|106.82556|Tân Liên
+T|13.70834|109.05018|Tân Vinh
+T|18.03424|105.85413|Tân Ấp
+T|21.17283|105.79029|Tằng My
+T|21.03499|106.75635|Uông Bí
+T|20.94444|105.84414|Van Dien
+T|18.68771|105.66441|Vinh Train Station
+T|21.30045|105.43217|Việt Trì
+T|21.43931|106.33818|Voi Xo
+T|13.62123|108.99708|Vân Canh
+T|21.67859|104.92784|Văn Phú
+T|19.45800|105.76365|Văn Trai
+T|16.50828|107.50386|Văn Xá
+T|11.30929|108.74203|Vĩnh Hảo
+T|11.32589|108.81136|Vĩnh Tân
+T|21.30931|105.60129|Vĩnh Yên
+T|21.48735|105.08592|Vũ Ẻn
+T|14.31437|109.06413|Vạn Phú
+T|20.88450|106.60437|Vật Cách
+T|22.34439|104.11136|Xuân Giao A
+T|22.34241|104.11627|Xuân Giao B
+T|18.52331|105.58765|Yen Trung
+T|21.08494|105.91592|Yen Vien
+T|21.70242|104.88073|Yên Bái
+T|20.98395|106.91529|Yên Cư
+T|18.42455|105.56629|Yên Duệ
+T|21.04549|106.70122|Yên Dưỡng
+T|19.07590|105.58560|Yên Lý
+T|19.71848|105.70770|Yên Thái
+T|21.81033|106.76206|Yên Trạch
+T|18.60322|105.61968|Yên Xuân
+T|21.09526|106.53314|Đông Triều
+T|13.05576|109.32199|Đông Tác
+T|12.83451|109.36122|Đại Lãnh
+T|15.19532|108.76594|Đại Lộc
+T|20.44194|106.11866|Đặng Xá
+T|18.00839|105.90462|Đồng Chuối
+T|20.13802|105.87111|Đồng Giao
+T|21.65261|106.57862|Đồng Mỏ
+T|20.63901|105.91886|Đồng Văn
+T|18.48271|105.58242|Đức Lạc
+T|14.80983|108.94698|Đức Phổ
+T|21.55998|105.00574|Ấm Thượng
+B|10.05781|105.76746|13 Cách Mạng Tháng 8
+B|12.24946|109.19290|Airport bus station
+B|16.47904|107.55735|An Hoa Bus Station
+B|21.21471|105.51473|BX TT Vĩnh Tường
+B|10.49087|107.16818|Ba Ria bus station
+B|22.53501|104.29046|Bac Ha Bus Terminal
+B|21.18071|106.06122|Bac Ninh Bus Station
+B|20.97295|107.01364|Bai Chay Bus Terminal
+B|10.25623|106.35967|Ben Tre FUTA bus
+B|10.44808|105.67296|Ben Xe Cao Lanh - long distance bus station
+B|22.83516|105.49321|Ben Xe Khach Bao Lam
+B|9.89035|106.34437|Ben Xe Tra Vinh
+B|20.25600|105.96885|Binh Minh Limousine office
+B|10.95506|108.22556|Bo Ke Center - Ham Tien, Mui Ne
+B|22.81873|104.98535|Bus Company "Nha Xe Quang Nghi"
+B|10.95520|108.23304|Bus Station
+B|12.23207|109.16669|Bus Station
+B|10.25553|106.36789|Bus Station (to HCMC)
+B|16.47153|107.58807|Bus Station Dong Ba
+B|18.32522|105.87693|Bus Terminal
+B|10.39236|106.30407|Bus for cao lanh
+B|10.03472|104.01737|Bus station
+B|10.04654|104.01729|Bus station
+B|10.06865|104.01961|Bus station
+B|10.07728|104.01705|Bus station
+B|10.08415|104.01393|Bus station
+B|10.09553|104.01403|Bus station
+B|10.11315|104.01151|Bus station
+B|10.11706|104.00953|Bus station
+B|10.12640|104.01009|Bus station
+B|10.15583|104.00603|Bus station
+B|11.94430|108.43633|Bus station (Datanla, Lang Biang, Linh Phuoc, Elephant waterfall)
+B|20.79822|106.78839|Bus station 1
+B|20.79794|106.79252|Bus station 2
+B|10.32685|103.86463|Bus station T2 (departures for line 17,19 and 20)
+B|10.45263|105.63964|Bus station in 2025
+B|17.46868|106.61374|Bus station management and service center
+B|22.47444|103.97326|Bus station to Sa Pa
+B|10.03615|104.01777|Bus stop
+B|17.61059|106.30859|Bus stop to Dong Hoi
+B|22.49028|103.97510|Bus to Bac Ha
+B|11.91650|109.14502|Bus to Center Nha Trang
+B|10.30947|106.36230|Bus to Ho Chi Minh
+B|10.25718|106.38031|Bus to Ho-Chi-Minh-City
+B|13.96539|107.99173|Bus to Kon Tum
+B|10.92486|108.06889|Bus to Mui Ne (16 000 VND)
+B|10.93800|108.28671|Bus to Nha Trang
+B|10.02477|105.76113|Bus to Phnom Penh 5.30am 340.000 vnd
+B|17.46801|106.60408|Bus to Phong Nha
+B|20.64382|105.07707|Busstation Mai Chau
+B|22.94718|105.67998|Busterminal
+B|20.86608|106.67852|Bến Bính
+B|20.68695|106.79289|Bến Nghiêng
+B|10.82529|106.60367|Bến Xe 39
+B|13.89158|109.11472|Bến Xe An Nhơn
+B|20.98333|105.86305|Bến Xe Bus Mai Động
+B|12.58865|107.89528|Bến Xe Cư Jut
+B|12.00276|107.69164|Bến Xe Khách Gia Nghĩa
+B|12.70976|108.30930|Bến Xe Khách Huyện Krông Pắc
+B|11.17361|108.56805|Bến Xe Khách Phan Rí Cửa
+B|10.25545|105.97275|Bến Xe Khách Vĩnh Long
+B|19.39958|104.15073|Bến Xe Mường Xén
+B|15.10748|108.81913|Bến Xe Quảng Ngãi
+B|19.83419|105.78916|Bến Xe Thanh Hóa
+B|10.23823|105.95773|Bến Xe Vĩnh Long
+B|20.69090|106.65775|Bến phà Dương Áo
+B|20.81191|106.89436|Bến phà Đồng Bài
+B|20.86148|106.71655|Bến số 3b Khách sạn dầu khí - Đồ Sơn
+B|10.84365|106.61327|Bến xe An Sương
+B|10.25274|104.59644|Bến xe Ba Hòn Bus Station
+B|10.95422|106.80909|Bến xe Biên Hòa
+B|11.24071|106.63394|Bến xe Bàu Bàng
+B|10.55601|107.54808|Bến xe Bình Châu
+B|10.96612|106.66825|Bến xe Bình Dương
+B|20.94482|106.67019|Bến xe Bắc Hải Phòng
+B|18.72961|105.65901|Bến xe Bắc Vinh
+B|11.12502|106.60229|Bến xe Bến Cát
+B|10.26697|106.35984|Bến xe Bến Tre
+B|11.91833|109.14667|Bến xe Cam Ranh
+B|10.45581|105.63807|Bến xe Cao Lãnh
+B|10.45354|105.34801|Bến xe Châu Thành
+B|10.69491|105.13709|Bến xe Châu Đốc
+B|10.75118|106.65095|Bến xe Chợ Lớn
+B|18.66009|105.67411|Bến xe Chợ Vinh
+B|9.17577|105.17094|Bến xe Cà Mau
+B|10.41017|106.96389|Bến xe Cần Giờ
+B|10.87189|106.53558|Bến xe Cầu Lớn
+B|20.86223|106.07083|Bến xe Cống Tráng
+B|10.97139|106.48221|Bến xe Củ Chi
+B|18.80333|105.71974|Bến xe Cửa Lò
+B|11.59495|108.07908|Bến xe Di Linh
+B|10.94261|107.15373|Bến xe Dầu Giây
+B|20.28924|106.43701|Bến xe Giao Thuỷ
+B|10.36029|106.66148|Bến xe Gò Công
+B|10.35779|106.57965|Bến xe Gò Công Tây
+B|21.34636|105.99040|Bến xe Hiệp Hòa
+B|12.44836|107.61752|Bến xe Huyện Đăk Mil
+B|10.37126|104.49281|Bến xe Hà Tiên
+B|18.33913|105.89431|Bến xe Hà Tĩnh
+B|10.69422|107.51176|Bến xe Hòa Hiệp
+B|20.66609|106.05801|Bến xe Hưng Yên
+B|20.61320|105.78765|Bến xe Hương Sơn
+B|10.90153|106.39310|Bến xe Hậu Nghĩa
+B|10.96693|106.88659|Bến xe Hố Nai
+B|10.72895|106.90505|Bến xe Khu công nghiệp Nhơn Trạch
+B|10.73378|106.92910|Bến xe Khu công nghiệp Nhơn Trạch
+B|21.03203|105.82938|Bến xe Kim Mã
+B|10.14212|105.31013|Bến xe Kinh B
+B|9.94403|105.12937|Bến xe Kiên Giang
+B|14.36746|107.99414|Bến xe KonTum
+B|13.36889|109.11977|Bến xe La Hai
+B|13.09259|109.29421|Bến xe Liên tỉnh Phú Yên
+B|10.53752|106.40470|Bến xe Long An
+B|10.35833|105.43427|Bến xe Long Xuyên
+B|21.41724|105.46555|Bến xe Lập Thạch
+B|10.31360|105.48808|Bến xe Lộ Tẻ
+B|10.31538|105.48645|Bến xe Lộ Tẻ
+B|18.64952|105.66284|Bến xe Miền Trung
+B|10.74008|106.61918|Bến xe Miền Tây
+B|10.81494|106.71070|Bến xe Miền Đông
+B|10.88024|106.81550|Bến xe Miền Đông mới
+B|19.32230|105.43632|Bến xe Nghĩa Đàn
+B|10.96098|106.94623|Bến xe Ngã ba Trị An
+B|10.52194|106.60791|Bến xe Ngã ba Tân Lân
+B|10.90508|106.84676|Bến xe Ngã tư Vũng Tàu
+B|13.08770|109.30689|Bến xe Nội Thành
+B|10.10872|105.61859|Bến xe Omon
+B|15.96777|108.21238|Bến xe Phía Nam
+B|14.01592|109.05503|Bến xe Phù Cát
+B|11.09214|107.21926|Bến xe Phú Túc
+B|21.23156|105.70679|Bến xe Phúc Yên
+B|21.26945|105.71876|Bến xe Phúc Yên mới
+B|11.36099|107.52538|Bến xe Phương Lâm
+B|11.84077|106.99325|Bến xe Phước Long
+B|9.81246|105.81995|Bến xe Phụng Hiệp
+B|10.75468|106.65586|Bến xe Quang Tỷ Sài Gòn
+B|10.73355|106.65661|Bến xe Quận 8
+B|10.28761|105.77229|Bến xe Sa Đéc
+B|10.76765|106.68941|Bến xe Sài Gòn
+B|21.42331|105.40598|Bến xe Sông Lô
+B|13.04811|108.97468|Bến xe Sơn Hòa
+B|21.13038|105.50899|Bến xe Sơn Tây
+B|11.07971|107.10378|Bến xe Thanh Bình
+B|20.89767|106.43640|Bến xe Thanh Hà
+B|10.43592|106.57210|Bến xe Thanh Vĩnh Đông
+B|13.09205|109.29435|Bến xe Thuận Thảo
+B|11.95028|108.46384|Bến xe Thành Bưởi
+B|10.79858|106.71850|Bến xe Thành Bưởi - Hàng Xanh
+B|10.76510|106.67493|Bến xe Thành Bưởi - Vĩnh Viễn
+B|11.51983|106.89440|Bến xe Thành Công
+B|9.94602|106.51512|Bến xe Thạnh Phú
+B|11.01457|106.85968|Bến xe Thạnh Phú
+B|9.73282|106.05932|Bến xe Thị trấn Đại Ngãi
+B|13.46016|109.20850|Bến xe Thị xã Sông Cầu
+B|10.87855|106.64783|Bến xe Thới An
+B|10.96611|106.66837|Bến xe Thủ Dầu Một
+B|10.37342|106.34629|Bến xe Tiền Giang
+B|10.43033|104.99941|Bến xe Tri Tôn
+B|20.65519|106.12414|Bến xe Triều Dương
+B|13.75285|109.20921|Bến xe Trung tâm
+B|22.42522|104.03021|Bến xe Trung tâm Lào Cai
+B|20.53844|105.94488|Bến xe Trung tâm Phủ Lý
+B|10.00534|105.77131|Bến xe Trung tâm tp.Cần Thơ
+B|10.98345|106.86857|Bến xe Trường Đại học Công nghệ Đồng Nai
+B|11.08518|107.03291|Bến xe Trị An
+B|20.31532|106.26934|Bến xe Trực Ninh
+B|11.54490|106.00426|Bến xe Tân Biên
+B|10.79497|105.23811|Bến xe Tân Châu
+B|10.87899|105.44718|Bến xe Tân Hồng
+B|10.52205|106.60786|Bến xe Tân Lân
+B|10.80913|106.63344|Bến xe Tân Phú
+B|10.98404|106.57819|Bến xe Tân Quy
+B|10.52221|106.51968|Bến xe Tân Trụ
+B|10.53084|106.73465|Bến xe Tân Tập
+B|11.06455|106.79263|Bến xe Tân Uyên
+B|11.31023|106.08778|Bến xe Tây Ninh
+B|10.60289|104.94828|Bến xe Tịnh Biên
+B|18.67959|105.67384|Bến xe Vinh cũ
+B|10.34439|105.49563|Bến xe Vàm Cống
+B|20.68087|106.47994|Bến xe Vĩnh Bảo
+B|11.01480|106.85969|Bến xe Vĩnh Cửu
+B|10.88509|105.78970|Bến xe Vĩnh Hưng
+B|20.82214|106.67562|Bến xe Vĩnh Niệm
+B|10.22921|105.39473|Bến xe Vĩnh Thạnh
+B|21.30008|105.62650|Bến xe Vĩnh Yên
+B|10.35036|107.08715|Bến xe Vũng Tàu
+B|10.91538|107.39847|Bến xe Xuân Lộc
+B|20.95009|105.74726|Bến xe Yên Nghĩa
+B|21.09419|105.92532|Bến xe Yên Viên
+B|18.45813|105.30171|Bến xe buýt
+B|20.68207|106.79936|Bến xe buýt
+B|20.81765|106.53833|Bến xe buýt An Lão
+B|10.56349|106.51209|Bến xe buýt An Nhựt Tân
+B|9.97397|105.74130|Bến xe buýt Ba Láng
+B|10.87763|106.64189|Bến xe buýt Hiệp Thành
+B|10.91316|106.56517|Bến xe buýt Hóc Môn
+B|10.75814|106.54371|Bến xe buýt Lê Minh Xuân
+B|10.76768|106.68955|Bến xe buýt Sài Gòn
+B|16.05681|108.20573|Bến xe buýt Sân bay
+B|15.97393|108.25421|Bến xe buýt Việt Hàn
+B|10.80116|106.71757|Bến xe buýt Văn Thánh
+B|10.88418|106.77873|Bến xe buýt Đại học Quốc gia
+B|10.76769|106.64017|Bến xe buýt Đầm Sen
+B|20.29137|106.34382|Bến xe huyện Xuân Trường
+B|10.87449|106.80763|Bến xe khu A đại học quốc gia (mới)
+B|17.75295|106.42522|Bến xe khách Ba Đồn
+B|21.28657|106.20515|Bến xe khách Bắc Giang
+B|22.14312|105.83752|Bến xe khách Bắc Kạn
+B|21.89974|106.31588|Bến xe khách Bắc Sơn
+B|14.43719|109.01860|Bến xe khách Bồng Sơn
+B|21.07533|107.42788|Bến xe khách Cái Rồng
+B|21.03559|107.35717|Bến xe khách Cửa Ông
+B|11.08948|106.26483|Bến xe khách Gò Dầu
+B|20.94641|106.32938|Bến xe khách Hải Dương
+B|20.39452|106.43575|Bến xe khách Kiến Xương
+B|20.66664|106.23457|Bến xe khách La Tiến
+B|10.37224|105.44338|Bến xe khách Long Xuyên
+B|21.01907|106.19555|Bến xe khách Lương Tài
+B|12.74943|108.74139|Bến xe khách M'đrak
+B|22.76013|104.13475|Bến xe khách Mường Khương
+B|22.34441|105.37781|Bến xe khách Na Hang
+B|20.43617|106.15031|Bến xe khách Nam Định
+B|14.17661|109.05111|Bến xe khách Phù Mỹ
+B|20.93848|106.80353|Bến xe khách Quảng Yên
+B|21.15345|106.15664|Bến xe khách Quế Võ
+B|19.73912|105.88762|Bến xe khách Sầm Sơn
+B|20.27710|105.52149|Bến xe khách Thạch Quảng
+B|9.63455|106.49361|Bến xe khách Thị xã Duyên Hải
+B|22.02482|103.15862|Bến xe khách Thị xã Mường Lay
+B|21.00494|107.28938|Bến xe khách Trung tâm Cẩm Phả
+B|20.44900|106.33447|Bến xe khách Trung tâm Thái Bình
+B|10.53238|107.39276|Bến xe khách Xuyên Mộc
+B|10.91526|107.39900|Bến xe khách Xuân Lộc
+B|10.64842|107.23715|Bến xe khách huyện Châu Đức
+B|23.16117|105.40272|Bến xe khách huyện Mèo Vạc
+B|21.87313|106.76108|Bến xe khách phía Bắc Thành phố Lạng Sơn
+B|19.80419|105.76738|Bến xe khách phía Tây
+B|12.70078|108.07474|Bến xe khách phía bắc Thành phố Buôn Ma Thuột
+B|12.64610|108.01686|Bến xe khách phía nam Thành phố Buôn Ma Thuột
+B|21.41758|103.00686|Bến xe khách Điện Biên Phủ
+B|21.08577|106.49987|Bến xe khách Đông Triều
+B|10.89905|106.31015|Bến xe khách Đức Huệ
+B|21.57621|105.82873|Bến xe khánh trung tâm thành phố Thái Nguyên
+B|21.80844|106.76187|Bến xe phía Nam Lạng Sơn
+B|18.72241|105.67584|Bến xe phía Đông Thành phố Vinh
+B|13.90479|108.92979|Bến xe trung tâm Phú Phong
+B|10.02434|105.76154|Bến xe tàu Cần Thơ
+B|10.46093|105.64636|Bến xe tải Cao Lãnh
+B|10.25594|105.14393|Bến xe Óc Eo
+B|21.08487|105.66973|Bến xe Đan Phượng
+B|11.76016|108.48573|Bến xe Đơn Dương
+B|10.86819|106.78740|Bến xe Đại học Nông lâm
+B|10.76756|106.64012|Bến xe Đầm Sen
+B|10.93575|106.86750|Bến xe Đồng Nai
+B|11.72621|108.36964|Bến xe Đức Trọng
+B|8.65931|106.56896|Bến Đầm
+B|22.80119|104.98062|Cau Me Transport Service Cooperative
+B|16.33065|108.02240|Chan May Port
+B|10.69504|105.13703|Chau doc bus station from Cân Tho or Rach Gia
+B|16.08556|108.21884|Cho thuê xe du lịch CoCoVIP Limousine VIP Đà Nẵng
+B|22.68088|106.20194|City interprovincial bus station, Cao Bang
+B|20.72396|107.04978|Cát Bà
+B|10.75999|106.67295|Công Ty TNHH Vận Tải Thảo Châu
+B|21.06953|105.78474|Công ty Cổ phần Xe Điện Hà Nội
+B|20.82924|106.69883|Cầu Rào
+B|20.62738|106.54408|Cầu Sông Hóa
+B|16.05499|108.17338|Da Nang Central Bus Station
+B|16.05554|108.17323|Da Nang Central Bus Station
+B|10.40536|106.12755|Dai Ngan
+B|22.80535|104.97895|Daiichi Travel Bus stop and office
+B|16.04835|108.23748|Danangbus
+B|16.05029|108.24751|Danangbus
+B|12.54940|109.22925|Doc Let
+B|21.94307|106.69895|Dong Dang Bus Station
+B|23.27808|105.35091|Dong Van Bus Station
+B|22.80422|104.97771|Dăng quang
+B|14.05506|108.79252|Dịch Vụ Vận Tải Lê Tiến Dũng
+B|10.35859|105.97881|FUTA Bus Stop (HMC - Rach Gia ca. 30min.)
+B|10.37298|104.49029|Futa Bus
+B|11.53584|107.81600|Futa Bus Station
+B|13.76140|109.20265|Futa Bus Station
+B|10.70990|105.11676|Futa Bus to Cân Tho or Rach Gia
+B|10.95240|108.25358|Futa bus
+B|10.39235|106.30401|Futa bus lines pour Can tho
+B|12.66534|108.03685|Futabus Office
+B|15.89300|108.31960|G8 Open Tour
+B|16.06697|108.24319|G8 Open Tour
+B|20.91553|106.56501|Ga Dụ Nghĩa
+B|22.49185|103.97808|Ga Lao Cai - Bus Station
+B|21.70215|104.88094|Ga Yên Bái
+B|17.46865|106.59963|Ga Đồng Hới
+B|21.04851|105.87898|Gia Lam Bus Station
+B|20.98070|105.84222|Giap Bat Bus Station
+B|20.81735|105.34281|HB Busstation
+B|22.33974|103.84000|HK Buslines
+B|22.47043|103.97577|HK Buslines
+B|22.80211|104.97768|Ha Giang Bus Station
+B|22.33952|103.85354|HasonHaivan Bus
+B|11.05792|106.68384|Hikari bus station
+B|20.72491|107.04898|Hoang Long
+B|17.48242|106.61297|Hoang Long - Bus Ticket Counter
+B|10.76794|106.69839|Huy Hoàng Limousine
+B|12.24561|109.19349|Huynh Gia Bus Station
+B|16.45071|107.60600|Hué Bus Station South
+B|16.46726|107.58322|Huế tourist bus stop
+B|12.25845|109.19528|Hyung Gia Bus to Mui Ne
+B|11.92688|108.44551|Interprovincial Bus Station
+B|20.91412|106.68049|KCN VSIP Thủy Nguyên
+B|10.06482|105.76052|Karaoke Giang Sơn
+B|12.25895|109.19721|Khanh Phong - departure
+B|20.15139|105.90241|Kim Sơn
+B|14.61569|108.29254|Kon Plong District Bus Station
+B|22.38278|103.48751|Lai Chau Bus Station
+B|22.50148|103.96625|Lao Cai station
+B|11.94166|108.45550|Limousine Da Lat Oi
+B|12.24839|109.10156|Liên hưng
+B|18.17340|105.70551|Local Bus Station
+B|15.88669|108.32110|Local bus station
+B|22.83850|105.00829|Local bus station
+B|10.40800|107.22041|Long Dien District Bus Station
+B|10.81491|107.22945|Long Giao Coach Station
+B|10.75985|106.66432|Meko limosine ho chi minh city
+B|10.25709|106.38050|Minh Tam
+B|10.81473|106.71125|Miền Đông Bus Station (Bến Thanh)
+B|21.53059|107.95837|Mong Cai Coach Terminal
+B|22.18971|102.45994|Muong Nhe Coach Station
+B|10.52884|106.43817|Mộc Hóa - Long An
+B|17.46815|106.60402|Nam Ly Bus Stop
+B|10.86231|106.67872|Nga Tu Ga Bus Station
+B|21.60721|104.51615|Nghia Lo bus station
+B|12.28871|109.19048|Nha Trang Bus station (North)
+B|12.24365|109.09814|Nha Trang Southern Bus Station
+B|14.70627|107.68993|Nha Xe Minh Hau
+B|21.60562|104.51548|Nha Xe The Anh
+B|10.75924|106.67123|Nhà Xe An Anh
+B|12.24126|109.17543|Nhà Xe An Anh - Văn phòng Nha Trang
+B|10.76923|106.69981|Nhà Xe Hoa Mai
+B|10.91939|108.08408|Nhà Xe Phương Trang
+B|10.24860|106.35346|Nhà Xe Thuận Hưng
+B|10.76025|106.67303|Nhà Xe Thịnh Phát
+B|10.78567|106.64326|Nhà Xe Tiến Oanh - Đồng Đen
+B|10.77020|106.70097|Nhà Xe Toàn Thắng
+B|20.97323|105.75792|Nhà chờ An Hưng
+B|20.95687|105.75785|Nhà chờ Ba La
+B|20.97026|105.75468|Nhà chờ Cầu La Khê
+B|20.97945|105.76588|Nhà chờ Dương Nội
+B|20.96768|105.75546|Nhà chờ KĐT Park City
+B|20.96541|105.75955|Nhà chờ La Khê
+B|10.74076|106.62011|Nhà chờ Phương Trang
+B|20.97658|105.76223|Nhà chờ Văn Khê
+B|20.96004|105.76196|Nhà chờ Văn La
+B|20.96283|105.76407|Nhà chờ Văn Phú
+B|20.98228|105.76979|Nhà chờ Vạn Phúc 1
+B|20.98482|105.77483|Nhà chờ Vạn Phúc 2
+B|10.73422|106.65424|Nhà xe Ngọc Ánh
+B|10.78750|106.63791|Nhà xe Thiện Thành
+B|10.79854|106.71847|Nhà xe Thành Bưởi - Điện Biên Phủ
+B|10.76174|106.67697|Nhà xe Thành Bưởi Lê Hồng Phong
+B|10.79377|106.61544|Nhà xe Tuấn Tú
+B|16.06046|108.17188|Nhà xe Tân Kim Chi
+B|11.58604|108.98645|Ninh Thuan bus station
+B|21.87261|106.75946|Northern Bus Station
+B|20.96501|105.84318|Nuoc Ngam Bus Station
+B|10.93964|108.10291|Phan Thiết Bus Station
+B|13.04113|109.31190|Phu Yen bus station
+B|22.33846|103.85151|Phuc An Bus Travel Sapa - Halong
+B|13.09163|109.29440|Phuc Thuan Thao
+B|12.24554|109.19466|Phuong Nam Express Office
+B|10.42448|107.15865|Phuong Trang
+B|10.23834|105.95755|Phuong Trang (FUTA Buslines) Ticket Office
+B|20.93892|106.76072|Phà Rừng
+B|10.93118|108.11083|Phương Trang (Bến xe khách)
+B|15.83640|108.28505|Phương Trang FUTA Express Nam Phước
+B|13.96575|108.02197|Pleiku bus station
+B|15.88771|108.32704|Queen Cafe Bus
+B|13.75334|109.20891|Quy Nhon Bus Station
+B|10.72927|106.69460|RMIT Bus Services
+B|9.95377|105.11994|Rach Gia Bus Station, Kien Giang
+B|9.94447|105.12953|Rach Soi Bus Station
+B|21.03912|105.85123|Sao Viet
+B|22.80537|104.97560|Sao Viet
+B|22.33891|103.85130|Saoviet
+B|22.33998|103.84857|Sapa Express
+B|15.76867|108.11935|Shuttle stop
+B|15.77211|108.11089|Shuttle stop
+B|22.36176|103.24719|Sin Ho Coach Station
+B|9.59429|105.97166|Soc Trang bus station
+B|21.30141|103.94344|Son La Bus Station
+B|11.58986|108.07868|Station FUTA Bus lines to HoChiMinhCity
+B|10.70999|105.11838|Station futa bus
+B|16.22896|108.08247|Station to travel through Hai Van Pass Tunnel
+B|9.52051|106.20397|Superdong shuttle bus to Soc Trang after ferry arrivals
+B|20.82504|106.72659|Sân bay Cát Bi
+B|20.21721|105.94066|Tam Coc Dong Gung Bus Station
+B|14.34062|107.99982|Tan Anh Bus Company
+B|10.95498|108.23459|The Sinh Tourist
+B|12.23911|109.19509|The Sinh Tourister
+B|21.52437|105.19741|Thinh An
+B|20.86806|106.65684|Thượng Lý Bus Station
+B|11.94074|108.45303|Tien Oanh
+B|10.73142|106.98926|Toan Thang Co Ltd.
+B|15.88479|108.32627|Tourist Buses
+B|10.75599|106.65935|Trạm Xe Bus Nhà Xe Quốc Hoàng
+B|16.08683|108.22031|Trạm Xe buýt Xuân Diệu
+B|21.02912|105.80336|Trạm trung chuyển Cầu Giấy
+B|10.81644|107.56974|Trạm xe Căn cứ 4
+B|10.72693|106.98089|Trạm xe Hiệp Phước
+B|10.28617|104.64323|Trạm xe Kiên Lương
+B|10.07471|105.84111|Trạm xe Phương Trang
+B|10.90664|106.84994|Trạm xe Siêu thị Big C
+B|10.84567|106.84315|Trạm xe bus điện VinBus
+B|12.60779|108.13313|Trạm xe buýt
+B|16.00000|108.26613|Trạm xe buýt Non Nước
+B|12.25275|109.09054|Trạm xe buýt Thành
+B|11.94180|108.45628|Tuan Tu Limousine
+B|10.93213|108.11095|Tâm Hạnh (Bến xe khách)
+B|20.62610|106.48934|UBND xã Cộng Hiền cũ
+B|12.70315|109.22812|Van gia
+B|15.88478|108.32459|Việt Lào (Hoi An Office)
+B|10.35042|107.08705|Vũng Tàu Bus Station
+B|14.00662|109.05716|Xe Khách Cúc Hương
+B|10.36489|107.09491|Xe Toàn Thắng
+B|12.25271|109.09831|Xe khách Tâm Hạnh
+B|13.11906|107.59310|bai da 1
+B|10.95502|108.23485|bus from ho chi minh
+B|11.54953|105.99973|bus station
+B|20.86570|106.69014|bus station Hoang Long 20.05.2018
+B|10.55102|105.42328|bến đò Lộ Mới
+B|10.36532|105.44963|chau doc - long xuyen - can tho
+B|11.23882|107.39081|co 12 hướng 44 hàn  34 hướng 33
+B|10.93937|108.14248|cô năm
+B|10.92560|108.05129|khánh ngọc
+B|16.48582|107.54666|northern bus station Phía Băc
+B|10.91320|107.97797|quán cơm cây diệp
+B|10.39042|105.45550|trạm xe LX no 2 (city bus) to the main road
+B|10.42008|105.64262|trạm xe LX no 661 (city bus), to bus station
+B|10.35880|105.43427|trạm xe no 01 (city bus) to ferry dock
+B|20.28114|105.86750|Điểm dừng cuối Bến xe Bát Chính Đạo
+B|21.04113|105.84978|Điểm trung chuyển Long Biên
+B|20.26801|105.85524|Điểm trả khách
+B|20.26777|105.85562|Điểm xe điện xuất phát
+B|20.28171|105.86726|Điểm đón khách
+B|13.32969|109.20934|Điểm đón trả khách tuyến cố định - Cầu Ngân Sơn
+B|20.68292|106.80038|Điểm đỗ xe buýt Đồ Sơn
+B|10.86801|106.78771|Đại học Nông Lâm
+B|11.65437|109.02487|Камрань
+B|11.98695|109.19245|Камрань
+B|12.23422|109.17977|ёBãi xe Bình Minh Bus

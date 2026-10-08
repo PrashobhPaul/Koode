@@ -1,5 +1,6 @@
 # Transit for Koode, CL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-33.41545|-70.58999|Alcántara|Metro de Santiago|M
 S|-33.43722|-70.63341|Baquedano|Metro de Santiago|M
 S|-33.45298|-70.73904|Barrancas|Metro de Santiago|M
@@ -215,6 +216,156 @@ L|Somarco|Leptepú – Hornopirén||151 149:58631
 L|Somarco|Puerto Ibáñez – Chile Chico||148 147:35805
 L|Transbordadora Austral Broom|Puerto Natales - Puerto Edén - Caleta Tortel - Puerto Yungay||153 145:380916 152:263038 154:34762
 L|Transbordadora Austral Broom|Puerto Yungay - Caleta Tortel - Puerto Edén - Puerto Natales||154 152:34766 145:265727 153:390432
+R|-36.60386|-72.11246|Chillán|Central
+R|-34.98450|-71.24645|Curicó|Central
+R|-35.84760|-71.59045|Linares|Central
+R|-35.10231|-71.30266|Molina|Central
+R|-36.13849|-71.83351|Parral|Central
+R|-34.17080|-70.75311|Rancagua|Central
+R|-36.42575|-71.96638|San Carlos|Central
+R|-34.58974|-70.98257|San Fernando|Central
+R|-35.60251|-71.70020|San Javier|Central
+R|-38.94836|-72.62852|Freire|EFE
+R|-38.76246|-72.60469|Padre Las Casas-Paradero|EFE
+R|-38.98404|-72.64196|Pitrufquén|EFE
+R|-18.46360|-70.30168|Chinchorro|EFE Arica
+R|-18.45058|-70.06704|Poconchile|EFE Arica
+R|-35.36578|-72.37039|Banco de Arena|EFE Central
+R|-35.47667|-71.74401|Colín|EFE Central
+R|-35.33611|-72.40420|Constitución|EFE Central
+R|-35.44641|-71.87230|Corinto|EFE Central
+R|-35.46198|-71.93071|Curtiduría|EFE Central
+R|-35.45570|-71.95487|Curtiduría Escuela|EFE Central
+R|-35.46513|-71.89263|El Morro|EFE Central
+R|-35.45301|-71.98730|El Peumo|EFE Central
+R|-35.46146|-71.97414|El Tricahue|EFE Central
+R|-35.41264|-72.19839|Forel|EFE Central
+R|-35.44521|-72.02414|González Bastías|EFE Central
+R|-35.41525|-72.23201|Huinganes|EFE Central
+R|-35.42078|-72.27101|Los Digüeñes|EFE Central
+R|-35.45458|-71.96296|Los Llocos|EFE Central
+R|-35.42587|-72.15139|Los Maquis|EFE Central
+R|-35.43073|-72.12760|Los Romeros|EFE Central
+R|-35.38860|-72.28852|Maquehua|EFE Central
+R|-35.38533|-72.29096|Maquehua Escuela|EFE Central
+R|-35.43522|-72.10212|Pichamán|EFE Central
+R|-35.43091|-72.09164|Pichamán Oriente|EFE Central
+R|-35.44740|-71.82240|Pocoa|EFE Central
+R|-35.36753|-72.33780|Rancho Astillero|EFE Central
+R|-35.42978|-71.64960|Talca|Central
+R|-35.42333|-72.05680|Toconey|EFE Central
+R|-37.20256|-72.77059|Buenuraqui|EFE Sur
+R|-38.67990|-72.50907|Cajón-Paradero|EFE Sur
+R|-37.19642|-72.83525|Gomero|EFE Sur
+R|-37.28197|-72.71678|Laja|EFE Sur
+R|-38.52511|-72.43216|Lautaro|EFE Sur
+R|-38.53367|-72.43685|Lautaro Centro|EFE Sur
+R|-37.15592|-72.91681|Los Acacios|EFE Sur
+R|-38.33598|-72.37465|Púa|EFE Sur
+R|-38.42022|-72.37509|Perquenco|EFE Sur
+R|-38.63621|-72.45386|Pillanlelbún|EFE Sur
+R|-37.05459|-72.96331|Quilacoya|EFE Sur
+R|-38.46522|-72.38671|Quillem|EFE Sur
+R|-37.07884|-72.95815|San Miguel|EFE Sur
+R|-37.26390|-72.72759|San Rosendo|EFE Sur
+R|-37.16497|-72.90680|Talcamávida|EFE Sur
+R|-38.73693|-72.57915|Temuco|EFE Sur
+R|-37.11906|-72.94265|Unihue|EFE Sur
+R|-37.13730|-72.93365|Valle Chanco|EFE Sur
+R|-38.23723|-72.33294|Victoria|EFE Sur
+R|-33.45234|-70.67906|Alameda|EFE Trenes de Chile
+R|-33.73236|-70.72843|Buin|EFE Trenes de Chile
+R|-33.71345|-70.72453|Buin Zoo|EFE Trenes de Chile
+R|-33.62316|-70.70057|Cinco Pinos|EFE Trenes de Chile
+R|-33.58671|-70.69844|Freire|EFE Trenes de Chile
+R|-34.06569|-70.72506|Graneros|EFE Trenes de Chile
+R|-33.86809|-70.74582|Hospital|EFE Trenes de Chile
+R|-33.76349|-70.73485|Linderos|EFE Trenes de Chile
+R|-33.57272|-70.69829|Lo Blanco|EFE Trenes de Chile
+R|-33.51453|-70.68588|Lo Espejo|EFE Trenes de Chile
+R|-33.47721|-70.68065|Lo Valledor|EFE Trenes de Chile
+R|-33.60641|-70.69701|Maestranza|EFE Trenes de Chile
+R|-33.63227|-70.70461|Nos|EFE Trenes de Chile
+R|-33.81607|-70.74360|Paine|EFE Trenes de Chile
+R|-33.49273|-70.68180|Pedro Aguirre Cerda|EFE Trenes de Chile
+R|-34.40756|-70.86718|Rengo|EFE Trenes de Chile
+R|-33.59500|-70.69784|San Bernardo|EFE Trenes de Chile
+R|-33.97706|-70.71328|San Francisco|EFE Trenes de Chile
+R|-33.58127|-71.61371|San Antonio|EFE/Corporación Patrimonio Ferroviario
+R|-36.84687|-73.13094|Alborada|Red Concepción de Movilidad
+R|-36.89849|-73.14339|Cardenal Raúl Silva Henríquez|Red Concepción de Movilidad
+R|-36.91536|-73.02884|Chiguayante|Red Concepción de Movilidad
+R|-36.83016|-73.06104|Concepción|Red Concepción de Movilidad
+R|-37.02464|-73.15081|Coronel|Red Concepción de Movilidad
+R|-36.85480|-73.13285|Costa Mar|Red Concepción de Movilidad
+R|-36.99841|-73.16279|Cristo Redentor|Red Concepción de Movilidad
+R|-36.83740|-73.11806|Diagonal Biobío|Red Concepción de Movilidad
+R|-36.72554|-73.11665|El Arenal|Red Concepción de Movilidad
+R|-36.86782|-73.13599|El Parque|Red Concepción de Movilidad
+R|-36.95379|-73.15672|Hito Galvarino|Red Concepción de Movilidad
+R|-36.73962|-73.10255|Hospital Las Higueras|Red Concepción de Movilidad
+R|-36.98055|-72.94113|Hualqui|Red Concepción de Movilidad
+R|-36.98823|-73.16316|Huinca|Red Concepción de Movilidad
+R|-36.83843|-73.09796|Juan Pablo II|Red Concepción de Movilidad
+R|-37.01270|-73.15809|Laguna Quiñenco|Red Concepción de Movilidad
+R|-36.95124|-73.01315|La Leonera|Red Concepción de Movilidad
+R|-36.88250|-73.13954|Lomas Coloradas|Red Concepción de Movilidad
+R|-36.80821|-73.07106|Lorenzo Arenas|Red Concepción de Movilidad
+R|-36.98019|-73.16284|Los Canelos|Red Concepción de Movilidad
+R|-36.75667|-73.09166|Los Cóndores|Red Concepción de Movilidad
+R|-36.93860|-73.01130|Manquimávida|Red Concepción de Movilidad
+R|-36.71196|-73.11554|Mercado|Red Concepción de Movilidad
+R|-36.92572|-73.02142|Pedro Medina|Red Concepción de Movilidad
+R|-36.78386|-73.08560|Universidad Técnica Federico Santa María|Red Concepción de Movilidad
+R|-33.04221|-71.60561|Barón|Tren Limache-Puerto
+R|-33.04311|-71.62056|Bellavista|Tren Limache-Puerto
+R|-33.03335|-71.53284|Chorrillos|Tren Limache-Puerto
+R|-33.04317|-71.40653|El Belloto|Tren Limache-Puerto
+R|-33.04123|-71.52118|El Salto|Tren Limache-Puerto
+R|-33.03957|-71.42882|El Sol|Tren Limache-Puerto
+R|-33.04389|-71.61293|Francia|Tren Limache-Puerto
+R|-33.02853|-71.54294|Hospital|Tren Limache-Puerto
+R|-33.04167|-71.38204|La Concepción|Tren Limache-Puerto
+R|-33.04389|-71.39468|Las Américas|Tren Limache-Puerto
+R|-32.98441|-71.27801|Limache|Tren Limache-Puerto
+R|-33.02490|-71.56152|Miramar|Tren Limache-Puerto
+R|-33.04020|-71.35298|Peñablanca|Tren Limache-Puerto
+R|-33.03274|-71.59142|Portales|Tren Limache-Puerto
+R|-33.03938|-71.62596|Puerto|Tren Limache-Puerto
+R|-33.04527|-71.44464|Quilpué|Tren Limache-Puerto
+R|-33.02719|-71.57529|Recreo|Tren Limache-Puerto
+R|-33.04206|-71.36596|Sargento Aldea|Tren Limache-Puerto
+R|-33.02636|-71.55186|Viña del Mar|Tren Limache-Puerto
+R|-33.04249|-71.37355|Villa Alemana|Tren Limache-Puerto
+Q|Central|Tren Chillán – Estación Central|#3BBDE7|L55|0 6:24280 4:34005 2:39066 8:30426 36:20032 3:49219 1:14405 7:54131 5:51886 73:65711 57:15943
+Q|Central|Tren Chillán – Estación Central|#3BBDE7|L55|57 73:15944 5:65813 1:106157 3:14409 36:49306 8:20035 2:30443 4:39112 6:34021 0:24298
+Q|Central|Tren Curicó – Linares|#2277E0|L55|2 36:50452 3:49219 1:14405
+Q|Central|Tren Curicó – Linares|#2277E0|L55|1 3:14409 36:49306 8:20035 2:30443
+Q|Central|Tren Expreso Chillán – Estación Central|#DB1022|L55|0 36:147648 5:169435 73:65711 57:15943
+Q|Central|Tren Expreso Chillán – Estación Central|#DB1022|L55|57 73:15944 5:65813 36:170144 0:148130
+Q|EFE|Tren Pitrufquén – Temuco|#141cff|L55|11 9:4183 10:21246 53:3852
+Q|EFE Arica|Tren Arica – Poconchile||L55|13 12:34528
+Q|EFE Arica|Tren Arica – Poconchile||L55|12 13:34526
+Q|EFE Central|Tren Talca – Constitución|#ABC300|L55|36 15:12572 34:9593 17:4547 20:3199 18:3623 19:2326 27:752 22:1333 21:1585 24:3828 37:3943 33:4126 32:1197 29:2473 28:2274 23:4759 25:3775 26:4036 30:4992 31:426 35:5447 14:3242 16:5014
+Q|EFE Central|Tren Talca – Constitución|#ABC300|L55|16 14:5015 35:3242 31:5448 30:426 26:4988 25:4036 23:3775 28:4759 29:2274 32:2474 33:1197 37:4125 24:3944 21:3828 22:1586 27:1333 19:752 18:2327 20:3624 17:3199 34:4547 15:9595 36:12568
+Q|EFE SUR|Tren Pitrufquén – Temuco|#141cff|L55|53 10:3852 9:21249 11:4183
+Q|EFE Sur|Tren Laja – Talcahuano|#60AE2b|L55|98 84:1780 87:2109 96:2126 100:3115 94:3120 79:2699 78:10097 99:1325 97:1700 92:1449 88:7763 48:9763 50:2780 54:4697 55:2168 44:2670 52:1555 40:7563 38:7033 51:8266 41:2346
+Q|EFE Sur|Tren Laja – Talcahuano|#60AE2b|L55|41 51:2346 38:8264 40:7033 52:7561 44:1555 55:2670 54:2168 50:4696 48:2780 88:9761 92:7756 97:1452 99:1701 78:1324 79:10095 94:2701 100:3115 96:3116 87:2127 84:2109 98:1776
+Q|EFE Sur|Tren Victoria – Temuco|#B4C400|L55|56 45:12004 46:10219 49:5438 42:8165 43:1018 47:11788 53:16309 39:9061
+Q|EFE Sur|Tren Victoria – Temuco|#B4C400|L55|53 47:16298 43:11786 42:1018 49:8163 46:5437 45:10217 56:12001 39:55912
+Q|EFE Trenes de Chile|Tren Nos – Estación Central|#E63323|L55|57 67:2773 71:1718 66:2443 65:6530 61:1558 73:917 68:1260 60:1922 69:1061
+Q|EFE Trenes de Chile|Tren Nos – Estación Central|#E63323|L55|69 60:1062 68:1925 73:1261 61:917 65:1555 66:6532 71:2445 67:1718 57:2773
+Q|EFE Trenes de Chile|Tren Rancagua – Estación Central|#56AE35|L55|5 62:11840 74:9943 63:13038 70:5731 64:5866 58:3491 59:2122 73:13691 57:15941
+Q|EFE Trenes de Chile|Tren Rancagua – Estación Central|#56AE35|L55|57 73:15942 59:13691 58:2123 64:3491 70:5867 63:5768 74:13059 62:9888 5:11916
+Q|EFE Trenes de Chile|Tren San Fernando – Estación Central|#F3B015|L55|7 72:23255 5:28641 62:11840 74:9943 63:13038 70:5731 64:5866 58:3491 59:2122 73:13691 57:15941
+Q|EFE Trenes de Chile|Tren San Fernando – Estación Central|#F3B015|L55|57 73:15942 59:13691 58:2123 64:3491 70:5867 63:5768 74:13059 62:9888 5:11916 72:28576
+Q|EFE/Corporación Patrimonio Ferroviario|Tren del Recuerdo||L55|57 75:109397
+Q|Red Concepción de Movilidad|Biotren Línea 1|#DD3018|L55|98 84:1780 87:2105 96:2126 100:3115 94:3120 79:2699 78:10097 99:1325 97:1700 92:1449 88:8867
+Q|Red Concepción de Movilidad|Biotren Línea 1|#DD3018|L55|88 92:8862 97:1452 99:1701 78:1324 79:10095 94:2701 100:3115 96:3116 87:2127 84:2145 98:1776
+Q|Red Concepción de Movilidad|Biotren Línea 2|#E36523|L55|79 90:4547 83:1805 76:1816 81:895 85:1465 93:1659 77:1752 86:6270 95:2969 89:889 82:1129 91:1636 80:1506
+Q|Red Concepción de Movilidad|Biotren Línea 2|#E36523|L55|80 91:1504 82:1635 89:1128 95:888 86:2969 77:6270 93:1752 85:1658 81:1465 76:895 83:1809 90:1805 79:4548
+Q|Tren Limache-Puerto|Tren Limache – Puerto|#DD3018|L55|111 113:12703 118:1283 120:650 109:866 110:1222 104:1110 106:2079 116:1751 105:9627 103:1444 108:1123 119:867 112:916 117:1403 114:1987 101:1735 107:796 102:693 115:713
+Q|Tren Limache-Puerto|Tren Limache – Puerto|#DD3018|L55|115 102:716 107:692 101:803 114:1731 117:1988 112:1398 119:916 108:866 103:1121 105:1445 116:9715 106:1751 104:2078 110:1112 109:1222 120:866 118:650 113:1285 111:12700
 T|-24.22761|-69.08095|Adolfo Zaldívar
 T|-33.45234|-70.67906|Alameda
 T|-36.84687|-73.13094|Alborada

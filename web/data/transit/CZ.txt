@@ -1,5 +1,6 @@
 # Transit for Koode, CZ. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|50.07025|14.40392|Anděl|Pražské metro|M
 S|50.09838|14.36288|Bořislavka|Pražské metro|M
 S|50.04442|14.44876|Budějovická|Pražské metro|M
@@ -2889,3 +2890,257 @@ T|50.11952|16.06707|Žďár nad Orlicí
 T|49.55379|15.93917|Žďár nad Sázavou
 T|49.26408|15.07491|Žďár u Kamenice nad Lipou
 T|49.82629|15.97806|Žďárec u Skutče
+B|49.77571|16.92975|Autobusove nádraží Mohelnice
+B|50.07465|12.37930|Autobusové Nádraží Cheb
+B|50.40662|14.04760|Autobusové Nádraží Libochovice
+B|49.09655|15.88924|Autobusové nádraží
+B|49.65781|14.42875|Autobusové nádraží
+B|50.72270|15.17396|Autobusové nádraží
+B|49.49160|16.65330|Autobusové nádraží Boskovice
+B|50.55293|13.77260|Autobusové nádraží Bílina
+B|49.77049|18.44764|Autobusové nádraží Havířov
+B|50.36662|15.62935|Autobusové nádraží Hořice
+B|49.09620|15.88951|Autobusové nádraží Jaroměřice nad Rokytnou
+B|49.39959|15.58113|Autobusové nádraží Jihlava
+B|49.15407|15.00493|Autobusové nádraží Jindřichův Hradec
+B|50.49843|13.45023|Autobusové nádraží Jirkov
+B|50.43389|15.35559|Autobusové nádraží Jičín
+B|49.30114|17.40357|Autobusové nádraží Kroměříž
+B|50.08177|16.76373|Autobusové nádraží Králíky
+B|49.95467|15.27201|Autobusové nádraží Kutná Hora
+B|49.00664|17.12412|Autobusové nádraží Kyjov
+B|49.90879|16.60767|Autobusové nádraží Lanškroun
+B|49.53085|14.80823|Autobusové nádraží Mladá Vožice
+B|49.71443|13.20880|Autobusové nádraží Nýřany
+B|50.10488|14.47543|Autobusové nádraží Palmovka
+B|49.42522|15.22345|Autobusové nádraží Pelhřimov
+B|49.29935|14.14631|Autobusové nádraží Písek
+B|50.03808|14.47703|Autobusové nádraží Roztyly
+B|50.70369|14.79778|Autobusové nádraží Stráž pod Ralskem
+B|48.89246|14.87771|Autobusové nádraží Suchdol nad Lužnicí
+B|49.18199|15.46406|Autobusové nádraží Telč
+B|49.21794|14.42003|Autobusové nádraží Týn nad Vltavou
+B|49.21458|15.87661|Autobusové nádraží Třebíč
+B|49.06996|17.46506|Autobusové nádraží Uherské Hradiště
+B|49.33439|17.99609|Autobusové nádraží Vsetín
+B|50.32753|13.54714|Autobusové nádraží Žatec čekárna
+B|50.32744|13.54656|Autobusový terminál Žatec
+B|49.30212|14.47628|Bechyně, autobusové nádraží
+B|49.77947|14.68389|Benešov, Terminál
+B|49.95778|14.07466|Beroun, autobusové nádraží
+B|49.35378|16.64656|Blansko
+B|49.58073|13.53173|Blovice,žel.st.
+B|49.89952|18.35341|Bohumín, Nový Bohumín, aut.st.
+B|49.71501|12.77776|Bor, aut.st.
+B|49.72614|13.35997|Bory public transport terminal
+B|49.18583|16.61654|Brno, ÚAN Zvonařka
+B|50.58143|16.33902|Broumov, železniční stanice
+B|49.98528|17.46300|Bruntál, autobusové stanoviště
+B|49.99480|17.47427|Bruntál, železniční stanice
+B|49.00818|14.76511|Bus station Trebon
+B|49.14806|17.00168|Bučovice, aut. st.
+B|49.52630|16.26080|Bystřice n.Pern.,,aut.nádr.
+B|49.39949|17.66609|Bystřice pod Hostýnem, autobusové stanoviště
+B|49.41759|17.95876|Bystřička, železniční stanice
+B|48.75506|16.89313|Břeclav
+B|50.08945|14.44061|Central Bus Station Florenc
+B|49.74670|13.36315|Centrální autobusové nádraží
+B|49.74428|18.62082|Centrální dopravní terminál Český Těšín
+B|48.81177|14.32278|Cesky Krumlov, Bus Station
+B|50.16331|15.45611|Chlumec nad Cidlinou, železniční stanice
+B|50.23806|12.74419|Chodov, autobusové nádraží
+B|49.94952|15.78611|Chrudim, autobusové stanoviště
+B|50.77488|14.63413|Cvikov, autobusové stanoviště
+B|49.08356|15.43789|Dačice, aut. nádr.
+B|50.65929|14.03608|Divadlo
+B|49.78167|14.17061|Dobříš, náměstí
+B|50.56355|14.65403|Doksy, autobusové stanoviště
+B|49.07022|16.46398|Dolní Kounice, Masarykovo náměstí
+B|49.43562|12.94404|Domažlice, vlakové nádraží
+B|49.44191|12.93075|Domažlice-Poděbradova
+B|49.02255|17.64217|Dopravní terminál Uherský Brod
+B|49.14416|15.67174|Dopravní terminál Želetava
+B|50.54129|14.54041|Dubá, aut. nádr.
+B|50.42883|15.81703|Dvůr Králové nad Labem, autobusové stanoviště
+B|49.54241|18.22475|Frenštát p. Radh.,,žel.st.
+B|50.92009|15.08110|Frýdlant, autobusové nádraží
+B|49.71442|17.91165|Fulnek, žel.st.
+B|50.08934|14.43958|Hala 1
+B|50.76964|15.43607|Harrachov
+B|49.95035|15.65883|Heřmanův Městec, nádraží
+B|49.94657|15.66696|Heřmanův Městec, náměstí
+B|49.76679|15.90364|Hlinsko, autobosové nádraží
+B|49.89783|18.18545|Hlučín,aut. nádr.
+B|48.85405|17.12176|Hodonín, autobusové nádraží
+B|48.76115|14.73356|Horní Stropnice
+B|50.53981|15.72529|Hostinné, autobusové stanoviště
+B|49.19342|16.61444|Hotel Grand Bus Station
+B|49.83336|13.90239|Hořovice, náměstí Boženy Němcové
+B|49.56349|17.74035|Hranice
+B|50.47260|16.17743|Hronov, žel.st.
+B|49.10740|16.06038|Hrotovice
+B|49.53989|15.34538|Humpolec, autobusové nádraží
+B|49.05224|13.98883|Husinec, aut. st.
+B|49.10229|16.37525|Ivančice, náměstí
+B|49.57839|18.76806|Jablunkov, aut.st.
+B|50.34255|15.90967|Jaroměř, Terminál HD
+B|50.22639|17.20733|Jeseník,,aut.nádr.
+B|49.63263|16.71151|Jevíčko
+B|50.60684|15.50676|Jilemnice, autobusové nádraží
+B|50.43415|15.35547|Jičín
+B|50.37976|13.27605|Kadaň
+B|48.73733|14.49406|Kaplice, aut. nádr.
+B|50.22988|12.86322|Karlovy Vary, Terminál
+B|50.23108|12.86996|Karlovy Vary, Tržnice
+B|49.85589|18.52774|Karviná, Fryštát, autobusové nádraží
+B|49.38872|13.03796|Kdyně, aut.st.
+B|50.14590|14.10610|Kladno, autobusové nádraží
+B|49.40147|13.27646|Klatovy, Terminál-nádraží
+B|49.39881|13.28870|Klatovy,Tylovo nábř.
+B|50.02418|15.21325|Kolín
+B|50.02489|15.21381|Kolín, nádraží
+B|49.59011|16.89112|Konice, autobusová stanice
+B|49.88436|12.97582|Konst.Lázně, aut.st.
+B|49.60408|18.14809|Kopřivnice, aut. nádr.
+B|49.30120|17.40332|Korměříž, aut.nádr.
+B|49.60732|17.54111|Kozlov, kasárna
+B|50.33019|12.50405|Kraslice, autobusová stanice
+B|49.15724|16.37697|Kratochvilka
+B|49.50359|16.50915|Kunštát, Sychotín
+B|49.50725|16.51976|Kunštát, náměstí
+B|49.31452|16.54708|Kuřim, TE
+B|49.00656|17.12414|Kyjov, aut.st.
+B|50.03215|16.50643|Letohrad, aut. st.
+B|48.99443|14.15260|Lhenice
+B|50.76366|15.04693|Liberec, autobusové nádraží
+B|49.52877|17.58217|Lipník nad Bečvou, autobusové nádraží
+B|49.86650|16.31135|Litomyšl,,aut.nádr.
+B|50.53305|14.14021|Litoměřice, autobusové nádraží
+B|50.53299|15.37152|Lomnice nad Popelkou, autobusové nádraží
+B|50.35477|13.80454|Louny,,aut.nádr.
+B|50.51045|14.05999|Lovosice, aut. nádr.
+B|49.74458|16.92819|Loštice, náměstí
+B|49.09900|17.75313|Luhačovice, autobusová stanice
+B|49.55578|17.14474|Lutín, Sigma
+B|50.49585|13.73650|Lužice,Svinčice,odb.
+B|50.42908|15.58256|Lázně Bělohrad, náměstí
+B|50.38712|13.19253|Miřetice, aut. nádr.
+B|50.41978|14.91633|Mladá Boleslav, aut. st.
+B|49.75771|16.95879|Moravičany, náves
+B|49.76078|16.66382|Moravská Třebová, autobusové nádraží
+B|49.05655|15.80812|Moravské Budějovice, autobusové nádraží
+B|49.04816|16.30923|Moravský Krumlov, autobusové nádraží
+B|50.35037|14.48876|Mělník autobusové stanoviště
+B|50.32097|12.72981|Nejdek
+B|49.47530|17.08952|Nemocnice
+B|49.14913|17.07936|Nesovice, železniční stanice
+B|50.49513|15.51813|Nová Paka, autobusové stanoviště
+B|48.78903|14.78289|Nové Hrady, aut. nádr.
+B|49.59758|18.00973|Nový Jičín, autobusové nádraží
+B|49.65602|18.45574|Nošovice PZ Hyundai - hlavní brána
+B|50.41761|16.17092|Náchod, autobusová stanice
+B|50.00387|14.40402|Nádraží Modřany
+B|49.83041|18.28010|Náměstí Republiky
+B|49.20739|16.14780|Náměšť nad Oslavou, autobusové nádraží
+B|49.29035|13.13896|Nýrsko, Komenského
+B|50.21991|14.40850|Odolena Voda, závod
+B|49.66708|17.83223|Odry, aut. st.
+B|49.58806|17.28560|Olomouc bus terminal
+B|49.87933|18.43279|Orlová, Lutyně, aut. nádr.
+B|49.12080|16.33631|Oslavany, aut.st
+B|49.86818|12.74524|Planá, aut.st.
+B|49.51288|12.81117|Poběžovice, žel. st.
+B|50.71424|15.17108|Pod pivovarem
+B|50.14878|15.12368|Poděbrady, železniční stanice
+B|49.71851|16.26310|Polička
+B|49.48837|15.72015|Polná, autobusové stanoviště
+B|49.26161|15.23746|Počátky, aut. nádr.
+B|49.01372|14.00538|Prachatice, aut. nádr.
+B|50.10877|14.57701|Praha – Černý Most
+B|50.08352|14.43471|Praha, Hlavní nádraží
+B|49.47446|17.12775|Prostějov,,aut.st.
+B|49.37787|17.58934|Prusinovice
+B|49.85003|18.00155|Pustá Polom, aut. st.
+B|49.44670|17.44788|Přerov, autobusové nádraží
+B|49.57445|13.32304|Přeštice,,žel.st.
+B|49.69027|14.00320|Příbram, autobusové nádraží
+B|50.10048|13.73366|Rakovník, autobusové stanoviště
+B|49.74115|13.59083|Rokycany, autobusové nádraží
+B|49.20293|16.88523|Rousínov
+B|49.60470|13.86502|Rožmitál pod Třemšínem, autobusové stanoviště
+B|49.46002|18.13459|Rožnov pod Radhoštěm, aut.st
+B|50.95634|14.55262|Rumburk, železniční stanice
+B|49.40904|16.62702|Rájec-Jestřebí
+B|50.43228|15.78883|Safari bus station
+B|50.60285|15.32397|Semily, Terminál
+B|50.22853|14.08854|Slaný, autobusové nádraží
+B|49.14880|16.87637|Slavkov u Brna, aut.st.
+B|48.99837|15.35368|Slavonice
+B|50.18548|12.64217|Sokolov, Terminál
+B|49.64539|13.60927|Spálené Poříčí, Lipnice
+B|50.19766|14.67853|Stará Boleslav
+B|49.63988|13.15626|Stod, žel.st.
+B|49.25574|13.91645|Strakonice, aut.nádr.
+B|48.89821|17.31599|Strážnice, aut. st.
+B|49.75346|12.99734|Stříbro, aut.st.
+B|49.24614|13.54196|Sušice, žel. st.
+B|49.87471|14.90746|Sázava
+B|50.04677|14.31679|Sídliště Stodůlky
+B|49.80123|12.63550|Tachov,aut.nádr.
+B|49.18228|14.38320|Temelín, ETE aut. st.
+B|50.21687|15.81308|Terminál HD
+B|49.74474|13.38922|Terminál Hlavní nádraží
+B|50.85528|14.84673|Terminál Hrádek
+B|49.89757|16.44756|Terminál J. Pernera
+B|50.05610|12.98953|Toužim, autobusové stanoviště
+B|50.56466|15.90838|Trutnov, autobusové nádraží
+B|49.58856|17.25453|Tržnice, plocha
+B|50.58707|15.14092|Turnov, Terminál u železniční stanice
+B|49.45447|17.51467|Tučín, náves
+B|49.41423|14.67482|Tábor, autobusové nádraží
+B|49.21785|14.41977|Týn nad Vltavou, aut. nádr.
+B|49.83423|14.59224|Týnec nad Sázavou
+B|49.29212|15.48328|Třešť
+B|49.68039|18.66667|Třinec, aut.st.
+B|49.77819|17.14286|Unex Autobusová stanice
+B|49.77391|17.11773|Uničov, autobusová stanice
+B|49.13586|13.72560|Vacov, aut. st.
+B|49.47422|17.97393|Valašské Meziříčí, autobusové stanoviště
+B|48.74267|16.75534|Valtice
+B|48.85155|16.88923|Velké Bílovice, autobusové nádraží
+B|50.03117|17.03986|Velké Losiny, hotel Praděd
+B|49.57868|17.48054|Velký Újezd, autobusové stanoviště
+B|49.05586|13.78667|Vimperk, aut. nádr.
+B|49.70113|14.89679|Vlašim, Terminál
+B|49.14648|14.17787|Vodňany, autobusové nádraží
+B|49.63857|14.64297|Votice, aut.st.
+B|50.62076|15.61924|Vrchlabí, autobusové nádraží
+B|49.27567|16.99163|Vyškov
+B|49.77948|17.75514|Vítkov, aut. st.
+B|49.46095|17.75758|Všechovice
+B|49.18759|16.35927|Zastávka, železniční stanice
+B|49.08570|13.69681|Zdíkov
+B|50.26051|17.39827|Zlaté Hory, autobusová stanice
+B|48.85185|16.05684|Znojmo, autobusové nádraží
+B|49.17083|17.50761|autobusové nádraží
+B|49.91205|15.39685|autobusové nádraží Čáslav
+B|49.14040|18.00792|autobusové stanoviště
+B|50.74266|15.31100|autobusový terminál
+B|49.47131|17.11737|Újezd
+B|50.12852|16.17247|Častolovice, žel.st.
+B|48.73810|14.10918|Černá v Pošumaví
+B|50.47573|16.09165|Červený Kostelec, autobusové stanoviště
+B|50.10594|14.49281|Českomoravská
+B|50.67769|14.53531|Česká Lípa, autobusové nádraží
+B|49.92128|16.43465|Česká Třebová, sídliště Lhotka
+B|48.97290|14.48729|České Budějovice, aut. nádr.
+B|49.11493|13.82563|Čkyně, aut. nádr.
+B|49.93045|17.27482|Řýmařov autobusové nádraží
+B|50.72418|15.60348|Špindlerův Mlýn, autobusové stanoviště
+B|49.72162|17.28560|Šternberk, aut.st.
+B|49.96236|16.98110|Šumperk, autobusové stanoviště
+B|50.08499|16.46099|Žamberk, autobusové nádraží
+B|48.85299|16.05823|Železniční stanice
+B|49.03598|16.61484|Židlochovice, aut. st.
+B|49.25295|15.18757|Žirovnice, nám.
+B|49.55401|15.94102|Žďár n.Sáz.,,aut.nádr

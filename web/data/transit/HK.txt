@@ -1,5 +1,6 @@
 # Transit for Koode, HK. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|22.27863|114.16552|Admiralty|港鐵 MTR|M
 S|22.31592|113.93655|Airport|港鐵 MTR|M
 S|22.32199|113.94222|AsiaWorld-Expo|港鐵 MTR|M
@@ -281,6 +282,9 @@ L|聲威實業有限公司|荔枝窩→馬料水 Lai Chi Wo→Ma Liu Shui||182 1
 L|聲威實業有限公司|馬料水→吉澳 Ma Liu Shui→Kat O||182 180:28006 179:3661
 L|聲威實業有限公司|馬料水→荔枝窩 Ma Liu Shui→Lai Chi Wo||182 181:14849
 L|香港水上的士 Hong Kong Water Taxi|香港水上的士政府航班 HK Water Taxi Government Route||184 186:2030 184:2030 185:1285 183:1274 185:1274 184:1285
+R|22.31238|114.03967|Fantasyland|rail
+R|22.31308|114.04407|Main Street, USA|rail
+Q|rail|Hong Kong Disneyland Railroad||L55|1 0:496
 T|22.30424|114.16660|Austin
 T|22.27096|114.15175|Barker Road
 T|22.31238|114.03967|Fantasyland

@@ -1,8 +1,9 @@
 # Transit for Koode, PT. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|41.23712|-8.66960|Aeroporto|Metro do Porto|M
 S|41.14859|-8.61097|Aliados|Metro do Porto|M
-S|41.36435|-8.74492|Alto de Pega|Metro do Porto|M
+S|41.36436|-8.74493|Alto de Pêga|Metro do Porto|M
 S|41.21689|-8.64103|Araújo|Metro do Porto|M
 S|41.34595|-8.72807|Azurara|Metro do Porto|M
 S|41.18552|-8.54585|Baguim|Metro do Porto|M
@@ -14,17 +15,17 @@ S|41.15073|-8.58564|Campanhã|Metro do Porto|M
 S|41.14875|-8.59869|Campo 24 de Agosto|Metro do Porto|M
 S|41.15856|-8.62190|Carolina Michaelis|Metro do Porto|M
 S|41.17984|-8.54351|Carreira|Metro do Porto|M
-S|41.16063|-8.62869|Casa da Música|Metro do Porto|M
+S|41.16060|-8.62887|Casa da Música|Metro do Porto|M
 S|41.26273|-8.61699|Castêlo da Maia|Metro do Porto|M
 S|41.18065|-8.68125|Câmara de Matosinhos|Metro do Porto|M
-S|41.12966|-8.60617|Câmara Gaia|Metro do Porto|M
+S|41.12966|-8.60616|Câmara Gaia|Metro do Porto|M
 S|41.20069|-8.64975|Cândido dos Reis|Metro do Porto|M
 S|41.16508|-8.59890|Combatentes|Metro do Porto|M
 S|41.16569|-8.57868|Contumil|Metro do Porto|M
 S|41.23300|-8.65663|Crestins|Metro do Porto|M
 S|41.22231|-8.63900|Custió|Metro do Porto|M
 S|41.20029|-8.65558|Custóias|Metro do Porto|M
-S|41.11953|-8.60623|Dom João II|Metro do Porto|M
+S|41.11966|-8.60621|Dom João II|Metro do Porto|M
 S|41.16050|-8.58205|Dragon Stadium|Metro do Porto|M
 S|41.32118|-8.71868|Espaço Natureza|Metro do Porto|M
 S|41.21603|-8.65456|Esposade|Metro do Porto|M
@@ -72,7 +73,7 @@ S|41.35392|-8.73564|Santa Clara|Metro do Porto|M
 S|41.11550|-8.60661|Santo Ovídio|Metro do Porto|M
 S|41.18808|-8.65451|Senhora da Hora|Metro do Porto|M
 S|41.18819|-8.68520|Senhor de Matosinhos|Metro do Porto|M
-S|41.14479|-8.61082|São Bento|Metro do Porto|M
+S|41.14469|-8.61078|São Bento|Metro do Porto|M
 S|41.37318|-8.75380|São Brás|Metro do Porto|M
 S|41.15244|-8.60936|Trindade|Metro do Porto|M
 S|41.33421|-8.72067|Varziela|Metro do Porto|M
@@ -341,7 +342,6 @@ T|38.70598|-9.14574|Cais do Sodré
 T|39.40675|-9.14026|Caldas da Rainha
 T|41.15290|-7.82667|Caldas de Moledo
 T|41.87406|-8.83427|Caminha
-T|41.15168|-8.63335|Campo Alegre
 T|38.73251|-9.16774|Campolide
 T|38.73151|-9.16886|Campolide-A
 T|40.49106|-7.90649|Canas - Felgueira
@@ -360,7 +360,6 @@ T|40.63540|-8.45289|Carvalhal da Portela
 T|40.92511|-8.62617|Carvalheira - Maceda
 T|39.57105|-8.39535|Carvalhos de Figueiredo
 T|38.49821|-8.15822|Casa Branca
-T|41.15986|-8.62905|Casa da Música
 T|40.20477|-8.48388|Casais
 T|40.57944|-8.48791|Casal do Álvaro
 T|38.70087|-9.41791|Cascais
@@ -399,7 +398,6 @@ T|39.54793|-8.42979|Curvaceiras
 T|41.17151|-8.35543|Cête
 T|39.34450|-9.17240|Dagorda - Peniche
 T|41.68023|-8.78195|Darque
-T|41.12905|-8.62102|Devesas
 T|39.04256|-9.18462|Dois Portos
 T|40.13252|-7.47346|Donas
 T|41.63907|-8.66702|Durrães
@@ -453,7 +451,6 @@ T|39.61651|-8.49501|Fungalvaz
 T|37.06021|-7.75179|Fuseta
 T|37.05366|-7.74966|Fuseta-A
 T|41.12976|-8.62028|Gaia
-T|41.15161|-8.62616|Galiza
 T|40.52177|-7.21455|Gata
 T|41.13319|-8.60868|General Torres
 T|41.36456|-8.38876|Giesteira
@@ -472,7 +469,6 @@ T|39.94816|-8.80178|Guia
 T|41.21471|-8.65865|Guifões
 T|41.43513|-8.29430|Guimarães
 T|41.18511|-8.59841|Hospital São João
-T|41.14807|-8.61923|Hospital de Santo António
 T|41.70176|-8.83416|Igreja
 T|41.18122|-8.34217|Irivo
 T|38.94977|-9.23340|Jerumelo
@@ -667,13 +663,11 @@ T|37.17567|-8.44046|Silves
 T|40.01090|-8.63354|Simões
 T|38.79926|-9.38536|Sintra
 T|40.02687|-7.45535|Soalheira
-T|41.11996|-8.61473|Soares dos Reis
 T|40.41481|-8.30143|Soito
 T|39.54287|-8.47163|Soudos - Vila Nova
 T|40.05502|-8.63949|Soure
 T|40.28624|-8.42565|Souselas
 T|41.19712|-8.50200|Suzão
-T|41.14572|-8.61133|São Bento
 T|41.25841|-8.55816|São Frutuoso
 T|41.19714|-8.57921|São Gemil
 T|40.89860|-8.49522|São João da Madeira

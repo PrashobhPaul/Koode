@@ -1,5 +1,6 @@
 # Transit for Koode, CH. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|46.52498|6.56479|Bassenges|Mobilis|M
 S|46.52079|6.63699|Bessières|Mobilis|M
 S|46.52333|6.59020|Bourdonnette|Mobilis|M

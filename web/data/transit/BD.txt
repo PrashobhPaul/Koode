@@ -1,5 +1,6 @@
 # Transit for Koode, BD. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|23.77843|90.38005|Agargaon|ঢাকা মেট্রোরেল|M
 S|23.73001|90.40748|Bangladesh Secretariat|ঢাকা মেট্রোরেল|M
 S|23.76639|90.38310|Bijoy Shoroni|ঢাকা মেট্রোরেল|M
@@ -481,3 +482,646 @@ T|24.94439|89.49203|সৈয়দ আহমেদ কলেজ
 T|24.37554|88.68590|হরিয়ান
 T|22.50570|91.80399|হাটহাজারী
 T|25.57173|89.42998|হাসানগঞ্জ
+B|23.70595|90.42406|13No Bus Station
+B|24.05311|91.15972|1st Gate Bus Station
+B|24.05202|91.16872|1st Gate Bus Stop ফাস্ট গেইট বাস স্ট্যান্ড
+B|23.87889|90.26864|1st Year Student Bus Station
+B|24.20713|90.41899|2 No C & B Bus Stop
+B|22.82762|89.53680|250 Bed
+B|24.04992|91.17371|2nd Gate Bus Station
+B|22.34510|91.77930|A Block
+B|24.41180|89.00200|A. J. R parcel, A.J.R Transport agency, Dhaka - Natore Hwy, Natore
+B|22.32902|91.78865|ARK Cargo Service, Chittagong Office
+B|23.66064|90.35859|Abdullahpur Bus stop, Dhaka - Mawa Hwy, Kalakandi
+B|22.85173|89.52866|Abu Naser
+B|23.80159|90.58442|Adhuria Bus Stand
+B|22.93485|89.48846|Afil Gate
+B|23.81720|90.40045|Air Headquarter Bus Stop
+B|22.14229|90.23348|Ak School Bus Stand
+B|24.97429|89.01424|Akkelpur Bus Stand, Kanupur, Joypurhat
+B|23.75863|88.93495|Alamdanga Pouro Bus Terminal
+B|24.74681|90.42131|Alif Trade International
+B|23.19883|90.06717|Amgram Bridge Bus Station, Dhaka - Barisal Highway
+B|23.57379|90.64401|Anarpura Bus Station
+B|22.87197|89.50311|Arongghata Bazar
+B|26.03321|88.45717|Art-Gallery Bus Station
+B|22.39895|91.75595|Ashok Leyland Service Centre, Salimpur, Salimpur Union, Chattogram
+B|24.39161|88.92886|Ashraf bus counter, Rajshahi - Dhaka Hwy, Natore
+B|24.03842|91.00279|Ashuganj - Dhaka BUS stop
+B|24.03283|89.41401|Ataikula Bazar Bus Stop
+B|24.59141|91.60174|Aushkandi Bus Stop
+B|23.74344|90.53287|B Brothers Garments Bus Stop
+B|24.46803|88.32437|BRTC BUS COUNTER
+B|24.84940|89.37175|BRTC Bogra Bus Depo
+B|22.65270|92.17937|BRTC Bus Counter
+B|24.83309|88.92221|BRTC Bus Counter, Baludanga, Rajshahi Road, Naogaon Bus Terminal, Naogaon
+B|24.93804|88.48244|BRTC Bus Counter, Sweet Empire Garden, Rohanpur - Shapahar Rd
+B|25.64588|88.64602|BRTC Bus Depot
+B|25.72720|89.24052|BRTC Bus Depot
+B|23.19470|90.44835|BRTC Bus STOP, Bhedarganj
+B|23.87719|90.40132|BRTC Bus Station
+B|23.78239|90.34004|BRTC Bus Terminal
+B|23.72276|90.41035|BRTC CBS-2 Bus Terminal, Fulbaria, A H M Kamruzzaman Sharani, Dhaka
+B|22.41638|91.82005|BRTC Chittagong Bus Depot বিআরটিসি চট্টগ্রাম বাস ডিপো
+B|23.46579|90.28872|BRTC Counter (Gulisthan)
+B|23.85897|90.40189|BRTC Elevated express bus counter
+B|23.82715|90.41983|BRTC Joarshara
+B|23.80146|90.58442|BRTC Passenger Platform
+B|25.76486|89.23120|BRTC Rangpur Dhap
+B|24.00755|89.25406|BRTC Stand
+B|23.55864|90.65615|BRTC Ticket Counter
+B|23.73202|90.42426|BRTCl Bus Terminal
+B|23.33668|89.99887|BablaTola Bus Stand
+B|24.40592|88.95486|Babu honda workshop, Natore Station Bypass Bus Stand, Rajshahi - Dhaka Hwy, Natore
+B|23.87053|90.66764|Babur Hat Seker Chor Bus Stop
+B|22.90826|89.50751|Badamtola
+B|25.67411|89.06092|Badarganj Bus Stand
+B|25.03297|92.07616|Bager Sorok Bus Stand
+B|22.54098|90.33326|Bakerganj Bus Stop
+B|24.12280|91.31523|Baksair Bus Stand
+B|23.19157|90.55232|Balar Bazar Bus Stop, Shariatpur - Bhedarganj Hwy
+B|25.63705|89.27014|Baldipukur Bus Stop
+B|24.81446|89.38005|Banani বনানী
+B|23.74623|90.39478|Bangla Moto, Bus stop
+B|24.36777|89.95684|Bangra Bus Station
+B|23.85507|90.65342|Bansherpool Bus Stop
+B|23.81529|90.59578|Banti Bazzar Bus Stop
+B|22.89375|91.53444|Baraiyarhat Bus Terminal
+B|22.75739|91.58502|Baratakia Bazar Bus Stand , Dhaka - Chittagong Hwy, Mirsharai, Chittagong
+B|22.15986|90.12924|Barguna BRTC Bus Stop
+B|22.16136|90.12498|Barguna Zilla Bus Station
+B|22.16145|90.12508|Barguna Zilla Bus Station
+B|23.30321|89.15265|Barobazar Bus Stop
+B|24.05126|90.86956|Baroicha Bus Stop
+B|22.75708|91.58521|Bartakia Bus Stop, Dhaka - Chittagong Hwy, Mirsharai, Chittagong
+B|23.03517|90.20924|Barthi Bazar Bus Stop
+B|23.03745|90.20981|Barthi Bus Stop
+B|22.89269|91.53476|Baryarhat Bus Counter Service
+B|24.42379|88.41352|Basantapur Bus Stand, Rajshahi - Nawabganj Hwy
+B|23.97421|90.38055|Bason Bus Stop বাসন বাস স্টপ
+B|22.42275|90.54290|Bauphal Bus Stand
+B|23.53369|90.29032|Bejgaon Bus stop, Sreenagar, Dhaka-Mawa Highway, Mawa
+B|24.29343|89.69752|Belkuchi Bus Stop
+B|23.05164|88.93165|Benapole Bus Station
+B|23.03906|88.89284|Benapole Truck Terminal
+B|24.04418|91.06196|Bertala Bazar Bus Stop
+B|23.54130|90.45943|Betka Chowrastha Bus Stop
+B|24.37493|88.62227|Bhadra Bus Counters
+B|25.32851|89.14448|Bhaduria Bazar Bus Stop
+B|24.05516|90.98442|Bhairab
+B|24.05533|90.98292|Bhairab Bus Station
+B|24.40459|90.38594|Bhaluka Bus Stop
+B|23.38843|89.98749|Bhanga Bus Stand
+B|23.38440|89.98256|Bhanga Bus Stop
+B|23.55911|90.65558|Bhoberchar Bus Stop ভবেরচর বাস স্টপ
+B|24.94232|91.61639|Bhukar Bhanga Point Bus Stop
+B|23.78459|90.56528|Bhulta Bus Stand
+B|26.10880|89.67406|Bhurungamari Bus Stop
+B|24.86456|89.24640|Bibir Pukur Bus Stop বিবিরপুকুর বাস স্টপ
+B|23.35963|89.00302|Bidyadharpur Bus Stop
+B|22.65625|90.66231|Bir srestho Mostofa Kamal Bus Stop
+B|24.05026|91.11417|Bishwa Road
+B|24.05060|91.11470|Bishwa Road Bus Station বিশ্ব রোড বাস স্টেশন
+B|23.72484|90.51345|Bishwaroad Bus Stand
+B|23.72553|90.51373|Bishwaroad South Bound Bus Stop
+B|23.38042|90.00630|Bogail Bus Stop
+B|22.94904|91.46478|Bogdadia Bus Stop বোগদাদিয়া
+B|24.85399|89.35019|Bogra Truck Terminal বগুড়া ট্রাক টার্মিনাল
+B|22.84185|89.53927|Boikali
+B|23.72311|90.40570|Bongo Bazaar Bus stop
+B|23.99653|89.47361|Bonogram Bazar Bus Stop
+B|23.72867|90.51654|Borabo Bus Stand
+B|22.75504|91.58601|Boro Takia Bazar Bus Stop, Mirsharai, Chittagong
+B|23.30924|89.99814|Boroitala Bus Stop
+B|22.89654|89.48213|Boroitola Bypass
+B|24.92626|91.50684|Borokapon Bus Stop
+B|23.74716|90.54142|Borpa Bus Stop
+B|24.46906|90.77076|Borpul Bus Stand বড়পুল বাসস্ট্যান্ড
+B|23.11686|89.35318|Bosundiar Mor Bus Station
+B|22.83268|89.53015|Boyra Bazar
+B|22.83740|89.54015|Boyra College Morh
+B|23.95286|91.11635|Brahmanbaria BRTA Bus Station
+B|23.18061|90.38708|Burir Haat Bus Stop, Vedorgonj - Shariatpur Rd
+B|22.61313|92.16473|Bus Parking Lot
+B|24.74699|90.42139|Bus Stand
+B|24.66983|89.41624|Bus Stand Terminal বাসস্ট্যান্ড টার্মিনাল
+B|22.01919|92.09891|Bus Station
+B|22.71174|90.36043|Bus Station
+B|23.01325|89.84387|Bus Station
+B|24.04975|88.76198|Bus Station
+B|24.88027|91.86365|Bus Station
+B|22.72347|89.06651|Bus Terminal
+B|25.66685|88.91475|Bus Terminal
+B|23.96171|89.49605|Bus station
+B|22.57070|89.97160|Bus station (to Khulna)
+B|25.74327|89.23144|Bus terminal Pond
+B|23.73225|90.42494|Bus to Cox Bazaar
+B|24.89336|91.88555|Bus to Jaflong
+B|25.17148|92.01945|Bus to Sylhet
+B|24.00791|89.25794|Bypass Bus Terminal বাইপাস বাস টারমিনাল
+B|22.35367|91.82186|CDA Avenue Bus Station, Bus ticket agency, Chattogram
+B|23.88294|90.66637|Caitaba bus stop
+B|26.02393|88.47417|Central Bus Station
+B|25.74240|89.23310|Central Bus Terminal Mor, Bus depot
+B|23.69070|90.44671|Chairman Bari Mor
+B|24.01999|90.80933|Chaitanya Bus Stop
+B|21.75553|92.07640|Chakaria municipal bus terminal চকরিয়া পৌর বাস টার্মিনাল
+B|24.30045|89.69717|Chala Bus Station
+B|24.19035|90.73081|Chalakchar, monohordi,narsingdi
+B|23.23340|90.66579|Chandpur Bus Terminal
+B|24.04631|91.23154|Chandura Bus Stop
+B|24.58840|88.28584|Chapai Nawabganj Bus Station
+B|24.56979|88.30392|Chapai Nawabganj Pouro Truck Terminal Parking
+B|24.85799|89.34950|Charmatha Bus Terminal চারমাথা বাস টার্মিনাল
+B|24.94288|91.58708|Chechan Bus Stop
+B|24.96023|92.01377|Chiknagul Bus Stop
+B|22.28024|91.79680|Chiment Clinker Jetty, Chittagong Bangladesh, Potenga Rd, Chattogram
+B|24.76131|90.43755|China Mor Bus Stop চায়না মোড় বাস স্টপ
+B|23.69775|90.50925|Chittagong Road Bus station
+B|22.33252|91.81275|Choumuhuni Bus Stand, Sheikh Mujib Rd, Chattogra
+B|23.75828|88.93498|Chuadanga Delux
+B|22.37791|91.76943|City Gate Inter District Bus Parking
+B|23.47869|91.11718|Comilla Cantonment Road Junction Bus Stop কুমিল্লা সেনানিবাস জংশন
+B|23.63788|90.97105|Companiganj Bus Station
+B|21.42699|92.00396|Cox's Bazar Central Bus Terminal
+B|25.64469|88.64788|DINAJPUR BUS TERMINAL
+B|24.92343|91.46255|Dabor Bus Stop
+B|22.93168|89.49158|Daktar Bari
+B|24.11275|89.12164|Dashuria Bus Station
+B|23.53128|90.71456|Daudkandi Bus Stop
+B|24.02305|90.94880|Daulatkandi railway station
+B|22.86835|89.52635|Daulatpur Bus Station
+B|23.72027|90.49328|Demra Circle Bus Stop
+B|23.71973|90.49053|Demra staff quarter
+B|23.04447|88.89982|Desh Travels
+B|23.55375|89.17478|Dhaka Bus Counter ঢাকা বাস কাউন্টার
+B|23.26165|89.02314|Dhaka Bus Stand
+B|22.15990|90.13341|Dhaka Bus Station
+B|24.59903|88.27783|Dhaka Bus Station
+B|25.74032|89.24964|Dhaka Bus Terminal
+B|24.73490|90.40865|Dhaka Bus Terminal মাসকান্দা
+B|23.75043|90.36829|Dhaka Nagar Poribahan Sankar Counter
+B|24.67639|89.95251|Dhanbari
+B|24.01115|89.84976|Dhubaria Battala Bus Stand
+B|23.90804|90.21239|Dhulivita
+B|25.05088|92.09886|Dighirpar Bus Stand
+B|23.29448|90.00345|Dignagor Bus Stop
+B|25.74459|89.23175|Dinajpur Bus Stand, Transportation service
+B|23.49895|90.27149|Dogachi Bus Stop
+B|23.49866|90.27151|Dogachi, Bus stop, Mawa Highway, Mawa
+B|23.71049|90.42391|Doiya Gonj Mor Bus Stop
+B|23.71046|90.42410|Doiya Gonj Mor Bus stop, Doyaganj New Rd, Dhaka
+B|23.35137|91.17187|Doulatpur Bus Station
+B|23.41844|91.17252|Doyal Super
+B|23.95448|89.52440|Dulai Bus Stand
+B|22.89273|91.53550|ENA Transport (Pvt)LTD, Baraiyarhat, Chittagong
+B|22.35637|91.82121|Eagle Bus Counter
+B|23.86673|90.31324|Eastern University Bus Stand
+B|23.51409|90.86873|Eliotganj Bus Stop ইলিয়টগঞ্জ বাস স্টপ
+B|24.73488|90.40914|Ena Paribahon এনা পরিবহন এনা পরিবহন
+B|22.35589|91.82154|Ena Transport
+B|23.77222|90.40138|Ena countert
+B|23.59078|89.81424|Faridpur Truck Stand ফরিদপুর ট্রাক স্ট্যান্ড
+B|23.64286|90.47273|Fatulla Post Office Bus Stop ফতুল্লার পোস্ট অফিস বাস স্টপ
+B|23.64079|90.47303|Fatullah Bus Stand ফতুল্লা বাসস্ট্যান্ড
+B|22.81814|89.55955|Ferry Ghat Morh
+B|23.72279|90.41034|Fulbaria Bus Depot
+B|22.89306|91.53475|GREEN LINE Bus Counter-Baraiyarhat, Baraiyarhat, Chittagong
+B|23.78105|90.34398|Gabtoli Bus station
+B|24.41613|90.65158|Gafargaon/Bhaluka CNG Station
+B|24.45776|90.77511|Gaital Bus Stand - গাইটাল বাসস্ট্যান্ড
+B|24.38166|89.04082|Gajipur bill autogas station, Rajshahi - Dhaka Hwy, Natore
+B|23.81370|91.00699|Gangerkot Gazirhat road
+B|22.35620|91.82149|Garibulla Shah A/C Bus Counter, CDA Ave, Chattogram
+B|22.92640|89.49674|Garrison
+B|24.59150|88.28229|Gatelock Bus Terminal-2
+B|23.73400|90.33660|Ghatarchar Mor
+B|25.24124|89.27868|Ghoraghat Bus Terminal
+B|22.49309|91.71831|Ghoramara Parking Lot
+B|22.80458|89.57305|Glaxo Morh
+B|22.85432|89.53494|Goalkhali
+B|23.78536|90.56858|Golakandail Bus Stand
+B|23.59189|89.81456|Golden Line Bus Counter গোল্ডেন লাইন বাস কাউন্টার
+B|23.59102|89.81242|Golden Line Own Terminal
+B|23.71237|90.42924|Golden Line Sayedabad Counter
+B|24.55624|89.92837|Gopalpur Bus Stand
+B|24.75196|90.56432|Gouripur Bus Stand গৌরীপুর বাসস্ট্যান্ড
+B|23.53058|90.78199|Gouripur Junction Bus Station
+B|24.33465|89.24426|Grameen Travels counter Nayabazar, Dhaka - Rajshahi Hwy, Natore
+B|23.72448|89.14783|Grarage
+B|22.35583|91.82151|Green Line Bus Counter
+B|21.75908|92.07632|Green Line Paribahan
+B|22.36295|91.78156|Green Line Paribahan, Dhaka-Chittagong Highway, Chattogram
+B|23.74167|90.41812|Greenline Bus Terminal
+B|22.81001|89.56114|Greenline counter
+B|23.72277|90.41187|Gulistan Bus stop, Gulistan Rd, Dhaka
+B|24.36806|91.41130|Habiganj Main Bus Station
+B|25.11195|90.33716|Haluaghat Bus Stand হালুয়াঘাট বাস স্ট্যান্ড
+B|22.35663|91.82100|Hanif Bus Counter
+B|25.93614|88.85080|Hanif Poribohon
+B|24.84786|89.37257|Hanif,Akota,Dipjol Ticket Counter
+B|22.49822|91.80739|Hathazari Bus Stand, Chittagong - Rangamati Hwy, Hathazari, Chattogram
+B|24.10423|90.70870|Hatirdia Bus Stand
+B|23.75397|90.40201|Hatirjheel Garden Bus stop
+B|23.75367|90.40083|Hatirjheel Mor Bus stop
+B|24.36400|90.37603|Hazir Bazar Bhaluka Bus Stop
+B|22.39067|91.76024|Hazrat Kalu Shah (R:) Mazar Truck Terminal, Kalushah Nagar, South, Chattogram
+B|23.79320|90.27142|Hemayetpur
+B|23.16407|90.64524|Horina Ferry Ghat Bus Station
+B|24.99033|92.04319|Horipur Bus Stop
+B|23.91344|90.39560|Hossen Market Bus Stop হোসেন মার্কেট বাস স্টপ
+B|24.12309|90.40916|Hotapara Bus Stop হোতাপাড়া বাস স্টপ
+B|22.39914|91.75596|IFAD AUTO SERVICES LTD, CTG UNIT-1
+B|23.05017|90.20908|Illa Bus Stop(ইল্লা লোকাল স্টান্ড)
+B|24.80670|88.94985|Inter District Bus Stand আন্তঃজেলা বাস স্টান্ড
+B|22.30459|91.79153|Ishan Mistrir Hat Bus Stop
+B|24.12274|89.06434|Ishwardi Bus Terminal
+B|24.07417|91.26246|Islampur Bus Stop
+B|23.97999|90.73352|Itakhola Bus Stand
+B|23.16729|90.19492|Iter Pool Bridge Bus Stop, Iterpool, Madaripur
+B|23.77525|90.39032|Jahangir Gate Bus stop
+B|24.27624|90.39398|Jaina Bazar Bus Stop
+B|25.13480|92.12218|Jaintapur Bus Station
+B|22.53503|91.91938|Jalil Nagar Bus Stand,Bus charter, Jolil Nogor, Chittagong - Rangamati Hwy, Raozan, Chattogram
+B|24.39412|89.81668|Jamuna Bridge - Tangail Bus Terminal
+B|22.35690|91.76065|Jamuna Logistics & Shipping Limited, Chattogram
+B|23.43467|91.17248|Jangalia Bus Terminal
+B|25.09209|89.05529|Jaypurhat Central Track Stand
+B|23.14444|89.21537|Jessore Inter District Bus Terminal
+B|23.15962|89.22348|Jessore Old Bus Terminal যশোর পুরাতন বাস টার্মিনাল
+B|22.64244|90.21112|Jhalokathi Inter-District Bus Terminal
+B|23.54344|89.19101|Jhinaidaha BRTA Bus Terminal
+B|22.63152|91.80027|Jhonkar
+B|23.91337|90.31952|Jirabo
+B|22.82933|89.54918|Jora Gate
+B|23.74274|90.99274|KORER PAR BUS STATION
+B|22.73754|89.06274|Kadamtala Bus Stop
+B|22.33698|91.82248|Kadamtoli Bus Stop, Station Rd, Chattogram
+B|24.24520|89.09748|Kadim Chilan Hwy Bus Stop, Rajshahi - Pabna Hwy, Natore
+B|24.12995|90.04367|Kadim Dhalla Bus Station
+B|23.73707|90.40399|Kakarail Mosjid Bus stop
+B|24.64472|89.11969|Kaliganj
+B|23.40868|89.13487|Kaliganj Bus Stand কালীগঞ্জ বাস স্ট্যান্ড
+B|23.81861|91.01766|Kaligong Bazar
+B|24.50026|89.14385|Kaligonj Bus Stop,Rajshahi - Bogra Hwy, Singra, Natore
+B|23.19487|89.68770|Kalna Ghat
+B|22.39700|91.88585|Kalurghat Bus Station
+B|23.19273|90.07861|Kamaldi Bus Stop, Bhanga - Barisal Hwy
+B|24.05403|90.98715|Kamalpur Bus Stop
+B|24.04245|91.04756|Kamaura Bus Stop
+B|24.96867|89.25186|Kamtara Trimohoni Bus Stop
+B|23.70621|90.52116|Kanchpur (North-Bound)
+B|23.70584|90.52174|Kanchpur Bus Stop
+B|23.84054|90.62050|Kandail Bus Station
+B|23.19847|90.51037|Kashimpur Bazar Bus Stop, Shariatpur - Bhedarganj Hwy
+B|22.62097|90.06382|Kawkhali Bus Stand
+B|23.79711|90.37299|Kazipara Bus Stand
+B|24.85849|90.73215|Kendua Bus Station
+B|22.90441|89.21987|Keshabpur Thana Bus Stand
+B|24.59179|88.65422|Keshor Hat Bus Stop
+B|23.11072|91.97430|Khagrachhari Bus Terminal
+B|22.76095|91.58219|Khaiyachara Bus Stand, Mirsharai, Chittagong
+B|23.15924|90.16822|Khakdi Bus Stand, Khakdi, Charmuguria, Madaripur
+B|23.48919|90.26849|Khan Bari Bus Stands, Dhaka - Mawa Hwy, Mawa, Dhaka
+B|23.83006|90.41949|Khilkhet West Bus Stop
+B|22.77459|89.61703|Khudir Bot Tola Bus Stop
+B|24.39517|89.69203|Koddar Mor
+B|22.33555|91.82117|Kodom Toli Bus Station
+B|24.88269|91.87179|Kodomtoli Bus Terminal
+B|24.92883|91.56359|Koitok Point
+B|23.74564|90.38179|KolaBagan Bus stop
+B|23.17572|90.11264|Kolabari Bus Stand, Bus ticket agency, Dhaka - Barisal Highway
+B|22.33328|91.83667|Kotwali Bus Stop
+B|21.81434|90.12289|Kuakata Bus Station
+B|24.14652|90.92959|Kuliarchar Bus Station
+B|24.91229|91.82820|Kumargoan Bus Stand
+B|23.99808|90.76750|Kundarpara Bus Stand
+B|25.81033|89.63459|Kurigram Bus Stand কুড়িগ্রাম বাস স্ট্যান্ড
+B|25.73452|89.25466|Kurigram Bus and Truck Stand
+B|23.82121|90.41954|Kuril Bishwa Road Bus Stop
+B|23.89100|89.11680|Kushtia Central Bus Terminal
+B|24.05744|91.11504|Kutta Para Bus Station
+B|23.23718|91.12354|Laksham Bus terminal
+B|25.90512|89.43393|Lalmonirhat Central Bus Terminal
+B|21.77382|92.19555|Lama Bus Tarminal
+B|23.03894|88.88620|Landport bus station
+B|22.45435|90.34107|Lebukhali Bus Station
+B|23.75816|90.38627|Leguna Tempu Stand
+B|23.69365|90.43449|Leguna stand
+B|22.45230|90.25907|Lions Cyclone Center Bus Stop
+B|25.39204|88.99085|Lokal Bus Stop
+B|23.70828|90.51946|Lovely Bus Stop
+B|22.99869|91.40547|M/S Harun Enterprise এম / এস হারুন এন্টারপ্রাইজ
+B|24.80472|88.95576|M/S RS Motor Truck Terminal Naogaon, Bogra - Naogaon Hwy, Naogaon
+B|24.80505|88.95585|M/S Saikat Motors, Truk tarminal, Naogaon
+B|23.77794|90.39848|MOHAKHALI BUS STAND
+B|24.71756|90.94415|Madan Old Bus Stand
+B|23.16226|90.18087|Madaripur Bus Terminal, Bus station, Madaripur
+B|23.85479|90.67329|Madhabdi Bus Stop মাধবদী বাস স্টপ
+B|23.85306|90.67068|Madhabdi Old Bus Stand
+B|24.09618|91.29028|Madhabpur Bus Stand
+B|23.49708|89.43251|Magura Main Bus Terminal মাগুরা প্রধান বাস টার্মিনাল
+B|23.80108|90.58448|Mahona Bus Stop
+B|23.87137|90.00054|Manikganj Bus Terminal
+B|22.88958|89.51399|Maniktola
+B|24.03433|90.83250|Marjal Bus Stop
+B|24.73501|90.40867|Mashkanda bus terminal, Mymensingh
+B|22.29290|89.95526|Mathbaria Bus Stand
+B|24.88920|89.36026|Matidali Biman Mor Bus Stop মাটিডালি বিমান মোড় বাস স্টপ
+B|23.46491|90.28785|Mawa Bus Station
+B|23.47323|90.26581|Mawa Crossing, Bus stop, Launch Ghat Rd, Mawa
+B|23.47330|90.26613|Mawa Crossing, Bus stop, Munshiganj Highway, Mawa
+B|23.61846|90.60968|Meghna Ghat Bus Stop মেঘনা ঘাট বাস স্টপ
+B|23.76936|88.63602|Meherpur Bus Stand
+B|24.15745|90.42564|Memberbari Bus Stop
+B|25.81194|89.64277|Micro Bus Stand
+B|25.81242|89.64084|Mini Truck Stand মিনি ট্রাক স্ট্যান্ড
+B|22.91975|89.50030|Mir Bari
+B|23.80740|90.36820|Mirpur 10 Bus Station
+B|23.81567|90.36613|Mirpur 11 Bus Station
+B|23.79867|90.38711|Mirpur 14 Bus Stop
+B|23.79854|90.38697|Mirpur-14 Bus Station
+B|24.10180|90.09526|Mirzapur Puratan Bus Station
+B|25.57146|89.27438|Mithapukur bus stand
+B|24.85932|90.73182|Modon Bus Station
+B|23.59672|90.51643|Modonganj Bus Stop
+B|23.63619|90.59478|Mograpara Bus Station
+B|23.77203|90.40126|Mohakhali Bus Terminal Bus depot
+B|23.77325|90.40002|Mohakhali Bus TerminalBus stop
+B|23.77292|90.40147|Mohakhali Inter District Bus Terminal
+B|22.93301|92.03008|Mohalchari Bus Station
+B|23.75727|90.36151|Mohammadpur BRTC Bus Depot
+B|23.01090|91.37913|Mohipal Bus Stand
+B|22.41957|90.24768|Mohishkata Bus Stop
+B|24.04966|88.76169|Mohishkundi Bus Stop
+B|22.87344|89.52343|Mohsin Morh
+B|23.62085|90.06745|Moinot Bus Stand
+B|23.90787|89.12064|Mojompur Bus Terminal
+B|23.17169|90.50621|Mollarhat Bus Stand, Shopping mall, Shariatpur - Bhedarganj Hwy, Shakhipur
+B|22.47447|89.59810|Mongla Bus Station
+B|23.40770|90.28049|Mongol Majhir Ghat
+B|23.72932|90.42156|Motijheel Junction Bus Station
+B|24.48568|91.76585|Moulvibazar Bus Terminal
+B|22.84732|89.53816|Mujgunni
+B|22.26822|89.19548|Munshigang Bus Station
+B|23.63914|90.93063|Muradnagar Bus Station
+B|23.87773|90.35517|NDE gate Bus stopage, Bus depot
+B|22.35611|91.82144|NR Travels
+B|26.03144|88.46405|Nabil Bus Kolorob
+B|25.93446|88.85210|Nabil Poribohon
+B|23.76965|90.40086|Nabisco Bus Stop, Bus station
+B|24.05630|89.87326|Nagarpur Bus Station, Bus station
+B|24.43111|90.77389|Nagua Bus Stand
+B|24.80529|88.95477|Naogaon Truck Terminal, Naogaon
+B|24.11667|90.70191|Narandi Bus Stand
+B|23.61691|90.50538|Narayanganj Bus Stand
+B|22.72363|89.07566|Narkaltola Bus Stand
+B|23.91238|90.69902|Narshingdi Notun Bus Stand Road
+B|22.71441|90.34827|Nathullahbad Central Bus Terminal
+B|24.41017|89.01031|Natore New Bus Terminal
+B|22.73887|91.59673|Naw Duyari bajar
+B|24.59894|88.27827|Nawabganj Truck Station
+B|25.39911|89.11454|Nawabgonj
+B|24.40621|88.61575|Nawdapara Bus Terminal নওদাপাড়া বাস টার্মিনাল
+B|23.40009|90.24227|Nawdoba Bus Stand, Naodoba, Zajira
+B|23.40057|90.24457|Nawduba Bus Stand, Padma Brg Rd, Naodoba
+B|23.91362|90.23446|Nayarhat Bus & Truck Terminal
+B|24.25916|90.39854|Nayonpur Bazar Bus Stop
+B|22.62918|91.79338|Nazirhat Bus Station
+B|24.87377|90.71835|Netrokona District Bus Station
+B|22.33109|91.84866|New Bridge Bus Stand
+B|22.82508|89.55149|New Market
+B|22.43794|90.25517|New Market Bus Stop
+B|23.17936|89.21375|New Market Truck Stand নিউ মার্কেট ট্রাক স্ট্যান্ড
+B|23.54893|89.18570|New Truck Terminal নিউ ট্রাক টার্মিনাল
+B|23.05835|89.37744|Noapara Track Terminal নওয়াপাড়া ট্রাক টারমিনাল
+B|23.63309|90.52580|Nobiganj Bus Stop
+B|23.91243|90.25947|Nobinagar Bus Stop নবীনগর বাস স্টপ
+B|24.26733|91.47706|Notun Bridge Point
+B|22.86275|89.52998|Notun Rastar Morh
+B|22.41633|91.81912|Notunpara
+B|23.77219|90.39013|Old Airport Bus stop
+B|24.41449|88.99715|Old Bus Terminal
+B|22.39366|91.82142|Old bus station rangamati, Old bus station, Chattogram
+B|25.09369|89.04670|Oypurhat Bus Terminal
+B|22.80813|89.56631|PTI Mor
+B|24.00735|89.25657|Pabna Bus Station
+B|24.00837|89.25724|Pabna-Dhaka Bus Station
+B|23.81888|90.59957|Pachrukhi Bus Stop
+B|24.86777|89.23387|Paglapir Bus Stop পাগলাপীর বাস স্টপ
+B|25.04332|89.36694|Pakurtola Bus Stand, Bus ticket agenc
+B|23.82832|90.36410|Pallabi Bus Station
+B|26.32806|88.54754|Panchagarh Bus Terminal
+B|23.89355|90.66483|Panchdona Bus Stop
+B|24.80541|88.95503|Par Naogaon Truck Terminal Jame Masjid, Bogra - Naogaon Hwy, Naogaon
+B|22.51429|89.99392|Parerhat Bus Stand
+B|26.34236|89.02403|Patgram Old Bus Stand
+B|22.35704|90.31877|Patuakhali Bus Terminal
+B|25.49988|88.94990|Phulbari Local Bus Station ফুলবাড়ীর স্থানীয় বাস স্টেশন
+B|23.72271|90.41061|Phulbaria Terminal Bus stop, Gulistan Rd, Dhaka
+B|25.85694|88.35988|Pirganj BRTC Bus Stop
+B|25.85620|88.35754|Pirganj Bus Stand পীরগঞ্জ বাস স্ট্যান্ড
+B|25.85633|88.35838|Pirganj West Chourasta Bus Stop পীরগঞ্জ পশ্চিম চৌরাস্তা বাস স্ট্যান্ড
+B|22.57057|89.97868|Pirojpur Bus Terminal
+B|23.96896|91.10120|Poirotola Bus Station
+B|23.72313|90.40722|Police Headquarters
+B|23.74306|90.39586|Poribagh Bus stop
+B|22.81892|89.55802|Power House Morh
+B|23.87585|90.27322|Prantik gare
+B|22.36298|91.85184|Purabi Bus Terminal, A G Road, Chattogram
+B|23.16790|90.21061|Puran Court Bus Stop, Dhaka Highway, Madaripur
+B|23.75841|88.93498|Purbasha Paribohon
+B|23.84686|90.62925|Purinda Bus Station
+B|24.84773|89.37255|R.K Travels
+B|23.69209|90.43253|RAIDA Bus Station, Postogola
+B|23.53389|90.83066|Raipur Bus Stop রায়পুর বাস স্টপ
+B|24.09537|90.40187|Rajendrapur Chowrasta Bus Stop রাজেন্দ্রপুর বাস স্টপ
+B|22.03068|92.10438|Rajghata Bus Stop
+B|23.20275|90.04747|Rajoir Bus Stop, Bhanga - Barisal Hwy, Rajoir
+B|24.41020|89.00746|Rajshahi Bus-Ticket Counter, Natore
+B|22.88324|89.51730|Raligate
+B|24.72348|90.18266|Ramchandrapur Bus Stand, Bus charter
+B|24.88791|92.10546|Ramda Bus Stop
+B|22.39370|91.82139|Ramgarh/Khagrachari Bus Line
+B|22.39378|91.82127|Rangamati Hathazari Bus Station
+B|22.64666|92.18327|Rangamati New Bus Counter
+B|25.74365|89.23211|Rangpur Bus Terminal কেন্দ্রিয় বাস টার্মিনাল
+B|25.29892|89.21955|Ranigonj Bus Stand
+B|24.61004|88.21459|Ranihati Bus Stand, Nawabganj - Shibganj Rd, Moharajpur
+B|22.53521|91.92213|Raozan Bus Stand, Chittagong - Rangamati Hwy, Raozan, Chattogram
+B|24.19836|91.35116|Ratanpur Bus Stand
+B|23.28534|90.01181|Rathkhola Bus Stand
+B|23.79800|90.40456|Road no 1
+B|26.17811|88.63455|Roni Trades Sakeya, Boda Panchagarh, Transportation service
+B|24.81059|91.79199|Roshidpur Bus Stop
+B|23.71221|90.42943|Royal Express Sayedabad counter, Dhaka - Sylhet Hwy, Dhaka
+B|23.75845|88.93501|Royel Express
+B|22.67845|90.34590|Rupatoli Bus Terminal
+B|23.38499|90.29487|Rupbabu Hut Stand
+B|23.55363|89.17499|Rupsha Bus Counter Stop
+B|22.80075|89.58546|Rupsha East
+B|22.80170|89.58069|Rupsha Ghat
+B|22.80208|89.57835|Rupsha Traffic Morh
+B|23.74001|90.52505|Rupshi North Bound Bus Stop
+B|23.74030|90.52544|Rupshi South Bound Bus Stop
+B|24.57254|91.60265|Rustom Pur Toll Plaza Bus Stop
+B|23.77408|90.39932|S A Paribahan Parcel Service (New Office), Mohakhali Bus Terminal
+B|22.08016|92.05316|S Alam Bus Counter, Satkania
+B|24.96755|92.02624|SGFL Market Bus Stand
+B|23.18588|90.08881|Sadur Bridge Bus Stop, Bhanga - Barisal Hwy
+B|25.78042|88.91672|Saidpur Bus Terminal সৈয়দপুর বাস টার্মিনাল
+B|24.02551|90.38544|Salna Bus Stop
+B|23.17948|90.09863|Samaddar Bridge Bus Station, Samaddar Bus Station, Madaripur
+B|23.78554|90.57052|Saoghat Bus Stand
+B|25.08920|92.11766|Sarighat
+B|25.08869|92.11727|Sarighat Bus Station
+B|25.09664|92.11732|Sarighat Bus Stop
+B|23.46743|91.16396|Sashongasa Bus Stand
+B|24.27268|91.47299|Sayastaganja Old Market bus stop
+B|23.71535|90.42744|Sayedabad Bus Terminal
+B|24.33136|90.37708|Seedstore Bazar Bus Stand সিডস্টোর বাজার বাসস্ট্যান্ড
+B|23.86791|90.66816|Sekerchar Majar Bus Station
+B|23.70865|90.43477|Serajdikhan Paribahan Bus Counter
+B|24.80623|88.94995|Shah Fathe Ali Bus Counter ( Naogaon To Gabtoli ), Bogra - Naogaon Hwy, Naogaon
+B|23.77548|90.39199|Shaheen College Dhaka Bus stop
+B|23.52991|90.75605|Shahidnagar Bus Stop শহীদ নগর বাস স্টপ
+B|24.26727|91.47592|Shaistaganj Hwy Bus Stop
+B|26.11369|88.76441|Shamoli N R Poribohon, Bus ticket agency
+B|22.81222|89.56131|Shanti Dham Morh
+B|23.41848|90.22017|Shariotpur & Kathalbari Ghat Bus Stand, Shariatpur Ghat, Shariatpur Road, Shariatpur
+B|24.76913|89.84307|Sharishabari Bus Stop
+B|22.58062|90.07081|Shaturia Howladar Bari Bus Station.
+B|22.58095|89.26532|Sheikh Para More
+B|24.86937|89.21608|Shekhahar Bus Stop
+B|24.62699|91.67776|Sherpur Bus Stand
+B|24.90725|89.95027|Sherpur Bus Stand, Bus company
+B|22.82185|89.55315|Shib Bari
+B|24.04816|90.86362|Shibpur Bazar Bus Stop
+B|24.83323|89.93919|Shimultali Bus Stop, Transportation service
+B|22.91450|89.50316|Shiromoni
+B|22.35524|91.82168|Shohagh Paribahan Pvt Ltd, Dampara, Zakir Hossain Rd, Chattogram
+B|24.36031|89.94805|Sholakura Bus stop
+B|23.71311|90.42831|Shyamoli Bus counter 6, Kamlapur Rd, Dhaka
+B|22.35632|91.82128|Shyamoli Paribahan
+B|25.93464|88.85203|Shyamoli Poribohon
+B|23.69358|90.48044|Signboard Bus Stop
+B|24.50024|89.14417|Singra Central Bus Terminal, Bogra - Natore Highway, Singra, Natore
+B|24.45176|89.69768|Sirajganj Central Bus Terminal
+B|22.62225|91.65573|Sitakunda Bus Terminal
+B|22.61690|91.65840|Sitakunda DHK-CTG Bus Stand, Sitakunda Bus Stand, Sitakund, Chittagong
+B|22.47056|91.72385|Six Star Truck Terminal, Sonaichhari, Chattogram
+B|23.17847|89.21410|Sohag Counter Jessore New Market
+B|22.35533|91.82154|Sohag Paribahan Bus Counter
+B|25.81162|89.11191|Soleyasha Bus Stopage
+B|23.17966|90.09927|Somaddar Bazar Bus Stop, Bhanga - Barisal Hwy
+B|23.50805|90.27544|Somospur Bus Stand
+B|22.81589|89.54133|Sonadanga Bus Terminal
+B|22.85088|91.39092|Sonagazi Bus Stand
+B|23.83149|90.61145|Sonpara Bus Stop
+B|22.35559|91.82159|Soudia AC Bus Counter
+B|24.73471|90.40915|Soukhin Paribahan
+B|23.59178|89.81494|South Line Bus Counter দক্ষিণ লাইন বাস কাউন্টার
+B|23.91203|90.26016|South-West Bus Tarminal
+B|23.52697|90.28743|Sreenagar Bus stop, Sreenagar, Mawa
+B|24.00235|90.77816|Srifulia Bus Stop
+B|23.73693|89.65560|Sripur Bus Station
+B|24.01133|90.79614|Sristigor Bus Station
+B|22.15963|90.13341|Stadium Bus Stop
+B|23.72001|90.49034|Staff Quarter Bus Stop
+B|23.00922|91.38817|Star Line Special Ltd.
+B|23.85255|90.40740|Starline Bus Counter - Airport, DESCo
+B|22.15968|90.13764|Stedium Bus Stand
+B|24.94748|92.00181|Sukrobari Bazar Bus Stand
+B|23.75833|88.93499|Sumon Delax
+B|23.37185|90.09033|Surja Nagar Bus Stand South, Chandra
+B|24.05529|90.98389|Sylhet Bus Station
+B|24.88230|91.87094|Sylhet Kodomttoli Bus Terminal
+B|24.72298|91.75313|Tajpur Bus Stop
+B|24.35940|88.62575|Talaimari Truck Stand Truck dealer
+B|24.10691|89.04317|Taltola
+B|24.26829|89.92493|Tangail New Bus Station
+B|23.92887|90.38943|Targach Bus Stop
+B|23.22639|90.02018|Tekerhat to Madaripur Bus Counter, Bus ticket agency, Dhaka - Barisal Hwy, Bhanga
+B|24.76139|90.86142|Telegati Bus Station
+B|23.75798|90.38425|Tempu Stand
+B|22.93640|89.66668|Terokhada New Bus Stand
+B|22.81789|91.55455|Thakur Dighi Bazar Bus stop, Dhaka - Chittagong Hwy, Chittagong
+B|25.98263|88.26489|Thakurgaon Bus Stand
+B|24.83317|89.37618|Thanthania Bus Stand
+B|23.76646|90.40072|Tibet Factory Bus stop
+B|25.03315|88.97072|Til To Sontur
+B|24.89619|91.90016|Tilagarh
+B|22.80663|89.56905|Tootpara Graveyard
+B|25.94000|88.84683|Toyej Bus Counter
+B|24.75295|90.40484|Trishal Bus Stand ত্রিশাল বাস স্ট্যান্ড
+B|22.69153|90.37157|Truc stand
+B|23.17932|89.21398|Truck Stand
+B|25.11035|90.33649|Truck Station ট্রাক স্টেশন
+B|23.53666|89.16781|Truck Terminal ট্রাক টার্মিনাল
+B|26.31379|88.55472|Truck Terminal ট্রাক টার্মিনাল
+B|24.66348|89.42060|Truck Turminal
+B|24.80048|88.14321|Truck terminal
+B|25.10561|89.00031|Tuk To Paharpur
+B|25.03308|88.97104|Tuk To Sumpur
+B|22.35622|91.82133|Uniqe Bus Counter
+B|22.33634|91.82464|Unique Bus Counter, Station Rd, Chattogram
+B|22.35629|91.82141|Unique Paribahan (Dampara Counter), Zakir Hossain Rd, Chattogram
+B|22.47193|91.72234|Unique Transport & Truck Terminal, Dhaka - Chittagong Hwy, Sonaichhari, Chattogram
+B|24.74686|90.42108|Uttar Bongo Bus Stand
+B|23.75839|88.93494|Uttora Paribahan
+B|24.37509|88.62229|Vodra Bus Stand,Bhadra Bus Stop, Rajshahi city
+B|23.70223|90.43513|West Dolairpar
+B|23.83008|90.41949|West Khilkhet Bus Stop
+B|23.91295|90.31916|Zirabo Bus stop
+B|24.37423|88.60973|bangladesh
+B|24.05052|91.11432|bus stand
+B|24.19017|90.73095|chalakchar bus station
+B|24.85229|89.37819|chelopara Bus Station
+B|24.56173|90.69296|jalshiri bus station
+B|22.49825|92.21878|kaptai Bus station
+B|24.66031|90.83856|kendua new Bustand
+B|22.63180|91.79255|nazirhat bus stand
+B|24.92133|89.96595|pouro Bus Station
+B|24.76754|90.39068|tangail bus station
+B|24.89283|91.87834|to sarighat(lala khal)
+B|24.35433|89.93778|ইছাপুর বাসস্ট্যান্ড
+B|22.49947|92.21536|কাপ্তাই বাস স্টেশন
+B|23.01632|91.15023|কাশীপুর বাস স্টেশন
+B|22.17340|90.11319|খেজুরতলা বাস স্টপ
+B|25.58012|89.27345|গড়ের মাথা বাস স্টেশন
+B|22.23998|90.14442|গলাচিপা বাস স্ট্যান্ড
+B|23.78307|90.34526|গাবতলী
+B|24.36737|89.23431|গুরুদাসপুর বাস স্ট্যান্ড
+B|22.21387|90.11380|গৌরিচন্না বাস স্ট্যান্ড
+B|22.39349|91.82110|চট্টলা চাকা এক্সপ্রেস A/C Coach
+B|22.24906|90.15917|চান্দখালি বাস স্ট্যান্ড
+B|23.87984|90.27281|জাহাঙ্গীরনগর বিশ্ববিদ্যালয়ের বাস স্টেশন
+B|22.19474|90.11541|জোমাদ্দার বাড়ি বাস স্ট্যান্ড
+B|26.14946|88.92044|ঢাকা বাস স্টেশন
+B|25.06678|92.11015|দরবস্ত বাস স্টপ
+B|22.33187|91.85185|নতুন ব্রীজ বাস স্ট্যান্ড
+B|25.91590|88.86545|নীলফামারী টার্মিনাল
+B|22.88649|89.89377|পাটগাতী বাস টার্মিনাল
+B|26.34254|89.01559|পাটগ্রাম পৌরসভা কেন্দ্রীয় বাস টার্মিনাল
+B|24.00592|89.23596|পাবনা পুরাতন বাস টার্মিনাল
+B|22.42370|90.33128|বদরপুর বাস স্টপ
+B|22.54153|90.33261|বাকেরগঞ্জ বাস টার্মিনাল
+B|22.22826|90.13239|বারঘর বটতলা বাস স্ট্যান্ড
+B|24.83275|88.92046|বালু ডাঙ্গা বাস স্ট্যান্ড, নওগাঁ বালুডাঙ্গা বাসস্ট্যান্ড, নওগাঁ
+B|23.80705|90.84862|বাহাদূরপুর লোকাল বাস স্টেশন
+B|24.05488|90.98170|ভৈরব বাস টারমিনাল
+B|22.21620|90.30034|মহিষকাটা বাস স্ট্যান্ড
+B|24.89114|88.79556|মোল্লাকুড়ি যাত্রী ছাউনি
+B|25.72792|89.24068|রংপুর ট্রাক স্টান্ড
+B|23.78872|90.85690|রূপসদী উত্তর বাজার বাস স্টেশন
+B|23.78469|90.86160|রূপসদী বাস স্টপ
+B|24.44899|88.34544|রেলগেট বাস টার্মিনাল
+B|23.04137|88.89151|শামীম এন্টারপ্রাইজ,প্যাসিফিক পরিবহন
+B|23.04419|88.89899|শ্যামলী পরিবহন
+B|23.90978|90.68772|সাহেপ্রতাব বাস স্টেশন
+B|22.36958|90.22021|সুবিদখালী বাস স্ট্যান্ড
+B|23.87627|90.66664|সেকেরচর গোডাউন
+B|22.74992|90.09826|স্বরূপকাঠী বাস স্টেশন
+B|23.79551|90.28244|হানিফ বাস ডিপো
+B|25.39038|88.99116|হিলি স্থানীয় বাস স্টপ
+B|24.46089|89.30251|হেদার খাল

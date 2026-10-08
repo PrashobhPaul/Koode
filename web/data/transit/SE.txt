@@ -1,5 +1,6 @@
 # Transit for Koode, SE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|59.33647|17.95376|Abrahamsberg|SL|M
 S|59.34628|18.15649|AGA|SL|M
 S|59.41558|17.91322|Akalla|SL|M
@@ -771,6 +772,857 @@ L|Waxholmsbolaget|Färja 9||477 434:874 359:1055 453:2240 406:2881 365:1245 303:
 L|Öresundslinjen|Helsingborg => Helsingør||484 485:5241
 L|Öresundslinjen|Helsingør => Helsingborg||485 484:5242
 L|Öresundslinjen|Helsingør => Helsingborg||485 484:5193
+R|59.65107|17.93114|Arlanda norra|Arlanda Express
+R|59.64660|17.92829|Arlanda södra|Arlanda Express
+R|60.02398|16.00787|Högfors|Engelsberg-Norbergs Järnvägshistoriska Förening
+R|60.08866|15.94064|Kärrgruvan|Engelsberg-Norbergs Järnvägshistoriska Förening
+R|60.06859|15.93775|Mimerlaven|Engelsberg-Norbergs Järnvägshistoriska Förening
+R|59.95749|16.00909|Ängelsberg|Tåg i Bergslagen
+R|59.96711|16.00760|Ängelsbergs bruk|Engelsberg-Norbergs Järnvägshistoriska Förening
+R|60.06113|15.93058|Norberg|Engelsberg-Norbergs Järnvägshistoriska Förening
+R|61.80183|14.68171|Fågelsjö|IBAB
+R|62.99313|14.57446|Fåker|IBAB
+R|62.92421|14.52206|Hackås|IBAB
+R|62.56578|14.37239|Kvarnsjö|IBAB
+R|61.64161|14.79600|Lillhamra|IBAB
+R|61.49811|14.74802|Älvho|IBAB
+R|61.00905|14.55888|Mora|IBAB
+R|61.11892|14.62090|Orsa|IBAB
+R|62.47918|14.35915|Röjan|IBAB
+R|62.64082|14.37185|Åsarna södra|IBAB
+R|62.34271|14.62988|Sörtjärn|IBAB
+R|62.03545|14.35240|Sveg|IBAB
+R|62.76719|14.43625|Svenstavik Centrum|IBAB
+R|62.99865|14.74352|Tandsbyn|IBAB
+R|62.27498|14.80074|Överhogdal|IBAB
+R|62.19719|14.85563|Ytterhogdal|IBAB
+R|65.58877|19.16999|Arvidsjaur|Inlandsbanan
+R|65.73976|19.39352|Auktsjaur|Inlandsbanan
+R|65.60507|18.65111|Avaviken|Inlandsbanan
+R|65.34468|17.58931|Blattnicksele|Inlandsbanan
+R|65.55388|17.85286|Buresjön|Inlandsbanan
+R|64.25824|16.40634|Dorotea|Inlandsbanan
+R|64.25637|16.38982|Dorotea Camping|Inlandsbanan
+R|66.55351|19.91268|Geografiska Polcirkeln|Inlandsbanan
+R|63.38574|14.87989|Häggenås|Inlandsbanan
+R|64.11588|16.20167|Hoting|Inlandsbanan
+R|64.10793|16.17332|Hoting Camping|Inlandsbanan
+R|63.18696|14.63167|Jamtli|Inlandsbanan
+R|63.62626|15.20689|Jämtlands Sikås|Inlandsbanan
+R|66.60709|19.84000|Jokkmokk|Inlandsbanan
+R|66.15363|19.98755|Kåbdalis|Inlandsbanan
+R|63.31841|14.85672|Lit|Inlandsbanan
+R|64.44302|16.81702|Meselefors|Inlandsbanan
+R|65.88241|19.42660|Moskosel|Inlandsbanan
+R|65.98751|19.35972|Piteälvsbron|Inlandsbanan
+R|66.96590|19.82936|Porjus|Inlandsbanan
+R|65.24339|17.66362|Sandsjönäs|Inlandsbanan
+R|65.58570|18.15810|Slagnäs|Inlandsbanan
+R|65.53488|17.54263|Sorsele|Inlandsbanan
+R|65.09686|17.11237|Storuman|Inlandsbanan
+R|63.83236|15.62029|Ulriksfors|Inlandsbanan
+R|66.04488|19.53186|Varjisträsk|Inlandsbanan
+R|64.62286|16.65149|Vilhelmina|Inlandsbanan
+R|64.64639|16.61368|Vilhelmina norra|Inlandsbanan
+R|64.79205|16.81634|Vojmån|Inlandsbanan
+R|57.11576|14.16918|Bor|Jönköpings Länstrafik
+R|57.17652|13.73770|Bredaryd|Jönköpings Länstrafik
+R|57.16347|13.83231|Forsheda|Jönköpings Länstrafik
+R|57.51405|14.27519|Hok|Jönköpings Länstrafik
+R|57.73477|14.12374|Hovslätt|Jönköpings Länstrafik
+R|57.02532|13.10727|Kinnared|Jönköpings Länstrafik
+R|57.35191|14.09732|Klevshult|Jönköpings Länstrafik
+R|57.07679|13.26518|Landeryd|Jönköpings Länstrafik
+R|57.57779|14.45973|Malmbäck|Jönköpings Länstrafik
+R|57.65411|14.07082|Månsarp|Jönköpings Länstrafik
+R|57.70456|14.11606|Norrahammar|Jönköpings Länstrafik
+R|56.80648|12.97191|Oskarström|Jönköpings Länstrafik
+R|57.17604|13.59302|Reftele|Jönköpings Länstrafik
+R|57.77511|14.19830|Rocksjön|Jönköpings Länstrafik
+R|57.17237|14.06404|Rörstorp|Jönköpings Länstrafik
+R|56.98555|14.31261|Rydaholm|Jönköpings Länstrafik
+R|56.68612|12.89254|Sannarp|Jönköpings Länstrafik
+R|57.42826|14.09088|Skillingaryd|Jönköpings Länstrafik
+R|57.16137|13.41463|Smålandsstenar|Jönköpings Länstrafik
+R|57.67884|14.08723|Taberg|Jönköpings Länstrafik
+R|56.95766|13.07964|Torup|Jönköpings Länstrafik
+R|57.49825|14.14557|Vaggeryd|Jönköpings Länstrafik
+R|57.18629|14.03585|Värnamo|Jönköpings Länstrafik
+R|56.69689|15.74993|Örsjö|Kalmar länstrafik
+R|56.67765|16.23305|Smedby|Kalmar länstrafik
+R|56.70206|16.11688|Trekanten|Kalmar länstrafik
+R|56.89899|14.55723|Alvesta|Krösatågen
+R|56.21457|13.84897|Ballingslöv|Krösatågen
+R|57.52097|14.91057|Björköby|Krösatågen
+R|57.50609|14.69474|Bodafors|Krösatågen
+R|57.66942|14.70109|Brinellskolan|Krösatågen
+R|57.64165|15.27513|Bruzaholm|Krösatågen
+R|56.63329|14.21442|Diö|Krösatågen
+R|57.48939|15.01966|Ekenässjön|Krösatågen
+R|57.66391|14.97680|Eksjö|Krösatågen
+R|56.87060|14.64514|Gemla|Krösatågen
+R|57.62894|15.34377|Hjältevad|Krösatågen
+R|56.42195|15.54226|Holmsjö|Krösatågen
+R|56.28774|13.93431|Hästveda|Krösatågen
+R|57.64415|15.12992|Hult|Krösatågen
+R|57.48676|15.84661|Hultsfred|Krösatågen
+R|57.63441|15.41736|Ingatorp|Krösatågen
+R|56.47469|14.09823|Killeberg|Krösatågen
+R|57.17158|14.58551|Lammhult|Krösatågen
+R|56.55093|14.13690|Älmhult|Krösatågen
+R|57.55199|15.72041|Lönneberga|Krösatågen
+R|57.61617|15.58499|Mariannelund|Krösatågen
+R|57.00245|14.57644|Moheda|Krösatågen
+R|57.66492|14.83273|Ormaryd|Krösatågen
+R|56.38115|13.99553|Osby|Krösatågen
+R|57.26268|16.45775|Oskarshamn|Krösatågen
+R|57.54259|15.74301|Silverdalen|Krösatågen
+R|57.58257|14.82321|Stensjön|Krösatågen
+R|57.31642|14.59159|Stockaryd|Krösatågen
+R|57.40278|14.66548|Sävsjö|Krösatågen
+R|57.42587|15.08185|Vetlanda|Krösatågen
+R|56.78682|14.45461|Vislanda|Krösatågen
+R|56.53955|15.58115|Vissefjärda|Krösatågen
+R|56.87654|14.80504|Växjö|Jönköpings Länstrafik
+R|59.39711|15.84071|Arboga|Mälartåg
+R|60.65135|17.33034|Furuvik|Mälartåg
+R|58.67388|16.36278|Kolmården|Mälartåg
+R|59.42775|16.10239|Kungsör|Mälartåg
+R|59.24782|17.16861|Läggesta|Mälartåg
+R|60.55535|17.42809|Älvkarleby|Mälartåg
+R|60.49141|17.43074|Marma|Mälartåg
+R|60.45049|17.40058|Mehedeby|Mälartåg
+R|59.62809|17.86102|Märsta|Mälartåg
+R|58.75653|16.99681|Nyköping C|Mälartåg
+R|59.17889|17.43182|Nykvarn|Mälartåg
+R|60.22920|17.70397|Örbyhus|Mälartåg
+R|60.62296|17.40538|Skutskär|Mälartåg
+R|60.07993|17.73707|Skyttorp|Mälartåg
+R|59.95635|17.70627|Storvreta|Mälartåg
+R|59.37044|17.02789|Strängnäs|Mälartåg
+R|60.34520|17.51393|Tierp|Mälartåg
+R|60.25888|17.63399|Tobo|Mälartåg
+R|59.85822|17.64656|Uppsala central|Mälartåg
+R|58.94581|17.49843|Vagnhärad|Mälartåg
+R|60.02537|17.73092|Vattholma|Mälartåg
+R|68.34900|18.82860|Abisko Östra|Norrtåg
+R|68.35738|18.78247|Abisko Turiststation|Norrtåg
+R|64.78975|20.04173|Bastuträsk|Norrtåg
+R|68.40653|18.68563|Björkliden|Norrtåg
+R|68.43198|18.07223|Bjørnfjell|Norrtåg
+R|65.82885|21.70823|Boden C|Norrtåg
+R|62.75015|15.41739|Bräcke|Norrtåg
+R|63.07653|14.83141|Brunflo|Norrtåg
+R|63.38997|12.91761|Duved|Norrtåg
+R|63.28966|12.33730|Enafors|Norrtåg
+R|62.52813|15.92350|Erikslund|Norrtåg
+R|67.51847|20.09337|Fjällåsen|Norrtåg
+R|62.49594|16.16800|Fränsta|Norrtåg
+R|62.91122|15.22869|Gällö|Norrtåg
+R|67.13346|20.65116|Gällivare|Norrtåg
+R|63.44375|11.61797|Gudå|Norrtåg
+R|65.82813|24.13089|Haparanda|Norrtåg
+R|63.46107|11.10342|Hegra|Norrtåg
+R|63.44604|10.89553|Hell|Norrtåg
+R|64.30588|19.62581|Hällnäs|Norrtåg
+R|63.41171|10.79398|Hommelvik|Norrtåg
+R|63.63292|19.90984|Hörnefors|Norrtåg
+R|62.63490|17.92776|Härnösand|Norrtåg
+R|63.34398|19.15593|Husum|Norrtåg
+R|65.05392|20.02987|Jörn|Norrtåg
+R|63.34241|13.47202|Järpen|Norrtåg
+R|67.54270|20.10354|Kaitum|Norrtåg
+R|65.86580|23.14159|Kalix västra|Norrtåg
+R|68.39748|17.96578|Katterat|Norrtåg
+R|68.41976|18.16144|Katterjåkk|Norrtåg
+R|67.86772|20.19999|Kiruna|Norrtåg
+R|63.39216|11.84839|Kopperå|Norrtåg
+R|62.92901|17.77862|Kramfors|Norrtåg
+R|63.32591|14.44809|Krokom|Norrtåg
+R|62.49560|16.06783|Ljungaverk|Norrtåg
+R|68.42364|18.32500|Låktatjåkka|Norrtåg
+R|65.58410|22.16549|Luleå C|Norrtåg
+R|65.67825|20.99476|Älvsbyn|Norrtåg
+R|63.42300|11.76052|Meråker|Norrtåg
+R|63.30851|13.65771|Mörsil|Norrtåg
+R|66.48464|20.88098|Murjek|Norrtåg
+R|68.44176|17.44099|Narvik|Norrtåg
+R|66.75432|20.95019|Nattavaara|Norrtåg
+R|62.52331|15.65882|Ånge|Norrtåg
+R|63.57855|19.48486|Nordmaling|Norrtåg
+R|65.61187|22.11517|Notviken|Norrtåg
+R|62.95493|15.04068|Pilgrimstad|Norrtåg
+R|68.42664|18.12079|Riksgränsen|Norrtåg
+R|63.28788|18.70559|Örnsköldsvik|Norrtåg
+R|63.30277|18.71559|Örnsköldsvik Norra|Norrtåg
+R|68.40342|17.79242|Rombak - Ruoppat|Norrtåg
+R|67.62587|20.23447|Sjisjka|Norrtåg
+R|68.43511|18.00355|Søsterbekk|Norrtåg
+R|63.39871|13.07655|Station Åre|Norrtåg
+R|62.82987|15.30474|Stavre|Norrtåg
+R|62.41980|16.59958|Stöde|Norrtåg
+R|63.17061|14.63764|Östersund C|Inlandsbanan
+R|63.17803|14.63132|Östersund Västra|Norrtåg
+R|63.31626|12.09989|Storlien|Norrtåg
+R|65.67363|21.93496|Sunderby sjukhus|Norrtåg
+R|62.38684|17.31536|Sundsvall C|Norrtåg
+R|62.38964|17.29228|Sundsvall Västra|Norrtåg
+R|62.48587|17.33003|Timrå|Norrtåg
+R|62.47252|16.33572|Torpshammar|Norrtåg
+R|63.43650|10.39807|Trondheim|Norrtåg
+R|64.09718|19.67451|Tvärålund|Norrtåg
+R|63.82996|20.26688|Umeå Central|Norrtåg
+R|63.81755|20.29369|Umeå Östra|Norrtåg
+R|63.31432|13.24102|Undersåker|Norrtåg
+R|68.42980|18.25902|Vassijaure|Norrtåg
+R|63.43886|10.62349|Vikhammer|Norrtåg
+R|64.20316|19.71328|Vindeln|Norrtåg
+R|63.90849|19.74969|Vännäs|Norrtåg
+R|63.91523|19.81812|Vännäsby|Norrtåg
+R|63.05285|17.74464|Västeraspby|Norrtåg
+R|59.65351|12.59134|Arvika|Värmlandstrafik
+R|60.12962|16.21671|Avesta Krylbo|SJ
+R|60.48267|15.42512|Borlänge|SJ
+R|59.22914|14.44065|Degerfors|SJ
+R|60.56007|15.13861|Djurås|SJ
+R|59.64462|17.08827|Enköping|SJ
+R|59.36922|16.50569|Eskilstuna C|Mälartåg
+R|59.05737|16.58776|Flen|SJ
+R|60.59897|15.08064|Gagnef|SJ
+R|57.35836|13.73541|Gnosjö|SJ
+R|59.35375|13.11423|Grums|SJ
+R|59.06712|15.11080|Hallsberg|SJ
+R|60.27417|15.98014|Hedemora|SJ
+R|57.44317|13.59564|Hestra|SJ
+R|59.16191|16.50305|Hälleforsnäs|SJ
+R|59.37800|13.49908|Karlstads central|SJ
+R|59.37800|13.49908|Karlstads central|SJ
+R|58.99657|16.20808|Katrineholm C|SJ
+R|55.67022|12.56696|København H|SJ
+R|59.50478|13.31587|Kil|SJ
+R|59.56426|16.23345|Kolbäck|SJ
+R|59.50596|16.00739|Köping|SJ
+R|59.31725|14.10758|Kristinehamn|Värmlandstrafik
+R|59.45073|16.32062|Kvicksund|SJ
+R|60.73421|15.00288|Leksand|SJ
+R|57.53577|13.35300|Limmared|SJ
+R|58.41655|15.62588|Linköping C|Östgötatrafiken
+R|58.70199|12.46485|Mellerud|SJ
+R|59.04659|12.69833|Åmål|SJ
+R|61.00490|14.54275|Morastrand|SJ
+R|58.59667|16.18314|Norrköping C|SJ
+R|59.81029|16.63994|Ransta|SJ
+R|60.88533|15.11490|Rättvik|SJ
+R|59.13233|12.91629|Säffle|SJ
+R|60.34671|15.75721|Säter|SJ
+R|59.32987|18.05750|Stockholm Central|SJ
+R|60.81810|15.01877|Tällberg|SJ
+R|59.60741|16.55229|Västerås Central|SJ
+R|59.64943|17.92850|Arlanda central|SJ AB
+R|60.67593|17.15092|Gävle|SJ
+R|61.72417|17.10886|Hudiksvall|SJ
+R|61.29935|17.03529|Söderhamn|SJ
+R|59.85784|17.64925|Uppsala östra|SJ
+R|59.41071|18.07288|Altorp|SL
+R|59.45868|18.14134|Arninge|SL
+R|59.40520|17.86435|Barkarby|SL
+R|59.52280|18.07211|Bällsta|SL
+R|59.56847|17.53354|Bålsta|SJ
+R|59.51229|17.63285|Bro|SL
+R|59.40502|18.06048|Bråvallavägen|SL
+R|59.41272|18.05759|Djursholms Ekeby|SL
+R|59.39817|18.05885|Djursholms Ösby|SL
+R|59.63904|18.22627|Ekskogen|SL
+R|59.42546|18.05127|Enebyberg|SL
+R|59.45199|18.06364|Ensta|SL
+R|59.27288|18.28523|Erstaviksbadet|SL
+R|59.23664|18.10329|Farsta strand|SL
+R|59.29417|18.25615|Fisksätra|SL
+R|59.21860|17.94659|Flemingsberg|Mälartåg
+R|59.62466|18.17092|Frösunda|SL
+R|59.44683|18.08459|Galoppfältet|SL
+R|59.04859|17.31222|Gnesta|SL
+R|58.89917|17.93181|Gröndalsviken|SL
+R|59.16644|18.13406|Handen|SL
+R|59.40906|17.96233|Helenelund|SL
+R|59.06828|17.97562|Hemfosa|SL
+R|59.31213|18.10840|Henriksdal|SL
+R|59.45095|18.12481|Hägernäs|SL
+R|59.44379|17.93288|Häggvik|SL
+R|59.23624|17.97873|Huddinge|SL
+R|59.28992|18.27544|Igelboda|SL
+R|59.42387|17.83299|Jakobsberg|SL
+R|59.14226|18.12649|Jordbro|SL
+R|59.09360|17.56784|Järna|SL
+R|59.45226|17.80721|Kallhäll|SL
+R|59.47920|18.29816|Åkersberga|SL
+R|59.48063|18.27038|Åkers Runö|SL
+R|59.72531|17.78694|Knivsta|SL
+R|59.51013|18.07576|Kragstalund|SL
+R|59.10878|18.06519|Krigslida|SL
+R|59.65676|18.26758|Kårsta|SL
+R|59.47780|17.75222|Kungsängen|SL
+R|59.42404|18.07412|Lahäll|SL
+R|59.30510|18.16169|Lillängen|SL
+R|59.58412|18.10926|Lindholmen|SL
+R|59.27855|18.01109|Älvsjö|SL
+R|59.04742|17.41838|Mölnbo|SL
+R|59.55779|18.08522|Molnby|SL
+R|59.39208|18.04718|Mörby|SL
+R|59.30657|18.13053|Nacka|SL
+R|59.28851|18.29213|Neglinge|SL
+R|59.45911|17.92428|Norrviken|SL
+R|59.42733|18.08522|Näsby allé|SL
+R|59.43022|18.09545|Näsbypark|SL
+R|58.91393|17.94258|Nynäsgård|SL
+R|58.90085|17.95088|Nynäshamn|SL
+R|59.54574|18.07955|Ormsta|SL
+R|59.28309|18.30226|Ringvägen|SL
+R|59.19352|17.75033|Rönninge|SL
+R|59.58377|17.88003|Rosersberg|SL
+R|59.43567|18.05807|Roslags Näsby|SL
+R|59.47588|17.91464|Rotebro|SL
+R|59.29961|18.02808|Årstaberg|SL
+R|59.46539|18.18506|Rydbo|SL
+R|59.27901|18.31228|Saltsjöbaden|SL
+R|59.30051|18.19892|Saltsjö-Duvnäs|SL
+R|59.30686|18.14945|Saltsjö-Järla|SL
+R|59.19160|17.62770|Södertälje centrum|SL
+R|59.17845|17.64692|Södertälje hamn|SL
+R|59.16343|17.64547|Södertälje Syd|Mälartåg
+R|59.02889|17.92674|Segersäng|SL
+R|59.30684|18.12104|Sickla|SL
+R|59.21944|18.15339|Skogås|SL
+R|58.98400|17.90263|Ösmo|SL
+R|59.42839|17.94845|Sollentuna|SL
+R|59.36649|18.00963|Solna|SL
+R|59.27091|18.29612|Solsidan|SL
+R|59.38363|17.89818|Spånga|SL
+R|59.40402|18.07396|Östberga|SL
+R|59.46122|18.31110|Österskär|SL
+R|59.18506|17.65850|Östertälje|SL
+R|59.29499|18.23549|Östervik|SL
+R|59.33199|18.05890|Stockholm City|Arlanda Express
+R|59.34346|18.04551|Stockholm Odenplan|SL
+R|59.31335|18.06056|Stockholms södra|SL
+R|59.34656|18.07064|Stockholms östra|SL
+R|59.38482|18.04377|Stocksund|SL
+R|59.30559|18.17794|Storängen|SL
+R|59.25420|17.99677|Stuvsta|SL
+R|59.36074|17.97187|Sundbyberg|SL
+R|59.27952|18.28068|Tattby|SL
+R|59.44430|18.07467|Täby centrum|SL
+R|59.49302|18.06628|Täby kyrkby|SL
+R|59.44219|18.06260|Tibble|SL
+R|59.28419|18.27732|Tippen|SL
+R|59.47313|18.23524|Täljö|SL
+R|59.22781|18.13039|Trångsund|SL
+R|59.20545|17.90424|Tullinge|SL
+R|59.19961|17.83631|Tumba|SL
+R|59.46899|18.30736|Tunagård|SL
+R|59.10267|18.04566|Tungelsta|SL
+R|59.38077|18.00038|Ulriksdal|SL
+R|59.36507|18.05103|Universitetet|SL
+R|59.52088|17.89902|Upplands Väsby|SL
+R|59.53417|18.08006|Vallentuna|SL
+R|59.18641|18.13568|Vega|SL
+R|59.39982|18.06781|Vendevägen|SL
+R|59.44927|18.10428|Viggbyholm|SL
+R|59.46261|18.06316|Visinge|SL
+R|59.12307|18.10338|Västerhaninge|SL
+R|56.28787|12.82731|Barkåkra|Skånetrafiken
+R|55.88382|12.99573|Billeberga|Skånetrafiken
+R|56.05656|12.97682|Billesholm|Skånetrafiken
+R|56.29167|13.70660|Bjärnum|Skånetrafiken
+R|56.08318|12.91228|Bjuv|Skånetrafiken
+R|55.64055|13.07941|Burlöv|Skånetrafiken
+R|56.10561|12.74604|Ödåkra|Skånetrafiken
+R|55.82302|13.03235|Dösjebro|Skånetrafiken
+R|55.83773|13.30513|Eslöv|Skånetrafiken
+R|56.04368|14.28056|Fjälkinge|Skånetrafiken
+R|56.35514|12.80118|Förslöv|Skånetrafiken
+R|55.77521|13.09730|Furulund|Skånetrafiken
+R|55.99043|12.80561|Gantofta|Skånetrafiken
+R|55.94420|12.81395|Glumslöv|Skånetrafiken
+R|55.54650|14.18135|Gärsnäs|Skånetrafiken
+R|55.72696|13.16751|Gunnesbo|Skånetrafiken
+R|56.04385|12.69468|Helsingborg C|Skånetrafiken
+R|55.86093|12.91174|Häljarp|Skånetrafiken
+R|55.93692|13.54160|Höör|Skånetrafiken
+R|56.15785|13.76357|Hässleholm C|Skånetrafiken
+R|55.56275|12.97587|Hyllie|Skånetrafiken
+R|56.14451|12.77814|Kattarp|Skånetrafiken
+R|55.99832|13.08333|Kågeröd|Skånetrafiken
+R|56.13069|13.13037|Klippan|Skånetrafiken
+R|55.45621|13.93331|Köpingebro|Skånetrafiken
+R|56.03172|14.15130|Kristianstad C|Skånetrafiken
+R|56.13729|13.04446|Kvidinge|Skånetrafiken
+R|55.79488|13.11133|Kävlinge|Skånetrafiken
+R|55.67393|13.07494|Lomma|Skånetrafiken
+R|55.70673|13.18638|Lund centralstation|Skånetrafiken
+R|55.54114|14.04259|Lunnarp|Skånetrafiken
+R|55.60914|13.00066|Malmö central|Skånetrafiken
+R|55.54724|12.99265|Malmö Syd Svågertorp|Skånetrafiken
+R|56.07592|12.71052|Maria|Skånetrafiken
+R|55.86463|13.15907|Marieholm|Skånetrafiken
+R|56.45919|13.59382|Markaryd|Skånetrafiken
+R|56.05568|12.87345|Mörarp|Skånetrafiken
+R|56.06065|14.02891|Önnestad|Skånetrafiken
+R|55.54176|13.09568|Oxie|Skånetrafiken
+R|56.02935|12.81750|Påarp|Skånetrafiken
+R|55.58062|13.02934|Persborg|Skånetrafiken
+R|56.13645|13.39736|Perstorp|Skånetrafiken
+R|56.02366|12.72771|Ramlösa|Skånetrafiken
+R|55.58889|13.03079|Rosengård|Skånetrafiken
+R|55.77881|13.24394|Örtofta|Skånetrafiken
+R|55.96586|12.78350|Rydebäck|Skånetrafiken
+R|55.47427|13.58773|Rydsgård|Skånetrafiken
+R|55.55415|14.35286|Simrishamn|Skånetrafiken
+R|55.48020|13.49803|Skurup|Skånetrafiken
+R|55.54966|14.11737|Smedstorp|Skånetrafiken
+R|56.03643|13.68067|Sösdala|Skånetrafiken
+R|55.90027|13.39305|Stehag|Skånetrafiken
+R|55.60787|13.03150|Östervärn|Skånetrafiken
+R|55.75060|13.19991|Stångby|Skånetrafiken
+R|56.13389|12.94910|Åstorp|Skånetrafiken
+R|55.46767|13.13268|Östra Grevie|Skånetrafiken
+R|55.91228|13.11038|Svalöv|Skånetrafiken
+R|55.42850|13.71741|Svarte|Skånetrafiken
+R|55.50682|13.23289|Svedala|Skånetrafiken
+R|55.87052|13.08578|Teckomatorp|Skånetrafiken
+R|55.92665|12.95206|Tågarp|Skånetrafiken
+R|56.00042|13.62997|Tjörnarp|Skånetrafiken
+R|55.54644|13.94936|Tomelilla|Skånetrafiken
+R|55.37171|13.15939|Trelleborg C|Skånetrafiken
+R|55.59329|13.00104|Triangeln|Skånetrafiken
+R|56.15958|13.59827|Tyringe|Skånetrafiken
+R|55.96379|12.86185|Vallåkra|Skånetrafiken
+R|56.10484|13.91692|Vinslöv|Skånetrafiken
+R|56.34234|13.66329|Vittsjö|Skånetrafiken
+R|55.49026|13.10795|Västra Ingelstad|Skånetrafiken
+R|55.42739|13.82520|Ystad|Skånetrafiken
+R|59.57154|16.38972|Dingtuna|Tåg i Bergslagen
+R|59.99058|15.81605|Fagersta C|Tåg i Bergslagen
+R|60.00269|15.78722|Fagersta Norra|Tåg i Bergslagen
+R|60.60296|15.64292|Falun|Tåg i Bergslagen
+R|60.60296|15.64292|Falun|Tåg i Bergslagen
+R|60.20844|16.31449|Fors|Tåg i Bergslagen
+R|59.46741|15.36345|Frövi|Tåg i Bergslagen
+R|60.07595|15.00482|Grängesberg|Tåg i Bergslagen
+R|59.61465|16.22014|Hallstahammar|Tåg i Bergslagen
+R|60.56936|16.26716|Hofors|Tåg i Bergslagen
+R|60.29616|16.41342|Horndals bruk|Tåg i Bergslagen
+R|60.03680|16.07282|Karbenning|Tåg i Bergslagen
+R|59.87271|14.98609|Kopparberg|Tåg i Bergslagen
+R|59.12691|15.14064|Kumla|Tåg i Bergslagen
+R|59.59504|15.22811|Lindesberg|Tåg i Bergslagen
+R|60.15061|15.18311|Ludvika|Tåg i Bergslagen
+R|59.76969|16.20784|Ramnäs|Tåg i Bergslagen
+R|59.27802|15.21067|Örebro centralstation|Tåg i Bergslagen
+R|59.26970|15.20207|Örebro Södra|Tåg i Bergslagen
+R|60.61433|16.77851|Sandviken|Tåg i Bergslagen
+R|60.07256|15.53706|Söderbärke|Tåg i Bergslagen
+R|59.83270|15.69185|Skinnskatteberg|Tåg i Bergslagen
+R|60.13655|15.40539|Smedjebacken|Tåg i Bergslagen
+R|59.93317|14.94334|Ställdalen|Tåg i Bergslagen
+R|59.71359|15.14328|Storå|Tåg i Bergslagen
+R|60.58233|16.53518|Storvik|Tåg i Bergslagen
+R|59.70652|16.21921|Surahammar|Tåg i Bergslagen
+R|60.51353|16.48847|Torsåker|Tåg i Bergslagen
+R|60.03231|15.64220|Vad|Tåg i Bergslagen
+R|59.87223|16.08417|Virsbo|Tåg i Bergslagen
+R|59.70466|14.53022|Grythyttan|Tågåkeriet i Bergslagen
+R|59.78072|14.51869|Hällefors|Tågåkeriet i Bergslagen
+R|59.53287|14.27172|Storfors|Tågåkeriet i Bergslagen
+R|58.91343|11.93245|Ed|Vy Tog
+R|59.20907|10.95034|Fredrikstad|Vy Tog
+R|59.12033|11.38387|Halden|Vy Tog
+R|60.18768|12.00359|Kongsvinger|Vy Tog
+R|59.95316|11.04506|Lillestrøm|Vy Tog
+R|59.43203|10.65700|Moss|Vy Tog
+R|59.90976|10.75568|Oslo S|SJ
+R|59.34757|10.86521|Råde|Vy Tog
+R|60.12399|11.46500|Årnes|Vy Tog
+R|59.37766|10.74836|Rygge|Vy Tog
+R|59.28607|11.11823|Sarpsborg|Vy Tog
+R|60.25370|11.68060|Skarnes|Vy Tog
+R|59.71885|10.83400|Ski|Vy Tog
+R|59.98583|11.24106|Sørumsand|Vy Tog
+R|58.28744|12.29912|Trollhättan|Vy Tog
+R|59.66156|13.16615|Bäckebron|Värmlandstrafik
+R|59.61766|12.96118|Brunsberg|Värmlandstrafik
+R|59.88413|12.29809|Charlottenberg|Värmlandstrafik
+R|59.62695|12.82958|Edane|Värmlandstrafik
+R|59.90122|13.17106|Edsbjörke|Värmlandstrafik
+R|59.51926|13.22058|Fagerås|Värmlandstrafik
+R|59.62660|13.18465|Frykåsen|Värmlandstrafik
+R|59.55731|13.05266|Högboda|Värmlandstrafik
+R|59.77416|13.12307|Öjervik|Värmlandstrafik
+R|59.50478|13.31587|Kil|Värmlandstrafik
+R|59.82585|13.14090|Kolsnäs|Värmlandstrafik
+R|59.54409|13.12113|Lene|Värmlandstrafik
+R|60.01585|13.13773|Lysvik|Värmlandstrafik
+R|59.76888|12.36689|Åmotfors|Värmlandstrafik
+R|60.13001|13.03845|Oleby|Värmlandstrafik
+R|59.69608|12.46952|Ottebol|Värmlandstrafik
+R|59.79514|13.12872|Rottneros|Värmlandstrafik
+R|59.83564|13.14868|Sunne|Värmlandstrafik
+R|59.57757|13.24030|Tolita|Värmlandstrafik
+R|60.13628|13.00108|Torsby|Värmlandstrafik
+R|59.39122|13.58260|Välsviken|Värmlandstrafik
+R|59.38170|13.85231|Väse|Värmlandstrafik
+R|59.72790|13.14694|Västra Ämtervik|Värmlandstrafik
+R|57.92705|12.53232|Alingsås|Västtrafik
+R|57.53860|12.10076|Anneberg|Västtrafik
+R|57.76268|12.25870|Aspedalen|Västtrafik
+R|57.75444|12.24073|Aspen|Västtrafik
+R|57.49466|12.66927|Assberg|Västtrafik
+R|57.86029|14.12809|Bankeryd|Västtrafik
+R|57.46736|12.59871|Berghem|Västtrafik
+R|57.42733|12.52341|Björketorp|Västtrafik
+R|58.54021|13.32065|Blomberg|Västtrafik
+R|57.66763|12.57058|Bollebygd|Västtrafik
+R|57.88328|13.01498|Borgstena|Västtrafik
+R|57.72084|12.93185|Borås C|Västtrafik
+R|57.23057|12.32004|Derome|Västtrafik
+R|58.52966|11.57934|Dingle|Västtrafik
+R|58.17583|13.55260|Falköping|Västtrafik
+R|58.49318|13.24695|Filsbäck|Västtrafik
+R|58.13919|13.33497|Floby|Västtrafik
+R|57.81012|12.36163|Floda|Västtrafik
+R|57.69758|14.47532|Forserum|Västtrafik
+R|58.61802|13.49127|Forshem|Västtrafik
+R|57.82711|13.00855|Fristad|Västtrafik
+R|57.55781|12.78971|Fritsla|Västtrafik
+R|57.70935|11.97319|Gothenburg Central|Västtrafik
+R|58.87215|14.33354|Gårdsjö|Västtrafik
+R|58.33471|12.68502|Grästorp|Västtrafik
+R|57.90651|14.07670|Habo|Västtrafik
+R|58.75028|13.93986|Hasslerör|Västtrafik
+R|57.51352|12.08401|Hede|Västtrafik
+R|58.07886|13.02086|Herrljunga|Västtrafik
+R|57.70441|12.45109|Hindås|Västtrafik
+R|58.30702|12.90733|Håkantorp|Västtrafik
+R|58.63008|13.43315|Hällekis|Västtrafik
+R|58.58003|11.53536|Hällevadsholm|Västtrafik
+R|57.35341|12.47731|Horred|Västtrafik
+R|58.85480|14.21534|Hova|Västtrafik
+R|57.78210|14.26577|Huskvarna|Västtrafik
+R|57.78458|14.16299|Jönköping Centralstation|Jönköpings Länstrafik
+R|57.74989|12.17374|Jonsered|Västtrafik
+R|58.37901|12.97009|Järpås|Västtrafik
+R|57.50584|12.69781|Kinna|Västtrafik
+R|58.51063|13.30200|Källby|Västtrafik
+R|57.61037|12.04851|Kållered|Västtrafik
+R|57.61037|12.04851|Kållered|Västtrafik
+R|57.73410|12.94261|Knalleland|Västtrafik
+R|57.94462|11.85062|Kode|Västtrafik
+R|58.98932|14.61621|Laxå|Västtrafik
+R|58.01498|12.16391|Lödöse södra|Västtrafik
+R|57.76909|12.27168|Lerum|Västtrafik
+R|58.50462|13.16393|Lidköping|Västtrafik
+R|57.57604|12.07867|Lindome|Västtrafik
+R|57.69838|11.99502|Liseberg|Västtrafik
+R|57.98655|13.05343|Ljung|Västtrafik
+R|58.22447|11.92115|Ljungskile|Västtrafik
+R|58.44111|13.04791|Lovene|Västtrafik
+R|58.64438|13.70220|Lugnås|Västtrafik
+R|58.80509|14.05693|Lyrestad|Västtrafik
+R|58.71125|13.82554|Mariestad|Västtrafik
+R|57.65683|12.11784|Mölnlycke|Västtrafik
+R|57.90646|13.02263|Mollaryd|Västtrafik
+R|57.91513|13.88274|Mullsjö|Västtrafik
+R|58.46479|11.67792|Munkedal|Västtrafik
+R|57.86171|12.43927|Norsesund|Västtrafik
+R|57.65205|14.69418|Nässjö C|Krösatågen
+R|57.74088|12.10334|Partille|Västtrafik
+R|58.61007|11.47092|Rabbalshede|Västtrafik
+R|58.61051|13.37645|Råbäck|Västtrafik
+R|57.65435|12.50047|Rävlanda|Västtrafik
+R|57.70986|12.79152|Sandared|Västtrafik
+R|57.98852|13.77237|Sandhem|Västtrafik
+R|58.92238|11.26294|Skee|Västtrafik
+R|58.62605|13.60886|Äskekärr|Västtrafik
+R|57.48843|12.64940|Skene|Västtrafik
+R|58.38960|13.85232|Skövde|Västtrafik
+R|57.79147|12.31416|Stenkullen|Västtrafik
+R|58.27387|13.71493|Stenstorp|Västtrafik
+R|58.07224|11.82405|Stenungsund|Västtrafik
+R|58.63415|13.55986|Österäng|Västtrafik
+R|58.01948|11.83623|Stora Höga|Västtrafik
+R|58.32604|12.92588|Stora Levene|Västtrafik
+R|58.93631|11.17334|Strömstad|Västtrafik
+R|57.72479|12.02547|Sävenäs|Västtrafik
+R|58.14455|11.93626|Svenshögen|Västtrafik
+R|58.71369|11.29577|Tanum|Västtrafik
+R|57.70515|14.32665|Tenhult|Västtrafik
+R|57.17340|12.30040|Tofta|Västtrafik
+R|57.94075|13.02952|Torpåkra|Västtrafik
+R|58.82442|14.09914|Torved|Västtrafik
+R|58.70547|14.12779|Töreboda|Västtrafik
+R|58.59466|13.34777|Trolmen|Västtrafik
+R|58.35408|11.92327|Uddevalla Central|Västtrafik
+R|58.34991|11.94535|Uddevalla Östra|Västtrafik
+R|58.26107|12.95148|Vara|Västtrafik
+R|58.35968|12.39136|Vargön|Västtrafik
+R|57.26671|12.33684|Veddige|Västtrafik
+R|58.16909|12.99864|Vedum|Västtrafik
+R|58.84321|11.25977|Överby|Västtrafik
+R|57.62925|12.84511|Viskafors|Västtrafik
+R|58.37757|12.31827|Vänersborg C|Västtrafik
+R|58.03142|12.81019|Vårgårda|Västtrafik
+R|57.88772|12.47430|Västra bodarna|Västtrafik
+R|58.35881|12.27409|Öxnered|Vy Tog
+R|57.86234|11.91762|Ytterby|Västtrafik
+R|61.47023|16.38002|Arbrå|X-trafik
+R|61.35044|16.39198|Bollnäs|X-trafik
+R|62.05580|17.24756|Gnarp|X-trafik
+R|61.11842|16.72118|Holmsveden|X-trafik
+R|61.64505|17.08148|Iggesund|X-trafik
+R|61.71580|16.17217|Järvsö|X-trafik
+R|61.23118|16.57005|Kilafors|X-trafik
+R|61.04518|16.67285|Lingbo|X-trafik
+R|61.82675|16.09682|Ljusdal|X-trafik
+R|61.21249|17.11223|Ljusne|X-trafik
+R|62.26832|17.37748|Njurundabommen|X-trafik
+R|60.89146|16.72104|Ockelbo|X-trafik
+R|61.51824|16.36750|Vallsta|X-trafik
+R|57.85247|12.01374|Bohus|rail
+R|57.72735|12.00418|Gamlestaden|rail
+R|59.94050|16.85232|Heby|rail
+R|57.95814|12.11581|Älvängen|Västtrafik
+R|59.93295|16.96126|Morgongåva|rail
+R|57.89316|12.04331|Nödinge|rail
+R|57.91778|12.06072|Nol|rail
+R|59.92496|16.60656|Sala|SJ
+R|57.82521|12.01327|Surte|rail
+R|58.19423|15.05480|Boxholm|Östgötatrafiken
+R|58.54618|15.97197|Kimstad|Östgötatrafiken
+R|58.43638|15.78568|Linghem|Östgötatrafiken
+R|58.34789|15.28786|Mantorp|Östgötatrafiken
+R|58.32276|15.13197|Mjölby|Östgötatrafiken
+R|58.53777|15.04873|Motala C|Östgötatrafiken
+R|58.39272|15.09245|Skänninge|Östgötatrafiken
+R|58.03817|14.97516|Tranås|Östgötatrafiken
+R|58.38347|15.43289|Vikingstad|Östgötatrafiken
+R|58.20548|15.97410|Basthagen|Östgötatrafiken;Kalmar Länstrafik
+R|57.21652|16.03297|Berga|Östgötatrafiken;Kalmar Länstrafik
+R|56.98096|16.33104|Blomstermåla|Östgötatrafiken;Kalmar Länstrafik
+R|58.14393|16.20692|Falerum|Östgötatrafiken;Kalmar Länstrafik
+R|57.89679|16.41006|Gamleby|Östgötatrafiken;Kalmar Länstrafik
+R|57.16608|16.02727|Högsby|Östgötatrafiken;Kalmar Länstrafik
+R|57.98495|15.63397|Kisa|Östgötatrafiken;Kalmar Länstrafik
+R|58.13548|15.68178|Rimforsa|Östgötatrafiken;Kalmar Länstrafik
+R|58.40044|15.66024|Tannefors|Östgötatrafiken;Kalmar Länstrafik
+R|57.75294|16.63066|Tjustskolan|Östgötatrafiken;Kalmar Länstrafik
+R|58.20370|16.00205|Åtvidaberg|Östgötatrafiken;Kalmar Länstrafik
+R|57.98975|16.31937|Överums bruk|Östgötatrafiken;Kalmar Länstrafik
+R|57.66316|15.85806|Vimmerby|Östgötatrafiken;Kalmar Länstrafik
+R|57.75558|16.64289|Västervik|Östgötatrafiken;Kalmar Länstrafik
+R|56.18276|15.60120|Bergåsa|Øresundståg
+R|56.23107|15.11593|Bräkne Hoby|Øresundståg
+R|56.06720|14.48077|Bromölla|Øresundståg
+R|56.43116|12.90579|Båstad|Øresundståg
+R|55.62956|12.64942|Copenhagen Airport, Kastrup|Øresundståg
+R|56.62978|15.53473|Emmaboda|Kalmar länstrafik
+R|55.99546|12.54952|Espergærde|Øresundståg
+R|56.91954|12.50824|Falkenberg|Øresundståg
+R|56.66930|12.86425|Halmstad C|Øresundståg
+R|55.73064|12.56740|Hellerup|Øresundståg
+R|56.03267|12.61262|Helsingør|Øresundståg
+R|56.78592|15.14084|Hovmantorp|Øresundståg
+R|55.96377|12.53297|Humlebæk|Øresundståg
+R|56.66150|16.35972|Kalmar C|Kalmar länstrafik
+R|56.17685|14.86759|Karlshamn|Øresundståg
+R|56.16649|15.58537|Karlskrona C|Krösatågen
+R|55.67254|12.56562|København H|Øresundståg
+R|55.90326|12.50239|Kokkedal|Øresundståg
+R|57.49006|12.07988|Kungsbacka|Øresundståg
+R|56.50225|12.99906|Laholm|Øresundståg
+R|55.87908|12.85751|Landskrona|Øresundståg
+R|56.74975|15.25922|Lessebo|Øresundståg
+R|57.65625|12.01859|Mölndal|Øresundståg
+R|56.18681|14.74347|Mörrum|Øresundståg
+R|56.24562|12.85396|Ängelholm|Øresundståg
+R|55.93346|12.50616|Nivå|Øresundståg
+R|55.68385|12.57276|Nørreport|Øresundståg
+R|56.74232|15.90848|Nybro|Kalmar länstrafik
+R|55.62838|12.58022|Ørestad|Øresundståg
+R|56.20699|15.28299|Ronneby|Øresundståg
+R|57.36326|12.13567|Åsa|Øresundståg
+R|56.04991|14.58352|Sölvesborg|Øresundståg
+R|56.00927|12.58321|Snekkersten|Øresundståg
+R|55.69314|12.58878|Østerport|Øresundståg
+R|55.62980|12.60158|Tårnby|Øresundståg
+Q|Arlanda Express|Tåg 46|#FFCE1D|X110|0 1:533 330:38042
+Q|Arlanda Express|Tåg 46|#FFCE1D|X110|0 1:533 330:38036
+Q|Arlanda Express|Tåg 46|#FFCE1D|X110|330 1:38120 0:533
+Q|Arlanda Express|Tåg 46|#FFCE1D|X110|330 1:38118 0:533
+Q|Engelsberg-Norbergs Järnvägshistoriska Förening|Tåg 278||L55|5 6:1105 2:7048 7:6319 4:989 3:2389
+Q|Engelsberg-Norbergs Järnvägshistoriska Förening|Tåg 278||L55|5 6:1105 2:7048 7:6319 4:989 3:2389
+Q|IBAB|Tåg 37||X110|190 189:886 140:14824 21:12057 9:10486 10:8220 20:21594 17:15365 11:8645 16:9968 18:21376 22:11959 23:9572 19:34221 8:33504 12:19333 13:17755 15:51011 14:13628
+Q|IBAB|Tåg 37||X110|14 15:13634 13:51179 12:17769 8:19348 19:33583 23:34346 22:9576 18:11974 16:21421 11:9970 17:8647 20:15376 10:21620 9:8223 21:10487 140:12068 189:14847 190:886
+Q|Inlandsbanan|Tåg 89420||X110|189 190:824 35:992 39:26385 32:9629 36:42153 48:35186 34:49181 33:2175 30:20189 29:843 40:33883 50:22153 51:3475 52:22952 47:41261 44:36613 27:12679 46:22280 28:15605 45:14641 26:27846 24:33535 25:31323 41:18545 42:12614 49:11101 38:25757 31:55264 37:7583 43:47102 147:52794
+Q|Inlandsbanan|Tåg 89421||X110|147 43:52566 37:46959 31:7577 38:55032 49:25675 42:11087 41:12606 25:18521 24:31264 26:33550 45:27832 28:14624 46:15594 27:22263 44:12669 47:36488 52:41121 51:22905 50:3474 40:22126 29:33778 30:843 33:20154 34:2175 48:48972 36:35072 32:41997 39:9621 35:26334 190:992 189:824
+Q|Jönköpings Länstrafik|Tåg 86||L55|655 69:2657 64:16001 73:20347 58:8162 60:11558 71:13454 65:11497 54:9152 55:5946 75:15638 59:18953 70:8592 74:9125 62:18458 72:3255 63:3649 57:3603 66:8065 536:2315
+Q|Jönköpings Länstrafik|Tåg 86||L55|655 69:2657 64:16001 73:20347 58:8162 60:11558 71:13454 65:11497 54:9152 55:5946 75:15638 59:18953 70:8592 74:9125 56:9316 61:15346 562:18851
+Q|Jönköpings Länstrafik|Tåg 86||L55|536 66:2315 57:8058 63:3603 72:3648 62:3254 74:18449 70:9120 59:8592 75:18947 55:15631 54:5948 65:9151 71:11493 60:13438 58:11546 73:8160 64:20325 69:15987 655:2657
+Q|Jönköpings Länstrafik|Tåg 86||L55|562 61:18829 56:15376 74:9314 70:9121 59:8592 75:18947 55:15631 54:5948 65:9151 71:11493 60:13438 58:11546 73:8160 64:20325 69:15987 655:2657
+Q|Jönköpings Länstrafik|Tåg 87||L55|75 67:2549 53:9025 68:17198 79:19042 88:7833 111:10275
+Q|Jönköpings Länstrafik|Tåg 87||L55|111 88:10272 79:7566 68:19157 53:17239 67:9033 75:2550
+Q|Kalmar länstrafik|Krösatågen||L55|660 77:8138 78:7739 674:13612 76:11020 652:16338
+Q|Kalmar länstrafik|Krösatågen||L55|652 76:16358 674:11096 78:13534 77:7735 660:7981
+Q|Krösatågen|85||L55|562 83:2413 101:9351 87:9653 92:10067 84:9164 89:4538 94:4501 99:11136 98:11361 104:1726 93:9028 103:61916
+Q|Krösatågen|Tåg 88||L55|562 105:11355 81:8838 86:8033 108:8137
+Q|Krösatågen|Tåg 88||L55|108 86:8140 81:8038 105:8844 562:11365
+Q|Krösatågen|Tåg 89||L55|82 107:11900 106:10777 96:16093 100:19371 88:18545
+Q|Krösatågen|Tåg 89||L55|111 88:10274 79:6880 100:12690 96:19378 106:16090 107:10787 82:11722 562:16577
+Q|Krösatågen|Tåg 92||L55|377 80:8417 91:9807 102:11265 95:12234 97:8858 85:10400 109:22616 79:20186 88:6706
+Q|Krösatågen|Tåg 92||L55|88 79:6705 109:20196 85:22553 97:10419 95:8857 102:12225 91:11260 80:9803 377:8411
+Q|Krösatågen|Tåg 97||L55|652 110:10699 90:14176 647:29196 662:2147
+Q|Krösatågen|Tåg 97||L55|662 647:2148 90:29224 110:14183 652:10702
+Q|Mälartåg|Tåg 2XX||L55|238 114:19264 121:40072 131:38087 317:27954 266:20990 243:15316
+Q|Mälartåg|Tåg 2XX||L55|243 266:15332 317:20964 131:27866 121:37955 114:39990 238:19407
+Q|Mälartåg|Tåg 84XX|#D817AC|L55|247 113:11092 124:5469 117:7567 118:7266 119:4857 128:14147 129:12168 123:5144 125:17019 132:6118 126:7869 130:12212
+Q|Mälartåg|Tåg 84XX|#D817AC|L55|130 126:12227 132:7867 125:6119 123:17019 129:5146 128:12050 119:14293 118:4860 117:7261 124:7568 113:5466 247:11103
+Q|Mälartåg|Tåg 8XX|#E24B46|L55|330 120:36110 285:11776 250:16895
+Q|Mälartåg|Tåg 8XX|#E24B46|L55|250 285:16881 120:11782 330:36040
+Q|Mälartåg|Tåg 9XX||L55|250 285:16885 246:13974 243:38607 266:15344 317:20962 122:13214 116:17255 127:16173 214:31688 115:26200 112:17422 446:45925 447:1124
+Q|Mälartåg|Tåg 9XX||L55|447 446:1036 112:46126 115:17428 214:26161 127:31712 116:16209 122:17175 317:13200 266:20994 243:15337 246:38658 285:13982 250:16895
+Q|Norrtåg|F8 / 30||X110|169 178:4142 192:10820 138:20643 173:86386 175:33527 147:47114 144:57762 159:2894 184:11052 163:30979 133:97998 134:1979 136:7095 168:17103 202:3029 162:4872 180:1930 137:2175 185:3058 161:4952 183:8764 174:17164
+Q|Norrtåg|R71 Trondheim S => Storlien||L55|197 203:12642 153:10424 150:17364 148:29695 171:9289 164:7176 191:17602 151:74526
+Q|Norrtåg|Tåg 33||X110|200 199:2075 206:27355 205:3702 198:29585 204:12552 152:12645 135:63213 157:30886 170:95856 138:39651 192:22476 178:10804 169:4140
+Q|Norrtåg|Tåg 33||X110|169 178:4142 192:10820 138:22506 170:39468 157:94986 135:30855 152:62947 204:12636 198:12547 205:29569 206:3702 199:27298 200:2075
+Q|Norrtåg|Tåg 35||X110|199 200:2075 154:32075 177:22834 156:32354 182:23155 181:1897 207:69124 165:17566 155:39278 195:50358 194:11676 193:1246
+Q|Norrtåg|Tåg 42||X110|191 142:13005 141:35104 186:8304 201:13118 158:13183 172:10200 166:47427 190:20316 189:886 140:14824 179:17730 146:14448 187:11501 139:11518 176:30274 143:14290 167:8582 145:5253 196:9309 188:15931 194:39335 193:1244
+Q|Norrtåg|Tåg 42||X110|193 194:1246 188:39367 196:15952 145:9335 167:5235 143:8589 176:14284 139:30368 187:11528 146:11519 179:14460 140:17758 189:14847 190:886 166:20350 172:47407 158:10209 201:13173 186:13135 141:8302 142:35015 191:13015
+Q|Norrtåg|Tåg 71XX||L55|169 178:4142 192:10820 138:20642 160:70690 149:49143
+Q|Norrtåg|Tåg 71XX||L55|149 160:49205 138:70610 192:20606 178:10805 169:4048
+Q|Norrtåg|Tåg 74XX||L55|204 198:12547 205:29569 206:3702 199:27298 200:2016
+Q|Norrtåg|Tåg 74XX||L55|200 199:2016 206:27355 205:3697 198:29585 204:12552
+Q|SJ|70||X110|243 225:128811 219:65449 211:62020 230:26180 223:39989
+Q|SJ|70||X110|223 230:39933 211:26143 219:62005 225:65168 317:94754 243:35539
+Q|SJ|F1;70|#0054a6|X110|243 317:35994 225:94389 219:65449 211:62020 230:26180 223:39989 208:67705 468:115659
+Q|SJ|F1;70|#0054a6|X110|468 208:114836 224:67341 230:40271 211:26140 219:62004 225:65168 317:94754 243:35539
+Q|SJ|Train 80||X110|243 317:36000 238:142332 234:46035 628:32174 562:87768 79:86073 377:97482 387:66087 389:16408
+Q|SJ|Train 80||X110|243 317:36000 238:142332 234:46035 628:32174 562:87768 79:86204 377:97351 387:66087 389:16479 651:27145 663:10435
+Q|SJ|Train 80||X110|389 387:16428 377:66579 79:97701 562:86408 628:88049 234:32254 238:46153 317:143668 243:35593
+Q|SJ|Train 80||X110|226 651:9286 389:27154 387:16493 377:66579 79:97701 562:86408 628:88049 234:32254 238:46153 317:143668 243:35539
+Q|SJ|Tåg 100||X110|522 655:143851 374:82107 387:52350 389:16405
+Q|SJ|Tåg 100||X110|389 387:16455 374:52521 655:82489 522:145577
+Q|SJ|Tåg 1XX||L55|522 500:44921 598:20939 528:13582 514:33856 572:30365 587:38437 545:44691 219:29761 442:7330 447:16416 446:1036 112:46126 229:17174 245:34608 213:34338 255:26843 337:36716 243:6450
+Q|SJ|Tåg 1XX||L55|243 337:6449 255:36833 213:26888 245:34306 229:34523 112:17158 446:46073 447:976 442:16411 219:7333 545:29701 587:44519 572:38378 514:30298 528:33781 598:13569 500:20903 522:44699
+Q|SJ|Tåg 3XX||L55|660 674:29407 652:27344 668:22945 658:8857 111:24302 79:17576 75:47960 217:28123 221:13209 233:19370 511:38978 522:71803
+Q|SJ|Tåg 3XX||L55|522 511:71840 233:38863 221:19340 217:13195 75:28062 79:47799 111:17567 658:24259 668:8851 652:22901 674:27470 660:29285
+Q|SJ|Tåg 41||X110|193 248:86700 249:52924 247:77826 250:110873 246:30833 330:38334
+Q|SJ|Tåg 41||X110|330 246:38412 250:30885 247:111681 249:78072 248:53063 193:87098
+Q|SJ|Tåg 50||X110|14 240:46895 244:9748 232:10041 216:17454 212:5550 210:20316 242:25756 220:15788 209:22919 622:32468 250:61977 246:30828 330:38334
+Q|SJ|Tåg 50||L55|237 216:77420 212:5550
+Q|SJ|Tåg 50||L55|212 216:5553 237:77890
+Q|SJ|Tåg 56||X110|622 239:13161 245:24926 228:23487 231:14542 214:14642 222:25889 215:16044 225:32388 238:53042 234:46030
+Q|SJ|Tåg 56||X110|234 238:46156 225:53070 215:32565 222:16105 214:25923 231:14666 228:14553 245:23497 239:24937 622:13164
+Q|SJ|Tåg 71||L55|224 227:27736 218:31418 241:29308 236:16188 235:41101 600:40864 476:8715 522:70998
+Q|SJ|Tåg 71||L55|522 476:71191 600:8740 235:40919 236:41157 241:16215 218:29359 227:31362 224:27738
+Q|SJ AB|Nattåg 93||X110|330 246:38399 250:30894 247:111679 249:78070 248:53062 193:87100 155:64966 165:39384 181:90837 199:106358 135:140500 157:30886 170:95856 138:45336 173:88244 175:33527 147:47114 163:102426 133:97998 134:1979 136:7095 162:24999 180:1930 137:2175 161:9236 174:25931
+Q|SL|Pendeltåg 40|#F166A7|L55|250 285:16880 246:13974 351:14630 309:5311 299:1944 276:1785 322:1916 272:2329 349:3881 323:1569 331:3898 330:1594 332:2327 310:2560 293:2693 336:2952 277:2300 266:2620 345:2866 346:4127 306:5063 328:5799 316:1029 315:1980
+Q|SL|Pendeltåg 40|#F166A7|L55|315 316:1973 328:1071 306:5798 346:5060 345:4124 266:2864 277:2621 336:2296 293:2952 310:2692 332:2564 330:2320 331:1580 323:3923 349:1547 272:3880 322:2333 276:1917 299:1787 309:1941 351:5314 246:14637 285:13982 250:16895
+Q|SL|Pendeltåg 41|#F166A7|L55|315 316:1973 328:1071 306:5798 346:5060 345:4124 266:2864 277:2621 336:2296 293:2952 310:2692 332:2564 330:2320 331:1580 323:3923 349:1547 272:3880 322:2333 276:1917 299:1787 309:1941 351:5314 307:7141 120:5019
+Q|SL|Pendeltåg 41|#F166A7|L55|120 307:5020 351:7142 309:5311 299:1944 276:1785 322:1916 272:2329 349:3881 323:1569 331:3898 330:1594 332:2327 310:2560 293:2693 336:2952 277:2300 266:2620 345:2866 346:4127 306:5063 328:5799 316:1029 315:1980
+Q|SL|Pendeltåg 43|#F166A7|L55|255 256:8535 289:8244 282:5201 279:3571 253:3075 325:2938 337:5009 331:5088 330:1594 332:2327 310:2560 293:2707 264:7874 344:1982 320:1596 353:4205 271:2278 280:2718 357:2599 287:2690 348:1314 273:5635 318:5225 321:5254 302:8708 270:2548 303:1197
+Q|SL|Pendeltåg 43|#F166A7|L55|303 270:1197 302:2544 321:8709 318:5259 273:5224 348:5641 287:1314 357:2690 280:2598 271:2717 353:2278 320:4205 344:1587 264:1971 293:7947 310:2711 332:2564 330:2320 331:1580 337:5082 325:5011 253:2937 279:3078 282:3582 289:5177 256:8262 255:8545
+Q|SL|Pendeltåg 43X|#F166A7|L55|303 270:1197 302:2544 321:8709 318:5259 273:5224 348:5641 287:1314 357:2690 271:5315 264:10046 293:7947 310:2711 332:2564 330:2320 331:1580 337:5082 325:5011 253:2937 279:3078 282:3582
+Q|SL|Pendeltåg 43X|#F166A7|L55|282 279:3593 253:3075 325:2938 337:5009 331:5088 330:1594 332:2327 310:2560 293:2707 264:7874 271:10060 357:5316 348:4004 273:5635 318:5225 321:5254 302:8708 270:2548 303:1197
+Q|SL|Pendeltåg 48|#F166A7|L55|269 294:6692 281:10653 317:9289 316:1899 315:1932
+Q|SL|Pendeltåg 48|#F166A7|L55|315 316:1920 317:1914 281:9307 294:10619 269:6696
+Q|SL|Roslagsbanan 27|#A05EA6|L55|333 350:2385 296:3170 259:1013 308:4415 341:789 262:1075 356:1179 340:3556 286:2093 254:1419 352:1398 304:1302 295:1340 292:3287 267:5871 260:3837 288:3174
+Q|SL|Roslagsbanan 27|#A05EA6|L55|288 260:3173 267:3863 292:5885 295:3244 304:1412 352:1294 254:1388 286:1426 340:2072 356:3569 262:1187 341:1089 308:751 259:4404 296:1035 350:3194 333:2312
+Q|SL|Roslagsbanan 28|#A05EA6|L55|333 350:2385 296:3170 259:1013 257:729 258:912 261:1531 308:1244 339:1353 268:632 355:1141 275:1374 252:1566 311:2926 343:3075 284:2252 283:1578 347:1375 327:924
+Q|SL|Roslagsbanan 28|#A05EA6|L55|327 347:924 283:1440 284:1580 343:2237 311:3105 252:2915 275:1551 355:1352 268:1149 339:650 308:1324 261:1256 258:1536 257:883 259:731 296:1035 350:3194 333:2312
+Q|SL|Roslagsbanan 29|#A05EA6|L55|333 350:2385 334:2333 296:837 259:998 354:489 326:597 251:761 290:1658 300:775 301:688
+Q|SL|Roslagsbanan 29|#A05EA6|L55|301 300:688 290:775 251:1687 326:732 354:597 259:522 296:999 334:834 350:2360 333:2312
+Q|SL|Saltsjöbanan 25 Henriksdal - Igelboda - Saltsjöbaden|#00AAAD|L55|274 319:965 297:528 314:1130 291:691 335:972 313:1325 329:2366 265:1292 278:1368 298:1030 305:818 312:767
+Q|SL|Saltsjöbanan 25 Saltsjöbaden - Igelboda - Henriksdal|#00AAAD|L55|312 305:768 298:886 278:1026 265:1301 329:1294 313:2389 335:1344 291:989 314:712 297:1037 319:540 274:964
+Q|SL|Saltsjöbanan 26 Igelboda - Solsidan|#00AAAD|L55|278 342:659 338:603 263:879 324:680
+Q|SL|Saltsjöbanan 26 Solsidan - Igelboda|#00AAAD|L55|324 263:680 338:878 342:604 278:684
+Q|Skånetrafiken|Pågatåg Kävlinge - Malmö||L55|385 369:2524 389:24046 386:13057 422:10860 378:4493 390:2190 398:4697 401:924 410:2275 389:1915
+Q|Skånetrafiken|Tåg 1|#CF657C|L55|387 363:10074 389:6406 422:2696 378:3911
+Q|Skånetrafiken|Tåg 1|#CF657C|L55|378 422:3922 389:2610 363:6411 387:10078
+Q|Skånetrafiken|Tåg 19XX|#767fc8|L55|383 367:8852 649:13129
+Q|Skånetrafiken|Tåg 19XX|#767fc8|L55|649 367:13122 383:8849
+Q|Skånetrafiken|Tåg 2|#767fc8|L55|374 391:4853 364:3965 379:4773 671:13082 358:5012 368:7592
+Q|Skånetrafiken|Tåg 2|#767fc8|L55|374 391:4853 364:3965 379:4773 671:13082 650:23256 666:10068 655:22333
+Q|Skånetrafiken|Tåg 2|#767fc8|L55|368 358:7593 671:5760 379:13093 364:4773 391:3968 374:4848
+Q|Skånetrafiken|Tåg 2|#767fc8|L55|655 666:22308 650:10063 671:23208 379:13093 364:4773 391:3968 374:4848
+Q|Skånetrafiken|Tåg 3;6|#767fc8|L55|374 400:3080 370:6610 424:4824 418:7095 359:5961 417:5986 392:4700 366:11961 387:21867 389:16473 422:2696 378:3911 390:2178 396:6966 416:9689 406:17377 404:5764 415:11745 428:6920
+Q|Skånetrafiken|Tåg 4A;6|#767fc8|L55|376 409:10385 366:9234 402:7906 411:4332 387:4995 389:16473 422:2696 378:3911 390:2178 396:6966 416:9689 406:17377 404:5764 415:11745 428:6836 382:7582 420:15934 388:8622 407:4943 372:4196 405:11356
+Q|Skånetrafiken|Tåg 4B|#767fc8|L55|378 422:3922 389:2610 387:16493 411:5158 402:4365 366:7717 409:9245 376:10437 419:9273 408:5125 377:17873 425:12019 395:8642 383:8951
+Q|Skånetrafiken|Tåg 4B|#767fc8|L55|383 395:8956 425:8649 377:12087 408:18693 419:5122 376:9269 409:10430 366:9234 402:7906 411:4332 387:4995 389:16473 422:2696 378:3911
+Q|Skånetrafiken|Tåg 5|#767fc8|L55|374 400:3080 397:5978 394:4848 362:4151 412:6138 381:11437 399:16793 423:13079 377:11811 425:12425 383:17587
+Q|Skånetrafiken|Tåg 5|#767fc8|L55|374 400:3080 397:5978 394:4848 362:4151 412:6138 384:6030 381:5407 399:16793 423:13079 377:11618
+Q|Skånetrafiken|Tåg 5|#767fc8|L55|383 425:17611 377:12435 423:11811 399:13073 381:16792 412:11438 362:6137 394:4149 397:4850 400:5976 374:3081
+Q|Skånetrafiken|Tåg 5|#767fc8|L55|377 423:11618 399:13073 381:16792 384:5408 412:6029 362:6137 394:4149 397:4850 400:5976 374:3081
+Q|Skånetrafiken|Tåg 6;3|#767fc8|L55|405 372:11354 407:4196 388:4942 420:8614 382:15929 428:7644 415:6770 404:11752 406:5766 416:17388 396:9695 390:7036 378:2168 422:3922 389:2610 387:16493 366:21953 392:11983 417:4702 359:5988 418:5963 424:7100 370:4825 400:6613 374:3081
+Q|Skånetrafiken|Tåg 6;4A|#767fc8|L55|428 415:6770 404:11752 406:5766 416:17388 396:9695 390:7036 378:2168 422:3922 389:2610 387:16493 411:5158 402:4365 366:7717 409:9245 376:10393
+Q|Skånetrafiken|Tåg 7||L55|377 361:15764 426:6516 393:14171
+Q|Skånetrafiken|Tåg 7||L55|393 426:14164 361:6514 377:15757
+Q|Skånetrafiken|Tåg 8||L55|378 422:3914 389:2544 363:6410 387:10079 373:2590 385:8477 417:9182 414:5828 380:9999 360:10140 412:8901
+Q|Skånetrafiken|Tåg 8||L55|412 360:8900 380:10133 414:9998 417:6016 385:9279 373:8472 387:2594 363:10079 389:6408 422:2857 378:3912
+Q|Skånetrafiken|Tåg 9|#767fc8|L55|374 400:3080 403:7602 371:3111 667:7781 375:4186 365:8904 385:6713 373:8472 387:2594 363:10078 389:6406 422:2696 378:3911 390:2178 427:10426 413:2958 421:11390
+Q|Skånetrafiken|Tåg 9|#767fc8|L55|421 413:11393 427:2959 390:10436 378:2168 422:3922 389:2668 363:6417 387:10095 373:2572 385:8477 365:6710 375:8910 667:4192 371:7782 403:3112 400:7602 374:3082
+Q|Tåg i Bergslagen|Tåg 53||L55|628 630:8922 629:17997 219:69831 442:7410 447:16416 446:1036 435:25251 443:22548 453:14565 441:21253 452:7549 436:17784 444:15309 210:45994 432:23840 438:42151 454:16789 448:14641 247:22300
+Q|Tåg i Bergslagen|Tåg 53||L55|247 448:22264 454:14628 438:16783 433:42896 210:23601 444:45860 436:15291 452:17769 441:7546 453:21226 443:14556 435:22494 446:25273 447:976 442:16411 219:7333 629:69619 630:17977 628:8924
+Q|Tåg i Bergslagen|Tåg 54||L55|247 448:22383 454:14628 456:9005 439:25228 434:12125 209:10797 440:16261 430:18384 450:22548 435:49583 446:25273
+Q|Tåg i Bergslagen|Tåg 54||L55|446 435:25252 450:49733 430:22592 440:18406 209:16281 434:10805 439:12135 456:25243 454:9004 448:14644 247:22420
+Q|Tåg i Bergslagen|Tåg 55||L55|245 429:10094 437:13418 455:10708 445:7082 458:13677 5:10417 430:12761 431:2341 457:10620 449:8464 451:11113 444:15780
+Q|Tåg i Bergslagen|Tåg 55||L55|444 451:15776 449:11102 457:8459 431:10614 430:2340 5:12745 458:10416 445:13664 455:7080 437:10707 429:13403 245:10102
+Q|Tågåkeriet i Bergslagen|70||X110|243 317:36570 225:94389 219:65449 211:62020 230:26180 223:39989
+Q|Tågåkeriet i Bergslagen|70||X110|223 230:39933 211:26143 219:62005 225:65168 243:129400
+Q|Tågåkeriet i Bergslagen|Tåg 7030||L55|230 461:27540 459:37300 460:8770 436:57692 444:15307 210:45994 432:23840
+Q|Vy Tog|F1;70|#0054a6|X110|230 498:17075 497:17818 223:5063 486:19236 482:5860 488:6416 484:4272 480:16902 208:14980 492:8970 490:10671 479:14361 465:42381 473:25627 470:20645 475:20772 466:16576 468:17468
+Q|Vy Tog|F1;70|#0054a6|X110|468 466:17489 475:16582 470:20801 473:20679 465:25603 479:42260 490:14351 492:10662 208:8963 480:14968 484:16879 488:4270 482:6413 486:5858 223:19211 497:5063 498:17813 230:17051
+Q|Vy Tog|RE20 Göteborg → Oslo S|#44c8f5|X110|522 476:71191 600:8740 462:85051 464:52149 472:29565 463:13814 469:17344 471:7698 467:9053 474:34615 468:22565
+Q|Vy Tog|RE20 Oslo S → Göteborg|#44c8f5|X110|468 474:22560 467:34566 471:9046 469:7694 463:17338 472:13829 464:29831 462:51987 600:84682 476:8715 522:70993
+Q|Värmlandstrafik|Tåg 70||L55|230 498:17075 497:17818 223:5063 486:19236 482:5860 488:6416 484:4272 478:8950 480:7941 208:14980 492:8970 490:10671 479:14362
+Q|Värmlandstrafik|Tåg 70||L55|479 490:14352 492:10662 208:8963 480:14968 478:7939 484:8941 488:4270 482:6413 486:5858 223:19211 497:5063 498:17783 230:17080
+Q|Värmlandstrafik|Tåg 74||L55|496 491:2343 489:14617 481:13235 494:7686 487:1146 493:3646 485:2427 499:5509 477:7644 483:4060 495:6297 227:9726 224:19137
+Q|Värmlandstrafik|Tåg 74||L55|224 227:19165 495:9731 483:6299 477:4060 499:7645 485:5510 493:2427 487:3647 494:1146 481:7688 489:13238 491:14628 496:2343
+Q|Västtrafik|65||L55|572 574:15674 514:14643 568:25576 559:11894 525:12551 505:7790 536:11675 535:6352 583:10738 518:11127 562:16071
+Q|Västtrafik|97||L55|511 567:9073 509:14477 566:4445 529:7378 557:21151 550:10900
+Q|Västtrafik|Tåg 130||L55|522 601:21204 544:10775 577:8700 575:6557 581:11806 552:9377 590:19048 589:1627 560:20812 513:9736 532:6610 564:5237 582:16913 595:15069 569:9911 579:6193
+Q|Västtrafik|Tåg 130||L55|522 601:21205 544:10778 577:8698 575:6559 581:11806 552:9380 590:18990 589:1904 560:20684 513:9736 532:6610 564:5237 582:16913 595:15069 569:9911 579:6193
+Q|Västtrafik|Tåg 131||L55|500 599:6668 561:3623 517:7681 573:3576 547:3551 502:1049 503:1533 537:4069 563:4351 580:4982 522:3687
+Q|Västtrafik|Tåg 131||L55|522 580:3724 563:4984 537:4352 503:4071 502:1528 547:1052 573:3547 517:3571 561:7691 599:3623 500:6704
+Q|Västtrafik|Tåg 132||L55|665 527:2789 501:2868 549:4504 541:4105 669:5488 550:4875
+Q|Västtrafik|Tåg 132||L55|522 550:2836 669:4875 542:5277 549:4314 501:4328 527:3044 665:2602
+Q|Västtrafik|Tåg 62||L55|522 500:44921 598:20939 528:13582 516:20215 514:13620 574:14660 572:15691 587:38437
+Q|Västtrafik|Tåg 62||L55|587 572:38378 574:15677 514:14642 516:13612 528:20186 598:13569 500:20900 522:44735
+Q|Västtrafik|Tåg 63||L55|528 594:10707 591:10615 530:5700 578:2610 538:6415 553:8235 548:10545 515:5014 540:4035 508:3549 588:6308 565:2433 531:4092 519:3731 576:4374 570:3103 554:5978 556:11179 526:8275 555:9664 586:3918 534:8319 523:8730 545:22555 219:29713
+Q|Västtrafik|Tåg 63||L55|219 545:29791 523:22504 534:8727 586:8314 555:3917 526:9656 556:8268 554:11169 570:5976 576:3103 519:4373 531:3733 565:4090 588:2432 508:6307 540:3549 515:4034 548:5015 553:10537 538:8230 578:6413 530:2610 591:5698 594:10612 528:10704
+Q|Västtrafik|Tåg 72||L55|597 600:3521 476:8781 546:33451 618:7256 522:30297
+Q|Västtrafik|Tåg 72||L55|522 618:30347 546:7256 476:33491 600:8809 597:3522
+Q|Västtrafik|Uddevalla-Herrljunga-Borås-Varberg||L55|589 600:22574 597:3522 592:4841 524:18470 591:19494 594:10612 528:11136 551:10870 585:5284 558:3863 510:2631 520:6272 543:11530 511:1666 596:11995 521:9341 539:8114 504:2206 571:1366 506:3958 507:6426 533:9004 593:12871 512:4220 584:6434
+Q|X-trafik|Tåg 44||L55|610 607:14280 614:27691 602:5510 603:14176 608:16955 605:15884 609:9234 613:17445 247:37983
+Q|X-trafik|Tåg 44||L55|247 613:38116 609:17456 605:9239 608:15899 603:16964 602:14183 614:5511 607:27747 610:14290
+Q|X-trafik|Tåg 83XX||L55|247 611:67028 249:10977 606:42052 248:10964 604:43837 612:28115 193:15075 194:1247
+Q|X-trafik|Tåg 83XX||L55|194 193:1246 612:15065 604:28064 248:43716 606:10959 249:41986 611:10971 247:66803
+Q|rail|Alependeln||L55|616 623:10946 615:3027 620:4895 621:2922 618:5639
+Q|rail|Alependeln||L55|618 621:5635 620:2921 615:4894 623:3026 616:10946
+Q|rail|Tåg 52||L55|622 617:15056 619:6224 130:40535
+Q|rail|Tåg 52||L55|130 619:40616 617:6226 622:15050
+Q|Östgötatrafiken|Tåg 82||L55|629 630:17977 628:8659 627:10298 632:9345 234:12770 626:10047 625:18214 238:17844
+Q|Östgötatrafiken|Tåg 82||L55|238 625:17823 626:18189 234:10047 632:12753 627:9338 628:15243 630:8660 629:17997
+Q|Östgötatrafiken|Tåg 82||L55|631 624:19896 628:16223
+Q|Östgötatrafiken|Tåg 82||L55|628 624:16213 631:19875
+Q|Östgötatrafiken;Kalmar Länstrafik|Krösatågen||L55|660 635:41513 638:29071 634:6698 93:37261 645:21374 639:41265 640:18396 641:37432 234:2968
+Q|Östgötatrafiken;Kalmar Länstrafik|Krösatågen||L55|234 641:2967 640:37369 639:18383 645:41178 93:21361 634:37177 638:6696 635:29005 660:41432
+Q|Östgötatrafiken;Kalmar Länstrafik|Krösatågen||L55|234 641:2967 633:33884 643:1777 636:16330 644:23593 637:12589 642:23337 646:798
+Q|Östgötatrafiken;Kalmar Länstrafik|Krösatågen||L55|646 642:798 637:23378 644:12599 636:23640 643:16348 633:1777 641:33969 234:2968
+Q|Øresundståg|Train 100||L55|522 669:7866 665:19560 677:17080 654:57942 655:42251 666:22307 650:10063 671:23208 374:26656 667:21567 387:33834 389:16470 422:2805 378:3907 651:25233 681:3020 675:1357 663:7256 673:1518 680:1442
+Q|Øresundståg|Train 100||L55|680 673:1439 663:1533 675:7226 681:1356 651:3019 378:25268 422:3929 389:2509 387:16513 667:33881 374:21591 671:26685 650:23256 666:10068 655:22337 654:42377 677:58121 665:16911 669:19759 522:7893
+Q|Øresundståg|Train 90||L55|662 647:2146 676:25411 648:11566 661:20987 670:8830 678:22164 649:7822 383:22003 377:30093 387:66276 363:10078 389:6399 422:2805 378:3907 651:25233 681:3020 675:1357 663:7253 673:1520 680:1442
+Q|Øresundståg|Train 90||L55|657 679:3353 653:2708 659:3683 672:3743 664:3416 656:21132 680:4728 673:1439 663:1533 675:7226 681:1356 651:3019 378:25268 422:3929 389:2509 387:16496 377:66388 383:29994 649:22022
+Q|Øresundståg|Train 95||L55|680 673:1439 663:1533 675:7226 681:1356 651:3019 378:25268 422:3929 389:2428 363:6395 387:10078 366:17245 376:19694 377:29547 102:29500 97:21094 79:51440 111:17435 658:24259 668:8851 652:22901 674:27403 660:29449
+Q|Øresundståg|Train 95||L55|660 674:29506 652:27344 668:22945 658:8857 111:24302 79:17574 97:49973 102:21075 377:29641 376:29310 366:19660 387:17224 363:10078 389:6399 422:2805 378:3907 651:25233 681:3020 675:1357 663:7262 673:1520 680:1442
 T|68.35738|18.78247|Abisko Turiststation
 T|68.34900|18.82860|Abisko Östra
 T|57.92705|12.53232|Alingsås
@@ -1612,3 +2464,211 @@ T|58.84321|11.25977|Överby
 T|62.27498|14.80074|Överhogdal
 T|57.98975|16.31937|Överums bruk
 T|58.35881|12.27409|Öxnered
+B|61.34495|16.06483|Alfta busstation
+B|57.92728|12.52966|Alingsåsterminalen
+B|56.97503|15.64912|Alstermo
+B|60.06278|18.08026|Alunda bussterminal
+B|57.70960|11.77990|Amhult resecentrum
+B|66.05284|17.89755|Arjeplogs Busstation
+B|59.64454|17.92916|Arlanda Terminal 2
+B|65.59265|19.17907|Arvidsjaur Busstation
+B|58.87932|14.90779|Askersunds Busstation
+B|60.14407|16.16755|Avesta busstation
+B|55.70063|13.19581|Bankgatan
+B|63.20157|18.50116|Bjästa
+B|64.86785|20.38397|Boliden Busstation
+B|57.66782|12.57052|Bollebygd station
+B|61.35057|16.39288|Bollnäs resecentrum
+B|60.48275|15.42693|Borlänge resecentrum
+B|57.71996|12.93259|Borås Resecentrum
+B|63.44899|18.10682|Bredbyn busstn
+B|57.97534|12.43868|Brobacka korsväg
+B|56.25361|14.07520|Broby busstation
+B|55.72789|14.09699|Brösarps bussterminal
+B|62.63456|17.92785|Bussgate
+B|59.65554|12.58706|Busstation
+B|64.95389|21.20314|Byske Busstation
+B|59.56907|17.53139|Bålsta
+B|64.25911|16.40731|Dorotea busstation
+B|57.01779|15.05396|Eke bussterminal
+B|57.66426|14.97665|Eksjö Resecentrum
+B|59.64432|17.08741|Enköping Resecentrum
+B|59.36649|16.51215|Eskilstuna busstation
+B|55.83635|13.30403|Eslövs Busstation
+B|59.51934|13.22070|Fagerås Stationen
+B|56.90217|12.48805|Falkenbergs bussterminal
+B|58.17604|13.55372|Falköping resecentrum
+B|59.71337|14.17305|Filipstads busstation
+B|58.70630|15.77691|Finspång station
+B|58.41916|15.61925|Fjärrbussterminalen
+B|59.05691|16.58774|Flen järnvägsstation
+B|57.65200|11.90956|Frölunda Torg
+B|60.17645|18.18833|Gimo bussterminal
+B|57.30499|13.54305|Gislaveds busstation
+B|57.35792|13.73614|Gnosjö station
+B|58.69196|11.25393|Grebbestads busstation
+B|59.35234|13.11249|Grums, Station
+B|57.83684|12.29817|Gråbo busstation
+B|55.60247|12.99920|Gustav Adolfs torg
+B|63.17581|14.63930|Gustav III:s Torg
+B|57.66744|13.43291|Gällstad
+B|58.52739|13.49165|Götene busstation
+B|60.03520|13.69421|Hagfors Busstationen
+B|63.58315|15.35076|Hammerdal busstation
+B|65.84339|24.13847|Haparanda Tornio Resecentrum
+B|56.04343|12.69497|Helsingborg C
+B|57.23791|18.37985|Hemse busstation
+B|59.86528|17.66288|Hjalmar Brantingsgatan
+B|58.30530|14.29352|Hjo busstation
+B|58.85831|14.21656|Hova Torget
+B|59.23654|17.97812|Huddinge station
+B|57.48674|15.84527|Hultsfred resecentrum
+B|56.15863|13.76417|Hässleholm Centralen
+B|58.48856|11.62817|Håby terminal
+B|56.20112|12.55874|Höganäs Busstorget
+B|55.85555|13.67115|Hörby busstation
+B|56.74522|14.92117|Ingelstad centrum
+B|59.42295|17.83218|Jakobsbergs bussterminal
+B|66.60781|19.82917|Jokkmokks busstation
+B|57.78440|14.16405|Jönköping Resecentrum
+B|57.78435|14.16442|Jönköpings bussterminal
+B|65.85452|23.14161|Kalix Busstation
+B|56.66174|16.35890|Kalmar C
+B|58.34998|11.93052|Kampenhof
+B|59.32672|14.51301|Karlskoga Busstation
+B|56.16308|15.58572|Karlskrona Centrum Busstation
+B|59.37888|13.49307|Karlstad Bus Station
+B|58.99640|16.20621|Katrineholms Resecentrum
+B|57.50556|12.69656|Kinna resecentrum
+B|67.85335|20.23274|Kiruna Busstation
+B|56.13113|13.12701|Klippans station
+B|60.60456|15.63519|Knutpunkten
+B|66.84963|23.05853|Korpilombolo Busstation
+B|56.03098|14.15232|Kristianstad C
+B|59.12582|15.13975|Kumla resecentrum
+B|56.16548|15.58662|Kungsplan Busstation
+B|59.47777|17.75152|Kungsängens station
+B|57.84397|11.79259|Kärna bussterminal
+B|57.75777|11.98756|Körkarlens Gata
+B|56.51180|13.04707|Laholm bussterminal
+B|55.86592|12.82721|Landskrona Skeppsbron
+B|57.68602|12.21325|Landvetter resecentrum
+B|56.99743|15.28797|Lenhovda Terminal
+B|56.74981|15.26109|Lessebo Bus Terminal
+B|58.50462|13.16393|Lidköping
+B|59.31071|18.02366|Liljeholmen
+B|58.13421|12.12550|Lilla Edet busstation
+B|57.53628|13.35380|Limmared
+B|59.59505|15.22756|Lindesberg Resecentrum
+B|57.57576|12.07850|Lindome station
+B|58.41696|15.62400|Linköpings resecentrum
+B|56.83215|13.93675|Ljungby Terminal
+B|57.61479|13.11523|Lockryd
+B|55.67376|13.06904|Lomma busstation
+B|60.15005|15.18338|Ludvika Resecentrum
+B|65.58562|22.16066|Luleå Busstation
+B|59.49816|14.16298|Lundsberg Buss
+B|64.59484|18.67029|Lycksele resecentrum
+B|56.39648|14.32080|Lönsboda Busstation
+B|67.17577|20.65751|Malmberget busstation
+B|59.13483|16.72484|Malmköping busstation
+B|58.71197|13.82458|Mariestad resecentrum
+B|56.45788|13.59370|Markaryds järnvägsstation
+B|58.32220|15.13209|Mjölby Resecentrum
+B|61.00900|14.56033|Mora Resecentrum
+B|57.91482|13.88182|Mullsjö resecentrum
+B|59.83421|13.54593|Munkfors Busstationen
+B|57.38743|15.80492|Målilla Terminalen
+B|57.65559|12.01856|Mölndals bro
+B|57.65716|12.11768|Mölnlycke resecentrum
+B|57.04128|16.44750|Mönsterås busstation
+B|57.71006|11.97166|Nils Ericson Terminalen
+B|59.76992|14.52078|Nobina Hällefors AB
+B|59.51727|15.04150|Nora Station
+B|59.75948|18.69909|Norrtälje busstation
+B|64.91167|19.48346|Norsjö resecentrum
+B|59.39532|13.19419|Norsplan
+B|58.18742|12.71890|Nossebro busstation
+B|56.74248|15.90777|Nybro
+B|58.74909|17.00145|Nyköping Bus Terminus
+B|61.11792|14.61995|Orsa Busstation
+B|67.21030|23.36570|Pajala busstation
+B|57.73842|12.10534|Partille centrum
+B|65.31994|21.47479|Piteå Busstation
+B|63.07808|17.75297|Prästmon (Korsningen)
+B|63.53690|16.46940|Ramsele busstation
+B|57.16559|16.02736|Resecenter
+B|56.88219|16.65647|Resecentrum
+B|63.28746|18.70744|Resecentrum
+B|56.20655|15.28371|Ronneby Resecentrum
+B|60.88539|15.11584|Rättviks busstation
+B|65.85598|22.28965|Råneå Busstation
+B|59.92493|16.60542|Sala Resecentrum
+B|64.16887|20.92073|Sikeå E4
+B|55.55729|14.35313|Simrishamn Laxgatan
+B|57.72359|12.96212|Sjukhuset Borås
+B|55.63089|13.70040|Sjöbo busstation
+B|58.38321|13.44016|Skara busstation
+B|58.92238|11.26294|Skee
+B|64.75375|20.94925|Skellefteå Busstation
+B|58.39074|13.85273|Skövde resecentrum
+B|58.11871|12.53403|Sollebrunns busstation
+B|65.53623|17.53065|Sorsele Busstation
+B|58.07167|11.82318|Stenungsunds station
+B|59.33224|18.05490|Stockholm Cityterminalen
+B|65.09686|17.11303|Storuman
+B|59.71377|15.14341|Storå resecentrum
+B|58.93668|11.17391|Strömstad station
+B|63.84939|15.55575|Strömsunds busstation
+B|55.92214|13.10685|Svalöv Skolgatan
+B|62.03553|14.35259|Svegs Järnvägsstation
+B|57.49520|13.10877|Svenljunga bussterminal
+B|62.76718|14.43626|Svenstaviks resecentrum
+B|61.29891|17.03386|Söderhamn Resecentrum
+B|58.47799|16.32356|Söderköpings resecentrum
+B|55.58881|13.00637|Södervärn
+B|55.71727|13.34680|Södra Sandby busstation
+B|58.72239|11.32062|Tanumshede centrum
+B|55.87115|13.08596|Teckomatorps station
+B|58.42529|14.16113|Tibro busstation
+B|58.17949|13.95587|Tidaholm
+B|56.52407|14.97566|Tingsryd busstation
+B|58.35322|11.81647|Torp Terminalen
+B|57.48507|13.35156|Tranemo bussterminal
+B|58.28676|12.29949|Trollhättan resecentrum
+B|61.39553|16.83546|Trönö Skola
+B|59.19920|17.83699|Tumba station
+B|59.50859|11.84139|Töcksfors (Centralen) Flixbus
+B|65.91286|22.64633|Töre Busstation
+B|58.70532|14.12715|Töreboda resecentrum
+B|57.13657|12.71654|Ullareds bussterminal
+B|57.79380|13.41176|Ulricehamn busstation
+B|63.83017|20.26422|Umeå Busstation
+B|58.26121|12.95179|Vara resecentrum
+B|57.10963|12.25039|Varberg
+B|58.12518|11.72083|Varekils bussstation
+B|57.66374|15.85724|Vimmerby resecentrum
+B|59.04235|15.87476|Vingåkers station
+B|57.63587|18.29604|Visby busstation
+B|58.37791|12.31877|Vänersborg resecentrum
+B|57.18543|14.03638|Värnamo Station
+B|55.60576|13.02312|Värnhem
+B|57.75540|16.64284|Västervik
+B|59.60843|16.55337|Våsterås Centralstation
+B|55.42769|13.82675|Ystad station
+B|57.86276|11.91861|Ytterby station
+B|59.63976|16.57747|stenby station
+B|56.55057|14.13759|Älmhults station
+B|61.22303|14.04464|Älvdalen busstation
+B|57.70823|11.97650|Åkareplatsen
+B|59.47880|18.30156|Åkersberga
+B|59.04641|12.69910|Åmål station
+B|59.39444|12.13161|Årjäng Busstationen
+B|56.99343|14.67580|Öhr Terminal
+B|59.27733|15.21059|Örebro Resecentrum
+B|55.60760|13.09733|Öresundsterminalen
+B|56.28320|13.28128|Örkelljunga busstation
+B|63.28756|18.70781|Örnsköldsvik Resecentrum
+B|60.25824|18.37000|Östhammars busstation
+B|66.32665|22.83823|Överkalix busstation
+B|66.39024|23.65711|Övertorneå busstation

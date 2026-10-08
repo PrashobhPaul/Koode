@@ -1,10 +1,11 @@
 # Transit for Koode, AU. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-35.27793|149.12933|Alinga Street|Canberra Metro|M
 S|-35.25056|149.13374|Dickson Interchange|Canberra Metro|M
 S|-35.27262|149.13018|Elouera Street|Canberra Metro|M
 S|-35.22850|149.14422|EPIC and Racecourse|Canberra Metro|M
-S|-35.18563|149.13548|Gungahlin Place Platform 1|Canberra Metro|M
+S|-35.18563|149.13544|Gungahlin Place|Canberra Metro|M
 S|-35.26590|149.13126|Ipima Street|Canberra Metro|M
 S|-35.26016|149.13218|Macarthur Avenue|Canberra Metro|M
 S|-35.18699|149.14341|Manning Clark North|Canberra Metro|M
@@ -78,13 +79,11 @@ S|-33.80471|150.99007|Westmead Hospital Light Rail|Sydney Light Rail|M
 S|-33.80759|150.98761|Westmead Light Rail|Sydney Light Rail|M
 S|-33.86667|151.20718|Wynyard|Sydney Light Rail|M
 S|-33.80996|151.02927|Yallamundi Light Rail|Sydney Light Rail|M
-S|-33.86037|151.20275|Barangaroo, Platform 1|Sydney Metro|M
-S|-33.85903|151.20252|Barangaroo, Platform 2|Sydney Metro|M
+S|-33.85968|151.20254|Barangaroo|Sydney Metro|M
 S|-33.73062|150.94399|Bella Vista|Sydney Metro|M
 S|-33.73148|151.00781|Castle Hill|Sydney Metro|M
-S|-33.88380|151.20658|Central, Platform 26|Sydney Metro|M
-S|-33.88453|151.20621|Central, Platform 27|Sydney Metro|M
-S|-33.79748|151.18094|Chatswood, Platform 2|Sydney Metro|M
+S|-33.88388|151.20597|Central|Sydney Metro|M
+S|-33.79748|151.18094|Chatswood|Sydney Metro|M
 S|-33.73658|151.03188|Cherrybrook|Sydney Metro|M
 S|-33.82574|151.19925|Crows Nest|Sydney Metro|M
 S|-33.77286|151.08209|Epping|Sydney Metro|M
@@ -98,7 +97,7 @@ S|-33.86728|151.21121|Martin Place|Sydney Metro|M
 S|-33.79442|151.13807|North Ryde|Sydney Metro|M
 S|-33.73426|150.96398|Norwest|Sydney Metro|M
 S|-33.69181|150.92414|Rouse Hill|Sydney Metro|M
-S|-33.91348|151.16760|Sydenham, Platform 1|Sydney Metro|M
+S|-33.91474|151.16611|Sydenham|Sydney Metro|M
 S|-33.69175|150.90553|Tallawong|Sydney Metro|M
 S|-33.83620|151.20776|Victoria Cross|Sydney Metro|M
 S|-33.89771|151.20032|Waterloo|Sydney Metro|M
@@ -240,77 +239,1426 @@ L|Sydney Light Rail|Kingsford Line|#781140|44 46:434 69:586 45:876 36:397 51:137
 L|Sydney Light Rail|Randwick Line|#DD1E25|58 70:506 71:719 61:854 51:1563 63:1194 26:736 41:416 29:353 67:527 57:239 76:558 23:318 31:467
 L|Sydney Light Rail|Randwick Line|#DD1E25|31 23:522 76:255 57:558 67:239 29:527 41:349 26:485 63:667 51:1270 61:1531 71:880 70:719 58:438
 L|Sydney Light Rail|Westmead to Carlingford|#BB2043|75 74:412 28:414 52:833 22:355 38:505 55:432 30:456 54:443 59:582 68:836 60:646 77:1017 35:792 65:1426 25:1621
-L|Sydney Metro|Metro North West & Bankstown Line|#168388|98 101:4086 82:1661 89:1212 94:805 79:1311 100:2766 86:1514 84:3769 95:4315 92:1401 93:1346 87:3810 85:6351 81:2542 90:2015 96:2320 80:2243 91:2213 97:2606 99:1872
-L|Sydney Metro|Metro North West & Bankstown Line|#168388|99 97:1880 91:2606 80:2057 96:2206 90:2331 81:2154 85:2417 87:6364 93:3966 92:1183 95:1391 84:4317 86:3903 100:1549 78:2744 94:1390 88:725 83:1191 101:1705 98:3961
-L|Translink|L1 G|#ffc425|112 121:3065 122:2333 110:1890 111:463 123:1363 118:1435 125:760 126:626 104:367 113:1109 128:1340 108:435 106:565 127:523 120:436 109:810 102:1200 103:837 114:803 115:971 119:1040 117:636 116:516 107:856 124:951 105:843
-L|Translink|L1 G|#ffc425|105 124:840 107:952 116:855 117:516 119:641 115:1037 114:971 103:844 102:833 109:1200 120:811 127:435 106:520 108:568 128:431 113:1349 104:1096 126:372 125:801 118:687 123:1440 111:1367 110:472 122:1878 121:2336 112:3032
-L|Palm Beach Ferries|Palm Beach - Bennetts - Bonnie Doon - Basin - Currawong - Mackeral|#5AB031|133 129:3696 130:1474 134:437 131:1688 132:1080
-L|Palm Beach Ferries|Palm Beach - Bennetts - Currawong - Mackeral|#5AB031|133 129:3837 131:856 132:1080
-L|Rottnest Express|Express||135 137:39799
-L|Rottnest Express|Express||141 137:20341
-L|Rottnest Express|Express||136 137:19480
-L|Rottnest Express|Express||136 137:19423
-L|Rottnest Fast Ferries|Fast Ferries||138 137:27242
-L|SeaLink Queensland|Magnetic Island Ferry||139 140:11250
-L|SeaLink Rottnest Island|SeaLink||141 137:20341
-L|Sydney Ferries|Circular Quay to Watsons Bay|#65B32E|150 178:8375 183:6369
-L|Sydney Ferries|F10 B Blackwattle Bay|#469B3B|145 147:2079
-L|Sydney Ferries|F10 Blackwattle Bay via Pirrama Park|#469B3B|145 175:1069 147:1063
-L|Sydney Ferries|Ferry|#BFD730|176 145:522 144:1059 166:1714 168:456 151:1825
-L|Sydney Ferries|Ferry|#648C3C|151 145:1106 152:6246 156:1556 160:2244 149:541 142:1581 148:1161 162:1772 167:1685 181:1066 179:3828 174:3506
-L|Sydney Ferries|Ferry|#BFD730|151 168:1825 166:456 144:1714 145:1059 176:522
-L|Sydney Ferries|Ferry|#00B189|150 154:3137 155:909
-L|Sydney Ferries|Ferry|#00B189|150 155:3723
-L|Sydney Ferries|Ferry|#00B189|155 154:909 150:3137
-L|Sydney Ferries|Ferry|#00B189|155 150:3722
-L|Sydney Ferries|Ferry|#55622B|152 184:1307 157:943 146:781 143:1846 151:4224
-L|Sydney Ferries|Ferry|#648C3C|174 179:3506 181:3829 167:1066 162:1685 148:1772 142:1161 149:1581 160:541 156:2244 152:1556 145:6246 151:1106
-L|Sydney Ferries|Ferry|#144734|151 182:3408
-L|Sydney Ferries|Ferry|#00AB51|151 153:2835 180:659 173:350 169:341
-L|Sydney Ferries|Ferry|#144734|182 151:3408
-L|Sydney Ferries|Ferry|#00AB51|169 173:341 180:350 153:659 151:2835
-L|Sydney Ferries|Ferry|#286142|170 163:255 161:677 151:1887
-L|Sydney Ferries|Ferry|#286142|151 161:1887 171:589 170:308
-L|Sydney Ferries|Ferry|#55622B|151 143:4224 146:1846 157:781 184:943 152:1307
-L|Sydney Ferries|Ferry|#5AB031|146 157:781 158:1099 172:394 164:969 159:1252 177:863
-L|Sydney Ferries|Ferry|#5AB031|159 177:863 164:1866 172:969 158:394 157:1099 146:781
-L|Sydney Ferries|Manly Ferry|#00774B|151 165:11247
-L|Sydney Ferries|Manly Ferry|#00774B|165 151:11250
-L|Sydney Ferries|Watsons Bay to Circular Quay|#65B32E|183 178:6370 150:8375
-L|TT-Line Company|Geelong - Devonport||186 185:447940
-L|Translink|Ferry F1||201 188:2079 207:3378 189:313 193:1556 199:1484 198:1743 206:299 195:2501 204:1266 202:2644 205:490 200:397 197:2242 203:1385 192:1858 210:378 208:1937
-L|Translink|Ferry F1||201 187:2032 188:597 207:3980 189:313 193:1556 199:1484 198:1743 206:299 195:2501 204:1266 202:2644 205:490 200:397 203:5693 192:1858 210:378 208:1937
-L|Translink|Ferry F1||193 189:1556 207:313 188:3980 187:597 201:2032
-L|Translink|Ferry F1||193 189:1556 207:313 188:3378 201:2079
-L|Translink|Ferry F1||208 210:2004 192:378 203:1858 200:5692 205:397 202:490 204:2644 195:1266 206:2501 198:299 199:1743 193:1484 189:1556 207:313 188:3980 187:597 201:2032
-L|Translink|Ferry F1||208 210:2004 192:378 203:1858 197:1385 200:2242 205:397 202:490 204:2644 195:1266 206:2501 198:299 199:1743 193:1484 189:1556 207:313 188:3378 201:2079
-L|Translink|Ferry F11||204 193:3997 189:1213 188:2753 187:575
-L|Translink|Ferry F11||187 188:575 189:2753 193:1213 204:3997
-L|Translink|Ferry F12||202 200:770 197:2120 203:1385 192:1678 210:256
-L|Translink|Ferry F12||210 192:256 203:1678 197:1385 200:2120 202:770
-L|Translink|Ferry F21||207 189:317
-L|Translink|Ferry F21||189 207:334
-L|Translink|Ferry F22||206 191:403
-L|Translink|Ferry F22||191 206:403
-L|Translink|Ferry F23||204 194:254
-L|Translink|Ferry F23||194 204:254
-L|Translink|Ferry F24||202 196:510
-L|Translink|Ferry F24||196 202:510
-L|Translink|Ferry F50||190 209:1523
-L|Translink|Ferry F50||209 190:1523
-L|Transperth|Transperth Ferry - Elizabeth Quay to Mends Street||211 212:1396
-L|Transperth|Transperth Ferry - Mends Street to Elizabeth Quay||212 211:1396
-L|Transport Victoria - Ferries|Geelong-Docklands Ferry|#00A499|215 216:68949
-L|Transport Victoria - Ferries|Queenscliff - Sorrento Ferry||217 218:10654
-L|Transport Victoria - Ferries|Queenscliff - Sorrento Ferry||218 217:10650
-L|Transport Victoria - Ferries|Western Port Ferries||220 221:9079 213:8069 220:20369
-L|Transport Victoria - Ferries|Western Port Ferries||220 213:20375 221:8068 220:9078
-L|Transport Victoria - Ferries|Westgate Punt||214 219:540
-L|Transport Victoria - Ferries|Westgate Punt||219 214:500
-L|Transport for New South Wales|Bundeena - Cronulla|#5AB031|224 225:3668
-L|Transport for New South Wales|Cronulla Bundeena|#5AB031|225 224:3669
-L|Transport for New South Wales|Mortlake Ferry||223 222:329
-L|Transport for New South Wales|Newcastle - Stockton Ferry|#5AB031|226 227:636
+L|Sydney Metro|Metro North West & Bankstown Line|#168388|96 99:4086 81:1661 87:1212 92:805 78:1311 98:2766 84:1514 82:3769 93:4315 90:1401 91:1346 85:3810 83:6351 80:2542 88:2015 94:2320 79:2243 89:2213 95:2606 97:1872
+L|Sydney Metro|Metro North West & Bankstown Line|#168388|97 95:1880 89:2606 79:2057 94:2206 88:2331 80:2154 83:2417 85:6364 91:3966 90:1183 93:1391 82:4317 84:3903 98:1549 78:2744 92:1390 86:725 81:1191 99:1705 96:3961
+L|Translink|L1 G|#ffc425|110 119:3065 120:2333 108:1890 109:463 121:1363 116:1435 123:760 124:626 102:367 111:1109 126:1340 106:435 104:565 125:523 118:436 107:810 100:1200 101:837 112:803 113:971 117:1040 115:636 114:516 105:856 122:951 103:843
+L|Translink|L1 G|#ffc425|103 122:840 105:952 114:855 115:516 117:641 113:1037 112:971 101:844 100:833 107:1200 118:811 125:435 104:520 106:568 126:431 111:1349 102:1096 124:372 123:801 116:687 121:1440 109:1367 108:472 120:1878 119:2336 110:3032
+L|Palm Beach Ferries|Palm Beach - Bennetts - Bonnie Doon - Basin - Currawong - Mackeral|#5AB031|131 127:3696 128:1474 132:437 129:1688 130:1080
+L|Palm Beach Ferries|Palm Beach - Bennetts - Currawong - Mackeral|#5AB031|131 127:3837 129:856 130:1080
+L|Rottnest Express|Express||133 135:39799
+L|Rottnest Express|Express||139 135:20341
+L|Rottnest Express|Express||134 135:19480
+L|Rottnest Express|Express||134 135:19423
+L|Rottnest Fast Ferries|Fast Ferries||136 135:27242
+L|SeaLink Queensland|Magnetic Island Ferry||137 138:11250
+L|SeaLink Rottnest Island|SeaLink||139 135:20341
+L|Sydney Ferries|Circular Quay to Watsons Bay|#65B32E|148 176:8375 181:6369
+L|Sydney Ferries|F10 B Blackwattle Bay|#469B3B|143 145:2079
+L|Sydney Ferries|F10 Blackwattle Bay via Pirrama Park|#469B3B|143 173:1069 145:1063
+L|Sydney Ferries|Ferry|#BFD730|174 143:522 142:1059 164:1714 166:456 149:1825
+L|Sydney Ferries|Ferry|#648C3C|149 143:1106 150:6246 154:1556 158:2244 147:541 140:1581 146:1161 160:1772 165:1685 179:1066 177:3828 172:3506
+L|Sydney Ferries|Ferry|#BFD730|149 166:1825 164:456 142:1714 143:1059 174:522
+L|Sydney Ferries|Ferry|#00B189|148 152:3137 153:909
+L|Sydney Ferries|Ferry|#00B189|148 153:3723
+L|Sydney Ferries|Ferry|#00B189|153 152:909 148:3137
+L|Sydney Ferries|Ferry|#00B189|153 148:3722
+L|Sydney Ferries|Ferry|#55622B|150 182:1307 155:943 144:781 141:1846 149:4224
+L|Sydney Ferries|Ferry|#648C3C|172 177:3506 179:3829 165:1066 160:1685 146:1772 140:1161 147:1581 158:541 154:2244 150:1556 143:6246 149:1106
+L|Sydney Ferries|Ferry|#144734|149 180:3408
+L|Sydney Ferries|Ferry|#00AB51|149 151:2835 178:659 171:350 167:341
+L|Sydney Ferries|Ferry|#144734|180 149:3408
+L|Sydney Ferries|Ferry|#00AB51|167 171:341 178:350 151:659 149:2835
+L|Sydney Ferries|Ferry|#286142|168 161:255 159:677 149:1887
+L|Sydney Ferries|Ferry|#286142|149 159:1887 169:589 168:308
+L|Sydney Ferries|Ferry|#55622B|149 141:4224 144:1846 155:781 182:943 150:1307
+L|Sydney Ferries|Ferry|#5AB031|144 155:781 156:1099 170:394 162:969 157:1252 175:863
+L|Sydney Ferries|Ferry|#5AB031|157 175:863 162:1866 170:969 156:394 155:1099 144:781
+L|Sydney Ferries|Manly Ferry|#00774B|149 163:11247
+L|Sydney Ferries|Manly Ferry|#00774B|163 149:11250
+L|Sydney Ferries|Watsons Bay to Circular Quay|#65B32E|181 176:6370 148:8375
+L|TT-Line Company|Geelong - Devonport||184 183:447940
+L|Translink|Ferry F1||199 186:2079 205:3378 187:313 191:1556 197:1484 196:1743 204:299 193:2501 202:1266 200:2644 203:490 198:397 195:2242 201:1385 190:1858 208:378 206:1937
+L|Translink|Ferry F1||199 185:2032 186:597 205:3980 187:313 191:1556 197:1484 196:1743 204:299 193:2501 202:1266 200:2644 203:490 198:397 201:5693 190:1858 208:378 206:1937
+L|Translink|Ferry F1||191 187:1556 205:313 186:3980 185:597 199:2032
+L|Translink|Ferry F1||191 187:1556 205:313 186:3378 199:2079
+L|Translink|Ferry F1||206 208:2004 190:378 201:1858 198:5692 203:397 200:490 202:2644 193:1266 204:2501 196:299 197:1743 191:1484 187:1556 205:313 186:3980 185:597 199:2032
+L|Translink|Ferry F1||206 208:2004 190:378 201:1858 195:1385 198:2242 203:397 200:490 202:2644 193:1266 204:2501 196:299 197:1743 191:1484 187:1556 205:313 186:3378 199:2079
+L|Translink|Ferry F11||202 191:3997 187:1213 186:2753 185:575
+L|Translink|Ferry F11||185 186:575 187:2753 191:1213 202:3997
+L|Translink|Ferry F12||200 198:770 195:2120 201:1385 190:1678 208:256
+L|Translink|Ferry F12||208 190:256 201:1678 195:1385 198:2120 200:770
+L|Translink|Ferry F21||205 187:317
+L|Translink|Ferry F21||187 205:334
+L|Translink|Ferry F22||204 189:403
+L|Translink|Ferry F22||189 204:403
+L|Translink|Ferry F23||202 192:254
+L|Translink|Ferry F23||192 202:254
+L|Translink|Ferry F24||200 194:510
+L|Translink|Ferry F24||194 200:510
+L|Translink|Ferry F50||188 207:1523
+L|Translink|Ferry F50||207 188:1523
+L|Transperth|Transperth Ferry - Elizabeth Quay to Mends Street||209 210:1396
+L|Transperth|Transperth Ferry - Mends Street to Elizabeth Quay||210 209:1396
+L|Transport Victoria - Ferries|Geelong-Docklands Ferry|#00A499|213 214:68949
+L|Transport Victoria - Ferries|Queenscliff - Sorrento Ferry||215 216:10654
+L|Transport Victoria - Ferries|Queenscliff - Sorrento Ferry||216 215:10650
+L|Transport Victoria - Ferries|Western Port Ferries||218 219:9079 211:8069 218:20369
+L|Transport Victoria - Ferries|Western Port Ferries||218 211:20375 219:8068 218:9078
+L|Transport Victoria - Ferries|Westgate Punt||212 217:540
+L|Transport Victoria - Ferries|Westgate Punt||217 212:500
+L|Transport for New South Wales|Bundeena - Cronulla|#5AB031|222 223:3668
+L|Transport for New South Wales|Cronulla Bundeena|#5AB031|223 222:3669
+L|Transport for New South Wales|Mortlake Ferry||221 220:329
+L|Transport for New South Wales|Newcastle - Stockton Ferry|#5AB031|224 225:636
+R|-34.92100|138.59677|Adelaide|Adelaide Metro
+R|-34.99801|138.63292|Belair|Adelaide Metro
+R|-34.96656|138.57385|Emerson|Adelaide Metro
+R|-35.01895|138.56930|Flinders|Adelaide Metro
+R|-34.60865|138.73973|Gawler|Adelaide Metro
+R|-34.59446|138.74820|Gawler Central|Adelaide Metro
+R|-34.90029|138.49082|Grange|Adelaide Metro
+R|-35.06629|138.50565|Hallett Cove|Adelaide Metro
+R|-34.79953|138.49911|Midlunga|Adelaide Metro
+R|-35.14031|138.49228|Noarlunga Centre|Adelaide Metro
+R|-34.78625|138.49478|North Haven|Adelaide Metro
+R|-35.00944|138.54112|Oaklands|Adelaide Metro
+R|-34.79306|138.49918|Osborne|Adelaide Metro
+R|-34.77820|138.48423|Outer Harbor|Adelaide Metro
+R|-34.83473|138.49195|Peterhead|Adelaide Metro
+R|-34.84497|138.50890|Port Dock|Adelaide Metro
+R|-34.76316|138.64243|Salisbury Interchange|Adelaide Metro
+R|-35.18924|138.48350|Seaford|Adelaide Metro
+R|-18.58690|143.60270|Forsayth|Cairns Kuranda Steam
+R|-36.31052|140.77736|Bordertown|Great Southern Railway
+R|-38.09832|144.36541|North Shore|PTV - Regional Trains
+R|-31.95935|141.46674|Broken Hill|Journey Beyond Rail Expeditions
+R|-30.61308|130.41337|Cook|Journey Beyond Rail Expeditions
+R|-30.74623|121.46651|Kalgoorlie|Journey Beyond Rail Expeditions
+R|-31.00870|125.33235|Rawlinna|Journey Beyond Rail Expeditions
+R|-37.82874|144.93765||Melbourne Metropolitan Trains
+R|-37.82674|144.91659||Melbourne Metropolitan Trains
+R|-37.81847|144.95205|Southern Cross|Melbourne Metropolitan Trains
+R|-32.16686|150.89196|Aberdeen|NSW TrainLink
+R|-32.93378|151.72002|Adamstown|NSW TrainLink
+R|-34.56292|150.79862|Albion Park|NSW TrainLink
+R|-36.08566|146.92428|Albury|NSW TrainLink
+R|-30.51516|151.65171|Armidale|NSW TrainLink
+R|-34.30648|150.92922|Austinmer|NSW TrainLink
+R|-33.01294|151.54162|Awaba|NSW TrainLink
+R|-34.29110|150.58012|Bargo|NSW TrainLink
+R|-33.42556|149.58320|Bathurst|NSW TrainLink
+R|-33.50565|150.27887|Bell|NSW TrainLink
+R|-34.36285|150.91005|Bellambi|NSW TrainLink
+R|-29.91838|149.79057|Bellata|NSW TrainLink
+R|-32.79897|151.65790|Beresfield|NSW TrainLink
+R|-33.62354|151.15317|Berowra|NSW TrainLink
+R|-34.78030|150.69679|Berry|NSW TrainLink
+R|-33.63323|150.28432|Blackheath|NSW TrainLink
+R|-33.74363|150.60962|Blaxland|NSW TrainLink
+R|-33.52721|149.25440|Blayney|NSW TrainLink
+R|-30.70358|150.04002|Boggabri|NSW TrainLink
+R|-34.85386|150.60980|Bomaderry|NSW TrainLink
+R|-34.65854|150.85385|Bombo|NSW TrainLink
+R|-32.97156|151.60483|Booragul|NSW TrainLink
+R|-34.47802|150.41671|Bowral|NSW TrainLink
+R|-32.66221|151.34570|Branxton|NSW TrainLink
+R|-32.92313|151.73445|Broadmeadow|NSW TrainLink
+R|-37.68281|144.91970|Broadmeadows|PTV - Metropolitan Trains
+R|-33.72354|150.41474|Bullaburra|NSW TrainLink
+R|-34.33443|150.91476|Bulli|NSW TrainLink
+R|-34.65611|150.29884|Bundanoon|NSW TrainLink
+R|-35.25598|149.44637|Bungendore|NSW TrainLink
+R|-34.49423|150.39807|Burradoo|NSW TrainLink
+R|-35.31932|149.14941|Canberra|NSW TrainLink
+R|-32.94165|151.66283|Cardiff|NSW TrainLink
+R|-28.86110|153.03825|Casino|NSW TrainLink
+R|-34.24216|150.97749|Coalcliff|NSW TrainLink
+R|-32.94270|151.62372|Cockle Creek|NSW TrainLink
+R|-30.30613|153.13779|Coffs Harbour|NSW TrainLink
+R|-34.28957|150.94323|Coledale|NSW TrainLink
+R|-33.08406|147.15308|Condobolin|NSW TrainLink
+R|-34.43774|150.88528|Coniston|NSW TrainLink
+R|-34.81596|147.20189|Coolamon|NSW TrainLink
+R|-34.64123|148.03066|Cootamundra|NSW TrainLink
+R|-34.37573|150.90486|Corrimal|NSW TrainLink
+R|-33.59311|151.17169|Cowan|NSW TrainLink
+R|-34.46704|150.87829|Cringila|NSW TrainLink
+R|-35.66600|147.03832|Culcairn|NSW TrainLink
+R|-34.49304|150.79180|Dapto|NSW TrainLink
+R|-32.85082|143.62537|Darnick|NSW TrainLink
+R|-33.08372|151.50095|Dora Creek|NSW TrainLink
+R|-34.18325|150.71025|Douglas Park|NSW TrainLink
+R|-32.24506|148.60779|Dubbo|NSW TrainLink
+R|-32.40238|151.75935|Dungog|NSW TrainLink
+R|-32.74482|151.58739|East Maitland|NSW TrainLink
+R|-33.74570|150.67158|Emu Plains|NSW TrainLink
+R|-33.77139|151.08151|Epping|NSW TrainLink
+R|-33.05477|146.39100|Euabalong West|NSW TrainLink
+R|-30.84962|152.90012|Eungai|NSW TrainLink
+R|-34.61369|150.31740|Exeter|NSW TrainLink
+R|-34.39537|150.89638|Fairy Meadow|NSW TrainLink
+R|-32.98554|151.58110|Fassifern|NSW TrainLink
+R|-33.69643|150.53507|Faulconbridge|NSW TrainLink
+R|-34.74472|150.81768|Gerringong|NSW TrainLink
+R|-32.39789|148.83049|Geurie|NSW TrainLink
+R|-33.76903|150.62073|Glenbrook|NSW TrainLink
+R|-32.00467|151.96697|Gloucester|NSW TrainLink
+R|-33.42342|151.34175|Gosford|NSW TrainLink
+R|-34.75833|149.71946|Goulburn|NSW TrainLink
+R|-29.70362|152.94168|Grafton|NSW TrainLink
+R|-32.68667|151.38411|Greta|NSW TrainLink
+R|-34.28677|146.04770|Griffith|NSW TrainLink
+R|-30.97920|150.24794|Gunnedah|NSW TrainLink
+R|-34.77971|149.26130|Gunning|NSW TrainLink
+R|-32.91864|151.74876|Hamilton|NSW TrainLink
+R|-34.55353|148.37153|Harden|NSW TrainLink
+R|-33.54708|151.22630|Hawkesbury River|NSW TrainLink
+R|-33.72397|150.45449|Hazelbrook|NSW TrainLink
+R|-34.17694|150.99481|Helensburgh|NSW TrainLink
+R|-35.51768|147.03527|Henty|NSW TrainLink
+R|-32.82905|151.68424|Hexham|NSW TrainLink
+R|-32.74142|151.56375|High Street|NSW TrainLink
+R|-32.50433|151.64985|Hilldale|NSW TrainLink
+R|-32.91437|144.31172|Ivanhoe|NSW TrainLink
+R|-34.87050|147.58374|Junee|NSW TrainLink
+R|-33.71185|150.31123|Katoomba|NSW TrainLink
+R|-34.47016|150.81753|Kembla Grange|NSW TrainLink
+R|-31.07681|152.83288|Kempsey|NSW TrainLink
+R|-31.63536|152.70644|Kendall|NSW TrainLink
+R|-34.67258|150.85453|Kiama|NSW TrainLink
+R|-33.46640|151.31851|Koolewong|NSW TrainLink
+R|-31.05872|151.05617|Kootingal|NSW TrainLink
+R|-32.94139|151.69855|Kotara|NSW TrainLink
+R|-28.62018|153.00123|Kyogle|NSW TrainLink
+R|-33.77377|150.64273|Lapstone|NSW TrainLink
+R|-33.71902|150.42997|Lawson|NSW TrainLink
+R|-34.55456|146.39775|Leeton|NSW TrainLink
+R|-33.71190|150.33050|Leura|NSW TrainLink
+R|-33.71492|150.50546|Linden|NSW TrainLink
+R|-33.38221|151.36998|Lisarow|NSW TrainLink
+R|-33.48050|150.15750|Lithgow|NSW TrainLink
+R|-32.72052|151.45022|Lochinvar|NSW TrainLink
+R|-34.45453|150.87606|Lysaghts|NSW TrainLink
+R|-30.70946|152.91318|Macksville|NSW TrainLink
+R|-32.73803|151.55213|Maitland|NSW TrainLink
+R|-32.55872|151.61851|Martins Creek|NSW TrainLink
+R|-34.70952|150.00623|Marulan|NSW TrainLink
+R|-33.67356|150.28066|Medlow Bath|NSW TrainLink
+R|-34.12530|150.74438|Menangle|NSW TrainLink
+R|-34.10365|150.74496|Menangle Park|NSW TrainLink
+R|-32.38938|142.42469|Menindee|NSW TrainLink
+R|-32.76493|151.61791|Metford|NSW TrainLink
+R|-33.44874|149.18275|Millthorpe|NSW TrainLink
+R|-32.66834|151.58449|Mindaribba|NSW TrainLink
+R|-34.62589|150.85242|Minnamurra|NSW TrainLink
+R|-34.45267|150.44768|Mittagong|NSW TrainLink
+R|-29.47338|149.84823|Moree|NSW TrainLink
+R|-33.10909|151.48791|Morisset|NSW TrainLink
+R|-34.54817|150.37135|Moss Vale|NSW TrainLink
+R|-33.58780|150.25680|Mount Victoria|NSW TrainLink
+R|-31.76837|150.83941|Murrurundi|NSW TrainLink
+R|-32.26751|150.89057|Muswellbrook|NSW TrainLink
+R|-30.62912|152.97749|Nambucca Heads|NSW TrainLink
+R|-33.39472|151.34440|Narara|NSW TrainLink
+R|-30.32521|149.79202|Narrabri|NSW TrainLink
+R|-34.74062|146.55712|Narrandera|NSW TrainLink
+R|-32.92416|151.75943|Newcastle Interchange|NSW TrainLink
+R|-33.38314|151.35450|Niagara Park|NSW TrainLink
+R|-34.41212|150.89144|North Wollongong|NSW TrainLink
+R|-34.57195|150.82041|Oak Flats|NSW TrainLink
+R|-33.28673|149.10362|Orange|NSW TrainLink
+R|-33.30094|149.10128|Orange East Fork|NSW TrainLink
+R|-34.21069|151.00582|Otford|NSW TrainLink
+R|-33.35953|151.36994|Ourimbah|NSW TrainLink
+R|-33.14222|148.17331|Parkes|NSW TrainLink
+R|-33.81751|151.00540|Parramatta|NSW TrainLink
+R|-32.60238|151.61472|Paterson|NSW TrainLink
+R|-33.74999|150.69609|Penrith|NSW TrainLink
+R|-34.67243|150.21191|Penrose|NSW TrainLink
+R|-34.17901|150.61260|Picton|NSW TrainLink
+R|-33.44619|151.32844|Point Clare|NSW TrainLink
+R|-34.47720|150.90256|Port Kembla|NSW TrainLink
+R|-34.47277|150.88834|Port Kembla North|NSW TrainLink
+R|-35.34293|149.22762|Queanbeyan|NSW TrainLink
+R|-31.50527|150.68104|Quirindi|NSW TrainLink
+R|-33.48382|150.03178|Rydal|NSW TrainLink
+R|-32.87214|151.70273|Sandgate|NSW TrainLink
+R|-30.35949|153.09753|Sawtell|NSW TrainLink
+R|-34.26488|150.96578|Scarborough|NSW TrainLink
+R|-32.04688|150.86700|Scone|NSW TrainLink
+R|-37.02449|145.13851|Seymour|V/Line
+R|-34.59117|150.84477|Shellharbour Junction|NSW TrainLink
+R|-32.57195|151.16561|Singleton|NSW TrainLink
+R|-33.69875|150.56397|Springwood|NSW TrainLink
+R|-34.22638|150.98111|Stanwell Park|NSW TrainLink
+R|-32.80148|149.07852|Stuart Town|NSW TrainLink
+R|-34.22352|150.59010|Tahmoor|NSW TrainLink
+R|-34.71834|150.08644|Tallong|NSW TrainLink
+R|-31.08730|150.93080|Tamworth|NSW TrainLink
+R|-35.07006|149.65141|Tarago|NSW TrainLink
+R|-33.52424|149.90758|Tarana|NSW TrainLink
+R|-31.90628|152.45713|Taree|NSW TrainLink
+R|-32.80914|151.66976|Tarro|NSW TrainLink
+R|-33.45091|151.31862|Tascott|NSW TrainLink
+R|-32.72340|151.53982|Telarah|NSW TrainLink
+R|-32.96250|151.60354|Teralba|NSW TrainLink
+R|-35.27170|147.11848|The Rock|NSW TrainLink
+R|-34.31817|150.91891|Thirroul|NSW TrainLink
+R|-32.78352|151.63975|Thornton|NSW TrainLink
+R|-34.38405|150.90153|Towradgi|NSW TrainLink
+R|-33.30780|151.42019|Tuggerah|NSW TrainLink
+R|-34.45468|150.84607|Unanderra|NSW TrainLink
+R|-30.64400|151.50499|Uralla|NSW TrainLink
+R|-30.49903|153.01865|Urunga|NSW TrainLink
+R|-33.70449|150.58387|Valley Heights|NSW TrainLink
+R|-32.75090|151.59374|Victoria Street|NSW TrainLink
+R|-35.12036|147.36852|Wagga Wagga|NSW TrainLink
+R|-30.94138|151.40231|Walcha Road Statiun|NSW TrainLink
+R|-32.49615|151.69563|Wallarobba|NSW TrainLink
+R|-32.88704|151.70987|Warabrook|NSW TrainLink
+R|-32.90237|151.73121|Waratah|NSW TrainLink
+R|-33.24750|151.44863|Warnervale|NSW TrainLink
+R|-33.72129|150.60235|Warrimoo|NSW TrainLink
+R|-31.45600|152.73658|Wauchope|NSW TrainLink
+R|-32.55396|148.94673|Wellington|NSW TrainLink
+R|-33.70988|150.37641|Wentworth Falls|NSW TrainLink
+R|-31.34952|150.64638|Werris Creek|NSW TrainLink
+R|-31.65016|150.72610|Willow Tree|NSW TrainLink
+R|-34.69223|150.15825|Wingello|NSW TrainLink
+R|-31.86803|152.36719|Wingham|NSW TrainLink
+R|-32.46293|151.74250|Wirragulla|NSW TrainLink
+R|-34.42703|150.88819|Wollongong|NSW TrainLink
+R|-34.27575|150.95336|Wombarra|NSW TrainLink
+R|-33.49215|151.25701|Wondabyne|NSW TrainLink
+R|-33.73547|150.48219|Woodford|NSW TrainLink
+R|-34.34959|150.91521|Woonona|NSW TrainLink
+R|-33.48588|151.32314|Woy Woy|NSW TrainLink
+R|-33.48588|151.32314|Woy Woy|NSW TrainLink
+R|-33.18035|151.48711|Wyee|NSW TrainLink
+R|-33.28548|151.42523|Wyong|NSW TrainLink
+R|-33.28548|151.42523|Wyong|NSW TrainLink
+R|-34.80897|148.91527|Yass Junction|NSW TrainLink
+R|-34.37182|150.54345|Yerrinbool|NSW TrainLink
+R|-33.47178|150.20202|Zig Zag|NSW TrainLink
+R|-37.86660|144.76073|Aircraft|PTV - Metropolitan Trains
+R|-37.86836|145.07973|Alamein|PTV - Metropolitan Trains
+R|-37.77721|144.82438|Albion|PTV - Metropolitan Trains
+R|-37.77839|145.03128|Alphington|PTV - Metropolitan Trains
+R|-37.86718|144.82953|Altona|PTV - Metropolitan Trains
+R|-37.76135|144.96071|Anstey|PTV - Metropolitan Trains
+R|-37.83341|144.97293|Anzac|PTV - Metropolitan Trains
+R|-37.80136|144.94014|Arden|PTV - Metropolitan Trains
+R|-37.80136|144.94014|Arden|PTV - Metropolitan Trains
+R|-37.85629|145.01924|Armadale|PTV - Metropolitan Trains
+R|-37.77533|144.92183|Ascot Vale|PTV - Metropolitan Trains
+R|-37.86200|145.08140|Ashburton|PTV - Metropolitan Trains
+R|-38.02724|145.10213|Aspendale|PTV - Metropolitan Trains
+R|-37.82241|145.04588|Auburn|PTV - Metropolitan Trains
+R|-37.86960|144.99351|Balaclava|PTV - Metropolitan Trains
+R|-37.73354|144.96284|Batman|PTV - Metropolitan Trains
+R|-38.19408|145.16052|Baxter|PTV - Metropolitan Trains
+R|-37.84174|145.26812|Bayswater|PTV - Metropolitan Trains
+R|-38.05109|145.36651|Beaconsfield|PTV - Metropolitan Trains
+R|-37.90901|145.35525|Belgrave|PTV - Metropolitan Trains
+R|-37.74598|145.00025|Bell|PTV - Metropolitan Trains
+R|-37.91754|145.03693|Bentleigh|PTV - Metropolitan Trains
+R|-38.04011|145.34531|Berwick|PTV - Metropolitan Trains
+R|-38.33716|145.17809|Bittern|PTV - Metropolitan Trains
+R|-37.82008|145.15005|Blackburn|PTV - Metropolitan Trains
+R|-38.06545|145.12011|Bonbeach|PTV - Metropolitan Trains
+R|-37.86066|145.28484|Boronia|PTV - Metropolitan Trains
+R|-37.81932|145.12212|Box Hill|PTV - Metropolitan Trains
+R|-37.92651|144.98906|Brighton Beach|PTV - Metropolitan Trains
+R|-37.76769|144.95961|Brunswick|PTV - Metropolitan Trains
+R|-37.82761|145.00809|Burnley|PTV - Metropolitan Trains
+R|-37.85167|145.08058|Burwood|PTV - Metropolitan Trains
+R|-37.82656|145.05866|Camberwell|PTV - Metropolitan Trains
+R|-37.82475|145.08076|Canterbury|PTV - Metropolitan Trains
+R|-38.07128|145.43764|Cardinia Road|PTV - Metropolitan Trains
+R|-37.88630|145.05873|Carnegie|PTV - Metropolitan Trains
+R|-38.07748|145.12306|Carrum|PTV - Metropolitan Trains
+R|-37.87732|145.04238|Caulfield|PTV - Metropolitan Trains
+R|-37.82423|145.08866|Chatham|PTV - Metropolitan Trains
+R|-37.82423|145.08866|Chatham|PTV - Metropolitan Trains
+R|-38.05328|145.11664|Chelsea|PTV - Metropolitan Trains
+R|-37.96701|145.05470|Cheltenham|PTV - Metropolitan Trains
+R|-37.92462|145.12069|Clayton|PTV - Metropolitan Trains
+R|-37.78889|144.99536|Clifton Hill|PTV - Metropolitan Trains
+R|-37.74218|144.96332|Coburg|PTV - Metropolitan Trains
+R|-37.80447|144.99376|Collingwood|PTV - Metropolitan Trains
+R|-37.66140|144.92598|Coolaroo|PTV - Metropolitan Trains
+R|-37.60226|144.94309|Craigieburn|PTV - Metropolitan Trains
+R|-38.09973|145.28073|Cranbourne|PTV - Metropolitan Trains
+R|-38.09973|145.28073|Cranbourne|PTV - Metropolitan Trains
+R|-38.36597|145.20414|Crib Point|PTV - Metropolitan Trains
+R|-37.76406|144.99705|Croxton|PTV - Metropolitan Trains
+R|-37.79534|145.28042|Croydon|PTV - Metropolitan Trains
+R|-37.99007|145.20976|Dandenong|PTV - Metropolitan Trains
+R|-37.77475|145.03868|Darebin|PTV - Metropolitan Trains
+R|-37.86898|145.06297|Darling|PTV - Metropolitan Trains
+R|-37.77919|145.00836|Dennis|PTV - Metropolitan Trains
+R|-37.67333|145.15881|Diamond Creek|PTV - Metropolitan Trains
+R|-37.62760|144.72001|Diggers Rest|PTV - Metropolitan Trains
+R|-37.76374|145.05377|Eaglemont|PTV - Metropolitan Trains
+R|-37.82572|145.06831|East Camberwell|PTV - Metropolitan Trains
+R|-37.87685|145.06917|East Malvern|PTV - Metropolitan Trains
+R|-38.08432|145.50674|East Pakenham|PTV - Metropolitan Trains
+R|-37.82634|144.99676|East Richmond|PTV - Metropolitan Trains
+R|-38.03650|145.10757|Edithvale|PTV - Metropolitan Trains
+R|-37.88512|145.00109|Elsternwick|PTV - Metropolitan Trains
+R|-37.71378|145.14760|Eltham|PTV - Metropolitan Trains
+R|-37.65233|145.03193|Epping|PTV - Metropolitan Trains
+R|-37.75610|144.91620|Essendon|PTV - Metropolitan Trains
+R|-37.77918|145.01692|Fairfield|PTV - Metropolitan Trains
+R|-37.71465|144.96054|Fawkner|PTV - Metropolitan Trains
+R|-37.88158|145.29515|Ferntree Gully|PTV - Metropolitan Trains
+R|-37.81187|144.95602|Flagstaff|PTV - Metropolitan Trains
+R|-37.78821|144.93927|Flemington Bridge|PTV - Metropolitan Trains
+R|-37.78750|144.90721|Flemington Racecourse|PTV - Metropolitan Trains
+R|-37.81842|144.96648|Flinders Street|PTV - Metropolitan Trains
+R|-38.14267|145.12620|Frankston|PTV - Metropolitan Trains
+R|-37.89664|145.00418|Gardenvale|PTV - Metropolitan Trains
+R|-37.85280|145.05087|Gardiner|PTV - Metropolitan Trains
+R|-37.76001|144.81124|Ginifer|PTV - Metropolitan Trains
+R|-37.74720|144.92093|Glenbervie|PTV - Metropolitan Trains
+R|-37.82138|145.03635|Glenferrie|PTV - Metropolitan Trains
+R|-37.88931|145.04228|Glen Huntly|PTV - Metropolitan Trains
+R|-37.85918|145.05813|Glen Iris|PTV - Metropolitan Trains
+R|-37.70442|144.91733|Glenroy|PTV - Metropolitan Trains
+R|-37.87947|145.16235|Glen Waverley|PTV - Metropolitan Trains
+R|-37.70064|144.95884|Gowrie|PTV - Metropolitan Trains
+R|-37.70375|145.10790|Greensborough|PTV - Metropolitan Trains
+R|-38.01796|145.27032|Hallam|PTV - Metropolitan Trains
+R|-37.93811|145.00148|Hampton|PTV - Metropolitan Trains
+R|-37.84403|145.07557|Hartwell|PTV - Metropolitan Trains
+R|-38.30561|145.18599|Hastings|PTV - Metropolitan Trains
+R|-37.84467|145.00197|Hawksburn|PTV - Metropolitan Trains
+R|-37.62266|145.09741|Hawkstowe|PTV - Metropolitan Trains
+R|-37.82165|145.02332|Hawthorn|PTV - Metropolitan Trains
+R|-37.81881|145.21451|Heatherdale|PTV - Metropolitan Trains
+R|-37.82836|145.24458|Heathmont|PTV - Metropolitan Trains
+R|-37.75711|145.06079|Heidelberg|PTV - Metropolitan Trains
+R|-37.83452|145.02265|Heyington|PTV - Metropolitan Trains
+R|-37.94844|145.04188|Highett|PTV - Metropolitan Trains
+R|-37.87451|145.09024|Holmesglen|PTV - Metropolitan Trains
+R|-37.88323|144.70109|Hoppers Crossing|PTV - Metropolitan Trains
+R|-37.89400|145.07581|Hughesdale|PTV - Metropolitan Trains
+R|-37.91084|145.10213|Huntingdale|PTV - Metropolitan Trains
+R|-37.63942|145.19215|Hurstbridge|PTV - Metropolitan Trains
+R|-37.76888|145.04545|Ivanhoe|PTV - Metropolitan Trains
+R|-37.69515|144.91583|Jacana|PTV - Metropolitan Trains
+R|-37.77492|144.95874|Jewell|PTV - Metropolitan Trains
+R|-37.81650|144.98384|Jolimont|PTV - Metropolitan Trains
+R|-37.87366|145.11227|Jordanville|PTV - Metropolitan Trains
+R|-38.12169|145.13542|Kananook|PTV - Metropolitan Trains
+R|-37.72956|144.79381|Keilor Plains|PTV - Metropolitan Trains
+R|-37.79394|144.93056|Kensington|PTV - Metropolitan Trains
+R|-37.69584|145.01170|Keon Park|PTV - Metropolitan Trains
+R|-37.83978|145.03310|Kooyong|PTV - Metropolitan Trains
+R|-37.82067|145.14087|Laburnum|PTV - Metropolitan Trains
+R|-37.66584|145.01728|Lalor|PTV - Metropolitan Trains
+R|-37.86380|144.77235|Laverton|PTV - Metropolitan Trains
+R|-38.15202|145.13943|Leawarra|PTV - Metropolitan Trains
+R|-37.75716|145.34587|Lilydale|PTV - Metropolitan Trains
+R|-38.05716|145.24931|Lynbrook|PTV - Metropolitan Trains
+R|-37.79486|144.93608|Macaulay|PTV - Metropolitan Trains
+R|-37.72607|145.06914|Macleod|PTV - Metropolitan Trains
+R|-37.86634|145.02946|Malvern|PTV - Metropolitan Trains
+R|-37.91140|145.03810|McKinnon|PTV - Metropolitan Trains
+R|-37.81003|144.96248|Melbourne Central|PTV - Metropolitan Trains
+R|-37.98355|145.06633|Mentone|PTV - Metropolitan Trains
+R|-38.07917|145.26349|Merinda Park|PTV - Metropolitan Trains
+R|-37.72093|144.96133|Merlynston|PTV - Metropolitan Trains
+R|-37.60250|145.10090|Mernda|PTV - Metropolitan Trains
+R|-37.77763|144.99303|Merri|PTV - Metropolitan Trains
+R|-37.91491|144.99654|Middle Brighton|PTV - Metropolitan Trains
+R|-37.80253|144.89141|Middle Footscray|PTV - Metropolitan Trains
+R|-37.64420|145.09199|Middle Gorge|PTV - Metropolitan Trains
+R|-37.81809|145.19280|Mitcham|PTV - Metropolitan Trains
+R|-37.71523|145.12112|Montmorency|PTV - Metropolitan Trains
+R|-37.76593|144.91926|Moonee Ponds|PTV - Metropolitan Trains
+R|-37.93436|145.03679|Moorabbin|PTV - Metropolitan Trains
+R|-37.78470|145.31319|Mooroolbark|PTV - Metropolitan Trains
+R|-38.00591|145.08728|Mordialloc|PTV - Metropolitan Trains
+R|-37.75429|144.96189|Moreland|PTV - Metropolitan Trains
+R|-38.35384|145.18940|Morradoo|PTV - Metropolitan Trains
+R|-37.87526|145.12813|Mount Waverley|PTV - Metropolitan Trains
+R|-37.89025|145.06747|Murrumbeena|PTV - Metropolitan Trains
+R|-38.02760|145.30390|Narre Warren|PTV - Metropolitan Trains
+R|-37.78734|144.92900|Newmarket|PTV - Metropolitan Trains
+R|-37.84246|144.88357|Newport|PTV - Metropolitan Trains
+R|-37.96647|145.17615|Noble Park|PTV - Metropolitan Trains
+R|-37.90485|145.00261|North Brighton|PTV - Metropolitan Trains
+R|-37.76987|144.99525|Northcote|PTV - Metropolitan Trains
+R|-37.80761|144.94235|North Melbourne|PTV - Metropolitan Trains
+R|-37.81037|144.99252|North Richmond|PTV - Metropolitan Trains
+R|-37.85701|144.88899|North Williamstown|PTV - Metropolitan Trains
+R|-37.82053|145.17465|Nunawading|PTV - Metropolitan Trains
+R|-37.90060|145.08859|Oakleigh|PTV - Metropolitan Trains
+R|-37.71802|144.92150|Oak Park|PTV - Metropolitan Trains
+R|-38.06630|145.41171|Officer|PTV - Metropolitan Trains
+R|-37.90426|145.03948|Ormond|PTV - Metropolitan Trains
+R|-38.08063|145.48632|Pakenham|PTV - Metropolitan Trains
+R|-37.99248|145.07559|Parkdale|PTV - Metropolitan Trains
+R|-37.79968|144.95886|Parkville|PTV - Metropolitan Trains
+R|-37.79968|144.95886|Parkville|PTV - Metropolitan Trains
+R|-37.81092|144.97291|Parliament|PTV - Metropolitan Trains
+R|-37.73086|144.92819|Pascoe Vale|PTV - Metropolitan Trains
+R|-37.92488|145.03563|Patterson|PTV - Metropolitan Trains
+R|-37.84983|144.98979|Prahran|PTV - Metropolitan Trains
+R|-37.73877|145.00054|Preston|PTV - Metropolitan Trains
+R|-37.72839|145.00278|Regent|PTV - Metropolitan Trains
+R|-37.71684|145.00699|Reservoir|PTV - Metropolitan Trains
+R|-37.82393|144.98926|Richmond|PTV - Metropolitan Trains
+R|-37.81583|145.22903|Ringwood|PTV - Metropolitan Trains
+R|-37.81171|145.25010|Ringwood East|PTV - Metropolitan Trains
+R|-37.87589|144.99521|Ripponlea|PTV - Metropolitan Trains
+R|-37.83150|145.06947|Riversdale|PTV - Metropolitan Trains
+R|-37.74288|145.06618|Rosanna|PTV - Metropolitan Trains
+R|-37.63819|144.93538|Roxburgh Park|PTV - Metropolitan Trains
+R|-37.78118|144.95232|Royal Park|PTV - Metropolitan Trains
+R|-37.78302|144.99213|Rushall|PTV - Metropolitan Trains
+R|-37.70790|145.00945|Ruthven|PTV - Metropolitan Trains
+R|-37.95651|145.16281|Sandown Park|PTV - Metropolitan Trains
+R|-37.95026|145.00439|Sandringham|PTV - Metropolitan Trains
+R|-38.10401|145.12823|Seaford|PTV - Metropolitan Trains
+R|-37.86787|144.84107|Seaholme|PTV - Metropolitan Trains
+R|-37.80904|144.89564|Seddon|PTV - Metropolitan Trains
+R|-37.78341|144.91493|Showgrounds|PTV - Metropolitan Trains
+R|-38.22542|145.17633|Somerville|PTV - Metropolitan Trains
+R|-37.81847|144.95205|Southern Cross|PTV - Metropolitan Trains
+R|-37.79951|144.92484|South Kensington|PTV - Metropolitan Trains
+R|-37.95884|145.04913|Southland|PTV - Metropolitan Trains
+R|-37.64922|145.06727|South Morang|PTV - Metropolitan Trains
+R|-37.83810|144.99237|South Yarra|PTV - Metropolitan Trains
+R|-37.83073|144.88591|Spotswood|PTV - Metropolitan Trains
+R|-37.94959|145.15378|Springvale|PTV - Metropolitan Trains
+R|-37.74453|144.79964|St Albans|PTV - Metropolitan Trains
+R|-37.80836|144.96297|State Library|PTV - Metropolitan Trains
+R|-38.37408|145.22169|Stony Point|PTV - Metropolitan Trains
+R|-37.74395|144.92693|Strathmore|PTV - Metropolitan Trains
+R|-37.87628|145.14979|Syndal|PTV - Metropolitan Trains
+R|-37.90806|145.34294|Tecoma|PTV - Metropolitan Trains
+R|-37.68050|145.01429|Thomastown|PTV - Metropolitan Trains
+R|-37.75499|144.99859|Thornbury|PTV - Metropolitan Trains
+R|-37.85066|145.01368|Toorak|PTV - Metropolitan Trains
+R|-37.84934|145.04171|Tooronga|PTV - Metropolitan Trains
+R|-37.79927|144.86321|Tottenham|PTV - Metropolitan Trains
+R|-37.81648|144.96711|Town Hall|PTV - Metropolitan Trains
+R|-38.25979|145.18623|Tyabb|PTV - Metropolitan Trains
+R|-37.82238|145.10142|Union|PTV - Metropolitan Trains
+R|-37.66599|144.94686|Upfield|PTV - Metropolitan Trains
+R|-37.89261|145.30771|Upper Ferntree Gully|PTV - Metropolitan Trains
+R|-37.90361|145.33135|Upwey|PTV - Metropolitan Trains
+R|-37.79912|144.99443|Victoria Park|PTV - Metropolitan Trains
+R|-37.70078|144.77381|Watergardens|PTV - Metropolitan Trains
+R|-37.71095|145.08378|Watsonia|PTV - Metropolitan Trains
+R|-37.66405|145.18173|Wattle Glen|PTV - Metropolitan Trains
+R|-37.89950|144.66090|Werribee|PTV - Metropolitan Trains
+R|-37.93777|145.13798|Westall|PTV - Metropolitan Trains
+R|-37.80174|144.88410|West Footscray|PTV - Metropolitan Trains
+R|-37.78061|144.99927|Westgarth|PTV - Metropolitan Trains
+R|-37.86515|144.81351|Westona|PTV - Metropolitan Trains
+R|-37.81469|144.99148|West Richmond|PTV - Metropolitan Trains
+R|-37.87004|144.74696|Williams Landing|PTV - Metropolitan Trains
+R|-37.86765|144.90536|Williamstown|PTV - Metropolitan Trains
+R|-37.86395|144.89446|Williamstown Beach|PTV - Metropolitan Trains
+R|-37.83540|145.07011|Willison|PTV - Metropolitan Trains
+R|-37.85581|144.99166|Windsor|PTV - Metropolitan Trains
+R|-37.97766|145.19097|Yarraman|PTV - Metropolitan Trains
+R|-37.81574|144.89001|Yarraville|PTV - Metropolitan Trains
+R|-37.28232|142.93729|Ararat|PTV - Regional Trains
+R|-37.78300|144.80153|Ardeer|PTV - Regional Trains
+R|-36.89368|145.22944|Avenel|PTV - Regional Trains
+R|-37.68780|144.43759|Bacchus Marsh|PTV - Regional Trains
+R|-37.82872|147.62738|Bairnsdale|PTV - Regional Trains
+R|-37.60423|144.22534|Ballan|PTV - Regional Trains
+R|-37.55862|143.85948|Ballarat|PTV - Regional Trains
+R|-37.42768|143.38232|Beaufort|PTV - Regional Trains
+R|-36.54475|145.98377|Benalla|PTV - Regional Trains
+R|-38.32880|143.78333|Birregurra|PTV - Regional Trains
+R|-38.09895|145.72071|Bunyip|PTV - Regional Trains
+R|-38.22882|143.15076|Camperdown|PTV - Regional Trains
+R|-37.76606|144.73563|Caroline Springs|PTV - Regional Trains
+R|-37.06295|144.21404|Castlemaine|PTV - Regional Trains
+R|-36.15566|146.61181|Chiltern|PTV - Regional Trains
+R|-37.48358|144.74524|Clarkefield|PTV - Regional Trains
+R|-37.30273|143.78208|Clunes|PTV - Regional Trains
+R|-37.71255|144.60408|Cobblebank|PTV - Regional Trains
+R|-37.71255|144.60408|Cobblebank|PTV - Regional Trains
+R|-38.34327|143.58690|Colac|PTV - Regional Trains
+R|-38.07228|144.37993|Corio|PTV - Regional Trains
+R|-37.42395|143.88806|Creswick|PTV - Regional Trains
+R|-37.77744|144.77115|Deer Park|PTV - Regional Trains
+R|-37.77744|144.77115|Deer Park|PTV - Regional Trains
+R|-38.13646|145.85607|Drouin|PTV - Regional Trains
+R|-36.71860|144.24851|Eaglehawk|PTV - Regional Trains
+R|-36.70711|144.32089|Epsom|PTV - Regional Trains
+R|-37.80143|144.90224|Footscray|PTV - Metropolitan Trains
+R|-38.09114|145.67436|Garfield|PTV - Regional Trains
+R|-38.14427|144.35508|Geelong|PTV - Regional Trains
+R|-37.45906|144.59897|Gisborne|PTV - Regional Trains
+R|-36.61479|144.50456|Goornong|PTV - Regional Trains
+R|-37.25829|144.45090|Kyneton|PTV - Regional Trains
+R|-38.02182|144.41467|Lara|PTV - Regional Trains
+R|-37.96257|144.49932|Little River|PTV - Regional Trains
+R|-38.11100|145.76681|Longwarry|PTV - Regional Trains
+R|-37.42365|144.56122|Macedon|PTV - Regional Trains
+R|-38.19903|144.35486|Marshall|PTV - Regional Trains
+R|-37.05114|143.74256|Maryborough|PTV - Regional Trains
+R|-37.70341|144.57087|Melton|PTV - Regional Trains
+R|-37.70341|144.57087|Melton|PTV - Regional Trains
+R|-38.17692|146.26057|Moe|PTV - Regional Trains
+R|-38.23676|146.39723|Morwell|PTV - Regional Trains
+R|-38.08155|145.57182|Nar Nar Goon|PTV - Regional Trains
+R|-38.12241|144.35236|North Geelong|PTV - Regional Trains
+R|-38.12239|144.35225|North Geelong|PTV - Regional Trains
+R|-37.46494|144.68000|Riddells Creek|PTV - Regional Trains
+R|-37.72910|144.65058|Rockbank|PTV - Regional Trains
+R|-38.15664|146.78704|Rosedale|PTV - Regional Trains
+R|-38.10323|147.05440|Sale|PTV - Regional Trains
+R|-38.38638|142.53886|Sherwood Park Railway Station|PTV - Regional Trains
+R|-38.15868|144.35939|South Geelong|PTV - Regional Trains
+R|-36.18633|146.47048|Springhurst|PTV - Regional Trains
+R|-37.96711|147.08157|Stratford|PTV - Regional Trains
+R|-37.57914|144.72798|Sunbury|PTV - Metropolitan Trains
+R|-37.78858|144.83278|Sunshine|PTV - Metropolitan Trains
+R|-37.17095|143.70638|Talbot|PTV - Regional Trains
+R|-37.83215|144.69462|Tarneit|PTV - Regional Trains
+R|-37.83215|144.69462|Tarneit|PTV - Regional Trains
+R|-38.23626|142.91140|Terang|PTV - Regional Trains
+R|-38.20741|146.15494|Trafalgar|PTV - Regional Trains
+R|-38.19837|146.53870|Traralgon|PTV - Regional Trains
+R|-38.08489|145.62837|Tynong|PTV - Regional Trains
+R|-36.63833|145.71799|Violet Town|PTV - Regional Trains
+R|-36.35522|146.31690|Wangaratta|PTV - Regional Trains
+R|-38.16479|145.93225|Warragul|PTV - Regional Trains
+R|-38.38513|142.47539|Warrnambool|PTV - Regional Trains
+R|-38.21582|144.30612|Waurn Ponds|PTV - Regional Trains
+R|-37.53978|143.82000|Wendouree|PTV - Regional Trains
+R|-37.82729|144.66279|West Tarneit|PTV - Regional Trains
+R|-37.82729|144.66279|West Tarneit|PTV - Regional Trains
+R|-38.24019|143.98376|Winchelsea|PTV - Regional Trains
+R|-36.10575|146.87158|Wodonga|PTV - Regional Trains
+R|-37.35930|144.52609|Woodend|PTV - Regional Trains
+R|-37.87224|144.60842|Wyndham Vale|PTV - Regional Trains
+R|-37.87224|144.60842|Wyndham Vale|PTV - Regional Trains
+R|-38.20329|146.06343|Yarragon|PTV - Regional Trains
+R|-37.90768|145.35659|Belgrave (Narrow-gauge)|Puffing Billy Railway
+R|-37.92844|145.42346|Clematis|Puffing Billy Railway
+R|-37.93448|145.49149|Cockatoo|Puffing Billy Railway
+R|-37.93366|145.43951|Emerald|Puffing Billy Railway
+R|-37.94667|145.50559|Fielder|Puffing Billy Railway
+R|-37.95022|145.54844|Gembrook (Heritage)|Puffing Billy Railway
+R|-37.95210|145.54958|Gembrook (Town)|Puffing Billy Railway
+R|-37.93040|145.45965|Lakeside|Puffing Billy Railway
+R|-37.92083|145.40509|Menzies Creek|Puffing Billy Railway
+R|-37.93438|145.45524|Nobelius|Puffing Billy Railway
+R|-37.91549|145.37137|Selby|Puffing Billy Railway
+R|-37.92917|145.47082|Wright|Puffing Billy Railway
+R|-23.64828|146.64272|Alpha|Queensland Rail Travel
+R|-23.55275|147.74683|Anakie|Queensland Rail Travel
+R|-19.57428|147.39614|Ayr|Queensland Rail Travel
+R|-17.34317|145.92536|Babinda|Queensland Rail Travel
+R|-23.55216|145.28971|Barcaldine|Queensland Rail Travel
+R|-16.83644|145.64298|Barron Falls|Queensland Rail Travel
+R|-23.58607|148.88352|Blackwater|Queensland Rail Travel
+R|-23.58277|149.06989|Bluff|Queensland Rail Travel
+R|-20.02174|148.20577|Bowen|Queensland Rail Travel
+R|-24.86898|152.34549|Bundaberg|Queensland Rail Travel
+R|-16.92567|145.77126|Cairns|Queensland Rail Travel
+R|-18.26782|146.02806|Cardwell|Queensland Rail Travel
+R|-21.90988|149.41561|Carmila|Queensland Rail Travel
+R|-26.40619|146.24421|Charleville|Queensland Rail Travel
+R|-20.07718|146.27072|Charters Towers|Queensland Rail Travel
+R|-26.73716|150.62488|Chinchilla|Queensland Rail Travel
+R|-20.71421|140.51739|Cloncurry|Queensland Rail Travel
+R|-27.17982|151.27147|Dalby|Queensland Rail Travel
+R|-23.71176|149.67769|Duaringa|Queensland Rail Travel
+R|-21.35554|139.86604|Duchess|Queensland Rail Travel
+R|-23.52661|148.15984|Emerald|Queensland Rail Travel
+R|-16.88100|145.70977|Freshwater|Queensland Rail Travel
+R|-27.55442|152.27748|Gatton|Queensland Rail Travel
+R|-19.51154|147.10520|Giru|Queensland Rail Travel
+R|-23.84642|151.26295|Gladstone|Queensland Rail Travel
+R|-17.09321|145.78783|Gordonvale|Queensland Rail Travel
+R|-27.54799|152.12312|Helidon|Queensland Rail Travel
+R|-19.66553|147.41406|Home Hill|Queensland Rail Travel
+R|-25.31857|152.56464|Howard|Queensland Rail Travel
+R|-20.84784|144.19708|Hughenden|Queensland Rail Travel
+R|-23.48898|144.50740|Ilfracombe|Queensland Rail Travel
+R|-18.64655|146.16494|Ingham|Queensland Rail Travel
+R|-17.52615|146.01907|Innisfail|Queensland Rail Travel
+R|-23.60182|146.12580|Jericho|Queensland Rail Travel
+R|-20.65890|141.74665|Julia Creek|Queensland Rail Travel
+R|-16.81848|145.63909|Kuranda|Queensland Rail Travel
+R|-27.62829|152.39314|Laidley|Queensland Rail Travel
+R|-23.44029|144.25220|Longreach|Queensland Rail Travel
+R|-21.17158|149.15995|Mackay|Queensland Rail Travel
+R|-25.50803|152.63655|Maryborough West|Queensland Rail Travel
+R|-26.66025|150.18490|Miles|Queensland Rail Travel
+R|-24.32896|151.56335|Miriam Vale|Queensland Rail Travel
+R|-26.48715|147.96854|Mitchell|Queensland Rail Travel
+R|-26.41463|147.11328|Morven|Queensland Rail Travel
+R|-20.72653|139.48480|Mount Isa|Queensland Rail Travel
+R|-23.80787|150.97860|Mount Larcom|Queensland Rail Travel
+R|-27.43115|151.72019|Oakey|Queensland Rail Travel
+R|-20.52567|145.39795|Pentland|Queensland Rail Travel
+R|-20.40292|148.57867|Proserpine|Queensland Rail Travel
+R|-20.73561|143.14163|Richmond|Queensland Rail Travel
+R|-23.39000|150.51219|Rockhampton|Queensland Rail Travel
+R|-26.57616|148.79227|Roma|Queensland Rail Travel
+R|-27.64302|152.59293|Rosewood|Queensland Rail Travel
+R|-21.42599|149.21708|Sarina|Queensland Rail Travel
+R|-22.35097|149.52288|St Lawrence|Queensland Rail Travel
+R|-27.55705|151.95185|Toowoomba|Queensland Rail Travel
+R|-20.77041|145.01949|Torrens Creek|Queensland Rail Travel
+R|-19.26937|146.80803|Townsville|Queensland Rail Travel
+R|-17.93234|145.93281|Tully|Queensland Rail Travel
+R|-26.61316|149.38483|Yuleba|Queensland Rail Travel
+R|-33.96969|151.11451|Allawah|Sydney Trains
+R|-33.93644|151.14735|Arncliffe|Sydney Trains
+R|-33.80886|151.18514|Artarmon|Sydney Trains
+R|-33.88766|151.12582|Ashfield|Sydney Trains
+R|-33.68868|151.10808|Asquith|Sydney Trains
+R|-33.84929|151.03283|Auburn|Sydney Trains
+R|-33.94534|151.14041|Banksia|Sydney Trains
+R|-33.91787|151.03441|Bankstown|Sydney Trains
+R|-33.93160|151.12488|Bardwell Park|Sydney Trains
+R|-33.74963|151.06639|Beecroft|Sydney Trains
+R|-33.87192|151.03229|Berala|Sydney Trains
+R|-33.94908|151.08105|Beverly Hills|Sydney Trains
+R|-33.93755|151.11349|Bexley North|Sydney Trains
+R|-33.89332|151.02403|Birrong|Sydney Trains
+R|-33.76845|150.90741|Blacktown|Sydney Trains
+R|-33.89124|151.24846|Bondi Junction|Sydney Trains
+R|-33.87714|151.10404|Burwood|Sydney Trains
+R|-33.89500|150.93881|Cabramatta|Sydney Trains
+R|-34.06363|150.81439|Campbelltown|Sydney Trains
+R|-33.88720|150.94366|Canley Vale|Sydney Trains
+R|-34.04160|151.12274|Caringbah|Sydney Trains
+R|-33.96824|151.12450|Carlton|Sydney Trains
+R|-33.88432|150.96151|Carramar|Sydney Trains
+R|-33.95016|150.91184|Casula|Sydney Trains
+R|-33.88388|151.20597|Central|Sydney Trains
+R|-33.79748|151.18094|Chatswood|Sydney Trains
+R|-33.75568|151.07856|Cheltenham|Sydney Trains
+R|-33.88354|150.99942|Chester Hill|Sydney Trains
+R|-33.86136|151.21072|Circular Quay|Sydney Trains
+R|-33.60862|150.78799|Clarendon|Sydney Trains
+R|-33.83597|151.01707|Clyde|Sydney Trains
+R|-34.00435|151.06806|Como|Sydney Trains
+R|-33.84840|151.08561|Concord West|Sydney Trains
+R|-34.05573|151.15146|Cronulla|Sydney Trains
+R|-34.05573|151.15146|Cronulla|Sydney Trains
+R|-33.88323|151.11560|Croydon|Sydney Trains
+R|-33.79985|151.08736|Denistone|Sydney Trains
+R|-33.93363|151.18087|Domestic Airport|Sydney Trains
+R|-33.76399|150.86838|Doonside|Sydney Trains
+R|-33.96185|150.98463|East Hills|Sydney Trains
+R|-33.60180|150.75918|East Richmond|Sydney Trains
+R|-33.79013|151.08226|Eastwood|Sydney Trains
+R|-33.87924|151.23614|Edgecliff|Sydney Trains
+R|-33.96927|150.85863|Edmondson Park|Sydney Trains
+R|-34.06786|151.01473|Engadine|Sydney Trains
+R|-33.77378|151.08277|Epping|Sydney Trains
+R|-33.90095|151.18527|Erskineville|Sydney Trains
+R|-33.87242|150.95700|Fairfield|Sydney Trains
+R|-33.86488|151.06995|Flemington|Sydney Trains
+R|-33.97224|150.89309|Glenfield|Sydney Trains
+R|-33.75580|151.15433|Gordon|Sydney Trains
+R|-33.83309|151.01241|Granville|Sydney Trains
+R|-33.90620|151.20244|Green Square|Sydney Trains
+R|-33.85432|150.98449|Guildford|Sydney Trains
+R|-34.03489|151.08551|Gymea|Sydney Trains
+R|-33.82334|151.00765|Harris Park|Sydney Trains
+R|-34.08796|151.00826|Heathcote|Sydney Trains
+R|-33.96322|150.95647|Holsworthy|Sydney Trains
+R|-33.86681|151.08646|Homebush|Sydney Trains
+R|-33.70348|151.09839|Hornsby|Sydney Trains
+R|-33.96740|151.10257|Hurstville|NSW TrainLink
+R|-33.99719|150.86490|Ingleburn|Sydney Trains
+R|-33.93497|151.16587|International Airport|Sydney Trains
+R|-34.01595|151.06463|Jannali|Sydney Trains
+R|-33.76549|151.16169|Killara|Sydney Trains
+R|-33.87449|151.22223|Kings Cross|Sydney Trains
+R|-33.94057|151.10063|Kingsgrove|Sydney Trains
+R|-33.75829|150.72001|Kingswood|Sydney Trains
+R|-34.03495|151.07191|Kirrawee|Sydney Trains
+R|-33.96216|151.13257|Kogarah|Sydney Trains
+R|-33.88152|150.98523|Leightonfield|Sydney Trains
+R|-33.95439|150.80806|Leppington|Sydney Trains
+R|-34.05076|150.83051|Leumeah|Sydney Trains
+R|-33.89337|151.14763|Lewisham|Sydney Trains
+R|-33.86426|151.04858|Lidcombe|Sydney Trains
+R|-33.86381|151.04524|Lidcombe|Sydney Trains
+R|-33.77561|151.16921|Lindfield|Sydney Trains
+R|-33.92454|150.92764|Liverpool|Sydney Trains
+R|-34.04534|151.05135|Loftus|Sydney Trains
+R|-34.07199|150.79719|Macarthur|Sydney Trains
+R|-33.89691|151.18589|Macdonaldtown|Sydney Trains
+R|-33.98479|150.87890|Macquarie Fields|Sydney Trains
+R|-33.74618|150.90019|Marayong|Sydney Trains
+R|-33.92319|151.18727|Mascot|Sydney Trains
+R|-33.81591|151.09010|Meadowbank|Sydney Trains
+R|-33.83681|150.99233|Merrylands|Sydney Trains
+R|-33.84586|151.21179|Milsons Point|Sydney Trains
+R|-34.02724|150.84258|Minto|Sydney Trains
+R|-34.03631|151.10270|Miranda|Sydney Trains
+R|-33.97085|151.08113|Mortdale|Sydney Trains
+R|-33.67197|151.11453|Mount Colah|Sydney Trains
+R|-33.76958|150.82020|Mount Druitt|Sydney Trains
+R|-33.65317|151.13687|Mount Kuring-gai|Sydney Trains
+R|-33.62664|150.83048|Mulgrave|Sydney Trains
+R|-33.87590|151.21000|Museum|Sydney Trains
+R|-33.94758|151.07026|Narwee|Sydney Trains
+R|-33.89792|151.17961|Newtown|Sydney Trains
+R|-33.72085|151.09705|Normanhurst|Sydney Trains
+R|-33.85902|151.08813|North Strathfield|Sydney Trains
+R|-33.84121|151.20746|North Sydney|Sydney Trains
+R|-33.98052|151.07903|Oatley|Sydney Trains
+R|-33.84654|151.06951|Olympic Park|Sydney Trains
+R|-33.95190|151.03233|Padstow|Sydney Trains
+R|-33.95434|150.99784|Panania|Sydney Trains
+R|-33.80150|150.95645|Pendle Hill|Sydney Trains
+R|-33.73792|151.07256|Pennant Hills|Sydney Trains
+R|-33.96616|151.08918|Penshurst|Sydney Trains
+R|-33.89391|151.15537|Petersham|Sydney Trains
+R|-33.74470|151.14197|Pymble|Sydney Trains
+R|-33.72773|150.88648|Quakers Hill|Sydney Trains
+R|-33.89229|151.19833|Redfern|Sydney Trains
+R|-33.88284|151.02428|Regents Park|Sydney Trains
+R|-33.95253|151.01491|Revesby|Sydney Trains
+R|-33.83040|151.08706|Rhodes|Sydney Trains
+R|-33.59884|150.75265|Richmond|Sydney Trains
+R|-33.67912|150.86029|Riverstone|Sydney Trains
+R|-33.95151|151.05212|Riverwood|Sydney Trains
+R|-33.95187|151.13685|Rockdale|Sydney Trains
+R|-33.77152|150.84501|Rooty Hill|Sydney Trains
+R|-33.78437|151.17755|Roseville|Sydney Trains
+R|-33.70433|150.87377|Schofields|Sydney Trains
+R|-33.88526|151.01148|Sefton|Sydney Trains
+R|-33.77437|150.93626|Seven Hills|Sydney Trains
+R|-33.89451|151.16391|Stanmore|Sydney Trains
+R|-33.87090|151.21182|St James|Sydney Trains
+R|-33.86783|151.21123|St James|Sydney Trains
+R|-33.82244|151.19419|St Leonards|Sydney Trains
+R|-33.76209|150.77516|St Marys|Sydney Trains
+R|-33.90729|151.18067|St Peters|Sydney Trains
+R|-33.87170|151.09423|Strathfield|Sydney Trains
+R|-33.89046|151.13872|Summer Hill|Sydney Trains
+R|-34.03163|151.05727|Sutherland|Sydney Trains
+R|-33.91474|151.16611|Sydenham|Sydney Trains
+R|-33.92454|151.15643|Tempe|Sydney Trains
+R|-33.73182|151.07839|Thornleigh|Sydney Trains
+R|-33.78747|150.95146|Toongabbie|Sydney Trains
+R|-33.87357|151.20685|Town Hall|Sydney Trains
+R|-33.73231|151.12838|Turramurra|Sydney Trains
+R|-33.92992|151.13996|Turrella|Sydney Trains
+R|-33.88088|150.97616|Villawood|Sydney Trains
+R|-33.65040|150.85112|Vineyard|Sydney Trains
+R|-33.71754|151.11700|Wahroonga|Sydney Trains
+R|-33.70999|151.10429|Waitara|Sydney Trains
+R|-33.72420|151.12171|Warrawee|Sydney Trains
+R|-33.91333|150.93510|Warwick Farm|Sydney Trains
+R|-34.13445|150.99446|Waterfall|Sydney Trains
+R|-33.83809|151.19765|Waverton|Sydney Trains
+R|-33.80718|150.97266|Wentworthville|Sydney Trains
+R|-33.75922|150.75794|Werrington|Sydney Trains
+R|-33.80850|150.98802|Westmead|Sydney Trains
+R|-33.80704|151.09029|West Ryde|Sydney Trains
+R|-33.61369|150.81105|Windsor|Sydney Trains
+R|-33.92852|151.15399|Wolli Creek|Sydney Trains
+R|-33.83171|151.19173|Wollstonecraft|Sydney Trains
+R|-34.04766|151.14409|Woolooware|Sydney Trains
+R|-33.86599|151.20581|Wynyard|Sydney Trains
+R|-33.90675|151.02431|Yagoona|Sydney Trains
+R|-33.86463|150.97115|Yennora|Sydney Trains
+R|-27.42905|153.04047|Albion|Translink
+R|-27.42322|153.00083|Alderley|Translink
+R|-27.58280|153.06372|Altandi|Translink
+R|-27.58280|153.06372|Altandi|Translink
+R|-27.42949|153.06333|Ascot|Translink
+R|-27.47660|152.99676|Auchenflower|Translink
+R|-27.32085|153.01104|Bald Hills|Translink
+R|-27.57657|153.04655|Banoon|Translink
+R|-27.71740|153.20444|Beenleigh|Translink
+R|-26.95993|152.95919|Beerburrum|Translink
+R|-26.85699|152.95837|Beerwah|Translink
+R|-27.68852|153.15870|Bethania|Translink
+R|-27.38283|153.07267|Bindha|Translink
+R|-27.49401|153.21878|Birkdale|Translink
+R|-27.49367|153.03074|Boggo Road|Translink
+R|-27.34675|153.06799|Boondall|Translink
+R|-27.60933|152.78987|Booval|Translink
+R|-27.44523|153.03760|Bowen Hills|Translink
+R|-27.29945|152.98615|Bray Park|Translink
+R|-27.46584|153.02584|Brisbane Central|Translink
+R|-27.60749|152.80482|Bundamba|Translink
+R|-27.49655|153.04045|Buranda|Translink
+R|-27.08290|152.95379|Caboolture|Translink
+R|-27.46532|153.08861|Cannon Hill|Translink
+R|-27.34707|153.02884|Carseldine|Translink
+R|-27.51199|152.97276|Chelmer|Translink
+R|-27.41822|153.05782|Clayfield|Translink
+R|-27.52419|153.26522|Cleveland|Translink
+R|-27.85236|153.31705|Coomera|Translink
+R|-27.56750|153.03592|Coopers Plains|Translink
+R|-26.33452|152.82297|Cooran|Translink
+R|-26.41768|152.91119|Cooroy|Translink
+R|-27.48976|153.05520|Coorparoo|Translink
+R|-27.53908|152.98012|Corinda|Translink
+R|-27.23046|152.97577|Dakabin|Translink
+R|-27.56592|152.95239|Darra|Translink
+R|-27.32744|153.06340|Deagon|Translink
+R|-27.59626|152.83349|Dinmore|Translink
+R|-27.38565|153.11849|Domestic Airport|Translink
+R|-27.43140|153.07473|Doomben|Translink
+R|-27.50081|153.02848|Dutton Park|Translink
+R|-27.41537|153.04960|Eagle Junction|Translink
+R|-27.61007|152.77601|East Ipswich|Translink
+R|-27.60331|152.82214|Ebbw Vale|Translink
+R|-27.69810|153.17094|Edens Landing|Translink
+R|-27.01097|152.94584|Elimbah|Translink
+R|-27.42033|152.99239|Enoggera|Translink
+R|-26.72541|152.95685|Eudlo|Translink
+R|-26.48041|152.95503|Eumundi|Translink
+R|-27.50973|153.02792|Fairfield|Translink
+R|-27.40088|152.93449|Ferny Grove|Translink
+R|-27.45590|153.03394|Fortitude Valley|Translink
+R|-27.59809|153.07955|Fruitgrove|Translink
+R|-27.60210|152.91915|Gailes|Translink
+R|-27.41924|152.98497|Gaythorne|Translink
+R|-27.36868|153.04722|Geebung|Translink
+R|-26.89921|152.95624|Glass House Mountains|Translink
+R|-27.60879|152.90150|Goodna|Translink
+R|-27.52064|152.97587|Graceville|Translink
+R|-27.40458|152.96252|Grovely|Translink
+R|-26.15954|152.68305|Gympie North|Translink
+R|-27.92543|153.33899|Helensvale|Translink
+R|-27.44730|153.12749|Hemmant|Translink
+R|-27.42220|153.06267|Hendra|Translink
+R|-27.70960|153.18760|Holmview|Translink
+R|-27.87967|153.33132|Hope Island|Translink
+R|-27.50283|152.97588|Indooroopilly|Translink
+R|-27.40267|153.10871|International Airport|Translink
+R|-27.61288|152.76042|Ipswich|Queensland Rail Travel
+R|-27.25662|152.99994|Kallangur|Translink
+R|-27.60442|152.70908|Karrabin|Translink
+R|-27.40917|152.95674|Keperra|Translink
+R|-27.65733|153.11830|Kingston|Translink
+R|-27.22555|153.08149|Kippa-Ring|Translink
+R|-27.60482|153.09118|Kuraby|Translink
+R|-26.80790|152.96640|Landsborough|Translink
+R|-27.28166|152.98091|Lawnton|Translink
+R|-27.44193|153.14495|Lindum|Translink
+R|-27.67070|153.13793|Loganlea|Translink
+R|-27.47009|153.18853|Lota|Translink
+R|-27.24631|153.02769|Mango Hill|Translink
+R|-27.23352|153.03590|Mango Hill East|Translink
+R|-27.45670|153.18029|Manly|Translink
+R|-27.46892|153.00523|Milton|Translink
+R|-27.41168|152.97600|Mitchelton|Translink
+R|-26.76583|152.96316|Mooloolah|Translink
+R|-27.53568|153.01397|Moorooka|Translink
+R|-27.11037|152.95264|Morayfield|Translink
+R|-27.47090|153.06947|Morningside|Translink
+R|-27.46474|153.10571|Murarrie|Translink
+R|-27.25239|153.01154|Murrumba Downs|Translink
+R|-26.62549|152.95802|Nambour|Translink
+R|-27.20232|152.95988|Narangba|Translink
+R|-27.99411|153.35003|Nerang|Translink
+R|-27.43290|153.01063|Newmarket|Translink
+R|-27.48166|153.06231|Norman Park|Translink
+R|-27.33868|153.06069|North Boondall|Translink
+R|-27.39295|153.06922|Northgate|Translink
+R|-27.43728|153.15881|North Wynnum|Translink
+R|-27.36608|153.08341|Nudgee|Translink
+R|-27.40084|153.06204|Nundah|Translink
+R|-27.79919|153.28243|Ormeau|Translink
+R|-27.51459|153.25585|Ormiston|Translink
+R|-27.40451|152.96916|Oxford Park|Translink
+R|-27.55211|152.97385|Oxley|Translink
+R|-26.68869|152.96076|Palmwoods|Translink
+R|-27.26843|152.98209|Petrie|Translink
+R|-26.36627|152.85714|Pomona|Translink
+R|-27.59945|152.87249|Redbank|Translink
+R|-27.59605|152.94690|Richlands|Translink
+R|-27.59498|152.85054|Riverview|Translink
+R|-28.07122|153.37797|Robina|Translink
+R|-27.54471|153.01411|Rocklea|Translink
+R|-27.46498|153.01835|Roma Street|Translink
+R|-27.22409|153.04797|Rothwell|Translink
+R|-27.59258|153.06880|Runcorn|Translink
+R|-27.55386|153.02277|Salisbury|Translink
+R|-27.32228|153.06951|Sandgate Train|Translink
+R|-27.53112|152.97948|Sherwood|Translink
+R|-27.32697|153.08012|Shorncliffe|Translink
+R|-27.48193|153.02300|South Bank|Translink
+R|-27.47510|153.01846|South Brisbane|Translink
+R|-27.66018|152.92183|Springfield|Translink
+R|-27.67428|152.90275|Springfield Central|Translink
+R|-27.31138|152.98955|Strathpine|Translink
+R|-27.58083|153.05411|Sunnybank|Translink
+R|-27.37569|153.05617|Sunshine|Translink
+R|-27.49314|152.98167|Taringa|Translink
+R|-27.62683|152.62981|Thagoona|Translink
+R|-27.61478|152.74565|Thomas Street|Translink
+R|-27.48611|153.19273|Thorneside|Translink
+R|-27.40792|153.05867|Toombul|Translink
+R|-27.48534|152.99315|Toowong|Translink
+R|-26.31975|152.78289|Traveston|Translink
+R|-27.63179|153.09787|Trinder Park|Translink
+R|-28.09713|153.39923|Varsity Lakes|Translink
+R|-27.38217|153.06246|Virginia|Translink
+R|-27.58917|152.92435|Wacol|Translink
+R|-27.60735|152.66798|Walloon|Translink
+R|-27.49438|153.24174|Wellington Point|Translink
+R|-27.43621|153.01919|Wilston|Translink
+R|-27.43534|153.02907|Windsor|Translink
+R|-27.63814|153.10380|Woodridge|Translink
+R|-27.41988|153.04348|Wooloowin|Translink
+R|-26.66053|152.96283|Woombye|Translink
+R|-27.61361|152.73275|Wulkuraka|Translink
+R|-27.43976|153.16612|Wynnum|Translink
+R|-27.44519|153.17013|Wynnum Central|Translink
+R|-26.56090|152.95816|Yandina|Translink
+R|-27.52478|153.01412|Yeerongpilly|Translink
+R|-27.51781|153.01689|Yeronga|Translink
+R|-27.35857|153.03668|Zillmere|Translink
+R|-31.94404|115.97484|Airport Central|Transperth
+R|-31.61542|115.69265|Alkimos|Transperth
+R|-31.91281|115.93609|Ashfield|Transperth
+R|-32.15494|115.85795|Aubin Grove|Transperth
+R|-31.84941|115.92212|Ballajura|Transperth
+R|-31.90372|115.94700|Bassendean|Transperth
+R|-31.91840|115.91187|Bayswater|Transperth
+R|-32.02247|115.95423|Beckenham|Transperth
+R|-32.04709|115.85411|Bull Creek|Transperth
+R|-31.95990|115.89995|Burswood|Transperth
+R|-31.63569|115.70033|Butler|Transperth
+R|-32.00974|115.85613|Canning Bridge|Transperth
+R|-32.01344|115.94495|Cannington|Transperth
+R|-31.97988|115.91004|Carlisle|Transperth
+R|-32.12685|116.01255|Challis|Transperth
+R|-31.94468|115.84505|City West|Transperth
+R|-31.94940|115.87251|Claisebrook|Transperth
+R|-31.98073|115.78145|Claremont|Transperth
+R|-31.69067|115.73808|Clarkson|Transperth
+R|-32.12533|115.85836|Cockburn Central|Transperth
+R|-31.99682|115.76095|Cottesloe|Transperth
+R|-31.72494|115.75056|Currambine|Transperth
+R|-31.95180|115.81340|Daglish|Transperth
+R|-31.89645|115.97999|East Guildford|Transperth
+R|-31.94318|115.87707|East Perth Terminal|Journey Beyond Rail Expeditions
+R|-31.77214|115.77874|Edgewater|Transperth
+R|-31.58367|115.67254|Eglinton|Transperth
+R|-31.95709|115.85522|Elizabeth Quay|Transperth
+R|-31.78160|115.96339|Ellenbrook|Transperth
+R|-32.05202|115.74522|Fremantle|Transperth
+R|-32.05202|115.74522|Fremantle|Transperth
+R|-31.91513|115.82319|Glendalough|Transperth
+R|-32.07128|115.99968|Gosnells|Transperth
+R|-31.98704|115.76474|Grant Street|Transperth
+R|-31.81860|115.78324|Greenwood|Transperth
+R|-31.89895|115.96579|Guildford|Transperth
+R|-31.95463|115.99220|High Wycombe|Transperth
+R|-31.74512|115.76746|Joondalup|Transperth
+R|-31.96839|115.79624|Karrakatta|Transperth
+R|-32.11318|116.01323|Kelmscott|Transperth
+R|-32.03638|115.96972|Kenwick|Transperth
+R|-32.03638|115.96972|Kenwick|Transperth
+R|-32.23494|115.84266|Kwinana|Transperth
+R|-32.47368|115.77052|Lakelands|Transperth
+R|-31.93901|115.84032|Leederville|Transperth
+R|-31.97171|115.79161|Loch Street|Transperth
+R|-32.04937|115.98294|Maddington|Transperth
+R|-32.52707|115.74663|Mandurah|Transperth
+R|-31.92831|115.89172|Maylands|Transperth
+R|-31.95178|115.86640|McIver|Transperth
+R|-31.92247|115.90032|Meltham|Transperth
+R|-31.89238|116.00373|Midland|Transperth
+R|-31.89603|115.92002|Morley|Transperth
+R|-32.00695|115.75740|Mosman Park|Transperth
+R|-31.93477|115.88087|Mount Lawley|Transperth
+R|-32.06643|115.85047|Murdoch|Transperth
+R|-32.06159|115.93468|Nicholson Road|Transperth
+R|-31.87453|115.91778|Noranda|Transperth
+R|-32.02952|115.75185|North Fremantle|Transperth
+R|-31.98790|115.91633|Oats Street|Transperth
+R|-31.95143|115.86042|Perth|Transperth
+R|-31.95028|115.89290|Perth Stadium|Transperth
+R|-32.00658|115.93788|Queens Park|Transperth
+R|-32.07565|115.89629|Ranford Road|Transperth
+R|-31.93359|115.94971|Redcliffe|Transperth
+R|-32.29015|115.76128|Rockingham|Transperth
+R|-32.08475|116.01113|Seaforth|Transperth
+R|-31.95964|115.80546|Shenton Park|Transperth
+R|-32.13787|116.01043|Sherwood|Transperth
+R|-31.97706|115.78688|Showgrounds|Transperth
+R|-31.89456|115.80509|Stirling|Transperth
+R|-31.94470|115.82400|Subiaco|Transperth
+R|-31.90019|115.95587|Success Hill|Transperth
+R|-31.98275|115.77062|Swanbourne|Transperth
+R|-32.04734|115.95238|Thornlie|Transperth
+R|-31.97161|115.90222|Victoria Park|Transperth
+R|-32.01199|115.75497|Victoria Street|Transperth
+R|-32.32653|115.76792|Warnbro|Transperth
+R|-31.84483|115.79640|Warwick|Transperth
+R|-32.26400|115.81710|Wellard|Transperth
+R|-31.94268|115.83320|West Leederville|Transperth
+R|-31.83590|115.96454|Whiteman Park|Transperth
+R|-31.79938|115.78234|Whitfords|Transperth
+R|-31.89152|115.99287|Woodbridge|Transperth
+R|-31.53187|115.64383|Yanchep|Transperth
+R|-32.15369|116.01296|Armadale|Transperth
+R|-32.21646|116.00738|Byford|Transwa
+R|-32.24367|116.00116|Cardup|Transwa
+R|-32.29467|115.98664|Mundijong|Transwa
+R|-37.20761|145.04249|Broadford|V/Line
+R|-37.54199|144.97023|Donnybrook|V/Line
+R|-37.37157|145.02795|Heathcote Junction|V/Line
+R|-37.29366|144.98343|Kilmore East|V/Line
+R|-37.09237|145.10282|Tallarook|V/Line
+R|-37.41680|145.00526|Wallan|V/Line
+R|-37.35458|145.02650|Wandong|V/Line
+R|-32.90477|149.94753|Clandulla|Vintage Rail Journeys
+R|-32.85969|149.97018|Kandos|Vintage Rail Journeys
+R|-34.42745|146.30424|Murrami|Vintage Rail Journeys
+R|-34.44621|147.52852|Railway Museum|Vintage Rail Journeys
+R|-14.18330|132.03756||rail
+R|-34.93806|138.58113|Adelaide Parklands Terminal|Great Southern Railway
+R|-31.37401|118.87350|Bodallin|rail
+R|-30.84242|121.15042|Bonnie Vale|rail
+R|-13.46708|131.41957|Brocks Creek|rail
+R|-31.38640|118.48345|Burracoppin|rail
+R|-28.64181|153.61120|Byron Beach|rail
+R|-31.39087|118.66874|Carrabin|rail
+R|-31.64645|117.24362|Cunderdin|rail
+R|-12.47295|130.90403|Darwin|rail
+R|-31.60830|117.88159|Doodlakine|rail
+R|-31.52964|118.08089|Hines Hill|rail
+R|-31.63209|117.72981|Kellerberrin|rail
+R|-30.82824|119.51423|Koolyanobbing|rail
+R|-31.62377|117.01349|Meckering|rail
+R|-31.48251|118.27657|Merredin|rail
+R|-31.31877|119.07355|Moorine Rock|rail
+R|-31.64913|116.67640|Northam|rail
+R|-31.21495|119.31057|Southern Cross|rail
+R|-13.59877|131.72763|Spring Hill|rail
+R|-31.64204|117.48720|Tammin|rail
+R|-31.55158|116.46516|Toodyay|rail
+Q|Adelaide Metro|Gawler Central Line|#C23B33|L55|5 0:40989
+Q|Adelaide Metro|Gawler Central Line|#C23B33|L55|0 5:41072
+Q|Adelaide Metro|Train BEL|#509E2F|L55|0 1:11187
+Q|Adelaide Metro|Train BEL|#509E2F|L55|1 0:11215
+Q|Adelaide Metro|Train FLNDRS|#FE5000|L55|3 0:13063
+Q|Adelaide Metro|Train FLNDRS|#FE5000|L55|0 3:13087
+Q|Adelaide Metro|Train GAW|#C23B33|L55|0 4:38708
+Q|Adelaide Metro|Train GAW|#C23B33|L55|4 0:38629
+Q|Adelaide Metro|Train GRNG|#007DC3|L55|0 6:12816
+Q|Adelaide Metro|Train GRNG|#007DC3|L55|6 0:12820
+Q|Adelaide Metro|Train NOAR|#FE5000|L55|9 0:30012
+Q|Adelaide Metro|Train OSBORN|#007DC3|L55|0 12:19340
+Q|Adelaide Metro|Train OSBORN|#007DC3|L55|12 0:19343
+Q|Adelaide Metro|Train OUTHA|#007DC3|L55|0 14:14470 8:4152 12:714 10:939 13:1460
+Q|Adelaide Metro|Train OUTHA|#007DC3|L55|13 10:1460 12:939 8:714 14:4153 0:14476
+Q|Adelaide Metro|Train PTDOCK|#007DC3|L55|0 15:11745
+Q|Adelaide Metro|Train PTDOCK|#007DC3|L55|15 0:11751
+Q|Adelaide Metro|Train SALIS|#C23B33|L55|0 16:19437
+Q|Adelaide Metro|Train SALIS|#C23B33|L55|16 0:19289
+Q|Adelaide Metro|Train SEAFRD|#FE5000|L55|7 11:8416 2:5773 11:5789
+Q|Adelaide Metro|Train SEAFRD|#FE5000|L55|17 7:14342 11:8420 2:5774 11:5791 0:12826
+Q|Cairns Kuranda Steam|The Savannahlander||L55|556 18:416299
+Q|Great Southern Railway|The Overland|#000000|L55|1017 20:786834 19:479678
+Q|Journey Beyond Rail Expeditions|Train Indian Pacific||X110|940 23:651015 24:379090 22:487309 1017:990374 630:1517449
+Q|Journey Beyond Rail Expeditions|Train Indian Pacific||X110|630 21:1111356 1017:461615 22:956368 23:868888 940:657223
+Q|Melbourne Metropolitan Trains|Melbourne Metro 2||L55|26 25:2014 27:1622
+Q|NSW TrainLink|Blue Mountains Line|#F99D1C|L55|630 716:1248 735:10626 161:11406 620:11660 163:20159 81:2343 120:6157 91:2382 44:4335 208:2810 200:3154 179:2267 88:3263 124:3823 220:3573 103:3074 121:2555 54:1658 211:4927 123:5071 111:2331 133:5865 43:4898 145:5965 37:11048 229:8671 126:5112 171:17839 186:16837 36:41529
+Q|NSW TrainLink|Blue Mountains Line|#F99D1C|L55|36 186:41585 171:16833 126:18076 229:5018 37:8739 145:10879 43:6001 133:4912 111:6189 123:2395 211:4942 54:4957 121:1613 103:2575 220:3071 124:3524 88:3843 179:3266 200:2305 208:3100 44:2803 91:4410 120:2148 81:6151 163:2361 620:20148 161:11696 735:11394 630:11683
+Q|NSW TrainLink|Broken Hill Xplorer|#E56E0F|X110|21 136:118231 75:125627 109:64589 83:197270 66:72837 160:100352 157:121458 45:30730 36:49846 126:84052 111:46264 163:54764 620:20148 161:11696 735:11394 630:11656
+Q|NSW TrainLink|Broken Hill Xplorer|#E56E0F|X110|630 735:11875 161:11406 620:11660 163:20159 111:54684 126:45943 36:83851 45:49869 157:30707 160:121327 66:100291 83:72814 109:196966 75:64543 136:125103 21:117878
+Q|NSW TrainLink|CCN|#d11f2f|L55|620 161:11705 735:11394 716:13227 630:1243 742:1278 761:855 692:2388 705:677 752:1006 759:1064 732:1278 608:1822 631:1340 656:5479 665:8004 41:10838 71:4164 102:8591 219:7660 223:6793 93:8217 149:3627 153:1604 125:1515 159:3261 196:7798 225:2321
+Q|NSW TrainLink|CCN|#D11F2F|L55|225 196:2508 159:7742 125:3240 153:1511 149:1596 93:3719 222:8310 219:9699 102:7856 71:8516 41:4202 665:10685 656:8144 631:5347 608:1459 732:1833 759:1273 752:1076 705:959 692:704 761:2369 742:890 630:1272 716:1110 735:13804 161:11406 620:11660
+Q|NSW TrainLink|Canberra Xplorer||X110|630 624:45799 141:77093 50:4709 144:9410 56:16501 94:62493 185:37522 57:30898 169:28044 59:7903
+Q|NSW TrainLink|Canberra Xplorer||X110|59 169:7905 57:28013 185:30901 94:37465 56:62607 144:16519 50:9334 141:4760 624:76965 630:45579
+Q|NSW TrainLink|Central Coast & Newcastle Line|#D11F2F|L55|152 52:2826 29:1866 118:2142 60:3902 63:4264 191:3085 49:1155 87:4153 34:4943 76:10084 143:3852 224:8443 207:8975 225:4838 196:2503 159:7742 125:3240 153:1511 149:1596 93:3719 166:2802 189:1088 116:2138 222:2281 219:9699 102:7856 71:8516 41:4202 665:10687 651:10549 735:11486 630:11654
+Q|NSW TrainLink|Central Coast & Newcastle Line|#D11F2F|L55|630 735:11838 82:11597 665:10249 41:10865 71:4164 102:8591 219:7660 223:6793 116:2108 189:2062 166:1153 93:2895 149:3627 153:1604 125:1515 159:3261 196:7798 226:2542 207:4716 224:9002 143:8435 76:3919 34:10004 87:5021 49:4045 191:1201 63:3069 60:4355 118:3814 29:2189 52:1856 100:1719 152:948
+Q|NSW TrainLink|Dubbo XPT|#E56E0F|X110|78 90:27766 210:22620 181:32174 156:56700 138:20045 45:12222 36:49846 186:46142 171:16833 126:18076 111:46264 163:54764 620:20148 161:11696 735:11394 630:11656
+Q|NSW TrainLink|Griffith Xplorer||L55|97 99:415530 151:336793 122:29079
+Q|NSW TrainLink|Hunter Line from Dungog|#833134|X110|79 216:7407 204:6144 108:5249 131:7833 162:5315 139:9652 190:10069 130:2271 201:4600 137:2836 194:2891 40:2384 205:11084 206:2750 100:2460 152:947
+Q|NSW TrainLink|Hunter Line from Scone|#833134|X110|175 28:13878 147:11911 178:49358 51:23348 96:4788 127:8225 130:9981 107:1164 80:2531 201:904 137:2836 194:2891 40:2384 188:1621 106:2624 172:5062 205:1777 206:2750 152:3408
+Q|NSW TrainLink|Hunter Line to Dungog|#833134|X110|152 100:1102 206:2417 205:2640 40:11073 194:2389 137:2893 201:2831 130:4601 190:2275 139:10056 162:9650 131:5314 108:7831 204:5249 79:13549
+Q|NSW TrainLink|Hunter Line to Scone|#833134|X110|152 100:1102 206:2417 205:2640 40:11073 194:2389 137:2893 201:2831 130:4599 127:9997 96:8246 51:4751 178:23334 147:49287 28:11909 175:13877
+Q|NSW TrainLink|Melbourne Sydney XPT Master||X110|416 53:16275 176:104066 630:692663
+Q|NSW TrainLink|Melbourne to Sydney XPT||X110|416 53:22237 176:81463 465:96236 521:38626 31:70819 73:49305 105:16437 192:29829 202:29186 110:35280 69:58843 101:43805 227:67525 99:39355 94:53537 144:79117 624:91018 630:45574
+Q|NSW TrainLink|NSW TrainLink North Coast|#E56E0F|L55|630 735:11876 665:21841 93:47055 226:19987 87:41074 52:17258 130:28756 79:59448 92:63871 215:57690 187:11521 114:57927 209:21927 113:48439 84:30885 129:17879 148:12572 199:15909 173:19575 64:7223 95:87573
+Q|NSW TrainLink|NSW TrainLink North Coast|#E56E0F|L55|630 735:11876 665:21841 93:47055 226:19987 87:41074 52:17258 130:28756 79:59448 92:63871 215:57690 187:11521 114:57927 209:21927 113:48439 84:30885 129:17879 148:12572 199:15909 173:19575 64:7223 95:87573 61:108007
+Q|NSW TrainLink|NSW TrainLink North Coast|#E56E0F|L55|95 64:87730 173:7224 199:19584 148:15912 129:12575 84:17885 113:30906 209:48480 114:21934 187:57889 215:11518 92:57740 79:63965 130:59610 52:28790 87:24378 225:41150 93:19956 665:46911 735:22035 630:11654
+Q|NSW TrainLink|North West Xplorer 223|#E56E0F|X110|630 735:11851 665:21841 93:47055 226:19987 87:41074 52:17258 130:28745 178:46313 147:49287 28:11909 175:13877 146:39961 213:23322 170:16936 212:18094 184:49318 117:16989 203:46257 198:37061 32:23789
+Q|NSW TrainLink|North West Xplorer 224|#E56E0F|X110|32 198:23807 203:37083 117:46293 184:16991 212:49360 170:18097 213:16939 146:23334 175:39989 28:13878 147:11911 178:49358 130:46367 52:28780 87:24378 225:41150 93:19956 665:46911 735:22035 630:11657
+Q|NSW TrainLink|North West Xplorer 243|#E56E0F|L55|212 98:64855 46:39266 150:54019 39:46052 142:50043
+Q|NSW TrainLink|South Coast Line|#005AA3|L55|115 48:1655 140:4118 177:4308 155:3500 30:2356 74:8164 112:3395 197:3267 67:4314 217:1217 154:1598 86:1881 195:1339 70:1029 38:1423 221:1560 55:1850 193:1918 33:1645 65:2305 218:1935 174:1774 62:3253 180:1948 158:3294 104:5149 751:5186 737:14056 666:9725 758:7453 716:5951 630:1218
+Q|NSW TrainLink|South Coast Line|#005AA3|L55|115 89:9328 42:12316 47:12473
+Q|NSW TrainLink|South Coast Line|#005AA3|L55|630 716:1218 758:6150 666:7427 737:9582 751:14223 104:4953 158:5492 180:3344 62:1877 174:3236 218:1795 65:1875 33:2396 193:1670 55:1884 221:1881 38:1505 70:1430 195:1075 86:1306 154:1923 217:1596 67:1195 197:4157 112:3261 74:3485 30:8227 155:2202 177:3500 140:4308 48:4119 115:1657
+Q|NSW TrainLink|South Coast Line|#005AA3|L55|217 67:1195 128:2133 72:1406 168:974 167:1586
+Q|NSW TrainLink|South Coast Line|#005AA3|L55|47 42:12467 89:12311 115:9326
+Q|NSW TrainLink|South Coast Line|#005AA3|L55|167 168:1586 72:1067 128:1447 67:2172 217:1217
+Q|NSW TrainLink|Southern Highlands Line|#008a45|X110|94 132:31972 183:7475 214:8291 164:5713 56:9173 85:6341 144:10180 58:6801 50:2534 141:4760 228:15176 35:13402 182:8342 165:5687 77:11886 134:7980 135:2420 685:6341 624:1772
+Q|NSW TrainLink|Southern Highlands Line|#008a45|X110|624 685:1922 135:6233 134:2441 77:7999 165:11919 182:5861 35:8321 228:13413 141:15261 50:4709 58:2519 144:6891 85:10108 56:6391 164:9116 214:5752 183:8207 132:7530 94:31864
+Q|NSW TrainLink|Train 244|#E56E0F|L55|142 39:50051 150:46061 46:54093 98:39307 212:64978
+Q|NSW TrainLink|Train 31|#E56E0F|L55|630 735:11876 665:21841 93:47055 226:19987 87:41074 52:17258 130:28756 79:59448 92:63871 215:57690 187:11521 114:57927 209:21927 113:48439 129:48754 199:28478 173:19575 64:7223 95:87573 61:108007 119:28632 877:153895
+Q|NSW TrainLink|Train 32|#E56E0F|L55|877 119:154261 61:28640 95:108205 64:87730 173:7224 199:19584 148:15912 129:12575 113:48804 209:48480 114:21934 187:57889 215:11518 92:57740 79:63965 130:59610 52:28790 87:24378 225:41150 93:19956 665:46911 735:22035 630:11654
+Q|NSW TrainLink|Train 34|#E56E0F|L55|61 95:108205 64:87730 173:7224 199:19584 148:15912 129:12575 113:48804 209:48480 114:21934 187:57889 215:11518 92:57740 79:63965 130:59610 52:28790 87:24378 225:41150 93:19956 665:46911 735:22035 630:11654
+Q|NSW TrainLink|Train 427|#E56E0F|X110|630 735:11875 161:11406 620:11660 163:20159 111:54684 126:45943 171:17839 186:16837 36:46119 45:49869 138:12218 156:20039 181:56670 210:32153 90:22606 78:27739
+Q|NSW TrainLink|Train 621|#E56E0F|L55|53 176:81275
+Q|NSW TrainLink|Train 622|#E56E0F|L55|53 176:81275 416:96246
+Q|NSW TrainLink|Train 623|#E56E0F|L55|53 176:81275 416:96246
+Q|NSW TrainLink|Train 624|#E56E0F|L55|53 176:81275 416:96246
+Q|NSW TrainLink|Train 641|#E56E0F|L55|94 110:211383 68:38229 151:64254 122:27239 97:47152
+Q|PTV - Metropolitan Trains|Alamein Line|#152C6B|L55|305 416:1669 302:1099 355:606 392:1143 399:2545 293:737 260:937 324:1584 311:1261 243:834 262:1173 403:1460 453:566 320:1052 261:975 241:1201 231:713
+Q|PTV - Metropolitan Trains|Alamein Line|#152C6B|L55|262 403:1460 453:566 320:1052 261:975 241:1201 231:713
+Q|PTV - Metropolitan Trains|Alamein Line|#152C6B|L55|305 399:2248 293:737 260:937 324:1584 311:1261 243:834 262:1173 403:1460 453:566 320:1052 261:975 241:1201 231:713
+Q|PTV - Metropolitan Trains|Alamein Line|#152C6B|L55|231 241:711 261:1200 320:977 453:1052 403:391 262:1471
+Q|PTV - Metropolitan Trains|Alamein Line|#152C6B|L55|231 241:711 261:1200 320:977 453:1052 403:391 262:1472 243:1316 311:848 324:1250 260:1445 293:1085 399:746 392:2297 355:1143 302:606 416:1099 305:1994
+Q|PTV - Metropolitan Trains|Alamein Line|#152C6B|L55|231 241:711 261:1200 320:977 453:1052 403:391 262:1472 243:1316 311:848 324:1250 260:1445 293:1085 399:741 305:2257
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|L55|305 416:1669 302:1099 355:606 392:1143 399:2490 260:1674 324:1584 311:1261 243:834 262:1173 290:926 263:1127 268:815 436:1123 257:2016 345:1666 254:833 383:2139 364:1671 325:1937 400:1361 326:2338 247:2691 256:2526 301:2487 438:1668 439:2623 428:1083 249:1196
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|305 416:1669 302:1099 355:606 392:1143 399:2490 311:4519 262:2010 257:5904 345:1768 254:833 383:2139 364:1671 325:1937 400:1361 326:2338 247:2691 256:2526 301:2487 438:1668
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|305 416:1669 302:1099 355:606 392:1143 399:2490 257:12433 254:2600 364:3810 400:3298 326:2338 247:2691 256:2526 301:2487 438:1668 439:2623 428:1083 249:1191
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|L55|249 428:1191 439:1217 438:2458 301:1837 256:2488 247:2538 326:2688 400:2365 325:1348 364:1921 383:1666 254:2139 345:828 257:1731 436:1980 269:1192 263:727 290:1127 262:779 243:1316 311:848 324:1250 260:1445 399:1830 305:2265
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|438 301:1837 256:2488 247:2538 326:2688 400:2365 325:1348 364:1921 383:1666 254:2139 345:828 257:1629 436:1911 399:10681 392:2317 355:1143 302:606 416:1099 305:2000
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|249 428:1196 439:1217 438:2458 301:1837 256:2488 247:2538 326:2688 400:2365 325:1348 364:1921 383:1666 254:2139 345:828 257:1629 262:5904 311:2161 399:4526 392:2242 355:1143 302:606 416:1099 305:1669
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|249 428:1196 439:1217 438:2458 301:1837 256:2488 247:2538 326:2688 400:2365 325:1348 364:1921 383:1666 254:2139 257:2559 262:5805 311:2164 399:4525 305:2299
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|L55|249 428:1196 439:1217 438:2458 301:1837 256:2488 247:2538 326:2688 400:2287
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|249 428:1196 439:1217 438:2458 301:1837 256:2488 247:2538 326:2688 400:2365 364:3269 254:3805 257:2457 399:12592 392:2317 355:1143 302:606 416:1099 305:2000
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|305 399:2268 311:4519 262:2007 257:6007 345:1666 254:833 383:2139 364:1671 325:1937 400:1361 326:2338 247:2691 256:2526 301:2487 438:1668 439:2623 428:1083 249:1191
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|X110|305 416:1635 302:1099 355:606 392:1143 399:2491 311:4519 262:2010 257:5904 345:1768 254:833 383:2139 364:1671 325:1937 400:1361 326:2338 247:2691 256:2526 301:2487 438:1668 439:2623 428:1083 249:1191
+Q|PTV - Metropolitan Trains|Belgrave Line|#152C6B|L55|400 326:2441 247:2691 256:2526 301:2487 438:1668 439:2623 428:1083 249:1191
+Q|PTV - Metropolitan Trains|City Circle|#0072CE|L55|305 416:1374 302:1081 355:606 392:1118
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|L55|305 416:1442 380:1587 342:1864 375:716 240:1502 366:1092 298:1122 310:1091 426:626 393:1476 385:1595 314:1501 336:1078 53:1465 276:2457 405:2729 277:3985
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|L55|305 416:1442 380:1587 342:1864 375:716 240:1502 366:1092 298:1122 310:1091 426:626 393:1476 385:1595 314:1501 336:1078 53:1465
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|X110|305 416:1442 380:1587 298:6295 310:1091 426:626 393:1476 385:1595 314:1501 336:1078 53:1465 276:2457 405:2729 277:3985
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|X110|305 416:1442 380:1587 298:6295 310:1091 426:626 393:1476 385:1595 314:1501 336:1078 53:1465
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|L55|277 405:3986 276:2755 53:2451 336:1442 314:1086 385:1493 393:1574 426:1490 310:636 298:1086 366:1101 240:1102 375:1498 342:698 380:1884 302:1505 355:606 392:1116 305:1373
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|L55|277 405:3986 276:2755 53:2451 336:1442 314:1086 385:1493 393:1574 426:1490 310:636 298:1086 366:1101 240:1102 375:1498 342:698 380:1884 416:1444 305:1606
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|X110|277 405:3986 276:2755 53:2451 336:1442 314:1086 385:1493 393:1574 426:1490 310:636 298:1086 380:6283 416:1444 305:1606
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|L55|53 336:1442 314:1086 385:1493 393:1574 426:1490 310:636 298:1086 366:1101 240:1102 375:1498 342:698 380:1884 302:1505 355:606 392:1116 305:1373
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|L55|53 336:1442 314:1086 385:1493 393:1574 426:1490 310:636 298:1086 366:1101 240:1102 375:1498 342:698 380:1884 416:1444 305:1606
+Q|PTV - Metropolitan Trains|Craigieburn Line|#FFBE00|L55|305 392:1209 355:1116 302:606 380:1648 342:1864 375:716 240:1502 366:1092 298:1122 310:1091 426:626 393:1476 385:1595 314:1501 336:1078 53:1465 276:2457 405:2729 277:3985
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|451 452:951 382:904 376:1780 421:1316 456:1698 413:888 484:999 417:2106 380:1812 416:1432 305:1618 399:2147 420:1792 395:1310 454:718 244:1621 402:712 295:1167 307:1336 378:902 361:1270 258:1455 319:1730 410:1524
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|376 421:1316 456:1698 413:888 484:999 417:2106 380:1812 416:1432 305:1618 399:2147 420:1792 395:1310 454:718 244:1621 402:712 295:1167 307:1336 378:902 361:1270 258:1455 319:1730 410:1524
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|410 319:1374 258:1730 361:1459 378:1270 307:901 295:1331 402:1170 244:713 454:1607 395:729 420:1320 399:1777 305:2393 416:1377 380:1575 417:1807 484:2100 413:1000 456:892 421:1706 376:1315
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|410 319:1374 258:1730 361:1459 378:1270 307:901 295:1331 402:1170 244:713 454:1607 395:729 420:1320 399:1777 305:2393 416:1377 380:1575 417:1807 484:2100 413:1000 456:892 421:1706 376:1315 382:1650 452:912 451:1074
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|410 319:1374 258:1730 361:1459 378:1270 307:901 295:1331 402:1170 244:713 454:1607 395:729 420:1320 399:1777 305:2393 416:1377 380:1575 417:1807 484:2100 413:1000 456:892 421:1706 376:1315 412:5553 234:1031 448:1371 347:3703
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|410 319:1374 258:1730 361:1459 378:1270 307:901 295:1331 402:1170 244:713 454:1607 395:729 420:1320 399:1777 305:2393 416:1377 380:1575 417:1807 484:2100 413:1000 456:892 421:1706 376:1315 412:5553 234:1031 448:1371 347:3703 230:1151 450:1341 331:4125 444:3940
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|X110|410 319:1374 258:1730 361:1459 378:1270 307:901 295:1331 402:1170 244:713 454:1607 395:729 420:1320 399:1777 305:2393 416:1377 380:1575 484:3907 376:4913 347:10477 230:1151 450:1341 331:4125 444:3940
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|X110|444 331:4096 450:4163 230:1306 347:1155 376:10462 484:4901 380:3918 416:1432 305:1618 399:2147 420:1792 395:1310 454:718 244:1621 402:712 295:1167 307:1336 378:902 361:1270 258:1455 319:1730 410:1524
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|444 331:4096 450:4163 230:1306 347:1155 448:3697 234:1373 412:1026 376:5558 421:1316 456:1698 413:888 484:999 417:2106 380:1812 416:1432 305:1618 399:2147 420:1792 395:1310 454:718 244:1621 402:712 295:1167 307:1336 378:902 361:1270 258:1455 319:1730 410:1524
+Q|PTV - Metropolitan Trains|Cross City|#F178AF|L55|347 448:3703 234:1373 412:1026 376:5558 421:1316 456:1698 413:888 484:999 417:2106 380:1812 416:1432 305:1618 399:2147 420:1792 395:1310 454:718 244:1621 402:712 295:1167 307:1336 378:902 361:1270 258:1455 319:1730 410:1524
+Q|PTV - Metropolitan Trains|Cross City Group|#F178AF|L55|451 452:951 382:904 376:1780
+Q|PTV - Metropolitan Trains|Cross City Group|#F178AF|L55|376 382:1650 452:912 451:1074
+Q|PTV - Metropolitan Trains|Flemington Racecourse => Flinders Street|#95979A|X110|304 414:884 416:5545 305:1372
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|L55|414 380:4099 416:1278
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|L55|305 416:1442 380:1587 414:3951 304:911
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|X110|304 380:5013 416:1278
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|L55|304 414:914 380:4099 302:1505 355:606 392:1116 305:1373
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|L55|304 414:914 380:4099 416:1444 305:1606
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|X110|416 380:1422 304:4861
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|L55|416 380:1422 414:3951
+Q|PTV - Metropolitan Trains|Flemington Racecourse Line|#95979A|L55|305 392:1209 355:1116 302:606 380:1648 414:3951 304:911
+Q|PTV - Metropolitan Trains|Flinders Street => Flemington Racecourse|#95979A|X110|305 416:1377 414:5539 304:880
+Q|PTV - Metropolitan Trains|Frankston => Stony Point|#028430|L55|306 348:1782 246:6194 415:3827 435:4006 321:5149 253:3640 371:2285 280:1849 425:1784
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|306 340:2466 411:2152 266:2994 255:1372 270:1345 294:2056 242:1263 369:2649 389:1797 356:1207 271:2232 418:942 329:1406 367:1567 394:1119 251:763 354:688 387:796 312:1649 267:1650 353:1656 239:1446 431:774 322:1259 420:1148 399:1863 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|X110|306 340:2466 411:2152 266:2994 255:1372 270:1345 294:2056 242:1263 369:2649 389:1797 356:1207 271:2232 267:10577 353:1656 420:4626 399:1863 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|306 340:2466 411:2152 266:2994 255:1372 270:1345 294:2056 242:1263 369:2649 389:1797 356:1207 271:2232 418:942 329:1406 367:1567 394:1119 251:763 354:688 387:796 312:1649 267:1650 353:1656 239:1446 431:774 322:1259 420:1148 399:1863 305:2240
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|266 255:1372 270:1345 294:2056 242:1263 369:2649 389:1797 356:1207 271:2232 418:942 329:1406 367:1567 394:1119 251:763 354:688 387:796 312:1649 267:1650 353:1656 239:1446 431:774 322:1259 420:1148 399:1863 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|369 389:1797 356:1207 271:2232 418:942 329:1406 367:1567 394:1119 251:763 354:688 387:796 312:1649 267:1650 353:1656 239:1446 431:774 322:1259 420:1148 399:1863 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|367 394:1116 251:765 354:686 387:707 312:1740 267:1650 353:1656 239:1446 431:774 322:1259 420:1148 399:1863 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|399 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|305 399:2230 420:1717 322:1298 431:1260 239:774 353:1445 267:1686 312:1470 387:1741 354:813 251:630 394:866 367:1099 329:1587 418:1385 271:993
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|305 399:2230 420:1717 322:1298 431:1260 239:774 353:1445 267:1686 312:1470 387:1741 354:813 251:630 394:866 367:1099 329:1587 418:1385 271:993 356:2046 389:1363 369:1803 242:2642 294:1109 270:2056 255:1351 266:1367 411:2995 340:2152 306:2417
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|305 399:2230 420:1717 322:1298 431:1260 239:774 353:1445 267:1686 312:1470 387:1741 354:813 251:630 394:866 367:1099 329:1587 418:1385 271:993 356:2046 389:1363 369:1803 242:2642 294:1109 270:2056 255:1351 266:1367
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|X110|305 399:2230 420:1717 267:6463 271:10564 356:2061 389:1363 369:1803 242:2642 294:1109 270:2056 255:1351 266:1367 411:2995 340:2152 306:2417
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|X110|305 399:2230 420:1717 267:6463 367:6613 329:1587 418:1385 271:993
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|305 399:2230 420:1717 322:1298 431:1260 239:774 353:1445 267:1686 312:1470 387:1741 354:813 251:630 394:866 367:966
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|305 399:2230 420:1717 322:1298 431:1260 239:774 353:1445 267:1686 312:1470 387:1741 354:813 251:630 394:866 367:1099 329:1587 418:1385 271:978 356:2061 389:1363 369:1803
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|L55|271 394:5034 251:763 354:688 387:796 312:1649 267:1650 353:1656 239:1446 431:774 322:1259 420:1148 399:1863 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Frankston Line|#028430|X110|271 418:942 329:1406 367:1567 267:6664 353:1656 420:4626 399:1863 392:2333 355:1145 302:606 416:1129 305:2024
+Q|PTV - Metropolitan Trains|Glen Waverley Line|#152C6B|L55|305 416:1669 302:1099 355:606 392:1143 399:2490 293:737 260:937 328:1754 344:1255 432:1282 308:881 313:960 285:1178 291:1066 330:1895 339:1962 372:1414 427:1962 315:1167
+Q|PTV - Metropolitan Trains|Glen Waverley Line|#152C6B|X110|305 416:1669 302:1099 355:606 392:1143 399:2545 285:8983 291:1066 330:1895 339:1962 372:1414 427:1962 315:1167
+Q|PTV - Metropolitan Trains|Glen Waverley Line|#152C6B|L55|315 427:1173 372:1805 339:1418 330:1956 291:1897 285:1069 313:1178 308:949 432:1027 344:1283 328:1123 260:1748 293:1085 399:746 305:2265
+Q|PTV - Metropolitan Trains|Glen Waverley Line|#152C6B|X110|315 427:1173 372:1805 339:1418 330:1956 291:1897 285:1069 399:9134 305:2265
+Q|PTV - Metropolitan Trains|Glen Waverley Line|#152C6B|L55|305 399:2248 293:737 260:937 328:1754 344:1255 432:1282 308:881 313:960 285:1178 291:1066 330:1895 339:1962 372:1414 427:1962 315:1167
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|305 416:1374 302:1081 355:606 392:1118 338:1346 449:765 381:424 275:747 440:514 273:1212 447:1004 286:838 299:758 233:1270 284:773 335:922 289:945 327:950 404:1748 352:1888
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|305 416:1374 302:1081 355:606 392:1118 338:1346 449:765 381:424 275:747 440:514 273:1212 447:1004 286:838 299:758 233:1270 284:773 335:922 289:945 327:950 404:1748 352:1906 442:2215 317:3067
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|305 416:1374 302:1081 355:606 392:1118 338:1346 449:765 381:424 275:747 440:514 273:1212 447:1004 286:838 299:758 233:1270 284:773 335:922 289:945 327:950 404:1748 352:1906 442:2215 317:3067 365:1628 296:2643
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|305 416:1374 302:1081 355:606 392:1118 338:1346 449:765 381:424 275:747 440:514 273:1212 447:1004 286:838 299:758 233:1270 284:773 335:922 289:945 327:950 404:1748 352:1906 442:2215 317:3067 365:1628 296:2643 287:5340 443:2295 334:3003
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|X110|305 416:1374 302:1081 355:606 392:1118 338:1346 440:2734 273:1212 335:5564 327:1895 404:1748 352:1906 442:2215 317:3067 365:1628 296:2643 287:5340 443:2295 334:3003
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|334 287:5290 296:5246 365:2754 317:1640 442:3044 352:2205 404:1913 327:1742 289:959 335:948 284:911 233:765 299:1276 286:778 447:828 273:993 440:1068 275:656 381:605 449:561 338:777 305:1642
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|X110|334 287:5290 296:5246 365:2754 317:1640 442:3044 352:2205 404:1913 327:1742 335:1906 273:5553 440:1068 338:2599 305:1642
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|296 365:2754 317:1640 442:3044 352:2205 404:1913 327:1742 289:959 335:948 284:911 233:765 299:1276 286:778 447:828 273:993 440:1068 275:656 381:605 449:561 338:777 305:1642
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|317 442:3044 352:2205 404:1913 327:1742 289:959 335:948 284:911 233:765 299:1276 286:778 447:828 273:993 440:1068 275:656 381:605 449:561 338:777 305:1642
+Q|PTV - Metropolitan Trains|Hurstbridge Line|#BE1014|L55|352 404:1891 327:1742 289:959 335:948 284:911 233:765 299:1276 286:778 447:828 273:993 440:1068 275:656 381:605 449:561 338:777 305:1642
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|305 416:1669 302:1099 355:606 392:1143 399:2545 260:1674 324:1584 311:1261 243:834 262:1173 290:926 268:1942 436:1123 257:2016 345:1666 254:833 383:2139 364:1671 325:1937 400:1361 401:1891 282:3375 368:3422 349:4252
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|349 368:4414 282:3417 401:3392 400:1909 325:1348 364:1921 383:1666 254:2139 345:828 257:1731 436:1980 269:1192 263:727 290:1127 262:779 243:1316 311:848 324:1250 260:1445 399:1830 305:2265
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|349 368:4414 282:3417 401:3392 400:1909 325:1348 364:1921 383:1666 254:2139 345:828 257:1629 436:1911 269:1360 263:730 290:1126 262:777 243:1314 311:848 324:1251 260:1445 399:1830 392:2242 355:1143 302:606 416:1099 305:1669
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|X110|368 282:3417 401:3392 400:1831 325:1425 364:1921 383:1666 254:2139 257:2457 436:2086 399:10505 392:2297 355:1143 302:606 416:1099 305:1994
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|400 401:1891 282:3375 368:3428
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|305 399:2248 293:737 260:937 324:1584 311:1261 243:834 262:1173 290:926 263:1127 268:815 436:1123 257:2016 345:1666 254:759
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|254 345:901 257:1731 436:1980 269:1192 263:727 290:1127 262:779 243:1316 311:848 324:1250 260:1445 399:1830 392:2317 355:1143 302:606 416:1099 305:2000
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|254 345:901 257:1731 436:1980 269:1192 263:727 290:1127 262:779 243:1316 311:848 324:1250 260:1445 293:1085 399:741 305:2257
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|X110|305 399:2267 311:4519 262:2007 257:6007 345:1666 254:833 383:2139 364:1671 325:1937 400:1361 401:1891 282:3375 368:3428
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|305 399:2268 260:1674 324:1584 311:1261 243:834 262:1173 290:926 268:1942 436:1123 257:2016 345:1666 254:833 383:2139 364:1671 325:1937 400:1361 401:1891 282:3375 368:3422 349:4252
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|X110|305 416:1635 302:1099 355:606 392:1143 399:2545 311:4519 262:2009 257:5904 345:1768 254:833 383:2139 364:1671 325:1937 400:1361 401:1891 282:3375 368:3428
+Q|PTV - Metropolitan Trains|Lilydale Line|#152C6B|L55|305 416:1668 302:1099 355:606 392:1143 399:2757 260:1674 324:1584 311:1261 243:834 262:1173 290:926 263:1127 268:815 436:1123 257:2016 345:1666 254:759
+Q|PTV - Metropolitan Trains|Mernda Line|#BE1014|L55|359 323:2382 363:2398 419:2358 297:3066 346:2080 429:1668 343:1670 408:1387 398:1030 397:1368 396:1161 250:772 430:1029 281:1008 379:660 360:896 407:725 273:756 440:1068 275:656 381:605 449:561 338:777 305:1642
+Q|PTV - Metropolitan Trains|Mernda Line|#BE1014|L55|305 416:1374 302:1081 355:606 392:1118 338:1346 449:765 381:424 275:747 440:514 273:1212 407:739 360:744 379:900 281:629 430:1027 250:961 396:848 397:1164 398:1368 408:877 343:1387 429:1817 346:1669 297:2085 419:3066 363:2361 323:2387 359:2237
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|283 350:8340 357:2768 279:2615
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|283 318:6286 374:3210 252:4004 248:2271 386:4425 264:2338 388:4390 292:1836
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|279 357:2616 350:2770 283:8360
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|279 357:2616 350:2770 283:8360 455:2147 377:1829 409:1573 422:1084 445:1972 272:2019 333:2253 384:1687 332:1314 373:841 265:885 267:1826 353:1669 236:6423 434:2005 424:956 391:1256 237:1704 484:3429 362:1069 446:709 433:1733 512:3158 232:1379 309:2347 423:1851 341:1790 441:3629
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|279 357:2616 350:2770 283:8360 455:2147 377:1829 409:1573 422:1084 445:1972 272:2019 333:2253 384:1687 332:1314 373:841 265:885 267:1826 353:1669 236:6423 434:2005 424:956 391:1256 237:1704 484:3429 362:1069 446:715
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|422 409:1086 377:1565 455:1837 283:2172 318:6286 374:3210 252:4004 248:2271 386:4425 264:2338 388:4390 292:1836
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|292 388:1837 264:4388 386:2341 248:4422 252:2272 374:4001 318:3209 283:6287
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|292 388:1837 264:4388 386:2341 248:4422 252:2272 374:4001 318:3209 283:6314 455:2146 377:1829 409:1573 422:1084 445:1972 272:2019 333:2253 384:1687 332:1314 373:841 265:885 267:1826 353:1669 236:6423 434:2005 424:956 391:1256 237:1704 484:3429 362:1069 446:709 433:1733 512:3158 232:1379 309:2347 423:1851 341:1790 441:3630 288:9441 511:5546
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|X110|292 388:1837 264:4388 386:2341 248:4422 252:2272 374:4001 318:3209 283:6314 377:3975 409:1573 422:1084 445:1972 272:2019 333:2253 384:1687 332:1314 373:841 265:885 267:1826 353:1669 236:6423 434:2005 424:956 391:1256 237:1704 484:3429 446:1778 512:4891 232:1379 309:2347 423:1851 341:1790 441:3630 288:9441 511:5546
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|292 388:1837 264:4388 386:2341 248:4422 252:2272 374:4001 318:3209 283:6314 455:2146 377:1829 409:1573 422:1084 445:1972 272:2019 333:2253 384:1687 332:1314 373:841 265:885 267:1826 353:1669 236:6423 434:2005 424:956 391:1256 237:1704 484:3429 362:1069 446:709 433:1733 512:3158 232:1379 309:2347 423:1851 341:1790 441:3629
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|511 288:5555 441:9445 341:3635 423:1781 309:1883 232:2323 512:1385 433:3153 446:1784 362:669 484:1034 238:3485 390:1704 424:1257 434:916 236:2066 353:6383 267:1653 265:1687 373:885 332:842 384:1310 333:1692 272:2252 445:2111 422:1881 409:1086 377:1565 455:1837 283:2172 318:6286 374:3210 252:4004 248:2271 386:4425 264:2338 388:4390 292:1836
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|X110|511 288:5555 441:9445 341:3635 423:1781 309:1883 232:2323 512:1385 446:4936 484:1702 238:3485 390:1704 424:1257 434:916 236:2066 353:6383 267:1653 265:1687 373:885 332:842 384:1310 333:1692 272:2252 445:2111 422:1881 409:1086 377:1565 283:4010 318:6286 374:3210 252:4004 248:2271 386:4425 264:2338 388:4390 292:1836
+Q|PTV - Metropolitan Trains|Metro Tunnel|#34ACE1|L55|511 288:5555 441:9451
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|441 341:3635 423:1781 309:1883 232:2323 512:1385 433:3153 446:1784 362:669 484:1034 238:3485 390:1704 424:1257 434:916 236:2066 353:6383 267:1653 265:1687 373:885 332:842 384:1310 333:1692 272:2252 445:2111 422:1881 409:1086 377:1565 455:1837 283:2172 350:8340 357:2768 279:2615
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|441 341:3635 423:1781 309:1883 232:2323 512:1385 433:3153 446:1784 362:669 484:1034 238:3485 390:1704 424:1257 434:916 236:2066 353:6383 267:1653 265:1687 373:885 332:842 384:1310 333:1692 272:2252 445:2111 422:1881 409:1086 377:1565 455:1837 283:2172
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|446 362:716 484:1034 238:3485 390:1704 424:1257 434:916 236:2066 353:6383 267:1653 265:1687 373:885 332:842 384:1310 333:1692 272:2252 445:2181
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|446 362:716 484:1034 238:3485 390:1704 424:1257 434:916 236:2066 353:6383 267:1653 265:1687 373:885 332:842 384:1310 333:1692 272:2252 445:2111 422:1881 409:1086 377:1565 455:1837 283:2172 350:8341 357:2768 278:2884
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|441 288:9442 511:5546
+Q|PTV - Metropolitan Trains|Metro Tunnel|#279FD5|L55|445 272:2019 333:2253 384:1687 332:1314 373:841 265:885 267:1826 353:1669 236:6423 434:2005 424:956 391:1256 237:1704 484:3429 362:1069 446:715
+Q|PTV - Metropolitan Trains|Sandringham Line|#F178AF|L55|410 319:1374 258:1730 361:1459 378:1270 307:901 295:1331 402:1170 244:713 454:1607 395:729 420:1320 399:1777 305:2393
+Q|PTV - Metropolitan Trains|Sandringham Line|#F178AF|L55|305 399:2384 420:1792 395:1310 454:718 244:1621 402:712 295:1167 307:1336 378:902 361:1270 258:1455 319:1730 410:1524
+Q|PTV - Metropolitan Trains|Stony Point => Frankston|#028430|L55|425 280:1784 371:1848 253:2285 321:3640 435:5149 415:4006 246:3827 348:6192 306:1782
+Q|PTV - Metropolitan Trains|Upfield Line|#FFBE00|L55|437 316:4183 300:1556 358:689 245:1281 274:1066 370:1299 235:809 259:706 337:801 406:1026 303:1441 351:743 380:1565 302:1505 355:606 392:1116 305:1373
+Q|PTV - Metropolitan Trains|Upfield Line|#FFBE00|L55|437 316:4183 300:1556 358:689 245:1281 274:1066 370:1299 235:809 259:706 337:801 406:1026 303:1441 351:743 380:1565 416:1446 305:1606
+Q|PTV - Metropolitan Trains|Upfield Line|#FFBE00|L55|305 416:1442 380:1586 351:1581 303:744 406:1436 337:1030 259:797 235:712 370:807 274:1303 245:1054 358:1256 300:711 316:1538 437:4055
+Q|PTV - Metropolitan Trains|Upfield Line|#FFBE00|L55|305 416:1442 380:1586
+Q|PTV - Metropolitan Trains|Upfield Line|#FFBE00|L55|305 392:1209 355:1116 302:606 380:1646 351:1581 303:744 406:1436 337:1030 259:797 235:712 370:807 274:1303 245:1054 358:1256 300:711 316:1538 437:4055
+Q|PTV - Metropolitan Trains|Werribee Line|#F178AF|X110|444 331:4096 450:4163 347:2461 376:10462 484:4901 380:3918 416:1432 305:1618
+Q|PTV - Metropolitan Trains|Werribee Line|#F178AF|X110|305 416:1459 380:1575 484:3907 376:4913 347:10477 230:1151 450:1341 331:4125 444:3940
+Q|PTV - Regional Trains|Ararat Line|#8F1A95|L55|457 464:45978 525:41475 463:4783 462:41767 460:22892 496:17990 497:248 474:3559 475:269 504:5095 469:9547 479:3967 480:269 458:3236 512:3078 484:7132 416:5541
+Q|PTV - Regional Trains|Bairnsdale Line|#8F1A95|L55|416 305:1621 399:2236 267:8140 272:8669 283:10654 388:26938 500:7606 519:5045 485:4071 467:4229 492:4336 481:8720 522:7602 533:12393 517:8061 498:9882 499:14648 518:13692 505:22199 506:25685 510:15996 461:52611
+Q|PTV - Regional Trains|Bairnsdale Line|#8F1A95|L55|461 510:52730 506:16000 505:25633 518:22308 499:13545 498:14754 517:9885 533:8063 522:12406 481:7560 492:8731 467:4329 485:4221 519:4085 500:4893 388:7609 283:26938 272:10622 267:8804 399:8164 305:2308 416:1380
+Q|PTV - Regional Trains|Ballarat Line|#8F1A95|L55|525 463:4404 462:34416 460:28542 496:13407 474:3090 504:4474 469:8528 479:3326 458:2762 512:2984 484:6661 416:5084
+Q|PTV - Regional Trains|Ballarat Line|#8F1A95|L55|416 484:5430 512:6482 458:2970 480:2855 469:3255 504:8503 475:4565 497:3070 460:13346 462:28499 463:34250 525:4580
+Q|PTV - Regional Trains|Ballarat Line|#8F1A95|L55|416 484:5417 512:6482 458:2970 480:2855 469:3255
+Q|PTV - Regional Trains|Ballarat Line|#8F1A95|L55|469 479:3326 458:2762 512:2984 484:6661 416:5072
+Q|PTV - Regional Trains|Bendigo Line|#D8B715|L55|416 472:44544 503:6610 483:96745 482:7110 511:112656 487:18897 484:50113 470:109793 493:54401 489:22689 530:14136
+Q|PTV - Regional Trains|Echuca Line|#D8B715|L55|488 470:84793 493:54401 489:22689 530:14136
+Q|PTV - Regional Trains|Geelong Line|#8F1A95|L55|416 484:5415 512:6482 480:5824 515:11310 527:2835 531:8124 491:15302 490:9900 477:6396 20:3132 501:3072 486:2482 508:1903 494:5186 524:4951
+Q|PTV - Regional Trains|Geelong Line|#8F1A95|L55|416 484:5415 512:6482 480:5824 515:11310 527:2835 531:8124
+Q|PTV - Regional Trains|Geelong Line|#8F1A95|L55|524 494:4963 508:5191 486:1889 502:2501 20:3002 477:3142 490:6363 491:9934 532:15370 526:8146 514:2831 479:11313 512:5746 484:6661 416:5070
+Q|PTV - Regional Trains|Geelong Line|#8F1A95|L55|532 526:8146 514:2831 479:11313 512:5746 484:6661 416:5070
+Q|PTV - Regional Trains|Maryborough Line|#8F1A95|L55|495 513:14130 473:17388 478:22883 463:19105
+Q|PTV - Regional Trains|Melbourne - Albury via Seymour|#8F1A95|L55|176 459:17254 520:53345 465:25810 521:38626 509:23529 471:13813 529:27781
+Q|PTV - Regional Trains|Swan Hill Line|#D8B715|L55|470 493:54401 489:22689 530:14136
+Q|PTV - Regional Trains|Traralgon Line|#8F1A95|L55|416 305:1621 399:2236 267:8140 272:8669 283:10654 252:13503 388:13427 500:7606 519:5045 485:4071 467:4229 492:4336 481:8720 522:7602 533:12393 517:8061 498:9882 499:14648 518:13692
+Q|PTV - Regional Trains|Traralgon Line|#8F1A95|L55|518 499:13545 498:14754 517:9885 533:8063 522:12406 481:7560 492:8731 467:4329 485:4221 519:4085 500:4893 388:7609 252:13422 283:13522 272:10622 267:8804 399:8164 305:2308 416:1380
+Q|PTV - Regional Trains|Warrnambool Line|#8F1A95|L55|416 484:5417 486:74887 524:12043 528:29090 466:20549 476:19080 468:45028 516:22263 507:40600 523:5862
+Q|PTV - Regional Trains|Warrnambool Line|#8F1A95|L55|523 507:5886 516:40544 468:22245 476:45105 466:19061 528:20517 524:29135 486:12041 484:74862 416:5072
+Q|Puffing Billy Railway|Puffing Billy Railway||L55|534 544:1694 542:3219 535:1999 537:1645 543:1499 541:597 545:1075 536:2054 538:1989 539:4082 540:225
+Q|Queensland Rail Travel|Inlander|#646363|L55|603 560:138453 593:106515 602:53278 575:89474 595:113973 580:146560 562:131351 565:105949 590:126528
+Q|Queensland Rail Travel|Inlander|#646363|L55|590 565:126405 562:105732 580:131306 595:146628 575:114053 602:89429 593:53223 560:106287 603:138170
+Q|Queensland Rail Travel|Kuranda Scenic Railway||L55|551 556:18203 567:12204 581:11037
+Q|Queensland Rail Travel|Spirit of Queensland|#0069B4|L55|877 786:50136 839:31650 855:22090 795:26830 824:41562 585:83614 574:25907 555:57930 587:106678 570:69398 591:34264 596:73595 600:171713 558:53044 599:61580 584:32381 594:120747 554:60567 573:97598 548:11494 569:33181 603:47042 577:107147 557:52998 604:43025 578:48460 549:28146 571:35806 556:22470
+Q|Queensland Rail Travel|Spirit of Queensland|#0069B4|L55|556 571:22476 549:35821 578:28157 604:48475 557:43044 577:53039 603:107543 569:47082 548:33202 573:11495 554:97625 594:60639 584:121001 599:32394 558:61625 600:53069 596:172330 591:73713 570:33927 587:69453 555:106954 574:57978 585:25920 824:83720 795:41594 855:26841 839:22218 786:31524 877:50183
+Q|Queensland Rail Travel|Spirit of the Outback|#E36307|L55|877 786:50136 839:31650 855:22090 795:26830 824:41562 585:83614 574:25907 555:57930 587:106678 570:69398 591:34264 596:85586 564:139628 553:65466 552:19219 566:75952 547:42773 546:129211 579:55355 550:86459 576:80246 583:26786
+Q|Queensland Rail Travel|Spirit of the Outback|#E36307|L55|583 576:26795 550:80284 579:86491 546:55373 547:129131 566:42764 552:75983 553:19219 564:65517 596:139550 591:85698 570:33927 587:69453 555:106954 574:57978 585:25920 824:83720 795:41594 855:26841 839:22218 786:31524 877:50183
+Q|Queensland Rail Travel|Tilt Train|#A1AFAE|H220|596 591:73713 570:33927 587:69453 555:106954 574:57978 585:25920 824:83720 795:41594 855:26841 839:22218 786:31524 877:50183
+Q|Queensland Rail Travel|Tilt Train|#A1AFAE|H220|877 786:50136 839:31650 855:22090 795:26830 824:41562 585:83614 574:25907 555:57930 587:106678 570:69398 591:34264 596:73595
+Q|Queensland Rail Travel|Westlander|#FBBA00|L55|877 797:10879 832:26933 598:18246 582:25539 568:14667 572:18084 601:18299 592:28896 563:52595 561:80716 586:45207 605:81595 597:59488 588:85718 589:89525 559:89981
+Q|Queensland Rail Travel|Westlander|#FBBA00|L55|559 589:89987 588:89577 597:85779 605:59507 586:81627 561:45236 563:80916 592:52680 601:28920 572:18297 568:18126 582:14753 598:25546 832:18470 797:26875 877:10807
+Q|Sydney Trains|Airport & South Line|#00954C|L55|742 761:943 634:916 730:1220 700:561 630:1005 716:1121 652:1717 734:900 738:1507 744:3309 614:1455 618:1267 672:1263 617:1986 701:1168 722:1705 708:1839 718:1493 709:1721 645:1484 663:2722 655:6209 687:1938 667:1848 693:4007 678:2958 624:2072 685:1851
+Q|Sydney Trains|Airport & South Line|#00954C|L55|742 761:943 634:916 730:1220 700:561 630:1007 658:2621 689:2414 643:1583 668:1472 758:1279 744:1378 614:1455 618:1267 672:1263 617:1986 701:1168 722:1705 708:1839 718:1493 709:1721 645:1484 663:2722 655:6209 687:1938 667:1848 693:4007 678:2958 624:2072 685:1851
+Q|Sydney Trains|Airport & South Line|#00954C|L55|685 624:1869 678:2068 693:2945 667:4004 687:1846 655:1790 663:6354 645:2753 709:1464 718:1589 708:1619 722:1845 701:1715 617:1191 672:1966 618:1248 614:1252 744:1465 738:3312 734:1503 652:909 716:1573 630:1255 700:970 730:755 634:1079 761:925 742:1340
+Q|Sydney Trains|Airport & South Line|#00954C|L55|685 624:1869 678:2068 693:2945 667:4004 687:1846 655:1790 663:6354 645:2753 709:1464 718:1589 708:1619 722:1845 701:1715 617:1191 672:1966 618:1248 614:1252 744:1465 758:1393 668:1298 643:1453 689:1551 658:2411 630:2646 700:970 730:755 634:1079 761:925 742:1340
+Q|Sydney Trains|Cumberland Line|#C4258F|L55|720 646:617 635:2849 757:2109 699:2510 746:3266 721:3336 726:3106 715:2861 688:2517 620:2496 728:2835 741:2101 710:1664 753:1659 755:1440 161:2009 661:669 691:2199 659:2247 763:1714 653:1554 625:1982 623:1006 750:2091 683:1568 629:3080 655:3114 649:3537 677:5559
+Q|Sydney Trains|Cumberland Line|#C4258F|L55|677 649:5720 655:3369 629:3244 683:3059 750:1566 623:2064 625:972 653:2106 763:1520 659:1705 691:2254 661:2252 161:708 755:1913 753:1476 710:1658 741:1670 728:2077 620:2877 688:2503 715:2509 726:2835 721:3128 746:3201 699:3395 757:2377 635:2245 646:2713 720:617
+Q|Sydney Trains|Eastern Suburbs & Illawarra Line|#005AA3|L55|751 662:5519 650:2426 684:4474 737:1639 669:1905 637:1455 706:2965 695:1225 712:930 666:1290 606:1134 627:941 675:1139 723:1189 612:804 607:1178 758:1120 739:454 738:1519 716:4176 630:1248 742:1309 731:817 671:1374 648:1396 621:1970
+Q|Sydney Trains|Eastern Suburbs & Illawarra Line|#005AA3|L55|639 760:1288 626:2086 694:1952 660:1611 674:1253 737:2100 669:1905 637:1455 706:2965 695:1225 712:930 666:1290 606:1134 627:941 675:1139 723:1189 612:804 607:1178 758:1120 739:454 738:1519 716:4176 630:1248 742:1309 731:817 671:1374 648:1396 621:1970
+Q|Sydney Trains|Eastern Suburbs & Illawarra Line|#005AA3|L55|621 648:1957 671:1404 731:1480 742:836 630:1351 716:1140 738:4243 739:1527 758:505 607:1075 612:1176 723:802 675:1203 627:1128 606:958 666:1142 712:1283 695:929 706:1223 637:2963 669:1461 737:2090 674:2372 660:1245 694:1616 626:1946 760:2105 640:882
+Q|Sydney Trains|Eastern Suburbs & Illawarra Line|#005AA3|L55|621 648:1957 671:1404 731:1480 742:836 630:1351 716:1140 738:4243 739:1527 758:505 607:1075 612:1176 723:802 675:1203 627:1128 606:958 666:1142 712:1283 695:929 706:1223 637:2963 669:1461 737:1749 684:1793 650:4478 662:2405 751:5546
+Q|Sydney Trains|Inner West & Leppington Line|#0098CD|L55|161 661:669 657:1290 636:494 611:2102 681:2016 654:2284 664:1586 735:919 622:1188 641:1181 609:1055 736:1359 679:785 713:746 729:822 702:1535 686:654 716:1160 630:1245 742:1714 761:943 634:916 730:1220 700:567
+Q|Sydney Trains|Inner West & Leppington Line|#0098CD|L55|700 730:794 634:1079 761:925 742:1340 630:1531 716:1114 686:1277 702:633 729:1580 713:832 679:740 736:791 609:1333 641:1050 622:1201 735:1205 664:834 654:1667 681:2284 611:2023 636:1954 657:663 691:2199 659:2247 763:1714 653:1554 625:1982 623:1006 750:2091 683:1596 629:3050 655:3114 649:3537 677:5559
+Q|Sydney Trains|Inner West & Leppington Line|#0098CD|L55|700 730:794 634:1079 761:925 742:1340 630:1531 716:1114 686:1277 702:633 729:1580 713:832 679:740 736:791 609:1333 641:1050 622:1201 735:1205 664:834 654:1667 681:2284 611:2023 636:1954 657:663 661:1275 161:708
+Q|Sydney Trains|Inner West & Leppington Line|#0098CD|L55|677 649:5720 655:3369 629:3244 683:3059 750:1566 623:2064 625:972 653:2106 763:1520 659:1705 691:2254 657:2248 636:494 611:2102 681:2016 654:2284 664:1586 735:919 622:1188 641:1181 609:1055 736:1359 679:785 713:746 729:822 702:1535 686:654 716:1160 630:1245 742:1714 761:943 634:916 730:1220 700:567
+Q|Sydney Trains|Inner West & Liverpool Line|#F37021|L55|700 730:794 634:1079 761:925 742:1340 630:1531 716:1114 686:1277 702:633 729:1580 713:832 679:740 736:791 609:1333 641:1050 622:1201 735:1205 664:834 654:1667 681:2284 616:1751 717:1491 727:1336 633:1038 676:1432 745:832 628:1389 623:2524 750:2091 683:1568
+Q|Sydney Trains|Inner West & Liverpool Line|#F37021|L55|683 750:1566 623:2064 628:2588 745:1390 676:835 633:1280 727:1187 717:1331 616:1493 681:1744 654:2284 664:1586 735:919 622:1188 641:1181 609:1055 736:1359 679:785 713:746 729:822 702:1535 686:654 716:1160 630:1245 742:1714 761:943 634:916 730:1220 700:567
+Q|Sydney Trains|Lidcombe & Bankstown Line|#783d1d|L55|681 616:1677 717:1491 619:1473 762:1541 613:1725
+Q|Sydney Trains|Lidcombe & Bankstown Line|#783d1d|L55|613 762:1878 619:1536 717:1484 616:1493 681:1525
+Q|Sydney Trains|North Shore & Western Line|#F99D1C|L55|81 163:2361 673:2367 754:3611 733:1676 697:4115 724:2382 644:2312 620:3684 728:2833 755:6865 161:2009 661:669 657:1290 636:492 611:2105 681:2023 735:4809 716:13227 630:1243 742:1278 761:855 692:2388 705:677 752:1006 759:1064 732:1278 608:1822 631:1340 725:1628 682:1336 670:1278 656:1238 714:1748 743:1937 749:1062 747:885 748:1431 665:942 610:1930 696:1967 698:3019 41:3862
+Q|Sydney Trains|North Shore & Western Line|#F99D1C|L55|41 698:4025 696:3021 610:1961 665:1767 748:1087 747:1433 749:883 743:1076 714:1903 656:1760 670:1217 682:1292 725:1330 631:1508 608:1459 732:1833 759:1273 752:1076 705:959 692:704 761:2369 742:890 630:1272 716:1110 735:13804 681:4807 611:1986 636:1956 657:664 661:1275 161:708 755:1913 728:6881 620:2884 644:3657 724:2317 697:2379 733:4134 754:1692 673:3581 163:2401 81:2343
+Q|Sydney Trains|North Shore & Western Line|#F99D1C|L55|41 698:4025 696:3021 610:1961 665:1767 748:1087 747:1433 749:883 743:1076 714:1903 656:1760 670:1217 682:1292 725:1330 631:1508 608:1459 732:1833 759:1273 752:1076 705:959 692:704 761:2369 742:890 630:1272 716:1110 735:13804 681:4807 611:1986 636:1956 657:664 661:1275 161:708 755:1913 753:1476 710:1658 741:1670 728:2077 620:2877 688:2503 715:2509 726:2835 721:3128 746:3201 699:3395 757:2377 635:2245 646:2713 720:617
+Q|Sydney Trains|North Shore & Western Line, Berowra|#F99D1C|L55|720 646:617 635:2849 757:2109 699:2510 746:3266 721:3336 726:3106 715:2861 688:2517 620:2496 728:2835 741:2101 710:1664 753:1659 755:1440 161:2009 661:669 657:1290 636:492 611:2105 681:2023 735:4809 716:13227 630:1243 742:1278 761:855 692:2388 705:677 752:1006 759:1064 732:1278 608:1822 631:1340 725:1628 682:1336 670:1278 656:1238 714:1748 743:1937 749:1062 747:885 748:1431 665:942 610:1930 696:1967 698:3019 41:3862
+Q|Sydney Trains|Northern Line|#D11F2F|L55|665 703:2183 740:2278 711:844 615:1625 632:1560 651:2057 647:1930 642:1178 756:951 690:1047 719:1603 638:2048 704:1122 735:1622 622:1160 716:9287 630:1243 742:1278 761:855 692:2388 705:677 752:1006 759:1064 732:1278 608:1822 631:1340 725:1628 682:1336 670:1278 656:1238
+Q|Sydney Trains|Northern Line|#D11F2F|L55|656 670:1225 682:1292 725:1330 631:1508 608:1459 732:1833 759:1273 752:1076 705:959 692:704 761:2369 742:890 630:1272 716:1110 622:9422 735:1198 704:1528 638:1165 719:2023 690:1613 756:982 642:990 647:1290 82:2039 632:1856 615:1546 711:1660 740:897 703:2278 665:2031
+Q|Sydney Trains|Olympic Park Line|#6F818E|L55|707 680:3225
+Q|Sydney Trains|Olympic Park Line|#6F818E|L55|680 707:3273
+Q|Translink|T1 Caboolture line|#27855a|L55|786 851:3140 856:10655 798:3562 870:4765 861:17528 805:3332 781:3835 815:1285 783:1280 877:802
+Q|Translink|T1 Caboolture line|#27855a|L55|877 783:676 815:1390 781:1316 805:3842 861:3350 870:17614 798:4508 856:3560 851:10518 786:3125
+Q|Translink|T1 Ipswich/Rosewood line|#27855a|L55|877 847:1494 769:1224 896:971 891:1529 830:1404 789:1094 822:999 882:1214 797:922 868:1653 799:2753 901:4001 817:1524 821:1999 872:3228 874:2304 801:1743 807:1369 784:1828 780:1480 806:1367 832:1656
+Q|Translink|T1 Ipswich/Rosewood line|#27855a|L55|832 806:1616 780:1334 784:1522 807:1817 801:1380 874:1677 872:2363 821:3234 817:1999 901:1499 799:4005 868:2744 797:1688 882:890 822:1214 789:989 830:1083 891:1419 896:1489 769:1006 847:1232 877:1469
+Q|Translink|T1 Ipswich/Rosewood line|#27855a|L55|598 892:4132 902:4370 834:4527 909:2569 893:1306 832:1570
+Q|Translink|T1 Ipswich/Rosewood line|#27855a|L55|832 893:1494 909:1274 834:2570 902:4524 892:4366 598:4018
+Q|Translink|T1 Sunshine Coast line|#27855a|L55|877 783:676 815:1390 781:1316 861:7192 870:17614 786:21710 809:8060 773:5899 820:7077 774:5048 839:5569 849:4907 811:5203 869:4537 908:3411 855:4037 912:8023 812:9080 795:9733 871:8816 794:5567 897:4855 824:22333
+Q|Translink|T1 Sunshine Coast line|#27855a|L55|877 783:676 815:1390 781:1316 805:3842 861:3350 870:17614 798:4508 856:3560 851:10518 786:3125 809:8060 773:5899 820:7077 774:5048 839:5569 849:4907 811:5203 869:4537 908:3411 855:4035
+Q|Translink|T1 Sunshine Coast line|#27855a|L55|824 897:22335 794:4855 871:5568 795:8818 812:9735 912:9080 855:8024 908:4037 869:3412 811:4537 849:5203 839:5027 774:5602 820:5043 773:7079 809:5754 786:8044 870:22124 861:17528 781:7167 815:1285 783:1280 877:802
+Q|Translink|T1 Sunshine Coast line|#27855a|L55|855 908:4035 869:3412 811:4537 849:5203 839:5027 774:5602 820:5043 773:7079 809:5754 786:8044 851:3140 856:10655 798:3562 870:4765 861:17528 805:3332 781:3835 815:1285 783:1280 877:802
+Q|Translink|T2 Redcliffe Peninsula line|#6cc6e9|L55|877 783:676 815:1390 781:1316 805:3842 861:3350 900:1377 890:953 819:1187 915:1557 788:1547 770:3438 888:2510 782:1299 840:2113 870:1573 833:2460 854:1266 844:1759 845:1635 878:1596 837:3435
+Q|Translink|T2 Redcliffe Peninsula line|#6cc6e9|L55|837 878:3578 845:1594 844:1636 854:1761 833:1265 870:2529 840:1525 782:1960 888:1438 770:2515 788:3438 915:1549 819:1530 890:1199 900:952 861:1414 805:3332 781:3835 815:1285 783:1280 877:802
+Q|Translink|T2 Springfield line|#6cc6e9|L55|877 847:1495 769:1224 896:971 891:1529 830:1404 789:1094 822:999 882:1214 797:922 868:1653 799:2753 873:3786 886:7725 887:2451
+Q|Translink|T2 Springfield line|#6cc6e9|L55|887 886:2596 873:7725 799:3781 868:2750 797:1690 882:890 822:1214 789:989 830:1083 891:1419 896:1489 769:1006 847:1232 877:1469
+Q|Translink|T3 Doomben line|#9b60a6|L55|803 768:1248 827:889 790:654 805:921 907:854 764:1054 781:1890 815:1296 783:1285 877:733
+Q|Translink|T3 Doomben line|#9b60a6|L55|877 783:728 815:1395 781:1305 764:1894 907:1051 805:890 790:777 827:654 768:889 803:1248
+Q|Translink|T4 Cleveland line|#4778b2|L55|877 885:1616 884:857 778:1567 785:1092 796:1674 859:1177 852:1491 787:2036 853:1763 826:3111 841:1837 862:1556 910:825 911:714 846:1672 843:1813 894:1896 777:2718 903:2365 866:2669 791:1676
+Q|Translink|T4 Cleveland line|#4778b2|L55|791 866:1676 903:2809 777:2219 894:2868 843:1898 846:1822 911:1635 910:713 862:849 841:1498 826:1879 853:3136 787:1760 852:2023 859:1425 796:1230 785:1682 778:1091 884:1581 885:871 877:1273
+Q|Translink|T4 Shorncliffe line|#4778b2|L55|877 783:734 815:1395 781:1305 764:1894 907:1051 805:890 895:1316 864:858 861:1167 776:1193 863:2139 779:2806 860:1145 800:1323 881:937 883:1153
+Q|Translink|T4 Shorncliffe line|#4778b2|L55|883 881:1305 800:912 860:1331 779:1141 863:2800 776:2142 861:1195 864:1165 895:873 805:1318 907:854 764:1054 781:1890 815:1296 783:1285 877:844
+Q|Translink|T5 Airport line|#ffc425|L55|877 783:733 815:1393 781:1305 764:1894 907:1051 805:890 831:6992 802:2108
+Q|Translink|T5 Airport line|#ffc425|L55|802 831:2108 805:7142 907:854 764:1054 781:1890 815:1296 783:1286 877:842
+Q|Translink|T5 Gold Coast line|#ffc425|L55|877 885:1557 884:857 778:1567 766:13642 842:13309 772:8946 865:12311 792:6889 829:3441 825:5206 857:7762 875:9274 899:3730
+Q|Translink|T5 Gold Coast line|#ffc425|L55|899 875:3736 857:9265 825:7767 829:5204 792:3439 865:6887 772:12299 842:8941 767:13406 778:13426 884:1613 885:839 877:1304
+Q|Translink|T6 Beenleigh line|#d53e45|L55|877 885:1557 884:857 778:1567 804:920 813:1057 914:1472 913:809 850:1222 876:1100 880:1362 793:2083 771:1502 889:934 766:1182 879:1166 816:1227 838:1370 898:3324 906:943 836:2749 842:2522 775:3022 808:1705 828:2183 772:2035
+Q|Translink|T6 Beenleigh line|#d53e45|L55|772 828:2037 808:2181 775:1698 842:3026 836:2521 906:2748 898:945 838:3317 816:1379 879:1227 767:1272 889:1073 771:943 793:1507 880:2070 876:1350 850:1108 913:1227 914:811 813:1436 804:953 778:933 884:1668 885:839 877:1244
+Q|Translink|T6 Ferny Grove line|#d53e45|L55|877 783:727 815:1393 781:1305 905:1871 904:1008 858:995 765:1450 810:914 818:762 848:1266 867:1065 823:717 835:776 814:2531
+Q|Translink|T6 Ferny Grove line|#d53e45|L55|814 835:2676 823:774 867:727 848:1061 818:1268 810:769 765:906 858:1443 904:994 905:996 781:1869 815:1296 783:1286 877:842
+Q|Translink Nightlink|Caboolture line|#008752|L55|877 783:676 815:1390 781:1316 764:1886 907:1116 805:840 895:1300 864:867 861:1183 900:1377 890:953 819:1187 915:1557 788:1547 770:3438 888:2510 782:1299 840:2113 870:1574 798:4577 856:3560 851:10518 786:3139
+Q|Transperth|Airport Line|#008C95|L55|933 985:633 961:785 954:529 983:1329 938:1138 987:1323 996:909 931:1136 976:1649 965:586 932:630 940:774 970:1111 964:1298 966:1006 922:1221 980:4159 916:2636 952:2523
+Q|Transperth|Airport Line|#008C95|L55|952 916:2401 980:2731 922:4188 966:1126 964:1017 970:1269 940:1160 932:733 965:650 976:634 931:1593 996:1177 987:859 938:1319 983:1127 954:1365 961:533 985:785 933:640
+Q|Transperth|Airport Line|#008C95|L55|976 965:585 932:630 940:774 970:1111 964:1298 966:1006 922:1221 980:4159 916:2636 952:2523
+Q|Transperth|Armadale Line|#F2A900|L55|976 965:600 932:627 977:2169 925:1224 991:1365 929:1142 975:1045 978:2934 928:997 923:1307 956:2176 962:1916 948:3104 982:1896 955:3192 930:1533 984:1257 1001:1909 1002:6776
+Q|Transperth|Armadale Line|#F2A900|L55|1002 1001:6926 984:1849 930:1259 955:1585 982:3135 948:1896 962:3101 957:2070 923:2006 928:1313 978:989 975:2954 929:1034 991:1156 925:1364 977:1269 932:2088 965:645 976:542
+Q|Transperth|Ellenbrook Line|#D32737|L55|976 965:586 932:630 940:774 970:1111 964:1298 966:1006 922:1221 968:3560 973:2480 920:3018 997:5748 944:6310
+Q|Transperth|Ellenbrook Line|#D32737|L55|944 997:6303 920:5758 973:3039 968:2448 922:3741 966:1127 964:1017 970:1269 940:1160 932:733 965:650 976:634
+Q|Transperth|Fremantle Line|#002F6C|L55|976 931:1593 996:1177 987:859 938:1319 983:1127 954:1365 961:533 985:785 933:640 989:1103 949:761 936:1125 969:1192 992:607 974:1960 945:2800
+Q|Transperth|Fremantle Line|#002F6C|L55|946 974:2664 992:1961 969:606 936:1195 949:1129 989:762 933:1109 985:633 961:785 954:529 983:1329 938:1138 987:1323 996:909 931:1136 976:1649
+Q|Transperth|Mandurah Line|#CB6015|L55|963 959:6412 993:16803 981:4352 995:6087 958:4143 919:9061 935:3327 971:6625 924:2225 927:4337 943:6590 976:582
+Q|Transperth|Mandurah Line|#CB6015|L55|935 971:6625 924:2225 927:4337 943:6590 976:582
+Q|Transperth|Mandurah Line|#CB6015|L55|976 943:653 927:6596 924:4386 971:2102 935:6616 919:3333 958:9192 995:4141 981:6987 993:4347 959:16691 963:6536
+Q|Transperth|Midland Line|#910048|L55|976 965:586 932:630 940:774 970:1111 964:1298 966:1006 922:1221 918:2613 921:1453 988:930 951:931 939:1432 999:1332 967:1096
+Q|Transperth|Midland Line|#910048|L55|967 999:1035 939:1332 951:1430 988:931 921:923 918:1454 922:2682 966:1126 964:1017 970:1269 940:1160 932:733 965:650 976:634
+Q|Transperth|Showgrounds Express|#000000|X110|976 985:8738
+Q|Transperth|Showgrounds Express|#000000|X110|985 976:8747
+Q|Transperth|Thornlie–Cockburn Line|#AB72C2|L55|935 979:8292 972:4010 990:2264 923:3547 928:1313 978:989 975:2954 929:1034 991:1156 925:1364 977:1269 932:2088 965:645 976:542
+Q|Transperth|Thornlie–Cockburn Line|#AB72C2|L55|976 965:600 932:627 977:2169 925:1224 991:1365 929:1142 975:1045 978:2934 928:997 923:1307 990:3484 972:2356 979:4048 935:8159
+Q|Transperth|Yanchep Line|#949300|L55|943 976:582 960:2447 947:3160 986:3254 994:5655 950:3239 998:2090 941:3030 953:3295 937:2988 934:4032 926:7458 917:2311 942:4230 1000:7014
+Q|Transperth|Yanchep Line|#949300|L55|943 976:582 960:2447 947:3160 986:3254 994:5655 950:3239 998:2090
+Q|Transperth|Yanchep Line|#949300|L55|1000 942:7013 917:4228 926:2308 934:7661 937:4032 953:2970 941:3315 998:3037 950:2079 994:3262 986:5630 947:3261 960:3153 976:2331 943:653
+Q|Transperth|Yanchep Line|#949300|L55|998 950:2079 994:3262 986:5630 947:3261 960:3153 976:2331 943:653
+Q|Transwa|Australind Train||L55|1001 1002:7508 1004:9836 1003:6633
+Q|V/Line|V/Line|#8F1A95|L55|416 380:1422 298:6295 53:8833 277:9171 1006:7135 1010:14183 1007:5922 1011:1875 1008:8150 1005:11626 1009:15035 176:8456
+Q|V/Line|V/Line|#8F1A95|L55|176 1009:8414 1005:15034 1008:11648 1011:8140 1007:1843 1010:6007 1006:14181 277:7136 53:9192 298:8809 380:6283 416:1278
+Q|Vintage Rail Journeys|Golden West Rail Tour|#f4a73b|L55|156 36:50974 1013:77864 1012:7045 212:198637 51:195113 162:28159 111:187021 630:91780
+Q|Vintage Rail Journeys|Riverina Rail Tour|#769560|L55|94 1014:339637 1015:121429 156:208685
+Q|rail|Prospector||L55|940 967:14320 1037:80183 1033:27673 1030:35120 1024:22709 1036:23355 1028:25987 1026:14753 1027:21029 1031:20142 1021:27979 1023:18626 1018:23441 1032:22552 1034:27114 1029:51026 1019:167048 23:33223
+Q|rail|Prospector||L55|23 1019:33251 1029:167025 1034:51078 1032:27136 1018:22562 1023:23444 1021:18625 1031:27997 1027:20151 1026:21043 1028:14757 1036:25989 1024:23356 1030:22704 1033:35128 1037:27656 967:80367 940:14388
+Q|rail|The Ghan||L55|1017 1016:2663257 1035:75331 1020:39861 1025:147318
 T|-32.16686|150.89196|Aberdeen
 T|-32.93378|151.72002|Adamstown
 T|-34.92100|138.59677|Adelaide
@@ -1816,3 +3164,247 @@ T|-26.61316|149.38483|Yuleba
 T|-31.03160|123.56966|Zanthus
 T|-33.47178|150.20202|Zig Zag
 T|-27.35857|153.03668|Zillmere
+B|-20.27238|148.72469|"Heart of the Reef" Transit Terminal
+B|-35.27652|149.12581|ANU Bus Stop
+B|-35.07633|138.59097|Aberfoyle Hub Centre Interchange
+B|-23.32905|150.51519|Admin Kiss'n'Drop
+B|-16.87269|145.75695|Airport Connect Terminal 1
+B|-16.87493|145.75315|Airport Connect Terminal 2
+B|-28.16498|153.51231|Airport Transit Centre
+B|-36.08461|146.92424|Albury Station
+B|-38.52635|145.44758|Anderson
+B|-33.86318|151.22144|Andrew Boy Charlton Pool (441 Terminus)
+B|-37.82848|147.62746|Bairnsdale Station
+B|-37.55859|143.85872|Ballarat Station
+B|-33.91817|151.03454|Bankstown Station
+B|-17.93373|145.92723|Banyan Park Transit Centre
+B|-33.76459|151.01425|Barclay Road M2 Bus Station
+B|-37.84167|145.26746|Bayswater Station/Station St
+B|-35.23994|149.06907|Belconnen Community Bus Station
+B|-36.76489|144.28313|Bendigo Station/Railway Pl
+B|-35.02105|138.61908|Blackwood Interchange
+B|-33.89133|151.24938|Bondi Junction Interchange
+B|-32.03592|115.83707|Booragoon Bus Station
+B|-37.86019|145.28431|Boronia Station
+B|-37.81964|145.12236|Box Hill Station
+B|-27.06560|153.15951|Bribie Island park 'n' ride
+B|-27.46435|153.01904|Brisbane Coach Terminal
+B|-28.32796|153.39556|Brisbane St opp Sunnyside Mall
+B|-27.40986|152.97827|Brookside Shopping Centre
+B|-37.77907|145.08378|Bulleen Park and Ride
+B|-33.32430|115.63847|Bunbury Bus Stn
+B|-33.34448|115.65713|Bunbury Terminal
+B|-24.86868|152.35264|Bundaberg Coach Station
+B|-27.49720|153.03944|Buranda busway station
+B|-41.05231|145.90547|Burnie City Interchange
+B|-28.63848|153.63623|Bus & Park Svc Only
+B|-23.79051|151.21256|Bus Station
+B|-35.07670|138.59139|Bus interchange
+B|-29.43938|153.35039|Busways
+B|-28.64486|153.61243|Byron Bay Coach Stop
+B|-28.83761|153.55594|Byron Byron Gateway Airport Tour Operators
+B|-16.92087|145.77475|Cairns City bus station
+B|-26.80551|153.13337|Caloundra Bus Station
+B|-35.27895|149.12763|Canberra Civic Coach Stop
+B|-27.47075|153.09653|Cannon Hill interchange
+B|-27.52332|153.19219|Capalaba bus station
+B|-37.76624|144.73735|Caroline Springs Station/Christies Rd
+B|-33.71313|150.31169|Carrington Hotel, Katoomba St
+B|-31.96835|115.88930|Causeway Bus Station
+B|-31.01874|152.94289|Cavanagh's Lower Macleay Bus Terminal
+B|-25.28931|152.83443|Central Ave at Stockland Hervey Bay, Urraween
+B|-28.70980|121.87315|Central Bus Station
+B|-33.79621|151.18107|Chatswood Transport Interchange
+B|-35.27871|149.13022|City Bus Station
+B|-27.66691|153.12604|Clarks Logan City Bus Service - Bus Depot
+B|-35.23961|149.06013|Cohen Street
+B|-35.13985|138.49548|Colonnades Centre Interchange
+B|-34.64089|148.03053|Cootamundra Coach Bay
+B|-33.84733|151.23048|Cremorne Point Wharf, Milson Rd
+B|-33.82669|151.20144|Crows Nest Terminus (263, 267)
+B|-37.79578|145.28040|Croydon Station/Railway Ave
+B|-27.47372|153.01871|Cultural Centre
+B|-32.00583|115.89746|Curtin Bus Station
+B|-32.00215|115.89041|Curtin Central Bus Station
+B|-12.46481|130.84446|Darwin Bus Interchange
+B|-27.19393|153.03010|Deception Bay bus station
+B|-37.78394|145.12494|Doncaster Shopping Centre
+B|-31.58391|115.67222|Eglinton Bus Station
+B|-27.57859|153.10187|Eight Mile Plains
+B|-34.71677|138.66835|Elizabeth City Centre Interchange
+B|-31.95624|115.85390|Elizabeth Quay Bus Station
+B|-27.42049|152.99216|Enoggera interchange
+B|-37.65221|145.01741|Epping Plaza Shopping Centre
+B|-35.02490|138.57225|Flinders University Interchange
+B|-38.01941|145.30312|Fountain Gate SC
+B|-32.05192|115.74578|Fremantle Station
+B|-31.89880|115.89804|Galleria Bus Station
+B|-27.56364|153.08059|Garden City Shopping Centre station
+B|-38.14507|144.35530|Geelong Station Interchange
+B|-37.87939|145.16278|Glen Waverley Station
+B|-31.95404|115.85124|Gold Fields
+B|-34.79096|138.69348|Golden Grove Village Interchange
+B|-33.75674|151.15461|Gordon Interchange
+B|-27.51099|153.04026|Greenslopes
+B|-34.18154|138.15447|Greyhound
+B|-33.15969|138.06776|Greyhound
+B|-32.51225|137.80397|Greyhound
+B|-32.49159|137.76223|Greyhound
+B|-19.64228|134.19122|Greyhound
+B|-29.01408|134.75515|Greyhound Australia
+B|-27.56018|151.95515|Greyhound Australia
+B|-25.19780|133.20102|Greyhound Australia
+B|-28.64538|153.61137|Greyhound Bus Stop Byron Bay
+B|-28.00302|153.42699|Greyhound Bus Terminal Surfers Paradise
+B|-23.37962|150.50506|Greyhound coach station
+B|-27.54656|153.06439|Griffith University
+B|-35.18499|149.13504|Gungahlin Bus Station
+B|-27.57370|151.93406|Harristown High School bus interchange
+B|-25.32059|152.88610|Hervey Bay Airport
+B|-25.28936|152.83485|Hervey Bay Bus Station
+B|-37.77316|144.88777|Highpoint Shopping Centre
+B|-33.69673|151.03138|Hillsbus Dural Depot
+B|-42.88522|147.32303|Hobart Transit Centre
+B|-27.52859|153.07039|Holland Park park 'n' ride
+B|-27.22549|153.11403|Humpybong Esplanade
+B|-37.91096|145.10284|Huntingdale Station
+B|-16.81846|145.69084|James Cook University Bus Station
+B|-35.27761|149.12884|Jolimont Centre
+B|-33.92506|151.22919|Juniors Kingsford
+B|-27.50325|153.40118|Junner St Ferry Terminal (Dunwich)
+B|-20.70761|116.77292|Karratha Mine Site Bus Transfer
+B|-26.70386|153.12916|Kawana station
+B|-31.06989|152.84561|Kempsey Coach Terminal
+B|-27.46821|153.02369|King George Square Station
+B|-33.86623|151.20187|King Street Coach Layover
+B|-34.88636|138.63945|Klemzig Interchange
+B|-37.86932|145.23841|Knox City Shopping Centre
+B|-38.20007|145.49055|Koo Wee Rup Bus Interchange
+B|-32.24626|115.81248|Kwinana Bus Station
+B|-33.24182|151.50510|Lake Haven Centre, Stand 3
+B|-33.24176|151.50514|Lake Haven Centre, Stand 4
+B|-33.24163|151.50516|Lake Haven Centre, Stand 5
+B|-33.24177|151.50471|Lake Haven Centre, Stand 7
+B|-27.49858|153.04948|Langlands Park
+B|-41.43384|147.13650|Launceston Regional Transit Centre
+B|-37.86444|144.77047|Laverton Station Bus Interchange
+B|-34.55714|146.41082|Leeton Town Coach Stop
+B|-37.76098|145.34552|Lilydale High School Bus Terminus
+B|-28.80900|153.27543|Lismore Transit Centre
+B|-37.56320|143.86209|Little Bridge St Interchange/Little Bridge St
+B|-38.10173|147.08999|Littles Gippsland Coaches
+B|-27.66035|153.17347|Loganholme station
+B|-31.93087|115.95590|Long Term Parking B Bus Transfer
+B|-27.42013|153.03419|Lutwyche
+B|-32.93698|151.65763|Main Rd after Taylor St
+B|-27.24519|153.02790|Mango Hill station
+B|-27.45764|153.18064|Manly station, stop 85
+B|-37.05152|146.08626|Mansfield Passenger Terminal
+B|-35.01760|138.54591|Marion Centre Interchange
+B|-33.86971|151.19842|Maritime Museum (389 terminus)
+B|-26.65459|153.09109|Maroochydore Station
+B|-27.48444|153.02836|Mater Hill station
+B|-34.80381|138.61223|Mawson Interchange
+B|-37.67446|144.85025|Melbourne Airport
+B|-42.83952|147.28923|Metro Springfield
+B|-31.89126|116.00139|Midland Bus Station
+B|-34.18207|142.16321|Mildura Railway Station
+B|-31.87005|115.85873|Mirrabooka Bus Station
+B|-17.89750|146.09190|Mission Beach
+B|-38.17417|146.25899|Moe Bus Interchange
+B|-33.10864|151.48831|Morisset Bus Interchange
+B|-38.23760|146.39879|Morwell Bus Interchange
+B|-33.76883|150.81983|Mount Druitt Bus Interchange
+B|-37.82603|140.78792|Mount Gambier Bus Station
+B|-20.66597|139.49124|Mount Isa Coaches
+B|-27.54871|152.93799|Mount Ommaney
+B|-16.98963|145.73963|Mount Sheridan Plaza Bus Stop
+B|-33.86992|151.19331|Mount St (501)
+B|-33.45091|149.54778|Mountain Shuttle Bus
+B|-34.68564|138.68967|Munno Para Centre Interchange
+B|-32.06616|115.85065|Murdoch Station
+B|-27.20251|152.95986|Narangba station
+B|-19.15902|146.85537|Nelly Bay Ferry Terminal
+B|-32.92415|151.75842|Newcastle Interchange
+B|-37.84257|144.88245|Newport Interchange
+B|-35.14037|138.49171|Noarlunga Centre Interchange
+B|-26.38820|153.09107|Noosa Heads station
+B|-26.39916|153.09285|Noosa Junction station
+B|-33.88949|151.28333|North Bondi Bus Interchange
+B|-37.74040|145.02846|Northland Shopping Centre
+B|-33.75971|151.04143|Oakes Road M2 Bus Station
+B|-35.09543|138.53803|Old Reynella Interchange
+B|-33.35932|151.36963|Ourimbah Station, Pacific Hwy
+B|-23.33078|150.51583|Oval Bus Zone
+B|-33.35931|151.36934|Pacific Hwy opp Ourimbah Station
+B|-38.07945|145.48495|Pakenham Railway Station
+B|-12.47879|130.98695|Palmerston Bus Terminal
+B|-34.86871|138.66170|Paradise Interchange
+B|-33.81061|151.02443|Parramatta EA
+B|-36.40498|148.41220|Perisher Skitube
+B|-36.40460|148.41271|Perisher Valley
+B|-31.94999|115.85699|Perth Busport
+B|-31.95011|115.85720|Perth Busport Zone A
+B|-31.94989|115.85670|Perth Busport Zone B
+B|-34.84498|138.50796|Port Dock Interchange
+B|-34.71897|135.85519|Premier Stateliner
+B|-37.92057|144.66737|Premium Safari Experiences
+B|-35.34918|149.23573|Queanbeyan Interchange
+B|-27.47040|153.02472|Queen Street bus station
+B|-27.44693|153.02921|RBW Hospital
+B|-25.90377|153.09021|Rainbow Beach
+B|-37.46451|144.67935|Riddells Creek Railway Station
+B|-37.81527|145.22962|Ringwood Station/Maroondah Hwy
+B|-37.72910|144.65097|Rockbank Station
+B|-27.46606|153.01963|Roma Street busway station
+B|-26.74563|153.11490|SCUH station
+B|-33.81740|151.12246|STA Ryde Depot
+B|-37.92109|144.66658|Safari Station
+B|-34.76290|138.64264|Salisbury Interchange
+B|-27.62733|152.76237|Salisbury Rd at Thorn Street
+B|-18.18855|125.56393|School Bus Stop
+B|-35.18924|138.48343|Seaford
+B|-37.02531|145.13738|Seymour Station
+B|-36.38391|145.40021|Shepparton Bus Interchange/Maude Street
+B|-36.39272|148.42703|Smiggins Holes
+B|-34.68195|138.68700|Smithfield Interchange
+B|-27.48094|153.02206|South Bank
+B|-37.81623|144.95215|Southern Cross Coach Terminal
+B|-37.95797|145.05333|Southland Shopping Centre/Karen Street
+B|-27.96370|153.41042|Soutport Transit Centre
+B|-27.67574|152.90280|Springfield
+B|-37.74504|144.80033|St Albans Station/St Albans Road
+B|-33.76310|150.77562|St Marys Temporary Bus Interchange
+B|-27.41254|153.01331|Stafford City
+B|-34.42726|150.88856|Station St opp Wollongong Station
+B|-24.88596|152.31737|Sugerland Bus Stop
+B|-37.57882|144.72871|Sunbury Station Bus Interchange
+B|-37.78720|144.83294|Sunshine Station
+B|-31.08780|150.93114|Tamworth Bus Interchange
+B|-34.83195|138.69443|Tea Tree Plaza Interchange
+B|-37.70256|144.57146|Temporary Melton Station bus interchange
+B|-38.13031|145.26953|The Explorer
+B|-27.44539|152.93013|The Gap park 'n' ride
+B|-27.56063|151.95520|Toowoomba bus station stop 2C
+B|-19.26095|146.81674|Townsville City Stop A
+B|-19.26108|146.81663|Townsville City Stop B
+B|-32.02457|115.94758|Transperth Beckenham Bus Depot
+B|-32.09611|116.01118|Transperth Swan Transit Depot
+B|-28.76991|114.61324|Transwa Geraldton
+B|-35.41455|149.06546|Tuggeranong Bus Interchange
+B|-27.49817|153.01117|UQ Chancellors's Place
+B|-27.49799|153.01752|UQ Lakes station
+B|-26.71860|153.06188|USC station
+B|-33.93938|151.19999|UTS Shuttle Bus
+B|-27.56413|153.08155|Upper Mt Gravatt station
+B|-37.70052|144.77398|Watergardens Station
+B|-31.99570|115.93513|Welshpool Bus Depot (Lost property Transperth)
+B|-33.76989|150.72564|Western Shuttle Bus Stop
+B|-35.23875|149.06379|Westfield Belconnen Bus Station
+B|-31.79895|115.78248|Whitfords Bus Terminal
+B|-37.86767|144.88778|Williamstown
+B|-33.61349|150.81109|Windsor Railway Bus Interchange
+B|-27.48601|153.03478|Woolloongabba Station
+B|-31.53256|115.64537|Yanchep Bus Station
+B|-37.81626|144.88938|Yarraville Railway Station/Birmingham St
+B|-34.84348|148.91371|Yass Interchange

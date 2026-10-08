@@ -1,8 +1,9 @@
 # Transit for Koode, EG. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|30.07279|31.28409|Abbassia|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.06536|31.27644|Abdou Pasha|الشركة المصرية لإدارة وتشغيل المترو|M
-S|30.14703|31.42152|Adly Mansour|الشركة المصرية لإدارة وتشغيل المترو|M
+S|30.14696|31.42167|Adly Mansour|الشركة المصرية لإدارة وتشغيل المترو|M
 S|29.86266|31.32501|Ain Helwan|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.13104|31.31908|Ain Shams|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.09132|31.32650|Al Ahram|الشركة المصرية لإدارة وتشغيل المترو|M
@@ -28,7 +29,7 @@ S|30.02490|31.20136|Cairo University|الشركة المصرية لإدارة و
 S|29.98203|31.24220|Dar Al-Salam|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.03822|31.21204|Dokki|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.10188|31.18417|El-Dabaa Axis Metro Station (Rod El-Farag Axis)|الشركة المصرية لإدارة وتشغيل المترو|M
-S|30.06226|31.26797|El Geish|الشركة المصرية لإدارة وتشغيل المترو|M
+S|30.06227|31.26797|El Geish|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.14388|31.40485|El Haykestep|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.12138|31.31397|El-Matareyya|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.12812|31.36052|El Nozha|الشركة المصرية لإدارة وتشغيل المترو|M
@@ -46,7 +47,7 @@ S|30.10111|31.33276|Haroun|الشركة المصرية لإدارة وتشغيل
 S|30.10796|31.33816|Heliopolis subway|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.11435|31.31390|Helmeyet Al-Zaitoun|الشركة المصرية لإدارة وتشغيل المترو|M
 S|29.84888|31.33420|Helwan|الشركة المصرية لإدارة وتشغيل المترو|M
-S|29.86902|31.32037|Helwan University|الشركة المصرية لإدارة وتشغيل المترو|M
+S|29.86903|31.32038|Helwan University|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.13097|31.37309|Hesham Barakat|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.07595|31.20756|Imbaba|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.06679|31.21299|Kit-kat|الشركة المصرية لإدارة وتشغيل المترو|M
@@ -85,28 +86,38 @@ S|29.92585|31.28769|Tora El-Asmant|الشركة المصرية لإدارة وت
 S|29.94633|31.27358|Tora El-Balad|الشركة المصرية لإدارة وتشغيل المترو|M
 S|30.05846|31.20102|Wadi El Nile|الشركة المصرية لإدارة وتشغيل المترو|M
 S|29.87944|31.31340|Wadi Hof|الشركة المصرية لإدارة وتشغيل المترو|M
-S|30.01629|31.43389|Air Force Hospital|مونوريل القاهرة|M
-S|30.02475|31.59884|Al Fattah al Alim Mosque|مونوريل القاهرة|M
-S|30.01326|31.51956|Al Lotus|مونوريل القاهرة|M
-S|30.00807|31.72558|Art and Culture City|مونوريل القاهرة|M
-S|30.02688|31.56059|Beit el Watan|مونوريل القاهرة|M
-S|30.07160|31.31768|Cairo Stadium Monorail|مونوريل القاهرة|M
+S|30.04379|31.33091|7th District|مونوريل القاهرة|M
+S|30.01629|31.43389|Airforce Hospital|مونوريل القاهرة|M
+S|30.01326|31.51956|Al-Andalus|مونوريل القاهرة|M
+S|30.05378|31.32476|Al-Azhar University|مونوريل القاهرة|M
+S|30.02471|31.59882|Al-Fattah Al-Aleem|مونوريل القاهرة|M
+S|30.02700|31.53304|Al-Nafoura|مونوريل القاهرة|M
+S|30.02535|31.49067|American University|مونوريل القاهرة|M
+S|30.00807|31.72559|Arts and Culture City|مونوريل القاهرة|M
 S|30.01729|31.68916|Central Business District|مونوريل القاهرة|M
-S|30.05378|31.32476|El Azhar University|مونوريل القاهرة|M
-S|30.04548|31.34639|El Musheer Ahmed Ismail|مونوريل القاهرة|M
 S|30.02549|31.45991|El Narges|مونوريل القاهرة|M
-S|30.02700|31.53304|Golden Square|مونوريل القاهرة|M
-S|30.00798|31.74482|Governmental District|مونوريل القاهرة|M
-S|30.06348|31.32184|Hesham Barakat Monorail|مونوريل القاهرة|M
-S|30.02536|31.49066|Investors|مونوريل القاهرة|M
-S|30.03923|31.35551|Jehan el Sadat|مونوريل القاهرة|M
+S|30.02688|31.56058|El Rabwa|مونوريل القاهرة|M
+S|30.00798|31.74482|Governmental District (Al-Wezarat)|مونوريل القاهرة|M
+S|30.06348|31.32184|Hesham Barakat|مونوريل القاهرة|M
+S|30.03923|31.35551|Jehan Sadat|مونوريل القاهرة|M
 S|30.00597|31.77007|Justice City|مونوريل القاهرة|M
-S|29.99531|31.75010|Misr Mosque|مونوريل القاهرة|M
 S|30.01921|31.38332|Moushir Tantawi|مونوريل القاهرة|M
-S|30.01623|31.40897|One Ninety (1 - 90)|مونوريل القاهرة|M
-S|30.01695|31.63099|R1|مونوريل القاهرة|M
+S|30.01623|31.40897|One Ninety|مونوريل القاهرة|M
+S|29.99531|31.75010|People's Square|مونوريل القاهرة|M
+S|30.01695|31.63100|R1|مونوريل القاهرة|M
 S|30.01828|31.66335|R2|مونوريل القاهرة|M
-S|30.04379|31.33090|The Seventh District|مونوريل القاهرة|M
+S|30.04548|31.34639|Zaker Hussein|مونوريل القاهرة|M
+S|27.56133|35.54839|Diba|Safaga - Diba|W
+S|26.74575|33.94701|Safaga|Safaga - Diba|W
+S|29.95545|31.24366|معدية المعادي|ferry|W
+S|29.95711|31.25014|معدية منيل شيحا|ferry|W
+S|22.36291|31.63188|Abu Simbel|ferry|W
+S|24.09535|32.89645|Dock of The Botanical Garden|ferry|W
+S|24.08807|32.89286|Local boat 15EGP|ferry|W
+S|24.10057|32.89899|Public Ferry|ferry|W
+S|24.10331|32.89279|Public Ferry|ferry|W
+S|22.25231|31.60036|Qustul|ferry|W
+S|29.46124|34.97480|Aqaba|نويبع - العقبة|W
 L|الشركة المصرية لإدارة وتشغيل المترو|الخط الأول||45 3:1684 46:834 84:1335 40:2160 11:1071 81:2496 53:1277 82:1389 80:1216 54:934 38:1340 25:1549 17:1819 56:1224 12:1328 75:1364 69:856 70:941 60:1173 65:565 77:618 36:1919 7:1577 55:1115 50:780 41:556 74:1070 39:938 44:1106 30:790 4:1176 33:1059 13:1829 61:1302
 L|الشركة المصرية لإدارة وتشغيل المترو|الخط الأول||61 13:1301 33:1832 4:1057 30:1174 44:787 39:1109 74:937 41:1072 50:556 55:780 7:1116 36:1577 77:1919 65:618 60:564 70:1167 69:943 75:863 12:1362 56:1327 17:1220 25:1821 38:1548 54:1340 80:933 82:1214 53:1393 81:1277 11:2498 40:1071 84:2159 46:1335 3:834 45:1694
 L|الشركة المصرية لإدارة وتشغيل المترو|الخط الثالث|#00AF23|2 29:1660 62:1074 66:1202 47:1137 31:1259 32:1744 8:629 43:1129 42:955 5:1356 51:919 78:1717 23:1724 0:2115 1:1098 28:892 20:1510 19:734 60:1055 57:673 71:1239 49:1039 79:807 48:769 6:766 9:1509 68:964 27:1878
@@ -115,8 +126,49 @@ L|الشركة المصرية لإدارة وتشغيل المترو|الخط ا
 L|الشركة المصرية لإدارة وتشغيل المترو|الخط الثالث|#00AF23|24 22:1512 35:1746 83:892 16:787 49:1304 71:1039 57:1239 60:672 19:1056 20:741 28:1510 1:890 0:1099 23:2117 78:1725 51:1719 5:922 42:1351 43:962 8:1128 32:622 31:1743 47:1260 66:1137 62:1200 29:1075 2:1659
 L|الشركة المصرية لإدارة وتشغيل المترو|الخط الثاني|#FF7000|15 73:1649 63:1070 37:612 34:805 24:1000 21:1234 26:1159 64:1352 70:946 59:974 18:820 77:1056 58:1061 67:1054 72:860 10:1045 14:717 52:1141 76:1312
 L|الشركة المصرية لإدارة وتشغيل المترو|الخط الثاني|#FF7000|76 52:1310 14:1139 10:719 72:1045 67:859 58:1055 77:1064 18:1053 59:819 70:967 64:949 26:1352 21:1159 24:1245 34:1000 37:805 63:611 73:1070 15:1650
-L|مونوريل القاهرة|خط مونوريل شرق النيل|#00309A|90 97:987 92:1120 106:1357 93:1503 99:1590 102:4574 103:2519 85:2403 94:2895 98:2963 87:3186 95:2867 89:2656 86:4076 104:3703 105:3141 91:2525 88:3738 96:1854 101:1632 100:2446
-L|مونوريل القاهرة|خط مونوريل شرق النيل|#00309A|100 101:2433 96:1638 88:1854 91:3736 105:2527 104:3140 86:3718 89:4067 95:2655 87:2882 98:3193 94:2963 85:2895 103:2403 102:2516 99:4566 93:1600 106:1505 92:1347 97:1124 90:987
+L|مونوريل القاهرة|خط مونوريل شرق النيل|#00309A|78 97:987 88:1120 85:1357 105:1503 98:1590 100:4574 101:2519 86:2403 94:2895 91:2963 87:3186 90:2867 95:2656 89:4076 103:3703 104:3141 93:2525 92:3738 96:1854 102:1632 99:2446
+L|مونوريل القاهرة|خط مونوريل شرق النيل|#00309A|99 102:2433 96:1638 92:1854 93:3736 104:2527 103:3140 89:3718 95:4067 90:2655 87:2882 91:3193 94:2963 86:2895 101:2403 100:2516 98:4566 105:1600 85:1505 88:1347 97:1124 78:987
+L|Safaga - Diba|Safaga - Diba||106 107:188595
+L|ferry|ferry||115 110:14893
+L|ferry|ferry||113 114:774
+L|ferry|ferry||109 108:835
+L|ferry|ferry||112 111:954
+L|ferry|ferry||111 112:954
+R|30.59429|32.27348|Al-Ismailia|EG-railway
+R|31.04543|31.38863|Al-Mansura|EG-railway
+R|28.09680|30.75349|Al-Minya|EG-railway
+R|24.09980|32.90253|Aswan Train|EG-railway
+R|27.18038|31.18819|Asyut|EG-railway
+R|30.45607|31.18097|Banha|EG-railway
+R|29.07627|31.09478|Beni Suef|EG-railway
+R|31.03429|30.46847|Damanhur|EG-railway
+R|30.00525|31.20825|Giza Suburbs|EG-railway
+R|25.69654|32.64497|Luxor|EG-railway
+R|31.19336|29.90676|Misr Train|EG-railway
+R|26.16259|32.72712|Qena|EG-railway
+R|30.06298|31.24605|Ramses|EG-railway
+R|31.21899|29.94246|Sidi Gaber Train|EG-railway
+R|26.55144|31.69909|Sohag|EG-railway
+R|30.14640|31.42127|Adly Mansour|القطار الكهربائي الخفيف
+R|30.01365|31.72492|Arts and Culture City|القطار الكهربائي الخفيف
+R|30.17519|31.71602|Badr|القطار الكهربائي الخفيف
+R|30.07589|31.78248|Capital Airport|القطار الكهربائي الخفيف
+R|30.16293|31.48161|El-Obour|القطار الكهربائي الخفيف
+R|30.16653|31.75245|El-Robaiky|القطار الكهربائي الخفيف
+R|30.17963|31.60580|El-Shorouk|القطار الكهربائي الخفيف
+R|30.17312|31.55410|Future|القطار الكهربائي الخفيف
+R|30.13668|31.80678|Hadayek al-Assema|القطار الكهربائي الخفيف
+R|30.20396|31.71560|Industrial Park|القطار الكهربائي الخفيف
+R|30.23072|31.69161|Knowledge City|القطار الكهربائي الخفيف
+R|30.18373|31.65267|New Heliopolis|القطار الكهربائي الخفيف
+Q|EG-railway|Alexandria-Aswan line||L55|10 13:4788 7:55746 5:124063 12:52998 8:9561 6:110253 4:250058 14:91645 11:141123 9:56340 3:207263 2:634701
+Q|EG-railway|Ismailia-Cairo line||L55|0 5:114276 12:47278
+Q|EG-railway|Mansoura-Cairo line||L55|12 5:44802 1:73697
+Q|EG-railway|Mansoura-Cairo line||L55|1 5:92069 12:44743
+Q|القطار الكهربائي الخفيف|Cairo Light Rail Transit|darkred|L55|15 19:6082 22:7078 21:5029 26:4542 17:7478 25:7086
+Q|القطار الكهربائي الخفيف|Cairo Light Rail Transit|darkred|L55|15 19:6082 22:7078 21:5029 26:4542 17:6185 20:3636 23:7967 18:7655 16:9817
+Q|القطار الكهربائي الخفيف|Cairo Light Rail Transit|darkred|L55|25 24:3760 17:5020 26:7696 21:4541 22:5029 19:7077 15:6081
+Q|القطار الكهربائي الخفيف|Cairo Light Rail Transit|darkred|L55|16 18:9824 23:7652 20:7962 17:3636 26:6184 21:4541 22:5029 19:7077 15:6081
 T|27.85534|34.31597|1
 T|27.85543|34.31564|2
 T|30.16456|31.33934|23 July Railway Station
@@ -468,3 +520,371 @@ T|31.04348|31.33051|ميت الكرما
 T|30.99047|31.27195|ميت خلف
 T|31.00649|31.28963|ميت عساس
 T|31.08383|31.39885|ميت عنتر
+B|30.14884|31.21965|1
+B|29.96375|30.91452|10th District (6th of October) Bus Stopping Area
+B|29.96248|30.90120|11th District (6th of October)
+B|29.81108|31.37836|15th of May
+B|29.99090|31.13333|28 Bus Station
+B|28.97529|34.66453|400 Egyptian pounds to Dahab.
+B|31.50847|31.83107|51 station
+B|29.93088|30.91691|6th District - 6th of October (Al Souq Al Qadeem)
+B|30.01451|31.20907|6th October & Sheikh Zayed Station
+B|29.98325|30.93940|7th District (6th of October)
+B|30.04168|31.32957|7th District (Nasr City - Abd Allah Al Arabi St.)
+B|30.04349|31.32917|7th District Bus Stopping Area
+B|30.01322|31.50272|AUC Terminal
+B|31.20352|29.99478|Abis
+B|25.06241|34.88627|Abo Rawan Bus Station
+B|30.02934|31.23529|Abou Al Reesh
+B|30.72763|31.66931|Abu Kabir
+B|30.14916|31.41826|Adly Mansour BRT (eastbound)
+B|30.14806|31.41998|Adly Mansour BRT Station
+B|30.06461|31.24600|Ahmed Helmi
+B|29.86394|31.32353|Ain Helwan Intercity Terminal
+B|30.02412|31.26356|Al Abageyah Terminal
+B|30.07396|31.28536|Al Abasseya Terminal (Khalifa Al Mamoun St.)
+B|30.07242|31.28433|Al Abbasiyya
+B|31.21923|29.99363|Al Awayed Bus Station
+B|30.04741|31.27005|Al Darrasa Terminal
+B|30.23581|31.47250|Al Hegaz (Obour Police )
+B|29.95954|31.25400|Al Horreya Square
+B|29.96849|30.94889|Al Hossary Terminal
+B|31.17747|29.89857|Al Mahata
+B|31.26123|30.01019|Al Mahata
+B|31.27971|30.01258|Al Mandara
+B|29.97393|31.24685|Al Matbaa (Dar Al Salam) Terminal
+B|30.12139|31.24510|Al Mo'asasa
+B|30.00588|31.45453|Al Mostafa Mosque Terminal
+B|29.93293|30.92072|Al Mostaqbal Entrance
+B|29.98239|30.97897|Al Motamayez Bus Stopping Area
+B|29.98380|31.21263|Al Mounib
+B|29.98540|31.21373|Al Mounib (Al Tagamoa al Khames)
+B|29.98276|31.21165|Al Mounib (Governorates)
+B|29.98078|31.21103|Al Mounib (Shabramant and Abu al Nomros)
+B|29.98640|31.21394|Al Mounib (Upper Egypt)
+B|29.98656|31.20996|Al Mounib Bus Station (Al Ayat)
+B|29.94273|30.91954|Al Muluk
+B|30.12532|31.36354|Al Nozha Al Gadida
+B|30.12745|31.36355|Al Nozha Al Gadida Terminal (CTA)
+B|30.27287|31.48477|Al Obour Shabab Stop Area
+B|30.07009|31.33854|Al Sa'a Sq. Bus Stopping Area
+B|31.24413|29.98593|Al Saah
+B|31.25722|30.01686|Al Sadat Axis
+B|30.27077|31.48804|Al Shabab Bus Terminal
+B|30.16192|31.62161|Al Shorouq Bus Terminal
+B|30.13895|31.65394|Al Shorouq Terminal
+B|28.24827|33.62412|Al Tor
+B|30.09550|31.26677|Al Zawya Al Hamra
+B|30.09853|31.26251|Al Zawya Al Hamra Bus Terminal
+B|27.19443|31.17470|Al-Azhar's position - Egypt's position
+B|31.20883|29.88217|Alex Tours Double-decker
+B|31.28209|30.01153|Alex Tours Double-decker
+B|30.12081|31.34258|Alf Maskan Public Transportation Terminal Complex
+B|29.97573|31.47943|Alf Masnaa Stopping Area
+B|29.97030|31.26973|Arab Maadi Terminal
+B|29.98543|31.43013|Arabella Square
+B|31.26287|30.01462|Arama
+B|30.13912|31.31558|Arbeeyn Bus Stop
+B|29.99102|31.34447|Asmarrat
+B|31.27087|30.00612|Assafra - Mahatet masr
+B|31.27119|30.00642|Assafra - Manchya
+B|31.27258|30.00777|Assafra - Mawkaf Jadid
+B|31.26397|30.00603|Assafra 45 - Elsa'aa
+B|31.26399|30.00600|Assafra 45 - Wahed W Eshrien
+B|31.26408|30.00586|Assafra 45 Manshya
+B|31.26945|30.00500|Assafra Qubily -Sidi Beshr
+B|31.26941|30.00494|Assafra Quibly - Sa'aa
+B|31.27288|30.00804|Assafra- Manshyaa (2)
+B|24.12724|32.89621|Aswan bus station and long-distance microbuses
+B|29.98875|31.23479|Athar Al Nabi Station
+B|31.18062|29.89809|Bab al Melouk
+B|30.05521|30.95935|Badr (Sheikh Zayed) Terminal
+B|31.23471|29.96769|Bakous
+B|29.07300|31.08391|Bani Suef Bus Terminal
+B|29.67157|32.35584|Beach Shuttle
+B|23.99525|35.40343|Bernice
+B|27.24159|33.82797|Blue Bus
+B|27.21577|33.81767|Blue bus
+B|27.89872|34.28693|Blue bus
+B|28.49456|34.51480|Blue bus
+B|25.69599|32.64438|Blue bus tickets
+B|30.04077|31.19439|Bulaq El Dakrour
+B|31.33821|27.25095|Bus #507 to Siwa, 13.30, 16.00
+B|29.98759|31.44251|Bus Embarkment Point
+B|31.04544|31.39435|Bus Station
+B|29.30991|30.84944|Bus Terminal
+B|27.24734|33.81139|Bus station
+B|24.10023|32.90052|Bus tickets to Sudan
+B|26.23126|32.00075|Bus to Nag Hammadi
+B|30.04804|31.05279|Cairo - Alexandria Desert Road
+B|30.12593|31.39927|Cairo Airport Company Bus Station
+B|30.11900|31.39834|Cairo Airport Terminal (CTA)
+B|30.05896|31.23768|Cairo Gateway Plaza - Turgoman Bus Station
+B|29.93061|31.62261|Church (Kayan) - New Administrative Capital
+B|25.70539|32.65312|City bus station (Hurghada, Kena, Aswan, Etfu)
+B|29.92039|30.88900|Daewoo
+B|30.06045|31.02906|Dandy Mall Terminal
+B|29.98402|31.23823|Dar As Salam Bus Stop
+B|30.08053|31.24587|Dawaran Shubra Terminal
+B|31.14217|30.65565|Desouk Bus Stop (rural)
+B|29.93577|30.92465|Dolce
+B|25.06782|34.88744|EG Bus
+B|26.10782|34.27327|EG Bus
+B|27.24792|33.82338|EG Egypt
+B|28.48598|34.49677|East Bus station
+B|29.58664|32.72423|East Delta
+B|31.17890|29.91466|East Delta
+B|28.97791|34.66131|East Delta Bus (to Dahab)
+B|29.58666|32.72417|East Delta Bus Station
+B|30.88467|31.46023|East Delta Bus Station
+B|30.09075|31.44325|East Delta Transport and Tourism Company
+B|24.99083|32.89056|Edfu minibus station
+B|27.06029|27.97152|Egbus
+B|30.11169|31.39470|Egyptian Airport
+B|30.01605|31.21148|El Giza Station
+B|30.10502|31.24810|El Mazallat bus station
+B|30.07360|31.50326|El Rehab New Main Bus Station
+B|30.01652|31.26357|El Sayeda Aysha Station
+B|29.38582|34.80863|El Wekala Beach
+B|29.39181|34.79314|El Wekala Hotel
+B|30.01478|31.40059|El-Mosher Tantawy BRT
+B|31.42057|31.80970|Elaseer and Elsananya station
+B|30.12603|31.29814|Elrshah bus station
+B|28.09293|30.75709|Express bus stop
+B|29.99220|31.25165|Ezbat Khairallah
+B|31.24923|29.98072|Factoria - Sidi Beshr
+B|31.24809|29.97883|Factoria- Manchyaa
+B|31.24803|29.97876|Factoria-Mahatet Masr
+B|31.24924|29.98076|Factoria-Mandara
+B|31.24958|29.98039|Factoria-Mandarah
+B|29.31688|30.83309|Faiyum MiniBus Station
+B|30.79156|31.63011|Faqous Station
+B|30.06457|31.44915|First Settlement Station;First Settlement Parking
+B|30.16051|31.56280|Future
+B|30.00925|31.20800|Giza train station
+B|27.16847|31.19893|Go Bus
+B|30.05831|31.30154|Go Bus
+B|27.39542|33.66778|Go Bus Central Station
+B|30.01817|31.21481|Go Bus Giza Station
+B|25.06497|34.89038|Go Bus Station
+B|27.23819|33.83192|Go Bus Station
+B|27.88342|34.30067|Go Bus bus station
+B|28.49539|34.51432|GoBus
+B|30.04959|31.23268|GoBus El Tahrir
+B|30.04670|31.31867|GoBus Nasr City
+B|27.89951|34.28751|GoBus Roissat
+B|27.39594|33.67411|GoBus station
+B|29.38439|34.80017|Golf Center
+B|31.22102|29.96457|Hagar al Nawateya
+B|29.90936|30.89437|Hamada Emam
+B|29.98996|31.14921|Haram & Marioetya
+B|29.98693|31.14109|Haram Mashaal Bus Stopping Area
+B|30.11084|31.34630|Hegaz Sq.
+B|30.66969|31.58948|Hehia
+B|27.24090|33.82780|High Bus
+B|27.22833|33.83583|High Jet
+B|27.24099|33.82753|High Jet
+B|30.06037|31.24369|High Jet
+B|30.05825|31.30159|High Jet (Hurghada & Sharm el-Sheikh)
+B|30.06503|31.24695|High Jet (Hurghada & Sharm el-Sheikh)
+B|30.02886|31.02155|Hypter One Microbus Station
+B|30.07508|31.22224|Imbaba Police Station
+B|29.92977|30.89225|Industrial Zone 3
+B|30.09004|31.34800|International Bus Station
+B|30.05381|31.23794|Isaaf
+B|30.18081|31.41262|Isbiko Terminal
+B|30.11115|31.19676|Jazirat Mohamed (2) - Terminal
+B|24.47932|32.94768|Kawm Umbu Minibus Station
+B|29.97684|31.13288|King Khafre
+B|29.98110|31.13491|King Khufu
+B|29.97620|31.12534|King Menkaure
+B|25.70464|32.65159|Local bus station
+B|26.16349|32.69471|Long-distance Microbus Station
+B|25.70010|32.64067|Luxor Central Bus Station
+B|30.08471|31.64251|Madinaty Bus Station
+B|29.97543|30.94244|Magda Square Stopping Area
+B|29.99731|30.96499|Mall of Arabia
+B|29.98884|31.14929|Maryotteya Canal minibus station
+B|30.13560|31.34992|Masaken Ain Shams Terminal
+B|30.12020|31.25841|Masaken Al Wehda
+B|29.91870|30.93925|Masaken Othman (6th of October)
+B|30.10557|31.38542|Masaken Sheraton Bus Terminal
+B|30.02274|31.24437|Masaken Zeinhom
+B|30.12805|31.30077|Masallah Al Gadeda (Matareyya)
+B|30.02569|31.47553|Masaraweya
+B|29.96856|30.93364|Mass transit stop in 6th of October City
+B|30.31452|31.31347|Mawqaf Banha Shibin Elqanater
+B|30.04959|31.23233|Microbus Station
+B|26.56937|31.68036|Microbus station (to Assyut 55egp)
+B|30.10735|30.88650|Mini Bus Station
+B|25.70773|32.64548|Mini buses
+B|26.23260|31.99572|Mini-bus station (sohag)
+B|25.06759|34.88754|MiniBus Station
+B|31.33883|27.25011|Minibus
+B|24.49782|32.94768|Minibus Station
+B|29.99199|31.28366|Minibus Station
+B|22.34994|31.61328|Minibus station
+B|25.30780|32.54846|Minibus station Luxor/Edfu
+B|26.76079|33.91484|Minibus terminal
+B|27.55597|30.81095|Minibus to Asyut
+B|29.98862|31.21527|Minibuses To Mashal/pyramids
+B|24.08137|32.91001|Minivan Station
+B|29.39129|34.80770|Miramar Resort
+B|31.19372|29.90422|Misr Train Station
+B|31.18408|29.92164|Moharaam Bey
+B|29.38814|34.80784|Mosaique Beach Resort
+B|30.01695|31.20455|Motseian
+B|29.40207|30.47526|Mouqaf Qarun, Minibusses to Giza
+B|29.96587|30.96596|Mwasalat Misr Bus October Terminal
+B|30.03756|31.01029|Mwasalat Misr Zayed Terminal
+B|30.05363|31.24861|Métro Ataba
+B|30.14747|31.42091|Métro/tramway to City center (Ataba)
+B|30.05952|31.30423|Nadi El Sikka El Hadid
+B|30.17089|31.43888|Nahda City
+B|30.02822|31.21634|Nahda Square
+B|30.05602|31.18930|New Ard Al Lewa Bus Terminal
+B|31.03708|31.40096|New Bus Station
+B|31.49484|31.82206|New Bus Station
+B|31.17855|29.91486|New Moharam Bek Bus Station
+B|29.96848|30.93764|New microbus station
+B|30.12973|31.36122|Nozha Al Gadeeda
+B|29.99706|31.43217|Ommal Square Stopping Area
+B|31.24787|32.26722|Port Said Landport
+B|30.12092|31.34268|Public Transportation Terminal Complex
+B|25.69613|32.64442|Pulman bus Tickets
+B|30.02969|31.25785|Qalaa Bus Station
+B|30.18105|31.19978|Qalyoub Bus Station
+B|30.26802|31.25885|Qezerat Elnagdey
+B|28.09446|30.75597|Qustur position
+B|30.06162|31.24379|Ramses Service Complex
+B|30.24181|31.48178|Rawda Mosque Stop (Obour) - Stop Area
+B|30.06471|31.47522|Rehab Gate 13-12 Bus Stopping Area
+B|30.05306|31.49021|Rehab Gate 6 Bus Stopping Area
+B|27.89902|34.28754|Roissat
+B|29.84674|31.29558|Rokn Al Farouq Sq.
+B|31.20031|29.89882|Saad Zaghloul
+B|29.98539|31.28853|Saqer Qoresh Bus Station
+B|29.98572|31.28856|Saqr Quraish (Nasr Rd._
+B|30.82066|31.00416|Sbray bus atation
+B|29.67010|32.35925|Sea Club Shuttle
+B|26.11339|34.25631|Service Taxi Station
+B|26.76069|33.91461|Service Taxi Station
+B|27.24043|33.81213|Service Taxi Station
+B|23.10762|35.56192|Shalateen to Aswan bus
+B|27.90015|34.28832|Sharm El Sheikh Bus Station - Upper Egypt stop
+B|30.04063|31.00824|Sheikh Zayed General Hospital
+B|30.31143|31.31306|Shibin el kanater bus station
+B|31.25680|29.99254|Sidi Beshr - Mahatta
+B|31.25680|29.99280|Sidi Beshr - Manshya
+B|31.21914|29.94353|Sidi Gaber
+B|31.25637|29.99277|Sidi beshr - Mahhata Shar' abu kir
+B|29.20127|25.52138|Siwa Bus
+B|30.06419|31.02413|Smart Village Bus Stopping Area
+B|29.97548|31.14021|Sphinx
+B|30.07806|30.91822|Sphinx Airport
+B|29.38020|34.80148|Strand Beach & Golf Resort
+B|29.98998|32.49874|Suez Station For Public Transport
+B|27.24084|33.82768|Super Jet Buses
+B|25.69576|32.64433|Superjet Tickets
+B|30.02590|31.47518|Suzuki
+B|30.05363|31.41498|Suzuki
+B|29.49240|34.89188|Taba Hafilaat Station
+B|23.10765|35.56208|Taxi bus
+B|30.03601|31.21172|Tersa
+B|31.28003|30.01244|The Air-conditioned Bus
+B|31.20039|29.89914|The Air-conditioned Bus Station
+B|29.38393|34.80435|The Bayview Taba Heights Resort
+B|27.17789|31.18981|The fortieth position
+B|29.98352|31.44274|Third Settlement Bus Terminal
+B|29.93226|30.87692|Total (6th of October)
+B|29.97356|31.38973|Traffic Department  (Kattameya) Bus Stopping Area
+B|30.05816|31.23823|Turgoman Bus Station
+B|27.24809|33.82314|Upper Egypt
+B|25.69565|32.64431|Upper Egypt tickets
+B|30.11171|31.21034|Warraq Bus Terminal
+B|29.37567|34.79564|Waterworld Station
+B|27.24175|33.82772|We Bus
+B|31.01459|28.56995|West & Mid.Delta
+B|29.20506|25.51902|West & Middle Delta Bus
+B|31.17875|29.91476|West Delta
+B|30.05076|31.23389|West midle delta
+B|30.01965|31.00684|Zayed 2000 Bus Stopping Area
+B|30.14796|31.41775|alasher bus station
+B|25.69796|32.64497|gobus luxor office
+B|30.08661|30.88007|k21
+B|28.10261|30.74886|long distance minibuses
+B|27.16654|31.20046|minibus from Sohag
+B|24.40626|32.92718|minibus to Aswan
+B|27.16691|31.20028|minibus to Minya
+B|26.16203|32.72842|minibuses
+B|29.85056|31.24160|minibuses
+B|29.89177|31.21978|minibuses
+B|29.93488|31.16592|minibuses
+B|27.17230|31.18927|super jet buses to Cairo
+B|25.68504|32.62069|Луксор
+B|30.16306|31.31191|الأمير
+B|29.19354|25.51693|التركيب الميرى بسيوة
+B|26.13082|32.10732|الزرايب
+B|30.02904|31.23628|السيدة زينب
+B|30.78330|31.69186|المحطة
+B|31.28032|30.01589|المندرة
+B|30.32114|31.73458|الموقف الإقليمي الجديد
+B|31.42804|31.64390|الموقف الغربي
+B|30.15541|31.40827|سلم السلام
+B|30.11999|31.30285|سوق الخميس
+B|31.25664|29.99374|سيدي بشر - العصافرة
+B|31.27076|29.99742|شارع ٤٥
+B|31.55749|25.15859|شركة أتوبيس غرب ووسط الدلتا للنقل والسياحة
+B|30.01777|31.21394|شركة النقل العربى (سوبر جيت)
+B|30.36183|30.50048|مجمع المواقف
+B|26.93445|31.40271|محطة أولاد الياس
+B|28.97730|34.66266|محطة الحافلات
+B|31.20124|29.90085|محطة الرمل
+B|31.12413|30.65085|محطة سرفيس
+B|31.55728|25.15859|محطة سيارات 12 الراكب
+B|27.18084|31.18805|محطة قطار أسيوط
+B|27.19345|31.11558|محطة قطار منقباد
+B|31.11985|30.18652|محطة معمل القزاز
+B|29.98646|31.41841|مدخل الشباب
+B|29.84750|31.33266|معصره ــ دواجن
+B|30.00960|31.22598|موقف أتوبيس المماليك
+B|30.61635|32.27223|موقف الاسماعيليه
+B|30.02764|31.21069|موقف البوابة جامعة القاهرة الرئيسية
+B|29.99444|31.19819|موقف التعمير باعمرانيه الغربيه
+B|29.98462|31.24238|موقف الجيزة و الملك الصالح بدار السلام
+B|31.30953|31.14440|موقف الحامول
+B|25.43341|30.54523|موقف الخارجة
+B|30.22351|31.36008|موقف الخانكه
+B|30.03762|31.21132|موقف الدقي
+B|30.15326|31.40834|موقف السلام الجديد
+B|30.02442|31.25718|موقف السيدة عائشة
+B|30.04590|31.38180|موقف العاشر مدينة نصر
+B|30.76791|30.99157|موقف العجيزي طنطا شبين الكوم
+B|29.99565|31.20333|موقف العمرانية
+B|29.92982|30.91462|موقف الفيوم
+B|25.44018|30.54525|موقف القرى
+B|30.09343|31.32484|موقف الكوربة
+B|30.06608|31.21333|موقف الكيت كات
+B|30.02707|31.49931|موقف اللوتس
+B|30.16366|31.33935|موقف المرج الدديدة
+B|30.13316|31.24663|موقف بيجام للنقل العام
+B|30.09339|31.31466|موقف روكسي (شاؤع القبة)
+B|30.13686|31.33802|موقف زهراء عين شمس
+B|30.58578|31.52201|موقف سيارات
+B|29.09936|31.10640|موقف عدلي منصور الجديد
+B|30.58171|31.50304|موقف فاروق الزراعة
+B|30.14952|31.34105|موقف قسم المرج
+B|29.98380|31.31670|موقف كارفور المعادي
+B|30.07333|31.28491|موقف كوبري العباسية
+B|30.12183|31.25039|موقف كوبري عرابي
+B|29.99507|31.23141|موقف مترو الزهراء
+B|30.02541|31.20170|موقف مترو جامعة القاهرة
+B|30.13107|31.31944|موقف محطة مترو عين شمس
+B|30.03955|31.25009|موقف مستشفى احمد ماهر
+B|30.56645|31.49913|موقف مصر
+B|31.09488|30.90162|موقف ميكروباص محلة موسى
+B|30.05931|31.19077|موقف ميكروباص(حصري/هايبر/مول العرب)
+B|30.01078|31.14192|موقف ميكروباصات
+B|30.04615|31.05208|موقف ميكروباصات
+B|30.05192|31.40164|موقف ١٢٥ زهراء مدينه نصر
+B|29.85855|31.41707|ميان ال290 فدان

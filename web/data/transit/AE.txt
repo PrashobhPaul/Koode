@@ -1,5 +1,6 @@
 # Transit for Koode, AE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|25.26877|55.29362|Al Ras|Dubai Metro|M
 S|25.27089|55.33275|Abu Baker Al Siddique|Dubai Metro|M
 S|25.27542|55.34645|Abu Hail|Dubai Metro|M
@@ -18,7 +19,7 @@ S|25.26335|55.32389|Al Rigga|Dubai Metro|M
 S|25.26917|55.30761|Baniyas Square|Dubai Metro|M
 S|25.20144|55.26955|Burj Khalifa / Dubai Mall|Dubai Metro|M
 S|25.25499|55.30394|BurJuman|Dubai Metro|M
-S|25.19128|55.26041|Business Bay|Dubai Metro|M
+S|25.19131|55.26040|Business Bay|Dubai Metro|M
 S|25.23031|55.39112|Centrepoint|Dubai Metro|M
 S|25.21888|55.33904|Creek|Dubai Metro|M
 S|25.00129|55.09571|Danube|Dubai Metro|M
@@ -35,7 +36,8 @@ S|25.21723|55.27988|Emirates Towers|Dubai Metro|M
 S|25.02631|55.10130|Energy|Dubai Metro|M
 S|25.12668|55.20792|Equiti|Dubai Metro|M
 S|24.96349|55.14608|Expo City Dubai|Dubai Metro|M
-S|25.21082|55.27553|Financial Centre|Dubai Metro|M
+S|25.21090|55.27551|Financial Center|Dubai Metro|M
+S|25.15563|55.22852|Garmin|Dubai Metro|M
 S|25.27614|55.30168|Gold Souq|Dubai Metro|M
 S|25.04668|55.11749|Ibn Battuta|Dubai Metro|M
 S|25.11477|55.19089|InsuranceMarket|Dubai Metro|M
@@ -43,21 +45,49 @@ S|24.97760|55.09107|Life Pharmacy|Dubai Metro|M
 S|25.12120|55.20045|Mall of the Emirates|Dubai Metro|M
 S|25.23359|55.29218|max|Dubai Metro|M
 S|25.05788|55.12736|National Paints|Dubai Metro|M
-S|25.15563|55.22852|ONPASSIVE|Dubai Metro|M
 S|25.24393|55.31589|Oud Metha|Dubai Metro|M
 S|25.27032|55.32083|Salah Al Din|Dubai Metro|M
 S|25.25821|55.29748|Sharaf DG|Dubai Metro|M
-S|25.07995|55.14759|Sobha Realty|Dubai Metro|M
+S|25.07994|55.14754|Sobha Realty|Dubai Metro|M
 S|25.27791|55.36147|Stadium|Dubai Metro|M
 S|25.04350|55.13505|The Gardens|Dubai Metro|M
 S|25.26618|55.31375|Union|Dubai Metro|M
 S|25.22484|55.28512|World Trade Centre|Dubai Metro|M
-L|Dubai Metro|Green Line|#00CC00|29 13:1669 25:1449 11:683 48:960 12:1054 2:704 1:1471 45:1206 50:969 15:760 36:1420 0:1158 9:642 46:1680 17:742 44:1801 26:1904 10:1425 20:857
-L|Dubai Metro|Green Line|#00CC00|20 10:857 26:1427 44:1903 17:1803 46:742 9:1676 0:642 36:1155 15:1405 50:769 45:970 1:1206 2:1471 12:706 48:1050 11:960 25:683 13:1449 29:1667
-L|Dubai Metro|Red1 Line|#CC0000|19 30:2842 5:809 4:777 8:1299 22:1441 14:1332 50:1119 17:1669 3:1233 41:1392 51:1195 31:1042 35:777 16:1215 18:1504 43:5043 33:3840 40:967 38:1198 27:2209 6:2160 47:1459 24:1349 42:1837 49:2035 23:1398 7:867 28:3541 34:4840
-L|Dubai Metro|Red1 Line|#CC0000|34 28:4889 7:3516 23:868 49:1397 42:2027 24:1837 47:1348 6:1458 27:2160 38:2209 40:1198 33:966 43:3841 18:5129 16:1417 35:1215 31:873 51:946 41:1238 3:1348 17:1234 50:1665 14:1115 22:1337 8:1439 4:1298 5:858 30:728 19:2870
-L|Dubai Metro|Red2 Line|#CC0000|19 30:2842 5:809 4:777 8:1299 22:1441 14:1332 50:1119 17:1669 3:1233 41:1392 51:1195 31:1042 35:777 16:1215 18:1504 43:5043 33:3840 40:967 38:1198 27:2209 6:2160 47:1459 24:1349 42:1838 37:1617 32:2805 21:2834 39:2698
-L|Dubai Metro|Red2 Line|#CC0000|39 21:2633 32:2833 37:2805 42:1617 24:1838 47:1348 6:1458 27:2160 38:2209 40:1198 33:966 43:3841 18:5129 16:1417 35:1215 31:873 51:946 41:1238 3:1348 17:1234 50:1665 14:1115 22:1337 8:1439 4:1298 5:858 30:728 19:2870
+S|25.26708|55.30354|Al Sabkha|Al Sabkha - Baniyas (Water Bus)|W
+S|25.26002|55.31021|Al Seef Marine Transport|Baniyas - Al Seef (Water Bus)|W
+S|25.26469|55.29304|Abra station south - Bur Dubai|Dubai Old Souk - Al Sabkha (Abra)|W
+S|25.26499|55.29525|Dubai Old Souk - Abra dock|Dubai Old Souk - Al Sabkha (Abra)|W
+S|25.26259|55.31141|Baniyas - water bus terminal|Dubai Old Souk - Baniyas (Water Bus)|W
+S|25.19795|55.23327|Dubai Canal|Dubai Old Souk - Baniyas (Water Bus)|W
+S|25.22207|55.34900|Dubai Festival City|Dubai Roads & Transport Authority|W
+S|25.07569|55.13788|Dubai Marina|RTA|W
+S|25.07496|55.13495|Marina Promenade (Water Bus)|RTA|W
+S|25.08493|55.14532|Marina Terrace (Water Bus)|RTA|W
+S|24.27535|52.61385|Mainland Ferry Terminal|ferry|W
+S|24.21203|52.59205|Sir Bani Yas Ferry Terminal|ferry|W
+S|25.21112|55.24394|Jumeirah One Fishing Harbour|مكوك نادي آيلاند بيتش|W
+S|25.22507|55.16926|The Island Beach Club|مكوك نادي آيلاند بيتش|W
+L|Dubai Metro|Green Line|#00CC00|29 13:1669 25:1449 11:683 48:960 12:1054 2:704 1:1471 45:1206 50:969 15:760 37:1420 0:1158 9:642 46:1680 17:742 44:1801 26:1904 10:1425 20:857
+L|Dubai Metro|Green Line|#00CC00|20 10:857 26:1427 44:1903 17:1803 46:742 9:1676 0:642 37:1155 15:1405 50:769 45:970 1:1206 2:1471 12:706 48:1050 11:960 25:683 13:1449 29:1667
+L|Dubai Metro|Red1 Line|#CC0000|19 30:2842 5:809 4:777 8:1299 22:1441 14:1332 50:1119 17:1669 3:1233 42:1392 51:1195 31:1042 35:777 16:1215 18:1504 36:5043 33:3840 41:967 39:1198 27:2209 6:2160 47:1459 24:1349 43:1837 49:2035 23:1398 7:867 28:3541 34:4840
+L|Dubai Metro|Red1 Line|#CC0000|34 28:4889 7:3516 23:868 49:1397 43:2027 24:1837 47:1348 6:1458 27:2160 39:2209 41:1198 33:966 36:3841 18:5129 16:1417 35:1215 31:873 51:946 42:1238 3:1348 17:1234 50:1665 14:1115 22:1337 8:1439 4:1298 5:858 30:728 19:2870
+L|Dubai Metro|Red2 Line|#CC0000|19 30:2842 5:809 4:777 8:1299 22:1441 14:1332 50:1119 17:1669 3:1233 42:1392 51:1195 31:1042 35:777 16:1215 18:1504 36:5043 33:3840 41:967 39:1198 27:2209 6:2160 47:1459 24:1349 43:1838 38:1617 32:2805 21:2834 40:2698
+L|Dubai Metro|Red2 Line|#CC0000|40 21:2633 32:2833 38:2805 43:1617 24:1838 47:1348 6:1458 27:2160 39:2209 41:1198 33:966 36:3841 18:5129 16:1417 35:1215 31:873 51:946 42:1238 3:1348 17:1234 50:1665 14:1115 22:1337 8:1439 4:1298 5:858 30:728 19:2870
+L|Al Sabkha - Baniyas (Water Bus)|Al Sabkha - Baniyas||52 56:958
+L|Baniyas - Al Seef (Water Bus)|Baniyas - Al Seef||56 53:337
+L|Dubai Old Souk - Al Sabkha (Abra)|Dubai Old Souk - Al Sabkha||55 54:278
+L|Dubai Old Souk - Baniyas (Water Bus)|Dubai Old Souk - Baniyas||57 56:14571
+L|Dubai Roads & Transport Authority|Al Jadaf - Dubai Festival City||57 58:15303
+L|RTA|Marina Promenade - Marina Mall - Marina Walk - Marina Terrace||60 61:1819
+L|RTA|مرسى دبي - قناة دبي - الغبيبة||59 57:24589
+L|ferry|ferry||63 62:8328
+L|مكوك نادي آيلاند بيتش|مكوك نادي آيلاند بيتش||64 65:8465
+R|24.33389|54.52971|Abu Dhabi Mohamed bin Zayed City|Etihad Rail
+R|25.01715|55.16776|Dubai Al Yalayis|Etihad Rail
+R|25.16832|56.34564|Fujairah|Etihad Rail
+Q|Etihad Rail|Etihad Rail|#A6192E|L55|2 0:269468
+Q|Etihad Rail|Etihad Rail|#A6192E|L55|0 2:270570
+Q|Etihad Rail|Etihad Rail|#A6192E|L55|1 0:120172
 T|24.33389|54.52971|Abu Dhabi Mohamed bin Zayed City Station
 T|25.24346|55.37215|Concourse A
 T|25.24775|55.36116|Concourse B

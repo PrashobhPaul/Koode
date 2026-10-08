@@ -1,5 +1,6 @@
 # Transit for Koode, SG. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|1.44064|103.80096|Admiralty|Mass Rapid Transit|M
 S|1.31645|103.88291|Aljunied|Mass Rapid Transit|M
 S|1.37008|103.84952|Ang Mo Kio|Mass Rapid Transit|M
@@ -211,6 +212,22 @@ S|1.41278|103.90659|Teck Lee|Singapore Rail|M
 S|1.37667|103.75365|Teck Whye|Singapore Rail|M
 S|1.39733|103.87563|Thanggam|Singapore Rail|M
 S|1.38941|103.88583|Tongkang|Singapore Rail|M
+S|1.13175|104.05543|Batam Centre|Batam Centre (Kota Batam, Indonesia) - Harbourfront (Singapore)|W
+S|1.39115|103.98752|Changi Point Ferry Terminal|Changi Village (Singapore) - Tanjung Pengelih (Malaysia)|W
+S|1.51670|104.28522|Desaru Coast Ferry Terminal|Desaru Link Ferry Services|W
+S|1.38767|103.99976|SAF Ferry Terminal|Eng Hup Shipping|W
+S|1.40690|104.02761|Tanjong Ladang Jetty|Eng Hup Shipping|W
+S|1.26294|103.81944|Harbourfront|Batam Centre (Kota Batam, Indonesia) - Harbourfront (Singapore)|W
+S|1.43388|103.92125|Pasir Gudang|Pasir Gudang (Malaysia) - Batam Centre (Kota Batam, Indonesia)|W
+S|1.16050|104.32017|Bandar Bentan Telani|Resort Ferries|W
+S|1.68703|101.45886|Dumai|Sekupang (Batam) - Dumai|W
+S|1.12392|103.92613|Sekupang (Batam)|Sekupang (Batam) - Dumai|W
+S|1.12476|103.92460|Sekupang International|Sekupang (Batam, Indonesia) - Harbourfront (Singapore)|W
+S|0.98794|103.43635|Tanjung Balai Karimun international|Sekupang (Batam, Indonesia) - Harbourfront (Singapore)|W
+S|1.16703|104.04918|Gold Coast Bengkong|Sindo Ferry;Batamfast|W
+S|1.18873|104.09478|Nongsa Pura|Tanah Merah (Singapore) - Nongsa Pura (Kota Batam, Indonesia)|W
+S|1.47028|103.78491|Johor Bahru Berjaya Waterfront ferry terminal|Tanah Merah (Singapore) - Tanjung Pinang (Bintan, Indonesia)|W
+S|1.31239|103.98866|Tanah Merah|Tanah Merah (Singapore) - Tanjung Pinang (Bintan, Indonesia)|W
 L|Mass Rapid Transit|MRT Circle Line|#fa9e0d|5 89:858 116:954 29:1181 77:798 57:1185 146:1466 82:826 110:1345 59:1322 76:1360 105:744 26:840 61:938 50:1413 16:1065 27:3833 94:1229 13:1439 87:1724 125:940 4:1302 134:1301 88:1060 112:995 41:1227 98:729 132:868 103:1355 117:943
 L|Mass Rapid Transit|MRT Circle Line|#fa9e0d|116 29:1183 77:785 57:1219 146:1473 82:825 110:1350 59:1349 76:1365 105:761 26:827 61:947 50:1420 16:1061 27:3814 94:1237 13:1538 87:1721 125:944 4:1308 134:1332 88:1063 112:997 41:1260 98:727 132:866 103:1355 117:923 46:688 18:669 42:549
 L|Mass Rapid Transit|MRT Circle Line|#fa9e0d|117 5:1267 89:857 116:965 29:1183 77:785 57:1219 146:1473 82:825 110:1350 59:1349 76:1365 105:761 26:827 61:947 50:1420 16:1061 27:3814 94:1237 13:1538 87:1721 125:944 4:1308 134:1332 88:1063 112:997 41:1260 98:727 132:866 103:1355
@@ -244,6 +261,20 @@ L|Singapore Rail|LRT Sengkang Line|#748477|124 175:848 199:715 171:471 184:583 1
 L|Singapore Rail|LRT Sengkang Line|#748477|124 196:1023 184:573 171:584 199:468 175:710 124:840
 L|Singapore Rail|LRT Sengkang Line|#748477|124 174:749 180:520 186:895 209:725 181:622 187:464 210:727 197:603 124:936
 L|Singapore Rail|MRT Jurong Region Line||34 35:917 147:1864 62:1043 40:1523 71:749 3:585 15:1021 45:918 156:829 68:769 69:611
+L|Batam Centre (Kota Batam, Indonesia) - Harbourfront (Singapore)|Batam Centre||211 216:36363
+L|Changi Village (Singapore) - Tanjung Pengelih (Malaysia)|Changi Village||212 226:9403
+L|Desaru Link Ferry Services|Tanah Merah||226 213:55181
+L|Eng Hup Shipping|Changi Beach||214 215:4058
+L|Harbour Bay (Batam, Indonesia) - Harbourfront (Singapore)|Harbour Bay||216 225:25177
+L|Pasir Gudang (Malaysia) - Batam Centre (Kota Batam, Indonesia)|Pasir Gudang||217 211:46488
+L|Resort Ferries|Tanah Merah||226 218:40549
+L|Sekupang (Batam) - Dumai|Sekupang||219 220:285517
+L|Sekupang (Batam, Indonesia) - Harbourfront (Singapore)|Sekupang||222 221:83292
+L|Sindo Ferry;Batamfast|Gold Coast Bengkong - Harbourfront||216 223:30015
+L|Stulang Laut (Johor Bahru, Malaysia) - Batam Centre (Kota Batam, Indonesia)|Stulang Laut||225 211:63845
+L|Tanah Merah (Singapore) - Batam Centre (Indonesia)|Tanah Merah||211 226:23489
+L|Tanah Merah (Singapore) - Nongsa Pura (Kota Batam, Indonesia)|Tanah Merah||226 224:18619
+L|Tanah Merah (Singapore) - Tanjung Pinang (Bintan, Indonesia)|Tanah Merah||225 226:33359
 T|1.38004|103.77265|Bangkit
 T|1.38475|103.74453|Choa Chu Kang
 T|1.38459|103.77088|Fajar

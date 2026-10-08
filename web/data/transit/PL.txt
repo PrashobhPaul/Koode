@@ -1,5 +1,6 @@
 # Transit for Koode, PL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|52.10383|16.15498|Adamowo|PKM|M
 S|52.46857|16.97962|Czerwonak|PKM|M
 S|52.48001|16.97805|Czerwonak Osiedle|PKM|M
@@ -3346,3 +3347,493 @@ T|49.67631|19.22233|Żywiec Sporysz
 T|50.98342|17.04958|Żórawina
 T|53.69517|16.81258|Żółtnica
 T|53.28890|15.69048|Żółwino
+B|50.45625|23.41864|"Dworzec" Busowy
+B|54.46554|16.98897|11 Listopada
+B|52.21870|15.52813|Amazon POZ2
+B|49.85545|19.35100|Andrychów Dworzec Autobusowy
+B|53.84338|22.97677|Augustów Dworzec PKS
+B|50.08680|19.90905|Azory
+B|52.85732|17.94370|Barcin
+B|53.40083|14.59878|Basen Górniczy
+B|50.66171|17.94334|Baza OPKS SA
+B|52.03612|23.12651|Biała Podlaska Centrum
+B|49.83025|19.04266|Bielsko-Biała Dworzec Autobusowy
+B|50.08893|19.09164|Bieruń Plac Autobusowy
+B|52.95994|19.88814|Bieżuń Pl. Dworcowy
+B|50.01145|19.92647|Borek Fałęcki
+B|52.30022|21.04208|Bródno-Podgrodzie
+B|49.32476|20.09586|Bukowina Tatrzańska Terma
+B|49.62187|20.69902|Bulwar Narwiku - Dworzec MPK
+B|49.87301|19.49763|Bus
+B|51.16016|21.65094|Bus Station
+B|53.13240|23.13591|Bus Station PKS Nova Białystok
+B|51.09663|17.03628|Bus Station Wroclaw
+B|51.39244|21.15747|Bus station
+B|50.34389|18.91336|Bytom Dworzec
+B|54.16260|17.48530|Bytów
+B|50.31483|19.13596|Będzin Kościuszki
+B|50.07113|22.23896|Centrum Komunikacji w Łańcucie
+B|51.79887|15.70949|Centrum Obsługi Pazażerów
+B|50.64454|20.27688|Centrum Odprawy Pasażerów w Jędrzejowie
+B|51.65134|17.80772|Centrum Przesiadkowe
+B|50.22683|18.99508|Centrum Przesiadkowe Brynów
+B|50.14222|19.17584|Centrum Przesiadkowe Imielin
+B|51.19440|20.41528|Centrum Przesiadkowe Końskie
+B|50.22617|18.97661|Centrum Przesiadkowe Ligota
+B|50.15452|18.77707|Centrum Przesiadkowe Orzesze
+B|49.97532|18.95270|Centrum Przesiadkowe Pszczyna
+B|49.72184|19.04720|Centrum Przesiadkowe Szczyrk Skalite
+B|50.19827|18.57948|Centrum Przesiadkowe Wilcza
+B|50.36524|19.03646|Centrum Przesiadkowe Wojkowice
+B|52.65416|19.05898|Centrum Przesiadkowe Włocławek
+B|50.26040|19.06437|Centrum Przesiadkowe Zawodzie
+B|53.03356|16.46543|Centrum Przesiadkowe w Trzciance
+B|50.43426|18.94663|Centrum Przesiadkowe w Świerklańcu
+B|50.04774|18.69383|Centrum Przesiadkowe Żory
+B|50.78399|15.76182|Centrum przesiadkowe Karpacz
+B|54.74021|17.89131|Choczewo
+B|52.96334|14.44337|Chojna Szczecińska d.k. 01
+B|50.26594|18.94383|Chorzów Batory Pętla
+B|50.29807|18.95466|Chorzów Rynek
+B|50.14269|19.41148|Chrzanów Dworzec Autobusowy
+B|51.73554|18.56015|Cielce
+B|50.29196|21.43108|Coach station Mielec
+B|52.90549|16.56603|Czarnków, Pl. Karskiego
+B|49.91450|19.00641|Czechowice-Dziedzice Dworzec
+B|50.32039|19.07185|Czeladź Dworzec
+B|50.01833|19.88926|Czerwone Maki P+R
+B|50.07483|20.01528|Czyżyny Dworzec
+B|52.63957|19.31938|DA Dobrzyń nad Wisłą
+B|49.82402|22.39329|DA Dubiecko
+B|49.78453|22.77361|Damil-Trans, Bus Natura
+B|51.28206|17.98473|Dawny Dworzec PKS
+B|54.45550|16.98370|Dmowskiego
+B|49.87955|20.09400|Dobczyce Witosa
+B|53.52360|15.82470|Drawsko Pomorskie Kolejowa (dworzec)
+B|52.25270|21.05148|Dw. Wschodni (Kijowska)
+B|52.25030|21.05285|Dw. Wschodni (Lubelska)
+B|53.64933|21.56310|Dworzec
+B|49.94553|18.60995|Dworzec Arki Bożka
+B|50.05263|21.60390|Dworzec Autobusowy
+B|50.24643|21.78337|Dworzec Autobusowy
+B|50.47760|17.34051|Dworzec Autobusowy
+B|50.59668|16.81288|Dworzec Autobusowy
+B|50.97281|15.38073|Dworzec Autobusowy
+B|50.98622|23.17151|Dworzec Autobusowy
+B|51.01629|15.66907|Dworzec Autobusowy
+B|51.25197|22.57098|Dworzec Autobusowy
+B|51.80196|16.31870|Dworzec Autobusowy
+B|51.89569|21.61757|Dworzec Autobusowy
+B|51.94658|15.51081|Dworzec Autobusowy
+B|53.77351|15.40711|Dworzec Autobusowy
+B|50.53195|22.71970|Dworzec Autobusowy Biłgoraj
+B|52.88040|18.78361|Dworzec Autobusowy Ciechocinek
+B|50.05388|21.40646|Dworzec Autobusowy Dębica
+B|51.86627|20.87056|Dworzec Autobusowy Grójec
+B|50.78467|16.02302|Dworzec Autobusowy Kamienna Góra
+B|49.47612|22.32520|Dworzec Autobusowy Lesko
+B|51.39409|21.19860|Dworzec Autobusowy Lotnisko Warszawa Radom
+B|51.10945|15.59313|Dworzec Autobusowy Lwówek Śląski
+B|52.17623|21.55442|Dworzec Autobusowy Mińsk Mazowiecki
+B|49.83461|19.94882|Dworzec Autobusowy Myślenice
+B|51.07504|17.71589|Dworzec Autobusowy Namysłów
+B|50.66299|17.92798|Dworzec Autobusowy OPKS Opole
+B|52.64591|16.81954|Dworzec Autobusowy Oborniki
+B|50.88514|21.66405|Dworzec Autobusowy Ożarów
+B|50.51479|18.30177|Dworzec Autobusowy PKS
+B|54.15223|19.41516|Dworzec Autobusowy PKS Elbląg
+B|51.63604|15.13544|Dworzec Autobusowy PKS S.A. ŻARY
+B|51.22242|18.57671|Dworzec Autobusowy PKS Wieluń
+B|50.93483|21.38140|Dworzec Autobusowy PKS w Ostrowcu Świętokrzyskim S.A.
+B|53.04303|16.46187|Dworzec Autobusowy Plac Pocztowy
+B|54.11924|16.68767|Dworzec Autobusowy Polanów
+B|54.71542|18.40926|Dworzec Autobusowy Puck
+B|51.60924|16.83989|Dworzec Autobusowy Rawicz
+B|50.07460|21.69571|Dworzec Autobusowy Sędziszów Małopolski
+B|51.30495|17.06300|Dworzec Autobusowy Trzebnica
+B|54.60566|18.22766|Dworzec Autobusowy Wejherowo
+B|49.97159|20.61635|Dworzec Autobusowy w Brzesku
+B|53.12232|18.01732|Dworzec Autobusowy w Bydgoszczy
+B|49.92273|18.32445|Dworzec Autobusowy w Chałupkach
+B|52.87680|20.60643|Dworzec Autobusowy w Ciechanowie
+B|51.88302|17.00679|Dworzec Autobusowy w Gostyniu
+B|51.84373|16.56659|Dworzec Autobusowy w Lesznie
+B|51.11757|15.29110|Dworzec Autobusowy w Lubaniu.
+B|50.35810|20.02191|Dworzec Autobusowy w Miechowie
+B|50.44740|18.86344|Dworzec Autobusowy w Tarnowskich Górach
+B|53.17216|22.06667|Dworzec Autobusowy Łomża
+B|53.06807|19.90412|Dworzec Autobusowy Żuromin
+B|51.13082|23.46761|Dworzec BUS Chełm
+B|50.87652|20.61974|Dworzec BUS Żelazna
+B|49.75073|18.63854|Dworzec Cieszyn
+B|49.95542|18.60242|Dworzec Główny
+B|53.78431|20.50321|Dworzec Główny
+B|50.04270|21.99420|Dworzec Lokalny
+B|51.23204|22.56720|Dworzec Lublin
+B|49.69489|21.74698|Dworzec MKS
+B|49.60706|20.70123|Dworzec MPK
+B|51.65253|19.38776|Dworzec MZK
+B|49.67826|19.18571|Dworzec MZK Żywiec
+B|52.55243|19.71245|Dworzec PKP PKS Płock
+B|49.73968|21.47238|Dworzec PKS
+B|49.88548|22.10022|Dworzec PKS
+B|50.17739|22.61118|Dworzec PKS
+B|50.26230|22.41960|Dworzec PKS
+B|50.45494|23.41923|Dworzec PKS
+B|50.56596|21.66723|Dworzec PKS
+B|50.56945|22.05687|Dworzec PKS
+B|50.80647|19.11898|Dworzec PKS
+B|50.90619|15.73103|Dworzec PKS
+B|51.26493|15.55850|Dworzec PKS
+B|51.41808|15.90472|Dworzec PKS
+B|51.50609|16.06493|Dworzec PKS
+B|51.62378|21.93529|Dworzec PKS
+B|51.66784|16.08251|Dworzec PKS
+B|51.69084|15.73411|Dworzec PKS
+B|51.70154|17.42868|Dworzec PKS
+B|51.76705|20.24767|Dworzec PKS
+B|51.78798|14.96830|Dworzec PKS
+B|51.94966|14.72587|Dworzec PKS
+B|51.96572|20.14787|Dworzec PKS
+B|52.04772|15.09903|Dworzec PKS
+B|52.05798|19.20448|Dworzec PKS
+B|52.08631|17.01968|Dworzec PKS
+B|52.16228|22.26918|Dworzec PKS
+B|52.21343|22.71168|Dworzec PKS
+B|52.24632|15.53999|Dworzec PKS
+B|52.43902|15.11698|Dworzec PKS
+B|52.44461|15.59245|Dworzec PKS
+B|52.62821|18.53132|Dworzec PKS
+B|52.84773|19.17944|Dworzec PKS
+B|52.86892|21.10287|Dworzec PKS
+B|53.08478|21.57320|Dworzec PKS
+B|53.10423|19.06365|Dworzec PKS
+B|53.18470|18.59942|Dworzec PKS
+B|53.40754|18.43945|Dworzec PKS
+B|53.56084|20.99936|Dworzec PKS
+B|54.18950|16.17094|Dworzec PKS
+B|54.41732|16.40504|Dworzec PKS
+B|50.49666|21.54337|Dworzec PKS - Baranów Sandomierski
+B|50.41367|21.75446|Dworzec PKS - Nowa Dęba
+B|54.03462|22.49522|Dworzec PKS - pętla dla linii lokalnych
+B|51.44796|20.47861|Dworzec PKS Drzewica
+B|54.30367|22.30202|Dworzec PKS Gołdap
+B|50.01141|22.67600|Dworzec PKS Jarosław S.A.
+B|52.74091|17.33105|Dworzec PKS Mieścisko
+B|54.03507|22.49496|Dworzec PKS Nova
+B|51.42609|17.93545|Dworzec PKS Ostrzeszów Główny
+B|51.39273|21.15890|Dworzec PKS Radom
+B|50.04228|22.00477|Dworzec PKS Rzeszów
+B|49.86977|21.80034|Dworzec PKS Strzyżów nad Wisłokiem
+B|51.54632|20.03239|Dworzec PKS Tomaszów Mazowiecki
+B|51.71044|18.62415|Dworzec PKS Warta
+B|51.12611|15.92050|Dworzec PKS Złotoryja
+B|49.81584|22.23283|Dworzec PKS w Dynowie
+B|53.58076|20.28118|Dworzec PKS w Olsztynku
+B|51.59242|18.72652|Dworzec PKS w Sieradzu
+B|52.99096|22.88430|Dworzec PKS Łapy
+B|52.80928|17.20283|Dworzec PKS-stanowiska
+B|53.91304|15.19207|Dworzec Przedsiębiorstwa PKS Gryfice
+B|51.78413|19.46607|Dworzec Północny
+B|52.39675|16.94981|Dworzec Rataje
+B|50.33224|18.14791|Dworzec autobusowy
+B|50.42950|21.27488|Dworzec autobusowy
+B|50.87576|20.62164|Dworzec autobusowy
+B|51.16393|16.58789|Dworzec autobusowy
+B|51.21192|17.37666|Dworzec autobusowy
+B|51.33505|16.64828|Dworzec autobusowy
+B|51.56900|15.54331|Dworzec autobusowy
+B|51.74426|15.59771|Dworzec autobusowy
+B|52.20232|18.62946|Dworzec autobusowy
+B|52.56047|17.82291|Dworzec autobusowy
+B|53.68997|17.57754|Dworzec autobusowy
+B|53.90515|14.26642|Dworzec autobusowy
+B|53.65829|17.37162|Dworzec autobusowy (nieczynny)
+B|53.01608|18.60791|Dworzec autobusowy - Toruń
+B|51.65029|20.95557|Dworzec autobusowy Białobrzegi
+B|53.55819|16.23276|Dworzec autobusowy Czaplinek
+B|50.07529|20.01544|Dworzec autobusowy Czyżyny
+B|54.18921|16.17059|Dworzec autobusowy Koszalin
+B|52.53222|19.14946|Dworzec autobusowy Kowal
+B|49.69516|21.74706|Dworzec autobusowy Krosno
+B|52.40542|19.16549|Dworzec autobusowy Lubień Kujawski
+B|51.77935|22.62132|Dworzec autobusowy PKS w Radzyniu Podlaskim S.A.
+B|53.63117|21.79248|Dworzec autobusowy Pisz (niecz.)
+B|53.69411|16.70481|Dworzec autobusowy Szczecinek
+B|50.00643|20.97261|Dworzec autobusowy Tarnów
+B|49.30144|19.96319|Dworzec autobusowy Zakopane
+B|53.34914|18.43954|Dworzec autobusowy w Chełmnie
+B|51.21289|16.16661|Dworzec autobusowy w Legnicy
+B|52.80828|18.08982|Dworzec autobusowy w Pakości
+B|52.85371|19.66110|Dworzec autobusowy w Sierpcu
+B|52.08371|15.62643|Dworzec autobusowy w Sulechowie - PKS Zielona Góra
+B|54.09732|18.78778|Dworzec autobusowy w Tczewie
+B|49.67954|19.18790|Dworzec autobusowy w Żywcu
+B|52.95599|17.91866|Dworzec autobusowy Łabiszyn
+B|50.98463|23.16999|Dworzec bus
+B|54.52180|18.52985|Dworzec komunikacji międzymiastowej i międzynarodowej w Gdyni
+B|51.29948|22.88809|Dworzec Łęczna
+B|52.40957|16.95459|Dworzec Śródka
+B|50.72490|16.64075|Dzierżoniów
+B|50.32970|19.18518|Dąbrowa Górnicza Dworzec PKP
+B|50.34221|19.26527|Dąbrowa Górnicza Tworzeń Huta Katowice
+B|52.37182|16.90366|Dębiec PKM
+B|52.73828|14.70937|Dębno Lubuskie p.dw. 01
+B|52.19341|21.08512|EC Siekierki
+B|52.24441|20.97897|Esperanto
+B|49.67667|19.22233|Fabryka Śrub
+B|52.15944|21.20455|Falenica
+B|54.35561|18.64269|Flixbus, Bay 8
+B|53.25466|14.49228|GRYFINO, PRZYSTANEK DWORCOWY
+B|52.41671|16.93860|Garbary PKM
+B|54.35584|18.64218|Gdansk bus station
+B|54.03220|21.77660|Giżycko ul. Kolejowa Dworzec PKP
+B|50.30257|18.67678|Gliwice Centrum Przesiadkowe
+B|50.31535|18.65991|Gliwice p.m.
+B|53.83633|18.82353|Gniew
+B|52.22223|21.10227|Gocław
+B|53.55985|14.83908|Goleniów
+B|49.66317|21.16163|Gorlicki Dworzec Autobusowy
+B|52.72848|15.22650|Gorzów dworzec autobusowy
+B|50.24380|20.77778|Gręboszów
+B|52.28976|20.97630|Gwiaździsta
+B|50.10472|19.96320|Górka Narodowa P+R
+B|50.35241|17.86339|Głogówek D.A.
+B|50.19583|17.82288|Głubczyce dworzec autobusowy (PKS)
+B|50.89104|23.15665|Izbica
+B|53.43676|15.54711|Ińsko
+B|54.83068|18.30047|Jastrzębia Góra, Dworzec Autobusowy
+B|53.82828|20.31078|Jonkowo
+B|52.38338|16.83418|Junikowo
+B|53.96609|14.77266|Kamień Pomorski
+B|50.25843|19.01760|Katowice Dworzec
+B|52.20720|21.80718|Kałuszyn
+B|52.26904|19.87015|Kiernozia
+B|52.91399|19.11940|Kikół, Rypińska
+B|50.22707|18.65755|Knurów Centrum Przesiadkowe Szpitalna
+B|51.63867|22.44808|Kock Pl. Anny Jabłonowskiej
+B|49.72710|19.41112|Kocoń III
+B|53.41320|21.92309|Kolno Dworzec Autobusowy
+B|50.07840|20.06604|Kombinat
+B|52.23124|18.24936|Konin, Dworzec Autobusowy MZK
+B|53.44438|23.09523|Korycin
+B|52.59028|14.64688|Kostrzyn nad Odrą d.k.
+B|54.11909|17.97831|Kościerzyna
+B|50.47562|17.96712|Krapkowice Dworzec Autobusowy
+B|50.08891|19.93125|Krowodrza Górka P+R
+B|49.40989|20.95659|Krynica
+B|54.38069|19.44585|Krynica Morska
+B|50.13174|19.63683|Krzeszowice Dworzec Autobusowy
+B|49.26995|19.98022|Kuźnice
+B|49.88167|19.22912|Kęty D.A.
+B|50.80803|17.32217|Kłosów
+B|50.10638|19.33024|Libiąż Dworzec Autobusowy
+B|54.13062|20.57566|Lidzbark Warmiński
+B|53.26074|19.82327|Lidzbark, Rynek
+B|49.70630|20.42815|Limanowa Main Bus Station
+B|49.70740|20.42454|Limanowa, ul. Kilińskiego
+B|49.69986|20.41966|Limanowa, ul. Zygmunta Augusta
+B|52.84776|19.17950|Lipno D.A.
+B|52.84720|19.17586|Lipno Dworzec PZTP
+B|52.16902|20.97367|Lotnisko Chopina
+B|52.51188|15.24417|Lubniewice
+B|51.01408|15.50922|Lubomierz
+B|52.34504|16.85436|Luboń Żabikowo
+B|52.32023|16.88057|Luboń, Kręta
+B|50.06862|19.94949|Main Station East
+B|50.06774|19.94932|Małopolski Dworzec Autobusowy
+B|49.61714|20.69827|Małopolski Dworzec Autobusowy w Nowym Sączu
+B|50.04021|20.00094|Mały Płaszów P+R
+B|52.27180|20.96829|Metro Marymont
+B|52.29110|20.92789|Metro Młociny
+B|52.17979|21.02371|Metro Wilanowska
+B|50.36637|18.84415|Miechowice Pętla
+B|54.02513|19.04984|Miejski Zakład komunikacji
+B|53.80283|21.57044|Mikołajki / Plac Kościelny
+B|50.17221|18.90013|Mikołów Dworzec
+B|50.88725|20.58281|Minidworzec
+B|50.89200|20.67547|Minidworzec Komunikacji Miejskiej Osiedle Świętokrzyskie
+B|50.09605|19.99611|Mistrzejowice
+B|50.25938|19.00991|Międzynarodowy Dworzec Autobusowy Katowice
+B|51.92992|22.38387|Międzyrzecka 60
+B|51.69378|20.72289|Mogielnica
+B|49.67489|20.07661|Mszana Dolna Dworzec Autobusowy
+B|50.57477|19.32954|Myszków
+B|53.38459|21.34149|Myszyniec Dworzec PKS
+B|51.28787|22.21560|Nałęczów
+B|50.03813|20.21644|Niepołomice Dworzec P+R
+B|50.51390|22.14244|Nisko D.K.
+B|50.57969|16.50808|Nowa Ruda D.A
+B|52.26055|20.92479|Nowe Bemowo
+B|51.61734|20.58318|Nowe Miasto nad Pilicą D.A.
+B|50.01555|20.02363|Nowy Bieżanów P+R
+B|50.01271|20.01569|Nowy Bieżanów Południe
+B|50.07491|19.93627|Nowy Kleparz
+B|49.47811|20.02299|Nowy Targ
+B|50.88136|18.42542|Oleskie Centrum Przesiadkowe
+B|50.27486|19.57408|Olkusz Dworzec PKS
+B|50.67364|17.93320|Opole Dworzec Wschodni
+B|52.46475|16.91690|Os. Sobieskiego
+B|51.12375|23.45968|Os. Słoneczne Pętla
+B|50.04626|19.93283|Osiedle Podwawelskie
+B|50.39168|18.96048|Osiedle Wieczorka Dworzec
+B|52.62925|18.72182|Osięciny
+B|52.79944|21.89596|Ostrów Mazowiecka
+B|50.46292|17.17246|Otmuchów Centrum Przesiadkowe
+B|52.17538|20.94370|P+R Aleja Krakowska
+B|52.09126|20.80019|P+R Nadarzyn
+B|50.94838|23.80585|PKS
+B|50.95071|23.83022|PKS
+B|51.03382|15.42797|PKS
+B|51.93008|22.38175|PKS
+B|51.96969|17.49609|PKS
+B|52.28923|17.87053|PKS
+B|52.50904|16.25912|PKS
+B|52.99389|16.91132|PKS
+B|53.75755|17.10910|PKS
+B|53.99614|16.96765|PKS
+B|50.30086|16.65005|PKS - Bystrzyca Kłodzka
+B|54.25178|20.81845|PKS Bartoszyce
+B|53.25956|19.39647|PKS Brodnica
+B|52.42903|19.45786|PKS Gostynin
+B|51.86602|20.87084|PKS Grójec
+B|52.75256|17.48795|PKS Janowiec Wielkopolski
+B|51.74303|18.06834|PKS Kalisz
+B|50.57474|19.33002|PKS Kasa
+B|51.58674|21.54971|PKS Kozienice
+B|51.40225|16.20116|PKS Lubin
+B|53.49876|15.06217|PKS Maszewo
+B|53.11323|20.38370|PKS Mława
+B|53.78514|20.50022|PKS Olsztyn
+B|50.94509|17.29835|PKS Oława
+B|52.31037|16.12997|PKS Poznań s.a. Dworzec Autobusowy Nowy Tomyśl
+B|53.79799|17.25392|PKS Przechlewo
+B|52.61824|20.38170|PKS Płońsk
+B|50.09190|18.22590|PKS Racibórz
+B|50.19662|21.27850|PKS Radomyśl Wielki
+B|53.06847|19.42641|PKS Rypin
+B|50.55451|21.15788|PKS Staszów
+B|54.10524|22.93880|PKS Suwałki
+B|52.36607|15.87439|PKS Trzciel
+B|53.35868|17.48973|PKS Więcbork
+B|52.84896|17.73165|PKS Żnin
+B|51.49418|22.85472|PKS/BUS
+B|51.17182|16.58861|Parking Autobusu Szkolnego
+B|54.05741|19.65703|Pasłęk D.K.
+B|49.96408|18.71790|Pawłowice Centrum - TARG
+B|53.92702|18.70629|Pelplin PKP
+B|52.55078|18.49755|Piotrków Kujawski
+B|53.14482|16.74464|Piła Centrum Przesiadkowe
+B|50.80945|19.12198|Piłsudskiego
+B|52.24302|21.01289|Pl. Piłsudskiego
+B|52.23119|21.00927|Plac Defilad
+B|50.07294|20.11739|Pleszów
+B|52.47928|17.27592|Pobiedziska Dworzec
+B|54.06001|14.93400|Pobierowo p.dw. 01
+B|51.88577|18.95961|Poddębice
+B|50.04223|19.96338|Podgórze SKA
+B|50.40823|16.51532|Polanica Zdrój
+B|51.41042|19.68612|Powiatowe Centrum Przesiadkowe
+B|52.40272|16.91429|Poznań Bus Station
+B|53.76767|16.09860|Połczyn Zdrój Bus station
+B|50.71426|23.27720|Private Carriers Minibus Station
+B|50.32092|17.57393|Prudnik Dworzec Autobusowy
+B|53.01853|20.88423|Przasnysz D.A.
+B|49.78406|22.77528|Przemyśl Bus Station
+B|50.05935|22.49533|Przeworsk D.A.
+B|50.92209|22.22784|Przystanek Kraśnik
+B|50.88475|21.85760|Przystanek PKS
+B|52.17228|17.68628|Przystanek Pyzdry - Słupca
+B|52.17284|17.68662|Przystanek Pyzdry - Września
+B|52.39143|20.18710|Przystanek autobusowy
+B|52.60569|17.38788|Przystanek autobusowy
+B|53.84586|19.60531|Przystanek autobusowy (PKS, Lipnicki)
+B|50.36496|20.35243|Przystanek autobusowy Działoszyce
+B|50.09669|19.97441|Prądnik Czerwony P+R
+B|50.38161|19.13505|Psary Centrum Przesiadkowe
+B|50.04048|18.39777|Pszów Dworzec Autobusowy
+B|51.41586|21.97309|Puławy BUS
+B|52.70123|21.08671|Pułtusk ul. Nowy Rynek Poczekalnia
+B|50.39842|18.62961|Pyskowice Plac Wyszyńskiego
+B|52.17009|20.99548|Pętla Bokserska
+B|52.27251|20.92489|Pętla Chomiczówka
+B|52.24471|21.08760|Pętla Wiatraczna
+B|49.61075|19.96296|Rabka-Zdrój
+B|49.61066|19.96271|Rabka-Zdrój, ul. Jana Pawła II dworzec BUS
+B|50.36369|18.80126|Rokitnica Pętla
+B|50.10152|18.53373|Rybnik Dworzec Autobusowy
+B|50.09592|18.54407|Rybnik Śródmieście Plac Wolności
+B|50.05690|18.41573|Rydułtowy Rynek
+B|49.55053|21.85232|Rymanów-Zdrój
+B|52.18156|21.06889|Sadyba
+B|49.55247|22.21055|Sanok
+B|54.24833|15.94822|Sarbinowo Nadmorska Pętla
+B|50.65377|17.95996|Sindbad Port Opole
+B|51.11612|20.87965|Skarżysko-Kamienna D.K.
+B|49.80332|18.78958|Skoczów D.A
+B|50.89975|16.74305|Sobótka
+B|50.22997|22.11968|Sokołów Małopolski
+B|52.41282|22.24545|Sokołów Podlaski Centrum Przesiadkowe
+B|52.40789|22.23527|Sokołów Podlaski D.A.
+B|50.27786|19.13458|Sosnowiec Urząd Miasta
+B|50.26957|18.53948|Sośnicowice Centrum Przesiadkowe
+B|53.10999|20.36441|Stacja Mława (PKP Mława Miasto)
+B|49.78002|21.67359|Stacja Wojaszówka
+B|51.05095|21.06018|Starachowice
+B|53.97751|18.52771|Starogard Gdański
+B|54.32699|19.11911|Stegna
+B|52.17809|21.04874|Stegny
+B|50.96633|16.35359|Strzegom
+B|49.74180|19.59059|Sucha Beskidzka
+B|49.42675|20.47578|Szczawnica Dworzec Autobusowy
+B|50.69451|22.98104|Szczebrzeszyn
+B|53.42044|14.55269|Szczecin d.a.
+B|50.18866|18.62172|Szczygłowice Centrum Przesiadkowe
+B|53.56108|20.99941|Szczytno
+B|52.20798|20.96369|Szczęśliwice
+B|51.22961|20.86074|Szydłowiec D.A.
+B|52.56312|14.80464|Słońsk
+B|52.30722|14.65127|Słubice Port Świecko
+B|52.35656|14.56714|Słubice Ulica Konstytucji 3 Maja d.a. (Dworzec autobusowy)
+B|51.63432|14.81919|Trzebiel
+B|53.58404|17.86044|Tuchola
+B|50.13617|18.96551|Tychy Dworzec PKP
+B|52.72802|15.22523|Tymczasowy dworzec autobusowy
+B|54.57896|16.86182|Ustka - węzeł komunikacyjny
+B|49.88497|19.49972|Wadowice Dworzec Autobusowy
+B|53.27541|16.48321|Wałcz Dworzec PKS
+B|49.98520|20.05686|Wieliczka Centrum Dworzec
+B|51.04155|21.08033|Wierzbnik - Dworzec
+B|52.16794|21.08393|Wilanów
+B|52.33997|20.94736|Winnica
+B|49.65738|18.85606|Wisła (dworzec autobusowy)
+B|52.23629|21.11285|Witolin
+B|50.00087|18.46522|Wodzisław Śląski Targowa dworzec autobusowy
+B|52.34641|21.23858|Wołomin Dworzec Kolejowy
+B|52.70577|16.38697|Wronki PKS PKP / Szkoła Podstawowa Nr3
+B|50.22020|18.82568|Wygoda Skrzyżowanie
+B|52.92030|22.51346|Wysokie Mazowieckie - Dworzec Autobusowy
+B|49.60391|19.11572|Węgierska Górka Centrum
+B|54.46694|17.01480|Węzeł Transportowy
+B|54.79340|18.40107|Władysławowo, Dworzec Autobusowy
+B|51.54796|23.54506|Włodawa - Dworzec BUS
+B|50.30544|18.78268|Zabrze Goethego
+B|52.21812|20.96265|Zachodni Bus Station
+B|50.73280|21.28276|Zajezdnia Autobusowa Iwaniska
+B|52.81768|20.28318|Zajezdnia autobusowa
+B|51.14391|23.42645|Zawadówka/Pętla
+B|51.61098|18.94680|Zduńska Wola Dworzec PKP - pętla MPK
+B|53.33961|15.03018|Zintegrowane Centrum Przesiadkowe
+B|50.61217|22.96707|Zwierzyniec
+B|51.01483|15.34085|Złotniki Lubańskie
+B|50.44504|16.87411|Złoty Stok
+B|52.40505|19.02624|dworzec autobusowy
+B|50.35559|18.61498|Łabędy Huta
+B|50.03004|19.93616|Łagiewniki
+B|53.36505|21.56094|Łyse
+B|51.76995|19.47005|Łódź Fabryczna
+B|51.75742|19.43186|Łódź Kaliska
+B|51.18269|16.60888|Średzka Komunikacja Publiczna Baza
+B|52.22838|17.26712|Środa Wielkopolska
+B|50.84164|16.48109|Świdnica
+B|52.29138|21.00061|Żerań FSO

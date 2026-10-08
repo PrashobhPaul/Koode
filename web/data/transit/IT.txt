@@ -1,5 +1,6 @@
 # Transit for Koode, IT. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|44.42083|8.91665|Bari|AMT Genova|M
 S|44.42235|8.91594|Cambiaso|AMT Genova|M
 S|44.41997|8.91663|Centurione|AMT Genova|M
@@ -4407,3 +4408,639 @@ T|40.19900|18.23703|Zollino
 T|46.11869|11.10525|Zona Industriale - Spini
 T|40.82031|14.18349|Zoo-Edenlandia
 T|46.12955|8.49152|Zornasco
+B|37.85362|15.30039|192
+B|44.06380|12.57318|4 Rimini FS
+B|44.00353|12.65948|49 Curiel
+B|39.55706|8.89932|ARST Stazione
+B|39.24251|9.10120|Abruzzi (cimitero S. Michele)
+B|41.68475|15.39187|Acapt
+B|43.61913|12.67332|Acqualagna autostazione
+B|46.28517|12.03268|Agordo Autostazione
+B|41.83659|12.47144|Agricoltura
+B|38.10879|13.36712|Airport Bus
+B|45.48574|9.20619|Airport Bus Bergamo
+B|45.48607|9.20652|Airport Bus Linate
+B|40.65856|17.94005|Airport Bus Terminal
+B|46.31408|8.26070|Alpe Devero
+B|41.84249|12.58598|Anagnina
+B|44.06089|12.57538|Anfiteatro
+B|41.74576|12.34627|Antifane/Isola 46
+B|41.78757|15.43990|Apricena
+B|41.86681|12.53617|Arco di Travertino
+B|41.79368|12.24923|Area Bus
+B|45.22343|10.40969|Asola - Piazzale Forchini
+B|45.22450|10.41931|Asola, Via Salvo d'Acquist
+B|45.64200|12.56608|Atvo Bus Terminal
+B|44.20944|9.96765|Aulla
+B|45.53354|10.21176|Aurostazione Arriva
+B|41.88685|14.06503|Autobus di linea Arpa
+B|42.92352|10.52622|Autolinee Toscane Terminal Bus
+B|43.84211|10.49683|Autolinee Toscane Terminal Bus Lucca
+B|41.47216|12.89516|Autolinee di Latina
+B|41.41338|13.24674|Autolinee di Sonnino
+B|45.94597|9.46663|Autorimessa SAL
+B|44.52081|9.15868|Autorimessa di Torriglia "G. Malacalza"
+B|40.89197|14.41458|Autoservizi Beneduce
+B|37.23017|14.52825|Autostazione
+B|43.03732|11.82632|Autostazione
+B|44.41376|11.90859|Autostazione
+B|45.14223|10.02111|Autostazione
+B|45.18948|9.14734|Autostazione
+B|43.09643|11.78764|Autostazione - AT
+B|39.21473|9.10888|Autostazione ARST
+B|42.39926|12.86233|Autostazione ASM
+B|44.82283|9.19261|Autostazione Autoguidovie - Varzi
+B|44.35799|11.71680|Autostazione Bus
+B|45.67134|11.92245|Autostazione Castelfranco Veneto
+B|45.07212|7.66723|Autostazione Corso Bolzano
+B|42.40553|12.86184|Autostazione Cotral
+B|45.07638|7.68947|Autostazione Fiochetto
+B|41.06573|15.05800|Autostazione Grottaminarda
+B|46.17018|12.71320|Autostazione Maniago
+B|45.77563|12.05478|Autostazione Montebelluna
+B|44.69907|10.64241|Autostazione Parcheggio Europa
+B|44.33505|10.83308|Autostazione Pavullo
+B|43.10586|12.38771|Autostazione Piazza Partigiani
+B|43.52325|13.24885|Autostazione Piazzale Porta Valle
+B|45.70577|11.22918|Autostazione Recoaro
+B|45.42884|9.25434|Autostazione San Donato
+B|45.04716|9.70805|Autostazione Servizio Extraurbano
+B|46.16644|9.87260|Autostazione Sondrio
+B|46.10853|12.90071|Autostazione Spilimbergo
+B|41.90921|12.52823|Autostazione Tibus
+B|45.66166|12.24444|Autostazione Treviso
+B|45.43020|10.98343|Autostazione Verona
+B|44.84205|11.60153|Autostazione Via del Lavoro
+B|45.99041|12.29757|Autostazione Vittorio Veneto
+B|44.69858|10.64312|Autostazione bus extraurbani
+B|40.91635|14.78058|Autostazione di Avellino
+B|44.14612|12.24619|Autostazione di Cesena
+B|45.96501|12.97522|Autostazione di Codroipo
+B|44.91391|10.98803|Autostazione di Concordia
+B|44.89228|11.82372|Autostazione di Copparo
+B|45.81642|9.37783|Autostazione di Galbiate
+B|45.65835|8.79923|Autostazione di Gallarate
+B|46.27557|13.12784|Autostazione di Gemona
+B|45.92335|8.82103|Autostazione di Ghirla
+B|45.67952|13.38680|Autostazione di Grado
+B|45.77719|13.00201|Autostazione di Latisana
+B|46.02357|9.23938|Autostazione di Menaggio
+B|45.41643|11.88332|Autostazione di Padova
+B|38.10808|13.36942|Autostazione di Palermo - Piazza Cairoli
+B|42.15638|12.64656|Autostazione di Passo Corese - Prato dell'Olmo
+B|43.46743|11.14839|Autostazione di Poggibonsi
+B|46.30968|11.60472|Autostazione di Predazzo
+B|36.92065|14.72497|Autostazione di Ragusa
+B|46.05724|13.24285|Autostazione di Udine
+B|44.48545|10.99663|Autostazione di Vignola
+B|40.35082|17.72289|Avetrana Agip
+B|42.04085|13.42655|Avezzano Kennedy
+B|44.32296|10.64763|BUS
+B|45.04605|9.68735|Barriera Genova (Cheope)
+B|41.96717|12.53391|Baseggio
+B|45.75200|11.73405|Bassano - Centro Studi
+B|46.14088|12.20964|Belluno FS
+B|45.63934|13.05397|Bibione (autostazione)
+B|42.04068|13.42571|Biglietteria Autobus
+B|44.35782|11.71728|Biglietteria T>per Imola
+B|45.45494|9.11289|Bisceglie M1
+B|40.31080|8.96316|Bolontana Stazione FDS
+B|46.05238|11.46295|Borgo Valsugana (C.Intermodale)
+B|46.05254|11.46367|Borgo Valsugana Est
+B|46.46631|10.37035|Bormio, Autostazione, Milano
+B|46.46629|10.37041|Bormio, Autostazione, Milano/Roma
+B|46.46615|10.37054|Bormio, Autostazione, Roma/Milano
+B|37.50773|15.08508|Borsa
+B|45.53308|10.21464|Brescia - Autostazione Via Solferino
+B|44.40614|8.94640|Brignole F.S. / Piazza Giuseppe Verdi
+B|44.42877|8.89448|Brin / Metrò
+B|46.71513|11.65272|Brixen, Busbahnhof - Bressanone, Autostazione
+B|46.79372|11.92894|Bruneck, Busbahnhof - Brunico, Autostazione
+B|43.73002|12.63524|Bus Park Santa Lucia
+B|40.51916|16.06315|Bus Stop
+B|44.16825|9.88775|Bus Terminal AT/ATC
+B|45.93346|7.62868|Bus Terminal Cervinia
+B|42.55425|12.41784|Bus Terminal Piazza XXI settembre
+B|45.38763|11.11627|Bus route n. 14
+B|45.48618|9.20708|Bus stop Flibco to Bergamo
+B|45.48598|9.20642|Bus stop Terravision to Bergamo airport
+B|41.92058|12.56452|Bus to Villa Adriana and Tivoli
+B|46.49818|11.36139|Busbahnhof Bozen - Autostazione di Bolzano - Autostazion de Bulsan
+B|46.68990|11.15548|Busbahnhof Dorf Tirol - Tirolo Autostazione
+B|46.61852|11.14215|Busbahnhof Lana - Autostazione Lana
+B|43.00106|12.14555|Busitalia - Sita Nord
+B|46.68336|11.07504|Buswendeplatz - Öffentliche Mobilitätsdienste
+B|41.44239|15.57099|C.E.P
+B|41.31019|15.89463|CERIGNOLA interscambio (Terminal BUS)
+B|41.84258|12.58707|COTRAL Arrivi
+B|41.84362|12.58524|COTRAL Partenze
+B|40.45110|17.25754|CTP
+B|43.54295|12.64822|Cagli
+B|46.44405|12.38817|Calalzo Autostazione
+B|43.14230|13.07850|Camerino (Capolinea Terminal Contram - Le Mosse)
+B|44.17487|9.63267|Campeggio San Michele
+B|45.33181|12.04784|Campolongo maggiore
+B|38.13654|13.36132|Cantieri / Marvuglia
+B|40.14885|16.14454|Capolinea
+B|42.10250|12.17518|Capolinea
+B|44.36278|9.14411|Capolinea
+B|44.57502|8.94326|Capolinea
+B|41.68300|12.78048|Capolinea 38
+B|44.45447|8.97994|Capolinea 48
+B|41.92372|13.09112|Capolinea Bus Cotral
+B|41.95300|12.80780|Capolinea COTRAL
+B|42.16394|12.43849|Capolinea COTRAL
+B|41.69340|13.42217|Capolinea Cotral
+B|42.06995|12.76749|Capolinea Cotral Palombara S
+B|40.84679|14.05849|Capolinea Cuma Scavi
+B|41.77481|12.23921|Capolinea Foce Micina
+B|41.62951|13.32695|Capolinea GEAF Piazza Pertini
+B|40.91661|14.14179|Capolinea Giuseppe Di Vittorio
+B|36.72012|15.09781|Capolinea Interbus
+B|40.78701|14.08225|Capolinea Miseno
+B|38.10277|15.63732|Capolinea Piazza Garibaldi
+B|35.52816|12.54031|Capolinea Ponente
+B|40.91722|14.79576|Capolinea SITA
+B|40.84187|14.25748|Capolinea Sita
+B|38.12132|15.65484|Capolinea Terminal Libertà
+B|40.77357|14.42389|Capolinea Via Nuova Trecase
+B|40.75252|14.42645|Capolinea Via Prota
+B|38.17565|15.54544|Capolinea Villa Dante
+B|41.68297|12.78071|Capolinea bus Cotral
+B|38.03732|14.01986|Capolinea bus urbani
+B|41.82192|12.82725|Capolinea servizio urbano
+B|40.55032|14.24204|Capri
+B|39.16334|8.51331|Carbonia Serbariu
+B|44.78188|10.87428|Carpi Autostazione
+B|44.07978|10.10323|Carrara Hospital
+B|45.51141|9.26053|Cascina Gobba M2
+B|43.77793|10.28003|Case di Marina 1
+B|45.73443|8.50717|Casello Arona
+B|45.12673|11.86937|Caserma caeabinieri
+B|45.01690|9.12491|Casteggio-Viale Giulietti
+B|45.25507|9.39789|Castiraga Vidardo (S.P.17)
+B|37.50858|15.09929|Catania
+B|37.50733|15.09912|Catania (AST)
+B|46.28812|11.46359|Cavalese
+B|41.81685|12.93305|Cave   Viale Pio XII
+B|44.72872|11.28528|Cento Autostazione
+B|42.41515|14.16989|Centro Commerciale d'Abruzzo
+B|39.90185|8.60511|Centro Intermodale
+B|45.77715|12.90210|Centro Medico San Biagio
+B|43.57739|13.51518|Centro Scambiatore Brecce Bianche
+B|42.59647|12.59557|Cesi Scalo
+B|46.32016|9.40517|Chiavenna Stazione
+B|45.74990|7.61672|Châtillon
+B|41.79864|12.59114|Ciampino Aeroporto
+B|41.79916|12.59059|Ciampino airport
+B|39.00401|16.50508|Cicala FC
+B|41.85280|12.56876|Cinecittà
+B|42.04957|12.96185|Cineto Romano - Via G. Verdi
+B|41.90697|12.44811|Cipro
+B|45.64464|11.77473|Cittadella Polo Scolastico
+B|42.41260|14.18335|Cittadella dello Sport
+B|40.36285|18.16842|City Terminal Bus
+B|44.10738|10.40907|Clap
+B|46.36477|11.03891|Cles (Autostazione)
+B|46.36836|11.03430|Cles (Piazza Fiera)
+B|41.91751|12.45538|Clodio
+B|45.88670|9.94760|Clusone - Stazione
+B|42.30724|12.41861|Co.Tra.L. - Deposito di Civita Castellana
+B|41.82398|12.97084|Co.Tra.L. S.p.A. – Deposito di Genazzano
+B|46.13813|9.37625|Colico
+B|44.34728|10.27653|Collagna
+B|45.53528|9.29158|Cologno Nord M2
+B|45.81515|9.08399|Como - Stazione Autolinee
+B|45.80899|9.07305|Como - Stazione S.Giovanni
+B|45.79050|9.08477|Como, Piazzale Camerlata
+B|41.70787|15.70758|Convento (P.le Forgione)
+B|41.90368|12.42518|Cornelia
+B|46.53925|12.13814|Cortina Autostazione
+B|39.30385|16.25306|Cosenza Autostazione
+B|42.25739|12.17559|Cotral
+B|42.12572|12.12922|Cotral Via Roma/Strada Croce
+B|45.36682|9.69321|Crema FS
+B|45.90421|8.73269|Cuveglio, Battaglia S. Martino, Canonica
+B|40.81717|14.15955|Dazio
+B|37.65247|12.59417|De Gasperi
+B|38.13127|13.36002|Della Pace
+B|45.80913|9.24051|Deposito ASF (Erba)
+B|43.56401|12.16230|Deposito Autolinee Toscane
+B|45.81679|8.84338|Deposito Autolinee Varesine - trasporti urbani Varese
+B|40.72833|14.69562|Deposito Bus
+B|45.34077|9.35438|Deposito Bus
+B|42.07035|12.76669|Deposito Capolinea Palombara S.
+B|41.45634|12.67870|Deposito Cotral
+B|41.95193|12.82745|Deposito Cotral
+B|42.56527|11.82515|Deposito Cotral
+B|45.65874|8.79884|Deposito Stie Gallarate
+B|40.65028|17.50886|Deposito bus
+B|46.02342|9.23990|Deposito di Menaggio
+B|39.67855|15.82091|Diamante
+B|45.28578|11.82551|Due Carrare - S.Stefano
+B|41.82843|12.47105|EUR Fermi (MB)
+B|46.17647|10.32893|Edolo
+B|43.71633|10.95058|Empoli stazione FS
+B|45.22843|11.66223|Este Centro
+B|45.58084|11.38184|Ex stazione FTV Castelgomberto
+B|41.98006|12.04998|FS Marina di Cerveteri
+B|41.92410|12.18307|FS Palidoro
+B|44.41609|8.91951|Fanti d'Italia / Principe F.S.
+B|40.53718|14.20011|Faro
+B|46.01268|11.91047|Feltre FS
+B|41.46142|15.55463|Fermata Bus Ferrovie Del Gargano
+B|40.67718|16.59017|Fermata Bus Matera via don Luigi Sturzo
+B|40.60588|14.98420|Fermata Bus SITA - EAC
+B|39.80513|15.79121|Fermata Eurobus
+B|39.45172|17.03813|Fermata Linee Interregionali
+B|40.63653|17.03263|Fermata Pullman
+B|40.63927|17.03871|Fermata Pullman
+B|40.81118|16.92542|Fermata Sud Est
+B|45.75486|12.48149|Fermata autobus Rustignè direzione Portogruaro
+B|45.75501|12.48134|Fermata autobus Rustignè direzione Treviso
+B|40.74477|17.42556|Fermata in via clarizia
+B|40.64045|16.98079|Fermata pullman
+B|41.11549|16.87281|Ferrovie Sud Est - Largo Ciaia
+B|40.60088|17.23786|Ferrovie Sud-est
+B|41.68464|15.39130|Ferrovie del Gargano
+B|41.88151|16.17289|Ferrovie del Gargano
+B|38.67824|16.09973|Ferrovie della Calabria
+B|43.62060|11.47418|Figline Bus Station
+B|43.80146|11.20072|Firenze SMN Shuttle Bus - VolainBus
+B|44.11820|11.37591|Firenzuola Via Allende
+B|44.12024|11.37945|Firenzuola di Lando
+B|39.23767|9.13142|Flavio Gioia (fronte scuola)
+B|40.67709|16.59016|FlixBus
+B|40.87546|14.28349|FlixBus (Naples Airport)
+B|45.16238|10.81238|Flixbus, Mantova Strada Cipata
+B|41.99398|12.61897|Fonte Nuova
+B|44.11533|9.81525|Fossitermi
+B|45.46253|9.91548|Franzoni Autoservizi
+B|41.80591|12.67999|Frascati   Piazza Marconi
+B|45.04047|7.34409|GTT Deposito
+B|41.46142|15.55376|Galliani
+B|41.20467|16.24067|Garage Sgaramella
+B|45.45267|10.71501|Gardaland Park
+B|45.68797|10.18587|Gardone V.T., Matteotti/M.ri Libertà
+B|45.79610|9.83815|Gazzaniga - Stazione
+B|38.67849|16.10105|Genco
+B|44.41034|8.92829|Genoa City Tour
+B|44.40505|8.94597|Genova Brignole FS
+B|44.40345|8.94592|Genova Piazza della Vittoria
+B|44.96265|7.94722|Giachino
+B|40.81110|14.33581|Gianturco
+B|40.79420|16.92618|Giardino Botanico
+B|42.35876|10.92182|Giglio Porto (Piazza Rum)
+B|38.42277|15.89602|Gioia Tauro F.C.
+B|40.83411|16.93140|Gioia del Colle (BUS)
+B|45.75725|12.91618|Giussago
+B|45.93232|13.60837|Gorizia Terminal ExtraUrbano
+B|41.86172|12.64642|Grotte Celoni (MC)
+B|43.78126|11.24636|Hub Firenze Montelungo
+B|43.77644|11.23732|Hub Vittorio Veneto
+B|43.89034|8.03947|Imperia Oneglia
+B|45.04127|7.36202|Interscambio  BUS
+B|40.29196|15.97001|Interscambio Montemurro
+B|37.85370|15.30056|Isola Bella
+B|45.67960|12.22003|Istituti Da Vinci e Palladio
+B|45.67904|12.24725|Istituti Fermi e Luzzati
+B|45.67855|12.22248|Istituto Mazzotti
+B|46.64171|11.57275|Klausen, Bahnhof - Chiusa, Stazione
+B|46.53883|11.45747|Klobenstein, Busbahnhof - Collalbo, Autostazione
+B|41.86952|12.52983|L.go Colli Albani (MA)
+B|41.89210|12.54084|L.go Preneste
+B|35.50900|12.58544|La Roccia
+B|44.11095|9.81397|La Spezia FS - Piazzale
+B|41.96985|12.52010|Labia
+B|40.12353|15.76367|Lagonegro Parking Multipiano
+B|42.35070|14.16618|Largo Cavallerizza
+B|45.44585|8.63000|Largo Giulio Pastore
+B|41.94725|12.15570|Largo Monteverdi
+B|41.96893|12.45061|Largo Sperlonga
+B|41.06656|16.85960|Latorre Bus
+B|41.82719|12.47994|Laurentina
+B|45.85639|9.39308|Lecco FS
+B|41.84973|12.44817|Lenin
+B|46.01004|11.29883|Levico Terme (Autostazione)
+B|45.50835|12.63828|Lido di Jesolo
+B|44.78410|10.38022|Linea 23
+B|44.87637|10.34948|Linea 7 - Giarone
+B|38.41593|15.90642|Lirosi
+B|44.38221|9.07726|Loc.San Bernardo-Ris.Tipico Capolinea
+B|41.88749|12.54052|Malatesta
+B|46.68398|10.54854|Malles Stazione
+B|41.93083|12.46431|Mancini
+B|40.40660|17.64236|Manduria (BUS)
+B|39.99488|15.72546|Maratea Fontana vecchia
+B|43.72011|10.88568|Marcignana
+B|45.07093|11.78758|Marella
+B|40.55648|14.23816|Marina Grande
+B|40.54555|14.23529|Marina Piccola
+B|45.74164|11.65894|Marostica Autostazione
+B|40.61159|14.34391|Massa Centro
+B|39.97587|18.12104|Melissano
+B|45.50218|9.41823|Melzo FS (Melzo)
+B|40.78276|14.75705|Mercato San Severino
+B|46.21334|11.09347|Mezzolombardo
+B|45.48979|9.12757|Milano Lampugnano
+B|44.65090|10.91923|Modena Autostazione
+B|45.15558|10.78136|Mondadori
+B|41.34715|13.34708|Monte San Biagio FS
+B|38.14142|13.35792|Montepelegrino Amm. Rizzo
+B|38.13949|13.35827|Montepelegrino Loria
+B|38.13647|13.35869|Montepelegrino Mercato
+B|38.13750|13.35855|Montepelegrino Montalbo
+B|43.52438|11.56523|Montevarchi Bus Station
+B|45.57815|9.27407|Monza FS
+B|45.55664|8.06711|Movicentro Biella
+B|45.00646|7.82493|Movicentro Chieri
+B|45.19290|7.88760|Movicentro Chivasso
+B|44.38657|7.53555|Movicentro Cuneo
+B|46.11461|8.29596|Movicentro Domodossola
+B|44.97945|7.73483|Movicentro Trofarello
+B|40.85116|14.27535|Naples Metropark Bus Terminal
+B|46.65036|11.00550|Naturns, Rathaus - Naturno, Municipio
+B|41.82383|12.46590|Nervi/Palazzo Sport
+B|46.31583|11.27269|Neumarkt, Busbahnhof - Egna, Autostazione
+B|41.86984|13.03450|Olevano Romano
+B|45.48589|9.20633|Orioshuttle - Milano Stazione Centrale
+B|41.94660|12.41584|Ospedale S. Filippo Neri
+B|41.45664|15.52306|Ospedali Riuniti
+B|41.45833|15.52698|Ospedali Riuniti
+B|41.78394|12.36031|Ostiense/Staz.ne Acilia
+B|41.89479|12.48185|P.za Venezia
+B|42.43894|11.11902|PORTO S. STEFANO Lungomare
+B|41.47517|13.17877|PRIVERNO   Terminal Bus   Ist. Superiore T. Rossi # f3429
+B|40.45599|15.00474|Palestra Comunale
+B|41.77934|12.83436|Palestrina   Colle Del Fico
+B|41.90003|12.46551|Paola
+B|40.13627|8.81574|Parcheggio ARST
+B|38.09782|13.34543|Parcheggio Basile
+B|43.39895|10.86843|Parcheggio Bus
+B|44.83436|11.60949|Parcheggio Bus Turistici
+B|45.52730|11.79135|Parcheggio BusItalia
+B|38.11640|13.33184|Parcheggio Emiri
+B|42.06781|14.44495|Parcheggio Multipiano Comunale
+B|44.18168|12.41571|Parcheggio autobus Cesenatico
+B|43.06628|12.61891|Parcheggio autobus Porta Nuova
+B|40.63749|9.72660|Parcheggio autobus turistici
+B|43.72970|10.38980|Park Pietrasantina
+B|44.42841|8.75498|Parks/Verità
+B|44.81093|10.32780|Parma, Terminal Bus
+B|41.87371|12.48488|Partigiani (FS)
+B|46.06332|11.23145|Pergine (C. Intermodale)
+B|42.47018|14.20466|Pescara Centrale
+B|42.39759|14.04786|Pianella
+B|44.41765|12.20980|Piazza Aldo Moro
+B|40.17409|18.16827|Piazza Alighieri
+B|35.50315|12.60860|Piazza Brignone
+B|38.12625|13.35768|Piazza Don Sturzo
+B|40.69531|14.47995|Piazza Giovanni XXIII
+B|46.17222|10.06780|Piazza Luigi Credaro (Teglio)
+B|44.89602|8.20873|Piazza Medaglie d'Oro
+B|43.10549|12.38760|Piazza Partigiani
+B|44.63818|8.64377|Piazza XX Settembre
+B|40.64264|15.80152|Piazza Zara
+B|40.55416|14.22051|Piazza della Pace
+B|41.83630|12.89444|Piazzale Amintore Fanfani
+B|44.22290|12.05601|Piazzale Bandini
+B|45.71905|11.35909|Piazzale Divisione Acqui
+B|46.42288|12.35929|Piazzale Dolomiti
+B|41.88561|16.16869|Piazzale Europa capolinea / Lungomare Europa
+B|38.90948|16.24855|Piazzale Gherardo Pachò
+B|44.42912|8.94884|Piazzale Ingresso Cappelletta / Capolinea
+B|41.46608|15.55335|Piazzale On. Vincenso Russo
+B|42.22716|14.39033|Piazzale Pietrosa
+B|41.95319|12.08129|Piazzale Roma
+B|45.43794|12.31877|Piazzale Roma
+B|42.76620|10.86822|Piazzale Salebro
+B|45.13121|8.45348|Piazzale Silvio Pia
+B|39.44947|17.04049|Piazzale Stazione
+B|45.41685|11.88035|Piazzale Stazione
+B|41.73292|12.28353|Piazzale Stazione del Lido
+B|40.82296|14.19426|Piazzale Tecchio
+B|40.74295|13.93893|Piazzale Trieste
+B|42.45710|13.92577|Piazzale Valentino Ambrosini
+B|40.84914|14.26894|Piazzetta Circumvesuviana
+B|44.70998|10.59808|Pieve - Metano
+B|41.13335|16.83821|Piscine Comunali
+B|41.85912|12.63032|Policlinico/Tor Vergata (H)
+B|46.03535|10.87384|Ponte Arche
+B|41.92071|12.56558|Ponte Mammolo
+B|40.84546|14.27765|Ponte della Maddalena
+B|45.78670|9.62986|Ponti di Brembilla
+B|45.95774|12.65365|Pordenone
+B|40.63244|17.94614|Porta Lecce
+B|41.88672|12.50803|Porta S. Giovanni (MA)
+B|40.83893|8.40240|Porto Civico
+B|38.12101|15.64852|Porto RC
+B|42.81323|10.32210|Portoferraio Bus Terminal
+B|45.78020|12.83069|Portogruaro Autostazione
+B|39.80714|15.79205|Postazione scuolabus
+B|40.62912|15.80711|Potenza, Terminal Bus
+B|44.41662|8.92213|Principe FS
+B|41.94660|12.55377|Pugliese
+B|44.35056|9.23124|Rapallo FS Capolinea
+B|41.92529|12.57264|Rebibbia (MB)
+B|44.11530|9.80440|Rebocco - Istituto Mazzini
+B|46.39344|13.22114|Resiutta Via Nazionale
+B|43.72124|11.45343|Rignano Stazione
+B|44.06445|12.57222|Rimini FS
+B|44.05002|12.58229|Rimini, Centro Studi
+B|42.02550|13.07011|Rocca di Botte - via Marconi
+B|45.76699|11.43101|Rocchette Capolinea
+B|41.92082|12.56456|Roma Ponte Mammolo - Partenze
+B|45.89099|10.95184|Ronzo Chienis
+B|45.89144|11.04007|Rovereto Via Paoli "Stazione Autocorriere Rovereto"
+B|37.85602|15.09461|Rovittello
+B|45.86366|8.79179|S. Monte (P.le Pogliaghi)
+B|38.10787|13.37033|SAIS Bus office
+B|43.43494|12.87291|SAP Società Automobilistica Potentina
+B|41.71137|15.63452|SITA
+B|45.64344|11.30288|STV
+B|45.64931|11.30083|STV
+B|41.30221|13.02734|Sabaudia   Piazza Oberdan
+B|38.89981|16.60105|Sala-Funicolare
+B|42.42500|14.19043|Sambuceto
+B|39.26391|9.14095|San Gottardo (Stazione Metro Capolinea M)
+B|45.63972|10.55062|San Michele
+B|45.84006|9.66569|San Pellegrino Terme (via giov. XXIII (bigio))
+B|42.06737|14.77495|San Salvo Marina-Piazza Arafat
+B|45.50998|11.39564|San Vitale
+B|46.91889|11.95129|Sand in Taufers
+B|43.81805|7.77868|Sanremo Autostazione
+B|43.72381|10.76875|Santa Croce sull'Arno
+B|42.00280|12.95384|Saracinesco - Piazza G. Ferraris
+B|40.72575|8.55190|Sassari Via Padre Zirano
+B|41.97454|12.49478|Saxa Rubra
+B|39.81513|15.78898|Scalea (Piazza Aldo Moro)
+B|37.51906|13.07858|Sciacca - Via Lioni
+B|45.78192|9.62364|Sedrina (via Roma - municipio)
+B|45.64461|9.20528|Seregno FS
+B|39.03327|16.43429|Serrastretta FC
+B|43.70999|10.39569|Sesta Porta
+B|45.54246|9.23945|Sesto 1º Maggio FS M1
+B|41.90285|12.50149|Sit Bus
+B|41.68500|15.39132|Sita
+B|46.81085|11.24562|St. Leonhard, Busbahnhof - San Leonardo, Autostazione
+B|41.88329|12.39399|Staz.ne Aurelia
+B|41.96801|12.40851|Staz.ne Ipogeo degli Ottavi
+B|41.98500|12.40417|Staz.ne La Giustiniana (FL3)
+B|41.93872|12.42115|Staz.ne Monte Mario (FS-FL3)
+B|42.00003|12.49414|Staz.ne Prima Porta
+B|41.90948|12.53044|Staz.ne Tiburtina
+B|40.85632|14.16153|Stazionamento ANM
+B|39.90166|8.59099|Stazione A.R.S.T.
+B|40.58759|9.00193|Stazione ARST
+B|40.31591|9.31969|Stazione ARST di Nuoro
+B|45.39560|11.28063|Stazione ATV Sab Bonifacio
+B|37.79666|12.43520|Stazione Autobus
+B|40.74294|13.93902|Stazione Autobus
+B|45.77961|12.49489|Stazione Autobus
+B|43.72439|12.63489|Stazione Autobus Borgo Mercatale
+B|41.62860|13.32678|Stazione Autobus Frosinone / Piazza Pertini
+B|40.38400|15.75328|Stazione Autobus Paterno
+B|45.32873|8.41541|Stazione Autobus Vercelli
+B|37.07196|14.25924|Stazione Autobus di Gela
+B|45.54489|9.43661|Stazione Autobus di Gessate M2
+B|39.74869|16.45475|Stazione Autobus di Sibari
+B|45.91628|10.88264|Stazione Autocorriere
+B|46.40510|13.01197|Stazione Autocorriere
+B|45.69169|9.67486|Stazione Autolinee Bergamo
+B|45.69213|9.67573|Stazione Autolinee Bergamo
+B|42.26494|12.68931|Stazione Bus
+B|45.54789|12.75735|Stazione Bus ATVO
+B|42.06277|12.32598|Stazione Cesano
+B|45.54473|11.28299|Stazione Chiampo
+B|41.71634|13.61731|Stazione Cotral Sora
+B|42.08832|11.79737|Stazione FF.SS.
+B|43.77432|11.43814|Stazione FS
+B|44.02440|10.13605|Stazione FS Massa
+B|45.55862|11.38488|Stazione FTV Trissino
+B|45.00799|7.53169|Stazione Orbassano
+B|46.17447|11.82821|Stazione Primiero Trentino Trasporti
+B|42.66045|13.70695|Stazione San Francesco
+B|46.03292|10.72614|Stazione Tione di Trento
+B|42.01677|12.92259|Stazione Valle dell'Aniene - Mandela - Sambuci
+B|40.57082|15.78465|Stazione Variante
+B|44.32948|11.05941|Stazione autobus
+B|43.00151|12.14549|Stazione autobus BusItalia di Tavernelle
+B|45.64930|11.30068|Stazione autobus STV
+B|46.29089|11.46619|Stazione autocorriere Cavalese
+B|37.31173|13.58679|Stazione bus piazzale Rosselli
+B|43.66344|10.62881|Stazione degli autobus
+B|43.66938|10.64283|Stazione degli autobus
+B|43.90586|12.90666|Stazione delle Corriere
+B|44.78227|10.87556|Stazione delle Corriere
+B|41.87930|12.23752|Stazione di Maccarese
+B|40.42838|15.73168|Stazione di Marsico Nuovo
+B|41.81348|12.71650|Stazione di Monte Porzio Catone
+B|40.68318|16.58883|Stazione di Serra Rifusa
+B|45.07912|9.30067|Stradella-Via Nazionale-Stazione FS
+B|40.50401|17.19827|Sud Est
+B|44.99165|10.73458|Suzzara Autostazione
+B|40.46618|17.30102|Taranto / Terminal Cimino
+B|46.50452|13.57753|Tarvisio Autostazione
+B|44.05813|9.93072|Tellaro Capolinea
+B|40.89805|9.10538|Tempio Stazione
+B|40.87576|15.18488|Terminal AIR
+B|41.15750|15.09500|Terminal AIR Campania
+B|41.06588|15.05791|Terminal AIR Campania Grottaminarda
+B|40.34657|14.99867|Terminal Agropoli
+B|41.08811|14.50078|Terminal Autobus
+B|41.55805|14.66973|Terminal Autobus
+B|42.35001|14.16413|Terminal Autobus Regionali
+B|45.99738|8.73778|Terminal Autolinee
+B|39.08447|17.11512|Terminal Autolinee Romano
+B|40.42173|15.55543|Terminal BUS
+B|44.29375|11.88195|Terminal BUS
+B|38.09408|15.63932|Terminal Botteghelle
+B|37.06779|15.28112|Terminal Bus
+B|37.50800|15.09814|Terminal Bus
+B|40.77347|14.79341|Terminal Bus
+B|41.78265|14.10342|Terminal Bus
+B|41.99840|14.98562|Terminal Bus
+B|42.46998|14.20507|Terminal Bus
+B|45.07017|7.65760|Terminal Bus
+B|41.11702|16.86464|Terminal Bus Bari
+B|41.08634|14.50237|Terminal Bus Caudina
+B|41.06887|14.32680|Terminal Bus FF.SS.
+B|36.88884|15.07525|Terminal Bus Noto
+B|38.10830|13.36735|Terminal Bus Palermo Stazione Centrale Via Fazello
+B|38.37512|15.86466|Terminal Bus Piana Palmi Multiservizi S.p.A.
+B|41.11716|14.77866|Terminal Bus Santa Colomba
+B|43.33196|11.32485|Terminal Bus Siena Autostazione
+B|43.32278|11.32781|Terminal Bus Siena La Lizza
+B|43.42234|11.12789|Terminal Bus Via Bilenchi
+B|40.67410|14.77626|Terminal Bus Vinciprova
+B|41.46617|15.55364|Terminal Bus c/o Stazione FS
+B|42.11860|14.70280|Terminal Bus di Vasto
+B|38.18696|15.55958|Terminal Cavallotti
+B|37.56800|14.26922|Terminal Enna Alta
+B|37.85280|15.29405|Terminal Interbus Etna
+B|43.16353|13.71787|Terminal Mario Dondero
+B|43.32395|11.31968|Terminal Pescaia
+B|44.68817|10.60756|Terminal Polo Scolastico Sud
+B|45.69149|9.67624|Terminal SAB
+B|45.53330|10.21157|Terminal SIA Brescia
+B|37.50690|15.09953|Terminal Stazione Centrale
+B|46.06574|13.21670|Terminal Studenti
+B|43.16263|13.71037|Terminal Trasfer
+B|38.16318|15.53994|Terminal ZIR
+B|39.83167|16.25580|Terminal autobus Frascineto
+B|40.61163|15.04810|Terminal bus
+B|38.48672|15.97107|Terminal bus - Rosarno
+B|41.31459|16.27908|Terminal bus Ferrotramviaria-RFI
+B|40.67030|16.57286|Terminal bus Matera - Grassani
+B|41.25366|13.60786|Terminal degli Autobus Formia
+B|45.99040|12.29751|Terminal degli autobus EXTRAURBANI
+B|45.99001|12.29665|Terminal degli autobus URBANI
+B|41.80453|14.92408|Terminal di Larino
+B|43.16180|11.32193|Terminale Autobus
+B|37.52263|15.09409|Terminale Bus
+B|44.30773|8.47112|Terminale TPL Stazione di Savona
+B|41.90174|12.49984|Termini
+B|43.46171|11.87583|Termnal Bus Autolinee Toscane Arezzo
+B|45.70764|11.48542|Thiene - Autostazione
+B|41.91223|12.53289|Tiburtina Piazzale Est
+B|46.03306|10.72613|Tione di Trento
+B|46.21458|10.16695|Tirano, Stazione
+B|41.95320|12.80798|Tivoli   Largo Saragat
+B|40.55033|14.24194|To Anacapri
+B|40.55035|14.24200|To Marina Grande
+B|40.55037|14.24204|To S.Constanzo
+B|46.73421|12.22390|Toblach, Busbahnhof - Dobbiaco, Autostazione
+B|41.86383|12.59320|Torre Maura
+B|45.75556|12.89273|Torresella
+B|39.92736|9.65539|Tortolì Fra Locci
+B|46.45700|11.79291|Trentino Trasporti Spa
+B|46.07072|11.11916|Trento Autostazione
+B|45.65722|13.77089|Trieste
+B|39.35596|16.22733|Unical Pensiline
+B|45.77084|12.91847|Vado
+B|45.64931|11.30052|Valdagno
+B|41.90333|12.44347|Valle Aurelia
+B|41.88357|12.73975|Valle Martella Sassobello
+B|45.81811|8.83455|Varese, Kennedy, Autostazione
+B|45.46685|12.26645|Venice Bus Check Point
+B|45.44207|12.30788|Venice Tronchetto
+B|41.90228|12.51900|Verano
+B|45.70818|10.40345|Vestone Autostazione
+B|37.79362|12.44286|Via Amerigo Fazio
+B|40.87737|14.09445|Via Bovio - Terminale Civico N° 5F
+B|40.56027|8.31634|Via Catalogna
+B|40.82856|14.11821|Via Fasano - Fermata Terminale
+B|38.11034|13.36873|Via Paolo Balsamo bus station
+B|40.87888|14.14822|Via S.Maria - Capolinea Piazzale
+B|40.72398|8.55988|Via Tavolara
+B|41.84802|12.45550|Villa Bonelli
+B|45.76632|12.89567|Villanova
+B|39.21788|9.11361|Yenne (fronte via Azuni)
+B|41.82255|12.82772|Zagarolo   Stazione FS
+B|45.79205|9.66448|Zogno
+B|41.90172|12.50332|[Terra-vision] Buses for Rome Airport
+B|41.45081|15.51675|aquilano automobili
+B|41.78767|12.49005|capolinea Brunetti
+B|42.04098|13.42489|deposito autobus TUA
+B|37.40382|13.61798|ditta f.lli Lattuca
+B|43.81688|12.84830|parcheggio dei bus

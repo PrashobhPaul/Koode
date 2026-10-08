@@ -1,5 +1,6 @@
 # Transit for Koode, NZ. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
+# R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-36.82212|174.76634|Bayswater Ferry Terminal|AT|W
 S|-36.78988|174.67829|Beach Haven|AT|W
 S|-36.82284|174.73398|Birkenhead Pier 1|AT|W
@@ -277,3 +278,45 @@ T|-45.09587|170.97546|Ōamaru
 T|-36.86232|174.80939|Ōrākei
 T|-40.76293|175.15644|Ōtaki
 T|-36.94697|174.83371|Ōtāhuhu
+B|-36.79705|174.76095|Akoranga Bus Station
+B|-36.72227|174.71254|Albany Bus Station
+B|-37.67356|176.22472|Arataki Bus Interchange
+B|-43.53476|172.63748|Bus Interchange
+B|-46.41288|168.34877|BusSmart Hub
+B|-43.48767|172.54180|Christchurch International Airport
+B|-36.75173|174.72815|Constellation Bus Station
+B|-35.72514|174.32569|Dent Street Bus Station
+B|-37.78634|175.27781|Hamilton Transport Centre
+B|-39.64396|176.84361|Hastings Local Bus Terminal
+B|-38.15934|176.25661|Hell Gate shuttle bus-01
+B|-36.62419|174.66655|Hibiscus Coast Bus Station
+B|-36.84874|174.76161|InterCity Bus Terminal
+B|-40.35539|175.61061|Intercity bus terminal
+B|-35.22813|173.94949|Kerikeri Coach Stop
+B|-41.31748|174.79592|Kilbirnie Bus Hub
+B|-36.84354|174.76558|Lower Albert Street Interchange
+B|-41.21008|174.90476|Lower Hutt – Queensgate
+B|-40.35544|175.61292|Main Street Bus Hub
+B|-36.99345|174.87866|Manukau
+B|-37.02359|174.89568|Manurewa
+B|-43.52967|172.59941|Metro Lounge
+B|-39.49351|176.91709|Napier Local Bus Terminal
+B|-39.05764|174.07170|New Plymouth Bus Centre
+B|-39.41767|175.39804|Ohakune
+B|-36.92364|174.78469|Onehunga Transport Centre
+B|-36.89845|174.84971|Panmure Interchange
+B|-37.06503|174.94611|Papakura
+B|-36.98953|174.85522|Puhinui Interchange
+B|-37.20289|174.90935|Pukekohe
+B|-45.87275|170.51524|Ritchies/InterCity Travel Terminal
+B|-37.74930|175.23010|Rotokauri Transport Hub
+B|-36.78439|174.75102|Smales Farm Bus Station
+B|-36.76135|174.73782|Sunnynook Bus Station
+B|-36.78784|174.77118|Takapuna Bus Station
+B|-38.68644|176.06965|Taupō Customer & Visitor Centre
+B|-37.00349|174.78110|Tour Bus Station
+B|-39.17560|175.39373|Waimarino
+B|-41.27549|174.95383|Wainuiomata Bus Depot
+B|-41.27839|174.77921|Wellington Station Bus Interchange
+B|-36.81515|174.61189|Westgate Bus station
+B|-36.94720|174.83376|Ōtāhuhu
