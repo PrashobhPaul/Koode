@@ -247,7 +247,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     moving = moving,
                     immersive = true,
                     height = mapHeight,
-                    controlsPadding = controlsPadding
+                    controlsPadding = controlsPadding,
+                    speedKmh = s?.speedKmh
                 )
             },
             header = {
@@ -574,6 +575,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.weight(1f)
                             )
+                            if (com.trippulse.app.domain.LegDetails.fromJson(leg.detailsJson)[com.trippulse.app.domain.DetailKeys.SENSED] == "movement") {
+                                StatusPill("Sensed", colors.textLow)
+                                Spacer(Modifier.width(6.dp))
+                            }
                             when {
                                 leg.completedAtMs != null -> StatusPill(stringResource(R.string.t_done_e9b45), colors.textLow)
                                 isActive -> StatusPill(stringResource(R.string.t_now_e3b82), colors.accent, pulsing = true)
@@ -762,6 +767,36 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                             "$deferred skipped — you can add ${if (deferred == 1) "it" else "them"} when you review the journey.",
                             color = colors.textLow, style = MaterialTheme.typography.bodySmall
                         )
+                    }
+                }
+            }
+
+            // ---- a stage Koode read from the movement: off the metro at its station, on by bike taxi ----
+            val sensedStage by vm.sensedStage.collectAsStateWithLifecycle()
+            AnimatedBanner(visible = sensedStage != null) {
+                val st = sensedStage
+                if (st != null) KoodeCard(accent = colors.traveller) {
+                    val onFoot = TransportCatalog.profile(st.mode).key == TransportCatalog.WALK.key
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        ModeArt(st.mode, 40.dp)
+                        Spacer(Modifier.width(Spacing.sm))
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                "Off the ${com.trippulse.app.ui.Names.mode(st.endedMode).lowercase()} at ${st.place}",
+                                color = colors.textHigh, style = MaterialTheme.typography.titleMedium
+                            )
+                            Text(
+                                "${if (onFoot) "Walking" else "By ${com.trippulse.app.ui.Names.mode(st.mode).lowercase()}"} from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?",
+                                color = colors.textMid, style = MaterialTheme.typography.bodyMedium
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(Spacing.sm))
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
+                        KoodeChip("Yes", true, { vm.dismissSensedStage() })
+                        listOf(TransportCatalog.BIKE_TAXI, TransportCatalog.AUTO, TransportCatalog.CAB, TransportCatalog.BUS, TransportCatalog.WALK)
+                            .filter { it.key != TransportCatalog.profile(st.mode).key }
+                            .forEach { p -> KoodeChip(com.trippulse.app.ui.Names.mode(p.key), false, { vm.correctSensedStage(st.legIndex, p.key) }, leadingArt = KoodeArt.mode(p.key)) }
                     }
                 }
             }

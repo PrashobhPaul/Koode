@@ -208,6 +208,7 @@
     TRANSIT_RESUMED: ['▶', 'Moving again'],
     DEBOARDED: ['🚶', 'Got off'],
     LEG_STARTED: ['🧭', 'Next stage started'],
+    WAITED: ['⏳', 'Waited'],
     LEG_COMPLETED: ['✅', 'Stage completed'],
     WELLBEING_ALERT: ['💬', 'Wellbeing update'],
     JOURNEY_AUTO_CLOSED: ['🏁', 'Journey closed automatically'],
@@ -350,6 +351,7 @@
       // vehicle glides round its bends instead of cutting the corner.
       road: Array.isArray(st.roadAhead) ? st.roadAhead : null,
       mode: st.mode || (latest.meta && latest.meta.transportMode) || 'CAR',
+      speedKmh: typeof st.speedKmh === 'number' ? st.speedKmh : null,
       moving: st.status === 'DRIVING',
       live: freshnessOf(st) === 'live',
       playback: playback.active
@@ -407,6 +409,8 @@
     // A change of vehicle shows the vehicle changed to; a stage, the one it is made on.
     if (e.type === 'TRAVEL_MODE_CHANGED') return MODE_ART[p.toMode];
     if (e.type === 'LEG_STARTED') return MODE_ART[p.mode];
+    // A wait is drawn with what was waited for; a wait for nothing in particular, with a rest.
+    if (e.type === 'WAITED') return MODE_ART[p.forMode] || 'rest';
     return EVENT_ART[e.type];
   }
   /** Pictures drawn facing left, mirrored so the vehicle faces the flag. */
@@ -839,18 +843,26 @@
     var current = state && state.lat != null ? [state.lat, state.lng] : null;
     latest.destination = destination;
 
-    var path = (events || [])
-      .filter(function (e) { return e.lat != null && e.lng != null; })
-      .sort(function (a, b) { return (a.eventTime || 0) - (b.eventTime || 0); })
-      .map(function (e) { return [e.lat, e.lng]; });
-    if (current) path.push(current);
+    // The path: the journey as drawn once it is over (along the roads it was
+    // driven on), else the trail the phone sends with its state, else the
+    // places its events were logged at.
+    var sent = (state && Array.isArray(state.drawn) && state.drawn.length > 1) ? state.drawn
+      : (state && Array.isArray(state.trail) && state.trail.length > 1) ? state.trail : null;
+    var path, times;
+    if (sent) {
+      path = sent.map(function (p) { return [p[0], p[1]]; });
+      times = sent.map(function (p) { return p[2] || 0; });
+    } else {
+      var located = (events || [])
+        .filter(function (e) { return e.lat != null && e.lng != null; })
+        .sort(function (a, b) { return (a.eventTime || 0) - (b.eventTime || 0); });
+      path = located.map(function (e) { return [e.lat, e.lng]; });
+      times = located.map(function (e) { return e.eventTime; });
+    }
+    if (current && !(sent && state.drawn && ended)) { path.push(current); times.push(Number.MAX_SAFE_INTEGER); }
 
     playback.path = path;
-    playback.times = (events || [])
-      .filter(function (e) { return e.lat != null && e.lng != null; })
-      .map(function (e) { return e.eventTime; })
-      .sort(function (a, b) { return (a || 0) - (b || 0); });
-    if (current) playback.times.push(Number.MAX_SAFE_INTEGER);
+    playback.times = times;
     playback.stages = stagesOf(events || []);
 
     // While the replay strip is open (playing or paused on a moment), the live position waits.

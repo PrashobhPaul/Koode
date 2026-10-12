@@ -55,14 +55,20 @@ object ReportFactory {
         measures: Measures,
         originLabel: String? = null,
         destLabel: String? = null,
-        fastagSummary: String? = null
+        fastagSummary: String? = null,
+        /** The journey as drawn along its roads (DrawnPaths), for the map; the record itself when null. */
+        drawn: List<LocationSampleEntity>? = null
     ): Report {
         val input = input(context, trip, events, samples, analytics, originLabel, destLabel, measures)
         val book = book(context, input)
         val story = JourneyStory.build(input, book)
-        val map = MapSnapshots.backdrop(context, samples.map { it.lat to it.lng }, Paginator.PAGE_W - Paginator.MARGIN * 2, 214f)
+        val path = drawn?.takeIf { it.size >= 2 } ?: samples
+        val map = MapSnapshots.backdrop(context, path.map { it.lat to it.lng }, Paginator.PAGE_W - Paginator.MARGIN * 2, 214f)
         return Reports.journey(
-            Reports.JourneyInput(story, input, book, analytics, TripCredentials.pretty(trip.tripId), measures, System.currentTimeMillis(), fastagSummary, mapBackdrop = map)
+            Reports.JourneyInput(
+                story, input, book, analytics, TripCredentials.pretty(trip.tripId), measures, System.currentTimeMillis(), fastagSummary, mapBackdrop = map,
+                mapPath = drawn?.takeIf { it.size >= 2 }?.map { JourneyStory.Sample(it.tMs, it.lat, it.lng) }
+            )
         )
     }
 

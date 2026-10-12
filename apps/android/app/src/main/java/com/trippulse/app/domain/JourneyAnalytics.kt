@@ -104,6 +104,10 @@ object JourneyAnalytics {
         val fuelStops: Int,
         /** Toll crossings recorded from FASTag SMS during this journey. */
         val tollsCrossed: Int,
+        /** Time spent standing where a stage began, waiting for the ride (read from the movement). */
+        val waitedSeconds: Long = 0,
+        /** The waits, as told: "Waited 7 min at Raheja Vistas for a bike taxi". */
+        val waits: List<String> = emptyList(),
 
         // ---- money ----
         val totalCost: Double,
@@ -159,6 +163,8 @@ object JourneyAnalytics {
         var fuelStops = 0
         var breakCheckpoints = 0
         var tolls = 0
+        var waitedMs = 0L
+        val waits = ArrayList<String>()
 
         for (e in sorted) {
             when (e.type) {
@@ -187,6 +193,11 @@ object JourneyAnalytics {
                 EventTypes.REST_REPORTED -> rest++
                 EventTypes.FUEL_STOP, EventTypes.CHARGE_STOP -> fuelStops++
                 EventTypes.TOLL_CROSSED -> tolls++
+                EventTypes.WAITED -> {
+                    val until = (e.payload["untilMs"] as? Number)?.toLong()
+                    if (until != null && until > e.eventTimeMs) waitedMs += until - e.eventTimeMs
+                    (e.payload["text"] as? String)?.let { waits += it }
+                }
             }
         }
         // A stop still open when the journey ended runs to the end.
@@ -292,6 +303,8 @@ object JourneyAnalytics {
             restCount = rest,
             fuelStops = fuelStops,
             tollsCrossed = tolls,
+            waitedSeconds = (waitedMs / 1000).coerceIn(0, totalSeconds),
+            waits = waits,
             totalCost = totalCost,
             costLines = costLines,
             costPerMetre = if (i.distanceCoveredM > 0 && totalCost > 0) totalCost / i.distanceCoveredM else null,
@@ -340,6 +353,10 @@ object JourneyAnalytics {
                     add("${biggest.label} was ${(biggest.share * 100).roundToLong()}% of what the journey cost.")
                 }
             }
+        }
+        if (r.waitedSeconds >= 180 && r.totalSeconds > 0) {
+            val share = (r.waitedSeconds * 100 / r.totalSeconds)
+            add(if (share >= 5) "${humanDuration(r.waitedSeconds)} of it was waiting: $share% of the journey." else "${humanDuration(r.waitedSeconds)} of it was waiting.")
         }
         if (r.days > 1) add("The journey ran across ${r.days} calendar days.")
         val mealCount = r.meals.filterKeys { it.isMainMeal }.values.sum()

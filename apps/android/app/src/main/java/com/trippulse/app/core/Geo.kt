@@ -23,6 +23,17 @@ object Geo {
         return 2 * EARTH_RADIUS_M * atan2(sqrt(h), sqrt(1 - h))
     }
 
+    /** The point [metres] from [p] on bearing [bearingDeg] (degrees clockwise from north). */
+    fun offset(p: GeoPoint, bearingDeg: Double, metres: Double): GeoPoint {
+        val d = metres / EARTH_RADIUS_M
+        val b = Math.toRadians(bearingDeg)
+        val la1 = Math.toRadians(p.lat)
+        val lo1 = Math.toRadians(p.lng)
+        val la2 = kotlin.math.asin(sin(la1) * cos(d) + cos(la1) * sin(d) * cos(b))
+        val lo2 = lo1 + atan2(sin(b) * sin(d) * cos(la1), cos(d) - sin(la1) * sin(la2))
+        return GeoPoint(Math.toDegrees(la2), Math.toDegrees(lo2))
+    }
+
     fun pathLengthM(path: List<GeoPoint>): Double {
         var total = 0.0
         for (i in 1 until path.size) total += haversineM(path[i - 1], path[i])

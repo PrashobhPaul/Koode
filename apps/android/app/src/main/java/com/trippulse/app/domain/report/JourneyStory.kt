@@ -88,7 +88,7 @@ object JourneyStory {
         CHARGE(Pictures.FUEL, "a charge")
     }
 
-    enum class MomentKind { OFFLINE, SWITCHED_OFF, SIM_CHANGED, SOS, SOS_RESOLVED, NOTE, INCIDENT, VEHICLE, DESTINATION, PASSENGER, MODE }
+    enum class MomentKind { OFFLINE, SWITCHED_OFF, SIM_CHANGED, SOS, SOS_RESOLVED, NOTE, INCIDENT, VEHICLE, DESTINATION, PASSENGER, MODE, WAIT }
 
     sealed class Entry {
         abstract val atMs: Long
@@ -778,6 +778,13 @@ object JourneyStory {
             out += Entry.Moment(from, to, MomentKind.OFFLINE,
                 "Phone out of contact for ${duration((to - from) / 1000)}",
                 back?.let { book.describe(it.lat, it.lng) })
+        }
+        // A wait read from the movement: for the cab at the door, on the platform.
+        for (e in events) {
+            if (e.type != EventTypes.WAITED) continue
+            val text = e.payload["text"] as? String ?: continue
+            val endMs = (e.payload["untilMs"] as? Number)?.toLong()
+            out += Entry.Moment(e.eventTimeMs, endMs, MomentKind.WAIT, text, e.payload["place"] as? String, e.payload["forMode"] as? String)
         }
         // A change of vehicle is told as what it was changed to, in Koode's own
         // words; a short walk between two rides is the one change from the

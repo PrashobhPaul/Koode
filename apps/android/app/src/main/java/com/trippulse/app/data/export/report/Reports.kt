@@ -46,7 +46,9 @@ object Reports {
         /** "47 crossings left" — the vehicle's FASTag balance, when tracked. */
         val fastagSummary: String? = null,
         /** A rendered map for the route, when the phone could make one. */
-        val mapBackdrop: RouteMap.Backdrop? = null
+        val mapBackdrop: RouteMap.Backdrop? = null,
+        /** The route as drawn along its roads (DrawnPaths), when it has been; the record itself otherwise. */
+        val mapPath: List<JourneyStory.Sample>? = null
     )
 
     /**
@@ -134,7 +136,7 @@ object Reports {
             blocks += Heading("The route")
             blocks += RouteMap(
                 backdrop = j.mapBackdrop,
-                path = routePath(i),
+                path = routePath(j.mapPath?.let { i.copy(samples = it) } ?: i),
                 markers = s.stops.filter { it.lat != null && it.lng != null && !it.loggedLater && it.items.isNotEmpty() }
                     .map { RouteMap.Marker(it.lat!!, it.lng!!, stopIcon(it)) } +
                     s.halts.filter { it.lat != null && it.lng != null }.map { RouteMap.Marker(it.lat!!, it.lng!!, Icon(Pictures.STAY)) },
@@ -335,6 +337,7 @@ object Reports {
         JourneyStory.MomentKind.DESTINATION -> "pin"
         JourneyStory.MomentKind.PASSENGER -> "people"
         JourneyStory.MomentKind.MODE -> "swap"
+        JourneyStory.MomentKind.WAIT -> "clock"
     }
 
     // ------------------------------------------------------------------------

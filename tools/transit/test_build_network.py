@@ -250,17 +250,24 @@ class BuildTest(unittest.TestCase):
         stations, lines = b.build_network(routes(), stops())
         self.assertEqual(2, len(lines[0].split("|")[4].split()[1].split(":")))
 
-    def test_a_track_is_joined_from_its_ways_in_order(self):
+    def test_a_track_runs_through_its_ways_whatever_their_order(self):
         way = lambda i, pts: {"type": "way", "ref": i, "role": "", "geometry": [{"lat": a, "lon": b} for a, b in pts]}
-        # Three ways: the first mapped backwards, the second meets its start, a gap before the third.
-        t = b.Track([way(1, [(17.405, 78.505), (17.400, 78.500)]), way(2, [(17.405, 78.505), (17.410, 78.510)]),
+        # Two ways out of order, one backwards, and a loose third far away.
+        t = b.Track([way(2, [(17.405, 78.505), (17.410, 78.510)]), way(1, [(17.405, 78.505), (17.400, 78.500)]),
                      way(3, [(17.450, 78.550), (17.460, 78.560)])])
-        self.assertEqual(2, len(t.pieces))
-        self.assertEqual([(17.400, 78.500), (17.405, 78.505), (17.410, 78.510)], t.pieces[0])
         found = t.between((17.4001, 78.5002), (17.4098, 78.5098))
         self.assertIsNotNone(found)
         self.assertAlmostEqual(found[0], b.metres(17.4, 78.5, 17.41, 78.51), delta=60)
-        # Stops on different pieces, or off the track, give no hop.
+        self.assertEqual(3, len(found[1]))  # a's foot, the ways' joint, b's foot
+        # And the other way round.
+        back = t.between((17.4098, 78.5098), (17.4001, 78.5002))
+        self.assertAlmostEqual(back[0], found[0], delta=1)
+        # A double-track line: each stop on the nearer track, never crossing to the other.
+        t2 = b.Track([way(1, [(17.400, 78.500), (17.400, 78.520)]), way(2, [(17.40004, 78.520), (17.40004, 78.500)])])
+        f2 = t2.between((17.40006, 78.5002), (17.40006, 78.5198))
+        self.assertIsNotNone(f2)
+        self.assertAlmostEqual(f2[0], b.metres(17.4, 78.5002, 17.4, 78.5198), delta=30)
+        # Stops on pieces that do not meet, or off the track, give no hop.
         self.assertIsNone(t.between((17.4001, 78.5002), (17.455, 78.555)))
         self.assertIsNone(t.between((17.3, 78.3), (17.4098, 78.5098)))
 

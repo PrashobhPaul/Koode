@@ -50,6 +50,8 @@ object DetailKeys {
     const val COACH = "coach"
     const val SEAT = "seat"
     const val PNR = "pnr"
+    /** How a stage came to be recorded when nobody tapped it: "movement" (read from the fixes), "corrected" (the traveller put it right). */
+    const val SENSED = "sensed"
 }
 
 /**

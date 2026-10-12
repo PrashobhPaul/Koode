@@ -1,1 +1,2 @@
-# Countries a push to a working branch rebuilds, space-separated; none when only comments.
+# Countries a push to this branch rebuilds (blank or comments only: none).
+JP AT IN

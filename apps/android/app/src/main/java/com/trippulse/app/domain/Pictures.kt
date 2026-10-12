@@ -80,6 +80,8 @@ object Pictures {
         // A change of vehicle shows the vehicle changed to; a stage, the one it is made on.
         EventTypes.TRAVEL_MODE_CHANGED -> (payload["toMode"] as? String)?.let { mode(it) }
         EventTypes.LEG_STARTED -> (payload["mode"] as? String)?.let { mode(it) }
+        // A wait is drawn with what was waited for; a wait for nothing in particular, with a rest.
+        EventTypes.WAITED -> (payload["forMode"] as? String)?.let { mode(it) } ?: REST
         else -> null
     }
 

@@ -123,15 +123,7 @@ object MapStages {
         if (road.size < 2) return null
         val a = snap(road, from) ?: return null
         val b = snap(road, to) ?: return null
-        if (a.distanceM > snapM || b.distanceM > snapM) return null
-        if (b.segment < a.segment || (b.segment == a.segment && b.t < a.t)) return null
-        val path = ArrayList<GeoPoint>()
-        path += a.point
-        for (i in a.segment + 1..b.segment) path += road[i]
-        path += b.point
-        val straight = com.trippulse.app.core.Geo.haversineM(from, to)
-        if (pathLengthM(path) > straight * maxDetour + 50.0) return null
-        return path
+        return pathBetween(road, a, b, from, to, snapM, maxDetour)
     }
 
     /** How far [p] is from the nearest point of [road], or null when [road] is not a line. */
@@ -175,22 +167,140 @@ object MapStages {
         return out
     }
 
-    private data class Snap(val segment: Int, val t: Double, val point: GeoPoint, val distanceM: Double)
+    /**
+     * A road indexed for many snaps at once: the trail of a whole journey
+     * laid along the road it was driven on. Each fix is snapped to the
+     * nearest piece of road in its own square of the grid and the eight
+     * around it, so a thousand fixes against a thousand bends is quick.
+     */
+    class RoadIndex(val road: List<GeoPoint>) {
+        private val cell = 0.004
+        private val grid = HashMap<Long, ArrayList<Int>>()
+
+        init {
+            for (i in 0 until road.size - 1) {
+                val a = road[i]; val b = road[i + 1]
+                val y0 = cellOf(minOf(a.lat, b.lat)); val y1 = cellOf(maxOf(a.lat, b.lat))
+                val x0 = cellOf(minOf(a.lng, b.lng)); val x1 = cellOf(maxOf(a.lng, b.lng))
+                for (y in y0..y1) for (x in x0..x1) grid.getOrPut(key(y, x)) { ArrayList() } += i
+            }
+        }
+
+        private fun cellOf(v: Double): Int = Math.floor(v / cell).toInt()
+        private fun key(y: Int, x: Int): Long = (y.toLong() shl 32) or (x.toLong() and 0xffffffffL)
+
+        /** The nearest point of the road to [p], when one is within about a square of it. */
+        fun snap(p: GeoPoint): Snap? {
+            val y = cellOf(p.lat); val x = cellOf(p.lng)
+            var best: Snap? = null
+            for (dy in -1..1) for (dx in -1..1) {
+                val segs = grid[key(y + dy, x + dx)] ?: continue
+                for (i in segs) {
+                    val sn = snapTo(road, i, p)
+                    if (best == null || sn.distanceM < best.distanceM) best = sn
+                }
+            }
+            return best
+        }
+
+        /** As [MapStages.alongRoad], through the index. */
+        fun alongRoad(from: GeoPoint, to: GeoPoint, snapM: Double = 60.0, maxDetour: Double = 2.5): List<GeoPoint>? {
+            if (road.size < 2) return null
+            val a = snap(from) ?: return null
+            val b = snap(to) ?: return null
+            return pathBetween(road, a, b, from, to, snapM, maxDetour)
+        }
+
+        /**
+         * The trail through [points], along the road wherever the road
+         * explains a move and straight where it does not: a trail that
+         * follows the bends it was driven round, not the chords between
+         * the fixes.
+         */
+        fun trail(points: List<GeoPoint>, snapM: Double = 45.0, maxDetour: Double = 2.0): List<GeoPoint> {
+            if (points.size < 2 || road.size < 2) return points
+            val out = ArrayList<GeoPoint>(points.size * 2)
+            out += points[0]
+            var snapped = false
+            for (i in 1 until points.size) {
+                val piece = alongRoad(points[i - 1], points[i], snapM, maxDetour)
+                if (piece != null) {
+                    if (!snapped) out[out.lastIndex] = piece.first()
+                    for (k in 1 until piece.size) out += piece[k]
+                    snapped = true
+                } else {
+                    out += points[i]
+                    snapped = false
+                }
+            }
+            return out
+        }
+    }
+
+    /**
+     * [points] thinned to the ones that shape the line: a point is kept when
+     * leaving it out would move the line more than [toleranceM]. Returned as
+     * the indices kept, in order, so whatever travels with a point (its
+     * time) can be kept too.
+     */
+    fun simplify(points: List<GeoPoint>, toleranceM: Double): List<Int> {
+        if (points.size < 3) return points.indices.toList()
+        val keep = BooleanArray(points.size)
+        keep[0] = true; keep[points.lastIndex] = true
+        val stack = ArrayDeque<Pair<Int, Int>>()
+        stack.addLast(0 to points.lastIndex)
+        while (stack.isNotEmpty()) {
+            val (a, b) = stack.removeLast()
+            if (b - a < 2) continue
+            var worst = -1
+            var worstD = 0.0
+            for (i in a + 1 until b) {
+                val d = com.trippulse.app.core.Geo.distancePointToSegmentM(points[i], points[a], points[b]).first
+                if (d > worstD) { worstD = d; worst = i }
+            }
+            if (worst >= 0 && worstD > toleranceM) {
+                keep[worst] = true
+                stack.addLast(a to worst); stack.addLast(worst to b)
+            }
+        }
+        return points.indices.filter { keep[it] }
+    }
+
+    data class Snap(val segment: Int, val t: Double, val point: GeoPoint, val distanceM: Double)
+
+    /** The foot of [p] on segment [i] of [road]. */
+    private fun snapTo(road: List<GeoPoint>, i: Int, p: GeoPoint): Snap {
+        val k = Math.cos(Math.toRadians(p.lat))
+        val a = road[i]; val b = road[i + 1]
+        val ax = (a.lng - p.lng) * k; val ay = a.lat - p.lat
+        val bx = (b.lng - p.lng) * k; val by = b.lat - p.lat
+        val dx = bx - ax; val dy = by - ay
+        val len2 = dx * dx + dy * dy
+        val t = if (len2 <= 0.0) 0.0 else (-(ax * dx + ay * dy) / len2).coerceIn(0.0, 1.0)
+        val q = GeoPoint(a.lat + (b.lat - a.lat) * t, a.lng + (b.lng - a.lng) * t)
+        return Snap(i, t, q, com.trippulse.app.core.Geo.haversineM(p, q))
+    }
+
+    /** The road from snap [a] to snap [b], when it explains the move from [from] to [to]. */
+    private fun pathBetween(road: List<GeoPoint>, a: Snap, b: Snap, from: GeoPoint, to: GeoPoint, snapM: Double, maxDetour: Double): List<GeoPoint>? {
+        if (a.distanceM > snapM || b.distanceM > snapM) return null
+        if (b.segment < a.segment || (b.segment == a.segment && b.t < a.t)) return null
+        val path = ArrayList<GeoPoint>()
+        path += a.point
+        for (i in a.segment + 1..b.segment) path += road[i]
+        path += b.point
+        val straight = com.trippulse.app.core.Geo.haversineM(from, to)
+        if (pathLengthM(path) > straight * maxDetour + 50.0) return null
+        return path
+    }
+
 
     /** The nearest point of [road] to [p]: which segment, how far along it, and how far off. */
     private fun snap(road: List<GeoPoint>, p: GeoPoint): Snap? {
         var best: Snap? = null
-        val k = Math.cos(Math.toRadians(p.lat))
         for (i in 0 until road.size - 1) {
-            val a = road[i]; val b = road[i + 1]
-            val ax = (a.lng - p.lng) * k; val ay = a.lat - p.lat
-            val bx = (b.lng - p.lng) * k; val by = b.lat - p.lat
-            val dx = bx - ax; val dy = by - ay
-            val len2 = dx * dx + dy * dy
-            val t = if (len2 <= 0.0) 0.0 else (-(ax * dx + ay * dy) / len2).coerceIn(0.0, 1.0)
-            val q = GeoPoint(a.lat + (b.lat - a.lat) * t, a.lng + (b.lng - a.lng) * t)
-            val d = com.trippulse.app.core.Geo.haversineM(p, q)
-            if (best == null || d < best.distanceM) best = Snap(i, t, q, d)
+            val sn = snapTo(road, i, p)
+            if (best == null || sn.distanceM < best.distanceM) best = sn
         }
         return best
     }

@@ -92,6 +92,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
     val events by vm.events.collectAsStateWithLifecycle()
     val samples by vm.samples.collectAsStateWithLifecycle()
     val mapLegs by vm.legs.collectAsStateWithLifecycle()
+    val drawn by vm.drawn.collectAsStateWithLifecycle()
     val expenses by vm.expenses.collectAsStateWithLifecycle()
     val exporting by vm.exporting.collectAsStateWithLifecycle()
     val report by vm.report.collectAsStateWithLifecycle()
@@ -162,7 +163,7 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
                 val doc = when (kind) {
                     PdfKind.TIMELINE -> ReportFactory.journey(
                         context, t, events, samples, r, measures,
-                        originLabel = originLabel, destLabel = destLabel, fastagSummary = fastagSummary
+                        originLabel = originLabel, destLabel = destLabel, fastagSummary = fastagSummary, drawn = drawn
                     )
                     PdfKind.MONEY -> ReportFactory.expenses(
                         context, t, events, samples, r, expenses, measures,
@@ -287,12 +288,14 @@ fun SummaryScreen(nav: NavHostController, tripId: String) {
 
             // ---- the route, replayable ----
             if (samples.size >= 2) {
+                // Drawn along the roads it was driven on, once Koode has drawn it; the record itself until then.
+                val path = drawn ?: samples
                 JourneyMap(
                     origin = samples.firstOrNull()?.let { GeoPoint(it.lat, it.lng) },
                     destination = trip?.let { GeoPoint(it.destLat, it.destLng) },
                     current = samples.lastOrNull()?.let { GeoPoint(it.lat, it.lng) },
-                    breadcrumb = remember(samples) { samples.map { GeoPoint(it.lat, it.lng) } },
-                    breadcrumbTimesMs = remember(samples) { samples.map { it.tMs } },
+                    breadcrumb = remember(path) { path.map { GeoPoint(it.lat, it.lng) } },
+                    breadcrumbTimesMs = remember(path) { path.map { it.tMs } },
                     mode = mapLegs.lastOrNull()?.mode ?: trip?.transportMode,
                     stages = remember(mapLegs) { com.trippulse.app.domain.MapStages.of(mapLegs.map { it.startedAtMs to it.mode }) },
                     live = false,
