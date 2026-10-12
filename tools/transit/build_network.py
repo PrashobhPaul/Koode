@@ -40,6 +40,7 @@ so it is what a ride is measured by.
 Data © OpenStreetMap contributors, ODbL 1.0. Standard library only.
 """
 import argparse
+import heapq
 import json
 import math
 import os
@@ -270,83 +271,119 @@ def simplify(points, tolerance):
 
 class Track:
     """
-    A route's track as pieces of ordered points: its ways joined end to
-    end in the order given (each way turned to meet the one before), a
-    new piece wherever they do not meet. A stop is placed on the track
-    by the nearest point of a piece.
+    A route's track as a graph of its ways' points. A stop is placed on the
+    nearest point of any way, and the track between two stops is the
+    shortest way through the graph from one to the other. The ways may come
+    in any order and either way round, a double-track line's two ways both
+    count (a stop takes the nearer; the other is never crossed to), and a
+    stop's track ends where its way does.
     """
-    JOIN_M, NEAR_M = 60.0, 300.0
+    NEAR_M = 300.0
 
     def __init__(self, members):
-        self.pieces = []
-        cur, first = [], False
+        self.adj = {}       # point -> [(point, metres)]
+        self.grid = {}      # 0.01-degree square -> [segments (p, q, metres)]
         for m in members:
             if m.get("type") != "way" or m.get("role", "") != "" or not m.get("geometry"):
                 continue
-            g = [(p["lat"], p["lon"]) for p in m["geometry"] if p]
-            if len(g) < 2:
-                continue
-            if cur:
-                end = cur[-1]
-                d0, d1 = metres(*end, *g[0]), metres(*end, *g[-1])
-                if min(d0, d1) > self.JOIN_M and first:
-                    # The first way had nothing before it to meet: it may be
-                    # the wrong way round, its start meeting this one.
-                    head = cur[0]
-                    e0, e1 = metres(*head, *g[0]), metres(*head, *g[-1])
-                    if min(e0, e1) <= self.JOIN_M:
-                        cur = cur[::-1]
-                        d0, d1 = e0, e1
-                if min(d0, d1) > self.JOIN_M:
-                    self.pieces.append(cur); cur = []
-                elif d1 < d0:
-                    g = g[::-1]
-            first = not cur
-            cur += g[1:] if cur and metres(*cur[-1], *g[0]) < 1 else g
-        if cur:
-            self.pieces.append(cur)
-        self.cum = []
-        for pts in self.pieces:
-            c = [0.0]
-            for i in range(1, len(pts)):
-                c.append(c[-1] + metres(*pts[i - 1], *pts[i]))
-            self.cum.append(c)
+            g = [(pt["lat"], pt["lon"]) for pt in m["geometry"] if pt]
+            for i in range(len(g) - 1):
+                p, q = g[i], g[i + 1]
+                if p == q:
+                    continue
+                d = metres(*p, *q)
+                self.adj.setdefault(p, []).append((q, d))
+                self.adj.setdefault(q, []).append((p, d))
+                seg = (p, q, d)
+                for key in {(int(p[0] * 100), int(p[1] * 100)), (int(q[0] * 100), int(q[1] * 100))}:
+                    self.grid.setdefault(key, []).append(seg)
+
+    def near(self, p):
+        """The segments in and around the square p is in."""
+        y, x = int(p[0] * 100), int(p[1] * 100)
+        seen = set()
+        for dy in (-1, 0, 1):
+            for dx in (-1, 0, 1):
+                for seg in self.grid.get((y + dy, x + dx), ()):
+                    if id(seg) not in seen:
+                        seen.add(id(seg))
+                        yield seg
+
+    @staticmethod
+    def project(p, seg):
+        """(t along seg, off-track metres, the point) of p's foot on seg."""
+        (a, b, _) = seg
+        kx, ky = math.cos(math.radians(p[0])) * 111320.0, 110540.0
+        x1, y1 = (a[1] - p[1]) * kx, (a[0] - p[0]) * ky
+        x2, y2 = (b[1] - p[1]) * kx, (b[0] - p[0]) * ky
+        dx, dy = x2 - x1, y2 - y1
+        L2 = dx * dx + dy * dy
+        t = 0.0 if L2 == 0 else max(0.0, min(1.0, -(x1 * dx + y1 * dy) / L2))
+        return t, math.hypot(x1 + t * dx, y1 + t * dy), (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
 
     def place(self, p):
-        """(piece, along-metres, off-track metres) of the nearest point to p, or None."""
+        """(segment, t, off-track metres, point) of the nearest point of the track to p, or None."""
         best = None
-        for k, pts in enumerate(self.pieces):
-            if not any(abs(la - p[0]) < 0.004 and abs(lo - p[1]) < 0.005 for la, lo in pts[::max(1, len(pts) // 50)] + [pts[-1]]):
-                if min(metres(*p, *q) for q in pts[::max(1, len(pts) // 20)] + [pts[-1]]) > 2500:
-                    continue
-            lat0 = p[0]
-            kx, ky = math.cos(math.radians(lat0)) * 111320.0, 110540.0
-            for i in range(len(pts) - 1):
-                x1, y1 = (pts[i][1] - p[1]) * kx, (pts[i][0] - lat0) * ky
-                x2, y2 = (pts[i + 1][1] - p[1]) * kx, (pts[i + 1][0] - lat0) * ky
-                dx, dy = x2 - x1, y2 - y1
-                L2 = dx * dx + dy * dy
-                t = 0.0 if L2 == 0 else max(0.0, min(1.0, -(x1 * dx + y1 * dy) / L2))
-                off = math.hypot(x1 + t * dx, y1 + t * dy)
-                if best is None or off < best[2]:
-                    best = (k, self.cum[k][i] + t * math.sqrt(L2), off)
+        for seg in self.near(p):
+            t, off, q = self.project(p, seg)
+            if best is None or off < best[2]:
+                best = (seg, t, off, q)
         return best if best and best[2] <= self.NEAR_M else None
 
     def between(self, a, b):
-        """(metres, points) along the track from stop a to stop b, or None."""
-        pa, pb = self.place(a), self.place(b)
-        if not pa or not pb or pa[0] != pb[0]:
+        """(metres, points) along the track from stop a to stop b, or None when the track does not run between them."""
+        pa = self.place(a)
+        if not pa:
             return None
-        k, ta, tb = pa[0], pa[1], pb[1]
-        pts, cum = self.pieces[k], self.cum[k]
-        lo, hi = min(ta, tb), max(ta, tb)
-        if hi - lo < 1:
+        sa, ta, _, qa = pa
+        limit = metres(*a, *b) * 2.0 + 500.0
+        # The shortest way from a's point to everywhere worth reaching.
+        dist = {sa[0]: ta * sa[2], sa[1]: (1 - ta) * sa[2]}
+        prev = {sa[0]: None, sa[1]: None}
+        heap = [(dist[sa[0]], sa[0]), (dist[sa[1]], sa[1])]
+        done = set()
+        while heap:
+            d, u = heapq.heappop(heap)
+            if u in done:
+                continue
+            if d > limit:
+                break
+            done.add(u)
+            for v, w in self.adj.get(u, ()):
+                nd = d + w
+                if nd < dist.get(v, float("inf")):
+                    dist[v] = nd
+                    prev[v] = u
+                    heapq.heappush(heap, (nd, v))
+        # b's place: the nearest segment reached from a (never the other
+        # track of a pair), by whichever of its ends the way arrives at.
+        best = None
+        for seg in self.near(b):
+            p, q, d = seg
+            tb, off, qb = self.project(b, seg)
+            if off > self.NEAR_M:
+                continue
+            if seg is sa:
+                total, via = abs(ta - tb) * d, None
+            else:
+                ways = [(dist[p] + tb * d, p)] if p in done else []
+                if q in done:
+                    ways.append((dist[q] + (1 - tb) * d, q))
+                if not ways:
+                    continue
+                total, via = min(ways)
+            if best is None or (off, total) < (best[0], best[1]):
+                best = (off, total, via, qb)
+        if best is None:
             return None
-        inner = [pts[i] for i in range(len(pts)) if lo < cum[i] < hi]
-        path = [a] + inner + [b]
-        if ta > tb:
-            path = [a] + inner[::-1] + [b]
-        return hi - lo, path
+        _, total, via, qb = best
+        if total < 1:
+            return None
+        chain = []
+        while via is not None:
+            chain.append(via)
+            via = prev[via]
+        return total, [qa] + chain[::-1] + [qb]
 
 
 def hop(track, a, b, segments, kind):
