@@ -153,7 +153,8 @@ class ApprovedJourneyPublisher(
                 originLabel = PlaceResolver.display(t.originName, PlaceResolver.nearestSavedLabel(saved, t.originLat, t.originLng)),
                 destLabel = PlaceResolver.display(t.destName, PlaceResolver.nearestSavedLabel(saved, t.destLat, t.destLng)),
                 // No FASTag balance either: it is money.
-                fastagSummary = null
+                fastagSummary = null,
+                drawn = com.trippulse.app.data.DrawnPaths.load(context, t.tripId)?.let { com.trippulse.app.data.DrawnPaths.asSamples(t.tripId, it) }
             )
             val file = JourneyPdf.write(context, doc)
             val ok = try { cloud.uploadReport(t.accessKey, file.readBytes()) } finally { file.delete() }

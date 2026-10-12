@@ -106,6 +106,8 @@ object EventTypes {
 
     // hybrid journeys: one journey, several modes of transport
     const val LEG_STARTED = "LEG_STARTED"
+    /** A stand of some minutes where a stage began, read from the movement: for the cab, on the platform. */
+    const val WAITED = "WAITED"
     const val LEG_COMPLETED = "LEG_COMPLETED"
 
     // overnight

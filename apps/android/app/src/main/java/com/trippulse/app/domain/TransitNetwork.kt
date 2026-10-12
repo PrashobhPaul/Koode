@@ -208,6 +208,30 @@ class TransitNetwork(
         return MapStages.alongRoad(track(path), from, to, snapM = GLIDE_SNAP_M)
     }
 
+    /**
+     * How far [p] is from the nearest line of [kind]: the track between two
+     * stations as mapped (its bends where they were, the straight run where
+     * not), or a station itself. Null when no station of the kind is within
+     * [searchM]: the place is nowhere near the network at all.
+     */
+    fun offLineM(p: GeoPoint, kind: Kind, searchM: Double = OFF_LINE_SEARCH_M): Double? {
+        var best: Double? = null
+        for ((i, s) in stations.withIndex()) {
+            if (s.kind != kind) continue
+            val d = com.trippulse.app.core.Geo.haversineM(p, s.point)
+            if (d > searchM) continue
+            if (best == null || d < best) best = d
+            for (e in edges[i]) {
+                if (e.speed == 'I' || stations[e.to].kind != kind) continue
+                val line = ArrayList<GeoPoint>(e.path.size + 2)
+                line += s.point; line += e.path; line += stations[e.to].point
+                val off = MapStages.snapDistanceM(line, p) ?: continue
+                if (off < best!!) best = off
+            }
+        }
+        return best
+    }
+
     /** The mapped bends from station [a] to [b] (either direction), or none. */
     fun between(a: Int, b: Int): List<GeoPoint> =
         edges.getOrNull(a)?.firstOrNull { it.to == b }?.path?.takeIf { it.isNotEmpty() }
@@ -263,6 +287,8 @@ class TransitNetwork(
         const val BUS_RADIUS_M = 250.0
 
         /** A gliding vehicle looks for its line this far around it, and may be this far off the track. */
+        /** How far around a place the lines are looked for, for how far off them it is. */
+        const val OFF_LINE_SEARCH_M = 4_000.0
         const val GLIDE_SEARCH_M = 2_500.0
         const val GLIDE_SNAP_M = 150.0
 

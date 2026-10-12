@@ -118,7 +118,9 @@ fun JourneyMap(
     stages: List<MapStages.Stage> = emptyList(),
     moving: Boolean = false,
     immersive: Boolean = false,
-    controlsPadding: PaddingValues = PaddingValues(0.dp)
+    controlsPadding: PaddingValues = PaddingValues(0.dp),
+    /** How fast the traveller is going now, km/h, for how close the camera rides (CameraRules). */
+    speedKmh: Double? = null
 ) {
     val colors = KoodeTheme.colors
     val dark = colors.background.luminance() < 0.4f
@@ -178,10 +180,16 @@ fun JourneyMap(
     else mode
     val airborne = shownMode == "FLIGHT" && (moving || inPlayback)
     val context = LocalContext.current
+    // The planned road, indexed once, for the trail and the glide to follow its bends.
+    val roadIndex = remember(route) { if (route.size >= 2) MapStages.RoadIndex(route) else null }
+    val heightPx = with(density) { height.toPx().toDouble() }
     SideEffect {
         motion.mode = shownMode
         motion.airborne = airborne
         motion.context = context.applicationContext
+        // A replay rides at the pace the record was made; live, at the pace reported.
+        motion.speedKmh = if (inPlayback) com.trippulse.app.domain.CameraRules.replaySpeedKmh(breadcrumb, breadcrumbTimesMs, playbackIndex) else speedKmh
+        motion.heightPx = heightPx
     }
 
     val padPx = with(density) {
@@ -265,7 +273,7 @@ fun JourneyMap(
         val times = if (breadcrumbTimesMs.size != breadcrumb.size) emptyList()
         else breadcrumbTimesMs.take(trail.size).let { t -> t + List(trail.size - t.size) { Long.MAX_VALUE } }
         s.source(SRC_ROUTE)?.setGeoJson(lineCollection(MapStages.ahead(route, if (inPlayback) null else current)))
-        s.source(SRC_TRAIL)?.setGeoJson(trailCollection(trail, times, stages, mode))
+        s.source(SRC_TRAIL)?.setGeoJson(trailCollection(trail, times, stages, mode, roadIndex))
         s.source(SRC_ORIGIN)?.setGeoJson(pointCollection(origin))
         s.source(SRC_DEST)?.setGeoJson(pointCollection(destination))
         val arcFrom = target ?: origin
@@ -315,7 +323,7 @@ fun JourneyMap(
         val glideMs = MapStages.glideMs(motion.fixGapMs).toDouble()
         // Along the road when the road explains the move; on rails or water,
         // along the line through its stations, round its bends.
-        val road = MapStages.alongRoad(route, from, to)
+        val road = roadIndex?.alongRoad(from, to)
             ?: com.trippulse.app.domain.TransitNetwork.kindOf(shownMode)?.let { k ->
                 com.trippulse.app.data.TransitData.current.glidePath(from, to, k)
             }
@@ -629,6 +637,11 @@ private class VehicleMotion {
     /** When the last live fix arrived, and the gap the fixes have been coming at. */
     var lastFixAtMs: Long = 0L
     var fixGapMs: Long? = null
+    /** How fast the traveller is going, for the camera's rules; the map's height, for where the vehicle rides in it. */
+    var speedKmh: Double? = null
+    var heightPx: Double = 0.0
+    /** The zoom the follow camera is at: eased toward the speed's own, never a jump. */
+    var zoom: Double = FOLLOW_ZOOM
 
     fun render(m: MapLibreMap) {
         val s = style ?: return
@@ -687,19 +700,28 @@ private class VehicleMotion {
     }
 }
 
-/** Ride along: tilted, heading-up, vehicle kept clear of any overlaid card. */
+/**
+ * Ride along: tilted, heading-up, the vehicle low in the view with the road
+ * ahead filling it, closer on foot and wider at speed (CameraRules), kept
+ * clear of any overlaid card.
+ */
 private fun followCamera(m: MapLibreMap, motion: VehicleMotion, padPx: DoubleArray, entering: Boolean) {
     val p = motion.pos ?: return
     val now = android.os.SystemClock.uptimeMillis()
     // A move while the camera eases in would cancel the ease and keep whatever
     // zoom it had reached -- from the overview, that is the whole world.
     if (!entering && motion.followPlaced && now < motion.easingUntilMs) return
+    val rules = com.trippulse.app.domain.CameraRules
+    val wanted = rules.zoomFor(motion.speedKmh, motion.mode)
+    motion.zoom = if (entering) wanted else rules.eased(motion.zoom, wanted)
+    // The space above the vehicle is the road ahead: more of it the faster it goes.
+    val ahead = (motion.heightPx - padPx[1] - padPx[3]).coerceAtLeast(0.0) * rules.aheadShare(motion.speedKmh)
     val position = CameraPosition.Builder()
         .target(p.toLatLng())
-        .zoom(FOLLOW_ZOOM)
-        .tilt(FOLLOW_TILT)
+        .zoom(motion.zoom)
+        .tilt(rules.TILT)
         .bearing(motion.bearing)
-        .padding(padPx[0], padPx[1], padPx[2], padPx[3])
+        .padding(padPx[0], padPx[1] + ahead, padPx[2], padPx[3])
         .build()
     if (entering) {
         m.easeCamera(CameraUpdateFactory.newCameraPosition(position), 900)

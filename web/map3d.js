@@ -22,6 +22,21 @@
   var CAR_PX = 44;
   var FOLLOW_TILT = 58;
   var FOLLOW_ZOOM = 15.5;
+  // ---- the camera's rules: keep in step with domain/CameraRules.kt ----
+  /** How close the camera rides, by what is being ridden and how fast. */
+  function zoomFor(speedKmh, mode) {
+    var v = Math.max(0, speedKmh || 0);
+    if (mode === 'WALK') return 17.2;
+    if (mode === 'CYCLE') return 16.6;
+    if (mode === 'FLIGHT') return 9.0;
+    if (mode === 'SHIP') return 12.5;
+    if (mode === 'TRAIN') return v < 60 ? 15.0 : 13.8;
+    return v < 12 ? 16.4 : v < 35 ? 15.8 : v < 65 ? 15.2 : v < 100 ? 14.6 : 14.0;
+  }
+  /** How much of the map's height is the road ahead: the vehicle rides lower the faster it goes. */
+  function aheadShare(speedKmh) { return Math.min(0.42, Math.max(0.28, 0.28 + Math.max(0, speedKmh || 0) / 100 * 0.14)); }
+  /** A zoom eased toward its target a step at a time, never a jump. */
+  function eased(current, target, maxStep) { var d = target - current; var m = maxStep || 0.02; return current + Math.max(-m, Math.min(m, d)); }
   // A live glide lasts as long as fixes have been arriving apart (MapStages.glideMs).
   var GLIDE_MIN_MS = 1100, GLIDE_MAX_MS = 30000;
 
@@ -321,9 +336,15 @@
     // A jump while the camera eases in would stop it part-way, at whatever
     // zoom it had reached -- from the overview, that is the whole world.
     if (!entering && Date.now() < (state.easingUntil || 0)) return;
+    // Closer on foot, wider at speed; the vehicle low in the view with the road ahead above it.
+    var wanted = zoomFor(state.speedKmh, state.mode);
+    state.zoom = entering || state.zoom == null ? wanted : eased(state.zoom, wanted);
+    var pad = heroPadding();
+    var h = map.getContainer() ? map.getContainer().clientHeight : 0;
+    pad.top = (pad.top || 0) + Math.max(0, h - (pad.top || 0) - (pad.bottom || 0)) * aheadShare(state.speedKmh);
     var opts = {
       center: [state.pos[1], state.pos[0]], bearing: state.bearing, pitch: FOLLOW_TILT,
-      zoom: entering ? FOLLOW_ZOOM : map.getZoom(), padding: heroPadding()
+      zoom: state.zoom, padding: pad
     };
     if (entering) { map.easeTo(Object.assign({ duration: 900 }, opts)); state.easingUntil = Date.now() + 950; }
     else map.jumpTo(opts);
@@ -645,6 +666,15 @@
     return alongRoad(track(path), from, to, GLIDE_SNAP_M);
   }
 
+  /** The pace a replay is at, from the record's own times (CameraRules.replaySpeedKmh). */
+  function replaySpeed(trail, times) {
+    if (!trail || !times || times.length !== trail.length || trail.length < 2) return null;
+    var i = trail.length - 1;
+    var dt = times[i] - times[i - 1];
+    if (!(dt > 0) || times[i] === Number.MAX_SAFE_INTEGER) return null;
+    return distM(trail[i - 1], trail[i]) / dt * 3600;
+  }
+
   /** The trail cut into one line per stage, neighbours sharing their joining point. */
   function trailFeatures(trail, times, stages, fallback) {
     if (trail.length < 2) return EMPTY;
@@ -733,6 +763,7 @@
     if (!ready || !map) return;
     var mode = opts.mode || 'CAR';
     state.mode = mode;
+    state.speedKmh = opts.playback ? replaySpeed(opts.trail, opts.trailTimes) : opts.speedKmh;
     state.live = !!opts.live && !opts.playback;
     state.airborne = mode === 'FLIGHT' && (!!opts.moving || !!opts.playback);
 

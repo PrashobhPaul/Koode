@@ -53,6 +53,7 @@ object EventNarrator {
         EventTypes.TRANSIT_RESUMED -> "▶" to "Moving again"
         EventTypes.DEBOARDED -> "🚶" to "Got off"
         EventTypes.LEG_STARTED -> "🧭" to "Next stage started"
+        EventTypes.WAITED -> "⏳" to "Waited"
         EventTypes.LEG_COMPLETED -> "✅" to "Stage completed"
         EventTypes.WELLBEING_ALERT -> "💬" to "Wellbeing update"
         EventTypes.WELLBEING_NUDGE -> "💡" to "Wellbeing suggestion"
@@ -108,7 +109,7 @@ object EventNarrator {
             }
             EventTypes.BOARDED, EventTypes.TRANSIT_HALTED,
             EventTypes.TRANSIT_RESUMED, EventTypes.DEBOARDED,
-            EventTypes.LEG_STARTED,
+            EventTypes.LEG_STARTED, EventTypes.WAITED,
             // These carry a complete sentence including the battery level, and
             // prefixing the label would give "Phone switched off — Phone
             // switched off — battery 74%".

@@ -19,6 +19,8 @@ import com.trippulse.app.data.sync.ConnectivityObserver
 import com.trippulse.app.data.sync.SyncEngine
 import com.trippulse.app.domain.Connectivity
 import com.trippulse.app.domain.StageRepair
+import com.trippulse.app.domain.StageSense
+import com.trippulse.app.data.routing.RoadMatcher
 import com.trippulse.app.domain.EtaEngine
 import com.trippulse.app.domain.EtaMode
 import com.trippulse.app.domain.EventSource
@@ -198,6 +200,22 @@ class TripManager(
         val anchor: MetroAnchor, val station: com.trippulse.app.domain.TransitNetwork.Station, val label: String, val atMs: Long
     )
     private var metroExit: MetroExit? = null
+    /** The fixes of the ride stage under way, for reading where it ended (StageSense); rebuilt from the record after a restart. */
+    private val rideFixes = ArrayList<StageSense.Fix>()
+    private var rideFixesLeg = -1
+    private var lastSenseMs = 0L
+    /** The journey's path so far, as sent to followers with each state (thinned on the way out). */
+    private val trailPoints = ArrayList<DrawnPaths.Point>()
+    private var trailTrip: String? = null
+    private var trailSent: Pair<Int, List<List<Any>>>? = null
+    /** The journey as drawn along its roads once it is over (DrawnPaths), for the final state. */
+    private var drawnCache: Pair<String, List<DrawnPaths.Point>>? = null
+
+    /** A stage Koode just read from the movement, for the traveller to confirm or put right. */
+    data class SensedStage(val tripId: String, val legIndex: Int, val mode: String, val place: String, val endedMode: String, val atMs: Long)
+    private val _sensedStage = kotlinx.coroutines.flow.MutableStateFlow<SensedStage?>(null)
+    val sensedStage: StateFlow<SensedStage?> = _sensedStage
+    fun dismissSensedStage() { _sensedStage.value = null }
     /** When Start was tapped on a journey that had set off earlier, for the changes told soon after. */
     private var lateStartRecordedAtMs: Long? = null
     private var lastEtaCalcMs: Long = 0
@@ -258,9 +276,11 @@ class TripManager(
      * to run again; changes nothing that is already right.
      */
     suspend fun repairStages(tripId: String): Boolean {
+        // Stages the movement says were made but nobody tapped: the ride that
+        // ended at its station, the walk that stood in for the cab, the waits.
+        var changed = runCatching { senseStages(tripId) }.getOrDefault(false)
         val rows = db.legDao().forTrip(tripId)
-        if (rows.size < 2) { runCatching { reconcileDistance(tripId) }; runCatching { relabelFares(tripId) }; return false }
-        var changed = false
+        if (rows.size < 2) { runCatching { reconcileDistance(tripId) }; runCatching { relabelFares(tripId) }; return changed }
         lock.withLock {
             val now = db.legDao().forTrip(tripId)
             val ends = StageRepair.endsWhereNextBegan(now.map { it.toStage() }).associateBy { it.index }
@@ -686,7 +706,12 @@ class TripManager(
         newMode: String,
         details: Map<String, String>,
         breakdown: Boolean,
-        atMs: Long? = null
+        atMs: Long? = null,
+        /** Where the change happened, when it is known better than the last fix: the station a sensed ride ended at. */
+        at: GeoPoint? = null,
+        /** Read from the movement (StageSense), not tapped. */
+        sensed: Boolean = false,
+        text: String? = null
     ): SwitchResult {
         val t = editableTrip() ?: return SwitchResult.NotEditable
         val s0 = state ?: return SwitchResult.NotEditable
@@ -722,7 +747,7 @@ class TripManager(
             val net = TransitData.load(appContext, from)
             net.nearestStation(from, k, LATE_BOARD_M)?.let { net.stations[it].point }
         } else null
-        val here = boarded ?: GeoPoint(fixLat, fixLng)
+        val here = at ?: boarded ?: GeoPoint(fixLat, fixLng)
         val lat = here.lat
         val lng = here.lng
         val hereName = nameForPoint(here, listOfNotNull(current?.mode, newMode).filter { rideKind(it) != null || TransportCatalog.profile(it).key == TransportCatalog.BUS.key })
@@ -778,7 +803,7 @@ class TripManager(
                     ?.takeIf { TransportCatalog.isPrivate(newMode) },
                 plannedDepartureMs = null, startedAtMs = now, completedAtMs = null,
                 bookingRef = details[DetailKeys.PNR], seat = details[DetailKeys.SEAT],
-                boardingPoint = null, detailsJson = LegDetails.toJson(details)
+                boardingPoint = null, detailsJson = LegDetails.toJson(if (sensed) details + (DetailKeys.SENSED to "movement") else details)
             )
         )
         legs = db.legDao().forTrip(t.tripId)
@@ -799,11 +824,12 @@ class TripManager(
         val vehicle = TravelDetails.summary(newMode, details)
         val modeChanged = !newMode.equals(previousMode, ignoreCase = true)
         insertEvent(
-            t.tripId, EventTypes.LEG_STARTED, EventSource.DRIVER_MANUAL, now, lat, lng,
+            t.tripId, EventTypes.LEG_STARTED, if (sensed) EventSource.SYSTEM_INFERRED else EventSource.DRIVER_MANUAL, now, lat, lng,
             buildMap<String, Any?> {
                 put("legIndex", nextIndex); put("mode", newMode)
                 put("vehicle", vehicle); put("breakdown", breakdown)
-                put("text", buildString {
+                if (sensed) put("sensed", true)
+                put("text", text ?: buildString {
                     if (breakdown) append("Vehicle trouble — continuing ")
                     else append("Continuing ")
                     append(profile.travellingSuffix)
@@ -1108,7 +1134,9 @@ class TripManager(
 
         // persist a location sample (throttled by time or distance)
         val movedEnough = lastPersistPoint?.let { Geo.haversineM(it, fix.point) >= 20 } ?: true
+        if (trailTrip != t.tripId) loadTrail(t)
         if (now - lastPersistMs >= 8_000 || movedEnough) {
+            trailPoints += DrawnPaths.Point(now, fix.point.lat, fix.point.lng)
             db.locationDao().insert(
                 LocationSampleEntity(
                     tripId = t.tripId, tMs = now, lat = fix.point.lat, lng = fix.point.lng,
@@ -1157,7 +1185,232 @@ class TripManager(
 
         persistAndPush(t, s)
         state = s
+
+        // A ride on rails or water that the movement says has ended at its
+        // station carries on as its last mile, without a tap.
+        runCatching { senseStage(t, fix, now) }
     }
+
+    // -----------------------------------------------------------------------
+    // Stages read from the movement (StageSense)
+    // -----------------------------------------------------------------------
+
+    /** How often the ride under way is read for its end. */
+    private val SENSE_EVERY_MS = 30_000L
+
+    private fun TripLegEntity.toSense() = StageSense.Leg(
+        legIndex, mode, fromName, GeoPoint(fromLat, fromLng), toName, GeoPoint(toLat, toLng), startedAtMs, completedAtMs
+    )
+
+    /** What a last mile is ridden by where the traveller is, when the journey has not shown its own way. */
+    private fun lastMileDefault(): String = if (market().countryCode == "IN") TransportCatalog.BIKE_TAXI.key else TransportCatalog.CAB.key
+
+    /**
+     * Live: the ride stage under way, read against its fixes every
+     * [SENSE_EVERY_MS]. When the fixes have left the line at a station and
+     * carried on by road, the ride ended there and a new stage begins from
+     * it, told to the traveller to confirm or put right.
+     */
+    private suspend fun senseStage(t: ActiveTripEntity, fix: Fix, now: Long) {
+        val leg = activeLeg()
+        val started = leg?.startedAtMs
+        if (leg == null || started == null || rideKind(leg.mode) == null) {
+            if (rideFixes.isNotEmpty()) { rideFixes.clear(); rideFixesLeg = -1 }
+            return
+        }
+        if (rideFixesLeg != leg.legIndex) {
+            rideFixes.clear(); rideFixesLeg = leg.legIndex
+            db.locationDao().allForTrip(t.tripId).filter { it.tMs >= started }
+                .forEach { rideFixes += StageSense.Fix(it.tMs, it.lat, it.lng, it.speedMps, it.accuracyM) }
+        }
+        rideFixes += StageSense.Fix(now, fix.point.lat, fix.point.lng, fix.speedMps?.toDouble(), fix.accuracyM.toDouble())
+        if (rideFixes.size > 6_000) rideFixes.subList(0, rideFixes.size - 4_000).clear()
+        if (now - lastSenseMs < SENSE_EVERY_MS) return
+        lastSenseMs = now
+        val net = TransitData.current.takeIf { !it.isEmpty } ?: return
+        val ride = StageSense.usualRide(legs.map { it.toSense() }, leg.legIndex, lastMileDefault())
+        val split = StageSense.splits(listOf(leg.toSense().copy(completedAtMs = null)), rideFixes, net, ride).firstOrNull() ?: return
+        if (split.reason != StageSense.Reason.LEFT_LINE) return
+        val text = StageSense.splitText(split, leg.mode)
+        val result = switchModeLocked(split.mode, emptyMap(), false, atMs = split.atMs, at = split.at, sensed = true, text = text)
+        if (result !is SwitchResult.Ok) return
+        split.wait?.let { recordWait(t.tripId, it) }
+        val opened = activeLeg() ?: return
+        _sensedStage.value = SensedStage(t.tripId, opened.legIndex, split.mode, split.placeName, leg.mode, split.atMs)
+        rideFixes.clear(); rideFixesLeg = -1
+    }
+
+    /**
+     * After the fact: every finished stage read against the record, the
+     * splits applied and the waits recorded. Safe to run again: a ride that
+     * now ends at its station, a stage that now reads as the walk it was,
+     * a wait already told, are left as they are.
+     */
+    private suspend fun senseStages(tripId: String): Boolean {
+        val t = db.tripDao().byId(tripId) ?: return false
+        val samples = db.locationDao().allForTrip(tripId)
+        if (samples.size < 4) return false
+        val fixes = samples.map { StageSense.Fix(it.tMs, it.lat, it.lng, it.speedMps, it.accuracyM) }
+        val net = TransitData.load(appContext, GeoPoint(t.destLat, t.destLng))
+        var changed = false
+        lock.withLock {
+            val rows = db.legDao().forTrip(tripId).sortedBy { it.legIndex }
+            val finished = t.completedAtMs != null
+            // A stage still under way is read live (senseStage), never here.
+            val readable = rows.filter { finished || it.completedAtMs != null }.map { it.toSense() }
+            val splits = StageSense.splits(readable, fixes, net, StageSense.usualRide(readable, Int.MAX_VALUE, lastMileDefault()))
+            for (split in splits.sortedByDescending { it.legIndex }) { applySplit(tripId, split); changed = true }
+            // The waits, against the stages as they now stand (a split above moved the ones after it along by one).
+            val shifted = splits.map { sp -> sp.copy(legIndex = sp.legIndex + splits.count { it.reason == StageSense.Reason.LEFT_LINE && it.legIndex < sp.legIndex }) }
+            val standing = db.legDao().forTrip(tripId).sortedBy { it.legIndex }.map { it.toSense() }
+            for (w in StageSense.waits(standing, fixes, shifted)) if (recordWait(tripId, w)) changed = true
+        }
+        return changed
+    }
+
+    /** A split applied to the record: the ride ends at its station and a new stage follows, or the stage reads as the walk it was. */
+    private suspend fun applySplit(tripId: String, split: StageSense.Split) {
+        val rows = db.legDao().forTrip(tripId).sortedBy { it.legIndex }
+        val leg = rows.firstOrNull { it.legIndex == split.legIndex } ?: return
+        val text = StageSense.splitText(split, leg.mode)
+        when (split.reason) {
+            StageSense.Reason.WALKED_INSTEAD -> {
+                db.legDao().upsert(leg.copy(mode = TransportCatalog.WALK.key, detailsJson = sensedDetails(leg.detailsJson)))
+                insertEvent(
+                    tripId, EventTypes.TRAVEL_MODE_CHANGED, EventSource.SYSTEM_INFERRED, split.atMs, split.at.lat, split.at.lng,
+                    mapOf("fromMode" to leg.mode, "toMode" to TransportCatalog.WALK.key, "sensed" to true, "text" to text), false
+                )
+            }
+            StageSense.Reason.LEFT_LINE -> {
+                val shifted = rows.filter { it.legIndex > leg.legIndex }.sortedByDescending { it.legIndex }.map { it.copy(legIndex = it.legIndex + 1) }
+                if (shifted.isNotEmpty()) db.legDao().upsertAll(shifted)
+                db.legDao().upsert(leg.copy(completedAtMs = split.atMs, toName = split.placeName, toLat = split.at.lat, toLng = split.at.lng))
+                db.legDao().upsert(
+                    TripLegEntity(
+                        tripId = tripId, legIndex = leg.legIndex + 1, mode = split.mode,
+                        fromName = split.placeName, fromLat = split.at.lat, fromLng = split.at.lng,
+                        toName = leg.toName, toLat = leg.toLat, toLng = leg.toLng,
+                        fuelType = null, plannedDepartureMs = null, startedAtMs = split.atMs, completedAtMs = leg.completedAtMs,
+                        bookingRef = null, seat = null, boardingPoint = null, detailsJson = sensedDetails(null)
+                    )
+                )
+                insertEvent(
+                    tripId, EventTypes.LEG_STARTED, EventSource.SYSTEM_INFERRED, split.atMs, split.at.lat, split.at.lng,
+                    mapOf("legIndex" to leg.legIndex + 1, "mode" to split.mode, "sensed" to true, "text" to text), false
+                )
+            }
+        }
+    }
+
+    private fun sensedDetails(json: String?, how: String = "movement"): String? =
+        LegDetails.toJson(LegDetails.fromJson(json) + (DetailKeys.SENSED to how))
+
+    /** A wait written to the record once: the timeline, the story and the numbers read it from there. */
+    private suspend fun recordWait(tripId: String, w: StageSense.Wait): Boolean {
+        val told = db.eventDao().allForTrip(tripId).map { EventCodec.toDomain(it) }
+            .any { it.type == EventTypes.WAITED && Math.abs(it.eventTimeMs - w.fromMs) < 2 * 60_000L }
+        if (told) return false
+        insertEvent(
+            tripId, EventTypes.WAITED, EventSource.SYSTEM_INFERRED, w.fromMs, w.at.lat, w.at.lng,
+            buildMap<String, Any?> {
+                put("text", StageSense.waitText(w)); put("untilMs", w.toMs); put("minutes", w.minutes)
+                put("place", w.placeName); put("legIndex", w.legIndex); put("thenWalked", w.thenWalked)
+                w.forMode?.let { put("forMode", it) }
+            }, false
+        )
+        return true
+    }
+
+    /** The traveller putting a sensed stage right: "not a bike taxi, an auto". */
+    suspend fun correctSensedStage(tripId: String, legIndex: Int, mode: String) = lock.withLock {
+        val leg = db.legDao().forTrip(tripId).firstOrNull { it.legIndex == legIndex } ?: return@withLock
+        if (leg.mode.equals(mode, ignoreCase = true)) { _sensedStage.value = null; return@withLock }
+        db.legDao().upsert(leg.copy(mode = mode, detailsJson = sensedDetails(leg.detailsJson, "corrected")))
+        val onFoot = TransportCatalog.profile(mode).key == TransportCatalog.WALK.key
+        insertEvent(
+            tripId, EventTypes.TRAVEL_MODE_CHANGED, EventSource.DRIVER_MANUAL, (leg.startedAtMs ?: System.currentTimeMillis()) + 1_000L, leg.fromLat, leg.fromLng,
+            mapOf(
+                "fromMode" to leg.mode, "toMode" to mode,
+                "text" to "${if (onFoot) "On foot" else "By ${TransportCatalog.label(mode).lowercase()}"} from ${leg.fromName}, not ${TransportCatalog.label(leg.mode).lowercase()}"
+            ), false
+        )
+        val t = trip
+        if (t?.tripId == tripId) {
+            legs = db.legDao().forTrip(tripId)
+            if (t.activeLegIndex == legIndex) {
+                val updated = t.copy(transportMode = mode)
+                db.tripDao().update(updated); trip = updated
+                detector = StopDetector(cfg.forMode(mode))
+                state?.let { persistAndPush(updated, it, force = true) }
+                onSamplingChanged?.invoke()
+            }
+            val latest = trip ?: t
+            if (latest.cloudEnabled) appScope.launch { sync.writeMetaUpdate(latest, metaMap(latest)) }
+        }
+        runCatching { relabelFares(tripId) }
+        _sensedStage.value = null
+    }
+
+    // -----------------------------------------------------------------------
+    // The path as drawn (DrawnPaths)
+    // -----------------------------------------------------------------------
+
+    private suspend fun loadTrail(t: ActiveTripEntity) {
+        trailPoints.clear()
+        db.locationDao().allForTrip(t.tripId).forEach { trailPoints += DrawnPaths.Point(it.tMs, it.lat, it.lng) }
+        trailTrip = t.tripId
+        trailSent = null
+    }
+
+    /** The journey's path so far, thinned for the state: at most a few hundred points that shape it. */
+    private fun trailForState(t: ActiveTripEntity): List<List<Any>>? {
+        if (trailTrip != t.tripId || trailPoints.size < 2) return null
+        trailSent?.takeIf { it.first == trailPoints.size }?.let { return it.second }
+        val out = DrawnPaths.thinned(trailPoints, TRAIL_TOLERANCE_M, TRAIL_MAX_POINTS).map { listOf(round5(it.lat), round5(it.lng), it.tMs) }
+        trailSent = trailPoints.size to out
+        return out
+    }
+
+    private fun round5(v: Double): Double = Math.round(v * 1e5) / 1e5
+
+    /** The journey drawn along its roads, once it is over; null until it has been. */
+    fun drawn(tripId: String): List<DrawnPaths.Point>? =
+        drawnCache?.takeIf { it.first == tripId }?.second
+            ?: DrawnPaths.load(appContext, tripId)?.also { drawnCache = tripId to it }
+
+    /** The drawn journey, drawing it now (the roads asked for) when it has not been. */
+    suspend fun ensureDrawn(tripId: String): List<DrawnPaths.Point>? {
+        drawn(tripId)?.let { return it }
+        val t = db.tripDao().byId(tripId)?.takeIf { it.completedAtMs != null } ?: return null
+        drawJourney(t)
+        return drawn(tripId)
+    }
+
+    /**
+     * The journey drawn along the roads it was driven on (DrawnPaths), kept
+     * on the phone and, for the journey just ended, sent to followers with
+     * the final state so their map shows the road, not the chords.
+     */
+    private suspend fun drawJourney(t: ActiveTripEntity) {
+        val samples = db.locationDao().allForTrip(t.tripId)
+        val rows = db.legDao().forTrip(t.tripId)
+        val drawn = runCatching { DrawnPaths.draw(samples, rows, RoadMatcher()) }.getOrNull() ?: return
+        DrawnPaths.save(appContext, t.tripId, drawn)
+        lock.withLock {
+            drawnCache = t.tripId to drawn
+            val closed = trip?.takeIf { it.tripId == t.tripId } ?: return@withLock
+            val s = state ?: return@withLock
+            if (closed.cloudEnabled) {
+                val snapshot = stateMap(closed, s)
+                appScope.launch { runCatching { sync.pushLiveState(closed, snapshot, force = true) } }
+            }
+        }
+    }
+
+    private val TRAIL_TOLERANCE_M = 15.0
+    private val TRAIL_MAX_POINTS = 500
+    private val DRAWN_TOLERANCE_M = 8.0
+    private val DRAWN_MAX_POINTS = 1_500
 
     /** Periodic tick (~30s) for time-based transitions and heartbeats. */
     /**
@@ -2630,6 +2883,8 @@ class TripManager(
         notifier.cancelClosePrompt()
         notifier.showReviewPrompt(closed.destName, auto)
         onStopTrackingRequested?.invoke()
+        // The journey as drawn along its roads, for the summary, the report and the followers' map.
+        appScope.launch { runCatching { drawJourney(closed) } }
     }
 
     // -----------------------------------------------------------------------
@@ -3367,6 +3622,13 @@ class TripManager(
         }
         s.accuracyM?.let { put("accuracy", it) }
         s.speedKmh?.let { put("speedKmh", it) }
+        // The path so far, thinned, so a follower's map draws the road travelled, not only the places events were logged at;
+        // once the journey is over, the path as drawn along its roads.
+        if (t.status == "COMPLETED") {
+            drawnCache?.takeIf { it.first == t.tripId }?.let { (_, pts) ->
+                put("drawn", DrawnPaths.thinned(pts, DRAWN_TOLERANCE_M, DRAWN_MAX_POINTS).map { listOf(round5(it.lat), round5(it.lng), it.tMs) })
+            }
+        } else trailForState(t)?.let { put("trail", it) }
         s.bearing?.let { put("bearing", it) }
         s.lastLocationAtMs?.let { put("lastLocationAt", it) }
         s.batteryPct?.let { put("battery", it) }

@@ -92,14 +92,19 @@ internal fun lineCollection(points: List<GeoPoint>): FeatureCollection =
 
 /** The trail as one line per stage, walked stretches marked so they draw as dots. */
 internal fun trailCollection(
-    points: List<GeoPoint>, timesMs: List<Long>, stages: List<com.trippulse.app.domain.MapStages.Stage>, fallback: String?
+    points: List<GeoPoint>, timesMs: List<Long>, stages: List<com.trippulse.app.domain.MapStages.Stage>, fallback: String?,
+    road: com.trippulse.app.domain.MapStages.RoadIndex? = null
 ): FeatureCollection {
     val runs = com.trippulse.app.domain.MapStages.runs(timesMs, stages, fallback, points.size)
     if (runs.isEmpty()) return EMPTY_COLLECTION
     return FeatureCollection.fromFeatures(runs.map { r ->
-        // A train, metro or ferry ride follows its line's stations, not the chords between its few fixes.
+        // A train, metro or ferry ride follows its line's stations, not the
+        // chords between its few fixes; a drive follows the planned road
+        // wherever the road explains the fixes, round its bends.
         val stretch = points.subList(r.from, r.to + 1).let { p ->
-            com.trippulse.app.domain.TransitNetwork.kindOf(r.mode)?.let { com.trippulse.app.data.TransitData.current.followLine(p, it) } ?: p
+            com.trippulse.app.domain.TransitNetwork.kindOf(r.mode)?.let { com.trippulse.app.data.TransitData.current.followLine(p, it) }
+                ?: road?.takeIf { com.trippulse.app.domain.MapStages.look(r.mode) == com.trippulse.app.domain.MapStages.ROAD }?.trail(p)
+                ?: p
         }
         Feature.fromGeometry(LineString.fromLngLats(stretch.map { it.toPoint() })).apply {
             addStringProperty("look", com.trippulse.app.domain.MapStages.look(r.mode))

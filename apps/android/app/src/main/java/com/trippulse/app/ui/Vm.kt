@@ -795,6 +795,11 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     /** The path recorded so far, for the map. Refreshed on a gentle cadence. */
     val breadcrumb = MutableStateFlow<List<LocationSampleEntity>>(emptyList())
 
+    /** A stage Koode read from the movement (off the metro at its station, on by bike taxi), for the traveller to confirm or put right. */
+    val sensedStage: StateFlow<TripManager.SensedStage?> = graph.tripManager.sensedStage
+    fun dismissSensedStage() = graph.tripManager.dismissSensedStage()
+    fun correctSensedStage(legIndex: Int, mode: String) = viewModelScope.launch { graph.tripManager.correctSensedStage(tripId, legIndex, mode) }
+
     /** Followers asking to join with only the journey id. */
     var joinRequests = MutableStateFlow<List<Map<String, Any?>>>(emptyList()); private set
 
@@ -1136,7 +1141,8 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         val r = buildReport() ?: return false
         val ev = graph.db.eventDao().allForTrip(tripId)
         val samples = graph.db.locationDao().allForTrip(tripId)
-        val doc = com.trippulse.app.data.export.ReportFactory.journey(graph.appContext, t, ev, samples, r, graph.measures())
+        val drawn = graph.tripManager.drawn(tripId)?.let { com.trippulse.app.data.DrawnPaths.asSamples(tripId, it) }
+        val doc = com.trippulse.app.data.export.ReportFactory.journey(graph.appContext, t, ev, samples, r, graph.measures(), drawn = drawn)
         val file = runCatching { JourneyPdf.write(graph.appContext, doc) }.getOrNull() ?: return false
 
         sendRecipients.value = recipients
@@ -1464,6 +1470,8 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     var events = MutableStateFlow<List<EventEntity>>(emptyList()); private set
     var samples = MutableStateFlow<List<LocationSampleEntity>>(emptyList()); private set
     var legs = MutableStateFlow<List<TripLegEntity>>(emptyList()); private set
+    /** The journey as drawn along its roads (DrawnPaths), for the map; null until it has been drawn. */
+    var drawn = MutableStateFlow<List<LocationSampleEntity>?>(null); private set
 
     val expenses: StateFlow<List<ExpenseEntity>> =
         graph.db.expenseDao().flowForTrip(tripId)
@@ -1620,6 +1628,8 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                         legs.value = fixed
                         recompute(t, ev, samples.value, fixed, graph.db.expenseDao().allForTrip(tripId))
                     }
+                    // The path along its roads: drawn now if the journey ended before Koode drew journeys.
+                    drawn.value = runCatching { graph.tripManager.ensureDrawn(tripId) }.getOrNull()?.let { com.trippulse.app.data.DrawnPaths.asSamples(tripId, it) }
                 }
             } catch (e: Exception) {
                 android.util.Log.e("SummaryVm", "Could not load journey $tripId", e)

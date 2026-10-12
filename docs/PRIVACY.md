@@ -26,6 +26,9 @@ Privacy is a design constraint, not a setting.
 - **No selling or sharing of data.** Nothing is ever shared with third
   parties. Map tiles come from OpenStreetMap and routing from OSRM; those
   requests contain the coordinates being viewed but never your identity.
+  When a journey ends, the stretches made by road are sent to OSRM once
+  more, in pieces, so the map can draw them along the roads they were driven
+  on; the same coordinates, the same absence of identity.
 - **No background tracking.** Location is read **only** during a journey you
   explicitly started, shown by a persistent notification, and stops when the
   journey ends.
