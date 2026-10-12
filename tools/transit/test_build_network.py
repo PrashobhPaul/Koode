@@ -258,7 +258,7 @@ class BuildTest(unittest.TestCase):
         found = t.between((17.4001, 78.5002), (17.4098, 78.5098))
         self.assertIsNotNone(found)
         self.assertAlmostEqual(found[0], b.metres(17.4, 78.5, 17.41, 78.51), delta=60)
-        self.assertEqual(4, len(found[1]))
+        self.assertEqual(3, len(found[1]))  # a's foot, the ways' joint, b's foot
         # And the other way round.
         back = t.between((17.4098, 78.5098), (17.4001, 78.5002))
         self.assertAlmostEqual(back[0], found[0], delta=1)
