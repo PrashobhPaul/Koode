@@ -258,7 +258,8 @@
     CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'cab', len: 50, rear: 46 },
     AUTO: { key: 'auto', len: 40, rear: 38 }, BIKE: { key: 'bike', len: 40, rear: 32 }, BIKE_TAXI: { key: 'bike', len: 40, rear: 32 },
     CYCLE: { key: 'cycle', len: 38, rear: 22 }, BUS: { key: 'bus', len: 78, rear: 54 },
-    METRO: { key: 'metro', len: 96, rear: 60 }, TRAIN: { key: 'train', len: 104, topOnly: true },
+    // The metro's view from behind is a tall picture (three cars receding): its width, and its height as a share of it.
+    METRO: { key: 'metro', len: 104, rear: 44, aspect: 3.08 }, TRAIN: { key: 'train', len: 104, topOnly: true },
     SHIP: { key: 'cruise', len: 100, rear: 66 }, FERRY: { key: 'ship', len: 66, rear: 62 }, WALK: { key: 'walk', upright: 46 }
   };
   var vehicle = null;
@@ -296,7 +297,8 @@
         vehicle.setOffset([0, 0]);
       } else {
         vehicle.setRotationAlignment('viewport').setPitchAlignment('viewport').setRotation(0);
-        vehicle.setOffset([0, -Math.round(v.upright ? v.upright * 0.45 : v.rear * 0.25)]);
+        // Lifted so the vehicle's front sits on its position: a tall picture by its height.
+        vehicle.setOffset([0, -Math.round(v.upright ? v.upright * 0.45 : v.aspect ? v.rear * v.aspect * 0.4 : v.rear * 0.25)]);
       }
       vehicle.setLngLat([state.pos[1], state.pos[0]]);
     } else {
