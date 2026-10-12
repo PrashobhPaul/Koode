@@ -313,7 +313,12 @@ fun JourneyMap(
         }
         motion.lastFixAtMs = arrived
         val glideMs = MapStages.glideMs(motion.fixGapMs).toDouble()
+        // Along the road when the road explains the move; on rails or water,
+        // along the line through its stations, round its bends.
         val road = MapStages.alongRoad(route, from, to)
+            ?: com.trippulse.app.domain.TransitNetwork.kindOf(shownMode)?.let { k ->
+                com.trippulse.app.data.TransitData.current.glidePath(from, to, k)
+            }
         val start = withFrameNanos { it }
         while (true) {
             val now = withFrameNanos { it }

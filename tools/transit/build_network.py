@@ -10,10 +10,13 @@ downloaded when the phone is there) and by the web viewer:
 
   S|lat|lng|name|network|kind   a metro station (kind M) or a water-metro /
                                 ferry terminal (kind W)
-  L|network|line|colour|a b:m c:m ...
+  L|network|line|colour|a b:m:track c:m:track ...
                                 a line as its stations in order, with the
                                 distance in metres along the track (or the
-                                boat's course) from each to the next
+                                boat's course) from each to the next and,
+                                when it was mapped cleanly, the track itself
+                                between them (its bends, as an encoded
+                                polyline; see encode_path)
   T|lat|lng|name                a railway station, for naming where a train
                                 stage began or ended
   R|lat|lng|name|network        a station on a mapped railway line
@@ -186,6 +189,186 @@ def along_track(a, b, segments, kind="M"):
         total += math.hypot(x2 - x1, y2 - y1) * inside / abs(t2 - t1)
     ratio = total / L
     return round(total) if RATIO_MIN <= ratio <= RATIO_MAX.get(kind, 1.5) else round(L * FALLBACK)
+
+
+# Where a hop's track is kept, it is thinned to this: a bend smaller than
+# this is not a bend on a phone's map. Never more points than the cap.
+PATH_TOLERANCE_M, PATH_MAX_POINTS = 12.0, 48
+# Letters an encoded path is written in: never "|", ":" or a space, which
+# the file's rows and cells are split on.
+PATH_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+
+
+def encode_path(points):
+    """
+    A polyline as text: each point's change from the one before, in units
+    of 1e-5 degrees, zigzag-encoded, five bits at a time with a sixth bit
+    for "more to come" (Google's scheme), in [PATH_ALPHABET].
+    """
+    out, last = [], (0, 0)
+    for lat, lon in points:
+        cur = (round(lat * 1e5), round(lon * 1e5))
+        for d in (cur[0] - last[0], cur[1] - last[1]):
+            v = (d << 1) ^ (d >> 63) if d < 0 else d << 1
+            while True:
+                chunk, v = v & 0x1F, v >> 5
+                out.append(PATH_ALPHABET[chunk | (0x20 if v else 0)])
+                if not v:
+                    break
+        last = cur
+    return "".join(out)
+
+
+def decode_path(text):
+    """The inverse of [encode_path]: (lat, lon) points."""
+    points, lat, lon, i = [], 0, 0, 0
+    while i < len(text):
+        vals = []
+        for _ in range(2):
+            v, shift = 0, 0
+            while True:
+                c = PATH_ALPHABET.index(text[i]); i += 1
+                v |= (c & 0x1F) << shift
+                shift += 5
+                if not c & 0x20:
+                    break
+            vals.append((v >> 1) ^ -(v & 1))
+        lat += vals[0]; lon += vals[1]
+        points.append((lat / 1e5, lon / 1e5))
+    return points
+
+
+def simplify(points, tolerance):
+    """Douglas-Peucker, in metres."""
+    if len(points) <= 2:
+        return points
+    lat0 = points[0][0]
+    kx, ky = math.cos(math.radians(lat0)) * 111320.0, 110540.0
+    xy = [((lo - points[0][1]) * kx, (la - lat0) * ky) for la, lo in points]
+
+    def far(i, a, b):
+        (x1, y1), (x2, y2), (x, y) = xy[a], xy[b], xy[i]
+        dx, dy = x2 - x1, y2 - y1
+        if dx == dy == 0:
+            return math.hypot(x - x1, y - y1)
+        t = max(0.0, min(1.0, ((x - x1) * dx + (y - y1) * dy) / (dx * dx + dy * dy)))
+        return math.hypot(x - x1 - t * dx, y - y1 - t * dy)
+
+    keep = [False] * len(points)
+    keep[0] = keep[-1] = True
+    stack = [(0, len(points) - 1)]
+    while stack:
+        a, b = stack.pop()
+        if b - a < 2:
+            continue
+        i, d = max(((i, far(i, a, b)) for i in range(a + 1, b)), key=lambda t: t[1])
+        if d > tolerance:
+            keep[i] = True
+            stack += [(a, i), (i, b)]
+    return [p for p, k in zip(points, keep) if k]
+
+
+class Track:
+    """
+    A route's track as pieces of ordered points: its ways joined end to
+    end in the order given (each way turned to meet the one before), a
+    new piece wherever they do not meet. A stop is placed on the track
+    by the nearest point of a piece.
+    """
+    JOIN_M, NEAR_M = 60.0, 300.0
+
+    def __init__(self, members):
+        self.pieces = []
+        cur, first = [], False
+        for m in members:
+            if m.get("type") != "way" or m.get("role", "") != "" or not m.get("geometry"):
+                continue
+            g = [(p["lat"], p["lon"]) for p in m["geometry"] if p]
+            if len(g) < 2:
+                continue
+            if cur:
+                end = cur[-1]
+                d0, d1 = metres(*end, *g[0]), metres(*end, *g[-1])
+                if min(d0, d1) > self.JOIN_M and first:
+                    # The first way had nothing before it to meet: it may be
+                    # the wrong way round, its start meeting this one.
+                    head = cur[0]
+                    e0, e1 = metres(*head, *g[0]), metres(*head, *g[-1])
+                    if min(e0, e1) <= self.JOIN_M:
+                        cur = cur[::-1]
+                        d0, d1 = e0, e1
+                if min(d0, d1) > self.JOIN_M:
+                    self.pieces.append(cur); cur = []
+                elif d1 < d0:
+                    g = g[::-1]
+            first = not cur
+            cur += g[1:] if cur and metres(*cur[-1], *g[0]) < 1 else g
+        if cur:
+            self.pieces.append(cur)
+        self.cum = []
+        for pts in self.pieces:
+            c = [0.0]
+            for i in range(1, len(pts)):
+                c.append(c[-1] + metres(*pts[i - 1], *pts[i]))
+            self.cum.append(c)
+
+    def place(self, p):
+        """(piece, along-metres, off-track metres) of the nearest point to p, or None."""
+        best = None
+        for k, pts in enumerate(self.pieces):
+            if not any(abs(la - p[0]) < 0.004 and abs(lo - p[1]) < 0.005 for la, lo in pts[::max(1, len(pts) // 50)] + [pts[-1]]):
+                if min(metres(*p, *q) for q in pts[::max(1, len(pts) // 20)] + [pts[-1]]) > 2500:
+                    continue
+            lat0 = p[0]
+            kx, ky = math.cos(math.radians(lat0)) * 111320.0, 110540.0
+            for i in range(len(pts) - 1):
+                x1, y1 = (pts[i][1] - p[1]) * kx, (pts[i][0] - lat0) * ky
+                x2, y2 = (pts[i + 1][1] - p[1]) * kx, (pts[i + 1][0] - lat0) * ky
+                dx, dy = x2 - x1, y2 - y1
+                L2 = dx * dx + dy * dy
+                t = 0.0 if L2 == 0 else max(0.0, min(1.0, -(x1 * dx + y1 * dy) / L2))
+                off = math.hypot(x1 + t * dx, y1 + t * dy)
+                if best is None or off < best[2]:
+                    best = (k, self.cum[k][i] + t * math.sqrt(L2), off)
+        return best if best and best[2] <= self.NEAR_M else None
+
+    def between(self, a, b):
+        """(metres, points) along the track from stop a to stop b, or None."""
+        pa, pb = self.place(a), self.place(b)
+        if not pa or not pb or pa[0] != pb[0]:
+            return None
+        k, ta, tb = pa[0], pa[1], pb[1]
+        pts, cum = self.pieces[k], self.cum[k]
+        lo, hi = min(ta, tb), max(ta, tb)
+        if hi - lo < 1:
+            return None
+        inner = [pts[i] for i in range(len(pts)) if lo < cum[i] < hi]
+        path = [a] + inner + [b]
+        if ta > tb:
+            path = [a] + inner[::-1] + [b]
+        return hi - lo, path
+
+
+def hop(track, a, b, segments, kind):
+    """
+    (metres, encoded track) from stop a to stop b: along the track when it
+    runs cleanly between them (never shorter than the straight line, never
+    absurdly longer), else the corridor estimate and no track drawn.
+    """
+    straight = metres(*a, *b)
+    found = track.between(a, b) if track else None
+    if found and straight >= 50:
+        m, path = found
+        ratio = m / straight
+        # A hair under the straight line is the rounding of a straight track.
+        if 0.98 <= ratio <= RATIO_MAX.get(kind, 1.5):
+            tol = PATH_TOLERANCE_M
+            thin = simplify(path, tol)
+            while len(thin) > PATH_MAX_POINTS:
+                tol *= 2
+                thin = simplify(path, tol)
+            return round(max(m, straight)), encode_path(thin[1:-1])
+    return along_track(a, b, segments, kind), ""
 
 
 def name_of(tags):
@@ -410,6 +593,7 @@ def build_network(routes, stops, station_kind="M", rail=None, cc=""):
         picked = [m for m in members if m.get("role", "").startswith("stop")]
         if len(picked) < 2:
             picked = [m for m in members if m.get("role", "").startswith("platform")]
+        track = Track(members)
         seq, prev = [], None
         for m in picked:
             c = centre(m)
@@ -422,7 +606,7 @@ def build_network(routes, stops, station_kind="M", rail=None, cc=""):
             here = (c[0], c[1])
             if seq and stop_at[ref] == seq[-1][0]:
                 continue
-            seq.append((stop_at[ref], 0 if prev is None else along_track(prev, here, segments, kind)))
+            seq.append((stop_at[ref], 0, "") if prev is None else (stop_at[ref],) + hop(track, prev, here, segments, kind))
             prev = here
         if len(seq) >= 2:
             line = re.sub(r"\s*[(:].*$", "", title).strip() or t.get("ref", "") or network
@@ -495,12 +679,13 @@ def build_network(routes, stops, station_kind="M", rail=None, cc=""):
     out_lines = []
     for network, name, colour, kind, seq, klass in sorted(lines, key=lambda l: (l[3], l[0], l[1], l[4][0][0])):
         cells, last, carry = [], None, 0
-        for stop, m in seq:
+        for stop, m, path in seq:
             s = station_of[stop]
             if s == last:
                 carry += m
                 continue
-            cells.append(str(s) if last is None else f"{s}:{m + carry}")
+            # A hop merged from two (both stops one station) keeps no track.
+            cells.append(str(s) if last is None else f"{s}:{m + carry}" + (f":{path}" if path and not carry else ""))
             last, carry = s, 0
         if len(cells) >= 2:
             if kind == "R":

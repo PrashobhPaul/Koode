@@ -919,9 +919,26 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
     /** Why a one-tap change of stage did not happen, shown under the chips; null when it did. */
     val stageMessage = MutableStateFlow<String?>(null)
 
+    /**
+     * A change of vehicle that tells of one already made (Start tapped after
+     * setting off, then the change): the time it asks for before it is made.
+     */
+    data class PendingSwitch(val mode: String, val details: Map<String, String>, val breakdown: Boolean, val suggestedAtMs: Long)
+    val askSwitchTime = MutableStateFlow<PendingSwitch?>(null)
+
+    /** The traveller has said when: the change, at that time (or now). */
+    fun switchAt(p: PendingSwitch, atMs: Long?) {
+        askSwitchTime.value = null
+        if (p.details.isEmpty() && !p.breakdown) quickSwitch(p.mode, atMs ?: System.currentTimeMillis())
+        else switchMode(p.mode, p.details, p.breakdown, atMs ?: System.currentTimeMillis())
+    }
+
     /** A change of stage from the journey screen: no details, from wherever the traveller is. */
-    fun quickSwitch(mode: String) = viewModelScope.launch {
-        stageMessage.value = when (graph.tripManager.switchMode(mode, emptyMap())) {
+    fun quickSwitch(mode: String, atMs: Long? = null) = viewModelScope.launch {
+        if (atMs == null) graph.tripManager.lateSwitchSuggestion(mode)?.let {
+            askSwitchTime.value = PendingSwitch(mode, emptyMap(), false, it); return@launch
+        }
+        stageMessage.value = when (graph.tripManager.switchMode(mode, emptyMap(), atMs = atMs)) {
             is TripManager.SwitchResult.Ok -> null
             is TripManager.SwitchResult.NotEditable -> "This journey is closed and can no longer be changed."
             is TripManager.SwitchResult.NoLocationYet -> "Still finding where you are. Try again in a moment."
@@ -938,12 +955,15 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
      * you now", because both of those are questions the app should be
      * embarrassed to ask someone standing on a platform.
      */
-    fun switchMode(mode: String, details: Map<String, String>, breakdown: Boolean = false) =
+    fun switchMode(mode: String, details: Map<String, String>, breakdown: Boolean = false, atMs: Long? = null) =
         viewModelScope.launch {
             if (editBusy.value) return@launch
+            if (atMs == null) graph.tripManager.lateSwitchSuggestion(mode)?.let {
+                askSwitchTime.value = PendingSwitch(mode, details, breakdown, it); return@launch
+            }
             editBusy.value = true
             try {
-                editMessage.value = when (val r = graph.tripManager.switchMode(mode, details, breakdown)) {
+                editMessage.value = when (val r = graph.tripManager.switchMode(mode, details, breakdown, atMs)) {
                     is TripManager.SwitchResult.Ok ->
                         "Updated — everyone following you can see it."
                     is TripManager.SwitchResult.NotEditable ->

@@ -192,10 +192,10 @@
   }
   function pathLen(path) { var s = 0; for (var i = 1; i < path.length; i++) s += distM(path[i - 1], path[i]); return s; }
   /** The road between [from] and [to] when the road explains the move; null otherwise. */
-  function alongRoad(road, from, to) {
+  function alongRoad(road, from, to, snapM) {
     if (!road || road.length < 2) return null;
-    var a = snapTo(road, from), b = snapTo(road, to);
-    if (!a || !b || a.d > 60 || b.d > 60) return null;
+    var a = snapTo(road, from), b = snapTo(road, to), near = snapM || 60;
+    if (!a || !b || a.d > near || b.d > near) return null;
     if (b.seg < a.seg || (b.seg === a.seg && b.t < a.t)) return null;
     var path = [a.q];
     for (var i = a.seg + 1; i <= b.seg; i++) path.push(road[i]);
@@ -258,7 +258,8 @@
     CAR: { key: 'car', len: 50, rear: 46 }, CAB: { key: 'cab', len: 50, rear: 46 },
     AUTO: { key: 'auto', len: 40, rear: 38 }, BIKE: { key: 'bike', len: 40, rear: 32 }, BIKE_TAXI: { key: 'bike', len: 40, rear: 32 },
     CYCLE: { key: 'cycle', len: 38, rear: 22 }, BUS: { key: 'bus', len: 78, rear: 54 },
-    METRO: { key: 'metro', len: 96, topOnly: true }, TRAIN: { key: 'train', len: 104, topOnly: true },
+    // The metro's view from behind is a tall picture (three cars receding): its width, and its height as a share of it.
+    METRO: { key: 'metro', len: 104, rear: 44, aspect: 3.08 }, TRAIN: { key: 'train', len: 104, topOnly: true },
     SHIP: { key: 'cruise', len: 100, rear: 66 }, FERRY: { key: 'ship', len: 66, rear: 62 }, WALK: { key: 'walk', upright: 46 }
   };
   var vehicle = null;
@@ -296,7 +297,8 @@
         vehicle.setOffset([0, 0]);
       } else {
         vehicle.setRotationAlignment('viewport').setPitchAlignment('viewport').setRotation(0);
-        vehicle.setOffset([0, -Math.round(v.upright ? v.upright * 0.45 : v.rear * 0.25)]);
+        // Lifted so the vehicle's front sits on its position: a tall picture by its height.
+        vehicle.setOffset([0, -Math.round(v.upright ? v.upright * 0.45 : v.aspect ? v.rear * v.aspect * 0.4 : v.rear * 0.25)]);
       }
       vehicle.setLngLat([state.pos[1], state.pos[0]]);
     } else {
@@ -443,7 +445,7 @@
       function cellsOf(field, map) {
         return field.trim().split(' ').map(function (c) {
           var parts = c.split(':'), i = parseInt(parts[0], 10);
-          return [i in map ? map[i] : -1, parseFloat(parts[1])];
+          return [i in map ? map[i] : -1, parseFloat(parts[1]), parts[2] ? decodePath(parts[2]) : []];
         });
       }
       text.split('\n').forEach(function (raw) {
@@ -470,20 +472,20 @@
         }
       });
     });
-    var adj = stations.map(function () { return {}; });
-    function link(a, b, m) {
+    var adj = stations.map(function () { return {}; }), paths = {};
+    function link(a, b, m, path) {
       if (a === b || a < 0 || b < 0) return;
-      if (adj[a][b] === undefined || m < adj[a][b]) adj[a][b] = m;
+      if (adj[a][b] === undefined || m < adj[a][b]) { adj[a][b] = m; if (path && path.length) paths[a + '>' + b] = path; }
     }
     lines.forEach(function (cells) {
       var last = -1;
       cells.forEach(function (c) {
-        var st = c[0], m = c[1];
+        var st = c[0], m = c[1], path = c[2] || [];
         if (st < 0) { last = -1; return; }
         if (last >= 0 && isFinite(m)) {
           // Never less than the straight line between the two stations.
           var hop = Math.max(m, distM(stations[last], stations[st]));
-          link(last, st, hop); if (adj[st][last] === undefined) link(st, last, hop);
+          link(last, st, hop, path); if (adj[st][last] === undefined) link(st, last, hop, path.slice().reverse());
         }
         last = st;
       });
@@ -502,7 +504,44 @@
     }
     transit.stations = stations;
     transit.adj = adj;
+    transit.paths = paths;
     return stations.length;
+  }
+  /** The mapped bends of the line from station a to b, either way round, or none. */
+  function between(a, b) {
+    var p = transit.paths[a + '>' + b];
+    if (p) return p;
+    p = transit.paths[b + '>' + a];
+    return p ? p.slice().reverse() : [];
+  }
+  /** The track through stations (numbers, in order): each station and the bends between. */
+  function track(path) {
+    var out = [];
+    path.forEach(function (s, i) {
+      if (i > 0) out = out.concat(between(path[i - 1], s));
+      out.push([transit.stations[s][0], transit.stations[s][1]]);
+    });
+    return out;
+  }
+  var PATH_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  /** A track as the data files write it: deltas in 1e-5 degrees, five bits a letter plus a "more" bit, zigzag-signed. */
+  function decodePath(text) {
+    var out = [], lat = 0, lng = 0, i = 0;
+    while (i < text.length) {
+      var v = [0, 0];
+      for (var k = 0; k < 2; k++) {
+        var acc = 0, shift = 0, c;
+        do {
+          c = PATH_ALPHABET.indexOf(text.charAt(i++));
+          if (c < 0) return out;
+          acc += (c & 0x1f) * Math.pow(2, shift); shift += 5;
+        } while (c & 0x20);
+        v[k] = (acc % 2) ? -(acc + 1) / 2 : acc / 2;
+      }
+      lat += v[0]; lng += v[1];
+      out.push([lat / 1e5, lng / 1e5]);
+    }
+    return out;
   }
   /** Fetches, once, the country file covering point p (and the index that says which). */
   function loadTransitFor(p) {
@@ -571,9 +610,40 @@
     if (s < 0 || e < 0 || s === e) return points;
     var path = rideStations(s, e);
     if (!path) return points;
-    return [points[0]].concat(path.map(function (i) { return [transit.stations[i][0], transit.stations[i][1]]; }), [points[points.length - 1]]);
+    return [points[0]].concat(track(path), [points[points.length - 1]]);
   }
   var RIDE_KIND = { METRO: 'M', FERRY: 'W', SHIP: 'W', TRAIN: 'R' };
+  var GLIDE_SEARCH_M = 2000, GLIDE_SNAP_M = 150;
+  /**
+   * The track a train or boat moved along between two fixes, for the glide
+   * to follow round its bends (a port of TransitNetwork.glidePath): the line
+   * through the stations nearest each, a station's worth either side. Null
+   * when the track does not explain the move.
+   */
+  function railGlide(from, to, mode) {
+    var kind = RIDE_KIND[mode];
+    if (!kind || !transit.stations.length) return null;
+    var s = nearestStation(from, kind, GLIDE_SEARCH_M), e = nearestStation(to, kind, GLIDE_SEARCH_M);
+    if (s < 0 || e < 0) return null;
+    var core = s === e ? [s] : rideStations(s, e);
+    if (!core) return null;
+    function beyond(at, notVia, p) {
+      var best = -1, bestD = Infinity;
+      Object.keys(transit.adj[at]).forEach(function (k) {
+        var n = parseInt(k, 10);
+        if (n === notVia || transit.stations[n][3] !== kind) return;
+        var sn = snapTo(track([at, n]), p);
+        if (sn && sn.d < bestD) { bestD = sn.d; best = n; }
+      });
+      return best;
+    }
+    var path = core.slice();
+    var before = beyond(core[0], core.length > 1 ? core[1] : -1, from);
+    if (before >= 0) path.unshift(before);
+    var after = beyond(core[core.length - 1], core.length > 1 ? core[core.length - 2] : -1, to);
+    if (after >= 0) path.push(after);
+    return alongRoad(track(path), from, to, GLIDE_SNAP_M);
+  }
 
   /** The trail cut into one line per stage, neighbours sharing their joining point. */
   function trailFeatures(trail, times, stages, fallback) {
@@ -714,7 +784,9 @@
     }
     var glideMs = Math.max(GLIDE_MIN_MS, Math.min(GLIDE_MAX_MS, state.fixGap || GLIDE_MIN_MS));
     // Round the road's bends when the road explains the move (the phone sends the next 2 km).
-    var road = alongRoad(opts.road, from, to);
+    // Along the road when it explains the move; on rails or water, along the line.
+    if (RIDE_KIND[mode]) loadTransitFor(to);
+    var road = alongRoad(opts.road, from, to) || railGlide(from, to, mode);
     var start = null;
     function step(ts) {
       if (start === null) start = ts;
@@ -744,7 +816,7 @@
     /** Road geometry, for parity checks against MapStages. */
     _alongRoad: alongRoad, _pointAlong: pointAlong,
     /** Metro geometry, for checks against TransitNetwork. */
-    _transit: { parse: function (texts) { return parseTransit(texts); }, followLine: function (p, kind) { return followLine(p, kind || 'M'); } },
+    _transit: { parse: function (texts) { return parseTransit(texts); }, followLine: function (p, kind) { return followLine(p, kind || 'M'); }, glide: railGlide },
     /** The trail's stretches as last drawn, for checks: [look, points] per stretch. */
     _trail: function () { return lastTrail.features.map(function (f) { return [f.properties.look, f.geometry.coordinates.length]; }); },
     MODES: {

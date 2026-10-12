@@ -118,6 +118,40 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
     val breadcrumb by vm.breadcrumb.collectAsStateWithLifecycle()
     val routeAhead by vm.routeAhead.collectAsStateWithLifecycle()
     val stageMessage by vm.stageMessage.collectAsStateWithLifecycle()
+    // A change of vehicle told after a late Start: when it really happened.
+    val askSwitchTime by vm.askSwitchTime.collectAsStateWithLifecycle()
+    askSwitchTime?.let { p ->
+        val cal = remember(p) { java.util.Calendar.getInstance().apply { timeInMillis = p.suggestedAtMs } }
+        val pick = rememberTimePickerState(
+            initialHour = cal.get(java.util.Calendar.HOUR_OF_DAY), initialMinute = cal.get(java.util.Calendar.MINUTE), is24Hour = false
+        )
+        AlertDialog(
+            onDismissRequest = { vm.askSwitchTime.value = null },
+            title = { Text("When did you get on the ${com.trippulse.app.ui.Names.mode(p.mode).lowercase()}?") },
+            text = {
+                Column {
+                    Text(
+                        "Koode was started after you set off, so this change may have happened a while ago. The stage before it ends then.",
+                        color = com.trippulse.app.ui.theme.KoodeTheme.colors.textMid
+                    )
+                    Spacer(Modifier.height(Spacing.md))
+                    TimeInput(state = pick)
+                }
+            },
+            confirmButton = {
+                TextButton({
+                    val c = java.util.Calendar.getInstance()
+                    c.set(java.util.Calendar.HOUR_OF_DAY, pick.hour)
+                    c.set(java.util.Calendar.MINUTE, pick.minute)
+                    c.set(java.util.Calendar.SECOND, 0)
+                    c.set(java.util.Calendar.MILLISECOND, 0)
+                    if (c.timeInMillis > System.currentTimeMillis()) c.add(java.util.Calendar.DAY_OF_YEAR, -1)
+                    vm.switchAt(p, c.timeInMillis)
+                }) { Text(stringResource(R.string.t_use_this_time_70a50)) }
+            },
+            dismissButton = { TextButton({ vm.switchAt(p, null) }) { Text("Just now") } }
+        )
+    }
     val requests by vm.joinRequests.collectAsStateWithLifecycle()
     val plan by vm.plan.collectAsStateWithLifecycle()
     val expenseRows by vm.expenses.collectAsStateWithLifecycle()

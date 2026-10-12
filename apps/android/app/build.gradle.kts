@@ -48,8 +48,8 @@ android {
         applicationId = "app.koode"
         minSdk = 26
         targetSdk = 35
-        versionCode = 60
-        versionName = "6.32.2"
+        versionCode = 61
+        versionName = "6.33.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 

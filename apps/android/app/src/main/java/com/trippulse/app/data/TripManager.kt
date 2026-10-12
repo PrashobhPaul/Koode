@@ -198,6 +198,8 @@ class TripManager(
         val anchor: MetroAnchor, val station: com.trippulse.app.domain.TransitNetwork.Station, val label: String, val atMs: Long
     )
     private var metroExit: MetroExit? = null
+    /** When Start was tapped on a journey that had set off earlier, for the changes told soon after. */
+    private var lateStartRecordedAtMs: Long? = null
     private var lastEtaCalcMs: Long = 0
     private var batteryLowFired = false
     private var arrivalPromptShown = false
@@ -418,6 +420,12 @@ class TripManager(
         private const val NEAR_PLACE_M = 500.0
         /** A saved place this close is named over a station: "Home" is right by the metro. */
         private const val SAVED_BEATS_STATION_M = 150.0
+        /** A change of vehicle this soon after a late Start tells of one already made. */
+        private const val LATE_SWITCH_WINDOW_MS = 10 * 60_000L
+        /** A ride told after the fact began at a station this near where the stage before set off. */
+        private const val LATE_BOARD_M = 3_000.0
+        /** The pace of the road stage to that station, for the time to suggest. */
+        private const val LATE_CITY_KMH = 18.0
         /** Moving about within this many arrival radii of the destination is still being there. */
         private const val STILL_THERE_FACTOR = 1.5
         /** A fix rougher than this cannot say which station a train is at. */
@@ -570,6 +578,7 @@ class TripManager(
         val t = db.tripDao().byId(tripId) ?: return@withLock
         val recordedAt = System.currentTimeMillis()
         val now = actualStartMs ?: recordedAt
+        lateStartRecordedAtMs = if (actualStartMs != null) recordedAt else null
         val started = t.copy(status = "ACTIVE", startedAtMs = now)
         db.tripDao().update(started)
         trip = started
@@ -640,23 +649,53 @@ class TripManager(
     suspend fun switchMode(
         newMode: String,
         details: Map<String, String> = emptyMap(),
-        breakdown: Boolean = false
-    ): SwitchResult = lock.withLock { switchModeLocked(newMode, details, breakdown) }
+        breakdown: Boolean = false,
+        /** When the change happened, if not now: a late start tells of a ride already begun. */
+        atMs: Long? = null
+    ): SwitchResult = lock.withLock { switchModeLocked(newMode, details, breakdown, atMs) }
+
+    /**
+     * A journey started late (Start tapped well after setting off) and a
+     * change of vehicle tapped soon after describe what already happened,
+     * not what is happening now: the ride being switched to began a while
+     * ago. The time to suggest for it, or null when the switch is not of
+     * that kind. To a ride on rails or water, the suggestion is the time
+     * to its first station from where the journey set off, at a city pace
+     * by road; otherwise half-way between the start and now.
+     */
+    fun lateSwitchSuggestion(newMode: String): Long? {
+        val t = trip ?: return null
+        val recorded = lateStartRecordedAtMs ?: return null
+        val now = System.currentTimeMillis()
+        if (now - recorded > LATE_SWITCH_WINDOW_MS) return null
+        val started = t.startedAtMs ?: return null
+        if (legs.count { it.startedAtMs != null } > 1) return null
+        val current = activeLeg()
+        val from = GeoPoint(current?.fromLat ?: t.originLat, current?.fromLng ?: t.originLng)
+        val station = rideKind(newMode)?.let { k ->
+            val net = TransitData.load(appContext, from)
+            net.nearestStation(from, k, LATE_BOARD_M)?.let { net.stations[it] }
+        }
+        val legMs = station?.let { (Geo.haversineM(from, it.point) * cfg.roadDistanceFactor / (LATE_CITY_KMH / 3.6) * 1000).toLong() }
+            ?: (now - started) / 2
+        return (started + legMs).coerceIn(started, now)
+    }
 
     /** [switchMode] with the lock already held. */
     private suspend fun switchModeLocked(
         newMode: String,
         details: Map<String, String>,
-        breakdown: Boolean
+        breakdown: Boolean,
+        atMs: Long? = null
     ): SwitchResult {
         val t = editableTrip() ?: return SwitchResult.NotEditable
         val s0 = state ?: return SwitchResult.NotEditable
 
         // Without a fix there is no honest place to end the current stage, and
         // inventing one would put a line on the map that nobody travelled.
-        val lat = s0.lat
-        val lng = s0.lng
-        if (lat == null || lng == null) return SwitchResult.NoLocationYet
+        val fixLat = s0.lat
+        val fixLng = s0.lng
+        if (fixLat == null || fixLng == null) return SwitchResult.NoLocationYet
 
         val current = activeLeg()
         val previousMode = current?.mode ?: t.transportMode
@@ -672,8 +711,20 @@ class TripManager(
             )
         }
 
-        val now = System.currentTimeMillis()
-        val here = GeoPoint(lat, lng)
+        val recordedAt = System.currentTimeMillis()
+        // A change told after the fact (see lateSwitchSuggestion) happened
+        // when the traveller says, and a ride on rails or water began at the
+        // station nearest where the stage before it set off, not here.
+        val backdated = atMs != null && atMs < recordedAt - 60_000L && (current?.startedAtMs ?: 0L) <= atMs
+        val now = if (backdated && atMs != null) atMs else recordedAt
+        val boarded = if (backdated) rideKind(newMode)?.let { k ->
+            val from = GeoPoint(current?.fromLat ?: t.originLat, current?.fromLng ?: t.originLng)
+            val net = TransitData.load(appContext, from)
+            net.nearestStation(from, k, LATE_BOARD_M)?.let { net.stations[it].point }
+        } else null
+        val here = boarded ?: GeoPoint(fixLat, fixLng)
+        val lat = here.lat
+        val lng = here.lng
         val hereName = nameForPoint(here, listOfNotNull(current?.mode, newMode).filter { rideKind(it) != null || TransportCatalog.profile(it).key == TransportCatalog.BUS.key })
 
         // A metro ride that ends here is counted to this station at least.
@@ -763,7 +814,7 @@ class TripManager(
             }, false
         )
 
-        var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = arrived && s0.arrivalPromptDue, updatedAtMs = now,
+        var s = s0.copy(legIndex = nextIndex, arrivalPromptDue = arrived && s0.arrivalPromptDue, updatedAtMs = recordedAt,
             distanceCoveredM = coveredNow, progressPct = progress(coveredNow, s0.distanceRemainingM))
         rideKind(newMode)?.let { kind ->
             val net = TransitData.load(appContext, here)
@@ -773,7 +824,7 @@ class TripManager(
             // A new mode is a revision of the plan, and the coach re-reads it
             // at once: car → train ends driving-break guidance immediately.
             revisePlan(updated, s, now, mode = newMode, role = WellbeingCoach.defaultRole(newMode).name)
-            coachTick(updated, s, now)
+            coachTick(updated, s, recordedAt)
         }
         // Movement is judged at the new stage's pace: walking is going somewhere.
         detector = StopDetector(cfg.forMode(newMode))

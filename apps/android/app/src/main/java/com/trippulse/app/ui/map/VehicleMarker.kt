@@ -51,7 +51,7 @@ internal object VehicleMarker {
     private val BIKE = Views("bike", R.drawable.map_bike_top, R.drawable.map_bike_rear, 40f, 32f)
     private val CYCLE = Views("cycle", R.drawable.map_cycle_top, R.drawable.map_cycle_rear, 38f, 22f)
     private val BUS = Views("bus", R.drawable.map_bus_top, R.drawable.map_bus_rear, 78f, 54f)
-    private val METRO = Views("metro", R.drawable.map_metro_top, null, 96f, 0f)
+    private val METRO = Views("metro", R.drawable.map_metro_top, R.drawable.map_metro_rear, 104f, 44f)
     private val TRAIN = Views("train", R.drawable.map_train_top, null, 104f, 0f)
     private val FERRY = Views("ship", R.drawable.map_ship_top, R.drawable.map_ship_rear, 66f, 62f)
     private val CRUISE = Views("cruise", R.drawable.map_cruise_top, R.drawable.map_cruise_rear, 100f, 66f)
@@ -131,7 +131,7 @@ internal object VehicleMarker {
     /**
      * Which view to show: from behind only while the camera is tilted and
      * looking the same way the vehicle is heading; top-down otherwise. The
-     * metro and the train are only ever seen from above. A walker always
+     * train is only ever seen from above. A walker always
      * stands: from behind when heading up the screen, from the front when
      * heading down it.
      */

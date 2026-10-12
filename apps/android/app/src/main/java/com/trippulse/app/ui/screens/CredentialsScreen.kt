@@ -122,7 +122,14 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
         LateStartDialog(
             originName = t?.originName ?: "the start",
             kmAway = t?.let { com.trippulse.app.core.Geo.haversineM(com.trippulse.app.domain.GeoPoint(it.originLat, it.originLng), here) / 1000.0 } ?: 0.0,
-            onStartedAgo = { minutes -> lateStartHere = null; beginTrip(System.currentTimeMillis() - minutes * 60_000L, here) },
+            // When the journey was set up (or planned to leave): most often
+            // the moment of leaving, with Start forgotten until later.
+            setUpAtMs = t?.let { tr ->
+                val nowMs = System.currentTimeMillis()
+                val planned = tr.plannedDepartureMs?.takeIf { it < nowMs - 60_000L && it > tr.createdAtMs - 6 * 3600_000L }
+                (planned ?: tr.createdAtMs).takeIf { nowMs - it > 5 * 60_000L }
+            },
+            onStartedAt = { ms -> lateStartHere = null; beginTrip(ms, here) },
             onStartingNow = { lateStartHere = null; beginTrip() },
             onDismiss = { lateStartHere = null }
         )
@@ -345,16 +352,44 @@ private suspend fun currentFix(context: android.content.Context): com.trippulse.
         } catch (_: Exception) { null }
     }
 
-@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+@OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class, androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 private fun LateStartDialog(
     originName: String,
     kmAway: Double,
-    onStartedAgo: (Int) -> Unit,
+    setUpAtMs: Long?,
+    onStartedAt: (Long) -> Unit,
     onStartingNow: () -> Unit,
     onDismiss: () -> Unit
 ) {
     val colors = com.trippulse.app.ui.theme.KoodeTheme.colors
+    var picking by remember { mutableStateOf(false) }
+    val clock = java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT)
+    if (picking) {
+        val cal = remember { java.util.Calendar.getInstance().apply { timeInMillis = setUpAtMs ?: System.currentTimeMillis() } }
+        val pick = androidx.compose.material3.rememberTimePickerState(
+            initialHour = cal.get(java.util.Calendar.HOUR_OF_DAY), initialMinute = cal.get(java.util.Calendar.MINUTE), is24Hour = false
+        )
+        androidx.compose.material3.AlertDialog(
+            onDismissRequest = { picking = false },
+            title = { Text("When did you set off?") },
+            text = { androidx.compose.material3.TimeInput(state = pick) },
+            confirmButton = {
+                androidx.compose.material3.TextButton({
+                    val c = java.util.Calendar.getInstance()
+                    c.set(java.util.Calendar.HOUR_OF_DAY, pick.hour)
+                    c.set(java.util.Calendar.MINUTE, pick.minute)
+                    c.set(java.util.Calendar.SECOND, 0)
+                    c.set(java.util.Calendar.MILLISECOND, 0)
+                    if (c.timeInMillis > System.currentTimeMillis()) c.add(java.util.Calendar.DAY_OF_YEAR, -1)
+                    picking = false
+                    onStartedAt(c.timeInMillis)
+                }) { Text(stringResource(R.string.t_use_this_time_70a50)) }
+            },
+            dismissButton = { androidx.compose.material3.TextButton({ picking = false }) { Text(stringResource(R.string.t_cancel_77dfd)) } }
+        )
+        return
+    }
     androidx.compose.material3.AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.t_already_on_your_way_09ebb)) },
@@ -369,9 +404,13 @@ private fun LateStartDialog(
                 androidx.compose.foundation.layout.FlowRow(
                     horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(com.trippulse.app.ui.theme.Spacing.sm)
                 ) {
+                    setUpAtMs?.let { ms ->
+                        com.trippulse.app.ui.components.KoodeChip("When I set it up, ${clock.format(java.util.Date(ms))}", true, { onStartedAt(ms) })
+                    }
                     listOf(15 to "15 min ago", 30 to "30 min ago", 60 to "1 h ago", 90 to "1½ h ago",
                         120 to "2 h ago", 180 to "3 h ago", 240 to "4 h ago", 360 to "6 h ago")
-                        .forEach { (m, label) -> com.trippulse.app.ui.components.KoodeChip(label, false, { onStartedAgo(m) }) }
+                        .forEach { (m, label) -> com.trippulse.app.ui.components.KoodeChip(label, false, { onStartedAt(System.currentTimeMillis() - m * 60_000L) }) }
+                    com.trippulse.app.ui.components.KoodeChip("Pick the time…", false, { picking = true })
                 }
             }
         },

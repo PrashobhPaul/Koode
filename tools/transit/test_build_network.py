@@ -227,6 +227,43 @@ class BuildTest(unittest.TestCase):
         kinds = [l[0] for l in text.splitlines() if not l.startswith("#")]
         self.assertEqual(kinds, ["S", "R", "Q", "T", "B"])
 
+    def test_a_hop_carries_its_track_and_is_measured_along_it(self):
+        pts = [(17.40000, 78.50000), (17.40321, 78.51234), (-33.86882, 151.20930)]
+        self.assertEqual(b.decode_path(b.encode_path(pts)), pts)
+        for c in "|: ":
+            self.assertNotIn(c, b.encode_path(pts))
+        # A line that bows north between its two stops.
+        bow = [(17.400, 78.500), (17.405, 78.505), (17.407, 78.510), (17.405, 78.515), (17.400, 78.520)]
+        rt = {"elements": [{"type": "relation", "id": 9, "tags": {"network": "Bow Metro", "name": "Bow"},
+                            "members": [stop(91, 17.400, 78.500), stop(92, 17.400, 78.520), track(bow)]}]}
+        st = {"elements": [{"type": "node", "id": 91, "lat": 17.400, "lon": 78.500, "tags": {"name": "West"}},
+                           {"type": "node", "id": 92, "lat": 17.400, "lon": 78.520, "tags": {"name": "East"}}]}
+        stations, lines = b.build_network(rt, st)
+        cell = lines[0].split("|")[4].split()[1].split(":")
+        self.assertEqual(3, len(cell))
+        straight = b.metres(17.400, 78.500, 17.400, 78.520)
+        self.assertGreater(int(cell[1]), straight * 1.2)
+        bends = b.decode_path(cell[2])
+        self.assertTrue(1 <= len(bends) <= 3, bends)
+        self.assertAlmostEqual(max(p[0] for p in bends), 17.407, delta=0.001)
+        # A straight track is kept too, with nothing to draw between its ends.
+        stations, lines = b.build_network(routes(), stops())
+        self.assertEqual(2, len(lines[0].split("|")[4].split()[1].split(":")))
+
+    def test_a_track_is_joined_from_its_ways_in_order(self):
+        way = lambda i, pts: {"type": "way", "ref": i, "role": "", "geometry": [{"lat": a, "lon": b} for a, b in pts]}
+        # Three ways: the first mapped backwards, the second meets its start, a gap before the third.
+        t = b.Track([way(1, [(17.405, 78.505), (17.400, 78.500)]), way(2, [(17.405, 78.505), (17.410, 78.510)]),
+                     way(3, [(17.450, 78.550), (17.460, 78.560)])])
+        self.assertEqual(2, len(t.pieces))
+        self.assertEqual([(17.400, 78.500), (17.405, 78.505), (17.410, 78.510)], t.pieces[0])
+        found = t.between((17.4001, 78.5002), (17.4098, 78.5098))
+        self.assertIsNotNone(found)
+        self.assertAlmostEqual(found[0], b.metres(17.4, 78.5, 17.41, 78.51), delta=60)
+        # Stops on different pieces, or off the track, give no hop.
+        self.assertIsNone(t.between((17.4001, 78.5002), (17.455, 78.555)))
+        self.assertIsNone(t.between((17.3, 78.3), (17.4098, 78.5098)))
+
     def test_rail_dedupes_node_and_way_of_one_station(self):
         rows = b.build_rail({"elements": [
             {"type": "node", "id": 1, "lat": 17.4337, "lon": 78.5016, "tags": {"name": "Secunderabad Junction"}},

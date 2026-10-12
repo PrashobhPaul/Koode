@@ -183,6 +183,15 @@ fun ViewerScreen(nav: NavHostController, accessKey: String) {
                     val lo = (ll.getOrNull(1) as? Number)?.toDouble()
                     if (la != null && lo != null) com.trippulse.app.domain.GeoPoint(la, lo) else null
                 }
+                // The traveller may be in another country: its lines and
+                // stations are fetched for the map here as they are there.
+                val ctx = androidx.compose.ui.platform.LocalContext.current
+                LaunchedEffect(current?.let { com.trippulse.app.domain.TransitIndex.cellOf(it.lat, it.lng) }) {
+                    val p = current ?: return@LaunchedEffect
+                    kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
+                        runCatching { com.trippulse.app.data.TransitData.load(ctx, p) }
+                    }
+                }
                 JourneyMap(
                     current = current,
                     origin = origin,
