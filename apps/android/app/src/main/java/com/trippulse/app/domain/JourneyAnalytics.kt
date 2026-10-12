@@ -33,6 +33,17 @@ object JourneyAnalytics {
         val seconds: Long get() = ((endMs - startMs) / 1000).coerceAtLeast(0)
     }
 
+    /** [sorted] (by start) with the periods that overlap joined, so no second is counted twice. */
+    private fun merged(sorted: List<StopPeriod>): List<StopPeriod> {
+        val out = ArrayList<StopPeriod>()
+        for (p in sorted) {
+            val last = out.lastOrNull()
+            if (last != null && p.startMs <= last.endMs) out[out.lastIndex] = last.copy(endMs = maxOf(last.endMs, p.endMs))
+            else out += p
+        }
+        return out
+    }
+
     /** An expense as the analyser needs it, decoupled from the Room entity. */
     data class ExpenseInput(
         val type: String,
@@ -165,6 +176,7 @@ object JourneyAnalytics {
         var tolls = 0
         var waitedMs = 0L
         val waits = ArrayList<String>()
+        val waitPeriods = ArrayList<StopPeriod>()
 
         for (e in sorted) {
             when (e.type) {
@@ -195,7 +207,7 @@ object JourneyAnalytics {
                 EventTypes.TOLL_CROSSED -> tolls++
                 EventTypes.WAITED -> {
                     val until = (e.payload["untilMs"] as? Number)?.toLong()
-                    if (until != null && until > e.eventTimeMs) waitedMs += until - e.eventTimeMs
+                    if (until != null && until > e.eventTimeMs) { waitedMs += until - e.eventTimeMs; waitPeriods += StopPeriod(e.eventTimeMs, until) }
                     (e.payload["text"] as? String)?.let { waits += it }
                 }
             }
@@ -204,8 +216,10 @@ object JourneyAnalytics {
         openStopStartMs?.let { rawStops.add(StopPeriod(it, i.endedAtMs)) }
 
         // Clamp to the journey window and drop empties, so totals stay sane on
-        // partial or out-of-order logs.
-        val periods = rawStops
+        // partial or out-of-order logs. A wait (at the door, on the platform,
+        // for the cab) is time standing still too, counted once where it
+        // overlaps a stop the detector saw.
+        val periods = merged((rawStops + waitPeriods)
             .map {
                 StopPeriod(
                     // An end recorded before the start (a clock change, a bad edit) is an empty window, not a crash.
@@ -214,7 +228,7 @@ object JourneyAnalytics {
                 )
             }
             .filter { it.endMs > it.startMs }
-            .sortedBy { it.startMs }
+            .sortedBy { it.startMs })
 
         val stoppedSeconds = periods.sumOf { it.seconds }.coerceIn(0, totalSeconds)
         val longestBreak = periods.maxOfOrNull { it.seconds } ?: 0L

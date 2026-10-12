@@ -777,16 +777,21 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 val st = sensedStage
                 if (st != null) KoodeCard(accent = colors.traveller) {
                     val onFoot = TransportCatalog.profile(st.mode).key == TransportCatalog.WALK.key
+                    // The way to the station the ride began at, or the way on from the station it ended at.
+                    val toStation = st.reason == com.trippulse.app.domain.StageSense.Reason.BEFORE_LINE
+                    val ride = com.trippulse.app.ui.Names.mode(st.endedMode).lowercase()
+                    val by = if (onFoot) "Walking" else "By ${com.trippulse.app.ui.Names.mode(st.mode).lowercase()}"
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         ModeArt(st.mode, 40.dp)
                         Spacer(Modifier.width(Spacing.sm))
                         Column(Modifier.weight(1f)) {
                             Text(
-                                "Off the ${com.trippulse.app.ui.Names.mode(st.endedMode).lowercase()} at ${st.place}",
+                                if (toStation) "${if (onFoot) "Walked" else by} to ${st.place}" else "Off the $ride at ${st.place}",
                                 color = colors.textHigh, style = MaterialTheme.typography.titleMedium
                             )
                             Text(
-                                "${if (onFoot) "Walking" else "By ${com.trippulse.app.ui.Names.mode(st.mode).lowercase()}"} from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?",
+                                if (toStation) "On the $ride from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?"
+                                else "$by from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?",
                                 color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                             )
                         }
@@ -794,7 +799,8 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     Spacer(Modifier.height(Spacing.sm))
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
                         KoodeChip("Yes", true, { vm.dismissSensedStage() })
-                        listOf(TransportCatalog.BIKE_TAXI, TransportCatalog.AUTO, TransportCatalog.CAB, TransportCatalog.BUS, TransportCatalog.WALK)
+                        // The way to a station may well have been one's own car, parked there.
+                        (listOf(TransportCatalog.BIKE_TAXI, TransportCatalog.AUTO, TransportCatalog.CAB, TransportCatalog.BUS) + (if (toStation) listOf(TransportCatalog.CAR) else emptyList()) + TransportCatalog.WALK)
                             .filter { it.key != TransportCatalog.profile(st.mode).key }
                             .forEach { p -> KoodeChip(com.trippulse.app.ui.Names.mode(p.key), false, { vm.correctSensedStage(st.legIndex, p.key) }, leadingArt = KoodeArt.mode(p.key)) }
                     }

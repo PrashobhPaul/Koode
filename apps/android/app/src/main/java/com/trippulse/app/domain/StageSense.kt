@@ -6,16 +6,20 @@ import com.trippulse.app.core.Geo
  * What the phone's own movement says about a journey's stages, read with
  * plain rules: no model, no guess that the record does not back.
  *
- * A metro never goes to an office. It goes to the station nearest the
- * office, and the traveller gets there some other way: a bike taxi, an
- * auto, a cab, their own two feet. When nobody tapped that change, the
- * fixes still show it. A ride on rails or water ends where the fixes leave
- * the line at a station ([Reason.LEFT_LINE]); what came after is read from
- * its pace: a quarter of the fixes faster than anyone walks is a vehicle,
- * the rest is a walk. A stage on a cab or a bus that was never ridden, only
- * walked, is a walk ([Reason.WALKED_INSTEAD]). And a stand of a few minutes
- * where a stage began is a wait: for the bike taxi at the door, for the
- * metro on the platform, for the cab that never came before the walk.
+ * A metro never goes to an office, and never leaves from one either. It
+ * runs from the station nearest the office to the station nearest home,
+ * and the traveller gets to the first and from the last some other way: a
+ * bike taxi, an auto, a cab, their own two feet. When nobody tapped those
+ * changes, the fixes still show them. A ride on rails or water begins at
+ * the station the fixes boarded at ([Reason.BEFORE_LINE]: reached, stood
+ * at, and then followed the line to the next station) and ends where the
+ * fixes leave the line at a station ([Reason.LEFT_LINE]); what came before
+ * and after is read from its pace: a quarter of the fixes faster than
+ * anyone walks is a vehicle, the rest is a walk. A stage on a cab or a bus
+ * that was never ridden, only walked, is a walk ([Reason.WALKED_INSTEAD]).
+ * And a stand of a few minutes where a stage began is a wait: for the bike
+ * taxi at the door, for the metro on the platform, for the cab that never
+ * came before the walk.
  *
  * Everything here is pure and unit-tested; the caller decides what to do
  * with a [Split] or a [Wait] (record it, tell it, ask about it).
@@ -48,6 +52,8 @@ object StageSense {
     }
 
     enum class Reason {
+        /** A ride on rails or water recorded as starting away from any station: it began at the station the fixes boarded at. */
+        BEFORE_LINE,
         /** A ride on rails or water whose fixes left the line at a station and carried on by road. */
         LEFT_LINE,
         /** A stage on a cab, auto, bike taxi or bus that was walked from its start to its end. */
@@ -70,9 +76,12 @@ object StageSense {
     }
 
     /**
-     * A stage the movement says was made but nobody recorded: stage
-     * [legIndex] ended at [atMs] at [placeName], and from there the journey
-     * went on by [mode].
+     * A stage the movement says was made but nobody recorded. For
+     * [Reason.LEFT_LINE] and [Reason.WALKED_INSTEAD]: stage [legIndex] ended
+     * at [atMs] at [placeName], and from there the journey went on by
+     * [mode]. For [Reason.BEFORE_LINE]: stage [legIndex] really began at
+     * [atMs] at [placeName] (its station), and the stretch before that,
+     * from where it was recorded as starting, was made by [mode].
      */
     data class Split(
         val legIndex: Int, val atMs: Long, val at: GeoPoint, val placeName: String,
@@ -104,6 +113,8 @@ object StageSense {
     /** A walk from the start of a ride stage that goes this far and this long, and ends the stage, was the stage. */
     const val WALK_SPLIT_M = 400.0
     const val WALK_SPLIT_MS = 4 * 60_000L
+    /** A ride to the station shorter than this is the forecourt, not a stage (a walk to it is judged as [WALK_SPLIT_M], [WALK_SPLIT_MS]). */
+    const val FIRST_MILE_MIN_M = 400.0
     /** A stand counts as the wait at a stage's start when it began within this of the start. */
     const val START_SLACK_MS = 3 * 60_000L
     /** How much of a stage's record is read for its opening wait. */
@@ -224,20 +235,118 @@ object StageSense {
             val inside = sorted.filter { it.tMs in start..end }
             if (inside.size < 4) continue
             val kind = TransitNetwork.kindOf(leg.mode)
-            val split = if (kind != null) leftLine(leg, kind, inside, net, lastMileRide) else walkedInstead(leg, inside)
-            if (split != null) out += split
+            if (kind == null) { walkedInstead(leg, inside)?.let { out += it }; continue }
+            // Recorded as starting at a station: it did, and its line is read from the start.
+            val atStation = net.isEmpty || net.nearestStation(leg.from, kind, STATION_M) != null
+            val boarded = if (atStation) null else boarding(leg, kind, inside, net, lastMileRide)
+            boarded?.firstMile?.let { out += it }
+            // Where the ride left its line is read only from where it was
+            // boarded: a station passed on the road to it is not one it got off at.
+            val ridden = when {
+                atStation -> inside
+                boarded != null -> inside.filter { it.tMs >= boarded.atMs }
+                else -> emptyList()
+            }
+            if (ridden.size >= 4) leftLine(leg, kind, ridden, net, lastMileRide)?.let { out += it }
         }
         return out
     }
 
     /**
-     * The ride by road a journey's last mile is made by: the one the journey
-     * already used before stage [before] (the bike taxi it began with), else
-     * [default].
+     * The order splits are applied in so that each one's stage number still
+     * means what it did when it was found: later stages first; on one
+     * stage, its end ([Reason.LEFT_LINE]) before its beginning
+     * ([Reason.BEFORE_LINE]), which moves it along by one.
      */
-    fun usualRide(legs: List<Leg>, before: Int, default: String): String =
-        legs.filter { it.index < before && TransportCatalog.profile(it.mode).key in ROAD_RIDES }
-            .maxByOrNull { it.index }?.mode ?: default
+    fun applyOrder(splits: List<Split>): List<Split> =
+        splits.sortedWith(compareByDescending<Split> { it.legIndex }.thenBy { if (it.reason == Reason.BEFORE_LINE) 1 else 0 })
+
+    /**
+     * The splits renumbered to the stages as they stand once every split is
+     * applied: a [Reason.LEFT_LINE] on stage n puts a stage after n, a
+     * [Reason.BEFORE_LINE] on stage n puts one before it (so n itself moves
+     * along), and each moves the stages after it along by one. A split's
+     * wait follows its stage.
+     */
+    fun shifted(splits: List<Split>): List<Split> = splits.map { sp ->
+        val by = splits.count {
+            (it.reason == Reason.LEFT_LINE && it.legIndex < sp.legIndex) || (it.reason == Reason.BEFORE_LINE && it.legIndex <= sp.legIndex)
+        }
+        sp.copy(legIndex = sp.legIndex + by, wait = sp.wait?.let { it.copy(legIndex = it.legIndex + by) })
+    }
+
+    /**
+     * The ride by road a journey's first or last mile is made by: the one
+     * the journey already used, the nearest before stage [near] (the bike
+     * taxi it began with), else the nearest after it, else [default].
+     */
+    fun usualRide(legs: List<Leg>, near: Int, default: String): String {
+        val rides = legs.filter { TransportCatalog.profile(it.mode).key in ROAD_RIDES }
+        return rides.filter { it.index < near }.maxByOrNull { it.index }?.mode
+            ?: rides.filter { it.index > near }.minByOrNull { it.index }?.mode
+            ?: default
+    }
+
+    /** Where a ride on rails or water was boarded, as the fixes show it, and the stage made to get there when it was one. */
+    private data class Boarding(val atMs: Long, val firstMile: Split?)
+
+    /**
+     * The station a ride recorded as starting away from any station was
+     * boarded at: the first the fixes reached and then left along the line
+     * (within [OffLine.offM] of it all the way to the next station). A
+     * station merely passed, by a bike taxi on the road under the viaduct,
+     * is left behind off the line and does not count; one the fixes stood
+     * at or walked into is the surer, and taken first. The ride began when
+     * the stand on its platform ended. The way to the station is a stage of
+     * its own when it was long enough to be one, by the pace it was made at:
+     * ridden, it is the ride by road the journey uses; walked, a walk.
+     */
+    private fun boarding(leg: Leg, kind: TransitNetwork.Kind, inside: List<Fix>, net: TransitNetwork, lastMileRide: String): Boarding? {
+        val rule = offLineFor(kind)
+        // Each station the fixes came within reach of, with the fix they were nearest it at.
+        data class Visit(val station: Int, val at: Fix, val index: Int)
+        val visits = ArrayList<Visit>()
+        var current: Visit? = null
+        for ((i, f) in inside.withIndex()) {
+            val near = net.nearestStation(f.point, kind, STATION_M)
+            val c = current
+            if (near == null) { c?.let { visits += it }; current = null; continue }
+            if (c == null || c.station != near) { c?.let { visits += it }; current = Visit(near, f, i); continue }
+            if (Geo.haversineM(net.stations[near].point, f.point) < Geo.haversineM(net.stations[near].point, c.at.point)) current = Visit(near, f, i)
+        }
+        current?.let { visits += it }
+        // A visit the line was followed from: on it from there to a different station.
+        fun followedLineFrom(v: Visit): Boolean {
+            for (f in inside.drop(v.index + 1)) {
+                val near = net.nearestStation(f.point, kind, STATION_M)
+                if (near != null && near != v.station) return true
+                if (near == null && (net.offLineM(f.point, kind) ?: Double.MAX_VALUE) > rule.offM) return false
+            }
+            return false
+        }
+        val candidates = visits.filter { followedLineFrom(it) }
+        if (candidates.isEmpty()) return null
+        val eps = episodes(inside)
+        // The stand on the platform, or the walk in: the surest sign of boarding.
+        fun stoodAt(v: Visit): Episode? = eps.firstOrNull { e ->
+            (e.pace == Pace.STILL || e.pace == Pace.WALKING) && e.toMs >= v.at.tMs - STILL_MIN_MS && e.fromMs <= v.at.tMs + STILL_MIN_MS &&
+                Geo.haversineM(e.to, net.stations[v.station].point) <= STATION_M
+        }
+        val boarded = candidates.firstOrNull { stoodAt(it) != null } ?: candidates.first()
+        val station = net.stations[boarded.station]
+        val stood = stoodAt(boarded)?.takeIf { it.pace == Pace.STILL }
+        val atMs = maxOf(boarded.at.tMs, stood?.toMs ?: boarded.at.tMs)
+        // The way to the station, by the pace of what moved before reaching it.
+        val moving = episodes(inside.filter { it.tMs <= atMs }).filter { it.pace != Pace.STILL }
+        val ridden = moving.filter { it.pace == Pace.RIDING }.sumOf { it.metres }
+        val walked = moving.filter { it.pace == Pace.WALKING }.sumOf { it.metres }
+        val pace = if (ridden >= walked) Pace.RIDING else Pace.WALKING
+        val isStage = if (pace == Pace.RIDING) ridden + walked >= FIRST_MILE_MIN_M
+            else walked >= WALK_SPLIT_M && moving.sumOf { it.ms } >= WALK_SPLIT_MS
+        val mode = if (pace == Pace.RIDING) lastMileRide else TransportCatalog.WALK.key
+        val firstMile = if (isStage) Split(leg.index, atMs, station.point, TransitNetwork.label(station), mode, Reason.BEFORE_LINE, pace, null) else null
+        return Boarding(atMs, firstMile)
+    }
 
     private fun leftLine(leg: Leg, kind: TransitNetwork.Kind, inside: List<Fix>, net: TransitNetwork, lastMileRide: String): Split? {
         if (net.isEmpty) return null
@@ -318,8 +427,17 @@ object StageSense {
         val out = ArrayList<Wait>()
         val told = HashSet<Long>()
         for (leg in legs) {
-            if (!waitedFor(leg.mode)) continue
             if (splits.any { it.legIndex == leg.index && it.reason == Reason.WALKED_INSTEAD }) continue
+            // A ride recorded from away from its station was got to some other
+            // way, and the stand at its start was for that: the bike taxi, not
+            // the metro. Before a walk there is nothing to wait for.
+            val firstMile = splits.firstOrNull { it.legIndex == leg.index && it.reason == Reason.BEFORE_LINE && Geo.haversineM(leg.from, it.at) > STATION_M }
+            val forMode = when {
+                firstMile == null -> leg.mode
+                firstMile.pace == Pace.RIDING -> firstMile.mode
+                else -> continue
+            }
+            if (!waitedFor(forMode)) continue
             val start = leg.startedAtMs ?: continue
             // The stand around the stage's start: the platform before the
             // tap (the change is tapped on boarding), or the door after it.
@@ -329,7 +447,7 @@ object StageSense {
                     Geo.haversineM(it.from, leg.from) <= STATION_M
             } ?: continue
             if (stand.ms < WAIT_MIN_MS || !told.add(stand.fromMs)) continue
-            out += Wait(leg.index, stand.fromMs, stand.toMs, stand.from, leg.fromName, leg.mode, false)
+            out += Wait(leg.index, stand.fromMs, stand.toMs, stand.from, leg.fromName, forMode, false)
         }
         out += splits.mapNotNull { it.wait }
         return out.sortedBy { it.fromMs }
@@ -362,6 +480,13 @@ object StageSense {
         return "Waited ${w.minutes} min$place$word$then"
     }
 
+    /** One line for the stage a [Reason.BEFORE_LINE] split puts before the ride: "By bike taxi from Qualizeal Office to Durgam Cheruvu Metro (noticed from the movement)". */
+    fun firstMileText(s: Split, fromName: String): String {
+        val by = if (TransportCatalog.profile(s.mode).key == TransportCatalog.WALK.key) "On foot" else "By ${TransportCatalog.label(s.mode).lowercase()}"
+        val from = fromName.takeIf { it.isNotBlank() && it != StageRepair.EN_ROUTE }?.let { " from $it" } ?: ""
+        return "$by$from to ${s.placeName} (noticed from the movement)"
+    }
+
     /** One line for a split: what the movement showed and what Koode made of it. */
     fun splitText(s: Split, endedMode: String): String {
         val off = when (TransitNetwork.kindOf(endedMode)) {
@@ -372,7 +497,14 @@ object StageSense {
         }
         val on = if (TransportCatalog.profile(s.mode).key == TransportCatalog.WALK.key) "on foot"
             else "by ${TransportCatalog.label(s.mode).lowercase()}"
+        val onto = when (TransitNetwork.kindOf(endedMode)) {
+            TransitNetwork.Kind.METRO -> "on the metro"
+            TransitNetwork.Kind.RAIL -> "on the train"
+            TransitNetwork.Kind.WATER -> "on the boat"
+            null -> "on"
+        }
         return when (s.reason) {
+            Reason.BEFORE_LINE -> "${onto.replaceFirstChar { it.uppercase() }} from ${s.placeName} (noticed from the movement)"
             Reason.LEFT_LINE -> "$off at ${s.placeName}; $on from there (noticed from the movement)"
             Reason.WALKED_INSTEAD -> "$off was walked (noticed from the movement)"
         }

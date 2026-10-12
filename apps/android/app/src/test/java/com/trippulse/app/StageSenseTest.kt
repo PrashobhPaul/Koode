@@ -172,8 +172,125 @@ class StageSenseTest {
 
     @Test fun the_last_mile_is_made_the_way_the_journey_already_went() {
         val lg = legs(office, 64.0)
-        assertEquals("BIKE_TAXI", StageSense.usualRide(lg, before = 1, default = "CAB"))
-        assertEquals("CAB", StageSense.usualRide(lg.drop(1), before = 1, default = "CAB"))
+        assertEquals("BIKE_TAXI", StageSense.usualRide(lg, near = 1, default = "CAB"))
+        assertEquals("CAB", StageSense.usualRide(lg.drop(1), near = 1, default = "CAB"))
+    }
+
+    // ---- the evening of the same day: "metro" chosen at the office, a bike taxi to the station ----
+
+    /** The stand at the office, the bike taxi to Durgam Cheruvu, four minutes on the platform, the metro to Habsiguda, the stand there, the bike taxi home. */
+    private fun evening(): List<Fix> =
+        stand(office, 0.0, 4.0) +
+            run(office, durgamCheruvu, 4.0, 10.0) +
+            stand(durgamCheruvu, 10.0, 14.0) +
+            ride(durgamCheruvu to madhapur, madhapur to ameerpet, ameerpet to secunderabad, secunderabad to mettuguda, mettuguda to tarnaka, tarnaka to habsiguda, fromMin = 14.0, minutesEach = 5.5) +
+            stand(habsiguda, 47.0, 51.0) +
+            run(habsiguda, raheja, 51.0, 59.0) +
+            stand(raheja, 59.0, 62.0)
+
+    /** As recorded: the metro from the office (no one tapped the bike taxi), then the bike taxi tapped at Habsiguda. */
+    private fun eveningLegs() = listOf(
+        Leg(0, "METRO", "Qualizeal Office", office, "Habsiguda Metro", habsiguda, min(0.0), min(47.0)),
+        Leg(1, "BIKE_TAXI", "Habsiguda Metro", habsiguda, "Raheja Vistas, Nacharam", raheja, min(47.0), min(62.0))
+    )
+
+    @Test fun the_metro_began_at_durgam_cheruvu_and_a_bike_taxi_got_there() {
+        val s = StageSense.splits(eveningLegs(), evening(), net, "BIKE_TAXI").single()
+        assertEquals(0, s.legIndex)
+        assertEquals(Reason.BEFORE_LINE, s.reason)
+        assertEquals("Durgam Cheruvu Metro", s.placeName)
+        assertEquals("BIKE_TAXI", s.mode)
+        assertEquals(Pace.RIDING, s.pace)
+        // It began when the train left the platform, 14 minutes in, not when the station was reached.
+        assertTrue("${(s.atMs - t0) / 60_000.0}", (s.atMs - t0) in min(13.5) - t0..min(14.3) - t0)
+        assertNull(s.wait)
+        assertEquals("By bike taxi from Qualizeal Office to Durgam Cheruvu Metro (noticed from the movement)", StageSense.firstMileText(s, "Qualizeal Office"))
+        assertEquals("On the metro from Durgam Cheruvu Metro (noticed from the movement)", StageSense.splitText(s, "METRO"))
+    }
+
+    @Test fun the_stand_at_the_office_was_for_the_bike_taxi_not_the_metro() {
+        val lg = eveningLegs()
+        val fixes = evening()
+        val splits = StageSense.splits(lg, fixes, net, "BIKE_TAXI")
+        // Before the split is applied: the record still says the metro left the office.
+        val before = StageSense.waits(lg, fixes, splits)
+        assertEquals(before.map { StageSense.waitText(it) }.toString(), 2, before.size)
+        assertEquals("Waited 4 min at Qualizeal Office for a bike taxi", StageSense.waitText(before[0]))
+        assertEquals("Waited 4 min at Habsiguda Metro for a bike taxi", StageSense.waitText(before[1]))
+        // Applied, as the app records it: the way there, the ride from its station, the ride home.
+        val s = splits.single()
+        val applied = listOf(
+            Leg(0, "BIKE_TAXI", "Qualizeal Office", office, "Durgam Cheruvu Metro", durgamCheruvu, min(0.0), s.atMs),
+            Leg(1, "METRO", "Durgam Cheruvu Metro", durgamCheruvu, "Habsiguda Metro", habsiguda, s.atMs, min(47.0)),
+            Leg(2, "BIKE_TAXI", "Habsiguda Metro", habsiguda, "Raheja Vistas, Nacharam", raheja, min(47.0), min(62.0))
+        )
+        val after = StageSense.waits(applied, fixes, StageSense.shifted(splits))
+        assertEquals(after.map { StageSense.waitText(it) }.toString(), 3, after.size)
+        assertEquals("Waited 4 min at Qualizeal Office for a bike taxi", StageSense.waitText(after[0]))
+        assertEquals("Waited 4 min at Durgam Cheruvu Metro for the metro", StageSense.waitText(after[1]))
+        assertEquals("Waited 4 min at Habsiguda Metro for a bike taxi", StageSense.waitText(after[2]))
+        assertEquals(listOf(0, 1, 2), after.map { it.legIndex })
+        // And the ride from its station reads as beginning there: nothing more to split.
+        assertTrue(StageSense.splits(applied, fixes, net, "BIKE_TAXI").isEmpty())
+    }
+
+    @Test fun a_station_passed_on_the_road_is_not_where_the_metro_was_boarded() {
+        // The bike taxi goes by Madhapur station and on along the road under the line to Durgam Cheruvu, where the wait is.
+        val fixes = stand(office, 0.0, 4.0) + run(office, madhapur, 4.0, 9.0) + run(madhapur, durgamCheruvu, 9.0, 11.0) + stand(durgamCheruvu, 11.0, 15.0) +
+            ride(durgamCheruvu to madhapur, madhapur to ameerpet, ameerpet to secunderabad, secunderabad to mettuguda, mettuguda to tarnaka, tarnaka to habsiguda, fromMin = 15.0, minutesEach = 5.5) +
+            stand(habsiguda, 48.0, 51.0)
+        val lg = listOf(Leg(0, "METRO", "Qualizeal Office", office, "Habsiguda Metro", habsiguda, min(0.0), min(51.0)))
+        val s = StageSense.splits(lg, fixes, net, "BIKE_TAXI").single()
+        assertEquals(Reason.BEFORE_LINE, s.reason)
+        assertEquals("Durgam Cheruvu Metro", s.placeName)
+        assertTrue("${(s.atMs - t0) / 60_000.0}", (s.atMs - t0) in min(14.5) - t0..min(15.3) - t0)
+    }
+
+    @Test fun a_bike_taxi_that_passed_a_station_and_turned_away_did_not_get_off_the_metro() {
+        // Chosen "metro" at the office, but the fixes go by Madhapur station and back: no boarding, so nothing is read as leaving the line.
+        val fixes = stand(office, 0.0, 4.0) + run(office, madhapur, 4.0, 9.0) + run(madhapur, office, 9.0, 14.0) + stand(office, 14.0, 20.0)
+        val lg = listOf(Leg(0, "METRO", "Qualizeal Office", office, "Qualizeal Office", office, min(0.0), min(20.0)))
+        assertTrue(StageSense.splits(lg, fixes, net, "BIKE_TAXI").isEmpty())
+    }
+
+    @Test fun a_ride_from_the_office_is_read_once_the_line_is_followed() {
+        val open = Leg(0, "METRO", "Qualizeal Office", office, "Raheja Vistas, Nacharam", raheja, min(0.0), null)
+        // Standing on the platform: nothing yet.
+        val onPlatform = stand(office, 0.0, 4.0) + run(office, durgamCheruvu, 4.0, 10.0) + stand(durgamCheruvu, 10.0, 14.0)
+        assertTrue(StageSense.splits(listOf(open), onPlatform, net, "BIKE_TAXI").isEmpty())
+        // Past the next station: the ride began at Durgam Cheruvu, by bike taxi to there.
+        val pastMadhapur = onPlatform + run(durgamCheruvu, madhapur, 14.0, 16.0) + run(madhapur, ameerpet, 16.0, 19.0)
+        val s = StageSense.splits(listOf(open), pastMadhapur, net, "BIKE_TAXI").single()
+        assertEquals(Reason.BEFORE_LINE, s.reason)
+        assertEquals("Durgam Cheruvu Metro", s.placeName)
+        assertEquals("BIKE_TAXI", s.mode)
+    }
+
+    @Test fun a_short_walk_into_the_station_is_not_a_stage() {
+        // "Metro" tapped at the station gate, 300 m from the platform: the walk in is the station, the ride is read from the start.
+        val gate = GeoPoint(durgamCheruvu.lat - 0.0027, durgamCheruvu.lng)
+        val fixes = run(gate, durgamCheruvu, 0.0, 4.0, stepS = 8) + stand(durgamCheruvu, 4.0, 7.0) +
+            ride(durgamCheruvu to madhapur, madhapur to ameerpet, fromMin = 7.0, minutesEach = 5.5) + run(ameerpet, office, 18.0, 30.0) + stand(office, 30.0, 34.0)
+        val lg = listOf(Leg(0, "METRO", "Durgam Cheruvu gate", gate, "Qualizeal Office", office, min(0.0), min(34.0)))
+        val s = StageSense.splits(lg, fixes, net, "BIKE_TAXI").single()
+        // No first mile; the ride left the line at Ameerpet and went on by road.
+        assertEquals(Reason.LEFT_LINE, s.reason)
+        assertEquals("Ameerpet Metro", s.placeName)
+    }
+
+    @Test fun splits_are_renumbered_to_the_stages_as_they_will_stand() {
+        val w = StageSense.Wait(1, min(0.0), min(5.0), durgamCheruvu, "Durgam Cheruvu Metro", "BIKE_TAXI", false)
+        val splits = listOf(
+            StageSense.Split(0, min(14.0), durgamCheruvu, "Durgam Cheruvu Metro", "BIKE_TAXI", Reason.BEFORE_LINE, Pace.RIDING, null),
+            StageSense.Split(0, min(47.0), habsiguda, "Habsiguda Metro", "BIKE_TAXI", Reason.LEFT_LINE, Pace.RIDING, w),
+            StageSense.Split(2, min(60.0), raheja, "Raheja Vistas", "WALK", Reason.WALKED_INSTEAD, Pace.WALKING, w.copy(legIndex = 2))
+        )
+        // The ride's end is put in before its beginning, both before anything earlier.
+        assertEquals(listOf(Reason.WALKED_INSTEAD, Reason.LEFT_LINE, Reason.BEFORE_LINE), StageSense.applyOrder(splits).map { it.reason })
+        // Stages once applied: 0 the way there, 1 the metro, 2 the last mile, 3 whatever was next, 4 the walked "cab".
+        val sh = StageSense.shifted(splits)
+        assertEquals(listOf(1, 1, 4), sh.map { it.legIndex })
+        assertEquals(listOf(null, 2, 4), sh.map { it.wait?.legIndex })
     }
 
     @Test fun how_far_off_the_line_a_place_is() {
