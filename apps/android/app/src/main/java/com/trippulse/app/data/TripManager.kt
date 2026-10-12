@@ -1410,7 +1410,7 @@ class TripManager(
     private val TRAIL_TOLERANCE_M = 15.0
     private val TRAIL_MAX_POINTS = 500
     private val DRAWN_TOLERANCE_M = 8.0
-    private val DRAWN_MAX_POINTS = 1_500
+    private val DRAWN_MAX_POINTS = 900
 
     /** Periodic tick (~30s) for time-based transitions and heartbeats. */
     /**
