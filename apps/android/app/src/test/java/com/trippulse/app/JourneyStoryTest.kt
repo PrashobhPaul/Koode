@@ -85,6 +85,19 @@ class JourneyStoryTest {
         return JourneyStory.build(i, book)
     }
 
+    @Test fun a_stage_of_seconds_is_not_told_and_its_moments_go_to_the_next() {
+        // "Metro" chosen at the door and the record put right half a second later: the journey began by bike taxi, to the station.
+        val evs = events() + listOf(
+            ev(EventTypes.LEG_STARTED, t(12) + 500L, start.first, start.second, mapOf("legIndex" to 0, "mode" to "METRO")),
+            ev(EventTypes.LEG_STARTED, t(12) + 1_000L, start.first, start.second, mapOf("legIndex" to 0, "mode" to "BIKE_TAXI", "sensed" to true)),
+            ev(EventTypes.LEG_STARTED, t(12, 20), 10.9, 76.5, mapOf("legIndex" to 1, "mode" to "METRO", "sensed" to true))
+        )
+        val s = story(input(evs))
+        assertEquals(listOf("BIKE_TAXI", "METRO"), s.stages.map { it.mode })
+        assertEquals(t(12), s.stages[0].fromMs)
+        assertEquals(t(12, 20), s.stages[0].toMs)
+    }
+
     @Test fun one_stop_with_three_entries_reads_as_one_stop() {
         val s = story()
         val pumpStops = s.stops.filter { it.place == "Pallapatti" }

@@ -66,6 +66,26 @@ class JourneyAnalyticsTest {
 
     // ---- time ----
 
+    @Test fun a_wait_is_time_stopped_counted_once_where_it_overlaps_a_stop() {
+        // Four minutes at the door for the bike taxi, then the platform wait inside a stop the detector also saw.
+        val waited = JourneyAnalytics.analyse(
+            JourneyAnalytics.Inputs(
+                events = events + listOf(
+                    ev(EventTypes.WAITED, at(0.0), mapOf("untilMs" to at(0.0) + 4 * 60_000L, "minutes" to 4L, "text" to "Waited 4 min at the door for a bike taxi")),
+                    ev(EventTypes.WAITED, at(2.0) + 10 * 60_000L, mapOf("untilMs" to at(2.0) + 40 * 60_000L, "minutes" to 30L, "text" to "Waited 30 min on the platform for the metro"))
+                ),
+                distanceCoveredM = 400_000.0, startedAtMs = base, endedAtMs = at(6.0), transportMode = "CAR", zone = zone
+            )
+        )
+        // The stops' hour, the four minutes at the door, and ten minutes of the platform wait that ran past the stop.
+        assertEquals(3600L + 240L + 600L, waited.stoppedSeconds)
+        assertEquals(waited.totalSeconds, waited.movingSeconds + waited.stoppedSeconds)
+        assertEquals(waited.stopPeriods.sumOf { it.seconds }, waited.stoppedSeconds)
+        assertEquals(3, waited.stopPeriods.size)
+        assertEquals(2, waited.stops)
+        assertEquals(34 * 60L, waited.waitedSeconds)
+    }
+
     @Test fun moving_time_is_total_minus_the_confirmed_stops() {
         assertEquals(6 * 3600L, report.totalSeconds)
         assertEquals(3600L, report.stoppedSeconds)
