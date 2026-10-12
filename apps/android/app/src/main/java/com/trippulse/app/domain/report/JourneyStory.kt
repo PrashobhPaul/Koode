@@ -479,17 +479,26 @@ object JourneyStory {
             listOf(firstMode to input.startedAtMs) + starts0 else starts0
         if (starts.isEmpty()) return listOf(StageSpan(input.mode, input.startedAtMs, endMs))
         val out = ArrayList<StageSpan>()
+        var carried: Long? = null
         for ((i, st) in starts.withIndex()) {
-            val from = if (i == 0) minOf(input.startedAtMs, st.second) else st.second
+            val from = carried ?: if (i == 0) minOf(input.startedAtMs, st.second) else st.second
             // A stage ends where the next begins, and none runs past the journey's end.
             val to = minOf(starts.getOrNull(i + 1)?.second ?: endMs, endMs)
             if (to <= from) continue
+            // A stage of seconds is a tap put right at once, or a ride whose
+            // start was moved to its station: not a part of the journey. Its
+            // moments go to the stage that follows.
+            if (to - from < MIN_STAGE_MS && i < starts.lastIndex) { carried = from; continue }
+            carried = null
             val last = out.lastOrNull()
             if (last != null && last.mode.equals(st.first, ignoreCase = true)) out[out.lastIndex] = last.copy(toMs = to)
             else out += StageSpan(st.first, from, to)
         }
         return out.ifEmpty { listOf(StageSpan(input.mode, input.startedAtMs, endMs)) }
     }
+
+    /** A stage shorter than this is not told as one. */
+    private const val MIN_STAGE_MS = 60_000L
 
     private fun modeAt(stages: List<StageSpan>, tMs: Long): String? =
         (stages.lastOrNull { it.fromMs <= tMs } ?: stages.firstOrNull())?.mode

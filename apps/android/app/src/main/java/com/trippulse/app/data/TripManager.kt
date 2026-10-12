@@ -212,7 +212,17 @@ class TripManager(
     private var drawnCache: Pair<String, List<DrawnPaths.Point>>? = null
 
     /** A stage Koode just read from the movement, for the traveller to confirm or put right. */
-    data class SensedStage(val tripId: String, val legIndex: Int, val mode: String, val place: String, val endedMode: String, val atMs: Long)
+    /**
+     * A stage read from the movement, for the traveller to confirm or put
+     * right. For [StageSense.Reason.LEFT_LINE]: stage [legIndex] by [mode]
+     * from [place] since [atMs], after the ride on [endedMode]. For
+     * [StageSense.Reason.BEFORE_LINE]: stage [legIndex] by [mode] to
+     * [place], where the ride on [endedMode] began at [atMs].
+     */
+    data class SensedStage(
+        val tripId: String, val legIndex: Int, val mode: String, val place: String, val endedMode: String, val atMs: Long,
+        val reason: StageSense.Reason = StageSense.Reason.LEFT_LINE
+    )
     private val _sensedStage = kotlinx.coroutines.flow.MutableStateFlow<SensedStage?>(null)
     val sensedStage: StateFlow<SensedStage?> = _sensedStage
     fun dismissSensedStage() { _sensedStage.value = null }
@@ -1209,7 +1219,10 @@ class TripManager(
      * Live: the ride stage under way, read against its fixes every
      * [SENSE_EVERY_MS]. When the fixes have left the line at a station and
      * carried on by road, the ride ended there and a new stage begins from
-     * it, told to the traveller to confirm or put right.
+     * it; when a ride chosen away from any station has reached one and
+     * followed the line from it, the ride began there and the way to it
+     * becomes its own stage before it. Either is told to the traveller to
+     * confirm or put right.
      */
     private suspend fun senseStage(t: ActiveTripEntity, fix: Fix, now: Long) {
         val leg = activeLeg()
@@ -1230,13 +1243,35 @@ class TripManager(
         val net = TransitData.current.takeIf { !it.isEmpty } ?: return
         val ride = StageSense.usualRide(legs.map { it.toSense() }, leg.legIndex, lastMileDefault())
         val split = StageSense.splits(listOf(leg.toSense().copy(completedAtMs = null)), rideFixes, net, ride).firstOrNull() ?: return
-        if (split.reason != StageSense.Reason.LEFT_LINE) return
-        val text = StageSense.splitText(split, leg.mode)
-        val result = switchModeLocked(split.mode, emptyMap(), false, atMs = split.atMs, at = split.at, sensed = true, text = text)
-        if (result !is SwitchResult.Ok) return
-        split.wait?.let { recordWait(t.tripId, it) }
-        val opened = activeLeg() ?: return
-        _sensedStage.value = SensedStage(t.tripId, opened.legIndex, split.mode, split.placeName, leg.mode, split.atMs)
+        when (split.reason) {
+            StageSense.Reason.LEFT_LINE -> {
+                val text = StageSense.splitText(split, leg.mode)
+                val result = switchModeLocked(split.mode, emptyMap(), false, atMs = split.atMs, at = split.at, sensed = true, text = text)
+                if (result !is SwitchResult.Ok) return
+                split.wait?.let { recordWait(t.tripId, it) }
+                val opened = activeLeg() ?: return
+                _sensedStage.value = SensedStage(t.tripId, opened.legIndex, split.mode, split.placeName, leg.mode, split.atMs)
+            }
+            StageSense.Reason.BEFORE_LINE -> {
+                // The ride began at its station: the way there is its own stage before it, and the ride moves along by one.
+                applySplit(t.tripId, split)
+                val rideIndex = leg.legIndex + 1
+                legs = db.legDao().forTrip(t.tripId)
+                val latest = trip ?: t
+                if (latest.activeLegIndex == leg.legIndex) {
+                    val updated = latest.copy(activeLegIndex = rideIndex)
+                    db.tripDao().update(updated); trip = updated
+                    metroAnchor = metroAnchor?.let { if (it.legIndex == leg.legIndex) it.copy(legIndex = rideIndex) else it }
+                    state?.copy(legIndex = rideIndex)?.let { s -> state = s; persistAndPush(updated, s, force = true) }
+                    if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
+                }
+                // The stand at the door for the ride there, and the one on the platform.
+                val pair = legs.filter { it.legIndex == leg.legIndex || it.legIndex == rideIndex }.map { it.toSense() }
+                for (w in StageSense.waits(pair, rideFixes)) recordWait(t.tripId, w)
+                _sensedStage.value = SensedStage(t.tripId, leg.legIndex, split.mode, split.placeName, leg.mode, split.atMs, StageSense.Reason.BEFORE_LINE)
+            }
+            StageSense.Reason.WALKED_INSTEAD -> return
+        }
         rideFixes.clear(); rideFixesLeg = -1
     }
 
@@ -1259,16 +1294,19 @@ class TripManager(
             // A stage still under way is read live (senseStage), never here.
             val readable = rows.filter { finished || it.completedAtMs != null }.map { it.toSense() }
             val splits = StageSense.splits(readable, fixes, net, StageSense.usualRide(readable, Int.MAX_VALUE, lastMileDefault()))
-            for (split in splits.sortedByDescending { it.legIndex }) { applySplit(tripId, split); changed = true }
-            // The waits, against the stages as they now stand (a split above moved the ones after it along by one).
-            val shifted = splits.map { sp -> sp.copy(legIndex = sp.legIndex + splits.count { it.reason == StageSense.Reason.LEFT_LINE && it.legIndex < sp.legIndex }) }
+            for (split in StageSense.applyOrder(splits)) { applySplit(tripId, split); changed = true }
+            // The waits, against the stages as they now stand (each split above moved the ones after it along by one).
             val standing = db.legDao().forTrip(tripId).sortedBy { it.legIndex }.map { it.toSense() }
-            for (w in StageSense.waits(standing, fixes, shifted)) if (recordWait(tripId, w)) changed = true
+            for (w in StageSense.waits(standing, fixes, StageSense.shifted(splits))) if (recordWait(tripId, w)) changed = true
         }
         return changed
     }
 
-    /** A split applied to the record: the ride ends at its station and a new stage follows, or the stage reads as the walk it was. */
+    /**
+     * A split applied to the record: the ride ends at its station and a new
+     * stage follows, the ride begins at its station and the way there comes
+     * before it, or the stage reads as the walk it was.
+     */
     private suspend fun applySplit(tripId: String, split: StageSense.Split) {
         val rows = db.legDao().forTrip(tripId).sortedBy { it.legIndex }
         val leg = rows.firstOrNull { it.legIndex == split.legIndex } ?: return
@@ -1297,6 +1335,30 @@ class TripManager(
                 insertEvent(
                     tripId, EventTypes.LEG_STARTED, EventSource.SYSTEM_INFERRED, split.atMs, split.at.lat, split.at.lng,
                     mapOf("legIndex" to leg.legIndex + 1, "mode" to split.mode, "sensed" to true, "text" to text), false
+                )
+            }
+            StageSense.Reason.BEFORE_LINE -> {
+                // The ride and everything after it move along by one; the way to its station takes its place.
+                val shifted = rows.filter { it.legIndex >= leg.legIndex }.sortedByDescending { it.legIndex }.map { it.copy(legIndex = it.legIndex + 1) }
+                db.legDao().upsertAll(shifted)
+                db.legDao().upsert(leg.copy(legIndex = leg.legIndex + 1, fromName = split.placeName, fromLat = split.at.lat, fromLng = split.at.lng, startedAtMs = split.atMs))
+                db.legDao().upsert(
+                    TripLegEntity(
+                        tripId = tripId, legIndex = leg.legIndex, mode = split.mode,
+                        fromName = leg.fromName, fromLat = leg.fromLat, fromLng = leg.fromLng,
+                        toName = split.placeName, toLat = split.at.lat, toLng = split.at.lng,
+                        fuelType = null, plannedDepartureMs = null, startedAtMs = leg.startedAtMs, completedAtMs = split.atMs,
+                        bookingRef = null, seat = null, boardingPoint = null, detailsJson = sensedDetails(null)
+                    )
+                )
+                // Told just after the stage's own start, so the stages read in order: the way there, then the ride from its station.
+                insertEvent(
+                    tripId, EventTypes.LEG_STARTED, EventSource.SYSTEM_INFERRED, (leg.startedAtMs ?: split.atMs) + 500L, leg.fromLat, leg.fromLng,
+                    mapOf("legIndex" to leg.legIndex, "mode" to split.mode, "sensed" to true, "text" to StageSense.firstMileText(split, leg.fromName)), false
+                )
+                insertEvent(
+                    tripId, EventTypes.LEG_STARTED, EventSource.SYSTEM_INFERRED, split.atMs, split.at.lat, split.at.lng,
+                    mapOf("legIndex" to leg.legIndex + 1, "mode" to leg.mode, "sensed" to true, "text" to text), false
                 )
             }
         }
