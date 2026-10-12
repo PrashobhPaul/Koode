@@ -1,4 +1,4 @@
-# Transit for Koode, BR. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, BR. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-23.43257|-46.49254|GRU CPTM|Aeromóvel GRU|M
@@ -243,7 +243,7 @@ S|-23.53091|-46.63254|Tiradentes|Metrô de São Paulo|M
 S|-23.56331|-46.65420|Trianon-Masp|Metrô de São Paulo|M
 S|-23.48007|-46.60327|Tucuruvi|Metrô de São Paulo|M
 S|-23.62204|-46.67889|Vereador José Diniz|Metrô de São Paulo|M
-S|-23.56882|-46.63991|Vergueiro - Sebrae|Metrô de São Paulo|M
+S|-23.56882|-46.63992|Vergueiro - Sebrae|Metrô de São Paulo|M
 S|-23.61558|-46.68858|Vila Cordeiro|Metrô de São Paulo|M
 S|-23.64025|-46.74577|Vila das Belezas|Metrô de São Paulo|M
 S|-23.54650|-46.69112|Vila Madalena|Metrô de São Paulo|M
@@ -378,8 +378,8 @@ S|-9.57940|-35.81039|Rio Novo|VLT|M
 S|-9.57351|-35.82469|Satuba|VLT|M
 S|-9.62128|-35.76099|Sururu de Capote|VLT|M
 S|-9.53134|-35.85059|Utinga|VLT|M
-S|-23.94011|-46.31916||VLT da Baixada Santista|M
-S|-23.93657|-46.31917||VLT da Baixada Santista|M
+S|-23.94025|-46.31919||VLT da Baixada Santista|M
+S|-23.93668|-46.31877||VLT da Baixada Santista|M
 S|-23.95953|-46.33315|Ana Costa|VLT da Baixada Santista|M
 S|-23.96166|-46.33897|Bernardino de Campos|VLT da Baixada Santista|M
 S|-23.93949|-46.32280|Bittencourt|VLT da Baixada Santista|M
@@ -389,7 +389,6 @@ S|-23.95760|-46.32374|Conselheiro Nébias|VLT da Baixada Santista|M
 S|-23.96468|-46.38085|Emmerich|VLT da Baixada Santista|M
 S|-23.96841|-46.36238|Itararé|VLT da Baixada Santista|M
 S|-23.96744|-46.35778|João Ribeiro|VLT da Baixada Santista|M
-S|-23.93652|-46.32504|José Bonifácio|VLT da Baixada Santista|M
 S|-23.93652|-46.32504|José Bonifácio|VLT da Baixada Santista|M
 S|-23.96830|-46.37087|José Monteiro|VLT da Baixada Santista|M
 S|-23.96171|-46.39792|Mascarenhas|VLT da Baixada Santista|M
@@ -801,336 +800,647 @@ S|-7.22689|-44.55634|Uruçuí|ferry|W
 S|-28.32625|-54.40896|Vitória das Missões|ferry|W
 S|-28.30874|-54.50334|Vitória das Missões|ferry|W
 S|-0.91379|-52.39842|Vitória do Jari|ferry|W
-L|Aeromóvel GRU|Aeromóvel GRU||0 1:500 2:1410 3:648
-L|Aeromóvel GRU|Aeromóvel GRU||3 2:648 1:1410 0:500
-L|CBTU|CBTU|green|15 16:2868 5:3583 4:1744 7:1386 11:2145 12:3564 14:3426 8:4367 13:2107 9:1967 10:1557 6:1816
-L|CBTU|CBTU|green|6 10:1816 9:1557 13:1967 8:2107 14:4367 12:3426 11:3564 7:2145 4:1386 5:1744 16:3583 15:2868
-L|CBTU Natal|Linha Norte||32 17:2749 39:1590 28:3226 41:2086 43:1719 34:2705 33:1332 26:3372 27:1814 40:6443 31:2703 30:4004 23:4066
-L|CBTU Natal|Linha Norte||23 30:4066 31:4004 40:2703 27:6443 26:1814 33:3372 34:1332 43:2705 41:1719 28:2086 39:3226 17:1590 32:2749
-L|CBTU Natal|Linha Sul||32 18:2836 35:1291 20:1263 24:1509 38:1202 37:1581 25:928 29:3436 36:3692 19:1780 22:2897 21:11393 42:5227
-L|CBTU Natal|Linha Sul||42 21:5227 22:11393 19:2897 36:1780 29:3692 25:3436 37:928 38:1581 24:1202 20:1509 35:1263 18:1291 32:2836
-L|Estrada de Ferro do Corcovado|Trem do Corcovado|#D32232|45 46:728 47:1693 44:967
-L|Estrada de Ferro do Corcovado|Trem do Corcovado|#D32232|44 47:933 46:1704 45:766
-L|Metrofor|Linha Oeste|#008000|85 69:3157 75:2247 50:1206 60:2310 79:1444 59:814 67:1121 53:2158 57:4249
-L|Metrofor|Linha Oeste|#008000|57 53:4249 67:2158 59:1121 79:814 60:1444 50:2310 75:1206 69:2247 85:3158
-L|Metrofor|Linha Parangaba-Mucuripe|#6B297E|78 73:1289 63:1242 87:1006 55:1174 84:2104 80:1755 51:872 77:1382 74:1593 65:766
-L|Metrofor|Linha Parangaba-Mucuripe|#6B297E|65 74:766 77:1587 51:1383 80:872 84:1753 55:2110 87:1170 63:1004 73:1244 78:1290
-L|Metrofor|Linha Sul|#FF0000|56 64:1057 71:1082 88:1334 82:2256 49:1502 52:1705 62:1245 72:1391 70:1079 86:1675 78:1322 68:1266 61:1140 81:909 76:879 54:1000 83:1054 66:628 58:991
-L|Metrofor|Linha Sul|#FF0000|58 66:978 83:626 54:1054 76:999 81:881 61:908 68:1144 78:1259 86:1327 70:1672 72:1077 62:1377 52:1312 49:1721 82:1518 88:2249 71:1329 64:1076 56:1077
+L|Aeromóvel GRU|Aeromóvel GRU||0 1:501:1ogvErw47IgCmDEiH 2:1413:9k_uE1g47I-CqC_BqanFgH 3:649:lm_uEzg27IkC2BkGM8BuB
+L|Aeromóvel GRU|Aeromóvel GRU||3 2:649:h8-uEj917I7BtBjGLjC1B 1:1413:np_uEh927IoF_GgCpa9CpC 0:501:xmgvEjm47IDhH_BlD
+L|CBTU|CBTU|green|15 16:2866:puvrBv4v1GmCyPe4YmE0RuPicX4TuDsIoDkWD0D 5:3277:_6urB35q1G1H82BFwHwFudHkGzCyFjLkQ_MsP 4:1743:3uwrBl_k1G3FqX9DseQkF 7:1386:1vwrBnzi1GcyETwFrEuKAsHkF4M4H2M 11:1946:rzvrBtmg1G4J8auD0FqE-ByJG 12:3568:lrtrB3u-0G0GkEiP8XqHsHsCiE2B2O4C0GkDgE0LqK4P6Z-DoKIyTkBqG 14:3437:7oqrBtu40GsFmIgE8CmP4F4WsYuEkD4GO 8:4392:t9krB1830GgGJukDqN 13:2116:t29qBhx20G 9:1976:lq4qB3uz0GsEqB 10:1566:j62qBtwz0G8I8BuToI-JI 6:1826
+L|CBTU|CBTU|green|6 10:1826 9:1565:7z1qBhmz0G9JHtTnI7I7B 13:1976:5l4qBttz0GrEpB 8:2116:t29qBhx20G 14:4390:_yhrB1v30GtkDpN_FK 12:3440:ruorB1h30G3GNtEjD3WrYlP3F_D7CrFlI 11:3567:xjrrB3l60GjBpGHxT9DnK3P5ZzLpKjD_D3CzG1B1OrChEpHrHhP7XzGjE 7:1947:p4urB5j_0GxJFpE9BtDzF3J7a 4:1387:9mwrB99g1G3H1MjF3MArHsEtKUvFbxE 5:1743:93wrBrkj1GPjF-Dre4FpX 16:3277:r4vrB3ym1GgNrPkLjQ0CxFIjGvFtdGvH2H72B 15:2866:3xurBzsr1GEzDnDjWtDrIY3TtPhclEzRd3YlCxP
+L|CBTU Natal|Linha Norte||32 17:2754:tqpjBl682G7O3LjEzBlVzD1E7C_B5D1C9OsB_RPrMnKnP 39:1589:n1rjBr6_2GrCzD7H1XvE3VC1R 28:3238:1vrjBtlj3GuEnFoI9Fuc9K4sBjTyOtEuN7BqM9G 41:2521:p_mjBxgl3GwrBoL4CuC-G0KwJmFqDgEuB6LxC-OyCqFqGwD6EL8EhE 43:1201:37jjB3xk3G 34:2710:xvijBhym3GsC1GyBrS4InOwH5F2PzG 33:1336:vigjBvlp3GganL-ElE 26:3372 27:1813:786iBt6s3GAhX6J5nBwDzJ 40:6465:5t6iBtjw3G2F_JyGlFuEjC4jBxG-J9Dq5DxjDuGnCoZvD6SyDwX5CwDxB6FhE0D5F 31:2708:t5xiBhz13GgK5P0R_O4MnRirBrqB 30:4004:9ruiB1g53GkN3Sf3gB0JnwC 23:4063:38siB9w_3GlBxNvCrLwD3KG_DxEljBmDvpBJ5JyIvd2CzY2NzW
+L|CBTU Natal|Linha Norte||23 30:4063:vlsiB77l4G1N0W1C0YxIwdK6JlDwpByEmjBFgEvD4KwCsLmByN 31:4003:l2tiBtk93GzJowCgB4gBjN4S 40:2709:_lviBvt43GhrBsqB3MoRzRgP_J6P 27:6465:l_xiBnz03GzD6F5FiEvDyBvX6C5SxDnZwDtGoCp5DyjD9J-D3jByGtEkCxGmF1FgK 26:1813:xv6iB9iv3GvD0J5J6nBAiX 33:3372 34:1336:xj_iB90p3G9EmE_ZoL 43:2710:1rhjB5lo3G1P0GvH6F3IoOxBsSrC2G 41:1201:37jjB3xk3G 28:2520:7rkjB9_i3G7EiE5EMpGvDxCpFyC9OtB5LpD_DvJlF9GzK3CtCvrBnL 39:3239:vxnjB97k3GpM-GtN8BxOuE3sBkTtc-KnI-FtEoF 17:1589:9jsjBj9h3GB2RwE4V8H2XsC0D 32:2754:rlrjBtu_2GoKoPQsMrBgS2C-OgC6D2E8CmV0DkE0B8O4L
+L|CBTU Natal|Linha Sul||32 18:2842:zqpjB_582GnPhM5ZlF1DvCjC9DxChMoBnbtB9HvKrO5E_BrIH 35:1296:77rjB71_2G5E7J7C_B1EAzH4DrDM9F1DxEX7FiDnEYhCb 20:1265:5oujB5oh3GzJjJ 24:1515 38:1208:1vxjBnvj3G7OnG 37:1589:jo0jBx9j3G5MuFzI-FnDa 25:931:_-2jB5lk3G 29:3453:383jB3sk3GrIpE5JAxE1BjG5D3E5I5JxFtJ9JhDZpJkBlXlM5RrDpJHtGczUiG 36:3714 19:1790 22:2904:9nnkB7ym3GhGiC9D-DpC-FtB-NoC6hB_D8JuB4OtDuOjCkEjG4EjQmD 21:11444:7lpkBtrj3G7HSnEtBxC1CzCnF7F9C5ElF1DhCtPtFvGIxDkD3CuEJ4FgM6NgBqL2G-JViF2C0IV4E_BmE7C2E5EuDjiH0nB7QMhGlC_R1Q_B5CtCpHlDjD_CHzS0DtdnIljDmU9IA 42:5257:j98kBn-h3G_b9ElhC1C7oBrE1DUnE4C7DuI
+L|CBTU Natal|Linha Sul||42 21:5255:_uhlBt-h3G8DtIoE3C2DT8oBsEmhC2Cgc-E 22:11445:1o4kBp9g3G-IAmjDlUudoI0SzDgDImDkDuCqHgC6CgS2QiGmC8QLkiHznB6EtD8C1EgClEW3E1CzIWhF1G9JfpL_L5NK3F4CtEyDjDwGHuPuF2DiC6EmF8F-C0CoFyC2CoEuB8HR 19:2903:5xokBhkj3GkQlDkG3EkCjEuDtOtB3OgE7JnC5hBuB9NqC9F-D9DiGhC 36:1791 29:3713 25:3457:rr8jBt3l3G0UhGuGbqJI6RsDmXmMqJjBiDauJ-J6JyF4E6IkG6DyE2B6JAsIqE 37:933:_-2jB5lk3G 38:1587:5g1jBrxj3GoDZ0I9F6MtF 24:1210:x-xjBv1j3G8OoG 20:1515 35:1265:tyujB9xh3G0JkJ 18:1296:9ptjBj__2GiCcoEX8FhDyEY-F2DsDL0H3D2EA8CgC6E8J 32:2842:9zrjBxx_2GsII6EgCwKsOuB-HnBobyCiMkC-D2DwC6ZmFoPiM
+L|Estrada de Ferro do Corcovado|Trem do Corcovado|#D32232|45 46:730:rhhsEtq1nIjGpI7M_H 47:1893:94hsEll2nIEpDyBhD6F1FKlD7H3KkClL9C_I5ChFLjD0CtKoFxHiExDoBhE9BvF_C7B 44:1119:v-hsEj94nI9C2BpEyIpGgElFuG5EZpD-B7BoF6CuJ
+L|Estrada de Ferro do Corcovado|Trem do Corcovado|#D32232|44 47:1058:t4isEz43nI5CtJe9DoEnD6EamFtGqG_D8DnI 46:1956:7yhsEz74nImCwCc-DnBiEhEyDnFyHzCuKMkD6CiF-CgJjCmL8H4KJmD5F2FxBiDDqD 45:769:r0hsE361nI8MgIkGqI
+L|Metrofor|Linha Oeste|#008000|85 69:3154:lo2W7rnrHyFl5C 75:2249:l52Wr6srHpChE1UxM1G7G 50:1206 60:2316:lg6W_1yrH1DhFpFtBjL8B_GBjfjKpJpF 79:1446:7l9W170rHhOpM 59:818 67:1124:zggX5q2rHhH5GxC5FZtG 53:2158:5igXr73rH6NpP2E7H8BtJtCrVW1GsDzGmMpP 57:4261:p5-W_m7rHkD9G8VtY4J1W4HzJ4InFswBxTsGHgd2EgGP-GpCgH5E4FvHsD7K
+L|Metrofor|Linha Oeste|#008000|57 53:4261:n15Wh1-rHrD8K3FwH_G6E9GqC_FQ_c1ErGIrwByT3IoF3H0J3J2W7VuYjD-G 67:2159:zg_W_t6rHlMqPrD0GV2GuCsV7BuJ1E8H5NqP 59:1123:hrgX792rHauGyC6FiH6G 79:818 60:1447:9z9W_n1rHiOqM 50:2316:3j8WjqzrHqJqFkfkKgHCkL7BqFuB2DiF 75:1206 69:2249:723W7xtrH2G8G2UyMqCiE 85:3155:zi2WhlqrHxFm5C
+L|Metrofor|Linha Parangaba-Mucuripe|#6B297E|78 73:1289:hohXn2rrHwCmFnBmlBoCiI 63:1242:z1gX9oprHkF4GsC4FC4I 87:1006:n4gX1onrHYsJuC2G 55:1178:zggX57lrHsHwG 84:2105:vs-WljlrHiGyF8JqSoBuFzC4G9JgInD0F 80:1758:vx-WnvhrH8BuG-CiF4HiHsQwI8VwZ 51:872:9z8Wl3-qH0D4F 77:1387:ht7Wr19qHkR-JoGwF 74:1600:7p4W527qHoEqB 65:769:zt3Wh27qHuK2E6I8I
+L|Metrofor|Linha Parangaba-Mucuripe|#6B297E|65 74:768:r62Wvo7qH5I7ItK1E 77:1594:vk4W317qHnFnB 51:1389:p06Wnl9qHvHtGhR7J 80:873:jw8Wxx-qHpDhF 84:1756:798Wj6_qHvWlapRlJvHrH9C7FpB3F 55:2110:7q-WtxjrHoEzG8I7G2C_GdxEpKpT9GlG 87:1174:j5_Wv1lrHtHxG 63:1005:1zgX32mrHxDxIXpJ 73:1244:1tgXz0orHF7HpC1FpGzI 78:1289:pkhX5jqrHlChImBllB3BpE
+L|Metrofor|Linha Sul|#FF0000|56 64:1059:n03Xlj4rH 71:1088:th3Xzr4rHmID 88:1340:900Xt73rHoGyC 82:2264 49:1507 52:1711 62:1250 72:1396:v3oXl1vrH 70:1084:_pnX5rurH4H8DyI0B 86:1684:z6jX3iurHmL6D 78:1325:hgiX30srH 68:1271:1khX1zrrHoFoEwfiK2GL 61:1145:1_-WzvrrHiGRgFgB8GoE 81:912 76:881 54:1002 83:1057:1l6W7gnrHiR6P 66:632 58:994:1_2W72lrHwCHuFhF
+L|Metrofor|Linha Sul|#FF0000|58 66:981:r42Wn8lrH5FgF 83:629 54:1058:j05W_wmrHvRjQ 76:1001 81:883 61:910 68:1147:tu-W_rrrHvH5D5JB 78:1266:p5_WhmrrHzGKrf_JjFjE 86:1330:5_hX90srH 70:1681:_ujXh_trHvL9D 72:1083:59mX_murHrEnBzH7D 62:1381:p3oXt1vrH 52:1317 49:1727 82:1523 88:2256 71:1335:xu0Xj53rHpGxC 64:1082:j52Xls4rHnIB 56:1080:t03Xvj4rH
 L|Metrofor|Ramal Aeroporto-Castelão|#FF6100|63 48:1086
 L|Metrofor|Ramal Aeroporto-Castelão|#FF6100|48 63:1086
-L|Metrô Rio|Linha 4|#FFCC29|107 116:1148 111:1021 91:803 122:3310 112:6017
-L|Metrô Rio|Linha 4|#FFCC29|112 122:6145 91:3284 111:780 116:1067 107:1033
-L|Metrô Rio|Metrô Linha 2|#028F34|117 103:1310 89:1515 100:1004 101:1511 110:1342 129:1235 125:1191 104:1203 109:1660 102:1322 115:1247 126:2491 114:1937 123:1339 98:1546 97:1703 119:508 127:460 95:662 99:448 108:1126 96:601 113:592 106:683 92:1672
-L|Metrô Rio|Metrô Linha 2|#028F34|92 106:1672 113:683 96:592 108:601 99:1126 95:447 127:662 119:460 97:508 98:1704 123:1542 114:1342 126:1952 115:2490 102:1247 109:1322 104:1660 125:1210 129:1188 110:1235 101:1341 100:1514 89:1005 103:1512 117:1316
-L|Metrô Rio|Metrô Rio Linha 1|#e77405|128 120:966 124:994 90:685 105:1288 118:778 97:1115 119:508 127:460 95:662 99:448 108:1126 96:601 113:592 106:683 92:1672 94:1660 121:725 93:1235 107:690
-L|Metrô Rio|Metrô Rio Linha 1|#e77405|107 93:692 121:1233 94:724 92:1669 106:1672 113:683 96:592 108:601 99:1126 95:447 127:662 119:460 97:508 118:1115 105:781 90:1281 124:685 120:994 128:966
-L|Metrô de Salvador|Linha 2||130 134:1289 140:895 138:733 136:2747 133:1233 139:1416 135:2003 141:1289 132:1762 137:2461 131:3609
-L|Metrô de Salvador|Linha 2||131 137:3609 132:2461 141:1762 135:1289 139:2003 133:1416 136:1233 138:2747 140:733 134:895 130:1289
-L|Metrô de Sobral|Linha Norte|blue|152 149:1070 142:803 144:1015 151:1155 150:838 146:1153
-L|Metrô de Sobral|Linha Norte|blue|146 150:1153 151:838 144:1155 142:1015 149:803 152:1070
-L|Metrô de Sobral|Linha Sul|red|145 147:1292 143:736 144:1317 148:1024 153:1120
-L|Metrô de Sobral|Linha Sul|red|153 148:1120 144:1024 143:1317 147:736 145:1292
-L|Metrô de São Paulo|Linha 1 - Azul|#1266af|193 180:1258 232:1023 220:855 216:874 222:1274 246:1142 159:977 208:719 242:754 231:804 194:790 218:567 200:1533 238:694 161:679 215:1304 175:716 224:785 197:1396 207:1136 240:903
-L|Metrô de São Paulo|Linha 1 - Azul|#1266af|240 207:1020 197:1024 224:1510 175:675 215:817 161:1201 238:682 200:695 230:785 218:740 194:564 231:796 242:796 208:742 159:736 246:969 222:1143 216:1274 220:873 232:855 180:1024 193:1258
-L|Metrô de São Paulo|Linha 15 - Prata|#7b9192|195 234:1770 185:1273 228:1480 196:1283 251:952 250:1211 171:1218 233:1026 204:2027 248:2297
-L|Metrô de São Paulo|Linha 15 - Prata|#7b9192|248 204:2209 233:2019 171:1035 250:1221 251:1285 196:958 228:1296 185:1488 234:1183 195:1778
-L|Metrô de São Paulo|Linha 17 - Ouro|#DE7C00|156 168:1577 241:995 172:596 243:635 178:734 203:1438
-L|Metrô de São Paulo|Linha 17 - Ouro|#DE7C00|203 178:1430 243:731 172:624 241:597 168:996 156:1597
-L|Metrô de São Paulo|Linha 2 - Verde|#008162|248 236:1229 219:1680 158:1023 226:1140 177:1113 159:1466 208:734 166:1054 239:885 181:886 179:1205 227:765 245:1458
-L|Metrô de São Paulo|Linha 2 - Verde|#008162|245 227:1458 179:769 181:1194 239:885 166:887 208:1044 159:740 177:1476 226:1191 158:1055 219:1038 236:1683 248:1231
-L|Metrô de São Paulo|Linha 3 - Vermelha|#ef3f32|206 201:1535 221:920 217:813 160:597 218:699 211:737 169:1055 165:911 163:1827 237:1362 176:1280 212:2274 247:1208 190:1511 209:1694 162:2133 182:1473
-L|Metrô de São Paulo|Linha 3 - Vermelha|#D9001C|182 162:1466 209:2132 190:1700 247:1504 212:1216 176:2274 237:1278 163:1363 165:1827 169:911 211:1056 218:737 160:685 217:591 221:816 201:920 206:1540
-L|Metrô de São Paulo|Linha 4 - Amarela|#FFD700|200 217:1220 191:1142 210:1239 205:1163 186:1402 184:1046 214:812 170:850 235:2473 249:1399
-L|Metrô de São Paulo|Linha 4 - Amarela|#ffd500|249 235:1399 170:2477 214:845 184:809 186:1050 205:1402 210:1164 191:1239 217:1143 200:1222
-L|Metrô de São Paulo|Linha 5 - Lilás|#9200C3|174 173:1450 244:1764 188:1666 225:2254 199:1114 155:838 157:1098 164:1078 167:915 172:1048 183:1781 202:919 154:1287 192:689 222:852 177:956
-L|Metrô de São Paulo|Linha 5 - Lilás|#9200C3|177 222:953 192:851 154:689 202:1292 183:918 172:1782 167:1169 164:792 157:1217 155:962 199:833 225:1113 188:2316 244:1607 173:1865 174:1455
-L|Metrô de São Paulo|Linha 6 - Laranja|#F96815|198 187:937 223:1409 189:799 229:916 213:865
-L|Metrô de São Paulo|Linha 6 - Laranja|#F96815|213 229:864 189:913 223:802 187:1404 198:935
-L|Metrô de Teresina|Linha 1 - Eng. Alberto T. Silva → Itararé|#8A8988|261 267:1324 263:2953 275:4774 253:1139 273:1321 270:773 260:1070 265:772 252:41147 268:21875 256:19207 274:28995 257:20587 255:45375 271:26029 259:38446 258:21906 264:12511 254:23863 269:49892 262:8015 266:7422 272:191245
-L|Metrô de Teresina|Linha 1 - Itararé → Eng. Alberto T. Silva|#8A8988|265 260:772 270:1070 273:773 253:1321 275:1139 263:4774 267:2953 261:1324 252:47834 268:21875 256:19207 274:28995 257:20587 255:45375 271:26029 259:38446 258:21906 264:12511 254:23863 269:49892 262:8015 266:7422 272:191245
-L|Metrô do Recife|Linha Centro - 1|#e77405|304 293:1287 277:1287 291:810 296:889 306:1155 311:703 280:1137 310:1236 285:917 278:1412 287:1073 305:1337 286:3226 283:1484
-L|Metrô do Recife|Linha Centro - 1|#e77405|283 286:1485 305:3223 287:1337 278:1074 285:1420 310:925 280:1237 311:1136 306:703 296:1155 291:887 277:814 293:1286 304:1303
-L|Metrô do Recife|Linha Centro - 2|#D9001C|304 293:1287 277:1287 291:810 296:889 306:1155 311:703 280:1137 310:1236 285:917 284:1006 289:2945 288:1371 292:1174
-L|Metrô do Recife|Linha Centro - 2|#D9001C|292 288:1174 289:1369 284:2944 285:1002 310:920 280:1237 311:1136 306:703 296:1155 291:887 277:814 293:1286 304:1303
-L|Metrô do Recife|Linha Sul|#1a5ba3|304 293:1302 295:1497 290:1006 279:2213 308:717 309:691 276:1347 302:1452 298:887 303:1029 282:1141
-L|Metrô do Recife|Linha Sul|#1a5ba3|282 303:1139 298:1033 302:879 276:1462 309:1348 308:688 279:717 290:2212 295:1004 293:1491 304:1305
-L|Metrô do Recife|VLT Cabo - Cajueiro Seco|#008000|281 307:1580 300:6650 301:2983 299:3219 282:3910
-L|Metrô do Recife|VLT Cajueiro Seco --> Curado|#999e9e|282 297:5608 294:4706 287:3994
-L|Metrô do Recife|VLT Cajueiro Seco–Cabo|#008000|282 299:3989 301:3140 300:2980 307:6649 281:1579
-L|Metrô do Recife|VLT Curado --> Cajueiro Seco|#999e9e|287 294:3994 297:4707 282:5611
-L|Metrô-DF|Linha Laranja|#EB9710|324 330:717 312:788 313:1423 314:722 315:716 316:718 317:720 319:1532 337:2140 328:2998 331:983 318:3980 333:1274 338:2178 329:2435 336:1353 335:1536
-L|Metrô-DF|Linha Laranja|#EB9710|335 336:1532 329:1356 338:2433 333:2157 318:1278 331:3979 328:982 337:2995 319:2142 317:1533 316:720 315:718 314:716 313:724 312:1423 330:791 324:718
-L|Metrô-DF|Linha Verde|#076C57|324 330:717 312:788 313:1423 314:722 315:716 316:718 317:720 319:1532 337:2140 328:2998 331:983 318:3980 333:1274 326:1284 327:787 334:1225 325:3266 323:2292 332:900 321:1046 322:934 320:1168
-L|Metrô-DF|Linha Verde|#076C57|320 322:1169 321:935 332:1046 323:901 325:2295 334:3267 327:1224 326:786 333:1286 318:1277 331:3979 328:982 337:2995 319:2142 317:1533 316:720 315:718 314:716 313:724 312:1423 330:791 324:718
-L|Trensurb|Conexão Metrô-Aeroporto|black|339 340:807
-L|Trensurb|Conexão Metrô-Aeroporto|black|340 339:807
-L|Trensurb|Norte|#000080|350 355:927 360:2067 344:1796 340:1899 341:1273 351:2476 346:1844 342:2163 349:1758 359:1872 353:1211 343:2810 348:2576 357:1978 361:4720 358:2097 354:2325 356:2198 347:1615 345:1688 352:1594
-L|Trensurb|Norte|#000080|350 355:927 360:2067 344:1796 340:1899 341:1273 351:2476 346:1844 342:2163 349:1758 359:1872 353:1211 343:2810 348:2576 357:1978
-L|Trensurb|Sul|#000080|352 345:1598 347:1689 356:1616 354:2195 358:2327 361:2095 357:4726 348:1981 343:2568 353:2810 359:1209 349:1875 342:1755 346:2164 351:1843 341:2477 340:1273 344:1907 360:1792 355:2070 350:930
-L|Trensurb|Sul|#000080|357 348:1981 343:2568 353:2810 359:1209 349:1875 342:1755 346:2164 351:1843 341:2477 340:1273 344:1907 360:1792 355:2070 350:930
-L|VLT|Linha Azul|#1a5ba3|363 375:1034 366:3984 365:1057 362:1399 373:1720 374:1976 376:6936 367:5313 372:1773 369:1247
-L|VLT|Linha Azul|#1a5ba3|369 372:1247 367:1773 376:5313 374:6936 373:1977 362:1720 365:1395 366:1059 375:3985 363:1034
-L|VLT|Linha Verde|#78b942|364 371:1710 370:1313 368:2329
-L|VLT|Linha Verde|#78b942|368 370:2329 371:1316 364:1702
-L|VLT da Baixada Santista|VLT Linha 1|#005CA9|398 391:1169 397:1042 385:744 393:494 390:585 386:937 387:508 394:577 395:720 380:741 379:634 403:527 384:478 399:1130
-L|VLT da Baixada Santista|VLT Linha 1|#005CA9|399 384:1122 403:483 379:525 380:634 395:739 394:722 387:584 386:504 390:939 393:581 385:501 397:740 391:1040 398:1171
-L|VLT da Baixada Santista|VLT Linha 2|#F26A21|398 391:1169 397:1042 385:744 393:494 390:585 386:937 387:508 394:577 395:720 380:741 379:634 403:527 384:478 404:1021 400:423 377:755 378:451 389:396 392:717 396:672 402:165
-L|VLT da Baixada Santista|VLT Linha 2|#F26A21|402 388:941 381:536 382:543 401:344 383:328 384:853 403:483 379:525 380:634 395:739 394:722 387:584 386:504 390:939 393:581 385:501 397:740 391:1040 398:1171
-L|VLT do Cariri|VLT do Cariri|green|408 409:1134 413:1824 405:1060 407:1431 412:2640 410:2074 411:1713 406:1929
-L|VLT do Cariri|VLT do Cariri|green|406 411:1929 410:1713 412:2074 407:2640 405:1430 413:1060 409:1824 408:1134
-L|Abade-Pedras|Abade-Pedras||414 415:403
-L|Alba Posse - Porto Mauá|Alba Posse - Porto Mauá||416 417:542
-L|Alvear - Itaqui|Alvear - Itaqui||418 419:465
-L|Amazônia Navegações|Travessia Aripuanã||420 421:324
-L|Amazônia Navegações|Travessia Rio Igapó-Açú||425 424:129
-L|Amazônia Navegações|Travessia de Sucunduri||422 423:106
-L|Araguaiana - Registro do Araguaia|Araguaiana - Registro do Araguaia||426 427:299
-L|Areado - Alfenas|Areado - Alfenas||429 428:1727
-L|Argentina: Balsa Iguazú S.R.L.|Balsa||431 430:1614
-L|Balsa (Desativada)|Balsa||433 432:262
-L|Balsa (Ferry): Puerto Indio (Py) - Santa Helena (Br)|Balsa||435 434:10646
-L|Balsa Benjamin Barison|Balsa Benjamin Barison||436 437:525
-L|Balsa Capinzal|Balsa Capinzal||439 438:579
-L|Balsa Deusa do Jacuí|Balsa Deusa do Jacuí||440 441:365
-L|Balsa Irineópolis|Balsa Irineópolis||443 442:206
-L|Balsa MG/GO|Balsa MG/GO||445 444:406
-L|Balsa Manaus x Nhamandu|Balsa Manaus x Nhamandu||515 446:453594
-L|Balsa Manaus-Santarém|Balsa Manaus-Santarém||461 515:740247
-L|Balsa Paranaguá-Governador Valadares|Balsa Paranaguá-Governador Valadares||562 448:214
-L|Balsa Picadão (Desativada)|Balsa Picadão||450 449:213
-L|Balsa Pires|Balsa Pires||451 452:122
-L|Balsa Portel - Belém|Balsa Portel - Belém||454 453:329410
-L|Balsa Rio Araguaia|Balsa Rio Araguaia||455 456:382
-L|Balsa Santarém - Alenquer|Balsa Santarém - Alenquer||461 460:70312
-L|Balsa da Estrada do Colono|Balsa da Estrada do Colono||463 464:630
-L|Balsa de Paula Pereira|Balsa de Paula Pereira||465 466:207
-L|Balsa de Santa Leocádia|Balsa de Santa Leocádia||468 467:224
-L|Balsa de Taunay|Balsa de Taunay||469 470:96
-L|Balsa do Rio Manguaba|Balsa do Rio Manguaba||471 472:559
-L|Balsa do Rio Xingu|Balsa do Rio Xingu||473 474:1904
-L|Balsa do rio das Velhas|Balsa do rio das Velhas||476 475:169
-L|Balsa dos Gabriel|Balsa dos Gabriel||478 477:94
-L|Balsa: Porto Mendes (Br) - Puerto Adela (Py)|Balsa||480 479:5329
-L|Barcas Rio|Angra dos Reis - Abraão||481 484:22135
-L|Barcas Rio|Charitas - Praça XV||482 488:8447
-L|Barcas Rio|Cocotá - Praça XV||483 488:13189
-L|Barcas Rio|Mangaratiba - Abraão||485 484:23741
-L|Barcas Rio|Paquetá - Praça XV||486 488:18055
-L|Barcas Rio|Praça Arariboia - Praça XV||487 488:4995
-L|Barcas Rio|Praça XV - Charitas||488 482:8448
-L|Barcas Rio|Praça XV - Charitas||482 488:8203
-L|Barcas Rio|Praça XV - Cocotá||488 483:13186
-L|Barcas Rio|Praça XV - Paquetá||488 486:18051
-L|Barcas Rio|Praça XV - Praça Arariboia||488 487:5079
-L|Barcas Rio|Praça XV - Praça Arariboia||488 487:4885
-L|Barcas Santos-Guarujá|Barcas Santos-Guarujá||490 489:457
-L|Barquinhas|Barquinhas||491 492:720
-L|Becker Transportes;F. Andreis|Travessia Aquaviária de Veículos Rio Grande - São José do Norte||494 493:4934
-L|Belém de São Francisco - Barra do Tarrachil|Belém de São Francisco - Barra do Tarrachil||496 495:918
-L|Cachoeira do Manteiga - Ponto Chique|Cachoeira do Manteiga - Ponto Chique||497 498:389
-L|Cachoeirrinha - Rio Negro|Cachoeirrinha - Rio Negro||499 781:396560
-L|Cachoeirrinha - Rio Negro|Cachoeirrinha - Rio Negro||499 781:396437
-L|Cachoeirrinha - Rio Negro|Cachoeirrinha - Rio Negro||499 781:396486
-L|Canal de acesso ao porto velho|Canal de acesso ao porto velho||683 493:737
-L|Canauini - Cachoeirinha|Canauini - Cachoeirinha||500 499:45721
-L|Caseara - Santana do Araguaia|Caseara - Santana do Araguaia||501 502:2577
-L|Catraia Santos-Vicente de Carvalho|Catraia Santos-Vicente de Carvalho||503 526:979
-L|Centrinho da Lagoa da Conceição - Canto dos Araçás|Centrinho da Lagoa da Conceição - Canto dos Araçás||512 508:7624
-L|Colonia Alicia - San Antonio|Colonia Alicia - San Antonio||505 504:558
-L|Colonia Aurora - Pratos|Colonia Aurora - Pratos||506 507:434
-L|Cooperbarco|Centrinho da Lagoa da Conceição - Costa da Lagoa||512 508:8052
-L|Cooperbarco|Centrinho da Lagoa da Conceição - Costa da Lagoa||510 508:1705
-L|Cooperbarco|Cooperbarco||508 512:7713
-L|Cooperbarco|Costa da Lagoa - Trapiche do Rio Vermelho||509 511:1054
-L|Copanatra|Balsa||513 514:4285
-L|Democracia - Manicoré|Democracia - Manicoré||737 515:746800
-L|Departamento Hidroviário|Balsa Bertioga - Guarujá||518 517:449
-L|Departamento Hidroviário|Balsa Santos - Guarujá||524 522:507
-L|Departamento Hidroviário|Balsa Santos - Guarujá||523 522:466
-L|Departamento Hidroviário|Balsa Santos - Guarujá||523 522:471
-L|Departamento Hidroviário|Balsa Santos - Guarujá||521 528:380
-L|Departamento Hidroviário|Balsa São Sebastião - Ilhabela||516 525:2422
-L|Departamento Hidroviário|Barca Santos-Vicente de Carvalho||527 526:2133
-L|Departamento Hidroviário|Cananéia - Continente||520 519:900
-L|Duque Bacelar - Miguel Alves|Duque Bacelar - Miguel Alves||530 529:229
-L|EMAE - Empresa Metropolitana de Águas e Energia S.A.|Balsa de Taquacetuba||532 531:790
-L|EMAE - Empresa Metropolitana de Águas e Energia S.A.|Balsa do Bororé||533 534:512
-L|El Soberbio - Porto Soberbo|El Soberbio - Porto Soberbo||536 535:265
-L|Empresa Metropolitana de Águas e Energia|Balsa João Basso||538 537:487
-L|Esperantina - São João do Araguaia|Esperantina - São João do Araguaia||539 540:805
-L|F. Andreis|Barca São Francisco do Sul - Distrito do Saí||542 541:4568
-L|FerryBoat: Ponta da Espera - Cujupe|FerryBoat||543 544:23090
-L|Figueira - Rincão Vermelho|Figueira - Rincão Vermelho||546 545:191
-L|Filadélfia - Carolina|Filadélfia - Carolina||548 547:886
-L|Floresta - Bela Vista - Itaquera|Floresta - Bela Vista - Itaquera||550 549:47927
-L|GNU|GNU Ilha do Pavão||687 551:1538
-L|Governo de Roraima|Travessia Rio Uraricoera||552 553:453
-L|Guayaramein-Guajara-Mirim|Guayaramein-Guajara-Mirim||554 555:1907
-L|Hidrovia do Tototó|Hidrovia do Tototó||557 556:927
-L|Ilha Primeira|Ilha Primeira||558 559:408
-L|Ilha da Gigóia|Ilha da Gigóia||560 561:873
-L|Ilha das Peças - Paranagua|Ilha das Peças - Paranagua||563 562:19698
-L|Ilha do Superagui - Paranaguá|Ilha do Superagui - Paranaguá||564 562:30321
-L|Imperatriz - São Miguel do Tocantins|Imperatriz - São Miguel do Tocantins||566 565:668
-L|Internacional Travessias|Salvador - Bom Despacho||567 568:13177
-L|Iranduba - São José|Iranduba - São José||569 570:20961
-L|Itaeté - Boa Vista do Tupim|Itaeté - Boa Vista do Tupim||571 572:147
-L|Itajaí - Navegantes|Itajaí - Navegantes||573 574:311
-L|Itajaí - Navegantes|Itajaí - Navegantes||574 573:287
-L|Itapagipe - Paulo de Faria|Itapagipe - Paulo de Faria||575 576:1434
-L|Itaquera - Samaúma|Itaquera - Samaúma||646 550:30132
-L|Itaquera - Samaúma|Itaquera - Samaúma||646 550:30423
-L|Itaquera - Samaúma|Itaquera - Samaúma||646 550:30328
-L|Jacaré-Porto do Capim|Jacaré-Porto do Capim||577 578:9708
-L|Jailson Pitt ME|Travessia do Rio Uruguai||579 580:654
-L|Lacel|Balsa Santa Tereza - São Valentim do Sul||581 582:124
-L|Lacel|Balsa São Valentim do Sul - Santa Tereza||582 581:124
-L|Lacel|Lacel||581 582:124
-L|Lago Grande - Terra Preta|Lago Grande - Terra Preta||583 500:2563
-L|Lago Guaíba|Lago Guaíba||687 765:7206
-L|Manaus - Careiro da Várzea|Manaus - Careiro da Várzea||584 586:5223
-L|Manaus - Careiro da Várzea (BR-319)|Manaus - Careiro da Várzea||586 585:11595
-L|Manaus - Santarém|Manaus - Santarém||461 585:687991
-L|Mar Grande - Salvador|Mar Grande - Salvador||587 588:10097
-L|Mar Paulista / Cantinho do Céu|Mar Paulista / Cantinho do Céu||638 639:5174
-L|Marcelino Ramos - Alto Bela Vista|Marcelino Ramos - Alto Bela Vista||590 589:343
-L|Mariano Moro - Concórdia|Mariano Moro - Concórdia||592 591:688
-L|Marinha do Brasil|Espaço Cultural da Marinha-Ilha Fiscal||593 594:1170
-L|Marinha do Brasil|Espaço Cultural da Marinha-Ilha Fiscal||593 488:766
-L|Matias Olímpio - Brejo|Matias Olímpio - Brejo||596 595:327
-L|Mato Queimado - Guarani|Mato Queimado - Guarani||598 597:92
-L|Mocambinho - Itacarambi|Mocambinho - Itacarambi||600 599:422
-L|Muzema|Muzema||602 601:923
-L|Navegação Bom Jesus; Eça Belizário|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||603 604:998
-L|Navegação Bom Jesus; Eça Belizário|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||604 603:998
-L|Navegação Porto Feliz Ltda|Travessia do Rio Uruguai||605 606:526
-L|Nordeste Navegações LTDA|Balsa De Maria Farinha||608 607:302
-L|Nova Brasilia - Encantadas|Nova Brasilia - Encantadas||626 625:3679
-L|PMM|Marudá-Algodoal||610 609:6770
-L|Palmeirais - Parnarama|Palmeirais - Parnarama||612 611:455
-L|Palmeirais - Parnarama|Palmeirais - Parnarama||612 611:429
-L|Panambí - Porto Vera Cruz|Panambí - Porto Vera Cruz||613 614:1053
-L|Paranagua - Nova Brasilia|Paranagua - Nova Brasilia||626 625:3504
-L|Paranaguá - Amparo|Paranaguá - Amparo||562 615:6799
-L|Paranaguá - Ilha Rasa|Paranaguá - Ilha Rasa||616 562:27304
-L|Passo Novo|Passo Novo||618 617:174
-L|Penedo - Neópolis|Penedo - Neópolis||619 620:1934
-L|Pirapó - Roque Gonzales|Pirapó - Roque Gonzales||622 621:187
-L|Piçarra - Araguanã|Piçarra - Araguanã||623 624:2015
-L|Pontal do Paraná - Encantadas|Pontal do Paraná - Encantadas||626 625:3504
-L|Porto Rico à Eclusa|Porto Rico à Eclusa||628 627:41107
-L|Porto Xavier - San Javier|Porto Xavier - San Javier||629 630:595
-L|Porto da Folha - Pão de Açúcar|Porto da Folha - Pão de Açúcar||631 632:1280
-L|Rodovia Transamazônica|Rodovia Transamazônica||633 634:439
-L|Rodrigues Alves - Cruzeiro do Sul|Rodrigues Alves - Cruzeiro do Sul||635 636:81
-L|SPTrans|626A-10 Mar Paulista|#0082BA|638 639:5174
-L|Saint Georges - Oiapoque|Saint Georges - Oiapoque||640 641:6577
-L|Sales (Praia do Torres) - Sabino|Sales||642 643:3636
-L|Salvador - Morro de São Paulo|Salvador - Morro de São Paulo||588 714:64145
-L|Salvador das Missões - Rolador|Salvador das Missões - Rolador||644 645:117
-L|Samaúma - São Sebastião|Samaúma - São Sebastião||647 646:19891
-L|Samaúma - São Sebastião|Samaúma - São Sebastião||647 646:20033
-L|Samaúma - Xixuaú|Samaúma - Xixuaú||647 646:19818
-L|San Joaquin - Forte Príncipe da Beira|San Joaquin - Forte Príncipe da Beira||649 648:3669
-L|Santa Isabel do Araguaia - Ananás|Santa Isabel do Araguaia - Ananás||650 651:898
-L|Santa Maria das Barreiras - Araguacema|Santa Maria das Barreiras - Araguacema||783 652:759
-L|Santa Maria das Barreiras - Araguacema|Santa Maria das Barreiras - Araguacema||653 783:3166
-L|Santa Mª do Boiaçu - Sacaí|Santa Mª do Boiaçu - Sacaí||656 655:28670
-L|Santana-Breves|Santana-Breves||657 676:467382
-L|Santarém - Juruti|Santarém - Juruti||658 461:184722
-L|Santarém - Oriximiná|Santarém - Oriximiná||659 461:156232
-L|Santarém - Óbidos|Santarém - Óbidos||660 461:112191
-L|Seu Chico da Balsa|Balsa do Carioca||662 661:105
-L|São Bernardo - Luzilândia|São Bernardo - Luzilândia||664 663:260
-L|São Francisco de Sales - Riolândia|São Francisco de Sales - Riolândia||665 666:1384
-L|São José do Araguaia - Pontão|São José do Araguaia - Pontão||667 668:1634
-L|São Luís - Alcântara|São Luís - Alcântara||670 669:19491
-L|São Romão - Bentópolis de Minas|São Romão - Bentópolis de Minas||671 672:524
-L|São Sebastião do Tocantins - Vila Nova dos Martírios|São Sebastião do Tocantins - Vila Nova dos Martírios||673 674:737
-L|Terminal Hidroviário São Benedito|Santana – Ilha de Santana||676 675:819
-L|Tibau do Sul - Canguaretama|Tibau do Sul - Canguaretama||677 678:72
-L|Tocantinópolis - Porto Franco|Tocantinópolis - Porto Franco||680 679:828
-L|Torrinhas - Boipeba (catamarã)|Torrinhas - Boipeba||681 682:11210
-L|Transnorte|Travessia Aquaviária de Passageiros São José do Norte - Rio Grande||683 684:5661
-L|Transnorte|Travessia Aquaviária de Passageiros São José do Norte - Rio Grande||684 683:5662
-L|Transportadora Inácio|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||685 686:793
-L|Transportadora Inácio|Travessia Hidroviária de Veículos Triunfo - São Jerônimo||686 685:793
-L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba|#FFA500|689 687:14278
-L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba|#FFA500|687 689:14283
-L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba / Pontal|#FFA500|689 688:8087 687:7253
-L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba / Pontal|#FFA500|687 688:7254 689:8088
-L|Travessia Marco Zero - Parque de Esculturas|Travessia Marco Zero - Parque de Esculturas||690 691:299
-L|Travessia Rio Madeira|Travessia Rio Madeira||737 692:1499
-L|Travessia Tapajós|Travessia Tapajós||695 694:2883
-L|Travessia da Barragem Passo Fundo|Travessia da Barragem Passo Fundo||697 696:242
-L|Travessia do Rio Ivaí de balsa|Travessia do Rio Ivaí de balsa||699 700:320
-L|Travessia do Rio Paranapanema|Travessia do Rio Paranapanema||701 706:2271
-L|Travessia do Rio Paranapanema|Travessia do Rio Paranapanema||705 703:915
-L|Travessia do Rio Paranapanema|Travessia do Rio Paranapanema||704 702:439
-L|Travessia do Rio Paraná (balsa)|Travessia do Rio Paraná||707 708:1180
-L|Travessia do Rio Uruguai - Balsa|Travessia do Rio Uruguai - Balsa||711 710:244
-L|Três Ranchos - Grupiara|Três Ranchos - Grupiara||712 713:6016
-L|Valença - Morro de São Paulo|Valença - Morro de São Paulo||715 714:18798
-L|Valença - Morro de São Paulo (lancha rápida)|Valença - Morro de São Paulo||714 715:19190
-L|Vaner Andrea II - Balsa|Vaner Andrea II - Balsa||716 717:3009
-L|Vigorelli - Travessia de balsa|Vigorelli - Travessia de balsa||718 719:1238
-L|W. V. Gouveia Calil|Balsa do Gouveinha||721 720:1541
-L|ferry|ferry||494 493:5042
-L|ferry|ferry||494 684:128
-L|ferry|ferry||686 685:793
-L|ferry|ferry||686 685:839
-L|ferry|ferry||662 661:105
-L|ferry|ferry||792 737:246045
-L|ferry|ferry||759 756:939
-L|ferry|ferry||555 554:2288
-L|ferry|ferry||758 799:457
-L|ferry|ferry||763 747:217
-L|ferry|ferry||732 734:334
-L|ferry|ferry||727 786:1023
-L|ferry|ferry||783 724:995
-L|ferry|ferry||782 722:67
-L|ferry|ferry||765 689:6914
-L|ferry|ferry||735 731:4918
-L|ferry|ferry||780 779:2407
-L|ferry|ferry||738 755:667
-L|ferry|ferry||787 723:494
-L|ferry|ferry||791 742:8932
-L|ferry|ferry||790 726:72
-L|ferry|ferry||740 796:185
-L|ferry|ferry||743 795:295
-L|ferry|ferry||748 762:2701
-L|ferry|ferry||777 768:1672
-L|ferry|ferry||772 794:158
-L|ferry|ferry||749 754:132395
-L|ferry|ferry||754 772:163246
-L|ferry|ferry||741 725:45450
-L|ferry|ferry||760 764:1096
-L|ferry|ferry||778 751:439
-L|ferry|ferry||789 781:264221
-L|ferry|ferry||757 752:128321
-L|ferry|ferry||793 746:40582
-L|ferry|ferry||739 771:47126
-L|ferry|ferry||798 785:84
-L|ferry|ferry||784 797:93
-L|ferry|ferry||728 733:136
-L|ferry|ferry||646 549:76752
-L|ferry|ferry||500 499:45091
-L|ferry|ferry||788 761:220
-L|ferry|ferry||730 729:3054
-L|ferry|ferry||776 773:605
-L|ferry|ferry||770 775:4296
-L|ferry|ferry||774 769:601
-L|ferry|ferry||745 753:104
-L|ferry|ferry||750 682:27861
-L|ferry|ferry||767 766:1081
+L|Metrô Rio|Linha 4|#FFCC29|107 116:1148:x2osEh90nIxEnFxDpGiCxkB 111:1020:9ipsEp92nIErH 91:802:3hpsE3x5nI 122:3308:r0psE_t7nIrFharGx1B5D5X9B1V 112:6015:74qsE76goIpC9H1B5MrCppB3D9U_D_NtXvgC7iBhzC5JrdjGjNVhF
+L|Metrô Rio|Linha 4|#FFCC29|112 122:6143:pytsE9-poIWkFkGmN6Jsd8iBizCuXugCgEgO2D8UuCqpB0B6MsCkI2IwO 91:3282:pmqsEhr_nImMijD-FyckJ6V 111:780:xgpsE1l5nI 116:1066:rjpsEp92nI 107:1033:h9osElt2nIhC2kBgEiHqE-E
+L|Metrô Rio|Metrô Linha 2|#028F34|117 103:1315:rwmrEvz1oIzJsK5M-F 89:1518:z5orEhn0oIlDmD5C0HCsO1DiHnF2DxO6F 100:1008:_1qrE3iyoI 101:1520:t2rrE_ixoI3xBkd3EwF 110:1341:3vtrEjsvoItByE5R6T 129:1235:_hvrE_wsoI 125:1190:niwrExiroI1NsMpM-G 104:1213:vvxrE3qqoI5F8CnFqExE6F_C-G 109:1661:t0yrEvynoItDmJtI-M_LoKhFgGnD2H 102:1322:h4zrE7oloIrG0WjEqHpLqO 115:1249:_10rE1sjoIhLijB 126:2492:li1rE7ygoIlC6F3DiFpW2TjR-IvKyJ_fyU 114:1954:3s4rEj79nIlHuExI-B_QI_FiD_H8GpQ-RzE2J 123:1340:zz6rE777nILyP9Coc8EyV 98:1547:526rEjh5nIJqH0G80B 97:1702:pp6rEpx2nIyLgT2GkUW4Q7B2IN0P 119:508 127:459:9l5rE1rynI 95:664:zr5rE71xnIvQ6K 99:449 108:1132:xl7rEnzwnIjGV1GnEzYxB 96:604:_n9rEthxnI 113:596:7g-rEj_wnIzPlF 106:685:5_-rEtjxnIrGV1F7C 92:1680:xmgsE1rxnI9HtD3RvX5G1DlOjD
+L|Metrô Rio|Metrô Linha 2|#028F34|92 106:1679:n1hsEttynImOkD6G2D4RwX-HuD 113:687:7r_rE_mxnI2F8CsGW 96:596:vw-rEpkxnI0PmF 108:604:_n9rEthxnI 99:1132:_q8rE35wnI0YyB2GoEkGW 95:448:_06rE_5wnIwMtK 127:665:zr5rE71xnI 119:460:9l5rE1rynI 97:508 98:1705:145rEjh0nIKlNoCjLR9QvG9T 123:1539:rv6rE7h3nInDjT1DplBI9F 114:1339:5x6rEv65nIpEnQTrHyDhY 126:1947:hu6rE1z8nIgDvF4PjR-H9G-F_CoRDkHxB6HrE 115:2498:753rE_s-nIggBxU6K3JkPxH6XxU6D_EyC9G 102:1246:_g1rE9nioIkLzkB 109:1324:zt0rEr8joIwKlN-ExIsG_W 104:1661:t0zrErkmoImDvHiF9FgMrKwI9MuDnJ 125:1206:9hyrE12poIiD_GuE1FoFlE 129:1194:z9wrEvuqoIwMtGiPtN 110:1236:5hvrE5wsoI 101:1344:rsurE75toIyJ3ZwD1E6LvLgDzEwBrG 100:1513:xstrEhgwoIyExF0xBnd 89:1007:71qrExiyoI 103:1517:r1prE59yoIgNhFqF3D4DlHDrO6CvH2EjE 117:1321:xmnrE_i1oI0M7FgKnK
+L|Metrô Rio|Metrô Rio Linha 1|#e77405|128 120:969:tw-rEz58nIiN-GyNwJ 124:995:5g9rEjr7nIkIkU 90:685:318rEv75nI 105:1288:z77rE9_3nI6FoWmGiL 118:779:n66rEjo2nI 97:1116:145rEjh0nI 119:508 127:459:9l5rE1rynI 95:664:zr5rE71xnIvQ6K 99:449 108:1132:xl7rEnzwnIjGV1GnEzYxB 96:604:_n9rEthxnI 113:596:7g-rEj_wnIzPlF 106:685:5_-rEtjxnIrGV1F7C 92:1680:xmgsE1rxnI9HtD3RvX5G1DlOjD 94:1668:n8isEtrynIlsBiZhNczGzB9C7B 121:726:l2lsE19ynI 93:1238:j9lsExkznIrUtchEhE9G5E 107:694:r_nsE9w0nI
+L|Metrô Rio|Metrô Rio Linha 1|#e77405|107 93:695:v_nsEzw0nI 121:1237:9insE5r0nIqGkC-G4EiEkEoUwc 94:724:r2lsEp9ynI 92:1676:9-ksEn0xnIyCyByI0BuLdosBlZ 106:1679:n1hsEttynImOkD6G2D4RwX-HuD 113:687:7r_rE_mxnI2F8CsGW 96:596:vw-rEpkxnI0PmF 108:604:_n9rEthxnI 99:1132:_q8rE35wnI0YyB2GoEkGW 95:448:_06rE_5wnIwMtK 127:665:zr5rE71xnI 119:460:9l5rE1rynI 97:508 118:1116:145rEjh0nI 105:781:n66rEjo2nI 90:1282:t07rEzm3nIrBhD5FnW 124:685:318rEv75nI 120:994:148rE_26nIjIjU 128:969:519rElp8nIxNvJhN9G
+L|Metrô de Salvador|Linha 2||130 134:1294:ttlvCtg7qHxYyF7EoC7F0G 140:895:xhnvCni5qHlBiGsBuG 138:734:1rmvC553qH8ByG 136:2749:jsmvCv52qHsB8I-bg4BkMwWuGqJwIgJ 133:1237:n_ivCtiyqH 139:1420:rqhvCp8wqH 135:2005:lz_uC1xvqH0J8O6CqK 141:1288:z2-uCvzrqHiFuL 132:1765:178uC5kpqHsF-J 137:2459:9g8uC7wlqHkEob 131:3616:hy7uCrmjqHLoEtEiMH-FiG2WiEuHqHwFmJ2BmnBnMkGDoMmCoJwGyIgLwE0I
+L|Metrô de Salvador|Linha 2||131 137:3616:zs4uC76gqHvEzIxI_KnJvGnMlCjGElnBoMlJ1BpHvFhEtHhG1WI9FuEhMMnE 132:2459:587uCz1kqHjEnb 141:1764:p28uC76oqHrF9J 135:1288:xx-uChorqHhFtL 139:2003:3m_uCv4uqH5CpKzJ7O 133:1421:rqhvCp8wqH 136:1237:n_ivCtiyqH 138:2750:3zkvC5vzqHvI_ItGpJjMvW9b_3BrB7I 140:734:5pmvCnz3qH7BxG 134:895:rhnvC314qHrBtGmBhG 130:1293:3wmvC_x6qH8FzG8EnCyYxF
+L|Metrô de Sobral|Linha Norte|blue|152 149:1075:h9rW1nn2HvY_BhGS 142:806:r1tW96n2HrG5I 144:1017:lwuW3wo2H9PpJjE7D9B1E 151:1156:novW_gq2HjFzHN7CiL5R6EhF 150:840:n5tWzqs2H 146:1157:xjtW_3s2H4EnL0E_G0ElC4KdwD7B
+L|Metrô de Sobral|Linha Norte|blue|146 150:1157:pnsWnvt2HvD8B3KezEmCzEgH3EoL 151:841:n5tWzqs2H 144:1156:99uWrir2H5EiFhL6RO8CkF0H 142:1016:lmvWzip2H-B2EkE8D-PqJ 149:806:37tW3jo2HsG6I 152:1075:z7sWjpn2HiGRwYgC
+L|Metrô de Sobral|Linha Sul|red|145 147:1294:3kyWphm2HuWpeuEzD 143:740:plwW3qn2H 144:1317:r1vWr1n2HmEtGiLnY 148:1026:vovW3gq2HxEvGtGnClJW_FZ 153:1125:jhxWn4q2H7O7E5NrL
+L|Metrô de Sobral|Linha Sul|red|153 148:1124:59xWvor2H6NsL8O8E 144:1028:1iwWzpq2HgGamJVuGoCyEwG 143:1317:jmvWh0o2HhLoYlEuG 147:739:plwW3qn2H 145:1295:7pxWnjn2HtE0DtWqe
+L|Metrô de São Paulo|Linha 1 - Azul|#1266af|193 180:1264:5upwEh118I 232:1029:t1nwEh218IyUmB 220:860 216:878:l9jwEx_08I 222:1282:r7iwE7908IgVmG 246:1148:99_vEv208I8EoCoIsG 159:980:hh_vE9p08ImKhD 208:724:r_8vE9w18IuFf 242:759:t67vE5q18I 231:807:_-6vEzq18I 194:797:t15vErh18IwUmL 218:569:9n4vE1r08IuKuJ 200:1539:xt3vEp-z8IkkBjK 238:697:320vE7i08I 161:683:xuzvEz2z8IgM4F 215:1308:xxyvE13y8IuG2F6H4B 175:721 224:789 197:1401:73tvE3ry8ImHsD6UoU 207:1138:v9rvEzlw8IuDkNuDkH2DyD 240:907:j1qvEr9u8I
+L|Metrô de São Paulo|Linha 1 - Azul|#1266af|240 207:1023:90qvEx9u8IpK1G 197:1025:5yrvE_tv8IvE7E1GvV 224:1515:p7svEl1x8InWjUpH7C 175:680 215:821 161:1206:rjyvExwy8IzHzBrG1F 238:685:tizvEhxz8IjRlI 200:701:rz0vEjj08I 230:790:3h2vE5o08I 218:744:x12vExk08ItXoF 194:566:t83vExi08I9KlJ 231:800:vg5vEl208IxUpL 242:800:r_6vE7q18I 208:746:367vEhr18I 159:738:z68vEzx18IjGqB 246:975:z2-vErt08I3JmD 222:1146:3w_vEhu08IlIpG9EpC 216:1283:pmiwE7308IhVnG 220:878:l9jwE3_08I 232:862 180:1030:7gnwEh118IxUlB 193:1265:5upwEn118I
+L|Metrô de São Paulo|Linha 15 - Prata|#7b9192|195 234:1777:9qhwEpk07IzFhDhezF_K3GnKvDlD7C1FvI_HvG 185:1274:j7jwEth27IqB3S2B9CyJ5F4B9CUxEjCnG 228:1480:36jwE5437IhCjGYhJtBrL6B9JjC5EhFjEvB7CDxK 196:1287:nokwErw67I4EzF6K_F6JqBsExB4JvM 251:953:noiwE9677IMzIkG_K 250:1210:97hwEjx97II9PiE7byC3H 171:1219:pqhwEr1_7IkNlnB 233:1029:vhgwE95h8ImMvS 204:2028:7--vE_9i8I2ShWoDlFuGnP0CrIoGlgBLpI 248:2295:_99vE9sm8IhDvgBGtd7BvH1GrRzEzdE5C
+L|Metrô de São Paulo|Linha 15 - Prata|#7b9192|248 204:2207:zu-vE9iq8IgFmfyI-YFsd 233:2020:l69vEr5l8IKgInGugBxCqItGoPnDkF7Q-T 171:1038:v1_vEzsi8IlMyS 250:1222:l5gwEhjh8IlEsGhN8mB 251:1284:n3hwEvg_7IzEsfN2P 196:959:viiwEht87IzF0JF8HtBqC 228:1300:5_iwE_p77I9LqOhDa_JrBrMsHhD0DfsD 185:1487:3kkwEz057IEqL6BuDyFgFoBmD3BmKuB2LPmM-B8D 234:1184:ttjwE9o37IewG5CkGhIqEzCuD_BuV 195:1784:t2jwEjq17IwJ2HwFoIuDkDuK0D-K8G4duF0E0C
+L|Metrô de São Paulo|Linha 17 - Ouro|#DE7C00|156 168:1580:_5mwEt358ItBnCrJvgBrE7EtLtGvB3CuBrE 241:999:t0mwEvq88IkXpN 172:597 243:635:n1kwEvq-8I 178:734:hpkwEpo_8IQ1J 203:1443:rgkwEn5g9InC9E7RnExI1DzN1CrH_E
+L|Metrô de São Paulo|Linha 17 - Ouro|#DE7C00|203 178:1435:5wlwEnsh9I-F6D4N0CuI4DiSsE-B6E 243:731:9okwE_x_8IN8J 172:624:j2kwEjq-8I 241:598 168:1000:r-lwEx388IrYgO 156:1599:x0nwEnu78I5BwDDkD0BwCuLqG6D-D0C6F2H0ckCoC
+L|Metrô de São Paulo|Linha 2 - Verde|#008162|248 236:1233:3h_vEhuq8IzI3I 219:1683:3wgwEvhs8I_c9jBtClF 158:1022:33hwEzwu8IpCnQd9O 226:1142:zxhwEnuw8I0TnR8HtL 177:1113:nugwEt9x8IP7RqDhQyDtG 159:1470:ln_vE1m08IyVhL 208:739:ph9vErw18I-FtB 166:1057:tp8vErz18IqF9D 239:887 181:888 179:1207:n24vEr758I8DlHmBlIR_T 227:765:7_3vE1s88I 245:1458:vy3vEzh98I8FjN0ExPqE1gB
+L|Metrô de São Paulo|Linha 2 - Verde|#008162|245 227:1458:_j3vEj_-8IpEwgB5EmQpE6J 179:769:__3vE1s88I 181:1194:7x4vEz-68IQuShCyJ1DqG 239:887 166:889 208:1046:nk8vEv318ItFgE 159:743:p78vE_x18I5FoB 177:1482:nx-vE7y08IvYwM 226:1192:1pgwE5kz8IpC2ErDwQamQ 158:1057:z2gwEprx8I1HkLxTwR 219:1037:t7hwE3vv8IiB8OqCoQ 236:1685:twhwEnqt8I0CkFgdikB 248:1234:vr_vE33q8IsJ8J
+L|Metrô de São Paulo|Linha 3 - Vermelha|#ef3f32|206 201:1538:7_yvE1n68ItF0LjJqLlV0Q 221:921:_p1vE_q38I 217:815:_81vEj528I_I6P 160:599:v12vEz318IpK-H 218:700:vz3vEzv08I 211:737:353vEl5z8IGgH4F8R 169:1054:xu3vE__x8IyF4X 165:910:jk3vEx_v8I 163:1825 237:1361 176:1279:h11vErvo8IsEiN 212:2272:lz0vE9uj8I 247:1207:_h0vE3zg8IQwG 190:1510:7j0vEv1_7IwEmtByCiK 209:1694:ltzvEh987IyCoI0D-XHwKjDuK 162:2135:lq0vE3257IlKyN7CmGpDuZM8M9BqHjGiHhNqG 182:1473:981vEx627I7C0F9H-jBCmQ
+L|Metrô de São Paulo|Linha 3 - Vermelha|#D9001C|182 162:1466:pn2vEzj17IA3OwHjhBoDjG 209:2134:nv1vE1n37IyOtH2EhGiCrHFhPqDzXkElI2HxJ 190:1701:lqzvE5n77IqDtLGvJjEra9B9G 247:1503:v8zvEn_97IxC5IrElrB 212:1215:hh0vEzyg8I 176:2272 237:1277:zw1vEzko8I7DhM 163:1361 165:1825 169:910:9j3vE5_v8I 211:1055:nn3vExhx8I5Gvd 218:737:zz3vE1gz8IzFrSIpE 160:685:lw3vEjx08I 217:593:n_2vEvv18IiMpJ 221:818:5j2vE3q28IwIrP 201:922:7p1vE5q38I 206:1543:rj0vEpg58I-UjQwIlKuGjN
+L|Metrô de São Paulo|Linha 4 - Amarela|#FFD700|200 217:1223:901vEj408I 191:1143:n32vE9m28IzHrL 210:1240:vi4vEjg58IrJ5N 205:1165:l64vE1_58IhE5MnD1G 186:1402:tq6vEn288ItEnS 184:1045:zg7vE_y-8IrC5LEtL 214:811:z96vE5qg9I 170:851:pi7vE79h9I3CrEhQ7P 235:2479:nq9vE3lj9I_MzH5C3CzErHrH3StFrJjC7M 249:1401:z6-vEjkm9I5LtS9ThT
+L|Metrô de São Paulo|Linha 4 - Amarela|#ffd500|249 235:1400:16_vE3pn9IkUsT2LqS 170:2483:_t-vErgl9IkC-MuFsJsH4S2EwH8C6CkN2H 214:847:t07vEjxi9IqPqPoD-G 184:808:h-6vE5qg9I 186:1050:pj7vEnq_8IDwLsC8L 205:1402:hw6vE_q98IwGwX 210:1165:7h5vE_y68IsHwT 191:1241:ns4vE1t58IqJ0N 217:1143:p_2vEjy28IwD6F 200:1225:7q2vE1118IuVqduE0D
+L|Metrô de São Paulo|Linha 5 - Lilás|#9200C3|174 173:1454:1qswE9-t9I2K4I0O4O4L0P 244:1767:1zqwErts9IqH4JqCsHIsQwBkI0D4IgGsJ4FyGiMkG 188:1669:pipwE55p9IwIoVa-FR6EtDkH_EsEjF0C_LmDhFmDjE6F 225:2259:ngqwE1pn9I_CuPpE8IjJsFpkBK1K2E3FuG5CiHbqI 199:1113:jnswE34k9I6DmVCiP 155:839:98rwE3ui9I2D0D 157:1103 164:1081:juowEvog9I 167:919 172:1052 183:1784:9hkwE9688I-O6rBqDoH 202:921 154:1289:9ihwEv148I2F6O 192:689 222:851:zihwEn118I 177:958:jihwEhx08I2DsI
+L|Metrô de São Paulo|Linha 5 - Lilás|#9200C3|177 222:955:n-gwE3o08I3DpI 192:850:vihwE7018I 154:688 202:1292:98gwE3m48I3F9O 183:922 172:1785:rvjwEho78IrDlH7O7rB 167:1173 164:795:rynwEhu_8I 157:1221:5towE7og9I 155:967 199:836:v8rwExui9I 225:1112:_iswEv0j9IHhPzD7U 188:2321:9oswE5wl9Ie1IsEjJkEjEyKtEikBPuE5BuFjEwDxGgDxO 244:1610:z7pwEzgo9IuDvEgFjDkMnDiFzC-ElEsDrGajIpBtF7H3T 173:1868:5rpwEzkq9IzMnGhG3G9FvJxD3IxBhIHpQpCvHrH5J 174:1459:_mrwE75s9IlK3NxM9M3MxK
+L|Metrô de São Paulo|Linha 6 - Laranja|#F96815|198 187:942:78svEzy_8InKvD 223:1416:r6uvEp9_8IlbkCpOgE 189:803 229:919:x9yvEzl-8IzD6D 213:866:p0zvElk98I7J4K
+L|Metrô de São Paulo|Linha 6 - Laranja|#F96815|213 229:865:x9zvE5588I0JrK 189:916:h-yvE7k-8I 223:805 187:1412:_hwvEz3_8IgQ7DmZvB 198:939:jmtvEx1_8I
+L|Metrô de Teresina|Linha 1 - Eng. Alberto T. Silva → Itararé|#8A8988|261 267:1329:_1hf51rlI8JjJuDE0F-C 263:2239:nrgf7wrlI8CqI7FyrC_BmGrEyHxHwH 275:4774:34hfj2nlIvF-FvEqHrDoLUgWjB4HlDyGrKmPzQ0mBpB0K 253:1138 273:1488:t1if_p9kIlBgGrFwF 270:776:3rkfvt8kI3FIrE9B7C7C 260:1070 265:772 252:41147 268:21875 256:19207 274:29110:3xud_lqhIkK6G8tF-lHyFkGwHyE20E89BmL6CwnJ6I0KiB2EwBooIqkF0HgD8HwBsvC6E0GkB0F4CuiBgrBsjBgc0S-jB0GkH 257:20674:p92b5_qgI62NqxH 255:45375 271:26029 259:38446 258:21906 264:12567:rxkVz509HwFJiUhF-xBkGyHZ8qBzQ8IxJqNvWyElEgfrVooChX6HvBgKD4OgD-GCoH7BqI3EoDP4HuB-IqD6KoByrB5D6JvCkFnC0DhDm1CtvCqR5K6UnH 254:23965:tixUr-79H2sB1fuMhF2GeoIgFoLuW0XoMkP0DyDwC4H8NgH-DkEAyF1B8FlHsB5T0BhFgIlKuP5FgmByEgMzDmG9GmmBtjCI7I3LhsBqDjIgSxa6G3DmepG-ZkD2pPvtBuJiB-YoQiSuCooBpTmG9HyE_LgGzFqwBzMmR1G 269:37136:7nuTlln-H4iBtlBs6CnnBsvCr9B6Zpf2U5R4vB_e63CvpBojCn2B-9BkC2yDzW6lCrhBuhB9JkgB-E4N_C2K7Gya7kBuKrGsmJrrC8oB8F6Q9LgLhdmlBzaulBoDyYkhB2JyFs4B3NgOtI86B32B4_DhuBmjFjwDoP7B 262:8015 266:7422 272:191988:352R7ot-HuoCtwFt5DliMxxLu_GhgElc_gC0jC5pW43Fl7UulO16SqepvE80G5iDn9BrrS4mI37R1kE98NooC9-S7nIz_B3sGh7E0iBp6I90HhvQqYt5S3hJl6E0Z3uIjyElrGwEjsGnxHz4Irf7zOw6E
+L|Metrô de Teresina|Linha 1 - Itararé → Eng. Alberto T. Silva|#8A8988|265 260:772 270:1070 273:776:34kfhy8kI8C8CsE-B4FH 253:1489:_7ifv-8kIsFvFmB_F 275:1138 263:4774:jmjf74jlIqBzK0QzmBsKlPmDxGkB3HT_VsDnLwEpHwF9F 267:2239:l8gf3nolIyHvHsExHgClG8FxrC7CpI 261:1329:hjhf77rlIzF9CtDD7JkJ 252:47834 268:21875 256:19207 274:29110:3xud_lqhIkK6G8tF-lHyFkGwHyE20E89BmL6CwnJ6I0KiB2EwBooIqkF0HgD8HwBsvC6E0GkB0F4CuiBgrBsjBgc0S-jB0GkH 257:20674:p92b5_qgI62NqxH 255:45375 271:26029 259:38446 258:21906 264:12567:rxkVz509HwFJiUhF-xBkGyHZ8qBzQ8IxJqNvWyElEgfrVooChX6HvBgKD4OgD-GCoH7BqI3EoDP4HuB-IqD6KoByrB5D6JvCkFnC0DhDm1CtvCqR5K6UnH 254:23965:tixUr-79H2sB1fuMhF2GeoIgFoLuW0XoMkP0DyDwC4H8NgH-DkEAyF1B8FlHsB5T0BhFgIlKuP5FgmByEgMzDmG9GmmBtjCI7I3LhsBqDjIgSxa6G3DmepG-ZkD2pPvtBuJiB-YoQiSuCooBpTmG9HyE_LgGzFqwBzMmR1G 269:37136:7nuTlln-H4iBtlBs6CnnBsvCr9B6Zpf2U5R4vB_e63CvpBojCn2B-9BkC2yDzW6lCrhBuhB9JkgB-E4N_C2K7Gya7kBuKrGsmJrrC8oB8F6Q9LgLhdmlBzaulBoDyYkhB2JyFs4B3NgOtI86B32B4_DhuBmjFjwDoP7B 262:8015 266:7422 272:191988:352R7ot-HuoCtwFt5DliMxxLu_GhgElc_gC0jC5pW43Fl7UulO16SqepvE80G5iDn9BrrS4mI37R1kE98NooC9-S7nIz_B3sGh7E0iBp6I90HhvQqYt5S3hJl6E0Z3uIjyElrGwEjsGnxHz4Irf7zOw6E
+L|Metrô do Recife|Linha Centro - 1|#e77405|304 293:1287 277:1287:3lpxBt9g1G 291:810:x4pxBv-h1GvB1G 296:888:31pxB_qj1G 306:1156:piqxBl6k1GjD_EtNpMjDhE 311:703 280:1137:_srxBt9n1GuB9MT_F 310:1235:xgsxBj2p1GB7F-ClVlB5I 285:916:husxBvys1GInF 278:1413:v0rxB32u1G4F3F 287:1078:97qxBnkv1GwM5IucxI 305:1345:9hpxBx9v1GsHjC 286:3243:jmmxBrrw1GwkB9DiqC_TmKhE 283:1490
+L|Metrô do Recife|Linha Centro - 1|#e77405|283 286:1491 305:3241:hvixB7mx1GlIkDtqC4TtkBoE 287:1344:16oxBjgw1GhHiC 278:1079:7zpxB31v1GzbsI1M8I 285:1422:turxBh9u1GzFiFhOihBxG-L 310:925:xusxBn4s1GJoG 280:1236:l-rxBvyq1G7C-aeqE 311:1136:zsrxB1wo1Ga0GvBsM 306:703 296:1155:x2qxBjwl1GsD6EoNgM0DoG 291:887:h2pxBprj1G 277:814:p6pxBxki1G8B-G 293:1286:9lpxBn9g1G 304:1303:l2oxBrj_0GfoZwBgGkE8F
+L|Metrô do Recife|Linha Centro - 2|#D9001C|304 293:1287 277:1287:3lpxBt9g1G 291:810:x4pxBv-h1GvB1G 296:888:31pxB_qj1G 306:1156:piqxBl6k1GjD_EtNpMjDhE 311:703 280:1137:_srxBt9n1GuB9MT_F 310:1235:xgsxBj2p1GB7F-ClVlB5I 285:916:husxBvys1GInF 284:1006:hosxB1tt1GnEtQjF7M 289:2949:7_sxBx3u1GpDpErKtcVlEQjWpC3H_KhMhH7OpDjE_HrEhPT1GpCvGzG 288:1370:vtvxBh7y1G5FhRGjGqEzS 292:1173:l1vxBzo11G3FjM_C3L_ErK
+L|Metrô do Recife|Linha Centro - 2|#D9001C|292 288:1173:pjwxBlr21GiF2K-C4L8FqM 289:1368:jvvxB1m01GRsG1DqOHuF6FwR 284:2948:lqvxB9ny1GkG-G0H8C0OQsIwEyD8EqHgPsJ-JkD-IE0ZqKwcuD6E 285:1002:x0sxBpuu1G8CwDqFmNiE0P 310:920:pusxBh3s1GA2F 280:1236:l-rxBvyq1G7C-aeqE 311:1136:zsrxB1wo1Ga0GvBsM 306:703 296:1155:x2qxBjwl1GsD6EoNgM0DoG 291:887:h2pxBprj1G 277:814:p6pxBxki1G8B-G 293:1286:9lpxBn9g1G 304:1303:l2oxBrj_0GfoZwBgGkE8F
+L|Metrô do Recife|Linha Sul|#1a5ba3|304 293:1303:rwoxBv890GzF_GzBzGehZ 295:1500:98oxB_5_0GpEjGlFjD5OtExFjE_C5EjHvT 290:1011:n1qxB7wh1G 279:2226:5xsxBz_h1G1MjB7NetW-DvLInJnB 308:721 309:695 276:1356 302:1460 298:892:_l4xBxik1G3JzE 303:1031 282:1143
+L|Metrô do Recife|Linha Sul|#1a5ba3|282 303:1142 298:1035 302:883:hv4xBrmk1G-JsE 276:1470 309:1356 308:692 279:720 290:2225:3vuxBv7h1GkOF8T3D4LfiOa 295:1009:z3qxBpxh1G4E8B 293:1494:poqxBpnh1G6D8EwI4VwGmF4OuE4E2C0EiG 304:1305:_2oxBtj_0GZ-YkBiGsFuH
+L|Metrô do Recife|VLT Cabo - Cajueiro Seco|#008000|281 307:1581 300:6660:r7wyB1_31GmmBw2D4GqOuRkZyK4L4NmM4Z2Q2gC6sB 301:2996:1iqyBlpv1GwPyEmVuJ2NsJihBoawU8LmMqE 299:3236:3slyBnkt1GoxCkU6hCid 282:3921:vt_xBn-q1GsG8EkQ2PmDwDyE8H6Hya-DoGyEsEw5B-qB6P2F
+L|Metrô do Recife|VLT Cajueiro Seco --> Curado|#999e9e|282 297:6806:z17xB5on1GvPrFtYzS5E3GpBrFa1FgDnF8Q1OsLtFmiD1XgG3ByKjFiJlH6d_kB6hBpgBoR1U 294:4722:pr1xBlhu1GuGjIsL1G2IxByGIyH4BojCmU4JW0L3C4KnHoG_IwCxHwCzOyCnGyE9G-H1G4O7ImGlH 287:4010:59uxB3_w1G8SzN6IrEqO_CyXWkOuGwd2d0Y0T-HyEyJ8DqHUyMxD
+L|Metrô do Recife|VLT Cajueiro Seco–Cabo|#008000|282 299:3999:z17xB5on1GvPrFr8BrtBpGvJrHnZ1CrFpExF3QvQzHzF 301:3157:v7iyBjws1GnxCjU 300:2994:xumyBrnt1GlMpEvU7LhhBna1NrJlVtJvPxE 307:6659:nqryBpsw1G1gC5sB3Z1Q3NlMxK3L9Q5Y7GxOpmB32D 281:1580
+L|Metrô do Recife|VLT Curado --> Cajueiro Seco|#999e9e|287 294:4010:zypxB52v1GxMyDpHTxJ7D9HxEzYzTvd1djOtGxXVpOgD5IsE7S0N 297:4722:hwvxB5nw1GlGmH3O8I9H2GxE-GxCoGvC0OvCyHnGgJ3KoHzL4C3JVnjClUxH3BxGH1IyBrL2GtGkI 282:6805:921xB3rt1GnR2U5hBqgB5dglBhJmHxKkF_F4BliD2XrLuF7Q2O_CoFZ2FqBsF6E4GuY0SwPsF
+L|Metrô-DF|Linha Laranja|#EB9710|324 330:721:1ltgDp1okJ5JQ 312:791:hyugD_gpkJ 313:1426:rjwgD7rqkJ 314:723 315:717 316:719 317:721 319:1534:300gDztwkJ 337:2140:nr1gDxrykJRjGcrG4EtKwS3S4DlGmCzH 328:2999:3j0gDnx2kJkDzJ-yBt_BsEtHgC5HH9H 331:983 318:3980:5tzgD1r8kJnlBx3B3SxqB5BzJWhKoJ7ZuBvJb3U 333:1274:h31gD14jlJjB3H 338:2183:_31gDjjllJ1ClHjD3EzJrHrczHpLpGzGvI 329:2439:vu4gD3_nlJlEzE5PzM3gBroBlJzM 336:1353:hq7gD7nslJ3CxM 335:1535:3t7gDvttlJ_CxM
+L|Metrô-DF|Linha Laranja|#EB9710|335 336:1532:lx7gDt6tlJ4C0L 329:1356:pt7gDt0slJ2CgM 338:2436:7p6gDxhqlJwekmBsKoM4M2JsE2E 333:2161:n13gDvrmlJ2G8HsJsFibiHmF8CgFwE-D6FuCsG 318:1277:n31gDj4jlJ 331:3980:l90gD74hlJYkTlBoJ1JgcPkJkBmH2TwtBulB-3B 328:982 337:2996:3nygDnx5kJKkGxB-H9DuH7zB4gClD8J 319:2142:hu0gDpj0kJ9BgH9E-HvR2RzEkKfkGS8G 317:1533:h10gDxtwkJ8HoM 316:721 315:719 314:717 313:725 312:1426:xiwgDvqqkJ 330:796:jzugD7gpkJmGkD 324:722:rvtgDt0okJ2JT
+L|Metrô-DF|Linha Verde|#076C57|324 330:721:1ltgDp1okJ5JQ 312:791:hyugD_gpkJ 313:1426:rjwgD7rqkJ 314:723 315:717 316:719 317:721 319:1534:300gDztwkJ 337:2140:nr1gDxrykJRjGcrG4EtKwS3S4DlGmCzH 328:2999:3j0gDnx2kJkDzJ-yBt_BsEtHgC5HH9H 331:983 318:3980:5tzgD1r8kJnlBx3B3SxqB5BzJWhKoJ7ZuBvJb3U 333:1273:h31gD14jlJjB5G 326:1285:131gDljllJiDrK 327:788:1y0gD76mlJuE9I 334:1224:tj0gDl0olJQnI 325:3263:r70gDtqrlJjEnTM_J6H3mB2BrXD5T 323:2295:3-0gD5owlJ9LviB1FrHzP5O9DzIIxGuD5GiFhE 332:904 321:1050 322:938 320:1174
+L|Metrô-DF|Linha Verde|#076C57|320 322:1174 321:939 332:1050 323:905 325:2298:r_1gD54ylJjE2GRuI6DmIwQ8P2EuG4L2hB 334:3264:z20gDr-ulJgBwR9BuezH6lBTmKmEiU 327:1223:jj0gDz8olJF6G 326:786:_r0gDrqnlJlDyI 333:1287:901gDttllJ5CwJ 318:1276:r41gDz-jlJkBwG 331:3980:l90gD74hlJYkTlBoJ1JgcPkJkBmH2TwtBulB-3B 328:982 337:2996:3nygDnx5kJKkGxB-H9DuH7zB4gClD8J 319:2142:hu0gDpj0kJ9BgH9E-HvR2RzEkKfkGS8G 317:1533:h10gDxtwkJ8HoM 316:721 315:719 314:717 313:725 312:1426:xiwgDvqqkJ 330:796:jzugD7gpkJmGkD 324:722:rvtgDt0okJ2JT
+L|Trensurb|Conexão Metrô-Aeroporto|black|339 340:834:7lh3Fzpr4JqCrDgBtR0DjL3B7IqBzB
+L|Trensurb|Conexão Metrô-Aeroporto|black|340 339:834:r_g3Fh0s4JpB0B4B8IzDkLfuRpCsD
+L|Trensurb|Norte|#000080|350 355:927:1to3Fzn14JyS8lB 360:2075:vtn3Flsz4J4FsF 344:1801:nmj3Fprx4J6DiE0FqQ 340:1902:95i3Fv0u4J6C-LiD6F8nBimB 341:1279:tng3Flqs4J 351:2490:p192Frwr4J-JiCgcJyVyC 346:1855 342:2175:__12Fp1r4J2erL4d5H 349:1765:9lz2Fp0s4JqaiD 359:1880:5ov2F1sr4J-EWkGhB 353:1222:x3s2F3os4J 343:2825:hxq2Fros4JkR6J4GwB8GjB-O7F6RyB0brD 348:2586:5gm2F_6r4JyGmFiRyRmLkHgV-IipB8biF0F 357:1981:nyi2Fj9o4J2PkT0E8H0MgsBkEoFqNyI 361:4739:7qg2Frtl4JwNqMoU6bqZ-U-HyDgZpB2TSoRnD6VoGyGegHV0H5C4F3D8MzN 358:2108:n141F56k4Jsb1GoQqB8JqC 354:2338:l911Ftqk4J2GoBuqB1GybjKmSpOoH9B 356:2210:jqw1F3gl4J 347:1624 345:1698:xpr1F7hj4J2DQ6nB9HuU5B 352:1603:7vm1Fl6i4J
+L|Trensurb|Norte|#000080|350 355:927:1to3Fzn14JyS8lB 360:2075:vtn3Flsz4J4FsF 344:1801:nmj3Fprx4J6DiE0FqQ 340:1902:95i3Fv0u4J6C-LiD6F8nBimB 341:1279:tng3Flqs4J 351:2490:p192Frwr4J-JiCgcJyVyC 346:1855 342:2175:__12Fp1r4J2erL4d5H 349:1765:9lz2Fp0s4JqaiD 359:1880:5ov2F1sr4J-EWkGhB 353:1222:x3s2F3os4J 343:2825:hxq2Fros4JkR6J4GwB8GjB-O7F6RyB0brD 348:2586:5gm2F_6r4JyGmFiRyRmLkHgV-IipB8biF0F 357:1981:nyi2Fj9o4J2PkT0E8H0MgsBkEoFqNyI
+L|Trensurb|Sul|#000080|352 345:1607:9um1F35i4J 347:1697:zpp1F3qj4JvU2B5nB-HnET 356:1626 354:2207:lqw1Ftgl4J 358:2339:_2y1F_pl4JnHgClSqOzbmKtqB4G5GrB 361:2106:7_21Fx9k4J5JpCnQpBnb2G 357:4746:ls61Fl-j4J5M0N5F6D3H4CjJS1cjH5O0DzTVjZiB9HxDrZ9UpU5bxNpM 348:1983:jgh2F_nm4JrNzIhEpFrC1FpKrmBxEzH5PlT 343:2577:n7i2Fvyp4J7EtF9oBhchV3InLjH_Q3RzG7E 353:2826:71n2Ftls4J1buD3R5B7OiG9GkB5GzBlRzJ 359:1215:v3s2Fvos4J 349:1887:19u2F3sr4JlGiB9EV 342:1764:xry2F9ws4Jpa_C 346:2176:vj02Fjos4J1d6H5emL 351:1855 341:2488:1572F3rr4J_VvC1bGhGZ 340:1282:vqg3F3qs4J 344:1913:xsh3Fj8s4J1nBvmBhD5FtCrI 360:1795:_8i3F72w4J1FlQ1D_D 355:2078:5nn3Fzmz4J5FtF 350:930:p7n3F1h04JxS7lB
+L|Trensurb|Sul|#000080|357 348:1983:jgh2F_nm4JrNzIhEpFrC1FpKrmBxEzH5PlT 343:2577:n7i2Fvyp4J7EtF9oBhchV3InLjH_Q3RzG7E 353:2826:71n2Ftls4J1buD3R5B7OiG9GkB5GzBlRzJ 359:1215:v3s2Fvos4J 349:1887:19u2F3sr4JlGiB9EV 342:1764:xry2F9ws4Jpa_C 346:2176:vj02Fjos4J1d6H5emL 351:1855 341:2488:1572F3rr4J_VvC1bGhGZ 340:1282:vqg3F3qs4J 344:1913:xsh3Fj8s4J1nBvmBhD5FtCrI 360:1795:_8i3F72w4J1FlQ1D_D 355:2078:5nn3Fzmz4J5FtF 350:930:p7n3F1h04JxS7lB
+L|VLT|Linha Azul|#1a5ba3|363 375:1034:h036Bnxn6G8HxN 366:3996:z_26Bnhp6G-J7VgOrT6GlQ8G7GsG5C8IK0R4FyJiFiGD-O1J-QrD0RhIgJnG 365:1058:99x6Btps6GuB7E6GzL6NtO 362:1399:x9w6B_2t6GgBjEP5rB 373:1723:5vv6Bpix6G8U3QsBzCQzE 374:1979:jkv6Btxy6GIvE6BpDoFpEgN1GoO7J-C1C-ClF2E_PRxN 376:6955:39t6Bxt16GQ9G0E7HoG5D0NnD8JduXAsInDiI1H6NhD8CC2FqDuNmNwCkBmFHoMtHuEvFuT1kBsMtOgEvM2SpgBqGpX8DhF2NrF4KnCyGA2PoFuI-JmD6BmDO 367:5330:9rl6Bpk66G6HM8EekQ8G2OqDqEoEiG8OwG-JiF-FuE2B4OSoMlDqDlD2K_W8D3FwGjEgPhCyGYuEsD8NyjB6C4EqF-C-MgD8KL2FhDoJtI 372:1778:n_95B3k56G-DZyGUwF_CkBjDNrCxBtCzFrEXzF0BpCkHrE 369:1250:9z85Bpp76GqJvJ8Db-M2B
+L|VLT|Linha Azul|#1a5ba3|369 372:1251:5575B_x76G9M1B7DcpJwJ 367:1778:3t95Bxg66GjHsEzBqCY0F0FsEyBuCOsCjBkDvFgDxGT9Da 376:5329:97-5Br246GnJuI1FiD7KM9M_CpF9C5C3E7NxjBtErDxGX_OiCvGkE7D4F1KgXpDmDnMmD3ORtE1BhF9FvG9JhG7OpEnE1OpDjQ7G7Ed5HL 374:6955:z4l6Brg66GlDNlD5BtI9J1PnFxGA3KoC1NsF7DiFpGqX1SqgB_DwMrMuOtT2kBtEwFnMuHlFIvCjBtNlN1FpD7CB5NiDhI2HrIoDtXA7JezNoDnG6DzE8HP-G 373:1979:x3t6Bxz06GSyN1EgQ9CmF9C2CnO8J_M2GnFqE5BqDHwE 362:1721:h5u6Bp6x6GP0ErB0C7U4Q 365:1396:h9w6B9mv6GMiqBX-E 366:1060:7nx6Brot6G5NuO5G0LtB8E 375:3996:_uy6B30r6G_IoGzRiI9QsD9O2JhGExJhFzR3F7IJrG6C7G8G5GmQ_NsT9J8V 363:1034:ls36B5-n6G7HyN
+L|VLT|Linha Verde|#78b942|364 371:1716:hm96Bt6k6GhjB-MzDd1ChC_N3StE1B 370:1317:3x_6Bvil6G1RxB_FsB_DkDtCmFA8E4DsO 368:2329:7kg7Bl2j6G0D8Q5DipCtD2F3FyDxJuB
+L|VLT|Linha Verde|#78b942|368 370:2329:53g7Bxxg6GyJtB4FxDuD1F6DhpCzD7Q 371:1319:jsg7Bjnk6G3DrOA7EuClFgEjDgGrBqT0B 364:1709:9h_6B1kl6G2E6B8GgI-GsK2CiC0DeijB9M
+L|VLT da Baixada Santista|VLT Linha 1|#005CA9|397 390:1168:56nyE5-n7I 396:1041 385:744:zqoyEtvj7I 392:494 389:585 386:938:xwpyEjng7I1CoN0BgH 387:507:7opyEj9-6IlB6JS2E 393:580:zhpyE_j-6I 394:720:nqoyEhj86I 380:741:lqoyE3w76IYiF 379:633 402:526 384:477:5lnyExl46I 398:1129:_qnyEp716I-D6G
+L|VLT da Baixada Santista|VLT Linha 1|#005CA9|398 384:1122:lnnyE_016IzDhG 402:482:xlnyE9l46I 379:525 380:634 394:739:zpoyEju76I 393:722:1poyEpi86I 387:583:vhpyEzk-6I 386:504:7npyEns-6IzB9DgBrN 389:940:vxpyE9y_6IxB_G0DxQ 392:581 385:501 396:739:npoyEtzj7I 390:1039 397:1170:z6nyEl-n7I
+L|VLT da Baixada Santista|VLT Linha 2|#F26A21|397 390:1168:56nyE5-n7I 396:1041 385:744:zqoyEtvj7I 392:494 389:585 386:938:xwpyEjng7I1CoN0BgH 387:507:7opyEj9-6IlB6JS2E 393:580:zhpyE_j-6I 394:720:nqoyEhj86I 380:741:lqoyE3w76IYiF 379:633 402:526 384:477:5lnyExl46I 403:1008:honyEhn36IgBmC 399:426 377:759:9rkyE_726I0CyB 378:435:_kjyE9x26I 388:530 391:624 395:552:tuiyEn256I 401:212:tziyE3656IzBG5BwB
+L|VLT da Baixada Santista|VLT Linha 2|#F26A21|401 388:940 381:537:vmjyE5r36I 382:546 400:346 383:330 384:901:r-lyE9z36IzY0HrPtB 402:482:xlnyE9l46I 379:525 380:634 394:739:zpoyEju76I 393:722:1poyEpi86I 387:583:vhpyEzk-6I 386:504:7npyEns-6IzB9DgBrN 389:940:vxpyE9y_6IxB_G0DxQ 392:581 385:501 396:739:npoyEtzj7I 390:1039 397:1170:z6nyEl-n7I
+L|VLT do Cariri|VLT do Cariri|green|407 408:1135:zhgsBvv9vH 412:1827:jngsB71-vHlElDhWqBrF7B3DrDpCzE 404:1060:tmisB7_hwHSvE 406:1430:x5hsBhgjwHgBxG 411:2645:z3isB1imwH3D5DlVlOrC5ELvHmB7EwDpE 409:2076:j8hsB1wowHoCzHpGhcXpTfjE9FhI 410:1713:3qjsBnzrwHjDxEjHjSbhHqB_G 405:1931:18isBj1uwHlB_G7DtExdlS_DvDrEpH_G3V
+L|VLT do Cariri|VLT do Cariri|green|405 410:1932:1uksBpzwwHgH4VsEqHgEwDydmS8DuEmBgH 409:1713:x0jsB_3swHpBgHciHkHkSkDyE 411:2076:7nisB7zqwH-FiIgBkEYqTqGicnC0H 406:2645:zujsBlqnwHvDqElB8EMwHsC6EmVmO4D6D 404:1430:x4hsBzmjwHfyG 412:1060:7lisBrkiwHRwE 408:1827:5shsBzh_vHqC0E4DsDsF8BiWpBmEmD 407:1134:zhgsBvv9vH
+L|Abade-Pedras|Abade-Pedras||413 414:403
+L|Alba Posse - Porto Mauá|Alba Posse - Porto Mauá||415 416:542
+L|Alvear - Itaqui|Alvear - Itaqui||417 418:465
+L|Amazônia Navegações|Travessia Aripuanã||419 420:324
+L|Amazônia Navegações|Travessia Rio Igapó-Açú||424 423:129
+L|Amazônia Navegações|Travessia de Sucunduri||421 422:106
+L|Araguaiana - Registro do Araguaia|Araguaiana - Registro do Araguaia||425 426:299
+L|Areado - Alfenas|Areado - Alfenas||428 427:1727
+L|Argentina: Balsa Iguazú S.R.L.|Balsa||430 429:1614
+L|Balsa (Desativada)|Balsa||432 431:262
+L|Balsa (Ferry): Puerto Indio (Py) - Santa Helena (Br)|Balsa||434 433:10646
+L|Balsa Benjamin Barison|Balsa Benjamin Barison||435 436:525
+L|Balsa Capinzal|Balsa Capinzal||438 437:579
+L|Balsa Deusa do Jacuí|Balsa Deusa do Jacuí||439 440:365
+L|Balsa Irineópolis|Balsa Irineópolis||442 441:206
+L|Balsa MG/GO|Balsa MG/GO||444 443:406
+L|Balsa Manaus x Nhamandu|Balsa Manaus x Nhamandu||514 445:453594
+L|Balsa Manaus-Santarém|Balsa Manaus-Santarém||460 514:740247
+L|Balsa Paranaguá-Governador Valadares|Balsa Paranaguá-Governador Valadares||561 447:214
+L|Balsa Picadão (Desativada)|Balsa Picadão||449 448:213
+L|Balsa Pires|Balsa Pires||450 451:122
+L|Balsa Portel - Belém|Balsa Portel - Belém||453 452:329410
+L|Balsa Rio Araguaia|Balsa Rio Araguaia||454 455:382
+L|Balsa Santarém - Alenquer|Balsa Santarém - Alenquer||460 459:70312
+L|Balsa da Estrada do Colono|Balsa da Estrada do Colono||462 463:630
+L|Balsa de Paula Pereira|Balsa de Paula Pereira||464 465:207
+L|Balsa de Santa Leocádia|Balsa de Santa Leocádia||467 466:224
+L|Balsa de Taunay|Balsa de Taunay||468 469:96
+L|Balsa do Rio Manguaba|Balsa do Rio Manguaba||470 471:559
+L|Balsa do Rio Xingu|Balsa do Rio Xingu||472 473:1904
+L|Balsa do rio das Velhas|Balsa do rio das Velhas||475 474:169
+L|Balsa dos Gabriel|Balsa dos Gabriel||477 476:94
+L|Balsa: Porto Mendes (Br) - Puerto Adela (Py)|Balsa||479 478:5329
+L|Barcas Rio|Angra dos Reis - Abraão||480 483:22135
+L|Barcas Rio|Charitas - Praça XV||481 487:8447
+L|Barcas Rio|Cocotá - Praça XV||482 487:13189
+L|Barcas Rio|Mangaratiba - Abraão||484 483:23741
+L|Barcas Rio|Paquetá - Praça XV||485 487:18055
+L|Barcas Rio|Praça Arariboia - Praça XV||486 487:4995
+L|Barcas Rio|Praça XV - Charitas||487 481:8448
+L|Barcas Rio|Praça XV - Charitas||481 487:8203
+L|Barcas Rio|Praça XV - Cocotá||487 482:13186
+L|Barcas Rio|Praça XV - Paquetá||487 485:18051
+L|Barcas Rio|Praça XV - Praça Arariboia||487 486:5079
+L|Barcas Rio|Praça XV - Praça Arariboia||487 486:4885
+L|Barcas Santos-Guarujá|Barcas Santos-Guarujá||489 488:457
+L|Barquinhas|Barquinhas||490 491:720
+L|Becker Transportes;F. Andreis|Travessia Aquaviária de Veículos Rio Grande - São José do Norte||493 492:4934
+L|Belém de São Francisco - Barra do Tarrachil|Belém de São Francisco - Barra do Tarrachil||495 494:918
+L|Cachoeira do Manteiga - Ponto Chique|Cachoeira do Manteiga - Ponto Chique||496 497:389
+L|Cachoeirrinha - Rio Negro|Cachoeirrinha - Rio Negro||498 780:396560
+L|Cachoeirrinha - Rio Negro|Cachoeirrinha - Rio Negro||498 780:396437
+L|Cachoeirrinha - Rio Negro|Cachoeirrinha - Rio Negro||498 780:396486
+L|Canal de acesso ao porto velho|Canal de acesso ao porto velho||682 492:737
+L|Canauini - Cachoeirinha|Canauini - Cachoeirinha||499 498:45721
+L|Caseara - Santana do Araguaia|Caseara - Santana do Araguaia||500 501:2577
+L|Catraia Santos-Vicente de Carvalho|Catraia Santos-Vicente de Carvalho||502 525:979
+L|Centrinho da Lagoa da Conceição - Canto dos Araçás|Centrinho da Lagoa da Conceição - Canto dos Araçás||511 507:7624
+L|Colonia Alicia - San Antonio|Colonia Alicia - San Antonio||504 503:558
+L|Colonia Aurora - Pratos|Colonia Aurora - Pratos||505 506:434
+L|Cooperbarco|Centrinho da Lagoa da Conceição - Costa da Lagoa||511 507:8052
+L|Cooperbarco|Centrinho da Lagoa da Conceição - Costa da Lagoa||509 507:1705
+L|Cooperbarco|Cooperbarco||507 511:7713
+L|Cooperbarco|Costa da Lagoa - Trapiche do Rio Vermelho||508 510:1054
+L|Copanatra|Balsa||512 513:4285
+L|Democracia - Manicoré|Democracia - Manicoré||736 514:746800
+L|Departamento Hidroviário|Balsa Bertioga - Guarujá||517 516:449
+L|Departamento Hidroviário|Balsa Santos - Guarujá||523 521:507
+L|Departamento Hidroviário|Balsa Santos - Guarujá||522 521:466
+L|Departamento Hidroviário|Balsa Santos - Guarujá||522 521:471
+L|Departamento Hidroviário|Balsa Santos - Guarujá||520 527:380
+L|Departamento Hidroviário|Balsa São Sebastião - Ilhabela||515 524:2422
+L|Departamento Hidroviário|Barca Santos-Vicente de Carvalho||526 525:2133
+L|Departamento Hidroviário|Cananéia - Continente||519 518:900
+L|Duque Bacelar - Miguel Alves|Duque Bacelar - Miguel Alves||529 528:229
+L|EMAE - Empresa Metropolitana de Águas e Energia S.A.|Balsa de Taquacetuba||531 530:790
+L|EMAE - Empresa Metropolitana de Águas e Energia S.A.|Balsa do Bororé||532 533:512
+L|El Soberbio - Porto Soberbo|El Soberbio - Porto Soberbo||535 534:265
+L|Empresa Metropolitana de Águas e Energia|Balsa João Basso||537 536:487
+L|Esperantina - São João do Araguaia|Esperantina - São João do Araguaia||538 539:805
+L|F. Andreis|Barca São Francisco do Sul - Distrito do Saí||541 540:4568
+L|FerryBoat: Ponta da Espera - Cujupe|FerryBoat||542 543:23090
+L|Figueira - Rincão Vermelho|Figueira - Rincão Vermelho||545 544:191
+L|Filadélfia - Carolina|Filadélfia - Carolina||547 546:886
+L|Floresta - Bela Vista - Itaquera|Floresta - Bela Vista - Itaquera||549 548:47927
+L|GNU|GNU Ilha do Pavão||686 550:1538
+L|Governo de Roraima|Travessia Rio Uraricoera||551 552:453
+L|Guayaramein-Guajara-Mirim|Guayaramein-Guajara-Mirim||553 554:1907
+L|Hidrovia do Tototó|Hidrovia do Tototó||556 555:927
+L|Ilha Primeira|Ilha Primeira||557 558:408
+L|Ilha da Gigóia|Ilha da Gigóia||559 560:873
+L|Ilha das Peças - Paranagua|Ilha das Peças - Paranagua||562 561:19698
+L|Ilha do Superagui - Paranaguá|Ilha do Superagui - Paranaguá||563 561:30321
+L|Imperatriz - São Miguel do Tocantins|Imperatriz - São Miguel do Tocantins||565 564:668
+L|Internacional Travessias|Salvador - Bom Despacho||566 567:13177
+L|Iranduba - São José|Iranduba - São José||568 569:20961
+L|Itaeté - Boa Vista do Tupim|Itaeté - Boa Vista do Tupim||570 571:147
+L|Itajaí - Navegantes|Itajaí - Navegantes||572 573:311
+L|Itajaí - Navegantes|Itajaí - Navegantes||573 572:287
+L|Itapagipe - Paulo de Faria|Itapagipe - Paulo de Faria||574 575:1434
+L|Itaquera - Samaúma|Itaquera - Samaúma||645 549:30132
+L|Itaquera - Samaúma|Itaquera - Samaúma||645 549:30423
+L|Itaquera - Samaúma|Itaquera - Samaúma||645 549:30328
+L|Jacaré-Porto do Capim|Jacaré-Porto do Capim||576 577:9708
+L|Jailson Pitt ME|Travessia do Rio Uruguai||578 579:654
+L|Lacel|Balsa Santa Tereza - São Valentim do Sul||580 581:124
+L|Lacel|Balsa São Valentim do Sul - Santa Tereza||581 580:124
+L|Lacel|Lacel||580 581:124
+L|Lago Grande - Terra Preta|Lago Grande - Terra Preta||582 499:2563
+L|Lago Guaíba|Lago Guaíba||686 764:7206
+L|Manaus - Careiro da Várzea|Manaus - Careiro da Várzea||583 585:5223
+L|Manaus - Careiro da Várzea (BR-319)|Manaus - Careiro da Várzea||585 584:11595
+L|Manaus - Santarém|Manaus - Santarém||460 584:687991
+L|Mar Grande - Salvador|Mar Grande - Salvador||586 587:10097
+L|Mar Paulista / Cantinho do Céu|Mar Paulista / Cantinho do Céu||637 638:5174
+L|Marcelino Ramos - Alto Bela Vista|Marcelino Ramos - Alto Bela Vista||589 588:343
+L|Mariano Moro - Concórdia|Mariano Moro - Concórdia||591 590:688
+L|Marinha do Brasil|Espaço Cultural da Marinha-Ilha Fiscal||592 593:1170
+L|Marinha do Brasil|Espaço Cultural da Marinha-Ilha Fiscal||592 487:766
+L|Matias Olímpio - Brejo|Matias Olímpio - Brejo||595 594:327
+L|Mato Queimado - Guarani|Mato Queimado - Guarani||597 596:92
+L|Mocambinho - Itacarambi|Mocambinho - Itacarambi||599 598:422
+L|Muzema|Muzema||601 600:923
+L|Navegação Bom Jesus; Eça Belizário|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||602 603:998
+L|Navegação Bom Jesus; Eça Belizário|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||603 602:998
+L|Navegação Porto Feliz Ltda|Travessia do Rio Uruguai||604 605:526
+L|Nordeste Navegações LTDA|Balsa De Maria Farinha||607 606:302
+L|Nova Brasilia - Encantadas|Nova Brasilia - Encantadas||625 624:3679
+L|PMM|Marudá-Algodoal||609 608:6770
+L|Palmeirais - Parnarama|Palmeirais - Parnarama||611 610:455
+L|Palmeirais - Parnarama|Palmeirais - Parnarama||611 610:429
+L|Panambí - Porto Vera Cruz|Panambí - Porto Vera Cruz||612 613:1053
+L|Paranagua - Nova Brasilia|Paranagua - Nova Brasilia||625 624:3504
+L|Paranaguá - Amparo|Paranaguá - Amparo||561 614:6799
+L|Paranaguá - Ilha Rasa|Paranaguá - Ilha Rasa||615 561:27304
+L|Passo Novo|Passo Novo||617 616:174
+L|Penedo - Neópolis|Penedo - Neópolis||618 619:1934
+L|Pirapó - Roque Gonzales|Pirapó - Roque Gonzales||621 620:187
+L|Piçarra - Araguanã|Piçarra - Araguanã||622 623:2015
+L|Pontal do Paraná - Encantadas|Pontal do Paraná - Encantadas||625 624:3504
+L|Porto Rico à Eclusa|Porto Rico à Eclusa||627 626:41107
+L|Porto Xavier - San Javier|Porto Xavier - San Javier||628 629:595
+L|Porto da Folha - Pão de Açúcar|Porto da Folha - Pão de Açúcar||630 631:1280
+L|Rodovia Transamazônica|Rodovia Transamazônica||632 633:439
+L|Rodrigues Alves - Cruzeiro do Sul|Rodrigues Alves - Cruzeiro do Sul||634 635:81
+L|SPTrans|626A-10 Mar Paulista|#0082BA|637 638:5174
+L|Saint Georges - Oiapoque|Saint Georges - Oiapoque||639 640:6577
+L|Sales (Praia do Torres) - Sabino|Sales||641 642:3636
+L|Salvador - Morro de São Paulo|Salvador - Morro de São Paulo||587 713:64145
+L|Salvador das Missões - Rolador|Salvador das Missões - Rolador||643 644:117
+L|Samaúma - São Sebastião|Samaúma - São Sebastião||646 645:19891
+L|Samaúma - São Sebastião|Samaúma - São Sebastião||646 645:20033
+L|Samaúma - Xixuaú|Samaúma - Xixuaú||646 645:19818
+L|San Joaquin - Forte Príncipe da Beira|San Joaquin - Forte Príncipe da Beira||648 647:3669
+L|Santa Isabel do Araguaia - Ananás|Santa Isabel do Araguaia - Ananás||649 650:898
+L|Santa Maria das Barreiras - Araguacema|Santa Maria das Barreiras - Araguacema||782 651:759
+L|Santa Maria das Barreiras - Araguacema|Santa Maria das Barreiras - Araguacema||652 782:3166
+L|Santa Mª do Boiaçu - Sacaí|Santa Mª do Boiaçu - Sacaí||655 654:28670
+L|Santana-Breves|Santana-Breves||656 675:467382
+L|Santarém - Juruti|Santarém - Juruti||657 460:184722
+L|Santarém - Oriximiná|Santarém - Oriximiná||658 460:156232
+L|Santarém - Óbidos|Santarém - Óbidos||659 460:112191
+L|Seu Chico da Balsa|Balsa do Carioca||661 660:105
+L|São Bernardo - Luzilândia|São Bernardo - Luzilândia||663 662:260
+L|São Francisco de Sales - Riolândia|São Francisco de Sales - Riolândia||664 665:1384
+L|São José do Araguaia - Pontão|São José do Araguaia - Pontão||666 667:1634
+L|São Luís - Alcântara|São Luís - Alcântara||669 668:19491
+L|São Romão - Bentópolis de Minas|São Romão - Bentópolis de Minas||670 671:524
+L|São Sebastião do Tocantins - Vila Nova dos Martírios|São Sebastião do Tocantins - Vila Nova dos Martírios||672 673:737
+L|Terminal Hidroviário São Benedito|Santana – Ilha de Santana||675 674:819
+L|Tibau do Sul - Canguaretama|Tibau do Sul - Canguaretama||676 677:72
+L|Tocantinópolis - Porto Franco|Tocantinópolis - Porto Franco||679 678:828
+L|Torrinhas - Boipeba (catamarã)|Torrinhas - Boipeba||680 681:11210
+L|Transnorte|Travessia Aquaviária de Passageiros São José do Norte - Rio Grande||682 683:5661
+L|Transnorte|Travessia Aquaviária de Passageiros São José do Norte - Rio Grande||683 682:5662
+L|Transportadora Inácio|Transporte Aquaviário de Passageiros Triunfo - São Jerônimo||684 685:793
+L|Transportadora Inácio|Travessia Hidroviária de Veículos Triunfo - São Jerônimo||685 684:793
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba|#FFA500|688 686:14278
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba|#FFA500|686 688:14283
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba / Pontal|#FFA500|688 687:8087 686:7253
+L|Transporte Hidroviário de Passageiros de Porto Alegre|Travessia Porto Alegre - Guaíba / Pontal|#FFA500|686 687:7254 688:8088
+L|Travessia Marco Zero - Parque de Esculturas|Travessia Marco Zero - Parque de Esculturas||689 690:299
+L|Travessia Rio Madeira|Travessia Rio Madeira||736 691:1499
+L|Travessia Tapajós|Travessia Tapajós||694 693:2883
+L|Travessia da Barragem Passo Fundo|Travessia da Barragem Passo Fundo||696 695:242
+L|Travessia do Rio Ivaí de balsa|Travessia do Rio Ivaí de balsa||698 699:320
+L|Travessia do Rio Paranapanema|Travessia do Rio Paranapanema||700 705:2271
+L|Travessia do Rio Paranapanema|Travessia do Rio Paranapanema||704 702:915
+L|Travessia do Rio Paranapanema|Travessia do Rio Paranapanema||703 701:439
+L|Travessia do Rio Paraná (balsa)|Travessia do Rio Paraná||706 707:1180
+L|Travessia do Rio Uruguai - Balsa|Travessia do Rio Uruguai - Balsa||710 709:244
+L|Três Ranchos - Grupiara|Três Ranchos - Grupiara||711 712:6016
+L|Valença - Morro de São Paulo|Valença - Morro de São Paulo||714 713:18798
+L|Valença - Morro de São Paulo (lancha rápida)|Valença - Morro de São Paulo||713 714:19190
+L|Vaner Andrea II - Balsa|Vaner Andrea II - Balsa||715 716:3009
+L|Vigorelli - Travessia de balsa|Vigorelli - Travessia de balsa||717 718:1238
+L|W. V. Gouveia Calil|Balsa do Gouveinha||720 719:1541
+L|ferry|ferry||493 492:5042
+L|ferry|ferry||493 683:128
+L|ferry|ferry||685 684:793
+L|ferry|ferry||685 684:839
+L|ferry|ferry||661 660:105
+L|ferry|ferry||791 736:246045
+L|ferry|ferry||758 755:939
+L|ferry|ferry||554 553:2288
+L|ferry|ferry||757 798:457
+L|ferry|ferry||762 746:217
+L|ferry|ferry||731 733:334
+L|ferry|ferry||726 785:1023
+L|ferry|ferry||782 723:995
+L|ferry|ferry||781 721:67
+L|ferry|ferry||764 688:6914
+L|ferry|ferry||734 730:4918
+L|ferry|ferry||779 778:2407
+L|ferry|ferry||737 754:667
+L|ferry|ferry||786 722:494
+L|ferry|ferry||790 741:8932
+L|ferry|ferry||789 725:72
+L|ferry|ferry||739 795:185
+L|ferry|ferry||742 794:295
+L|ferry|ferry||747 761:2701
+L|ferry|ferry||776 767:1672
+L|ferry|ferry||771 793:158
+L|ferry|ferry||748 753:132395
+L|ferry|ferry||753 771:163246
+L|ferry|ferry||740 724:45450
+L|ferry|ferry||759 763:1096
+L|ferry|ferry||777 750:439
+L|ferry|ferry||788 780:264221
+L|ferry|ferry||756 751:128321
+L|ferry|ferry||792 745:40582
+L|ferry|ferry||738 770:47126
+L|ferry|ferry||797 784:84
+L|ferry|ferry||783 796:93
+L|ferry|ferry||727 732:136
+L|ferry|ferry||645 548:76752
+L|ferry|ferry||499 498:45091
+L|ferry|ferry||787 760:220
+L|ferry|ferry||729 728:3054
+L|ferry|ferry||775 772:605
+L|ferry|ferry||769 774:4296
+L|ferry|ferry||773 768:601
+L|ferry|ferry||744 752:104
+L|ferry|ferry||749 681:27861
+L|ferry|ferry||766 765:1081
+R|-22.46108|-45.00092|Coronel Fulgêncio|Associação Brasileira de Preservação Ferroviária
+R|-22.41524|-44.98330|Manacá|Associação Brasileira de Preservação Ferroviária
+R|-22.39032|-44.96592|Passa Quatro|Associação Brasileira de Preservação Ferroviária
+R|-19.49394|-41.06092|Aimorés|BR
+R|-19.65567|-42.86866|Antônio Dias|BR
+R|-19.82394|-40.36089|Aricanga|BR
+R|-19.51058|-41.01367|Baixo Guandu|BR
+R|-19.07171|-41.52872|Barra de Cuieté|BR
+R|-19.54192|-40.65274|Colatina|BR
+R|-19.16565|-41.47704|Conselheiro Pena|BR
+R|-19.73900|-43.01827|Desembargador Drumond|BR
+R|-19.91593|-43.46685|Dois Irmãos|BR
+R|-20.33232|-40.35649|Estação Ferroviária Pedro Nolasco|BR
+R|-20.28786|-40.37638|Flexal|BR
+R|-19.31703|-42.36391|Frederico Sellow|BR
+R|-19.93487|-40.40391|Fundão|BR
+R|-18.85189|-41.95112|Governador Valadares|BR
+R|-19.48524|-42.55334|Intendente Câmara|BR
+R|-19.40699|-42.42644|Ipaba|BR
+R|-19.63407|-43.23170|Itabira|BR
+R|-19.53196|-40.81352|Itapina|BR
+R|-19.84211|-43.12777|João Monlevade|BR
+R|-19.23489|-41.34861|Krenak|BR
+R|-19.50511|-40.91490|Mascarenhas|BR
+R|-19.52556|-42.64424|Mário Carvalho|BR
+R|-19.08205|-42.16067|Pedra Corrida|BR
+R|-19.15410|-42.23415|Periquito|BR
+R|-19.74856|-40.36647|Piraqueaçu|BR
+R|-19.32370|-41.25537|Resplendor|BR
+R|-19.93205|-43.17277|Rio Piracicaba|BR
+R|-19.01300|-41.54859|São Tomé do Rio Doce|BR
+R|-18.98043|-41.64797|Tumiritinga|BR
+R|-23.25689|-47.30575|Estação ferroviária Itu|CITREM
+R|-23.21018|-47.29007|Estação ferroviária Salto|CITREM
+R|-23.55441|-46.38363|Antonio Gianetti Neto|Companhia Paulista de Trens Metropolitanos
+R|-23.50008|-46.33911|Aracaré|Companhia Paulista de Trens Metropolitanos
+R|-23.53626|-46.22516|Braz Cubas|Companhia Paulista de Trens Metropolitanos
+R|-23.53626|-46.22516|Braz Cubas|Companhia Paulista de Trens Metropolitanos
+R|-23.54533|-46.61644|Brás|Companhia Paulista de Trens Metropolitanos
+R|-23.52545|-46.33277|Calmon Viana|Companhia Paulista de Trens Metropolitanos
+R|-23.65823|-46.48972|Capuava|Companhia Paulista de Trens Metropolitanos
+R|-23.48511|-46.48229|Comendador Ermelino|Companhia Paulista de Trens Metropolitanos
+R|-23.54200|-46.47114|Corinthians-Itaquera|Companhia Paulista de Trens Metropolitanos
+R|-23.54177|-46.44813|Dom Bosco|Companhia Paulista de Trens Metropolitanos
+R|-23.49809|-46.51990|Engenheiro Goulart|Companhia Paulista de Trens Metropolitanos
+R|-23.47923|-46.36778|Engenheiro Manoel Feio|Companhia Paulista de Trens Metropolitanos
+R|-23.47923|-46.36778|Engenheiro Manoel Feio|Companhia Paulista de Trens Metropolitanos
+R|-23.51538|-46.18417|Estação Estudantes|Companhia Paulista de Trens Metropolitanos
+R|-23.48494|-46.38564|Estação Jardim Romano|Companhia Paulista de Trens Metropolitanos
+R|-23.54081|-46.36838|Ferraz de Vasconcelos|Companhia Paulista de Trens Metropolitanos
+R|-23.54233|-46.41570|Guaianases|Companhia Paulista de Trens Metropolitanos
+R|-23.69210|-46.44872|Guapituba|Companhia Paulista de Trens Metropolitanos
+R|-23.58249|-46.59663|Ipiranga|Companhia Paulista de Trens Metropolitanos
+R|-23.49398|-46.40216|Itaim Paulista|Companhia Paulista de Trens Metropolitanos
+R|-23.48604|-46.34802|Itaquaquecetuba|Companhia Paulista de Trens Metropolitanos
+R|-23.48604|-46.34802|Itaquaquecetuba|Companhia Paulista de Trens Metropolitanos
+R|-23.49269|-46.42147|Jardim Helena - Vila Mara|Companhia Paulista de Trens Metropolitanos
+R|-23.48503|-46.38574|Jardim Romano|Companhia Paulista de Trens Metropolitanos
+R|-23.53912|-46.43167|José Bonifácio|Companhia Paulista de Trens Metropolitanos
+R|-23.54273|-46.25813|Jundiapeba|Companhia Paulista de Trens Metropolitanos
+R|-23.55801|-46.60816|Juventus - Mooca|Companhia Paulista de Trens Metropolitanos
+R|-23.53510|-46.63534|Luz|Companhia Paulista de Trens Metropolitanos
+R|-23.66826|-46.46155|Mauá|Companhia Paulista de Trens Metropolitanos
+R|-23.52149|-46.19785|Mogi das Cruzes|Companhia Paulista de Trens Metropolitanos
+R|-23.52523|-46.34326|Poá|Companhia Paulista de Trens Metropolitanos
+R|-23.65210|-46.52818|Prefeito Celso Daniel - Santo André|Companhia Paulista de Trens Metropolitanos
+R|-23.63837|-46.53670|Prefeito Saladino|Companhia Paulista de Trens Metropolitanos
+R|-23.71424|-46.41425|Ribeirão Pires - Antônio Bespalec|Companhia Paulista de Trens Metropolitanos
+R|-23.74338|-46.39180|Rio Grande da Serra|Companhia Paulista de Trens Metropolitanos
+R|-23.61006|-46.57006|São Caetano do Sul - Prefeito Walter Braido|Companhia Paulista de Trens Metropolitanos
+R|-23.49056|-46.44367|São Miguel Paulista|Companhia Paulista de Trens Metropolitanos
+R|-23.53432|-46.30799|Suzano|Companhia Paulista de Trens Metropolitanos
+R|-23.59261|-46.58945|Tamanduateí|Companhia Paulista de Trens Metropolitanos
+R|-23.54017|-46.57654|Tatuapé|Companhia Paulista de Trens Metropolitanos
+R|-23.48549|-46.50056|USP Leste|Companhia Paulista de Trens Metropolitanos
+R|-23.62618|-46.54406|Utinga|Companhia Paulista de Trens Metropolitanos
+R|-23.43268|-46.49374|Aeroporto-Guarulhos|Expresso Aeroporto
+R|-23.44741|-46.49375|Guarulhos-Cecap|Expresso Aeroporto
+R|-21.13342|-44.25736|São João del Rei|Ferrovia Centro-Atlântica
+R|-21.11479|-44.16749|Tiradentes|Ferrovia Centro-Atlântica
+R|-29.17363|-51.51755|Estação de Trem de Bento Gonçalves|Giordani Turismo
+R|-29.25546|-51.52196|Garibaldi|Giordani Turismo
+R|-29.28395|-51.49232|Tramontina|Giordani Turismo
+R|-22.78864|-43.38139|Agostinho Porto|SuperVia
+R|-22.82440|-43.40322|Anchieta|SuperVia
+R|-22.89304|-43.53740|Augusto Vasconcelos|SuperVia
+R|-22.72021|-43.52329|Austin|SuperVia
+R|-22.72021|-43.52329|Austin|SuperVia
+R|-22.87536|-43.46570|Bangu|SuperVia
+R|-22.83321|-43.36656|Barros Filho|SuperVia
+R|-22.76407|-43.39982|Belford Roxo|SuperVia
+R|-22.90629|-43.58102|Benjamim do Monte|SuperVia
+R|-22.86761|-43.25529|Bonsucesso|SuperVia
+R|-22.83039|-43.29300|Brás de Pina|SuperVia
+R|-22.90227|-43.56000|Campo Grande|SuperVia
+R|-22.70400|-43.28083|Campos Elíseos|SuperVia
+R|-22.88273|-43.32807|Cascadura|SuperVia
+R|-22.87454|-43.31575|Cavalcanti|SuperVia
+R|-22.90355|-43.19142|Central do Brasil|SuperVia
+R|-22.59333|-43.01553|Citrolândia|SuperVia
+R|-22.77873|-43.38735|Coelho da Rocha|SuperVia
+R|-22.74441|-43.48843|Comendador Soares|SuperVia
+R|-22.82402|-43.29592|Cordovil|SuperVia
+R|-22.77238|-43.30670|Corte Oito|SuperVia
+R|-22.91277|-43.61445|Cosmos|SuperVia
+R|-22.82180|-43.37026|Costa Barros|SuperVia
+R|-22.88020|-43.27039|Del Castilho|SuperVia
+R|-22.85507|-43.38353|Deodoro|SuperVia
+R|-22.78717|-43.30955|Duque de Caxias|SuperVia
+R|-22.79623|-43.42264|Edson Passos|SuperVia
+R|-22.67906|-43.60557|Engenheiro Pedreira|SuperVia
+R|-22.90346|-43.27076|Engenho Novo|SuperVia
+R|-22.90346|-43.27076|Engenho Novo|SuperVia
+R|-22.58876|-43.18441|Fragoso|SuperVia
+R|-22.75167|-43.30422|Gramacho|SuperVia
+R|-22.51990|-42.97746|Guapimirim|SuperVia
+R|-22.87526|-43.45668|Guilherme da Silveira|SuperVia
+R|-22.84962|-43.35726|Honório Gurgel|SuperVia
+R|-22.64222|-43.21951|Imbariê|SuperVia
+R|-22.90901|-43.59509|Inhoaíba|SuperVia
+R|-22.90901|-43.59509|Inhoaíba|SuperVia
+R|-22.65313|-43.06625|Iriri|SuperVia
+R|-22.88416|-43.25506|Jacarezinho|SuperVia
+R|-22.64458|-43.65298|Japeri|SuperVia
+R|-22.56246|-42.99502|Jardim Guapimirim|SuperVia
+R|-22.63582|-43.03036|Jardim Nova Marília|SuperVia
+R|-22.69024|-43.26244|Jardim Primavera|SuperVia
+R|-22.60535|-43.02484|Jororó|SuperVia
+R|-22.62180|-43.70409|Lages|SuperVia
+R|-22.87668|-43.33762|Madureira|SuperVia
+R|-22.65173|-43.04250|Magé|SuperVia
+R|-22.86808|-43.41358|Magalhães Bastos|SuperVia
+R|-22.90851|-43.23683|Mangueira / Jamelão|SuperVia
+R|-22.87968|-43.25089|Manguinhos|SuperVia
+R|-22.63047|-43.21047|Manoel Belo|SuperVia
+R|-22.90930|-43.23329|Maracanã|SuperVia
+R|-22.86077|-43.37129|Marechal Hermes|SuperVia
+R|-22.87322|-43.33687|Mercadão de Madureira|SuperVia
+R|-22.78255|-43.42867|Mesquita|SuperVia
+R|-22.90173|-43.27803|Méier|SuperVia
+R|-22.87509|-43.44766|Mocidade/Padre Miguel|SuperVia
+R|-22.65847|-43.23060|Morabi|SuperVia
+R|-22.80859|-43.41501|Nilópolis|SuperVia
+R|-22.76066|-43.45009|Nova Iguaçu|SuperVia
+R|-22.84719|-43.26636|Olaria|SuperVia
+R|-22.81742|-43.41001|Olinda|SuperVia
+R|-22.89560|-43.29369|Olímpica de Engenho de Dentro|SuperVia
+R|-22.86919|-43.35014|Oswaldo Cruz|SuperVia
+R|-22.91625|-43.63247|Paciência|SuperVia
+R|-22.61126|-43.71071|Paracambi|SuperVia
+R|-22.62072|-43.20243|Parada Angélica|SuperVia
+R|-22.53690|-42.98224|Parada Bananal|SuperVia
+R|-22.81666|-43.30074|Parada de Lucas|SuperVia
+R|-22.57979|-43.00540|Parada Ideal|SuperVia
+R|-22.54597|-42.98511|Parada Modelo|SuperVia
+R|-22.65398|-43.15237|Parada Santa Dalila|SuperVia
+R|-22.66569|-43.09274|Parada Santa Guilhermina|SuperVia
+R|-22.65027|-43.20823|Parque Estrela|SuperVia
+R|-22.80561|-43.36702|Pavuna/São João de Meriti|SuperVia
+R|-22.84038|-43.27863|Penha|SuperVia
+R|-22.83663|-43.28504|Penha Circular|SuperVia
+R|-22.60942|-43.17966|Piabetá|SuperVia
+R|-22.89040|-43.30966|Piedade|SuperVia
+R|-22.88098|-43.29157|Pilares|SuperVia
+R|-22.90989|-43.21296|Praça da Bandeira|SuperVia
+R|-22.86435|-43.36165|Prefeito Bento Ribeiro|SuperVia
+R|-22.77002|-43.43442|Presidente Juscelino|SuperVia
+R|-22.77002|-43.43442|Presidente Juscelino|SuperVia
+R|-22.71611|-43.55590|Queimados|SuperVia
+R|-22.71611|-43.55590|Queimados|SuperVia
+R|-22.88852|-43.32122|Quintino|SuperVia
+R|-22.85509|-43.26009|Ramos|SuperVia
+R|-22.87476|-43.42941|Realengo|SuperVia
+R|-22.90147|-43.25551|Riachuelo|SuperVia
+R|-22.84038|-43.39843|Ricardo de Albuquerque|SuperVia
+R|-22.84038|-43.39843|Ricardo de Albuquerque|SuperVia
+R|-22.85466|-43.35179|Rocha Miranda|SuperVia
+R|-22.90198|-43.26208|Sampaio|SuperVia
+R|-22.91555|-43.68409|Santa Cruz|SuperVia
+R|-22.87965|-43.51140|Santíssimo|SuperVia
+R|-22.67775|-43.24720|Saracuruna|SuperVia
+R|-22.87579|-43.48611|Senador Camará|SuperVia
+R|-22.90413|-43.27517|Silva Freire|SuperVia
+R|-22.90953|-43.22282|São Cristóvão|SuperVia
+R|-22.90234|-43.24474|São Francisco Xavier|SuperVia
+R|-22.66299|-43.12900|Suruí|SuperVia
+R|-22.91887|-43.64931|Tancredo Neves|SuperVia
+R|-22.91887|-43.64931|Tancredo Neves|SuperVia
+R|-22.86905|-43.30528|Tomás Coelho|SuperVia
+R|-22.89672|-43.24410|Triagem|SuperVia
+R|-22.80526|-43.30548|Vigário Geral|SuperVia
+R|-22.57090|-43.18461|Vila Inhomirim|SuperVia
+R|-22.86253|-43.40203|Vila Militar|SuperVia
+R|-22.79395|-43.37533|Vila Rosali|SuperVia
+R|-23.53056|-46.98394|Amador Bueno|Trem Metropolitano de São Paulo
+R|-23.53024|-46.97277|Ambuitá|Trem Metropolitano de São Paulo
+R|-23.51707|-46.85833|Antônio João|Trem Metropolitano de São Paulo
+R|-23.51707|-46.85833|Antônio João|Trem Metropolitano de São Paulo
+R|-23.70598|-46.68832|Autódromo|Trem Metropolitano de São Paulo
+R|-23.31012|-46.72334|Baltazar Fidélis|Trem Metropolitano de São Paulo
+R|-23.51261|-46.87508|Barueri|Trem Metropolitano de São Paulo
+R|-23.60471|-46.69678|Berrini - Casas Bahia|Trem Metropolitano de São Paulo
+R|-23.23587|-46.76761|Botujuru|Trem Metropolitano de São Paulo
+R|-23.36615|-46.75165|Caieiras|Trem Metropolitano de São Paulo
+R|-23.20669|-46.78542|Campo Limpo Paulista|Trem Metropolitano de São Paulo
+R|-23.51854|-46.83528|Carapicuíba|Trem Metropolitano de São Paulo
+R|-23.53749|-46.74253|Ceasa|Trem Metropolitano de São Paulo
+R|-23.58524|-46.69118|Cidade Jardim|Trem Metropolitano de São Paulo
+R|-23.55760|-46.71187|Cidade Universitária|Trem Metropolitano de São Paulo
+R|-23.52575|-46.79571|Comandante Sampaio|Trem Metropolitano de São Paulo
+R|-23.51879|-46.72167|Domingos de Moraes|Trem Metropolitano de São Paulo
+R|-23.53520|-46.92867|Engenheiro Cardoso|Trem Metropolitano de São Paulo
+R|-23.28208|-46.74245|Francisco Morato|Trem Metropolitano de São Paulo
+R|-23.32979|-46.72641|Franco da Rocha|Trem Metropolitano de São Paulo
+R|-23.52346|-46.81590|General Miguel Costa|Trem Metropolitano de São Paulo
+R|-23.73639|-46.69700|Grajaú|Trem Metropolitano de São Paulo
+R|-23.62753|-46.71200|Granja Julieta|Trem Metropolitano de São Paulo
+R|-23.52135|-46.68870|Água Branca|Trem Metropolitano de São Paulo
+R|-23.57357|-46.69864|Hebraica - Rebouças|Trem Metropolitano de São Paulo
+R|-23.52372|-46.73760|Imperatriz Leopoldina|Trem Metropolitano de São Paulo
+R|-23.52372|-46.73760|Imperatriz Leopoldina|Trem Metropolitano de São Paulo
+R|-23.54553|-46.93526|Itapevi|Trem Metropolitano de São Paulo
+R|-23.52760|-46.90237|Jandira|Trem Metropolitano de São Paulo
+R|-23.45510|-46.73887|Jaraguá|Trem Metropolitano de São Paulo
+R|-23.51421|-46.88932|Jardim Belval|Trem Metropolitano de São Paulo
+R|-23.51421|-46.88932|Jardim Belval|Trem Metropolitano de São Paulo
+R|-23.52350|-46.89353|Jardim Silveira - Leo Madeiras|Trem Metropolitano de São Paulo
+R|-23.53322|-46.64056|Júlio Prestes|Trem Metropolitano de São Paulo
+R|-23.63992|-46.72351|João Dias|Trem Metropolitano de São Paulo
+R|-23.19474|-46.87242|Jundiaí|Trem Metropolitano de São Paulo
+R|-23.67730|-46.70231|Jurubatuba- Senac|Trem Metropolitano de São Paulo
+R|-23.51760|-46.70397|Lapa|Trem Metropolitano de São Paulo
+R|-23.51998|-46.69918|Lapa - Senac|Trem Metropolitano de São Paulo
+R|-23.75424|-46.70924|Mendes - Vila Natal|Trem Metropolitano de São Paulo
+R|-23.62159|-46.70164|Morumbi - Claro|Trem Metropolitano de São Paulo
+R|-23.52770|-46.77592|Osasco|Trem Metropolitano de São Paulo
+R|-23.52546|-46.66751|Palmeiras-Barra Funda|Trem Metropolitano de São Paulo
+R|-23.40492|-46.75370|Perus|Trem Metropolitano de São Paulo
+R|-23.56643|-46.70306|Pinheiros|Trem Metropolitano de São Paulo
+R|-23.50311|-46.71497|Piqueri|Trem Metropolitano de São Paulo
+R|-23.48855|-46.72609|Pirituba|Trem Metropolitano de São Paulo
+R|-23.53123|-46.76174|Presidente Altino|Trem Metropolitano de São Paulo
+R|-23.72287|-46.69177|Primavera - Interlagos|Trem Metropolitano de São Paulo
+R|-23.52272|-46.80707|Quitaúna|Trem Metropolitano de São Paulo
+R|-23.52914|-46.91728|Sagrado Coração|Trem Metropolitano de São Paulo
+R|-23.54497|-46.94748|Santa Rita|Trem Metropolitano de São Paulo
+R|-23.51662|-46.84796|Santa Terezinha|Trem Metropolitano de São Paulo
+R|-23.65623|-46.71912|Santo Amaro|Trem Metropolitano de São Paulo
+R|-23.66326|-46.71096|Socorro|Trem Metropolitano de São Paulo
+R|-23.77020|-46.71195|Varginha|Trem Metropolitano de São Paulo
+R|-23.43791|-46.74727|Vila Aurora|Trem Metropolitano de São Paulo
+R|-23.46961|-46.74460|Vila Clarice|Trem Metropolitano de São Paulo
+R|-23.59337|-46.69273|Vila Olímpia|Trem Metropolitano de São Paulo
+R|-23.54599|-46.73285|Villa Lobos - Jaguaré|Trem Metropolitano de São Paulo
+R|-23.20892|-46.82928|Várzea Paulista|Trem Metropolitano de São Paulo
+R|-3.67015|-45.84451|Alto Alegre do Pindaré|Vale
+R|-2.56734|-44.33191|Anjo da Guarda|Vale
+R|-4.91177|-47.40407|Estação Ferroviária de Açailândia|Vale
+R|-5.99417|-49.89496|Estação Ferroviária de Parauapebas|Vale
+R|-3.69769|-45.99107|Mineirinho|Vale
+R|-3.69855|-45.41516|Santa Inês|Vale
+R|-5.15717|-48.44775|São Pedro da Água Branca|Vale
+R|-3.53280|-44.86180|Vitória do Mearim|Vale
+Q|Associação Brasileira de Preservação Ferroviária|Trem da Serra da Mantiqueira||L55|2 1:3688:ts1oEjtuyI3NpC9D_B9E5EvC_E_Qj2BtD7F9DlD7UrHxOf5JxCpKUtHpBhV9JjJnI 0:5924:hp6oEt7xyIpUHpUhFxTrDxFxDnDzGnCjC3bhPzNrDtHrGjDxInD_B1NoC1PtCnI6ElDN_EvD3FzBzD6B9FkGtFIlEjEhFjKzOvMhDlB1HgB_JtEhM_HxEtJhClC
+Q|BR|Trem de passageiros da Estrada de Ferro Vitória a Minas|#00939A|L55|12 13:6013:vgj8D9hq2H8PpDuChD-D7N0ErD-EYqEuGwE8BoVzK6ClD2BxEmBxWuEjI6E1Dm-C1lBuFXgQiCyE5B4K5I2F3C 15:53332 5:14948:1-05D17y2HgXwGiUiS8qBqQuGqJqE0V2YykB2UoLsTqOokBowByoB4ToZmWiLsGgmBkFymB8M2mC3B4hBmGuHuE-EwGsGoZgE6H6H2GmJ0C6X5GgWImbpJonB3EwYjLkPlT-F1EiKhC 27:8929:hk_4Dr3q2H8ZyEkHRyHpEyMrOwShJ2LpN4PtLsFzB6QzB0SlLyH7CyWrB6lBnHoKYwViGqdF8Q9D2FFyF0BmLqHiGmC-PD-fiE-TbgYwH 8:40717 20:23242 23:11611:n3m3D10j5HQzFtBtFzFlKL9DgBtE0WniByWpXwO5b4FzTgJ9SuC7PiCxFuD3E6UzU-EtHgDvI4CpVuGnYyR3dqKpfuL58BZ9GjFpOJxIuLnbgCnKVtKxF_WyE1fsC5iB_F3kB 6:10838:hxh3Dxv35HTvHpQvkB9B1HF9G-J7yBqUr9BsB5INtK_W_9C3PpzClElJ7cnrBhD9HhBtHkS97DiD9d 3:5640 28:35647 22:16083:vw91Dp857H6RkFmRgBgOlFolBnX8sBvF8EtE-LtWmJlMqQhNiapK-KlV4G1HikBpNuRxP4Z1NogB3WoQlUkf1HoKhG2clwB6GxbgFjK6GjFiW1JyRlB8OhHwRlS2ZtgBqDvQ7DziBwS3qB4BjJpQz9B 9:16806:55s1D9us8H8CzJiY_kBiU_TkhBluBmDpGoDnTsNtWgM7IooBnK8W3TmSttBoBxMnDhVqDrLiK7Z2O9OuHnTMtL_H9S_CrYiM7hB-GxJmQtKsTvIwb7Z2KpXgJxagL9N8e_XoE9F8G7emKxTsJndmWzWgEzGsEhXnF5VarR0E3O 7:13283 30:7787 31:12046:tzh0D35z9HO7GkHlWqMrPI3J_EpVe5NnJ7WgFxVwD5HmG5GuK_GyDnEwJriB4EpIswCxsC2GpEkPnG2GvF4R5RuJtW-EtYdzRUrEiHpRchFnG3nCuFnapCjVEvH 16:43237:z96zDrin-H0rBjuBhExjCya7nCMxuBgmBpjCye9UklBzKm0B5lB00DtlBq8CjVg3Bif8jBgCglBjP69Bt1Dmfn8C6BluB2SrckRl3B_CtYriB56BkDr-B5WvwC2IvnB6uC12EwIz4D-JrY6QpM8uBsO0OrGmF3xBq0BzxBob3-D4C_sB 25:44745 26:12397:_nw0Dj_qhIhFV3SwB3FRrH9C5X7XnbpNtZlW7P9LnN5IliBpPlEnDvcxe_WtShtBn3BhH1FvcxNjFjE5G3J1BvEFzHoCvHsNzR0C1EoBpF6C7a7DrVlC9FlG9K9Y_TpI9HjZ9rBxIpH 14:25175 18:17391 17:19533 24:13791 4:30679 10:19642 21:21551:_3v4DpgymItS1SrV9LtdsGhczMrE3D7On1B3brpCzLtI5kBPrJvG5UhuBlHhrB-LrVgO9pCjiBt1ClZhNhJzS3QpKvSroB_JpFzgCnG9ZmM3sBxL9RqN_XsepLG3GnHlBpSpKpSJ9UxJjXmJ9b5D12BnF1F3-BpXxXkI 29:13707:55j5D17mnI_SqJrW8O7H4CzcsC3RvC5Ic1R6GjNuLzItB3NxU9GzEzHoBhPwJhKrBxZ_qBpEhEzFvBzgBsBzIhE3CjG0BpQjHna7TjiB1HvD_SnB1R1O_N3FnMxSvThHhK3HnJvKxIpPnJtJvJjDrYkD1H_C1JpKzJjQ9SlFtM_T_Q7I3DnIyBjS 11:49220
+Q|BR|Trem de passageiros da Estrada de Ferro Vitória a Minas|#ecb833|L55|10 19:34027:zgw4DnqymI2BlW07Bj2B4hB8Uub10Bg0BtU6F3f0yCp2B0B9tBqjCxgClrBvnBmZlZ-D5kBqdgB6WhwBjZzoB-MvpCuoClxBupBxhC3EvlCw-BxbozBv0BnGj1B-rBhIpLz5ByjBliBve73CuoB34B6pBnZmHv3CpdliB
+Q|BR|Trem de passageiros da Estrada de Ferro Vitória a Minas|#00939A|L55|11 29:49223 21:13708:1205D38vnIxBkS4DoIgR8IuMgU-SmF0JkQ2JqK2HgDsYjDwJkDoJuJyIqPoJwKiK4HwTiHoMySgO4F2R2OgToB2HwD8TkiBkHoazBqQ4CkG0IiE0gBrB0FwBqEiEyZgrBiKsBiPvJ0HnB-G0E4NyU0IuBkNtL2R5G6Ib4RwC0crC8H3CsW7OgTpJ 10:21546:1kj5D31nnIyXjI4-BqXoF2F6D22BlJ-byJkXK-UqKqSmBqS4GoHqLFgYre-RpN4sByL-ZlM0gCoGgKqFwSsoB4QqKiJ0SmZiNkiBu1C_N-pC9LsVmHirB6UiuBsJwG6kBQ0LuI4bspC8Oo1BsE4Dic0MudrG0V0LuSwS 4:25225:76t4DxyxmIydwnBzCmMlXmJ5IwdygBwqByQynB1H4QzuBqW_Kibg4CklCyhBg-B-IwqBg5CgI2lBvO6rC8xB8UijBgc6QyEspCjf4UrJ-hBrZ2c0Du0B-V8jB-jC3DySyqB-YsfjGkxB6O0VoYwL 24:32828:_7-3Dzp0lIs3BkqBuRuajY4jBxa2N3EoUmZ4hB3P6mBkSsW4Ns2BmjBoXiPk0B2xC0L-cua4RigBmciOiEsrB5P6gCksCgiC2Qk2BqWuY4Hsc6c2M2J2gBqgBwTiOsjB-2BwoCiIka8pC4a6gBhDmVmS2uBmuDoZgSgLkWpPqwBoEwQ0W6YwlB8I4NyQqPsjC 17:11366 18:19569:_s82D7s0jImC2HKqGhe4sDxDwGrM6N1JuTvCgHxB6vBwC8a2C6G0E0H6tB01ByuCgqC0E-FmKoU6EiZqI2P6DiX_BwKvI2MnCsF3C-NF4IyG4YgDoekJkUyPmOuF0DoZkIuayO-ZuLsI0Bg3BuCsY2C2xCiUqxB4U 14:17431:v_t2Dxq-iIoqBgZuR0c6PiLkIuBoNjCoY_K2a3Xqdle8QxLsWxHqWa6IuE0nBkiCkoBwZ0QO4e1MmSrKkNlOuRlM8QA8RuE4F2G2LoegGudgD62B5BwYkNgnBxBqJrHyRiG6hB3HkczOgdQoJyI-LusBwX 26:25247:5-61DzwxiI-1BtCgGwFsIoRiMsL-JmEgoBpFkxByEglB9EgN0B6OqH-M4Q4DuIWgKnIwc8B8J4EqIyI2GmIqCyfhG6WyB6HiEmOiR6mBqLq2B-nC6VymB0IoWwHycwHqqBiGgJ0J-E-rBwDoXqPsnB62B-CwFsF6b2P6amjGmjFmNsX8hBmbyO6SiPkLwH2I 25:12395:3n80Dtt4hIyIqHkZ-rBqI-H-YgUmG-KmC-F8DsV5C8anBqFzC2ErN0RnCwHG0H2BwE6G4JkFkEwcyNiH2FitBo3BgXuSwcyemEoDmiBqPoN6I8P-LuZmWobqN6X8XsH-C4FS4SvBiFW 16:44716 31:43238:jz-yD_z4_H3CgtBnb4-Dp0B0xBlF4xBzOsG7uBrO5QqM9JsYvI04D5uC22E1IwnB6WwwCjDs-BsiB66BgDuYjRm3B1Ssc5BmuBlfo8C59Bu1D_kBkP7jB_B_2Bhfp8CkVz0DulBl0B6lBjlB0Kxe-U_lBqjCLyuBxa8nCiEyjCzrBkuB 30:12042 7:7788 9:13332:16t0D1qv9H7LjChhB9B_XnL7ERzNwEplBgQrPqIpMgN14BwmCrLsfpR6UnXqMtSyW3EshB7LyXpHyE3NoBjImC1K4MxtBmoB_HgF9d2I5IaruB9OnJrBpdQ5T6H 22:16808:z0_0D5zk9HzE4OZsRoF6VrEiX_D0GlW0WrJodlKyT7G8enE-F7egY_K-N_Iya1KqXvb8ZrTwIlQuK9GyJhM8hBgDsYgI-SLuLtHoT1O-OhK8ZpDsLoDiVnByMlSutB7W4TnoBoK_L8IrNuWnDoTlDqGjhBmuBhUgUhYglB7C0J 28:16082:55s1D76q8HqQ09B3BkJvS4qB8D0iBpDwQ1ZugBvRmS7OiHxRmBhW2J5GkF_EkK5Gyb1cmwBnKiGjf2HnQmUngB4W3Z2NtRyPhkBqN3G2H9KmVhaqKpQiNlJmM9LuW7EuE7sBwFnlBoX_NmFlRf5RjF 3:35744:p6-1Dlp57Hpf0B1bjF_J8DlmBi0B_xBwqBxQuhB5B8rBoUogB4E4wBgZszB9BqoBwE-U1EqMhKsFxtC2G7hCgZ_ZyFl9Bw_Bp3BqmBrmB67BvEokB_Z2rBsHwiC_KomB2SovCrJy5B9HsRjXoO_gBHn3BpYjpBTtWgFxiBnSjd2Q7xB4OxV-UvgC-IrzByP5dgT1oBiChkB-nBtaqxBhEs3C 6:5640 23:13495 20:11610:17h3Dtg25HgG4kBrC6iBxE2fyFgXWuK_BoKtLobKyIkFqOa-GtL68BpKqfxR4dtGoY3CqV_CwI9EuH5U0UtD4EhCyFtC8P_I-S3F0TvO6bxWqXzWoiBfuEM-D0FmKuBuFP0F 8:20483:_-m3Drgj5HnF6yBuE2ZGmWsOmf4PwU0pBkjBidyNsW2XgSsNmU-KoLkV2IypBgK6P-BuJrMqjBtUyX5R-Y_LiFhb7CtHkD9F4FvWoxBjbkrBnF8gB_3BylClO4dZifnS8ZhC8hB3M8iBsBuU2HuVDokBqE-mCsIiZ 27:40750 5:8935:_ty4Dzps2H_XvH9Tc9fhE9PEhGlClLpHxFzB1FG7Q-DpdGvVhGnKX5lBoHxWsBxH8CzSmL5Q0BrF0B3PuL1LqNvSiJxMsOxHqEjHS7ZxE 15:14947:vng5Djjr2HhKiC9F2EjPmTvYkLnnB4ElbqJ_VH5X6GlJzC5H1G_D5HrGnZ9EvGtHtE3hBlG1mC4BxmB7M_lBjFhLrGnZlWxoB3TnkBnwBrTpO1UnL1YxkBpEzVtGpJ7qBpQhUhS_WvG 13:53356 12:6015:hr87D_2t2H1F4C3K6IxE6B_PhCtFYl-C2lB5E2DtEkIlByW1ByE5CmDnV0KvE7BpEtG9EXzEsD9D8NtCiD7PqD
+Q|BR|Trem de passageiros da Estrada de Ferro Vitória a Minas|#ecb833|L55|19 10:34027:tg73D966nIqdmiBlHw3C5pBoZtoB44Bwe83CxjBmiBqL05B9rBiIoGk1BnzBw0Bv-Byb4EwlCtpByhCtoCmxB9MwpCkZ0oB5WiwBpdf9D6kBlZmZmrBwnBpjCygCzB-tBzyCq2B5F4f_zBuUtb20B3hB7Uz7Bk2B1BmW
+Q|CITREM|Trem Republicano|#1E196A|X110|32 33:7234:1h-tE9r3gJuHZgI_DkMxLyDnOgExDkhBvIoOGwMjL8D5B0eoD4F2G8L4KiC0IyGqFiF4BgH6MmKwHyGqH6DqBqDL8J7HsJLgEuBsNqe7BoKoD0J7ByKsBsEuEyD2GiBuI8D-KqLyDBgHrC0FUkD0C
+Q|CITREM|Trem Republicano|#1E196A|X110|33 32:7233:1q1tEvz0gJjDzCzFT_GsCxDC9KpLtI7D1GhBtExDrBrE8BxKnDzJ8BnKrNpe_DtBrJM7J8HpDM5DpBxGpHlKvH_G5MhF3BxGpFhCzI7L3K3F1GzenD7D6BvMkLnOFjhBwI_DyDxDoOjMyL_HgEtHa
+Q|Companhia Paulista de Trens Metropolitanos|Expresso Linha 10||X110|65 69:6663:5irwEz7_7Iq7FjxDgL1I6FxH6DnH 72:2837:x_iwEj3o8I0DnHqExF
+Q|Companhia Paulista de Trens Metropolitanos|Expresso Linha 10||X110|72 69:2838:z3iwE9jp8IpEyFzDoH 65:6663:7ykwEnkk8I5DoH5FyH_K2Ip7FkxD
+Q|Companhia Paulista de Trens Metropolitanos|Linha 10 - Turquesa|#00CED1|L55|236 61:3694:v9yvEnr58IhNgyBiCqiB7ByLjEgJ5FoH1QuKxIiI3EuI 38:2287:3n1vE_ty8I5GkQxHiL3I0I 60:1627:_04vEnuv8I 52:3005 72:1321:l6-vE9ts8I 69:2837:rwiwEpqp8I3IuI_GkN 66:4908:7xkwE_lk8IjEyI1EuGxKoJ 65:1760:jlrwE75_7I 40:4216:_5rwE_o_7I3EsHlPulBlaytDb0KuB8L 62:3184:hxswExk37ID4L1CsMta2-B 51:3092:z8uwE9my7IzH0IjU2T5H8FtLoE_ZgEpPyF1Q0Drc-M 67:4572:v6zwEp2v7I7F6IlC8IMgU9BgHxD0GpR4Q1TkLvF-FhDiFtC0G5Mi2BjF4K5J4K 68:4333:ts4wE3yo7IxUsgB9DoEzF2D5HsClXkB5O1C1GB3P6EpSyC5KwF3G6G5DiG9FgPrH8X5DmH
+Q|Companhia Paulista de Trens Metropolitanos|Linha 10 - Turquesa|#00CED1|L55|68 67:4489:zn9wE7hl7I6DlHuMxlB6E1H6FjGsMrGkRnC-P5E0FF2Q8CkWfsH_BiFhDqFpFwWxiB 51:4541:xz2wEjqq7I4KjMyE5K6LryB8DpK8D1FoF_E-R1J2Q7P6DnGuCxHBpVkD7KyG7H 62:2965:llywE5zw7IoQrD6PzFoY3D8KvD4IjGyVhV 40:3319:zutwEzt07I2ap_BuChLKnMtBhJ 65:4086:notwEl657Id5JazK8Z1sDoQpoB8EhH 66:1757:7irwE97_7I 75:1547 69:3357:5ilwEjwj8IuH9G-E3GmE1I 72:2841:z_iwE33o8IwGjL 52:1414:r6-vExus8I 60:2918 38:1625:v24vE_tv8I 61:2396:7l2vEhlx8IgMhKqH1ImE9G-FhO 236:3582:ry0vErg18I6EvI4G5GuS1L0F5GsE_J2B3M_BhhBoNrzB
+Q|Companhia Paulista de Trens Metropolitanos|Linha 11 - Coral|#FF7F50|L55|236 61:3691:p9yvE9q58I1M4vB4BqjB9B6MhDgH5GgJrT6MxGoHnEsJ 38:2294:ln1vE7ty8IxG0PtLsPjKiJ 73:4224:x82vExyw8IjEiH5BsFI6E 42:11582:hw0vE9jj8IuE2PyCgNO8IkImpBY6KzC6XyF8uBiS0nB0FilBdiI3DoJ_fkxBtIuKpD8FxByFtC8UMoP9ByG_FkHhLsEtGoFvIiJvEwI9G8gBQuI 43:2449:p71vEjoz7IyEkMmBoGN0GnIstB 58:1731:pg2vEhsv7IsC4W 50:1664:1r1vE_ks7IPgQ5FmU7G0MlGwO 34:3795:582vEz2m7IxLoS5P-NnLgR_KgJhFuHnByGO2G 49:2283:7r4vE99i7IsDqE8DkCoRyEqN-LgLuG0EkE-DoGuH4T 64:3126:p10vEn3-6I 39:1088:vuyvEz766IiB2I 71:2777 59:5395:p80vE1sz6IjBgKsM-wDC0JvBwF1D6G3d-kBjEiH 37:3504:tr2vE5xp6IgCuU 63:3217:ny0vE7mj6IwF2L-5Bg2C 47:1388
+Q|Companhia Paulista de Trens Metropolitanos|Linha 11 - Coral|#FF7F50|L55|47 63:1522 36:3317:_yyvEhlg6I37Bl5C_EtM 59:3453:pj2vExmo6IhHnapB1S 71:5365:n41vEnwt6I4DtG2d1kBuD9FmCnIzMj5DmBjK 39:2634 64:1257:3uyvEnu66IkB5G7B_H 49:3043:710vEv3-6I 34:2341:1r2vE7ih7ItGzRlErHtEhE_M7HvL3KtRxE9DlC1E7G 50:3648:j14vElrk7IuBtKiEnG-L1J2KvQwQ1O0LzS-NtvB 58:1801:z_1vE_kq7ImFzMmIpPqG1WLzQ 43:1725:p-1vEn1u7InC5W 42:2319:991vEpnx7IgIztBbnGlFxO 73:11580:3m2vE_q17IFpG-HriB-D_GgKxKiFzDyKpE2FtGiCxGG1S-BvR4BlG0C3E8I5KqgB1xB0DlJe9HzF9kB_R5nBzF7uBwCpVD7JzIvsBL9IxC_M5DhMtfl-E 38:4232:551vE1zp8I9oB1uGAvF2B7DkF9H 61:2400:p81vElsx8IiHpHiHxK0G3P 236:3582:zx0vEtg18I8DrHiHtHsS7L6FnHkE_I8BxL5BnkB6MhwB
+Q|Companhia Paulista de Trens Metropolitanos|Linha 12 - Safira|#1C146B|L55|38 73:4207:v72vE3xw8I7E4GvB6DAkE 44:8985:r80vEtil8IwC6G-D0EkOmHsEcwrBc6FgC8SoLkG-B2YO-E1B2O3IsFjBuH8BiGgFoFuIwB0FnB-WiC-IiDwE2P0OgmByhCoB4Hboe 74:2654:_jtvEn-87IqCmV-CmIwG-HoNqMihBmNiF8D0EoJ 41:2023:9_qvE9357I2B6GgN8QqDwLrB0J9KqSpDwKnCsN 70:4525:_2qvEjo17I4I8VUkIjG6VhD0FtTyO_N0ElF-CjEuF3F4PrBwIV4UuKoxBM8G 56:2187 53:1996:l2svE55n7I 48:2094:jzsvEr_l7I2CkImF2GkgBmf 46:2027:nuqvEr5i7IgEqKiK4lB 54:2365:p0pvExn_6I5Ku9B_FsIjPoG5EsD 35:2623:jvrvE1676I1C-HCkG8F6UaqGnCkI_F4G1GuCnFHrclO 39:3021:7ouvEpz66I5ayHnM0BxINvjB1FtHO7tBiW3EiF
+Q|Companhia Paulista de Trens Metropolitanos|Linha 12 - Safira|#1C146B|L55|39 35:3139:h2yvE1056I4EhF4sBhW2HZ4lB-FoII2KtB8c9H 55:2713:j7svE1u66IqXoM4F-BqGN2F9CyEvFmC3HVvG_FtVI_G-C3H 45:2357:_3qvE1586I8StI2DjE6CnGmKt9B 57:1964:3iqvEhzh7I3I_e 53:1957:horvE7rk7IrExGvfre5EjGzCpI 56:1983:z2svE14n7I 70:2355:_isvEx8t7I 41:4490:x_rvEr3v7I7JntBG3R6BvNyFjPmEzF2FpD-OlFyRlN2DrGiG9VZzH7IrW 74:2017:ngrvEnh37IuD5RoC9FgLtSqB5IxB7H3C3FnK_L1ChFjBhG 44:2680:7grvEzy67I9BpFvDvEvE_CrgB9MpNrMvG_H_CnIlClV 73:8844:v5tvEl6-7Ic1ezBxItlBjgCpDlEvMzKnD5E_B3HmBnZzB9EjF9HhG9EvIzB1DerTuKrYH_GhCpW1MvvBvBnRnI3DrE1C7H 38:4211:_h3vE9hw8IDhF0BpEwEnG
+Q|Expresso Aeroporto|Expresso Aeroporto||X110|236 61:3809:p9yvE9q58I1M4vB4BqjB9B6MhDgH5GgJrT6MxGoHnEsJ 38:2175:ln1vE7ty8IxG0PtLsPjKiJ 77:20381:x82vExyw8IjEiH5BsFI6E8lC8-K2D2I4F2EkN4FwsBiBuEeqU6LuH0C2YOgXrL6FMqI2EgG4I4B4EQwGrB0SiC-IiDwE2P0OgmByhCmB4FVyQUgRgV46BsCoV6C-HuG8HkNmMmtByNwLwGyiB0Z0HkG-H2IsN0WgJ8J-GsEgJoD6mB6IqNsCmKK4LhD 76:1593:l_ivE1h57IwLlB
+Q|Expresso Aeroporto|Expresso Aeroporto||X110|76 77:1739:1zivExi57ItLyB 38:20240:xylvEx-37I1I8BnKLr0BrL5IhD5GpElJ9JtN3W9HzIzHhGxiB1ZtLtGltBxNlNpMvG7H7ChInClVhV_6BKthBlB3F_lBxhC1PzOhDvEhC9IsBzSPvG3B3E_F3IpI1E5FL_WsL1YNtHzCpU5LtEdvsBhBjN3F3F1E1D1I7lC7-KH5E6BrFkEhH 61:2400:h51vEnvx8I8K5O0G3P 236:3582:zx0vEtg18I8DrHiHtHsS7L6FnHkE_I8BxL5BnkB6MhwB
+Q|Ferrovia Centro-Atlântica|São João del-Rei – Tiradentes||L55|79 78:12935:hg8gEx5ytIpI9DhJpItWanfzU7EQjJuI5T2KtMlB7EzGpBveiGrU_CnQ4CtGwFhFkIzUQ9S8LhIugB9sBe9gBxBzOpD1S5F1O4D7U3V78BwDliB-P_JgQvmB3CnGrTrGjP9OhDrJ8G_GFxE1FtM_M9N1G1f
+Q|Giordani Turismo|Maria Fumaça|#523821|L55|80 81:14218:_oiyFzit6J_WkPjK6TxX_BhQxLneyBnN-GtN_DvS4D9FsG6CwPtDwHlLwEvHoKzMtB9buLtT7KlXnmBzjB6OtUtOrRuCxL_JxuB9BxRzS3BzIwR_MoBzLgPzc7E5LrT4JhR9K7FsFxE8P1S3D9Q2PvORhGpFhC7H-FrOhEjJ5JC 82:4948:tkyyFjzu6JnBgEMgG8D-PfuGzCoD7ImD9F0ErK6B5G8FvO2DzCiClCqHWoPjG6JpE8Q3BqDlFgDlLQ1GiFrD6D5GsMtO8IhFiLnDoD7HoCtIwGza8LnEO
+Q|Giordani Turismo|Maria Fumaça|#523821|L55|82 81:4948:hr3yF1gp6JoEN0a7LuIvG8HnCoDnDiFhLuO7I6GrMsD5D2GhFmLPmF_C4BpDqE7QkG5JVnPmCpH0ChCwO1D6G7FsK5B-FzE8IlD0CnDgBtG7D9PL_FoB_D 80:14218:10xyFzqv6J6JBiEkJ9FsOiC8HiGqFwOS-Q1P2S4DyE7P8FrFiR-KsT3J8E6L_O0cnB0LvRgN4B0IyR0SyuB-ByLgKsRtCuUuO0jB5OmXomBuT8K-btL0MuBwHnKmLvEuDvH5CvP-FrGwS3DuNgEoN9GoexBiQyLyXgCkK5TgXjP
+Q|Linha 13 - Jade|Linha 13 - Jade|#2CA05A|L55|44 77:7176:_itvEv887IsBgQiCwI8DsG6LuMiH8E6mB8K-PqImqB4fgL-MuNoW8FgG-GsEgJoD6mB6IqNsCmKK4LhD 76:1593:l_ivE1h57IwLlB
+Q|Linha 13 - Jade|Linha 13 - Jade|#2CA05A|L55|76 77:1739:1zivExi57ItLyB 44:7177:xylvEx-37I1I8BnKLxNxC5mB5I5IhDpH1E3F3FrNpW9K7MlqB3f5PnI5oB3LlNpMvG7H7BvEnD3Y
+Q|SuperVia|Linha Belford Roxo|#660066|L55|98 183:3311:n15rEhw1nIjGzOrN7WzFzPxGn3BYtGmFpQ 135:1093:7z6rE5u6nITzG 189:2001:ps6rE5t8nI6DrJ-F7I0M5OwE_C6F3BwXMmGlBiHvF 122:1836:n83rE1p-nIsnBnb6J7K2M7U-E1C 106:1741:vs1rE7ogoI8D9BmDlDiCvEW54B 163:2306:z30rEpvjoICxE1Ur8CWhGoDpJ 188:2165:zs0rE1hooIgG5EsG9C2TnC8F5DsS7dmB1G 97:1264:l1yrElyqoIzC9H 137:2329:_-zrEvvsoItDhIP3a8C1NoErI4BzHsB7d2CrQ2C1F 176:2582:1gzrEptwoI 117:785:vwvrE_szoI 89:2202:piurE9h1oI4hB3M4GvFoJtMmDzC2H5B 105:1397:nirrE391oIoGTycvP2K5I 158:2047:lqorE522oIqR7CkGiD4EsFmOsL6GkIiDkCmEWmEpB 193:1575:rimrExq2oIujBtewG5D 83:1027:75jrEn63oIuDzDmChNgCrDsK1I 100:1141 90:2098:7pgrE_u6oI
+Q|SuperVia|Linha Belford Roxo|#660066|L55|90 100:2098:zpgrE7u6oI 83:1250 193:918:lqjrE904oI5IgI_C0O3CyD 158:1567:t6krExr3oInFuDvgBoc 105:2063:3smrEh81oItDwB3DAtEjC_HpJvN5K7FnG_DhC_ENpOiD 89:1397:r0prEz22oInLmJpcqPpGU 117:2197:xlsrE3k2oI1H8BrD4CxI2LnH-F5hB-M 176:786:pwvrE5szoI 137:2584:nhzrExswoI 97:2319:5yzrE_jwoI7C2F1CiQR8XtB4JhF0LlDyOH8UegHmDgH 188:1266:13yrEp6qoI4CkI 163:2168:7yyrE10poId4G3S0elG-DpTmC7H-DjEsD 106:2305:ho1rEr_moIpDsJToF4Ug9CCuF 122:1763:ti1rEvrioIXi5BhC0EvDuDpE8B 189:1728:151rEhngoIxEyCrLoT1LkN 135:2084:rh4rEzj-nIpF8JhGiF3H4BhXN3F2BjE4ChOwQlFoIzCsG 183:1089:_z6rEv36nIOoH 98:3313:nu6rE505nI1FgSXsGmG81BmGuR4NuX4EoL
+Q|SuperVia|Linha Deodoro|#F60619|L55|98 164:2243:315rEzu1nI9F3OzMlV1EtKxC_I 183:1069:716rEv84nIYzG2EvOFrG 135:1106:n16rEns6nIJzH 132:360:ju6rEjt8nI 184:958:nk6rEr_8nI 173:1318:5g5rE7u-nI4EtTCjL 177:787 111:815:9l5rE36ioI 139:780:hx5rEn7joIapJwDvG 146:1803:rt4rE_qloIqGlLmFhZqH3b 162:1773:z63rEhgpoI8B1L2SviB 170:1293:ty2rExkroIqEjKAtK7DtMf_G 96:989:3q2rEzttoI8DrGqOvL 129:1236:hi1rE74uoI 147:1533 165:1265:hjyrEl4zoIuGvM2DpL 136:1028:3xxrEh21oI 107:1559:jqwrErq4oI
+Q|SuperVia|Linha Deodoro|#F60619|L55|107 136:1323:9pwrEnq4oI 165:1125:xxxrE_11oI 147:1316:34xrE9v0oI1DqL 129:1482 96:1237:7h1rE34uoI 170:986:t41rEr_toIvO6LvD4F 162:1294:3y2rEjtsoIewH8DsMAuK3DyJ 146:1770:5l3rEnuqoI7SgjB3BwL 139:1809:j63rE9rnoIrHgctF0axF2J 112:974:_s5rEhqkoIzDuIU2J 177:811:hk5rEzyioI 173:739 184:1179:z74rEhi_nInFgU 132:954:5i6rE5g9nI 135:358:xt6rE1s8nI 183:1101:p16rE5z6nISuH 164:1071:hw6rEr35nIDyF3E4OXyG 98:2243:pv6rEhm3nIsCwI6E-KqMuUgGwO
+Q|SuperVia|Linha Guapimirim|#FFD000|L55|180 157:5087:v7sqEz-9nIuY61BkFuIs1BmtBgjC0yCgEgI 155:5818:90nqE_o2nICyJxd-yF7FipByBmJ8GuUOkGnDuY 185:2842:p0oqEz9qnInByI3EoQhCsEnGgI_W6NvNmOpD-HV-E 121:7120:xrqqEl8mnIuEmXJ2H7DgV_IqT7S6kDN2K-BuHkFsI0PyQ-MmewF4FyRuKiGmFuDyE4PsegD4GyBkH 130:2494:xtoqEjz6mI-PgmDzBkL 125:2692:tuoqE7o2mIA2EqVgL8DsD8C2F-DiPuEyGmE2CmZgI 127:3619:vzkqE_q0mI6S_Bk0BpLsVbqQiJ0M-I 99:1655:3t-pE18ymI 153:1836:pv7pEnswmI 124:2185:3u5pExhvmI2WiM 154:2103 151:1056:tizpExprmI0hB0G 115:1960:jqxpEl6qmI 156:22848:jqxpEl6qmI1W3I1kB3HxyF5qDvZ9N39B5oBt-CtwCvsCvqBxajR1EhBhTiBj0BqLzViCh0BtEtbtIlE1CtExG9DhP7C1F7DrDxU9JtBhDW1CmNrU6CvHarI9P_lDxBztCxBjHpUtnB9HtHxRtK5DtDnE9GrKxZ
+Q|SuperVia|Linha Guapimirim|#FFD000|L55|115 151:1959:jqxpEl6qmI 154:1056:5gypE9irmIzhBzG 124:2103 153:2185:h44pEv1umI1WhM 99:1835:pv7pEnswmI 127:1657:3t-pE18ymI 125:3618:n6gqEln0mIzM9IpQhJrVcj0BqL5SgC 130:2693:zsmqE5v0mIlZ_HlE1CtExG9DhP7C1F7DrDpV_KA1E 121:2494:n_nqE_h3mI0BjL9P_lD 185:7120:jvoqE3g9mIxBjH_C3G3PretDxEhGlFxRtKvF3F9MlezPxQjFrI9BtHO1K8S5kDgJpT8D_UK1HtElX 155:2842:jrqqExvonIW9EqD9HwNlOgX5NoG_HiCrE4EnQoBxI 157:5818:1yoqEnntnIoDtYNjG7GtUxBlJ8FhpByd9yFBxJ 180:5087:xhoqEx43nI_D_H_iCzyCr1BltBjFtItY51B 156:17620:v7sqEz-9nIuY61BkFuIs1BmtBgjC0yCgEgI8M6xBFqHxd-yF7FipByBmJ8GuUOkGnDuYzB0pCpEgU3DmJjDyEhJ2HvT0LzI4I3FqLjBq4BuEmXJ2H7DgV_IqTzTqrDoC0LkFsI
+Q|SuperVia|Linha Japeri|#0691F6|L55|98 183:3309:x25rEvy1nI5EnLvN5WpGxRnGr2BYxG0ExOIzF 135:1099:v06rEts6nIRrH 182:4623:9s6rE_t8nIkG9MkdnjBmGvJkEnKgErQG1HzHxgD3ErYxItWJjH 146:2201:rq5rE5skoIud_doFhIuC9GsD3T2H3c 129:5286:l63rE9-ooIoC3NoSphByTnWkEhJO7KrE_ORhH-H1ewEpH6N9KyV9X 107:5388:v9xrE3h0oIgFjOqEhcgE7M-mBhxC 174:2259:r0vrE785oI-C9LyK9boGnK-HzFyd1J8M7H 84:2338:1-srEjo8oI0H0CyF8D8H0IwG2D4HqBuJpBsJnF4S_U0R1O 145:933:vgprErn-oI2DpD 142:1075:t0nrE59-oI 109:1698:ztlrEnwgpI 138:1571 166:1403 143:2129 101:4271 87:4991:745qElgvpI2EtIoG3FqUrLgEtDoE_FyCrJpBtaiC1KqJvTwNpWqEvE0FrD4SrEoTtK6HvI 169:3778 110:6335 123:6612:3mtqE1jlqIiExKkB1HbnVYxM4DjP2F9K6FvGgiBxa05B3nBi3BtoBmEhEqG7J
+Q|SuperVia|Linha Japeri|#0691F6|L55|123 110:6613:h1nqE9wrqItE2H9DuEp5BuqB15B4nB9hByaxFqG3FgL3DiPXuMgBqVf4HhE6K 168:6557:99uqE17iqIrtBgjChhBqf_I0XjD6D7iB-djLuM1oB28BnDgG 86:3806:x50qE336pIKwKyK8uBQkJvB8HtFkMtRwYvDsHbgKwBgHoGkQGuNhC6H 101:4599:n_1qEx6zpI7H0IjWyLnL4BxGqCxHsG_NgXlJsThCyKqBwazCwJ_F4H1WkNjG2FhDgF 143:4495 167:1846:nw-qEj7jpIjJkK 138:1508 109:1679 142:1558 145:1062:r0nrEx9-oI 84:1160:n-orElp-oI 175:2040:t1qrExv8oIhToVlI8ErK2BhJ1BjG3D7IrJ 107:2615:ljtrEho8oI1ImBvNkIje8J9IgGjFwHvJoYxFuV 129:5249:_vxrE141oI7D4MtDsY9F8R 146:5283:vl1rEvxuoI7I8H9KgMvL4I3E6GtIsfQyHwEkQb-K5EqJjSyUlSuhBxC4M 182:2255:543rE_unoI7I0hBrD2TvC-G9F-I_c0d 135:4568:7v5rEv5joIiIgV2E0ViIyrDtEwSpEiL_jB4sB1EkL 183:1096:306rEt16nIQwH 98:3312:tv6rElz5nIhFoQXwGoGo2BmGoRoOqY6E4L
+Q|SuperVia|Linha Paracambi|#5194C4|L55|149 128:2070:vkhqE325qI5GnCxMuB1JmFtEwElF-H9F-TyBuJ 123:6351:pniqEj43qI-CiR1B2MtCyGrFgIzjB0mB3iBs2BpL4KhmBgMpHmFlD2EtJ6sBxBsTWgZiJggBPuI
+Q|SuperVia|Linha Paracambi|#5194C4|L55|123 128:6350:7xmqExsuqIQtIhJ_fV_YyBrTuJ5sBmD1EqHlFimB_LqL3K4iBr2B0jBzmBsF_HuCxG2B1M9ChR 149:2069:xviqExo4qIxBtJ-F9TmF9HuEvE2JlFyMtB6GoC
+Q|SuperVia|Linha Santa Cruz|#629F3F|L55|98 183:3312:315rEzu1nIxGrQ_N3Y7ErOnGr2BYxG0ExOIzF 135:1099:v06rEts6nIRrH 182:4623:9s6rE_t8nIkG9MkdnjBmGvJkEnKgErQG1HzHxgD3ErYxItWJjH 146:2201:rq5rE5skoIud_doFhIuC9GsD3T2H3c 129:5286:l63rE9-ooIoC3NoSphByTnWkEhJO7KrE_ORhH-H1ewEpH6N9KyV9X 107:5388:v9xrE3h0oIgFjOqEhc8C9JioB_zC 192:2260:t1vrEtg6oITpG7CjEvKnHjFhG 131:1285 172:1907:x1yrE50_oIlbna5DhGhCvJ 140:1827 116:971 88:948 181:2071 179:2729:5_zrEj0wpIlBhM_CtLrE_J 85:3053:3g1rEr6ypIxZtiCtBtHT3N7CxIlT3Y 94:2589:5p4rErv4pI9F_J 91:2304 119:1452 104:2051 148:1776 187:1876:ns8rEz4sqI 178:3647:j37rEngyqIqD3HuJtMyC5IA9E1BzG
+Q|SuperVia|Linha Santa Cruz|#629F3F|L55|178 186:3817:9o7rE_nzqIuBkK_CqKhJ0LpD0H 148:1753:5r8rEv3sqI 104:1852 120:2114 91:1362 94:2159 85:2674:3x4rE9h5pI2CwJ6FoJ 179:3126:ny2rEvz2pImT4Y-CyIYgP6CqKgYo-B 181:2733:jm0rEzxxpI6DwKmC8K 88:2026 116:969 140:898 172:1889 131:1885:n2zrE_8gpI-B4HmFwH-Z4Y 192:1340 107:2254:1owrE746oIiFqG-K0HkD0EqBoFFgE 129:5247:_owrE3p4oI_mBixC7D4MtDsY9F8R 146:5283:vj1rEv1uoIzUuWlNqK_E6H9H8dQ6HwEyPPuKjEiJzTqW1RsgB5C4M 182:2254:_53rErqnoI1HgdlD4S1C8H9F-I_c0d 135:4568:7v5rEv5joIiIgV2E0ViIyrDtEwSpEiL_jB4sB1EkL 183:1096:306rEt16nIQwH 98:3311:tv6rElz5nIhFoQXwGoGo2BmGoRoOqY6E4L
+Q|SuperVia|Linha Saracuruna|#FA8835|L55|98 183:3311:j35rEj11nIrFzLnM5UzFzPxGn3BYtGmFpQ 135:1093:7z6rE5u6nITzG 189:2013:ps6rE5t8nI6DrJ-F7IuNxPwJ_D6Xc2FdqH5E 133:2000:r33rEzq-nI 92:1455 171:1432:jowrElghoI 144:1127 159:1527:l2trEn_ioI4E5F 160:811:r3srEh1loIsE9F 93:1048:1vrrEh6moIgD9E2G5Q 102:781:p8qrEv5noI 152:999:zzprEprooIgdhXiFtC 190:1389:lknrEnqpoIoH7E2MtPgFjD 108:2279:xnkrEr-poI2GNoG1CiEjDmLtR6FtFqJ_C 103:1631 114:2464:l7-qEjlqoImnC-Y2EA0HpC
+Q|SuperVia|Linha Saracuruna|#FA8835|L55|114 95:6289:tm7qE1nqoI-MpHyHlBwK4CyjEooCm1C2wB8H0G 126:2370:ruxqEhhkoIoQiM6CqEsKqYyNoV 180:2073:tyuqEnzgoIsL2WmO2S
+Q|SuperVia|Linha Saracuruna|#FA8835|L55|180 126:2073:74tqE7p_nIlO1SrL1W 95:2371:rjwqEjjioIxNnVrKpY5CpEnQhM 114:6289:5mzqE7tmoI7HzGl1C1wBxjEnoCvK3CxHmB9MqH
+Q|SuperVia|Linha Saracuruna|#FA8835|L55|114 103:2480:zn8qEnupoI3E8B1HQlnC_Y 108:1733:7oirEp7qoI 190:2105:v_irE19qoI7H2D5DkElLuRnGuElEwB3GM 152:1488:npmrE_hqoI1F6CjF6E1IsL7G6EtEqB 102:995:3xorEjkpoIzF0CldmX 93:781:x8qrE34noI 160:1041:5mrrE3tnoIpImT 159:809:vysrEl7loIjEsFxCkF 144:1585:nxtrE5kjoI1E2F 171:1025 92:1484:jnwrElghoI 133:1452:_hzrE9hgoI 189:1903:ru2rE15-nI 135:2087:ng4rE5i-nItGyK3FkEtG0BxYD5EmBrE0ChSmW_EwL 183:1089:_z6rEv36nIOoH 98:3313:nu6rE505nI1FgSXsGmG81BmGuR4NuX4EoL
+Q|SuperVia|Linha Vila Inhomirim|#D1AA00|L55|180 141:3081:z8sqEzh-nI4Z24BkFsI6DgEwLwJgG6C 118:2137:5ipqEvt7nIqJsE 134:1597 150:1365:3riqE3n2nI 161:2699:z-hqEj01nI0YknC0hB81B 113:2422:nv_pEzsxnIuTkC-IL 191:2536:9_6pEz3ynIqO7Bw1BuF
+Q|SuperVia|Linha Vila Inhomirim|#D1AA00|L55|191 113:2536:j84pEh0ynIv1BtFpO8B 161:2422:7y-pE7qxnI9IMtTjC 150:2699:rkgqEj3xnIzhB71BzYjnC 134:1364:3riqE3n2nI 118:1597 141:2137:v5oqEjp7nIpJrE 180:3082:torqEnw7nI_F5CvLvJ5D_DjFrI3Z14B
+Q|Trem Metropolitano de São Paulo|Linha 7 - Rubi|#A8034F|L55|229 254:5192:54ytEzsi-I9J6J3bgpBlD0GnC4KEkHgKskCG4IzC6JlEmHjVwSlQub5BqIA6H 204:5918:z50tEr659IkMmTkF4G8UoTsDgGiC8I3B4K5F-IhIoFjNuD1JiG9F4FzEwKT4FY6F8GwQoV6YqD-GsEsO0EyHgIoJ4CuFoB0FV8J_F6K9Z4R 202:3919:550tE5ux9IrqBihBhG8CzTuFzI8F3c8PtE4ErIyOzF0H3JmJxK6CnFTzJ3DlFF5EiB 212:6660:zz6tEt9t9IvI2D3OAzP4FhXiDrPHvL-FtP-DhfiBtI8BvG-F_C0HAwJuEoLSmIpC2InF0HzE4DpH2ClPtB1WuCjQ8G7E-DnD8EtC2HxB-N1CkFvD8D1I0E 199:3887:v1juEprp9IzG0Br4Bid3L-DjIuEhF8E_KoP5XkQtMyPhQmM 213:2503:_hpuErml9IpFoF3HmDpIBpHrDpLpL1FrDjmB_J 203:4972:n9suEptm9IhHtH3Nxc1E1GtE7D5f7S1U_E_sB9O3oBzR7FrFhKnO5EnErOhJ 237:4651:jr0uE55r9I9HhEpHnCtJX9P2DjHQhnBpB1M6D_FUhI_BtLhIvPzH9IjCzUVvIkBlHmEjOkNzP2F 250:4086:r_7uElir9IhK2P7E0F5P-MtJqEtGU1Of3W6HvHU_HrC7NlJlT_D5XpJ_JV 223:2311:p_hvEvoq9IvFyC1FoFjFoJjE2E1EkD_JgEzQqC9VpDhIoC1G-E5G0L 251:2002:hqlvE7wo9IrGkB9GlBpF5ChFpE9J9N9RxV5FlEzI3BzGajH6D 240:2816:lnovExlp9I9UychJ6G5tB0X 239:2010:16rvEx7l9I_MgL5OmRvR8PjJ6G7LsG_F8B 231:2199:94uvE3gk9I7IqBtawIjNoH7JkJ7FgI 217:1694:h_xvE5lg9IvBsL 236:2211:tgyvE3q-8IhCuJ_OugB1CkJ
+Q|Trem Metropolitano de São Paulo|Linha 7 - Rubi|#A8034F|L55|236 217:2293:50yvE1388I4CpJ2P7iBwBxJ 231:1655:hhyvE15_8IyBjN 239:2009:r6wvEh9i9I4GrJoKvJ-KpGmbhJ0IzB 240:2159:1muvEtgk9I6GjBqSjKsUnR4PnSyMvK 251:2915:jzqvE3qn9I6tBzXiJ5G-Uvc8G1P 223:2010:_znvE1gq9I6GfyHiBkGiDgUuX-J8NqIsG6F4B4GFiIzD 250:2306:93kvEzlp9I4G_EkIpCgWqDyQnC-J_D0EjDiEzEmFnJ4FtFsHlD 237:4063:3lhvEvtq9IiKU4XuJoTgE8NmJ8HsCuHT6W5H2OgBsGTqJnE6P9M8ExFiK1P 203:4710:jz6uE77r9IiOjNoHnE0IjB2UWgJkCwP2HuLgI-HgC-FR2M7DknBqBkHP-P1DwJYmKwD8H8E 213:4972:rozuEv1q9I6R-LwL2P4FqF4oByRgtB-O2UgF8f8SwE-D2E4G8N6ciGmG 199:2517:31ruEr6l9ImmBgK4FuDoLoLsEuCuFoBmIbkHlE 212:3739:9souEvkm9IgQlMwMxP4XjQgLlPqHtG4R9G24Bhd2F1B 202:6656:tsiuEvvp9IqG3CoH9HgC7FkB_MwDlIgErE6K9FkI7CsUpCwRoBoJ_DsGjH0C7FgBrFRhIrEpLBzJiD3H0GhG0I9BifnBwN_CqNvGuPGgX_C0P5F4OAuIzD 204:3918:9i6tEvsu9I8EhBmFG2J4DmFUuK3C2JlJ0FxHsIzOwE3E4c7P2I7F0TvFgG5CsqBhhB 254:5914:nr0tEp_x9I8Z1RgG3KW5JnBvF3CtF9HlJ1EzHrErOpD9GnV3Y7GzQX7FU5F2EzK-F3F4JhGkNvD-HlF6F7I4BzKjC3IpD9F5UnTlF3GjMnT 229:5196:3n1tEhl79IB7H8BrImQxbkVvSmEjH0C1JF1I_JtkCFjHoC5KoD1G6bhpB-J5J
+Q|Trem Metropolitano de São Paulo|Linha 8 - Diamante|#808080|L55|221 211:1677:hr2vE71u-I8F8BsHSob5CwHgCmF-FyB6F 244:1554:n60vE3pt-IiBmH0B6DmD0EkFiEgV-JgG2EmD0G 222:1629:ryzvEpkr-I5BmGxEgJxBuLiCkI4G-N0D4U 226:1121:ngzvEnlo-IqB2E_BsP-CqJ6EwG 225:1283:riyvE13m-IyQoO0EwC 200:1767:vlwvEz_l-IgGoDiD8D4BmHPwElQ6qBNsO 196:2113:nowvE97i-IqCuFuNqPqBsGb4FpFmHhN6G_G2G 246:1052:vqxvEv2_9INkFsGqX 205:1443:phxvE3m99IxC4Z5E8Q 214:2023:_3xvE_k79InDuH3DkbrHsQduO1FsP 243:905:lvyvEl-29IsFyX 209:1264:jqyvEn419I1BkFtM2Z 235:2232:z9yvE7lz9IoBoGiDmF4LoL-B4EO2EpO4vBpG4L 241:1722:rg0vEr9u9InLofH-G0BuF 220:2981:7zzvEr4s9IwE0MTwGvKyedqX4BoJkEgI 210:1707:73xvEpwn9I4CwFaoFP0OoD4T 232:2566:rwxvE9yk9I5H2S9BmSwBoFgR8amB6FxBwG 236:3375:7iyvEjlg9IzBqG5DgiCjCoHvJmStCsI7CqwBzCuL
+Q|Trem Metropolitano de São Paulo|Linha 8 - Diamante|#808080|L55|194 195:1428:h1zvE3i4-I2KqJyCoEqBmFL6ElI4XrDmE 245:3537:x9zvEpo2-IjD4E3FqfjEsHxE8CpGuBjPjEnIW9G-E1HqLxByEjDgX1CkF1J8L_B-ERoY 221:1461:162vE10w-I3NgXtBgEa0H2CoE
+Q|Trem Metropolitano de São Paulo|Linha 8 - Diamante|#808080|L55|221 245:1483:5m3vE7uv-IhCpEP7F0BpFkNtV 195:3501:7u2vE5hy-IQlYgDvGyIjK2C7EuD7XgC9E2HnL8GrEsGTqQoEoGnB6EhD8DjG6FhgB8C5E 194:1435:1xzvErv2-I0CtD4HhWiB9G_CzIxLvK
+Q|Trem Metropolitano de São Paulo|Linha 8 - Diamante|#808080|L55|227 236:3035:91zvEp818I4FzHgCtFchJjC3VOvG-Oh1B 232:3443:h2yvE_688I4ClJmJpRuC9I6DniC 210:2389:nnxvE3ii9IiBvEnB7G9Q7atBrEiCxT4H5S 219:1918:pxxvE1jm9IjD_RHtUnD1G 241:2801:p1zvEr-p9IjE5H5BjLUxS-BpHsK_XchHpFnP 235:1696:_o0vEpyt9I5BpFIlH2M7gB 209:2431:p_yvEvpw9IuH9OgNzrBBtFjC7F3M3M3CzGDpH 243:1070:x3yvEv509I0M1Z 214:905:lpyvEtn29IrFtY 205:2199:hsyvE7149ImFnNuB1QuH7PgDxX2DrI 246:1273:9lxvEz-79IkEzRwB3V 197:1259:xkxvE17-9IlGnXmB1F 200:2074:jwwvExnh-I-FvF6NrH8EnHUtGlB9EzL7NvCzE 224:1807:trwvE76j-IWxH2P_pBM7HtC9F9EzE 226:1075:zsxvElnm-I7GjE3MxL 222:1116:j5yvE9hn-I5FzI1B_H8BzO 244:1627:vtzvEj_o-I_DvVlGnMnC9IkB_JgHnQ 211:1557:1wzvEpgs-IxD9HzF9DxWhL5GrH9B9EXvG 221:1671:p00vEziu-IKjGxBxF9FtG9G1B1ZwC1KlBrFpC
+Q|Trem Metropolitano de São Paulo|Linha 9 - Esmeralda|#00A88E|L55|249 233:1825:_2gxE5sj9IwI0C 215:2373:1n-wE_pi9I 242:1721:3j7wEr4_8I-HuF0HsDsMiC 198:1868:7y4wE9w_8IwJoB25B8Q 230:3966:1q0wE_o-8IkKMkKlD4HjF8G9HkMpcuKpNwEvD4MrFgTpL 248:1890:7tuwEh5i9I2NjK 247:1107:phtwE36j9I-Rxa 228:2114:9krwEx7l9I4GlEsI5CmOrCyKqB4O0H 216:1782 234:1320:1umwExjj9IsEmH0JgcwEkJ4GyI 201:1924:7olwEzmh9I4L2BiLqEm6BkN 252:1341:xthwE1kg9I2NwJ8H6DoG0B 207:872:1g_vEvq_8I6HM 218:1553:hq-vEpt_8I8xBzcwI1G 238:954:vg8vE9jh9IyF_E 208:1359:lk6vEt-h9ImMpJ2HxJ 253:2587:zr3vE38m9I 206:1340 241:2458:v60vE52p9IiWjJ0D3DmCzEsE3iB-KrXoB9GZ9EpEvK 235:1707:zp0vEpyt9I5B7GU5F4Lvf
+Q|Trem Metropolitano de São Paulo|Linha 9 - Esmeralda|#00A88E|L55|235 241:1714:9-zvEn_u9ItMohBJwFoCsH 206:2618:nzzvEt4s9IkEoKYoFzBuHxK2W7EmkBxCkE_DqD3XkK 253:1330 208:2442:zr3vEn9m9I 238:1504:jv5vEp0i9I1KwN7M8I 218:907:l87vE5oh9I5E4E 207:1441:rx8vExvg9I1IuGrsBqZ 252:982:_5-vE3q_8ItIV9bvJ 201:1350:9ugwE71_8ItIvB1GjDvOjK 234:1966:l5iwEp0g9I52B_LhN7ExL5BtGrD 216:1298:t7lwE12h9IpE5HvH9WrE7JhH1J 228:1794 247:2095:rypwE7-l9InPpGxICnQsDtK8F 248:1112:1ktwEt3j9I3K0K 230:1859:rguwEtjj9I1NmKt-B4lB 198:3858:ltxwE72g9I9SqL_L8EjG4E9J8M1L4brF2GxImGpJmDrLB 242:1993:xv2wEr_-8I79BvR 215:1585:7n6wE7t_8InO5CzK9F 233:2380:5l-wEjpi9I 249:1827:3rgxE_pj9IlKhD
+Q|Vale|Trem de Passageiros da Estrada de Ferro Carajás||L55|256 262:151485 260:66476 255:51763 259:17701 257:231854 261:136932 258:200040
 T|-9.43068|-40.50325|Abandonada
 T|-7.11202|-36.83977|Abismo
 T|-11.66137|-38.01707|Acajutiba
 T|-6.81213|-38.09624|Acauã
 T|-19.52678|-42.66670|Acesita
 T|-23.62700|-46.66190|Aeroporto de Congonhas
-T|-23.43312|-46.49379|Aeroporto-Guarulhos
 T|-5.49909|-36.50382|Afonso Bezerra
 T|-8.51682|-41.00304|Afrânio
 T|-22.78864|-43.38139|Agostinho Porto
@@ -1152,16 +1462,20 @@ T|-22.82440|-43.40322|Anchieta
 T|-23.04808|-50.22998|Andirá
 T|-22.26336|-43.36635|Andrade Costa
 T|-21.73660|-44.31107|Andrelândia
+T|-21.93043|-44.59350|Angahy(Aiuruoca)
 T|-22.85869|-47.02985|Anhumas
+T|-22.26507|-45.31473|Anil
 T|-2.56734|-44.33191|Anjo da Guarda
 T|-6.72976|-38.44973|Antenor Navarro
-T|-5.36512|-39.32470|Antiga Estacao RFSA
+T|-5.36485|-39.32447|Antiga Estacao RFSA
+T|-22.66657|-46.56306|Antiga Estação Barão de Ibitinga
 T|-29.74697|-55.93954|Antiga Estação Capivari
 T|-17.73504|-39.26231|Antiga Estação Caravelas da Estrada de Ferro Bahia Minas
+T|-22.71784|-46.63380|Antiga Estação Doutor Carlos Norberto
 T|-19.96165|-43.41567|Antiga Estação Feroviaria (Rota do Ferro)
 T|-22.29538|-44.93885|Antiga Estação Ferroviaria
 T|-21.30873|-47.56989|Antiga Estação Ferroviária
-T|-20.75509|-42.88128|Antiga Estação Ferroviária
+T|-20.75507|-42.88117|Antiga Estação Ferroviária
 T|-20.69446|-44.83319|Antiga Estação Ferroviária
 T|-20.10145|-42.45355|Antiga Estação Ferroviária
 T|-6.09632|-37.63741|Antiga Estação Ferroviária
@@ -1170,12 +1484,15 @@ T|-31.86161|-52.82179|Antiga Estação Ferroviária de Pedro Osório
 T|-10.85100|-37.13251|Antiga Estação Ferroviária de Socorro
 T|-23.22834|-50.86051|Antiga Estação Ferroviária do Distrito Cruzeiro do Norte
 T|-30.00864|-52.89929|Antiga Estação Férrea de Cachoeira do Sul (DESATIVADA)
+T|-22.69528|-46.60954|Antiga Estação Visconde de Soutelo
 T|-8.76661|-63.90901|Antiga Estação da Estrada de Ferro Madeira-Mamoré
 T|-8.21467|-41.08330|Antiga Estação de Acauã
 T|-22.23719|-42.05527|Antiga Estação de Glicério
 T|-21.52458|-47.36903|Antiga Estação de Nhumirim
+T|-22.63579|-46.80340|Antiga Estação de Pantaleão
 T|-22.67997|-44.31954|Antiga Estação de Trem
 T|-21.62326|-41.01782|Antiga Estação de Trem de Atafona
+T|-22.69527|-46.72156|Antiga Estação de Três Pontes
 T|-8.12024|-35.29681|Antiga Estação ferroviária
 T|-23.35937|-45.98329|Antiga Parada Bom Jesus E.F.C.B
 T|-23.37071|-46.02203|Antiga estação São Silvestre
@@ -1219,15 +1536,17 @@ T|-22.47028|-43.48959|Barão de Javari
 T|-31.87470|-53.02282|Basílio
 T|-7.12749|-34.92804|Bayeux
 T|-20.94747|-48.47593|Bebedouro
+T|-22.66265|-43.96432|Bela Vista
 T|-22.76407|-43.39982|Belford Roxo
 T|-22.90629|-43.58102|Benjamim do Monte
-T|-29.17369|-51.51758|Bento Gonçalves
-T|-15.86103|-47.98135|Bernardo Sayão
-T|-23.60471|-46.69678|Berrini
+T|-15.86111|-47.98134|Bernardo Sayão
+T|-23.60471|-46.69678|Berrini - Casas Bahia
+T|-21.14290|-46.69686|Biguatinga
 T|-8.66741|-35.67146|Boa Sorte
+T|-22.23786|-46.22240|Bogary
 T|-20.85186|-54.81875|Bolicho
+T|-21.94688|-44.19058|Bom Jardim
 T|-21.03355|-44.77291|Bom Sucesso
-T|-22.65271|-43.18020|Bongaba
 T|-12.98380|-38.48372|Bonocô
 T|-22.86761|-43.25529|Bonsucesso
 T|-6.80628|-35.59944|Borborema
@@ -1241,7 +1560,6 @@ T|-23.54533|-46.61644|Brás
 T|-22.83039|-43.29300|Brás de Pina
 T|-21.66919|-48.24604|Bueno de Andrada
 T|-20.38813|-53.94790|Bálsamo
-T|-22.85596|-43.38356|CME
 T|-20.43418|-43.84586|CSN - Terminal Ferroviário Itacolomy
 T|-22.90454|-43.19433|CTO
 T|-21.42537|-43.67289|Cabangu
@@ -1255,6 +1573,7 @@ T|-23.52545|-46.33277|Calmon Viana
 T|-23.05408|-50.05686|Cambará
 T|-23.27626|-51.27928|Cambé
 T|-23.59554|-46.53758|Camilo Haddad
+T|-21.82897|-45.39450|Campanha
 T|-7.22963|-35.89763|Campina Grande (Nova)
 T|-22.90227|-43.56000|Campo Grande
 T|-23.20669|-46.78542|Campo Limpo Paulista
@@ -1274,12 +1593,14 @@ T|-3.13941|-44.30167|Carema
 T|-3.94779|-40.47097|Cariré
 T|-22.17824|-44.28011|Carlos Euler
 T|-22.75097|-47.00024|Carlos Gomes
+T|-22.12003|-45.13413|Carmo de Minas
 T|-7.84520|-35.25701|Carpina
 T|-8.28303|-35.96944|Caruaru
-T|-21.78844|-47.09998|Casa Branca
+T|-21.78850|-47.09994|Casa Branca
 T|-22.88273|-43.32807|Cascadura
 T|-5.31727|-41.55475|Castelo do Piauí
 T|-8.67110|-35.72006|Catende
+T|-21.27710|-46.87715|Catitó
 T|-6.95613|-35.46063|Catolé
 T|-22.87454|-43.31575|Cavalcanti
 T|-22.25156|-43.34384|Cavaru
@@ -1288,14 +1609,15 @@ T|-26.77309|-51.01443|Caçador
 T|-23.53749|-46.74253|Ceasa
 T|-22.90355|-43.19142|Central do Brasil
 T|-22.42578|-42.01097|Centro Ferroviário de Cultura Guilherme Nogueira
-T|-22.85757|-43.37980|Centro de Manutenção Deodoro - CMD
 T|-22.59810|-50.45322|Cervinho
 T|-23.60485|-48.17096|Cezarino
+T|-21.12803|-44.24244|Chagas Doria
 T|-22.95175|-43.21069|Christ the Redeemer
 T|-23.61398|-46.69550|Chucri Zaidan
 T|-23.58524|-46.69118|Cidade Jardim
 T|-23.55760|-46.71187|Cidade Universitária
 T|-22.59333|-43.01552|Citrolândia
+T|-20.44566|-44.76165|Cláudio
 T|-8.63953|-35.26872|Cocaú
 T|-4.45339|-43.88805|Codó
 T|-22.77873|-43.38735|Coelho da Rocha
@@ -1311,6 +1633,7 @@ T|-23.20029|-50.72758|Congonhas
 T|-22.53381|-43.56689|Conrado
 T|-19.16565|-41.47704|Conselheiro Pena
 T|-23.41096|-49.98059|Conselheiro Zacarias
+T|-22.28719|-43.92447|Conservatória
 T|-13.76269|-41.04141|Contendas
 T|-22.82402|-43.29592|Cordovil
 T|-23.17969|-50.65099|Cornélio Procópio
@@ -1326,7 +1649,9 @@ T|-22.82180|-43.37026|Costa Barros
 T|-23.07686|-49.95056|Costa Júnior
 T|-21.76607|-45.21924|Cota
 T|-5.17653|-40.66464|Crateús
+T|-22.20623|-45.26362|Cristina
 T|-3.67575|-39.11771|Croatá
+T|-22.50584|-45.68613|Cruz Vera
 T|-22.57725|-44.95693|Cruzeiro
 T|-8.59466|-35.44793|Cuiambuca
 T|-18.26537|-48.14689|Cumari
@@ -1348,6 +1673,7 @@ T|-20.54261|-49.72607|Ecatu
 T|-22.79623|-43.42264|Edson Passos
 T|-17.06571|-48.40240|Egerineu Teixeira
 T|-20.12554|-45.73955|Engenheiro Adelmar
+T|-22.08892|-43.74678|Engenheiro Alberto Furtado
 T|-20.68284|-49.69065|Engenheiro Balduíno
 T|-17.14647|-48.35415|Engenheiro Balduíno
 T|-7.04246|-36.17780|Engenheiro Benévolo
@@ -1378,6 +1704,7 @@ T|-19.82391|-40.36095|Estação Aricanga
 T|-19.51066|-41.01369|Estação Baixo Guandu
 T|-19.07167|-41.52882|Estação Barra do Cuieté
 T|-19.62097|-47.85247|Estação Batutira
+T|-24.30830|-47.50817|Estação Biguá
 T|-22.44599|-45.34318|Estação Biguá
 T|-24.96495|-50.11167|Estação Boqueirão
 T|-19.80420|-43.87916|Estação Capitão Eduardo
@@ -1387,7 +1714,7 @@ T|-24.92739|-50.08254|Estação Carambeí
 T|-19.75422|-43.87948|Estação Carreira Comprida
 T|-12.76899|-39.42675|Estação Castro Alves
 T|-10.93867|-40.41718|Estação CentraI - Piemonte I
-T|-21.12713|-44.24163|Estação Chagas Dória
+T|-21.12717|-44.24166|Estação Chagas Dória
 T|-22.85301|-45.24352|Estação Cidade do Romeiro
 T|-22.77840|-43.38752|Estação Coelho da Rocha
 T|-21.25619|-44.99854|Estação Costa Pinto
@@ -1401,6 +1728,7 @@ T|-19.91599|-43.46688|Estação Dois Irmãos
 T|-19.64624|-44.00898|Estação Doutor Lund
 T|-21.25205|-44.96479|Estação Engenheiro Bhering
 T|-19.84599|-43.86901|Estação Engenheiro Hebster
+T|-23.51538|-46.18417|Estação Estudantes
 T|-23.13848|-45.78720|Estação Eugênio de Melo
 T|-14.20467|-41.66346|Estação FCA - Brumado
 T|-21.45585|-43.54961|Estação Ferroviaria
@@ -1437,7 +1765,6 @@ T|-20.33232|-40.35649|Estação Ferroviária Pedro Nolasco
 T|-29.58546|-53.78280|Estação Ferroviária Pinhal (Demolida)
 T|-22.23420|-45.93353|Estação Ferroviária Pouso Alegre (desativada)
 T|-29.95711|-52.36519|Estação Ferroviária Ramiz Galvão (DESATIVADA)
-T|-23.59713|-48.31728|Estação Ferroviária Rechan
 T|-22.22692|-45.90711|Estação Ferroviária Turistica
 T|-19.86508|-46.07106|Estação Ferroviária Victor Tamm
 T|-22.05521|-46.97798|Estação Ferroviária de Aguaí
@@ -1477,6 +1804,7 @@ T|-29.97964|-52.38386|Estação Ferroviária de Rio Pardo
 T|-28.25543|-54.81939|Estação Ferroviária de Rolador
 T|-21.46476|-48.38894|Estação Ferroviária de Santa Ernestina
 T|-20.21442|-50.93764|Estação Ferroviária de Santa Fé do Sul
+T|-10.45805|-40.18848|Estação Ferroviária de Senhor do Bonfim
 T|-21.13336|-44.25745|Estação Ferroviária de São João del Rei
 T|-28.40932|-54.94257|Estação Ferroviária de São Luiz Gonzaga
 T|-21.48736|-47.55604|Estação Ferroviária de São Simão
@@ -1492,7 +1820,7 @@ T|-23.54442|-47.18337|Estação Ferroviária desativada Mairinque
 T|-22.96691|-48.16043|Estação Ferroviária desativada Piramboia
 T|-23.53848|-47.03694|Estação Ferroviária desativada São João Novo
 T|-23.53643|-47.14167|Estação Ferroviária desativada São Roque
-T|-23.35112|-47.68618|Estação Ferroviária desativada de Iperó
+T|-23.35112|-47.68617|Estação Ferroviária desativada de Iperó
 T|-20.28786|-40.37646|Estação Flexal
 T|-19.31702|-42.36398|Estação Frederico Sellow
 T|-19.93482|-40.40396|Estação Fundão
@@ -1523,6 +1851,7 @@ T|-19.47344|-42.53135|Estação Pouso de Água Limpa
 T|-22.09159|-45.04303|Estação Ramon
 T|-20.08989|-43.78947|Estação Rio Acima
 T|-11.47975|-37.93266|Estação Rio Real
+T|-22.72043|-46.84390|Estação Rodoviária Arcadas / Estação Arcadas (antiga "Coqueiros")
 T|-28.51004|-50.95192|Estação Rumo Vacaria
 T|-19.77064|-43.87168|Estação Santa Luzia
 T|-23.65232|-46.52829|Estação Santo André-Prefeito Celso Daniel
@@ -1544,24 +1873,25 @@ T|-21.10441|-44.58039|Estação de Ferroviária de Nazareno
 T|-29.50303|-54.69154|Estação de Jaguari
 T|-3.92656|-38.61044|Estação de Monguba
 T|-21.44131|-44.81580|Estação de Paulo Freitas
+T|-22.68749|-46.68677|Estação de Reversão da Companhia Mogyana
 T|0.88716|-51.99627|Estação de Serra do Navio
+T|-29.17363|-51.51755|Estação de Trem de Bento Gonçalves
 T|-17.11002|-43.80504|Estação de Trem de Bocaiuva
 T|-22.87610|-43.33852|Estação de Trem de Madureira
 T|-21.91077|-44.25522|Estação de trem de Arantina
 T|-19.53204|-40.81356|Estação de trem de Itapina
 T|-21.31763|-44.86932|Estação desativada
 T|-21.20101|-47.79682|Estação do Monorail da COCLÃNDIA
-T|-11.09396|-40.43601|Estação do Piemonte Norte III - Região de Saúde / Sede de Caém
+T|-11.08766|-40.43480|Estação do Piemonte Norte III - Região de Saúde / Sede de Caém
 T|-21.25255|-44.96411|Estação do Prudente
 T|-21.98576|-44.93861|Estação do Teleférico
 T|-23.25689|-47.30575|Estação ferroviária Itu
 T|-23.21018|-47.29007|Estação ferroviária Salto
 T|-7.86453|-37.97040|Estação ferroviária de Flores (desativada)
 T|-22.39207|-46.74833|Estação ferroviária desativada Barão Ataliba Nogueira
-T|-22.92824|-45.46067|Estrada de Ferro Central do Brasil
+T|-22.92823|-45.46069|Estrada de Ferro Central do Brasil
 T|-27.10241|-49.45650|Estrada de Ferro Santa Catarina
 T|-6.57574|-47.47034|Estreito
-T|-23.51574|-46.18505|Estudantes
 T|-3.83442|-38.59660|FTL - Pátio Aracapé
 T|-22.28893|-44.25740|Falcão
 T|-23.61182|-46.48747|Fazenda da Juta
@@ -1570,12 +1900,14 @@ T|-8.10691|-38.86996|Fernandes Vieira
 T|-23.54081|-46.36838|Ferraz de Vasconcelos
 T|-25.43046|-48.71609|Ferroviária de Antonina
 T|-20.28786|-40.37638|Flexal
+T|-21.63844|-45.36262|Flora
 T|-7.86449|-37.97040|Flores
 T|-8.80273|-35.82983|Florestal
 T|-6.66411|-38.22389|Fortuna
 T|-22.58876|-43.18441|Fragoso
 T|-23.28208|-46.74245|Francisco Morato
 T|-21.07013|-48.03763|Francisco Schmidt
+T|-22.24443|-46.24042|Francisco Sá
 T|-23.32979|-46.72641|Franco da Rocha
 T|-19.31703|-42.36391|Frederico Sellow
 T|-8.74526|-35.81069|Frei Caneca
@@ -1584,11 +1916,11 @@ T|-22.01274|-45.12523|Freitas
 T|-8.38404|-35.32170|Frexeiras
 T|-19.93487|-40.40391|Fundão
 T|-27.27574|-52.33758|Funicular Termas
-T|-22.85442|-43.38106|GEMEC
 T|-8.58368|-35.38793|Gameleira
 T|-7.30568|-35.56730|Gameleira
 T|-8.88836|-36.49330|Garanhuns
 T|-29.25546|-51.52196|Garibaldi
+T|-21.36532|-45.92949|Gaspar Lopes
 T|-23.52346|-46.81590|General Miguel Costa
 T|-22.19380|-55.57921|General Rondon
 T|-22.35058|-43.40831|General Zenóbio
@@ -1597,6 +1929,7 @@ T|-18.13530|-48.08340|Goiandira
 T|-18.13571|-48.08744|Goiandira-RMV
 T|-6.26202|-35.21370|Goianinha
 T|-21.83530|-45.08662|Gonçalinho
+T|-20.44976|-44.89300|Gonçalves Ferreira
 T|-22.47917|-43.49773|Governador Portela
 T|-18.85189|-41.95112|Governador Valadares
 T|-23.73639|-46.69700|Grajaú
@@ -1612,6 +1945,7 @@ T|-3.72954|-38.80023|Guararu
 T|-8.97203|-48.36868|Guaraí
 T|-23.44741|-46.49375|Guarulhos-Cecap
 T|-20.66148|-54.79597|Guavira
+T|-21.29936|-46.71199|Guaxupé
 T|-22.71347|-43.16708|Guia de Pacobaíba
 T|-22.87526|-43.45668|Guilherme da Silveira
 T|-23.25718|-49.99571|Guimarães Carneiro
@@ -1647,11 +1981,15 @@ T|-19.63407|-43.23170|Itabira
 T|-22.08626|-55.35446|Itahum
 T|-23.49398|-46.40216|Itaim Paulista
 T|-6.81244|-35.46454|Itamataí
+T|-21.08034|-47.03774|Itamogi
+T|-20.47075|-45.12252|Itapecerica
 T|-3.38630|-44.36604|Itapecuru
 T|-23.54553|-46.93526|Itapevi
 T|-19.53196|-40.81352|Itapina
 T|-3.49707|-39.58362|Itapipoca
 T|-23.48604|-46.34802|Itaquaquecetuba
+T|-21.23673|-46.92012|Itiguassu
+T|-21.22336|-46.69776|Jabuti
 T|-22.88416|-43.25506|Jacarezinho
 T|-7.03644|-34.85039|Jacaré
 T|-29.93241|-53.13614|Jacuí
@@ -1659,8 +1997,8 @@ T|-22.70440|-46.99255|Jaguariúna
 T|-15.80535|-43.31202|Janaúba
 T|-23.52760|-46.90237|Jandira
 T|-22.64458|-43.65298|Japeri
+T|-21.28248|-46.68982|Japy
 T|-8.73021|-35.79606|Jaqueira
-T|-23.45511|-46.73880|Jaraguá
 T|-23.51421|-46.88932|Jardim Belval
 T|-7.00394|-34.83362|Jardim Camboinha
 T|-23.59921|-46.46906|Jardim Colonial
@@ -1670,7 +2008,7 @@ T|-22.63582|-43.03036|Jardim Nova Marília
 T|-23.60654|-46.50761|Jardim Planalto
 T|-22.69024|-43.26244|Jardim Primavera
 T|-23.48503|-46.38574|Jardim Romano
-T|-23.52350|-46.89353|Jardim Silveira
+T|-23.52350|-46.89353|Jardim Silveira - Leo Madeiras
 T|-16.13387|-47.95295|Jardim do Ingá
 T|-8.62594|-35.52460|Joaquim Nabuco
 T|-22.60535|-43.02484|Jororó
@@ -1686,28 +2024,32 @@ T|-7.06654|-36.57958|Juazeirinho
 T|-23.54273|-46.25813|Jundiapeba
 T|-23.19474|-46.87242|Jundiaí
 T|-13.23740|-40.88274|Juracy
+T|-21.60409|-45.38752|Juriti
 T|-23.59327|-48.23167|Jurití
-T|-23.67730|-46.70231|Jurubatuba
-T|-23.55802|-46.60828|Juventus - Mooca
+T|-23.67730|-46.70231|Jurubatuba- Senac
+T|-21.27963|-46.36142|Juréia
+T|-23.55801|-46.60816|Juventus - Mooca
 T|-23.53322|-46.64056|Júlio Prestes
 T|-21.38363|-46.75547|Júlio Tavares
 T|-29.22370|-53.68290|Júlio de Castilhos
 T|-19.23489|-41.34861|Krenak
 T|-25.59203|-49.46958|LAB (KM 141)
 T|-22.62180|-43.70409|Lages
-T|-21.89239|-47.03479|Lagoa Branca
 T|-7.84209|-35.31278|Lagoa do Carro
 T|-5.69719|-36.24288|Lajes
-T|-23.51752|-46.70404|Lapa (Linha 7)
-T|-23.52000|-46.69917|Lapa - Senac (Linha 8)
+T|-20.47191|-45.03493|Lamounier
+T|-23.51760|-46.70397|Lapa
+T|-23.51998|-46.69918|Lapa - Senac
 T|-7.31772|-35.40074|Lauro Müller
 T|-23.05904|-50.02115|Leoflora
 T|-16.62104|-48.74053|Leonardo de Bulhões
 T|-23.67066|-48.44442|Ligiana
 T|-20.51923|-43.80039|Lobo Leite
 T|-23.45839|-46.05832|Luis Carlos
+T|-23.53510|-46.63534|Luz Station
 T|-20.19290|-43.82865|MRS - Estação Ferroviária Andaime
 T|-5.10833|-36.62591|Macau
+T|-21.67724|-45.91685|Machado
 T|-22.87668|-43.33762|Madureira
 T|-22.86808|-43.41358|Magalhães Bastos
 T|-22.65173|-43.04250|Magé
@@ -1723,6 +2065,7 @@ T|-27.46190|-51.90494|Marcelino Ramos
 T|-13.00428|-40.53161|Marcionílio Souza
 T|-20.41093|-40.67296|Marechal Floriano
 T|-22.86077|-43.37129|Marechal Hermes
+T|-22.30767|-45.37383|Maria da Fé
 T|-20.37335|-43.41681|Mariana
 T|-3.22413|-40.69593|Martinópole
 T|-25.43939|-48.91891|Marumbi
@@ -1746,16 +2089,20 @@ T|-22.87509|-43.44766|Mocidade/Padre Miguel
 T|-21.47335|-46.99061|Mococa
 T|-7.32633|-35.49363|Mogeiro
 T|-23.52149|-46.19785|Mogi das Cruzes
+T|-21.32506|-46.37000|Monte Belo
 T|-18.73186|-47.49838|Monte Carmelo
 T|-22.50144|-43.47331|Monte Líbano
+T|-21.18511|-46.97323|Monte Santo de Minas
 T|-16.72839|-43.86264|Montes Claros
 T|-22.65847|-43.23060|Morabi
 T|-8.11900|-35.10289|Moreno
 T|-5.23943|-41.77541|Morro Alegre
-T|-22.94657|-43.20281|Morro do Inglês
-T|-23.62159|-46.70164|Morumbi
+T|-22.94633|-43.20214|Morro do Inglês
+T|-23.62159|-46.70164|Morumbi - Claro
+T|-21.33230|-46.57331|Moçambo
 T|-21.38174|-41.46864|Murundu
 T|-21.13338|-47.98763|Museu Ferroviário
+T|-21.37020|-46.52623|Muzambinho
 T|-19.52556|-42.64424|Mário Carvalho
 T|-22.90173|-43.27803|Méier
 T|-7.75131|-35.22913|Nazaré da Mata
@@ -1765,7 +2112,6 @@ T|-6.47587|-35.43674|Nova Cruz
 T|-20.54289|-49.32805|Nova Granada
 T|-22.76066|-43.45009|Nova Iguaçu
 T|-4.70749|-40.56657|Nova Russas
-T|-22.90865|-43.20872|Oficina de São Diogo
 T|-5.04714|-41.08226|Oiticica
 T|-22.84719|-43.26636|Olaria
 T|-22.81742|-43.41001|Olinda
@@ -1781,6 +2127,7 @@ T|-22.57468|-43.60276|Paes Leme
 T|-8.68060|-35.58509|Palmares
 T|-9.40738|-36.62727|Palmeira dos Índios
 T|-23.52546|-46.66751|Palmeiras-Barra Funda
+T|-21.35369|-46.45739|Palméia
 T|-8.89217|-36.10061|Paquevira
 T|-22.61126|-43.71071|Paracambi
 T|-22.62072|-43.20243|Parada Angélica
@@ -1795,13 +2142,15 @@ T|-19.23494|-41.34860|Parada Krenak
 T|-18.30047|-44.16131|Parada Mandiobas
 T|-22.54597|-42.98511|Parada Modelo
 T|-22.45933|-43.47949|Parada Prefeitura / Parada do Primo
-T|-22.65398|-43.15237|Parada Santa Dalila
-T|-22.66567|-43.09275|Parada Santa Guilhermina
+T|-22.65398|-43.15234|Parada Santa Dalila
+T|-22.66569|-43.09274|Parada Santa Guilhermina
 T|-22.29391|-43.39275|Parada Taboôes
 T|-23.40228|-46.78266|Parada da Onça
 T|-22.81666|-43.30074|Parada de Lucas
 T|-23.87853|-46.79330|Parada ferroviária Mário Souto
+T|-22.54859|-45.78230|Paraisópolis
 T|-23.77667|-46.30217|Paranapiacaba (Expresso Turístico)
+T|-22.09169|-43.82775|Parapeúna
 T|-22.65027|-43.20823|Parque Estrela
 T|-22.21063|-44.23555|Passa Vinte
 T|-21.02241|-48.17606|Passagem
@@ -1817,6 +2166,7 @@ T|-22.74254|-46.91189|Pedreira
 T|-22.84068|-46.99524|Pedro Américo
 T|-5.51963|-36.39139|Pedro Avelino
 T|-6.43945|-35.21939|Pedro Velho
+T|-22.31756|-45.42163|Pedrão
 T|-22.84038|-43.27863|Penha
 T|-22.83663|-43.28504|Penha Circular
 T|-8.79882|-35.90826|Peri-Peri
@@ -1826,7 +2176,6 @@ T|-22.60942|-43.17966|Piabetá
 T|-22.89040|-43.30966|Piedade
 T|-22.88098|-43.29157|Pilares
 T|-23.56643|-46.70306|Pinheiros
-T|-23.50398|-46.71482|Piqueri
 T|-21.88731|-51.73132|Piquerobi
 T|-21.25802|-55.05123|Piqui
 T|-8.65904|-35.63657|Pirangi
@@ -1834,7 +2183,7 @@ T|-3.72790|-44.22565|Pirapemas
 T|-19.74856|-40.36647|Piraqueaçu
 T|-27.41947|-51.77666|Piratuba
 T|-4.24515|-40.64615|Pires Ferreira
-T|-23.48850|-46.72600|Pirituba
+T|-23.48855|-46.72609|Pirituba
 T|-6.78173|-35.49794|Pirpirituba
 T|-21.01080|-48.21794|Pitangueiras
 T|-23.31838|-50.00632|Platina
@@ -1849,6 +2198,7 @@ T|-22.83456|-43.08402|Porto da Madama
 T|-16.97903|-48.41005|Posto km 265
 T|-23.52523|-46.34326|Poá
 T|-7.01963|-34.84165|Poço
+T|-20.74364|-46.86565|Pratápolis
 T|-22.90989|-43.21296|Praça da Bandeira
 T|-22.86435|-43.36165|Prefeito Bento Ribeiro
 T|-23.65210|-46.52818|Prefeito Celso Daniel - Santo André
@@ -1880,6 +2230,7 @@ T|-4.13915|-40.58061|Reriutaba
 T|-19.32370|-41.25537|Resplendor
 T|-29.81082|-53.37686|Restinga Seca
 T|-22.90147|-43.25551|Riachuelo
+T|-22.15368|-45.19496|Ribeiro
 T|-21.55708|-46.87986|Ribeiro do Valle
 T|-20.60765|-48.95614|Ribeiro dos Santos
 T|-8.51029|-35.37403|Ribeirão
@@ -1914,11 +2265,13 @@ T|-22.91555|-43.68409|Santa Cruz
 T|-6.53234|-38.05780|Santa Cruz
 T|-23.40164|-46.81938|Santa Fé
 T|-6.72013|-38.63953|Santa Helena
+T|-22.17358|-43.72123|Santa Ignácia
 T|-3.69855|-45.41516|Santa Inês
 T|-22.28250|-50.65192|Santa Lina
 T|-23.54497|-46.94748|Santa Rita
 T|-23.51662|-46.84796|Santa Terezinha
 T|-22.33532|-55.71859|Santa Virgínia
+T|-22.52089|-43.80439|Santana da Barra
 T|-29.19061|-54.87332|Santiago
 T|-23.65623|-46.71912|Santo Amaro
 T|-21.97047|-51.65157|Santo Anastácio
@@ -1928,7 +2281,6 @@ T|-22.35115|-50.62162|Sapezal
 T|-23.61471|-46.50083|Sapopemba
 T|-22.32004|-46.69646|Sapucaí
 T|-22.67775|-43.24720|Saracuruna
-T|-22.90422|-43.19735|Sede CCO
 T|-31.93865|-52.31487|Segunda Estação Ferroviária Povo Novo
 T|-22.87579|-43.48611|Senador Camará
 T|-3.35290|-40.46365|Senador Sá
@@ -1945,7 +2297,7 @@ T|-3.68822|-40.35796|Sobral
 T|-23.66326|-46.71096|Socorro
 T|-18.31543|-48.15954|Soldado Mendanha
 T|-7.05660|-36.36367|Soledade
-T|-22.06026|-45.04510|Soledade de Minas
+T|-22.06105|-45.04511|Soledade de Minas
 T|-5.17543|-41.98870|Sombra
 T|-6.76957|-38.23495|Sousa
 T|-18.73627|-48.22813|Stevenson
@@ -1959,6 +2311,7 @@ T|-22.90953|-43.22282|São Cristóvão
 T|-6.81564|-37.94264|São Domingos
 T|-22.90234|-43.24474|São Francisco Xavier
 T|-18.63522|-47.58032|São Félix
+T|-21.89045|-45.59473|São Gonçalo do Sapucaí
 T|-23.17383|-45.88567|São José dos Campos
 T|-8.87460|-36.36588|São João
 T|-21.13342|-44.25736|São João del Rei
@@ -1998,6 +2351,7 @@ T|-7.79849|-35.24833|Tracunhaém
 T|-29.28395|-51.49232|Tramontina
 T|-25.43719|-49.25637|Trem Curitiba / Morretes
 T|-22.89672|-43.24410|Triagem
+T|-22.47937|-45.38483|Trotil
 T|-21.70085|-45.25999|Três Corações
 T|-22.11424|-43.20632|Três Rios
 T|-18.98043|-41.64797|Tumiritinga
@@ -2011,6 +2365,7 @@ T|-23.62618|-46.54406|Utinga
 T|-25.08604|-50.10904|Uvaranas
 T|-22.96919|-46.99351|Valinhos
 T|-23.77020|-46.71195|Varginha
+T|-21.55459|-45.43535|Varginha
 T|-21.52290|-46.90678|Venerando
 T|-23.62206|-46.67888|Vereador José Diniz
 T|-17.97419|-48.17444|Veríssimo
@@ -2020,11 +2375,11 @@ T|-8.07829|-38.59375|Vidal de Negreiros
 T|-27.00401|-51.15538|Videira
 T|-22.80526|-43.30548|Vigário Geral
 T|-23.43791|-46.74727|Vila Aurora
-T|-23.46973|-46.74451|Vila Clarice
 T|-23.61558|-46.68860|Vila Cordeiro
 T|-22.57090|-43.18461|Vila Inhomirim
 T|-22.86253|-43.40203|Vila Militar
 T|-23.59337|-46.69273|Vila Olímpia
+T|-22.15603|-43.74844|Vila Pentagna (antiga Rio Bonito)
 T|-23.58459|-46.58344|Vila Prudente
 T|-22.30588|-43.38846|Vila Rica
 T|-22.79395|-43.37533|Vila Rosali
@@ -2042,7 +2397,6 @@ T|-22.22026|-43.31556|Werneck
 T|-8.97091|-40.71917|antiga estação de trem
 T|-18.17477|-44.36298|estação ferroviária Marísia
 T|-22.72604|-44.13425|~Estação de Rio Claro
-T|-23.52126|-46.68852|Água Branca
 T|-8.87360|-36.08061|Água Branca
 T|-5.17460|-41.28380|Água Branca
 T|-7.30627|-35.77810|Álvaro Machado

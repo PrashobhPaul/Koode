@@ -1,4 +1,4 @@
-# Transit for Koode, LK. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, LK. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 R|6.89372|79.85296|Bambalapitiya|Sri Lanka Railway
@@ -17,10 +17,10 @@ R|6.92924|79.86580|Maradana Railway Station|Sri Lanka Railways
 R|6.89691|79.87806|Narahenpita|Sri Lanka Railways
 R|6.85289|79.91786|Nawinna|Sri Lanka Railways
 R|6.87208|79.89068|Nugegoda|Sri Lanka Railways
-R|6.84738|79.94888|Pannipitiya|Sri Lanka Railways
+R|6.84736|79.94886|Pannipitiya|Sri Lanka Railways
 R|6.86221|79.90873|Udahamulla|Sri Lanka Railways
-Q|Sri Lanka Railway|Coastal Line||L55|6 2:2694 0:2170 3:9506 4:167987 1:2075
-Q|Sri Lanka Railways|Kelani Valley Line||L55|9 11:917 16:3430 10:2622 14:1211 17:1785 15:2425 8:1720 13:1753 7:2109 5:1707 12:1537 6:1961 12:1995
+Q|Sri Lanka Railway|Coastal Line||L55|6 2:3119:qmqqBizrnPcjI7BlH7CrD7GvC9GcjOsHlI4FrM6FrS0D3HhBjExC5H7MrCpCpE5BjHW 0:2170 3:8925:it-pBontnPlpB2H3R2EtjBiEv-B4NriBqBriBgErFZ9NtF_LEx3BqK 4:167987 1:2072:ippkBy5srPjG3XD3fnI9b
+Q|Sri Lanka Railways|Kelani Valley Line||L55|9 11:918:-14pBiwjoPmCsDiGoDgC0F1C4E 16:3431:0-4pB-_joPuBtF7B5DhGnDlCrDXxlBpF3HNlD6C5EwIhE2F_IkCzMzD_HahD0E9FjB5LoDzDsF9B-C3EDvHtEvKG_D 10:2623:kv5pB-5-nPCzNtEtHZxI_CxFtBhGxClV2CxGGnE1GxJtBpE2CrKdxGmBzFsHpK 14:1211:w95pByl6nPsNlP6BhFfjG 17:1795:4t6pBy14nP8DvF0EvBwH8C4EBiO5GqHhI4JzBuE7C0CpE2B5J 15:2426:st8pB0v2nP0EhKkEjFgbjU2VpmBwB5D 8:1723:on-pBouznP2GtHoD9NiC3E0LhF2E5HqC3BmQtCqNsB 13:1753 7:2109 5:1707 12:1537 6:1961 12:1995
 T|8.32673|80.97966|Agbopura
 T|5.97324|80.36388|Ahangama
 T|6.31277|80.03758|Ahungalla
@@ -31,7 +31,7 @@ T|7.29342|80.23864|Alawwa
 T|6.43216|80.00034|Aluthgama
 T|6.23538|80.05493|Ambalangoda
 T|7.91888|80.24611|Ambanpola
-T|7.25600|80.16930|Ambepussa Railway Station
+T|7.25600|80.16930|Ambepussa
 T|6.87733|80.81434|Ambewela
 T|6.26619|80.04694|Andadola
 T|6.85298|80.10940|Angampitya
@@ -192,7 +192,7 @@ T|7.10389|79.88981|Kudahakapola
 T|7.46218|79.85301|Kudawewa
 T|6.11245|80.12429|Kumarakanda
 T|5.96366|80.40968|Kumbalgama
-T|7.19109|79.86216|Kurana Railway Station
+T|7.19107|79.86211|Kurana
 T|7.47703|80.37425|Kurunegala
 T|7.98828|80.99686|Laksha Uyana
 T|7.14718|79.87821|Liyanagemulla
@@ -267,7 +267,7 @@ T|6.71241|79.90458|Panadura
 T|6.84694|80.01901|Panagoda
 T|7.32860|80.32531|Panaliya
 T|6.86496|79.90225|Pangiriwatta
-T|6.84738|79.94888|Pannipitiya
+T|6.84736|79.94886|Pannipitiya
 T|7.97360|81.01780|Parakum Uyana
 T|9.44012|80.40711|Paranthan
 T|8.44537|80.43152|Parasangaswewa Railway Station

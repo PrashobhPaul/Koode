@@ -1,4 +1,4 @@
-# Transit for Koode, PL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, PL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|52.10383|16.15498|Adamowo|PKM|M
@@ -84,12 +84,12 @@ S|54.03193|21.76836|Giżycko|Żegluga Mazurska Spółka|W
 S|53.80041|21.57088|Port Mikołajki|Żegluga Mazurska Spółka|W
 S|53.68539|20.10202|Żegluga Ostródzko-Elbląska|Żegłoga Ostródzko-Elbląska|W
 S|53.70271|19.95932|Żegluga Ostródzko-Elbląska|Żegłoga Ostródzko-Elbląska|W
-L|PKM|PKM 3||15 14:2875 17:2482 16:2638 1:3367 2:1270 12:3707 34:6804 9:1188 18:1073 10:5929 11:1181 24:3073 25:4624 22:3978 19:4988 31:6527
-L|PKM|PKM3||31 19:6520 22:4988 25:3978 24:4624 11:3072 10:1181 18:5926 9:1072 34:1189 12:6801 2:3707 1:1270 16:3367 17:2636 14:2461 15:2900 13:3789 8:2767 32:3871 28:4793 30:3504 27:4378 26:7866 4:6852 7:3279 20:2866 5:3543 6:2069 23:7361 3:3898 21:7065 29:3975 0:1851 33:4592
-L|ZTM Warszawa|M1|blue|46 68:819 60:836 58:919 45:997 50:903 39:1456 55:1519 71:1134 37:565 53:1431 52:1253 54:1137 69:1042 70:1006 62:1101 67:1190 61:839 41:1085 48:1147 42:1158
-L|ZTM Warszawa|M1|blue|42 48:1158 41:1155 61:1079 67:832 62:1191 70:1111 69:1002 54:1042 52:1135 53:1247 37:1441 71:564 55:1135 39:1518 50:1467 45:906 58:989 60:919 68:836 46:819
-L|ZTM Warszawa|M2|#c60c30|36 43:1356 72:1473 65:1120 64:728 63:793 40:1564 59:945 38:1145 49:1080 71:563 57:766 56:1101 51:1374 47:808 44:1086 66:988 35:1005
-L|ZTM Warszawa|M2|#c60c30|35 66:1001 44:988 47:1086 51:791 56:1397 57:1102 71:767 49:562 38:1086 59:1159 40:953 63:1543 64:806 65:719 72:1134 43:1491 36:1355
+L|PKM|PKM 3||15 14:2883:o78_Jw8nnDwIsFgGyHmEgJoH8WmEqWRoW 17:2481:wj9_J6_unDdiS4Egf 16:2649:ur-_J6k0nDyD-FqGmF2EiBwM7BsO1I8Ed 1:3387:6tjgKui1nDyVsBuR9CoVnH6uBnH 2:1277:izogK-k0nD 12:3725:qksgKy6znDqHeyKwG02Bk5B8K-IiM-B 34:6834:6g2gK-j0nDmGrBkGkBoJ2G06B4rCuGmM2HyagEsIsjB0tB 9:1194 18:1078:839gK4o8nDsHgI 10:5934:0_ghK-zioDuUm6B2J-5B0D4N4F0MwmBilC 11:1182 24:3077:u8lhKi9voD-jB09DgFiIqGkF 25:4647:o3qhKwg1oDm3Bqamf-hB6eqZ2LwD-VhB 22:4000:upxhK8x4oDi-BktBykC4NoXyH 19:5016:2i4hKk86oD26FugB4d4I 31:7455:0-giKst8oDorBmIupCinBuxBqnB25B2nC04B6kBiGG4FpD6E1G6D5JyCzW
+L|PKM|PKM3||31 19:6520 22:4988 25:3998:qj2hKq06oDnXxHxkC3Nh-BjtB 24:4649:iuvhKw43oD9ViB1LvD5epZlf9hBl3Bpa 11:3077:isnhKio0oDrG_EpFrI9jBz9D 10:1182 18:5934:0tjhKwnpoDvmBhlC3FzMzD3N1J95BtUl6B 9:1072 34:1189 12:6801 2:3707 1:1270 16:3388:84mgKsy0nD5uBoHnVoHtR-CxVrB 17:2648:45__Jwl0nD7EerO2IvM8BvFvB5ElEtE_H 14:2460:qp9_J62wnD3DjPzC3TUhS 15:2907:i59_Jy2qnDYzVrE5XjHtWzE9J7FpHvIpF 13:3810:um6_Jy-mnDxWhOrb9M3gB1CrZ9KvUrLtGZzT2C 8:2782 32:3889:g5s_J6vinDppBzIhK_E_H5I7FvL 28:4790:i3p_J2m-mD_C1PlBzRWhQylBjyH8BrUJtShCnR 30:3513:qgq_J4mwmDpFxL5G7JxHlH9mCt1BpMxO1H1OhFhP 27:4379:mzl_J8pnmDtfhmDpF_U9DhYhDjmBvCxMjEhL7EhI 26:7876:i0i_Jkn_lD3H1OztBhgF3HnWrmD92G3ErQtPpvC_DrP_ErM 4:6852 7:3279 20:2866 5:3543 6:2069 23:7389:uj5-J0q8jD7E4MdqHEkTvCiO3GuQzF2JxK8L1LiHhMkCxM3CpI_ErhG_zElMlNxJnN 3:3903:wps-JkmzjDhF1NvDpO7BhOpB1a9DrS5G_O 21:7072:kxo-JmvrjDrF7L5J5brR_fjZ5lC5ClQd9QsGvyErCvwC 29:3981:mym-J458iDQ9QuJv6BgB7Rd7MnChMjIrVvJ_MvLtI 0:1859:uwi-Jmu2iDnMpM 33:4603:kj_9Jg4wiDnHxP3EzQvCxQP3RsBpQgDjQqDlLuF_L6FzIsJ9I-lBxZ
+L|ZTM Warszawa|M1|blue|46 68:820 60:837 58:920 45:998:8ii_Jin-_D1KsOpF4J1EmN 50:903:gnh_J0sggE3BmU 39:1462:s1g_Ju-igErHqJjOyJ9W4V 55:1526:ws--JgzkgE_K0MxFsErqB6J 71:1139:kv7-J-pmgE 37:568 53:1438:u34-J4hogEre6RpHkB 52:1258:022-J-rogE5WvV3P1S5GvC 54:1143:yz0-J-mngE 69:1047 70:1011:ipw-JktpgE 62:1106:iov-J-2qgEzHoF7HQtO1G 67:1197 61:842:20r-J0hrgE5G-F_GoJ 41:1087 48:1150:o9o-JurvgE 42:1163
+L|ZTM Warszawa|M1|blue|42 48:1163 41:1159:w9o-JmsvgE 61:1082 67:835:iur-JuorgE4G5F 62:1198 70:1117:iqu-Jo3qgEsO4GkINgItF 69:1006:mqw-JqtpgE 54:1047 52:1141:600-JynngE 53:1253:kp1-JuingEuGqC8P6S8WwV 37:1449:-x3-Jg2ogEsHjBqe5R 71:567 55:1141:qv7-J6qmgE 39:1526:6y8-JqulgEspBjJwFnEkL5M 50:1473:8o_-JsokgEgX7V0P5KyGzI 45:906:imh_JkhhgE6BxV 58:990:suh_Jsu__D0EpNgF1J4LhR 60:920 68:837 46:820
+L|ZTM Warszawa|M2|#c60c30|36 43:1355:oql_JmmugE 72:1476:wnl_JwnwgE_BgJrDoHxH4HpbkS 65:1125:iuj_Jm4xgEpFV1TvOhF3F 64:731:m3h_J48vgEpG5F_FtC 63:797:-ug_JowvgEpJpG5GvJ 40:1568:o_--JsvsgE_FvJpHtEtHOpFqD 59:949:gv9-Jy9sgEhP2a5GoE 38:1148:-j8-Ju8tgEvH5G 49:1080:i86-JuhrgE 71:562 57:766 56:1101 51:1374:gh5-J2hhgElC7fOtJ0CtJwEnH4E1D 47:811:6n6-Ji6-_DiG9E0FtL 44:1085 66:987 35:1004:8m7-J4-2_D
+L|ZTM Warszawa|M2|#c60c30|35 66:1000:mm7-J-_2_D 44:987 47:1085 51:793:2y6-Jop-_DtFiL_F2E 56:1398:gr5-J4i__DnFiExEwH3CkKNwJoCggB 57:1101 71:766 49:561 38:1086:u76-JmirgE 59:1161:g87-Jg3tgE8H8G 40:957:258-J09tgEyGlEqP9a 63:1546:0l--JomsgEiFjDoHL6GkE-FyJ 64:809:q-_-JuhvgEqHgK4I-F 65:722:8qh_J61vgEgGwC6FuF 72:1139:qwi_JwlxgEmEyEgU0OyFY 43:1495:igk_JwyxgEwazRiIlIyDzHiC_I 36:1354:krl_JulugE
 L|Piła|Pilski Tramwaj Wodny linia czerwona|red|76 75:1017
 L|Piła|Pilski Tramwaj Wodny linia niebieska|blue|74 73:1249 76:1104
 L|Piła|Pilski Tramwaj Wodny linia zielona|green|74 73:1249 76:1104 75:1017
@@ -359,7 +359,7 @@ T|53.93181|18.26741|Bytonia
 T|54.01962|20.31615|Bzowiec
 T|51.51783|21.72550|Bąkowiec
 T|50.95613|18.31460|Bąków
-T|50.06656|21.77390|Będziemyśl
+T|50.06661|21.77403|Będziemyśl
 T|50.33052|19.15793|Będzin Ksawera
 T|50.31919|19.13554|Będzin Miasto
 T|54.21119|15.99278|Będzino
@@ -1839,6 +1839,7 @@ T|50.93058|17.29776|Oława
 T|50.94502|17.26871|Oława Zachodnia
 T|50.04207|19.20037|Oświęcim
 T|52.20745|20.79581|Ożarów Mazowiecki
+T|49.76968|22.80124|PKP INTERCITY S.A. - Zaplecze techniczne z myjnią
 T|51.66093|19.32498|Pabianice
 T|51.66985|19.34190|Pabianice Północne
 T|53.17149|14.47159|Pacholęta
@@ -2179,7 +2180,7 @@ T|54.08087|18.73691|Rokitki Tczewskie
 T|51.61202|21.79828|Rokitnia Stara
 T|51.78804|20.45090|Rokszyce
 T|50.07832|21.57915|Ropczyce
-T|50.07725|21.62823|Ropczyce Witkowice
+T|50.07729|21.62814|Ropczyce Witkowice
 T|54.06319|16.30307|Rosnowo Ośrodek
 T|54.06648|16.29854|Rosnowo Wąskotorowe
 T|53.70540|18.11462|Rosochatka
@@ -2263,9 +2264,9 @@ T|52.34992|14.81529|Rzepin
 T|52.34663|14.82464|Rzepin Miasto
 T|50.89735|19.32841|Rzerzęczyce
 T|51.24962|16.16585|Rzeszotary
-T|50.06446|21.98896|Rzeszów Baranówka
+T|50.06437|21.98908|Rzeszów Baranówka
 T|50.04310|21.99810|Rzeszów Centrum
-T|50.07792|21.96837|Rzeszów Dworzysko
+T|50.07792|21.96840|Rzeszów Dworzysko
 T|50.04299|22.00609|Rzeszów Główny
 T|50.07562|21.98721|Rzeszów Miłocin
 T|50.02259|21.97776|Rzeszów Osiedle
@@ -2273,7 +2274,7 @@ T|50.05243|22.03061|Rzeszów Pobitno
 T|50.02716|21.98365|Rzeszów Politechnika
 T|50.06283|21.99240|Rzeszów Staromieście
 T|50.03849|21.98973|Rzeszów Staroniwa
-T|50.05345|21.99420|Rzeszów Zachodni
+T|50.05308|21.99427|Rzeszów Zachodni
 T|50.05853|22.06933|Rzeszów Załęże
 T|50.00593|21.95717|Rzeszów Zwięczyca
 T|49.98479|20.51516|Rzezawa
@@ -2632,8 +2633,8 @@ T|52.30330|16.20352|Sątopy
 T|54.07293|21.02409|Sątopy-Samulewo
 T|51.62889|18.57001|Sędzice
 T|50.56588|20.05490|Sędziszów
-T|50.07544|21.69286|Sędziszów Małopolski
-T|50.07004|21.72859|Sędziszów Małopolski Wschodni
+T|50.07559|21.69023|Sędziszów Małopolski
+T|50.07006|21.72821|Sędziszów Małopolski Wschodni
 T|50.81342|16.06985|Sędzisław
 T|52.63469|17.14399|Sława Wielkopolska
 T|50.35138|18.31382|Sławięcice
@@ -3294,7 +3295,7 @@ T|53.41666|18.10488|Świekatowo
 T|50.91143|15.34351|Świeradów-Zdrój
 T|52.67038|20.76285|Świercze
 T|50.63239|16.43250|Świerki Dolne
-T|50.07808|21.90154|Świlcza
+T|50.07809|21.90147|Świlcza
 T|53.90444|14.26602|Świnoujście
 T|53.91460|14.23352|Świnoujście Centrum
 T|53.90142|14.26034|Świnoujście Port

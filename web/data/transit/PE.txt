@@ -1,4 +1,4 @@
-# Transit for Koode, PE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, PE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-12.07473|-77.01111|Arriola|Metro de Lima y Callao|M
@@ -47,10 +47,10 @@ S|-3.72236|-73.24016|Puerto Henry|ferry|W
 S|-15.81928|-69.98879|Puerto Kalapajra|ferry|W
 S|-3.72368|-73.23961|Puerto Pesquero Artesanal|ferry|W
 S|-7.21121|-76.73496|Puerto Tarata|ferry|W
-L|Metro de Lima y Callao|Bayóvar → Villa El Salvador|#228B22|5 23:1142 22:1041 20:1406 12:1413 11:1300 16:1375 7:1394 17:1643 8:528 14:1015 26:1320 0:1049 10:1714 19:1514 2:1123 6:1927 4:957 9:1083 3:1606 21:1630 13:1149 25:1104 18:1438 15:1845 24:1405
+L|Metro de Lima y Callao|Bayóvar → Villa El Salvador|#228B22|5 23:1146 22:1044:hpipChs-1O 20:1410:hnjpCz0_1OlLrInLzF 12:1419:9ilpC5wg2OxO7PzJxF5HpBpGO 11:1307:_lopC11g2O 16:1382:r-ppCvy_1O_HiDtZqB1DnB 7:1398:p3spC7_g2O_E_D 17:1652:54tpCvuh2O9V6BnelHnH8B 8:530:hkwpC3lh2O 14:1021:3hxpC78g2OnPpB 26:1326:30ypC35h2OzI9BnEUhVoI 0:1055 10:1722:952pCvlh2OrMuFrFoH7FuR9CkEzE2DpH2C 19:1523 2:1131 6:1935:359pCli_1OljB4JhNkB7If 4:963:p6gqCnn_1O3Fc 9:1087:zjjqCx391O 3:1609:tskqCj181OtE6EzIsQ 21:1630 13:1149:39mqC1721OxEyG 25:1108:rtoqCvz11O 18:1446:lopqCpk11OnMxBjNSvWuL 15:1853:5gsqCjy01O 24:1411
 L|Metro de Lima y Callao|Evitamiento → Mercado Santa Anita|#FFC300|27 30:1092 1:1003 28:1110 29:941
 L|Metro de Lima y Callao|Mercado Santa Anita → Evitamiento|#FFC300|29 28:941 1:1110 30:1003 27:1092
-L|Metro de Lima y Callao|Villa El Salvador → Bayóvar|#228B22|24 15:1405 18:1842 25:1440 13:1104 21:1153 3:1631 9:1593 4:1063 6:983 2:1932 19:1123 10:1515 0:1714 26:1049 14:1318 8:1018 17:531 7:1639 16:1392 11:1381 12:1299 20:1409 22:1403 23:1043 5:1142
+L|Metro de Lima y Callao|Villa El Salvador → Bayóvar|#228B22|24 15:1411 18:1851:risqCjx01O8FnC 25:1447:x5qqCh501OiY_L4LPyNwB 13:1108:7uoqChy11O 21:1153:jinqC7021OwExG 3:1631 9:1594:r5kqC3_71OsJtR 4:1067:xjjqCn391O 6:987:7_gqCpm_1OyFT 2:1942:7y_pC_3-1O8IekNjB8jB9J 19:1129 10:1524 0:1719:p_3pC58_1OoHjD-G5H8F1R2ElGqLlF 26:1055 14:1326:12zpCzyh2OyU_HkFb8IuC 8:1022:t0xpC1_g2O2D6BiPoB 17:534:tkwpCnlh2O 7:1647:p0vpCzxh2OwH_B2cgH4W1B 16:1396:z8spC7jh2OgFgE 11:1388:3jrpCpv_1O-E0B-a9B6F3C 12:1305:nnopC70g2O 20:1416:xpmpC5mh2OgHPwHuBoKkGiOsP 22:1409:t9jpCrig2OsL2F2KkI 23:1044:hpipC5r-1O 5:1147
 L|Iquitos - Yurimaguas|Iquitos - Yurimaguas||32 31:19897
 L|ferry|ferry||35 36:462
 L|ferry|ferry||37 33:45450
@@ -69,9 +69,9 @@ R|-15.83572|-70.02638|Puno|Perurail
 R|-14.61713|-70.78734|Santa Rosa|Perurail
 R|-13.52544|-71.97116|Wanchaq|Perurail
 Q|Ferrocarril Central Andino|Huancayo - Lima||L55|0 1:214339
-Q|PeruRail|Cusco - Machu Picchu||L55|3 2:43055
-Q|PeruRail|Urubamba - Machu Picchu||L55|3 2:43055
-Q|Perurail|Cusco-Puno||L55|8 7:206963 5:75507 4:56608 6:46329
+Q|PeruRail|Cusco - Machu Picchu||L55|3 2:43136:rp8wCr7l5N2cx9BsgB7FqenVunCh8C0Zr-GvIvdwoBrf7CxjBoNlUvG9YqJtkBvFrzBxiBp8BjgBzf5V5yBqa9tCa5vD4K7esxB_TmSxf4YkD-lDhVuD7nBlPzLhkB9G3Hj_BguBvOoW_iBsUgF2pBta0MhgBqczU2O9XyFjexJjR1pBrI3X4P1SnTyIzmCpOvlCmG_S6pB9K2a8uBilBNsxBoV
+Q|PeruRail|Urubamba - Machu Picchu||L55|3 2:43137:rp8wCr7l5N2cx9BsgB7FqenVunCh8C0Zr-GvIvdwoBrf7CxjBoNlUvG9YqJtkBvFrzBxiBp8BjgBzf5V5yBqa9tCa5vD4K7esxB_TmSxf4YkD-lDhVuD7nBlPzLhkB9G3Hj_BguBvOoW_iBsUgF2pBta0MhgBqczU2O9XyFjexJjR1pBrI3X4P1SnTyIzmCpOvlCmG_S6pB9K2a8uBilBNsxBoV
+Q|Perurail|Cusco-Puno||L55|8 7:206963 5:75508 4:56608 6:46513:pl1-CjugsN7xOmpGl0kB0hL_I8GxDqVrG4I1amP18Bua_EmGrCgOhFyGpGmCvNLjJ2FnFqbeqHkQ6fuR8FoBwI9oBketRQhG6CxOmTiCkOrDsG5KgFlTwC_NqK3GnBxHzJ3JGpKsDjTuTpEK5DpD5ZhnBlCnf0EpZ7Y96B_IzTxQ9V1Ild3G1E
 T|-12.64254|-74.86453|Acoria
 T|-14.45160|-71.07292|Aguas Calientes
 T|-12.45430|-75.02029|Aguas Calientes
@@ -181,3 +181,939 @@ T|-13.52544|-71.97116|Wanchaq
 T|-12.77268|-74.85122|Yauli
 T|-11.66596|-76.08783|Yauli
 T|-16.25327|-71.68222|Yura
+B|-9.52645|-77.52702|14 S.R.L.
+B|-13.41548|-76.13521|15 de agosto ALTO LARAN
+B|-13.54970|-71.89707|30 setember
+B|-15.63643|-71.60287|4M Express
+B|-15.48756|-70.12578|A Huancané
+B|-13.41649|-76.13554|A LEON Y GROCIO PRADO
+B|-15.48254|-70.13657|A Sicuani
+B|-16.42981|-71.48172|AQP Masivo S.A.C.
+B|-9.13620|-78.52237|Agencia "Los Casmeños"
+B|-13.15698|-74.22372|Agencia Apu Suyo Drakos S.A.C.
+B|-13.15684|-74.22739|Agencia Cruz del Sur
+B|-13.15029|-74.22111|Agencia Molina
+B|-12.06276|-77.02721|Alcimar
+B|-9.04724|-77.81136|Allinbus
+B|-9.53594|-77.53193|Allinbus Ticket Office
+B|-13.51887|-71.97856|Almagro
+B|-9.07749|-78.59119|America
+B|-12.06373|-77.03249|America Express
+B|-8.12867|-79.02134|America Express
+B|-9.47697|-78.29514|America and Erick el rojo
+B|-9.04704|-77.81114|Ancash
+B|-13.15517|-74.22981|Anteezana cargo
+B|-12.01134|-77.06036|Antiguo Terminal
+B|-11.91892|-77.04132|Apocalipsis
+B|-16.42347|-71.54437|Arequipa Bus Terminal
+B|-16.42405|-71.54542|Arequipa International Terraport
+B|-9.30175|-76.00365|Asociación La Perla
+B|-14.27146|-71.57243|Ausanta
+B|-13.52528|-71.97827|Autobus to Yaurisque
+B|-5.90728|-76.11000|Autos Cajamarca (colectivos)
+B|-6.03908|-76.97133|Autos San Martín
+B|-5.90680|-76.11065|Autos San Martín
+B|-9.93178|-76.24518|Autos para La Unión
+B|-9.30077|-76.00408|Autos para Pucallpa & Huanuco
+B|-18.04958|-70.24312|Autoservicios Santa Cruz
+B|-9.92987|-76.23792|Bahia Continental
+B|-9.52598|-77.53286|Barranca
+B|-8.38879|-74.52853|Boat foe iquitos
+B|-12.17550|-76.97756|Bridge Umamarca
+B|-9.93404|-76.24099|Brisas del Oriente
+B|-12.14849|-77.02014|Bulevar Station
+B|-6.76968|-79.83352|Burga Express
+B|-8.10364|-79.02247|Bus Terminal - Transportes Via
+B|-13.52750|-71.95705|Bus a Ocongate
+B|-7.16554|-78.50792|Bus station
+B|-9.52577|-77.52629|Bus station Llupa - Pitec - Churup
+B|-14.06247|-75.73213|Bus terminal / Tepsa
+B|-5.75771|-78.43884|Bus terminal a Chachapoyas
+B|-15.83213|-70.01944|Bus to Capachica
+B|-9.52751|-77.53426|Bus to Chimbote
+B|-13.52483|-71.96966|Bus to Colored Mountain (Pitumarca)
+B|-13.52781|-71.95719|Bus to Tinki
+B|-13.52464|-71.95616|Bus to Urcos
+B|-9.52579|-77.53035|Bus to Wilcacocha Laguna
+B|-9.52411|-77.52694|Bus to Wilcahuain
+B|-9.52565|-77.52700|Bus to Yungay
+B|-17.00219|-72.09326|Buses
+B|-5.26579|-80.67254|Buses 6M
+B|-13.52777|-71.95729|Buses a Urcos y Sicuani
+B|-10.79682|-77.71480|Buses to Lima
+B|-13.42336|-71.84924|Buses to Mask’a
+B|-13.52439|-71.96517|Buses to Sicuani (via Ttio)
+B|-10.15512|-77.15770|Busses a Lima (Cavassa)
+B|-13.13697|-74.20977|Busterminal Totora
+B|-4.10644|-81.04982|CIFA
+B|-3.56398|-80.45591|CIFA International
+B|-12.06336|-77.03350|CIVA
+B|-11.07354|-77.59866|CIVA
+B|-9.52749|-77.52724|CIVA
+B|-7.17127|-78.50138|CIVA
+B|-8.10434|-79.02318|CIVA Bus
+B|-7.16647|-78.50118|Cajamarca Nuevo terminal terrestre
+B|-13.32286|-71.95827|Calca Bus Terminal
+B|-9.93378|-76.24594|Carhuamayo
+B|-14.06266|-75.72933|Carmen / El Olivo
+B|-11.41610|-75.68818|Cars to San Pedro de Cajas
+B|-10.07447|-77.14530|Cavassa
+B|-9.89813|-76.94198|Cavassa
+B|-9.28302|-77.64812|Cavassa
+B|-9.19108|-77.71345|Cavassa
+B|-9.05116|-77.81296|Cavassa
+B|-12.06094|-77.03396|Cavassa S.A,C
+B|-9.52669|-77.52810|Cavassa S.A.C
+B|-11.99266|-77.08217|Cavassa Turismo (2nd)
+B|-16.42991|-71.48171|Cerrito Huacsapata
+B|-8.86543|-77.35804|Chavín Expres
+B|-8.84244|-77.41998|Chavín Expres
+B|-8.83150|-77.42054|Chavín Expres
+B|-8.82426|-77.42389|Chavín Expres
+B|-6.57385|-76.13598|Chazuta SAC
+B|-12.29613|-75.29768|Chicche
+B|-4.10635|-81.04651|Chiclayo transportes
+B|-7.47945|-78.81993|Chignes
+B|-13.41717|-76.13639|Chincha Baja Tambo de Mora
+B|-6.77590|-79.83825|Civa
+B|-5.20139|-80.63112|Civa
+B|-4.10732|-81.05501|Civa
+B|-13.52998|-71.96983|Civa Bus Station
+B|-6.22850|-77.86970|Civa Virgen del Carmen
+B|-5.71394|-78.80493|Colectivo + Bus Nach Bagua Grande
+B|-10.74977|-77.76464|Colectivo Caral
+B|-13.71368|-76.20570|Colectivo San Andrés
+B|-9.53604|-77.53204|Colectivo a Barranca
+B|-13.51617|-71.98661|Colectivo a Curahuasi Abancay
+B|-13.00682|-72.63351|Colectivo a Cusco
+B|-13.26070|-72.26261|Colectivo a Piscacusho. 4 soles
+B|-6.03760|-76.97760|Colectivo a Pueblo Libre
+B|-13.12858|-72.59454|Colectivo a Santa Maria
+B|-13.17427|-72.56119|Colectivo a Santa Teresa
+B|-13.13080|-72.59455|Colectivo a Yanama, Totora
+B|-7.81502|-78.03807|Colectivo a la laguna Sausacocha
+B|-13.52517|-71.97953|Colectivo to Chinchero
+B|-9.52572|-77.52630|Colectivo to Pitec
+B|-12.06078|-77.03903|Colectivos & minivan a Chosica
+B|-13.71273|-76.20492|Colectivos Cruce
+B|-13.71472|-76.20584|Colectivos Paracas
+B|-14.84067|-74.94213|Colectivos a Abancay
+B|-14.27626|-71.22950|Colectivos to Juliaca
+B|-12.86623|-72.68906|Colectivos to Mandor
+B|-6.16369|-77.94329|Collectivo
+B|-6.23170|-77.86262|Collectivo Terminal
+B|-9.14034|-77.74715|Collectivo to Laguna Llancanuca 25 soles/person
+B|-9.52993|-77.53115|Collectivo to Macashca / Purush Laguna Rajucolta
+B|-13.51573|-71.98764|Collectivo to Mollepata
+B|-7.16182|-78.52045|Collectivos a Cumbemayo
+B|-12.87033|-72.69229|Collectivos a Huyro
+B|-13.51919|-71.96744|Collectivos a Pisac Colca
+B|-13.00580|-72.55447|Collectivos a Santa Maria, Santa Teresa
+B|-13.00699|-72.63377|Collectivos a Santa Teresa
+B|-15.83241|-70.02813|Collectivos to Juliaca
+B|-15.63440|-71.60160|Collectivos to Yanque
+B|-15.63479|-71.60188|Combi Tuti
+B|-7.16598|-78.51168|Combi a San Juan
+B|-16.39894|-71.51975|Combis Chiguata
+B|-14.27608|-71.22975|Combis a Juliaca
+B|-9.52368|-77.52834|Combis al callejón de Huaylas
+B|-6.77041|-79.84488|Combis collectivos to Lambayeque
+B|-13.15825|-74.21741|Combis para Huanta
+B|-15.84435|-70.01831|Combis para Moquegua
+B|-13.15855|-74.21784|Combis para Wari y Quinua
+B|-13.52573|-71.96850|Concetur
+B|-16.31674|-71.59052|Consorcio Empresarial Cono Norte S.A.C.
+B|-16.30645|-71.55166|Consorcio Empresarial Cono Norte S.A.C.
+B|-16.29630|-71.63607|Consorcio Empresarial Cono Norte S.A.C.
+B|-14.06349|-75.73199|Continental
+B|-5.71370|-78.80563|Cooperativa de Transporte Internacional Nambija
+B|-9.04687|-77.81651|Cooperativa de Transportes Ancash Caraz
+B|-12.83546|-71.35989|Corazón Serrano
+B|-12.06280|-77.03057|Cosmos
+B|-5.19994|-80.63131|Costa Mar
+B|-12.08055|-77.01226|Cromotex
+B|-12.06444|-77.03330|Cromotex
+B|-8.10477|-79.02354|Cromotex
+B|-9.68049|-77.47783|Cruce Collahuasi
+B|-8.35198|-76.33808|Cruce Uchiza
+B|-14.15920|-71.49446|Cruce a Machacoyo “B” y Cochapata
+B|-14.36749|-71.35927|Cruce a Quehue y Descanso
+B|-14.15866|-71.55311|Cruce a Totora o Surimana
+B|-14.32352|-71.69759|Cruce de Chamaca y Huancané
+B|-14.32318|-71.64191|Cruce de Quehue y Pongoña
+B|-4.10591|-81.04634|Cruz Del Sur
+B|-11.93751|-76.69880|Cruz Sur JP
+B|-17.64623|-71.34677|Cruz del Sur
+B|-14.82834|-74.94288|Cruz del Sur
+B|-14.06409|-75.73396|Cruz del Sur
+B|-13.84067|-76.25638|Cruz del Sur
+B|-13.82954|-76.24531|Cruz del Sur
+B|-13.53306|-71.96879|Cruz del Sur
+B|-9.51990|-77.53168|Cruz del Sur
+B|-8.10381|-79.02358|Cruz del Sur
+B|-5.19882|-80.63039|Cruz del Sur
+B|-3.56809|-80.45896|Cruz del Sur
+B|-5.14038|-78.99664|DIVINO SEÑOR
+B|-6.22725|-77.86737|Dias
+B|-5.71410|-78.80545|Directs to Chachapoyas
+B|-9.04637|-77.81120|Dorado
+B|-15.50318|-70.12860|Dorado express
+B|-12.06599|-77.02179|E. T. Oltursa
+B|-13.63492|-72.88770|E.T El Apurimeño - a Antabamba
+B|-12.87001|-72.69312|E.T Puerto Málaga
+B|-12.03306|-77.11353|E4 - Parking Authorized Buses
+B|-8.10320|-79.02497|EMTRAFESA
+B|-4.89555|-80.68649|EPPO SULLANA
+B|-4.58173|-81.26796|EPPO Talara
+B|-12.06079|-77.02802|ETECSA
+B|-6.03805|-76.97117|ETRISA
+B|-12.06633|-75.20887|ETUCSA
+B|-5.08742|-81.09885|Econociva
+B|-8.10140|-79.01020|Ecotur
+B|-13.15717|-74.22370|Ecotur Drakos
+B|-11.92003|-75.31526|Edatur
+B|-14.49297|-71.46802|El Cruce a Consapata
+B|-14.36255|-71.31467|El Cruce a Descanso y Quehue
+B|-14.37121|-71.36604|El Cruce a Quehe Langui
+B|-14.36605|-71.36257|El Cruce a Quehue y Descanso
+B|-14.34654|-71.37984|El Cruce a Yanaoca y Sicuani
+B|-14.32036|-71.60435|El Cruce para ir Colegio
+B|-14.32536|-71.74920|El Cruce para ir a Capilla
+B|-14.36583|-71.61480|El Cruce para ir a la Capilla
+B|-7.16387|-78.51014|El Cumbe
+B|-6.77037|-79.83316|El Cumbe
+B|-8.09967|-79.03668|El Dorado
+B|-5.19149|-80.63112|El Dorado
+B|-3.56712|-80.45935|El Dorado
+B|-9.53052|-77.53205|El Rapido (Huallanca, La Union, Huanuco)
+B|-8.10636|-79.03302|El Sol
+B|-9.04723|-77.81111|El Special
+B|-14.49439|-71.46469|El cruce a Huancarpata
+B|-9.52689|-77.52771|El veloz
+B|-14.82803|-74.94436|Emp. Cueva
+B|-6.23925|-78.71322|Empresa Buses San Andres
+B|-16.35374|-72.18803|Empresa Colca
+B|-11.93626|-77.09006|Empresa De Transporte Y Servicios Amancaes. S.A
+B|-6.67929|-78.52088|Empresa Manantial
+B|-12.78524|-74.96595|Empresa Molina
+B|-9.52596|-77.53196|Empresa Transportes Camones
+B|-12.03722|-76.95326|Empresa de Transporte Asunción
+B|-8.05452|-79.07767|Empresa de Transporte Los Girasoles Service
+B|-5.17435|-80.69078|Empresa de Transporte Super star
+B|-8.11867|-79.02477|Empresa de Transportes 14 (bus to Huaraz)
+B|-9.07709|-78.58645|Empresa de Transportes 2000
+B|-6.03514|-76.97123|Empresa de Transportes Boris S.A.
+B|-16.07544|-72.49068|Empresa de Transportes Del Carpio
+B|-11.97773|-77.10765|Empresa de Transportes El 10
+B|-9.29501|-76.00051|Empresa de Transportes GM Lima-Tingo Maria
+B|-8.10002|-79.06256|Empresa de Transportes Huanchaco
+B|-12.06265|-77.02664|Empresa de Transportes La Merced
+B|-11.93650|-77.09454|Empresa de Transportes Mariscal Ramón Castilla S.A.
+B|-12.06623|-77.03181|Empresa de Transportes Moquegua Turismo
+B|-15.21572|-73.34700|Empresa de Transportes Santa Clara
+B|-15.21587|-73.34687|Empresa de Transportes Via SAC
+B|-8.06423|-79.05132|Empresa de Transportes Vigo S.A.
+B|-11.91986|-75.31532|Empresa de Transportes Warivilca
+B|-12.03712|-76.95297|Empresa de Turismo Santa María
+B|-16.31330|-71.55608|Empresa de transporte "warash"
+B|-11.56424|-77.26940|Empresa de transporte y turismo Santa Inés
+B|-9.52646|-77.52697|Empresa de transportes 14 S.R.L.
+B|-15.21530|-73.34655|Empresa de transportes Chavín Express
+B|-6.76264|-79.83699|Empresa de turismo Atahualpa
+B|-16.35467|-72.18786|Empresas de Minibans
+B|-12.06625|-77.03267|Emtrafesa
+B|-8.09453|-79.03886|Emtrafesa
+B|-7.22239|-79.43773|Emtrafesa
+B|-6.77657|-79.83868|Emtrafesa
+B|-7.73376|-79.30065|Emtrafesa bus station
+B|-5.19005|-80.63161|Emtrafresa
+B|-8.09532|-79.00958|Emtravesa
+B|-12.08862|-77.01728|Enlaces
+B|-5.18258|-80.64343|Eppo
+B|-4.17931|-81.12964|Eppo
+B|-4.10661|-81.05243|Eppo
+B|-4.26720|-81.21859|Eppo s.a.
+B|-9.47459|-78.29689|Erik el Rojo
+B|-8.12652|-79.02205|Erik el Rojo (a Casma, Lima)
+B|-12.02735|-77.01097|Estaciom Caja de Aguas
+B|-12.10266|-77.02733|Estacion Aramburú
+B|-7.39710|-79.56720|Estación
+B|-12.04567|-77.04281|Estación 2 de Mayo
+B|-11.94700|-77.06053|Estación 22 de Agosto
+B|-12.12938|-77.02284|Estación 28 de Julio
+B|-11.93556|-77.05668|Estación Andrés Belaunde
+B|-12.11321|-77.02598|Estación Angamos
+B|-8.01517|-79.06820|Estación Arco Iris Express
+B|-12.14016|-77.01779|Estación Balta
+B|-12.12519|-77.02420|Estación Benavides
+B|-8.11995|-79.00868|Estación Caballito de Totora
+B|-8.04888|-79.05344|Estación California "A"
+B|-8.00665|-79.07008|Estación California "C"
+B|-12.08241|-77.02658|Estación Canadá
+B|-12.09661|-77.02499|Estación Canaval y Moreyra
+B|-12.03653|-77.04364|Estación Caquetá
+B|-12.05773|-77.03598|Estación Central
+B|-11.89695|-77.03769|Estación Chimpu Ocllo
+B|-12.05229|-77.03284|Estación Colmena
+B|-8.08723|-78.96242|Estación Corazón de Jesus
+B|-12.10848|-77.02645|Estación Domingo Orué
+B|-13.55411|-71.85661|Estación E.T San Jerónimo S.A (RTU-01)
+B|-13.53182|-71.89885|Estación E.T Servicio Rápido S.A (RTU-16)
+B|-8.08777|-78.96290|Estación El Aguila
+B|-8.06336|-78.99084|Estación El Cortijo
+B|-8.04645|-79.08557|Estación El Icaro
+B|-12.01130|-77.05294|Estación El Milagro
+B|-12.15952|-77.01892|Estación Escuela Militar
+B|-12.05761|-77.04179|Estación España
+B|-8.01379|-79.06615|Estación Esperanza Express
+B|-12.06853|-77.03214|Estación Estadio Nacional
+B|-12.15296|-77.01969|Estación Estadio Unión
+B|-12.01745|-77.05154|Estación Honorio Delgado
+B|-8.08984|-79.11556|Estación Huanchaco
+B|-11.99875|-77.05520|Estación Independencia
+B|-11.98955|-77.05702|Estación Izaguirre
+B|-12.08935|-77.02352|Estación Javier Prado
+B|-12.04929|-77.03277|Estación Jirón de la Unión hacia el Norte
+B|-12.04848|-77.03404|Estación Jirón de la Unión hacia el Sur
+B|-8.04807|-79.00849|Estación La Libertad
+B|-11.95488|-77.05993|Estación Las Vegas
+B|-6.77933|-79.83509|Estación Lima
+B|-8.06020|-79.02196|Estación Los Diamantes
+B|-8.05455|-79.07772|Estación Los Girasoles
+B|-11.91585|-77.04827|Estación Los Incas
+B|-12.00184|-77.05482|Estación Los Jazmines
+B|-8.05301|-79.07044|Estación Los Modernos Girasoles
+B|-8.06775|-78.98037|Estación Luz Divina
+B|-8.04757|-79.00012|Estación Luz Divina
+B|-8.17841|-78.99211|Estación Miramar
+B|-8.06223|-79.03205|Estación Miramar
+B|-8.06023|-79.02210|Estación Mochica
+B|-9.72352|-77.45744|Estación Movilbus, Z-buss, Julio César
+B|-12.07610|-77.02922|Estación México
+B|-11.98274|-77.05860|Estación Naranjal
+B|-8.13866|-79.05723|Estación Nuevo California
+B|-8.06016|-79.02211|Estación Nuevo Diamante
+B|-8.01464|-79.06798|Estación Nuevo Girasoles "B"
+B|-8.04513|-79.06741|Estación Nuevo Girasoles "JJ"
+B|-9.83117|-76.80290|Estación Pachas
+B|-11.99488|-77.05599|Estación Pacífico
+B|-12.02957|-77.04423|Estación Parque del Trabajo
+B|-12.13594|-77.01867|Estación Plaza de Flores
+B|-12.05220|-77.04226|Estación Quilca
+B|-12.11896|-77.02593|Estación Ricardo Palma
+B|-8.06369|-79.02248|Estación Salaverry Express
+B|-8.17872|-78.99170|Estación San Isidro Labrador
+B|-8.06195|-79.03381|Estación San Isidro Labrador
+B|-8.08742|-78.96265|Estación Santa Catalina
+B|-8.05470|-79.02324|Estación Santa Lucia de Moche
+B|-8.08726|-78.96247|Estación Señor de la Misericordia
+B|-8.06061|-79.04404|Estación Señor de los Milagros
+B|-12.04617|-77.03786|Estación Tacna hacia el Norte
+B|-12.04656|-77.03722|Estación Tacna hacia el Sur
+B|-12.16864|-77.01862|Estación Terán
+B|-7.99302|-79.07445|Estación Titanic Express
+B|-12.00653|-77.05398|Estación Tomas Valle
+B|-12.02405|-77.04911|Estación UNI
+B|-11.96277|-77.06234|Estación Universidad
+B|-15.84104|-70.02045|Estación Virgen de Fátima
+B|-8.13799|-79.06134|Estación Virgen de la Puerta
+B|-8.04930|-78.99457|Estación Virgen del Arco
+B|-13.64146|-72.88564|Estación de Abancaya
+B|-12.09856|-77.03264|Estación de Autobuses República de Colombia
+B|-13.26329|-72.26928|Estación de autobús
+B|-16.40548|-71.53156|Estación de buses La Joya
+B|-6.48436|-76.37205|Estación de buses a Roque
+B|-16.56409|-69.03813|Estación de combis y buses
+B|-12.06205|-77.02806|Estrella Polar
+B|-9.93269|-76.24384|Estrella Polar
+B|-8.38764|-74.56288|Estrella Polar
+B|-13.06142|-76.35472|Ettusa
+B|-12.08935|-77.01576|ExcluCIVA
+B|-9.93379|-76.24035|Expreso Acosta
+B|-13.15599|-74.22588|Expreso Antezana
+B|-12.07350|-77.00233|Expreso Antezana Hermanos
+B|-3.55660|-80.44994|Expreso Internacional Ormeño
+B|-13.65814|-73.39033|Expreso Internacional Palomino
+B|-12.07950|-77.01169|Expreso Internacional Palomino
+B|-9.93069|-76.24239|Expreso Jara
+B|-13.15604|-74.22564|Expreso Libertadores
+B|-12.06175|-77.01982|Expreso Lobato
+B|-12.06382|-77.02767|Expreso Los Chancas
+B|-13.15535|-74.22575|Expreso Molina Union
+B|-12.07281|-77.00300|Expreso Molina Union (Cargo)
+B|-13.65830|-73.40073|Expreso Molina Unión
+B|-12.04048|-76.95329|Expreso Perez e Hijos S.A.C.
+B|-9.04766|-77.81096|Expreso Yungay
+B|-13.65905|-73.39159|Expreso los Chankas
+B|-13.15649|-74.22381|Expreso los Chankas
+B|-11.92015|-75.31537|Express Huaribamaba
+B|-12.06210|-77.02789|Express Internacional Palomino
+B|-9.03790|-76.95295|Express Sifuentes
+B|-8.38329|-74.53437|Express Tourist Sol del Oriente
+B|-16.24724|-69.08939|Expresso Turismo Mayta
+B|-16.24719|-69.08947|Expresso Turismo Sol Andino
+B|-13.48101|-71.96377|Final Cristo Blanco
+B|-14.82785|-74.94495|Flores
+B|-12.06372|-77.03211|Flores
+B|-8.10408|-79.02274|Flores
+B|-12.06461|-77.03323|Flores 683
+B|-13.53120|-71.96743|Flores Cargo
+B|-13.71009|-76.20451|Flores Cetur
+B|-13.07688|-76.39102|Flores Cetur
+B|-17.64842|-71.34560|Flores Hermanos
+B|-16.42162|-71.54389|Flores Hermanos
+B|-14.53493|-75.18729|Flores Hermanos
+B|-14.06271|-75.73188|Flores Hermanos
+B|-5.19954|-80.63117|Flores Hermanos
+B|-14.06424|-75.73281|Flores Hnos.
+B|-14.06540|-75.73701|Flores VIP
+B|-9.04733|-77.81110|Flores VIP
+B|-12.06458|-77.03321|Flores bus station (Tumbes, Tacna, Desaguadero)
+B|-8.10383|-79.02253|Flores terminal
+B|-11.83464|-77.11343|Fundición
+B|-12.06300|-77.03146|G&M
+B|-5.18257|-80.65188|GECHISA
+B|-6.80078|-79.85033|GH BUS
+B|-12.07326|-77.02981|GH Bus
+B|-7.17017|-78.50246|GH Bus
+B|-6.22497|-77.86803|GH Bus
+B|-9.93373|-76.24213|GM Internacional S.A.C.
+B|-13.42304|-71.85085|Gare routière (collectivo a Cusco)
+B|-12.04090|-77.02002|Gran Terminal Acho
+B|-12.00507|-77.05561|Gran Terminal Terrestre Plaza Norte
+B|-9.93143|-76.24356|Gsn
+B|-9.93256|-76.24179|Guadelupe Tours
+B|-13.41677|-76.13862|Guayabo
+B|-8.37836|-74.52334|Henry harbour
+B|-5.19318|-80.64081|Hermanos Tume Transportes
+B|-13.41706|-76.13680|Hoja Redonda
+B|-10.74777|-77.76449|Huaraz
+B|-10.74377|-77.76725|Huaraz
+B|-9.52052|-77.52726|Huaraz Bus Terminal
+B|-12.06597|-77.03189|Huaraz buss terminal
+B|-13.52797|-71.97111|INKA express
+B|-6.78339|-79.84574|ITTSA
+B|-12.06651|-77.03229|ITTSA BUS
+B|-14.84058|-74.94217|Imperial Cusco
+B|-9.93533|-76.24297|Internacional Crucero
+B|-5.18256|-80.64500|Ittsa Bus
+B|-4.10449|-81.04125|Ittsa Bus
+B|-8.12161|-79.04315|Ittsa bus
+B|-6.77623|-79.84408|IttsaBus
+B|-6.77017|-79.84464|JEANBUCA transport
+B|-13.70945|-76.20158|Jaksa
+B|-12.06318|-77.03078|Jaksa
+B|-6.57377|-76.13605|Jaquerinos
+B|-15.49209|-70.13340|Juliaca a puno
+B|-9.52669|-77.15756|Julio César
+B|-9.52364|-77.52462|Julio César
+B|-9.04835|-77.81116|Julio César
+B|-12.06565|-77.03208|Julio César S. R. L.
+B|-9.52548|-77.52697|Julio César S. R. L.
+B|-14.06796|-75.73946|Julsa
+B|-13.52537|-71.98642|K'intu Investments
+B|-6.22717|-77.87236|Karlita
+B|-6.77621|-79.83988|Kuélap
+B|-14.33205|-71.37668|K’uty Palomani
+B|-13.55336|-71.86148|La Encantada
+B|-9.06975|-78.58609|La Perla del Alto Mayo
+B|-3.74000|-73.24035|Lao port
+B|-13.10432|-72.04408|Lares
+B|-16.33121|-71.57220|Las Flores 3
+B|-13.69495|-76.01677|Lateral 4
+B|-9.93248|-76.24191|Leon Express
+B|-12.06296|-77.02749|León de Huánuco
+B|-9.93384|-76.23853|León de Huánuco
+B|-9.30136|-76.00481|León de Huánuco
+B|-12.06046|-77.02821|Libertadores
+B|-6.70376|-79.90253|Linea
+B|-8.12648|-79.02778|Linea Transporte
+B|-14.06617|-75.72697|Los Aquijes
+B|-16.30666|-71.55174|Los CANARIOS
+B|-5.19122|-80.63188|Línea
+B|-6.87047|-78.14447|Main Bus Terminal
+B|-9.92820|-76.23308|Marginal Express
+B|-11.86669|-75.37212|Mega Bus
+B|-12.06085|-77.02820|Megabus
+B|-9.93375|-76.24592|Mercedes
+B|-12.19396|-77.00237|Metropolitano
+B|-12.19076|-77.00195|Metropolitano Patio Sur
+B|-11.91874|-77.04688|Metropolitano Patio Taller Norte
+B|-9.14023|-77.74707|Minibus station
+B|-13.63499|-72.88829|Minibus to Andahuaylas
+B|-4.45695|-81.27701|Minibuses to Talara
+B|-15.48275|-70.13617|Minivan a Cusco
+B|-12.07509|-75.20678|Molina
+B|-9.52816|-77.53178|Mosna
+B|-9.10146|-77.01653|Mosna
+B|-12.08210|-77.01305|Movil Bus
+B|-9.04836|-77.80334|Movil Bus
+B|-8.38568|-74.57179|Movil Bus - Pucallpa
+B|-9.52010|-77.53354|Movil Bus Huaraz
+B|-12.01016|-77.06633|Movil Bus Lima Norte Terminal
+B|-12.06566|-77.03273|Movil Tours
+B|-12.04183|-77.07065|Movil Tours
+B|-11.98822|-77.06507|Movil Tours
+B|-9.52683|-77.52726|Movil Tours
+B|-8.12500|-79.03823|Movil Tours
+B|-6.77600|-79.84307|Movil Tours
+B|-6.48257|-76.37672|Movil Tours
+B|-6.04587|-76.97052|Movil Tours
+B|-5.94257|-77.98106|Movil Tours
+B|-6.22784|-77.86790|Movil tours
+B|-10.75574|-77.75559|Movilbus
+B|-9.34827|-77.17183|Movilbus
+B|-11.12404|-75.35621|Móvil Bus
+B|-9.28219|-77.64991|Móvil Bus
+B|-5.92816|-77.31461|Móvil Bus
+B|-9.13951|-77.74543|Móvilbus
+B|-11.97534|-77.11259|NORLIMA SA
+B|-9.52287|-77.52709|New Yungay-Caraz Terminal
+B|-16.35474|-72.18797|Nido
+B|-13.52291|-71.97255|No bus departures for Pisac
+B|-8.13885|-79.05693|Nuevo California
+B|-4.90493|-80.69697|Nuevo EPPO
+B|-8.09931|-79.03683|Nuevo Pakatnamu
+B|-9.52838|-77.53109|Olguita Tours
+B|-13.26092|-72.26252|Ollantaytambo Bus Terminal
+B|-14.07081|-75.73460|Oltursa
+B|-12.10806|-77.01769|Oltursa
+B|-9.52593|-77.52736|Oltursa
+B|-8.10400|-79.02267|Oltursa
+B|-6.76973|-79.84516|Oltursa
+B|-5.19915|-80.63194|Oltursa
+B|-4.10632|-81.04849|Oltursa
+B|-3.55969|-80.45279|Oltursa
+B|-14.06339|-75.73199|Ormeño
+B|-16.40626|-71.53204|Orquídeas Tours (Omate)
+B|-13.41128|-76.12474|PARADERO A HACIENDA SAN JUAN
+B|-14.84200|-74.94108|PARADERO A PUQUIO
+B|-8.09036|-79.00691|Pacífico
+B|-13.68299|-76.15959|Palomino
+B|-13.53302|-71.96827|Palomino
+B|-7.16740|-78.49610|Paradero
+B|-16.34269|-71.61026|Paradero 2
+B|-16.34203|-71.61276|Paradero 5, J. L. B. y Rivero
+B|-9.28197|-77.64725|Paradero Acompampa
+B|-9.93108|-76.24399|Paradero Ambo
+B|-11.93004|-76.96909|Paradero Banchero
+B|-13.51717|-71.95202|Paradero Bombonera
+B|-6.49917|-76.35416|Paradero Chazuta
+B|-9.45251|-78.22521|Paradero Huancamuña
+B|-11.93507|-77.09655|Paradero La Ensenada Los Chinos
+B|-13.16354|-74.22588|Paradero Ruta 14
+B|-14.38636|-71.49560|Paradero a Chaupibanda
+B|-9.14694|-78.28103|Paradero a Chimbote
+B|-14.43333|-71.42064|Paradero a Consabamba
+B|-14.28291|-71.45034|Paradero a Hanccoyo
+B|-14.32282|-71.38035|Paradero a K’uty Palomani
+B|-14.12911|-71.51730|Paradero a Pampawasi
+B|-14.43230|-71.42095|Paradero a Parccoma
+B|-12.07418|-75.20403|Paradero a Pazos
+B|-14.35845|-71.44915|Paradero a Q’eswachaka
+B|-12.07347|-75.20467|Paradero autos a Huancavelica
+B|-7.88767|-79.22234|Paradero de Buses de Cartavio
+B|-14.35919|-71.53504|Paradero de Chaupibanda
+B|-13.98129|-71.48883|Paradero de Chiquicahuana
+B|-7.92634|-79.20701|Paradero de Chiquitoy
+B|-14.50606|-71.48570|Paradero de Consapata
+B|-14.28878|-71.44636|Paradero de Haquira
+B|-14.13261|-71.67483|Paradero de Huayllabamba
+B|-14.32926|-71.44802|Paradero de Humahuañapampa
+B|-14.13846|-71.50083|Paradero de Llalla
+B|-14.20665|-71.64454|Paradero de Pataqueña
+B|-14.37358|-71.47447|Paradero de Perccaro
+B|-14.18901|-71.45530|Paradero de Qquecha Qquecha
+B|-14.39964|-71.49658|Paradero de Winchiri
+B|-12.06145|-77.11675|Paradero del Transporte de la UNAC
+B|-13.57890|-71.81492|Paradero feria de carros
+B|-12.02403|-77.13368|Paradero linea 129
+B|-13.52357|-71.97808|Pavitos
+B|-13.52392|-71.97760|Pavitos. Buses to Urubamba
+B|-13.52366|-71.97772|Pavitos. Cars to Ollantaytambo.
+B|-13.52380|-71.97776|Pavitos. Cars to Urubamba
+B|-13.83430|-76.24915|Peru Bus
+B|-13.53306|-71.96982|Peru Hop;Bolivia Hop
+B|-12.05833|-77.03117|PeruBus
+B|-13.52784|-71.97122|PeruHop Bus Terminal
+B|-8.38742|-74.56217|PeruvianBus - Pucallpa
+B|-12.07656|-77.02659|Perú Bus/Soyuz - Terminal de Cercanías (Cargo)
+B|-12.07568|-77.02679|Perú Bus/Soyuz - Terminal de Cercanías (Passenger)
+B|-16.62167|-72.70972|Perú Lider
+B|-13.71406|-76.15394|Perú bus
+B|-8.10163|-79.00997|Picaflor tours Trujillo
+B|-5.19997|-80.63128|Plus Perú
+B|-6.77596|-79.84090|Primavera
+B|-14.06597|-75.72670|Pueblo Nuevo
+B|-12.16968|-76.98010|Puente Alipio Ponce
+B|-12.13315|-76.97886|Puente Benavides
+B|-14.17007|-71.55673|Puente Totora
+B|-12.68098|-72.27677|Quebrada Honda Bus Terminal
+B|-12.04002|-77.09861|REYNOSO-TACNA Paradero Inicial
+B|-12.04361|-77.04210|Ramón Castilla
+B|-9.04700|-77.81150|Rapido VIP
+B|-12.06395|-77.03281|Real Bus
+B|-8.38730|-74.56237|Real Chancas
+B|-12.06047|-77.02751|Rey Bus
+B|-13.63492|-72.88717|Rey De Los Andes
+B|-9.92726|-76.23780|Rey Tours
+B|-9.04766|-77.81072|Rochaz
+B|-12.06666|-77.02724|Romeliza
+B|-11.99139|-77.08780|Ronco Peru
+B|-5.19986|-80.63064|Ronco Perú
+B|-12.06284|-77.03036|Ronco Perú - Plaza Mancokapac
+B|-6.48432|-76.37201|Roque
+B|-12.17302|-77.01511|Rosario de Villa Station
+B|-15.83869|-70.02607|Rossy Tours
+B|-8.09637|-79.03836|Royal Palace
+B|-7.16630|-78.50810|Royal palace's
+B|-13.41092|-76.12560|SIERRA DE ALTO LARAN
+B|-16.41663|-71.47378|SOTUR Express
+B|-11.98962|-77.10430|Sajy Bus
+B|-9.92752|-76.23307|San Juan
+B|-9.29713|-76.00210|San Juan
+B|-14.06300|-75.72925|San Juan Bautista
+B|-9.52836|-77.53279|Sandoval
+B|-9.52637|-77.15718|Sandoval
+B|-9.17102|-76.95997|Sandoval
+B|-9.15131|-76.99261|Sandoval
+B|-9.30507|-77.01796|Sandoval / gasolinera rural
+B|-13.16583|-72.54298|Santuario
+B|-9.93538|-76.24305|Schaft
+B|-13.15608|-74.22614|SebasTours
+B|-12.07544|-75.20548|Señor de Ataco
+B|-12.78803|-74.97039|Señor de Oropesa
+B|-16.32768|-71.56930|Shalom Las Flores
+B|-14.26058|-71.23090|Sicuani
+B|-8.86548|-77.35755|Sifuentes
+B|-9.28267|-77.64722|Sociedad de beneficencia pública
+B|-13.07801|-76.38944|Soyuz Cañete
+B|-14.82852|-74.94283|Soyuz terminal de Nasca
+B|-9.05078|-77.80729|Suiza Peruana Express
+B|-5.19911|-80.63267|Sullana Express
+B|-9.37177|-75.03441|Sungaro Terminal
+B|-9.04713|-77.81113|Sunmy
+B|-15.49096|-70.12299|Sur Oriente
+B|-13.52606|-71.98679|T. Transfer Pto Malga Cusco-Sta Maria -Hidroelectrica
+B|-5.14035|-78.99667|TERMINAL DIVINO SEÑOR
+B|-5.14098|-78.99624|TERMINAL TERRESTRE
+B|-13.68151|-76.15974|TICRAPO PAURANGA
+B|-7.16581|-78.50421|TRC
+B|-12.10602|-77.01815|TRC Express
+B|-8.10649|-79.04643|TRC Express Terminal Terrestre
+B|-6.77840|-79.83471|TURISMO CAUTIVO
+B|-5.19994|-80.63127|Tacna Internacional
+B|-8.38873|-74.55480|Taxi to Campo Verde
+B|-13.52534|-71.98617|Taxibus to Quillabamba
+B|-6.37607|-77.91213|Teleférico for Kuelap
+B|-3.56381|-80.45604|Tepsa
+B|-8.38737|-74.56196|Tepsa - Pucallpa
+B|-6.77559|-79.84018|Tepsa Chiclayo
+B|-13.31648|-71.59702|Termin al Terrestre de Paucartambo
+B|-15.63858|-71.60571|Terminal
+B|-14.38508|-73.96028|Terminal
+B|-16.33101|-71.57208|Terminal AQP MASIVO
+B|-7.17474|-78.49113|Terminal Acuarios/Jesusanita/Trandia/Pajaten
+B|-12.85721|-72.69646|Terminal Alto Urubamba
+B|-5.69284|-78.80319|Terminal Binacional
+B|-18.00027|-70.26000|Terminal Bolognesi
+B|-10.74760|-77.75057|Terminal Buen Vista
+B|-11.49474|-77.20838|Terminal Che Gamarra
+B|-6.23864|-77.86807|Terminal ETSA
+B|-16.45494|-71.53770|Terminal Emarsistran S.A.
+B|-6.62687|-78.94640|Terminal Emp.Transportes Pasamayo
+B|-6.62674|-78.94571|Terminal Emp.Transportes Ángel Divino
+B|-13.53388|-71.91076|Terminal Enaco - Andina - Calca
+B|-13.53320|-71.91131|Terminal Enaco - Urubamba
+B|-9.92449|-76.23303|Terminal Etnasa
+B|-18.00488|-70.25984|Terminal Flores
+B|-6.77620|-79.84342|Terminal Flores Hermanos
+B|-13.41602|-76.13951|Terminal Hnos Flores
+B|-9.52590|-77.52704|Terminal Huaraz — Caraz
+B|-8.12154|-79.04277|Terminal ITTSA Bus
+B|-13.30964|-72.11400|Terminal Inkaqpurinan
+B|-14.88407|-70.58450|Terminal Interdistrital La Rinconada
+B|-13.41674|-76.14310|Terminal Jaksa Chincha
+B|-15.83319|-70.02789|Terminal Juliaca
+B|-4.91163|-80.69697|Terminal Lima
+B|-17.99474|-70.24428|Terminal Los Incas
+B|-6.75230|-79.86663|Terminal Manon
+B|-6.75566|-79.86330|Terminal Marañón/Gacela
+B|-12.17911|-77.00985|Terminal Matellini
+B|-10.77554|-75.81141|Terminal Municipal - Paucartambo
+B|-6.84644|-79.30159|Terminal Oyotún-Chiclayo
+B|-12.78496|-74.97182|Terminal Pampa Amarilla
+B|-13.33684|-72.06591|Terminal Picaflor Andino
+B|-6.75772|-79.86065|Terminal Plaza Norte
+B|-8.82016|-77.46115|Terminal Renzo, Sifuentes, Famatours
+B|-13.17097|-74.21467|Terminal San Juan Bautista
+B|-8.11731|-79.01837|Terminal Santa Cruz
+B|-5.20368|-80.64697|Terminal Satélite Bajo Piura
+B|-13.16934|-74.21120|Terminal Sur de Ayacucho
+B|-17.66179|-71.33124|Terminal Terrestre
+B|-14.35916|-70.02944|Terminal Terrestre
+B|-14.06447|-70.43526|Terminal Terrestre
+B|-13.51142|-72.52750|Terminal Terrestre
+B|-12.87049|-72.69492|Terminal Terrestre
+B|-11.05324|-75.32332|Terminal Terrestre
+B|-10.73753|-75.28002|Terminal Terrestre
+B|-9.53208|-77.53215|Terminal Terrestre (Catac, Chiquian)
+B|-16.34179|-71.58347|Terminal Terrestre Arequipa Norte
+B|-12.15649|-76.98422|Terminal Terrestre Atocongo
+B|-14.88463|-70.59631|Terminal Terrestre Ayaviri
+B|-11.42037|-75.69419|Terminal Terrestre Carolina
+B|-5.19220|-80.61217|Terminal Terrestre Castilla
+B|-12.51526|-73.82468|Terminal Terrestre Central de Pichari
+B|-10.68656|-76.25650|Terminal Terrestre Cerro de Pasco
+B|-9.53547|-77.53166|Terminal Terrestre Challwa
+B|-9.58542|-77.17591|Terminal Terrestre Chavín de Huántar
+B|-5.12310|-80.17307|Terminal Terrestre Chulucanas
+B|-7.36438|-78.80385|Terminal Terrestre Contumazá
+B|-9.10515|-78.55808|Terminal Terrestre El Chimbador
+B|-16.08205|-69.64733|Terminal Terrestre El Collao
+B|-17.98660|-70.24608|Terminal Terrestre El Collasuyo
+B|-4.91736|-80.33763|Terminal Terrestre Godofredo García Baca
+B|-5.23659|-79.45265|Terminal Terrestre Huancabamba
+B|-18.00425|-70.25898|Terminal Terrestre Internacional Manuel Odría
+B|-16.56304|-69.04500|Terminal Terrestre Interregional
+B|-4.66358|-80.24600|Terminal Terrestre Las Lomas
+B|-5.75763|-78.43576|Terminal Terrestre Leyva
+B|-11.97151|-77.06620|Terminal Terrestre Lima Norte Los Olivos
+B|-12.06065|-75.20909|Terminal Terrestre Los Andes
+B|-15.48966|-70.11948|Terminal Terrestre Micaela Bastidas
+B|-17.19142|-70.94791|Terminal Terrestre Moquegua
+B|-5.19357|-79.97235|Terminal Terrestre Morropón
+B|-6.05528|-77.16579|Terminal Terrestre Municipal
+B|-10.81052|-76.87584|Terminal Terrestre Máximo Luna Jiménez
+B|-18.00526|-70.25810|Terminal Terrestre Nacional Manuel Odría
+B|-13.76112|-71.84849|Terminal Terrestre Paruro
+B|-9.05113|-77.80673|Terminal Terrestre Qhapaq Ñan - Caraz
+B|-12.06353|-76.99576|Terminal Terrestre Salazar
+B|-5.20175|-80.63102|Terminal Terrestre San Miguel de Aymara
+B|-5.98631|-79.74229|Terminal Terrestre Santa Rosa
+B|-14.45414|-72.08643|Terminal Terrestre Santo Tomás
+B|-11.25993|-74.64460|Terminal Terrestre Satipo
+B|-9.53217|-77.53206|Terminal Terrestre Sur Catac Huaraz
+B|-13.52619|-71.98538|Terminal Terrestre UTRASIC
+B|-15.49212|-70.13337|Terminal Terrestre Virgen de Fatima
+B|-12.06450|-76.99628|Terminal Terrestre Yerbateros
+B|-13.63937|-72.88519|Terminal Terrestre de Abancay
+B|-13.46180|-72.14585|Terminal Terrestre de Anta
+B|-14.92969|-70.20074|Terminal Terrestre de Azángaro
+B|-5.64311|-78.52571|Terminal Terrestre de Bagua
+B|-11.82664|-76.61806|Terminal Terrestre de Callahunca
+B|-16.63310|-72.69163|Terminal Terrestre de Camaná
+B|-7.48107|-78.82039|Terminal Terrestre de Cascas
+B|-14.12240|-72.25548|Terminal Terrestre de Challhuahuacho
+B|-15.20837|-72.89464|Terminal Terrestre de Cotahuasi
+B|-13.53460|-71.96574|Terminal Terrestre de Cusco
+B|-14.80067|-71.40639|Terminal Terrestre de Espinar
+B|-11.10897|-77.59548|Terminal Terrestre de Huacho
+B|-12.94525|-74.24522|Terminal Terrestre de Huanta
+B|-10.07056|-78.15561|Terminal Terrestre de Huarmey
+B|-16.21969|-69.47092|Terminal Terrestre de Juli
+B|-12.98755|-74.72382|Terminal Terrestre de Lircay
+B|-12.65324|-76.64001|Terminal Terrestre de Mala
+B|-17.01338|-72.02226|Terminal Terrestre de Mollendo
+B|-5.19355|-79.97256|Terminal Terrestre de Morropón
+B|-6.04518|-76.97036|Terminal Terrestre de Moyobamba
+B|-14.82820|-74.94250|Terminal Terrestre de Nazca
+B|-10.57800|-75.39837|Terminal Terrestre de Oxapampa
+B|-7.73197|-79.30305|Terminal Terrestre de Paiján
+B|-14.53544|-75.18863|Terminal Terrestre de Palpa
+B|-12.39505|-74.86548|Terminal Terrestre de Pampas
+B|-12.57848|-69.20051|Terminal Terrestre de Puerto Maldonado
+B|-15.84363|-70.01699|Terminal Terrestre de Puno
+B|-14.69525|-74.12656|Terminal Terrestre de Puquio
+B|-12.86124|-72.69002|Terminal Terrestre de Quillabamba
+B|-5.56469|-80.81628|Terminal Terrestre de Sechura
+B|-11.42035|-75.69343|Terminal Terrestre de Tarma
+B|-13.68376|-71.62499|Terminal Terrestre de Urcos
+B|-14.21797|-71.42908|Terminal Terrestre de Yanaoca, Canas
+B|-16.34827|-72.18841|Terminal Terrestre del Carpio
+B|-5.69758|-78.80826|Terminal Troya
+B|-11.91426|-75.31484|Terminal Tulumayo
+B|-10.75547|-77.76058|Terminal Turismo Barranca
+B|-3.76105|-73.25233|Terminal Turistico de Iquitos
+B|-13.63790|-72.90190|Terminal Wari Palomino
+B|-15.49979|-70.11999|Terminal Zonal
+B|-14.87842|-70.59937|Terminal Zonal Inter Distrital Cono Norte-Ayaviri
+B|-15.48379|-70.14012|Terminal Zonal Salida al Cuzco
+B|-15.47949|-70.12318|Terminal Zonal San Francisco
+B|-12.06461|-75.20971|Terminal Zonal Selva Central
+B|-16.09086|-69.63467|Terminal Zonal de Ilave
+B|-11.93396|-76.69328|Terminal a Callahuanca
+B|-6.37252|-77.91090|Terminal a Chachapoyas
+B|-5.75837|-78.43901|Terminal a Chachapoyas
+B|-12.03044|-76.92256|Terminal a Pasco
+B|-15.49129|-70.12472|Terminal a Puno
+B|-13.31626|-71.59695|Terminal de Buses
+B|-11.50052|-77.20618|Terminal de Buses
+B|-14.01034|-73.83996|Terminal de Buses Querobamba
+B|-13.52662|-71.98563|Terminal de Buses UTRASIC
+B|-11.10896|-77.59568|Terminal de Cercanias
+B|-7.22030|-79.43369|Terminal de Chepen
+B|-6.42010|-76.52082|Terminal de Colectivos a Tarapoto
+B|-14.06372|-75.73319|Terminal de Ica
+B|-11.78130|-75.49617|Terminal de Jauja
+B|-14.06782|-70.42915|Terminal de buses
+B|-8.55732|-77.62797|Terminal de buses
+B|-9.34640|-77.16887|Terminal de buses Huari
+B|-12.87406|-72.69167|Terminal de buses Kintu
+B|-6.48312|-76.38148|Terminal de buses Morales
+B|-13.52399|-71.98366|Terminal de buses a Izcuchaca
+B|-5.14185|-79.00013|Terminal del norte - Namballe
+B|-13.65425|-73.38673|Terminal for Pacucha, Sondor
+B|-13.65575|-73.38576|Terminal por Pacucha
+B|-16.24776|-69.09879|Terminal privado interprovincial de pasajeros Yunguyo
+B|-11.77199|-75.49212|Terminal terestre
+B|-13.53490|-71.96536|Terminal terrestre
+B|-7.17463|-78.49124|Terminal terrestre
+B|-8.54061|-78.67577|Terminal terrestre Chao
+B|-15.36880|-70.36890|Terminal terrestre Lampa
+B|-11.05883|-75.33006|Terminal terrestre Molina
+B|-3.79998|-73.30782|Terminal terrestre San Juan
+B|-8.40406|-74.57871|Terminal terrestre de Pucallpa Km 6
+B|-5.71335|-78.80541|Terminal zonal de Jaén
+B|-15.84773|-70.01498|Terminal zonal sur
+B|-6.75587|-79.86283|Terminal Ángel Divino
+B|-7.16566|-78.50727|Terminale
+B|-13.41574|-76.14054|Terninal Perubus Soyuz
+B|-11.75905|-76.29989|Terrabus Sol Rimac
+B|-12.78256|-74.99155|Terrapuerto Alberto Benavides de la Quintana
+B|-16.55693|-69.04053|Terrapuerto Privado
+B|-8.13799|-79.01782|Terrapuerto Trujillo
+B|-16.34442|-72.19106|Terrapuerto de Majes
+B|-12.01045|-77.06629|Terrapuerto del Norte
+B|-13.65958|-73.39208|Terrapuesto Andahuaylas
+B|-13.13435|-74.23072|Terrapuesto municipal Libertadores de America
+B|-13.16416|-74.22341|Tinka Tour's
+B|-15.48588|-70.12555|To Putina
+B|-8.10476|-79.02289|Tour Cascas
+B|-6.03470|-76.97160|Tourismo Selva
+B|-13.53986|-71.93019|Tourismus MER
+B|-9.04668|-77.81148|Tours Rodriguez
+B|-8.38730|-74.56220|TransAmazonica
+B|-16.32630|-71.54054|TransCayma S.A.C.
+B|-17.19001|-70.94041|Transfer a Ilo y Tacna
+B|-17.19069|-70.94131|Transfer a Puno
+B|-12.06272|-77.02773|Transmar
+B|-8.38700|-74.56047|Transmar
+B|-12.08864|-77.01731|Transmar Express SAC
+B|-12.06431|-77.02771|Transp. SULLANA EXPRESS
+B|-8.06328|-78.99044|Transport Company "El Cortijo" P.L.C
+B|-6.87212|-78.14396|Transport Virgen del Carmen
+B|-13.15670|-74.22392|Transport to Huancavelica (Fox Transportes)
+B|-6.87121|-78.14473|Transporte Amazonas Express
+B|-8.04762|-79.07056|Transporte CIELO AZUL
+B|-3.56287|-80.45630|Transporte Flores Hermanos
+B|-8.60661|-77.14851|Transporte Huacrachuco
+B|-9.28099|-77.64647|Transporte Julio César
+B|-7.16593|-78.50685|Transporte Linea
+B|-17.20547|-70.95204|Transporte San Ignacio de Loyola (Ichuña)
+B|-5.18382|-80.65085|Transporte Santangel Piura - Paita
+B|-5.21422|-80.09239|Transporte TSP
+B|-15.84558|-70.01704|Transporte local: colectivos
+B|-12.07082|-77.03096|Transporte tunesa
+B|-4.63693|-79.71425|Transporter & Tourist Service SRL.
+B|-7.16696|-78.50934|Transportes Acuario’s
+B|-6.77037|-79.83296|Transportes Acunta
+B|-12.06760|-76.99050|Transportes Balletta SAC
+B|-16.42360|-71.54084|Transportes Centella
+B|-6.77040|-79.84548|Transportes Chiclayo
+B|-5.19140|-80.63137|Transportes Chiclayo
+B|-4.58674|-81.27124|Transportes Chiclayo
+B|-9.93256|-76.24427|Transportes Cristhur
+B|-12.05102|-77.04306|Transportes Cruz del Norte
+B|-5.08735|-81.09924|Transportes DORA
+B|-5.18999|-80.63505|Transportes Dora
+B|-5.10766|-80.17037|Transportes Dora
+B|-8.10685|-79.03253|Transportes El Sol
+B|-8.11259|-79.00904|Transportes Fuentes
+B|-8.04995|-79.08655|Transportes ICARO
+B|-8.12616|-79.02759|Transportes Linea
+B|-6.80607|-79.82917|Transportes Linea
+B|-6.77572|-79.83919|Transportes Linea
+B|-12.06998|-77.03074|Transportes Línea
+B|-9.52692|-77.52714|Transportes Línea
+B|-5.19113|-80.64038|Transportes Montero
+B|-4.10621|-81.04446|Transportes Montero
+B|-4.63960|-79.71432|Transportes Poderoso Cautivo
+B|-8.09814|-79.03745|Transportes Primavera
+B|-13.52728|-71.95798|Transportes Ramos
+B|-14.53560|-75.18668|Transportes Señor de Luren
+B|-5.34573|-79.83990|Transportes TSP
+B|-4.64006|-79.71454|Transportes Vegas E.I.R.L.
+B|-8.60678|-77.14834|Transportes Yhayosheny
+B|-7.81437|-78.04757|Tunesa Express
+B|-6.76687|-79.85766|Turela
+B|-5.19156|-80.63093|Turela
+B|-9.93344|-76.24478|Turismo Armonia S.A.
+B|-12.06418|-77.02509|Turismo Barranca
+B|-6.49279|-76.37348|Turismo Cajamarca
+B|-5.94320|-77.97819|Turismo Cajamarca
+B|-12.06696|-77.03194|Turismo Cavassa
+B|-9.82852|-76.80231|Turismo Cavassa
+B|-5.20042|-80.63090|Turismo Cavassa
+B|-12.06545|-75.21028|Turismo Central
+B|-12.06369|-77.02780|Turismo Central
+B|-9.93264|-76.24394|Turismo Central
+B|-8.45610|-76.46275|Turismo Chocano
+B|-12.06509|-77.03248|Turismo Dias
+B|-8.09497|-79.03829|Turismo Dias
+B|-7.16927|-78.49927|Turismo Dias
+B|-5.20182|-80.63143|Turismo Dias
+B|-6.22716|-77.86665|Turismo Dias (to Chiclayo, Trujillo)
+B|-6.77581|-79.84092|Turismo Diaz
+B|-9.93541|-76.24013|Turismo J&J Internacional
+B|-9.52827|-77.53272|Turismo Jesus
+B|-9.93566|-76.24343|Turismo Las Brizas
+B|-9.30171|-76.00451|Turismo Las Golondrinas
+B|-10.15260|-77.15717|Turismo Nazario
+B|-10.19792|-77.03269|Turismo Nazario S.R.L.
+B|-12.06349|-76.99608|Turismo Raraz
+B|-12.06512|-77.03170|Turismo Real
+B|-9.93322|-76.24153|Turismo Real
+B|-12.03751|-76.95283|Turismo San Juan
+B|-5.94211|-77.97676|Turismo Selva
+B|-6.49150|-76.37088|Turismo Selva S.A.
+B|-6.49175|-76.37076|Turismo Selva S.A. (Collectivos)
+B|-12.06372|-77.02769|Turismo Sol Peruano
+B|-9.30033|-76.00284|Turismo Ucayali
+B|-5.90152|-76.11131|Turismo Yurimaguas
+B|-6.48158|-76.37743|Turismo ilucan ticket office
+B|-13.15651|-74.22368|Tusrismo Divino Señor S.A.C.
+B|-16.29402|-71.63609|UPIS Los Milagros Zona 1
+B|-9.52010|-77.49186|Unchus
+B|-13.30495|-72.12112|Urubamba Bus Terminal
+B|-11.93785|-77.07283|VANS PERU DE PRO A HUANDOY
+B|-11.97654|-77.08402|VANS PERU HUANDOY A PRO
+B|-13.42301|-71.85130|Van / collectivo a Cusco
+B|-6.50154|-76.36949|Vaqueros - combi hasta Chazuta
+B|-9.52696|-77.52803|Via costa
+B|-9.05087|-77.80719|Viga
+B|-16.33197|-71.57637|Virgen del Pilar
+B|-12.27910|-75.32225|Vista Alegre
+B|-9.52676|-77.52794|Vía Costa
+B|-14.82421|-74.95916|Wari Palomino
+B|-13.53246|-71.96311|Wonder Peru Expedition
+B|-9.28317|-77.64826|Z Bus
+B|-9.52676|-77.52733|ZBuss
+B|-9.04740|-77.81092|ZBuss
+B|-12.04026|-77.02410|Zbuss
+B|-11.07343|-77.59835|Zbuss
+B|-9.19095|-77.71356|Zbuss
+B|-6.77559|-79.83787|americas express
+B|-14.29767|-73.24058|chuaca
+B|-5.75232|-78.44767|colectivos a Jaén
+B|-5.69987|-78.80556|colectivos a San Ignacio
+B|-5.14105|-78.99620|colectivos y buses
+B|-9.93349|-76.24757|collectivo til lufthavnen
+B|-5.72564|-78.79831|directo a Chachapoyas
+B|-8.12134|-79.02067|expreso interprovincial Dorado
+B|-12.03803|-76.92104|metropolitano
+B|-14.48564|-71.45574|paradero de Anansaya
+B|-5.20220|-80.63114|terminal CIFA
+B|-8.40367|-74.57940|terminal collectivo
+B|-12.78362|-74.96370|ticlas autobus
+B|-3.56471|-80.45631|trasporte CIVA

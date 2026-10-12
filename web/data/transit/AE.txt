@@ -1,4 +1,4 @@
-# Transit for Koode, AE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, AE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|25.26877|55.29362|Al Ras|Dubai Metro|M
@@ -67,21 +67,21 @@ S|24.27535|52.61385|Mainland Ferry Terminal|ferry|W
 S|24.21203|52.59205|Sir Bani Yas Ferry Terminal|ferry|W
 S|25.21112|55.24394|Jumeirah One Fishing Harbour|مكوك نادي آيلاند بيتش|W
 S|25.22507|55.16926|The Island Beach Club|مكوك نادي آيلاند بيتش|W
-L|Dubai Metro|Green Line|#00CC00|29 13:1669 25:1449 11:683 48:960 12:1054 2:704 1:1471 45:1206 50:969 15:760 37:1420 0:1158 9:642 46:1680 17:742 44:1801 26:1904 10:1425 20:857
-L|Dubai Metro|Green Line|#00CC00|20 10:857 26:1427 44:1903 17:1803 46:742 9:1676 0:642 37:1155 15:1405 50:769 45:970 1:1206 2:1471 12:706 48:1050 11:960 25:683 13:1449 29:1667
-L|Dubai Metro|Red1 Line|#CC0000|19 30:2842 5:809 4:777 8:1299 22:1441 14:1332 50:1119 17:1669 3:1233 42:1392 51:1195 31:1042 35:777 16:1215 18:1504 36:5043 33:3840 41:967 39:1198 27:2209 6:2160 47:1459 24:1349 43:1837 49:2035 23:1398 7:867 28:3541 34:4840
-L|Dubai Metro|Red1 Line|#CC0000|34 28:4889 7:3516 23:868 49:1397 43:2027 24:1837 47:1348 6:1458 27:2160 39:2209 41:1198 33:966 36:3841 18:5129 16:1417 35:1215 31:873 51:946 42:1238 3:1348 17:1234 50:1665 14:1115 22:1337 8:1439 4:1298 5:858 30:728 19:2870
-L|Dubai Metro|Red2 Line|#CC0000|19 30:2842 5:809 4:777 8:1299 22:1441 14:1332 50:1119 17:1669 3:1233 42:1392 51:1195 31:1042 35:777 16:1215 18:1504 36:5043 33:3840 41:967 39:1198 27:2209 6:2160 47:1459 24:1349 43:1838 38:1617 32:2805 21:2834 40:2698
-L|Dubai Metro|Red2 Line|#CC0000|40 21:2633 32:2833 38:2805 43:1617 24:1838 47:1348 6:1458 27:2160 39:2209 41:1198 33:966 36:3841 18:5129 16:1417 35:1215 31:873 51:946 42:1238 3:1348 17:1234 50:1665 14:1115 22:1337 8:1439 4:1298 5:858 30:728 19:2870
-L|Al Sabkha - Baniyas (Water Bus)|Al Sabkha - Baniyas||52 56:958
-L|Baniyas - Al Seef (Water Bus)|Baniyas - Al Seef||56 53:337
+L|Dubai Metro|Green Line|#00CC00|29 13:1670:s4k6EomkyK 25:1450 11:684 48:961 12:1055:uup6Ewk8xKkChJN1EpCvF 2:705:k5o6Em56xKpD9FXxEWhL 1:1471:sqo6E0m5xKtLzf3E7P 45:1205:0zn6Esu2xK 50:970:izn6Ekr0xKtBtJ1CxCrI3BxF_ChFnF 15:760:o5m6EmmzxKmGlRuGhK 37:1249:q7n6EwnyxKmW3J2KjHmBhDL9D 0:1160:wzo6E46wxKvdzb 9:643:sgn6E8kvxK5H7N 46:1270:utm6EiyuxK7FW5HmFrHiJ 17:742 44:1805:kpk6E6myxKzFoPxEwGrViUzNyH 26:1913:o4h6Eih0xK3YgDlU9BjEa_D-C5C8E 10:1426:u7_5Eq01xKuB-QzByF9DoFrKiK 20:860
+L|Dubai Metro|Green Line|#00CC00|20 10:860 26:1429:it_5Em62xKsK_J-DpF0B1FtB7Q 44:1909:wgg6E4q0xK4C5E-D9CkEZoUgC2Y_C 17:1808:g8i6Eo4zxK0NvHsVjUwEvG4FnP 46:742 9:1265:w4l6EihvxKsH9I4HlF6FV 0:643:w4m6Ei3uxK2HgO 37:1158:61n6Eq_vxKub4ZwDsE 15:1231:08o6E6vxxKG4DpD4EreyO 50:770:0ln6E-qyxKtGgKnGoR 45:971:27m6Ek1zxKmFsF0FgDsI2B0CyCuBsJ 1:1205:yzn6Esu2xK 2:1471:i6n6Ek33xK4E-PsL2f 12:706:o1o6Eqh6xKNuNYyEuDkG 48:1052:2tp6Eqx7xKqCwFO0ElCgJ 11:961 25:684 13:1451 29:1668
+L|Dubai Metro|Red1 Line|#CC0000|19 30:2843:u8_5E2piyKqJrRiS1mBuBlGPpMwC_H 5:810:mii6E-o9xKqJ_J 4:777:kgj6Eq57xKiEtM 8:1299:2yj6E-w6xKiB3L4C5KLnH_CvL 22:1442:0uj6Em13xKkG_T6C1FoD3E4EzC0EL 14:1337:mml6Ew52xKsIjC-DpC4FjH 50:1119:67m6E6m0xKkB7G 17:1675:s4m6E4qzxKpClCtMvE_LhG3W9a7H7G 3:1239 42:1398 51:1198:y0_5E84uxKjMpR 31:1046 35:780 16:1223:sp75EywrxK5UzI 18:1506:os55EsnqxKrMxN 36:5060:0sy5Ey2jxKxQjO 33:3855:qku5E-8gxKn3BhkBxL_K 41:968 39:1199 27:2213:kvn5E0g5wK 6:2165:ijl5Emm2wKjPlU 47:1447:85j5Eqz0wKvcze 24:1366:45h5EypywK 43:1845:iw_4EopwwK5RrR 49:2041:k394Eo4uwK5HlCpIyBpUuJxFoDvFmF 23:1402:6y64EuxxwK7R4Q 7:869 28:3553:gs34Eg41wK3IsHpIsD_FazGArQpDlKnF9EnD5FzI5MvMrS_K 34:4865:wrz4Eou0wKppB5E7JrCloBpVpkBzL_Z1QrGlC1HC7YuHve0C_KhB
+L|Dubai Metro|Red1 Line|#CC0000|34 28:4914:2-r4E-8ywKuHoB6kB_C6YvH0HBoGmCia0QokB4LqoBmV-JsCopB8E 7:3528:0p04Eg40wKoSkL2G0F-LyPiPwI0QsDgNXuIvD4IrH 23:870:mt54EwhzwK 49:1399:oh64EuiywK6R1Q 43:2034:4n84E4pvwKwFjFyFpDqUrJoIvB2HkC 24:1841:i--4Ei4vwK8RqR 47:1355:45h5EypywK 6:1462:o9i5E60zwKsZub 27:2164:k0k5Eyy1wK8O8TudmhB 39:2213:-un5E6g5wK 41:1200 33:968 36:3841 18:5129 16:1423:2_45Eg6pxKuMyNyPkL 35:1220:s065EoorxK6UyI 31:877 51:950 42:1243:oo_5E8nuxKkMsR 3:1354 17:1239 50:1672:6-k6Ey8xxK8H6G2W8aoMoGsNiF 14:1115:08m6Eig0xKhB2G 22:1341:i4l6E6t2xK1FiH7DuCpIiC 8:1441:okk6Esz2xK3ES5E2CnD6E3C4FlGgU 4:1297:izj6E2n5xKiDuLGoH1C6KjB2L 5:859:ikj6E6s7xKjEuM 30:729:sri6E8-8xKnJ-J 19:2871:45g6Ew6_xKlBqGSyKtBmG_R2mBrJmR
+L|Dubai Metro|Red2 Line|#CC0000|19 30:2843:u8_5E2piyKqJrRiS1mBuBlGPpMwC_H 5:810:mii6E-o9xKqJ_J 4:777:kgj6Eq57xKiEtM 8:1299:2yj6E-w6xKiB3L4C5KLnH_CvL 22:1442:0uj6Em13xKkG_T6C1FoD3E4EzC0EL 14:1337:mml6Ew52xKsIjC-DpC4FjH 50:1119:67m6E6m0xKkB7G 17:1675:s4m6E4qzxKpClCtMvE_LhG3W9a7H7G 3:1239 42:1398 51:1198:y0_5E84uxKjMpR 31:1046 35:780 16:1223:sp75EywrxK5UzI 18:1506:os55EsnqxKrMxN 36:5060:0sy5Ey2jxKxQjO 33:3855:qku5E-8gxKn3BhkBxL_K 41:968 39:1199 27:2213:kvn5E0g5wK 6:2165:ijl5Emm2wKjPlU 47:1447:85j5Eqz0wKvcze 24:1366:45h5EypywK 43:1845:iw_4EopwwKlOlO 38:1623:k394E60uwKpK7CvFhDlKrN 32:2815:2j74E6tswKnPnJrDlDzIrM3iBnelOrKxOzI 21:2848:2k34E6zpwKnJ7C 40:2715:22v4EgqowKtd7G
+L|Dubai Metro|Red2 Line|#CC0000|40 21:2645:o5u4EwjowKqd-G 32:2852:u724EkxpwKmJ6C 38:2815:-o44E6jqwKwO0IoOuK0iBoeiMyPoPoJ 43:1622:g984E4huwKmKqNyFiDoK8C 24:1843:2h_4Eo7vwKoOkO 47:1355:45h5EypywK 6:1462:o9i5E60zwKsZub 27:2164:k0k5Eyy1wK8O8TudmhB 39:2213:-un5E6g5wK 41:1200 33:968 36:3855:shs5Egu_wKyL-Kq3BkkB 18:5143:87x5E0ojxKwQkO 16:1423:2_45Eg6pxKuMyNyPkL 35:1220:s065EoorxK6UyI 31:877 51:950 42:1243:oo_5E8nuxKkMsR 3:1354 17:1239 50:1672:6-k6Ey8xxK8H6G2W8aoMoGsNiF 14:1115:08m6Eig0xKhB2G 22:1341:i4l6E6t2xK1FiH7DuCpIiC 8:1441:okk6Esz2xK3ES5E2CnD6E3C4FlGgU 4:1297:izj6E2n5xKiDuLGoH1C6KjB2L 5:859:ikj6E6s7xKjEuM 30:729:sri6E8-8xKnJ-J 19:2871:45g6Ew6_xKlBqGSyKtBmG_R2mBrJmR
+L|Al Sabkha - Baniyas (Water Bus)|Al Sabkha - Baniyas||52 56:959:q9m6E4vxxKhD2JvHuPnOsT
+L|Baniyas - Al Seef (Water Bus)|Baniyas - Al Seef||56 53:339:28l6EsgzxKjGlC
 L|Dubai Old Souk - Al Sabkha (Abra)|Dubai Old Souk - Al Sabkha||55 54:278
-L|Dubai Old Souk - Baniyas (Water Bus)|Dubai Old Souk - Baniyas||57 56:14571
-L|Dubai Roads & Transport Authority|Al Jadaf - Dubai Festival City||57 58:15303
-L|RTA|Marina Promenade - Marina Mall - Marina Walk - Marina Terrace||60 61:1819
-L|RTA|مرسى دبي - قناة دبي - الغبيبة||59 57:24589
-L|ferry|ferry||63 62:8328
-L|مكوك نادي آيلاند بيتش|مكوك نادي آيلاند بيتش||64 65:8465
+L|Dubai Old Souk - Baniyas (Water Bus)|Dubai Old Souk - Baniyas||57 56:20610:yw55EosjxK4nBpfy3C5fw1B0H2nD4W0xDiiBuyD43BovCklCgP24CtP0jD3aimBxY-R9U-J33BoQvEJtF1DzFvJvIpJ9I1D_EO_EoDnByG3C2G0G8TqDgPImYtDoOzCgG5R4d
+L|Dubai Roads & Transport Authority|Al Jadaf - Dubai Festival City||57 58:15619:wq55E8yjxKrE8E3Gmc1LuVpZkS_SsdlBmjBjV2kB7Emb0C2lB-HV2FmQ1KqaI-P6IuTsa4O2VsYsK4UxCsUlM8PSsfkH0HmewK2J2M8Eid6RyQ0E6LGmwBvGm4B4D8SsyBkewenFoE4P
+L|RTA|Marina Promenade - Marina Mall - Marina Walk - Marina Terrace||60 61:2293:ssh5Ek0wwKI4BoJqMoCVkLkKL2DrCmCcWoE3DqCcmK4NqIuOiI0JqE2ByGVqC0JjBnL
+L|RTA|مرسى دبي - قناة دبي - الغبيبة||59 57:27505:m1h5E8_wwKjgB7djFxKoE3U4ErK4EvF0EnByxBiNoO_B8Z1XgYxc4W7PubjlB4nEpwB8pB6LgOoJsb6VwmB-kB4Qu7BuNwlBuD27B3KuvB7O2f7emfpoB2aojBokB44Ck2BgtBofytB6lB23DiiC07Bg4C81B8sClG8b3TiQTqK
+L|ferry|ferry||63 62:8363:4i5zE4jghK-SoM6GiCwqB2E8uBzPsuCjFyEkBqEwCwFmGwDiH8K8Z6Vk8B2FyIgGsCs8D8LiFuB
+L|مكوك نادي آيلاند بيتش|مكوك نادي آيلاند بيتش||64 65:8763:0l85E09lxK8MMyTpVkJtGgPrHsMhKsHnJ-H3R8DvdgE57BkJhkD3EvWnL5cU3PkMvqBhCvWxC5JpGjKvEjE5ErHrB_hBa7G-B9C
 R|24.33389|54.52971|Abu Dhabi Mohamed bin Zayed City|Etihad Rail
 R|25.01715|55.16776|Dubai Al Yalayis|Etihad Rail
 R|25.16832|56.34564|Fujairah|Etihad Rail
@@ -96,3 +96,76 @@ T|25.16832|56.34564|Fujairah Station
 T|24.43550|54.61936|Masdar PRT Station Car Park
 T|24.43344|54.61741|PRT Line
 T|25.12686|55.12175|The Pointe
+B|24.49648|54.36662|A2
+B|24.49333|54.38350|Abu Dhabi Airport City Terminal
+B|24.47064|54.37665|Abu Dhabi Main Bus Terminal
+B|25.27598|55.34685|Abu Hail Metro Bus Station A
+B|24.21919|55.77157|Al Ain Bus Station
+B|25.30195|55.87434|Al Dhaid Station
+B|25.26259|55.28881|Al Ghubaiba Bus Station
+B|25.73523|55.88953|Al Hamra Bus Station
+B|25.23267|55.29238|Al Jafiliya Bus Station
+B|25.35040|55.38169|Al Jubail Bus Station
+B|25.23776|55.30302|Al Karama Bus Station
+B|25.41138|55.44614|Al Mussalla Station
+B|25.12470|55.25121|Al Quoz 2
+B|25.14704|55.23232|Al Quoz Bus Station
+B|25.26563|55.43354|Al Qusais Bus Station
+B|25.22941|55.39141|Al Rashidiya Bus Station
+B|25.35643|55.39007|Al Rolla Terminal
+B|25.22854|55.27453|Al Satwa Bus Station
+B|24.43230|54.44135|B03115
+B|24.28198|54.64279|Baniyas West
+B|25.25228|55.30241|Big bus (stop 4)
+B|25.25251|55.33096|Big bus 10 (red tour)
+B|25.13317|55.18749|Big bus 14
+B|25.13295|55.11867|Big bus 22 Atlantis the Palm
+B|25.22911|55.31902|Big bus 3 Wafi mall
+B|25.26356|55.29756|Big bus 5
+B|25.26449|55.29282|Big bus 6 (red line)
+B|24.22463|55.74288|Bus Stop
+B|24.23033|55.76604|Bus Stop
+B|24.22204|55.76885|Bus Stop 90422A Across Gift Palace & Choitram
+B|25.18474|55.28676|Business Bay 2 Bus Station
+B|25.25967|55.29849|C7
+B|25.29754|55.40499|Car Engine for Hundai
+B|25.25637|55.32947|Deira City Centre
+B|25.05746|56.33975|Emirates Transport
+B|25.32315|56.33855|Emirates Transport
+B|24.35327|54.48354|Emirates transport
+B|25.19580|55.26176|Etihad Airways Bus Terminal
+B|25.25602|55.40199|Etisalat Bus Station
+B|24.95546|55.14829|Expo Rider - Mobility
+B|24.95996|55.15762|Expo Rider - Sustainability
+B|24.88558|55.15778|Free Shuttle DWC-DXB
+B|25.27560|55.28678|Free Shuttles
+B|25.12159|56.29404|Fujairah Bus Station
+B|25.04612|55.11782|Ibn Battuta Bus Station
+B|25.17506|55.41887|International City Bus Station
+B|24.96867|55.04494|Jabal Ali Bus Station
+B|25.01658|55.14871|Jebel Ali Bus Depot
+B|23.65086|53.70667|Madinat Zayed Bus Station
+B|23.65018|53.70699|Madinat Zayed Taxi Stand
+B|25.12017|55.19963|Mall of the Emirates Bus Station
+B|24.32112|54.53060|Mussafah Bus Station
+B|25.29640|55.44219|Muwaileh (National Paint) Bus Stand
+B|25.29648|55.44216|Muweilah (National Paint) Bus Stand
+B|25.79664|55.97056|Nakil Bus station
+B|25.24454|55.31322|Oud Metha Bus Station
+B|24.07349|52.65613|RUWAIS 4 BUS STATION
+B|24.60453|54.69599|Rahba City
+B|24.08968|52.64909|Ruwais Bus Station
+B|24.08191|52.65161|Ruwais Central Bus Station
+B|24.32114|54.53068|Shabiya Bus station
+B|24.54842|54.68509|Shahama
+B|25.33261|56.34696|Sharjah Transport
+B|25.34121|56.35451|Sharjah Transport Bus Stop
+B|25.30742|55.37149|Sharjah, Al Taawun Terminus
+B|25.30735|55.36833|Sharjah, Al Taawun, Al Amal Tower
+B|24.14361|55.83292|Sherikate
+B|25.14384|55.24498|Staff Bus Station
+B|25.26657|55.31179|Union Bus Station
+B|25.09074|55.23797|al barsha bus stand
+B|24.47526|54.34550|emirates airlines abudhabi
+B|25.16973|55.34577|ras alkhor mubarak tran
+B|24.68027|54.77370|samha bus stand

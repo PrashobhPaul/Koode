@@ -1,4 +1,4 @@
-# Transit for Koode, IE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, IE. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 R|53.33600|-6.46923|Adamstown|Commuter
@@ -341,21 +341,39 @@ T|52.98815|-6.05259|Wicklow
 T|53.22176|-6.11084|Woodbrook
 T|53.34315|-8.47167|Woodlawn
 B|54.11100|-9.15990|Ballina Bus Station
+B|53.43129|-10.07538|Ballyconneely
 B|54.50092|-8.18931|Ballyshannon Bus Station
 B|51.87819|-8.46683|Black Ash Park & Ride
 B|54.65684|-8.10755|Bus Éireann Depot
 B|54.80133|-7.77446|Bus Éireann Depot
+B|53.34982|-6.25185|Busáras
 B|51.65129|-9.91019|Castletownbere
 B|53.99033|-7.36373|Cavan Bus Station
+B|53.71231|-6.35304|Drogheda Bus Station
+B|54.00560|-6.40418|Dundalk Bus Station
 B|52.83927|-8.97581|Ennis
 B|53.27383|-9.04693|Galway Bus Station
 B|53.27494|-9.04554|Galway Coach Station
 B|52.15312|-10.04961|Kennedy's Coaches
-B|52.05968|-9.50175|Killarney Bus Station
+B|52.05969|-9.50175|Killarney Bus Station
 B|54.95373|-7.72848|Letterkenny Bus Station
+B|53.35423|-6.39234|Liffey Valley Bus Plaza
 B|52.65872|-8.62466|Limerick Bus Station
 B|54.25218|-6.96895|Monaghan Bus Station
 B|51.89953|-8.46651|Parnell Place Cork Bus Station
+B|53.31682|-6.37071|Red Cow Luas
 B|54.27172|-8.48253|Sligo Bus Station
 B|52.27040|-9.69802|Tralee Bus Station
+B|53.30505|-6.21660|UCD Belfield, Campus
 B|52.26334|-7.11602|Waterford Bus Station
+B|53.42829|-6.24280|Zone 10
+B|53.42779|-6.24200|Zone 11
+B|53.42834|-6.24265|Zone 12
+B|53.42785|-6.24186|Zone 13
+B|53.42838|-6.24248|Zone 14
+B|53.42791|-6.24171|Zone 15
+B|53.42899|-6.24111|Zone 16
+B|53.42715|-6.24317|Zone 3
+B|53.42726|-6.24297|Zone 4
+B|53.42824|-6.24296|Zone 8
+B|53.42771|-6.24210|Zone 9

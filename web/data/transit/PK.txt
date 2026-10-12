@@ -1,4 +1,4 @@
-# Transit for Koode, PK. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, PK. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|31.46432|74.24383|Ali Town|Lahore Metro|M
@@ -27,8 +27,8 @@ S|31.57577|74.35079|Sultanpura|Lahore Metro|M
 S|31.47364|74.24182|Thokar Niaz Baig|Lahore Metro|M
 S|31.57727|74.36080|U.E.T|Lahore Metro|M
 S|31.49469|74.26337|Wahdat Road|Lahore Metro|M
-L|Lahore Metro|Orange Line|#F7943A|7 11:808 18:935 13:1013 14:1260 21:934 3:963 24:983 22:961 15:1487 12:945 8:1292 1:602 6:1316 9:1113 19:618 4:970 17:937 20:976 16:929 2:867 25:1064 10:1091 5:1069 23:1074 0:1083
-L|Lahore Metro|Orange Line|#F7943A|0 23:1085 5:1076 10:1071 25:1086 2:1064 16:867 20:928 17:975 4:939 19:968 9:620 6:1117 1:1314 8:604 12:1292 15:945 22:1488 24:961 3:983 21:962 14:935 13:1261 18:1012 11:935 7:809
+L|Lahore Metro|Orange Line|#F7943A|7 11:808 18:934 13:1011 14:1259 21:933:u84gGktgmOhF3OP3L 3:963:iw4gG47-lO3O9b 24:982:y23gGih9lO 22:961 15:1487:8j3gG0r5lO0CjRvBjP9J9U 12:945:w_1gG8t1lO 8:1292:ov1gGqw0lOvE7WnDnc 1:602:ig1gGg_xlO 6:1322:sn0gG8nxlOnF9CrXnLhP7D1FrF 9:1116:4oygG23vlO 19:621:w5wgG-xulO 4:974:q6vgGmlulO 17:941:m0tgG8zslO 20:980:0_sgG6sslO7EhD1W1V 16:933:4nrgGq_qlO 2:870 25:1068:oqogGoiplO 10:1096:y9lgG0golO5EnF 5:1070:owlgGqmnlOxPja 23:1077:y4jgGw3klOlHvG 0:1089:s9igGunklOrHMjZsM
+L|Lahore Metro|Orange Line|#F7943A|0 23:1090:06hgG40klOscvN-FD 5:1079:yxjgG6wklOkHsG 10:1073:8hlgGytmlO4O4Y 25:1091:o5lgGy7nlOsE2E 2:1069:8qogGmiplO 16:871 20:931:4nrgGg_qlO 17:979:sksgG-zrlOwWwV6EiD 4:943:q0tgGyzslO 19:971:64vgG4julO 9:623:s5wgGyxulO 6:1120:-oygGu3vlO 1:1319:i2ygGiwwlOwE0EiEkC4NkDoZwM 8:606:qg1gG8-xlO 12:1291:go1gGk-ylOiDobuE2W 15:945:0_1gG0t1lO 22:1487:o72gGq23lO8J2U0BsPzCmR 24:960 3:982:o33gGij9lO 21:963:yh4gG2_9lO4Ogc 14:934:g34gGqx_lOWuN-EiO 13:1260 18:1011 11:934 7:808
 R|29.80375|67.40316|Aab-e-Gum|PR
 R|29.39539|65.94274|Ahmedwal|PR
 R|28.83183|62.46776|Alam Reg|PR
@@ -149,14 +149,14 @@ R|32.44614|74.11215|Wazirabad Junction Railway Station|PR
 R|28.74410|63.84816|Yakmach|PR
 R|30.50218|66.95312|Yaru|PR
 R|29.48031|60.87422|Zahedan|PR
-Q|PR|Bolan Mail 4DN|#7FB17F|L55|88 59:50815 71:24802 0:12332 107:60380 15:75400 24:53949 22:23625 41:12968 105:41505 101:51758 69:20047 6:30313 89:18409 94:18461 19:35920 98:40865 108:132921 62:8059 14:66403 47:16567 68:61544 26:10352 50:9782 51:3820
-Q|PR|Chaman Mixed 349UP|#7FB17F|L55|88 102:8003 9:3874 63:10544 12:10957 118:14729 35:36617 56:13128 104:16711 17:19087
-Q|PR|Chaman Mixed 350DN|#7FB17F|L55|17 104:19069 56:16713 35:13121 118:36580 12:14717 63:10955 9:10543 102:3873 88:8002
+Q|PR|Bolan Mail 4DN|#7FB17F|L55|88 59:40924:6il4Fqj94MzwEl8B1YnJpMtCz2IjQr1DgRtcC3PnE7d3N7ZrDzoBlPzuBvJ50CvDzwC_Ot5B0EpOqEl6Bkf3rB2lBx-B2pB_KgL_oB8wBvFmMzCyKvFw3BpCqLnG4RvFsK5kJ8-MxFwK90Bm8DlJgR9iB6rBhG-E_kB-V3J-JlDsGnI4XnB2G6CsK 71:24839:sww2F6345MuoBuWmwBqhCudiRqahF4U2F4b0hB8DsLFgiB8gBwhDrE89B5OuVVqdxc2gBnEg2BjgB2dQyN0YqtBiCwP7N2hBjkBi2BjUu1B7rB-5B9pB4X_UoVxSmjCtjBynCrPgT1KkgB5WwNxPwRr0B-d7NuMpVkiBiF-e3C2LhKsI 0:12363:q5o2Fkw96MlIoD5EyGxFqTQ2HyDqIgT8R0EqIiByK9DiT5F8LnjBqwBvQqbpHuG5rB6a1FkH9GoQ_GgG5GwBzGxBzEpDtHlJxGxDrHAzGqD7F8IhX0_BlkB-2BpFyEhH-B7ER9S5HvHazFuDnhBgoBj3B2pBjGmGpD4GZiHqBkG 107:60380 15:75400 24:53949 22:23625 41:12968 105:41505 101:51923:4ozqFy7_iNn4DzInUqBntN-sD9lH4f5RmB3RnC7jB1KrJhH_DxFzC7GdzFSzHgY7lCoDxPqBvOZ1ZnC9ZxEtgBrFzatNjxB_7ExwN7JnTlqNntW_StnBjKhc1KlmB1GtTrJ1VrJ9R 69:20093:sltoFgjvgN_OnO7tEhjDtNnG 6:30313 89:18409 94:18461 19:35920 98:40865 108:133592:6ohhFopn-M1vC-oBr0F3QlzC0O_R2zB17Co6BvtCwXz5CGttDkuBvxHmrB7sC-iDofiwE7H8dj8H04H76B49CnlM0jL5nDy1D3hH-6DnpE7D_2D0tDz1B6rF7b8mBz0Yq1SzrKs5Fr0GsgB7kGm-BtwG8VlqK0zGphL25E5oHjwCz4EwalyB7O9xB_tB9sCl-D7HrhE32Dn6CrgD8Nn5B3R 62:8089:ylk7E-64gN5VsO5H0C5JoBrPhCp1B_S7PxI3M3DriC4BnJuB7EiCrHsFlI8L5by1ClE4JnEwG7DkDrGgCtFL1FzCvDpD_IrN 14:66647:on36Ekg1gNzsDxtFnNhe_M_zBnJvV9gCzvCrMrL5TtLjYjG7WhBvoCwDxShD_RnG_qPhjI1f_Whdhe3O7Tj4B_-C3O9RvXpPjkM7-Dn2E_mCtPrJxJpI7O9Sj3F15KpM9StR3S5lDzsC7ejSrQlF5UnCt0EtJzgB9KpSpOt8BxmC9M9WltCh-JvPlmB5Tzej-BvqC 47:16567 68:61544 26:10352 50:9782 51:3820
+Q|PR|Chaman Mixed 349UP|#7FB17F|L55|88 102:8035:mkp4F0k-4MgOqB2TgGusC6G45BrLkTpGiTzL6zDpgD4OxR 9:3874 63:10544 12:10957 118:12444:4r35Fsw-4MtE9TyEl9CxKloBT1LgH3XmElIyFxFmPtJkE5DuNjYyF9F6ctSibnGwsBjc0H9FuTpX8W_V4EhDmGxByP3B-FYu6Dsc2lBD 35:36618:gym6F2h14MyIEohC5f0GhGyC5E2BxG8Hl7BiV1jDyC7GgE1EoE3C-OrDkItEwGrH0GrLsOjT-EjDmS1GqFrE08BznC-zC1wD0I5NiGxN-E7PqOjrCisBn5RuClJgGtNqapgBqDhFyF_OmlB1hI6KnVsCjIa9H_EhnBYxOojBhwFkD_JuN3e4F3JgkExmFuHzGmLhGoLzC 56:13184:2zh7Fmw22MuJMyJwC6K6FyjEw0DszGu2CwNkDmOqGqZuCyFjBwDhCmMhQ8P9HmIvH-sBnkCmE3EgHtE8H1BsFO 104:16768:4vz7Fyr62MqLN68BxmB61CtCiuC-I-MxEqdrWihBxuB-U_UqDtK9DrboEzJgJ7Eoa6CwMvJc9TtXhdiDpR0L_EgrB4MoRxO8V3DgJwFmLoS-SiBwRjW8ChM1I3M_WjF7DnKuCtKmJhHqb3E4crqBkanL 17:19087
+Q|PR|Chaman Mixed 350DN|#7FB17F|L55|17 104:19069 56:16774:wvl8Fwzu2MhZoKje4rBhc4EjI6GrC8JwEgL0WwEkI2KlBoM3SmY1ThB_KnSjJlFxV4DvRwO3qB3MhLyE7DmPqY4fjBwT1M4J1a3C_HmE3EoK-D-YlD6MxUsUvhBkvB5euXxYuDlhC1I51CuCr9B2mB 35:13180:iyy7Fm_52MrGhB3I4B_GuEjFoGjtBkkC_GiG7PgIlM-PxDkCzFkBrZtC3OtGnOtD9xG71C3jE10D1I7E3JhDpLT 118:36619:gy96Fw_22MnL0ClLiGtH0G_jEymF3F4JtN4ejDgKnjBiwFXyOgFinBZ-HrCkI5KoVllB2hIxFgPpDiFpaqgB_FuNtCmJhsBo5RpOkrC9E8PhGyNzI6N9zC2wDz8B0nCpFsElS2G9EkDrOkTzGsLvGsHjIuE9OsDnE4C_D2ExC8GhV2jD7Hm7B1ByGxC6EzGiGnhC6fxID 12:12446:0uj6Fkp04M1lBEt6Drc9FXxP4BlGyB3EiD7WgWtTqXzH-FvsBkchboG5cuSxF-FtNkYjE6DlPuJxFyFlEmI_G4XU2LyKmoBxEm9CuE-T 63:10955 9:10543 102:3874:4s24Fw614MrI2P 88:8035:60z4Fyj64M3OyR5zDqgDhT0LjTqG35BsLtsC5G1T_F_NpB
 Q|PR|Khushhal Khan Khattak Express 20DN|#7FB17F|X110|85 86:3971 82:17934 80:21040 44:19549 4:30232 45:18138 8:13994 43:26492 18:31130 40:13712 21:43272 74:33907 64:14707 87:20965 10:82035 52:45696 70:27830 60:84222 23:66936 42:47530 28:39685 91:25165 76:14779 53:98512 49:46354 38:18507 41:60431 105:44252 36:9633 101:42146 69:20047 6:30313 89:18409 94:18461 19:35920 98:40865 108:132921 62:8059 25:117738 68:31206 50:20136 51:3820
-Q|PR|Rehman Baba Express 48DN|#7FB17F|X110|85 86:3971 80:38973 44:19549 4:29292 93:81956 67:155332 77:441745 7:118318 90:177219 95:172519 78:183124 39:114787 68:152785 26:10352 116:1383209 50:1295328 3:1279608 37:23258 110:29636 96:20191 27:44005 32:49993 114:27616 106:29639
-Q|PR|Subak Kharam 103UP|#7FB17F|L55|65 33:68767 34:44860 67:18780 46:33306 16:117993 93:4576
-Q|PR|Sukkur Express 146DN|#7FB17F|X110|41 105:41505 111:37792 95:3782 54:38133 30:28215 92:6994 99:9346 73:12798 66:14172 11:12860 84:12573 61:10366 78:50280 100:42055 113:19149 39:53661 62:8542 68:144253 26:10352 50:9782 51:3820
-Q|PR|Zahedan Mixed Passenger 403UP|#7FB17F|L55|88 97:9995 109:14824 72:26003 48:11312 103:12178 57:23952 29:26536 58:14766 81:11635 1:20896 83:83431 20:80257 117:57477 31:52266 5:18103 79:39449 2:27102 115:20863 112:77772 13:497 75:11147 55:38067 119:45792
+Q|PR|Rehman Baba Express 48DN|#7FB17F|X110|85 86:3971 80:38973 44:19549 4:29292 93:81956 67:155332 77:441745 7:118318 90:177219 95:172519 78:183124 39:114787 68:152785 26:10352 116:1383209 50:1300019:uzplGg66iOh31Dx39Cl4U9vhB9opBjoZzwcvu0B179Cj4wD_6vBr9Vt3qB9vjBxqlBpt0D9pvBpiGt6gC-86B9kXu_Hv6OzsJ9uK73ersd1snB5iNv-rB10qCr2yBntkCrvvD9w4B37nCx5I1ixBssD_tiB5qb7jwBxulBx7YrtDvwbl2OllG77vBns6Bz8gD162BrysCumHjvrC8ohBnguBgrjBh6W1Tx6-B72kB9tTz5zB96rBp_V9jrBpvzBlyQ56xBupL_8U1Ez-uBkgIzrL 3:1279608 37:23258 110:29636 96:20191 27:44005 32:49993 114:27616 106:29639
+Q|PR|Subak Kharam 103UP|#7FB17F|L55|65 33:69133:823gG2u2lOwN9JmiElmEwnFrpE-GpE6K3D8yBnKiKkBufyK-MkBiIf8sV1uEq9UvmDkdtD-OvEgxBpTs_D9Wk3DvaujB5GopL7-BizK_xCynFhQy0IxsBi4G_mB-JrD4HtEuShQoGrDihBxL-xBpOkc5C 34:44753:u4tkGs15kOsOnCi_DrxBwmG3xB4lL3qDwzDlYoyItjCi0D3XmgInjC4OjG0lC1oBud_MwTjMiL7DwiBlD47BwCiGb-G3Cq6C13BqsHp-ByLxE 67:18842:uq8mGiq_jOoOvKyuD7gD6oCxgD6K9L2vEt_DwSlOq0BtkBq9D9oD4jCxkC 46:33306 16:117993 93:4576
+Q|PR|Sukkur Express 146DN|#7FB17F|X110|41 105:41505 111:37792 95:4371:ouipFkhrkNgMgS2CgHyBwIXiNvI4gBtDuIlI8KhYiSvH6B1aXjH2CtI-FrF2FlEgH 54:38133 30:28215 92:6994 99:9346 73:12798 66:14172 11:12860 84:12648:kzgkFuq3gN3N1DtQzB3kM-iB 61:10366 78:50280 100:42055 113:19149 39:53893:o1j9E0wijN7N3BlOxFt5jB7vVp7E_1C52V7mMvJxHrGnH9HzM_EhNllC3yH32Br7GzFtLjF3G1YjU1L3OlI9Q 62:8544:ml86E2znhNrCjNwQtoEkDhNyRlzByB1QzBpLrE_LhDtF7J3L_wB_gB3GhI9CrIPtFc_GwE_ND9JjE5K 68:144784:04z6E0uvgNvhBzjDptC_6C7vFtY_qPhjI38Bh1BjtDj0EjkM7-D1lFrwCptHz6M1kE3-Cz5F7Q9yBnZrpCv9CltCh-JpjB5kCx8GzzGtxEniG91F76EvjBvxBr7Cr7KrvBryDprDpuRnfjuBxpClnBlhB3nB7PlwEh7BxyEn6Bp7C_Q5sCuOjoDy4Ch6IypCtjDgqE_3CixBhrDxIv2tBkKrkC 26:10358:-913Ey-m6M6NvOqOrMolC3sBkkB7d-ShUqRzWmQrf8IzX-DvOyFnhB0KhrHD_U 50:9782 51:3820
+Q|PR|Zahedan Mixed Passenger 403UP|#7FB17F|L55|88 97:10050:6il4Fqj94MzwEl8B1YnJ3NxC 109:14582:0v23F4r64MtuDyQtcC3PnE7d3N7ZrDzoBlPzuBvJ50CvDzwC_Ot5B0EpOqEl6Bkf3rB2lBx-B2pB_KgL 72:26003 48:11312 103:12178 57:24004:m5u2Fgry2MlDjFzKzJ3NpFvD5ElCpHazM9E9LF9IxBvHTjwBxDnKrN7OzJ1TlYvXxGlNvElD1KVlE7BhGrFjHnLlD7L5HtpBlUzsCb3KIpqBpB3OpCtLpW5mCrH1OpO3VzGpIlM1L95LzjKlInI3sC58ClmBh6BtFpGtkBve 29:26629:80z1Fw8u1Mzf7lB9nB_erNrNzInMzY_pBlFrGt_C_nC3GxDnH5B3qBqE3cQnJjBnPrEnoC_0BlcrX_1C_1BxN5MpuBt6B_gC_nCvGzJhO3btE1G55B9wB_PlJhkB76B5EhG7hB5Z5TvF9rCpoB9EpE3M7QvG1GzG3EnclPzFzEzHnL5KlbfvIsJhdgRvdmBtFNjGpP_wBpP5U 58:14766 81:11635 1:20896 83:83431 20:80257 117:57477 31:52266 5:18103 79:39449 2:27102 115:20863 112:77772 13:497 75:11147 55:38067 119:45837:ov0yFo7w1LyN1FusBmK6WiQwShBkQrHuUrXskBxE-QlKgjBjpByXjwB4PvQ4XtE20BwQse1J2b1mBqwBlqBgW7Ey-B1kBicpFihBnW-mE55F2U3Qg0C_qBkZlaoN1eyLtiCqhB5tBud9_CqfllBrG_kEu0B3wCsTh5CoSnmBlB9U5e3tC_D__BzkB_nC5BplB0XxlEkwBnrCszDr1HuSrV88CvmC
 T|29.80375|67.40316|Aab-e-Gum
 T|28.19230|68.51907|Abad
 T|31.32885|72.94568|Abbaspur Railway Station
@@ -844,3 +844,570 @@ T|32.63030|73.71746|ڈنگہ
 T|25.40498|68.43946|ڈیتھا
 T|32.06977|74.83242|کلاس گورایہ
 T|33.82680|72.69908|‎Hasan Abdal
+B|31.50598|74.33141|(old) Daewoo Bus Terminal
+B|24.95653|67.10212|(وڑائچ طیارہ، اڈہ نمبر 01) - WARAICH TAYYARA, Adda No 01
+B|24.91666|67.02178|1-B Last Bus Stop
+B|24.99851|67.06514|2 Minute Chowrangi BRT Station
+B|24.99179|67.06557|2400 Road BRT Station
+B|24.94913|67.05272|2K Bus Stop
+B|33.68841|73.03441|4 Star Travel Services
+B|32.06161|72.69663|47 ada
+B|24.88858|67.05084|ABS rental & transport services
+B|30.17998|71.50937|AC Bus Stand
+B|30.96426|71.21196|APV Coaches
+B|32.51104|74.52490|Abaseen flying coach Peshawar Adda
+B|29.13094|71.26731|Abbasia chowk
+B|34.00309|71.50174|Abdara Road
+B|25.02355|67.06365|Abdullah Chowk BRT Station
+B|31.53670|74.27174|Abdullah Travels
+B|33.60634|71.24591|Adda Bus Stop
+B|24.95884|67.10510|Adil Shah Coaches Workshop
+B|24.94479|67.08518|Adil Shah Transport
+B|30.18370|71.48976|Ahmad Abad Metrobus
+B|24.95788|67.10407|Ahmed Market Gwadar Bus Terminal
+B|32.06174|72.69708|Al Halaal Travels
+B|31.44752|73.08692|Al Halal Travels
+B|30.20956|71.51110|Al Noor Hotel & Restaurant
+B|24.93564|67.07691|Al Qayyum Transport
+B|27.56354|68.19115|Al-Madina Bus
+B|25.03003|66.88123|Al-Saif Coach Booking Office
+B|36.69025|74.82131|Ali-abed van station
+B|33.64525|73.18077|Alipur Bank Stop
+B|24.91488|66.96394|Anjam Colony Bus Stop
+B|24.88322|67.04714|Atta-e-Ghazi transport service®
+B|32.07187|73.69444|Awan Travels Service
+B|25.45716|68.38711|Ayub Hotel
+B|34.92684|72.45814|BANDAI KHWAZAKHELA
+B|31.60880|74.30316|BATTI CHOWK BUS STOP GT ROAD
+B|30.17295|71.49142|BCG Chowk Metrobus
+B|32.07244|74.56869|BRBD link canal
+B|33.98603|71.44299|BRT Tatara Park Station 28
+B|34.00481|71.98604|BUSES  ADDA
+B|33.99023|71.45487|Bab-e-Peshawar
+B|31.59309|74.31745|Badami Bagh Bus Stand
+B|25.37219|68.37905|Badin Bus Stop
+B|31.43272|74.30001|Bagryan Chowk
+B|30.26210|71.49260|Bahadar Pur Metrobus
+B|30.26940|71.49424|Bahauddin Zakariya University Metrobus
+B|29.59142|72.84764|Bajwa Bus Terminal
+B|24.92476|66.97061|Baldia Town Bus Stop
+B|30.05416|70.64495|Baloch Tansportation
+B|33.63195|73.03871|Baloch Transportation
+B|34.83072|73.06552|Banna vegan station
+B|33.56889|71.44831|Bannu Phattak Adda
+B|33.56898|71.44842|Banu Phatak
+B|24.91692|67.03129|Baqai BRT Station
+B|24.91662|67.02177|Bara Maidaan
+B|33.79207|72.71997|Bariar#3 Stop
+B|33.78365|72.72371|Basti Adda
+B|24.86721|67.35103|Bata Mor
+B|33.60211|72.97978|Bhaata Chowkh
+B|31.58052|74.30618|Bhatti Chowk
+B|25.36685|68.34383|Bhittai Hospital Chowk
+B|34.01634|71.61396|Bilal Coach
+B|34.47673|72.49204|Bilal Coach
+B|30.21247|71.52155|Bilal Daewoo
+B|34.01626|71.61377|Bilal Daewoo
+B|31.53339|74.28257|Bilal Travels
+B|31.53714|74.27063|Bilal Travels
+B|24.92670|66.96834|Bismillah Chowk Bus Stop
+B|27.69744|68.84539|Blue Lines Bus Terminal
+B|33.99812|71.47137|Board Bazar
+B|24.92662|67.03325|Board Office BRT Station
+B|24.95730|67.06785|Buffer Zone Last Stop
+B|33.63374|73.13275|Burma Stop
+B|27.58944|68.00629|Bus & Truck ADDA
+B|30.95512|71.21442|Bus Stand
+B|32.25968|75.16403|Bus Stand
+B|32.58955|73.04409|Bus Stand
+B|34.00452|71.98611|Bus Stand
+B|32.26706|75.14770|Bus Stand Shakargarh
+B|29.99882|73.26082|Bus Station
+B|34.15724|71.73231|Bus Station
+B|34.55259|73.35276|Bus Station
+B|34.60924|71.95570|Bus Station Batkhela
+B|32.43256|73.57379|Bus Station Phalia
+B|30.47266|72.07540|Bus Stop Chak 11/8R
+B|28.28328|68.42859|Bus Stop Jacobabad
+B|34.81298|72.45837|Bus stand to Mingora
+B|32.99206|70.61514|Bus station
+B|35.84931|71.78665|Bus station (Chitral to Kalash)
+B|30.92457|72.76757|Bus stop
+B|36.27456|72.25709|Bus to Chitral & Mastuj
+B|29.39274|71.66838|Bus to Uch Shareef
+B|24.91894|66.97238|Buses Point
+B|31.91615|73.27347|Bypass Pindi Bhattian Adda
+B|34.83440|72.44264|CHARBAGH  (چارباغ)
+B|25.00358|66.97248|CNG Bus Terminal
+B|34.19840|73.24511|COMSATS Bus Station
+B|31.51933|74.32694|Canal
+B|35.71230|71.76631|Cars to Chitral and Kalash
+B|32.65932|74.58333|Ch Naseer & Company
+B|32.58416|74.07533|Chah Budhey Wala Bus Stop, Rehman Shaheed Rd Gujrat
+B|32.61034|74.14834|Chak Kala Bus Stop
+B|24.92151|67.02141|Chandni Chowk
+B|24.92150|67.02139|Chandni Chowk Bus Stop
+B|36.69033|74.82128|Chapursan jeep station
+B|34.02979|71.57686|Charsadda Bus Terminal
+B|34.02983|71.57760|Charsadda adda
+B|35.43002|74.10447|Chilas Bus Station
+B|31.72467|72.98668|Chiniot Bus Terminal
+B|33.65650|73.27812|Chirah Chowk
+B|31.83514|70.91303|Chongi Adda
+B|24.91436|67.02212|Chota Maidaan
+B|34.01751|71.62926|Chughal Pura Station
+B|30.20836|71.47155|Chungi No 9
+B|30.22772|71.47859|Chungi No. 06 Metrobus
+B|30.20875|71.47307|Chungi No. 9 Chowk Metrobus
+B|33.62715|73.09339|Chungi No.8
+B|31.53439|74.28277|City AC
+B|31.56875|74.30426|Civil Secretariat
+B|31.54870|74.31511|Cordoba Square
+B|24.96734|67.11077|DAEWOO MAIN BUS TERMINAL
+B|34.00533|71.55701|Dabgari Gardens
+B|34.55310|73.25820|Dadar Suzuki Stand
+B|32.06132|72.69848|Daewoo
+B|32.42184|71.44846|Daewoo
+B|32.51201|74.52486|Daewoo
+B|30.62917|73.09443|Daewoo Bus Stop
+B|32.20539|74.17622|Daewoo Bus Stop
+B|32.57116|74.06984|Daewoo Bus Stop
+B|30.64792|73.09586|Daewoo Bus Terminal
+B|31.46910|74.23851|Daewoo Bus Terminal
+B|31.61311|71.08255|Daewoo Bus Terminal Bhakkar
+B|34.01515|71.59952|Daewoo Buss Terminal
+B|24.90879|67.10818|Daewoo Cargo Service
+B|24.86900|67.03167|Daewoo City Terminal Pickup Point
+B|27.65770|68.84886|Daewoo Express Bus Terminal
+B|28.43963|70.21551|Daewoo Express ChowkBahadarpur
+B|33.66070|73.08128|Daewoo Express Faizabad Terminal
+B|27.56364|68.19210|Daewoo Express Larkana
+B|33.62292|72.95430|Daewoo Express Terminal
+B|24.87649|67.04812|Daewoo Fastex courier & Logistics
+B|32.21300|74.17293|Daewoo Gujranwala
+B|33.68829|73.03436|Daewoo Islamabad Terminal
+B|33.70325|73.07140|Daewoo Islamabad Terminal
+B|31.83707|70.91156|Daewoo Pakistan Bus Station
+B|32.06198|72.69669|Daewoo Terminal
+B|31.44785|73.07928|Daewoo Terminal Faisalabad
+B|30.62935|73.09423|Daewoo Terminal Sahiwal
+B|34.01513|71.59956|Daewoo adda
+B|25.41120|68.35391|Daewoo bus station
+B|26.67009|67.98783|Daewoo bus station
+B|33.69184|73.05690|Daewoo express
+B|34.11308|72.01957|Daewoo express terminal
+B|30.66099|72.17060|Darkhana Bus Stop
+B|30.04957|70.65305|Darwoo Bus
+B|30.19880|71.47921|Daulat Gate Metrobus
+B|34.19261|73.23512|Deawoo Bus Station
+B|30.05469|70.64480|Dera Ghazi Khan Bus Station
+B|32.57400|74.07500|Dhakki Gate Bus Stop, Circular Road Gujrat
+B|34.01637|71.59481|Dilawar Khan Adda
+B|34.01504|71.59541|Dilawar khan adda
+B|34.01600|71.59469|Dilawar khan travels
+B|35.55769|71.79642|Drosh bus stand
+B|24.95853|67.06154|Erum BRT Station
+B|30.17471|71.50866|FAISAL MOVERS
+B|34.99653|72.46960|FARATABAD
+B|33.99912|71.54451|FC Chowk
+B|34.01667|71.61459|Faisal Colony Station
+B|33.62797|72.94388|Faisal Mover
+B|30.21006|71.50913|Faisal Movers
+B|31.53418|74.28266|Faisal Movers
+B|34.01620|71.61369|Faisal Movers
+B|34.34577|73.19811|Faisal Movers
+B|33.63064|72.94408|Faisal Movers / Sania Express 26 No.Terminal
+B|33.66213|73.08393|Faisal Movers Faizabad Al-Makkah Terminal
+B|33.63043|72.94335|Faisal Movers Ghizali Terminal
+B|24.86851|67.03120|Faisal Movers Taj Complex Terminal
+B|30.64894|73.09975|Faisal movers
+B|33.66157|73.08124|Faisal movers
+B|31.42811|73.09513|Faisalabad Lari Adda
+B|33.66164|73.08459|Faiz Abad Adda
+B|24.91379|67.24604|Falaknaz Dream Villas
+B|24.91183|67.23726|Falaknaz Dreams
+B|24.93076|66.98469|Faqir Colony Road Bus Stop
+B|31.17978|71.20901|FatehPur Chowk
+B|32.57117|74.07491|Fawara Chok Stop, Circular Road Gujrat
+B|33.61319|73.05476|Fawara Chowk Bus Stop
+B|34.14045|73.21269|Fawara chowk bus terminal
+B|34.14089|73.21282|Fawara chowk highroof terminal
+B|34.14039|73.21294|Fawara chowk highroof van terminal
+B|34.14060|73.21229|Fawara chowk wagon terminal
+B|34.90437|73.64859|Fiesel Movers Bus Tickets
+B|24.94557|67.05011|Five Star BRT Station
+B|34.78989|72.36823|Fizzagut motorway express
+B|31.81444|70.82085|GMC Bus Stand
+B|30.09870|66.97429|Gaahi Khan Bus Stop
+B|34.15214|71.73713|Gedar Qinqi station
+B|28.43815|70.30182|General Bus Stand
+B|30.04787|72.36087|General Bus Stand
+B|30.04932|70.65105|General Bus Stand
+B|30.17706|71.50871|General Bus Stand
+B|31.14874|72.69119|General Bus Stand
+B|32.07627|72.69716|General Bus Stand
+B|32.99188|70.61508|General Bus Stand
+B|32.07156|73.69480|General Bus Stand Hafizabad
+B|30.18109|71.51087|General Bus Stand Metrobus
+B|29.12091|71.74903|General Bus Stand جنرل بس اسٹینڈ
+B|32.17246|74.18385|General Bus Station
+B|34.01717|71.60075|General Bus Station
+B|34.59062|72.45136|General Bus Station Pirbaba Pacha Kalay
+B|31.61408|71.08292|General Buss Stand Bhakkar
+B|29.14576|71.24130|General bus stand
+B|34.77294|72.35245|Ghokdara stand amankot
+B|24.87676|67.04621|Ghulam Nabi Water Contractor (Water Tanker)
+B|32.15921|74.18943|Gujranwala
+B|32.56456|74.07847|Gujrat Bus Station, Near Ramtalai Chowk, Gujrat
+B|34.01497|71.59663|Gul Bahar Busses Adda
+B|24.84355|67.01981|Gul e Ishtiaq coach
+B|34.01551|71.59161|Gulbahar Chowk
+B|24.89575|67.03056|Gulbahar No. 2
+B|30.21711|71.47397|Gulgasht Metrobus
+B|24.86261|67.32009|Gulistan e Faisal Bus Stop
+B|24.86134|67.35047|Hadeed Mor
+B|30.06029|70.63549|Haideria Chowk
+B|34.01710|71.61125|Haji Camp Adda
+B|34.01731|71.60050|Haji Camp adda
+B|33.62984|73.08952|Haji Chowk
+B|34.01731|71.60050|Haji adda
+B|24.87670|67.01681|Halari Bus
+B|33.54875|73.10229|Hamrahi Travels
+B|33.59328|71.41756|Hangu Phatak
+B|32.28890|71.52439|Harnoli Mor
+B|34.01513|71.58136|Hashtnagri
+B|25.45518|68.38773|Hatri Bypass Bus Stop
+B|33.98481|71.44935|Hayatabad Phase 3 Station
+B|32.25961|75.16404|Hiace Terminal
+B|29.39321|71.66837|Hiace stop
+B|33.99349|71.44348|Hospital Chowk Station
+B|24.93722|67.04269|Hyderi BRT Station
+B|31.53151|74.32142|Ichara
+B|24.95629|66.92667|Inter City Bus Terminal
+B|30.81019|73.45883|Ishaq transport
+B|33.99833|71.47842|Islamia College
+B|24.87288|67.00928|Jagdal Chowk
+B|33.62839|73.10197|Jahaz Ground Stop
+B|35.28567|75.66543|Jailgate Bus Stand (eastbound minivans)
+B|32.06316|73.37839|Jalalpur Bhattian Bus Stop
+B|32.64142|74.20638|Jalalpur bus stop
+B|31.55390|74.31143|Janazgah
+B|36.27991|72.51664|Jeep and bus station
+B|26.65879|67.37644|Jeeps to Gorakh hill station
+B|35.92477|74.30924|Jeeps to Naltar
+B|32.28854|71.75608|Jhajha Bus Stop
+B|31.27776|72.32137|Jhang
+B|31.28966|72.32251|Jhang Sadar Bus Station
+B|33.64276|73.20810|Jhangi Sayedan
+B|32.93516|73.71862|Jhelum Bus Stand
+B|34.72371|71.50225|Jinnah Bus Terminal Khar
+B|32.07438|73.71747|Jinnah Chowk Bus Stop
+B|31.46652|74.22556|Jinnah Intercity Bus Terminal, Lahore
+B|30.19036|71.51318|Jinnah Park Metrobus
+B|24.95036|67.05438|Jummah Bazar BRT Station
+B|35.89810|74.36970|Jutail Bus Terminal
+B|27.69311|68.84657|KCS Bus Station
+B|25.01736|67.06400|KDA Chowrangi BRT Station
+B|24.87029|67.03315|KGA Ground BRT Station
+B|25.00576|67.06551|KTC Bus Terminal
+B|34.01718|71.62940|Kabal Bus Station
+B|31.57209|71.26536|Kacha Paka Mor MM Road
+B|32.58456|74.08041|Kacheri Chowk Bus Stop , gujrat
+B|24.90580|67.23876|Kachi Colony
+B|24.84375|67.03890|Kainat Travels Cantt Station Terminal
+B|24.88276|67.18225|Kala Board
+B|32.53412|74.44891|KalaGhumman Bus Stop 1
+B|35.48328|72.58853|Kalam station Minibus and shared taxi
+B|24.95636|67.10149|Kaleem Transport
+B|29.89547|71.30370|Kali Pur
+B|27.58698|68.86481|Kandhra Town To Rohri , Sukkur City
+B|32.53384|74.44992|Kapurowali Main Bus Stop
+B|25.40868|68.35545|Karachi Bus Stand
+B|24.92989|66.98170|Karachi Bus Terminal
+B|24.95807|67.10413|Karachi Gwadar Bus Terminal
+B|30.07521|70.96236|Karim Dad Qureshi
+B|25.01108|67.06437|Karimi Chowrangi BRT Station
+B|33.99863|71.42495|Karkhano Market Station
+B|32.05407|73.69449|Kasso Ke Chowk Bus Stop
+B|32.72240|72.95302|Katas raj
+B|31.57468|74.30651|Katchery
+B|29.14370|71.25764|Khan flying coach service
+B|24.88707|67.04755|Khan service
+B|32.81033|73.86476|Kharian Bus Stop
+B|32.64157|74.20663|Kharian bus stop
+B|33.57970|71.44514|Khyber Adda
+B|34.01022|71.56633|Khyber Bazar
+B|33.96913|71.56148|Kohat Adda (Kohat Bus Station) Peshawar
+B|31.41742|73.09466|Kohistan Bus Station
+B|29.90129|69.25228|Kohlu Town Bus Terminal
+B|30.20850|71.51562|Kumharanwala Chowk Metrobus
+B|30.43798|72.35086|Laari Adda (Bus Stand)
+B|34.01503|71.59591|Lahore adda
+B|24.91123|67.04984|Lalu khet Bus Stop.
+B|33.77452|72.35947|Lari / Bus Adda - بس اڈہ
+B|28.96097|70.36362|Lari Adda
+B|29.10001|70.33667|Lari Adda
+B|32.29676|72.34478|Lari Adda
+B|33.90521|73.38727|Lari Adda
+B|29.40755|71.67717|Lari Adda Bahawalpur
+B|24.88576|67.03453|Lasbela Chowk BRT Station
+B|26.84730|68.12687|Link to Padidan Road
+B|30.20061|67.01199|Local Bus Stop
+B|32.32704|74.34566|Local Lari Adda
+B|24.85527|67.22944|Long Route Bus Terminal
+B|32.51008|74.52507|Lorry Adda
+B|25.03572|67.10179|Lyari Bus Terminal
+B|24.95754|67.10364|M&M Movers
+B|30.14182|66.98283|MOOSA COLONY Bus stop
+B|24.83585|67.13829|MTS (maaz transport service )
+B|24.91974|66.99583|MZ Transport
+B|24.90309|67.00253|Madasan Chowrangi
+B|32.05996|73.67017|Madrianwala Chowk Bus Stop
+B|34.82297|71.83873|Main Bus Stand
+B|27.58092|68.22265|Main Bus Terminal
+B|34.77969|72.36086|Malak Shahid adda
+B|24.91424|66.95290|Malik Hanzalah Enterprises
+B|34.01463|71.57424|Malik Saad Shaheed
+B|24.87902|67.18826|Malir 15
+B|24.88470|67.17530|Malir Cant
+B|33.99829|71.53357|Mall Road
+B|34.02055|71.64269|Mall of Chamkani
+B|33.99202|71.46141|Mall of Hayatabad
+B|32.58442|73.48527|Mandi Bahauddin Bus Station
+B|24.90508|67.00176|Manghopir Station KCR
+B|31.53100|74.54300|Manhala Bus Stand
+B|34.34894|73.20001|Mansehra Bus Stand
+B|24.84496|67.03806|Manthar Coach Ada
+B|24.95646|67.10200|Manthar Transport Co.
+B|30.18990|71.48691|Manzoorabad Metrobus
+B|30.25559|71.48877|Mehmood Kot Metrobus
+B|30.05092|70.64930|Mekhtar Transport
+B|33.59378|73.05615|Metro Bus Saddar station
+B|24.95748|67.20379|Metro Bus Station
+B|33.71804|73.07149|Metro Bus Terminal 7th Avenue
+B|33.67554|73.05448|Metro Bus Terminal Faiz Ahmed Faiz
+B|33.66126|73.08303|Metro Bus Terminal Faizabad
+B|33.65650|73.07204|Metro Bus Terminal IJP
+B|33.69577|73.03857|Metro Bus Terminal Ibn-e-Sina
+B|33.70234|73.04151|Metro Bus Terminal Katchery
+B|33.66902|73.05939|Metro Bus Terminal Khyban-e-Johar
+B|33.73467|73.09256|Metro Bus Terminal Pak Secretariat
+B|33.72475|73.08434|Metro Bus Terminal Parade Ground
+B|33.68462|73.04756|Metro Bus Terminal Peshawar Mor
+B|33.72150|73.07812|Metro Bus Terminal Shaheed-E-Millat
+B|33.71166|73.05930|Metro Bus Terminal Stock Exchange
+B|33.59952|73.06266|Metro bus Mareer Chowk station
+B|33.68981|73.04304|Metro bus stand Islamabad
+B|35.92175|74.30412|Minapin minivan
+B|24.89077|66.98498|Mini Bus Stop
+B|35.92333|74.30295|Minivan to Ghizer Valley
+B|35.92440|74.30285|Minivan to Phander
+B|24.87948|66.99565|Miran Naka
+B|25.52203|68.97993|Mirpurkhas Bus Terminal
+B|24.90582|67.03094|Model Park BRT Station
+B|31.09501|73.34547|Moza Siaal Bus Station
+B|24.88338|67.19228|Muhabbat Nagar
+B|31.45904|74.30272|Muhammad Ali Chowk.
+B|30.19382|71.42414|Multan International Airport
+B|32.56536|74.07742|Municipal Wagon Stand, Old GT Rd Tyre Market Gujrat
+B|24.92361|66.97220|N-4 Bus Stop بس اسٹاپ
+B|24.92342|66.97197|N-4 Last Bus Stop
+B|35.89870|74.36972|NATCO
+B|36.69063|74.82078|NATCO
+B|35.92442|74.30279|NATCO Busstation to Mastuj
+B|33.65552|72.99312|NUST Metro Bus Area
+B|30.11076|71.42126|NagShah Chock
+B|24.96641|67.06699|Nagan Chowrangi BRT Station
+B|24.96586|67.06664|Nagan chorangi
+B|33.64518|73.17682|Nai Abbadi Stop
+B|33.48705|74.10088|Nakyal Bus Stand
+B|33.15143|73.73888|Nangi Adda
+B|35.16385|76.34338|Natco ticket office
+B|36.30099|74.60785|Natco to Islamabad
+B|29.69794|72.54407|Naya Bus Adda
+B|24.89976|67.03041|Nazimabad 1 BRT Station
+B|32.06349|73.38384|New Adda Jalalpur Bhattian
+B|30.19733|66.95372|New Bus Station, Jabl e Noor
+B|30.46159|72.04037|New Bus Stop Makhdumpur
+B|31.14764|74.45716|New Bus Terminal
+B|29.62419|70.58202|New General Bus Stand, Jampur
+B|32.06125|72.69683|New Khan Bus Stand
+B|32.92737|72.43231|New Lari Ada
+B|31.41781|73.09510|New Subhan
+B|32.42209|71.44864|Niazi Bus terminal and Pindi Caoches
+B|31.53720|74.27331|Niazi Express
+B|33.68768|73.03376|Niazi Express
+B|32.05821|72.70703|Niazi Express Terminal
+B|34.01680|71.61134|Niazi express
+B|33.65350|73.24406|Nilore Barier
+B|24.91303|67.08700|Nipa Station Karachi Circular Railway
+B|30.24645|71.48528|Northern Bypass Metrobus
+B|24.87218|67.03552|Numaish Green Line Station (BRT)
+B|24.92870|67.02540|ORANGE LINE BUS STATATION, ABDULLAH COLLEGE
+B|34.01632|71.60749|Old Haji Camp Station
+B|32.92652|72.40752|Old Lari Ada
+B|24.92980|67.02039|Orange Line BRT Bus Depot
+B|33.98953|71.44323|PDA Station
+B|29.38890|71.67120|PIA Reservation
+B|33.70588|73.04829|PIMS Metro Bus Station
+B|24.95630|67.10174|Pak Masood Bus Stop (Karachi To Tank)
+B|36.30683|74.61759|Passenger Bus to Gilgit
+B|24.88127|67.03812|Patel Para BRT Station
+B|30.17273|71.50145|Peoples Colony Metrobus
+B|33.99463|72.93923|Peshawar Coster Stand
+B|33.61986|71.46352|Peshawer Hi Ace Stand
+B|33.95712|71.41730|Phase 7 Bus Station
+B|34.01763|71.60123|Pickup Adda
+B|34.01717|71.60012|Pickup and Van Adda
+B|34.77164|72.35421|Pikhawar Bus Station
+B|31.89899|73.26986|Pindi Bhattian Lari Adda
+B|33.63070|73.04249|Pir Wadahi
+B|33.62989|73.04208|Pirwadhai Mor Bus Station
+B|24.86627|67.30018|Port Qasim Mor
+B|24.98401|67.06607|Power House Chowrangi BRT Station
+B|34.77789|72.33207|Pukhtun Khwa Bus Terminal
+B|32.29707|72.34926|Purana Ada (Old Bus Station)
+B|30.20346|71.47370|Qasim Bagh Metrobus
+B|24.82942|67.08077|Qayyumabad
+B|32.09464|74.59789|Qila Kaalarwala
+B|24.91994|66.96329|RUBI SANEMA STATION
+B|31.76039|72.91714|Rabwah
+B|34.00260|71.54972|Railway Station
+B|30.64854|73.10026|Rajput Travling agancy
+B|33.99459|72.94268|Rawalpindi Bus stand
+B|32.70597|71.79561|Rikhi Bus Station
+B|32.60576|74.22948|Rikshaw Stand
+B|24.97793|67.06652|Road 4200 BRT Station
+B|29.69957|72.55353|Rohi Adda
+B|34.01603|71.59335|Royal Express Booking
+B|24.95742|67.10315|SAIFULLHA BANGASH COCHES SERVICE
+B|28.88500|64.40854|SF bus stop
+B|30.23481|71.48157|Sabzazar Metrobus
+B|30.17796|66.99383|Sadabahar Bus Terminal
+B|33.99508|71.53834|Saddar Bazar
+B|34.19265|72.03408|Saddat Bus Terminal
+B|30.64833|73.09844|Sahiwal
+B|25.37444|68.35798|Sammi-Daewoo Express
+B|31.05928|72.96431|Samundri Bus Station
+B|33.63284|73.12683|Sanam Chowk
+B|31.46774|74.22475|Sandhu Transport Service
+B|34.01725|71.61395|Sania express
+B|24.89478|67.03070|Sanitary Market BRT Station
+B|34.14350|73.21492|Sarban chowk Wagon stand
+B|34.01894|71.63976|Sardar Garhi Station
+B|33.64336|73.20022|Satra Meel
+B|31.47532|74.37143|Sec Y
+B|31.47533|74.37042|Sec. W
+B|24.91954|66.96363|Sector 5J Bus Stop
+B|34.22134|71.56602|Shabqadar Bus Station
+B|30.17722|71.50878|Shadi Khel Daewoo
+B|32.57244|74.08173|Shadoula Gate Bus Stop, Circular Road Gujrat
+B|32.57044|74.07885|Shah Faisal Gate, Circular Road Gujrat
+B|30.19476|71.48409|Shah Jamal Metrobus
+B|25.77543|67.05132|Shah Noorani Stop
+B|30.19682|71.51606|Shah Rukne Alam Metrobus
+B|31.61877|74.28941|Shahdara Lari Ada
+B|31.62601|74.30553|Shahdara Town Bus Stop
+B|31.61560|74.29090|Shahdra Terminal
+B|34.20002|72.02545|Shaheen Bus Terminal
+B|24.91880|66.97217|Shaheen express baldia town19/D Karachi (19-D شاہین ایکسپریس مہاجر کیمپ)
+B|34.79083|72.37350|Shahid coach terminal fizza gut
+B|32.14777|74.19120|Shaikupura Morr
+B|32.98360|73.84061|Shakrilla Bus Stand
+B|30.96146|71.21741|Shalimar AC Coach
+B|30.24038|71.48298|Shalimar Colony Metrobus
+B|31.53908|74.31907|Shama
+B|33.78148|72.71892|Sharif hospital stop
+B|32.57654|74.08128|Sheeshanwala Gate Bus Stop: Circular road Gujrat
+B|24.88924|66.98264|Shershah Bus Stop شیرشاہ بس اسٹاپ
+B|34.47167|73.26861|Shinkiari
+B|34.00795|71.56203|Shuba Bazar
+B|31.96639|73.10523|Sial Mor Bus Stop
+B|31.97017|73.10891|Sial Mor Interchange Bus Stop
+B|25.42969|68.27930|Sindh University Shuttle Bus Stop
+B|32.29525|72.34014|Skyways Adda
+B|31.53727|74.27279|Skyways Bus Service
+B|33.66186|73.08334|Skyways Daewoo Bus Service
+B|34.01729|71.61510|Skyways travel
+B|24.94505|67.08571|Sohrab Goth Bus Stop
+B|32.60372|74.13752|Sook Kalan Bus Stop
+B|24.86002|67.33619|Steel Town Mor
+B|27.73853|68.81744|Sukkur Bus Station
+B|33.64313|73.20295|Sultana Foundation
+B|25.00503|67.06473|Surjani Chowrangi BRT Station
+B|34.78306|72.33251|Swat Daewoo Express
+B|34.78273|72.33300|Swat coach adda
+B|34.77717|72.33313|Swat travel bypass adda
+B|25.46368|68.71777|TANDO ALLAH YAR (ٹنڈوالھیار)
+B|31.99532|73.32972|Tahli Goraya Bus Stop
+B|31.83235|70.89331|Tank Bus Station
+B|32.07153|73.69175|Tarar Travels Service
+B|33.74162|72.81907|Taxila
+B|34.00827|71.51935|Tehkal Payyan
+B|33.63447|73.03308|Teri & Nari Panos Flyingcoach Adda Mandi Morr Rawalpindi
+B|24.86079|67.00142|Thatta Bus Stand
+B|34.82301|71.83865|Timergara Main Bus Stand
+B|34.78509|72.36113|To Manglor (Jahanabad Buddha)
+B|30.96887|72.48340|Toba Tek Singh Bus Station
+B|34.06727|72.61455|Topi adda
+B|32.15940|74.19040|Totota Stand
+B|30.05523|70.64052|Traffic Chowk
+B|34.02141|71.64378|TransPeshawar Depot
+B|33.62951|73.10916|Trolly Adda
+B|33.66086|73.25826|Tumair
+B|24.97348|67.06674|UP Morr BRT Station
+B|24.87385|67.02169|Universal Motor Pvt Ltd.(UML)
+B|24.94159|67.11822|University Shuttle Depot
+B|33.99946|71.49486|University Town
+B|33.99776|71.48726|University of Peshawar
+B|31.42087|73.07604|Urban Transport Terminal
+B|29.76532|71.06821|Urdu
+B|32.51183|74.52330|Van Adda
+B|30.17513|71.50938|Vehari Chowk Metrobus
+B|31.27632|72.32018|Vicky Hotel Ayub Chowk
+B|33.72881|73.13636|Visa Seekers Shuttle Service
+B|34.67668|73.02905|Wagon Adda Battagram
+B|28.65520|70.65746|Warraich Express
+B|34.78503|72.36148|Watki adda
+B|32.04808|73.36762|White Pearl Chowk Bus Stop
+B|24.91841|66.97110|X_4 Bus Stop Feeder S & G M ALi
+B|24.89865|67.06011|ZB TRANSPORT
+B|34.01618|71.59774|Zaman Travels
+B|34.78159|72.33328|Zeb terminal
+B|24.95683|67.10251|Ziauddin Coaches
+B|33.93866|70.09453|Zurkey Collony
+B|30.64852|73.10056|ali express
+B|34.77872|72.35644|banr school takhtaband adda
+B|32.43343|73.57374|bus stand
+B|33.52267|73.90720|bus stand
+B|31.59042|74.31906|bus station
+B|34.01546|71.59955|bus station
+B|33.82158|72.68036|bus stop hasaan abdal
+B|34.78884|72.35019|bypass Kabal adda + depot
+B|31.54630|74.33072|china choke
+B|30.70594|70.63554|daewoo terminal
+B|33.61509|72.99167|faisal movers
+B|32.70364|73.96311|for Machiwal
+B|33.61637|72.99120|ghosia travels
+B|34.01696|71.60036|haji camp adda bus terminal
+B|32.57652|71.53301|home mia
+B|34.77800|72.33210|ingaro darei bypass adda
+B|31.93250|73.28562|interchange Bus Stop
+B|33.61529|72.99516|kohistan luxury bus service
+B|34.77111|72.35812|marghuzar mulla baba adda + depot
+B|35.92209|74.30997|minibus to Karimabad
+B|29.39162|71.67194|multan hiace stop
+B|33.61517|72.99480|new khan road runner
+B|30.77184|72.43311|peer mehal
+B|31.59699|74.49948|qingqi to Wagah
+B|25.28325|69.39781|sindh
+B|31.03073|73.13288|tandlianwala city bus terminal
+B|25.36949|68.35866|unit no.7
+B|29.59661|72.84812|المدینہ بس ٹرمینل
+B|32.66775|73.54834|اڈا شہانہ لوک
+B|31.56171|74.30667|ایم اے او کالج
+B|26.04405|68.94710|سانگھڑ‎
+B|35.29406|75.59346|سکردو بس اڈہ
+B|31.61651|74.29082|شاہدرہ
+B|24.92498|66.97124|مشرق کوچ اسٹاپ
+B|31.39798|74.36164|گجو متہ

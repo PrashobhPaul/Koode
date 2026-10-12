@@ -1,4 +1,4 @@
-# Transit for Koode, TH. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, TH. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|13.72646|100.50907|Charoen Nakhon|BTS|M
@@ -198,7 +198,7 @@ S|9.58444|99.98517|Lomprayah Pralarn Pier|Lomprayah|W
 S|9.70848|99.98349|Lomprayah Thong Sala Pier|Lomprayah|W
 S|13.74785|100.56295|Asok Pier|NIDA Line|W
 S|13.74415|100.58146|Baan Don Mosque|NIDA Line|W
-S|13.76503|100.64739|Bangkapi|NIDA Line|W
+S|13.76503|100.64741|Bangkapi|NIDA Line|W
 S|13.74269|100.58846|Charn Issara|NIDA Line|W
 S|13.74871|100.54457|Chidlom|NIDA Line|W
 S|13.74592|100.57348|Italthai|NIDA Line|W
@@ -367,174 +367,174 @@ S|13.65773|100.53743|Phetra Pier|เรือข้ามฟากพระป�
 S|13.65703|100.53416|Phra Pradaeng Pier|แพขนานยนต์พระประแดง-เภตรา|W
 S|13.70193|100.49069|Siam Charoen Nakhon Pier|ไทย สมายล์ โบ้ท|W
 S|7.73741|98.77086|Koh Phi Phi|ไร่เลย์ - เกาะพีพี|W
-L|BTS|รถไฟฟ้าสายสีทอง|#A58704|2 0:1145 1:493
-L|BTS|รถไฟฟ้าสายสีทอง|#A58704|1 0:497 2:1153
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#E76589|53 32:573 78:1351 74:1787 72:1093 104:899 57:1165 21:1513 88:1227 51:1153 20:1344 25:827 52:972 37:850 66:849 155:1077 67:705 44:1874 68:1027 47:752 99:1315 69:911 35:1141 70:1224 56:1465 55:1266 4:2020 80:1049 49:1430 48:957
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#E76589|48 49:957 80:1430 4:1049 55:2020 56:1266 70:1465 35:1224 69:1056 99:984 47:1316 68:752 44:1027 67:2024 155:718 66:1062 37:849 52:850 25:972 20:827 51:1344 88:1137 21:1227 57:1513 104:1165 72:899 74:1093 78:1787 32:1351 53:573
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#C4007B|51 28:1770 36:890
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#C4007B|36 28:890 51:1769
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีน้ำเงิน|#1E398D|97 3:1319 24:1733 7:987 19:2025 89:1141 11:1580 9:900 13:1622 95:1056 17:1199 31:956 22:871 58:1610 39:1420 71:924 93:1049 26:1195 96:1489 64:1074 61:975 92:1312 65:1690 34:792 45:1008 86:1016 76:817 27:1533 100:942 77:1002 79:1122 29:1401 97:1712 10:1274 18:995 62:1362 59:1246 6:1302 38:1394
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีน้ำเงิน|#1E398D|38 6:1395 59:1302 62:1245 18:1361 10:994 97:1118 29:1716 79:1384 77:1157 100:1005 27:946 76:1530 86:815 45:1018 34:1006 65:758 92:1686 96:3369 17:5483 95:1197 13:1056 9:1615 11:901 89:1583 19:1140 7:2025 24:983 3:1733 97:1313
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีม่วง|#893B90|33 94:1268 75:1566 12:1565 15:1207 14:1236 73:1254 63:1464 103:1625 8:1241 54:924 50:1787 105:1206 101:1640 16:1378 95:1558
-L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีม่วง|#893B90|95 16:1558 101:1369 105:1641 50:1213 54:1773 8:925 103:1242 63:1620 73:1468 14:1256 15:1232 12:1207 75:1566 94:1578 33:1268
-L|Metropolitan Rapid Transit|รถไฟฟ้าสายสีเหลือง|#FFD400|40 60:1340 23:1277 42:1765 43:748 46:1194 41:890 5:1240 102:1146 84:1279 30:2830 87:1597 91:1137 83:3723 85:1441 81:1430 82:1322 90:1158 98:1575 143:1726
-L|Metropolitan Rapid Transit|รถไฟฟ้าสายสีเหลือง|#FFD400|143 98:1726 90:1701 82:1158 81:1428 85:1430 83:1441 91:3723 87:1137 30:1597 84:2830 102:1279 5:1146 41:1240 46:890 43:1194 42:808 23:1634 60:1277 40:1340
-L|รถไฟฟ้าบีทีเอส|ขบวนเสริม รถไฟฟ้าบีทีเอส สายสีลม|#02817D|18 157:1674 151:914 130:1158 156:1021 2:818
-L|รถไฟฟ้าบีทีเอส|ขบวนเสริม รถไฟฟ้าบีทีเอส สายสีลม|#02817D|2 156:818 130:1020 151:1157 157:918 18:1678
-L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสีลม|#02817D|123 149:564 18:10756
-L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสีลม|#02817D|18 149:10770 123:564
-L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|120 158:2477 139:898 113:927 146:1799 142:1041 127:766 155:905 106:996 109:1471 138:729 118:1022 147:754 137:848 126:717 117:950 145:2865 148:925 107:729 144:831 154:1279 128:728 136:621 149:978 115:973 129:649 122:766 108:657 133:1249 152:1173 116:883 132:819 124:1531 110:1086 135:917 153:1087 111:1402 112:829 143:1750 134:1098 114:1900 140:1538 125:740 150:1795 131:920 141:749 119:1206
-L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|119 141:1207 131:749 150:919 125:1794 140:740 114:1539 134:1902 143:1098 112:1750 111:828 153:1402 135:1083 110:917 124:1086 132:1528 116:820 152:883 133:1172 108:1249 122:658 129:763 115:648 149:973 136:986 128:621 154:729 144:1280 107:830 148:730 145:925 121:1070 117:1794 126:951 137:717 147:849 118:753 138:1021 109:730 106:1470 155:998 127:900 142:766 146:1041 113:1799 139:927 158:899 120:2481
+L|BTS|รถไฟฟ้าสายสีทอง|#A58704|2 0:1148:-83zC8_tlTkEuDagCxCoNa6BmU4B 1:496:8y5zCuzulT2BtB
+L|BTS|รถไฟฟ้าสายสีทอง|#A58704|1 0:499:805zCgyulTlC4B 2:1157:uz4zCq2ulT5T9BTzB0ClNR1BrEhE
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#E76589|53 32:573 78:1358 74:1796 72:1098 104:903:u370Co7tlTsEM 57:1165:-m80CmiulTyBiD 21:1512:i-70C-3xlT 88:1226 51:1153:i660C0j1lTrCiB5GNvDyDHsDyE0L 20:1344 25:826 52:972:uy40Cqs7lT 37:850 66:850:mr30C0y9lT 155:1077:6m20C-0_lT 67:707:4110CohgmT 44:1875 68:1027 47:752 99:1315 69:911 35:1057 70:1225:k5u0Co3smT 56:1469 55:1271 4:2020:8-p0C-4xmT3E0K 80:1048 49:1428:i4p0Cs_2mTWib 48:957:62p0Ck35mTpM8N
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#E76589|48 49:959:wqp0Cgl6mTqM7N 80:1428:44p0Cu63mTVhb 4:1048 55:2017:k6p0CyjymT4EzK 56:1269 70:1469 35:1227:k5u0Co3smT 69:1057 99:912 47:1316 68:753 44:1027 67:1875 155:719:s010C8ggmT 66:1064:2k20Cg1_lT 37:850:mr30C0y9lT 52:850 25:973:uy40Cqs7lT 20:826 51:1344 88:1138:2x60C621lTxEzLIrDwDxDqGCiCf 21:1226 57:1512:i-70C-3xlT 104:1164:wo80ColulTxBhD 72:904:6770C07tlTrEL 74:1098 78:1796 32:1358 53:573
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#C4007B|51 28:1776:0z60Cmz1lT8B5B4HcoM3DyFRyZW 36:896
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีชมพู|#C4007B|36 28:895 51:1780:0o80C0u1lTxZVxFSnM4D3Hb7B6B
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีน้ำเงิน|#1E398D|97 3:1245:g26zCipnlT 24:1743 7:992:6h_zCq8mlTsG8B 19:2031:8oh0C60olTkToS 89:1143:2vj0CqxqlT 11:1582:ypl0C8stlToF0F 9:903 13:1625:qvn0CqivlT8P2EkFwEsEiIuJilB 95:1054:kyo0C8xylT 17:1198:2uo0CsszlTpDuL 31:950:gvn0Cgz1lTrQmKnBkE 22:862:m-m0C0w2lT8CmHuEmE 58:1688:m-o0C-83lTuMoFmOyD0EyCmDkFOuE 39:1421 71:938:yto0C2s7lTlHiE 93:1056 26:1202 96:1500:o9h0Cwn7lTtMzBhI7D 64:1077:03_zCw85lTnGhD 61:980 92:1320:so8zC4h5lT 65:1700:026zC874lTzPhIvTA7c4D 34:793:o93zCsx4lTrDzFGvF 45:1008 86:1016 76:817 27:1532 100:942:8p7zCy4vlT 77:1004:288zC43tlT 79:1123:gg9zC--rlThChDjDlB 29:1403:gm8zC28rlTjI5B1HrExG1GvE7I1B5G 97:1692:4n7zCyzplT3D_InDtD3gBhVvDlE 10:1119:ut5zC6xnlTxGvJ 18:995 62:1362:ko3zCgzjlT 59:1245:2r2zC27glT 6:1301 38:1392
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีน้ำเงิน|#1E398D|38 6:1394 59:1300 62:1244:os2zC28glT 18:1361:gp3zC00jlT 10:995 97:1119 29:1698:q85zCktolTwDsEygB8UkEkEkEwK 79:1386:mq7zCuhrlTkF4MwEoF2J8GwH8B 77:1158:u68zC05rlTkFiC4B2C 100:1006:k98zCu3tlT 27:947:mp7zC45vlT 76:1530 86:815 45:1018 34:1006 65:759:y63zCwm4lTC0D6CsF 92:1695:yu4zCk14lT-JUibvDqSLuP4H 96:3385:my7zCs_4lT-V4BwlDgW2K4E 17:5483 95:1197:gro0Ck4zlTiDlK 13:1055:8xo0CqxylT 9:1616:-wo0C-0wlTvIlhBvDxGvF3F7QlF 11:904 89:1586:wtl0C6xtlThF1F 19:1142:-vj0CiyqlT 7:2031:s9h0C0oplT3U3T 24:986:un_zCi-mlT3GxB 3:1743 97:1243:k16zC0pnlT
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีม่วง|#893B90|33 94:1275 75:1569:ou20Cop7kTlHiE_EqFxEmJlCkJFqJ 12:1564 15:1206 14:1235:uq20Cu5ilTTgO5D4P 73:1254:yo10Cs5llT 63:1463:g_00Ck9mlTzB2N 103:1625:4i10CmzplT_CsSnEyK 8:1241:62z0Ck4slT 54:923:omz0CkyulT 50:1792:ugz0C69vlTjEiIzE0DvN4G5F2B9EJpFhC 105:1211:ugw0C0pvlT3EzB7EDzEqB_EqD 101:1643 16:1382:4qs0C6hzlTlF4EjFwC3FmB 95:1567
+L|Metropolitan Rapid Transit|รถไฟฟ้ามหานคร สายสีม่วง|#893B90|95 16:1567 101:1374:y6r0CwpzlT2FbkFpCmF1E 105:1644 50:1218:yuv0C-qvlToIpD-EE6E0B 54:1779:o6x0CqvwlToFiC6EK4F1BwN3GqE1D6D9H 8:924:gmz0CiyulT 103:1242:y2z0Cg4slT 63:1620:-700C4tqlTkEtKqCjQ 73:1467:g900C4nnlTqB1K 14:1256:4m10Cg9llT 15:1231:sl20Ci3jlTiEzPY_N 12:1206 75:1564 94:1579:i710C8k8kTmClJwEnJgFxFqHlE 33:1276
+L|Metropolitan Rapid Transit|รถไฟฟ้าสายสีเหลือง|#FFD400|40 60:1341:iuo0Cow7lT9C4B 23:1278 42:1765 43:748 46:1194 41:890 5:1241 102:1149:g1g0C6opmT1NmC 84:1286:8x-zCktpmTxJnB 30:2846:s26zC-tomT 87:1604:403zC61omTtQsC 91:1143 83:3751:ipzzC61pmT3Ken7EhL 85:1448:i6szCmjpmTvStF 81:1436:o1qzCmzomT1H_C 82:1328 90:1166:g7lzCw5lmT5CtDArG 98:1576 143:1728:yznzCmhimTqXrb0N_T
+L|Metropolitan Rapid Transit|รถไฟฟ้าสายสีเหลือง|#FFD400|143 98:1727:w4ozC6xgmTzNgUpXsb 90:1576 82:1161:m4lzC2vlmTAsG6CuD 81:1328 85:1441:ytqzCmwomT2HgD 83:1449:ynszC49omTwSuF 91:3744:ijuzC2rpmTo7EiL4Kd 87:1143 30:1612:qk3zCm4omTuQrC 84:2844:s26zC-tomT 102:1288:qo-zC8rpmTyJoB 5:1149:qng0CgrpmT2NlC 41:1241 46:825 43:1195 42:749 23:1635 60:1278 40:1342:kro0Cgy7lT-C3B
+L|รถไฟฟ้าบีทีเอส|ขบวนเสริม รถไฟฟ้าบีทีเอส สายสีลม|#02817D|18 157:1677:qo3zC04klTlMiI9DkE9C2F5CmLTiT 151:914:sl2zCsrnlTI2IyBqF 130:1159:462zCm6olTgHuIqJ4QsDgH 156:1020:u53zCm_qlT4C2Q 2:817
+L|รถไฟฟ้าบีทีเอส|ขบวนเสริม รถไฟฟ้าบีทีเอส สายสีลม|#02817D|2 156:817 130:1019:o83zC0yrlT5CzS 151:1157:ys3zC42plT_K9T3GhI 157:918:gn2zCu5nlT1B_FA_I 18:1680:0x2zC0omlTOnS-C5L2CvF8DlEsL9H
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสีลม|#02817D|123 149:564 18:12525:ww8zCi10lTtCkD5CSt1B9IjcxKvJjG_QzuB_BvC7ERxFqE7M6GjEN3CrDlBjH7TrlCsPt-B8BtL4Bx7BL5P_B1NvB5HzLtlB1LtV7H1J9QpchD5GVrHuCrMmKpZajFNpMiD5MiCrE6EtFkKlHmGhC
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสีลม|#02817D|18 149:12522:-m3zC-4klTxM-IrDoE9EoQNoShKiZzC-Mc2HiD0GoR6cuHiJ2LoVsL8kBkCsL2B0MK8N9Bi9BzQioC8TwlCmBuHyCgD4DQ2MzG0FtEqFMqC-CyQiuBwI4FgdgLkuBiHyHkC6CPqChD 123:564
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|120 158:2477:gmh1CipomTtCtN7dj4BjF5MjCxC 139:901 113:931 146:1807 142:1048 127:769 155:909 106:1000:gp10Cyq_lT 109:1477 138:732 118:1026 147:758 137:852 126:720 117:954 145:2876:w3p0Csw4lTr0CxwB 148:929 107:735 144:835 154:1285:2uh0Ci-0lT9XnNnKIpClCxCpG 128:731 136:623:6m-zCmkzlT 149:982:m98zC09ylTzD4D 115:972 129:648 122:766:qh8zC8l3lTxDoH 108:658 133:1250 152:1174 116:884 132:820 124:1534:011zC6mgmT9FkE 110:1091 135:921 153:1093:omxzCqtimT_NqChOlB 111:1409:07uzCw8hmTrJhC3KnG 112:833 143:1758 134:1103 114:1906:w4mzC6x-lTtPhMlKzDjLiB 140:1546 125:751 150:1799:0rgzC6-_lTlDsDjam2B 131:922:2v-yCkqimTjIuB 141:753 119:1216:4v7yCyrhmTjICzFyB
+L|รถไฟฟ้าบีทีเอส|รถไฟฟ้าบีทีเอส สายสุขุมวิท|#65B724|119 141:1215:0h7yCithmT8F1BoKO 131:753 150:921:yn-yCqrimTwFR 125:1799:mu_yCm4hmTqat2BmExD 140:744 114:1547 134:1911:40lzC0i-lTiKV6K-DyQ0M 143:1103 112:1759 111:833 153:1409:qmuzCuzhmTmM6GwJiC 135:1089:orwzCuuimT6NckOzC 110:921 124:1092 132:1532:6v1zCyqgmTkHvF 116:821 152:884 133:1174 108:1250 122:659 129:763:wg8zCmn3lT 115:648 149:972 136:989:q58zCwhzlTmD_DoGC 128:624:qn-zCkkzlT 154:732 144:1285:6ng0Cwo0lT2CsGkC-BmKF2YyN 107:834 148:734 145:930 121:1075:2in0Co_2lT 117:1802 126:955 137:720 147:852 118:757 138:1026 109:733 106:1477 155:1002 127:904 142:769 146:1045 113:1807 139:931 158:902 120:2481:-9_0CszlmT2C8CiF6M8d-3B0C2N
 L|Boonsiri Fantasea Catamaran|Boonsiri Fantasea Catamaran||160 159:15068
-L|Boonsiri Fantasea Catamaran|Boonsiri Fantasea Catamaran||160 159:16211
-L|Car Ferry|Car Ferry||162 161:777
+L|Boonsiri Fantasea Catamaran|Boonsiri Fantasea Catamaran||160 159:16251:qmhoC02xxTlZuwChoD-zHpkDkgE1_Ck1Bp8CmN_kCtN5mB3NvgBrI9d-D1G0G
+L|Car Ferry|Car Ferry||162 161:780
 L|Chao Phraya Express Boat|เรือด่วนพิเศษธงส้ม|#ef5d28|169 175:1196 179:592 163:3652 164:943 176:1728 171:3090 165:1091 178:1141 349:1236 172:397 354:981 177:410 353:812 350:1947 166:1088 352:508 351:1141 181:1799 167:4018
 L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเขียว|#38b54d|170 180:1271 168:2714 169:4992 176:4354 165:4017 178:1141 172:1541 354:981 177:410 350:2564 352:1537 351:1141
 L|Chao Phraya Express Boat|เรือด่วนพิเศษธงเหลือง|#ffdb1a|169 176:4354 163:972 178:4641 172:1541 354:981 350:2943 352:1537 351:1141
 L|Chao Phraya Express Boat|เรือประจำทาง||169 173:1225 176:3146 163:972 164:943 171:1675 165:1091 178:1141 349:1236 172:397 354:981 177:410 353:812 174:688 350:1330 166:1088 352:508 351:1141 181:1799 167:4018
-L|Golden Mount Line|Boat||182 185:1060 183:1001 184:737 204:1125
-L|Golden Mount Line|Boat||204 184:1124 183:737 185:1001 182:1060
-L|Haad Rin Queen|Haad Rin Queen||186 187:12818
-L|Ko Tarutao - เกาะหลีเป๊ะ|Ko Tarutao - เกาะหลีเป๊ะ||189 188:66653
-L|Lelawadee|Lelawadee Speedboat||190 191:41961
-L|Lomprayah|Lomprayah||194 193:13803
-L|Lomprayah|Surat Thani||194 192:57650
-L|NIDA Line|Boat||204 199:344 216:397 202:634 201:552 195:420 203:309 200:854 213:100 196:791 209:495 198:287 212:627 207:514 211:1814 206:516 215:337 205:543 208:592 210:2162 197:438 214:607
-L|Night Boat|สุราษฎร์ธานี - เกาะพงัน||194 217:96450
-L|Panan Express|Panan Speedboat||190 218:40435
-L|Raja|Surat Thani||219 220:53820
-L|Raja Ferry|Raja Ferry||220 194:49568
-L|Saphan Taksin-Asiatique the Riverfront|Saphan Taksin-Asiatique the Riverfront||222 221:2835
-L|Satun - Langkawi|Satun - Langkawi||223 188:103991
-L|Seahorse Ferries|Sattahip - Songkhla||225 224:598542
-L|Seahorse Ferry|Pattaya||226 230:361085
-L|Seatran|Ko Samui||230 194:21437
-L|Seatran|Seatran||227 194:18176
-L|Seatran|Seatran||194 229:45484
-L|Seatran|Surat Thani||228 230:32274
-L|Siam Resorts Group|Ko Chang Speedboat||191 159:19908
-L|Songserm|Songserm||232 231:143109
+L|Golden Mount Line|Boat||182 185:1059:-v-zCmyulT 183:1001:qg-zCi6wlT 184:737:8s9zCm7xlTmC4O 204:1124:ks9zC0wzlT-CgR
+L|Golden Mount Line|Boat||204 184:1123:iv9zC0h0lT9C_Q 183:737:iv9zC-pylTlC3O 185:1001:qg-zCi6wlT 182:1059:-v-zCmyulT
+L|Haad Rin Queen|Haad Rin Queen||186 187:12871:4rx6Bw90iT
+L|Ko Tarutao - เกาะหลีเป๊ะ|Ko Tarutao - เกาะหลีเป๊ะ||189 188:69625:467pB200gTlXtTl1En1B5rD76B3-N7kNvxDhLxxBiF5oB8O1lBmhBjLyS9B-HH8FoEyGkBuG9B5E3GrKlFlmB5F1S5PnlBvxYvigB_tDtjDxiQhpZ8RhrD
+L|Lelawadee|Lelawadee Speedboat||190 191:45038:oppqCsm9wTxTLnwPy2D5iIu9CpmN6rGn0B0Mx2B8DnrBiBt-B7DnrBtJ_rFjrBtsTjTzX4E5QmOhRqhBPsM2DsNsIsM2OuK
+L|Lomprayah|Lomprayah||194 193:13883:yln7Bu2niTviBlGr3BIjqJkTv3JyP_jBlC
+L|Lomprayah|Surat Thani||194 192:57818:4io7B-7niTniahhOvQlDjgBxDpQa5cuO5doRp6BokBxwBiyB9BmERyIxBiFnBgChCQ-ClDNjKpDvNlL9Nt3T38UriOr0UzyBzvCt3BtrD3P_Z3G7E
+L|NIDA Line|Boat||204 199:344 216:396 202:633 201:552 195:419:0m9zC834lT 203:309 200:854 213:100 196:791 209:495 198:287 212:626 207:523:057zCw5_lTCqH 211:1820:0g9zC4vgmTqgBqhB 206:517 215:338 205:543:0y_zCumjmTiE8HoCsI 208:591:y8_zC8vkmT 210:2160:0lg0C6_mmTNgD4Go5B 197:438:msg0C8-omT 214:606:wvg0C25pmTyD-I
+L|Night Boat|สุราษฎร์ธานี - เกาะพงัน||194 217:96679:gpo7Bu_niT98QpoT17wC9tgDxmDvmC_5Bx4CjpB5jB3sB1zBnEtLuD5dCznBhEtJpTrYpJtGnyDv5BjFlB
+L|Panan Express|Panan Speedboat||190 218:40652:mopqC6o9wTxS8B5nPs_ErlIklDljNw3F18B-Kr0B2D_xBtC79B7E_xBlM1nF_Fj8DyBhhIkZ3mCoLhnBiQnZkO
+L|Raja|Surat Thani||219 220:54011:2rn7BuqniTtMtKp7YtyNtRpDjiBpDjSkBxrO43B_MkGtnBisB5B6DdlD5-V5ha3wD_1Dz3Dt4DvLhd5B1TZ5B
+L|Raja Ferry|Raja Ferry||220 194:49931:2j-4Bqk5gT2JP64vBujgB86Y81NyOkO0UoX
+L|Saphan Taksin-Asiatique the Riverfront|Saphan Taksin-Asiatique the Riverfront||222 221:2846:s64zCopvlTtGe9jBFlEyB3BjDjTvLtUlO7jBljB
+L|Satun - Langkawi|Satun - Langkawi||223 188:109996:0o5nB625iT5S8EvW-B5c5CnVpHzkiB_xcnd7yCzW9-CxH18B5CxLxLlNvRrKxa3IpM3L1cttB1bzcnczTndzWxEtS-B3RmK_RgkCluB-DIkDsCgMiUtLz5B9xCtlE51G12MnM93BQ5xB0Hx7B-Sj9B85oBn-tC-rB5zD
+L|Seahorse Ferries|Sattahip - Songkhla||225 224:602394:2uksBi87lToQ4ckDsEsEgDmFqBu46gBklgC8oCoGkEqCkCoEZiF
+L|Seahorse Ferry|Pattaya||226 230:363922:kthtCm39nT74pRzgqGhyrBquF12Bmd5lCqvBxlB0mB
+L|Seatran|Ko Samui||230 194:21600:w-m6B4u9hTwvBhxBm5BvkByc3QqctN6PX4uByH
+L|Seatran|Seatran||227 194:18253:k1t6Bih1iTqNxIshF3sCwlH77Dy0MzpGsalH
+L|Seatran|Seatran||194 229:47083:ouo7Bi5niT6lB_yB8_Hp2Em98Bh5a4xCkD2LsI
+L|Seatran|Surat Thani||228 230:32359:ql94Bur3gTu9BitBotB8lBusmBs0jB
+L|Siam Resorts Group|Ko Chang Speedboat||191 159:19951:qq-nCi3wxT1pCkuNx6Es8Dp_C8BznC5N7mCvXnfyE
+L|Songserm|Songserm||232 231:145137:oqm6Bo49hTgBjJo9B_6B26B7lBqe3RydzO6QRshB4DyQoDi7YsvN4NkJ2qByNSjHugBzrB8_HjzE078B_6aowCmDwJ6H-E6b3CmU8X3WkrFzrJ8kX_9mB--O33XisH7oL81HhuK28HzxKg0E_pF2PzV0BrHPxCtVha3E7D5ErC7NtB
 L|Thai Smile Boat Co., Ltd.|เรือรับส่งไอคอนสยาม||352 234:171
 L|Thai Smile Boat Co., Ltd.|เรือรับส่งไอคอนสยาม||234 233:192
-L|Wooden Boat|Wooden Boat||190 160:43427
-L|ferry|ferry||238 270:2880
-L|ferry|ferry||238 239:390
-L|ferry|ferry||240 271:3387
-L|ferry|ferry||240 277:1869
-L|ferry|ferry||249 253:1577
-L|ferry|ferry||273 274:647
-L|ferry|ferry||342 237:630
-L|ferry|ferry||243 270:11121
+L|Wooden Boat|Wooden Boat||190 160:46985:ynpqCot9wT9R6DlrP0qGziVskIjiCqNl_HpF7nFusBhsJ0yFhgF2yD93BiSx7BnOxkBp9BrHn2B
+L|ferry|ferry||238 270:2887:ou_wB4it7S3S9KhWhRhuBlsBpElI
+L|ferry|ferry||238 239:410:-2_wBmqt7SmED
+L|ferry|ferry||240 271:3396:opgxB2-k7S3REza-C1TsGzX6NxL-O1OukB
+L|ferry|ferry||240 277:2808:qggxBmil7S1iB0D7RiG5Q2K7H6F3J0MzD4H4DkH4FyEuPiB
+L|ferry|ferry||249 253:1581:kt-uB8p78S_5Br3B
+L|ferry|ferry||273 274:648
+L|ferry|ferry||342 237:605:4790C66rlTqB8C
+L|ferry|ferry||243 270:11342:q4mxBwp47S3C-BjpByI5JTpG_B9ErDnLnDtErCvLlRlKzMvtB_yBjkBvkB1-C7jE8C3LNjU7IjzB1azuC1P_Z
 L|ferry|ferry||365 264:6135
-L|ferry|ferry||241 261:9602
-L|ferry|ferry||261 252:12436
-L|ferry|ferry||267 271:6280
-L|ferry|ferry||267 295:51385
+L|ferry|ferry||241 261:9628:w_8vBqpj8SvEyG5GsE_K2EpLwKvGyQgJynByKgToL0N4mB-XuwEqKwpBuTyPuP6Z85B
+L|ferry|ferry||261 252:12487:yykwB69s8S8Gp_BzZt5B1NvM_mB9Ql7GhFl5E7e5kCtEtWrQ
+L|ferry|ferry||267 271:6917:yvjxB8ng7StI3LjUrB_OuEzQoQnvDwkEngBwsBpJoStHwV
+L|ferry|ferry||267 295:52024:o3jxBgug7S5P1SxSzCzqBuH77I1atuJzoRp2L3vVr_D72Y_QxsEsiB9mDie1kC
 L|ferry|ferry||242 262:1354
 L|ferry|ferry||292 291:1874
-L|ferry|ferry||269 189:20034
-L|ferry|ferry||247 244:9656
+L|ferry|ferry||269 189:20045:k-2pBosz_Sk3Do-csL8xBoKs8BqRka
+L|ferry|ferry||247 244:9704:oun8Dy87iTlMjCvDzC_CvHJwB5M6I9gB6Kx8CuyBkCuC_KG_3BsRzWkN9mClD7rC9WpkD7lB
 L|ferry|ferry||258 257:536
-L|ferry|ferry||256 275:7533
-L|ferry|ferry||290 289:6410
+L|ferry|ferry||256 275:7656:-h8yBwrn5S8BgBshBsC6kBkBgnBgEwmBuI2iC2Q6tByHquB0S8P2IiSgE6tB1K8TnJgB3B
+L|ferry|ferry||290 289:6440:gjitC0-krTzEgCrE8JLsN1C0Ht7Gs0C7rB2MrpBsE
 L|ferry|ferry||289 250:6503
-L|ferry|ferry||260 266:12246
+L|ferry|ferry||260 266:12290:08kwBovt8SlH9CzBxHuJvmCxbv6B3NzNhoB9Rj8GnFl4EnepmBzkC
 L|ferry|ferry||268 279:138
-L|ferry|ferry||235 280:279
-L|ferry|ferry||248 272:6948
-L|ferry|ferry||245 265:1319
-L|ferry|ferry||265 270:30046
-L|ferry|ferry||246 255:22039
-L|ferry|ferry||254 261:3547
-L|ferry|ferry||251 278:3289
+L|ferry|ferry||235 280:280
+L|ferry|ferry||248 272:6439:ww88B8w35Sobw0BwB2F
+L|ferry|ferry||245 265:1327
+L|ferry|ferry||265 270:31867:m2sxBgr35Sh2B4pDvb8UtJkLlO6kBzgEm5J1d6_Ct7GgkQr8CutLpUgzCnE-auEmV6OuNgSgJ4TO0JxD0HxI
+L|ferry|ferry||246 255:22144:oqyxBu026SvTxEzevK9MhP_wC33G70C1wM5UhtDzVl6BgBhf0HxSoI_EwD4BZpB2gBnmBuFv3BvDj4F
+L|ferry|ferry||254 261:3546:6ulwB6yn8S1E4pC
+L|ferry|ferry||251 278:3291:o6m0C0-0mT
 L|ferry|ferry||276 283:290
-L|ferry|ferry||263 259:4285
+L|ferry|ferry||263 259:3990:oxxrBwt6_SxxBlHt4BrG
 L|กรมเจ้าท่า|เรือข้ามฟากสี่พระยา-คลองสาน||281 282:149
 L|กระบี่ - เกาะกลาง|กระบี่ - เกาะกลาง||243 283:852
-L|ตรัง - เกาะหลีเป๊ะ|ตรัง - เกาะหลีเป๊ะ||284 188:95207
-L|บริษัท กรุงเทพธนาคม จำกัด|เรือโดยสารคลองผดุงกรุงเกษม||287 286:4288
-L|บริษัท กรุงเทพธนาคม จำกัด|เส้นทางเดินเรือโดยสารฯ คลองบางกอกใหญ่ → แม่น้ำเจ้าพระยา|#84a307|285 288:2709 167:4597 174:1020 177:1944
-L|บ้านเพ - เกาะกุฎี|บ้านเพ - เกาะกุฎี||290 289:7028
-L|ปากบารา - เกาะหลีเป๊ะ|ปากบารา - เกาะหลีเป๊ะ||189 188:62551
+L|ตรัง - เกาะหลีเป๊ะ|ตรัง - เกาะหลีเป๊ะ||284 188:98647:-mzsB8_2-SpHB3G1CzLxH1V1W5jEnpG70lB35Gr6iBg4B5zlCymD1lOz6HnM9sC
+L|บริษัท กรุงเทพธนาคม จำกัด|เรือโดยสารคลองผดุงกรุงเกษม||287 286:4305:-th0Cq0tlThsB4nB_jBslBpOqH_RU96BpJvUpB
+L|บริษัท กรุงเทพธนาคม จำกัด|เส้นทางเดินเรือโดยสารฯ คลองบางกอกใหญ่ → แม่น้ำเจ้าพระยา|#84a307|285 288:2708:uo4zC4knlT3CgGrBsb2Fsd 167:3425:y04zC27plTuSkHoiB-F6gB0N6MwIiH8HAqC7NoUvFyRC4GyBoBkCJ 174:515:227zC88rlT 177:1422:yq8zC4nrlTiW3PqSxE
+L|บ้านเพ - เกาะกุฎี|บ้านเพ - เกาะกุฎี||290 289:14042:w_htCqqlrThC4SlFiLtgDqoD1-CoqD1b2vBjmBwiDxDkPWyEoDwCLWzI1DnIhU3S1pH
+L|ปากบารา - เกาะหลีเป๊ะ|ปากบารา - เกาะหลีเป๊ะ||189 188:65066:u77pB8z0gTvUjX5VhRvnBtY7gBtP_jBjN11BjW_sC5sBtZlchZniB_pF7xFv8E3tGn9Yp-dn4MvgO9pGj3GtnDhwD1wH5pFkHtgD
 L|พัทยา - เกาะล้าน (ท่าเรือตาแหวน)|พัทยา - เกาะล้าน||291 292:1874
 L|ภูเก็ต (ราไวย์) - เกาะราชาใหญ่|ภูเก็ต||294 293:6231
-L|ภูเก็ต - เกาะพีพีดอน|ภูเก็ต - เกาะพีพีดอน||365 295:42328
+L|ภูเก็ต - เกาะพีพีดอน|ภูเก็ต - เกาะพีพีดอน||365 295:46101:m-jvBs-76SxoBtalJjnB4kd3iiC0nBt9B
 L|ระนอง - ကော့သောင်း|ระนอง - ကော့သောင်း||296 297:6110
 L|ลุงสง่า|Car ferry||299 298:361
-L|สุราษฎร์ธานี - เกาะสมุย (หน้าทอน)|สุราษฎร์ธานี - เกาะสมุย||300 217:80635
-L|อ่าวนาง - ไร่เลย์ - เกาะลันตา|อ่าวนาง - ไร่เลย์ - เกาะลันตา||271 304:47057
-L|เกาะมุก - ควนตุ้งกู|เกาะมุก - ควนตุ้งกู||306 301:5296
-L|เกาะมุก-หาดปากเมง|เกาะมุก-หาดปากเมง||302 306:48873
-L|เกาะลันตา - เกาะพีพี|เกาะลันตา - เกาะพีพี||304 365:32010
-L|เกาะลันตา - เกาะหลีเป๊ะ บันดาหยา สปีดโบ้ท|เกาะลันตา - เกาะหลีเป๊ะ บันดาหยา สปีดโบ้ท||304 188:156000
+L|สุราษฎร์ธานี - เกาะสมุย (หน้าทอน)|สุราษฎร์ธานี - เกาะสมุย||300 217:80747:y0m6Bg59hTVhEn1fr-yBxxQzic9-P7naxkD_oCj6Bx4CtpB1jBrsB7zBpEzLsD_dFnnB9DpJjTrYjJtGnyDv5B7EjB
+L|อ่าวนาง - ไร่เลย์ - เกาะลันตา|อ่าวนาง - ไร่เลย์ - เกาะลันตา||271 304:47624:ww8wBu5n7SnHzG1IpF1LvCvIEnK8Cj3gBu5S57I-qHhlCyWjiTkhHvpCgjB7mCwqB7fm0D
+L|เกาะมุก - ควนตุ้งกู|เกาะมุก - ควนตุ้งกู||306 301:6395:-2ktBs-p-SobiwBvCyV5J6MpqBxLhKoD
+L|เกาะมุก-หาดปากเมง|เกาะมุก-หาดปากเมง||302 306:49033:qr_tBuv78S3C8gB_3F2vFxgGynGn-BmlCt8D4gEn3CuhChkC4ZvQ2C1K3LkKu6BgZsUs7KouNu6CqkDsXsLyV6EmvBP8LSgCgDriCqYjkCsG5jExB1kMkFp0CnP
+L|เกาะลันตา - เกาะพีพี|เกาะลันตา - เกาะพีพี||304 365:31991:w12uB8pv8SsfnyDe_pBq9Ch3KmmD5nKizFr3VmiBl_C
+L|เกาะลันตา - เกาะหลีเป๊ะ บันดาหยา สปีดโบ้ท|เกาะลันตา - เกาะหลีเป๊ะ บันดาหยา สปีดโบ้ท||304 188:160890:gk1uBw0x8SvlC6d3_B6RztBuSxFyLuEoc_EgLhH8BzUlK1KJxQ4d53Bw6Bn1GklEhqE6rCtkHu0FxpGqqFrnG0jG7ZkjDz5ClCjnBokB9hC-yC_nFo4F93C4pD5a0nBtD8NkC2QpJ5Mld9B7hekqE7rpCmxoBjHqIpB0LiDqfjMsKtD-I0D8Noa6GlbrE5jErhDjn_BnunBlCx0C
 L|เกาะลันตา - เกาะไหง|เกาะลันตา - เกาะไหง||304 303:38852
 L|เกาะหลีเป๊ะ - Langkawi Telaga Harbour|เกาะหลีเป๊ะ - Langkawi Telaga Harbour||305 188:221
 L|เกาะไหง - เกาะมุก|เกาะไหง - เกาะมุก||303 306:12050
-L|เฟอร์รี่เกาะช้าง|เฟอร์รี่เกาะช้าง||307 308:5608
+L|เฟอร์รี่เกาะช้าง|เฟอร์รี่เกาะช้าง||307 308:5632:m5rqC05swT1KF3QvExlFh9C7qB7WlOtG
 L|เมืองกระบี่ - เกาะพีพี|เมืองกระบี่ - เกาะพีพี||304 365:47533
-L|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3||309 310:279
+L|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3|เรือข้ามฟากคลองลัดโพธิ์-พระรามที่ 3||309 310:280
 L|เรือข้ามฟากช่องนนทรี-วัดบางกะเจ้านอก|เรือข้ามฟากช่องนนทรี-วัดบางกะเจ้านอก||311 312:470
 L|เรือข้ามฟากตลาดเจ้าพรหม-สถานีรถไฟ|เรือข้ามฟากตลาดเจ้าพรหม-สถานีรถไฟ||314 313:170
-L|เรือข้ามฟากท่าช้าง-ท่าวังหลัง|เรือข้ามฟากท่าช้าง-ท่าวังหลัง||354 315:365
+L|เรือข้ามฟากท่าช้าง-ท่าวังหลัง|เรือข้ามฟากท่าช้าง-ท่าวังหลัง||354 315:339
 L|เรือข้ามฟากท่าช้าง-วัดระฆังฯ|เรือข้ามฟากท่าช้าง-วัดระฆังฯ||316 315:188
-L|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ||317 318:323
-L|เรือข้ามฟากท่าพระจันทร์-ท่าวังหลัง|เรือข้ามฟากท่าพระจันทร์-ท่าวังหลัง||354 318:220
-L|เรือข้ามฟากท่าเตียน-วัดอรุณฯ|เรือข้ามฟากท่าเตียน-วัดอรุณฯ||353 319:147
-L|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก||320 321:428
+L|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ|เรือข้ามฟากท่าพระจันทร์-ท่ารถไฟ||317 318:301
+L|เรือข้ามฟากท่าพระจันทร์-ท่าวังหลัง|เรือข้ามฟากท่าพระจันทร์-ท่าวังหลัง||354 318:203
+L|เรือข้ามฟากท่าเตียน-วัดอรุณฯ|เรือข้ามฟากท่าเตียน-วัดอรุณฯ||353 319:136
+L|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก|เรือข้ามฟากบางกะเจ้า-วัดคลองเตยนอก||320 321:858:gm1zCsq5lT
 L|เรือข้ามฟากพระประแดง-เภตรา|เรือข้ามฟากพระประแดง-เภตรา||322 362:266
-L|เรือข้ามฟากพระอาทิตย์-วัดดาวดึงษาราม|เรือข้ามฟากพระอาทิตย์-วัดดาวดึงษาราม||323 349:214
-L|เรือข้ามฟากพายัพ-วัดอาวุธวิกสิตาราม|เรือข้ามฟากพายัพ-วัดอาวุธวิกสิตาราม||171 324:241
-L|เรือข้ามฟากราชวงศ์-ท่าดินแดง|เรือข้ามฟากราชวงศ์-ท่าดินแดง||326 325:173
-L|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก||329 328:1529
-L|เรือข้ามฟากวัดพนัญเชิง-วัดบางกะจะ|เรือข้ามฟากวัดพนัญเชิง-วัดบางกะจะ||331 330:378
-L|เรือข้ามฟากวัดอรุณ-วัดโพธิ์|เรือข้ามฟากวัดอรุณ-วัดโพธิ์||333 332:181
-L|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ||334 335:167
+L|เรือข้ามฟากพระอาทิตย์-วัดดาวดึงษาราม|เรือข้ามฟากพระอาทิตย์-วัดดาวดึงษาราม||323 349:215
+L|เรือข้ามฟากพายัพ-วัดอาวุธวิกสิตาราม|เรือข้ามฟากพายัพ-วัดอาวุธวิกสิตาราม||171 324:242
+L|เรือข้ามฟากราชวงศ์-ท่าดินแดง|เรือข้ามฟากราชวงศ์-ท่าดินแดง||326 325:174
+L|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก|เรือข้ามฟากวัดบางน้ำผึ้งนอก - วัดบางนานอก||329 328:1533:-mvzCi_9lT
+L|เรือข้ามฟากวัดพนัญเชิง-วัดบางกะจะ|เรือข้ามฟากวัดพนัญเชิง-วัดบางกะจะ||331 330:378:42x3Ci37lT
+L|เรือข้ามฟากวัดอรุณ-วัดโพธิ์|เรือข้ามฟากวัดอรุณ-วัดโพธิ์||333 332:181:2q8zC2jrlT
+L|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ|เรือข้ามฟากสวัสดี-วัดทองธรรมชาติ||334 335:155
 L|เรือข้ามฟากสาทร-ตากสิน|เรือข้ามฟากสาทร-ตากสิน||337 336:187
-L|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง||338 339:792
-L|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร||341 340:397
-L|เรือข้ามฟากเกาะเกร็ด|เรือข้ามฟากเกาะเกร็ด||343 342:116
+L|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง|เรือข้ามฟากสาธุประดิษฐ์-คลองลัดหลวง||338 339:1253:8nuzCirylTohB3D
+L|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร|เรือข้ามฟากอัษฎางค์-วัดกัลยาณมิตร||341 340:397:s77zC24rlT
+L|เรือข้ามฟากเกาะเกร็ด|เรือข้ามฟากเกาะเกร็ด||343 342:108
 L|เรือข้ามฟากเทเวศร์-วัดคฤหบดี|เรือข้ามฟากเทเวศร์-วัดคฤหบดี||344 178:317
-L|เรือข้ามฟากเทเวศร์-วัดบวรมงคล|เรือข้ามฟากเทเวศร์-วัดบวรมงคล||345 178:350
+L|เรือข้ามฟากเทเวศร์-วัดบวรมงคล|เรือข้ามฟากเทเวศร์-วัดบวรมงคล||345 178:325
 L|เรือข้ามฟากโอเรียนเต็ล-วัดสุวรรณ|เรือข้ามฟากโอเรียนเต็ล-วัดสุวรรณ||348 346:200
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||349 172:371
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||349 354:1196
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 350:3094
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 353:1236
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 177:385
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 167:1269
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 350:1927
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 167:1200
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||350 352:1473
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||352 351:1059
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||352 348:657
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||351 181:1690
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||170 169:9609
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 176:4211
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 176:4239
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 173:1158
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||176 163:940
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||176 165:4187
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||165 178:1057
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||178 172:1437
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||178 349:1145
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||172 354:929
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||177 353:780
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||177 350:2722
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||163 165:3460
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||163 178:4385
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||167 352:2215
-L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||348 351:503
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||349 172:370:ykg0CunrlT
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||349 354:1199:-5_zCwjrlTrKjJ
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 350:3101:kp-zC0rqlTzfgH1MoF7ZySvHkIjHkK7LovB
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 353:1242:uz-zCurqlT3DoHlCgChL1DpQQvHqC3PmI
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||354 177:386:wp-zCquqlT
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 167:1271:or8zCk-qlTpEkLhGiG3HsKAkCrBgB3D4I
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 350:1929:s08zCi_qlTxN8JjGoG3HwKGkC3Ba3D6IhIyf
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||353 167:1202:008zCu_qlTxNmK9F6FhEkH9DyBpFuN
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||350 352:1478:256zC0xulTzFiHlK0I
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||352 351:1065:4l4zCguvlTjShC
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||352 348:659:2m5zCwvvlTjMzH3I2H
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||351 181:1695:-62zCyivlT_PrKpWpQlM9P
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||170 169:9648:6690C24rlTvHvP3IxC3PqCxYrD9GyB9J9CpRtJ5HfhfyL_c9M9Y3P5QrI3FpRrYtWrZnMzRtB9FqEvNftMUxc4DtrB6Jpbqe3M8Y
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 176:4225:shv0CkprlThWiJhRiKvoBic9e6L5KkHpL4JtHiJzEiNzNuczDiG
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 176:4253:mhv0CyorlT7tBoOnJiJnKmHtFyC_KmKznBmXrL4JtHgJ5E0NpN8bxDgG
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||169 173:1163:qkv0C2orlTpXuKvP4K
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||176 163:941:s3p0Cy7vlTnF2F7QmK
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||176 165:4202:02p0Co6vlTjGqG7G-Dxd-D5d3FlXlMz9BnyB
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||165 178:1063:0wi0CygtlT
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||178 172:1440:u2h0Cm4slT9N9JtQ5PnO5Q
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||178 349:1149
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||172 354:932:ir_zC4wqlT1DG
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||177 353:784:s59zCkyqlTrOuC1G0C
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||177 350:2728:449zCqxqlTvGUlVqGnbsUlNoQ1HqepE4W
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||163 165:3471:05n0C4twlT7KtDzHvEpFQtBnD_K9FlhBxZvU_RxD1B
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||163 178:4402:mtn0C-mwlT7VlKxyB3mB7QnU7kB1W
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||167 352:2219:6r7zCkltlThDwV1NwWlJmK5N-L_M2C
+L|เรือด่วนเจ้าพระยา|เรือด่วนเจ้าพระยา||348 351:505:uz3zCssvlT
 L|เรือด่วนเจ้าพระยา|เรือท่องเที่ยวเจ้าพระยา||349 354:1261 347:236 353:1032 350:1947 352:1537 351:1141
 L|เรือบรรทุกรถข้ามฝาก(วันราชการเท่านั้น)|เรือบรรทุกรถข้ามฝาก||355 356:99152
-L|เรือโดยสารคลองภาษีเจริญ|เรือโดยสารคลองภาษีเจริญ||358 357:10018
-L|เรือโดยสารคลองแสนแสบ|เรือโดยสารคลองแสนแสบ||182 204:3872
-L|เรือโดยสารคลองแสนแสบ|เรือโดยสารคลองแสนแสบ||359 204:19858
-L|แพขนานยนต์ บางปะอิน - บ้านแป้ง|แพขนานยนต์ บางปะอิน - บ้านแป้ง||361 360:392
+L|เรือโดยสารคลองภาษีเจริญ|เรือโดยสารคลองภาษีเจริญ||358 357:10016:u-3zC-pmlT9FzT9KtdOtBjBVpItWhUz7BxO5mBlUz7BpxC3kH
+L|เรือโดยสารคลองแสนแสบ|เรือโดยสารคลองแสนแสบ||182 204:3869:sx-zCisulThNygC_DuNtTkhBmC4OnCgOd8ScsLqCuL
+L|เรือโดยสารคลองแสนแสบ|เรือโดยสารคลองแสนแสบ||359 204:19865:y_l0CutzmT5E9IOZfBvWhoB3ZxwBpSnf_QzgB3jB1-BhRnhB3exoB_BpExBzE5BhOvB3MapBhBvB3Gn5BO_CjI39BdlS_CrPT5JnDzKhDzFnQhQthBplBpgBphB7YzIhOpGBpH0CxQmK1yBoHxcwL51B0E_b4ErUuDlXuBjLvB1cYrqBsCtX
+L|แพขนานยนต์ บางปะอิน - บ้านแป้ง|แพขนานยนต์ บางปะอิน - บ้านแป้ง||361 360:394
 L|แพขนานยนต์พระประแดง-เภตรา|แพขนานยนต์พระประแดง-เภตรา||363 362:358
-L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||176 178:5172
-L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||178 351:8131
-L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||364 172:9830
-L|ไร่เลย์ - เกาะพีพี|ไร่เลย์ - เกาะพีพี||270 365:31518
+L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||176 178:5390:k4p0Cs8vlTpQ-NlK4E7LsD7X1DnLzDxHtEnFL_BjDta5OnpBvkBjM_MhfvV
+L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||178 351:8156:o3h0Cg4slT5mB1chIvKvEnJlB3E3gBxRjLtE3BjCnCqB9ayD7KyCrMwEhH8ElBiD9EPtOmKxEuEtDsFCwEhGsBrDsDtDyJlKspBhG8TtL0XhNwL9PuHzEAtFgC7BrBzHiBtC6CrFjD_oBxC
+L|ไทย สมายล์ โบ้ท|เรือไฟฟ้า ไทย สมายล์ โบ้ท||364 172:9856:oz0zCgjslT2EykBiHuF-QwR2EsJo6BykBmEpBgtBlBkErBiB7BqGgFsJDyCkBiBhC8IvEkSpN4Q5buErCf9OkM_vBkDrDiG3BFhBiKnSqEjFsKnCkHvEiWlImERwG0BgEuDyT_IyB0CgPqIqW2L
+L|ไร่เลย์ - เกาะพีพี|ไร่เลย์ - เกาะพีพี||270 365:35783:s-7wB-1p7SvR2Ejf5ClkBnH1sGzjBr9DgHhuH7F1wH3gBhwazrHrctK1MliBgQtxB
 R|13.73289|100.69082|Ban Thap Chang|ARL
 R|13.73802|100.64526|Hua Mak|ARL
 R|13.72768|100.74860|Lat Krabang|ARL
@@ -621,7 +621,7 @@ T|13.69271|102.50520|Aranyaprathet
 T|13.75003|100.56413|Asok
 T|15.13564|101.04362|Assumption Convent School
 T|14.35671|100.58320|Ayutthaya
-T|6.44120|101.45752|Balo
+T|6.44125|101.45763|Balo
 T|15.46864|101.68537|Bamnet Narong
 T|13.50155|100.18044|Ban Bo
 T|17.16911|100.10949|Ban Bung
@@ -1247,7 +1247,7 @@ T|13.81674|99.87727|Thanon Song Phon
 T|15.75509|100.25771|Thap Krit
 T|11.49909|99.62305|Thap Sakae
 T|6.82388|100.97039|Thepha Railway Station
-T|8.09783|99.66798|Thi Wang
+T|8.09784|99.66795|Thi Wang
 T|13.76070|100.47877|Thonburi
 T|14.01090|99.95582|Thung Bua
 T|10.40252|99.13774|Thung Kha
@@ -1257,9 +1257,9 @@ T|13.61264|100.36872|Thung Si Thong
 T|13.86021|100.56753|Thung Song Hong
 T|8.17074|99.67950|Thung Song Junction
 T|13.97974|99.64027|Thung Thong
-T|6.11909|101.85836|Todeng
+T|6.11916|101.85844|Todeng
 T|13.82560|100.09130|Ton Samrong
-T|7.55441|99.60450|Trang
+T|7.55444|99.60453|Trang
 T|17.48332|100.10934|Tron
 T|12.66145|100.96508|U-Tapao
 T|15.20067|104.85855|Ubon Ratchathani

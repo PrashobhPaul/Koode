@@ -1,4 +1,4 @@
-# Transit for Koode, ZA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, ZA. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 R|-25.85167|28.18959|Centurion|Gautrain
@@ -763,7 +763,7 @@ T|-33.72757|23.16909|Avontuur
 T|-26.50681|29.36989|Baanbreker
 T|-29.75472|30.35581|Bafac
 T|-30.40759|29.42812|Bailden
-T|-31.79382|26.72514|Bailey
+T|-31.79383|26.72515|Bailey
 T|-29.07089|23.91848|Bakenskop
 T|-26.65316|28.58811|Balfour North
 T|-29.39560|30.05515|Balgowan
@@ -1742,7 +1742,6 @@ T|-32.85200|21.95490|Kruidfontein
 T|-34.00314|24.73065|Kruisfontein
 T|-28.63693|31.99228|Kruisplek
 T|-33.01665|27.90775|KuGompo City
-T|-32.22790|28.22094|KuLeleyo
 T|-33.93367|18.67769|Kuils River
 T|-30.25888|30.24315|Kunatha
 T|-26.21759|28.18936|Kutalo
@@ -2147,7 +2146,6 @@ T|-28.67451|32.04779|Nseleni
 T|-29.83488|30.70251|Nshongweni
 T|-28.71057|31.66191|Nsimbakazi
 T|-32.88288|27.58369|Ntabozuko
-T|-32.12940|28.25672|Ntisana
 T|-24.88620|28.88899|Nutfield
 T|-33.76961|23.57894|Nuweplaas
 T|-33.68649|19.59171|Nuy
@@ -2507,6 +2505,7 @@ T|-29.84157|29.89417|Sizanenjana
 T|-26.46471|28.07277|Skansdam
 T|-33.21994|20.68496|Skeiding
 T|-22.47150|29.93588|Skelmwater
+T|-31.69768|26.62246|Skietfontein
 T|-34.02548|22.38116|Skimmelkrans
 T|-25.89265|29.17268|Skoongesig
 T|-27.42113|28.01664|Skoonroos
@@ -2567,7 +2566,7 @@ T|-33.93882|18.84968|Stellenbosch
 T|-25.62830|27.89086|Stephanus
 T|-31.08778|23.70553|Sterkaar
 T|-25.50386|29.85782|Sterkloop
-T|-31.56659|26.55015|Sterkstroom
+T|-31.56659|26.55013|Sterkstroom
 T|-34.02913|18.46888|Steurhof
 T|-31.29198|25.82452|Steynsburg
 T|-27.93470|27.58313|Steynsrus
@@ -2915,7 +2914,6 @@ T|-30.29396|27.08785|Zastron
 T|-24.32924|29.29324|Zebediela
 T|-33.76343|22.31514|Zebra
 T|-25.54925|26.08296|Zeerust
-T|-31.65952|28.71739|Zimbane
 T|-31.43809|27.44786|Zinja
 T|-26.42259|28.17855|Zonkizizwe
 T|-33.64236|26.20366|Zuney
@@ -2941,3 +2939,193 @@ T|-29.79579|30.62175|kwaTandaza
 T|-28.28641|31.38356|uLoliwe
 T|-28.55797|29.78607|uMnambithi
 T|-30.62138|30.54403|uMzumbe
+B|-26.10641|28.06552|Arthol Square Bus Station
+B|-26.19064|27.97940|Autopax Bus Depot
+B|-26.19680|28.04342|Autopax Bus Terminus
+B|-29.74770|31.00340|Avoca Hills
+B|-26.13814|28.08654|Balfour Park Bus Station
+B|-26.22971|28.01076|Basothong Bus Station (C1, T1, T2)
+B|-26.17536|28.06628|Bellevue Bus Station
+B|-33.90497|18.63010|Bellville
+B|-29.81759|30.86845|Beviss
+B|-26.24211|27.91543|Boom Town Bus Station
+B|-25.75734|28.18824|Bosman Station Coach and Bus Terminus
+B|-26.20215|27.95886|Bosmont Bus Station
+B|-29.34193|31.29690|Bus Rank
+B|-29.60463|30.38288|Bus Station Pietermaritzburg
+B|-26.67853|27.93361|Bus Terminus
+B|-25.75039|27.55509|Bus station
+B|-33.95863|22.45929|Bus station Citiliner
+B|-29.60686|30.37084|Buses to Underburg
+B|-34.04920|18.49657|Busy Corner Taxi Rank
+B|-26.20478|28.04799|Carlton Bus Station (Westbound: T1)
+B|-27.45604|23.43324|Central Bus Terminal
+B|-26.20541|28.03621|Chancellor House Bus Station
+B|-25.46665|30.95639|Citybug Shuttle Service
+B|-29.81552|30.86226|Civic
+B|-33.98033|18.46636|Claremont Bus Terminus
+B|-26.12631|28.08501|Corlett Bus Station
+B|-26.19013|27.96828|Coronationville Bus Station
+B|-26.22212|27.87346|Dobsonville Rea Vaya Bus Terminus (C1, C2, C6)
+B|-26.19279|28.05420|Doornfontein Campus Bus Station
+B|-26.46474|27.84735|Driezik Taxi Rank
+B|-29.85276|31.01384|Durban Metro Bus Service
+B|-29.84609|31.02445|Eldo Coaches
+B|-26.19498|28.06557|Ellis Park East Bus Station
+B|-26.19494|28.06554|Ellis Park East Bus Station (T1)
+B|-26.19143|28.06159|Ellis Park North Bus Station
+B|-25.72805|28.18873|Enoch Sontonga
+B|-34.00663|23.39377|Fish Eagle Transport & Tours
+B|-26.20666|28.04337|Gandhi Sq Metrobus terminal
+B|-33.93409|18.41953|Gardens
+B|-26.19540|28.04188|Gautrain Bus Station
+B|-25.85184|28.18987|Gautrain Centurion Bus Stop
+B|-26.19523|28.04186|Gautrain Park Station Bus Terminus
+B|-26.14658|28.04416|Gautrain Rosebank Bus Terminus
+B|-26.10807|28.05673|Gautrain Sandton Bus Terminus
+B|-25.75710|28.21281|General G.L. Pitso
+B|-25.74756|28.23640|General M. Siyothula
+B|-33.96579|22.46827|George Station
+B|-26.23414|27.94521|Ghost Town Bus Station (T1, T2, C1)
+B|-33.96192|22.46087|Go George CBD Bus Terminal
+B|-33.90119|18.42431|Golden Arrow
+B|-24.14369|28.97287|Great North Bus Services
+B|-33.82691|18.49692|Grey
+B|-29.84627|31.02408|Greyhound
+B|-26.20301|28.04016|Harrison Bus Station
+B|-25.74794|28.23637|Hatfield
+B|-25.68182|28.18381|Hector Peterson Bus Station
+B|-26.18325|27.99052|Helen Joseph Bus Station (T3, C5, C6)
+B|-29.81159|30.87133|Henwood
+B|-34.01223|23.38853|Hiking Trail Transfers
+B|-26.19064|28.04658|Hillbrow Bath House Bus Station (C3)
+B|-26.19492|27.96298|Industria West Station
+B|-33.96574|22.46833|Intercape
+B|-31.61369|28.73420|Intercape
+B|-29.84606|31.02396|Intercape
+B|-29.11981|26.20668|Intercape Bloemfontein
+B|-33.92193|18.42799|Intercape Bus Terminal
+B|-33.96048|25.62431|Intercity Bus Station
+B|-33.82815|18.50165|Janssens
+B|-26.19163|28.03922|Joburg Theatre Bus Station (T2, T3, F11, F12, C3, C4, C5)
+B|-26.19008|28.02401|Johannesburg Metrobus Depot
+B|-33.82443|18.53072|Killarney
+B|-25.48872|28.00782|Klipgat Taxi Rank
+B|-26.26055|27.89079|Klipvalley Road Bus Station (T1, T2, T3)
+B|-24.30521|29.54729|Kopano Bus Service
+B|-26.09702|27.77094|Krugersdorp Taxi Rank
+B|-28.85444|31.84583|KwaDlangezwa
+B|-33.89161|18.48542|Lagoon Beach
+B|-26.26298|27.88660|Lakeview Bus Station (C2, T1, T2, T3, F3, F5, F10)
+B|-25.75567|28.20839|Mahatma Gandhi
+B|-29.52244|31.20079|Main taxi rank
+B|-29.76045|30.97012|Malandela
+B|-28.53265|28.80603|Maluti Bus Rank
+B|-30.05117|30.88589|Margate Coach Amanzimtoti North Stop
+B|-30.05158|30.88616|Margate Coach Amanzimtoti South Stop
+B|-29.84644|31.02434|Margate Coach Durban Station Stop
+B|-29.61747|31.10414|Margate Coach King Shaka Stop
+B|-30.85066|30.38120|Margate Coach Manaba South Stop
+B|-30.85006|30.38140|Margate Coach Manaba Stop
+B|-30.86618|30.36932|Margate Coach Margate North Stop
+B|-30.86637|30.36937|Margate Coach Margate South Stop
+B|-30.74154|30.45544|Margate Coach Port Shepstone Stop
+B|-30.28143|30.75721|Margate Coach Scottburgh Stop
+B|-30.81653|30.40502|Margate Coach St Mikes North Stop
+B|-30.81969|30.40285|Margate Coach St Mikes South Stop
+B|-30.37845|30.67809|Margate Coach Umdoni Stop
+B|-30.20632|30.79864|Margate Coach Umkomaas Stop
+B|-30.83296|30.39318|Margate Coach Uvongo North Stop
+B|-30.86213|30.36217|Margate Mini Coach & Airport Services
+B|-26.09759|28.08569|Marlboro Bus Station
+B|-33.73062|18.44257|Melkbosstrand
+B|-26.19000|28.03960|Metro Centre Bus Station
+B|-25.99551|28.13636|Midrand Bus Station
+B|-33.87193|18.49546|Milnerton
+B|-26.18316|28.02024|Milpark Bus Station (T3, C4, C5)
+B|-29.12312|26.22641|Mini bus terminal
+B|-34.41877|19.23897|Minibus Station
+B|-29.60712|30.37093|Minibus Station
+B|-23.94993|31.13119|Minibuses
+B|-28.37143|32.41289|Minibuses to Mtubamtuba
+B|-23.94897|31.13056|Minibusez
+B|-34.04801|18.62101|Mitchells Plain
+B|-25.74752|28.18816|Molefe Makinta Bus Station
+B|-29.91619|30.97499|Montclair
+B|-33.94769|18.47457|Mowbray Taxi Rank
+B|-26.23927|27.98120|Nasrec
+B|-33.91501|18.46977|Neptune
+B|-26.21582|27.94337|New Canada
+B|-26.22857|27.93344|Noordgesig Bus Station (C1, T1, T2)
+B|-26.22644|27.93469|Noordgesig Extension Bus Station
+B|-26.19359|28.05011|Old Synagogue Bus Station
+B|-33.86846|18.51293|Omuramba
+B|-26.15782|28.08513|Orchards Clinic Bus Station
+B|-26.23298|27.92410|Orlando Amstel Arena Bus Station
+B|-33.91789|18.46713|Paarden Eiland
+B|-26.10965|28.08493|Pan Africa Bus Station
+B|-26.19569|28.04090|Park Bus Station (T2, T3, F11, C3, C4, C5)
+B|-26.19494|28.04077|Park Station (T4)
+B|-26.19723|28.04186|Park Station Long Distance Bus Terminal
+B|-26.18527|28.03936|Parktown Bus Station (T3, C4, C5)
+B|-23.90055|29.44228|Polokwane Bus Rank
+B|-23.91188|29.45176|Polokwane City Square
+B|-33.81483|18.48852|Porterfield
+B|-33.83368|18.52603|Potsdam
+B|-26.19569|28.03786|Power House Bus Station
+B|-26.19577|28.03780|Power House Station
+B|-25.75834|28.19008|Pretoria Gautrain Bus Station
+B|-26.21249|27.87273|Putco Bus Depot
+B|-29.75668|30.99258|Queen Nandi
+B|-33.86149|18.50030|Racecourse
+B|-26.20937|27.87620|Rea Vaya Bus Depot
+B|-29.79960|30.87552|Regent
+B|-26.20206|28.04176|Rissik Street
+B|-23.38321|30.17212|Roerfontein Taxi Rank
+B|-33.86324|18.50316|Royal Ascot
+B|-33.80703|18.48420|Sandown
+B|-26.81213|27.82793|Sasolburg Taxi Rank
+B|-33.91186|18.47255|Section
+B|-29.12351|26.22687|Shared Van to Maseru (R110)
+B|-26.23141|27.98283|Soccer City Bus Station (Special Events)
+B|-33.93296|18.85854|Stellenbosch Taxi Rank
+B|-33.85413|18.49648|Sunset Beach
+B|-25.72342|28.40291|TR137
+B|-33.82475|18.48879|Table View
+B|-34.03620|23.04691|Taxi Rank
+B|-24.93567|30.83999|Taxi Rank
+B|-34.18331|22.14400|Taxi rank
+B|-24.59807|31.05032|Taxi rank
+B|-33.99260|18.58363|Taxi terminal
+B|-29.85870|31.00864|Taxi to Inchanga
+B|-29.85349|31.01039|Taxi to Umhlanga
+B|-23.91066|29.45102|Thabo Mbeki Station
+B|-26.35765|28.22143|Thelle Mogoerane Taxi Rank
+B|-33.91873|18.42413|Thibault Square
+B|-26.26419|27.88055|Thokoza Park Bus Station Terminus (C2, F1, F2, F9, T1, T2, T3)
+B|-30.69253|28.50741|Tlokoeng Taxi Rank
+B|-25.46553|30.97885|To Swaziland and mozambique
+B|-29.84596|31.02399|Trans Lux
+B|-33.96052|25.62434|Translux City to city
+B|-33.86203|18.51143|Turf Club
+B|-26.18199|27.99896|UJ Kingsway Campus Bus Station
+B|-29.76096|30.92920|Ulwandle
+B|-25.77093|28.20887|University of Pretoria - Groenkloof Campus
+B|-33.90728|18.47657|Vrystaat
+B|-33.90212|18.42062|Waterfront
+B|-26.18681|27.97610|Westbury Bus Station
+B|-26.20970|28.03447|Westgate Bus Station (C1, T1, T2)
+B|-26.20953|28.03440|Westgate Bus Station (T1, T2, C1)
+B|-26.13568|27.85921|Westgate Mall Bus station
+B|-29.76303|30.94829|Westrich
+B|-26.18539|28.02866|Wits Bus Station
+B|-33.82952|18.50696|Wood
+B|-33.88330|18.49135|Woodbridge
+B|-33.92296|18.44645|Woodstock
+B|-29.77613|30.89232|Wyebank
+B|-26.11940|28.08430|Wynberg Bus Station
+B|-34.00517|18.47241|Wynberg Terminus
+B|-26.17839|28.05901|Yeoville Bus Station
+B|-25.54596|26.07426|Zeerust Taxi Rank
+B|-25.54588|26.07507|Zeerust Taxi Rank
+B|-33.90061|18.48092|Zoarvlei

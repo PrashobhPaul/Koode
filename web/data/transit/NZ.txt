@@ -1,9 +1,8 @@
-# Transit for Koode, NZ. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, NZ. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-12 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-36.82212|174.76634|Bayswater Ferry Terminal|AT|W
 S|-36.78988|174.67829|Beach Haven|AT|W
-S|-36.82284|174.73398|Birkenhead Pier 1|AT|W
 S|-36.83324|174.79533|Devonport Pier 1|AT|W
 S|-36.83343|174.79573|Devonport Pier 2|AT|W
 S|-36.84145|174.76728|Downtown|AT|W
@@ -17,22 +16,32 @@ S|-36.78022|174.99147|Pier 3|AT|W
 S|-36.88991|174.98970|Pine Harbour Ferry Terminal|AT|W
 S|-36.72631|174.95251|Rakino Passenger Ferry Terminal|AT|W
 S|-36.80914|174.86253|Rangitoto Wharf|AT|W
-S|-36.87980|174.89675|Sealink|AT|W
+S|-36.87982|174.89656|Sealink|AT|W
 S|-36.82687|174.74638|Te Onewa Northcote Point Ferry Terminal|AT|W
 S|-36.81085|174.64553|West Harbour|AT|W
+S|-46.59840|168.34570|RealNZ Ferry Terminal|Bluff - Oban|W
+S|-46.89727|168.13040|Stewart Island Ferry|Bluff - Oban|W
+S|-41.26511|173.92023|Anakiwa|Cougar Line|W
+S|-41.28746|174.00475|Interislander temporary passenger terminal|Cougar Line|W
+S|-41.25531|174.86715|Matiu / Somes Island|East by West|W
 S|-36.78517|175.15764|Man O' War Bay|Explore Group|W
 S|-36.81785|175.19389|Rotoroa Island Wharf|Explore Group|W
 S|-36.60586|174.88797|Tiritiri Matangi Island Wharf|Explore Group|W
 S|-36.84252|174.76309|Viaduct Marina|Explore Group|W
+S|-35.38584|173.52740|Rangiora Narrows Ferry Ramp|Far North District Council|W
+S|-35.39220|173.50533|Rawene Ferry Ramp|Far North District Council|W
+S|-36.83294|174.79591|Devonport Ferry Terminal|Fullers360|W
 S|-36.42981|174.81853|Kawau Island|Kawau Cruises|W
 S|-36.38875|174.73020|Sandspit|Kawau Cruises|W
 S|-37.67175|176.17187|Matakana|MV Silver Supporter Shipping|W
 S|-25.06868|-130.09614|Pitcairn|MV Silver Supporter Shipping|W
 S|-41.28058|174.90541|Days Bay Wharf|Metlink|W
-S|-41.25531|174.86718|Matiu/Somes Island Wharf|Metlink|W
-S|-41.28354|174.77935|Queens Wharf|Metlink|W
+S|-41.28354|174.77932|Wellington Harbour Ferry|East by West|W
 S|-43.62351|172.73680|Diamond Harbour Jetty|Metro Christchurch|W
 S|-43.60547|172.72178|Lyttelton Jetty|Metro Christchurch|W
+S|-36.82284|174.73398|Birkenhead Pier 1|AT|W
+S|-35.28050|174.09326|Paihia Wharf|Paihia - Russell Passenger Ferry|W
+S|-35.26203|174.12001|Russell Wharf|Paihia - Russell Passenger Ferry|W
 S|-23.11790|-134.96866|Mangareva|Pitcairn Government’s|W
 S|-45.80791|170.62376|Carey's Bay Wharf|Port To Port Cruises And Wildlife Tours Ltd|W
 S|-45.87156|170.52875|Forsyth Barr Stadium|Port To Port Cruises And Wildlife Tours Ltd|W
@@ -40,35 +49,198 @@ S|-45.81814|170.62644|Port Chalmers (Back Beach) Wharf|Port To Port Cruises And 
 S|-45.83742|170.64520|Portobello Wharf|Port To Port Cruises And Wildlife Tours Ltd|W
 S|-45.82822|170.63756|Quarantine Island Wharf|Port To Port Cruises And Wildlife Tours Ltd|W
 S|-45.88037|170.50629|Steamer Basin|Port To Port Cruises And Wildlife Tours Ltd|W
-L|AT|Bayswater Ferry||5 0:2388
-L|AT|Birkenhead Ferry||2 5:5661 17:3440
-L|AT|Devonport Ferry||3 5:3128
-L|AT|Downtown – Devonport – Matiatia|#00b1bf|11 4:18874 5:3872
-L|AT|Downtown – Matiatia||5 11:22060
-L|AT|Gulf Harbour Ferry||7 5:29549
-L|AT|Half Moon Bay Ferry||5 8:13986
-L|AT|Hobsonville/Beach Haven Ferry||5 10:12760 1:1206
-L|AT|Inner Harbour Loop|#00b1bf|2 17:2286 0:3265 5:4192
-L|AT|Island Direct||5 12:21892
-L|AT|KPHM||6 16:17068
-L|AT|KPHS||6 9:25007
-L|AT|Pine Harbour Ferry||13 5:22213
-L|AT|Rakino Island Ferry|#000000|14 5:25386 0:2432
-L|AT|Rangitoto Island Ferry||4 15:7120 5:11039
-L|AT|West Harbour Ferry||5 18:13068
-L|Explore Group|Rotoroa Island Ferry||22 20:45745 19:6138
-L|Explore Group|Tiritiri Matangi Ferry||22 7:34014 21:9476
-L|Kawau Cruises|Sandspit - Kawau||24 23:9658
-L|MV Silver Supporter Shipping|Tauranga - Pitcairn||25 26:29183754
-L|Metlink|MIF||28 27:4846
-L|Metlink|QDF||29 27:10593
-L|Metlink|QMF||29 28:8621
-L|Metro Christchurch|F|#075699|30 31:3035
-L|Pitcairn Government’s|Tauranga - Mangareva||25 32:29659555
-L|Port To Port Cruises And Wildlife Tours Ltd|Forsyth Barr Stadium Event Ferry||38 34:2079
-L|Port To Port Cruises And Wildlife Tours Ltd|Port Chalmers||35 37:1537 36:1321
-L|Port To Port Cruises And Wildlife Tours Ltd|Portobello to Carey's Bay||36 33:4205
-L|Port To Port Cruises And Wildlife Tours Ltd|Portobello to Port Chalmers or Quarantine Island||36 37:1321 35:1536
+S|-36.76714|174.93302|Home Bay|SeaLink|W
+S|-36.72504|174.95017|Rakino Vehicular Ferry Ramp|SeaLink|W
+S|-37.04806|175.93682|Slipper Island|Slipper Island Water Taxi|W
+S|-37.00086|175.86063|Tairua Marina|Slipper Island Water Taxi|W
+S|-44.67098|169.01086|Glendhu Bay|Wanaka Water Taxi (Wanaka - Glendhu Bay)|W
+S|-44.66398|169.14908|Outlet Camp|Wanaka Water Taxi (Wanaka - Outlet Camp)|W
+S|-44.68278|169.10391|Ruby Island|Wanaka Water Taxi (Wanaka - Ruby Island)|W
+S|-44.69408|169.13436|Wānaka|Wanaka Water Taxi (Wanaka - Ruby Island)|W
+S|-44.59917|169.13583|Stevenson's Island|Wanaka Water Taxi (Wanaka - Stevenson's Island)|W
+S|-36.83194|175.71093|Ferry Landing|Whitianga Ferry|W
+S|-36.83266|175.70894|Whitianga Wharf|Whitianga Ferry|W
+S|-35.22202|174.23141|Otehei bay wharf|ferry|W
+L|AT|Bayswater Ferry||4 0:2401:zx7gHyk2qhB4UyIgFYuIrBmVxJgWO0LmEyWgBkChB2DtF
+L|AT|Birkenhead Ferry||38 4:4458:993gHo4vqhBjBsDpE6DzUigCCsFnHS_D6FvHkhBhDo3BnDuLjIkShTgKlIuCvIP3UxI 16:3229:zx7gHyk2qhB4UyIwIQmItCiT_JkIjSoDtLiDn3BwHjhBgE5F
+L|AT|Devonport Ferry||2 4:3175:__5gH8y7qhB9ExLlE9VEpEmFnVmBnNrI_jC5C5NzDvFpgB7N
+L|AT|Downtown – Devonport – Matiatia|#00b1bf|10 3:18874 4:3872
+L|AT|Downtown – Matiatia||4 10:22115:x37gH-g2qhBgEsB2Y-JkC0CoK20CNgOzPikCrEw2ByBuRmKooCqjB05BwEsKuP07BmU6uByK-c2kEmoMsM8R2yBi-BqEyJ-gC-rJU-WhDofC6R2BiMB4I
+L|AT|Gulf Harbour Ferry||6 4:29658:5nx_Goq6qhBzWtUxLhDrkckrE1SwBrrBEpVsF5N6FlO0IriEs5D5MqJhNkD_U-B3P_B5J3CxJlExKlInC7C3H7R9f5wBxF_MrK9oCJzJqE9-B8Lh1BJhVrIn7BpCnGjFjG
+L|AT|Half Moon Bay Ferry||4 7:15678:jv7gH-n2qhBkJkE0E4HgIsxCVyIxQuhC5C-nBjB8QuB8VyF0vB2F0gB4kBghCoFsLqHsasBoM7Dif5W8kD_a-mC7LukBtGwNzhByalkBqnBx5BkuB5oB8dtIiCtKChHvBvM1Gvchf
+L|AT|Hobsonville/Beach Haven Ferry||4 9:12199:7q7gHol2qhByQ8FkJTmThJ4D7D2IpVsB7FyD34BkJrmBgO9jBkB1PpGvqFmCjgCsB3OwFrO2CxEmHjGwsBtZ6ZtT2hBhU48BlW2nB_QqM_K 1:583
+L|AT|Inner Harbour Loop|#00b1bf|38 16:1229:993gHo4vqhBjBsDpE6DzUigC 0:3265 4:4192
+L|AT|Island Direct||4 11:21900:l47gHo_1qhB2HuE0VyIkC0CoK20CNgOzPikCrEw2ByBuRmKooCqjB05BwEsKuP07BmU6uByK-c2kEmoMsM8R2yBi-BqEyJ-gC-rJU-WhDofC6R2BiM
+L|AT|KPHM||5 15:17457:1o1gH0kpshB3H6FzFmBzGhElDrE3IvX3Q3d9_EjpXrB7ExIlRzB7PlIpKxM7EndpBpVyEzM4Fh5B-tBxJgH3GwCxQSlRpFhE3CzOzR5GrF
+L|AT|KPHS||5 8:25590:3n1gHqhpshBtB2CtHsFrFH5FpDzDrF_I3Y5O5a5vE9mV1FpoBnEryB0E77DkDlOuHtTkCvLsO3pGdzI_OxlC1K5hCxEtpBjBjaoD72BwQl_B0MrsC7BlXkF5vBF5K_C5I_C3E9G7H
+L|AT|Pine Harbour Ferry||12 4:22659:z4khHuxhshB0BhLFvGiChGZ_GyUjhDgWtbm8Bt6Cw6CzwE8FnHk1Bj2BwT1WmIlNoHlYgD_cmC1qB-CpS2F_qDkB3FihB1-CwXllD0D3fjCpR7LlmB1hBz6B1DjJhK5oCX_emD7tB8Nv4B6C5TnJ7zCjDjFvPjH
+L|AT|Rakino Island Ferry|#000000|13 4:23890:5nlgHix6rhBrFQnjJj8BvTnHnGhErxBj5BpMrYhI_Mp5B7qC5I9R30Ej-M7T7rBpE1NlHriB7FxRhE1I7hBx0B_BlFlKrtCHnRqD3sB6P9_BsBrMNhJhLjxC1C9DhU_G 0:2432
+L|AT|Rangitoto Island Ferry||3 14:7916:xh6gHmy7qhBtBnDjG1B9F4B1E4DvDsFb2DhDqyBmK8pCoC2HiDuG-jBq4BuHuY8FydsE-NkT2pBkoBsnDkFmE 4:11039
+L|AT|West Harbour Ferry||4 17:13077:ps7gHij2qhB-O6FyGM8Ef2R_IoEjEgJ9V6D16B2J5oBkN_gBuB5IlHp0F2D_uCsDhLqGhK2H7GyrB1ZwFzIqChHgEvUGvQ9CnZkB3S0DzUyEtM8O_T-XhkB-EvQ4B3RFzInBjF3B9EtE1GhGtE1MnF8ExQ
+L|Auckland to Bayswater|Auckland to Bayswater||4 0:2132
+L|Auckland to Beach Haven and Hobsonville Point|Auckland to Beach Haven and Hobsonville Point||1 4:12782:9ixgHs2jqhBhM2TpMgL1nBgR38BmW1hBiU5ZuTvsBuZlHkG1CyEvFsOrB4OlCkgCqGwqFjB2P_N-jBjJsmBxD44BrB8F1IqV3D8DlTiJjJUxQ7F
+L|Auckland to Birkenhead|Auckland to Birkenhead||38 16:1289
+L|Auckland to Birkenhead and Northcote|Auckland to Birkenhead and Northcote||0 4:2132
+L|Auckland to Half Moon Bay|Auckland to Half Moon Bay||4 7:15678:jv7gH-n2qhBkJkE0E4HgIsxCVyIxQuhC5C-nBjB8QuB8VyF0vB2F0gB4kBghCoFsLqHsasBoM7Dif5W8kD_a-mC7LukBtGwNzhByalkBqnBx5BkuB5oB8dtIiCtKChHvBvM1Gvchf
+L|Auckland to Pine Harbour|Auckland to Pine Harbour||4 12:22659:5x7gHgm2qhBwPkHkDkFoJ8zC5C6T7Nw4BlD8tBYgfiK6oC2DkJ2hB06B8LmmBkCqRzD4fvXmlDhhB2-CjB4F1FgrD9CqSlC2qB_CgdnHmYlImNvT2Wj1Bk2B7FoHv6C0wEl8Bu6C_VubxUkhDagHhCiGGwGzBiL
+L|Auckland to Waiheke (Mātiatia)|Auckland to Waiheke||29 4:2687
+L|Belaire Ferries|Downtown to Rakino Island||13 48:4983
+L|Belaire Ferries|Downtown to Rakino Island||4 17:13252:ls7gH-j2qhBtCyFgCpGoP2FyIE2VtKkDtDgJ9V6D16B2J5oBkN_gBuB5IlHp0F2D_uCsDhLqGhK2H7GyrB1ZwFzIqChHgEvUGvQ9CnZkB3S0DzUyEtM8O_T-XhkB-EvQ4B3RFzInBjF3B9EtE1GhGtE1MnF8ExQ
+L|Black Cat|Diamond Harbour Ferry||37 36:3042:r6kqI-1m-gB3IpInIxUzC1DlFnBzLoFnKwWnJ8iBtzBm_B
+L|Black Cat|Ripapa Island Ferry||37 36:3484
+L|Bluff - Oban|Bluff - Oban||18 19:38996:tot8ImwwjgByBiZlBgGpf2vBrI-F_1BqMvFRj4ErlE13BzoBruBzdvoC_yBrtCj6BppChuBh1F95Djf1Xh8Dz3Ct-Dv0Cx3D7zCxmBtcvwC3iCj9BxhC7hBzf_nC3nC13DnrD5hC1-B_iB1dzlDnqC_gBtdlep2B5K5V3X7lB
+L|Cougar Line|Cougar Line||20 21:11343:r377H8gxlhB7HwT4CwYYuTiEwYgd4hHsMmqC-Rw_DsDgdZqLxC6IjCwD1E0DxHY1uD7IhMhH32B3N
+L|Devonport to Rangitoto|Devonport to Rangitoto||14 29:7084
+L|East by West|Wellington Harbour Ferry||35 22:14894:rg_7Hi46qhBgU8oVlBgYnCoI5D0FuF5GsL9fuI1OuiEtuF0CrF
+L|Explore Group|Auckland to Rotoroa||24 4:40325
+L|Explore Group|Explore Group||24 23:5224:rj3gH6xpthBlDpD3D5KsB9L6GlK64Dr_C
+L|Explore Group|Gulf Harbour to Tiritiri Matangi||4 25:39956:526gHk02qhBkFkGqCoGsIo7BKiV7Li1BpE--BK0JsK-oCyFgN-f6wB4H8RoC8CyKmIyJmE6J4C4PgCgV9BiNjD6MpJsiEr5DmOzI6N5FqVrFsrBD2SvBskcjrEwKuC2XiVwBpBxByBhS7Q_CF3DuChU8uB7B6RyB0Km7EymR
+L|Explore Group|Rotoroa Island Ferry||26 24:41476:p77gHsr1qhBsCzJAzGuBpCyCbuD-BqC-DVgJ-KoEqE8H2C-L6CgW0I6vCV2NvP2hC3Du2B4B-U2JonCsCqGygB-1B6FqNuH4coDmYnEydzXsnD3iB2hD9FoqDpF8UmE8qDtGs5EroCkunBwCwRyGgP85D44E8E4J8wB0hEqCuCkfsO 23:6138
+L|Explore Group|Tiritiri Matangi Ferry||26 6:34014 25:10298:7nx_Gwq6qhBvShRlDGjDoChU8uB7B6RyB0Km7EymR
+L|Far North District Council|Hokianga Vehicle Ferry||27 28:2224:pt_3Go_jjhB3CrG1V_4DzC1D
+L|Fullers360|Auckland to Devonport||29 4:2819
+L|Kawau Cruises|Sandspit - Kawau||31 30:9667:5oj-GilvqhBtCqIlO0VnO8ShUkU9IiMttC-sE78C04E9LoX3DgTZ-ckCyMyKweiCqMY8R5FyS
+L|Kawau Ferry|Kawau Ferry||31 30:9667:5oj-GilvqhBtCqIlO0VnO8ShUkU9IiMttC-sE78C04E9LoX3DgTZ-ckCyMyKweiCqMY8R5FyS
+L|MV Silver Supporter Shipping|Tauranga - Pitcairn||32 33:5270256:xz9lHigpzhBweqV80DiRyZ1OwhBnqCidjOyvBiCu0LyiIuUwyB-gxBu9qH-7pDi04P-5wwB_k3i-Bk_yC4q4Kk94CyqvL4p5C8qvLsljDsk2MgkrC2vyJg68Cyl5L-1oDuynN6tmD218M-B6pBtUw4ClK4ZvRoS3JiBxOhI
+L|Metlink|MIF||22 34:4312:p157Hy9prhBzCsFtiEuuFtI2OrL-f
+L|Metlink|QDF||35 34:10582:rg_7Hi46qhBgU8oVlBgYnCoI
+L|Metlink|QMF||35 22:8621
+L|Metro Christchurch|F|#075699|36 37:3042:3loqI-xp-gBuzBl_BoJ7iBoKvW0LnFmFoB0C2DoIyU4IqI
+L|Northcote to Birkenhead|Northcote to Birkenhead||38 0:3125
+L|Paihia - Russell Passenger Ferry|Paihia - Russell Passenger Ferry||40 39:3270:zin3Go53mhB_CrI_MrcjNpT
+L|Pitcairn Government’s|Tauranga - Mangareva||32 41:29659555
+L|Port To Port Cruises And Wildlife Tours Ltd|Forsyth Barr Stadium Event Ferry||47 43:2422:p-g4Iki2wgB2CilBoFkN6BsIuJ4SqLosBwF0a-D6D8EH
+L|Port To Port Cruises And Wildlife Tours Ltd|Port Chalmers||46 45:1327:l523I83vxgBpBuF1N2IxT0cvTmGxBhBpBlE
+L|Port To Port Cruises And Wildlife Tours Ltd|Port Chalmers||44 46:1522
+L|Port To Port Cruises And Wildlife Tours Ltd|Portobello - Carey's Bay Ferry||42 44:1249
+L|SeaLink|Auckland - Great Barrier Island||48 4:17839
+L|SeaLink|Auckland - Great Barrier Island||4 48:17320
+L|SeaLink|Rakino Island Car Ferry||49 15:19435:3glgH675rhB_F1FlJ5Bv_BkLzNiBlxGnrBnVnHnIlFv0Bj8B_0B1hBvd_N5I1Bz9BhC7N_CpS3GpXzLtzB3cld1ThTzQ9SlZ9JvStJrYjIjQxBjQrEzG_D5DrF3C7PhD9UVxJqBzT8F79BqxBlOoJ_VE1N3EvDpChP7RvJ_G
+L|Sealink|Auckland - Waiheke||15 8:18898
+L|Slipper Island Water Taxi|Slipper Island Water Taxi||51 50:8823:r_6hHu-rxhBnQyR3nBmiD1G2Mn6Eg8HhN8LvmB-U9FyFrFoHtEqJlDkMjB8P
+L|Wanaka Water Taxi (Wanaka - Glendhu Bay)|Wanaka Water Taxi||52 55:14290:5hzwI0v0ngByM4Qm7BukC0T-YoN8ZmFmRkEuViEic8C-hBK4gBjC-sBlJm5BrFgQ_I0P1R-UrNyJ5hB-PrlDqgB7DqChzBgyBlR8RrOuRvNkWzIwUnD0KjJ2rB
+L|Wanaka Water Taxi (Wanaka - Outlet Camp)|Wanaka Water Taxi||53 55:8353:9nzwIq_sogB4DhF0Xp5ByWxqB4D1NkB3OdndrFzpBpF1SpGhMxG9G1KrFxIvBxMuBtrDiiBhOiHnN2JzO6NlMuPtF-L7OorB
+L|Wanaka Water Taxi (Wanaka - Ruby Island)|Wanaka Water Taxi||55 54:3029:jj5wI6qpogBkQl3CqL3rByNrf-HvMgDrB-Ee0EwD
+L|Wanaka Water Taxi (Wanaka - Stevenson's Island)|Wanaka Water Taxi||56 55:13341:lrswIulqogBzdwF3yCohB1KmDvIHlIjD1GpG7GtOpFlR3CxTrD9iCpEvdhF5SjHlOjInJjKpGrMzB1MwBjQyE_hCwV7mB4P1OkL7M0M5JsNtHsO5NqrBpGiQ
+L|Whitianga Ferry|Whitianga Ferry||58 57:194
+L|ferry|ferry||40 59:15673:rln3G4u3mhBL1LyBrLwDjO-F9L8IzJyKtIgLhF-LpC6ND-QoC8O2E-O8GgRoLgQuN8NsO8MoRkKqXmDyc1CohBrOssBrxBi-DpEoTdyY6jB83G2DyQkEoK0FiHm8BikCmJ-UsEiUG2HpDyPesJgJmN
+R|-36.89716|174.69916|Avondale|AT
+R|-36.87765|174.72081|Baldwin Avenue|AT
+R|-37.10498|174.95155|Drury|AT
+R|-36.89848|174.80818|Ellerslie|AT
+R|-36.91078|174.66721|Fruitvale Road|AT
+R|-36.91025|174.65283|Glen Eden|AT
+R|-36.87898|174.85420|Glen Innes|AT
+R|-36.86560|174.77000|Grafton|AT
+R|-36.88985|174.79779|Greenlane|AT
+R|-36.88147|174.63094|Henderson|AT
+R|-37.01348|174.87469|Homai|AT
+R|-36.85760|174.75898|Karanga-a-Hape|AT
+R|-36.87264|174.74420|Kingsland|AT
+R|-36.99389|174.87747|Manukau|AT
+R|-37.02329|174.89616|Manurewa|AT
+R|-36.86769|174.75857|Maungawhau|AT
+R|-36.86627|174.82076|Meadowbank|AT
+R|-36.96299|174.83905|Middlemore|AT
+R|-36.87500|174.73524|Morningside|AT
+R|-36.88474|174.71412|Mount Albert|AT
+R|-36.90938|174.68406|New Lynn|AT
+R|-36.86920|174.77905|Newmarket|AT
+R|-36.92594|174.78629|Onehunga|AT
+R|-37.15611|174.89814|Paerātā|AT
+R|-36.89809|174.84928|Panmure|AT
+R|-36.97742|174.84925|Papatoetoe|AT
+R|-36.85492|174.77758|Parnell|AT
+R|-36.91046|174.81555|Penrose|AT
+R|-36.98980|174.85602|Puhinui|AT
+R|-37.20409|174.91103|Pukekohe|AT
+R|-36.88135|174.78543|Remuera|AT
+R|-36.86232|174.80939|Ōrākei|AT
+R|-36.86799|174.60348|Rānui|AT
+R|-36.87352|174.62083|Sturges Road|AT
+R|-36.89690|174.63190|Sunnyvale|AT
+R|-36.86630|174.57682|Swanson|AT
+R|-36.91466|174.84262|Sylvia Park|AT
+R|-37.04105|174.91934|Takaanini|AT
+R|-37.03118|174.90611|Te Mahia|AT
+R|-36.92013|174.80140|Te Pāpapa|AT
+R|-36.84904|174.76318|Te Waihorotiu 1|AT
+R|-36.84982|174.76297|Te Waihorotiu 2|AT
+R|-36.94697|174.83371|Ōtāhuhu|AT
+R|-36.84462|174.76949|Waitematā|AT
+R|-37.55782|175.15971|Huntly|AT;BUSIT
+R|-37.74934|175.23052|Rotokauri|AT;BUSIT
+R|-45.87536|170.50917|Dunedin|Dunedin Railways
+R|-45.50818|170.12295|Middlemarch|Dunedin Railways
+R|-42.94422|171.56462|Arthur's Pass|KiwiRail Scenic
+R|-41.50902|173.95982|Blenheim|KiwiRail Scenic
+R|-43.53992|172.60791|Christchurch|KiwiRail Scenic
+R|-43.48927|172.11284|Darfield|KiwiRail Scenic
+R|-42.44829|171.21459|Greymouth|KiwiRail Scenic
+R|-37.79092|175.26523|Hamilton|KiwiRail Scenic
+R|-42.39592|173.68076|Kaikōura|KiwiRail Scenic
+R|-42.57698|171.47855|Moana|KiwiRail Scenic
+R|-39.40241|175.41547|Ohakune|KiwiRail Scenic
+R|-42.82877|171.56279|Otira|KiwiRail Scenic
+R|-40.34417|175.59429|Palmerston North|KiwiRail Scenic
+R|-37.06444|174.94634|Papakura|AT
+R|-40.91666|175.00727|Paraparaumu|KiwiRail Scenic
+R|-41.28837|174.00486|Picton|KiwiRail Scenic
+R|-43.30053|172.59748|Rangiora|KiwiRail Scenic
+R|-43.58877|172.38369|Rolleston|KiwiRail Scenic
+R|-40.54648|175.41104|Shannon|KiwiRail Scenic
+R|-43.33421|171.93060|Springfield|KiwiRail Scenic
+R|-38.88267|175.26475|Taumarunui|KiwiRail Scenic
+R|-36.84853|174.77934|The Strand|KiwiRail Scenic
+R|-38.18674|175.21235|Ōtorohanga|KiwiRail Scenic
+R|-39.17583|175.39321|Waimarino National Park|KiwiRail Scenic
+R|-41.21956|174.89199|Ava|Metlink
+R|-41.02184|175.52328|Carterton|Metlink
+R|-41.20750|174.93033|Epuni|Metlink
+R|-41.11338|175.32973|Featherston|Metlink
+R|-41.14234|175.02595|Heretaunga|Metlink
+R|-40.94050|175.65490|Masterton|Metlink
+R|-41.04876|175.44879|Matarawa|Metlink
+R|-41.10802|175.13404|Maymorn|Metlink
+R|-41.20579|174.90083|Melling 1|Metlink
+R|-41.19785|174.94611|Naenae|Metlink
+R|-41.24863|174.81362|Ngauranga|Metlink
+R|-41.22209|174.86963|Petone|Metlink
+R|-41.16941|174.96976|Pōmare|Metlink
+R|-40.94763|175.63845|Renall Street|Metlink
+R|-41.14730|175.01029|Silverstream|Metlink
+R|-40.95336|175.62550|Solway|Metlink
+R|-41.18035|174.96075|Taitā|Metlink
+R|-41.16921|174.82842|Tawa|Metlink
+R|-41.13793|175.03825|Trentham|Metlink
+R|-41.12614|175.07061|Upper Hutt 1|Metlink
+R|-41.13052|175.05890|Wallaceville|Metlink
+R|-41.21398|174.92123|Waterloo|Metlink
+R|-41.27886|174.78039|Wellington|Metlink
+R|-41.21193|174.88999|Western Hutt|Metlink
+R|-41.18883|174.95466|Wingate|Metlink
+R|-41.22087|174.91128|Woburn|Metlink
+R|-41.06744|175.40158|Woodside|Metlink
+Q|AT|East-West Line|#97c93d|L55|13 28:2500:7s5hH22rrhB1FzR7GrOnDrKtEnlBGrT6BxDkD5CqLrG2N1K 25:1548:1z2hHyxmrhB 17:1817:_50hHqnlrhB 42:1871:1qyhHuyjrhBsIjE 36:4164:_vthH01irhBiUpFwHSyHkE8F8Gyb-zBgJoLuH6EoJuCoIP 24:2148:7kphH83krhBqIR2kBoMqIqG 6:2223:3lmhH02mrhBmNoIqrBsPuLkB6IZ 16:3669:zhihHi-mrhBsFvDqHhIwExIuT1yB0MtcgFtTmCjfpB7RtEjW 31:1038 43:4406:hu_gHk_9qhBsIrMyhCvqC-EzH6C1M5BzpBiCtT-GzM 41:926:vi8gH2j2qhBN5D5BrD 11:1016:tv9gH2o1qhBvHlKhN7I3I7B 15:1218:_l_gH820qhB_LkIrJ8BjNjD9H1DjD3D 12:1412:xghhHk0zqhB9DpWpMlQrCtN 18:866:j8hhH0pxqhBlCpKjBtR 1:1340:rsihHkpvqhBzC7QL1V 19:1024:37ihHq3sqhB1KjK7EzDzOrG 0:1985:5olhH4xqqhB7JnN3DrG3J_ZpCxDlF7C 20:2226:v5mhH-9oqhB9blI1Y9PpDvIO9SlB5K 4:1557:pjphH0nlqhBdhQ_D7RBrgB 5:1323:jjphHypiqhB5FhQXlJ0C_f 34:2559:zoohH8z9phB4FhMokBlpB6IxE 9:1780 33:1302:x9ihHmw7phByLhIwFpG2DlH 32:1699:hyhhHo54phB4MhQoD7G 35:2352:z1ghH-v1phBYzN5CjpBK7V-ErpB
+Q|AT|East-West Line|#97c93d|L55|35 32:2483:hxghHixxphBhGyyBF6X0C0pB 33:1701:vhhhHuh4phB9DuIjNgR 9:1309:7oihHs76phB7EyItFuFvMqI 34:1764 5:2561:t3mhH667phBzG2D9kBgqB_EqK 4:1238:_mphHoxgqhBxCwhBkBwHyFoPEkH 20:1514:_nphHykjqhBA6gBgE-RmBqR 0:2280:xxohHuhnqhBaiILkUkD8HyQyLgJ4E-ckI 19:2021:1mmhHw9oqhBuE6CuCiEiJuYkF4IgKmN 1:997:v5jhHkjsqhBqRkIyK2JyFyH 18:1328:jvihHwiuqhBMqWiDqSuDuL 12:906:_-hhHgvwqhBewQqCwK 15:1319:nwhhHkuyqhBgM2P6D8V 11:1295:zyghHy20qhBiDqD4WyFmIpC8IhI8DhC 40:1030:pr-gHiy0qhBoH2C8M2I6IiL 43:852:vk8gHm81qhB0CiH 31:4457:j18gH6q4qhB3GkMhCsT2B6qB5C6L9DuGlkC4tClJ2O 16:1086:trghH4pgrhB 6:3671:_tghHilhrhBwEwXOyO5C-gBhG2TpKsWnUw0BnEiI_F8G_HsF 24:2239:97jhHovnrhB7IKxL3BjoBzOxOlJ 36:2068:5vnhHiqlrhB_F9ErGhD9arJ7GlB7GU 42:4117:tpqhHiilrhBpIQrJtCpH1EjJrL1ch1B_DxE_GxE5JP5R6E 17:1961:hiyhH6ujrhBtI-D 25:1821:950hHynlrhB 28:1452:tz2hH2xmrhB 13:2422:7g5hHm7nrhB1PgMvLyG3C2C7B6EJ4QsEolB0C0JwH0P
+Q|AT|Onehunga-West Line|#00AEEF|L55|9 34:1745 5:2561:t3mhH667phBzG2D9kBgqB_EqK 4:1238:_mphHoxgqhBxCwhBkBwHyFoPEkH 20:1514:_nphHykjqhBA6gBgE-RmBqR 0:2280:xxohHuhnqhBaiILkUkD8HyQyLgJ4E-ckI 19:2021:1mmhHw9oqhBuE6CuCiEiJuYkF4IgKmN 1:997:v5jhHkjsqhBqRkIyK2JyFyH 18:1328:jvihHwiuqhBMqWiDqSuDuL 12:906:_-hhHgvwqhBewQqCwK 15:1374:nwhhHkuyqhBgKgMoC0EyD-U6HmU 7:1080:h7ghHyg1qhBGuEgJ0W 21:1093:lnghHoi3qhBBgGxI4jBrC2EpD2C 30:1595:7rhhHiv4qhBvM6B5K-D9MqJ 8:1468:v8jhHgq6qhBpKuN 3:1359:14lhHys9qhBlKsNzHsG 27:1549:1vnhHoz-qhBtTuG7G0F1J0MpF4EpIqE 39:1590:5tphHyu_qhBvM9b 22:1590:9jrhHk18qhBnQrSrDhGhC5IjEzuBnB7C
+Q|AT|Onehunga-West Line|#00AEEF|L55|22 39:1591:_-rhHsi6qhBoB8CkE0uBiC6IsDiGoQsS 27:1590:p6phH0y-qhBwM-b 3:1660:phphHg1_qhBqIpEqF3E4KjOyG9EoV_G 8:1375:romhHy-9qhBmIhI4JjO 30:1455:_kkhHu06qhB6IlL 21:1487:1tihHy74qhB-KlH-K_D0L_B 7:1138:70ghHmy4qhB4CpCkD1GwHphBNxG 15:1018:7yghH251qhBnI1SLpF 12:1459:n5ghHwp0qhBzHzWtDtU_B9DvK7MrCtN 18:866:j8hhH0pxqhBlCpKjBtR 1:1340:rsihHkpvqhBzC7QL1V 19:1024:37ihHq3sqhB1KjK7EzDzOrG 0:1985:5olhH4xqqhB7JnN3DrG3J_ZpCxDlF7C 20:2226:v5mhH-9oqhB9blI1Y9PpDvIO9SlB5K 4:1557:pjphH0nlqhBdhQ_D7RBrgB 5:1323:jjphHypiqhB5FhQXlJ0C_f 34:2559:zoohH8z9phB4FhMokBlpB6IxE 9:1626
+Q|AT|South-City Line|#C43B2F|L55|21 26:1798:jzghH604qhB2PgOuGyB 43:1938:309gHg-3qhB6NrD4D2BqC2CsB-I4ByD0DyBkDtBuDrH 41:926:vi8gH2j2qhBN5D5BrD 11:1016:tv9gH2o1qhBvHlKhN7I3I7B 7:1381 21:1093:lnghHoi3qhBBgGxI4jBrC2EpD2C 30:1595:7rhhHiv4qhBvM6B5K-D9MqJ 8:1468:v8jhHgq6qhBpKuN 3:1359:14lhHys9qhBlKsNzHsG 27:1480:1vnhHoz-qhBtTuGvIsH3KoO 42:4385:vqphH28_qhBh2CkjCnWsOlWsH 17:1961:hiyhH6ujrhBtI-D 25:1821:950hHynlrhB 28:1452:tz2hH2xmrhB 10:3280:7g5hHm7nrhB3S4N5lCsdtGgEzJgL 14:2191:x09hHsjsrhBnpBy_C 38:1209 37:1647:xgiiH-izrhB 59:3565:jhkiHom2rhB3RmX5XwX 2:4956:vqoiHmh6rhBxG2GtN8SlH6G7LkHlQ-EzLJ18BpR1-B3ElQvH 23:7573:n_viHmm5rhB7ahQjuBvjB7hDrsEnI_I7SzM9F5FtQvd5FzH9F9E9RhKzZ7V 29:5665:rj6iHqhvrhBtJjC7IevJgFtuBgkB1FiCtNM5F6BnVqSlMiIjLsC7ZhDtd4FxV3C5HUnGkC5GuE
+Q|AT|South-City Line|#C43B2F|L55|29 23:5811:11hjHyxxrhB0HhFmGjC8HTgW6Cgd3FoYgD6L9BgNrIqVrS6F7BsMD2GpCwrBniB0M3GgLXmJ8C8VgQ 2:7541:nw4iHuiwrhB-W-TiSkKyH2G0UsjB6F4F-S2MmI6IiiD0sEguBujB6agQ 59:4845:31uiHsx6rhBgPiGg9BqEs8BqR0LIiO_DkOjIgJlJ8OnU 37:3682:37miHs_4rhBsW7S-iBrfoRhS8PjV 38:1527:3giiH2izrhBsgB7nB 14:1279 10:2208:jq-hHm2trhBqRjqB 28:3194:xp8hH80prhByJ5KwG_D6lCrd2QtM 25:1548:1z2hHyxmrhB 17:1817:_50hHqnlrhB 42:1871:1qyhHuyjrhBsIjE 27:4444:_vthH01irhB6YxHwSvLi6CjmC 3:1529:_1ohHyu_qhBuK_N-H9GwW3H 8:1375:romhHy-9qhBmIhI4JjO 30:1455:_kkhHu06qhB6IlL 21:1487:1tihHy74qhB-KlH-K_D0L_B 7:1138:70ghHmy4qhB4CpCkD1GwHphBNxG 11:2127:5xghH881qhBjI5TPtFiCpGkDhDgFrBkT6FsHQyG_CmK3I 40:1030:pr-gHiy0qhBoH2C8M2I6IiL 43:852:vk8gHm81qhB0CiH 26:2039:xz8gHil4qhBxDkHrDmBlDtB7BnD7BpJrC9C7DzBhPqE 21:1702:x5_gHyj5qhBjEoBhG7BrPjO
+Q|AT;BUSIT|Te Huia|#17232f|L55|67 28:21868:l88gHiz6qhB1B8KjFuJxgCipC7IuM7HmPjX29BvC-JH0PmE8UgB6N7BkflCgM7E0OjLoYnUy0BxHmL_G2F3F2ChyBuOjNgBxL3B9f7KxRlJjO3LthBxlB3KrG9arJ7GlB7GU7mBqKxHB5HnCpH1EvGjHvgB96B9HzGvI5B3nByIz2D8SzNgEh0Cm3BvtB0iB_LwH 59:11890:7g5hHm7nrhB3S4N5lCsdtGgExGyGjqBmqChL-XtOyjBnZ22Bn9C21DxgCqjD3MqRrU4V_iBuf 29:18195:vqoiHmh6rhBxG2GtN8SlH6G7LkHlQ-EzLJj7BhRl8BjEjRvGjI3FvIpI5Yrd7ahQjuBvjB7hDrsEnI_I7SzM9F5FtQvd5FzH9F9E9RhKzZ7V7XhO9U1PhH_C3LTnI4C5yB-mB1FiCtNM5F6BnVqSlMiIjLsC7ZhDtd4FxV3C5HUnGkC5GuE 44:54746:3xkjHov0rhB7xBgelkD4Er_BkdjmB84BzHojBrY0oBrHwsBkLgrHkVklBy1BtH4TstBt6Bq2F5rBgiB1gEwZt6EmsEne-pB32BmI_U2xBziCinBl1D6jFzwDqmC7hDvHlnB2O_cqfhhCunB94C7C94BqpB_rE0Z_kDkgBj6D-PzwD4hBh1BrF3_C9oB 45:26618:xzolHs9ithBrpBpJrV4G3SoD7KN_SjEvTqD3oBvB9GerJ0DrfkXlH4I5GwP5EgV7hB83BtG0RhG6V5DoH3F0FvIgE1I2B_HHvxB9PnKxFhhC_pC1hC34BnxCp0C7HnG7PpJrShIzIE7dyQnH6GluBwtCn4EwsGjpB6tB5G8F9HwEt5BsXt6C8yBlQgMjSyQ 53:5665:p0tmH-txthBpYsSrnEmsCvpBuyBxd4pB
+Q|AT;BUSIT|Te Huia|#17232f|L55|53 45:5665:h70mH2o3thBudhqBwpBryBwnEnsCoZlT 44:26619:tsrmHq_uthBgS9P4R5Mm2C9vB25BxX2I9E6FjFgpBztBy4E7sGquBztCuIvHudhQ8HEsV2JgN0H-HoGoxCu0CglCk8B29BymCmKyFyxB-P8IC-IjCgHrD-F_FyEvJuF7TmG5Q6hB93B8E9U6GxPsH7IqfjXmOrE8qBsB0TrDgTkE6KQ6Q3CuSrGoGdwmBmJ 29:54700:toilH06ithB4_C8oBg1BuFiuDjhB08DvQilDjgBgsEzZ-4BvpB63CmDmiCpnBgdpfmnB1O8hDwH0wDpmCm1D5jF0iChnBgV1xB42BlI6d5pB46EzsE4gEvZurB_lB06BjyFxT9sBx1BsHnVrlBlL9qHwH3sB8YjqBwF5e4nB77BqhCxdoiDpE8xB_d 59:18196:11hjHyxxrhB0HhFmGjC8HTgW6Cgd3FoYgD6L9BgNrIqVrS6F7BwNJoHjD8lBpe4KnH0KpDiKcyI-D0SmO4Y0OwZ6ViSkKiGgF2FyHuQwd6F4F-S2MmI6IiiD0sEguBujB6agQgZwduIoIiI4FiRwG88BmEu6BgR0LIiO_DwM7GyI9HqN1S2G5G 28:11893:rlliH8v3rhBsY5Z2LjQygCnjDi9Cp1D2FxK8TzsBqRjqB6Q7iB8iBp6B0L5I6lCrd2QtM 67:21878:_v2hHqvmrhBg2B_nB41Cn4B45B_Kw6CtO0WvFsIkC0HqG2gB07BoH2HkI2EyH4BoGD0mBpK2GTyHqB-asJwKuGqhBwlBkO0LwQ0IgkBkMuLkByMxBmuBvNiHjDiH1FqH5K0Ut1B8KzX-E9O6BpJmCphBpB1PpE1UE3MkC5ImX7_B2PvZyhCvqCwFhJoC5M
+Q|Dunedin Railways|The Inlander|yellow|L55|46 47:71016
+Q|KiwiRail Scenic|Capital Connection||L55|92 58:178760 64:29513
+Q|KiwiRail Scenic|Coastal Pacific||L55|61 49:28195 54:128851 50:189841 62:29826:_13pIw5w9gBiGiCyxCtLiTlI-H3BipG_C0RiD6lC4fqH0E4K4L-Pkc0HgJ4nH-sGwrB6b2MiDoMrDo3B_uByIxE0HtBwM-Co9C-0B-F2BkY9FoK9FgWhWkG_HmG5MsInayKhPyLnImYtGkM_G0yHzhHgI7DohB7H4GQwMyFuGG
+Q|KiwiRail Scenic|Northern Explorer||L55|67 59:33776:r88gHsy6qhBzBkLnF4JtiCwrCnQ6a3YsnCD4M0FskB_D0qBnjBo5C5L0QpJoF1vBgO_XO_jBjMvQzIjOzLphBvlBvKtGviB1KptB-K5NzBrPrM1gBz7BxMhIjwFsf9zCu3B15BoqBhhC8hB9eoV5lCsd_JkHvkBg8B17BmkEh9Cq1DnsCszDrY6Z 53:91940 68:47168 66:97350 69:50477 56:28945 58:113656 60:93922 92:47867
+Q|KiwiRail Scenic|TranzAlpine||L55|55 50:203487 57:157883 63:129892 51:25463:75hqIq0j8gB1BrHAlMmEhNmuR_1eyGjO2D3Q 65:23092:h-tpI4rv6gB6DpQuEhK6GvJ2jG_wFs5CngCo9HprG0yBtyB0lB1_BstI71OqKpN 48:67763 52:94518
+Q|Metlink|Hutt Valley Line|#ff6600|L55|92 80:4777:v497Hkr5qhB8MiGqHbmVlL8NgC0FqDyQoRqIuJmJ6R8OwOoKmQkZu5BuF8P 81:5715:5k47Hw0_qhBkaohB2wB-xC0SuXiI-TkK6K8EuH4K6nBuGsOgL0iBuB2IcofoG6T 70:1999:12y7HulrrhBmI0WwD6O5Byb 95:1826:ruz7H64wrhB_BkKMyJkDiK 91:1130 72:1049 79:1709 94:1252:jku7Hy25rhB0ImK 86:1068 82:1425 84:4886:_wo7Hm_9rhBgesFwL8G-csmBsSwbuTuR8J0LoFyI-J8W2CkP 74:1393:nvk7HusmshB 88:1139 90:1915 89:1095
+Q|Metlink|Hutt Valley Line|#ff6600|L55|89 90:1096 88:1915 74:1144 84:1476:rwk7H-pmshBhCxJ 82:4800:lpk7Hu5ishB9ClQrLlZ3OvSnSlQlpB36B7G3HjK5FhfxF 86:1426 94:1067:73r7Hqv7rhB 79:1257:j8t7H-g6rhB1J_L 72:1709:9_v7H-y2rhB 91:1048 95:1131 70:1875:ptz7Hq2xrhB7CxJN7J8BzJoVl8B 81:2007:hty7HsmtrhB6BzUJhItDvOhIjW 80:5655:3rz7Hi6prhBrGrUX5dvB5J3K7hB1G7OpLjpBlEjGlK3K_H9ThTjYvxBlzCnYve 92:4775:5h57H-_9qhBjFpMvJnPjHpXxLnajItM5NhN5KjUtU1WhJ5G9LnCvF0BrR6JrIYxN3G
+Q|Metlink|Kapiti line|#d4d152|L55|92 87:13717
+Q|Metlink|Melling Line||L55|92 80:4777:v497Hkr5qhB8MiGqHbmVlL8NgC0FqDyQoRqIuJmJ6R8OwOoKmQkZu5BuF8P 81:5715:5k47Hw0_qhBkaohB2wB-xC0SuXiI-TkK6K8EuH4K6nBuGsOgL0iBuB2IcofoG6T 93:2032:r3y7H2jrrhB2NikB8Nqf 78:1136:p-w7HmxurhBmTomB
+Q|Metlink|Melling Line||L55|78 93:1136:jrw7Hu3vrhBlTnmB 81:2092:57x7HintrhB7NpfhOpkB 80:5655:3rz7Hi6prhBrGrUX5dvB5J3K7hB1G7OpLjpBlEjGlK3K_H9ThTjYvxBlzCnYve 92:4775:5h57H-_9qhBjFpMvJnPjHpXxLnajItM5NhN5KjUtU1WhJ5G9LnCvF0BrR6JrIYxN3G
+Q|Metlink|Wairarapa Connection|#ce0808|L55|92 81:10492:v497Hkr5qhB8MiGqHbmVlL6LsB8FyCiZka0L8UoQoQ0KuSyWq0BgGiRqZyvBuc2kByxBqzC0SuXiI-TkK6K8EuH4K6nBuGsOgL0iBuB2IcofoG6T 91:4955:r3y7H2jrrhBoHyTwE4PYoJ9BmWhIqpB9ZuqCxB4IMyJuC2IkD2F 89:16931:pjw7H8s2rhB07BgkDwLoPsxCw4B2yCojCiJ8Dic6EiK2FgGmGsYshBsSwbmSiQsOgSmLkYqCsIkBiJ9Ig5CC8MgCyL 77:6316:nhg7HizyshBkM8XyC2HU6MrE0QboIoBqK-D4KqE-GyE0EkRoGwHqGgFmJ8GqboEyI2F6FmW-PkFwG-CiHwBwNvCmvBlIujBfkJYmL 73:18374:7686Hiu-shBrBuP36E6yTlBgJZuexDwRrF8LrO4PzUgd5Nif7C8OwBwPoE6K6FgIoMqLqGmKyC4HoDqTiEgKqH6I4NgKuHwLmD4MsC8iB4B-J2C2HoR4dmE-JiDkO0C2dkE0NgGmL 96:7979 76:4482:po06H20zuhB2lBi8BgFyK 71:7034:j9t6H4nnvhByEuJ 85:11455 83:1263 75:1592
+Q|Metlink|Wairarapa Connection|#ffcc00|L55|75 83:1592 85:1263 71:11462 76:7034:x4t6HmxnvhBxEtJ 96:4480 73:7982 77:18374:7hg7Hy4guhB_FlLjEzNzC1dhDjOlE9JnR3d1C1H3B9JrC7iBlD3MtHvL3N_JpH5IhE_JnDpTxC3HpGlKnMpL5F_HnE5KvBvP8C7O6Nhf0U_csO3PsF7LyDvRatemB_I46E5yTsBtP 89:6312 91:16912 81:5014:zqz7Hg7xrhBpDjGnCjIN7J2B_IuV58BiG7VsG5gB6BzUd_LpFzRlH7S 92:10430:3rz7Hi6prhBrGrUX5dvB5J3K7hB1G7OxKtnB9E5HlK3K_H9ThTjYvxBlzCnYvenH_KnWzqBjFpMvJnPjHpXlK1X1F3J9FzH1L1K5LpV7Yra1FvCzLtBjVmL9GiB_OhH
 T|-39.68005|176.88294|Aggie Bank Station
 T|-41.12056|174.85549|Aotea Lagoon Miniature Railway
 T|-42.94422|171.56462|Arthur's Pass
