@@ -48,7 +48,11 @@ class TransitNetwork(
      * interchange ('I'), at [cruiseKmh] between stops (0: the class's usual,
      * [CRUISE_KMH]).
      */
-    data class Edge(val to: Int, val metres: Double, val speed: Char = 'M', val cruiseKmh: Double = 0.0) {
+    data class Edge(
+        val to: Int, val metres: Double, val speed: Char = 'M', val cruiseKmh: Double = 0.0,
+        /** The track between the two stations, its bends, when it was mapped cleanly (its ends left out). */
+        val path: List<GeoPoint> = emptyList()
+    ) {
         /** The time it takes: the run at cruising speed, and the stop (or the change of trains) at its end. */
         val seconds: Double get() =
             metres / (cruiseKmh.takeIf { it > 0 } ?: CRUISE_KMH[speed] ?: 35.0) * 3.6 + (DWELL_S[speed] ?: 30.0)
@@ -167,8 +171,47 @@ class TransitNetwork(
         val e = nearestStation(points.last(), kind, LINE_END_M) ?: return points
         if (s == e) return points
         val path = ride(s, e)?.stations ?: return points
-        return listOf(points.first()) + path.map { stations[it].point } + points.last()
+        return listOf(points.first()) + track(path) + points.last()
     }
+
+    /**
+     * The track through [path] (station numbers, in order): each station,
+     * and between two the bends of the line as mapped, where they are.
+     */
+    fun track(path: List<Int>): List<GeoPoint> {
+        val out = ArrayList<GeoPoint>()
+        for ((i, s) in path.withIndex()) {
+            if (i > 0) out += between(path[i - 1], s)
+            out += stations[s].point
+        }
+        return out
+    }
+
+    /**
+     * The track a vehicle of [kind] moved along from [from] to [to], for the
+     * map to glide it round the bends: the line through the stations nearest
+     * each, with a station's worth of track either side so a move between
+     * two stations is still on it. Null when the track does not explain the
+     * move (off the line, or far from it), so the glide is a straight line.
+     */
+    fun glidePath(from: GeoPoint, to: GeoPoint, kind: Kind): List<GeoPoint>? {
+        val s = nearestStation(from, kind, GLIDE_SEARCH_M) ?: return null
+        val e = nearestStation(to, kind, GLIDE_SEARCH_M) ?: return null
+        val core = if (s == e) listOf(s) else ride(s, e)?.stations ?: return null
+        fun beyond(at: Int, notVia: Int?, p: GeoPoint): Int? =
+            edges[at].map { it.to }.filter { it != notVia && stations[it].kind == kind }
+                .minByOrNull { n -> MapStages.snapDistanceM(track(listOf(at, n)), p) ?: Double.MAX_VALUE }
+        val path = ArrayList<Int>()
+        beyond(core.first(), core.getOrNull(1), from)?.let { path += it }
+        path += core
+        beyond(core.last(), core.getOrNull(core.size - 2), to)?.let { path += it }
+        return MapStages.alongRoad(track(path), from, to, snapM = GLIDE_SNAP_M)
+    }
+
+    /** The mapped bends from station [a] to [b] (either direction), or none. */
+    fun between(a: Int, b: Int): List<GeoPoint> =
+        edges.getOrNull(a)?.firstOrNull { it.to == b }?.path?.takeIf { it.isNotEmpty() }
+            ?: edges.getOrNull(b)?.firstOrNull { it.to == a }?.path?.asReversed().orEmpty()
 
     /**
      * What to call the point a stage began or ended at, when one side of it
@@ -218,6 +261,10 @@ class TransitNetwork(
 
         /** A bus station is a yard and its bays; a stop beyond this is somewhere else. */
         const val BUS_RADIUS_M = 250.0
+
+        /** A gliding vehicle looks for its line this far around it, and may be this far off the track. */
+        const val GLIDE_SEARCH_M = 2_500.0
+        const val GLIDE_SNAP_M = 150.0
 
         /** How far a moving train may be from the station nearest it: a high-speed line's are 30-60 km apart. */
         const val AHEAD_SEARCH_M = 30_000.0
@@ -281,6 +328,36 @@ class TransitNetwork(
 
         fun railLabel(name: String): String = if (RAIL_WORDS.containsMatchIn(name)) name else "$name station"
 
+        private const val PATH_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+
+        /**
+         * A track as the files write it (tools/transit/build_network.py,
+         * encode_path): each point's change from the one before in 1e-5
+         * degrees, five bits a letter with a sixth for "more", zigzag-signed.
+         */
+        fun decodePath(text: String): List<GeoPoint> {
+            val out = ArrayList<GeoPoint>()
+            var lat = 0L; var lng = 0L; var i = 0
+            while (i < text.length) {
+                val v = LongArray(2)
+                for (k in 0..1) {
+                    var acc = 0L; var shift = 0
+                    while (true) {
+                        if (i >= text.length) return out
+                        val c = PATH_ALPHABET.indexOf(text[i++])
+                        if (c < 0) return out
+                        acc = acc or ((c and 0x1F).toLong() shl shift)
+                        shift += 5
+                        if (c and 0x20 == 0) break
+                    }
+                    v[k] = (acc shr 1) xor -(acc and 1)
+                }
+                lat += v[0]; lng += v[1]
+                out += GeoPoint(lat / 1e5, lng / 1e5)
+            }
+            return out
+        }
+
         /** "Victoria Coach Station", "Port Authority Bus Terminal"; a bare name gets "bus station". */
         fun busLabel(name: String): String = if (BUS_WORDS.containsMatchIn(name)) name else "$name bus station"
 
@@ -297,16 +374,17 @@ class TransitNetwork(
         /** Several countries' files as one network. */
         fun combine(texts: List<String?>): TransitNetwork {
             val stations = ArrayList<Station>()
-            // Each line: its stations with the metres from the one before, and
-            // its speed class (null: the metro's or the water's, by its stations).
-            // (and, for a railway line, the speed its trains keep between stops)
-            val lines = ArrayList<Triple<List<Pair<Int, Double?>>, Char?, Double>>()
+            // Each line: its stations with the metres and the track from the one
+            // before, its speed class (null: the metro's or the water's, by its
+            // stations) and, for a railway line, the speed its trains keep.
+            data class Cell(val station: Int, val metres: Double?, val path: List<GeoPoint>)
+            val lines = ArrayList<Triple<List<Cell>, Char?, Double>>()
             val rail = ArrayList<Station>()
             val bus = ArrayList<Station>()
             fun cells(field: String, local: Map<Int, Int>) = field.trim().split(' ').filter { it.isNotBlank() }.map { cell ->
                 val parts = cell.split(':')
                 val s = parts[0].toIntOrNull()?.let { local[it] } ?: -1
-                s to parts.getOrNull(1)?.toDoubleOrNull()
+                Cell(s, parts.getOrNull(1)?.toDoubleOrNull(), parts.getOrNull(2)?.let { decodePath(it) }.orEmpty())
             }
             fun place(f: List<String>): Pair<Double, Double>? {
                 val lat = f.getOrNull(1)?.toDoubleOrNull() ?: return null
@@ -357,16 +435,16 @@ class TransitNetwork(
             }
             val adj = List(stations.size) { HashMap<Int, Edge>() }
             val fast = List(stations.size) { HashMap<Int, Edge>() }
-            fun link(a: Int, b: Int, m: Double, speed: Char, cruise: Double = 0.0) {
+            fun link(a: Int, b: Int, m: Double, speed: Char, cruise: Double = 0.0, path: List<GeoPoint> = emptyList()) {
                 if (a == b || a !in stations.indices || b !in stations.indices) return
-                val e = Edge(b, m, speed, cruise)
+                val e = Edge(b, m, speed, cruise, path)
                 // The shortest track between two stations, and the quickest line along it.
                 if (adj[a][b].let { it == null || m < it.metres }) adj[a][b] = e
                 if (fast[a][b].let { it == null || e.seconds < it.seconds }) fast[a][b] = e
             }
             for ((cells, klass, cruise) in lines) {
                 var last = -1
-                for ((s, m) in cells) {
+                for ((s, m, path) in cells) {
                     if (s < 0) { last = -1; continue }
                     if (last >= 0 && m != null) {
                         // Never less than the straight line between the two
@@ -374,10 +452,10 @@ class TransitNetwork(
                         val hop = maxOf(m, Geo.haversineM(stations[last].point, stations[s].point))
                         val speed = klass ?: if (stations[s].kind == Kind.WATER) 'W' else 'M'
                         val back = fast[s][last] == null
-                        link(last, s, hop, speed, cruise)
+                        link(last, s, hop, speed, cruise, path)
                         // The other direction is usually its own line; if it
                         // is missing, the same track serves both ways.
-                        if (back) link(s, last, hop, speed, cruise)
+                        if (back) link(s, last, hop, speed, cruise, path.asReversed())
                     }
                     last = s
                 }

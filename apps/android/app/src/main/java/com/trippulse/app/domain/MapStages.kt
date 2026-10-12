@@ -134,6 +134,9 @@ object MapStages {
         return path
     }
 
+    /** How far [p] is from the nearest point of [road], or null when [road] is not a line. */
+    fun snapDistanceM(road: List<GeoPoint>, p: GeoPoint): Double? = snap(road, p)?.distanceM
+
     /** Where along [path] a share [fraction] of its length falls, and the heading there. */
     fun pointAlong(path: List<GeoPoint>, fraction: Double): Pair<GeoPoint, Double?> {
         if (path.isEmpty()) error("empty path")

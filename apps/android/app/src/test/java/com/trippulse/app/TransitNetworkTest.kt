@@ -194,6 +194,37 @@ class TransitNetworkTest {
         assertEquals(TransitNetwork.Kind.METRO, n.stations[0].kind)
     }
 
+    /** A line that bows north between West and East, as the builder writes its track. */
+    private val bow = "S|17.400|78.500|West|Bow Metro|M\nS|17.400|78.520|East|Bow Metro|M\nL|Bow Metro|Bow|x|0 1:2700:otnqDogl_OwMofvMof"
+
+    @Test fun a_ride_is_drawn_along_the_bends_of_its_track() {
+        val bends = TransitNetwork.decodePath("otnqDogl_OwMofvMof")
+        assertEquals(3, bends.size)
+        assertEquals(GeoPoint(17.407, 78.510), bends[1])
+        val n = TransitNetwork.parse(bow)
+        val drawn = n.followLine(listOf(GeoPoint(17.4003, 78.5002), GeoPoint(17.4002, 78.5199)))
+        assertTrue(drawn.toString(), drawn.any { it.lat > 17.4065 })
+        // The other way round is the same track, reversed.
+        val back = n.followLine(listOf(GeoPoint(17.4002, 78.5199), GeoPoint(17.4003, 78.5002)))
+        assertEquals(drawn.size, back.size)
+        assertEquals(drawn[1], back[back.size - 2])
+        // A file without tracks still draws station to station.
+        val plain = TransitNetwork.parse(bow.substringBefore(":otnqDogl_OwMofvMof"))
+        assertEquals(4, plain.followLine(listOf(GeoPoint(17.4003, 78.5002), GeoPoint(17.4002, 78.5199))).size)
+    }
+
+    @Test fun a_train_between_two_fixes_glides_along_its_line() {
+        val n = TransitNetwork.parse(bow)
+        val g = n.glidePath(GeoPoint(17.4049, 78.5051), GeoPoint(17.4049, 78.5149), TransitNetwork.Kind.METRO)
+        assertNotNull(g)
+        assertTrue(g.toString(), g!!.any { it.lat > 17.4065 })
+        assertEquals(17.4049, g.first().lat, 0.0005)
+        assertEquals(78.5149, g.last().lng, 0.0005)
+        // Far from any line, or the wrong way along it: no track to glide on.
+        assertNull(n.glidePath(GeoPoint(17.5, 78.5), GeoPoint(17.5, 78.52), TransitNetwork.Kind.METRO))
+        assertNull(n.glidePath(GeoPoint(17.4049, 78.5051), GeoPoint(17.4049, 78.5149), TransitNetwork.Kind.RAIL))
+    }
+
     @Test fun labels_say_what_riders_say() {
         fun st(name: String, network: String, kind: TransitNetwork.Kind = TransitNetwork.Kind.METRO) =
             TransitNetwork.Station(0.0, 0.0, name, network, kind)
