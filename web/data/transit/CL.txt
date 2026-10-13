@@ -1,4 +1,4 @@
-# Transit for Koode, CL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, CL. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-13 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|-33.41545|-70.58999|Alcántara|Metro de Santiago|M
@@ -129,6 +129,48 @@ S|-33.51976|-70.59621|Vicuña Mackenna|Metro de Santiago|M
 S|-33.45467|-70.58148|Villa Frei|Metro de Santiago|M
 S|-33.38538|-70.67964|Vivaceta|Metro de Santiago|M
 S|-33.39094|-70.64244|Zapadores|Metro de Santiago|M
+S|-42.46710|-73.49004|Achao|Achao-Chaulinec|W
+S|-42.62580|-73.29840|La Villa|Achao-Chaulinec|W
+S|-52.49457|-69.51999|Bahía Azul|Austral Broom|W
+S|-52.45670|-69.54575|Punta Delgada|Austral Broom|W
+S|-47.20279|-72.62994|Balsa|Balsa Baker|W
+S|-47.20325|-72.63205|Balsa Baker|Balsa Baker|W
+S|-35.68784|-71.77126|Balsa El Peumo|Balsa El Peumo|W
+S|-38.40860|-71.24647|Balsa Rahue|Balseadero Rahue|W
+S|-43.21498|-71.95040|Puerto Calderón|Barcaza "La Esperanza" - Cap. A. Hvalibota|W
+S|-43.12585|-72.02094|Puerto Poleto|Barcaza "La Esperanza" - Cap. A. Hvalibota|W
+S|-42.66190|-73.26852|Llaguach|Capilla Antigua – La Villa|W
+S|-51.06280|-72.99034|Transbordador Lago Pehoé|Catamarán Hielos Patagónicos|W
+S|-51.07381|-73.09281|Transbordador Paine Grande|Catamarán Hielos Patagónicos|W
+S|-42.63823|-73.72152|Rampa Chulchuy|Chulchuy - Huicha|W
+S|-42.64988|-73.73501|Rampa Huicha|Chulchuy - Huicha|W
+S|-38.34196|-71.29328|Balsa Caracoles|Dirección de Vialidad|W
+S|-46.56409|-72.39173|Puerto Cristal|El Avellano – Puerto Cristal|W
+S|-46.49746|-72.14179|El Avellano|El Avellano – Puerto Sánchez|W
+S|-46.59463|-72.57908|Puerto Sánchez|El Avellano – Puerto Sánchez|W
+S|-38.83231|-73.27911|Embarcadero Romopulli|Embarcadero Huapi Budi – Embarcadero Romopulli|W
+S|-38.85704|-73.29148|Isla Nahuelhuapi|Embarcadero Huapi Budi – Embarcadero Romopulli|W
+S|-48.22867|-73.29013|Sector El Pascua|Estero Ventisquero – Sector Jorge Montt|W
+S|-40.02452|-71.72271|Pirehueico|Ferry Lago Pirihueico|W
+S|-39.87192|-71.88845|Terminal de Embarque Puerto Fuy|Ferry Lago Pirihueico|W
+S|-53.30469|-70.43478|Embarcadero Ferry Bahia Chilota|Ferry Punta Arenas - Porvenir|W
+S|-53.12117|-70.86675|Terminal Tres Puentes|Ferry Punta Arenas - Porvenir|W
+S|-42.13262|-72.57472|Puerto Bonito|Hornopirén – Caleta Llancahué|W
+S|-42.27343|-73.11811|Nayahue|Isla Butachauques - Islas Chauques - Achao|W
+S|-42.67588|-73.07508|Chuit|Isla Chuit – Achao|W
+S|-42.73983|-72.96611|Tendedor|Isla Chuit – Isla Imerquiña|W
+S|-41.66233|-72.40263|Sotomó Alto|Isla Marimeli – Sotomó|W
+S|-42.60928|-73.26974|Apao|La Capilla – Apao|W
+S|-41.61525|-73.59463|Muelle Maullín|La Pasada – Maullín|W
+S|-41.11530|-73.91846|Punta Capitanes|La Pasada – Maullín|W
+S|-39.94449|-73.30927|La Boca|La Posta – Lincoqueo|W
+S|-43.19278|-73.74244|Blanchard|La Puntilla – Punta Paula|W
+S|-42.59659|-73.21275|Ostricultura|La Vega – Achao|W
+S|-47.24500|-72.32298|Bahía Silva|Las Acolleradas – Río Brown|W
+S|-47.28291|-72.06851|El Montoso|Las Acolleradas – Río Brown|W
+S|-42.48753|-72.39740|Vodudahue|Leptepú – Vodudahue|W
+S|-39.88196|-73.42421|Corral|Mancera-Corral|W
+S|-39.87609|-73.38609|Niebla|Mancera-Corral|W
 S|-45.16435|-73.52687||Naviera Austral|W
 S|-44.89743|-73.30261||Naviera Austral|W
 S|-43.96121|-73.10250||Naviera Austral|W
@@ -148,74 +190,208 @@ S|-42.00652|-72.59594|Pichicolo|Naviera Puelche|W
 S|-51.73065|-72.51572|Ferry Terminal Puerto Natales|Navimag|W
 S|-49.13007|-74.40824|Puerto Edén|Navimag|W
 S|-41.48512|-72.95957|Rampa EMPORMONTT|Navimag|W
+S|-41.13874|-72.40094|Petrohue|Petrohué – Peulla|W
+S|-41.09359|-72.02716|Puerto Villa Peulla|Petrohué – Peulla|W
+S|-42.22223|-72.68829|Poyo|Poyo – Pichicolo|W
+S|-46.53546|-71.73066|Chile Chico|Puerto Ibáñez – Chile Chico|W
+S|-48.12148|-73.75179|Puerto Langrend|Puerto Llay Llay – Puerto Langrend|W
+S|-41.55577|-73.00252|Isla Maillen|Puerto Montt - Isla Maillen|W
+S|-41.69130|-72.64209|Caleta La Arena|Puerto Montt – La Arena|W
+S|-43.32312|-74.13971|Embarcadero García|Quellón – Inío|W
+S|-43.12079|-73.62564|Quellón|Quellón – Inío|W
+S|-42.65737|-73.93149|Chile Lodge - Quiao|Quiao - Huillinco|W
+S|-42.67355|-73.89831|Huillinco|Quiao - Huillinco|W
+S|-42.58613|-72.83364|Refugio|Refugio – Achao|W
+S|-46.00562|-73.34991|Bahía Erasmo|Río Exploradores – Bahía Erasmo|W
+S|-46.32302|-73.41511|Río Exploradores|Río Exploradores – Bahía Erasmo|W
+S|-48.14711|-73.22788|Fiordo Steell|Sector El Pascua – Fiordo Steell|W
 S|-46.53590|-71.73226|Embarcadero Chile Chico|Somarco|W
-S|-46.29511|-71.92637|Ferry a Chile Chico|Somarco|W
-S|-41.97134|-72.47196|Hornopirén|Somarco|W
+S|-46.29511|-71.92637|Ferry a Chile Chico|Puerto Ibáñez – Chile Chico|W
+S|-41.97134|-72.47196|Hornopirén|Hornopirén – Leptepú|W
 S|-42.54552|-72.52335|Rampa Fiordo Largo|Somarco|W
 S|-42.48855|-72.43646|Rampa Leptepú|Somarco|W
+S|-47.96783|-73.22355|Río Bravo|Somarco|W
+S|-42.32911|-73.25024|Añihué|Tenaún - Mechuque - Añihué|W
+S|-42.33463|-73.37111|Tenaún|Tenaún - Mechuque - Añihué|W
+S|-47.62947|-73.65979|Sector Steffens|Tortel – Fiordo Steffens|W
+S|-48.00799|-73.96025|Puerto Brown|Tortel – Puerto Brown|W
 S|-47.80347|-73.53695|Muelle Caleta Tortel|Transbordadora Austral Broom|W
 S|-51.73154|-72.51346|Navimag Checkin|Transbordadora Austral Broom|W
 S|-47.93517|-73.32342|Puerto Yungay|Transbordadora Austral Broom|W
-L|Metro de Santiago|Línea 1|#cc0000|56 38:1017 66:1281 29:1331 0:716 25:547 113:631 58:731 80:622 67:647 99:758 1:913 118:610 109:545 119:571 48:406 57:593 95:589 117:606 30:546 120:744 100:552 22:776 51:676 74:822 72:1106 104:708
-L|Metro de Santiago|Línea 1|#cc0000|104 72:707 74:1111 51:823 22:676 100:718 120:551 30:744 117:546 95:606 57:589 48:593 119:406 109:572 118:546 1:608 99:915 67:757 80:646 58:623 113:730 25:630 0:547 29:716 66:1330 38:1279 56:1018
-L|Metro de Santiago|Línea 2|#ffbe2e|122 127:1316 21:666 23:994 10:889 12:983 78:795 92:733 106:944 57:892 114:838 77:942 98:885 35:1096 27:680 103:695 64:916 20:638 14:807 54:879 28:1124 45:1352 24:935 73:1547 16:1194 39:1374
-L|Metro de Santiago|Línea 2|#ffbe2e|39 16:1374 73:1194 24:1547 45:1010 28:1352 54:1040 14:879 20:807 64:638 103:916 27:751 35:682 98:1095 77:885 114:1065 57:715 106:892 92:937 78:738 12:795 10:984 23:889 21:994 127:666 122:1321
-L|Metro de Santiago|Línea 3|#83441D|87 53:868 33:1359 59:1261 8:1184 126:1498 15:1675 81:1272 40:1277 92:1699 82:521 119:742 75:811 68:1348 43:1441 70:1377 121:837 13:665 125:1561 86:1024 32:1192
-L|Metro de Santiago|Línea 3|#83441D|32 86:1191 125:1025 13:1560 121:665 70:775 43:1379 68:1441 75:1342 119:811 82:743 92:521 40:1699 81:1277 15:1274 126:1674 8:1496 59:1189 33:1261 53:1357 87:870
-L|Metro de Santiago|Línea 4|#292d91|113 17:1242 34:841 89:1404 112:780 86:794 60:1074 36:801 61:1152 93:923 52:1336 65:1198 124:1315 123:767 97:1138 115:1204 102:846 62:827 26:902 41:852 90:1420 49:1323 85:913
-L|Metro de Santiago|Línea 4|#292d91|85 49:913 90:1323 41:1420 26:852 62:902 102:827 115:847 97:1204 123:1138 124:760 65:1317 52:1196 93:1337 61:923 36:1152 60:801 86:1075 112:794 89:842 34:1405 17:841 113:1242
-L|Metro de Santiago|Línea 4A|#0099ff|124 108:1538 46:1573 110:1694 105:848 45:1994
-L|Metro de Santiago|Línea 4A|#0099ff|45 105:1995 110:849 46:1694 108:1575 124:1539
-L|Metro de Santiago|Línea 5|#006633|84 111:1514 19:809 71:1145 50:927 47:1530 2:1021 91:1025 104:1880 55:532 5:968 37:1501 94:1052 18:1100 106:833 83:874 3:577 1:1070 76:599 107:501 44:668 116:1653 96:1161 9:997 7:619 101:848 79:1034 69:848 4:883 123:820
-L|Metro de Santiago|Línea 5|#006633|123 4:821 69:884 79:847 101:1032 7:848 9:620 96:996 116:1161 44:1653 107:668 76:501 1:600 3:1074 83:577 106:944 18:899 94:1188 37:1052 5:1501 55:968 104:532 91:1881 2:1027 47:1021 50:1528 71:928 19:1145 111:810 84:1514
-L|Metro de Santiago|Línea 6|#8e16a1|11 63:1757 88:1497 35:1502 6:675 116:2060 31:1976 121:976 42:1738 58:2214
-L|Metro de Santiago|Línea 6|#8e16a1|58 42:2218 121:1737 31:976 116:1972 6:2059 35:675 88:1502 63:1497 11:1755
-L|Metro de Santiago|Ruta Roja de la Línea 2|#ffbe2e|122 127:1316 21:666 10:1883 78:1778 92:733 106:944 57:892 77:1779 35:1982 27:680 64:1611 14:1445 54:879 45:2392 24:935 16:2741 39:1374
-L|Metro de Santiago|Ruta Roja de la Línea 2|#ffbe2e|39 16:1374 24:2741 45:1010 54:2392 14:879 64:1445 27:1611 35:682 77:1981 57:1780 106:892 92:937 78:738 10:1779 21:1883 127:666 122:1321
-L|Metro de Santiago|Ruta Roja de la Línea 4|#292d91|113 34:2082 89:1404 86:1574 60:1074 61:1954 52:2259 65:1198 124:1315 123:767 115:2342 62:1673 26:902 41:852 49:2743 85:913
-L|Metro de Santiago|Ruta Roja de la Línea 4|#292d91|85 49:913 41:2743 26:852 62:902 115:1674 123:2342 124:760 65:1317 52:1196 61:2260 60:1953 86:1075 89:1574 34:1405 113:2083
-L|Metro de Santiago|Ruta Roja de la Línea 5|#006633|84 111:1514 71:1954 47:2457 2:1021 91:1025 104:1880 5:1500 94:2553 106:1933 83:874 3:577 1:1070 76:599 44:1169 116:1653 96:1161 7:1616 101:848 69:1882 4:883 123:820
-L|Metro de Santiago|Ruta Roja de la Línea 5|#006633|123 4:821 69:884 101:1880 7:848 96:1616 116:1161 44:1653 76:1169 1:600 3:1074 83:577 106:944 94:1933 5:2553 104:1500 91:1881 2:1027 47:1021 71:2455 111:1955 84:1514
-L|Metro de Santiago|Ruta Verde de la Línea 2|#ffbe2e|122 127:1316 23:1660 12:1872 92:1528 106:944 57:892 114:838 98:1827 35:1096 103:1375 20:1554 54:1685 28:1124 45:1352 73:2482 39:2568
-L|Metro de Santiago|Ruta Verde de la Línea 2|#ffbe2e|39 73:2568 45:2482 28:1352 54:1040 20:1685 103:1554 35:1377 98:1095 114:1950 57:715 106:892 92:937 12:1533 23:1872 127:1660 122:1321
-L|Metro de Santiago|Ruta Verde de la Línea 4|#292d91|113 17:1242 34:841 112:2184 86:794 36:1875 93:2075 65:2533 124:1315 123:767 97:1138 102:2051 26:1729 41:852 90:1420 85:2236
-L|Metro de Santiago|Ruta Verde de la Línea 4|#292d91|85 90:2236 41:1420 26:852 102:1729 97:2051 123:1138 124:760 65:1317 93:2533 36:2075 86:1876 112:794 34:2185 17:841 113:1242
-L|Metro de Santiago|Ruta Verde de la Línea 5|#006633|84 19:2322 50:2073 47:1530 91:2089 104:1880 55:532 37:2469 18:2153 106:833 83:874 3:577 1:1070 107:1100 44:668 116:1653 9:2158 101:1467 79:1034 4:1731 123:820
-L|Metro de Santiago|Ruta Verde de la Línea 5|#006633|123 4:821 79:1732 101:1032 9:1469 116:2156 44:1653 107:668 1:1101 3:1074 83:577 106:944 18:899 37:2153 55:2469 104:532 91:1881 47:2092 50:1528 19:2073 84:2324
-L|Naviera Austral|Ruta Castro||136 134:113238
-L|Naviera Austral|Ruta Castro||134 136:113587
-L|Naviera Austral|Ruta Chaitén||146 135:96962 136:79809
-L|Naviera Austral|Ruta Chaitén||136 135:79667 146:96837
-L|Naviera Austral|Ruta Chiloé||136 133:83858
-L|Naviera Austral|Ruta Chiloé||133 136:83629
-L|Naviera Austral|Ruta Cisnes||133 131:88285 138:147264
-L|Naviera Austral|Ruta Cisnes||138 131:146143 133:88221
-L|Naviera Austral|Ruta Cordillera Norte||133 131:136875 132:70724 130:38885 137:31868 139:27110 138:117018 129:64103 128:46903 140:92711
-L|Naviera Austral|Ruta Cordillera Sur||133 131:136875 132:70724 130:38885 137:31868 139:27110 138:117018 129:64103 128:46903 140:92711
-L|Naviera Puelche|Ayacara – Caleta Gonzalo||135 141:31790
-L|Naviera Puelche|Ayacara – Chumeldén||135 142:21612
-L|Naviera Puelche|Ayacara – Chumeldén – Caleta Gonzalo||135 142:32215 141:21359
-L|Naviera Puelche|Ayacara – Pichicolo||135 143:41523
-L|Naviera Puelche|Caleta Gonzalo – Ayacara||141 135:31756
-L|Naviera Puelche|Caleta Gonzalo – Ayacara – Pichicolo||141 135:32590 143:41523
-L|Naviera Puelche|Caleta Gonzalo – Chumeldén||141 142:19300
-L|Naviera Puelche|Caleta Gonzalo – Chumeldén – Ayacara||141 142:21344 135:32158
-L|Naviera Puelche|Chumeldén – Ayacara||142 135:21609
-L|Naviera Puelche|Chumeldén – Caleta Gonzalo||142 141:19312
-L|Naviera Puelche|Chumeldén – Pichicolo||142 143:65485
-L|Naviera Puelche|Pichicolo – Ayacara||143 135:41580
-L|Naviera Puelche|Pichicolo – Ayacara – Caleta Gonzalo||143 135:41580 141:32543
-L|Naviera Puelche|Pichicolo – Chumeldén||143 142:65625
-L|Navimag|Puerto Montt - Puerto Edén - Puerto Natales||146 145:1010406 144:389458
-L|Navimag|Puerto Natales - Puerto Edén - Puerto Montt||144 145:380056 146:983309
-L|Somarco|Caleta Gonzalo – Fiordo Largo||141 150:7309
-L|Somarco|Chile Chico – Puerto Ibáñez||147 148:35763
-L|Somarco|Fiordo Largo – Caleta Gonzalo||150 141:7310
-L|Somarco|Hornopirén – Leptepú||149 151:58653
-L|Somarco|Leptepú – Hornopirén||151 149:58631
-L|Somarco|Puerto Ibáñez – Chile Chico||148 147:35805
-L|Transbordadora Austral Broom|Puerto Natales - Puerto Edén - Caleta Tortel - Puerto Yungay||153 145:380916 152:263038 154:34762
-L|Transbordadora Austral Broom|Puerto Yungay - Caleta Tortel - Puerto Edén - Puerto Natales||154 152:34766 145:265727 153:390432
+S|-55.08193|-67.07385|Puerto Toro|Transbordadores Austral Broom S.A.|W
+S|-41.83074|-73.51174|Chacao isla de Chiloé|Transmarchilay;Cruz del Sur|W
+S|-41.79964|-73.48002|Embarcadero Punta Coronel|Transmarchilay;Cruz del Sur|W
+S|-41.79278|-73.45898|Pargua|Transmarchilay;Cruz del Sur|W
+S|-33.63600|-78.82925|Muelle Fiscal|Transportes Marítimos Kochifas S.A.|W
+S|-33.76352|-80.75665|Rada Colonia|Transportes Marítimos Kochifas S.A.|W
+S|-33.03266|-71.62758|Terminal Pacífico Sur|Transportes Marítimos Kochifas S.A.|W
+S|-41.73897|-72.64700|Caleta Puelche|Transportes del Estuario|W
+S|-39.87293|-73.36884|Carboneros|Venegas – Niebla|W
+S|-37.84179|-71.69165|Balseadero Callaqui|Vialidad|W
+S|-38.86119|-73.36043|Embarcadero Puente El Roble|Vialidad|W
+S|-38.89796|-73.25875|Embarcadero Puerto Domínguez|Vialidad|W
+S|-37.26851|-72.73538|Balseadero San Rosendo Biobío|ferry|W
+S|-37.25955|-72.73325|Balseadero San Rosendo - Río Biobío|ferry|W
+S|-42.46174|-72.45038|Caleta Porcelana|ferry|W
+S|-42.75439|-72.83915|Chana|ferry|W
+S|-42.63077|-73.03890|Chulín|ferry|W
+S|-39.80945|-73.20982|Collico|ferry|W
+S|-52.65175|-71.46367|Cruce Posomby|ferry|W
+S|-38.89057|-73.31728|Embarcadero Huentén|ferry|W
+S|-42.37950|-72.41572|Huinay|ferry|W
+S|-52.65420|-71.46986|Isla Riesco|ferry|W
+S|-42.48868|-72.43726|Leptepú|ferry|W
+S|-42.41126|-72.45307|Porcelana Chica|ferry|W
+S|-39.81518|-73.24928|Puerto Solar|ferry|W
+L|Metro de Santiago|Línea 1|#cc0000|56 38:1016:1i9rGr6zuN 66:1280:t98rG180uNW9W 29:1330:v89rGjn5uN 0:715:ro-rGnm6uN 25:547 113:630:x5-rG_38uN 58:731:jr_rGro-uN9F_F 80:623:hogsGvt_uN 67:647:5vgsG1-_uNrK7O 99:759:luhsGz0hvN 1:914:jnisG9zivN 118:610:_9isGhtkvN 109:545:1yjsGxtlvN 119:571 48:406 57:592 95:588 117:606 30:545 120:744:5slsG_0svNxDxH 100:551 22:718 51:676 74:821:v4msGlryvNb7L 72:1109:1umsGh00vNmDvG4D5C-EvB 104:712
+L|Metro de Santiago|Línea 1|#cc0000|104 72:711 74:1114:7imsGj_0vN9EwB7D8ClD0G 51:823:x5msGh3yvNc-L 22:676 100:718 120:551 30:744:xwlsGt8svNyDyH 117:545 95:605 57:588 48:592 119:406 109:571 118:546:7yjsGttlvN 1:609:l-isG9skvN 99:916:nnisG5zivN 67:758:ruhsGt0hvN 80:647:p6gsGttgvNsK8O 58:624:nogsGpt_uN 113:731:lx_rGlu-uN8F-F 25:630:35-rG938uN 0:547 29:716:xo-rGjm6uN 66:1330:z89rGhn5uN 38:1278:988rGzz1uNV-W 56:1017:7i9rGp6zuN
+L|Metro de Santiago|Línea 2|#ffbe2e|122 127:1322:583rG9zlvNzF-FvG0DjIuB 21:670 23:1000 10:894 12:988:7j_rGj1lvN 78:799 92:734:3yhsG3smvNpDtD7EnO 106:944 57:897:7ojsGx3ovN_YpF 114:842:x1ksG56ovN 77:947:ljmsGjtovN1IiG3E2B 98:890 35:1099:7rpsGthovNtH8EtK2bpH0G 27:684:5_qsGlymvN 103:699 64:921 20:641 14:811 54:884 28:1046 45:1360 24:940 73:1556 16:1200 39:1382
+L|Metro de Santiago|Línea 2|#ffbe2e|39 16:1382 73:1200 24:1556 45:940 28:1360 54:1046 14:884 20:811 64:641 103:921 27:699 35:686:5_qsG7xmvN 98:1098:9kqsG_5mvNqH3GuKzbsH5E 77:891 114:1070:vwmsGjlovN2E1BiJnG 57:719:11ksGx6ovN 106:897:_hksG18ovN2ZuF 92:937 78:739:l7hsGr-mvN-EqOuDyD 12:799 10:989:9j_rG50lvN 23:894 21:1000 127:670 122:1326:hx4rGzolvNmIvByG1D6E5E6DhG
+L|Metro de Santiago|Línea 3|#83441D|87 53:868:x20rGx-1vN7EsVZsN 33:1358:ri1rG_5zvNiHgfqCqOKoM 59:1259:r10rGluxvN 8:1188:p20rG35uvN1B6H1DuIrEkF9V6H 126:1505:vu2rGz7tvNhS2LlRgF_JuE_G0E 15:1681:515rG92rvNncuS 81:1276:t47rGr6pvNvYmW 40:1284 92:1708:3ggsGn7nvNpoByL 82:525 119:747 75:816 68:1352:jzmsGv3mvNtG-D5DmGnByG 43:1440 70:1376:55lsG9xgvNIgQ 121:774 13:665 125:1560:tnmsGjh8uN7B8rBUqLuDqP 86:1023:jhmsGht4uN2F8K 32:1191
+L|Metro de Santiago|Línea 3|#83441D|32 86:1190 125:1024:n7lsGni4uN1F7K 13:1559:hlmsGz65uNtDrPTnL8B7rB 121:665 70:774 43:1378:r5lsG9hgvNHhQ 68:1440 75:1346:t-msG5mmvNoBtG4DlGsG5D 119:816 82:747 92:524 40:1709:hphsGtvnvNqoBzL 81:1284 15:1278:5w8rG_jpvNwYlW 126:1680:9x6rGpkrvNoctS 8:1503:zi4rGzhtvN-G1EgKtEmR9EkS3L 59:1194:_11rGp8tvNiW5HuEnF2DvI2B7H 33:1260:l10rGluxvN 53:1356:v40rGvgyvNJlMpCrOhH_e 87:869:_70rG570vNYrN8ErV
+L|Metro de Santiago|Línea 4|#292d91|113 17:1244 34:843 89:1406:r-hsG145uNxG-JlJ2R9D-OtG2NzEwE 112:784 86:798 60:1080:t4msG9y3uN9MxE 36:806 61:1159 93:928 52:1342:3itsG3r5uN 65:1204:1hvsG3y6uNhdnM 124:1321:5rxsGln7uN7FrCxV1S 123:772:ljzsG_u8uNpMrCtLU 97:1144 115:1210 102:851:pp4sGr06uN 62:832 26:907 41:857 90:1428 49:1331 85:918
+L|Metro de Santiago|Línea 4|#292d91|85 49:918 90:1331 41:1428 26:857 62:907 102:832 115:852:hp4sGl06uN 97:1210 123:1144 124:764:96zsGvw8uNuMRiKsC 65:1323:hnysGp77uNiV6RsH6C 52:1202:n-vsGz-6uNmduM 93:1343:hjtsGzr5uN 61:928 36:1159 60:805 86:1081:tlnsGp33uN-MyE 112:799 89:784 34:1408:h9isG173uN4ExEuG5N-D7OkJ1R0G9J 17:843 113:1244
+L|Metro de Santiago|Línea 4A|#0099ff|124 108:1544:7szsG148uN1PxT 46:1577:712sGrn_uNhEnFhD3G 110:1692:hr3sG73ivN 105:848 45:1993:r52sG__mvN-K39B
+L|Metro de Santiago|Línea 4A|#0099ff|45 105:1993:xu2sGj-ovN_Kk-B 110:848 46:1693:jr3sGv_ivNAyJ 108:1579:l92sGrz_uNgDyGgEsF 124:1544:l9zsGts9uN4F8FsKgO
+L|Metro de Santiago|Línea 5|#006633|84 111:1523 19:812:9-tsGp57vNgIuD 71:1149:r0ssG7y6vNkPgV 50:931 47:1538:3xpsG193vNwFwC0WV 2:1027 91:1026:j2ksG5p4vNmDrC-F5KiEF 104:1742:jlksGzt4vNmB6zC 55:532 5:968:x5jsG9gzvN 37:1500:9ijsGzqwvN 94:1052:r7isGtwuvNvLme7CgN 18:1099 106:832 83:873 3:576 1:1069:xyisG5tlvN7BqQuB6lBvBuD 76:602:trjsG5qjvN 107:504:n-jsGxojvN9F2D 44:672 116:1662:n4msGhvivN 96:1168:__osG74hvNtKY 9:1002:t6rsGhjhvN 7:623:jzssGn1gvN 101:853 79:1039:nlwsGt7_uNrF0D 69:850 4:886:lkysGzx9uN 123:824:tlzsGx68uN
+L|Metro de Santiago|Línea 5|#006633|123 4:825:plzsGp68uN 69:887:9jysGxx9uN 79:849 101:1038:pqwsG53_uN0FzD 7:853 9:624:jyssGp1gvN 96:1001:v6rsG3ihvN 116:1167:nrpsG33hvN8KZ 44:1662:n4msG5uivN 107:672 76:504:jkksG1kjvN-FzD 1:603:rrjsGzqjvN 3:1074:r0isGh0jvNyBzDtB5lB8BpQ 83:576 106:873 18:832 94:1099 37:1052:xpjsGlltvN8C_MwLle 5:1500:3ijsG1qwvN 55:967:r5jsG_gzvN 104:532 91:1744:3jksG551vNjB5zC 2:1031:7oksGr34vNlEE_F8KjDsC 47:1027 50:1536:z1osGj83vNhWazFpC 71:931 19:1149:7kssG595vNrPnV 111:813:52tsGh27vNnHnD 84:1523
+L|Metro de Santiago|Línea 6|#8e16a1|11 63:1759:1-rsGrhvvN2EobmC4EoDiD4ZiMiC6E 88:1495:_4qsGthrvNjB2Q 35:1501:p7qsGx3ovNa2RwCqI4IiM8BmE 6:675 116:2062:zrqsGn_kvN-C6KyYojC6CyDuEqCgKjBwEsBkEqE 31:1976:1tosGpohvNoFwoB5DoakB0KiDyH-DiF-EoD 121:981 42:1748:_3lsGvg-uN 58:2225:1zhsGv8-uNsvBxQyDQiDgC
+L|Metro de Santiago|Línea 6|#8e16a1|58 42:2229:x9_rG1q_uNjDhC1DRpvByQ 121:1747:_3lsG3g-uN 31:981 116:1972:h_nsGnr-uN9EnD7D_EhDvHjBvK6DpanFxoB 6:2061:h2osG7mivNlErEzEtB9JkBrEnC3CvDxYljC9C5K 35:674 88:1501:ltqsGrtnvN7BpE3I_LvClIZ1R 63:1495:95qsG3wqvNkB1Q 11:1757:v4qsGvttvNlC9E3ZhMlDhDlCzE1Elb
+L|Metro de Santiago|Ruta Roja de la Línea 2|#ffbe2e|122 127:1322:583rG9zlvNzF-FvG0DjIuB 21:670 10:1894 78:1788:7o_rGh2lvN 92:734:3yhsG3smvNpDtD7EnO 106:944 57:897:7ojsGx3ovN_YpF 77:1789:x1ksG56ovNhsBgNhOoI 35:1990:_mpsGniovNtGwBhH4FnJkapH0G 27:684:5_qsGlymvN 64:1620:_htsG_jnvNzQ5C 14:1453 54:884 45:2406 24:940 16:2756 39:1382
+L|Metro de Santiago|Ruta Roja de la Línea 2|#ffbe2e|39 16:1382 24:2756 45:940 54:2406 14:884 64:1453 27:1620:1ytsGxmnvN0Q8C 35:686:5_qsG7xmvN 77:1989:9kqsG_5mvNqH3GqJha8GzFuGxB 57:1790:xvmsGplovNqOrIyrB7M 106:897:_hksG18ovN2ZuF 92:937 78:739:l7hsGr-mvN-EqOuDyD 10:1789:9o_rG31lvN 21:1894 127:670 122:1326:hx4rGzolvNmIvByG1D6E5E6DhG
+L|Metro de Santiago|Ruta Roja de la Línea 4|#292d91|113 34:2087:jy_rG9y8uN1sBq4B 89:1406:r-hsG145uNxG-JlJ2R9D-OtG2NzEwE 86:1583 60:1080:t4msG9y3uN9MxE 61:1964:xgpsGnv4uN 52:2270:v_ssGnq5uN 65:1204:1hvsG3y6uNhdnM 124:1321:5rxsGln7uN7FrCxV1S 123:772:ljzsG_u8uNpMrCtLU 115:2354:zx1sGp77uN 62:1683:pp4sGr06uN 26:907 41:857 49:2759 85:918
+L|Metro de Santiago|Ruta Roja de la Línea 4|#292d91|85 49:918 41:2759 26:857 62:907 115:1684:hp4sGl06uN 123:2354:xx1sGj77uN 124:764:96zsGvw8uNuMRiKsC 65:1323:hnysGp77uNiV6RsH6C 52:1202:n-vsGz-6uNmduM 61:2272:hgtsGnq5uN 60:1964:zgpsGhv4uN 86:1081:tlnsGp33uN-MyE 89:1584 34:1408:h9isG173uN4ExEuG5N-D7OkJ1R0G9J 113:2088:1-gsGt66uN4sBr4B
+L|Metro de Santiago|Ruta Roja de la Línea 5|#006633|84 111:1523 71:1961:n9tsG747vN8HmEoPiS4R4PkPgV 47:2468:pnrsG5o5vN-OuN-pByf6EagUb 2:1027 91:1026:j2ksG5p4vNmDrC-F5KiEF 104:1742:jlksGzt4vNmB6zC 5:1499:x5jsG9gzvN 94:2551:9ijsGzqwvNgIg2BnBmH9GyP5E4PhC6K 106:1931 83:873 3:576 1:1069:xyisG5tlvN7BqQuB6lBvBuD 76:602:trjsG5qjvN 44:1175:n-jsGxojvN9F2D 116:1662:n4msGhvivN 96:1168:__osG74hvNtKY 7:1625:l7rsG3ihvN7WmN 101:853 69:1889:tjwsGh8_uNhFuC 4:886:lkysGzx9uN 123:824:tlzsGx68uN
+L|Metro de Santiago|Ruta Roja de la Línea 5|#006633|123 4:825:plzsGp68uN 69:887:9jysGxx9uN 101:1887:nowsGx5_uNkFrC 7:853 96:1625:jyssGp1gvN2WhN 116:1167:nrpsG33hvN8KZ 44:1662:n4msG5uivN 76:1175:jkksG1kjvN-FzD 1:603:rrjsGzqjvN 3:1074:r0isGh0jvNyBzDtB5lB8BpQ 83:576 106:873 94:1931 5:2552:5pjsGnjtvNiC5K6E3P-GxPoBnH_Hh2B 104:1499:r5jsG_gzvN 91:1744:3jksG551vNjB5zC 2:1031:7oksGr34vNlEE_F8KjDsC 47:1027 71:2467:z1osGj83vNxTehFZ7pBtfpP1N 111:1962:plssGn-5vN9O5U5R3PnPhS9HlE 84:1523
+L|Metro de Santiago|Ruta Verde de la Línea 2|#ffbe2e|122 127:1322:583rG9zlvNzF-FvG0DjIuB 23:1670 12:1882:98-rGj0lvNzNpC 92:1533:pghsGhmmvNzTvHjD1E1D9K 106:944 57:897:7ojsGx3ovN_YpF 114:842:x1ksG56ovN 98:1837:ljmsGjtovN1IiG7F8BxTR 35:1099:7rpsGthovNtH8EtK2bpH0G 103:1383:n9qsGvymvNxEG 20:1562:9ztsGjnnvN 54:1695 28:1046 45:1360 73:2496 39:2582
+L|Metro de Santiago|Ruta Verde de la Línea 2|#ffbe2e|39 73:2582 45:2496 28:1360 54:1046 20:1695 103:1562:_ztsG7mnvN 35:1385:5hrsGhymvN0EF 98:1098:9kqsG_5mvNqH3GuKzbsH5E 114:1961:vmnsGvlovNiVQ0F5BiJnG 57:719:11ksGx6ovN 106:897:_hksG18ovN2ZuF 92:937 12:1539:96hsGj9mvN2DgLmD6E2TwH 23:1883:zq_rGl2lvN2NsC 127:1670 122:1326:hx4rGzolvNmIvByG1D6E5E6DhG
+L|Metro de Santiago|Ruta Verde de la Línea 4|#292d91|113 17:1244 34:843 112:2190:r-hsG145uNxG-JlJ2R9D-OvEuK3D2FlGmD 86:798 36:1885:lknsGh33uNjRhI 93:2087 65:2546:3itsG3r5uN9-B_mBre1M 124:1321:5rxsGln7uN7FrCxV1S 123:772:ljzsG_u8uNpMrCtLU 97:1144 102:2061:5m4sG_06uN 26:1739 41:857 90:1428 85:2249
+L|Metro de Santiago|Ruta Verde de la Línea 4|#292d91|85 90:2249 41:1428 26:857 102:1739 97:2062:tm4sG906uN 123:1144 124:764:96zsGvw8uNuMRiKsC 65:1323:hnysGp77uNiV6RsH6C 93:2546:z_vsGh_6uN6ciM4_BsnB 36:2087 86:1886:r1nsG9-3uNkRkI 112:799 34:2192:tgjsGx63uNuFvCsFhIoEtKuDrNkJ1R0G9J 17:843 113:1244
+L|Metro de Santiago|Ruta Verde de la Línea 5|#006633|84 19:2334:9-tsGp57vNqKoF 50:2080:r0ssG7y6vN6P0VkcyTiQqO 47:1538:3xpsG193vNwFwC0WV 91:2053:v4lsG9m4vN6hB3CyDlCkGjLiEF 104:1742:jlksGzt4vNmB6zC 55:532 37:2467:32jsG9zyvN6TqpC 18:2151:96isGz0uvNVoF7JoYzDiOrBoL 106:832 83:873 3:576 1:1069:xyisG5tlvN7BqQuB6lBvBuD 107:1106:trjsG5qjvNxID_I8BlHmE 44:672 116:1662:n4msGhvivN 9:2169:__osG74hvNtKYnvC8U 101:1476:jzssGn1gvN 79:1039:nlwsGt7_uNrF0D 4:1736:3iysGhz9uN 123:824:tlzsGx68uN
+L|Metro de Santiago|Ruta Verde de la Línea 5|#006633|123 4:825:plzsGp68uN 79:1736:xiysG9y9uN 101:1038:pqwsG53_uN0FzD 9:1477:_yssG_0gvN 116:2168:p5rsGjjhvNiuCzU8KZ 44:1662:n4msG5uivN 107:672 1:1107:jkksG1kjvNmHjE-I7B0IC 3:1074:r0isGh0jvNyBzDtB5lB8BpQ 83:576 106:873 18:832 37:2151:nqjsG39svNqBnL0DhO8JnYWpF 55:2467:3ijsG1qwvN5TppC 104:532 91:1744:3jksG551vNjB5zC 47:2057:7oksGr34vNlEEnGmLrDkC5hB4C 50:1536:z1osGj83vNhWazFpC 19:2080:p5qsGt84vNhPvN_btT7P1V 84:2336:v0tsGl07vNrKpF
+L|Achao-Chaulinec|Achao-Chaulinec||128 129:38227:h_ljIp1wgOkI6hBfgjCnOkuBxY2nB1hC-5BnwH62EpW-V3oCuoFheohBjnCwzB7rC0mBjnCmgBvzC2tBpnC8yBr-B0jCxiB65DhI4wBkD8pBoKsUoOqT8WgPomBpDnlB8gBnaweze28B_KmvB3EujBFgmBsZghFvgBh5C9SphBvJz1BvFpuCA3oBoK53BqDzhB9IpT
+L|Austral Broom|Cruce Ferry Punta Delgada||131 130:4686:1zlgKxhvoNnUxC9qCksCzgCy-B3Z8RxgBgH
+L|Ayacara – Caleta Gonzalo|Ayacara – Caleta Gonzalo||177 183:32573:pspiI_op8NnF_I_FtF_G5Cx6BtJr9FrNvUgD1RyF3LqFlTwNldiZ5yEiuExpMk-M__JqmLnwGg-GzKmJnN2H
+L|Ayacara – Pichicolo|Ayacara – Pichicolo||177 185:49898:7kpiIr-o8NhEpRhErIlqBtmC3ElKtM1iBpGhgBxB9RAtV8BpV8D7UoJ1duT1gBiN3QmPlNmPpIoShF6mBrDk8DhFyNqBsNmDiNgF4M8G8Q0MqP8Pq8qBoj0B4H4EqHmBsIlCwG5EyG7JqV33BuJhPiLpNkZhWmJxGkKhFyN1Ds-BhI4VjB2c-C
+L|Balsa Baker|Balsa Baker||132 133:167
+L|Barcaza "La Esperanza" - Cap. A. Hvalibota|Tramo Puerto Calderón - Puerto Poletto||136 137:12238:ls4nIj9k3NuUrhDwFlRsV1qBgIpL6HxHi_M9rIuS1FshBY0P-C0FwD
+L|Capilla Antigua – La Villa|Capilla Antigua – La Villa||138 129:5055
+L|Catamarán Hielos Patagónicos|Lago Pehoe||140 139:10491:xq33Jr7j-NP4FhMwblgCooErWk3BlHmetE0nBjB6mBmHk1D2G-3B-Is3BwH8hBwLwQ-K2GqKXqiBjd-N9EmRyFgSqK-HoLyHmQ4GiE4LR-BiEN-B
+L|Chana – Achao|Chana – Achao||232 128:63015:vx1jIh08-Ng9Px5xB4B9KhB9L
+L|Chana – Chaitén|Chana – Chaitén||232 178:20886
+L|Chile Chico – El Avellano|Chile Chico – El Avellano||192 145:36675:hkg8Ipq61NywB1Q6LjBsYsCoiB_FmLzD2L1G4qDruCgJtM66ExxI2IlT6G1U6E9VwC9SetPPrd3D97Bv1Gh60BpDzoBtF9mH
+L|Chile Chico – Puerto Cristal|Chile Chico – Puerto Cristal||192 144:56937:jig8Ivs61NuuBrP-JlB2ZiCkiBxGkL9DuL5GujDxoCyJhJkGxIitEj6HqO5cqMhgB8FvX2C_YN3oBvFnnC7hEt7chIjjBttIz5gB9GhiBtFliB9DpiB3jB5oM
+L|Chile Chico – Puerto Sánchez|Chile Chico – Puerto Sánchez||192 146:74976:hxg8Ivm61NgOlH-vBnP2InBsS8BkOdsarGkOxF6M3Hk_CzmCsJ7I4FnIitE_6HwQliB0K5cwFjboB9VpCh6BlE3uB__Dr2cp5I9xiB9GtmB9EtmB_iBvpMzHpmB9E3R1vGrmR99JhqZnLvoB5InqB_DtfzB3lBmIvsL4B5T2E9V-F9QuH1PwKpS8H5K
+L|Chulchuy - Huicha|Chulchuy - Huicha||141 142:1799:h8nkIz0-hOzCTvKvItHrLpN3dxIlO
+L|Chumeldén – Ayacara|Chumeldén – Ayacara||184 177:21732:_iujI9zr8NinB0jBgJ2DkwUnFm1G5EokEmJw2B8FsbsEodqHqIsG0F8IyEsP
+L|Chumeldén – Caleta Gonzalo|Chumeldén – Caleta Gonzalo||184 183:19320:zlujI13r8N4CyEorB0nBwK2K6CuE8C4IyDmyBDiJztD27TjK2sB1MurBrRovB_8C00GzQggB5XqiBlqB0vB9KiJzIiF
+L|Chumeldén – Pichicolo|Chumeldén – Pichicolo||184 185:65841:_kujIx3r8N2CgE4mB6iBwFiDuGM68iB18JqczF2e1D-kEzDyUuBmWuG-P-H8M2IwO0MmLoMs2qB4k0BsH4EiHoBmIjCoG3E0FnI8Ur3B2K5RqJlLuarWgStLuP1E8-BtI2WhBicoD
+L|Corral – Niebla|Corral – Niebla||168 169:3544
+L|El Avellano – Puerto Cristal|El Avellano – Puerto Cristal||145 144:22489:n557I79p4NrJ0D7-CgEtL5C5FlEjF_FhyBlwC5I7S7F9RzDjQnCzQlkBlpMvtFv6f
+L|El Avellano – Puerto Sánchez|El Avellano – Puerto Sánchez||145 146:40657:1457It9p4N_J8D__CkErJnCnHhFlFlGhyB_uC5JtTxElN_D1QprBv3MpE7YjH9arwG1pRl9JzpZ9I1cjG1Y5EpZzD1a9C1wBuI1sLgC3T-DlT6FvS-HxRgLlS-K1O8yEj6E
+L|Embarcadero Huapi Budi – Embarcadero Romopulli|Embarcadero Huapi Budi – Embarcadero Romopulli||148 147:6409:tlltHxwr_N8ItSkEvDiFpBkOsE_N3DzGsC5CkDvHqP7BuK6B2KuEiJ2EoE6J2EkEqGsB8ISgiC0C0H4FqF6-CgR4HjE6LpO4GrO
+L|Estero Ventisquero – Sector Jorge Montt|Estero Ventisquero – Sector Jorge Montt||214 149:80259:nq7jJ9nghO1W_hBla_T_0Ev4B5RrRz0F56N1GK0MyFkJk6BzJynBpqEwrDrgE-qB9rExlBrxB2CrrCsoB_zS-9GntBhDwCygB3WotFrNmlBjoB-qBljFysC97K5iC_uDmJvpBhXrqCprD4tB47B-hBusCz8Bi3MmJzFi_E-hEoViqBgDwqD_qC8uIzoH62IjemRjhBpMtQqQ_DyiB8Ng9D
+L|Ferry Lago Pirihueico|Ferry Lago Pirihueico||151 150:24988:vxrzH7s42N9I6cpnB2sC1HyT1FmTjB0HHwRoJy_B8B8VZwTrFiPzLiT9iCyyCj0BmrClL8NtM-LnLoIx6BihBhM2IpWoW_OyUxLiWhE2MzFwZrFkmBnGqvCzD6OnG8JvEyErL-Hn5Ci5B_eiSxZwM_lB4N_auHlekGlxIkoB3KyC5HmElH4FrGoHvF2InE4JhDwK
+L|Ferry Punta Arenas - Porvenir|Ferry Punta Arenas - Porvenir||152 153:38706:v-qlK9r8tNOoFZ4DjE4DlHgCvE5B3D5DpDzG9H_b1H3VlF7K5drZjIxIpH5NrF7P5EjWnCnRDhR2B7ZqdzhDg5BnoF23B_yDm8JnkS65H5oNgtH1nMgsDrsG-wCluEw_B5xE6OvkByN3oB8MvzBiLh1B0DxWDrJpB5G
+L|Fiordo Largo – Caleta Gonzalo|Fiordo Largo – Caleta Gonzalo||207 183:7309:p91jIn706N7CjFtDrL3ElZhHn9BH1rCgEruHrBvQ9F1ThFvJjGnI7PvN
+L|Hornopirén – Caleta Llancahué|Hornopirén – Caleta Llancahué||206 154:34883:5upgIpmt6Nh2F_iD7vGt0Cn7DbiSn7CvBpVrHnelEnJ94ClvCppClhBlJThJgE8IxE-ICmzC0c8lB9DyCxEnB5KmFuL0I1B8N3R-C_LjGj0B7PxoB5K7PjvChoC3qCppBpTtEva4BtHyF_OgWiL_mBZrNz_B7xDnKtHhJDlIwEvnBynBvGyN_H8gG4D4U-DuG8IW
+L|Hornopirén – Leptepú|Hornopirén – Leptepú||206 208:58972:hrngInjo6N5R-RrRsMvLkE_JuB1uEqF_exD5zBpMrsJ9qDvWnGpTjDrTnBhiL9DhuEUjqBhC9_Uh1B1_D7H3mBOtXkCxW8EjxDilB_5F-0Cv5CmrB5nBmW5lE2vB9zC0XziCyQv9CoN5lE0XrqB0KjM4B9TPjgBpEpPnHnlBjXlEZ
+L|Huinay – Porcelana Chica|Huinay – Porcelana Chica||237 240:4687:1r1iI_-_5N
+L|Isla Butachauques - Islas Chauques - Achao|Isla Butachauques - Islas Chauques - Achao||155 128:60155:zkhiI96q-NllClF9sB2ctYjlC-rC0L23BvsDmwC3awKhyCpVtnS1V1SzsByH9Fq5BxmBgLpb6vCv7Bm7BvY8_B_PpetyBnJ53Bi0B2sB_uCjKjgD1dl3BnzBudygCzqB-PvlCz2BvuCvwIjmDlmB_gB7gH1yMl5Gz0Gz8B_0GzkB97H
+L|Isla Chuit – Achao|Isla Chuit – Achao||156 128:44033:v9tkIv--9NmGkEyPwEyGrBohCnjB4FhF6_UhpcyF9J2FjNi6PhvxBwBvKhB7K
+L|Isla Chuit – Isla Imerquiña|Isla Chuit – Isla Imerquiña||156 157:24274:zmxkIt0_9N1EOrElCt8B7-CnDtI1K1rB5D6FxC4Bn8EqvB1KVwiDsc6EyD-CkGgBmL9B4GxJkLrRwGiKmRyC-KZm1BkCu9FiErJ6ExEmcjI4xB-FoGwF-B8HwGxF4EvB2PqD4DgCgIyIqDmK9B6qChCmLlDmJz9BkvExEuItF6GrHiG
+L|Isla Marimeli – Sotomó|Isla Marimeli – Sotomó||195 158:27595:h-u-H_2s7NlL9RvQpGlP6F9NyO9vB0wC5Lge_H-mB9eo_IVwwBwGo4B0dmkDgWyX4H8BiEnGpE2dynBg9C0N6T-Z8WuL0C2RnFpY0mB5H0amC4rFqHyTm5B2zCqYkyBqU-NgWoEv-BgL0K2C-FuKoEmzBgH0ZuL0S-TqInJ-Bd2X8ZkmCkgBy2B
+L|La Capilla – Apao|La Capilla – Apao||129 159:5369:5nkkIr9r_NyjB6BujB9B6tBvGtCkB7L-T1Z27BzEoNxI0lBlB-JqC4e
+L|La Pasada – Maullín|La Pasada – Maullín||160 161:72238
+L|La Posta – Lincoqueo|La Posta – Lincoqueo||162 169:14047:735zHpqu_NFlT-OxiBmnC9pCuoCA61B7Z6LvKwfhzB2IjF2f0JkEmFxBqKrLkNzCmG0CsciB9DxD_RqBtJgOhS8ExfyElDoDxJ6FxDuB9QgK1emF1EqEoCElR4DtQqEtDsG0DmHzOhGhGrBxGsE7LwKlJXlhByCjHhH1CEjK2MhO
+L|La Puntilla – Punta Paula|La Puntilla – Punta Paula||163 197:25435:py0nI_tiiOzKgR-mB8zBmlB4N0mBhrB0GtQTtSmKq3B2Cq3BwJsMqByUxOgiBphBwTySgK2FgJ4BqW_G-SlX0X_kBsLoE-Lf8WrGyVzK4PBsvCnPu4BhLkIlpBOljB5OrDvPjD-K-DkK-UobwR6GorCkP2-B0CsN4G6iDs6CsRiU-zBy6Cqb2gBoUqPkUoEoQnI6yBn_BwOld
+L|La Vega – Achao|La Vega – Achao||164 128:32078:lv_jIpw7-NkCnI3B3H7EnEnHInO4GxHgC1D3B7G5J_E7ChHNvN-CtPThfrSnEtBlPsB1CyDlC3ULzSyKtjDsCvI-FzH8lE18C8KhM-kZp5oB4BnxB_H5gB
+L|Las Acolleradas – Río Brown|Las Acolleradas – Río Brown||165 166:34972:pqrgJzqt5NwMoH49B2SoG0K8H8nDtDwatO2VjoB-a5P4EuG0HqEqKw1Bk7GwBoP7BuKyGlOwQ5M2gB0C0L2Gs8C2nE87Bo9C6KiWyI-YqDmX1D-yChGmHnOhGxCuBkDZg2E4jEwI0T2Ru3D7C0Gzbwcn4LigInKgEn7DiThGjCrD2Mv7D48DtU2L
+L|Leptepú – Vodudahue|Leptepú – Vodudahue||239 167:5025:v0pjIxoj6NuFwF-a4wBqH6R0b8iD5B-JrFgHpzBoQvG8D
+L|Levicán – El Avellano|Levicán – El Avellano||192 145:47642:9hg8I5p61NqwBjQ2JdqXiD0jB3FyL3DoK9F6lD9nC6H5G69QhmY0DxDoIxDoJ-B0pCo3BqD8EwCuH6F4vB2C6G8HyMxHjN1CpHlFhuBxDvK3lDzqEnNnXziRninB5H9ctDvbrH33H
+L|Mancera-Corral|Mancera-Corral||169 168:4629
+L|Naviera Austral|Ayacara – Chaitén||177 178:73818:9lpiIr4o8N1BjK5DrLvEvI53Cz5CtOnQjZlVra7Rnc5Ojd_KnVvFlqqB32I9lCrJ9wNrmB9lDvG5lDxD7zCX5zCkB9uSwb5WyDxWyFhoB4OvnBoVtlBqbxXqVxuIswI1QyU9PwWpYkoBjSwlBvRgtB_NyuBrKuuB
+L|Naviera Austral|Puerto Montt – Ayacara||188 177:105517:30m9Hj3p9NgEmJ0jBq7B8HojBpC2W7HqV1dyd9hFk0Dt6G-xEryKohGl3EmmCr8EqtB3qDkQviDyEtiDpF7hDhPtpcpvGl7Ex1B3kGz8Ch-CjgBrpDhSpjDLz0CsM1h9BilGvoDgXpoC2dz-BslB3aoqB7Qs6BtC69B2Lg7BoY2kCu6BkgD
+L|Naviera Austral|Puerto Montt – Chaitén||188 178:171228:v1m9Hz7p9NZgDsBoFmcutB8LkeU0O9D4O9IwLr-oBukP5mB2KnlB-Fl0E0B5iBtGnvBzXnrPj5O34B9qB9jC7pBhvEtrBj9BzJziEhIznzFktRvqBuK5kB6O3nByWvlByczXoWpqI-uI9T4XvVmehW2lBpTkpBpOkmBjNwtBxJmvB
+L|Naviera Austral|Ruta Castro||178 176:114368:xu7lInnw8NkhBzhH2sDjvRirEpuQ01BxrFy5D7_Js_Kljb43KpqY-mK7qVmclpDhF50F4K11B-apoBsjB9RqyIzF8tGtsBg8Bnc-hBzpBqZvwDtE14DxTpwChhCl_EhnBjiE_bh2E9Gl3D8T5kC6sBj_BusB_ey_CtiBmiBzjBgZnwCsC3sE4MjiBqqB1UiuB2Rm3CmvE03B43Bg5BoP
+L|Naviera Austral|Ruta Castro||176 178:114368:18qjI_sliO_4BnPz3B33Bl3ClvEhuB1RpqB2U3MkiBrC4sE_YowCliB0jBx_CuiBtsBgf5sBk_B7T6kC-Gm3Dgci2EinBkiEihCm_EyTqwCuE24DpZwwD9hB0pB_7Boc7tGusBpyI0FrjB-R9aqoB3K21BiF60FlcmpD9mK8qV33KqqYr_Kmjbx5D8_Jz1ByrFhrEquQ1sDkvRjhB0hH
+L|Naviera Austral|Ruta Chaitén||188 177:105517:30m9Hj3p9NgEmJ0jBq7B8HojBpC2W7HqV1dyd9hFk0Dt6G-xEryKohGl3EmmCr8EqtB3qDkQviDyEtiDpF7hDhPtpcpvGl7Ex1B3kGz8Ch-CjgBrpDhSpjDLz0CsM1h9BilGvoDgXpoC2dz-BslB3aoqB7Qs6BtC69B2Lg7BoY2kCu6BkgD 178:73818:9lpiIr4o8N1BjK5DrLvEvI53Cz5CtOnQjZlVra7Rnc5Ojd_KnVvFlqqB32I9lCrJ9wNrmB9lDvG5lDxD7zCX5zCkB9uSwb5WyDxWyFhoB4OvnBoVtlBqbxXqVxuIswI1QyU9PwWpYkoBjSwlBvRgtB_NyuBrKuuB
+L|Naviera Austral|Ruta Chaitén||178 177:73818:l56lIvql8NsKtuBgOxuBwR_sBkSvlBqYjoB-PvW2QxUyuIrwIyXpVulBpbwnBnVioB3OyWxF6WxD-uSvb6zCjB8zCY6lDyD-lDwG-wNsmB-lCsJmqqB42IoVwFkdgLoc6Osa8RkZmVuOoQ63C05CwEwI6DsL2BkK 188:105517:xqpiI_wp8Nt6BjgDnY1kC1L_6BuC59B8Qr6B4anqB0-BrlBqoC1dwoD_W2h9BhlG00CrMqjDMspDiSi-CkgB4kG08Cm7Ey1BupcqvG8hDiPuiDqFwiDxE4qDjQs8EptBm3ElmCsyKnhGu6G9xE-hFj0D2dxd8HpVqC1W7HnjBzjBp7B_DlJ
+L|Naviera Austral|Ruta Chiloé||178 175:83743:189lIpit8N1ExqB_LhkC7Lt7BvS1hCjYjgC5gBjoC17P3smB1tNtyezpJrxY_jIvwU9Pt_BpBhHxBncvCryC4C3a4EjOyE1F6G5EoPvFqjEziBmalVoavsBycpgDkNz8BoLp1C2E3oByBpiBgF56GqBzPuJj9B4E1V8KnkB-EjK
+L|Naviera Austral|Ruta Chiloé||175 178:83743:z3mnIzyqhO9EkK7KokB3E2VtJk9BpB0P_E66GxBqiB1E4oBnLq1CjN08BxcqgDnawsBlamVpjE0iBnPwF5G6ExE2F3EkO3C4awCsyCyBocqBiH-Pu_BgkIwwU0pJsxY2tNuye27P4smB6gBkoCkYkgCwS2hC8Lu7BgMikC2EyqB
+L|Naviera Austral|Ruta Cisnes||175 173:92173:pvmnI_hrhOjKqKhUmiB9NqP1fwS5avD7gBjc3gEh8FrKvLtPxLxR3IhmBvMrT_DtQR1ndm7Bx9B6Bx9BH39BpC_9BtE12C5Jj9YhsDtwqCp_J3M3C7KhF3LjJ9IrK5H7MtG9OxEnQvChRN7PuGz3C4C3MwD_HuErG2JhH-FvBsKKgDyC 180:140988:v5-rI_ikiOjSuYjpCw1LhsG2_FpoRoyat2NivQn5iBm7mBzL-hBxsBm0Wz5B8hV1b0gD1b6lB9xG-sE93GyjJnoDo9FrlDu4GxsF4sO5ZmtBxuEmvExhC64DvW-Y5XyFz0BvT9U2IxzD87HhzBuep0B5GrzV1-I_7G7lBhoByG_kDgwBt5DwmDpao7BVgjB
+L|Naviera Austral|Ruta Cisnes||180 173:140988:1z_wIr017NW_iBqan7Bu5DvmDglD_vBioBxGg8G8lBszV2-Iq0B6GizBteyzD77H-U1I00BwT6XxFwW9YyhC54DyuElvE6ZltBysF3sOslDt4GooDn9F-3GxjJ-xG9sE2b5lB2bzgD05B7hVysBl0W0L9hBo5iBl7mBu2NhvQqoRnyaisG1_FkpCv1LkStY 175:92173:xj-rIlgkiO_CxCrKJ9FwB1JiHtEsGvDgI3C4MtG03CO8PwCiRyEoQuG-O6H8M-IsK4LkJ8KiF4M4CuwqCq_Jk9YisD22C6Jg-BuE49BqCy9BIy9B5B2ndl7BuQSsTgEimBwMyR4IuPyLsKwL4gEi8F8gBkc6awD2fvS-NpPiUliBkKpK
+L|Naviera Austral|Ruta Cordillera Norte||175 173:92173:pvmnI_hrhOjKqKhUmiB9NqP1fwS5avD7gBjc3gEh8FrKvLtPxLxR3IhmBvMrT_DtQR1ndm7Bx9B6Bx9BH39BpC_9BtE12C5Jj9YhsDtwqCp_J3M3C7KhF3LjJ9IrK5H7MtG9OxEnQvChRN7PuGz3C4C3MwD_HuErG2JhH-FvBsKKgDyC 174:69430:tj-rI7gkiOjDzCrLLvG4BjH4E9EyF9D-G9CoJ7HosD8C-ZuHmYmI0P2L4O--Fw8FyN8SoLqV0I-WmGuYo_Uwj6D-JgoCkHuxCwMq6IpC8lB1F8gBjJyfjJ-VzLiRhM6JzMqEjY0CvGtC 172:30271:htkrI3ko9NyJuBmWrDiOjHqI3HkIzLsH1QuH5VyG_a2DhY2BvYFzYxDxVxF1UtHzTnJjS7M7S3O_PjrC52BjhBvd9hL70LjSzR7S9PzbtTlZjOlatLpf1J5oKpxBllB7H1kB3K_vB7SnsBxWxPvKzwCr_BzFnCjHJpHuCxGkF3EwGxFsLlDwKlCgN 179:17281:tvqsIn-n-N3CzMnElM3GtNpIzL3LxLrOlLtSxJ9QvEhvD5J9Q3D1M3FnoDv8BrQvFtPIt0MopC34B2N 181:27110 180:78512:9skuI_s4-NgNk2DtNmjDl3B6zFj9B6sHrsF2yS1ZuqCxQ2W3xG0tE16GujJl9DmlH10C-1FxtF-vOhMyXvRgYnrE4pE7hC85DrW4YlYqG33B_T9L2D_MwNtxD46H9yB2YjmBpEzjMr5E75JtnE_7GplBtnBwGxmD2vB1buSp7CkyCrOkTxL6mB3BwgB 171:57861:n0_wIhs17NxHpR3xCtnJlQ3tB5P9lB13avg4B7qEljK57BlnEhK7ej0E7pRlE7XpCrYL9YwB7Yk4BjuKgI1c0K7X2Q3Y6jBnnB4L_K2MvIuN9FoP9DszCpJ6D3B 170:38713:zkhyIl5s_N_DarQvJrKlMpHtNl1BjtH7HrT3FnI1G7GnuKv0G9xJnyF1F_FpF_Ip1BvlEpG5M7GtK_gC9tCzV1VpczbltBhpBhxBnnBzKpFjLpDz7MxsCzRtIvsCz3BhShLxQjJx0D13B9DjDxD1F9BvHBzG2BvJ6M1lBqHjQkFlHiHjF 182:73324:zn2zIlu4gOl7BkqC9lBgd9SxExiCzzBn9CnmBpcuCzxD0vBp8Bi_B_N0Y9pBygHnIyWv9Di-EvhBs8BhP2pBrNogC7kBk3GpTg_G1G4gEsB-qBifwjIycm4EkY8yC2Go2BU29BhJqoCnb-qE9PwpB5_B25D5zK2mNh4C80Dz-HkpM3mBinCpyJo0WxEqgB8DmgBmuB8sD6EucnJkrB3kB-zB
+L|Naviera Austral|Ruta Cordillera Sur||175 173:92173:pvmnI_hrhOjKqKhUmiB9NqP1fwS5avD7gBjc3gEh8FrKvLtPxLxR3IhmBvMrT_DtQR1ndm7Bx9B6Bx9BH39BpC_9BtE12C5Jj9YhsDtwqCp_J3M3C7KhF3LjJ9IrK5H7MtG9OxEnQvChRN7PuGz3C4C3MwD_HuErG2JhH-FvBsKKgDyC 174:69430:tj-rI7gkiOjDzCrLLvG4BjH4E9EyF9D-G9CoJ7HosD8C-ZuHmYmI0P2L4O--Fw8FyN8SoLqV0I-WmGuYo_Uwj6D-JgoCkHuxCwMq6IpC8lB1F8gBjJyfjJ-VzLiRhM6JzMqEjY0CvGtC 172:30271:htkrI3ko9NyJuBmWrDiOjHqI3HkIzLsH1QuH5VyG_a2DhY2BvYFzYxDxVxF1UtHzTnJjS7M7S3O_PjrC52BjhBvd9hL70LjSzR7S9PzbtTlZjOlatLpf1J5oKpxBllB7H1kB3K_vB7SnsBxWxPvKzwCr_BzFnCjHJpHuCxGkF3EwGxFsLlDwKlCgN 179:17281:tvqsIn-n-N3CzMnElM3GtNpIzL3LxLrOlLtSxJ9QvEhvD5J9Q3D1M3FnoDv8BrQvFtPIt0MopC34B2N 181:27110 180:78512:9skuI_s4-NgNk2DtNmjDl3B6zFj9B6sHrsF2yS1ZuqCxQ2W3xG0tE16GujJl9DmlH10C-1FxtF-vOhMyXvRgYnrE4pE7hC85DrW4YlYqG33B_T9L2D_MwNtxD46H9yB2YjmBpEzjMr5E75JtnE_7GplBtnBwGxmD2vB1buSp7CkyCrOkTxL6mB3BwgB 171:57861:n0_wIhs17NxHpR3xCtnJlQ3tB5P9lB13avg4B7qEljK57BlnEhK7ej0E7pRlE7XpCrYL9YwB7Yk4BjuKgI1c0K7X2Q3Y6jBnnB4L_K2MvIuN9FoP9DszCpJ6D3B 170:38713:zkhyIl5s_N_DarQvJrKlMpHtNl1BjtH7HrT3FnI1G7GnuKv0G9xJnyF1F_FpF_Ip1BvlEpG5M7GtK_gC9tCzV1VpczbltBhpBhxBnnBzKpFjLpDz7MxsCzRtIvsCz3BhShLxQjJx0D13B9DjDxD1F9BvHBzG2BvJ6M1lBqHjQkFlHiHjF 182:73324:zn2zIlu4gOl7BkqC9lBgd9SxExiCzzBn9CnmBpcuCzxD0vBp8Bi_B_N0Y9pBygHnIyWv9Di-EvhBs8BhP2pBrNogC7kBk3GpTg_G1G4gEsB-qBifwjIycm4EkY8yC2Go2BU29BhJqoCnb-qE9PwpB5_B25D5zK2mNh4C80Dz-HkpM3mBinCpyJo0WxEqgB8DmgBmuB8sD6EucnJkrB3kB-zB
+L|Naviera Puelche|Ayacara – Caleta Gonzalo||177 183:32573:pspiI_op8NnF_I_FtF_G5Cx6BtJr9FrNvUgD1RyF3LqFlTwNldiZ5yEiuExpMk-M__JqmLnwGg-GzKmJnN2H
+L|Naviera Puelche|Ayacara – Chumeldén||177 184:21732:3npiIp9o8NxErPzF7IpIrGndpHrbrEv2B7FnkElJl1G6EjwUoF_I1DhnBzjB
+L|Naviera Puelche|Ayacara – Chumeldén – Caleta Gonzalo||177 184:21732:3npiIp9o8NxErPzF7IpIrGndpHrbrEv2B7FnkElJl1G6EjwUoF_I1DhnBzjB 183:19320:zlujI13r8N4CyEorB0nBwK2K6CuE8C4IyDmyBDiJztD27TjK2sB1MurBrRovB_8C00GzQggB5XqiBlqB0vB9KiJzIiF
+L|Naviera Puelche|Ayacara – Pichicolo||177 185:49898:7kpiIr-o8NhEpRhErIlqBtmC3ElKtM1iBpGhgBxB9RAtV8BpV8D7UoJ1duT1gBiN3QmPlNmPpIoShF6mBrDk8DhFyNqBsNmDiNgF4M8G8Q0MqP8Pq8qBoj0B4H4EqHmBsIlCwG5EyG7JqV33BuJhPiLpNkZhWmJxGkKhFyN1Ds-BhI4VjB2c-C
+L|Naviera Puelche|Caleta Gonzalo – Ayacara||183 177:32573:p92jIn7k7NoN1H0KlJowG_9GggKpmLypMj-M6yEhuEmdhZmTvN4LpF2RxFwU_Cs9FsNy6BuJgH6CgGuFoFgJ
+L|Naviera Puelche|Caleta Gonzalo – Ayacara – Pichicolo||183 177:32573:p92jIn7k7NoN1H0KlJowG_9GggKpmLypMj-M6yEhuEmdhZmTvN4LpF2RxFwU_Cs9FsNy6BuJgH6CgGuFoFgJ 185:49898:7kpiIr-o8NhEpRhErIlqBtmC3ElKtM1iBpGhgBxB9RAtV8BpV8D7UoJ1duT1gBiN3QmPlNmPpIoShF6mBrDk8DhFyNqBsNmDiNgF4M8G8Q0MqP8Pq8qBoj0B4H4EqHmBsIlCwG5EyG7JqV33BuJhPiLpNkZhWmJxGkKhFyN1Ds-BhI4VjB2c-C
+L|Naviera Puelche|Caleta Gonzalo – Chumeldén||183 184:19320:_82jIzgl7N0IhF-KhJmqBzvB6XpiB0Q_fg9Cz0GsRnvB2MtrBkK1sB0tD17TEhJxDlyB7C3I5CtEvK1KnrBznB3CxE
+L|Naviera Puelche|Caleta Gonzalo – Chumeldén – Ayacara||183 184:19320:_82jIzgl7N0IhF-KhJmqBzvB6XpiB0Q_fg9Cz0GsRnvB2MtrBkK1sB0tD17TEhJxDlyB7C3I5CtEvK1KnrBznB3CxE 177:21732:_iujI9zr8NinB0jBgJ2DkwUnFm1G5EokEmJw2B8FsbsEodqHqIsG0F8IyEsP
+L|Naviera Puelche|Chumeldén – Ayacara||184 177:21732:_iujI9zr8NinB0jBgJ2DkwUnFm1G5EokEmJw2B8FsbsEodqHqIsG0F8IyEsP
+L|Naviera Puelche|Chumeldén – Caleta Gonzalo||184 183:19320:zlujI13r8N4CyEorB0nBwK2K6CuE8C4IyDmyBDiJztD27TjK2sB1MurBrRovB_8C00GzQggB5XqiBlqB0vB9KiJzIiF
+L|Naviera Puelche|Chumeldén – Pichicolo||184 185:65841:_kujIx3r8N2CgE4mB6iBwFiDuGM68iB18JqczF2e1D-kEzDyUuBmWuG-P-H8M2IwO0MmLoMs2qB4k0BsH4EiHoBmIjCoG3E0FnI8Ur3B2K5RqJlLuarWgStLuP1E8-BtI2WhBicoD
+L|Naviera Puelche|Pichicolo – Ayacara||185 177:49898:5iugI1pj7N1c9C3VkBr-BiIxN2DjKiFlJyGjZiWhLqNtJiPpV43BxG8JvG6ErImCpHlB3H3Ep8qBnj0BpP7P7QzM3M7GhN_ErNlDxNpBj8DiF5mBsDnSiFlPqIlPmNhN4QtT2gBnJ2d7D8U7BqVAuVyB-RqGigBuM2iB4EmKmqBumCiEsIiEqR
+L|Naviera Puelche|Pichicolo – Ayacara – Caleta Gonzalo||185 177:49898:5iugI1pj7N1c9C3VkBr-BiIxN2DjKiFlJyGjZiWhLqNtJiPpV43BxG8JvG6ErImCpHlB3H3Ep8qBnj0BpP7P7QzM3M7GhN_ErNlDxNpBj8DiF5mBsDnSiFlPqIlPmNhN4QtT2gBnJ2d7D8U7BqVAuVyB-RqGigBuM2iB4EmKmqBumCiEsIiEqR 183:32573:pspiI_op8NnF_I_FtF_G5Cx6BtJr9FrNvUgD1RyF3LqFlTwNldiZ5yEiuExpMk-M__JqmLnwGg-GzKmJnN2H
+L|Naviera Puelche|Pichicolo – Caleta Gonzalo||185 183:78084:58tgI_qj7N1f1ErZgBp7BkIpRuEpQuJ9ciYrHoI1NgWjV03BnF4H7G-EzGwB7GpBnG_Dj5qBxt0BnY9XraxO9e9KvRtDzRzB1tDhBlasC9amFjbkI3yB4U9auQ3X0TzqQg4R5hD6rD7qVspYrMsL5NyI
+L|Naviera Puelche|Pichicolo – Chumeldén||185 184:65841:riugIhrj7NhcnD1WiB7-BuItP2E_RuLtasWpJmL1K6R7Us3BzFoInG4ElIkChHnBrH3Er2qB3k0BlLnMvOzM7M1I9P9HlWtGxUtB9kE0D1e2Dpc0F58iB28JtGLvFhD3mB5iB1C_D
+L|Navimag|Ferry Puerto Montt - Puerto Edén - Puerto Natales||188 187:1003792:n5l9Hlim9N1iqB8qPz2GoDvhYjsTv_1C7uF_p-BtvZh2yFlukBviyEnhY5ukClnO79lBp-Dpm8Bv1Xl0vBzoG76hBviXrtjBzyO16C9uSq7Grye6Z11d1yGh3EjsC3jHzqDxpBtiE91RxjI_-MinHrtpBhpL9krCn0X1mX9j1DlzgDljkB18KhmRgtD9vxD-ziEp3lB4xnB1piBujXlvT-1Iz4Pg_L5swBomMn3bsvOjzW48CvqUizP36FwuB31sBr6Ch7RszGxkRl4Ix9J2jDznKgqJv4Cz4C
+L|Navimag|Ferry Puerto Montt - Puerto Edén - Puerto Natales||187 186:490710:lp_rJjwlmOx_EyqGn3OwxC94MhNxhP56GnvN4-V7tT-9PzkNvnVpylBh2JnhO2QprLt1G73IjuLjiQrmgBpjPzgT1rMj9K56qBn7TxqK6wE7qjB0omBp7SortBrmQmhNriMm2P314B-ta17as-G1xI4-Et1DmzGhs4BqzRvpZ09Y8ZukV1yBi1Ez7rB80T1pIm1Wp-Mg7VtnC89WiiMyqD9E8_Oi2Jg0b2Qi5GyrTq4O44FivKukBu_J7iD4rR-pKypR6-U6jY
+L|Navimag|Puerto Montt - Puerto Edén - Puerto Natales||188 187:1003792:n5l9Hlim9N1iqB8qPz2GoDvhYjsTv_1C7uF_p-BtvZh2yFlukBviyEnhY5ukClnO79lBp-Dpm8Bv1Xl0vBzoG76hBviXrtjBzyO16C9uSq7Grye6Z11d1yGh3EjsC3jHzqDxpBtiE91RxjI_-MinHrtpBhpL9krCn0X1mX9j1DlzgDljkB18KhmRgtD9vxD-ziEp3lB4xnB1piBujXlvT-1Iz4Pg_L5swBomMn3bsvOjzW48CvqUizP36FwuB31sBr6Ch7RszGxkRl4Ix9J2jDznKgqJv4Cz4C 186:490710:lp_rJjwlmOx_EyqGn3OwxC94MhNxhP56GnvN4-V7tT-9PzkNvnVpylBh2JnhO2QprLt1G73IjuLjiQrmgBpjPzgT1rMj9K56qBn7TxqK6wE7qjB0omBp7SortBrmQmhNriMm2P314B-ta17as-G1xI4-Et1DmzGhs4BqzRvpZ09Y8ZukV1yBi1Ez7rB80T1pIm1Wp-Mg7VtnC89WiiMyqD9E8_Oi2Jg0b2Qi5GyrTq4O44FivKukBu_J7iD4rR-pKypR6-U6jY
+L|Navimag|Puerto Natales - Puerto Edén - Puerto Montt||186 187:490710:93g8J9vw6N5-U5jY9pKxpR8iD3rRtkBt_J34FhvKxrTp4O3mKhtiB-E7_OhiMxqDunC79Wq-M_6V2pIl1W07rB70T2yBh1E7ZtkVwpZz9Yis4BpzRu1DlzG2xI3-E27ar-G414B9tasiMl2PsmQlhNq7SnrtB8qjBzomByqK5wE66qBo7Tgvb49dkiQsmgB83IkuLqrLu1GohO1QqylBi2J0kNwnV8tT99PovN3-VyhP66G-4MiNo3OvxCy_ExqG 188:1003792:nm9rJ_qgmOw4C04C0nK_pJy9J1jDykRm4Ii7RrzG41sBs6C46FvuBwqUhzPkzW38Co3brvO6swBnmMwxlCr4rBq3lB3xnB-vxD9ziEimR_sDmjkB28K-j1DmzgDo0X2mXipL-krChnHstpByjIg_MuiE-1RupMskN5Z21dp7Gsye26C-uSstjB0yO86hBwiXm0vB0oGqm8Bw1X89lBq-Dqx2GuomBi2yFmukBgq-BuvZw_1C8uFwhYksTq5wBjuP
+L|Petrohué – Peulla|Petrohué – Peulla||189 190:34615:zgj7H3785NN0DuCqLsjB4mDk1BkkFuHyckduiF0TuuF2Ly6C0hB8yCgtB4gFuT8uC0Li2BukBo1EyyBw3F0a0wDKsMjC-N7DiLlIsOv2BonC_pB-5BzkCw4Cpa-jBhGoN3FmTlDqQpEqhBC4K0BgKkJihBqImZ8lDu2I2FoU
+L|Porcelana Chica – Leptepú|Porcelana Chica – Leptepú||240 239:9151:zs7iI16m6NKiFnBwHxCqGpNsQxO0GtsM0uC1IvB
+L|Poyo – Pichicolo|Poyo – Pichicolo||191 185:25454:lw2hIr107NgHoH0se47N4vB-Zk4BgkBiasZoJqGsNsGiVwHiLuBmxCjL0cFoauE
+L|Puerto Cristal – Puerto Sánchez|Puerto Cristal – Puerto Sánchez||144 146:19736:rxm8Ir965NhB0BnHBh2CjyBxlBrX_gChuBtqCr5BvLnMxL3S7mC75F7LhrBzJlwB_C_avBxf4IzsL4BtTyE3V6FnRmGlNiLzS0MhR
+L|Puerto Ibáñez – Chile Chico|Puerto Ibáñez – Chile Chico||205 204:37576:tgz6I_u_2NnO4JpNsLxTqVpoB03B1cs1B7L6dpjB6qD9H6jB5FsvBzJo0FlFojG9FioDjDmiBlC2MlE-NxVsuBjKoO_J8J5tBsc_wDw2B_R6Gv_H4hC18U6wF1lBwIpQoBtPnC3V9J3MxLtDpHxDnM7C7OWxzBZzI9DpKnDrD
+L|Puerto Ibáñez – Chile Chico|Puerto Ibáñez – Chile Chico||205 192:36214:vhz6Iz0_2NjO0J_P4N7Xwb_hBqvBnX2nBhN0c_mBo0DlKiwB9F4vBpO01LvHumEvDoTpG6SnTynB_HsLpJuJluByc7nDgzB1RyF5rdkwDzhBtD_sByO
+L|Puerto Llay Llay – Puerto Langrend|Puerto Llay Llay – Puerto Langrend||214 193:41217:zi5jJr16gOzHpOn_B7gFxKlT1KjO5NlNhPtJ5xE92B7LzHzGlH5F7IrqCzrEnHhI1gC7zBnThKlb3IrQ1CpPHppGkhB9RgB5SjDxuDnhBrRjClgB6CjQuE56BuhBjKgB5JlDrHvFl_Qr5QjC9ESrFzIyK3I6CxuB7GlN7E1KtGlI1GttHtuHhK1G9lBnP
+L|Puerto Montt - Isla Maillen|Puerto Montt - Isla Maillen||188 194:9850:n3m9Hloq9NlDjCrMlQvO3OTlKoH9RoFjJ0DhJsB5GF1H5C9InMtOpFvEzc1M3QhJxJ7G9etoBte7W5JpC5_BE1mBtDryC9U5qC5YjJHvEsD
+L|Puerto Montt – La Arena|Puerto Montt – La Arena||188 195:36349:h0m9Hh3p9N0DuIuiBu0BuGkRsD6PuB6VnC0V1G4WnJ6R9gpBqj4B
+L|Puerto Natales - Península Antonio Varas|Puerto Natales - Península Antonio Varas||187 186:491247:_2_rJ71lmOphF4xFzlVqyCrnVl9G17MmkVt7SurQvzPxjWjwjBx6IhuOsUzgL9lGp9It3L3iQtugBx_O74Sr1M_7K9_qBlwUhwKm7EzxjB0umB9uSq1tBvmQohNtnMw_P9x4Bwna3qcswHzoHmuEnuDyvGtt4BkxRzuZwhZnG68YjqsBgzU1tIs2Wp8M-hWtmCqzXwkMopDpF84O25J-kbuP8lH8pTu0Oy5FwvKuiBk9J1jDmyRw9Dg7Gkvb44iB
+L|Quellón – Inío|Quellón – Inío||197 196:93673:3hnnIpkshOpsComD3lBvC_qCx7CntBj1DpvD74Br2M-lDx6JkFxtCxS9wDpvDnkBntE-RxsDywBrlE4Fz_F4yBtkD5O3mIjkC3Q15FszDp4CiY9wG4L9hF7jC1wB9hChf3_E8_DjtzB4-Fz4Hy7F_wBoUkkB1V42CiL30B_I-wBye8lB6tC1IyY3ZgKpkC
+L|Quiao - Huillinco|Quiao - Huillinco||198 199:3854:j2rkIp3njO1qBmYjoBwazEwIxC6PvBoU4Eq1CxCiR
+L|Refugio – Achao|Refugio – Achao||200 128:55769:h58jIz_y8N0CrJ89M39xCs6EvqWirF3-SkBvLjBzJrKvjB
+L|Refugio – Chaitén|Refugio – Chaitén||200 178:40062
+L|Río Exploradores – Bahía Erasmo|Río Exploradores – Bahía Erasmo||202 201:51024:lg36Ih_igOwL5SoLnM8D9JRzRtO3UnD7NgHnwBoF7KkT3QwRoDmMpGsLvT8QjMid9B2UlKoRlNwR-F2D5C8DtJqChP3BvwCgTlrEwKvnB6I1lCP1VjE5ZrFjNz-BzpCvIvS5BlP4G7N2-DloE0L_GuLV8qO8wGolGm0Ek-XsuV6T2YgP2Zo2CmpG-J-N8PmHoqCzD
+L|Sector El Pascua – Fiordo Steell|Sector El Pascua – Fiordo Steell||149 203:16042:rxrmJxyq_NiWpjC8D_PKrPzFzjBuBvqBzBrI5GpVnB3JWvT2B_HsG1LwH_G-E7B6FI2Q4KoI2ByKvCsSvK6Ha29EqvDmLmMqtHmpNsD2KqB2M
+L|Somarco|Caleta Gonzalo – Fiordo Largo||183 207:7309:hu3jI1_j7N8PwNkGoIiFwJ-F2TsBwQ_DsuHI2rCiHo9B4EmZuDsL8CkF
+L|Somarco|Chile Chico – Puerto Ibáñez||204 205:37576:x_g8I9m61NoDsD-DqKa0IVyzB8C8OyDoMuDqH4MyL4V-JuPoCqQnB2lBvI28U5wFw_H3hCgS5GgxDv2B6tBrcgK7JkKnOyVruBmE9NmC1MkDliB-FhoDmFnjG0Jn0F6FrvB-H5jBqjB5qD8L5d2cr1BqoBz3ByTpVqNrLoO3J
+L|Somarco|Fiordo Largo – Caleta Gonzalo||207 183:7309:p91jIn706N7CjFtDrL3ElZhHn9BH1rCgEruHrBvQ9F1ThFvJjGnI7PvN
+L|Somarco|Hornopirén – Leptepú||206 208:58972:hrngInjo6N5R-RrRsMvLkE_JuB1uEqF_exD5zBpMrsJ9qDvWnGpTjDrTnBhiL9DhuEUjqBhC9_Uh1B1_D7H3mBOtXkCxW8EjxDilB_5F-0Cv5CmrB5nBmW5lE2vB9zC0XziCyQv9CoN5lE0XrqB0KjM4B9TPjgBpEpPnHnlBjXlEZ
+L|Somarco|Leptepú – Hornopirén||208 206:58972:7sqjI75j6NmEaolBkXqPoHkgBqE-TQkM3BsqBzK6lEzXw9CnN0iCxQ-zCzX6lE1vB6nBlWw5ClrBg6F90CkxDhlByW7EuXjC4mBN2_D8H-_Ui1BkqBiCiuETiiL-DsToBqTkDwWoGssJ-qD6zBqMgfyD2uEpFgKtBwLjEsRrM6R9R
+L|Somarco|Puerto Ibáñez – Chile Chico||205 204:37576:tgz6I_u_2NnO4JpNsLxTqVpoB03B1cs1B7L6dpjB6qD9H6jB5FsvBzJo0FlFojG9FioDjDmiBlC2MlE-NxVsuBjKoO_J8J5tBsc_wDw2B_R6Gv_H4hC18U6wF1lBwIpQoBtPnC3V9J3MxLtDpHxDnM7C7OWxzBZzI9DpKnDrD
+L|Somarco|Puerto Yungay – Río Bravo||187 209:277343:3o9rJtu_lOypD0tCy7J3tJ8xJxhDuoRq1IoqSvmG2urBumDukHjuB2oUtsPg8WxgD8-XluNw8lB1tK2qLgoBq3DytLinH-zJ8iCg4I_yD0-P7pI2xUw7E-oqBxtC-ibvkEyxO82Ck0KiiEg0E--Q00Hi7BkjFlqBgtM-0B68LgvF2Y80EyvI_zCxyBr9D0gJ5nGs6D7zJprD7-D0mH3vCktN-jBk7Nq7BiK
+L|Telele – Huinay|Telele – Huinay||206 237:51955:54ngI3so6N1IiHzUoKlIoBzhGd7RxBxjNr1DjDjC3iBlsB3ahnBzBvFGpF6GhN7H2LlFwK1RixBtCyDtDqC32GgdlTKlR7BtQjE9qDroBnE5D3C9ElD1QlEgKrC-B7CGxrSjnFrR1J7MxMjRncvCjLMtKpO4rBjEiIlE4Ex8NiiLz7F-4E3GoJ7DyK
+L|Tenaún - Mechuque - Añihué|Tenaún - Mechuque - Añihué||211 210:11955:z4siIlu6_N5Gc9MuoB3G4Zf-TBwnFsCmd4EuewJ4nB8TsxB6nBg2Cwby-BwZiuCsH2K8L4HmDH5ByD9CyahFoUrH2S1JuI9f0J3HsHzJ-N
+L|Tendedor – Isla Chulín|Tendedor – Isla Chulín||157 233:13523:jlxkI7qx9N
+L|Tortel – Fiordo Steffens|Tortel – Fiordo Steffens||214 212:29309:nh5jJj56gOvJxVvE7PnJjvBnEpdxE73BcrXsDnTm9C7oHmMnmB-jD5wImxBjwD2NjUkRhQqc_Py1IryDwiBxIu5CjMwYkB4UoF8T-IomE2sCyRkM-T8QsVwWohDkmFqF2FqKsDiPxEiHjFiOrSyFhB
+L|Tortel – Puerto Brown|Tortel – Puerto Brown||214 213:42577:h_4jJh06gO7IhQ9hCtlFhL1SxKhO5MhMjOzI1vEx2B5HhEjIjGlHpJrNhgB5D9S3pBrpWjEnd5PniCjD1HnHvL1HnHhuLv4HlgB3dr6E9nFrfjuBtpD9zFzMlhBvyFvhX
+L|Transbordadora Austral Broom|Puerto Natales - Puerto Edén - Caleta Tortel - Puerto Yungay||215 187:491183:x7g8Jviw6Njvb34iBv9D_6G2jDlyRtiBj9Jx5FvvK7pTt0OtP7lH15J9kbqF74OvkMnpDumCpzXq8M9hW2tIr2WkqsB_yUoG58Y0uZvhZut4BjxRouDxvG0oHluE4qcrwH-x4BvnaunMv_PwmQnhN-uSp1tB0xjBzumBiwKl7E-_qBmwUs1Mg8Ky_O84S4iQuugBq9Iu3L0gL-lGiuOrUkwjBy6IwzPyjWu7StrQ27MlkVsnVm9G0lVpyCqhF3xF 214:236591:3o9rJtu_lOypD0tCgpEnzCyyFv6G8xJxhDy_Js-CugB8iEq8DlKksCo-B83LrnFsyGjfq-asMswQi6CukHjuB2oUtsPg8WxgD8-XluNw8lB1tK2qLgoBq3DytLinH-zJ8iCg4I_yD0-P7pI2xUlMsqE2nFy-lBxtC-ib1zDmpJ5QsoF82Ck0KiiEg0E--Q00Hi7BkjFlqBgtM-0B68LgvF2YgsCgpCwYy4E 216:32285:5x4jJ1w6gOrB4FtGyIlWzC7UzXlLhf1IvHnNBtS2X9I2oBrN2mBtTylBvY2lC1oBquCxrBylBrtBiP7uD4lCptBhPvmBz0B7mDlvBv4BhQ1gC0X3lC0tEj5Bg5CnxB0gDtT22B3Go_B4G4nBiF63B5Li9BpE-5BqEoqD0N47FwL0yCwGwiC0NwkBiKwHsOlCiKzJsJhV
+L|Transbordadora Austral Broom|Puerto Yungay - Caleta Tortel - Puerto Edén - Puerto Natales||216 214:32285:hwykJx5v_NrJiVhK0JrOmChKvHzNvkBvGviCvLzyCzN37FpEnqDqE95B6Lh9BhF53B3G3nB4Gn_BuT12BoxBzgDk5B_4C4lCztE2gCzXw4BiQ8mDmvBwmB00BqtBiP8uD3lCstBhPyrBxlB2oBpuCwY1lCuTxlBsN1mB-I1oBuS1XoNC2IwHmLif8U0XmW0CuGxIsB3F 187:236591:li6jJ1-7gOvYx4E_rC_oC_uF1Y90B58LmqB_sMh7BjjF9-Qz0HhiE_zE72Cj0K6QroF2zDlpJytC9ib1nFx-lBmMrqE8pI1xUgzDz-P7iC_3IhnH9zJp3DxtL1qL_nBv8lB2tK7-XmuN_7WygD1oUusPtkHkuBrwQh6Cp-arMryGkf73LsnFjsCn-Bp8DmKtgB7iEx_Jr-C7xJyhDxyFw6G_oEozCxpDztC 215:491183:_2_rJ71lmOphF4xFzlVqyCrnVl9G17MmkVt7SurQvzPxjWjwjBx6IhuOsUzgL9lGp9It3L3iQtugBx_O74Sr1M_7K9_qBlwUhwKm7EzxjB0umB9uSq1tBvmQohNtnMw_P9x4Bwna3qcswHzoHmuEnuDyvGtt4BkxRzuZwhZnG68YjqsBgzU1tIs2Wp8M-hWtmCqzXwkMopDpF84O25J-kbuP8lH8pTu0Oy5FwvKuiBk9J1jDmyRw9Dg7Gkvb44iB
+L|Transbordadores Austral Broom S.A.|Yaghan Ferry||217 153:600182:vygwKh_q5MmsR5vQ6iKvmbn6D157BygE9xD0iF_q0Cz8G96zDg1KnxKziN7dvzGpoc_0CzvrBm7IpocgnOzhlDjgDxtyDtuKjomCioGj3hBwkmBzyqDioC1gmB0yKj_d7lE94hBq6Pzje-1J1vHyiP66O-0QyvpBi3D8y9CpoMqgiBhtBkgR4qXw0fkjoCpvT6j_BqhiBylyCo4H
+L|Transmarchilay;Cruz del Sur|Ferry Pargua – Chacao||220 218:6229:r-i_HnvrgO_J5D5QlLncvYnenjB7PxWvYvnB_zB9nDpmBtoC
+L|Transmarchilay;Cruz del Sur|Ferry Pargua – Chacao||219 218:4389
+L|Transportes Marítimos Kochifas S.A.|San Juan Bautista – Rada Colonia||221 222:182895:3vptGp7jhPgH4LkG-EyIyBsiBqBunBtDuMjD6LzEyJlFyG5Fm6B3oCmM9W0I9U2FlS4ElUkHnqBwDhvBbhoB
+L|Transportes Marítimos Kochifas S.A.|Valparaíso – San Juan Bautista||223 221:675526
+L|Transportes del Estuario|Ferry Caleta La Arena – Caleta Puelche||195 224:6067:t5u-Hrts7NjB7I1B1ElH1LhHtH_EhDp1EvUvrB9DnpBkBtJuDnI8FvI0MtJ2T_CqC
+L|Venegas – Niebla|Venegas – Niebla||225 169:1513:liszH3h8_N
+L|Vialidad|Vialidad||228 227:12042:30rtH34o_NsKhX0K9RkMpQ4kB3gB8D_GYhGpBnIhD3FjErDoCnEWpErCxWpCrGjFpG9BnFKjHuCvGlFP9DlDnB9FqCjGoFnG4GzDskDzZqEhFkBrH3BvHzEtD2LvDyEzFC1InCjHvDnDgEtDavG_QtpBrG_UhBpJgB1JmDhM-RvpBVtb-BpTJpO
+L|ferry|ferry||238 235:537
+L|ferry|ferry||206 240:49519:71ngItuo6NhLuJ9UuK7HoBliGJtbjDzgKnxCtfhE9_qBjP1byClcgFjpRm_DlMmB9hBnB
+L|ferry|ferry||206 231:55648:h1ngI9to6NrL0J7UyKrIwBziGG9btDngKlxCnd_D5krBtNjaqCjXmE76UikFhhIgQtKhCjJlEpIrHzF5LpB1GelF
+L|ferry|ferry||206 237:47684:v0ngIjto6NtL0JjVwKhK0BhhGStb_ChhKrxCxc_DvwIqC9oiB5OhnB0C9iBsHz9C8bxuDmvBtL6Gl4Fg3EvFgJjDoJ
+L|ferry|ferry||228 236:5240:xxrtHt4u_NWpLb9KnDvG
+L|ferry|ferry||229 230:1142:z7ujHjj-7NsZ9DgRMmGwE6B-D
+L|ferry|ferry||233 156:5857:v0tkIvz-9N9JhK
+L|ferry|ferry||241 234:5695:xogzHl4i_NuCyG2T6G4H4FoH8K2CiIHmEjDuIlDOqBuCJyD1G2LpDKcsCjB4C1PqU7DUrBkGtXqchVmT5CwE3D2JXmFc0OyDuRoF8L2M2N0NiLoL0GsMiG
+L|ferry|ferry||239 237:12390:r8ojIz-i6NiNkE8qNgmB-5E8lB2coO0DiE
+L|ferry|ferry||239 208:73
+L|ferry|ferry||200 232:34189:h48jInoz8NF9I_DxO1J9JxqB5FtLuCzlBsa3b4jBxErQl9BpxC3M3JtQvEvRE3mK4zB4cnPyFxHKjKjLroB3FtLxJxHhiBEnPoHnvCm9B_Q-UhwBirCjnBskBToGkDiFwO4EqKR6ZtLsoB7d_qCg6FQwL3CrI3RlgF-C1G0iB3e8QzZyC1HFzJpH_MztG3H_3C8HlN4H
+L|ferry|ferry||157 178:33201
 R|-36.60386|-72.11246|Chillán|Central
 R|-34.98450|-71.24645|Curicó|Central
 R|-35.84760|-71.59045|Linares|Central
@@ -337,35 +513,35 @@ R|-33.02719|-71.57529|Recreo|Tren Limache-Puerto
 R|-33.04206|-71.36596|Sargento Aldea|Tren Limache-Puerto
 R|-33.02636|-71.55186|Viña del Mar|Tren Limache-Puerto
 R|-33.04249|-71.37355|Villa Alemana|Tren Limache-Puerto
-Q|Central|Tren Chillán – Estación Central|#3BBDE7|L55|0 6:24280 4:34005 2:39066 8:30426 36:20032 3:49219 1:14405 7:54131 5:51886 73:65711 57:15943
-Q|Central|Tren Chillán – Estación Central|#3BBDE7|L55|57 73:15944 5:65813 1:106157 3:14409 36:49306 8:20035 2:30443 4:39112 6:34021 0:24298
-Q|Central|Tren Curicó – Linares|#2277E0|L55|2 36:50452 3:49219 1:14405
-Q|Central|Tren Curicó – Linares|#2277E0|L55|1 3:14409 36:49306 8:20035 2:30443
-Q|Central|Tren Expreso Chillán – Estación Central|#DB1022|L55|0 36:147648 5:169435 73:65711 57:15943
-Q|Central|Tren Expreso Chillán – Estación Central|#DB1022|L55|57 73:15944 5:65813 36:170144 0:148130
-Q|EFE|Tren Pitrufquén – Temuco|#141cff|L55|11 9:4183 10:21246 53:3852
-Q|EFE Arica|Tren Arica – Poconchile||L55|13 12:34528
-Q|EFE Arica|Tren Arica – Poconchile||L55|12 13:34526
-Q|EFE Central|Tren Talca – Constitución|#ABC300|L55|36 15:12572 34:9593 17:4547 20:3199 18:3623 19:2326 27:752 22:1333 21:1585 24:3828 37:3943 33:4126 32:1197 29:2473 28:2274 23:4759 25:3775 26:4036 30:4992 31:426 35:5447 14:3242 16:5014
-Q|EFE Central|Tren Talca – Constitución|#ABC300|L55|16 14:5015 35:3242 31:5448 30:426 26:4988 25:4036 23:3775 28:4759 29:2274 32:2474 33:1197 37:4125 24:3944 21:3828 22:1586 27:1333 19:752 18:2327 20:3624 17:3199 34:4547 15:9595 36:12568
-Q|EFE SUR|Tren Pitrufquén – Temuco|#141cff|L55|53 10:3852 9:21249 11:4183
-Q|EFE Sur|Tren Laja – Talcahuano|#60AE2b|L55|98 84:1780 87:2109 96:2126 100:3115 94:3120 79:2699 78:10097 99:1325 97:1700 92:1449 88:7763 48:9763 50:2780 54:4697 55:2168 44:2670 52:1555 40:7563 38:7033 51:8266 41:2346
-Q|EFE Sur|Tren Laja – Talcahuano|#60AE2b|L55|41 51:2346 38:8264 40:7033 52:7561 44:1555 55:2670 54:2168 50:4696 48:2780 88:9761 92:7756 97:1452 99:1701 78:1324 79:10095 94:2701 100:3115 96:3116 87:2127 84:2109 98:1776
-Q|EFE Sur|Tren Victoria – Temuco|#B4C400|L55|56 45:12004 46:10219 49:5438 42:8165 43:1018 47:11788 53:16309 39:9061
-Q|EFE Sur|Tren Victoria – Temuco|#B4C400|L55|53 47:16298 43:11786 42:1018 49:8163 46:5437 45:10217 56:12001 39:55912
-Q|EFE Trenes de Chile|Tren Nos – Estación Central|#E63323|L55|57 67:2773 71:1718 66:2443 65:6530 61:1558 73:917 68:1260 60:1922 69:1061
-Q|EFE Trenes de Chile|Tren Nos – Estación Central|#E63323|L55|69 60:1062 68:1925 73:1261 61:917 65:1555 66:6532 71:2445 67:1718 57:2773
-Q|EFE Trenes de Chile|Tren Rancagua – Estación Central|#56AE35|L55|5 62:11840 74:9943 63:13038 70:5731 64:5866 58:3491 59:2122 73:13691 57:15941
-Q|EFE Trenes de Chile|Tren Rancagua – Estación Central|#56AE35|L55|57 73:15942 59:13691 58:2123 64:3491 70:5867 63:5768 74:13059 62:9888 5:11916
-Q|EFE Trenes de Chile|Tren San Fernando – Estación Central|#F3B015|L55|7 72:23255 5:28641 62:11840 74:9943 63:13038 70:5731 64:5866 58:3491 59:2122 73:13691 57:15941
-Q|EFE Trenes de Chile|Tren San Fernando – Estación Central|#F3B015|L55|57 73:15942 59:13691 58:2123 64:3491 70:5867 63:5768 74:13059 62:9888 5:11916 72:28576
-Q|EFE/Corporación Patrimonio Ferroviario|Tren del Recuerdo||L55|57 75:109397
-Q|Red Concepción de Movilidad|Biotren Línea 1|#DD3018|L55|98 84:1780 87:2105 96:2126 100:3115 94:3120 79:2699 78:10097 99:1325 97:1700 92:1449 88:8867
-Q|Red Concepción de Movilidad|Biotren Línea 1|#DD3018|L55|88 92:8862 97:1452 99:1701 78:1324 79:10095 94:2701 100:3115 96:3116 87:2127 84:2145 98:1776
-Q|Red Concepción de Movilidad|Biotren Línea 2|#E36523|L55|79 90:4547 83:1805 76:1816 81:895 85:1465 93:1659 77:1752 86:6270 95:2969 89:889 82:1129 91:1636 80:1506
-Q|Red Concepción de Movilidad|Biotren Línea 2|#E36523|L55|80 91:1504 82:1635 89:1128 95:888 86:2969 77:6270 93:1752 85:1658 81:1465 76:895 83:1809 90:1805 79:4548
-Q|Tren Limache-Puerto|Tren Limache – Puerto|#DD3018|L55|111 113:12703 118:1283 120:650 109:866 110:1222 104:1110 106:2079 116:1751 105:9627 103:1444 108:1123 119:867 112:916 117:1403 114:1987 101:1735 107:796 102:693 115:713
-Q|Tren Limache-Puerto|Tren Limache – Puerto|#DD3018|L55|115 102:716 107:692 101:803 114:1731 117:1988 112:1398 119:916 108:866 103:1121 105:1445 116:9715 106:1751 104:2078 110:1112 109:1222 120:866 118:650 113:1285 111:12700
+Q|Central|Tren Chillán – Estación Central|#3BBDE7|L55|0 6:24379:35s_G9pk4NwSsE63BkUyyGo7B4W2IopBuS4P-JuPmQg7B4yC4I6Kw2R0hU8I2H-LyG 4:34184:70n-Gtin3N2X-JkopB6qV8R6GkpJ42C 2:39233:__w8G70t2NuKwE6I-FirV8vSkIuGuuCqvByF2G-TqiBoF-G4gUooR-4BuyB4UuQ2sDo9CgP4O8rB0vBsM4H 8:30570:rs46Gtk-0N-MQyKvDsJlHknC7pC6H7K2iGzmKkMtPwOzJsLxDulMl0C 36:20140:ztn5Gts01NstD8DmJkByM-D0qC2hBkLXikB3KkMK8iS83I0H-B--DyPwOA 3:49404:jom4Gt4p1N0LuF6L8Jy_C6uEwmGkmGmeskB-2BmxBkkByYmsI8rKsoF-_DgxC6yB4ZyVkT4WwRmbqiBgsC6RieikE06E8UqbmnB07C2FmJyzGm8FyJoDiZN49Csc-0Cs6B8VkSq4BqmC2FwNwI0pB8G2Si7D20GqXua 1:14474:x941G1v7yNmK4C-nFqK 7:54363:r1v1G_s7yN0M2DmMsI6rK-6LgM8F8MG0M9F6PxR6KrGgazDoPgFkgNkuL6X6hB6OmmBiqBsxHkLykBwMoY6PmVm9B69BiWiSsckO-nD2fimDsN0pB_E01E1wBsdtBob0F2esPu8C8nCklMksIuO8Ds4E-Qi3C4oB2lC2D 5:52145:n_izG9rnxNsG2EwEyGiNkciFmHyGqGsqG0qEunGu5EskGo5DiN6NodytBwIqJ8HwFkIqDyN0Cs_GwiByMgDqKiEgTgMspEiwDwX4OixM6xFosEyvB0ewQkrE20B0oG2rDixGuqDiIgFq6B0tB40Bo_BqsBwnBmuBgiBmKmDoKKukClL8Q-B 73:66087:ri7vG570vNu9FkWm3G-RmmCwNse4C-T_B00BnM-oBa4KfkoBlJiO3FqZ0CyH5Dy1BnuBuK_F-PnD6yBmD4KjC0G5DyFnFuvC_6CsThO2T_Hs3C9M8O8B2b8JyS0DgrH1C68J-sBwlR-wD2IB6IvCgjB5UiM_FwMxC4LesM-DyzBgW44Kw2E4NoDoQqB 57:16035:ht-sGvtwvNyTQyrPsoDwrG-PyRuFwPuBmKAwa3D
+Q|Central|Tren Chillán – Estación Central|#3BBDE7|L55|57 73:16036:18lsGxxsvNtgB2D1SxBvTzFzqG5P_rPtoDxRP 5:66163:n0ktGr_vvN3OdrPxDz4Kv2ExzB9VzM_D3LbzLqC7KgF_lBsWzIoC1IDxkR5wD98J_sBprHyCjSxD1b5J9O7Bt1CwM1VwItTiOvvCi7CxFoFvG4D3KiC5yBjD_PoDpJiFh2B2uBnHkEzFO7N7CrGDzO-F7nBiJ1KgBhpBZj2B0MxR2Bxe5C3kCnNl5GjSp9FjW 1:106433:3_ywGll7vN9lCsLzThE_3CvnCt2B7gCliCtyBl5M91G7rEh1Bhd7P5tEjwB_wM9xFh1FnrE5qI_uBlQ3OrqBr7B5iGn4DhpGt6EpqG1qElhBtzBl3B7ZznC3D31CvoBjoFhVlkLh1H5vEvpDpiB7JvgBQ13EixBzpBgFhmDrNxlD7e7bhN50CnwC5c_sB9LvmBhqBrxH5OlmB5X5hBjgNjuLnP_E_Z0DnnB8d7YhG5rK96L5YhM 3:14474:trz1Gzi7yN9nFpKlK3C 36:49404:_0p2G_znzNpXtah7D10G7G1SvIzpB1FvNp4BpmC7VjS90Cr6B39CrchZOxJnDxzGl8F1FlJlnBz7C7UpbhkEz6E5RhepiB_rCvRlbjT3W3ZxV_wC5yBroF9_DlsI7rKjkBxY92BlxBlerkBvmGjmGx_C5uE5L7JzLtF 8:20140:zso4Gzjq1NvOA9-DxPzH9B7iS73IjMJhkB4KjLYzqC1hBxM9DlJjBrtD7D 2:30570:tuh6G56u1NtlMm0CrLyDvO0JjMuP1iG0mK5H8KjnC8pCrJmHxKwD9MP 4:39233:_p76Grm_0NrM3H7rBzvB_O3O1sDn9C3UtQ94BtyB3gUnoRnF9G9TpiBxF1GtuCpvBjItGhrV7vS5I9FtKvE 6:34184:h6z8Gjwu2NjpJ32C7R5GjopB5qV1X9J 0:24379:zus-Gvzo3N9LxG7I1Hv2RzhU3I5K_6B3yCtPlQ3P9JnpBtS3W1IxyGn7B53BjU
+Q|Central|Tren Curicó – Linares|#2277E0|L55|2 36:50710:rs46Gtk-0N-MQyKvDsJlHknC7pC6H7K2iGzmKkMtPyH5FwItEyhVjyEysRt2Dw4D6EkQsFkgCge-HuCkKdilB9KiMa-hSy3I0H-B--DyPwOA 3:49404:jom4Gt4p1N0LuF6L8Jy_C6uEwmGkmGmeskB-2BmxBkkByYmsI8rKsoF-_DgxC6yB4ZyVkT4WwRmbqiBgsC6RieikE06E8UqbmnB07C2FmJyzGm8FyJoDiZN49Csc-0Cs6B8VkSq4BqmC2FwNwI0pB8G2Si7D20GqXua 1:14474:x941G1v7yNmK4C-nFqK
+Q|Central|Tren Curicó – Linares|#2277E0|L55|1 3:14474:trz1Gzi7yN9nFpKlK3C 36:49404:_0p2G_znzNpXtah7D10G7G1SvIzpB1FvNp4BpmC7VjS90Cr6B39CrchZOxJnDxzGl8F1FlJlnBz7C7UpbhkEz6E5RhepiB_rCvRlbjT3W3ZxV_wC5yBroF9_DlsI7rKjkBxY92BlxBlerkBvmGjmGx_C5uE5L7JzLtF 8:20140:zso4Gzjq1NvOA9-DxPzH9B7iS73IjMJhkB4KjLYzqC1hBxM9DlJjBrtD7D 2:30570:tuh6G56u1NtlMm0CrLyDvO0JjMuP1iG0mK5H8KjnC8pCrJmHxKwD9MP
+Q|Central|Tren Expreso Chillán – Estación Central|#DB1022|L55|0 36:148505:tvq_Gtxj4NyyGo7BggCkbuRsL4N4O4jCy9CyzRu-T6O6MqNoGs1EuvB2X-JkopB6qVg7Jy9C-6BgUkfoH2P6H0uVwySy2C41B4e-vBk7ZsoWq3Bm7B4QoL-7CuhB4RF-O1IotCxxCulG9qKkMtPiQnKkumBxoIw4D6Em4C6lBmvB7LiMa-hSy3IymEwR 5:170385:1wl4Gjpp1Ny_C6uE4_Jo0JmsI8rKkzIqoG44Cg8E-4E-1F8sB6kDyzGm8FsgEmf6qDwsCq4BqmC0YywCusEqmH65QsmMg6JsJ4xKu_LuqDxVk5MgnLitBgtCy2Bg6IusD65D2sH48BqhGh2B6iCsJg0Py-KkoFiVu0GsmCkhBwzBm2Sq9M26BmqC-rIwvB8zF6qEinWymJ25Mk2G0xGs7F 73:66087:ri7vG570vNu9FkWm3G-RmmCwNse4C-T_B00BnM-oBa4KfkoBlJiO3FqZ0CyH5Dy1BnuBuK_F-PnD6yBmD4KjC0G5DyFnFuvC_6CsThO2T_Hs3C9M8O8B2b8JyS0DgrH1C68J-sBwlR-wD2IB6IvCgjB5UiM_FwMxC4LesM-DyzBgW44Kw2E4NoDoQqB 57:16035:ht-sGvtwvNyTQyrPsoDwrG-PyRuFwPuBmKAwa3D
+Q|Central|Tren Expreso Chillán – Estación Central|#DB1022|L55|57 73:16036:18lsGxxsvNtgB2D1SxBvTzFzqG5P_rPtoDxRP 5:66163:n0ktGr_vvN3OdrPxDz4Kv2ExzB9VzM_D3LbzLqC7KgF_lBsWzIoC1IDxkR5wD98J_sBprHyCjSxD1b5J9O7Bt1CwM1VwItTiOvvCi7CxFoFvG4D3KiC5yBjD_PoDpJiFh2B2uBnHkEzFO7N7CrGDzO-F7nBiJ1KgBhpBZj2B0MxR2Bxe5C3kCnNl5GjSp9FjW 36:170311:p51wG796vNzwG56Fl5M91G3nW_mJh1FnrE5qI_uBx6BjqCl2Sr9MlhBtzBx0GjmCjoFhV_zPx-K5iCrJphGi2B1sH38BtsD55Dx2B_5IhtB_sCj5M_mLtqDyV3xKt_L_5JrJ55QrmMtsEpmHzYxwCp4BpmC5qDvsCrgElfxzGl8F7sB5kD94E91F34C_7EjzIpoGlsI7rK3_Jn0Jx_C5uE 0:148505:j7o4Gzjq1NxmEvR9hSx3IhMZlvB8Ll4C5lBv4D5EjumByoIhQoKjMuPtlG-qKntCyxC9O2I3RG97CthB3QnLp3Bl7Bj7ZroW3e9vBx2C31BzuVvyS1P5HjfnH96B_T_6Jx9CjopB5qV1X9Jr1EtvBpNnG5O5MxzRt-T3jCx9C3N3OtRrL__BjbxyGn7B
+Q|EFE|Tren Pitrufquén – Temuco|#141cff|L55|11 9:4204:r77tH_iq7N4G8D 10:21366:nintHr5m7NqtExDkJ9DopBpd0IhEmJ9B6zC0Dsa4E6IRgO7DkGNyN2C8QQsQuG0VpCmXmJ8fkPgoBkjBqemX6HwEmJyCoJGsvB9KwHJmHkCgG6DsFmG 53:3863:psxsHtpi7N8MwamFuEiEyB-e2ByaqJmNmO2KqR
+Q|EFE Arica|Tren Arica – Poconchile||L55|13 12:34565:74zwDj-1rNJpIgKrcwF1lBsChIqE9IoJ7Lg8Bn2B4TnXiEhCoQ1CyLzK6K5CkQrK6L1DiMpImJnKgP9coGxP0TtvC4Pn4DT9a5EljCtCryB7Bh9CtJx2EuLp_EgBvGsDhIkSrW4DvIk2BnkKpBxGtCjE5J_H3EvBr3DgO9yD6qBhgCgNhJc3FvB5GrE
+Q|EFE Arica|Tren Arica – Poconchile||L55|12 13:34565:l_zwDrigtN6GsE4FwBiJbigC_M-yD5qBs3D_N4EwB6JgIuCkEqByGj2BokK3DwIjSsWrDiIfwGtLq_EuJy2E8Bi9CuCsyB6EmjCU-a3Po4DzTuvCnGyP_O-clJoKhMqI5L2DjQsK5K6CxL0KnQ2ChEiC3ToX_7Bo2BnJ8LpE-IrCiIvF2lB_JscKqI
+Q|EFE Central|Tren Talca – Constitución|#ABC300|L55|36 15:12586:7so4Gtkq1NlPI9iEtQ3uDj1B1D7C_CzEpCjK 34:9599:9jx4Gj7g2NmBnNmErKyyB7wC0EzF-FvEsH3CoFJoI8Bm7BmZyI1B-D1DwCxEkB_EqG52CmLhlCyI5gB 17:4542:zur4Gzku2NiKr_B 20:3208:nkr4Gth32NrBpExFhHrHjDvL7BrMU5GvCzKvLzLhJvN5FjPpP7QrI9C1E 18:3622:n5u4G5-52NoBvH8ExMsG3KgCtFOrQkR_0CjB9LlF7UjHrRpClJBjP 19:2325:h8t4G3rh3NwDtI 27:748:12s4G59m3N 22:1334:19s4Gj2n3NzM9L9JvP1KzIvC1G 21:1588:5_t4G71p3NuGtJwQ1QyC5RuOhXoE1E 24:3829:9ks4Gtks3N8DlEkCzFsB1L4F_HiDjI4PrRgJpSCnHhI7cdvSkBpHuL9aGhPgC5HPtExHhXAhH 37:3951:xyq4Gx4z3NgI_J6GrNuGnJmL1GyD5DmJ_XoGhIkDnJmFxHkCzK8F9HgD_IoJrPuFpP-gB9Z 33:4132:zgm4G5s63NsBlG7BtNcxG0LpQ0H9QK9bnBnJzKzStPnM9K5W1L1L1VpP 32:1199:rpo4G72g4NzP5L9G5K5BpL 29:2473:16o4Gv_i4NwIlOuQnrBsDvhBpGnTxB5N 28:2273:_go4Gp8n4N6E5MyHteWtRjBhO6FtlB6BvF 23:4757:x1m4Gl5s4N4B_L8GhMqG3TuBzH-F9P9CzpBgBtJC_YmCpTL7WoB_H2Tj3BsDnEgPpK 25:3785:1lk4Gtz14NwG5D8LrKsFjGsC3EwBvKVjI1F9LzCrIiE_XA5S7F9kBxC7GrKxNjRpO3K9M 26:4038:9jl4G3m84NE_D2BlF6GtK-ErONrKmCrKjB9K2DrMAxPtCnPvJ9avKvPxI5GzHhChF1DhJnTf5X 30:4213:1im4G1-j5N2DjL8D7G8GhGwJ9Dq3B3JmNQmQvC6TvN4InE8GtHuLpFsMvC8IxD 31:427:_o_3Grnn5N 35:5453:hk_3G1yn5N5Dnd5K3UxCtQQ9GqDzFiF7CgW8BwHzCkXpQqT9byG_MgFjPmF_JuK5gB0NhyB 14:3242:pz73G7tx5NuBpjBnC9LjB7blElMvC7VhI3TblJepEkDzE6NtIqDtDkD_G 16:5031:nz73Gr835NHpJmC5FuQrV-fxUgOzFkX9EuG9FqL1D4OlJ6M7J8gBjjB0KlWmGlR
+Q|EFE Central|Tren Talca – Constitución|#ABC300|L55|16 14:5031:5813Gln95NlGmRzKmW7gBkjB5M8J3OmJpL2DtG-FjX-E_N0F9fyUtQsVlC6FIqJ 35:3242:xs73G5z25NjDgHpDuD5NuIjD0EdqEcmJiI4TwC8VmEmMkB8boC-LtBqjB 31:5453:z773Gxqv5NzNiyBtK6gBlFgK_EkPxGgNpT-bjXqQvH0C_V7BhF8CpD0FP-GyCuQ6K4U6Dod 30:427:_o_3Grnn5N 26:4213:9xg4G_qm5N7IyDrMwCtLqF7GuH3IoE5TwNlQwClNPp3B4JvJ-D7GiG7D8G1DkL 25:4038:5nm4G11i5NgB6XiJoTiF2D0HiCyI6GwKwPwJ-auCoPAyP1DsMkB-KlCsKOsK9EsO5GuK1BmFDgE 23:3785:19k4G7y74N4K-MkRqOsKyNyC8G8F-kBA6ShEgY0CsI2F-LWkIvBwKrC4ErFkG7LsKvG6D 28:4757:_3k4Gvg14N_OqKrDoE1Tk3BnBgIM8WlCqTBgZfuJ-C0pB9F-PtB0HpG4T7GiM3BgM 29:2273:ttn4G_xr4N5BwF5FulBkBiOVuRxHue5E6M 32:2473:nmo4Gv7m4NyB6NqGoTrDwhBtQorBvImO 33:1199:3hp4G54h4N6BqL-G6K0P6L 37:4132:p0n4Gj-_3N2VqP2L2L-K6WuPoM0K0SoBoJJ-bzH-QzLqQbyG8BuNrBmG 24:3951:l8m4G3o53N9gB-ZtFqPnJsP_CgJ7F-HjC0KlFyHjDoJnGiIlJgYxD6DlL2GtGoJ5GsN_HgK 21:3829:n-q4Ghgz3NAiHyHiXQuE_B6HFiPtL-ajBqHewSiI8cBoH_IqS3PsRhDkI3FgIrB2LjC0F7DmE 22:1588:zzs4Gx9r3NnE2EtOiXxC6RvQ2QtGuJ 27:1334:thu4G7gp3NwC2G2K0I-JwP0M-L 19:748:12s4G59m3N 18:2325:x4t4Gl0h3NvDuI 20:3622:_ou4G9yg3NCkPqCmJkHsRmF8UkB-LjRg1CNsQ_BuFrG4K7EyMnBwH 17:3208:93u4Gtq52N-C2E8QsIkPqPwN6F0LiJ0KwL6GwCsMTwL8BsHkDyFiHsBqE 34:4542:xkr4G_jw2NhKs_B 15:9599:lnr4Grhq2NxI6gBlLilCpG62CjBgFvCyE9D2DxI2Bl7BlZnI7BnFKrH4C9FwEzE0FxyB8wClEsKlBoN 36:12586:32w4Gr7s1NqCkKgD0E2D8C4uDk1B-iEuQmPH
+Q|EFE SUR|Tren Pitrufquén – Temuco|#141cff|L55|53 10:3863:5kusHt-_6N1KpRlNlOxapJ9e1BhExBlFtE7Mva 9:21366:jgzsHz-k7NrFlG_F5DlHjCvHKrvB-KnJFlJxC5HvEpelX_nBjjB7fjPlXlJzVqCrQtG7QPxN1CjGO_N8D5ISra3E5zCzDlJ-BzIiEnpBqdjJ-DptEyD 11:4204:z07tHj_p7N3G7D
+Q|EFE Sur|Tren Laja – Talcahuano|#60AE2b|L55|98 84:1780 87:1959 96:2135:7jogHvul-N7L6I 100:3132:72sgHx4i-NpRoGjPyB 94:3133:jtxgH9wi-NnKuCjJsEtoC0sBzG4H 79:2712:tv1gHxj_9N3JgI5IsCrdZ_KiCxI2D9SyL3P2C 78:10147:x45gHzv99NjJ0K7IqGnK6E1P0E3RiJlxCwZlRiB5EwB_HmGrPqRtUiO3ZqHpRMrRsLlLmK5EwC30BwF5RqI9TqCtY8RhoB-M7HM_mBjE9GY_FwC 99:1330:t1rhHlr29N 97:1706:_zthH1v09N 92:1457:3gvhHr6z9NrJY 88:8878:zoxhH7t09NnHuBzGsEvKkN3GsF5PuGtQJhFwCzDyDhEyIhG-b1UytC9DgXpEqlBMkgB4DiUuK0c4C0cmGqSkL6Uc-I7BgI3DmGnK4KvNsgBvIgKzF-C7S8FnUqC 48:9802:7n3hHxkm9N7HS3H1CvMlJxE1GhGlRhEvH3d_e_LtRvJxQzWjvBzS_P9OtXnJzFhMtBtjBvI3YoF_mBqEtEyBzX0OjK6LxFuD5WiB1M2CrNM_tBmY7GCrOzD 50:2796:rzniHp1q9NlNyBlMuErmByW 54:4721:zrviHtko9NpIgFrT-R 55:2179 44:2679:tt2iHhrk9NpI8GnGqJ5MsfpXublIwGxHiE 52:1558:_15iHh0h9N1EqB7EsDlFgJxB8N5BqG_JyO 40:7568:9h7iH1_-8NnGoe_C0EzI0G9D4ExJ0RrDuMtF2LpCwSV0QlJqclBkKjC0GrN4W_I-J9LiUvP-M3K0OvQ8MxEqF7HmQxHiTzOkbtSkoBnCqHtBoO0C2X 38:7040:z9gjH9lx8N-D-N6C0ZiCsEuImKwDgJZ6ejBsGxCuF9DyEl2BkuBjKiHtE6G3D4LamWmB4F8GwM8KqK8M4XyC8JpBqMauHiD-G-IyKyDwNLyLzFgc 51:8296:_yijHhtk8NpGuGzdgZ7TiKvM4L5DyF5J2ZtGgKvGoHrLwIzRwH_R-KhX4T3d6kBrI6H7OsH_NuBle9BxenK1HfzHc1ImF3K6I7G4H3IwO 41:2357:noujH3r87NpD8PtEuF3mByL
+Q|EFE Sur|Tren Laja – Talcahuano|#60AE2b|L55|41 51:2357:32vjH7q77N4mBxLuEtFqD7P 38:8296:hqtjHnr97N4IvO8G3H4K5I2IlF0Hb2HgByeoKme-BgOtB8OrHsI5H4d5kBiX3TgS9K0RvHsLvIwGnHuG_J6J1Z6DxFwM3L8ThK0d_YqGtG 40:7040:xthjHlhm8N0F_bMxLxDvN9IxKhD9GZtHqBpMxC7J7M3X7KpK7GvMlB3FZlW4D3LuE5GkKhHm2BjuB-DxEyCtFkBrGa5evD_ItIlKhCrE5CzZ9D9N 52:7568:58gjHnhy8NzC1XuBnOoCpHuSjoB0OjbyHhT8HlQyEpFwQ7M4KzOwP9M-LhUgJ9JsN3WkCzGmBjKmJpcWzQqCvSuF1LsDtMyJzR-D3E0IzGgDzEoGne 44:1558:jy6iHzjg9NgKxO6BpGyB7NmF_I8ErD2EpB 55:2679:7v4iHv1h9NyHhEmIvGqXtb6MrfoGpJqI7G 54:2179 50:4721:pnwiHvtn9NsT9RqI_E 48:2796:jzpiH34p9NsmBxWmMtEmNxB 88:9802:v2kiHz0q9NsO0D8GBguBlYsNL2M1C6WhByFtDkK5L0XzOuExBgnBpE4YnFujBwIiMuBoJ0F-OuX0SgQ0WkvBwJyQgMuR4dgfiEwHiGmRyE2GwMmJ4H2C8HR 92:8875:7m2hHhvm9NoUpC8S7F0F9CwI_JwNrgBoK3K4DlG8B_Hb9IjL5UlGpS3CzctKzc3DhULjgBqEplB-D_W2UxtCiG9biExI0DxDiFvCuQKuP7FsH1FsKhNiGjEsH1B 97:1460:nqvhHr5z9NyJV 99:1707:pzthH7v09N 78:1330:10rhHrr29N 79:10146:zsphH3739N0G1CkIZ0lBiEsHJioB7MoG3DsOlMsElC8S_BiStIq1BxFiF5C6K5J8QnL0EfmNOkavHmV3O2O3QuH5FuEtB4RlB2xC1ZoSpJgPpEwJtE2I9FoK1L 94:2714:j24gHrl-9N2P3CuT5L2I1DiL_BodYiI_BoK_H 100:3129:rv0gHv1g-N0G1HioCtsBgJtE0JvC 96:3133:p2tgHtwi-N8NvB8S9G 87:2136:xvogHtll-N2L1I 84:1959 98:1776
+Q|EFE Sur|Tren Victoria – Temuco|#B4C400|L55|56 45:12061:n3spH_tw5NnInezFzHzGnEpqI1jC1JR70CkGvGdnHlElwCxqCvHvF 46:10267:xpmqH__55NnGflHiBzGmD3sEk5CtHyHvO2WlFmEvFsClWoC_JtC 49:5464:xozqHlj65NhJlGhGtClLE1gDydlTwEjHd_H_D 42:8194:h_5qH3p75NpJ_Frb9N1EdpFmB5SiM_FgC_GpB1NrH3D_D9CxF3Fta_CrHtgBzdlHhOhE3E 43:1023:5hlrHhrj6N 47:11849:z0nrH3wk6N_J_BjQmBppBgQvKarGdpJ7CrcxNnpB7B9apH5GnExR1QpOpGnIXv4B4Ble7I3YzDvOuCxgDihBzPgB1N_E 53:16344:957rH1no6N_P3Lh-D97DjF5I3C_H7LxwCnF3OrGtL99BvkC7HhDtR0CnErBhEnDvN3Y16C31F_FhJ1K5KzpDpqChJ3L5hB74B 39:9085:p0ssH5l-6N6hB84BiJ4LmkDsmC4N6LsIgMgmD0rGkE4EwF0CuRtCqGqB
+Q|EFE Sur|Tren Victoria – Temuco|#B4C400|L55|53 47:16344:p0ssH5l-6N6hB84BiJ4L0pDqqC2K6KgGiJ26C41FwN4YiEoDoEsBuRzC8HiD-9BwkCsGuLoF4O8LywC4CgIkF6Ii-D-7DgQ4L 43:11849:x92rHxil6N2NgF0PfygDhhBwOtC4Y0Dme8Iw4B3BoIYqOqGyR2Q6GoE-aqHopB8BscyNqJ8CsGewKZqpB_PkQlBgKgC 42:1023:5hlrHhrj6N 49:8194:r2-qH7z-5NiE4EmHiOugB0dgDsH4Fua-CyF4DgE2NsHgHqBgG_B6ShMqFlB2Eesb-NqJgG 46:5464:7l4qHxu55NgIgEkHemTvE2gDxdmLDiGuCiJmG 45:10267:lrtqH_-15NgKuCmWnCwFrCmFlEwO1WuHxH4sEj5C0GlDmHhBoGgB 56:12061:h67pHtr25NwHwFmwCyqCoHmEwGe80CjG2JSqqI2jC0GoE0F0HoIoe 39:56117:n3spH_tw5NnInenM7LpqI1jChlD0EjiD91CxtKnzD5S0DrpE62Cve4kBza0E5N_D3oG_qEn5D8gBhPHz-Bz9B_c1QrQhFxb-O3T_HzHnK3I5hBtgBzdnL5S5mGx0Ez6CppB9WG5zB6QhsBrRnpB7B9apH1mBnb3gCgBh4BxMtvD-jBjWzBhuFlwDngEn9D1J9SjRp_C
+Q|EFE Trenes de Chile|Tren Nos – Estación Central|#E63323|L55|57 67:2790:z8lsGhwsvNlf-C7U3BhSxF 71:1729 66:2457:_tusGrktvN 65:6567 61:1567:939sGvswvN7Ld 73:923 68:1268 60:1933:j2ktG5-vvNlTjClOlE 69:1067
+Q|EFE Trenes de Chile|Tren Nos – Estación Central|#E63323|L55|69 60:1068 68:1936:v3ltG5kwvNoOoEgTkC 73:1268 61:922:vjhtGxmwvN 65:1564:pl-sGltwvNmOkB 66:6570 71:2459:huusGjktvN 67:1729 57:2789:xjosGp0svN6S4FmSyB
+Q|EFE Trenes de Chile|Tren Rancagua – Estación Central|#56AE35|L55|5 62:11907 74:10001:ro7vGj90vNmTwD8yFmUy0G2R 63:13104:lirvG1jzvN-M5B00BnM-oBa2JZmpBrJkP7FoY4CyH5Dy1BnuBuK_F-PnD6yBmD4KjC0G5DyFnFuvC_6CwR_M6TxIu4BlJyiBlEgN6BkmBwMgJgB 70:5764:vrwuGnz5vN 64:5900:9rmuGrm4vN 58:3511 59:2135 73:13765:xp1tG910vN4KmByNpD8hBpUiM_FwMxC8MmBoL2DyzBgW44Kw2E4NoDoQqB 57:16034:ht-sGvtwvNyTQyrPsoDwrG-PyRuFwPuBsLIsZjD
+Q|EFE Trenes de Chile|Tren Rancagua – Estación Central|#56AE35|L55|57 73:16034:18lsG_wsvNtgBkD1SxBvTzFzqG5P_rPtoDxRP 59:13763:n0ktGr_vvN3OdrPxDz4Kv2ExzB9VpL3DhNjB_M4CvJyE9jBuVlNsD3KjB 58:2135 64:3511 70:5901:7rmuGzm4vN 63:5802:juwuGzz5vN 74:13122:p53uGzx5vNhmBrMhN7BxiBqEv4BmJ5TyIxRgNvvCi7CxFoFvG4D3KiC5yBjD_PoDpJiFh3BwvBjHwD_Y3CzO-F7nBiJ1KgBhpBZj2B0MpLwB 62:9946:3ruvG5zzvNl5GjS3wFhU_U_D 5:11983
+Q|EFE Trenes de Chile|Tren San Fernando – Estación Central|#F3B015|L55|7 72:23358:n_izG9rnxNsG2EwEyGiNkciFmHyGqGsqG0qEunGu5EskGo5DiN6NodytBwIqJiF6DyJyE-OiDs_GwiB2R4E0MmG-J6G 5:28786:76_xGx-wwN8PqJixM6xFosEyvB0ewQkrE20B0oG2rD0vG2pDwJ4Fq6B0tB40Bo_BqsBwnBmuBgiBmKmDoKKukClL8Q-B 62:11907 74:10001:ro7vGj90vNmTwD8yFmUy0G2R 63:13104:lirvG1jzvN-M5B00BnM-oBa2JZmpBrJkP7FoY4CyH5Dy1BnuBuK_F-PnD6yBmD4KjC0G5DyFnFuvC_6CwR_M6TxIu4BlJyiBlEgN6BkmBwMgJgB 70:5764:vrwuGnz5vN 64:5900:9rmuGrm4vN 58:3511 59:2135 73:13765:xp1tG910vN4KmByNpD8hBpUiM_FwMxC8MmBoL2DyzBgW44Kw2E4NoDoQqB 57:16034:ht-sGvtwvNyTQyrPsoDwrG-PyRuFwPuBsLIsZjD
+Q|EFE Trenes de Chile|Tren San Fernando – Estación Central|#F3B015|L55|57 73:16034:18lsG_wsvNtgBkD1SxBvTzFzqG5P_rPtoDxRP 59:13763:n0ktGr_vvN3OdrPxDz4Kv2ExzB9VpL3DhNjB_M4CvJyE9jBuVlNsD3KjB 58:2135 64:3511 70:5901:7rmuGzm4vN 63:5802:juwuGzz5vN 74:13122:p53uGzx5vNhmBrMhN7BxiBqEv4BmJ5TyIxRgNvvCi7CxFoFvG4D3KiC5yBjD_PoDpJiFh3BwvBjHwD_Y3CzO-F7nBiJ1KgBhpBZj2B0MpLwB 62:9946:3ruvG5zzvNl5GjS3wFhU_U_D 5:11983 72:28708:ryywG9j7vNrNnB5jCmLhLJvJ_CzuB9hBxqBjmBt2B7gCp6BxtBlOnI9qGnnD9nGprD7rEh1Bhd7P5tEjwB_uM9wFpNrH
+Q|EFE/Corporación Patrimonio Ferroviario|Tren del Recuerdo||L55|57 75:112696:trpsGnltvNr1E_1JzxD_6BxwBlxB7nKtwOjqEv3E50JnrI9-C91H5B7jDjjE_4JxyBzoR08C_9PjgBp4HiI_wD21J_iOxJp-FrqBvoCxuBkB3f7c3F34B-4D5xExajgByC_e89CxrGF95BmrDxmKuGxrBxQhkBkjB_TgiCxvDrDhrCwrCzqGyCxsB_iCr6BrzChR3iB7xB1xByJ2Jp3B0iB_nB9R9hD-S9P
+Q|Red Concepción de Movilidad|Biotren Línea 1|#DD3018|L55|98 84:1663:jgjgHh9o-NzI_CrkBsCpM2F 87:2105 96:2135:7jogHvul-N7L6I 100:3132:72sgHx4i-NpRoGjPyB 94:3133:jtxgH9wi-NnKuCjJsEtoC0sBzG4H 79:2712:tv1gHxj_9N3JgI5IsCrdZ_KiCxI2D9SyL3P2C 78:10147:x45gHzv99NjJ0K7IqGnK6E1P0E3RiJlxCwZlRiB5EwB_HmGrPqRtUiO3ZqHpRMrRsLlLmK5EwC30BwF5RqI9TqCtY8RhoB-M7HM_mBjE9GY_FwC 99:1330:t1rhHlr29N 97:1706:_zthH1v09N 92:1457:3gvhHr6z9NrJY 88:8878:zoxhH7t09NnHuBzGsEvKkN3GsF5PuGtQJhFwCzDyDhEyIhG-b1UytC9DgXpEqlBMkgB4DiUuK0c4C0cmGqSkL6Uc-I7BgI3DmGnK4KvNsgBvIgKzF-C7S8FnUqC
+Q|Red Concepción de Movilidad|Biotren Línea 1|#DD3018|L55|88 92:8875:7m2hHhvm9NoUpC8S7F0F9CwI_JwNrgBoK3K4DlG8B_Hb9IjL5UlGpS3CzctKzc3DhULjgBqEplB-D_W2UxtCiG9biExI0DxDiFvCuQKuP7FsH1FsKhNiGjEsH1B 97:1460:nqvhHr5z9NyJV 99:1707:pzthH7v09N 78:1330:10rhHrr29N 79:10146:zsphH3739N0G1CkIZ0lBiEsHJioB7MoG3DsOlMsElC8S_BiStIq1BxFiF5C6K5J8QnL0EfmNOkavHmV3O2O3QuH5FuEtB4RlB2xC1ZoSpJgPpEwJtE2I9FoK1L 94:2714:j24gHrl-9N2P3CuT5L2I1DiL_BodYiI_BoK_H 100:3129:rv0gHv1g-N0G1HioCtsBgJtE0JvC 96:3133:p2tgHtwi-N8NvB8S9G 87:2136:xvogHtll-N2L1I 84:2145 98:1776
+Q|Red Concepción de Movilidad|Biotren Línea 2|#E36523|L55|79 90:4556:314gHpm-9NiO1CwGtG0CtIelIjD_PpCvUnE9Hj3Cr_CjC3Ef9G 83:1803 76:1820:x46gHrvp-NlBpNhFvPlG_JnH5HvJlG 81:900 85:1473 93:1668 77:1762 86:6305 95:2986:l-1hH9vx-N 89:894 82:1136:1t5hH12x-N 91:1645:z-6hH7tx-N 80:1513:j_9hHtrw-NtcgNlDiD
+Q|Red Concepción de Movilidad|Biotren Línea 2|#E36523|L55|80 91:1511:n--hHv7v-NgD3CqdrN 82:1644:__6hHhtx-N 89:1135:1t5hHr2x-N 95:893 86:2986:n-1hHzvx-N 77:6305 93:1762 85:1668 81:1473 76:900 83:1814:717gH9jr-NwIuFoIwIiG-JiFuPmBoN 90:1803 79:4557:5h7gHh3j-NkBgHqC6E62C8-CyC0D-BwFuFmjBdmIzCuIvGuGhO2C
+Q|Tren Limache-Puerto|Tren Limache – Puerto|#DD3018|L55|111 113:12730:5uqpG35hzNVhI2a56D0BvMGlNtBzOzGllB5TviDFxQgFhWLvNrDtKjItO3CjS7DrI5FxF7TxLrS1DjS9FvQxC9IxD_L_HrI7DravFhQhB9HmBxRwE5rBmT1fkIhfiDjRhDvLhGvKxK 118:1282:3o1pGhrwzNjCpK 120:649:tz1pGlzzzN 109:865:zy1pG_y0zNiEpW 110:1221:tv1pGtv2zN1G7X 104:1109:l_1pGv64zNHpUwCjS 106:2077:9y1pGjj7zNmB9HEre 116:1752:t_0pGjo_zNIhJbhIxClJhGlM3T3UlE_FxDpL 105:9640:ll2pGxui0NgCpNiE3L-G3MmC_HA9GvChLF5IoCjJqEvHmCnGUlHflNezFoF_KsMvLwC1DuCjIfvJ1G3NtDxDnFxCpbdnOyDvEpB9ItFrDC1ImDhHrB_EjEhJtM3FvJxDrKxH9HrDnHVtH0CnVM1NsF1T0gB54BqP9f 103:1446:h90pGp0x0N2R3R6J7X 108:1124:tvzpGxxz0NiHvK 119:866:jyypGjt20N 112:915 117:1402:_-xpGp950NClIhHlS_C_K 114:1990:j3ypGv470NTtI2DzQ2HtNcrGf5FhFvH5PnJ1I7J9GzF1DnF 101:1738:7_zpGt4_0N5J3PtUnd_FrE 107:796:t41pG5zh1NrEjMvBhQ 102:692:v51pGrqj1NQ5V 115:715:z11pG7yk1NqCzE
+Q|Tren Limache-Puerto|Tren Limache – Puerto|#DD3018|L55|115 102:717:1z1pGr3k1NjCoE 107:692:n51pGzgk1NPuW 101:803:z-1pGtvi1N2BkQoE4L 114:1734:jk1pGtph1NwFgE4UudgKkQ 117:1990:h1zpGhx-0N8C6EqHgGgKiLgQwJgEmGiBqFNwF3B-ErGoK1DwRYyH 112:1398:npypGvi70NyCwJwHyTAiI 119:915 108:866:pyypGnt20N 103:1122:zozpGl8z0N9GuK 105:1447:3h0pGh-y0N5J8XrRsR 116:9739:762pGj6u0NhVgqB9dwzBzFoUrBoRrF6YmC2HgDgDmIqEiHqPuNqSiF-EwG4B-H_D2ENmJsFoEmB8OzDmacmFqC4D2D4G6NeuJ3CwI9OmP9EoLZ-FO8StB6EhFiJrC6JGqIwCkLH0IxC8HzGgMzD4KjC-M 106:1752:rk2pGn0h0NuD4KwEwG8SwT4GiNsCuIiB-IH-I 104:2077:7x1pGzp8zNF2e 110:1111:r91pG_g6zNnCiSFsP 109:1221:x21pGpo3zNuGkW 120:865:5u1pG_o1zNnEyW 118:649:7z1pGj3zzN 113:1284:rr1pGl3wzN8BwK 111:12732:j_0pG93vzNsL2L2LkGsPiD6gBjD0gBrImqBxSkJ3CyQnDsQgB6bgGwSkL8I0DoR6C4R8FgSyDqU2LmF6EsEgJ4CiS-IkQ6C4JGmMjF6WIiQ8TyiD-H4xBA-N3B2Nxa65DQmJ
 T|-24.22761|-69.08095|Adolfo Zaldívar
 T|-33.45234|-70.67906|Alameda
 T|-36.84687|-73.13094|Alborada
@@ -690,3 +866,406 @@ T|-17.59509|-69.47696|Visviri
 T|-33.02636|-71.55186|Viña del Mar
 T|-37.14654|-72.53974|Yumbel
 T|-36.29416|-71.90170|Ñiquén
+B|-33.71027|-70.53020|978
+B|-33.01612|-71.25776|Agdabus
+B|-20.49077|-69.32819|Agencia Buses Warayana
+B|-26.24585|-69.62698|Agencia Ciktur
+B|-39.27702|-71.97002|Andesmar Bus Depot
+B|-22.46038|-68.92291|Andesmar Chile
+B|-39.82059|-73.24173|Aníbal Pinto alt. 1111
+B|-39.53876|-72.96648|Bus Norte
+B|-31.63876|-71.17568|Bus Station
+B|-30.25598|-71.49491|Bus Station
+B|-33.61820|-70.90739|Bus Station BUPESA
+B|-53.15826|-70.90724|Bus Station to El Andino
+B|-46.53827|-71.72850|Bus Terminal Chile Chico
+B|-33.45455|-70.67984|Bus Terminal San Borja
+B|-39.27578|-71.96679|Bus Terminal Turbus & Condor
+B|-46.12163|-72.15821|Bus station
+B|-43.61817|-71.80210|Bus terminal
+B|-43.18515|-71.86824|Bus to Argentina
+B|-27.36886|-70.33599|Bus to Caldera
+B|-20.21732|-70.14747|Bus to Humberstone
+B|-18.47310|-70.30491|Bus to Pudre
+B|-48.46739|-72.55714|Bus to Tortel
+B|-32.98464|-71.27778|Bus+Metro (Agdabus/Efe)
+B|-47.25654|-72.57342|Buses Acuario 13
+B|-47.79585|-73.53181|Buses Aldea
+B|-45.57114|-72.07135|Buses Ali
+B|-45.40147|-72.68764|Buses Ali
+B|-53.15275|-70.90685|Buses Barría
+B|-45.56948|-72.06971|Buses Becker
+B|-43.97458|-72.40565|Buses Becker
+B|-37.95724|-72.43730|Buses Bio Bio
+B|-38.73535|-72.58881|Buses BioBio
+B|-39.27765|-71.97212|Buses Caburgua
+B|-47.79575|-73.53115|Buses Cordillera
+B|-42.37891|-73.64790|Buses Cruz del Sur
+B|-41.87111|-73.82589|Buses Cruz del Sur
+B|-39.36830|-72.63258|Buses Cruz del Sur
+B|-43.18640|-71.87080|Buses Cárdenas
+B|-42.91744|-72.71240|Buses Cárdenas
+B|-36.82186|-73.05107|Buses Delsal
+B|-44.32396|-72.55741|Buses EntreVerdes
+B|-53.15843|-70.90879|Buses Fernández
+B|-34.29954|-71.40146|Buses Herrera
+B|-39.28282|-72.22956|Buses JAC
+B|-38.73325|-72.58613|Buses JAC
+B|-33.40461|-70.57982|Buses JAC Punto Parque Araucano
+B|-41.74401|-73.70558|Buses Maullín y ETM
+B|-34.60208|-71.65164|Buses Nilahue
+B|-42.62593|-74.10824|Buses Ojeda
+B|-53.16098|-70.90273|Buses Pacheco
+B|-41.86775|-73.82503|Buses Rurales
+B|-38.73380|-72.58019|Buses Rurales
+B|-39.82452|-73.22041|Buses San Sebastián
+B|-45.40112|-72.68745|Buses Suray
+B|-22.46192|-68.92947|Buses Terminal Calama
+B|-38.41121|-72.78040|Buses Transantín
+B|-33.37784|-70.61340|Buses U. Mayor a Metro Vespucio Norte y Escuela Militar
+B|-29.90276|-71.25628|Buses a Valle del Elqui y Punta de Choros
+B|-39.81295|-73.24398|Buses a la Costa (Niebla-Los Molinos- San Ignacio)
+B|-37.60753|-73.65663|Buses bio-bio
+B|-38.73322|-72.58663|Buses igi llaima
+B|-37.60750|-73.65611|Buses igi-llaima
+B|-35.59864|-71.73143|Cancha de Carreras
+B|-31.77923|-70.96260|Cejer
+B|-31.91160|-71.50251|Cejer Buses
+B|-22.46151|-68.92294|Ciktur
+B|-32.64028|-71.42991|Condor Bus (Terminal Maitencillo)
+B|-36.82180|-73.05112|Conquistador
+B|-42.62420|-73.77262|Cruz del Sur
+B|-41.25800|-73.00595|Cruz del Sur
+B|-41.11794|-73.05444|Cruz del Sur
+B|-39.82396|-73.22907|Cruz del Sur
+B|-37.47641|-73.34378|Cruzmar
+B|-45.57250|-72.06819|Don Carlos
+B|-33.53841|-70.66362|EIM La Cisterna
+B|-33.59852|-70.88810|Ecobus
+B|-24.32891|-69.09585|Estacionamiento Buses 5400
+B|-42.71231|-74.13032|Estacionamiento y Parada de buses hacia Cucao y Castro
+B|-53.15829|-70.90735|Estación Buses Municipales
+B|-20.83374|-68.65047|Estación Buses Santa Inés de Collahuasi
+B|-36.82990|-73.06055|Estación Intermodal Concepción
+B|-37.02462|-73.15053|Estación Intermodal Coronel
+B|-33.49008|-70.75308|Estación Intermodal Del Sol
+B|-33.36418|-70.69225|Estación Intermodal Los Libertadores
+B|-33.38052|-70.64702|Estación Intermodal Vespucio Norte
+B|-34.08269|-70.38124|Estación de Bus División El Teniente
+B|-51.25505|-72.34443|Estación de Buses
+B|-38.93296|-72.02839|Estación de Buses
+B|-38.42003|-72.37585|Estación de Buses
+B|-27.07031|-70.82399|Estación de Buses
+B|-33.39858|-70.79569|Estación de Buses Aeropuerto SCL
+B|-33.53975|-71.59592|Estación de Buses Cartagena
+B|-39.56894|-72.00537|Estación de Buses Coñaripe
+B|-37.11142|-73.14700|Estación de Buses Expreso 2000
+B|-50.96518|-72.86328|Estación de Buses Las Torres
+B|-35.10421|-71.30291|Estación de Buses Molina
+B|-37.11275|-73.15189|Estación de Buses Nueva Takora
+B|-50.97972|-72.80046|Estación de Buses Torres del Paine
+B|-37.11017|-73.14532|Estación de Buses Translota
+B|-24.26389|-69.12778|Estación de Buses Villa San Lorenzo
+B|-40.41079|-73.01126|Estación de Buses de San Pablo
+B|-33.04605|-71.60456|Estación de Trolebuses
+B|-36.91490|-73.02856|Estación de buses Turbus
+B|-18.40528|-70.29672|Etrapas
+B|-31.90009|-71.48962|Ex Terminal de Buses
+B|-26.34555|-70.62106|Expreso Norte
+B|-22.89010|-69.31972|Expreso Norte
+B|-37.61429|-73.64611|Expreso la fortuna
+B|-33.67366|-70.94981|Flota Talagante
+B|-38.41064|-72.77968|Huinca Bus
+B|-38.24814|-72.66858|Igi - llaima
+B|-38.60151|-72.84348|Inter Sur
+B|-31.78007|-70.96983|Intercomunal
+B|-38.73389|-72.58122|Intercomunal Sur
+B|-33.41241|-70.79832|Intermodal Aeropuerto
+B|-40.13022|-72.39105|Jet Sur
+B|-39.66506|-72.95238|Jet Sur
+B|-39.28371|-72.23138|Jet Sur
+B|-39.27757|-71.97274|Jet Sur
+B|-20.21681|-70.14591|Kenny Bus
+B|-33.04656|-71.53133|Línea 116
+B|-33.04174|-71.53499|Línea 118
+B|-39.86418|-73.39246|Línea 20
+B|-33.04534|-71.53043|Línea 42
+B|-38.51916|-72.42855|Línea Uno
+B|-37.79782|-72.70539|Mercado Municipal
+B|-38.73295|-72.58679|Nar Bus Internacional Temuco
+B|-38.73306|-72.58675|Nar bus
+B|-47.25328|-72.57539|Pachamama
+B|-33.58955|-70.71517|Parada Colón Buses al Sur
+B|-40.57188|-73.13815|Parada Taxis Colectivos
+B|-42.27272|-73.52081|Paradero
+B|-41.52910|-73.05894|Paradero Avenida Isla Mailen
+B|-31.18023|-71.00315|Paradero Buses Combarbalá
+B|-41.12472|-73.06028|Paradero Buses Locales
+B|-37.16347|-72.06968|Paradero De Buses
+B|-41.13746|-73.02788|Paradero THAEBUS
+B|-42.62312|-73.77295|Paradero de Buses Chonchi
+B|-20.25071|-70.10029|Paradero y Terminal Linea 1
+B|-20.25080|-70.10158|Paradero y Terminal Linea 3
+B|-45.40207|-72.68522|Puerto Aysen - Puerto Chacabuco
+B|-39.27746|-71.97248|Pullman
+B|-41.32319|-72.98608|Pullman Bus
+B|-40.29291|-73.08185|Pullman Bus
+B|-39.28252|-72.23016|Pullman Bus
+B|-38.71042|-72.55651|Pullman Bus
+B|-35.43223|-71.63772|Pullman Bus
+B|-34.98091|-71.23874|Pullman Bus
+B|-33.61066|-71.60962|Pullman Bus
+B|-33.32012|-71.41053|Pullman Bus
+B|-32.78832|-71.19251|Pullman Bus
+B|-31.91101|-71.50343|Pullman Bus
+B|-31.78038|-70.96393|Pullman Bus
+B|-27.36998|-70.33473|Pullman Bus
+B|-26.24469|-69.62630|Pullman Bus
+B|-22.46114|-68.92303|Pullman Bus Terminal
+B|-26.34595|-70.62134|Pullman bus
+B|-34.11497|-71.72909|Pullman del Sur
+B|-38.41063|-72.77961|Pullmann JC
+B|-41.61588|-73.59446|Rampa Maullín
+B|-39.28672|-72.23331|Recinto Buses JAC
+B|-39.11736|-71.47461|Reigolil
+B|-37.80100|-72.69662|Rodoviario Angol
+B|-34.43691|-71.07724|Rodoviario Galbus
+B|-38.53776|-72.43545|Rodoviario Lautaro
+B|-51.72862|-72.48826|Rodoviario Puerto Natales
+B|-34.16555|-70.75110|Rodoviario Rancagua
+B|-33.45421|-70.68822|Santiago Bus Station
+B|-51.06135|-72.99031|Sector Pudeto
+B|-42.47239|-73.48760|Station Bus "Achao"
+B|-23.63120|-70.38668|Sub-Agencia Tur Bus
+B|-39.85047|-73.19537|Taller Pullman
+B|-48.46566|-72.56094|Terminal
+B|-42.91578|-72.71129|Terminal
+B|-39.17755|-73.17013|Terminal
+B|-38.06461|-72.37768|Terminal
+B|-39.77131|-73.21971|Terminal  Linea nº2
+B|-20.21130|-70.14937|Terminal  Turbus
+B|-22.46003|-68.92911|Terminal - K-Tur & Buses Argentina
+B|-33.71029|-70.53015|Terminal 978
+B|-33.45390|-70.68654|Terminal Alameda
+B|-33.63212|-70.75942|Terminal BUPESA Calera de Tango
+B|-53.16036|-70.90365|Terminal Bus Sur
+B|-39.27760|-71.97240|Terminal Bus TJM Pucón
+B|-33.02229|-71.25550|Terminal Buses "Comercial Guerra"
+B|-32.83629|-70.60249|Terminal Buses Ahumada
+B|-36.82157|-72.99308|Terminal Buses Geminis Sur
+B|-32.83295|-70.59060|Terminal Buses JM
+B|-39.48981|-72.15431|Terminal Buses Jac
+B|-41.07986|-72.64083|Terminal Buses Las Cascadas
+B|-38.74166|-72.95589|Terminal Buses Nueva Imperial
+B|-40.57287|-73.12935|Terminal Buses Rural
+B|-36.42484|-71.94761|Terminal Buses San Carlos
+B|-42.48078|-73.76404|Terminal Cruz del Sur
+B|-41.46284|-72.95279|Terminal Cruz del Sur
+B|-35.09133|-72.01762|Terminal Curepto
+B|-37.11979|-72.01241|Terminal De Buses De Yungay
+B|-33.40041|-70.56671|Terminal ETM Las Condes
+B|-30.60551|-71.20223|Terminal El Mercado
+B|-33.06501|-71.36225|Terminal Fenur La Prat
+B|-33.06486|-71.36237|Terminal Fenur La Prat
+B|-32.82680|-70.59931|Terminal Ferroviario Los Andes
+B|-36.71118|-73.11544|Terminal Félix Adán
+B|-34.58869|-70.98683|Terminal Galería del Centro
+B|-34.58908|-70.98432|Terminal Intercomunal
+B|-18.47361|-70.30433|Terminal Internacional
+B|-38.43568|-71.89334|Terminal Interurbano de Curacautín
+B|-38.01396|-73.22937|Terminal Jota Ewert
+B|-30.59912|-71.19100|Terminal La Feria
+B|-36.61150|-72.09961|Terminal La Merced
+B|-41.44107|-73.03450|Terminal Laguna Express
+B|-39.85391|-73.22740|Terminal Linea 11
+B|-36.72292|-73.14310|Terminal Los Lobos
+B|-37.98107|-72.83085|Terminal Los Sauces
+B|-39.86414|-73.39254|Terminal Línea 20
+B|-33.72153|-70.55202|Terminal MetroBus
+B|-39.28059|-72.31278|Terminal Microbuses
+B|-33.30408|-71.63461|Terminal Micros Litoral
+B|-33.02314|-71.50852|Terminal Miraflores 212
+B|-42.47834|-73.76302|Terminal Municipal de Buses
+B|-34.16778|-70.72784|Terminal O'Higgins
+B|-35.83942|-71.62299|Terminal Paseo Portal Linares
+B|-37.80232|-73.39970|Terminal Pedro de Valdivia
+B|-33.40793|-71.69267|Terminal Pullman Bus
+B|-27.06559|-70.82038|Terminal Pullman Bus Caldera
+B|-37.45253|-72.33879|Terminal Rodoviario Los Ángeles
+B|-37.58514|-72.52672|Terminal Rodoviario Negrete
+B|-32.75384|-70.71993|Terminal Rodoviario San Felipe
+B|-37.10347|-72.56179|Terminal Rodoviario San Francisco
+B|-39.28285|-72.23109|Terminal Rodoviario Villarrica
+B|-18.47301|-70.30497|Terminal Rodoviario de Arica
+B|-20.20827|-70.15059|Terminal Rodoviario de Iquique
+B|-38.23682|-72.33376|Terminal Rural Victoria
+B|-35.84419|-71.58675|Terminal San Ambrosio
+B|-37.46771|-72.34742|Terminal Santa Rita
+B|-32.92083|-71.44545|Terminal Santa Rosa de Colmo
+B|-34.29402|-71.09860|Terminal Sextur
+B|-37.79667|-72.70554|Terminal Thiele
+B|-39.64371|-72.33305|Terminal Tur Bus
+B|-37.45182|-72.33801|Terminal Tur Bus
+B|-28.57278|-70.76666|Terminal Tur-Bus
+B|-41.31778|-72.99211|Terminal TurBus
+B|-40.06978|-72.87718|Terminal TurBus
+B|-39.86126|-72.80999|Terminal TurBus
+B|-34.16960|-70.75104|Terminal TurBus
+B|-26.34392|-70.62024|Terminal TurBus  Chañaral
+B|-37.95978|-72.43122|Terminal Turbus
+B|-33.40889|-71.69399|Terminal Turbus El Quisco
+B|-40.32207|-72.47844|Terminal Turbus Jac
+B|-34.97999|-71.24259|Terminal colectivos sarmiento
+B|-38.19653|-72.99470|Terminal de Busas Cap. Pastene
+B|-47.25138|-72.57330|Terminal de Buses
+B|-42.47842|-73.76277|Terminal de Buses
+B|-38.98700|-72.64301|Terminal de Buses
+B|-38.41062|-72.77983|Terminal de Buses
+B|-35.96447|-71.68761|Terminal de Buses
+B|-35.33637|-72.40464|Terminal de Buses
+B|-33.08057|-71.58245|Terminal de Buses
+B|-33.06880|-71.59693|Terminal de Buses
+B|-37.03595|-72.40655|Terminal de Buses "Santa Catalina"
+B|-35.59820|-71.73251|Terminal de Buses - Cancha de Carreras
+B|-36.71327|-72.97739|Terminal de Buses 30 Ruta las Playas
+B|-36.71091|-72.97428|Terminal de Buses 32 Buses Ruta del Mar
+B|-37.66745|-72.01478|Terminal de Buses Aranguiz
+B|-37.79674|-72.70656|Terminal de Buses Bio-Bio Angol
+B|-22.45028|-68.92900|Terminal de Buses Calama
+B|-38.71196|-73.16846|Terminal de Buses Carahue
+B|-23.61781|-70.38848|Terminal de Buses Cardenal Carlos Oviedo Cavada
+B|-35.96334|-72.32241|Terminal de Buses Cauquenes
+B|-52.77716|-69.29231|Terminal de Buses Cerro Sombrero
+B|-36.48943|-72.70185|Terminal de Buses Coelemu
+B|-36.81583|-73.02238|Terminal de Buses Collao
+B|-43.18293|-71.87220|Terminal de Buses Comuna de Futaleufú
+B|-45.58220|-72.07798|Terminal de Buses Coyhaique
+B|-43.11986|-73.62248|Terminal de Buses Cruz del Sur
+B|-41.32499|-72.98506|Terminal de Buses Cruz del Sur
+B|-39.86150|-72.81163|Terminal de Buses Cruz del Sur
+B|-39.27751|-71.97267|Terminal de Buses Curarrehue
+B|-43.12022|-73.61950|Terminal de Buses ETM
+B|-33.45428|-71.66904|Terminal de Buses El Tabo
+B|-37.60846|-73.65335|Terminal de Buses Hanga Roa
+B|-38.03410|-73.07187|Terminal de Buses Hernán Thiele
+B|-28.46235|-71.22403|Terminal de Buses Huasco
+B|-36.42144|-71.95505|Terminal de Buses Independencia
+B|-41.87142|-73.81001|Terminal de Buses Interurbanos
+B|-37.72099|-72.23934|Terminal de Buses Islajacoop
+B|-37.46715|-72.34749|Terminal de Buses Islajacoop
+B|-38.73315|-72.58600|Terminal de Buses JAC
+B|-39.27807|-71.97210|Terminal de Buses JAC Pucón
+B|-37.80106|-73.40069|Terminal de Buses Jeldres
+B|-36.81840|-73.06015|Terminal de Buses Jota Ewert
+B|-32.45105|-71.22980|Terminal de Buses La Ligua
+B|-36.60892|-72.08789|Terminal de Buses La Palmera
+B|-29.91072|-71.25668|Terminal de Buses La Serena
+B|-40.32495|-72.47872|Terminal de Buses Lago Ranco
+B|-34.29360|-71.30760|Terminal de Buses Las Cabras
+B|-35.84366|-71.60823|Terminal de Buses Linatal
+B|-39.37090|-72.63710|Terminal de Buses Loncoche
+B|-38.44929|-71.37246|Terminal de Buses Lonquimay
+B|-35.43027|-71.64733|Terminal de Buses Lorenzo Varoli Gherardi
+B|-39.86206|-72.80939|Terminal de Buses Los Lagos
+B|-37.50049|-72.68668|Terminal de Buses Los Notros
+B|-34.15724|-70.70155|Terminal de Buses Manzanal
+B|-36.59710|-72.10667|Terminal de Buses María Teresa
+B|-41.61690|-73.59331|Terminal de Buses Maullin
+B|-28.57205|-70.76599|Terminal de Buses Municipal
+B|-43.11993|-73.61866|Terminal de Buses Municipal de Quellón
+B|-36.82885|-73.14761|Terminal de Buses Nueva Llacolén
+B|-40.07293|-72.87427|Terminal de Buses Paillaco
+B|-33.45757|-70.71591|Terminal de Buses Pajaritos
+B|-36.94941|-72.93177|Terminal de Buses Palomares
+B|-39.64432|-72.33648|Terminal de Buses Panguipulli
+B|-36.14500|-71.82811|Terminal de Buses Parral
+B|-40.57527|-73.11522|Terminal de Buses Pedro Aguirre Cerda
+B|-34.39082|-72.01543|Terminal de Buses Pichilemu
+B|-41.47708|-72.94951|Terminal de Buses Puerto Montt
+B|-40.97371|-72.88345|Terminal de Buses Puerto Octay
+B|-28.57228|-70.76556|Terminal de Buses Pullman
+B|-36.28245|-72.54613|Terminal de Buses Quirihue
+B|-37.67085|-72.58896|Terminal de Buses Renaico
+B|-38.71569|-72.56752|Terminal de Buses Rodoviario Temuco
+B|-37.46618|-72.34695|Terminal de Buses Rurales Vega Techada
+B|-40.79429|-73.21469|Terminal de Buses Río Negro
+B|-33.59237|-71.61426|Terminal de Buses San Antonio
+B|-36.42137|-71.95539|Terminal de Buses San Carlos
+B|-33.64445|-70.35252|Terminal de Buses San José de Maipo
+B|-37.09776|-72.56333|Terminal de Buses San Sebastián
+B|-34.43799|-71.07815|Terminal de Buses San Vicente T.T.
+B|-34.64230|-71.37204|Terminal de Buses Santa Cruz
+B|-32.89134|-70.67711|Terminal de Buses Santa Teresa de Los Andes
+B|-33.56932|-70.79500|Terminal de Buses Servi Expres
+B|-22.08879|-70.19687|Terminal de Buses Tocopilla
+B|-37.72143|-72.23954|Terminal de Buses Turbus
+B|-20.27368|-70.09424|Terminal de Buses de Alto Hospicio
+B|-27.36907|-70.33483|Terminal de Buses de Copiapó
+B|-29.95632|-71.33746|Terminal de Buses de Coquimbo
+B|-41.15394|-73.42666|Terminal de Buses de Fresia
+B|-35.84708|-71.58904|Terminal de Buses de Linares
+B|-33.69751|-71.21566|Terminal de Buses de Melipilla
+B|-40.57292|-73.12563|Terminal de Buses de Osorno
+B|-30.60668|-71.19421|Terminal de Buses de Ovalle
+B|-34.39220|-71.16617|Terminal de Buses de Peumo
+B|-40.91557|-73.16242|Terminal de Buses de Purranque
+B|-32.87344|-71.23376|Terminal de Buses de Quillota
+B|-36.74283|-72.47006|Terminal de Buses de Quillón
+B|-33.04797|-71.43185|Terminal de Buses de Quilpué
+B|-32.79739|-71.52782|Terminal de Buses de Quintero
+B|-32.77717|-71.52688|Terminal de Buses de Quintero
+B|-34.40538|-70.86153|Terminal de Buses de Rengo
+B|-40.33336|-72.95159|Terminal de Buses de Rio Bueno
+B|-33.04674|-71.60637|Terminal de Buses de Valparaíso
+B|-30.03538|-70.71244|Terminal de Buses de Vicuña
+B|-33.02543|-71.54700|Terminal de Buses de Viña del Mar
+B|-32.78525|-71.18851|Terminal de Buses de la Calera
+B|-36.42308|-71.98444|Terminal de Buses la Palmera
+B|-36.42285|-71.96421|Terminal de Buses la Palmera
+B|-34.98471|-71.24534|Terminal de Curicó
+B|-18.50331|-70.28142|Terminal de Taxibuses Línea 2
+B|-38.66994|-72.22300|Terminal de Vilcún
+B|-40.57903|-73.15602|Terminal de bus
+B|-22.45932|-68.92708|Terminal de bus Atacama 2000
+B|-38.23438|-72.33684|Terminal de bus Bio-bio
+B|-22.45915|-68.92645|Terminal de bus Frontera Del Norte
+B|-28.46241|-71.22393|Terminal de buses
+B|-36.95142|-73.01589|Terminal de buses Expresos Chiguayante
+B|-37.47755|-73.34335|Terminal de buses Jota Ewert
+B|-36.84283|-73.00997|Terminal de buses Las Bahías
+B|-36.97346|-72.92674|Terminal de buses Las Galaxias
+B|-36.60486|-72.11237|Terminal de buses Línea Azul
+B|-36.71888|-73.12106|Terminal de buses Mi Expreso
+B|-36.86569|-73.03308|Terminal de buses Pedro de Valdivia
+B|-36.83921|-73.00821|Terminal de buses Puchacay
+B|-22.91387|-68.19476|Terminal de buses San Pedro de Atacama
+B|-35.43114|-71.64699|Terminal de buses TurBus
+B|-36.95382|-73.02218|Terminal de buses Vía Futuro
+B|-36.95904|-73.01068|Terminal de buses Vía Universo
+B|-36.96504|-72.92273|Terminal de buses Vía del Sol
+B|-35.84578|-72.63819|Terminal de buses de Curanipe
+B|-38.24802|-72.66866|Terminal de buses de Traiguén
+B|-41.39459|-73.46404|Terminal de buses de los muermos
+B|-36.79547|-73.10717|Terminal de colectivos 21
+B|-36.81913|-73.06199|Terminal de líneas a Tomé
+B|-38.24778|-72.66727|Terminal rural
+B|-39.81523|-73.23536|Terrapuerto Valdivia
+B|-43.97647|-72.40502|Terraustral
+B|-46.62372|-72.67368|Terraustral - Coyhaique
+B|-45.57452|-72.07493|Transfer Velasquez
+B|-48.46889|-72.55798|Transporte El Pillo
+B|-53.29775|-70.37277|Transportes España
+B|-22.48900|-68.92564|Transportes Geminis
+B|-34.99277|-71.23278|Tur Bus
+B|-25.40670|-70.48512|Tur Bus
+B|-20.27085|-70.10201|Tur Bus
+B|-39.28230|-72.23018|TurBus
+B|-31.91121|-71.50481|TurBus
+B|-26.24506|-69.62655|TurBus
+B|-40.29305|-73.08189|Turbus
+B|-38.41061|-72.77968|Turbus
+B|-36.48689|-72.70254|Turbus
+B|-23.61741|-70.38833|Turbus
+B|-22.46201|-68.92303|Turbus Terminal
+B|-39.27752|-71.97277|Vipu-Ray
+B|-37.28142|-72.71044|terminal de buses laja
