@@ -1,4 +1,4 @@
-# Transit for Koode, BD. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-08 by tools/transit/build_network.py
+# Transit for Koode, BD. Data (c) OpenStreetMap contributors, ODbL 1.0. Built 2026-10-13 by tools/transit/build_network.py
 # S|lat|lng|name|network|kind(M metro, W water metro/ferry)   L|network|line|colour|station station:metres ...   T|lat|lng|railway station
 # R|lat|lng|name|network railway line station   Q|network|line|colour|class(H high-speed, X express, L local)|R-station R-station:metres ...   B|lat|lng|bus or coach station
 S|23.77843|90.38005|Agargaon|ঢাকা মেট্রোরেল|M
@@ -6,19 +6,156 @@ S|23.73001|90.40748|Bangladesh Secretariat|ঢাকা মেট্রোরে
 S|23.76639|90.38310|Bijoy Shoroni|ঢাকা মেট্রোরেল|M
 S|23.73168|90.39682|Dhaka University|ঢাকা মেট্রোরেল|M
 S|23.75904|90.38711|Farmgate|ঢাকা মেট্রোরেল|M
-S|23.75127|90.39278|Karwan Bazar|ঢাকা মেট্রোরেল|M
 S|23.79924|90.37199|Kazipara|ঢাকা মেট্রোরেল|M
 S|23.80836|90.36826|Mirpur 10|ঢাকা মেট্রোরেল|M
 S|23.81910|90.36528|Mirpur 11|ঢাকা মেট্রোরেল|M
 S|23.72806|90.41906|Motijheel|ঢাকা মেট্রোরেল|M
 S|23.82616|90.36419|Pallabi|ঢাকা মেট্রোরেল|M
-S|23.73946|90.39598|Shahbagh|ঢাকা মেট্রোরেল|M
 S|23.79096|90.37551|Shewrapara|ঢাকা মেট্রোরেল|M
 S|23.85972|90.36518|Uttara Center|ঢাকা মেট্রোরেল|M
 S|23.86911|90.36753|Uttara North|ঢাকা মেট্রোরেল|M
 S|23.84590|90.36315|Uttara South|ঢাকা মেট্রোরেল|M
-L|ঢাকা মেট্রোরেল|এমআরটি লাইন ৬|#006E34|14 13:1085 15:1540 10:2207 8:792 7:1225 6:1079 12:983 0:1464 2:1369 4:1163 5:1149 11:1296 3:968 1:1325 9:1242
-L|ঢাকা মেট্রোরেল|এমআরটি লাইন ৬|#006E34|9 1:1254 3:1313 11:972 5:1294 4:1137 2:1178 0:1367 12:1464 6:982 7:1080 8:1225 10:793 15:2207 13:1540 14:1076
+S|22.47787|89.58211|Amtola Ktakhali Majhimollha Somobai Somety Ferry Ghat|Amtola Ktakhali Majhimollha Somobai Somety Ferry Ghat to Mongla|W
+S|22.47874|89.59157|Ferry Ghat|Amtola Ktakhali Majhimollha Somobai Somety Ferry Ghat to Mongla|W
+S|23.46493|90.28839|Mawa Ferighat|BIWTA|W
+S|23.41981|90.22074|Shariatpur Ghat|BIWTA|W
+S|21.89314|91.91153|Chonowa Ghat|Banshkhali-Kutubdia Ghat Ferry 1|W
+S|21.88600|91.89438|Waiting Room|Banshkhali-Kutubdia Ghat Ferry 1|W
+S|23.80210|90.48179|Beraid Boat Ghat|Beraid - Nawra Boat route|W
+S|23.80126|90.48291|Nawra Boat Ghat|Beraid - Nawra Boat route|W
+S|24.83746|92.08202|Bohor Gram Ferry Port|Bohorgram Shikpur Services|W
+S|24.83843|92.08106|Shikpur Ferry Port|Bohorgram Shikpur Services|W
+S|23.23318|90.64863|Chandpur Launch Terminal|Chandpur - Shariatpur|W
+S|23.16420|90.64235|Horina Ferry Ghat|Chandpur - Shariatpur|W
+S|22.17484|90.40712|Golacipa Ferry Ghat|Golacipa Ferry|W
+S|22.17683|90.40484|Horidevpur Ferry Ghat|Golacipa Ferry|W
+S|23.91604|90.56722|Danga Boat Ghat|Kaliganj - Danga boat route|W
+S|23.91850|90.56587|Kaligonj Boat Ghat|Kaliganj - Danga boat route|W
+S|23.19414|89.68979|Kalna Ferry Terminal|Kalna Ferry Ghat|W
+S|23.19493|89.69342|Kalna Ferry Terminal|Kalna Ferry Ghat|W
+S|22.80175|89.58147|Rupsha Ferry Ghat|Khulna-Mongla Road|W
+S|22.80103|89.58452|Rupsha Ferry Terminal|Khulna-Mongla Road|W
+S|23.76831|90.72511|Bishnandi Ferry Ghat|Koroikandi - Bishnandi|W
+S|23.76322|90.73878|Koroikandi Ferry Ghat|Koroikandi - Bishnandi|W
+S|22.70471|90.56467|Ilisha Ferry Terminal|Laharhat - Vadutia|W
+S|22.81472|90.34517|Mirganj Ferry Ghat|Mirganj Ferry Line|W
+S|22.81499|90.35823|Mirganj Ferry Ghat|Mirganj Ferry Line|W
+S|22.45888|89.58430|Banishanta Boat Ghat|Mongal to Banisanta Route|W
+S|22.47336|89.59813|Mongla Bus Stop Ferry Ghat|Mongal to Banisanta Route|W
+S|22.47169|89.60184|Mongla Banishanta Boat Ghat|Mongal to banisanta boat route|W
+S|22.47225|89.59677|Sundarban tour|Mongal to banisanta boat route|W
+S|22.47126|89.60049|Mongla Ferry Ghat|Mongla to Mongla bus stand feri route|W
+S|22.47226|89.60283|Mongla Boat Ghat মংলা নৌকা ঘাটের|Mongla to Mongla bus stop boat line|W
+S|22.47308|89.59939|Mongla Bus Stop Boat Ghat|Mongla to Mongla bus stop boat line|W
+S|23.88348|89.67088|Kazir Hat Ferry Terminal|Paturia - Kazirhat|W
+S|22.88285|89.52276|রেলিগেট ঘাট|Religate-Digholia Ferry Route|W
+S|22.88489|89.52270|Digholia Ferry Terminal|Religate-Digholia Ferry Route|W
+S|22.53569|90.34876|সাহেবগঞ্জ খেয়াঘাট|ferry|W
+S|22.64461|90.34328|দপদপিয়া খেয়া ঘাট দক্ষিন|ferry|W
+S|22.64703|90.34274|দপদপিয়া খেয়া ঘাট উত্তর|ferry|W
+S|23.41464|90.17841|কেওড়াকান্দি লঞ্চ ঘাট|ferry|W
+S|22.24183|91.82113|15 No. Ghat|ferry|W
+S|21.52456|91.98075|Adinath Jetty|ferry|W
+S|22.64864|90.07750|Amrajuri Ferryghat|ferry|W
+S|22.64299|90.07476|Amrajuri Ferry Terminal|ferry|W
+S|22.21452|89.31222|Angtihata|ferry|W
+S|23.83592|89.78005|Aricha|ferry|W
+S|20.92366|92.26939|Atlantic Cruise|ferry|W
+S|22.64369|90.19227|Atul Majhi Kheyaghat|ferry|W
+S|22.48988|90.06123|Bhandaria Launch Terminal|ferry|W
+S|22.23886|91.82897|CUFL Ferry Ghat|ferry|W
+S|23.75530|90.40247|FDC|ferry|W
+S|23.83183|89.78122|Ferry Terminal|ferry|W
+S|22.24607|89.24891|Gabura Ghat|ferry|W
+S|23.78038|90.42022|Gulshan Lake|ferry|W
+S|22.59966|90.01454|Hularhat Launch Terminal|ferry|W
+S|22.74705|90.09011|Indurhat Launch Terminal|ferry|W
+S|21.44815|91.97248|Jetty 6|ferry|W
+S|22.53384|90.35153|Kalaskathi Khea Ghat|ferry|W
+S|22.29555|89.31101|Katkata Launchghat|ferry|W
+S|22.63194|90.05919|Kawkhali Launch Terminal|ferry|W
+S|23.41399|90.17971|Khathal Bari Ghat|ferry|W
+S|23.92598|89.22419|Kushtia|ferry|W
+S|23.46614|90.28984|Mawa Speed Boat Ghat|ferry|W
+S|22.25016|89.24229|Nildumur Ghat|ferry|W
+S|23.94911|89.22657|Pabna|ferry|W
+S|23.46312|90.28657|Padma Ferry Terminal|ferry|W
+S|23.78408|89.81316|Paturia Ferry Terminal|ferry|W
+S|23.77230|90.41573|Police Plaza|ferry|W
+S|23.76832|90.42196|Rampura|ferry|W
+S|22.74648|90.09563|Swarupkathi Old Launch Ghat|ferry|W
+S|22.75021|90.09723|Swarupkati Launch Terminal|ferry|W
+S|23.71026|90.39055|Thoda Gudara Ghat|ferry|W
+S|22.36333|89.93514|Tushkhali Launch Terminal|ferry|W
+S|23.70934|90.39323|Zinzira Ferry Ghat|ferry|W
+S|22.63253|90.05332|Sonakur Kheya Ghat|কাউখালী-সোনাকুর|W
+S|22.62894|90.05755|Uttar Bazaar Kheyaghat|কাউখালী-সোনাকুর|W
+S|22.49224|89.99205|Chorkhali Ferry Terminal|টগরা-চরখালী|W
+S|22.49864|89.98122|Togra Ferry Terminal|টগরা-চরখালী|W
+S|20.63239|92.32952|সেন্ট মার্টিনস দ্বীপের ফেরি ঘাট|টেকনাফ-সেন্টমার্টিন|W
+S|20.92027|92.26847|Keary Sindbad|টেকনাফ-সেন্টমার্টিন|W
+S|23.76983|89.78733|Daulatdia Ferry Terminal|ferry|W
+S|23.78658|89.81052|Paturia Ferry Terminal|দৌলতদিয়া ফেরি পারাপার|W
+S|22.69976|90.37536|Barisal Launch Terminal|বরিশাল-হুলারহাট|W
+S|22.69858|90.37492|Barisal Steemer Terminal|বরিশাল-হুলারহাট|W
+S|22.15860|90.05503|Bainchotki Ferry Terminal|বাইনচোটকি - বরইতলা|W
+S|22.15187|90.06694|Boroikhali Ferry Terminal|বাইনচোটকি - বরইতলা|W
+L|ঢাকা মেট্রোরেল|এমআরটি লাইন ৬|#006E34|12 11:1091:gz1xEk7xnRrLvH 13:1549 9:2219:o5wxEsixnRzRmFjSrDzwB6B_JgC 7:797:o7sxEqpxnR 6:1231 5:1085:03pxE0kynR 10:988 0:1471:2rlxE4g0nR 2:1376:q3ixE-50nR 4:1168:mohxEog1nR5N1CnGa5DkDnCwE 3:3429:ougxEsh2nRtB6DrD4D96B8XtkB4M1JgC_IMtkB1D9HqB 1:1326:4v6wEun4nR1CsGUsPuB-D6IuK 8:1242:o66wEim7nR
+L|ঢাকা মেট্রোরেল|এমআরটি লাইন ৬|#006E34|8 1:1253:m56wEmo7nRenD 3:1315:636wE6r5nRhCxDlGlG9BjEZ_PgD_G 4:3420:8q7wEqt3nRsGjB2OOuXgD2P1BsnBrNi7B_XsE3G 2:1182:0tgxEsm1nRoC9EiErD0Gb6N0C 0:1374:q3ixE050nR 10:1472:0rlxE2g0nR 5:987 6:1085:y3pxEskynR 7:1231 9:798:q7sxEgpxnR 13:2220:knuxEylxnRmwB1B0LiDuFKuRnF 11:1549 12:1082:un1xEszxnR-LsG
+L|Amtola Ktakhali Majhimollha Somobai Somety Ferry Ghat to Mongla|Amtola Ktakhali Majhimollha Somobai Somety Ferry Ghat to Mongla||14 15:976:kpmpEm45iR
+L|BIWTA|মাওয়া - চর জানাজাত||16 17:9524:iymvEsuinR5VlPzT3XxNnhBlRzwBgC1uChQtO1Q9RzarWrF1BpS2GnI2BxEVzCnCrH_R7MxVlVzY3HpclDphB7nBvsB
+L|Banshkhali-Kutubdia Ghat Ferry 1|Banshkhali-Kutubdia Ghat Ferry 1||18 19:2093
+L|Beraid - Nawra Boat route|Beraid - Nawra Boat route||20 21:147
+L|Bohorgram Shikpur Services|Bohorgram Shikpur Services||23 22:146
+L|Chandpur - Shariatpur|Chandpur - Shariatpur||25 24:11863
+L|Golacipa Ferry|Golacipa Ferry||27 26:323
+L|Kaliganj - Danga boat route|Kaliganj - Danga boat route||29 28:306
+L|Kalna Ferry Ghat|Kalna Ferry Ghat||31 30:396:kkytE4_tjRtB3F
+L|Khulna-Mongla Road|Khulna-Mongla Road||32 33:323
+L|Koroikandi - Bishnandi|Koroikandi - Bishnandi||35 34:1502
+L|Laharhat - Vadutia|Laharhat - Vadutia||95 36:24256:-xxqE8p0nRsFoT2V2egwBuY6IuJqBgI1K4e5WorBnD0e8IyuBlCs4BwQ4yB3T4WhrB0S5O6RjFqO3Fy4BmE-PuiBoiBqQsZiEgRzN6R9D0WzpBkY3wBwvBtB0H0cgPiS2bqgBwjE0LwgB6duhByf2U0LiUzBga_wBywB5WswBtE8gByDwR
+L|Mirganj Ferry Line|Mirganj Ferry Line||37 38:1484:2wnrEopunRnB8Q-G2T
+L|Mongal to Banisanta Route|Mongal to Banisanta Route||39 40:2214:oyipE8g5iR4M4JiKuGqSgIyU2PuMmVqEmR
+L|Mongal to banisanta boat route|Mongal to banisanta boat route||41 42:524:6hlpE0k8iR
+L|Mongla to Mongla bus stand feri route|Mongla to Mongla bus stand feri route||40 43:363
+L|Mongla to Mongla bus stop boat line|Mongla to Mongla bus stop boat line||45 44:396:uklpE-_7iRhC4F
+L|Paturia - Kazirhat|Paturia - Kazirhat||46 94:19814:044xE8-pjRzBkOpE0FptBiUnhB0V5Z2uB9Ws9B_Tw0CrTuvBhsB-4BxnBstBlxB-pBvW4UjSgL3MgKvN2TxLuLnYkMvWmJ3-B6hBtyCy_BnoB8sBpPmahC-mC0EyqBsE2UuLojB
+L|Religate-Digholia Ferry Route|Religate-Digholia Ferry Route||47 48:227
+L|ferry|ferry||54 69:9260
+L|ferry|ferry||16 78:295
+L|ferry|ferry||87 72:655
+L|ferry|ferry||87 67:6251:8qiqEu-zlR_kCrpBzmBr0BztB_oBG3eyP5iB
+L|ferry|ferry||55 56:728:0wnqEul5lRxIlDjMrHnLrF
+L|ferry|ferry||68 83:875
+L|ferry|ferry||96 95:140
+L|ferry|ferry||61 67:15648:u3opEig2lRgU5XuKnPuIpPkG5WqEpayH7iBoL7ZkL5R6G7UsLnTyVrJy0EiIuoDPq6CmP6qCmX-kD1Sobpc4Q3kB
+L|ferry|ferry||85 60:56233
+L|ferry|ferry||72 87:648
+L|ferry|ferry||76 65:819
+L|ferry|ferry||76 57:10539:4n5nE4s2gR_EsBpHIlTpDtezL7WjErfuDlOqDnZoK1Y8a9H8X_DsyBAsrEpBq_D_CgO9MkRO4V
+L|ferry|ferry||49 70:350
+L|ferry|ferry||81 80:954:mqixEqs8nR4DhbqCzF2CpCoGjB
+L|ferry|ferry||80 63:2438:k3ixE-l7nRjL5HnJ5ItbxLpK7FpIxGnDrEnChJ1EjItDzCrJ1DnElDpD3D
+L|ferry|ferry||82 68:569
+L|ferry|ferry||86 84:291
+L|ferry|ferry||51 50:275
+L|ferry|ferry||79 94:671:k1lxEgjlkR7DnJ
+L|ferry|ferry||58 46:14977:wtvxEui_jRQtGysBhe6M_d2dr5B1J7RrUlI9PrJxGjFtdjKlCnD5DxKhKxkBo2BtuBgnBltBksB94ByT1vB-Tl0CgX19B2ZxuB-gBxVstBhUwE3F6BtO
+L|ferry|ferry||64 58:474:-4uxE6m_jR
+L|ferry|ferry||73 17:4358:ok9uEwptmRmD4JtGuY3E0oBBkiB0DslB0KuhB-QylB
+L|ferry|ferry||73 52:156
+L|ferry|ferry||75 78:510
+L|ferry|ferry||74 77:4922:4-gyE0_ygRwD-OyTybyHX2GlEiF5H-KzYwHvEmbx0B8IrOyHxIqN2HgUyfwFiR0BgR
+L|ferry|ferry||59 92:418
+L|ferry|ferry||71 76:9370
+L|ferry|ferry||62 53:888:4x3nE0qvwRwNvsB
+L|ferry|ferry||66 80:1189:gvkxEok8nR_ICjGvBzgBpP5BvDB1CenC
+L|কাউখালী-সোনাকুর|কাউখালী-সোনাকুর||88 87:591
+L|টগরা-চরখালী|টগরা-চরখালী||90 89:1320
+L|টেকনাফ-সেন্টমার্টিন|টেকনাফ-সেন্টমার্টিন||92 91:34647:k_0_D-mmzR5mCk5B7hBipB9KgRlQwV7W8dnJ2J5WwT5doR_nBgbx1BihBp5B4XzmDktBzagIxcuLzgEmkB_zB-SpbyNnJkD32H82B9iYzhElFvE
+L|দৌলতদিয়া ফেরি পারাপার|দৌলতদিয়া ফেরি পারাপার||93 94:3114:swixEi7gkRauR2F4H
+L|বরিশাল-হুলারহাট|বরিশাল-হুলারহাট||95 96:216
+L|বাইনচোটকি - বরইতলা|বাইনচোটকি - বরইতলা||98 97:1439:84nnEu-0lR
 T|24.25987|88.97179|Abdulpur Junction
 T|25.92415|89.34876|Aditmari Railway Station
 T|24.92368|91.68852|Afzalabad
