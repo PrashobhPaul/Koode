@@ -449,6 +449,35 @@ object Reports {
             }
         }
 
+        // ---- value for money: what each fare carried you, not only what it cost ----
+        val values = x.analytics.modeValues
+        val valueLines = com.trippulse.app.domain.FareValue.lines(
+            values, x.analytics.distanceM, x.analytics.totalSeconds * 1000, x.analytics.totalCost,
+            money = { money(m, it) }, perDistance = { c, d -> m.costPerDistance(c, d) }
+        )
+        if (values.isNotEmpty() && valueLines.isNotEmpty()) {
+            blocks += Space(12f)
+            blocks += Heading("Value for money")
+            valueLines.forEach { blocks += Paragraph(it, after = 6f) }
+            blocks += Space(4f)
+            blocks += Table(
+                listOf(Table.Column("Fare", 1.8f), Table.Column("Distance", 1.2f, right = true), Table.Column("Riding", 1.1f, right = true),
+                    Table.Column("Per ${m.distanceUnit}", 1.3f, right = true), Table.Column("Per minute", 1.2f, right = true),
+                    Table.Column("Of the way", 1.1f, right = true), Table.Column("Of the fare", 1.1f, right = true)),
+                values.map { v ->
+                    listOf(
+                        Expenses.Category.fromType(v.type).label,
+                        v.metres?.takeIf { it > 0 }?.let { m.distance(it) } ?: "—",
+                        v.rideMs?.takeIf { it >= 60_000 }?.let { "${it / 60_000} min" } ?: "—",
+                        v.metres?.takeIf { v.perMetre != null }?.let { m.costPerDistance(v.cost, it) } ?: "—",
+                        v.perMinute?.let { money(m, it) } ?: "—",
+                        v.distanceShare?.let { "${Math.round(it * 100)}%" } ?: "—",
+                        "${Math.round(v.costShare * 100)}%"
+                    )
+                }
+            )
+        }
+
         blocks += Space(12f)
         blocks += Heading("Every expense")
         val byDay = x.expenses.sortedBy { it.atMs }.groupBy { Instant.ofEpochMilli(it.atMs).atZone(z).toLocalDate() }

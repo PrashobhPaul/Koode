@@ -76,6 +76,32 @@ class UpdateChecker(
         release.takeIf { isNewer(it.versionName, installedVersion) }
     }
 
+    /** What a check made by hand found. */
+    sealed class Outcome {
+        /** Nothing newer: [latest] is the newest published version. */
+        data class UpToDate(val latest: String) : Outcome()
+        data class Newer(val available: Available) : Outcome()
+        /** The release list could not be reached; nothing is known. */
+        object Unreachable : Outcome()
+    }
+
+    /**
+     * "Check for updates": always asks, and says which of the three it
+     * was, so the screen never claims "latest" when it could not look.
+     */
+    suspend fun checkNow(): Outcome = withContext(Dispatchers.IO) {
+        val release = fetchLatest() ?: return@withContext Outcome.Unreachable
+        prefs.edit()
+            .putLong(KEY_LAST_CHECK, System.currentTimeMillis())
+            .putString(KEY_VERSION, release.versionName)
+            .putString(KEY_URL, release.downloadUrl)
+            .putString(KEY_NOTES, release.notes)
+            .putString(KEY_CHECKED_VERSION, installedVersion)
+            .remove(KEY_DISMISSED)
+            .apply()
+        if (isNewer(release.versionName, installedVersion)) Outcome.Newer(release) else Outcome.UpToDate(release.versionName)
+    }
+
     /** The last known result, so the UI can render instantly and offline. */
     fun cached(): Available? {
         // Self-heal across an update. The cache was written against whatever

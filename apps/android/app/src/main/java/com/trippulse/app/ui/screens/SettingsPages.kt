@@ -903,14 +903,25 @@ private fun AboutKoodePage(nav: NavHostController, vm: SettingsVm) {
     val settings by vm.settings.collectAsStateWithLifecycle()
     val update by vm.update.collectAsStateWithLifecycle()
     val checking by vm.checkingUpdate.collectAsStateWithLifecycle()
+    val status by vm.updateStatus.collectAsStateWithLifecycle()
 
     SettingsGroup {
         GroupBody {
             Text(stringResource(R.string.t_koode_0eaf0), color = colors.textHigh, style = MaterialTheme.typography.titleLarge)
             Text("Version ${BuildConfig.VERSION_NAME}", color = colors.textMid, style = MaterialTheme.typography.bodyMedium)
-            update?.let {
+            // The answer to the last check, whatever it was: never a silent button.
+            val told = status ?: update?.let { "Koode ${it.versionName} is available." }
+            told?.let {
                 Spacer(Modifier.height(Spacing.sm))
-                Text("Koode ${it.versionName} is available.", color = colors.traveller, style = MaterialTheme.typography.bodyMedium)
+                Text(
+                    it,
+                    color = when {
+                        update != null -> colors.traveller
+                        it.startsWith("✓") -> colors.accent
+                        else -> colors.textMid
+                    },
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
             Spacer(Modifier.height(Spacing.md))
             Row(horizontalArrangement = Arrangement.spacedBy(Spacing.sm)) {
