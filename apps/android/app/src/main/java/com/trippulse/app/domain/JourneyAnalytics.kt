@@ -131,6 +131,12 @@ object JourneyAnalytics {
 
         // ---- shape ----
         val legs: List<LegReport>,
+        /** The stages as rides and the changes between them: the walk out, each change, the walk in (see [Changes]). */
+        val parts: List<Changes.Part> = emptyList(),
+        /** Time spent getting out of the door, from one ride to the next, and in at the end. */
+        val changeSeconds: Long = 0,
+        /** What each paid way of travelling gave for what it cost (see [FareValue]). */
+        val modeValues: List<FareValue.ModeValue> = emptyList(),
         /** Every stop, from its own event timestamps — see [StopPeriod]. */
         val stopPeriods: List<StopPeriod>,
 
@@ -149,7 +155,11 @@ object JourneyAnalytics {
         val fromName: String,
         val toName: String,
         val seconds: Long?,
-        val seat: String? = null
+        val seat: String? = null,
+        val startedAtMs: Long? = null,
+        val completedAtMs: Long? = null,
+        /** How far the stage went, when known. */
+        val distanceM: Double? = null
     )
 
     fun analyse(i: Inputs): JourneyReport {
@@ -177,6 +187,7 @@ object JourneyAnalytics {
         var waitedMs = 0L
         val waits = ArrayList<String>()
         val waitPeriods = ArrayList<StopPeriod>()
+        val measuredWaits = ArrayList<Changes.Wait>()
 
         for (e in sorted) {
             when (e.type) {
@@ -207,7 +218,7 @@ object JourneyAnalytics {
                 EventTypes.TOLL_CROSSED -> tolls++
                 EventTypes.WAITED -> {
                     val until = (e.payload["untilMs"] as? Number)?.toLong()
-                    if (until != null && until > e.eventTimeMs) { waitedMs += until - e.eventTimeMs; waitPeriods += StopPeriod(e.eventTimeMs, until) }
+                    if (until != null && until > e.eventTimeMs) { waitedMs += until - e.eventTimeMs; waitPeriods += StopPeriod(e.eventTimeMs, until); measuredWaits += Changes.Wait(e.eventTimeMs, until) }
                     (e.payload["text"] as? String)?.let { waits += it }
                 }
             }
@@ -292,9 +303,27 @@ object JourneyAnalytics {
                 fromName = leg.fromName, toName = leg.toName,
                 seconds = if (leg.startedAtMs != null && leg.completedAtMs != null)
                     ((leg.completedAtMs - leg.startedAtMs) / 1000).coerceAtLeast(0) else null,
-                seat = leg.seat
+                seat = leg.seat,
+                startedAtMs = leg.startedAtMs, completedAtMs = leg.completedAtMs,
+                distanceM = leg.distanceM
             )
         }
+
+        // ---- the doors and the changes between the rides ----
+        val timed = legReports.filter { it.startedAtMs != null && it.completedAtMs != null }
+        val parts = if (timed.isNotEmpty() && timed.size == legReports.size) Changes.parts(
+            timed.map { Changes.Stage(it.mode, it.fromName, it.toName, it.startedAtMs!!, it.completedAtMs!!, it.distanceM) },
+            measuredWaits, i.completed
+        ) else emptyList()
+        val changeSeconds = (Changes.changeMs(parts) / 1000).coerceIn(0, totalSeconds)
+
+        // ---- what each paid way gave for its fare ----
+        val rides = parts.filterIsInstance<Changes.Part.Ride>()
+        val modeValues = FareValue.values(
+            if (rides.isNotEmpty()) rides.map { Triple(it.stage.mode, it.stage.metres, it.ms) }
+            else legReports.map { Triple(it.mode, it.distanceM, (it.seconds ?: 0) * 1000) },
+            byType.mapValues { (_, list) -> list.sumOf { it.amount } }
+        )
 
         val report = JourneyReport(
             totalSeconds = totalSeconds,
@@ -327,6 +356,9 @@ object JourneyAnalytics {
             litres = litres,
             kwh = kwh,
             legs = legReports,
+            parts = parts,
+            changeSeconds = changeSeconds,
+            modeValues = modeValues,
             stopPeriods = periods,
             insights = emptyList()
         )
@@ -361,7 +393,9 @@ object JourneyAnalytics {
                 add("Stops took about $share% off the door-to-door average pace.")
             }
         }
-        if (r.hasCosts) {
+        val value = FareValue.insight(r.modeValues)
+        if (value != null) add(value)
+        else if (r.hasCosts) {
             r.costLines.firstOrNull()?.let { biggest ->
                 if (biggest.share >= 0.4) {
                     add("${biggest.label} was ${(biggest.share * 100).roundToLong()}% of what the journey cost.")
@@ -371,6 +405,9 @@ object JourneyAnalytics {
         if (r.waitedSeconds >= 180 && r.totalSeconds > 0) {
             val share = (r.waitedSeconds * 100 / r.totalSeconds)
             add(if (share >= 5) "${humanDuration(r.waitedSeconds)} of it was waiting: $share% of the journey." else "${humanDuration(r.waitedSeconds)} of it was waiting.")
+        }
+        if (r.changeSeconds >= 120 && r.parts.count { it is Changes.Part.Ride } >= 2) {
+            add("${humanDuration(r.changeSeconds)} of it was getting out, changing between rides and getting in.")
         }
         if (r.days > 1) add("The journey ran across ${r.days} calendar days.")
         val mealCount = r.meals.filterKeys { it.isMainMeal }.values.sum()

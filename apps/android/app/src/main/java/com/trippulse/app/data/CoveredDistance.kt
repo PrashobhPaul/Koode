@@ -33,7 +33,17 @@ fun coveredDistanceM(
         val path = legDistanceM(samples, leg.startedAtMs, leg.completedAtMs) ?: 0.0
         (ride - path).coerceAtLeast(0.0)
     }
-    return DistanceLedger.reconcile(liveM, record.copy(totalM = record.totalM + shortM))
+    // The first stage on the road, when the fixes began only after it ended
+    // (Start tapped at the station, see Changes.lateStartFix), still covered
+    // its road distance. Only the first: a silence later on is the ledger's.
+    val untrackedM = legs.minByOrNull { it.legIndex }?.let { leg ->
+        val done = leg.completedAtMs ?: return@let 0.0
+        if (samples.minOf { it.tMs } < done - 60_000L) return@let 0.0
+        val path = legDistanceM(samples, leg.startedAtMs, done)
+        val road = untrackedRoadM(leg.mode, GeoPoint(leg.fromLat, leg.fromLng), GeoPoint(leg.toLat, leg.toLng), leg.startedAtMs, done, path, cfg) ?: return@let 0.0
+        road - (path ?: 0.0)
+    } ?: 0.0
+    return DistanceLedger.reconcile(liveM, record.copy(totalM = record.totalM + shortM + untrackedM))
 }
 
 /**
@@ -56,7 +66,7 @@ fun legDistanceM(
     transit: TransitNetwork = TransitData.current
 ): Double? {
     val path = legDistanceM(samples, startedAtMs, completedAtMs)
-    val ride = metroRideM(mode, from, to, completedAtMs, transit) ?: return path
+    val ride = metroRideM(mode, from, to, completedAtMs, transit) ?: return untrackedRoadM(mode, from, to, startedAtMs, completedAtMs, path) ?: path
     return maxOf(path ?: 0.0, ride)
 }
 
@@ -74,4 +84,16 @@ fun metroRideM(mode: String, from: GeoPoint, to: GeoPoint, completedAtMs: Long?,
     if (completedAtMs == null || transit.isEmpty) return null
     val kind = TransitNetwork.kindOf(mode) ?: return null
     return transit.rideM(from, to, kind)?.takeIf { it > 0 }
+}
+
+/**
+ * A finished stage on the road whose fixes saw less than half of the road
+ * between its ends (it began before Start was tapped): its road distance,
+ * straight line times the road factor. Null otherwise.
+ */
+fun untrackedRoadM(mode: String, from: GeoPoint, to: GeoPoint, startedAtMs: Long?, completedAtMs: Long?, path: Double?, cfg: TripConfig = TripConfig()): Double? {
+    if (startedAtMs == null || completedAtMs == null || TransitNetwork.kindOf(mode) != null) return null
+    val road = com.trippulse.app.core.Geo.haversineM(from, to) * cfg.roadDistanceFactor
+    if (road < com.trippulse.app.domain.Changes.MIN_SPAN_M) return null
+    return road.takeIf { (path ?: 0.0) < road / 2 }
 }
