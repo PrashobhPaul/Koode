@@ -4,6 +4,8 @@ import com.trippulse.app.domain.Changes
 import com.trippulse.app.domain.Changes.Kind
 import com.trippulse.app.domain.Changes.Part
 import com.trippulse.app.domain.GeoPoint
+import com.trippulse.app.domain.StageSense
+import com.trippulse.app.domain.TransitNetwork
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
@@ -89,5 +91,54 @@ class ChangesTest {
         assertNull(Changes.lateStartFix(home, station, "METRO", min(14.0), min(14.0) + 10_000))
         // Ends close together say nothing.
         assertNull(Changes.lateStartFix(home, GeoPoint(17.4252, 78.5561), "CAB", min(0.0), min(0.0) + 5_000))
+    }
+
+    // ---- the evening of 14 October: Start pressed on the metro near Begumpet ----
+
+    private val begumpet = GeoPoint(17.43720, 78.46000)
+    private val ameerpetArea = GeoPoint(17.43680, 78.45900)   // what "current location" was geocoded as
+    private val habsiguda = GeoPoint(17.42018, 78.54055)
+    private val raheja = GeoPoint(17.4250, 78.5560)
+    private val net = TransitNetwork.parse(
+        "S|17.43720|78.46000|Begumpet|Hyderabad Metro|M\nS|17.42018|78.54055|Habsiguda|Hyderabad Metro|M\nL|Hyderabad Metro|Blue|blue|0 1:9000\n"
+    )
+
+    @Test fun a_bike_taxi_of_seconds_on_the_metro_line_was_a_tap_put_right() {
+        // Seven seconds, from where the train was to the station: not travelled.
+        assertTrue(Changes.misTap(ameerpetArea, begumpet, min(0.0), min(0.0) + 7_000, "METRO", net))
+        // Ends at the same place, whatever came next: a tap put right.
+        assertTrue(Changes.misTap(raheja, GeoPoint(17.4251, 78.5561), min(0.0), min(0.0) + 7_000, "CAB", null))
+        // Ten seconds from home 1.7 km off the line: travelled, only late (lateStartFix puts it back).
+        assertTrue(!Changes.misTap(raheja, habsiguda, min(0.0), min(0.0) + 10_000, "METRO", net))
+        // A real ride of minutes is never folded.
+        assertTrue(!Changes.misTap(ameerpetArea, begumpet, min(0.0), min(3.0), "METRO", net))
+    }
+
+    private fun move(fromMin: Double, toMin: Double, pace: StageSense.Pace) =
+        StageSense.Episode(min(fromMin), min(toMin), pace, 0.0, begumpet, begumpet, 0.0)
+
+    @Test fun changes_are_measured_from_the_movement_where_it_shows_them() {
+        val evening = listOf(
+            Changes.Stage("METRO", "Begumpet Metro", "Habsiguda Metro", min(0.0), min(17.0)),
+            Changes.Stage("BIKE_TAXI", "Habsiguda Metro", "Raheja Vistas", min(17.0), min(33.0))
+        )
+        // On the train from the first fix; off it at 15, standing and walking out till the bike taxi went at 20; off it at 31.
+        val moves = listOf(
+            move(0.0, 15.0, StageSense.Pace.RIDING),
+            move(15.0, 20.0, StageSense.Pace.STILL),
+            move(20.0, 31.0, StageSense.Pace.RIDING),
+            move(31.0, 33.0, StageSense.Pace.WALKING)
+        )
+        val parts = Changes.parts(evening, emptyList(), completed = true, moves = moves)
+        val s = steps(parts)
+        // Started on board: no walk out. The change and the walk in are what the movement shows.
+        assertEquals(listOf(Kind.CHANGE, Kind.ARRIVE), s.map { it.kind })
+        assertEquals(min(15.0), s[0].fromMs)
+        assertEquals(min(20.0), s[0].toMs)
+        assertTrue(s.all { it.measured })
+        assertEquals(2L, s[1].ms / 60_000)
+        assertEquals(min(33.0) - min(0.0), parts.sumOf { it.ms })
+        // Where the fixes show nothing, the floor stands in.
+        assertEquals(listOf(Kind.LEAVE, Kind.CHANGE, Kind.ARRIVE), steps(Changes.parts(evening, emptyList(), completed = true)).map { it.kind })
     }
 }

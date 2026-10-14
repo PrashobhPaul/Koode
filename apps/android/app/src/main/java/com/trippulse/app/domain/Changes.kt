@@ -81,11 +81,33 @@ object Changes {
         else -> CHANGE_MS
     }
 
+    /** A riding stretch this close to a change is the vehicle either side of it. */
+    const val MOVE_NEAR_MS = 20 * 60_000L
+    /** A change measured shorter than this is no change: they were already on board, or stepped straight off. */
+    const val NO_CHANGE_MS = 30_000L
+
+    /**
+     * When the movement says the vehicle before a change stopped and the one
+     * after it got going: the end of the last riding stretch before [at]
+     * and the start of the first one after it. Null for an end the fixes
+     * do not show.
+     */
+    private fun measured(at: Long, moves: List<StageSense.Episode>): Pair<Long?, Long?> {
+        val rides = moves.filter { it.pace == StageSense.Pace.RIDING }
+        val stopped = rides.filter { it.fromMs < at && it.toMs in (at - MOVE_NEAR_MS)..(at + 3 * 60_000L) }.maxOfOrNull { it.toMs }
+        val going = rides.filter { it.toMs > at && it.fromMs in (at - 3 * 60_000L)..(at + MOVE_NEAR_MS) }.minOfOrNull { it.fromMs }
+        return stopped to going
+    }
+
     /**
      * The journey as rides and the changes between them. [completed]: the
      * last stage has ended, so the walk in is told; while it runs, it is not.
+     * [moves] is the record cut into stretches ([StageSense.episodes]):
+     * where it shows a change, the change is what it shows (from the
+     * vehicle stopping to the next one going), not a floor; a journey
+     * started on board has no walk out.
      */
-    fun parts(stages: List<Stage>, waits: List<Wait>, completed: Boolean): List<Part> {
+    fun parts(stages: List<Stage>, waits: List<Wait>, completed: Boolean, moves: List<StageSense.Episode> = emptyList()): List<Part> {
         if (stages.isEmpty()) return emptyList()
         val st = stages.sortedBy { it.fromMs }
         // Where each boundary's change lies, before clamping.
@@ -97,6 +119,22 @@ object Changes {
             if (b == null && !completed) { plans += null; continue }
             val floor = floorMs(a?.mode, b?.mode)
             val at = b?.fromMs ?: a!!.toMs
+            // What the movement shows, first: the vehicle stopping and the next one going.
+            if (moves.isNotEmpty() && (a == null || !walk(a.mode)) && (b == null || !walk(b.mode))) {
+                val (stopped, going) = measured(at, moves)
+                val kind = when { a == null -> Kind.LEAVE; b == null -> Kind.ARRIVE; else -> Kind.CHANGE }
+                val span: Pair<Long, Long>? = when (kind) {
+                    Kind.LEAVE -> going?.let { b!!.fromMs to it }
+                    Kind.ARRIVE -> stopped?.let { it to a!!.toMs }
+                    Kind.CHANGE -> if (stopped == null && going == null) null else (stopped ?: at) to (going ?: at)
+                }
+                if (span != null) {
+                    val (f, t) = span
+                    if (t - f < NO_CHANGE_MS) { plans += null; continue }
+                    plans += Plan(kind, f, t, if (a == null) b!!.fromName else a.toName, a?.mode, b?.mode, t - f)
+                    continue
+                }
+            }
             val wait = waits.filter { w -> w.toMs > w.fromMs && w.toMs >= at - NEAR_MS && w.fromMs <= at + NEAR_MS }
                 .maxByOrNull { it.toMs - it.fromMs }
             if (floor == 0L && wait == null) { plans += null; continue }
@@ -154,6 +192,28 @@ object Changes {
             Kind.ARRIVE -> "Off ${the(c.fromMode)} and into ${c.place}"
             Kind.CHANGE -> "Off ${the(c.fromMode)}, onto ${the(c.toMode)}" + if (c.measured) " after a wait" else ""
         }
+    }
+
+    // ---- a stage tapped and put right at once ----
+
+    /** Shorter than this, a stage between two others is a tap put right, not a part of the journey. */
+    const val MIS_TAP_MS = 60_000L
+
+    /**
+     * A stage of seconds that was not travelled: the bike taxi tapped and
+     * changed to the metro at once. It goes into the stage after it when
+     * its ends are the same place, or when the stage after is a ride on
+     * rails or water and it began on that line (at a station or along the
+     * track: Start pressed on board). A stage of seconds from home to a
+     * station a kilometre away was travelled, only late: see [lateStartFix].
+     */
+    fun misTap(from: GeoPoint, to: GeoPoint, startedAtMs: Long, completedAtMs: Long, nextMode: String?, net: TransitNetwork?): Boolean {
+        if (completedAtMs - startedAtMs >= MIS_TAP_MS || nextMode == null) return false
+        if (Geo.haversineM(from, to) < MIN_SPAN_M) return true
+        val kind = TransitNetwork.kindOf(nextMode) ?: return false
+        if (net == null || net.isEmpty) return false
+        if (net.nearestStation(from, kind, StageSense.STATION_M) != null) return true
+        return (net.offLineM(from, kind) ?: Double.MAX_VALUE) <= StageSense.offLineFor(kind).offM
     }
 
     // ---- a stage started late ----
