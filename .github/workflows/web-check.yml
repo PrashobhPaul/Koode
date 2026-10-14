@@ -1,0 +1,30 @@
+name: Web tracker check
+
+# Every pull request, whatever it touches: the web tracker that people
+# without the app use to follow a journey must still be the tracker, load
+# all its files, parse, run without script errors in a browser, and reach
+# the backend. A PR that breaks it does not go green.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tracker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate config.js from supabase.properties
+        run: bash tools/web/write-config.sh
+      - name: Check the tracker (files, scripts, backend config)
+        run: node tools/web/check.mjs --config
+      - name: Open the tracker in a browser (no script errors)
+        run: |
+          mkdir -p "$RUNNER_TEMP/webcheck" && cd "$RUNNER_TEMP/webcheck"
+          echo '{}' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.48.2
+          npx playwright install --with-deps chromium
+          node "$GITHUB_WORKSPACE/tools/web/smoke.mjs" --web="$GITHUB_WORKSPACE/web"
