@@ -20,6 +20,7 @@ import com.trippulse.app.data.sync.SyncEngine
 import com.trippulse.app.domain.Connectivity
 import com.trippulse.app.domain.StageRepair
 import com.trippulse.app.domain.StageSense
+import com.trippulse.app.domain.Changes
 import com.trippulse.app.data.routing.RoadMatcher
 import com.trippulse.app.domain.EtaEngine
 import com.trippulse.app.domain.EtaMode
@@ -288,7 +289,8 @@ class TripManager(
     suspend fun repairStages(tripId: String): Boolean {
         // Stages the movement says were made but nobody tapped: the ride that
         // ended at its station, the walk that stood in for the cab, the waits.
-        var changed = runCatching { senseStages(tripId) }.getOrDefault(false)
+        var changed = runCatching { backfillLateStart(tripId) }.getOrDefault(false)
+        changed = runCatching { senseStages(tripId) }.getOrDefault(false) || changed
         val rows = db.legDao().forTrip(tripId)
         if (rows.size < 2) { runCatching { reconcileDistance(tripId) }; runCatching { relabelFares(tripId) }; return changed }
         lock.withLock {
@@ -601,10 +603,10 @@ class TripManager(
             (runCatching { routing.route(origin, here)?.distanceM }.getOrNull()
                 ?: Geo.haversineM(origin, here) * cfg.roadDistanceFactor)
         } else 0.0
-        startTripLocked(tripId, if (lateStart) actualStartMs!! else null, preDistanceM)
+        startTripLocked(tripId, if (lateStart) actualStartMs!! else null, preDistanceM, if (lateStart) here else null)
     }
 
-    private suspend fun startTripLocked(tripId: String, actualStartMs: Long?, preDistanceM: Double) = lock.withLock {
+    private suspend fun startTripLocked(tripId: String, actualStartMs: Long?, preDistanceM: Double, here: GeoPoint? = null) = lock.withLock {
         val t = db.tripDao().byId(tripId) ?: return@withLock
         val recordedAt = System.currentTimeMillis()
         val now = actualStartMs ?: recordedAt
@@ -634,6 +636,27 @@ class TripManager(
         db.legDao().markStarted(tripId, started.activeLegIndex, now)
         legs = db.legDao().forTrip(tripId)
         announceLeg(started, started.activeLegIndex, now)
+
+        // Set off from home earlier and pressed Start on the platform with the
+        // metro chosen: the metro did not leave from home. The way to the
+        // station is its own stage, by the ride people take there, and the
+        // metro begins at the station, now.
+        val first = activeLeg()
+        val kind = rideKind(first?.mode)
+        if (actualStartMs != null && here != null && first != null && kind != null) {
+            val net = TransitData.load(appContext, here)
+            val at = net.nearestStation(here, kind, StageSense.STATION_M)
+            val home = GeoPoint(first.fromLat, first.fromLng)
+            if (at != null && net.nearestStation(home, kind, StageSense.STATION_M) != at) {
+                val station = net.stations[at]
+                val split = StageSense.Split(
+                    first.legIndex, recordedAt, station.point, com.trippulse.app.domain.TransitNetwork.label(station),
+                    lastMileDefault(), StageSense.Reason.BEFORE_LINE, StageSense.Pace.RIDING, null
+                )
+                beganAtStation(started, first, split)
+                _sensedStage.value = SensedStage(tripId, first.legIndex, split.mode, split.placeName, first.mode, recordedAt, StageSense.Reason.BEFORE_LINE)
+            }
+        }
 
         // arm cloud meta + first live push
         if (started.cloudEnabled) appScope.launch {
@@ -706,9 +729,15 @@ class TripManager(
             val net = TransitData.load(appContext, from)
             net.nearestStation(from, k, LATE_BOARD_M)?.let { net.stations[it] }
         }
+        // Standing at a station of that kind now: the ride starts here and now, nothing to ask.
+        val hereNow = state?.let { s -> s.lat?.let { la -> s.lng?.let { GeoPoint(la, it) } } }
+        if (hereNow != null) rideKind(newMode)?.let { k ->
+            val net = TransitData.load(appContext, hereNow)
+            if (net.nearestStation(hereNow, k, StageSense.STATION_M) != null) return null
+        }
         val legMs = station?.let { (Geo.haversineM(from, it.point) * cfg.roadDistanceFactor / (LATE_CITY_KMH / 3.6) * 1000).toLong() }
             ?: (now - started) / 2
-        return (started + legMs).coerceIn(started, now)
+        return (started + legMs).coerceIn(started, now).takeIf { it < now - 2 * 60_000L }
     }
 
     /** [switchMode] with the lock already held. */
@@ -1253,26 +1282,66 @@ class TripManager(
                 _sensedStage.value = SensedStage(t.tripId, opened.legIndex, split.mode, split.placeName, leg.mode, split.atMs)
             }
             StageSense.Reason.BEFORE_LINE -> {
-                // The ride began at its station: the way there is its own stage before it, and the ride moves along by one.
-                applySplit(t.tripId, split)
-                val rideIndex = leg.legIndex + 1
-                legs = db.legDao().forTrip(t.tripId)
-                val latest = trip ?: t
-                if (latest.activeLegIndex == leg.legIndex) {
-                    val updated = latest.copy(activeLegIndex = rideIndex)
-                    db.tripDao().update(updated); trip = updated
-                    metroAnchor = metroAnchor?.let { if (it.legIndex == leg.legIndex) it.copy(legIndex = rideIndex) else it }
-                    state?.copy(legIndex = rideIndex)?.let { s -> state = s; persistAndPush(updated, s, force = true) }
-                    if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
-                }
+                beganAtStation(t, leg, split)
                 // The stand at the door for the ride there, and the one on the platform.
-                val pair = legs.filter { it.legIndex == leg.legIndex || it.legIndex == rideIndex }.map { it.toSense() }
+                val pair = legs.filter { it.legIndex == leg.legIndex || it.legIndex == leg.legIndex + 1 }.map { it.toSense() }
                 for (w in StageSense.waits(pair, rideFixes)) recordWait(t.tripId, w)
                 _sensedStage.value = SensedStage(t.tripId, leg.legIndex, split.mode, split.placeName, leg.mode, split.atMs, StageSense.Reason.BEFORE_LINE)
             }
             StageSense.Reason.WALKED_INSTEAD -> return
         }
         rideFixes.clear(); rideFixesLeg = -1
+    }
+
+    /**
+     * A ride on rails or water found to have begun at its station: the way
+     * there becomes its own stage before it (see [applySplit]), and the
+     * journey's active stage, live state and meta move along with the ride.
+     */
+    private suspend fun beganAtStation(t: ActiveTripEntity, leg: TripLegEntity, split: StageSense.Split) {
+        applySplit(t.tripId, split)
+        val rideIndex = leg.legIndex + 1
+        legs = db.legDao().forTrip(t.tripId)
+        val latest = trip ?: t
+        if (latest.activeLegIndex == leg.legIndex) {
+            val updated = latest.copy(activeLegIndex = rideIndex)
+            db.tripDao().update(updated); trip = updated
+            metroAnchor = metroAnchor?.let { if (it.legIndex == leg.legIndex) it.copy(legIndex = rideIndex) else it }
+            state?.copy(legIndex = rideIndex)?.let { s -> state = s; persistAndPush(updated, s, force = true) }
+            if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
+        }
+    }
+
+    /**
+     * A first stage on the road recorded too fast for the distance between
+     * its ends (Start tapped at the metro station, the bike taxi from home
+     * "taking" ten seconds) began earlier: it and the journey are put back
+     * to when the distance at the mode's city pace says it set off
+     * ([Changes.lateStartFix]), and the timeline says so. Safe to run
+     * again: once put back, the pace is plausible.
+     */
+    private suspend fun backfillLateStart(tripId: String): Boolean = lock.withLock {
+        val t = db.tripDao().byId(tripId) ?: return@withLock false
+        val first = db.legDao().forTrip(tripId).minByOrNull { it.legIndex } ?: return@withLock false
+        val started = first.startedAtMs ?: return@withLock false
+        val ended = first.completedAtMs ?: return@withLock false
+        val from = GeoPoint(first.fromLat, first.fromLng)
+        val to = GeoPoint(first.toLat, first.toLng)
+        val at = Changes.lateStartFix(from, to, first.mode, started, ended, cfg.roadDistanceFactor) ?: return@withLock false
+        db.legDao().upsert(first.copy(startedAtMs = at, detailsJson = sensedDetails(first.detailsJson, "estimated")))
+        val moved = t.copy(startedAtMs = minOf(t.startedAtMs ?: at, at))
+        db.tripDao().update(moved)
+        if (trip?.tripId == tripId) { trip = moved; legs = db.legDao().forTrip(tripId) }
+        val by = if (TransportCatalog.profile(first.mode).key == TransportCatalog.WALK.key) "on foot" else "by ${TransportCatalog.label(first.mode).lowercase()}"
+        insertEvent(
+            tripId, EventTypes.LEG_STARTED, EventSource.SYSTEM_INFERRED, at, first.fromLat, first.fromLng,
+            mapOf(
+                "legIndex" to first.legIndex, "mode" to first.mode, "sensed" to true, "estimated" to true,
+                "text" to "Left ${first.fromName} about ${java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT).format(java.util.Date(at))} $by " +
+                    "(estimated from the distance to ${first.toName}; Start was tapped there)"
+            ), false
+        )
+        true
     }
 
     /**

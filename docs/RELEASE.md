@@ -125,3 +125,13 @@ that used it.
   `docs/DEVICE_TESTING.md` first.
 - The web viewer is published separately by `.github/workflows/pages.yml` on
   any change under `web/`.
+
+
+## The web tracker
+
+The tracker at https://prashobhpaul.github.io/Koode/ is published by
+`.github/workflows/pages.yml` on every push to `main`, after every transit-data
+rebuild and every six hours, and only after its checks pass (see `CLAUDE.md`).
+After a release, confirm the newest "Publish web viewer" run is green: a red
+run means the live tracker was left on the last good version and needs fixing
+first.

@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -687,6 +688,9 @@ fun JourneyDashboard(
             DetailRow("A break about every", TimeFmt.durationShort(it), leading = "⏱")
         }
         DetailRow("Longest stop", TimeFmt.durationShort(story?.longestStop?.seconds ?: report.longestBreakSeconds), leading = "🅿")
+        if (report.changeSeconds > 0) {
+            DetailRow("Getting out, changing, getting in", TimeFmt.durationShort(report.changeSeconds), leading = "🚶")
+        }
         DetailRow(
             "Longest continuous moving stretch",
             TimeFmt.durationShort(story?.longestDrive?.movingSeconds ?: report.longestLegSeconds), leading = "🛣"
@@ -712,8 +716,48 @@ fun JourneyDashboard(
         }
     }
 
-    // ---- stages ----
-    if (report.legs.size > 1) {
+    // ---- stages: the rides, and the doors and changes between them ----
+    val steps = report.parts.filterIsInstance<com.trippulse.app.domain.Changes.Part.Step>()
+    if (report.parts.isNotEmpty() && (report.legs.size > 1 || steps.isNotEmpty())) {
+        KoodeCard(title = stringResource(R.string.t_stages_c1d33)) {
+            report.parts.forEach { part ->
+                when (part) {
+                    is com.trippulse.app.domain.Changes.Part.Ride -> Row(verticalAlignment = Alignment.CenterVertically) {
+                        com.trippulse.app.ui.components.ModeArt(part.stage.mode, 34.dp, faceRight = true)
+                        Spacer(Modifier.width(Spacing.sm))
+                        DetailRow(
+                            "${part.stage.fromName} → ${part.stage.toName}",
+                            TimeFmt.durationShort(part.ms / 1000),
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                    is com.trippulse.app.domain.Changes.Part.Step -> Row(
+                        Modifier.padding(start = 9.dp), verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        // A thin rail joins the rides; the change sits on it, quieter than the rides.
+                        Box(Modifier.width(2.dp).height(28.dp).background(colors.textLow.copy(alpha = 0.35f)))
+                        Spacer(Modifier.width(Spacing.md + 7.dp))
+                        Text(
+                            com.trippulse.app.domain.Changes.text(part.change),
+                            color = colors.textMid, style = MaterialTheme.typography.bodyMedium,
+                            modifier = Modifier.weight(1f)
+                        )
+                        Text(
+                            (if (part.change.measured) "" else "≈") + TimeFmt.durationShort(part.ms / 1000),
+                            color = colors.textLow, style = MaterialTheme.typography.bodyMedium
+                        )
+                    }
+                }
+            }
+            if (steps.any { !it.change.measured }) {
+                Spacer(Modifier.height(Spacing.xs))
+                Text(
+                    "≈ the least a change takes, where the movement did not show it: a minute out of the door and in, two through a station.",
+                    color = colors.textLow, style = MaterialTheme.typography.bodySmall
+                )
+            }
+        }
+    } else if (report.legs.size > 1) {
         KoodeCard(title = stringResource(R.string.t_stages_c1d33)) {
             report.legs.forEach { leg ->
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -748,6 +792,37 @@ fun JourneyDashboard(
                     measures.money(line.amount),
                     leading = costEmoji(line.type)
                 )
+                // A fare is worth what it carried you: its distance, its time, its rate.
+                report.modeValues.firstOrNull { it.type == line.type }?.let { v ->
+                    val bits = listOfNotNull(
+                        v.metres?.takeIf { it > 0 }?.let { measures.distance(it) },
+                        v.rideMs?.takeIf { it >= 60_000 }?.let { TimeFmt.durationShort(it / 1000) },
+                        v.metres?.takeIf { v.perMetre != null }?.let { measures.costPerDistance(v.cost, it) }
+                    )
+                    if (bits.isNotEmpty()) Text(
+                        bits.joinToString(" · "), color = colors.textLow, style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(start = 28.dp)
+                    )
+                }
+            }
+            val value = com.trippulse.app.domain.FareValue.lines(
+                report.modeValues, report.distanceM, report.totalSeconds * 1000, report.totalCost,
+                money = { measures.money(it) }, perDistance = { c, m -> measures.costPerDistance(c, m) }
+            )
+            if (value.isNotEmpty()) {
+                Spacer(Modifier.height(Spacing.sm))
+                Column(
+                    Modifier.fillMaxWidth()
+                        .background(colors.accent.copy(alpha = 0.08f), androidx.compose.foundation.shape.RoundedCornerShape(14.dp))
+                        .padding(Spacing.md)
+                ) {
+                    Text("VALUE", color = colors.accent, style = MaterialTheme.typography.labelSmall)
+                    Spacer(Modifier.height(Spacing.xs))
+                    value.forEach {
+                        Text(it, color = colors.textHigh, style = MaterialTheme.typography.bodyMedium)
+                        Spacer(Modifier.height(Spacing.xs))
+                    }
+                }
             }
             Spacer(Modifier.height(Spacing.sm))
             DetailRow(

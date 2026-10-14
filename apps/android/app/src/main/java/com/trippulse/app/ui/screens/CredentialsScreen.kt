@@ -110,7 +110,7 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
                 val origin = com.trippulse.app.domain.GeoPoint(t.originLat, t.originLng)
                 val dest = com.trippulse.app.domain.GeoPoint(t.destLat, t.destLng)
                 com.trippulse.app.core.Geo.haversineM(origin, here) > LATE_START_METRES &&
-                    com.trippulse.app.core.Geo.haversineM(here, dest) < com.trippulse.app.core.Geo.haversineM(origin, dest)
+                    com.trippulse.app.core.Geo.haversineM(here, dest) < com.trippulse.app.core.Geo.haversineM(origin, dest) + LATE_START_METRES
             }
             starting = false
             if (alreadyOnTheWay) lateStartHere = here else beginTrip()
@@ -119,7 +119,20 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
 
     lateStartHere?.let { here ->
         val t = trip
+        // How long the way here takes by the first stage's vehicle (by road
+        // when the first stage is a train: that way here was not by train).
+        var firstMode by remember { mutableStateOf<String?>(null) }
+        LaunchedEffect(tripId) { firstMode = graph.db.legDao().forTrip(tripId).minByOrNull { it.legIndex }?.mode ?: t?.transportMode }
+        val road = firstMode?.takeIf { com.trippulse.app.domain.TransitNetwork.kindOf(it) == null }
+        val estimate = t?.let {
+            val nowMs = System.currentTimeMillis()
+            com.trippulse.app.domain.Changes.departureMs(
+                com.trippulse.app.domain.GeoPoint(it.originLat, it.originLng), here, road, nowMs
+            ).takeIf { ms -> ms < nowMs - 2 * 60_000L }
+        }
         LateStartDialog(
+            estimateMs = estimate,
+            estimateBy = road?.let { com.trippulse.app.ui.Names.mode(it).lowercase() } ?: "road",
             originName = t?.originName ?: "the start",
             kmAway = t?.let { com.trippulse.app.core.Geo.haversineM(com.trippulse.app.domain.GeoPoint(it.originLat, it.originLng), here) / 1000.0 } ?: 0.0,
             // When the journey was set up (or planned to leave): most often
@@ -337,7 +350,12 @@ fun CredentialsScreen(nav: NavHostController, tripId: String) {
 
 
 /** How far from the planned start counts as "already on the way". */
-private const val LATE_START_METRES = 3_000.0
+/**
+ * Further than this from the journey's start when Start is tapped, the
+ * traveller has already set off: beyond the gate, the doorstep and the GPS's
+ * wander, short of the nearest metro station.
+ */
+private const val LATE_START_METRES = 400.0
 
 @android.annotation.SuppressLint("MissingPermission")
 private suspend fun currentFix(context: android.content.Context): com.trippulse.app.domain.GeoPoint? =
@@ -355,6 +373,9 @@ private suspend fun currentFix(context: android.content.Context): com.trippulse.
 @OptIn(androidx.compose.foundation.layout.ExperimentalLayoutApi::class, androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 private fun LateStartDialog(
+    /** When the way here at its vehicle's pace says they left, and by what. */
+    estimateMs: Long?,
+    estimateBy: String,
     originName: String,
     kmAway: Double,
     setUpAtMs: Long?,
@@ -396,16 +417,20 @@ private fun LateStartDialog(
         text = {
             androidx.compose.foundation.layout.Column {
                 Text(
-                    "You're about %.0f km from %s. When did you actually set off? ".format(kmAway, originName) +
-                        "Koode will time the journey from then and count the distance already covered.",
+                    (if (kmAway < 10) "You're about %.1f km from %s. When did you leave? " else "You're about %.0f km from %s. When did you leave? ").format(kmAway, originName) +
+                        "Koode times the journey from then and counts the way here; at a station, the way here becomes its own stage.",
                     color = colors.textMid
                 )
                 androidx.compose.foundation.layout.Spacer(Modifier.height(com.trippulse.app.ui.theme.Spacing.md))
                 androidx.compose.foundation.layout.FlowRow(
                     horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(com.trippulse.app.ui.theme.Spacing.sm)
                 ) {
+                    estimateMs?.let { ms ->
+                        val min = ((System.currentTimeMillis() - ms) / 60_000L).coerceAtLeast(1)
+                        com.trippulse.app.ui.components.KoodeChip("About ${clock.format(java.util.Date(ms))} · $min min by $estimateBy", true, { onStartedAt(ms) })
+                    }
                     setUpAtMs?.let { ms ->
-                        com.trippulse.app.ui.components.KoodeChip("When I set it up, ${clock.format(java.util.Date(ms))}", true, { onStartedAt(ms) })
+                        com.trippulse.app.ui.components.KoodeChip("When I set it up, ${clock.format(java.util.Date(ms))}", estimateMs == null, { onStartedAt(ms) })
                     }
                     listOf(15 to "15 min ago", 30 to "30 min ago", 60 to "1 h ago", 90 to "1½ h ago",
                         120 to "2 h ago", 180 to "3 h ago", 240 to "4 h ago", 360 to "6 h ago")
