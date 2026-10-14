@@ -289,8 +289,11 @@ class TripManager(
     suspend fun repairStages(tripId: String): Boolean {
         // Stages the movement says were made but nobody tapped: the ride that
         // ended at its station, the walk that stood in for the cab, the waits.
-        var changed = runCatching { backfillLateStart(tripId) }.getOrDefault(false)
+        var changed = runCatching { foldMisTaps(tripId) }.getOrDefault(false)
+        changed = runCatching { backfillLateStart(tripId) }.getOrDefault(false) || changed
         changed = runCatching { senseStages(tripId) }.getOrDefault(false) || changed
+        // The path as drawn began where the record began: drawn again from the stages as they now stand.
+        if (changed) { DrawnPaths.delete(appContext, tripId); if (drawnCache?.first == tripId) drawnCache = null }
         val rows = db.legDao().forTrip(tripId)
         if (rows.size < 2) { runCatching { reconcileDistance(tripId) }; runCatching { relabelFares(tripId) }; return changed }
         lock.withLock {
@@ -705,7 +708,23 @@ class TripManager(
         breakdown: Boolean = false,
         /** When the change happened, if not now: a late start tells of a ride already begun. */
         atMs: Long? = null
-    ): SwitchResult = lock.withLock { switchModeLocked(newMode, details, breakdown, atMs) }
+    ): SwitchResult {
+        // Changed within a minute of the stage starting, without moving from
+        // where it began (bike taxi tapped, metro meant): the stage is
+        // corrected, not ended after seconds and a new one begun.
+        val current = activeLeg()
+        val since = current?.startedAtMs
+        val here = state?.let { s -> s.lat?.let { la -> s.lng?.let { GeoPoint(la, it) } } }
+        if (atMs == null && !breakdown && details.isEmpty() && current != null && since != null && here != null &&
+            System.currentTimeMillis() - since < Changes.MIS_TAP_MS &&
+            Geo.haversineM(GeoPoint(current.fromLat, current.fromLng), here) < Changes.MIN_SPAN_M &&
+            !newMode.equals(current.mode, ignoreCase = true) && TravelDetails.isComplete(newMode, details)
+        ) {
+            trip?.tripId?.let { correctSensedStage(it, current.legIndex, newMode) }
+            return SwitchResult.Ok
+        }
+        return lock.withLock { switchModeLocked(newMode, details, breakdown, atMs) }
+    }
 
     /**
      * A journey started late (Start tapped well after setting off) and a
@@ -1313,6 +1332,41 @@ class TripManager(
     }
 
     /**
+     * Stages of seconds that were never travelled (the bike taxi tapped
+     * and changed to the metro at once, Start pressed on board) go into
+     * the stage after them, which takes their start ([Changes.misTap]).
+     * The stage after keeps its own name for where it began: the station.
+     */
+    private suspend fun foldMisTaps(tripId: String): Boolean = lock.withLock {
+        if (db.tripDao().byId(tripId)?.completedAtMs == null) return@withLock false
+        val rows = db.legDao().forTrip(tripId).sortedBy { it.legIndex }
+        if (rows.size < 2) return@withLock false
+        val net = TransitData.load(appContext, GeoPoint(rows.first().fromLat, rows.first().fromLng))
+        val keep = ArrayList<TripLegEntity>()
+        var carry: TripLegEntity? = null
+        for ((i, leg) in rows.withIndex()) {
+            val next = rows.getOrNull(i + 1)
+            val start = leg.startedAtMs
+            val end = leg.completedAtMs
+            if (next != null && start != null && end != null &&
+                Changes.misTap(GeoPoint(leg.fromLat, leg.fromLng), GeoPoint(leg.toLat, leg.toLng), start, end, next.mode, net)
+            ) {
+                carry = carry ?: leg
+                continue
+            }
+            keep += carry?.let { c -> leg.copy(startedAtMs = minOf(c.startedAtMs ?: Long.MAX_VALUE, leg.startedAtMs ?: Long.MAX_VALUE).takeIf { it != Long.MAX_VALUE }) } ?: leg
+            carry = null
+        }
+        if (keep.size == rows.size) return@withLock false
+        db.legDao().deleteForTrip(tripId)
+        db.legDao().upsertAll(keep.mapIndexed { n, l -> l.copy(legIndex = n) })
+        val t = db.tripDao().byId(tripId)
+        if (t != null && t.activeLegIndex >= keep.size) db.tripDao().update(t.copy(activeLegIndex = keep.size - 1))
+        if (trip?.tripId == tripId) { trip = db.tripDao().byId(tripId); legs = db.legDao().forTrip(tripId) }
+        true
+    }
+
+    /**
      * A first stage on the road recorded too fast for the distance between
      * its ends (Start tapped at the metro station, the bike taxi from home
      * "taking" ten seconds) began earlier: it and the journey are put back
@@ -1509,9 +1563,34 @@ class TripManager(
         drawnCache?.takeIf { it.first == tripId }?.second
             ?: DrawnPaths.load(appContext, tripId)?.also { drawnCache = tripId to it }
 
+    /**
+     * The way from where the first stage began to the first fix, when the
+     * record began only later (Start pressed at the station): along the
+     * road the router gives, timed across the stage's start and that fix.
+     * Empty when the record began where the journey did.
+     */
+    private suspend fun untrackedStart(rows: List<TripLegEntity>, tracked: List<DrawnPaths.Point>): List<DrawnPaths.Point> {
+        val first = rows.minByOrNull { it.legIndex } ?: return emptyList()
+        val start = first.startedAtMs ?: return emptyList()
+        val head = tracked.firstOrNull() ?: return emptyList()
+        val from = GeoPoint(first.fromLat, first.fromLng)
+        val to = GeoPoint(head.lat, head.lng)
+        if (head.tMs - start < 60_000L || Geo.haversineM(from, to) < Changes.MIN_SPAN_M) return emptyList()
+        val road = runCatching { routing.route(from, to)?.polyline }.getOrNull()?.takeIf { it.size >= 2 } ?: listOf(from, to)
+        return DrawnPaths.timed(road, start, head.tMs).dropLast(1)
+    }
+
     /** The drawn journey, drawing it now (the roads asked for) when it has not been. */
     suspend fun ensureDrawn(tripId: String): List<DrawnPaths.Point>? {
-        drawn(tripId)?.let { return it }
+        drawn(tripId)?.let { saved ->
+            // Drawn before the journey's start was put back: the way from home is missing, draw it again.
+            val first = db.legDao().forTrip(tripId).minByOrNull { it.legIndex }
+            val begins = saved.firstOrNull()
+            val stale = first?.startedAtMs != null && begins != null && begins.tMs - first.startedAtMs > 60_000L &&
+                Geo.haversineM(GeoPoint(first.fromLat, first.fromLng), GeoPoint(begins.lat, begins.lng)) >= Changes.MIN_SPAN_M
+            if (!stale) return saved
+            DrawnPaths.delete(appContext, tripId); drawnCache = null
+        }
         val t = db.tripDao().byId(tripId)?.takeIf { it.completedAtMs != null } ?: return null
         drawJourney(t)
         return drawn(tripId)
@@ -1525,7 +1604,8 @@ class TripManager(
     private suspend fun drawJourney(t: ActiveTripEntity) {
         val samples = db.locationDao().allForTrip(t.tripId)
         val rows = db.legDao().forTrip(t.tripId)
-        val drawn = runCatching { DrawnPaths.draw(samples, rows, RoadMatcher()) }.getOrNull() ?: return
+        val tracked = runCatching { DrawnPaths.draw(samples, rows, RoadMatcher()) }.getOrNull() ?: return
+        val drawn = (runCatching { untrackedStart(rows, tracked) }.getOrNull() ?: emptyList()) + tracked
         DrawnPaths.save(appContext, t.tripId, drawn)
         lock.withLock {
             drawnCache = t.tripId to drawn

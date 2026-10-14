@@ -1092,7 +1092,8 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 expenses = expense,
                 legs = legRows,
                 transportMode = t.transportMode,
-                topSpeedKmh = samples.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6)
+                topSpeedKmh = samples.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6),
+                fixes = samples.map { com.trippulse.app.domain.StageSense.Fix(it.tMs, it.lat, it.lng, it.speedMps, it.accuracyM) }
             )
         )
     }
@@ -1624,9 +1625,14 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                     }
                     // Stages left reading wrong by an older build are put right before the report is read.
                     if (graph.tripManager.repairStages(tripId)) {
+                        // The repair can move the journey's start and add to its timeline: read all of it again.
                         val fixed = graph.db.legDao().forTrip(tripId)
+                        val t2 = graph.db.tripDao().byId(tripId) ?: t
+                        val ev2 = graph.db.eventDao().allForTrip(tripId)
+                        trip.value = t2
+                        events.value = ev2
                         legs.value = fixed
-                        recompute(t, ev, samples.value, fixed, graph.db.expenseDao().allForTrip(tripId))
+                        recompute(t2, ev2, samples.value, fixed, graph.db.expenseDao().allForTrip(tripId))
                     }
                     // The path along its roads: drawn now if the journey ended before Koode drew journeys.
                     drawn.value = runCatching { graph.tripManager.ensureDrawn(tripId) }.getOrNull()?.let { com.trippulse.app.data.DrawnPaths.asSamples(tripId, it) }
@@ -1678,7 +1684,8 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                     )
                 },
                 transportMode = t.transportMode,
-                topSpeedKmh = sp.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6)
+                topSpeedKmh = sp.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6),
+                fixes = sp.map { com.trippulse.app.domain.StageSense.Fix(it.tMs, it.lat, it.lng, it.speedMps, it.accuracyM) }
             )
         )
         story.value = runCatching {

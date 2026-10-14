@@ -81,7 +81,9 @@ object JourneyAnalytics {
         /** Top speed seen during the journey, km/h, when the log kept one. */
         val topSpeedKmh: Double? = null,
         /** Day boundaries follow the traveller's own clock, not UTC. */
-        val zone: ZoneId = ZoneId.systemDefault()
+        val zone: ZoneId = ZoneId.systemDefault(),
+        /** The location record, so the changes between rides are measured from the movement (see [Changes.parts]). */
+        val fixes: List<StageSense.Fix> = emptyList()
     )
 
     /** Everything derived, in one object. */
@@ -313,7 +315,8 @@ object JourneyAnalytics {
         val timed = legReports.filter { it.startedAtMs != null && it.completedAtMs != null }
         val parts = if (timed.isNotEmpty() && timed.size == legReports.size) Changes.parts(
             timed.map { Changes.Stage(it.mode, it.fromName, it.toName, it.startedAtMs!!, it.completedAtMs!!, it.distanceM) },
-            measuredWaits, i.completed
+            measuredWaits, i.completed,
+            moves = StageSense.episodes(i.fixes.filter { it.accuracyM <= StageSense.FIX_ACCURACY_M })
         ) else emptyList()
         val changeSeconds = (Changes.changeMs(parts) / 1000).coerceIn(0, totalSeconds)
 

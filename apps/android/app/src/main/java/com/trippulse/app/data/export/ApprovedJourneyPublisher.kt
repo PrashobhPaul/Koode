@@ -140,7 +140,8 @@ class ApprovedJourneyPublisher(
                     expenses = emptyList(),
                     legs = legs,
                     transportMode = t.transportMode,
-                    topSpeedKmh = samples.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6)
+                    topSpeedKmh = samples.mapNotNull { it.speedMps }.maxOrNull()?.times(3.6),
+                    fixes = samples.map { com.trippulse.app.domain.StageSense.Fix(it.tMs, it.lat, it.lng, it.speedMps, it.accuracyM) }
                 )
             )
             val saved = runCatching { db.savedPlaceDao().all() }.getOrNull().orEmpty()
