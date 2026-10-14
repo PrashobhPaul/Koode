@@ -1869,12 +1869,18 @@ class SettingsVm(private val graph: AppGraph) : ViewModel() {
 
     fun circleSize(): Int = com.trippulse.app.data.share.TimelineDelivery.recipients(graph.appContext).size
 
+    /** What the last "Check for updates" found, told on the About page itself. */
+    val updateStatus = MutableStateFlow<String?>(null)
+
     fun checkForUpdateNow() = viewModelScope.launch {
         checkingUpdate.value = true
-        val found = graph.updateChecker.check(force = true)
-        update.value = found
-        message.value = if (found == null) "You're on the latest version ($installedVersion)."
-        else "Koode ${found.versionName} is available."
+        updateStatus.value = null
+        val clock = java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT).format(java.util.Date())
+        updateStatus.value = when (val o = graph.updateChecker.checkNow()) {
+            is UpdateChecker.Outcome.Newer -> { update.value = o.available; "Koode ${o.available.versionName} is available. Tap Download to install it." }
+            is UpdateChecker.Outcome.UpToDate -> { update.value = null; "✓ You're on the latest version ($installedVersion). Checked at $clock." }
+            UpdateChecker.Outcome.Unreachable -> "Couldn't reach the update server. Check your internet connection and try again."
+        }
         checkingUpdate.value = false
     }
 
