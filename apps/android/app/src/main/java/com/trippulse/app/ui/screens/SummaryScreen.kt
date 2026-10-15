@@ -726,7 +726,7 @@ fun JourneyDashboard(
                         com.trippulse.app.ui.components.ModeArt(part.stage.mode, 34.dp, faceRight = true)
                         Spacer(Modifier.width(Spacing.sm))
                         DetailRow(
-                            "${part.stage.fromName} → ${part.stage.toName}",
+                            "${part.stage.fromName} → ${part.stage.toName}" + (part.stage.line?.let { " · $it" } ?: ""),
                             TimeFmt.durationShort(part.ms / 1000),
                             modifier = Modifier.weight(1f)
                         )

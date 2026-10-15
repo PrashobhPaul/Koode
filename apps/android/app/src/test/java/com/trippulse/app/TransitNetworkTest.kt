@@ -76,6 +76,35 @@ class TransitNetworkTest {
         assertTrue(ride.metres > Geo.haversineM(miyapur, ameerpet) + Geo.haversineM(ameerpet, raidurg) * 0.95)
     }
 
+    /** The station called [name] on a metro network, as mapped. */
+    private fun named(name: String): GeoPoint = net.stations.first { it.name == name && it.kind == TransitNetwork.Kind.METRO }.point
+
+    @Test fun the_line_is_read_from_the_route_not_asked() {
+        // Habsiguda to Raidurg: the Blue Line all the way.
+        assertEquals("Blue Line", net.lineFor(habsiguda, raidurg, TransitNetwork.Kind.METRO))
+        // Habsiguda to Miyapur: the Blue Line to Ameerpet, then the Red.
+        assertEquals("Blue Line, then Red Line at Ameerpet", net.lineFor(habsiguda, miyapur, TransitNetwork.Kind.METRO))
+    }
+
+    @Test fun changes_of_line_are_read_on_any_network() {
+        // Delhi: from Dwarka Sector 21 to Millennium City Centre, the quickest way is the Airport Express to New Delhi, then the Yellow Line.
+        val text = net.lineFor(named("Dwarka Sector 21"), named("Millennium City Centre Gurugram"), TransitNetwork.Kind.METRO)
+        assertEquals("Airport Express Line, then Yellow Line at New Delhi", text)
+        // A ride that stays on one line is that line, whatever the city.
+        val stays = net.lineFor(named("Rajiv Chowk"), named("Millennium City Centre Gurugram"), TransitNetwork.Kind.METRO)
+        assertEquals("Yellow Line", stays)
+    }
+
+    @Test fun a_metro_journey_from_home_begins_at_the_best_station_not_the_door() {
+        val home = GeoPoint(17.4250, 78.5560) // Raheja Vistas, Nacharam
+        val office = GeoPoint(17.43230, 78.38770)
+        val at = net.boardingStation(home, office, TransitNetwork.Kind.METRO)
+        assertNotNull(at)
+        assertEquals("Habsiguda", net.stations[at!!].name)
+        // Nothing within reach: no station to begin at.
+        assertNull(net.boardingStation(GeoPoint(17.0, 79.5), office, TransitNetwork.Kind.METRO))
+    }
+
     @Test fun kochi_metro_rides_too() {
         val aluva = GeoPoint(10.11010, 76.34952)
         val edappally = GeoPoint(10.02549, 76.30798)

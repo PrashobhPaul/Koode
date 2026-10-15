@@ -28,8 +28,18 @@ class TransitNetwork(
     /** Bus and coach stations, for naming where a bus stage began or ended. */
     val bus: List<Station> = emptyList(),
     /** Between two stations, the quickest way (a Shinkansen beside a local line); [edges] keep the shortest. */
-    private val fastEdges: List<List<Edge>> = edges
+    private val fastEdges: List<List<Edge>> = edges,
+    /** The named lines of the files ("Blue Line", "Yamanote Line"), in the order read. */
+    val lines: List<Line> = emptyList(),
+    /** For each station, the [lines] that call at it. */
+    private val served: List<Set<Int>> = emptyList()
 ) {
+
+    /** A line as its network names it, and the colour it is drawn in ("blue", "#4169E1"; blank when not mapped). */
+    data class Line(val network: String, val name: String, val colour: String)
+
+    /** Part of a ride on one line: from station [from] to station [to]. */
+    data class Run(val line: Line, val from: Int, val to: Int)
 
     /**
      * A metro station ([Kind.METRO]), a water-metro / ferry terminal
@@ -256,6 +266,94 @@ class TransitNetwork(
         return null
     }
 
+    /** The lines that call at station [station]. */
+    fun linesAt(station: Int): Set<Int> = served.getOrNull(station).orEmpty()
+
+    /**
+     * The lines a ride through [path] (station numbers, in order) was made
+     * on: as few as can carry it, each as far as it goes before a change.
+     * Two stations both on a line, one after the other, are a stretch of
+     * it; the walk between two stations of an interchange ends a line.
+     * Stretches no named line covers are left out.
+     */
+    fun runs(path: List<Int>): List<Run> {
+        val out = ArrayList<Run>()
+        var i = 0
+        while (i < path.size - 1) {
+            if (isInterchange(path[i], path[i + 1])) { i++; continue }
+            var on = linesAt(path[i]) intersect linesAt(path[i + 1])
+            if (on.isEmpty()) { i++; continue }
+            var j = i + 1
+            while (j < path.size - 1 && !isInterchange(path[j], path[j + 1])) {
+                val still = on intersect linesAt(path[j + 1])
+                if (still.isEmpty()) break
+                on = still; j++
+            }
+            val line = lines[on.min()]
+            // One line seen twice in a row (its two directions, a data gap): one run.
+            val prev = out.lastOrNull()
+            if (prev != null && prev.line.name == line.name && prev.line.network == line.network && prev.to == path[i]) out[out.lastIndex] = prev.copy(to = path[j])
+            else out += Run(line, path[i], path[j])
+            i = j
+        }
+        return out
+    }
+
+    private fun isInterchange(a: Int, b: Int): Boolean =
+        (edges.getOrNull(a)?.firstOrNull { it.to == b } ?: edges.getOrNull(b)?.firstOrNull { it.to == a })?.speed == 'I'
+
+    /**
+     * The lines of a ride as a rider says them: "Blue Line", "Blue Line,
+     * then Red Line at Ameerpet". Null when no named line carried it.
+     */
+    fun lineText(runs: List<Run>): String? {
+        if (runs.isEmpty()) return null
+        return buildString {
+            append(runs.first().line.name)
+            for (r in runs.drop(1)) append(", then ${r.line.name} at ${stations[r.from].name}")
+        }
+    }
+
+    /**
+     * The line (or lines) a ride of [kind] from [from] to [to] is on: the
+     * quickest ride between the stations nearest each, as a timetable
+     * would offer it. Null off the network or where no line is named.
+     */
+    fun lineFor(from: GeoPoint, to: GeoPoint, kind: Kind, toWithinM: Double = DEST_STATION_M): String? {
+        val s = nearestStation(from, kind) ?: return null
+        val e = nearestStation(to, kind, toWithinM) ?: return null
+        if (s == e) return linesAt(s).singleOrNull()?.let { lines[it].name }
+        return lineText(runs(fastest(s, e)?.stations ?: return null))
+    }
+
+    /**
+     * The station a journey of [kind] from [from] to [to] is best begun at:
+     * of the stations within [FIRST_MILE_SEARCH_M], the one that gets there
+     * soonest, counting the way to it (walked when it is near, ridden by
+     * road otherwise, with the wait for the ride) and the ride from it to
+     * the station nearest [to]. Not always the nearest: a station a little
+     * further on the line that goes there beats the near one on the line
+     * that does not. Null when no station is in reach.
+     */
+    fun boardingStation(from: GeoPoint, to: GeoPoint, kind: Kind): Int? {
+        val end = nearestStation(to, kind, DEST_STATION_M)
+        var best: Int? = null
+        var bestS = Double.MAX_VALUE
+        for ((i, s) in stations.withIndex()) {
+            if (s.kind != kind || s.name.isBlank()) continue
+            val m = Geo.haversineM(from, s.point)
+            if (m > FIRST_MILE_SEARCH_M) continue
+            val wayS = firstMileSeconds(m)
+            val rideS = when {
+                end == null -> 0.0
+                end == i -> 0.0
+                else -> fastest(i, end)?.seconds ?: continue
+            }
+            if (wayS + rideS < bestS) { bestS = wayS + rideS; best = i }
+        }
+        return best
+    }
+
     private fun nearest(list: List<Station>, p: GeoPoint, maxM: Double, ok: (Station) -> Boolean): Int? {
         var best = -1
         var bestM = maxM
@@ -311,6 +409,32 @@ class TransitNetwork(
 
         fun radiusOf(kind: Kind): Double = if (kind == Kind.RAIL) RAIL_RADIUS_M else STATION_RADIUS_M
 
+        /** How far from where a journey begins a station is looked for to begin a ride on rails or water at. */
+        const val FIRST_MILE_SEARCH_M = 4_000.0
+
+        /** A station this near (as the crow flies) is walked to; further, a ride by road is taken. */
+        const val WALK_TO_STATION_M = 1_000.0
+
+        /**
+         * The time the way to a station [m] away (as the crow flies) takes:
+         * walked at 4.5 km/h when it is near, otherwise ridden through a
+         * city at 18 km/h after five minutes finding the ride, the road a
+         * quarter longer than the straight line.
+         */
+        fun firstMileSeconds(m: Double): Double =
+            if (m <= WALK_TO_STATION_M) m * 1.25 / (4.5 / 3.6) else 300.0 + m * 1.25 / (18.0 / 3.6)
+
+        /**
+         * The usual wait on the platform, seconds, for a ride of [kind]: half
+         * the time between trains at the hours people travel. For the time
+         * a journey still has to go while it is waited for.
+         */
+        fun platformWaitS(kind: Kind): Double = when (kind) {
+            Kind.METRO -> 240.0
+            Kind.WATER -> 600.0
+            Kind.RAIL -> 600.0
+        }
+
         /** A ride drawn mid-way is drawn to a station up to this far from the train. */
         const val LINE_END_M = 1_200.0
 
@@ -350,6 +474,13 @@ class TransitNetwork(
             Kind.METRO -> if (METRO_WORD.containsMatchIn(s.network)) "${s.name} Metro"
                 else if (RAIL_WORDS.containsMatchIn(s.name)) s.name else "${s.name} station"
             Kind.RAIL -> railLabel(s.name)
+        }
+
+        /** A station of [kind] not yet known by name: "the metro station" until the phone reaches one. */
+        fun stationWord(kind: Kind): String = when (kind) {
+            Kind.METRO -> "the metro station"
+            Kind.WATER -> "the jetty"
+            Kind.RAIL -> "the railway station"
         }
 
         fun railLabel(name: String): String = if (RAIL_WORDS.containsMatchIn(name)) name else "$name station"
@@ -405,6 +536,15 @@ class TransitNetwork(
             // stations) and, for a railway line, the speed its trains keep.
             data class Cell(val station: Int, val metres: Double?, val path: List<GeoPoint>)
             val lines = ArrayList<Triple<List<Cell>, Char?, Double>>()
+            // Each line's name, by its place in [lines]; the same name on one network is one line (its two directions).
+            val named = ArrayList<Line>()
+            val lineOf = ArrayList<Int>()
+            fun nameLine(f: List<String>) {
+                val line = Line(f[1].trim(), f[2].trim(), f.getOrNull(3)?.trim().orEmpty())
+                if (line.name.isBlank()) { lineOf += -1; return }
+                val known = named.indexOfFirst { it.network == line.network && it.name == line.name }
+                lineOf += if (known >= 0) known else { named += line; named.lastIndex }
+            }
             val rail = ArrayList<Station>()
             val bus = ArrayList<Station>()
             fun cells(field: String, local: Map<Int, Int>) = field.trim().split(' ').filter { it.isNotBlank() }.map { cell ->
@@ -436,7 +576,7 @@ class TransitNetwork(
                             local[n] = stations.size
                             stations += Station(lat, lng, f[3].trim(), f.getOrNull(4)?.trim().orEmpty(), kind)
                         }
-                        "L" -> if (f.size >= 5) lines += Triple(cells(f[4], local), null, 0.0)
+                        "L" -> if (f.size >= 5) { lines += Triple(cells(f[4], local), null, 0.0); nameLine(f) }
                         "R" -> {
                             val n = railCount++
                             val at = place(f) ?: return@forEach
@@ -447,6 +587,7 @@ class TransitNetwork(
                         "Q" -> if (f.size >= 6) {
                             val klass = f[4].trim()
                             lines += Triple(cells(f[5], localRail), klass.firstOrNull()?.takeIf { it in "HXL" } ?: 'L', klass.drop(1).toDoubleOrNull() ?: 0.0)
+                            nameLine(f)
                         }
                         "T" -> if (f.size >= 4) {
                             val at = place(f)
@@ -468,10 +609,14 @@ class TransitNetwork(
                 if (adj[a][b].let { it == null || m < it.metres }) adj[a][b] = e
                 if (fast[a][b].let { it == null || e.seconds < it.seconds }) fast[a][b] = e
             }
-            for ((cells, klass, cruise) in lines) {
+            val served = List(stations.size) { HashSet<Int>() }
+            for ((n, line) in lines.withIndex()) {
+                val (cells, klass, cruise) = line
+                val name = lineOf.getOrElse(n) { -1 }
                 var last = -1
                 for ((s, m, path) in cells) {
                     if (s < 0) { last = -1; continue }
+                    if (name >= 0) served[s] += name
                     if (last >= 0 && m != null) {
                         // Never less than the straight line between the two
                         // stations: a ride cannot be shorter than that.
@@ -504,7 +649,7 @@ class TransitNetwork(
                     }
                 }
             }
-            return TransitNetwork(stations, adj.map { it.values.toList() }, rail, bus, fast.map { it.values.toList() })
+            return TransitNetwork(stations, adj.map { it.values.toList() }, rail, bus, fast.map { it.values.toList() }, named, served)
         }
     }
 }

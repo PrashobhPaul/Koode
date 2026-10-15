@@ -34,6 +34,13 @@ object LegDetails {
         }.getOrDefault(emptyMap())
     }
 
+    /** The line a ride on a metro or a boat was on ("Blue Line"), when one is known; null for anything else. */
+    fun lineOf(mode: String?, json: String?): String? {
+        val kind = TransitNetwork.kindOf(mode) ?: return null
+        if (kind == TransitNetwork.Kind.RAIL) return null
+        return fromJson(json)[DetailKeys.OPERATOR]?.trim()?.takeIf { it.isNotBlank() }
+    }
+
     /** The one-line vehicle description for a stored leg. */
     fun summaryOf(mode: String?, json: String?): String =
         TravelDetails.summary(mode, fromJson(json))

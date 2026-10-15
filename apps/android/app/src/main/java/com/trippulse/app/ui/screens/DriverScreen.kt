@@ -164,6 +164,10 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
 
     val activeLeg = legs.firstOrNull { it.legIndex == (t?.activeLegIndex ?: 0) }
     val profile = TransportCatalog.profile(activeLeg?.mode ?: t?.transportMode)
+    val waiting by vm.waiting.collectAsStateWithLifecycle()
+    // The way to a station the metro is planned from: a part of the journey, not where it is going.
+    val toStation = activeLeg != null && com.trippulse.app.domain.TransitNetwork.kindOf(activeLeg.mode) == null &&
+        legs.any { it.legIndex == activeLeg.legIndex + 1 && it.startedAtMs == null && com.trippulse.app.domain.TransitNetwork.kindOf(it.mode) != null }
     val hasNextLeg = legs.any { it.legIndex == (t?.activeLegIndex ?: 0) + 1 }
 
     var showNotes by remember { mutableStateOf(false) }
@@ -260,12 +264,14 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                             com.trippulse.app.ui.components.ModeArt(profile.key, 22.dp)
                             Spacer(Modifier.width(6.dp))
                             Text(
-                                journeyLabel(s?.journey),
-                                color = colors.accent, style = MaterialTheme.typography.titleSmall
+                                waiting?.let { w -> "Waiting for ${com.trippulse.app.domain.StageSense.waitedWord(w.mode) ?: "the ride"} at ${w.place}" }
+                                    ?: if (toStation && moving) "On the way to ${activeLeg?.toName}" else journeyLabel(s?.journey),
+                                color = colors.accent, style = MaterialTheme.typography.titleSmall,
+                                maxLines = 1
                             )
                         }
                         Text(
-                            activeLeg?.toName ?: t?.destName ?: "Journey",
+                            (if (toStation) t?.destName else null) ?: activeLeg?.toName ?: t?.destName ?: "Journey",
                             color = colors.textHigh, style = MaterialTheme.typography.headlineMedium,
                             maxLines = 1
                         )
@@ -316,7 +322,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                                     color = colors.textHigh, style = MaterialTheme.typography.headlineSmall
                                 )
                             }
-                            s?.speedKmh?.takeIf { moving && it >= 1.0 }?.let { kmh ->
+                            s?.speedKmh?.takeIf { moving && waiting == null && it >= 1.0 }?.let { kmh ->
                                 Column(horizontalAlignment = Alignment.End) {
                                     Text(stringResource(R.string.t_speed_265ff), color = colors.textLow, style = MaterialTheme.typography.labelSmall)
                                     Text(
@@ -786,19 +792,26 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         Spacer(Modifier.width(Spacing.sm))
                         Column(Modifier.weight(1f)) {
                             Text(
-                                if (toStation) "${if (onFoot) "Walked" else by} to ${st.place}" else "Off the $ride at ${st.place}",
+                                when {
+                                    st.planned -> "How are you getting to ${st.place}?"
+                                    toStation -> "${if (onFoot) "Walked" else by} to ${st.place}"
+                                    else -> "Off the $ride at ${st.place}"
+                                },
                                 color = colors.textHigh, style = MaterialTheme.typography.titleMedium
                             )
                             Text(
-                                if (toStation) "On the $ride from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?"
-                                else "$by from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?",
+                                when {
+                                    st.planned -> "${if (onFoot) "On foot" else by} so far, from how you're moving — Koode keeps reading it, or tap to say. The $ride begins when you reach the station, and the wait there counts as neither ride."
+                                    toStation -> "On the $ride from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?"
+                                    else -> "$by from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?"
+                                },
                                 color = colors.textMid, style = MaterialTheme.typography.bodyMedium
                             )
                         }
                     }
                     Spacer(Modifier.height(Spacing.sm))
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                        KoodeChip("Yes", true, { vm.dismissSensedStage() })
+                        KoodeChip(if (st.planned) "Right" else "Yes", true, { vm.dismissSensedStage() })
                         // The way to a station may well have been one's own car, parked there.
                         (listOf(TransportCatalog.BIKE_TAXI, TransportCatalog.AUTO, TransportCatalog.CAB, TransportCatalog.BUS) + (if (toStation) listOf(TransportCatalog.CAR) else emptyList()) + TransportCatalog.WALK)
                             .filter { it.key != TransportCatalog.profile(st.mode).key }
@@ -1054,6 +1067,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                 onRole = { vm.setTravellerRole(it) },
                 onPlannedHalt = { vm.setPlannedHalt(it) },
                 onSwitchMode = { mode, details, breakdown -> vm.switchMode(mode, details, breakdown) },
+                lineGuess = { vm.lineGuess(it) },
                 onUpdateDetails = { index, details -> vm.updateStageDetails(index, details) },
                 onClose = { showEdit = false; vm.clearEditMessage() }
             )
@@ -1402,6 +1416,7 @@ private fun EditJourneySheet(
     onPlannedHalt: (String?) -> Unit,
     onSwitchMode: (String, Map<String, String>, Boolean) -> Unit,
     onUpdateDetails: (Int, Map<String, String>) -> Unit,
+    lineGuess: (String) -> String? = { null },
     onClose: () -> Unit
 ) {
     val colors = KoodeTheme.colors
@@ -1430,7 +1445,8 @@ private fun EditJourneySheet(
             mode = chosen
             details =
                 if (chosen == current?.mode) LegDetails.fromJson(current?.detailsJson)
-                else emptyMap()
+                // The metro's line is read from where you are and where you're going: filled in, not asked.
+                else lineGuess(chosen)?.let { mapOf(com.trippulse.app.domain.DetailKeys.OPERATOR to it, com.trippulse.app.domain.DetailKeys.LINE_READ to "route") } ?: emptyMap()
         }
     }
 
@@ -1579,7 +1595,10 @@ private fun EditJourneySheet(
             TravelDetailFields(
                 mode = mode,
                 values = details,
-                onChange = { key, value -> details = details + (key to value) }
+                // A line typed over the one read from the route is the traveller's, and stays.
+                onChange = { key, value ->
+                    details = (if (key == com.trippulse.app.domain.DetailKeys.OPERATOR) details - com.trippulse.app.domain.DetailKeys.LINE_READ else details) + (key to value)
+                }
             )
 
             // Leaving your own vehicle part-way may be a plan (car to the

@@ -797,6 +797,10 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
 
     /** A stage Koode read from the movement (off the metro at its station, on by bike taxi), for the traveller to confirm or put right. */
     val sensedStage: StateFlow<TripManager.SensedStage?> = graph.tripManager.sensedStage
+    /** On the platform, waiting for the train: said instead of a speed. */
+    val waiting: StateFlow<TripManager.Waiting?> = graph.tripManager.waiting
+    /** The line a ride by [mode] from here would be on, read from the route: filled in, not asked. */
+    fun lineGuess(mode: String): String? = graph.tripManager.lineGuess(mode)
     fun dismissSensedStage() = graph.tripManager.dismissSensedStage()
     fun correctSensedStage(legIndex: Int, mode: String) = viewModelScope.launch { graph.tripManager.correctSensedStage(tripId, legIndex, mode) }
 
@@ -1080,7 +1084,7 @@ class DriverVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
         val legEntities = graph.db.legDao().forTrip(tripId)
         val legRows = legEntities.map {
             JourneyAnalytics.LegInput(it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat,
-                distanceM = com.trippulse.app.data.legDistanceM(samples, it))
+                distanceM = com.trippulse.app.data.legDistanceM(samples, it), line = com.trippulse.app.domain.LegDetails.lineOf(it.mode, it.detailsJson))
         }
         return JourneyAnalytics.analyse(
             JourneyAnalytics.Inputs(
@@ -1680,7 +1684,7 @@ class SummaryVm(private val graph: AppGraph, val tripId: String) : ViewModel() {
                 legs = lg.map {
                     JourneyAnalytics.LegInput(
                         it.legIndex, it.mode, it.fromName, it.toName, it.startedAtMs, it.completedAtMs, it.seat,
-                        distanceM = com.trippulse.app.data.legDistanceM(sp, it)
+                        distanceM = com.trippulse.app.data.legDistanceM(sp, it), line = com.trippulse.app.domain.LegDetails.lineOf(it.mode, it.detailsJson)
                     )
                 },
                 transportMode = t.transportMode,

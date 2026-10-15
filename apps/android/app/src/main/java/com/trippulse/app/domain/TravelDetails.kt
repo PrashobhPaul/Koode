@@ -52,6 +52,8 @@ object DetailKeys {
     const val PNR = "pnr"
     /** How a stage came to be recorded when nobody tapped it: "movement" (read from the fixes), "corrected" (the traveller put it right). */
     const val SENSED = "sensed"
+    /** "route": the line in [OPERATOR] was read from the stations the ride ran between, not typed. Read again while it says so. */
+    const val LINE_READ = "lineRead"
 }
 
 /**
@@ -158,7 +160,7 @@ object TravelDetails {
      * or PNR is asked and nothing is mandatory.
      */
     private fun metroFields() = listOf(
-        DetailField(DetailKeys.OPERATOR, "Line or service", hint = "Blue Line, Aqua Line…")
+        DetailField(DetailKeys.OPERATOR, "Line or service", hint = "Read from your route — change it if it's wrong")
     )
 
     // Long-distance ticketed travel (train, flight, ship) insists on the seat

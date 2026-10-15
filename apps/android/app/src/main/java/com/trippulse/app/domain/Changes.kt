@@ -37,7 +37,9 @@ object Changes {
     data class Stage(
         val mode: String, val fromName: String, val toName: String,
         val fromMs: Long, val toMs: Long,
-        val metres: Double? = null
+        val metres: Double? = null,
+        /** The line a ride on a metro or a boat was on ("Blue Line"), when known. */
+        val line: String? = null
     )
 
     /** A stand the movement measured (a WAITED event). */
@@ -49,8 +51,11 @@ object Changes {
     data class Change(
         val kind: Kind, val fromMs: Long, val toMs: Long,
         val place: String, val fromMode: String?, val toMode: String?,
-        val waitedMs: Long
+        val waitedMs: Long,
+        val fromLine: String? = null, val toLine: String? = null
     ) {
+        /** A change of line on one network: off the Blue Line, onto the Red. */
+        val ofLine: Boolean get() = kind == Kind.CHANGE && fromMode == toMode && fromLine != null && toLine != null && fromLine != toLine
         val ms: Long get() = (toMs - fromMs).coerceAtLeast(0)
         /** Read from the movement rather than assumed from the floor. */
         val measured: Boolean get() = waitedMs > 0
@@ -111,7 +116,7 @@ object Changes {
         if (stages.isEmpty()) return emptyList()
         val st = stages.sortedBy { it.fromMs }
         // Where each boundary's change lies, before clamping.
-        data class Plan(val kind: Kind, var fromMs: Long, var toMs: Long, val place: String, val a: String?, val b: String?, var waited: Long)
+        data class Plan(val kind: Kind, var fromMs: Long, var toMs: Long, val place: String, val a: String?, val b: String?, var waited: Long, val lineA: String? = null, val lineB: String? = null)
         val plans = ArrayList<Plan?>()
         for (i in 0..st.size) {
             val a = st.getOrNull(i - 1)
@@ -131,7 +136,7 @@ object Changes {
                 if (span != null) {
                     val (f, t) = span
                     if (t - f < NO_CHANGE_MS) { plans += null; continue }
-                    plans += Plan(kind, f, t, if (a == null) b!!.fromName else a.toName, a?.mode, b?.mode, t - f)
+                    plans += Plan(kind, f, t, if (a == null) b!!.fromName else a.toName, a?.mode, b?.mode, t - f, a?.line, b?.line)
                     continue
                 }
             }
@@ -150,7 +155,7 @@ object Changes {
                     if (to - from < floor) to = from + floor
                 }
             }
-            plans += Plan(kind, from, to, place, a?.mode, b?.mode, wait?.let { minOf(it.toMs, to) - maxOf(it.fromMs, from) }?.coerceAtLeast(0) ?: 0)
+            plans += Plan(kind, from, to, place, a?.mode, b?.mode, wait?.let { minOf(it.toMs, to) - maxOf(it.fromMs, from) }?.coerceAtLeast(0) ?: 0, a?.line, b?.line)
         }
         // Clamp: a change stays inside the stages either side of it and
         // leaves each ride at least nothing; changes never overlap.
@@ -162,7 +167,7 @@ object Changes {
                 p.fromMs = p.fromMs.coerceIn(cursor, s.toMs)
                 p.toMs = p.toMs.coerceIn(p.fromMs, s.toMs)
                 if (p.toMs > p.fromMs) {
-                    out += Part.Step(Change(p.kind, p.fromMs, p.toMs, p.place, p.a, p.b, p.waited.coerceAtMost(p.toMs - p.fromMs)))
+                    out += Part.Step(Change(p.kind, p.fromMs, p.toMs, p.place, p.a, p.b, p.waited.coerceAtMost(p.toMs - p.fromMs), p.lineA, p.lineB))
                     cursor = p.toMs
                 }
             }
@@ -176,7 +181,7 @@ object Changes {
         plans.last()?.let { p ->
             val end = st.last().toMs
             p.fromMs = p.fromMs.coerceIn(minOf(cursor, end), end); p.toMs = end
-            if (p.toMs > p.fromMs) out += Part.Step(Change(p.kind, p.fromMs, p.toMs, p.place, p.a, p.b, p.waited.coerceAtMost(p.toMs - p.fromMs)))
+            if (p.toMs > p.fromMs) out += Part.Step(Change(p.kind, p.fromMs, p.toMs, p.place, p.a, p.b, p.waited.coerceAtMost(p.toMs - p.fromMs), p.lineA, p.lineB))
         }
         return out
     }
@@ -184,13 +189,14 @@ object Changes {
     /** The time the changes took, in all. */
     fun changeMs(parts: List<Part>): Long = parts.filterIsInstance<Part.Step>().sumOf { it.ms }
 
-    /** "Out of Raheja Vistas, and the wait for the bike taxi", "Off the bike taxi, onto the metro", "Off the bike taxi and into Qualizeal Office". */
+    /** "Out of Raheja Vistas, and the wait for the bike taxi", "Off the bike taxi, onto the metro", "Off the Blue Line at Ameerpet Metro, onto the Red Line", "Off the bike taxi and into Qualizeal Office". */
     fun text(c: Change): String {
         fun the(mode: String?) = mode?.let { "the ${TransportCatalog.label(it).lowercase()}" } ?: "the ride"
         return when (c.kind) {
             Kind.LEAVE -> "Out of ${c.place}, " + if (c.measured) "and the wait for ${the(c.toMode)}" else "to ${the(c.toMode)}"
             Kind.ARRIVE -> "Off ${the(c.fromMode)} and into ${c.place}"
-            Kind.CHANGE -> "Off ${the(c.fromMode)}, onto ${the(c.toMode)}" + if (c.measured) " after a wait" else ""
+            Kind.CHANGE -> if (c.ofLine) "Off the ${c.fromLine} at ${c.place}, onto the ${c.toLine}" + if (c.measured) " after a wait" else ""
+                else "Off ${the(c.fromMode)}, onto ${the(c.toMode)}" + if (c.measured) " after a wait" else ""
         }
     }
 

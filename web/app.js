@@ -794,6 +794,10 @@
       headline = "Haven't heard for a while";
       card.className = 'card hero warn';
       headlineEl.className = 'headline warn';
+    } else if (state.waiting && state.waiting.place) {
+      // On the platform: the wait between two rides, not a stop.
+      headline = 'Waiting for ' + (state.waiting['for'] || 'the train') + ' at ' + state.waiting.place;
+      dot.className = 'dot live';
     } else if (state.status === 'ARRIVED') {
       // Detected, not declared: the journey is still theirs to close.
       headline = 'Reached ' + ((meta && meta.destination) || 'the destination');
