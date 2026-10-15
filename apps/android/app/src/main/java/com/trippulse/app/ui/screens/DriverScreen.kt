@@ -793,7 +793,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                         Column(Modifier.weight(1f)) {
                             Text(
                                 when {
-                                    st.planned -> "${if (onFoot) "Walking" else by} to ${st.place} first"
+                                    st.planned -> "How are you getting to ${st.place}?"
                                     toStation -> "${if (onFoot) "Walked" else by} to ${st.place}"
                                     else -> "Off the $ride at ${st.place}"
                                 },
@@ -801,7 +801,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                             )
                             Text(
                                 when {
-                                    st.planned -> "The $ride doesn't leave from your door. It begins when you reach the station, and the wait there counts as neither ride. Right?"
+                                    st.planned -> "${if (onFoot) "On foot" else by} so far, from how you're moving — Koode keeps reading it, or tap to say. The $ride begins when you reach the station, and the wait there counts as neither ride."
                                     toStation -> "On the $ride from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?"
                                     else -> "$by from there since ${TimeFmt.clock(st.atMs)} — noticed from how you're moving. Right?"
                                 },
@@ -811,7 +811,7 @@ fun DriverScreen(nav: NavHostController, tripId: String) {
                     }
                     Spacer(Modifier.height(Spacing.sm))
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(Spacing.sm), verticalArrangement = Arrangement.spacedBy(Spacing.sm)) {
-                        KoodeChip("Yes", true, { vm.dismissSensedStage() })
+                        KoodeChip(if (st.planned) "Right" else "Yes", true, { vm.dismissSensedStage() })
                         // The way to a station may well have been one's own car, parked there.
                         (listOf(TransportCatalog.BIKE_TAXI, TransportCatalog.AUTO, TransportCatalog.CAB, TransportCatalog.BUS) + (if (toStation) listOf(TransportCatalog.CAR) else emptyList()) + TransportCatalog.WALK)
                             .filter { it.key != TransportCatalog.profile(st.mode).key }

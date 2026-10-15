@@ -476,6 +476,13 @@ class TransitNetwork(
             Kind.RAIL -> railLabel(s.name)
         }
 
+        /** A station of [kind] not yet known by name: "the metro station" until the phone reaches one. */
+        fun stationWord(kind: Kind): String = when (kind) {
+            Kind.METRO -> "the metro station"
+            Kind.WATER -> "the jetty"
+            Kind.RAIL -> "the railway station"
+        }
+
         fun railLabel(name: String): String = if (RAIL_WORDS.containsMatchIn(name)) name else "$name station"
 
         private const val PATH_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"

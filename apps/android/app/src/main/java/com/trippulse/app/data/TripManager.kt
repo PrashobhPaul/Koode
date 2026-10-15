@@ -474,6 +474,8 @@ class TripManager(
         /** Past journeys read for how the traveller usually gets to a station, and how near their start must be. */
         private const val USUAL_WAY_TRIPS = 40
         private const val USUAL_WAY_FROM_M = 500.0
+        /** Ridden this far (and for two minutes) on the way to a station, it was a ride. */
+        private const val WAY_RIDE_M = 300.0
         /** The pace of the road stage to that station, for the time to suggest. */
         private const val LATE_CITY_KMH = 18.0
         /** Moving about within this many arrival radii of the destination is still being there. */
@@ -1346,7 +1348,9 @@ class TripManager(
         lastSenseMs = now
         if (plannedRide != null) {
             _waiting.value = null
-            rideKind(plannedRide.mode)?.let { senseWayToStation(t, leg, plannedRide, it, now) }
+            settleWayMode(t, leg)
+            val way = activeLeg() ?: return
+            rideKind(plannedRide.mode)?.let { senseWayToStation(t, way, plannedRide, it, now) }
             return
         }
         _waiting.value = waitingNow(leg, now)
@@ -1453,9 +1457,13 @@ class TripManager(
         // A journey to the station itself is the way there, not a ride.
         if (net.nearestStation(to, kind, StageSense.STATION_M) == at) return false
         val station = net.stations[at]
-        val name = com.trippulse.app.domain.TransitNetwork.label(station)
-        val mode = usualWayTo(from, station.point)
-            ?: if (Geo.haversineM(from, station.point) <= com.trippulse.app.domain.TransitNetwork.WALK_TO_STATION_M) TransportCatalog.WALK.key else lastMileDefault()
+        // Named once it is reached: the station worked out here is a plan, and
+        // the traveller may well go to another. Nothing is shown that the
+        // movement has not borne out.
+        val name = com.trippulse.app.domain.TransitNetwork.stationWord(kind)
+        // How the way there is made is read from the movement (settleWayMode):
+        // the traveller's own habit from here until then, else on foot out of the door.
+        val mode = usualWayTo(from, station.point) ?: TransportCatalog.WALK.key
         val rows = db.legDao().forTrip(t.tripId)
         val shifted = rows.filter { it.legIndex >= ride.legIndex }.sortedByDescending { it.legIndex }.map { it.copy(legIndex = it.legIndex + 1) }
         db.legDao().upsertAll(shifted)
@@ -1463,7 +1471,8 @@ class TripManager(
             ride.copy(
                 legIndex = ride.legIndex + 1, fromName = name, fromLat = station.lat, fromLng = station.lng,
                 startedAtMs = null, completedAtMs = null,
-                detailsJson = withLine(sensedDetails(ride.detailsJson, PLANNED), ride.mode, station.point, to, net)
+                // Its line is read once the station it is boarded at is known.
+                detailsJson = sensedDetails(ride.detailsJson, PLANNED)
             )
         )
         db.legDao().upsert(
@@ -1483,6 +1492,48 @@ class TripManager(
         currentRoute = null; routeFetchedAtMs = 0L
         _sensedStage.value = SensedStage(t.tripId, ride.legIndex, mode, name, ride.mode, now, StageSense.Reason.BEFORE_LINE, planned = true)
         return true
+    }
+
+    /**
+     * The way to a station, by what the movement shows rather than what
+     * was guessed: ridden for [StageSense.STILL_MIN_MS] and 300 m, it is a
+     * ride (the traveller's usual one from here, else the one people take
+     * there, for them to put right); walked [StageSense.WALK_SPLIT_M] and
+     * [StageSense.WALK_SPLIT_MS] with nothing ridden, a walk. Nothing is
+     * changed on less: a couple of minutes late is better than wrong. What
+     * the traveller said themselves is never changed.
+     */
+    private suspend fun settleWayMode(t: ActiveTripEntity, way: TripLegEntity) {
+        val how = LegDetails.fromJson(way.detailsJson)[DetailKeys.SENSED]
+        if (how != PLANNED && how != "movement") return
+        val eps = StageSense.episodes(rideFixes.filter { it.accuracyM <= StageSense.FIX_ACCURACY_M })
+        val rode = eps.filter { it.pace == StageSense.Pace.RIDING }
+        val walked = eps.filter { it.pace == StageSense.Pace.WALKING }
+        val walk = TransportCatalog.WALK.key
+        val mode = when {
+            way.mode == walk && rode.sumOf { it.ms } >= StageSense.STILL_MIN_MS && rode.sumOf { it.metres } >= WAY_RIDE_M ->
+                usualWayTo(GeoPoint(way.fromLat, way.fromLng), GeoPoint(way.toLat, way.toLng))?.takeIf { it != walk } ?: lastMileDefault()
+            way.mode != walk && rode.isEmpty() && walked.sumOf { it.metres } >= StageSense.WALK_SPLIT_M && walked.sumOf { it.ms } >= StageSense.WALK_SPLIT_MS -> walk
+            else -> return
+        }
+        db.legDao().upsert(way.copy(mode = mode, detailsJson = sensedDetails(way.detailsJson)))
+        legs = db.legDao().forTrip(t.tripId)
+        val latest = trip ?: t
+        val updated = latest.copy(transportMode = mode)
+        db.tripDao().update(updated); trip = updated
+        detector = StopDetector(cfg.forMode(mode))
+        val by = if (mode == walk) "On foot" else "By ${TransportCatalog.label(mode).lowercase()}"
+        insertEvent(
+            t.tripId, EventTypes.TRAVEL_MODE_CHANGED, EventSource.SYSTEM_INFERRED, System.currentTimeMillis(), way.fromLat, way.fromLng,
+            mapOf("fromMode" to way.mode, "toMode" to mode, "sensed" to true, "text" to "$by to ${way.toName} (noticed from the movement)"), false
+        )
+        state?.let { persistAndPush(updated, it, force = true) }
+        if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
+        onSamplingChanged?.invoke()
+        // Told, for the traveller to put right: a bike taxi and an auto move alike.
+        plannedRideAfter(way)?.let { r ->
+            _sensedStage.value = SensedStage(t.tripId, way.legIndex, mode, way.toName, r.mode, System.currentTimeMillis(), StageSense.Reason.BEFORE_LINE, planned = true)
+        }
     }
 
     /**
@@ -1518,7 +1569,7 @@ class TripManager(
             ?: StageSense.boardedAt(from, rideFixes, kind, net) ?: return
         val station = net.stations[a.station]
         // What the way there was made by: the traveller's word stands; Koode's own guess follows the pace.
-        val guessed = LegDetails.fromJson(way.detailsJson)[DetailKeys.SENSED] == PLANNED
+        val guessed = LegDetails.fromJson(way.detailsJson)[DetailKeys.SENSED].let { it == PLANNED || it == "movement" }
         val walk = TransportCatalog.WALK.key
         val mode = when {
             !guessed -> way.mode
@@ -1591,8 +1642,14 @@ class TripManager(
     private suspend fun notBoarded(t: ActiveTripEntity, ride: TripLegEntity, now: Long): Boolean {
         val way = legs.firstOrNull { it.legIndex == ride.legIndex - 1 } ?: return false
         if (rideKind(way.mode) != null) return false
-        db.legDao().upsert(way.copy(completedAtMs = null))
-        db.legDao().upsert(ride.copy(startedAtMs = null, completedAtMs = null, detailsJson = sensedDetails(ride.detailsJson, PLANNED)))
+        db.legDao().upsert(
+            ride.copy(
+                fromName = rideKind(ride.mode)?.let { com.trippulse.app.domain.TransitNetwork.stationWord(it) } ?: ride.fromName,
+                startedAtMs = null, completedAtMs = null, detailsJson = sensedDetails(ride.detailsJson, PLANNED)
+            )
+        )
+        // Not yet any station: the way goes on to the one the ride is boarded at, named when reached.
+        db.legDao().upsert(way.copy(completedAtMs = null, toName = rideKind(ride.mode)?.let { com.trippulse.app.domain.TransitNetwork.stationWord(it) } ?: way.toName))
         val by = if (way.mode == TransportCatalog.WALK.key) "on foot" else "by ${TransportCatalog.label(way.mode).lowercase()}"
         insertEvent(
             t.tripId, EventTypes.TRAVEL_MODE_CHANGED, EventSource.SYSTEM_INFERRED, now, ride.fromLat, ride.fromLng,
