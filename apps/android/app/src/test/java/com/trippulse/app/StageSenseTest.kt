@@ -201,8 +201,9 @@ class StageSenseTest {
         assertEquals("Durgam Cheruvu Metro", s.placeName)
         assertEquals("BIKE_TAXI", s.mode)
         assertEquals(Pace.RIDING, s.pace)
-        // It began when the train left the platform, 14 minutes in, not when the station was reached.
-        assertTrue("${(s.atMs - t0) / 60_000.0}", (s.atMs - t0) in min(13.5) - t0..min(14.3) - t0)
+        // It is told from when the station was reached, 10 minutes in: the bike taxi ended at its door,
+        // and the four minutes on the platform are the change between the two, part of neither.
+        assertTrue("${(s.atMs - t0) / 60_000.0}", (s.atMs - t0) in min(9.5) - t0..min(10.1) - t0)
         assertNull(s.wait)
         assertEquals("By bike taxi from Qualizeal Office to Durgam Cheruvu Metro (noticed from the movement)", StageSense.firstMileText(s, "Qualizeal Office"))
         assertEquals("On the metro from Durgam Cheruvu Metro (noticed from the movement)", StageSense.splitText(s, "METRO"))
@@ -243,7 +244,8 @@ class StageSenseTest {
         val s = StageSense.splits(lg, fixes, net, "BIKE_TAXI").single()
         assertEquals(Reason.BEFORE_LINE, s.reason)
         assertEquals("Durgam Cheruvu Metro", s.placeName)
-        assertTrue("${(s.atMs - t0) / 60_000.0}", (s.atMs - t0) in min(14.5) - t0..min(15.3) - t0)
+        // From reaching Durgam Cheruvu, where the wait was: Madhapur, passed on the road, is not it.
+        assertTrue("${(s.atMs - t0) / 60_000.0}", (s.atMs - t0) in min(10.2) - t0..min(11.1) - t0)
     }
 
     @Test fun a_bike_taxi_that_passed_a_station_and_turned_away_did_not_get_off_the_metro() {
@@ -301,5 +303,85 @@ class StageSenseTest {
         // The office is well over a kilometre from the line.
         assertTrue(net.offLineM(office, TransitNetwork.Kind.METRO)!! > 1_000.0)
         assertNull(net.offLineM(GeoPoint(12.97, 77.59), TransitNetwork.Kind.METRO))
+    }
+
+    // ---- the way to the station, live: reached, waited at, boarded ----
+
+    /** Home to Habsiguda by bike taxi in 8 minutes, then the platform. */
+    private fun toHabsiguda(standUntil: Double): List<Fix> = run(raheja, habsiguda, 0.0, 8.0) + stand(habsiguda, 8.0, standUntil)
+
+    @Test fun waiting_at_the_station_is_reaching_it_not_a_metro_ride() {
+        val now = min(12.0)
+        val a = StageSense.reachedStation(raheja, office, toHabsiguda(12.0), TransitNetwork.Kind.METRO, net, now)
+        assertNotNull(a)
+        assertEquals("Habsiguda Metro", a!!.placeName)
+        assertEquals(Pace.RIDING, a.pace)
+        // From when the station was reached: the bike taxi ended at its door.
+        assertTrue("${(a.atMs - t0) / 60_000.0}", (a.atMs - t0) in min(7.5) - t0..min(8.1) - t0)
+        assertEquals("BIKE_TAXI", StageSense.firstMileMode(a.pace, "BIKE_TAXI"))
+    }
+
+    @Test fun two_minutes_by_a_station_is_a_light_not_a_wait() {
+        assertNull(StageSense.reachedStation(raheja, office, toHabsiguda(10.0), TransitNetwork.Kind.METRO, net, min(10.0)))
+        // Riding through, past the station: not there at all.
+        val through = run(raheja, habsiguda, 0.0, 8.0) + run(habsiguda, tarnaka, 8.0, 12.0)
+        assertNull(StageSense.reachedStation(raheja, office, through, TransitNetwork.Kind.METRO, net, min(12.0)))
+        // The station the journey set off from, or is going to, is not one reached on the way.
+        assertNull(StageSense.reachedStation(habsiguda, office, stand(habsiguda, 0.0, 6.0), TransitNetwork.Kind.METRO, net, min(6.0)))
+    }
+
+    @Test fun a_train_caught_at_once_is_boarded_where_the_station_was_reached() {
+        // A minute on the platform, then the train to Tarnaka: no three-minute wait to read, the line followed instead.
+        val fixes = run(raheja, habsiguda, 0.0, 8.0) + stand(habsiguda, 8.0, 9.0) + ride(habsiguda to tarnaka, fromMin = 9.0, minutesEach = 3.0)
+        val a = StageSense.boardedAt(raheja, fixes, TransitNetwork.Kind.METRO, net)
+        assertNotNull(a)
+        assertEquals("Habsiguda Metro", a!!.placeName)
+        assertTrue("${(a.atMs - t0) / 60_000.0}", (a.atMs - t0) in min(7.5) - t0..min(8.1) - t0)
+    }
+
+    // ---- a change of line, on any network ----
+
+    private val miyapur = GeoPoint(17.49654, 78.37303)
+    private val kukatpally = GeoPoint(17.48460, 78.41180)
+
+    /** The Blue Line from Habsiguda west, and the Red Line from Ameerpet north to Miyapur: the two meet at Ameerpet. */
+    private val lines: TransitNetwork = TransitNetwork.parse(
+        listOf(
+            "Habsiguda" to habsiguda, "Tarnaka" to tarnaka, "Mettuguda" to mettuguda, "Secunderabad East" to secunderabad,
+            "Ameerpet" to ameerpet, "Madhapur" to madhapur, "Kukatpally" to kukatpally, "Miyapur" to miyapur
+        ).joinToString("\n") { (n, p) -> "S|%.5f|%.5f|%s|Hyderabad Metro|M".format(p.lat, p.lng, n) } +
+            "\nL|Hyderabad Metro|Blue Line|blue|0 1:1500 2:1700 3:1600 4:5700 5:6000" +
+            "\nL|Hyderabad Metro|Red Line|red|4 6:5000 7:4500\n"
+    )
+
+    @Test fun a_change_from_the_blue_line_to_the_red_is_read_from_the_stations_passed() {
+        // Blue Line to Ameerpet, five minutes changing platforms, the Red Line to Miyapur.
+        val fixes = ride(habsiguda to tarnaka, tarnaka to mettuguda, mettuguda to secunderabad, secunderabad to ameerpet, fromMin = 0.0, minutesEach = 4.0) +
+            stand(ameerpet, 16.0, 21.0) + ride(ameerpet to kukatpally, kukatpally to miyapur, fromMin = 21.0, minutesEach = 6.0)
+        val leg = Leg(0, "METRO", "Habsiguda Metro", habsiguda, "Miyapur Metro", miyapur, min(0.0), min(33.0))
+        val c = StageSense.lineChanges(leg, fixes, lines).single()
+        assertEquals("Blue Line", c.fromLine)
+        assertEquals("Red Line", c.toLine)
+        assertEquals("Ameerpet Metro", c.placeName)
+        // From reaching Ameerpet: the walk between platforms and the wait are the change.
+        assertTrue("${(c.atMs - t0) / 60_000.0}", (c.atMs - t0) in min(15.0) - t0..min(16.1) - t0)
+        // Told as a change between two rides of one metro, not a ride of its own.
+        val stages = listOf(
+            com.trippulse.app.domain.Changes.Stage("METRO", "Habsiguda Metro", "Ameerpet Metro", min(0.0), c.atMs, line = "Blue Line"),
+            com.trippulse.app.domain.Changes.Stage("METRO", "Ameerpet Metro", "Miyapur Metro", c.atMs, min(33.0), line = "Red Line")
+        )
+        val step = com.trippulse.app.domain.Changes.parts(stages, listOf(com.trippulse.app.domain.Changes.Wait(min(16.0), min(21.0))), completed = false)
+            .filterIsInstance<com.trippulse.app.domain.Changes.Part.Step>().single { it.change.kind == com.trippulse.app.domain.Changes.Kind.CHANGE }
+        assertTrue(step.change.ofLine)
+        assertEquals("Off the Blue Line at Ameerpet Metro, onto the Red Line after a wait", com.trippulse.app.domain.Changes.text(step.change))
+    }
+
+    @Test fun a_ride_that_stays_on_its_line_or_has_not_gone_on_has_no_change() {
+        // Habsiguda to Madhapur through Ameerpet: the Blue Line all the way.
+        val stayed = ride(habsiguda to tarnaka, tarnaka to mettuguda, mettuguda to secunderabad, secunderabad to ameerpet, ameerpet to madhapur, fromMin = 0.0, minutesEach = 4.0)
+        assertTrue(StageSense.lineChanges(Leg(0, "METRO", "Habsiguda Metro", habsiguda, "Madhapur Metro", madhapur, min(0.0), min(20.0)), stayed, lines).isEmpty())
+        // Still at Ameerpet, the change not yet made: nothing to tell yet.
+        val atInterchange = ride(habsiguda to tarnaka, tarnaka to mettuguda, mettuguda to secunderabad, secunderabad to ameerpet, fromMin = 0.0, minutesEach = 4.0) + stand(ameerpet, 16.0, 19.0)
+        assertTrue(StageSense.lineChanges(Leg(0, "METRO", "Habsiguda Metro", habsiguda, "Miyapur Metro", miyapur, min(0.0), null), atInterchange, lines).isEmpty())
     }
 }

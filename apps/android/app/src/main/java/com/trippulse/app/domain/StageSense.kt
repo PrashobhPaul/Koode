@@ -252,6 +252,164 @@ object StageSense {
         return out
     }
 
+    /** Live: where the way to a station ended, and the wait for the train began. */
+    data class Arrival(
+        val station: Int, val placeName: String, val at: GeoPoint, val atMs: Long,
+        /** How the way there was made: ridden by road, or walked. */
+        val pace: Pace, val metres: Double
+    )
+
+    /** At a station this long, standing or walking about, the traveller is waiting for the train, not stopped at a light. */
+    const val ARRIVE_HOLD_MS = 3 * 60_000L
+    /** The fixes read for an arrival are this fresh: an old stand says nothing about now. */
+    const val FRESH_MS = 2 * 60_000L
+
+    /**
+     * Live: the traveller, on the way to a ride of [kind] from [from], has
+     * reached a station and is waiting there: the fixes have been within
+     * [STATION_M] of it for [ARRIVE_HOLD_MS], standing or walking about,
+     * not riding through. Not the station they set off from, nor the one
+     * the journey is going to. The way there ended when the station was
+     * reached; what it was made by is read from its pace. Null otherwise:
+     * a ride through, a short stop at a light by the station, not there yet.
+     *
+     * A stop of three minutes at a light under a station is rare, not
+     * impossible: the caller puts it back if the fixes then ride away from
+     * the station by road without the train.
+     */
+    fun reachedStation(from: GeoPoint, to: GeoPoint?, fixes: List<Fix>, kind: TransitNetwork.Kind, net: TransitNetwork, nowMs: Long): Arrival? {
+        if (net.isEmpty) return null
+        val sorted = fixes.filter { it.accuracyM <= FIX_ACCURACY_M }.sortedBy { it.tMs }
+        val last = sorted.lastOrNull() ?: return null
+        if (nowMs - last.tMs > FRESH_MS) return null
+        val s = net.nearestStation(last.point, kind, STATION_M) ?: return null
+        if (net.nearestStation(from, kind, STATION_M) == s) return null
+        if (to != null && net.nearestStation(to, kind, STATION_M) == s) return null
+        // The fixes at the station, back to when they reached it.
+        var k = sorted.lastIndex
+        while (k > 0 && net.nearestStation(sorted[k - 1].point, kind, STATION_M) == s) k--
+        if (last.tMs - sorted[k].tMs < ARRIVE_HOLD_MS) return null
+        val reachedMs = stoppedAt(sorted.subList(k, sorted.size), s, kind, net, sorted[k].tMs)
+        // Since then, standing on the platform or walking about the station: nothing ridden.
+        val lately = sorted.filter { it.tMs >= last.tMs - ARRIVE_HOLD_MS }
+        if (episodes(lately).any { it.pace == Pace.RIDING }) return null
+        val moving = episodes(sorted.subList(0, k + 1)).filter { it.pace != Pace.STILL }
+        val ridden = moving.filter { it.pace == Pace.RIDING }.sumOf { it.metres }
+        val walked = moving.filter { it.pace == Pace.WALKING }.sumOf { it.metres }
+        val station = net.stations[s]
+        return Arrival(s, TransitNetwork.label(station), station.point, reachedMs, if (ridden >= walked) Pace.RIDING else Pace.WALKING, ridden + walked)
+    }
+
+    /**
+     * Live: the station a train or boat was boarded at on the way from
+     * [from], once the fixes have followed the line from it to the next
+     * station (the train left before [ARRIVE_HOLD_MS] were up). Told as
+     * an [Arrival]: from when the station was reached. Null until then.
+     */
+    fun boardedAt(from: GeoPoint, fixes: List<Fix>, kind: TransitNetwork.Kind, net: TransitNetwork): Arrival? {
+        val inside = fixes.filter { it.accuracyM <= FIX_ACCURACY_M }.sortedBy { it.tMs }
+        if (net.isEmpty || inside.size < 4) return null
+        val b = boarding(Leg(0, "", "", from, "", from, inside.first().tMs, null), kind, inside, net, TransportCatalog.WALK.key) ?: return null
+        if (net.nearestStation(from, kind, STATION_M) == b.station) return null
+        val station = net.stations[b.station]
+        return Arrival(b.station, TransitNetwork.label(station), station.point, b.atMs, b.pace, b.metres)
+    }
+
+    /** A change of line partway through a ride: off [fromLine] at [placeName] (station [station]) at [atMs], onto [toLine]. */
+    data class LineChange(
+        val legIndex: Int, val atMs: Long, val station: Int, val at: GeoPoint, val placeName: String,
+        val fromLine: String, val toLine: String
+    )
+
+    /**
+     * Where a ride on a metro or a water metro changed lines, on any
+     * network: the stations the fixes were seen at, in order (a station's
+     * twin on another line, of the same name, is the same stop), joined by
+     * the quickest way between each and the next, read as the lines that
+     * carry it ([TransitNetwork.runs]). A change is told only once the ride
+     * has gone on along the new line past the station it changed at, so a
+     * ride still at the interchange, or that stayed on, has none. Each
+     * change is told from when the interchange was reached (the walk
+     * between platforms and the wait there are the change, Changes);
+     * where no fix was taken there (underground), from the time the ride
+     * would have passed it, between the stations either side.
+     */
+    fun lineChanges(leg: Leg, fixes: List<Fix>, net: TransitNetwork): List<LineChange> {
+        val kind = TransitNetwork.kindOf(leg.mode) ?: return emptyList()
+        if (kind == TransitNetwork.Kind.RAIL || net.isEmpty || net.lines.isEmpty()) return emptyList()
+        val start = leg.startedAtMs ?: return emptyList()
+        val end = leg.completedAtMs
+        val sorted = fixes.filter { it.accuracyM <= FIX_ACCURACY_M && it.tMs >= start && (end == null || it.tMs <= end) }.sortedBy { it.tMs }
+        class Seen(val station: Int, val firstMs: Long, var lastMs: Long)
+        fun same(a: Int, b: Int) = a == b || net.stations[a].name.equals(net.stations[b].name, ignoreCase = true)
+        val seen = ArrayList<Seen>()
+        net.nearestStation(leg.from, kind, STATION_M)?.let { seen += Seen(it, start, start) }
+        for (f in sorted) {
+            val st = net.nearestStation(f.point, kind, STATION_M) ?: continue
+            val last = seen.lastOrNull()
+            if (last != null && same(last.station, st)) { last.lastMs = f.tMs; continue }
+            seen += Seen(st, f.tMs, f.tMs)
+        }
+        if (end != null) net.nearestStation(leg.to, kind, STATION_M * 2)?.let { e ->
+            val last = seen.lastOrNull()
+            if (last == null || !same(last.station, e)) seen += Seen(e, end, end)
+        }
+        if (seen.size < 2) return emptyList()
+        // The ride through them, and where along it each was seen.
+        val path = arrayListOf(seen[0].station)
+        val seenAt = HashMap<Int, Seen>().apply { put(0, seen[0]) }
+        for (k in 1 until seen.size) {
+            val hop = net.fastest(seen[k - 1].station, seen[k].station)?.stations ?: return emptyList()
+            path += hop.drop(1)
+            seenAt[path.lastIndex] = seen[k]
+        }
+        val runs = net.runs(path)
+        if (runs.size < 2) return emptyList()
+        val along = DoubleArray(path.size)
+        for (j in 1 until path.size) along[j] = along[j - 1] + Geo.haversineM(net.stations[path[j - 1]].point, net.stations[path[j]].point)
+        val out = ArrayList<LineChange>()
+        var from = 0
+        for (k in 1 until runs.size) {
+            val off = (from until path.size).firstOrNull { path[it] == runs[k - 1].to } ?: break
+            val on = (off until path.size).firstOrNull { path[it] == runs[k].from } ?: break
+            from = on
+            // Gone on along the new line: a station on it seen after the change.
+            if (seenAt.keys.none { it > on }) break
+            val atMs = (off..on).firstNotNullOfOrNull { seenAt[it]?.firstMs } ?: run {
+                val before = seenAt.keys.filter { it < off }.maxOrNull() ?: return@run null
+                val after = seenAt.keys.filter { it > on }.minOrNull() ?: return@run null
+                val a = seenAt.getValue(before); val b = seenAt.getValue(after)
+                val span = along[after] - along[before]
+                val f = if (span > 0) (along[off] - along[before]) / span else 0.5
+                a.lastMs + ((b.firstMs - a.lastMs) * f).toLong()
+            } ?: continue
+            val station = net.stations[runs[k].from]
+            out += LineChange(leg.index, atMs, runs[k].from, station.point, TransitNetwork.label(station), runs[k - 1].line.name, runs[k].line.name)
+        }
+        return out
+    }
+
+    /**
+     * When the way to station [station] ended: the first fix within reach of
+     * it is the ride still coming in, so it ended where the fixes there
+     * stopped riding (the drop-off, the walk in, the stand), else at [reachedMs].
+     */
+    private fun stoppedAt(from: List<Fix>, station: Int, kind: TransitNetwork.Kind, net: TransitNetwork, reachedMs: Long): Long {
+        val there = from.takeWhile { net.nearestStation(it.point, kind, STATION_M) == station }
+        // The first fix from which the phone went at a walk or less: its own speed where it gives one.
+        for (i in 0 until there.size - 1) {
+            val a = there[i]; val b = there[i + 1]
+            val dt = b.tMs - a.tMs
+            if (dt <= 0 || dt > PAIR_MAX_MS) continue
+            val kmh = b.speedMps?.takeIf { it >= 0 }?.times(3.6) ?: (Geo.haversineM(a.point, b.point) / dt * 3_600.0)
+            if (kmh <= WALK_KMH) return maxOf(reachedMs, a.tMs)
+        }
+        return reachedMs
+    }
+
+    /** What the way to a station was made by, from its pace: ridden, the ride by road people take there ([ride]); walked, a walk. */
+    fun firstMileMode(pace: Pace, ride: String): String = if (pace == Pace.RIDING) ride else TransportCatalog.WALK.key
+
     /**
      * The order splits are applied in so that each one's stage number still
      * means what it did when it was found: later stages first; on one
@@ -288,7 +446,7 @@ object StageSense {
     }
 
     /** Where a ride on rails or water was boarded, as the fixes show it, and the stage made to get there when it was one. */
-    private data class Boarding(val atMs: Long, val firstMile: Split?)
+    private data class Boarding(val atMs: Long, val station: Int, val pace: Pace, val metres: Double, val firstMile: Split?)
 
     /**
      * The station a ride recorded as starting away from any station was
@@ -296,23 +454,23 @@ object StageSense {
      * (within [OffLine.offM] of it all the way to the next station). A
      * station merely passed, by a bike taxi on the road under the viaduct,
      * is left behind off the line and does not count; one the fixes stood
-     * at or walked into is the surer, and taken first. The ride began when
-     * the stand on its platform ended. The way to the station is a stage of
+     * at or walked into is the surer, and taken first. The ride is told
+     * from when the station was reached. The way to the station is a stage of
      * its own when it was long enough to be one, by the pace it was made at:
      * ridden, it is the ride by road the journey uses; walked, a walk.
      */
     private fun boarding(leg: Leg, kind: TransitNetwork.Kind, inside: List<Fix>, net: TransitNetwork, lastMileRide: String): Boarding? {
         val rule = offLineFor(kind)
-        // Each station the fixes came within reach of, with the fix they were nearest it at.
-        data class Visit(val station: Int, val at: Fix, val index: Int)
+        // Each station the fixes came within reach of: the fix they were nearest it at, and when they first got there.
+        data class Visit(val station: Int, val at: Fix, val index: Int, val firstMs: Long)
         val visits = ArrayList<Visit>()
         var current: Visit? = null
         for ((i, f) in inside.withIndex()) {
             val near = net.nearestStation(f.point, kind, STATION_M)
             val c = current
             if (near == null) { c?.let { visits += it }; current = null; continue }
-            if (c == null || c.station != near) { c?.let { visits += it }; current = Visit(near, f, i); continue }
-            if (Geo.haversineM(net.stations[near].point, f.point) < Geo.haversineM(net.stations[near].point, c.at.point)) current = Visit(near, f, i)
+            if (c == null || c.station != near) { c?.let { visits += it }; current = Visit(near, f, i, f.tMs); continue }
+            if (Geo.haversineM(net.stations[near].point, f.point) < Geo.haversineM(net.stations[near].point, c.at.point)) current = Visit(near, f, i, c.firstMs)
         }
         current?.let { visits += it }
         // A visit the line was followed from: on it from there to a different station.
@@ -334,8 +492,10 @@ object StageSense {
         }
         val boarded = candidates.firstOrNull { stoodAt(it) != null } ?: candidates.first()
         val station = net.stations[boarded.station]
-        val stood = stoodAt(boarded)?.takeIf { it.pace == Pace.STILL }
-        val atMs = maxOf(boarded.at.tMs, stood?.toMs ?: boarded.at.tMs)
+        // The ride is told from when the station was reached: the way there ends
+        // at its door, and the wait on the platform is the change between the two,
+        // part of neither (Changes), told as a wait for the train (waits).
+        val atMs = stoppedAt(inside.filter { it.tMs >= boarded.firstMs }, boarded.station, kind, net, boarded.firstMs)
         // The way to the station, by the pace of what moved before reaching it.
         val moving = episodes(inside.filter { it.tMs <= atMs }).filter { it.pace != Pace.STILL }
         val ridden = moving.filter { it.pace == Pace.RIDING }.sumOf { it.metres }
@@ -345,7 +505,7 @@ object StageSense {
             else walked >= WALK_SPLIT_M && moving.sumOf { it.ms } >= WALK_SPLIT_MS
         val mode = if (pace == Pace.RIDING) lastMileRide else TransportCatalog.WALK.key
         val firstMile = if (isStage) Split(leg.index, atMs, station.point, TransitNetwork.label(station), mode, Reason.BEFORE_LINE, pace, null) else null
-        return Boarding(atMs, firstMile)
+        return Boarding(atMs, boarded.station, pace, ridden + walked, firstMile)
     }
 
     private fun leftLine(leg: Leg, kind: TransitNetwork.Kind, inside: List<Fix>, net: TransitNetwork, lastMileRide: String): Split? {

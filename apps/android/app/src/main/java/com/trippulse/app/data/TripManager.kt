@@ -222,8 +222,15 @@ class TripManager(
      */
     data class SensedStage(
         val tripId: String, val legIndex: Int, val mode: String, val place: String, val endedMode: String, val atMs: Long,
-        val reason: StageSense.Reason = StageSense.Reason.LEFT_LINE
+        val reason: StageSense.Reason = StageSense.Reason.LEFT_LINE,
+        /** Not read yet, planned: the way to [place] by [mode], the ride on [endedMode] from there once it is reached. */
+        val planned: Boolean = false
     )
+
+    /** Waiting on the platform for [mode] at [place], since [sinceMs]: the change between two rides, part of neither. */
+    data class Waiting(val mode: String, val place: String, val sinceMs: Long)
+    private val _waiting = kotlinx.coroutines.flow.MutableStateFlow<Waiting?>(null)
+    val waiting: StateFlow<Waiting?> = _waiting
     private val _sensedStage = kotlinx.coroutines.flow.MutableStateFlow<SensedStage?>(null)
     val sensedStage: StateFlow<SensedStage?> = _sensedStage
     fun dismissSensedStage() { _sensedStage.value = null }
@@ -289,9 +296,11 @@ class TripManager(
     suspend fun repairStages(tripId: String): Boolean {
         // Stages the movement says were made but nobody tapped: the ride that
         // ended at its station, the walk that stood in for the cab, the waits.
-        var changed = runCatching { foldMisTaps(tripId) }.getOrDefault(false)
+        var changed = runCatching { dropUnridden(tripId) }.getOrDefault(false)
+        changed = runCatching { foldMisTaps(tripId) }.getOrDefault(false) || changed
         changed = runCatching { backfillLateStart(tripId) }.getOrDefault(false) || changed
         changed = runCatching { senseStages(tripId) }.getOrDefault(false) || changed
+        changed = runCatching { readLines(tripId) }.getOrDefault(false) || changed
         // The path as drawn began where the record began: drawn again from the stages as they now stand.
         if (changed) { DrawnPaths.delete(appContext, tripId); if (drawnCache?.first == tripId) drawnCache = null }
         val rows = db.legDao().forTrip(tripId)
@@ -459,6 +468,12 @@ class TripManager(
         private const val LATE_SWITCH_WINDOW_MS = 10 * 60_000L
         /** A ride told after the fact began at a station this near where the stage before set off. */
         private const val LATE_BOARD_M = 3_000.0
+        /** How a stage came to be: planned by Koode (the way to the station, the ride from it), begun on reaching the station. */
+        private const val PLANNED = "planned"
+        private const val ARRIVED = "arrived"
+        /** Past journeys read for how the traveller usually gets to a station, and how near their start must be. */
+        private const val USUAL_WAY_TRIPS = 40
+        private const val USUAL_WAY_FROM_M = 500.0
         /** The pace of the road stage to that station, for the time to suggest. */
         private const val LATE_CITY_KMH = 18.0
         /** Moving about within this many arrival radii of the destination is still being there. */
@@ -636,9 +651,19 @@ class TripManager(
                 "estimatedDistanceBeforeTrackingM" to preDistanceM
             ) else mapOf("text" to "${ownerName() ?: "The traveller"} started a journey to ${started.destName}."), false
         )
+        // A ride on rails or water chosen from away from any station: the metro
+        // does not leave from the door. The way to the station comes first.
+        // (Start tapped late on the platform is the other case, below: the way there is already behind.)
+        activeLeg()?.let { ride ->
+            rideKind(ride.mode)?.let { kind ->
+                val onPlatform = here != null && actualStartMs != null &&
+                    TransitData.load(appContext, here).nearestStation(here, kind, StageSense.STATION_M) != null
+                if (!onPlatform) runCatching { wayToStation(started, ride, kind, now) }
+            }
+        }
         db.legDao().markStarted(tripId, started.activeLegIndex, now)
         legs = db.legDao().forTrip(tripId)
-        announceLeg(started, started.activeLegIndex, now)
+        announceLeg(trip ?: started, started.activeLegIndex, now)
 
         // Set off from home earlier and pressed Start on the platform with the
         // metro chosen: the metro did not leave from home. The way to the
@@ -769,7 +794,9 @@ class TripManager(
         at: GeoPoint? = null,
         /** Read from the movement (StageSense), not tapped. */
         sensed: Boolean = false,
-        text: String? = null
+        text: String? = null,
+        /** Whether the stage that ends was paid for on its own: a change of line on one metro is one fare. */
+        fare: Boolean = true
     ): SwitchResult {
         val t = editableTrip() ?: return SwitchResult.NotEditable
         val s0 = state ?: return SwitchResult.NotEditable
@@ -833,7 +860,29 @@ class TripManager(
         // metro went to the metro, not to the destination it was heading for.
         current?.let {
             db.legDao().upsert(it.copy(completedAtMs = now, toName = hereName, toLat = lat, toLng = lng))
-            fareOpportunity(t.tripId, it.mode, it.fromName, hereName, now)
+            if (fare) fareOpportunity(t.tripId, it.mode, it.fromName, hereName, now)
+        }
+
+        // The stage Koode planned next (the metro from the station the way
+        // there was going to) is the one now begun, from here: not another.
+        val plannedNext = current?.let { c -> legs.firstOrNull { it.legIndex == c.legIndex + 1 && it.startedAtMs == null && it.mode.equals(newMode, ignoreCase = true) } }
+        if (plannedNext != null) {
+            val kept = LegDetails.fromJson(plannedNext.detailsJson) - DetailKeys.SENSED
+            val net = rideKind(newMode)?.let { TransitData.load(appContext, here) }
+            val merged = LegDetails.toJson(if (details.isEmpty()) kept else kept + details)
+            db.legDao().upsert(
+                plannedNext.copy(
+                    fromName = hereName, fromLat = lat, fromLng = lng, startedAtMs = now,
+                    detailsJson = if (net != null) withLine(merged, newMode, here, GeoPoint(plannedNext.toLat, plannedNext.toLng), net, again = true) else merged
+                )
+            )
+            insertEvent(
+                t.tripId, EventTypes.LEG_STARTED, if (sensed) EventSource.SYSTEM_INFERRED else EventSource.DRIVER_MANUAL, now, lat, lng,
+                mapOf("legIndex" to plannedNext.legIndex, "mode" to newMode, "text" to (text ?: "Continuing ${TransportCatalog.profile(newMode).travellingSuffix}"))
+            , false)
+            movedOnto(t, plannedNext.legIndex, newMode, now)
+            if (!atDestination(t, s0)) arrivalPromptShown = false
+            return SwitchResult.Ok
         }
 
         // Where this new stage is heading: the point the current stage was
@@ -861,7 +910,11 @@ class TripManager(
                     ?.takeIf { TransportCatalog.isPrivate(newMode) },
                 plannedDepartureMs = null, startedAtMs = now, completedAtMs = null,
                 bookingRef = details[DetailKeys.PNR], seat = details[DetailKeys.SEAT],
-                boardingPoint = null, detailsJson = LegDetails.toJson(if (sensed) details + (DetailKeys.SENSED to "movement") else details)
+                boardingPoint = null,
+                detailsJson = (LegDetails.toJson(if (sensed) details + (DetailKeys.SENSED to "movement") else details)).let { json ->
+                    // The metro's line, read from the route when nobody named it.
+                    if (rideKind(newMode) != null) withLine(json, newMode, here, GeoPoint(toLat, toLng), TransitData.load(appContext, here)) else json
+                }
             )
         )
         legs = db.legDao().forTrip(t.tripId)
@@ -1164,7 +1217,7 @@ class TripManager(
         val now = fix.timeMs
         val profile = activeProfile()
         // The stations around the phone: a new square may bring a country's.
-        if (rideKind(activeLeg()?.mode ?: t.transportMode) != null) runCatching { TransitData.follow(appContext, fix.point) }
+        if (railNowOrNext(t) != null) runCatching { TransitData.follow(appContext, fix.point) }
 
         // rolling display speed
         val speedKmh = fix.speedMps?.takeIf { it >= 0f }?.let { it * 3.6 }
@@ -1275,8 +1328,11 @@ class TripManager(
     private suspend fun senseStage(t: ActiveTripEntity, fix: Fix, now: Long) {
         val leg = activeLeg()
         val started = leg?.startedAtMs
-        if (leg == null || started == null || rideKind(leg.mode) == null) {
+        // On the way to the station a planned ride leaves from: read for reaching it.
+        val plannedRide = leg?.takeIf { rideKind(it.mode) == null }?.let { plannedRideAfter(it) }
+        if (leg == null || started == null || (rideKind(leg.mode) == null && plannedRide == null)) {
             if (rideFixes.isNotEmpty()) { rideFixes.clear(); rideFixesLeg = -1 }
+            _waiting.value = null
             return
         }
         if (rideFixesLeg != leg.legIndex) {
@@ -1288,11 +1344,40 @@ class TripManager(
         if (rideFixes.size > 6_000) rideFixes.subList(0, rideFixes.size - 4_000).clear()
         if (now - lastSenseMs < SENSE_EVERY_MS) return
         lastSenseMs = now
+        if (plannedRide != null) {
+            _waiting.value = null
+            rideKind(plannedRide.mode)?.let { senseWayToStation(t, leg, plannedRide, it, now) }
+            return
+        }
+        _waiting.value = waitingNow(leg, now)
         val net = TransitData.current.takeIf { !it.isEmpty } ?: return
         val ride = StageSense.usualRide(legs.map { it.toSense() }, leg.legIndex, lastMileDefault())
+        val kind = rideKind(leg.mode) ?: return
+        val from = GeoPoint(leg.fromLat, leg.fromLng)
+        val fromStation = net.nearestStation(from, kind, StageSense.STATION_M) != null
+        // Chosen away from any station and now waiting at one: the ride begins
+        // there, from when it was reached, not only once the train has gone.
+        if (!fromStation) StageSense.reachedStation(from, GeoPoint(leg.toLat, leg.toLng), rideFixes, kind, net, now)
+            ?.takeIf { it.metres >= StageSense.FIRST_MILE_MIN_M }
+            ?.let { a ->
+                val split = StageSense.Split(
+                    leg.legIndex, a.atMs, a.at, a.placeName, StageSense.firstMileMode(a.pace, ride),
+                    StageSense.Reason.BEFORE_LINE, a.pace, null
+                )
+                beganAtStation(t, leg, split, arrived = true)
+                _sensedStage.value = SensedStage(t.tripId, leg.legIndex, split.mode, split.placeName, leg.mode, split.atMs, StageSense.Reason.BEFORE_LINE)
+                rideFixes.clear(); rideFixesLeg = -1
+                return
+            }
+        // A change of line, once the ride has gone on along the new one.
+        if (fromStation) StageSense.lineChanges(leg.toSense().copy(completedAtMs = null), rideFixes, net).firstOrNull()?.let { c ->
+            changeLine(t, leg, c); return
+        }
         val split = StageSense.splits(listOf(leg.toSense().copy(completedAtMs = null)), rideFixes, net, ride).firstOrNull() ?: return
         when (split.reason) {
             StageSense.Reason.LEFT_LINE -> {
+                // Begun on reaching a station, then ridden away from it by road: not boarded after all.
+                if (LegDetails.fromJson(leg.detailsJson)[DetailKeys.SENSED] == ARRIVED && split.placeName == leg.fromName && notBoarded(t, leg, now)) return
                 val text = StageSense.splitText(split, leg.mode)
                 val result = switchModeLocked(split.mode, emptyMap(), false, atMs = split.atMs, at = split.at, sensed = true, text = text)
                 if (result !is SwitchResult.Ok) return
@@ -1317,10 +1402,15 @@ class TripManager(
      * there becomes its own stage before it (see [applySplit]), and the
      * journey's active stage, live state and meta move along with the ride.
      */
-    private suspend fun beganAtStation(t: ActiveTripEntity, leg: TripLegEntity, split: StageSense.Split) {
+    private suspend fun beganAtStation(t: ActiveTripEntity, leg: TripLegEntity, split: StageSense.Split, arrived: Boolean = false) {
         applySplit(t.tripId, split)
         val rideIndex = leg.legIndex + 1
         legs = db.legDao().forTrip(t.tripId)
+        // Its line, read from the station it began at; and, when Koode began it on arrival, marked so (see notBoarded).
+        legs.firstOrNull { it.legIndex == rideIndex }?.let { r ->
+            val json = withLine(if (arrived) sensedDetails(r.detailsJson, ARRIVED) else r.detailsJson, r.mode, split.at, GeoPoint(r.toLat, r.toLng), TransitData.load(appContext, split.at), again = true)
+            if (json != r.detailsJson) { db.legDao().upsert(r.copy(detailsJson = json)); legs = db.legDao().forTrip(t.tripId) }
+        }
         val latest = trip ?: t
         if (latest.activeLegIndex == leg.legIndex) {
             val updated = latest.copy(activeLegIndex = rideIndex)
@@ -1329,6 +1419,355 @@ class TripManager(
             state?.copy(legIndex = rideIndex)?.let { s -> state = s; persistAndPush(updated, s, force = true) }
             if (updated.cloudEnabled) appScope.launch { sync.writeMetaUpdate(updated, metaMap(updated)) }
         }
+    }
+
+    // -----------------------------------------------------------------------
+    // The way to the station: a ride on rails or water chosen from away from one
+    // -----------------------------------------------------------------------
+
+    /** The stage planned after [leg], when it is a ride on rails or water not yet begun. */
+    private fun plannedRideAfter(leg: TripLegEntity): TripLegEntity? =
+        legs.firstOrNull { it.legIndex == leg.legIndex + 1 && it.startedAtMs == null && rideKind(it.mode) != null }
+
+    /** The network the journey rides now, or rides next when this stage is the way to its station. */
+    private fun railNowOrNext(t: ActiveTripEntity): com.trippulse.app.domain.TransitNetwork.Kind? {
+        val leg = activeLeg() ?: return rideKind(t.transportMode)
+        return rideKind(leg.mode) ?: plannedRideAfter(leg)?.let { rideKind(it.mode) }
+    }
+
+    /**
+     * A journey on rails or water set off from away from any station: the
+     * metro does not leave from the door. The way to the station it is best
+     * begun at ([com.trippulse.app.domain.TransitNetwork.boardingStation])
+     * becomes the first stage: the way the traveller went there from here
+     * before, else walked when it is near and ridden by road when not. The
+     * ride is planned from that station and begins when the phone gets
+     * there ([senseWayToStation]). Told to the traveller to put right.
+     */
+    private suspend fun wayToStation(t: ActiveTripEntity, ride: TripLegEntity, kind: com.trippulse.app.domain.TransitNetwork.Kind, now: Long): Boolean {
+        val from = GeoPoint(ride.fromLat, ride.fromLng)
+        val net = TransitData.load(appContext, from)
+        if (net.isEmpty || net.nearestStation(from, kind, StageSense.STATION_M) != null) return false
+        val to = GeoPoint(ride.toLat, ride.toLng)
+        val at = net.boardingStation(from, to, kind) ?: return false
+        // A journey to the station itself is the way there, not a ride.
+        if (net.nearestStation(to, kind, StageSense.STATION_M) == at) return false
+        val station = net.stations[at]
+        val name = com.trippulse.app.domain.TransitNetwork.label(station)
+        val mode = usualWayTo(from, station.point)
+            ?: if (Geo.haversineM(from, station.point) <= com.trippulse.app.domain.TransitNetwork.WALK_TO_STATION_M) TransportCatalog.WALK.key else lastMileDefault()
+        val rows = db.legDao().forTrip(t.tripId)
+        val shifted = rows.filter { it.legIndex >= ride.legIndex }.sortedByDescending { it.legIndex }.map { it.copy(legIndex = it.legIndex + 1) }
+        db.legDao().upsertAll(shifted)
+        db.legDao().upsert(
+            ride.copy(
+                legIndex = ride.legIndex + 1, fromName = name, fromLat = station.lat, fromLng = station.lng,
+                startedAtMs = null, completedAtMs = null,
+                detailsJson = withLine(sensedDetails(ride.detailsJson, PLANNED), ride.mode, station.point, to, net)
+            )
+        )
+        db.legDao().upsert(
+            TripLegEntity(
+                tripId = t.tripId, legIndex = ride.legIndex, mode = mode,
+                fromName = ride.fromName, fromLat = ride.fromLat, fromLng = ride.fromLng,
+                toName = name, toLat = station.lat, toLng = station.lng,
+                fuelType = null, plannedDepartureMs = ride.plannedDepartureMs, startedAtMs = null, completedAtMs = null,
+                bookingRef = null, seat = null, boardingPoint = null, detailsJson = sensedDetails(null, PLANNED)
+            )
+        )
+        legs = db.legDao().forTrip(t.tripId)
+        val updated = (trip ?: t).copy(transportMode = mode, fuelType = null)
+        db.tripDao().update(updated); trip = updated
+        detector = StopDetector(cfg.forMode(mode))
+        // The road route was to the destination; the stage now goes to the station.
+        currentRoute = null; routeFetchedAtMs = 0L
+        _sensedStage.value = SensedStage(t.tripId, ride.legIndex, mode, name, ride.mode, now, StageSense.Reason.BEFORE_LINE, planned = true)
+        return true
+    }
+
+    /**
+     * How the traveller got from near [from] to the station at [station]
+     * the last time a journey went that way: the stage before a ride on
+     * rails or water that began there. Null when no journey has.
+     */
+    private suspend fun usualWayTo(from: GeoPoint, station: GeoPoint): String? {
+        for (past in db.tripDao().recent(USUAL_WAY_TRIPS)) {
+            if (past.tripId == trip?.tripId || past.completedAtMs == null) continue
+            val rows = db.legDao().forTrip(past.tripId).sortedBy { it.legIndex }
+            for ((i, leg) in rows.withIndex()) {
+                val next = rows.getOrNull(i + 1) ?: break
+                if (leg.startedAtMs == null || next.startedAtMs == null || rideKind(leg.mode) != null || rideKind(next.mode) == null) continue
+                if (Geo.haversineM(GeoPoint(leg.fromLat, leg.fromLng), from) <= USUAL_WAY_FROM_M &&
+                    Geo.haversineM(GeoPoint(next.fromLat, next.fromLng), station) <= StageSense.STATION_M) return leg.mode
+            }
+        }
+        return null
+    }
+
+    /**
+     * Live, on the way to a station: when the phone has reached one and is
+     * waiting there ([StageSense.reachedStation]), or has already followed
+     * the line from one ([StageSense.boardedAt]), the way there ended when
+     * the station was reached and the ride planned after it begins there.
+     * The wait on the platform is the change between the two.
+     */
+    private suspend fun senseWayToStation(t: ActiveTripEntity, way: TripLegEntity, ride: TripLegEntity, kind: com.trippulse.app.domain.TransitNetwork.Kind, now: Long) {
+        val net = TransitData.current.takeIf { !it.isEmpty } ?: return
+        val from = GeoPoint(way.fromLat, way.fromLng)
+        val a = StageSense.reachedStation(from, GeoPoint(ride.toLat, ride.toLng), rideFixes, kind, net, now)
+            ?: StageSense.boardedAt(from, rideFixes, kind, net) ?: return
+        val station = net.stations[a.station]
+        // What the way there was made by: the traveller's word stands; Koode's own guess follows the pace.
+        val guessed = LegDetails.fromJson(way.detailsJson)[DetailKeys.SENSED] == PLANNED
+        val walk = TransportCatalog.WALK.key
+        val mode = when {
+            !guessed -> way.mode
+            a.pace == StageSense.Pace.WALKING -> walk
+            way.mode == walk -> lastMileDefault()
+            else -> way.mode
+        }
+        db.legDao().upsert(
+            way.copy(
+                mode = mode, completedAtMs = a.atMs, toName = a.placeName, toLat = station.lat, toLng = station.lng,
+                detailsJson = if (mode != way.mode) sensedDetails(way.detailsJson) else way.detailsJson
+            )
+        )
+        db.legDao().upsert(
+            ride.copy(
+                fromName = a.placeName, fromLat = station.lat, fromLng = station.lng, startedAtMs = a.atMs,
+                detailsJson = withLine(sensedDetails(ride.detailsJson, ARRIVED), ride.mode, station.point, GeoPoint(ride.toLat, ride.toLng), net, again = true)
+            )
+        )
+        fareOpportunity(t.tripId, mode, way.fromName, a.placeName, a.atMs)
+        val by = if (mode == walk) "On foot" else "By ${TransportCatalog.label(mode).lowercase()}"
+        insertEvent(
+            t.tripId, EventTypes.LEG_COMPLETED, EventSource.SYSTEM_INFERRED, a.atMs, station.lat, station.lng,
+            mapOf("legIndex" to way.legIndex, "mode" to mode, "sensed" to true, "text" to "$by to ${a.placeName} (noticed from the movement)"), false
+        )
+        movedOnto(t, ride.legIndex, ride.mode, a.atMs)
+        val line = LegDetails.fromJson(legs.firstOrNull { it.legIndex == ride.legIndex }?.detailsJson)[DetailKeys.OPERATOR]
+        insertEvent(
+            t.tripId, EventTypes.LEG_STARTED, EventSource.SYSTEM_INFERRED, a.atMs + 500L, station.lat, station.lng,
+            mapOf(
+                "legIndex" to ride.legIndex, "mode" to ride.mode, "sensed" to true,
+                "text" to "At ${a.placeName} for ${StageSense.waitedWord(ride.mode) ?: "the ride"}${line?.takeIf { it.isNotBlank() }?.let { " ($it)" } ?: ""} (noticed from the movement)"
+            ), false
+        )
+        _sensedStage.value = SensedStage(t.tripId, way.legIndex, mode, a.placeName, ride.mode, a.atMs, StageSense.Reason.BEFORE_LINE)
+        rideFixes.clear(); rideFixesLeg = -1
+    }
+
+    /** The journey moves onto stage [index] (by [mode], from [atMs]): trip, detector, plan and live state follow. */
+    private suspend fun movedOnto(t: ActiveTripEntity, index: Int, mode: String, atMs: Long) {
+        legs = db.legDao().forTrip(t.tripId)
+        val latest = trip ?: t
+        val moved = latest.copy(activeLegIndex = index, transportMode = mode, fuelType = null)
+        db.tripDao().update(moved); trip = moved
+        detector = StopDetector(cfg.forMode(mode))
+        currentRoute = null; routeFetchedAtMs = 0L
+        metroAnchor = null
+        val plan = planFor(moved)
+        if (!plan.mode.equals(mode, ignoreCase = true)) {
+            plans.append(
+                t.tripId,
+                plan.copy(
+                    version = plan.version + 1, atMs = atMs, mode = mode,
+                    role = WellbeingCoach.defaultRole(mode).name, reason = EventTypes.LEG_STARTED
+                )
+            )
+        }
+        state?.copy(legIndex = index, drivingSinceMs = atMs)?.let { s -> state = s; persistAndPush(moved, s, force = true) }
+        if (moved.cloudEnabled) appScope.launch { sync.writeMetaUpdate(moved, metaMap(moved)) }
+        onSamplingChanged?.invoke()
+    }
+
+    /**
+     * A ride begun at a station on arrival (Koode's reading, not a tap) whose
+     * fixes then rode away from that same station by road, never along the
+     * line: the stop was not for the train (a long light under the viaduct,
+     * the metro given up on). The way there carries on as it was; the ride
+     * is planned again, from wherever it is boarded next.
+     */
+    private suspend fun notBoarded(t: ActiveTripEntity, ride: TripLegEntity, now: Long): Boolean {
+        val way = legs.firstOrNull { it.legIndex == ride.legIndex - 1 } ?: return false
+        if (rideKind(way.mode) != null) return false
+        db.legDao().upsert(way.copy(completedAtMs = null))
+        db.legDao().upsert(ride.copy(startedAtMs = null, completedAtMs = null, detailsJson = sensedDetails(ride.detailsJson, PLANNED)))
+        val by = if (way.mode == TransportCatalog.WALK.key) "on foot" else "by ${TransportCatalog.label(way.mode).lowercase()}"
+        insertEvent(
+            t.tripId, EventTypes.TRAVEL_MODE_CHANGED, EventSource.SYSTEM_INFERRED, now, ride.fromLat, ride.fromLng,
+            mapOf(
+                "fromMode" to ride.mode, "toMode" to way.mode, "sensed" to true,
+                "text" to "Not ${StageSense.waitedWord(ride.mode) ?: "the ride"} at ${ride.fromName}: still $by (noticed from the movement)"
+            ), false
+        )
+        movedOnto(t, way.legIndex, way.mode, now)
+        _sensedStage.value = null
+        rideFixes.clear(); rideFixesLeg = -1
+        return true
+    }
+
+    /**
+     * A ride's details with its line read from the route when nobody named
+     * it: the metro from [from] to [to] on the lines the network says carry
+     * it ("Blue Line"). With [again], a line read earlier is read again (from
+     * the station really boarded at); a line the traveller typed never is.
+     */
+    private fun withLine(json: String?, mode: String, from: GeoPoint, to: GeoPoint, net: com.trippulse.app.domain.TransitNetwork, again: Boolean = false, toWithinM: Double = com.trippulse.app.domain.TransitNetwork.DEST_STATION_M): String? {
+        val kind = rideKind(mode) ?: return json
+        if (kind == com.trippulse.app.domain.TransitNetwork.Kind.RAIL) return json
+        val d = LegDetails.fromJson(json)
+        val typed = !d[DetailKeys.OPERATOR].isNullOrBlank() && d[DetailKeys.LINE_READ] != "route"
+        if (typed || (!again && !d[DetailKeys.OPERATOR].isNullOrBlank())) return json
+        val line = net.lineFor(from, to, kind, toWithinM) ?: return json
+        return LegDetails.toJson(d + (DetailKeys.OPERATOR to line) + (DetailKeys.LINE_READ to "route"))
+    }
+
+    /** The line a ride by [mode] from here to where the stage is going would be on: for the "now on…" sheet to fill in. */
+    fun lineGuess(mode: String): String? {
+        val t = trip ?: return null
+        val kind = rideKind(mode)?.takeIf { it != com.trippulse.app.domain.TransitNetwork.Kind.RAIL } ?: return null
+        val s = state ?: return null
+        val here = GeoPoint(s.lat ?: return null, s.lng ?: return null)
+        val net = TransitData.current.takeIf { !it.isEmpty } ?: return null
+        return net.lineFor(here, legDestination(t), kind)
+    }
+
+    /**
+     * The lines of the finished rides, read again from the stations each
+     * really ran between, where Koode read them (never where the traveller
+     * typed one), and read for the first time where nobody named one.
+     */
+    private suspend fun readLines(tripId: String): Boolean = lock.withLock {
+        val t = db.tripDao().byId(tripId) ?: return@withLock false
+        val net = TransitData.load(appContext, GeoPoint(t.destLat, t.destLng))
+        if (net.isEmpty) return@withLock false
+        var changed = false
+        for (leg in db.legDao().forTrip(tripId)) {
+            if (leg.startedAtMs == null || leg.completedAtMs == null) continue
+            val json = withLine(leg.detailsJson, leg.mode, GeoPoint(leg.fromLat, leg.fromLng), GeoPoint(leg.toLat, leg.toLng), net, again = true, toWithinM = StageSense.STATION_M * 2)
+            if (json != leg.detailsJson) { db.legDao().upsert(leg.copy(detailsJson = json)); changed = true }
+        }
+        if (changed && trip?.tripId == tripId) legs = db.legDao().forTrip(tripId)
+        changed
+    }
+
+    /**
+     * A ride Koode planned that was never begun (the metro given up on, the
+     * bike taxi taken all the way): gone from the finished record, and the
+     * way to its station went where the ride was going instead.
+     */
+    private suspend fun dropUnridden(tripId: String): Boolean = lock.withLock {
+        if (db.tripDao().byId(tripId)?.completedAtMs == null) return@withLock false
+        val rows = db.legDao().forTrip(tripId).sortedBy { it.legIndex }
+        val unridden = rows.filter { it.startedAtMs == null && LegDetails.fromJson(it.detailsJson)[DetailKeys.SENSED] == PLANNED }
+        if (unridden.isEmpty() || unridden.size == rows.size) return@withLock false
+        val keep = ArrayList<TripLegEntity>()
+        for (leg in rows) {
+            if (leg in unridden) {
+                val before = keep.lastOrNull() ?: continue
+                keep[keep.lastIndex] = before.copy(toName = leg.toName, toLat = leg.toLat, toLng = leg.toLng)
+                continue
+            }
+            keep += leg
+        }
+        db.legDao().deleteForTrip(tripId)
+        db.legDao().upsertAll(keep.mapIndexed { n, l -> l.copy(legIndex = n) })
+        val t = db.tripDao().byId(tripId)
+        if (t != null && t.activeLegIndex >= keep.size) db.tripDao().update(t.copy(activeLegIndex = keep.size - 1))
+        if (trip?.tripId == tripId) { trip = db.tripDao().byId(tripId); legs = db.legDao().forTrip(tripId) }
+        true
+    }
+
+    /**
+     * Waiting on the platform: a ride on rails or water begun at its station
+     * that has not moved off along the line yet. What the screen and the
+     * people following say instead of "on the move at 1 km/h".
+     */
+    private fun waitingNow(leg: TripLegEntity?, now: Long): Waiting? {
+        leg ?: return null
+        val kind = rideKind(leg.mode) ?: return null
+        val since = leg.startedAtMs ?: return null
+        val net = TransitData.current.takeIf { !it.isEmpty } ?: return null
+        val station = GeoPoint(leg.fromLat, leg.fromLng)
+        if (net.nearestStation(station, kind, StageSense.STATION_M) == null) return null
+        val read = rideFixes.filter { it.tMs >= since && it.accuracyM <= StageSense.FIX_ACCURACY_M }
+        val last = read.lastOrNull() ?: return null
+        if (now - last.tMs > StageSense.FRESH_MS || Geo.haversineM(last.point, station) > StageSense.STATION_M) return null
+        if (StageSense.episodes(read).any { it.pace == StageSense.Pace.RIDING }) return null
+        return Waiting(leg.mode, leg.fromName, since)
+    }
+
+    /**
+     * Live: the metro ride has changed lines (off the Blue Line at Ameerpet,
+     * on along the Red): the stage on the first line ends at the
+     * interchange, when it was reached, and one on the new line begins
+     * there. One ticket, so no fare is asked for between them.
+     */
+    private suspend fun changeLine(t: ActiveTripEntity, leg: TripLegEntity, c: StageSense.LineChange) {
+        val d = LegDetails.fromJson(leg.detailsJson)
+        val typed = !d[DetailKeys.OPERATOR].isNullOrBlank() && d[DetailKeys.LINE_READ] != "route"
+        if (!typed) {
+            db.legDao().upsert(leg.copy(detailsJson = LegDetails.toJson(d + (DetailKeys.OPERATOR to c.fromLine) + (DetailKeys.LINE_READ to "route"))))
+            legs = db.legDao().forTrip(t.tripId)
+        }
+        switchModeLocked(
+            leg.mode, mapOf(DetailKeys.OPERATOR to c.toLine, DetailKeys.LINE_READ to "route"), false,
+            atMs = c.atMs, at = c.at, sensed = true, text = lineChangeText(c), fare = false
+        )
+        rideFixes.clear(); rideFixesLeg = -1
+    }
+
+    private fun lineChangeText(c: StageSense.LineChange) = "Changed to the ${c.toLine} at ${c.placeName} (noticed from the movement)"
+
+    /**
+     * After the fact: each finished ride on a metro or a boat that changed
+     * lines becomes a stage for each line, the interchange the change
+     * between them (StageSense.lineChanges). Run with the lock held.
+     */
+    private suspend fun splitLines(tripId: String, fixes: List<StageSense.Fix>, net: com.trippulse.app.domain.TransitNetwork): Boolean {
+        var changed = false
+        for (leg in db.legDao().forTrip(tripId).sortedByDescending { it.legIndex }) {
+            val start = leg.startedAtMs ?: continue
+            val end = leg.completedAtMs ?: continue
+            val cs = StageSense.lineChanges(leg.toSense(), fixes, net).filter { it.atMs in (start + 1) until end }
+            if (cs.isEmpty()) continue
+            val n = cs.size
+            db.legDao().forTrip(tripId).filter { it.legIndex > leg.legIndex }.sortedByDescending { it.legIndex }
+                .map { it.copy(legIndex = it.legIndex + n) }.takeIf { it.isNotEmpty() }?.let { db.legDao().upsertAll(it) }
+            val d = LegDetails.fromJson(leg.detailsJson)
+            val typed = !d[DetailKeys.OPERATOR].isNullOrBlank() && d[DetailKeys.LINE_READ] != "route"
+            fun onLine(base: Map<String, String>, line: String) = LegDetails.toJson(base + (DetailKeys.OPERATOR to line) + (DetailKeys.LINE_READ to "route"))
+            db.legDao().upsert(
+                leg.copy(
+                    toName = cs[0].placeName, toLat = cs[0].at.lat, toLng = cs[0].at.lng, completedAtMs = cs[0].atMs,
+                    detailsJson = if (typed) leg.detailsJson else onLine(d, cs[0].fromLine)
+                )
+            )
+            for ((k, c) in cs.withIndex()) {
+                val next = cs.getOrNull(k + 1)
+                db.legDao().upsert(
+                    TripLegEntity(
+                        tripId = tripId, legIndex = leg.legIndex + k + 1, mode = leg.mode,
+                        fromName = c.placeName, fromLat = c.at.lat, fromLng = c.at.lng,
+                        toName = next?.placeName ?: leg.toName, toLat = next?.at?.lat ?: leg.toLat, toLng = next?.at?.lng ?: leg.toLng,
+                        fuelType = null, plannedDepartureMs = null, startedAtMs = c.atMs, completedAtMs = next?.atMs ?: end,
+                        bookingRef = null, seat = null, boardingPoint = null,
+                        detailsJson = onLine(d + (DetailKeys.SENSED to "movement"), c.toLine)
+                    )
+                )
+                insertEvent(
+                    tripId, EventTypes.LEG_STARTED, EventSource.SYSTEM_INFERRED, c.atMs, c.at.lat, c.at.lng,
+                    mapOf("legIndex" to leg.legIndex + k + 1, "mode" to leg.mode, "sensed" to true, "text" to lineChangeText(c)), false
+                )
+            }
+            db.tripDao().byId(tripId)?.let { t ->
+                if (t.activeLegIndex >= leg.legIndex) db.tripDao().update(t.copy(activeLegIndex = t.activeLegIndex + n))
+            }
+            changed = true
+        }
+        if (changed && trip?.tripId == tripId) { trip = db.tripDao().byId(tripId); legs = db.legDao().forTrip(tripId) }
+        return changed
     }
 
     /**
@@ -1421,6 +1860,12 @@ class TripManager(
             // The waits, against the stages as they now stand (each split above moved the ones after it along by one).
             val standing = db.legDao().forTrip(tripId).sortedBy { it.legIndex }.map { it.toSense() }
             for (w in StageSense.waits(standing, fixes, StageSense.shifted(splits))) if (recordWait(tripId, w)) changed = true
+            // Changes of line on one metro: a stage for each line; the wait at the interchange is told like any other.
+            if (finished && splitLines(tripId, fixes, net)) {
+                changed = true
+                val again = db.legDao().forTrip(tripId).sortedBy { it.legIndex }.map { it.toSense() }
+                for (w in StageSense.waits(again, fixes)) if (recordWait(tripId, w)) changed = true
+            }
         }
         return changed
     }
@@ -2911,8 +3356,25 @@ class TripManager(
         val route = currentRoute
         // On a hybrid journey the legs still ahead are added on, so "distance
         // to go" always means to the final destination.
-        val onwardM = legs.filter { it.legIndex > t.activeLegIndex }
-            .sumOf { Geo.haversineM(GeoPoint(it.fromLat, it.fromLng), GeoPoint(it.toLat, it.toLng)) * cfg.roadDistanceFactor }
+        // A ride on rails or water still ahead (the metro from the station the
+        // way there is going to) goes along its lines, at their speed, after the wait for it.
+        val net = TransitData.current
+        var railM = 0.0
+        var railS = 0.0
+        val onwardM = legs.filter { it.legIndex > t.activeLegIndex }.sumOf { leg ->
+            val a = GeoPoint(leg.fromLat, leg.fromLng)
+            val b = GeoPoint(leg.toLat, leg.toLng)
+            val kind = rideKind(leg.mode)
+            val r = if (kind == null || net.isEmpty) null else net.nearestStation(a, kind)?.let { s ->
+                net.nearestStation(b, kind, com.trippulse.app.domain.TransitNetwork.DEST_STATION_M)?.let { e -> net.fastest(s, e) }
+            }?.takeIf { it.seconds > 0 }
+            if (r != null && kind != null) {
+                railM += r.metres
+                railS += r.seconds + com.trippulse.app.domain.TransitNetwork.platformWaitS(kind)
+                r.metres + Geo.haversineM(net.stations[r.stations.last()].point, b) * cfg.roadDistanceFactor
+            } else Geo.haversineM(a, b) * cfg.roadDistanceFactor
+        }
+        onwardRail = if (railM > 0) railM to railS else null
         val ahead = lastRideAhead
         val legRemaining = if (ahead != null) {
             // The ride along its lines, and from its last station to where the stage is going.
@@ -2925,20 +3387,33 @@ class TripManager(
         return legRemaining + onwardM
     }
 
+    /** The rides on rails or water ahead of the stage under way: metres along their lines, and seconds with the wait for each. */
+    private var onwardRail: Pair<Double, Double>? = null
+
+    /** The rest of the wait on the platform, at the usual wait for the train: at least a minute while it is still awaited. */
+    private fun platformWaitLeftS(now: Long): Double {
+        val w = _waiting.value ?: return 0.0
+        val kind = rideKind(w.mode) ?: return 0.0
+        return maxOf(60.0, com.trippulse.app.domain.TransitNetwork.platformWaitS(kind) - (now - w.sinceMs) / 1000.0)
+    }
+
     private fun remainingTravelSeconds(remainingM: Double): Long {
         val route = currentRoute
+        val rail = onwardRail
+        val roadM = (remainingM - (rail?.first ?: 0.0)).coerceAtLeast(0.0)
+        val extraS = (rail?.second ?: 0.0) + platformWaitLeftS(System.currentTimeMillis())
         lastRideAhead?.let { ahead ->
             // The ride at its lines' speeds; what is left after it at the usual pace.
-            val after = (remainingM - ahead.metres).coerceAtLeast(0.0)
-            return (ahead.seconds + after / (cfg.fallbackAvgSpeedKmh / 3.6)).toLong()
+            val after = (roadM - ahead.metres).coerceAtLeast(0.0)
+            return (ahead.seconds + after / (cfg.fallbackAvgSpeedKmh / 3.6) + extraS).toLong()
         }
         return if (route != null && route.distanceM > 0) {
             // scale the route duration by the fraction of distance remaining
-            val frac = (remainingM / route.distanceM).coerceIn(0.0, 1.0)
-            (route.durationS * frac).toLong()
+            val frac = (roadM / route.distanceM).coerceIn(0.0, 1.0)
+            (route.durationS * frac + extraS).toLong()
         } else {
             val speedMps = cfg.fallbackAvgSpeedKmh / 3.6
-            if (speedMps > 0) (remainingM / speedMps).toLong() else 0
+            if (speedMps > 0) (roadM / speedMps + extraS).toLong() else extraS.toLong()
         }
     }
 
@@ -3869,6 +4344,10 @@ class TripManager(
         t.darkReason?.let { put("darkReason", it) }
         t.simChangedAtMs?.let { put("simChangedAt", it) }
         storyCache?.let { put("story", it) }
+        // On the platform: what the people following read instead of a speed.
+        _waiting.value?.let { w ->
+            put("waiting", mapOf("mode" to w.mode, "place" to w.place, "since" to w.sinceMs, "for" to (StageSense.waitedWord(w.mode) ?: "the ride")))
+        }
         put("updatedAt", s.updatedAtMs)
     }
 

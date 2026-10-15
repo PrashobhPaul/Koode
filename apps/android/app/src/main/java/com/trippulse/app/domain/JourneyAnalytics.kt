@@ -65,7 +65,9 @@ object JourneyAnalytics {
         /** Seat or berth, for the timeline/PDF. PNR is deliberately not carried. */
         val seat: String? = null,
         /** How far the record moved during the stage, when known: a short walk between rides is not a stage. */
-        val distanceM: Double? = null
+        val distanceM: Double? = null,
+        /** The line a ride on a metro or a boat was on ("Blue Line"): two rides on one network but different lines are two stages. */
+        val line: String? = null
     )
 
     data class Inputs(
@@ -161,7 +163,8 @@ object JourneyAnalytics {
         val startedAtMs: Long? = null,
         val completedAtMs: Long? = null,
         /** How far the stage went, when known. */
-        val distanceM: Double? = null
+        val distanceM: Double? = null,
+        val line: String? = null
     )
 
     fun analyse(i: Inputs): JourneyReport {
@@ -296,7 +299,7 @@ object JourneyAnalytics {
         // No stage ran past the journey's end; a change tapped twice is one stage, not two.
         val within = StageRepair.withinJourney(i.legs, i.endedAtMs, { it.startedAtMs }, { it.completedAtMs }, i.completed) { l, e -> l.copy(completedAtMs = e) }
         val legReports = StageRepair.told(
-            StageRepair.folded(within, { it.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
+            StageRepair.folded(within, { leg -> leg.line?.let { "${leg.mode}|$it" } ?: leg.mode }, { it.startedAtMs }, { it.completedAtMs }) { a, b ->
                 a.copy(toName = b.toName, completedAtMs = b.completedAtMs, distanceM = listOfNotNull(a.distanceM, b.distanceM).takeIf { it.isNotEmpty() }?.sum())
             }, { it.mode }, { it.distanceM }, { it.fromName }, { it.toName }, { leg, from -> leg.copy(fromName = from) }
         ).mapIndexed { n, leg ->
@@ -307,14 +310,14 @@ object JourneyAnalytics {
                     ((leg.completedAtMs - leg.startedAtMs) / 1000).coerceAtLeast(0) else null,
                 seat = leg.seat,
                 startedAtMs = leg.startedAtMs, completedAtMs = leg.completedAtMs,
-                distanceM = leg.distanceM
+                distanceM = leg.distanceM, line = leg.line
             )
         }
 
         // ---- the doors and the changes between the rides ----
         val timed = legReports.filter { it.startedAtMs != null && it.completedAtMs != null }
         val parts = if (timed.isNotEmpty() && timed.size == legReports.size) Changes.parts(
-            timed.map { Changes.Stage(it.mode, it.fromName, it.toName, it.startedAtMs!!, it.completedAtMs!!, it.distanceM) },
+            timed.map { Changes.Stage(it.mode, it.fromName, it.toName, it.startedAtMs!!, it.completedAtMs!!, it.distanceM, it.line) },
             measuredWaits, i.completed,
             moves = StageSense.episodes(i.fixes.filter { it.accuracyM <= StageSense.FIX_ACCURACY_M })
         ) else emptyList()
